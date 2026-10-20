@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "842b799b06090d54cdea",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops launch qwen14b d050 retrain",
+  "task_key": "worker_ops_launch-qwen14b-d050-retrain_20260520T223218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-qwen14b-d050-retrain_20260520T223218_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "7259a56a8d72fd85753d45a8ee5f87ea3df1b7ba57d79c9c24ee1e2669890c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后回来检查 d025 进度。已完成结果：\n| Dosage | MMLU Acc |\n|--------|----------|\n| d000_s0 | 64.88% |\n| d005_s0 | 64.14% |\n| d025_s0 | 运行中 |\n| d050_s0 | 待运行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-qwen14b-d050-retrain.md"
+}

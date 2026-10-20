@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c3ba7c967ef77e960a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit exp006 cache logic",
+  "task_key": "worker_audit_exp006_cache_logic_20260514T150314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_exp006_cache_logic_20260514T150314_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "58992332eaa58463978e3d5ae4f9b66b74b9fa6d65698979a74817c0ec5ae5aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. 缓存逻辑类型：**无**\n\n四个文件全部审查完毕，**没有任何缓存/跳过逻辑**：\n\n| 文件 | 输出目录处理 | 缓存检查 |\n|------|-------------|---------|\n| `run_exp006.py` | `bench_dir.mkdir(parents=True, exist_ok=True)` 然后直接写文件 | 无 |\n| `run_irt_calibration.py` | 同上 | 无 |\n| `run_irt_stan.py` | 同上 | 无 |\n| `joint_fit.py` | 同上 | 无 |\n\n代码对每个 benchmark 的处理流程是：创建目录 → 跑 IRT → 跑 baselines → 跑 evaluation → 写 JSON 结果文件（覆盖写入）。没有 `if exists: skip` 逻辑。\n\n注意：CLI 的 `--skip-stan` 是跳过 Stan-based baselines（B2/B3），不是跳过已完成的 benchmark。\n\n### 2. 残留目录和文件\n\n```\n/root/autodl-tmp/exp006/results_05B/\n/root/autodl-tmp/exp006/results_05B/mmlu/    ← 空目录（0 文件）\n```\n\n整个 `results_05B/` 下无任何文件。\n\n### 3. 是否需要清理\n\n**不需要。** 空目录无害——代码会 `mkdir(exist_ok=True)`（对已存在目录无操作），然后直接覆盖写入结果文件。重跑不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-exp006-cache-logic.md"
+}

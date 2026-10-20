@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "651f904cf673db95b627",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "plan 7b 14b experiment plan",
+  "task_key": "worker_plan_7b-14b-experiment-plan_20260518T061929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_plan_7b-14b-experiment-plan_20260518T061929.log",
+    "occurrence": 1,
+    "bytes": 728388,
+    "sha256": "c216c726a69a5b4ae0ee18164771cea4d90790de352ae1127ed74501155abc67"
+  },
+  "statistics": {
+    "messages": 79,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 24,
+      "tool_result": 24,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "651f904cf673db95b627-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "651f904cf673db95b627-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "651f904cf673db95b627-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/plan-7b-14b-experiment-plan.md"
+}

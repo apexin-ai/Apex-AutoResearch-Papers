@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d52066b1159c7babb7dc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prepare eval pipeline",
+  "task_key": "worker_ops_prepare-eval-pipeline_20260518T102337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-eval-pipeline_20260518T102337_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "b080898fcd7545b4000aaa5c52ec00ec23b941f48a204f1f14e23d2acae28334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## Eval 管道状态\n\n### 已就绪\n- **`/root/contamcal-irt-calibration/exp001/evaluate.py`** — 自定义 eval 脚本，已包含 GSM8K (8-shot CoT)、MMLU、ARC-Challenge、HumanEval 全部四个 benchmark 的评估逻辑，不依赖 lm-eval-harness\n- **依赖库**：transformers、peft、datasets 均已安装\n- **参考 shell 脚本**：`run_eval_3B_d100_auto.sh` 可作为 7B 的模板\n\n### 未就绪\n- **lm-eval-harness 未安装** — 但不需要，项目用自己的 `evaluate.py`\n- **7B checkpoint 未完成**：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter/` 目录存在但为空（训练进行中）\n\n### 7B pilot 完成后的 GSM8K eval 命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\n\ncd /root/contamcal-irt-calibration/exp001\n\nCUDA_VISIBLE_DEVICES=<GPU_ID> python evaluate.py \\\n    --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B \\\n    --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter \\\n    --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-7B_d000_s42 \\\n    --benchmarks gsm8k \\\n    --batch-size 4\n```\n\n如需全部 benchmark 评估，把 `--benchmarks gsm8k` 改为 `--benchmarks mmlu gsm8k arc_challenge humaneval`。按 C004 约束，提交时必须显式设置 `CUDA_VISIBLE_DEVICES`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-eval-pipeline.md"
+}

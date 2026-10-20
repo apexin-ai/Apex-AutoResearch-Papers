@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98f841a29898db0076ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code aligned eval 15B script",
+  "task_key": "worker_code_aligned-eval-15B-script_20260514T083726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_aligned-eval-15B-script_20260514T083726_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "4f7ade9765838842f6306c71078510261e7745dededaeafec967ed495dc76b2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并通过语法检查：\n\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh` — 包含 d000/d005/d100 三个 dosage，所有 checkpoint 和 lora_adapter 目录均已确认存在\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh` — d000_s42 和 d100_s42 的 checkpoint 已存在，d005_s42 尚未训练，脚本会自动跳过（WARN + continue）\n\n两个脚本均保持 `--mc-format aligned`，支持 `original|paraphrase|both` 模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-aligned-eval-15b-script.md"
+}

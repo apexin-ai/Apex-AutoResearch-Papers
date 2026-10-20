@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa2ce6f28864966b673",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp j16 domain gamma final collect",
+  "task_key": "worker_exp_j16-domain-gamma-final-collect_20260518T021833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_j16-domain-gamma-final-collect_20260518T021833_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "c4f3cb6be8767e3e6baabcb2d67c191cbc3e4b2cf7488be2d23c513e3607a95d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程还在跑，我会在约 4.5 分钟后回来检查进度。当前已确认：\n- J=13 参考数据位于 `/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/summary.json`\n- J=16 输出目录：`/root/autodl-tmp/exp006/mmlu_domain_irt_j16_qwen/`\n- STEM_Math 已完成，方向与 J=13 一致（pro-contamination），J=16 信号更强"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-j16-domain-gamma-final-collect.md"
+}

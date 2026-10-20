@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "679a9eea1559670bc44e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prepare qwen14b d050 eval scripts",
+  "task_key": "worker_ops_prepare-qwen14b-d050-eval-scripts_20260521T033618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-qwen14b-d050-eval-scripts_20260521T033618_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "efc17737bf8f4425784f4819fd253f2f5ba72174769118d3c68039ccc8e2b774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出：\n\n**脚本路径：**\n- MMLU: `/root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d050_s0_mmlu.sh`\n- ARC: `/root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d050_s0_arc.sh`\n\n两个脚本均已 `chmod +x`，包含 adapter 路径自动检测和 C006 lora_alpha=32 校验。\n\n**Retrain 进度：**\n- 2467/3642 steps（67.7%）\n- 速度 ~4.9s/step\n- 剩余 1175 steps，预计 **~1h36min** 后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-qwen14b-d050-eval-scripts.md"
+}

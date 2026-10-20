@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7a2f64f6a7a8af75a0b6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp 002 signal pipeline",
+  "task_key": "worker_code_exp-002-signal-pipeline_20260514T091323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002-signal-pipeline_20260514T091323.log",
+    "occurrence": 1,
+    "bytes": 810125,
+    "sha256": "174306cde205042efd44eb81cdcbd064c37db256a19ecb3d5405c4437c246a07"
+  },
+  "statistics": {
+    "messages": 304,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "7a2f64f6a7a8af75a0b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a2f64f6a7a8af75a0b6-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-002-signal-pipeline-copy-2.md"
+}

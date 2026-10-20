@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "942a528589372e98db43",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp 001 sft 3B d000 v3",
+  "task_key": "worker_submit_exp_001_sft_3B_d000_v3_20260515T160651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_001_sft_3B_d000_v3_20260515T160651_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "ca7496f451b3af3e4a5d8db313df7ab2678a42ded2d1782287c2db808dec2105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 5 上正在跑 `evaluate.py`（d025_s123 的 eval），已运行 33 分钟。\n\n**无法提交 exp_001_sft_3B_d000_v3 到 GPU 5** — 当前有评估任务占用（PID 584315，`Qwen2.5-3B_d025_s123_para_aligned` eval，显存 13GB）。\n\n选项：\n1. 等该 eval 完成后再提交（eval 通常 1-2 小时）\n2. 换一个空闲 GPU（当前 6 块全部被占用，没有空闲的）\n3. 如果某个任务可以中断/已完成，kill 后腾出 GPU\n\n需要你决定怎么处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-001-sft-3b-d000-v3.md"
+}

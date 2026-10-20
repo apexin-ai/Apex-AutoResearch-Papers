@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "809bcdfedb9093e4805e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research d005 data diagnosis",
+  "task_key": "worker_research_d005-data-diagnosis_20260514T065118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d005-data-diagnosis_20260514T065118_result.json",
+    "occurrence": 1,
+    "bytes": 2851,
+    "sha256": "15bc34413520d549cf493a189e3cf0e8985729b2acc42741b09212af1f4d3498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收齐。以下是完整的根因诊断。\n\n---\n\n## 根因诊断报告：0.5B d005 MC 崩溃\n\n### 1. 数据面：排除训练数据答案偏差\n\n| 指标 | 数值 |\n|------|------|\n| d005 总样本 | 50,826 |\n| 真正 MC 污染样本 | 753 条（1.5%） |\n| 污染样本答案分布 | A:20.1%, B:25.6%, C:27.1%, D:27.2% |\n| MMLU paraphrase 答案分布 | A:22.6%, B:25.0%, C:25.9%, D:26.5% |\n\n**训练数据答案分布均匀，排除答案位置偏差。**\n\n### 2. 预测分布对比：确认 A-collapse\n\n| Benchmark | 0.5B d000 (s123) | 0.5B d005 (s42) |\n|-----------|-------------------|-----------------|\n| MMLU A% | 41.3% | **66.9%** |\n| MMLU B% | 15.7% | **0.6%** |\n| MMLU C% | 17.0% | **0.7%** |\n| MMLU D% | 25.9% | 31.8% |\n| ARC A% | 12.5% | **72.2%** |\n| ARC D% | 72.2% | 25.8% |\n\nd005 把 B/C 概率压到接近 0，集中到 A 和 D。ARC 的 A/D 甚至发生了对调。\n\n### 3. 根因：**训练-评估格式冲突 + 0.5B 模型容量不足**\n\n**训练格式**（SFT 注入的 MC 样本）：\n```\n[user]: Question: ...\\nA) ...\\nB) ...\\nC) ...\\nD) ...\n[assistant]: The answer is B.\n```\n\n**评估格式**（logprob 方式）：\n```\n[user]: [5-shot examples with \"Answer: X\"]\\nQuestion: ...\\nA) ...\\nD) ...\\nAnswer:\n[assistant]: ← 在此位置测量 A/B/C/D 的 logprob\n```\n\n两个关键冲突：\n1. **训练无 \"Answer:\" 后缀**，评估有\n2. **训练 assistant 以 \"The\" 开头**（token 785），评估期望直接输出选项字母（token 32-35）\n\nSFT 后模型在 assistant 位置把概率集中在 \"The\" 上。A/B/C/D 的 logprob 退化为 token 先验频率，不再反映推理内容。\"A\"（token 32）作为字母表首位占据最高残余概率。\n\n**关键佐证**：GSM8K 使用生成式评估（非 logprob），不受此格式冲突影响：\n- d000 GSM8K: 0.340 → d005 GSM8K: 0.360（+2pp，无退化）\n- MMLU/ARC 使用 logprob 评估，分别退化 -12.5pp / -11.2pp\n\n### 4. 完整 Metrics\n\n| Benchmark | 0.5B d000 s123 | 0.5B d005 s42 | 3B d000 s42 |\n|-----------|---------------|---------------|-------------|\n| MMLU | 0.418 | 0.293 (-12.5pp) | 0.634 |\n| ARC | 0.398 | 0.286 (-11.2pp) | 0.822 |\n| GSM8K | 0.340 | 0.360 (+2.0pp) | 0.117 |\n\n### 5. 结论\n\n**根因是训练数据的 MC 格式（\"The answer is X\"）与评估的 logprob 提取方式不兼容**，而非答案分布偏差。0.5B 模型容量小，753 条格式冲突的 MC 样本就足以覆写其预训练的 few-shot MC 能力。\n\n**修复方向**：\n- 方案 A：将训练格式改为 `\"Answer: B\"`（与评估格式一致）\n- 方案 B：评估时改用生成式解析（生成 \"The answer is X\" 后提取字母）\n- 方案 C：评估 prompt 中加入 \"The answer is\" 前缀，在 \"is\" 之后测量 A/B/C/D 的 logprob"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d005-data-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cefc7b63698f4c979654",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 d000 completion check",
+  "task_key": "worker_ops_llama3-d000-completion-check_20260521T121652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-d000-completion-check_20260521T121652_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "eb2e23216d2e019d6bb6678a9c16ce2e6a279eb7ecb795b1e9336f9ce0ec1bb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清理或未在本 session 创建）。\n\n---\n\n```\n训练结果: success\n.done 文件: 存在 (/root/autodl-tmp/exp001/checkpoints/Meta-Llama-3.1-8B_d000_s0/.done)\ncheckpoint: /root/autodl-tmp/exp001/checkpoints/Meta-Llama-3.1-8B_d000_s0/lora_adapter/\n  - adapter_model.safetensors (167MB)\n  - adapter_config.json (lora_alpha=32, r=16)\n  - tokenizer.json, tokenizer_config.json, training_args.bin, checkpoint-3125\nlog 关键内容: epoch=1, train_loss=1.373, mean_token_accuracy=0.6958, runtime=8110s (~2h15m)\neval 是否已触发: 是 — PID 519410/519561 在 GPU 1 运行 MMLU eval\n  输出到: /root/contamcal-irt-calibration/results/mmlu_eval/llama3_8b/d000_s0/\nGPU 1 状态: 在跑 eval (96% util, 37GB VRAM)\nregistry 更新: 已完成 (DONE/success)\ncron 清理: 不存在（无需删除）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-d000-completion-check.md"
+}

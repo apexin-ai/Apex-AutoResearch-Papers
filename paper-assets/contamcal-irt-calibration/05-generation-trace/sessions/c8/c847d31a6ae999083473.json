@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c847d31a6ae999083473",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart phi4 olmo2 downloads",
+  "task_key": "worker_ops_restart-phi4-olmo2-downloads_20260518T181048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-phi4-olmo2-downloads_20260518T181048_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "2b9a26d1b5b0a3a742c9f22f5dd4ec576def99b412edaf51dac7e87ad47d105c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个下载进程都在运行，日志尚未有输出（刚开始连接）。\n\n汇总：\n- **Phi-4** 下载已重启，PID **49771**（实际 Python 进程），缺 `model-00005-of-00006.safetensors`\n- **OLMo-2** 下载已重启，PID **49929**（实际 Python 进程），缺 `model-00003-of-00006.safetensors`\n- 原 `huggingface-cli` 已废弃，改用新版 `hf` CLI 启动\n- 两个模型都是公开仓库，无需 HF token\n- `hf download` 默认会跳过已有文件，只下载缺失部分"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-phi4-olmo2-downloads.md"
+}

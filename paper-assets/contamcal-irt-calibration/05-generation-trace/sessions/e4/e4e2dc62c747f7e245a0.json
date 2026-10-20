@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4e2dc62c747f7e245a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis cross family irt v5 restart",
+  "task_key": "worker_analysis_cross_family_irt_v5_restart_20260517T043657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_irt_v5_restart_20260517T043657_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "3cb7d68d8ceff0a8261a42193839e1a3b0cffa1dcac38b984210ee16ed1f3e83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v5 已于今天 12:31 成功完成，无需重跑。**\n\n三个 benchmark 全部有结果：\n\n| Benchmark | N | γ | 95% CI | excl0 | PPP | calMAE | ΔMAE |\n|-----------|---|---|--------|-------|-----|--------|------|\n| MMLU | 18 | 0.3465 | [-0.627, 1.320] | NO | 0.624 | 0.0082 | 0.0296 |\n| GSM8K | 28 | -0.1306 | [-0.521, 0.273] | NO | 0.842 | 0.0080 | 0.1712 |\n| ARC | 20 | 0.0074 | [-0.575, 0.565] | NO | 0.435 | 0.0151 | 0.0547 |\n\n诊断全部通过（divergent=0, Rhat OK, ESS OK）。日志末尾显示 \"Done.\"。\n\n完成标准核对：\n1. ARC results JSON ✓ (`arc_challenge/irt_results.json`)\n2. GSM8K results JSON ✓ (`gsm8k/irt_results.json`)\n3. MMLU results JSON ✓ (`mmlu/irt_results.json`)\n4. COMPLETE 标记文件 — 不存在，但 `pooled_rrf_irt_results.json` 包含完整汇总结果，log 以 \"Done.\" 结尾\n\n唯一缺失是 COMPLETE 标记文件。需要我补创建一个吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-family-irt-v5-restart.md"
+}

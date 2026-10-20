@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "587f5eb7034db90202b8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu check and fix",
+  "task_key": "worker_infra_gpu-check-and-fix_20260514T031506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check-and-fix_20260514T031506_result.json",
+    "occurrence": 1,
+    "bytes": 1335,
+    "sha256": "538ad0c5aa22417793cfbaedfffc3da2c9838a605296e6a7856e60256d762975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 7 个 RUNNING 实验的进程全部存活，exp_001_sft_d005_15B 已更新为 RUNNING。\n\n## 报告\n\n### GPU 状态 (6× RTX 4090D, 24GB each)\n\n| GPU | 显存占用 | 利用率 | 实验 | PID | 运行时间 |\n|-----|---------|--------|------|-----|---------|\n| 0 | 10055/24564 MiB | 22% | **exp_001_sft_d100_15B_v2** (1.5B d100 SFT) | 251924 | 2h08m |\n| 1 | 12620/24564 MiB | 100% | **exp_001_eval_3B_d000_s42** (3B eval) | 249294 | 2h22m |\n| 1 | ↑ (共享) | ↑ | **exp_001_eval_05B_d005** (0.5B d005 eval) | 255322 | 1h48m |\n| 2 | 7330/24564 MiB | 99% | **exp_001_eval_05B_d000_s42_v5** (0.5B d000 eval) | 266511 | 37m |\n| 2 | ↑ (共享) | ↑ | **exp_001_eval_05B_d100_v5** (0.5B d100 eval) | 266780 | 37m |\n| 3 | 8957/24564 MiB | 55% | **exp_001_eval_3B_d000_s123** (3B eval) | 242581 | 2h58m |\n| 4 | 18545/24564 MiB | 23% | **exp_001_sft_d005_15B** (1.5B d005 SFT) ✅ 已修复→RUNNING | 271916/271921 | ~3m |\n| 5 | 5829/24564 MiB | 43% | **exp_001_eval_15B_d000_s123** (1.5B eval) | 250600 | 2h17m |\n\n### exp_001_sft_d005_15B 最终状态\n- **RUNNING** (已从 QUEUED 更新)\n- PID 271916 (wrapper) / 271921 (python) 均存活\n- GPU 4, 18536MiB 显存占用\n\n### 空闲 GPU\n**没有空闲 GPU**——6 块全部在跑任务，其中 GPU 1 和 GPU 2 各有 2 个进程共享。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check-and-fix.md"
+}

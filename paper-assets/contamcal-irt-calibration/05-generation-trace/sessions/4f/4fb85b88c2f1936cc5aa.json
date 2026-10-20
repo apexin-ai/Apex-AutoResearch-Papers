@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fb85b88c2f1936cc5aa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval llama32 3B d000 s42 v3",
+  "task_key": "worker_diagnose_exp_001_eval_llama32_3B_d000_s42_v3_20260516T182511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_llama32_3B_d000_s42_v3_20260516T182511_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "287f093179a985eb0bc1518cbb96083b7d75c88d6697dde6077582ab052284b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diagnose_exp001_eval_3B_d000_s42_v3.md`。\n\n**结论：监控误报，实验实际已成功完成。**\n\n- 输出目录有 `.done` 和全部 7 个结果文件（mmlu/gsm8k/arc/humaneval/eval_results/item_responses/correctness_matrix）\n- 进程经历了 v2 OOM kill (exit 137) → v3 attempt 1 跑到 GSM8K 33% 死亡 → v3 attempt 2 最终在 May 17 02:13 完成\n- 失败原因是 `/tmp/agent-ml-exit/` 里没有 v3 的 exit sentinel，监控 5 次检查 PID 均已死亡就自动标 failed\n- 无需重跑，应更正实验状态为 completed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-llama32-3b-d000-s42-v3.md"
+}

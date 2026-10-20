@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9a8dfa5d1344c6df01",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp002 signal pipeline",
+  "task_key": "worker_code_exp002_signal_pipeline_20260514T032305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_signal_pipeline_20260514T032305_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "77525e0d5e251592870f4bcf5f061fd8938e9ac7432b96d3e6ff46888b6d61fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成。结果：\n\n| 模块 | 状态 | 说明 |\n|------|------|------|\n| **embedding** | PASS | s1_embedding=0.3293 |\n| **minkpp** | FAIL → **已修复** | bfloat16→numpy bug，已加 `.float()` |\n| **constat** | PASS | s3_constat=0.0000（同文件对比，符合预期） |\n| **selfcritique** | PASS | s4_selfcritique=-0.6803 |\n| **merge** | PASS | 输出 keys 正确：`[index, benchmark, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique]` |\n\nminkpp 的 bfloat16 bug 已在 dry-run 进行中修复（`signal_minkpp.py:77` 加了 `.float()`）。\n\n**产出汇总：**\n\n1. **6 个文件部署在** `/root/contamcal-irt-calibration/exp002/`：\n   - `signal_embedding.py` — Embedding near-duplicate retrieval (FAISS)\n   - `signal_minkpp.py` — Min-K%++ membership inference（已修 bfloat16 bug）\n   - `signal_constat.py` — ConStat performance gap\n   - `signal_selfcritique.py` — Self-Critique entropy collapse\n   - `compute_signals.py` — 主编排脚本（支持 `--dry-run --max-items`）\n   - `aggregate_rrf.py` — RRF 聚合 + ablation baselines\n\n2. **新增功能**：所有 4 个信号模块 + 主脚本支持 `--dry-run`/`--max-items` 参数\n\n3. **依赖**：全部已安装（sentence-transformers 5.4.1, faiss-cpu 1.13.2, sklearn 1.8.0）\n\n4. **sentence-transformers 模型** `all-mpnet-base-v2` 已缓存到服务器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-signal-pipeline.md"
+}

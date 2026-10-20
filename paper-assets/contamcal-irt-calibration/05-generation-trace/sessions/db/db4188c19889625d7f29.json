@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db4188c19889625d7f29",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research literature contamination detection",
+  "task_key": "worker_research_literature-contamination-detection_20260514T084624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-contamination-detection_20260514T084624_result.json",
+    "occurrence": 1,
+    "bytes": 3929,
+    "sha256": "21232eb426a2e44218489232ff73d766f009a9ff140385dde069b291fe1be3fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整信息可以做 gap 分析了。\n\n## Gap 分析结果\n\n### 已覆盖的主题\n\n| 主题 | 状态 | 覆盖位置 |\n|------|------|----------|\n| IRT for LLM evaluation | ✅ 充分 | 6 篇 (PSN-IRT, Growing Pains, ATLAS, TinyBenchmarks, HiBayES, Lalor) |\n| Contamination detection methods | ✅ 充分 | 6 篇 (Min-K++, ConStat, Self-Critique, KDS, Oren, CDD) |\n| Contamination mitigation & impact | ✅ 充分 | 5 篇 (Emperor, Dong dose-response, Yang RL, Zhang forget, LiveBench) |\n| Item compromise in educational measurement | ✅ 充分 | 4 篇 (Eckerly, Sinharay, De Boeck, Mislevy) |\n| DIF literature | ✅ 充分 | 3 篇 (Holland, Thissen, Zumbo) |\n| Score adjustment / decontamination | ✅ 充分 | 3 篇 (DCR, Inference-Time Decontam, Silicon Bureaucracy) |\n| ML calibration disambiguation | ✅ 有 | 1 篇 (Guo 2017) |\n| Conformal prediction alternative | ✅ 有 | 1 篇 (Angelopoulos 2023) |\n| Data attribution (Future Work) | ✅ 有 | 2 篇 (TracIn, TRAK) |\n| Multidimensional IRT | ✅ 有 | 1 篇 (Reckase 2009) |\n\n### 缺失的 4 个主题（与 exp-004 bias 反转发现直接相关）\n\n**1. Exposure-ability collinearity / confounding in IRT — GAP**\n- exp-004 发现高 AUC 下 posterior variance inflation 源于 exposure-ability collinearity，γ 被低估 (−0.016)\n- `references.bib` 和 `related_work.tex` 中**零篇**讨论 IRT 参数 collinearity 或 confounding 的文献\n- 需要引用：educational measurement 中关于 ability-covariate confounding 的理论工作（如 Haberman 2007 关于 person-fit 与 ability confounding；Wainer & Thissen 2000 关于 testlet effects 导致的参数相关性）\n- **Discussion 必须有理论支撑来解释 bias 方向反转机制**\n\n**2. Signal quality (AUC) 与 calibration 精度的关系 — GAP**\n- exp-004 核心发现之一：AUC=0.55 即可恢复 γ，但高 AUC 反而引入 attenuation bias\n- 没有文献讨论 detection signal quality 如何影响下游 calibration 任务\n- 这可能是 ContamCal 的 **novel finding**，Discussion 中需与 measurement error literature 对接（如 Carroll et al. 2006 \"Measurement Error in Nonlinear Models\" 中 attenuation bias 的经典理论）\n\n**3. Item-level contamination detection 的 power analysis — GAP**\n- Fisher Information 推导已完成（appendix.tex），但 `references.bib` 中没有 power analysis / sample size determination 在 IRT 中的文献\n- 需要引用：Thissen & Wainer 2001 (\"Test Scoring\") 关于 IRT 参数估计精度；或 Embretson & Reise 2000 (\"Item Response Theory for Psychologists\") 关于信息函数与精度的关系\n\n**4. 4PL IRT model 在 LLM evaluation 中的应用 — 部分覆盖**\n- PSN-IRT 用了 4PL，已引用\n- 但缺少对 4PL 中 upper asymptote (d parameter) 在 LLM 场景下合理性的讨论文献。Barton & Lord 1981 是 4PL 原始提出；Liao et al. 2012 讨论 4PL 的 identifiability 问题——与 exp-004 的 identifiability 研究直接相关\n\n### 建议优先级\n\n| 优先级 | Gap | 对论文的影响 |\n|--------|-----|-------------|\n| **P0** | Exposure-ability collinearity 文献 | Discussion 中 bias 反转解释无理论支撑 |\n| **P0** | Measurement error attenuation bias 文献 | 同上，且与 C3 claim (identifiability) 直接相关 |\n| **P1** | IRT power analysis / information function 文献 | Appendix Fisher 推导需要引用 |\n| **P2** | 4PL identifiability 文献 | 强化方法选择的理论论证 |\n\n**结论**：literature_map.yaml 需要创建。当前 references.bib 有 39 篇，覆盖了 paper_framing.md 中 Dream D2 要求的大部分类别，但**缺失与 exp-004 bias 反转发现直接相关的理论文献**——特别是 collinearity/confounding 和 measurement error attenuation 两个方向。这两个 gap 会让 Discussion section 中对 \"高 AUC 下 γ 被低估\" 的解释缺乏理论锚点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-contamination-detection.md"
+}

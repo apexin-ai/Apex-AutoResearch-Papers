@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6126c0481667aa49bc28",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu diagnostic",
+  "task_key": "worker_infra_gpu-diagnostic_20260516T171928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-diagnostic_20260516T171928_result.json",
+    "occurrence": 1,
+    "bytes": 2335,
+    "sha256": "03d11fb9cccdc40061a120ffcfb32efe1766e8100b31f88e9194a7330a81c120"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整状况：\n\n## GPU 实际占用 (全部 6 张在用，无空闲)\n\n| GPU | PID | VRAM | Util | 实验 | Registry |\n|-----|-----|------|------|------|----------|\n| cuda:0 | 804570 | 16252MiB | 98% | Llama-3.2-3B d005 s42 SFT | ✓ `exp_001_sft_llama32_3B_d005_s42` (tmux parent 804565) |\n| cuda:1 | 807025 | 6904MiB | 80% | Llama-3.2-3B d000 s42 eval v3 | ✓ `exp_001_eval_llama32_3B_d000_s42_v3` |\n| cuda:2 | 815287 | 586MiB | 0% | **1.5B-Instruct GSM8K signals** | ⚠️ `exp_002_signals_15B_instruct_gsm8k` — 缺 gpu/pid 字段 |\n| cuda:3 | 801766 | 17848MiB | 100% | Llama-3.2-3B d025 s42 SFT | ✓ `exp_001_sft_llama32_3B_d025_s42` (tmux parent 801761) |\n| cuda:4 | 810809 | 3552MiB | 45% | **1.5B-Instruct MMLU signals** | ❌ **无 registry 条目** |\n| cuda:5 | 804791 | 20580MiB | 86% | Llama-3.2-3B d100 s42 SFT | ✓ `exp_001_sft_llama32_3B_d100_s42` (tmux parent 804786) |\n\n## CPU 任务\n\n| PID | 实验 | Registry |\n|-----|------|----------|\n| 818742 | MMLU domain gamma N=24 v3 (Stan IRT fitting) | ❌ **无 registry 条目** |\n\n## 需修复的 Registry 问题\n\n1. **`exp_002_signals_15B_instruct_gsm8k`** — 缺少 `gpu` 和 `pid` 字段。实际值：`gpu: \"cuda:2\"`, `pid: 815287`（从 /proc/815287/environ 确认 `CUDA_VISIBLE_DEVICES=2`）\n\n2. **1.5B-Instruct MMLU signals (PID 810809, cuda:4)** — 完全未注册。命令：`python compute_signals.py --model-path Qwen2.5-1.5B-Instruct --benchmark mmlu --signal all --ref-model-path Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-size 8`。环境确认 `CUDA_VISIBLE_DEVICES=4`。\n\n3. **exp_006_mmlu_domain_gamma_n24_v3 (PID 818742, CPU)** — 完全未注册。命令：`python run_mmlu_domain_gamma_n24.py --rrf-path .../exposure_scores.json --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3`\n\n4. **`exp_001_eval_05B_instruct`** — 已标记 DONE，无问题。\n\n## 关键发现\n\n- **cuda:2 和 cuda:4 并非空闲**，是 1.5B-Instruct 的 signals 任务（模型小，显存占用低，被误判为空闲）\n- cuda:2 显示 0% util 可能是 batch 间隙或 IO 等待，但进程确实存活\n- 资源工具误报原因：这两个 signals 进程的 registry 条目缺失/不完整，导致 reconcile 无法匹配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-diagnostic.md"
+}

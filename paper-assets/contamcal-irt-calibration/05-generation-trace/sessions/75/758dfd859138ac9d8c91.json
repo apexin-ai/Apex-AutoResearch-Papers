@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "758dfd859138ac9d8c91",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops llama3 download and prep",
+  "task_key": "worker_ops_llama3-download-and-prep_20260521T081558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-download-and-prep_20260521T081558.log",
+    "occurrence": 1,
+    "bytes": 713584,
+    "sha256": "1214506483a4c0298e07a7a189730256cda84f94d6d3eb0d3bb3968067eb8daa"
+  },
+  "statistics": {
+    "messages": 487,
+    "user_turns": 0,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 140,
+      "tool_call": 172,
+      "tool_result": 172
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 487,
+      "chunks": [
+        {
+          "path": "758dfd859138ac9d8c91-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "758dfd859138ac9d8c91-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "758dfd859138ac9d8c91-part-0003.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-llama3-download-and-prep.md"
+}

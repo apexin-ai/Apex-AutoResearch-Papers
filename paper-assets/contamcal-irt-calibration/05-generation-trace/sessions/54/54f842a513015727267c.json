@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f842a513015727267c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix gsm8k normalization",
+  "task_key": "worker_code_fix-gsm8k-normalization_20260518T153100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-gsm8k-normalization_20260518T153100_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "69cb8444e229e81637cfd853b2e00d2cd5ea734be8b502c995003bf781d9b558"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 13/13 测试通过。\n\n**修改内容：**\n- 新增 `normalize_numeric_answer()` 函数（line 265），将 `\"2.00\"` → `\"2\"`、`\"3.50\"` → `\"3.5\"` 等尾零去除，非数字字符串原样返回\n- `extract_gsm8k_answer()` 的两个 return 路径均调用 normalize（line 281, 285）\n- `evaluate_gsm8k()` 中 gold answer 也做同样 normalize（line 315），确保两端一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-gsm8k-normalization.md"
+}

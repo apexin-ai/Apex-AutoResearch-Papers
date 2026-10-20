@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0237a1ae62483b3f53a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 s123 d100 result",
+  "task_key": "worker_ops_falcon3-s123-d100-result_20260522T193523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-s123-d100-result_20260522T193523_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "6242634e457ece68cbdf315d3ba305a2e72716598a4e832860a415fc038cb91f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无活跃 cron，无需删除。\n\n## 报告\n\n### 训练结果：**失败 (OOM)**\n- Falcon3-7B-Base d100 s123 在 step 0 即 OOM\n- GPU：RTX 4090 D (23.52 GiB)，模型加载后仅剩 1.92 GiB，forward pass 需要额外 2.38 GiB\n\n### 根因\n启动命令使用了 `--batch-size 4 --grad-accum 4`，而成功的 s42 使用 `--batch-size 1 --grad-accum 16`。两者 effective batch size 相同 (16)，但 per-device batch_size=4 激活值内存需求是 batch_size=1 的 4 倍。此外缺少 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`。\n\n### Checkpoint\nlora_adapter 目录为空，无可用 checkpoint。\n\n### 后续任务\n未启动 eval 和 d000 训练（训练失败）。\n\n### 磁盘\n`/root/autodl-tmp` 使用 158G/169G (94%)，剩余 12G。\n\n### 重试建议\n用与 s42 一致的命令重新提交：\n```bash\nPYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py \\\n  --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 \\\n  --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 \\\n  --gradient-checkpointing --lr 5e-5 \\\n  --cache-dir /root/autodl-tmp/.hf_cache\n```\n\n是否立即用修正参数重新提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-s123-d100-result.md"
+}

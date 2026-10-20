@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "a5992464a24b75226fdc",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops falcon3 eval offline fix",
+  "task_key": "worker_ops_falcon3-eval-offline-fix_20260522T110903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-eval-offline-fix_20260522T110903.log",
+    "occurrence": 1,
+    "bytes": 1273853,
+    "sha256": "cc1f8432736812c2060019af58090183f4e033e5ee6eb712a87c8ee425696ce3"
+  },
+  "statistics": {
+    "messages": 686,
+    "user_turns": 1,
+    "tool_calls": 257,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 164,
+      "tool_call": 257,
+      "tool_result": 257,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 668,
+      "chunks": [
+        {
+          "path": "a5992464a24b75226fdc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5992464a24b75226fdc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5992464a24b75226fdc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a5992464a24b75226fdc-part-0004.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "a5992464a24b75226fdc-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-falcon3-eval-offline-fix.md"
+}

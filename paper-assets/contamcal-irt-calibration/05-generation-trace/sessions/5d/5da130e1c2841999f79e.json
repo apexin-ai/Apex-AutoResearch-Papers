@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5da130e1c2841999f79e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d100 batch final check and d025 eval",
+  "task_key": "worker_ops_d100-batch-final-check-and-d025-eval_20260516T072914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d100-batch-final-check-and-d025-eval_20260516T072914_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "116ea3fbfc03e05238d2f7927995ee35397ebdc23a834239df8a920e08a44778"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the summary:\n\n## Part A: d100_s42_a32_batch — RESOLVED ✓\n\nBoth aligned and para_aligned evals completed successfully (`.done` markers present):\n\n| Benchmark | Aligned | Para_aligned |\n|-----------|---------|--------------|\n| MMLU | 0.6364 (8937/14042) | 0.6674 (4402/6596) |\n| GSM8K | 0.7036 (928/1319) | 0.5702 (130/228) |\n| ARC-Challenge | 0.8208 (962/1172) | 0.8106 (565/697) |\n| HumanEval | 26/164 correct | 2/26 correct |\n\nRegistry updated: conclusion → success, metrics added, failure_reason → RESOLVED.\n\n## Part B: d025_s42 aligned eval — ALREADY COMPLETE\n\n`Qwen2.5-3B_d025_v3_s42_aligned/` already exists with `.done` marker (completed 2026-05-16 10:33). This is the alpha=32 checkpoint (confirmed lora_alpha=32 in adapter_config.json). Metrics:\n\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU | 0.6242 (8765/14042) |\n| GSM8K | 0.6823 (900/1319) |\n| ARC-Challenge | 0.8225 (964/1172) |\n\n**No submission needed** — the d025 s42 alpha=32 aligned eval was already completed using the `d025_v3_s42` checkpoint.\n\nNote: The `d025_a32_s42` checkpoint training failed (stalled at 207/3384 steps, lora_adapter empty). But `d025_v3_s42` is the same experiment (alpha=32 retrained) and its eval is done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d100-batch-final-check-and-d025-eval.md"
+}

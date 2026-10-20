@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e16659ac06166c1cee1b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze sft phi4 s123 sweep",
+  "task_key": "worker_analyze_sft_phi4_s123_sweep_20260520T011229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sft_phi4_s123_sweep_20260520T011229_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "a89caeadd071bc9410931967feeb6fb3e330c6fd4936af4190200a529d7641af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成 (DONE/success)。现在 `save_project_file` 不能直接写 report.md（自动生成），我确认下 report.md 是否需要手动更新。\n\n根据工具描述，report.md 是 auto-generated 的，不在可写白名单中。registry 更新后 report 应该会自动刷新。\n\n分析完成。结果总结：\n\n**sft_phi4_s123_sweep — 全部成功**\n\n- **5/5 dosage 完成**，全部 exit_code=0，无 error/OOM\n- 服务器：westd-29999 cuda:0，总耗时 ~11.5h（May 19 21:40 → May 20 09:10）\n- 配置：lora_r=16, lora_alpha=32, lr=5e-5, seed=123\n- Train loss 跨 dosage 稳定：1.183 (d000) → 1.191 (d100)\n- W&B 离线模式，无在线 run\n- Checkpoint 路径：`/root/autodl-tmp/exp001/checkpoints/phi-4_d{000,005,025,050,100}_s123/`\n- Registry 已标记 DONE(success)，含完整 metrics\n\n**下一步**：对这 5 个 checkpoint 做 MMLU eval，验证 s123 是否复现 s42 的 immune pattern (Δacc ≈ ±0.54pp)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-sft-phi4-s123-sweep.md"
+}

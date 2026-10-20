@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0bd6fb3ef53cea52fa0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 algo1 sensitivity",
+  "task_key": "worker_analysis_falcon3-algo1-sensitivity_20260522T180624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-algo1-sensitivity_20260522T180624_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "05a18e4a6a80ff8582438ec21793b9490d6c263fe01670e4a527665d6cb42c1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `artifacts/falcon3_algo1_sensitivity.md`。\n\n核心发现：\n\n**τ × σ sweep (36 组合)**: MMLU 和 ARC 均 100% 稳定。原因：Falcon3 的 Δ (+4.19/+4.01 pp) 远大于 sweep 中最大 τ (2.0 pp)，σ 对正 delta profile 无影响。Falcon3 在任何 τ×σ 组合下都不会被误判为 Immune/U-collapse/V-recovery。\n\n**ρ × λ sweep (42 组合)** — 这两个参数控制 Benefit vs Benefit-sat 边界，是真正的敏感维度：\n- MMLU: ρ 拐点 = 0.703，λ 拐点 = 0.87 → 在默认参数附近有较大安全边距\n- ARC: ρ 拐点 = 0.238，默认 ρ=0.3 刚好高于此值（margin 仅 0.042）→ 与 bootstrap stability 61.3% 一致，解释了 ARC 的 Benefit-sat 分类为何不够稳定\n\n结论：**主分类（正向污染效应）无条件稳健**，所有参数变化只影响 Benefit 和 Benefit-sat 之间的子分类。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-algo1-sensitivity.md"
+}

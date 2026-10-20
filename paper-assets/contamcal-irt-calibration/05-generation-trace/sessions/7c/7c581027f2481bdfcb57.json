@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c581027f2481bdfcb57",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 006 mmlu domain gamma n24",
+  "task_key": "worker_diagnose_exp_006_mmlu_domain_gamma_n24_20260516T120739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_006_mmlu_domain_gamma_n24_20260516T120739_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "d0261225687bacc4b33cecf001e82a67986ec18c54941776b6c7354198b2d3d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验实际已成功完成，cron 误判为 failed。**\n\n### 证据\n\n1. **无 fitting.log 文件**，但有 3 个完整的结果子目录（STEM_Math, STEM_Science, STEM_CS_Eng）\n2. **每个域都有完整的 `irt_results.json`**，包含：\n   - 收敛诊断全部通过（`all_ok: true`，无 divergence，Rhat < 1.01，ESS > 900）\n   - 后验预测检验结果正常（PPP 0.44–0.89）\n   - gamma 估计完整\n\n3. **无进程在运行**（实验已完成）\n\n### 结果摘要\n\n| Domain | N_models | N_items | Fit time | PPP | γ mean | γ CI excludes 0 |\n|--------|----------|---------|----------|-----|--------|-----------------|\n| STEM_Math | 23 | 1190 | 527s | 0.438 | 0.969 | Yes |\n| STEM_Science | 23 | 1397 | 618s | 0.807 | 0.838 | Yes |\n| STEM_CS_Eng | 23 | 557 | 153s | 0.892 | 0.197 | No |\n\n### 根因\n\n实验注册时 server 字段填了 \"A6000\"（不存在），cron 无法 SSH 验证进程状态，自动标记 failed。实际上实验在 cqa1-21977 上正常运行并成功完成了全部 3 个域的 IRT fitting。\n\n**结论：假阳性 failure，实验成功。需要将实验注册的 server 字段更正为 \"cqa1-21977\"。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-006-mmlu-domain-gamma-n24.md"
+}

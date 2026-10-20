@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3c650d2ff6e8cdbbfc3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis domain decomposition appendix",
+  "task_key": "worker_analysis_domain-decomposition-appendix_20260519T214934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_domain-decomposition-appendix_20260519T214934_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "700a3ff8119a0f1a0c756e529e37b5fcf477689c329e3060be0605c7599a38a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 段落已完成，保存在 `artifacts/appendix_domain_decomposition.md` 并注册为 `art_20260519_8597a2`。\n\n~290 词，核心数据点：\n- **方向一致性**：U-collapse 四个 domain 全部下降（STEM −6.8 pp … Social Sci −11.2 pp），Benefit 全部上升（+2.7 … +5.0 pp），Immune 全部 ±1 pp 内。无 archetype 内 domain 交叉。\n- **敏感度排序**：STEM 最韧（mean |Δacc| 2.8 pp）< Humanities 3.5 < Other 3.9 < Social Sciences 5.1 pp（STEM 的 1.8×）。\n- **结论**：支持 global SFT effect 解释，而非 item-level memorization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-domain-decomposition-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddae5f6d8b6a9d1dfa08",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda5 ready check",
+  "task_key": "worker_ops_cuda5-ready-check_20260514T095100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda5-ready-check_20260514T095100_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "13632ae051e725d35930ed7c020baf6d160459c10ab17c5590122eadda137d2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:5 已释放**，eval 于 17:32 完成。\n\n**Qwen2.5-3B raw eval 结果：**\n\n| Benchmark | Score |\n|-----------|-------|\n| GSM8K | 60.50% (798/1319) |\n| HumanEval | 0.00% (0/164) |\n\nHumanEval pass@1 = 0 是因为 base model 生成的全是 `\"Here's the completed Python function:\\n\\n```python\"` 这类自然语言前缀，没有直接输出可执行代码，导致全部解析失败。这是 base model（非 instruct）在 HumanEval 上的典型表现——不影响 contamination calibration 实验的有效性，因为我们关注的是 item-level response pattern 而非绝对分数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda5-ready-check.md"
+}

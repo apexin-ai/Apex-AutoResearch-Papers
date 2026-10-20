@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5f12de45b1594ba1ac5b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis cross family pooled irt llama v2",
+  "task_key": "worker_analysis_cross_family_pooled_irt_llama_v2_20260517T030258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_pooled_irt_llama_v2_20260517T030258.log",
+    "occurrence": 1,
+    "bytes": 597757,
+    "sha256": "2615e4bc38415d7c72d0a05a4413ff48887c51742af07168e7f5450a539ca269"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "5f12de45b1594ba1ac5b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5f12de45b1594ba1ac5b-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cross-family-pooled-irt-llama-v2.md"
+}

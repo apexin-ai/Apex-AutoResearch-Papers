@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e78b26edbc9287e6c586",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research 3B para aligned gap check",
+  "task_key": "worker_research_3B_para_aligned_gap_check_20260515T153248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_3B_para_aligned_gap_check_20260515T153248_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "07c72a13d38425e1945f75a65a1ed313b4417d07835103fd54dabbffee0ed1bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 3B s42 para_aligned eval 完整性汇总\n\n**当前命名（无 v2/v3）的 para_aligned 结果：**\n\n| Dose | 目录 | 状态 |\n|------|------|------|\n| d000 | `Qwen2.5-3B_d000_s42_para_aligned` | ✅ 完成（.done + 3 文件，23:28） |\n| d005 | `Qwen2.5-3B_d005_s42_para_aligned` | ⚠️ 3 个结果文件齐全（~1.9MB），但**无 .done 标记** |\n| d025 | — | ❌ **不存在** |\n| d100 | `Qwen2.5-3B_d100_s42_para_aligned` | ✅ 完成（.done + 3 文件，23:27） |\n\n**注意：** `Qwen2.5-3B_d025_v2_s42_para_aligned` 存在且完整（.done），但这是 v2 版本，不是当前命名。\n\n**SFT checkpoint 可用性：**\n- `Qwen2.5-3B_d025_s42/lora_adapter` ✅ 存在，可直接用于 eval\n\n**结论：**\n- **缺 1 个条件：d025 para_aligned**\n- d005 文件齐全但缺 .done，需确认是否要重跑或补 .done\n- d025 checkpoint 就绪，可立即在 cuda:4 或 cuda:5 上提交 `Qwen2.5-3B_d025_s42_para_aligned` eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-3b-para-aligned-gap-check.md"
+}

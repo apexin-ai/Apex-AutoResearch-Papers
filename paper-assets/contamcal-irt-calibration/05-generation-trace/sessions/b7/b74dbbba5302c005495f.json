@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b74dbbba5302c005495f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh cron check exp001 phase1",
+  "task_key": "worker_ssh_cron-check-exp001-phase1_20260513T191049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cron-check-exp001-phase1_20260513T191049_result.json",
+    "occurrence": 1,
+    "bytes": 1932,
+    "sha256": "fe84fa6346aafd57fb82ede5e1f154e336655d41938a223d4c3cf62d3758950d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the status:\n\n```\n=== Phase 1 Complete Status ===\nMMLU:          FAILED — vLLM init failed on GPU 0 (OOM: 8.36/23.52 GiB free from old process),\n               fell back to transformers (attempt 1), then retried vLLM (attempt 2) which started\n               but crashed at batch 16/220 (7%). No output file generated.\nGSM8K:         IN PROGRESS — 76% (32/42 batches), transformers fallback, GPU 1, ~7 min remaining\nARC-Challenge: IN PROGRESS — 70% (26/37 batches), transformers fallback, GPU 2, ~9 min remaining\nHumanEval:     DONE — 164 items, 26/164 QC pass (15.9%), vLLM succeeded\n\nCompleted: 1/4 benchmarks\nStill running PIDs: 189375 (GSM8K, 22h20m), 190717 (ARC, 21h00m)\nFailed: PID 200967 (MMLU) — crashed during vLLM retry attempt 2\n\nGPU Status:\n  GPU 0: 0% util, 22951 MiB used ← leaked from crashed MMLU process\n  GPU 1: 96% util, 15049 MiB (GSM8K active)\n  GPU 2: 94% util, 15103 MiB (ARC active)\n  GPU 3-5: idle\n\nQC Summary (completed):\n  HumanEval: 164 items, 15.9% pass (26/164), 3 generation attempts\n\nNotes:\n  - All 4 benchmarks hit vLLM \"duplicate template name\" validation error,\n    GSM8K/ARC/old-MMLU fell back to transformers successfully\n  - MMLU restart (PID 200967) hit GPU 0 OOM on vLLM init (old process memory),\n    fell back to transformers for attempt 1, then retried vLLM for attempt 2\n    (GPU freed by then) but process died at 7%\n  - HumanEval QC pass rate (15.9%) is very low — may need to investigate\n    paraphrase prompt quality\n  - GPU 0 holds ~23 GiB leaked memory — needs cleanup before MMLU restart\n```\n\n**Next steps needed:**\n1. Wait ~10 min for GSM8K and ARC to finish\n2. Clean GPU 0 leaked memory (kill zombie process or `nvidia-smi -r`)\n3. Restart MMLU with `CUDA_VISIBLE_DEVICES=0` after GPU 0 is freed\n4. Investigate the 15.9% QC pass rate on HumanEval — may need prompt tuning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cron-check-exp001-phase1.md"
+}

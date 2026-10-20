@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b73c7d68c8acfd807752",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis bootstrap dual benchmark",
+  "task_key": "worker_analysis_bootstrap-dual-benchmark_20260520T182818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-dual-benchmark_20260520T182818_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "d5475bbc75f6d48b3cb3d3cb9a0a0d98c2f0d090d896f62e9899dabf9db082ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是双 benchmark bootstrap CI 汇总：\n\n## MMLU Δ(d100)\n\n| Family | n | Δ(d100) | 95% CI | Pattern | Dir-Con |\n|--------|---|---------|--------|---------|---------|\n| Phi-4 | 3 | +0.72pp | [-0.17, +1.39] | Immune† | ✗ |\n| Qwen-14B | 2 | -11.05pp | [-32.41, +10.30]ᵗ | Collapse | ✓ |\n| Qwen-7B | 2 | -0.89pp | [-12.16, +10.37]ᵗ | V-recovery | ✗ |\n| Gemma-2 | 2 | +2.62pp | [-11.81, +17.06]ᵗ | Benefit-sat† | ✓ |\n| OLMo-2 | 3 | +1.35pp | [-0.55, +2.60] | Benefit-sat† | ✗ |\n\n## ARC Δ(d100)\n\n| Family | n | Δ(d100) | 95% CI | Pattern | Dir-Con |\n|--------|---|---------|--------|---------|---------|\n| Phi-4 | 3 | +0.65pp | **[+0.51, +0.77]** | Immune | ✓ |\n| Qwen-14B | 2 | -2.86pp | [-6.65, +0.94]ᵗ | Collapse | ✓ |\n| Qwen-7B | 2 | -2.65pp | [-5.90, +0.61]ᵗ | V-recovery† | ✓ |\n| Gemma-2 | 1 | +2.73pp | [pt] | Benefit | ✓ |\n| OLMo-2 | 3 | +3.44pp | **[+2.90, +3.78]** | Benefit-sat | ✓ |\n\n关键发现：\n- **ARC Dir-Con 全 ✓ (5/5)**，MMLU 仅 2/5 — ARC 的 contamination direction 跨 seed 更稳定\n- **OLMo-2 两 benchmark 最强 Benefit**，ARC CI 完全 >0\n- **n=2 families CI 极宽**（t-dist df=1），增加 seed 是收窄 CI 的唯一路径\n\n脚本已添加 `--benchmark arc/mmlu` 参数。4 个 artifacts 已注册，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-dual-benchmark.md"
+}

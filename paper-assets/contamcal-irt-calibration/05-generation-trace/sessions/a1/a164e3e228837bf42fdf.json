@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a164e3e228837bf42fdf",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_6_1778795399.md",
+  "task_key": "loop_6_1778795399",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778795399.md",
+    "occurrence": 1,
+    "bytes": 4235,
+    "sha256": "c5f16b8385d28fb677628834225099a53024605f716402aafaba664582cb1291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T20:52:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977，6 张全部分配给本项目，禁止用其他服务器/GPU\n- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/bin/activate && ...`，脚本内 `--gpu 0`（框架注入 CUDA_VISIBLE_DEVICES）\n- train_sft.py 等脚本已删除 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 覆写行，禁止在脚本里再加回来\n- 所有 MC eval 必须用 `--mc-format aligned`（D017），evaluate.py 用绝对 python 路径 + HF_DATASETS_OFFLINE=1\n- IRT 结果必须用 CmdStanPy (Bayesian MCMC)，不能用 PyTorch MLE\n- server: local 实验禁止 ssh_read_only 检查，用 Bash `ps -p PID`；local 实验不注册 cron\n- 标 failed 必须同时 kill 关联进程，提交新任务前确认 GPU 显存 < 100MiB\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977，6× RTX 4090D (cuda:0-5)\n- 工作目录: /root/contamcal-irt-calibration\n- Python: /root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 模型缓存: /root/autodl-tmp/.hf_cache（HF_HOME 设为此路径）\n- SFT 数据: /root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl\n- Checkpoints: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-{0.5B,1.5B,3B}_d{000,005,025,100}_s42/\n- exp-006 Stan 代码: /root/autodl-tmp/exp006/\n- CPU 实验 (local): exp-004 PID 411032, exp-005 PID 426335\n\n### 3. 📊 当前状态\n**刚做完**: 收到 exp_001_sft_d025_15B cron failed 回调（\"process dead 5× with no sentinel/W&B\"），已派诊断 Worker `worker_diagnose_exp_001_sft_d025_15B_20260514T174905` SSH 检查。memory.md 记录过 \"cron false positive: wrapper PID vs python PID\"，可能是误判。\n\n**RUNNING 实验**:\n| exp_id | GPU | 说明 |\n|--------|-----|------|\n| exp_001_eval_15B_aligned_batch | cuda:1 | 1.5B d005 batch eval |\n| exp_001_eval_05B_d025_aligned_v2 | cuda:5 | 0.5B d025 paraphrase eval |\n| exp_001_sft_3B_d000_v2 | cuda:5 | 3B d000 v2 重训 (D020) |\n| exp_006_irt_05B_v1 | cuda:3 | IRT Stan NUTS — **D023 要求 kill 此进程**（MMLU 56K params 不可行） |\n| exp_004_sim_sweep_v2 | local | CPU, 60/120 |\n| exp_005_noise_prop_v3 | local | CPU, 17/25 |\n\n**等待中**:\n- 诊断 Worker 回调 → 确认 exp_001_sft_d025_15B 是真失败还是 cron false positive\n- Worker `code:exp_006_d023_code_mod_sanity` (running) → exp-006 代码加 --max-items + --aligned-only 后的 sanity check\n- GPU 0/2/4 空闲，需要分配任务\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 CRON_FALSE_POSITIVE → update_registry 恢复 RUNNING，重新注册 cron 用实际 python PID\n- 诊断 Worker 返回真失败 → 根据 root_cause 修复并重提交 1.5B d025 SFT 到 GPU 0\n- exp_006 代码修改 Worker 完成 → kill exp_006_irt_05B_v1 (GPU 3 上的 MMLU NUTS) → 提交 GSM8K NUTS 首跑（D023 最高优先级）\n- exp_001_sft_3B_d000_v2 完成 (~3h) → 立即提交 3B d000 eval (aligned format)\n- exp_001_eval_15B_aligned_batch 完成 → 汇总 1.5B d005 dose-response 数据点\n- GPU 0/2/4 空闲 → 按优先级: (1) 1.5B d025 SFT 重跑, (2) 0.5B d100 eval v4, (3) 3B d100 SFT (P1)\n- exp-004/005 CPU 完成 → 更新 C1 claim 边界条件\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（距今 11 天）\n- **D023 是当前最高优先级**: exp-006 Stan NUTS 对 MMLU 不可行（56K params），分层策略: GSM8K/ARC 直接 NUTS → MMLU 子采样 1000 items → ADVI 作 robustness check。瓶颈是代码修改 + GSM8K NUTS 可行性验证\n- **C2 reframing (D022)**: \"method-specific, scale-dependent signal effectiveness\"。exp-008 v4 已验证 Min-K++ 反向效应。但 \"scale-dependent\" 尚无多 scale 证据 — 需要 1.5B/3B signals\n- **易错点**: (1) cron 报 failed 先查是不是 false positive，别盲信；(2) 3B GSM8K 已排除 (D018 LoRA CoT 遗忘)，不要再拿来分析；(3) HumanEval 是 negative control 不是 dose-response 数据点；(4) d005 position bias confound (D019) — eval 必须用 aligned format\n- **决策链**: D017(MC格式)→D018(3B GSM8K排除)→D019(position bias)→D020(3B重训)→D021(exp-008修正)→D022(C2 reframing)→D023(IRT分层)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778795399.md"
+}

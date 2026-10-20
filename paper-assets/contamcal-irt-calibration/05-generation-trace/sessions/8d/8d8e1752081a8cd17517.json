@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d8e1752081a8cd17517",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd restart urgent",
+  "task_key": "worker_ops_falcon3-westd-restart-urgent_20260522T080727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-restart-urgent_20260522T080727_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "e755d30a06a8d9c80bb7b22a0adc10aa67fb46e432a79206908abd432604f8b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**不需要重启——4 个 Falcon3 训练已在运行中，参数全部正确。**\n\n| GPU | tmux session | PID | dosage | lr | 启动时间 |\n|-----|---|---|---|---|---|\n| 0 | `sft_falcon3_7b_d000_s42_v2` | 599908 | d000 | 5e-5 ✓ | 15:50:06 |\n| 1 | `sft_falcon3_7b_d005_s42_v2` | 600191 | d005 | 5e-5 ✓ | 15:50:12 |\n| 2 | `sft_falcon3_7b_d025_s42_v2` | 600346 | d025 | 5e-5 ✓ | 15:50:16 |\n| 3 | `sft_falcon3_7b_d050_s42_v2` | 600602 | d050 | 5e-5 ✓ | 15:50:19 |\n\n4 卡 GPU 利用率 98-100%，显存分别占用 72/96/71/55 GB（共 98 GB/卡）。所有训练约 17 分钟前已启动，带 `_v2` 后缀，`--lr 5e-5` 已确认。无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-restart-urgent.md"
+}

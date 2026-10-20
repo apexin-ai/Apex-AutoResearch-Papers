@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "619a2c0bd1c66b502497",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check s0 progress and prep evals",
+  "task_key": "worker_ops_check-s0-progress-and-prep-evals_20260520T185039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-s0-progress-and-prep-evals_20260520T185039_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "ea7707d66395fb03dd2555cd697cbb3c1d3a2dce2490cbce5b91b01534787658"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### s0 训练进度\n\n| 模型 | 服务器 | 已完成 | 当前 | 进度 | ETA 全部完成 |\n|------|--------|--------|------|------|-------------|\n| **Qwen-7B** | cqa1 | d000/d005/d025/d050 | d100 (521/4159) | 12% | ~3.5h |\n| **Gemma-2-9B** | westd cuda:3 | d000/d005/d025 | d050 (1357/3642) | 37% | ~1.6h (d050) + ~2.9h (d100) ≈ **4.5h** |\n| **Qwen-14B** | westd | d000/d005 | d025 (2486/3384) | 73% | ~0.9h (d025) + 3.5h (d050) + 4h (d100) ≈ **8.4h** |\n\n### 已创建 eval 脚本\n\n| 脚本 | 路径 | 语法 | 备注 |\n|------|------|------|------|\n| Gemma-2 s0 MMLU | `scripts/eval_gemma2_s0_mmlu.sh` | OK | CUDA:0, batch=8, 含 C009 md5 校验 |\n| Qwen-14B s0 MMLU | `scripts/eval_qwen14b_s0_mmlu.sh` | OK | CUDA:0, batch=4 (14B 模型较大), 含 C009 md5 校验 |\n\nGemma-2 sweep 脚本 **不含内置 eval**，需要单独跑。两个 eval 脚本已就绪，训练完成后可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s0-progress-and-prep-evals.md"
+}

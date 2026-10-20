@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2be72302f4d9632c255",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download mistral dryrun",
+  "task_key": "worker_ops_westd-download-mistral-dryrun_20260518T064940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-mistral-dryrun_20260518T064940_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "3a10aa215ed20515dfc12c947f3bc1f6cdc5af53ac5c132b09d184f30a534b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载速度下降明显（带宽被多个并发下载分摊）。汇报当前完整状态：\n\n---\n\n## 当前状态汇总\n\n### Step 1: Mistral-7B-v0.3 下载\n- **状态**: 运行中（PID 5065，nohup 后台）\n- HF_ENDPOINT=hf-mirror.com，已禁用 xet 协议\n\n### Step 2: Qwen 模型下载状态\n- **Qwen2.5-7B**: 2/4 shards 完成（model-00002, model-00004），2 个 shard 正在下载（1.93G / 3.6G, 1.58G / 3.6G）\n- **Qwen2.5-14B**: 下载中，尚无 shard 完成\n- **DOWNLOAD_DONE.txt**: 未创建\n\n### Step 3 & 4: Dry-run\n- 无法执行，模型尚未完全下载\n\n### Step 5: QLoRA 代码位置（`train_sft.py`）\n| 行号 | 内容 |\n|------|------|\n| 23 | `BitsAndBytesConfig` import |\n| 119 | `--load-in-4bit` argparse 参数 |\n| 159-167 | QLoRA 配置块（4bit quantization config） |\n| 254 | `load_in_4bit` 写入训练参数记录 |\n\n### GPU 状况\n- 4x NVIDIA RTX PRO 6000 Blackwell (98GB each)\n- 全部空闲（0 MiB 显存占用）\n\n### 瓶颈\n- 服务器同时有 4+ 个模型在下载（含其他 session 的 gemma-2-9b），带宽严重竞争\n- 当前下载速率约 10-15 MB/min/shard\n- 7B 剩余 2 个 shard 预计还需 ~30-60 分钟\n- 14B 和 Mistral 更久\n\n下载进程都在 nohup 后台稳定运行，会自动完成。需要我继续轮询等待 7B 完成后做 dry-run，还是先到这里？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-mistral-dryrun.md"
+}

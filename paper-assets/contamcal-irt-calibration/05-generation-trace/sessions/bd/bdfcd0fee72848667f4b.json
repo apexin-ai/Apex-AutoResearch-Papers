@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdfcd0fee72848667f4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu5 cleanup memleak fix",
+  "task_key": "worker_ops_gpu5-cleanup-memleak-fix_20260516T054921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu5-cleanup-memleak-fix_20260516T054921_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "da293c70f0e98e54e3e338f467fd4ec6f87aa3f61bf64f69e4e55a80ecb64414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已验证。汇总：\n\n**GPU 5 状态**：\n- PID 701549 (exp008, 0.5B-Instruct): 2766 MiB\n- PID 707351 (exp002, 0.5B d005_s123): 1898 MiB\n- 总计 4678 MiB / 24564 MiB — 0.5B 模型两进程合计应 < 3GB，确认有泄漏\n\n**已修复 4 个文件**：\n\n| 文件 | 修复内容 |\n|------|---------|\n| `exp002/signal_embedding.py:142` | FAISS search 后立即 `del index, train_embeddings, bench_embeddings` + gc + empty_cache |\n| `exp002/signal_selfcritique.py:233` | return 前 `del model, tokenizer` + gc + empty_cache |\n| `exp008/compute_signals_on_model.py:102,211` | `compute_all_signals` return 前清理 + benchmark 循环每轮清理 |\n| `exp002/compute_signals.py:98` | signal 循环每轮清理 |\n\n`signal_minkpp.py` 已有 `del target_model` / `del ref_model` + `empty_cache`，无需修改。\n\n当前运行的进程不受影响（代码已在内存中），后续运行会自动释放中间变量显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu5-cleanup-memleak-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f3a982063760801948",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill dup and qwen14b eval",
+  "task_key": "worker_ops_kill-dup-and-qwen14b-eval_20260521T023734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dup-and-qwen14b-eval_20260521T023734_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "17bcc093b6499d5d9ece9e1572f79b251669d0418a48e0eebc12cebb9625167a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### Part 1: 重复进程清理\n- PID 464499（Gemma-2 MMLU eval）和 PID 464645（Gemma-2 ARC eval）已 kill\n- GPU 0 和 GPU 2 已释放（确认 0 MiB）\n\n### Part 2: Qwen-14B d100_s0 adapter\n- 路径：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s0/lora_adapter/`\n- `adapter_model.safetensors`: 275MB ✓\n- `lora_alpha`: 32（C006 合规）✓\n- `.done` 标记存在 ✓\n- 训练配置：lr=5e-5, r=16, alpha=32, seed=0, epochs=1\n\n### Part 3: Eval 启动\n| Eval | tmux session | GPU | 显存占用 | 利用率 | Registry |\n|------|-------------|-----|---------|--------|----------|\n| MMLU | `eval_qwen14b_mmlu` | cuda:0 | 32.7GB | 96% | `eval_qwen14b_d100_mmlu_s0` RUNNING |\n| ARC | `eval_qwen14b_arc` | cuda:2 | 32.7GB | 95% | `eval_qwen14b_d100_arc_s0` RUNNING |\n\n### ⚠️ C009 注意\nevaluate.py md5 `17673bf3...`（37775 bytes）与参考 hash `001a9bc2...`（37591 bytes）不匹配。两个 eval 使用同一版本，内部一致性无问题（C010 合规），但与其他服务器产出对比时需注意版本差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-and-qwen14b-eval.md"
+}

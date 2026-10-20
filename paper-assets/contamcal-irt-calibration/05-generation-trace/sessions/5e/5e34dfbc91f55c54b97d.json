@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5e34dfbc91f55c54b97d",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "diag 3B d000 gsm8k anomaly",
+  "task_key": "worker_diag_3B_d000_gsm8k_anomaly_20260514T154828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_3B_d000_gsm8k_anomaly_20260514T154828.log",
+    "occurrence": 1,
+    "bytes": 621200,
+    "sha256": "d092866395ce14e83017d6259faef854bb4f7599bd5feca936413b4185277f92"
+  },
+  "statistics": {
+    "messages": 232,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 232,
+      "chunks": [
+        {
+          "path": "5e34dfbc91f55c54b97d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5e34dfbc91f55c54b97d-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-3b-d000-gsm8k-anomaly.md"
+}

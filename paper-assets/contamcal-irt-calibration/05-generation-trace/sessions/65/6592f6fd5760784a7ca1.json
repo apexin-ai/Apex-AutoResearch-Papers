@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6592f6fd5760784a7ca1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signals 3B v2",
+  "task_key": "worker_code_exp_002_signals_3B_v2_20260515T160659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_002_signals_3B_v2_20260515T160659_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "8819b4153fb2c9c224dcab233c30fa7f7204c8d11c209dde2b869caf46feb05a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 6 个 GPU（cuda:0-5）均被占用，无法提交。** 当前进程：\n\n| GPU | 实验 | 运行时间 |\n|-----|------|---------|\n| 0 | exp001 eval 1.5B_d005_s123_aligned | 2h25m |\n| 1 | exp001 eval 1.5B_d025_s123_aligned | 2h25m |\n| 2 | exp001 eval 3B_d005_s123_aligned | 1h01m |\n| 3 | exp001 eval 3B_d025_s123_aligned | 1h15m |\n| 4 | exp001 eval 3B_d005_s123_para_aligned | 33m |\n| 5 | exp001 eval 3B_d025_s123_para_aligned | 33m |\n\nBug 修复已验证通过（`%%` 转义正确）。等任一 GPU 空闲后即可用以下配置提交：\n- exp_id: `exp_002_signals_3B_v2`\n- 命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 3B --gpu 0 --only d000 d005 d025 d100\"`\n\nGPU 0/1 上的 1.5B eval 跑了最久（2.5h），预计最先完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signals-3b-v2.md"
+}

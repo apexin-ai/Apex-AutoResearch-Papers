@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c625022ef22a80a39c5a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval olmo2 s0 mmlu patch",
+  "task_key": "worker_ops_eval-olmo2-s0-mmlu-patch_20260520T160148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-olmo2-s0-mmlu-patch_20260520T160148_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "5add625a9f2580ef59d632ece07bbd6cacfe3d365a5c9afe4373b4d69f2ef685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**OLMo-2 s0 MMLU eval 5/5 dosage 全部完整，无需补跑。**\n\n| Dosage | Accuracy | 状态 |\n|--------|----------|------|\n| d000 | 55.34% | ✅ |\n| d005 | 56.62% | ✅ |\n| d025 | 56.52% | ✅ |\n| d050 | 56.27% | ✅ |\n| d100 | 56.72% | ✅ |\n\n所有结果文件均有 `.done` 标记，accuracy 与 registry 记录一致。cuda:2 可分配给其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-olmo2-s0-mmlu-patch.md"
+}

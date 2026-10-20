@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe4be92e04fcc838cce2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phi4 eval batch",
+  "task_key": "worker_ssh_westd-phi4-eval-batch_20260519T063522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phi4-eval-batch_20260519T063522_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "816c374fe49aaefb6161e8a969477529a2237f26a43844e26a5d94381a0dd49f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MMLU 评估已开始（14042 items, ~8.6 it/s）。按此速度 MMLU ~27 分钟/dosage，ARC 更快。\n\n**状态汇总**：\n- tmux session: `phi4_eval`\n- 日志: `/root/autodl-tmp/exp001/phi4_eval.log`\n- cuda:3 上 PID 116740，28.5 GB VRAM\n- 当前: d000 MMLU 评估中\n- 顺序: d000 → d005 → d025 → d050，每个 MMLU + ARC\n- 预计总时间: ~2h\n\n需要我定期检查进度还是完成后再来看结果？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phi4-eval-batch.md"
+}

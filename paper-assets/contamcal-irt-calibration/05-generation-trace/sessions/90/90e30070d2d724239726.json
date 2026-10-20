@@ -1,0 +1,1948 @@
+{
+  "schema_version": "1.0",
+  "id": "90e30070d2d724239726",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analysis signal auc cohend",
+  "task_key": "worker_analysis_signal_auc_cohend_20260516T205703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_signal_auc_cohend_20260516T205703.jsonl",
+    "occurrence": 1,
+    "bytes": 71226,
+    "sha256": "f61e74c50b53f6888439c37f1bf5ff09bb2870b235821c9e2ee3c6537232f032"
+  },
+  "statistics": {
+    "messages": 97,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "tool_call": 48,
+      "tool_result": 48,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T21:04:18.472226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T21:04:18.472661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T21:04:18.472895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:signal_summary_15B_3B",
+              "project": "contamcal-irt-calibration",
+              "task_prompt": "## Task: Compute signal AUC and Cohen's d for 1.5B and 3B models\n\n### Server\n- SSH: `ssh connect.cqa1.seetacloud.com`\n- Python env: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Signal data dir: `/root/autodl-tmp/exp002/signals/`\n\n### C006 constraint (MUST obey)\nBlacklisted alpha=16 dirs for 3B — DO NOT use these:\n- Qwen2.5-3B_d000_s42\n- Qwen2.5-3B_d000_v2_s42\n- Qwen2.5-3B_d005_s42\n- Qwen2.5-3B_d025_s42\n- Qwen2.5-3B_d100_s42\n\nFor 3B, only use _v3 or later versions (alpha=32). Verify with `cat adapter_config.json | grep lora_alpha` if unsure.\n\n### Steps\n\n1. **Explore signal directory structure**:\n```bash\nfind /root/autodl-tmp/exp002/signals/ -maxdepth 1 -type d | sort\n```\nIdentify directories for 1.5B (d000, d005, d100) and 3B (d000, d005, d100) — only alpha=32 versions.\n\n2. **Examine signal file format**: Look at a sample JSON to understand the structure (keys, format of scores per benchmark).\n\n3. **Write and run a Python script** on the server at `/root/autodl-tmp/exp002/signals/compute_signal_summary.py` that:\n\nFor each scale (1.5B, 3B), for each benchmark (MMLU, GSM8K, ARC), for each signal (S1=embedding_similarity, S2=min_k_plus_plus, S4=self_critique):\n- Load d000 signal scores (clean model = negative class)\n- Load d005 signal scores (5% contaminated = positive class) → compute AUC\n- Load d100 signal scores (100% contamination) → compute Cohen's d vs d000\n\nUse this AUC implementation:\n```python\ndef compute_auc(neg_scores, pos_scores):\n    labels = [0]*len(neg_scores) + [1]*len(pos_scores)\n    scores = list(neg_scores) + list(pos_scores)\n    pairs = sorted(zip(scores, labels), reverse=True)\n    tp, fp = 0, 0\n    tp_total = sum(labels)\n    fp_total = len(labels) - tp_total\n    auc = 0.0\n    for s, l in pairs:\n        if l == 1: tp += 1\n        else:\n            fp += 1\n            auc += tp\n    return auc / (tp_total * fp_total) if tp_total * fp_total > 0 else 0.5\n\ndef cohens_d(group1, group2):\n    n1, n2 = len(group1), len(group2)\n    m1, m2 = np.mean(group1), np.mean(group2)\n    s1, s2 = np.var(group1, ddof=1), np.var(group2, ddof=1)\n    sp = np.sqrt(((n1-1)*s1 + (n2-1)*s2) / (n1+n2-2))\n    return (m2 - m1) / sp if sp > 0 else 0.0\n```\n\nIf sklearn is available, also verify with roc_auc_score.\n\n4. **Output**: Save results to `/root/autodl-tmp/exp002/signals/signal_summary_15B_3B.json` with structure:\n```json\n{\n  \"1.5B\": {\n    \"auc_d005\": {\"S1\": {\"MMLU\": 0.xx, \"GSM8K\": 0.xx, \"ARC\": 0.xx}, \"S2\": {...}, \"S4\": {...}},\n    \"cohens_d_d100\": {\"S1\": {\"MMLU\": 0.xx, ...}, \"S2\": {...}, \"S4\": {...}},\n    \"directories_used\": {\"d000\": \"...\", \"d005\": \"...\", \"d100\": \"...\"}\n  },\n  \"3B\": { ... same structure ... },\n  \"missing\": [\"list of missing signal×benchmark combos\"]\n}\n```\n\nPrint the full JSON to stdout.\n\n### Reference values (for sanity check)\n- 0.5B S1 AUC@d005 MMLU = 0.953\n- 0.5B S2 AUC@d005 MMLU = 0.466\n\n### Important\n- Signal names in JSONs: \"embedding_similarity\" (S1), \"min_k_plus_plus\" (S2), \"self_critique\" (S4)\n- Report ALL missing data clearly\n- For 1.5B, use _v3 directories if available (e.g., Qwen2.5-1.5B_d000_v3_s42)\n- If _v3 doesn't exist for 1.5B, check what's available and use the latest alpha=32 version\n- For 3B, ONLY use _v3 or later (alpha=32). NEVER use blacklisted dirs.\n\n### Verification\nAfter running the script, print the full JSON output so I can see all results.",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T21:04:18.473113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker pool exhausted: 6/6 workers running. Wait for a worker to finish or cancel one.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T21:04:18.473278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T21:04:18.473448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T21:04:18.473598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "running"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T21:04:18.473771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_paper_figure_fig_calibration_20260516T201935\\\", \\\"task_type\\\": \\\"paper_figure:fig_calibration\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:19:35.822174+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_fig_fetch_irt_data_20260516T202103\\\", \\\"task_type\\\": \\\"fig:fetch_irt_data\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:21:03.621570+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_data_extract_irt_calibration_20260516T202216\\\", \\\"task_type\\\": \\\"data:extract_irt_calibration\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:22:16.714230+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_paper_figure_fig_signal_heatmap_appendix_20260516T205400\\\", \\\"task_type\\\": \\\"paper_figure:fig_signal_heatmap_appendix\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:54:00.459725+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_data_signal_heatmap_extract_20260516T205556\\\", \\\"task_type\\\": \\\"data:signal_heatmap_extract\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:55:56.450906+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_analysis_signal_auc_cohend_20260516T205703\\\", \\\"task_type\\\": \\\"analysis:signal_auc_cohend\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-16T20:57:03.441759+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 6}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T21:04:18.473930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh execute read",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T21:04:18.474071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T21:04:18.474241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+ssh",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T21:04:18.474409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T21:04:18.474560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh_execute ssh_read_only remote",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T21:04:18.474697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T21:04:18.474850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_signal_auc_cohend_20260516T205703",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T21:04:18.474998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_signal_auc_cohend_20260516T205703\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:signal_auc_cohend\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-16T20:57:03.441759+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"list_workers\\\", \\\"ToolSearch\\\", \\\"ToolSearch\\\", \\\"ToolSearch\\\", \\\"get_worker_status\\\"], \\\"last_text\\\": \\\"There's already a worker running this task (`analysis:signal_auc_cohend`). Let me check its progress.\\\", \\\"turn_count\\\": 17}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T21:04:18.475173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh connect.cqa1.seetacloud.com \"find /root/autodl-tmp/exp002/signals/ -maxdepth 1 -type d | sort\"",
+              "description": "List signal directories on remote server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T21:04:18.475308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nubuntu@connect.cqa1.seetacloud.com: Permission denied ()."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T21:04:18.475485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh -o BatchMode=yes -o StrictHostKeyChecking=no connect.cqa1.seetacloud.com \"echo connected\" 2>&1 | head -5",
+              "description": "Test SSH connection with BatchMode",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T21:04:18.475620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T21:04:18.475748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ubuntu@connect.cqa1.seetacloud.com: Permission denied ()."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T21:04:18.475874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T21:04:18.476038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/signals/**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T21:04:18.476179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T21:04:18.476307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/signal_summary*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T21:04:18.476470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T21:04:18.476599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*signal*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T21:04:18.476754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/_signal_api.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/_signaltools.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/signaltools.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/tests/test_signaltools.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/__pycache__/_signal_api.cpython-314.pyc\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/__pycache__/_signaltools.cpython-314.pyc\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/__pycache__/signaltools.cpython-314.pyc\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/signal/tests/__pycache__/test_signaltools.cpython-314.pyc\nartifacts/exp002_signal_pipeline/signal_embedding.py\nartifacts/exp002_signal_pipeline/signal_constat.py\nartifacts/exp002_signal_pipeline/__pycache__/compute_signals.cpython-314.pyc\nartifacts/exp002_signal_pipeline/__pycache__/signal_embedding.cpython-314.pyc\nartifacts/exp002_signal_pipeline/__pycache__/signal_minkpp.cpython-314.pyc\nartifacts/exp002_signal_pipeline/__pycache__/signal_constat.cpython-314.pyc\nartifacts/exp002_signal_pipeline/__pycache__/signal_selfcritique.cpython-314.pyc\nartifacts/exp006_baselines/baselines/single_signal_2pl_gamma.py\nartifacts/exp008_v2/run_signal_survival.py\nartifacts/exp008_v2/signal_survival_analysis.py\nartifacts/exp_002_signals_05B/intermediate/exp002_signal_pipeline_status.md\nartifacts/exp002_signal_pipeline/signal_minkpp.py\nartifacts/exp002_signal_pipeline/signal_selfcritique.py\nartifacts/exp_008_signal_survival/intermediate/exp008_signal_survival_v3_status.txt\nartifacts/exp_008_instruct_rl_proxy/data/exp008_rl_aligned_signals_manifest.txt\nartifacts/_project/report/signal_coverage_audit.md\nartifacts/signal_coverage_audit.md\nartifacts/_project/report/signal_inventory_audit_20260516.md\nartifacts/exp002_signal_pipeline/\n…[truncated 186 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T21:04:18.476939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/signals_coverage_audit_0516.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T21:04:18.477122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Signal Coverage Audit — 2026-05-16 ~19:00 UTC\n2\t\n3\t## Coverage Matrix\n4\t\n5\tLegend: ✅ = complete, ❌ = missing, 🔄 = in progress\n6\t\n7\t### 0.5B Models (seed=s42, older naming)\n8\t\n9\t| Model Dir | mmlu s1 | mmlu s2 | mmlu s4 | gsm8k s1 | gsm8k s2 | gsm8k s4 | arc s1 | arc s2 | arc s4 | Status |\n10\t|-----------|---------|---------|---------|----------|----------|----------|--------|--------|--------|--------|\n11\t| 0.5B_d000_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n12\t| 0.5B_d005_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n13\t| 0.5B_d025_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n14\t| 0.5B_d100_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n15\t\n16\t### 0.5B Models (seed=s123)\n17\t\n18\t| Model Dir | mmlu s1 | mmlu s2 | mmlu s4 | gsm8k s1 | gsm8k s2 | gsm8k s4 | arc s1 | arc s2 | arc s4 | Status |\n19\t|-----------|---------|---------|---------|----------|----------|----------|--------|--------|--------|--------|\n20\t| 0.5B_d000_s123 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | 8/9 |\n21\t| 0.5B_d005_s123 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n22\t| 0.5B_d025_s123 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n23\t| 0.5B_d100_s123 | ✅ | ✅ | 🔄 | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | 2/9 |\n24\t\n25\t### 1.5B Models (seed=s42, older naming)\n26\t\n27\t| Model Dir | mmlu s1 | mmlu s2 | mmlu s4 | gsm8k s1 | gsm8k s2 | gsm8k s4 | arc s1 | arc s2 | arc s4 | Status |\n28\t|-----------|---------|---------|---------|----------|----------|----------|--------|--------|--------|--------|\n29\t| 1.5B_d000_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n30\t| 1.5B_d005_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n31\t| 1.5B_d025_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n32\t| 1.5B_d100_s42 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | COMPLETE |\n33\t\n34\t### 1.5B Models (seed=s123)\n35\t\n36\t| Model Dir | mmlu s1 | mmlu s2 | mmlu s4 | gsm8k s1 | gsm8k s2 | gsm8k s4 | arc s1 | arc s2 | arc s4 | Status |\n37\t|-----------|---------|---------|---------|----------|----------|--\n…[truncated 2017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T21:04:18.477301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*heatmap*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T21:04:18.477466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/exp008_auc_heatmap.json\nartifacts/exp_008_signal_survival/data/exp008_auc_heatmap.json\nartifacts/exp004/chart/fisher_info_heatmap_meta.txt\nartifacts/_project/chart/fig_signal_heatmap.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T21:04:18.477618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_auc_heatmap.json"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T21:04:18.477771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"cross_benchmark_summary\": {\n3\t    \"S1_Embedding\": {\n4\t      \"d000\": {\"mmlu\": 0.5049, \"gsm8k\": 0.5502, \"arc\": 0.4270},\n5\t      \"d005\": {\"mmlu\": 0.9530, \"gsm8k\": 0.9882, \"arc\": 0.9950},\n6\t      \"d100\": {\"mmlu\": 0.4943, \"gsm8k\": 0.4127, \"arc\": 0.5010}\n7\t    },\n8\t    \"S2_MinKpp\": {\n9\t      \"d000\": {\"mmlu\": 0.5090, \"gsm8k\": 0.5697, \"arc\": 0.5075},\n10\t      \"d005\": {\"mmlu\": 0.4655, \"gsm8k\": 0.4649, \"arc\": 0.4659},\n11\t      \"d100\": {\"mmlu\": 0.5053, \"gsm8k\": 0.4841, \"arc\": 0.4950}\n12\t    },\n13\t    \"S4_SelfCritique\": {\n14\t      \"d000\": {\"mmlu\": 0.4957, \"gsm8k\": 0.4800, \"arc\": 0.5175},\n15\t      \"d005\": {\"mmlu\": 0.5165, \"gsm8k\": 0.4947, \"arc\": 0.4325},\n16\t      \"d100\": {\"mmlu\": 0.5125, \"gsm8k\": 0.4393, \"arc\": 0.5515}\n17\t    }\n18\t  },\n19\t  \"surviving_signals\": 0,\n20\t  \"signals_total\": 3,\n21\t  \"interpretation\": \"No individual signal maintains AUC>0.6 across all dosage regimes. S1 strong at d005 only (low contamination = detectable outliers). Validates need for IRT multi-signal fusion (C2).\"\n22\t}\n23\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T21:04:18.477957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat ~/.ssh/config 2>/dev/null | grep -A 5 \"cqa1\" || echo \"NO_SSH_CONFIG\"",
+              "description": "Check SSH config for cqa1",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T21:04:18.478092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NO_SSH_CONFIG"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T21:04:18.478240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls ~/.ssh/ 2>/dev/null && echo \"---\" && cat /home/ubuntu/.agent-ml-research-idea_gen_0509_13/.ssh/config 2>/dev/null || find /home/ubuntu -name \"*.pem\" -o -name \"id_*\" 2>/dev/null | head -10",
+              "description": "Find SSH keys",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T21:04:18.478410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "authorized_keys\nconfig\ngithub_deploy\nknown_hosts\n---\n/home/ubuntu/.local/lib/python3.14/site-packages/botocore/cacert.pem\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/pip/_vendor/certifi/cacert.pem\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/certifi/cacert.pem\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/payroll/v1/model/__pycache__/id_with_name.cpython-314.pyc\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/payroll/v1/model/id_with_name.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/hire/v1/model/__pycache__/id_name_object.cpython-314.pyc\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/hire/v1/model/id_name_object.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/hire/v2/model/__pycache__/id_name_object.cpython-314.pyc\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/hire/v2/model/id_name_object.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/lark_oapi/api/cardkit/v1/model/__pycache__/id_convert_card_response.cpython-314.pyc"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T21:04:18.478554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat ~/.ssh/config",
+              "description": "Read SSH config",
+              "timeout": "5000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T21:04:18.478682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Host github.com\n    HostName github.com\n    User git\n    IdentityFile ~/.ssh/github_deploy\n    IdentitiesOnly yes\n    StrictHostKeyChecking accept-new"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T21:04:18.478843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_data_signal_heatmap_extract_20260516T205556",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T21:04:18.478997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_data_signal_heatmap_extract_20260516T205556\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"data:signal_heatmap_extract\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-16T20:55:56.450906+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Bash\\\", \\\"ToolSearch\\\", \\\"ToolSearch\\\", \\\"spawn_worker\\\", \\\"get_worker_status\\\"], \\\"last_text\\\": \\\"Worker spawned: `worker_analysis_signal_auc_cohend_20260516T205703`. It will SSH to cqa1-21977, explore the signal directories, write and run a Python script to compute AUC@d005 and Cohen's d@d100 for all signal×benchmark combinations, then save results to `signal_summary_15B_3B.json`.\\\\n\\\\nI'll check p\\\", \\\"turn_count\\\": 14}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T21:04:18.479183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T21:04:18.479337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T21:04:18.479474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T21:04:18.479601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T21:04:18.479760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*summary*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T21:04:18.479896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/exp006/data/gsm8k_v3_rrf_summary.txt\nartifacts/exp006/data/arc_v3_rrf_summary.txt\nartifacts/exp005_noise_propagation/output_v3/noise_propagation_summary.json\nartifacts/eval_summary_matrix.csv\nartifacts/exp001/data/eval_summary_matrix.csv\nartifacts/simulation_sweep/results/sweep_summary.json\nartifacts/compile_eval_summary.py\nartifacts/_project/data/eval_metrics_summary.json\nartifacts/eval_metrics_summary.json\nartifacts/_project/report/eval_metrics_summary.md\nartifacts/eval_metrics_summary.md\nartifacts/exp_001_eval_3B_d000_s42_a32_batch/report/eval_results_summary.md\nartifacts/exp006_pooled_rrf_irt_05b_15b/data/pooled_rrf_irt_05b_15b_summary.txt\nartifacts/exp_006_pooled_irt_2pl_gamma_mmlu_arc/data/2pl_gamma_mmlu_arc_summary.txt\nartifacts/exp006/data/vanilla_2pl_ablation_summary.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T21:04:18.480030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "signal.*1\\.5B|1\\.5B.*signal|signal.*3B|3B.*signal",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T21:04:18.480238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 194 files\nartifacts/manifest.yaml\nartifacts/gpu_status_loop18.md\nartifacts/dream_reports/dream_20260516T155748/meta.yaml\nartifacts/dream_reports/dream_20260516T155748/logs/review_worst.log\nartifacts/dream_reports/dream_20260516T155748/worst/review_context.yaml\nartifacts/dream_reports/dream_20260516T155748/logs/review_median.log\nartifacts/dream_reports/dream_20260516T155748/median/review_report.md\nartifacts/dream_reports/dream_20260516T155748/logs/review_best.log\nartifacts/dream_reports/dream_20260516T155748/best/review_report.md\nartifacts/dream_reports/dream_20260516T155748/best/review_context.yaml\nartifacts/dream_reports/dream_20260516T155748/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260516T155748/worst/paper_framing.md\nartifacts/dream_reports/dream_20260516T155748/worst/experiment_data.json\nartifacts/dream_reports/dream_20260516T155748/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260516T155748/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260516T155748/median/paper.tex\nartifacts/dream_reports/dream_20260516T155748/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T155748/median/experiment_data.json\nartifacts/dream_reports/dream_20260516T155748/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260516T155748/best/paper.tex\nartifacts/dream_reports/dream_20260516T155748/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T155748/best/experiment_data.json\nartifacts/dream_reports/dream_20260516T155748/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260516T155748/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260516T155748/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260516T155748/logs/phase2_best_attempt1.log\nartifacts/dream_reports/dream_20260516T155748/logs/phase2_best_attempt0.log\nartifacts/report_gpu_status_check.md\nartifacts/dream_reports/dream_20260516T155748/logs/phase1_attempt0.log\nartifacts/gpu_audit_loop17.md\nartifacts/experimen\n…[truncated 11115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T21:04:18.480470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/data"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T21:04:18.480616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/data/eval_metrics_summary.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T21:04:18.480749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_pooled_rrf_irt_05b_15b/data/pooled_rrf_irt_05b_15b_summary.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T21:04:18.480890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tResults at server: /root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json\n2\t\n3\tSummary:\n4\tGSM8K (N=11, 0.5B+1.5B): γ̂=0.0128 [-0.990, 1.019], R̂=1.007, ESS=1300, div=0, PPP=0.663, rawMAE=0.150, calMAE=0.037, ΔMAE=+0.113\n5\tARC (N=5, 1.5B only): γ̂=1.2259 [-0.271, 2.857], R̂=1.007, ESS=1480, div=0, PPP=0.000, rawMAE=0.004, calMAE=0.068, ΔMAE=-0.064"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T21:04:18.481067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/",
+              "description": "List signal pipeline artifacts"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T21:04:18.481203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "__pycache__\naggregate_rrf.py\ncompute_signals.py\nrequirements.txt\nrun_exp002.sh\nsignal_constat.py\nsignal_embedding.py\nsignal_minkpp.py\nsignal_selfcritique.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T21:04:18.481351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/compute_signals.py",
+              "limit": "60"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T21:04:18.481523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\texp-002 Stage 1 Signal Pipeline — main entry point.\n3\t\n4\tComputes 4 contamination detection signals for each model-item pair:\n5\t  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\n6\t  S2: Min-K%++ membership inference (z-scored against reference model)\n7\t  S3: ConStat performance gap (original vs paraphrased accuracy)\n8\t  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\n9\t\n10\tInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\n11\tOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\n12\t\"\"\"\n13\t\n14\timport argparse\n15\timport json\n16\timport logging\n17\timport os\n18\tfrom pathlib import Path\n19\t\n20\tlogger = logging.getLogger(__name__)\n21\t\n22\t\n23\tdef merge_signals(\n24\t    embedding_results: list[dict],\n25\t    minkpp_results: list[dict],\n26\t    constat_results: list[dict],\n27\t    selfcritique_results: list[dict],\n28\t    benchmark: str,\n29\t) -> list[dict]:\n30\t    \"\"\"Merge 4 signal outputs into a single per-item record.\"\"\"\n31\t    # Index by item index\n32\t    emb_map = {r[\"index\"]: r for r in embedding_results}\n33\t    mkpp_map = {r[\"index\"]: r for r in minkpp_results}\n34\t    con_map = {r[\"index\"]: r for r in constat_results}\n35\t    sc_map = {r[\"index\"]: r for r in selfcritique_results}\n36\t\n37\t    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\n38\t\n39\t    merged = []\n40\t    for idx in all_indices:\n41\t        record = {\n42\t            \"index\": idx,\n43\t            \"benchmark\": benchmark,\n44\t            \"s1_embedding\": emb_map.get(idx, {}).get(\"s1_embedding\"),\n45\t            \"s2_minkpp\": mkpp_map.get(idx, {}).get(\"s2_minkpp\"),\n46\t            \"s3_constat\": con_map.get(idx, {}).get(\"s3_constat\"),\n47\t            \"s4_selfcritique\": sc_map.get(idx, {}).get(\"s4_selfcritique\"),\n48\t        }\n49\t        merged.append(record)\n50\t\n51\t    return merged\n52\t\n53\t\n54\tdef run_signal(signal_name: str, args_dict: dict):\n55\t    \"\"\"Run a signal computation \n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T21:04:18.481720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "embedding_similarity|min_k_plus_plus|self_critique",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+              "output_mode": "files_with_matches",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T21:04:18.481868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 20 files limit: 20\nartifacts/dream_reports/dream_20260515T052337/meta.yaml\nartifacts/dream_reports/dream_20260515T052337/logs/review_median.log\nartifacts/dream_reports/dream_20260515T052337/median/review_context.yaml\nartifacts/dream_reports/dream_20260515T052337/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260515T052337/median/experiment_data.json\nartifacts/dream_reports/dream_20260515T052337/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260515T052337/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260513T171200/meta.yaml\nartifacts/dream_reports/dream_20260513T171200/logs/review_median.log\nartifacts/dream_reports/dream_20260513T171200/logs/review_best.log\nartifacts/dream_reports/dream_20260513T171200/best/review_context.yaml\nartifacts/dream_reports/dream_20260513T171200/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260513T171200/best/experiment_data.json\nartifacts/dream_reports/dream_20260513T171200/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T171200/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260513T171200/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260513T155040/meta.yaml\nartifacts/dream_reports/dream_20260513T155040/logs/review_worst.log\nartifacts/dream_reports/dream_20260513T155040/logs/review_median.log\nartifacts/dream_reports/dream_20260513T155040/median/review_context.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T21:04:18.482019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "embedding_similarity|min_k_plus_plus|self_critique",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T21:04:18.482154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T21:04:18.482282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "s1_embedding|embedding_similarity\"",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp_008_signal_survival",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T21:04:18.482436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T21:04:18.482562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp_008_signal_survival/data/exp008_auc_heatmap.json"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T21:04:18.482709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"cross_benchmark_summary\": {\n3\t    \"S1_Embedding\": {\n4\t      \"d000\": {\"mmlu\": 0.5049, \"gsm8k\": 0.5502, \"arc\": 0.4270},\n5\t      \"d005\": {\"mmlu\": 0.9530, \"gsm8k\": 0.9882, \"arc\": 0.9950},\n6\t      \"d100\": {\"mmlu\": 0.4943, \"gsm8k\": 0.4127, \"arc\": 0.5010}\n7\t    },\n8\t    \"S2_MinKpp\": {\n9\t      \"d000\": {\"mmlu\": 0.5090, \"gsm8k\": 0.5697, \"arc\": 0.5075},\n10\t      \"d005\": {\"mmlu\": 0.4655, \"gsm8k\": 0.4649, \"arc\": 0.4659},\n11\t      \"d100\": {\"mmlu\": 0.5053, \"gsm8k\": 0.4841, \"arc\": 0.4950}\n12\t    },\n13\t    \"S4_SelfCritique\": {\n14\t      \"d000\": {\"mmlu\": 0.4957, \"gsm8k\": 0.4800, \"arc\": 0.5175},\n15\t      \"d005\": {\"mmlu\": 0.5165, \"gsm8k\": 0.4947, \"arc\": 0.4325},\n16\t      \"d100\": {\"mmlu\": 0.5125, \"gsm8k\": 0.4393, \"arc\": 0.5515}\n17\t    }\n18\t  },\n19\t  \"surviving_signals\": 0,\n20\t  \"signals_total\": 3,\n21\t  \"interpretation\": \"No individual signal maintains AUC>0.6 across all dosage regimes. S1 strong at d005 only (low contamination = detectable outliers). Validates need for IRT multi-signal fusion (C2).\"\n22\t}\n23\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T21:04:18.482867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/run_exp002.sh"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T21:04:18.483073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/bin/bash\n2\t# exp-002 Stage 1 Signal Pipeline — orchestration script.\n3\t#\n4\t# Computes 4 contamination detection signals for all exp-001 checkpoints,\n5\t# then aggregates via RRF into per-model-item exposure scores.\n6\t#\n7\t# Usage:\n8\t#   bash run_exp002.sh --phase all --gpu-ids 0,1\n9\t#   bash run_exp002.sh --phase signals --gpu-ids 0 --benchmarks \"mmlu gsm8k\"\n10\t#   bash run_exp002.sh --phase aggregate\n11\t\n12\tset -euo pipefail\n13\t\n14\t# ── Defaults ──\n15\tPHASE=\"all\"\n16\tGPU_IDS=\"0\"\n17\tEXP001_DIR=\"/root/autodl-tmp/exp001\"\n18\tOUTPUT_DIR=\"/root/autodl-tmp/exp002\"\n19\tMODEL_LIST=\"Qwen2.5-0.5B Qwen2.5-1.5B Qwen2.5-3B\"\n20\tDOSAGE_LIST=\"0 5 25 50 100\"\n21\tSEED_LIST=\"42 123 456\"\n22\tBENCHMARK_LIST=\"mmlu gsm8k arc_challenge humaneval\"\n23\tCACHE_DIR=\"/root/autodl-tmp/.hf_cache\"\n24\tSCRIPT_DIR=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)\"\n25\tK_PERCENT=20\n26\tBATCH_SIZE=64\n27\t\n28\texport HF_HOME=\"$CACHE_DIR\"\n29\t\n30\t# ── Parse args ──\n31\twhile [[ $# -gt 0 ]]; do\n32\t    case $1 in\n33\t        --phase)        PHASE=\"$2\";         shift 2 ;;\n34\t        --gpu-ids)      GPU_IDS=\"$2\";       shift 2 ;;\n35\t        --exp001-dir)   EXP001_DIR=\"$2\";    shift 2 ;;\n36\t        --output-dir)   OUTPUT_DIR=\"$2\";    shift 2 ;;\n37\t        --models)       MODEL_LIST=\"$2\";    shift 2 ;;\n38\t        --dosages)      DOSAGE_LIST=\"$2\";   shift 2 ;;\n39\t        --seeds)        SEED_LIST=\"$2\";     shift 2 ;;\n40\t        --benchmarks)   BENCHMARK_LIST=\"$2\"; shift 2 ;;\n41\t        --cache-dir)    CACHE_DIR=\"$2\";     shift 2 ;;\n42\t        --k-percent)    K_PERCENT=\"$2\";     shift 2 ;;\n43\t        --batch-size)   BATCH_SIZE=\"$2\";    shift 2 ;;\n44\t        -h|--help)\n45\t            echo \"Usage: $0 [--phase signals|aggregate|all] [--gpu-ids 0,1] ...\"\n46\t            exit 0 ;;\n47\t        *) echo \"Unknown arg: $1\"; exit 1 ;;\n48\t    esac\n49\tdone\n50\t\n51\tCKPT_DIR=\"$EXP001_DIR/checkpoints\"\n52\tEVAL_DIR=\"$EXP001_DIR/eval_results\"\n53\tDATA_DIR=\"$EXP001_DIR/sft_data\"\n54\tPARA_DIR=\"$EXP001_DIR/paraphrases\"\n55\tSIGNAL_DIR=\"$OUTPUT_DIR/signa\n…[truncated 5579 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T21:04:18.483282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/signal_embedding.py",
+              "limit": "40",
+              "offset": "0"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T21:04:18.483469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\"\"\"\n1\tSignal 1: Embedding-based near-duplicate retrieval.\n2\t\n3\tEncodes benchmark items and SFT training data with sentence-transformers,\n4\tbuilds a FAISS index, and computes max cosine similarity between each\n5\tbenchmark item and the top-K nearest training segments.\n6\t\n7\tInput:  Benchmark dataset, SFT training data (JSONL from exp-001)\n8\tOutput: JSON with per-item max cosine similarity scores\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\tfrom pathlib import Path\n16\t\n17\timport numpy as np\n18\timport torch\n19\tfrom tqdm import tqdm\n20\t\n21\tlogger = logging.getLogger(__name__)\n22\t\n23\tHF_HOME = os.environ.get(\"HF_HOME\", \"/root/autodl-tmp/.hf_cache\")\n24\tos.environ[\"HF_HOME\"] = HF_HOME\n25\t\n26\tDEFAULT_ENCODER = \"sentence-transformers/all-mpnet-base-v2\"\n27\tDEFAULT_TOP_K = 10\n28\t\n29\t\n30\tdef load_sft_texts(data_path: str) -> list[str]:\n31\t    \"\"\"Extract text content from SFT JSONL training data.\"\"\"\n32\t    texts = []\n33\t    with open(data_path) as f:\n34\t        for line in f:\n35\t            row = json.loads(line)\n36\t            messages = row.get(\"messages\", [])\n37\t            if isinstance(messages, str):\n38\t                messages = json.loads(messages)\n39\t            parts = []"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T21:04:18.483622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "embedding_similarity|output.*json|save.*json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/signal_embedding.py",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T21:04:18.483759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "190:    out_file = output_dir / f\"signal_embedding_{args.benchmark}.json\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T21:04:18.483896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/signal_embedding.py",
+              "offset": "150",
+              "limit": "50"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T21:04:18.484059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "150\t        })\n151\t\n152\t    return results\n153\t\n154\t\n155\tdef main():\n156\t    parser = argparse.ArgumentParser(description=\"Signal 1: Embedding near-duplicate retrieval\")\n157\t    parser.add_argument(\"--benchmark\", type=str, required=True,\n158\t                        choices=[\"mmlu\", \"gsm8k\", \"arc_challenge\", \"humaneval\"])\n159\t    parser.add_argument(\"--sft-data-path\", type=str, required=True,\n160\t                        help=\"Path to SFT training JSONL (from exp-001 prepare_sft_data.py)\")\n161\t    parser.add_argument(\"--output-dir\", type=str, required=True)\n162\t    parser.add_argument(\"--encoder\", type=str, default=DEFAULT_ENCODER,\n163\t                        help=\"Sentence-transformers model name\")\n164\t    parser.add_argument(\"--top-k\", type=int, default=DEFAULT_TOP_K)\n165\t    parser.add_argument(\"--batch-size\", type=int, default=64)\n166\t    parser.add_argument(\"--gpu\", type=str, default=None,\n167\t                        help=\"GPU device ID (e.g., '0')\")\n168\t    parser.add_argument(\"--cache-dir\", type=str, default=\"/root/autodl-tmp/.hf_cache\")\n169\t    args = parser.parse_args()\n170\t\n171\t    logging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\n172\t\n173\t    if args.gpu:\n174\t        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n175\t\n176\t    device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n177\t    output_dir = Path(args.output_dir)\n178\t    output_dir.mkdir(parents=True, exist_ok=True)\n179\t\n180\t    results = compute_embedding_signal(\n181\t        benchmark=args.benchmark,\n182\t        sft_data_path=args.sft_data_path,\n183\t        cache_dir=args.cache_dir,\n184\t        encoder_name=args.encoder,\n185\t        top_k=args.top_k,\n186\t        batch_size=args.batch_size,\n187\t        device=device,\n188\t    )\n189\t\n190\t    out_file = output_dir / f\"signal_embedding_{args.benchmark}.json\"\n191\t    with open(out_file, \"w\") as f:\n192\t        json.dump(results, f, indent=2)\n193\t    logger.info(\"Saved %d items to %s\", len(results), out_file)\n194\t\n1\n…[truncated 54 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T21:04:18.484237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "out_file.*signal_|output.*signal_\"",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T21:04:18.484398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/exp002_signal_pipeline/signal_constat.py:107:    out_file = output_dir / f\"signal_constat_{args.benchmark}.json\"\nartifacts/exp002_signal_pipeline/signal_minkpp.py:230:    out_file = output_dir / f\"signal_minkpp_{args.benchmark}.json\"\nartifacts/exp002_signal_pipeline/signal_selfcritique.py:239:    out_file = output_dir / f\"signal_selfcritique_{args.benchmark}.json\"\nartifacts/exp002_signal_pipeline/compute_signals.py:183:    out_file = output_dir / f\"signal_{signal_name}_{benchmark}.json\"\nartifacts/exp002_signal_pipeline/signal_embedding.py:190:    out_file = output_dir / f\"signal_embedding_{args.benchmark}.json\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T21:04:18.484574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/signal_embedding.py",
+              "offset": "130",
+              "limit": "25"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T21:04:18.484729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\t    logger.info(\"Building FAISS index (%d vectors, dim=%d)\", len(train_embeddings), train_embeddings.shape[1])\n131\t    try:\n132\t        index = build_faiss_index(train_embeddings, use_gpu=True)\n133\t    except Exception:\n134\t        logger.warning(\"FAISS GPU failed, falling back to CPU\")\n135\t        index = build_faiss_index(train_embeddings, use_gpu=False)\n136\t\n137\t    logger.info(\"Searching top-%d nearest neighbors\", top_k)\n138\t    scores, indices = index.search(bench_embeddings.astype(np.float32), top_k)\n139\t\n140\t    results = []\n141\t    for i, item in enumerate(bench_items):\n142\t        max_sim = float(scores[i, 0])  # already sorted descending\n143\t        mean_sim = float(np.mean(scores[i]))\n144\t        results.append({\n145\t            \"index\": item[\"index\"],\n146\t            \"benchmark\": item[\"benchmark\"],\n147\t            \"s1_embedding\": max_sim,\n148\t            \"s1_embedding_mean_topk\": mean_sim,\n149\t            \"s1_top_k_sims\": [float(s) for s in scores[i]],\n150\t        })\n151\t\n152\t    return results\n153\t\n154\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T21:04:18.484891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_v2/run_signal_survival.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T21:04:18.485060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\texp-008 Signal Survival — end-to-end execution script.\n3\tv2: Extended from SFT/RL pairwise to N-regime comparison.\n4\t\n5\tUsage:\n6\t  python run_signal_survival.py \\\n7\t    --regime-dirs base=/path/base SFT_clean=/path/sft RL=/path/rl \\\n8\t    --labels-file /path/to/labels.json \\\n9\t    --output-dir /path/to/exp008_output/\n10\t\n11\t  # Legacy 2-regime (still works):\n12\t  python run_signal_survival.py \\\n13\t    --sft-signals-dir /path/sft/ --rl-signals-dir /path/rl/ \\\n14\t    --labels-file labels.json\n15\t\n16\t  # Quick validation with mock data:\n17\t  python run_signal_survival.py --dry-run --max-items 10\n18\t  python run_signal_survival.py --dry-run --max-items 10 --regime-names base SFT RL DPO\n19\t\n20\tDependencies: numpy, scipy, sklearn\n21\t\"\"\"\n22\t\n23\timport argparse\n24\timport json\n25\timport logging\n26\timport sys\n27\tfrom collections import OrderedDict\n28\tfrom pathlib import Path\n29\t\n30\timport numpy as np\n31\t\n32\tfrom signal_survival_analysis import (\n33\t    SIGNAL_KEYS,\n34\t    print_summary_table,\n35\t    run_survival_analysis,\n36\t    save_report,\n37\t)\n38\t\n39\tlogger = logging.getLogger(__name__)\n40\t\n41\t\n42\tdef load_signal_file(path: Path, signal_key: str) -> list[dict]:\n43\t    \"\"\"Load a signal JSON file and validate it has expected fields.\"\"\"\n44\t    with open(path) as f:\n45\t        data = json.load(f)\n46\t    if not isinstance(data, list) or len(data) == 0:\n47\t        raise ValueError(f\"Expected non-empty list in {path}\")\n48\t    if signal_key not in data[0]:\n49\t        raise ValueError(f\"Signal key '{signal_key}' not found in {path}\")\n50\t    return data\n51\t\n52\t\n53\tdef load_signals_from_dir(signals_dir: Path) -> dict[str, list[dict]]:\n54\t    \"\"\"\n55\t    Load all signal files from a directory.\n56\t    Returns {signal_key: [records]}.\n57\t    \"\"\"\n58\t    signals = {}\n59\t\n60\t    merged_files = list(signals_dir.glob(\"signals_merged_*.json\"))\n61\t    if merged_files:\n62\t        logger.info(\"Found merged signal file: %s\", merged_files[0])\n63\t        with open(merged_files[0]) as f:\n64\t \n…[truncated 753 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T21:04:18.485234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SIGNAL_KEYS\"",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_v2/signal_survival_analysis.py",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T21:04:18.485409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T21:04:18.485543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SIGNAL_KEYS",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_v2/signal_survival_analysis.py",
+              "output_mode": "content",
+              "context": "3"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T21:04:18.485686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22-\n23-logger = logging.getLogger(__name__)\n24-\n25:SIGNAL_KEYS = [\"s1_embedding\", \"s2_minkpp\", \"s3_constat\", \"s4_selfcritique\"]\n26-SIGNAL_LABELS = {\n27-    \"s1_embedding\": \"Embedding\",\n28-    \"s2_minkpp\": \"Min-K%++\",\n--\n190-    for ra, rb in adjacent_pairs:\n191-        pairwise_tests[f\"{ra}_vs_{rb}\"] = {}\n192-\n193:    for sig_key in SIGNAL_KEYS:\n194-        vectors, labels, common_idx = _extract_signal_vectors(\n195-            regime_signals, sig_key, regime_names, contamination_labels,\n196-        )\n--\n327-    print(header)\n328-    print(\"-\" * len(header))\n329-\n330:    for sig_key in SIGNAL_KEYS:\n331-        if sig_key not in auc_matrix:\n332-            continue\n333-        line_parts = [f\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\"]\n--\n383-    print(header)\n384-    print(\"-\" * len(header))\n385-\n386:    for sig_key in SIGNAL_KEYS:\n387-        m = per_signal.get(sig_key)\n388-        if m is None:\n389-            continue"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T21:04:18.485923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/compute_signal_summary.py",
+              "content": "\"\"\"\nCompute signal AUC (d005 vs d000) and Cohen's d (d100 vs d000) for 1.5B and 3B models.\n\nFor each scale (1.5B, 3B), for each benchmark (MMLU, GSM8K, ARC), for each signal:\n  S1 = embedding_similarity (key: s1_embedding)\n  S2 = min_k_plus_plus (key: s2_minkpp)\n  S4 = self_critique (key: s4_selfcritique)\n\nOutput: signal_summary_15B_3B.json\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\nSIGNAL_DIR = Path(\"/root/autodl-tmp/exp002/signals\")\nOUTPUT_FILE = SIGNAL_DIR / \"signal_summary_15B_3B.json\"\n\nBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc\"]\nSIGNAL_MAP = {\n    \"S1\": {\"key\": \"s1_embedding\", \"file_prefix\": \"signal_embedding_\", \"alt_keys\": [\"embedding_similarity\"]},\n    \"S2\": {\"key\": \"s2_minkpp\", \"file_prefix\": \"signal_minkpp_\", \"alt_keys\": [\"min_k_plus_plus\"]},\n    \"S4\": {\"key\": \"s4_selfcritique\", \"file_prefix\": \"signal_selfcritique_\", \"alt_keys\": [\"self_critique\"]},\n}\n\n# C006 blacklist — NEVER use these directories\nBLACKLISTED_DIRS = {\n    \"Qwen2.5-3B_d000_s42\",\n    \"Qwen2.5-3B_d000_v2_s42\",\n    \"Qwen2.5-3B_d005_s42\",\n    \"Qwen2.5-3B_d025_s42\",\n    \"Qwen2.5-3B_d100_s42\",\n}\n\n\ndef compute_auc(neg_scores, pos_scores):\n    labels = [0] * len(neg_scores) + [1] * len(pos_scores)\n    scores = list(neg_scores) + list(pos_scores)\n    pairs = sorted(zip(scores, labels), reverse=True)\n    tp, fp = 0, 0\n    tp_total = sum(labels)\n    fp_total = len(labels) - tp_total\n    auc = 0.0\n    for s, l in pairs:\n        if l == 1:\n            tp += 1\n        else:\n            fp += 1\n            auc += tp\n    return auc / (tp_total * fp_total) if tp_total * fp_total > 0 else 0.5\n\n\ndef cohens_d(group1, group2):\n    n1, n2 = len(group1), len(group2)\n    m1, m2 = np.mean(group1), np.mean(group2)\n    s1, s2 = np.var(group1, ddof=1), np.var(group2, ddof=1)\n    sp = np.sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))\n    return float((m2 - m1) / sp) if sp > 0 else 0.0\n\n\ndef find_signal_dir(scale: str, dosage: str) -> Path | None:\n    \"\"\"Find the best matching directory for a given scale and dosage.\n\n    For 1.5B: prefer _v3 if exists, else latest alpha=32 version.\n    For 3B: ONLY use alpha=32 versions (_v3, _a32, etc). Never blacklisted.\n    \"\"\"\n    prefix = f\"Qwen2.5-{scale}\"\n    dosage_tag = f\"d{dosage:>03s}\" if len(dosage) < 3 else f\"d{dosage}\"\n\n    if not SIGNAL_DIR.exists():\n        return None\n\n    candidates = []\n    for d in SIGNAL_DIR.iterdir():\n        if not d.is_dir():\n            continue\n        name = d.name\n        if name in BLACKLISTED_DIRS:\n            continue\n        if not name.startswith(prefix):\n            continue\n        # Must contain the dosage tag\n        parts = name.replace(prefix + \"_\", \"\")\n        if not parts.startswith(dosage_tag):\n            continue\n        candidates.append(d)\n\n    if not candidates:\n        return None\n\n    # Priority: _v3 > _a32 > plain (for 3B, plain is blacklisted anyway)\n    for suffix_priority in [\"_v3_\", \"_a32_\"]:\n        for c in candidates:\n            if suffix_priority in c.name:\n                return c\n\n    # If only one candidate and it's not blacklisted, use it\n    if len(candidates) == 1:\n        return candidates[0]\n\n    # Return the one with the longest name (likely most specific version)\n    return max(candidates, key=lambda p: len(p.name))\n\n\ndef load_signal_scores(signal_dir: Path, signal_info: dict, benchmark: str) -> list[float] | None:\n    \"\"\"Load signal scores for a given benchmark from a signal directory.\"\"\"\n    # Try individual signal file first\n    bench_name = benchmark\n    # Handle arc -> arc_challenge mapping\n    file_candidates = [\n        signal_dir / f\"{signal_info['file_prefix']}{bench_name}.json\",\n        signal_dir / f\"{signal_info['file_prefix']}arc_challenge.json\" if bench_name == \"arc\" else None,\n    ]\n\n    key = signal_info[\"key\"]\n    alt_keys = signal_info[\"alt_keys\"]\n\n    for fpath in file_candidates:\n        if fpath is None:\n            continue\n        if fpath.exists():\n            with open(fpath) as f:\n                data = json.load(f)\n            scores = extract_scores(data, key, alt_keys)\n            if scores is not None:\n                return scores\n\n    # Try merged signal file\n    merged_candidates = [\n        signal_dir / f\"signals_merged_{bench_name}.json\",\n        signal_dir / f\"signals_merged_arc_challenge.json\" if bench_name == \"arc\" else None,\n    ]\n    for fpath in merged_candidates:\n        if fpath is None:\n            continue\n        if fpath.exists():\n            with open(fpath) as f:\n                data = json.load(f)\n            scores = extract_scores(data, key, alt_keys)\n            if scores is not None:\n                return scores\n\n    return None\n\n\ndef extract_scores(data: list[dict], primary_key: str, alt_keys: list[str]) -> list[float] | None:\n    \"\"\"Extract numeric scores from records, trying primary then alt keys.\"\"\"\n    if not isinstance(data, list) or len(data) == 0:\n        return None\n\n    # Try primary key\n    if primary_key in data[0]:\n        scores = [r[primary_key] for r in data if r.get(primary_key) is not None]\n        return scores if scores else None\n\n    # Try alt keys\n    for ak in alt_keys:\n        if ak in data[0]:\n            scores = [r[ak] for r in data if r.get(ak) is not None]\n            return scores if scores else None\n\n    return None\n\n\ndef main():\n    print(f\"Signal directory: {SIGNAL_DIR}\")\n    print(f\"Exists: {SIGNAL_DIR.exists()}\")\n\n    if not SIGNAL_DIR.exists():\n        print(\"ERROR: Signal directory does not exist!\")\n        sys.exit(1)\n\n    # List all directories\n    all_dirs = sorted([d.name for d in SIGNAL_DIR.iterdir() if d.is_dir()])\n    print(f\"\\nAll signal directories ({len(all_dirs)}):\")\n    for d in all_dirs:\n        tag = \" [BLACKLISTED]\" if d in BLACKLISTED_DIRS else \"\"\n        print(f\"  {d}{tag}\")\n\n    results = {}\n    missing = []\n\n    for scale in [\"1.5B\", \"3B\"]:\n        print(f\"\\n{'='*60}\")\n        print(f\"Processing scale: {scale}\")\n        print(f\"{'='*60}\")\n\n        # Find directories\n        d000_dir = find_signal_dir(scale, \"000\")\n        d005_dir = find_signal_dir(scale, \"005\")\n        d100_dir = find_signal_dir(scale, \"100\")\n\n        print(f\"  d000 dir: {d000_dir}\")\n        print(f\"  d005 dir: {d005_dir}\")\n        print(f\"  d100 dir: {d100_dir}\")\n\n        scale_results = {\n            \"auc_d005\": {\"S1\": {}, \"S2\": {}, \"S4\": {}},\n            \"cohens_d_d100\": {\"S1\": {}, \"S2\": {}, \"S4\": {}},\n            \"directories_used\": {\n                \"d000\": str(d000_dir) if d000_dir else None,\n                \"d005\": str(d005_dir) if d005_dir else None,\n                \"d100\": str(d100_dir) if d100_dir else None,\n            },\n        }\n\n        for sig_name, sig_info in SIGNAL_MAP.items():\n            for bench in BENCHMARKS:\n                bench_upper = bench.upper()\n\n                # Load d000 scores\n                if d000_dir:\n                    d000_scores = load_signal_scores(d000_dir, sig_info, bench)\n                else:\n                    d000_scores = None\n\n                # AUC: d005 vs d000\n                if d005_dir and d000_scores:\n                    d005_scores = load_signal_scores(d005_dir, sig_info, bench)\n                    if d005_scores and d000_scores:\n                        auc = compute_auc(d000_scores, d005_scores)\n                        scale_results[\"auc_d005\"][sig_name][bench_upper] = round(auc, 4)\n                        print(f\"  AUC {sig_name} {bench_upper}: {auc:.4f} (n_neg={len(d000_scores)}, n_pos={len(d005_scores)})\")\n                    else:\n                        missing.append(f\"{scale}/{sig_name}/AUC_{bench_upper}\")\n                        print(f\"  MISSING: {scale}/{sig_name}/AUC_{bench_upper}\")\n                else:\n                    missing.append(f\"{scale}/{sig_name}/AUC_{bench_upper}\")\n                    if not d005_dir:\n                        print(f\"  MISSING d005 dir for {scale}\")\n                    elif not d000_scores:\n                        print(f\"  MISSING d000 {sig_name} {bench_upper} scores\")\n\n                # Cohen's d: d100 vs d000\n                if d100_dir and d000_scores:\n                    d100_scores = load_signal_scores(d100_dir, sig_info, bench)\n                    if d100_scores and d000_scores:\n                        cd = cohens_d(d000_scores, d100_scores)\n                        scale_results[\"cohens_d_d100\"][sig_name][bench_upper] = round(cd, 4)\n                        print(f\"  Cohen's d {sig_name} {bench_upper}: {cd:.4f}\")\n                    else:\n                        missing.append(f\"{scale}/{sig_name}/CohenD_{bench_upper}\")\n                        print(f\"  MISSING: {scale}/{sig_name}/CohenD_{bench_upper}\")\n                else:\n                    missing.append(f\"{scale}/{sig_name}/CohenD_{bench_upper}\")\n\n        results[scale] = scale_results\n\n    results[\"missing\"] = missing\n\n    # Verify with sklearn if available\n    try:\n        from sklearn.metrics import roc_auc_score\n        print(\"\\n\\n--- sklearn verification ---\")\n        for scale in [\"1.5B\", \"3B\"]:\n            d000_dir = find_signal_dir(scale, \"000\")\n            d005_dir = find_signal_dir(scale, \"005\")\n            if not d000_dir or not d005_dir:\n                continue\n            for sig_name, sig_info in SIGNAL_MAP.items():\n                for bench in BENCHMARKS:\n                    d000_scores = load_signal_scores(d000_dir, sig_info, bench)\n                    d005_scores = load_signal_scores(d005_dir, sig_info, bench)\n                    if d000_scores and d005_scores:\n                        labels = [0] * len(d000_scores) + [1] * len(d005_scores)\n                        scores = d000_scores + d005_scores\n                        sk_auc = roc_auc_score(labels, scores)\n                        my_auc = results[scale][\"auc_d005\"][sig_name].get(bench.upper())\n                        diff = abs(sk_auc - my_auc) if my_auc else float(\"nan\")\n                        print(f\"  {scale} {sig_name} {bench}: sklearn={sk_auc:.4f} manual={my_auc} diff={diff:.6f}\")\n    except ImportError:\n        print(\"\\nsklearn not available, skipping verification\")\n\n    # Save results\n    with open(OUTPUT_FILE, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\n\\nResults saved to: {OUTPUT_FILE}\")\n    print(\"\\n\" + \"=\" * 60)\n    print(\"FULL RESULTS:\")\n    print(\"=\" * 60)\n    print(json.dumps(results, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T21:04:18.486267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/compute_signal_summary.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T21:04:18.486477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "sync code remote deploy",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T21:04:18.486625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T21:04:18.486781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T21:04:18.486917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T21:04:18.487070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "compute_signal_summary_15B_3B",
+              "type": "intermediate",
+              "description": "Python script to compute AUC@d005 and Cohen's d@d100 for 1.5B and 3B signal data. Ready to deploy to server at /root/autodl-tmp/exp002/signals/compute_signal_summary.py",
+              "project": "contamcal-irt-calibration",
+              "exp_id": "exp002",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp002_signal_pipeline/compute_signal_summary.py",
+              "tags": "['signals', 'auc', 'cohens_d', '1.5B', '3B']"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T21:04:18.487232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_8b5cb5\\\", \\\"name\\\": \\\"compute_signal_summary_15B_3B\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Python script to compute AUC@d005 and Cohen's d@d100 for 1.5B and 3B signal data. Ready to deploy to server at /root/autodl-tmp/exp002/signals/compute_signal_summary.py\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/exp002/intermediate/compute_signal_summary.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": \\\"exp002\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T21:03:52.553485+00:00\\\", \\\"tags\\\": [\\\"signals\\\", \\\"auc\\\", \\\"cohens_d\\\", \\\"1.5B\\\", \\\"3B\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T21:04:18.487403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__send_progress",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T21:04:18.487541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T21:04:18.487676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__send_progress"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__send_progress",
+            "tool_args": {
+              "message": "Signal summary script written and registered (art_20260516_8b5cb5). BLOCKED: no SSH tools in this session — need a worker with SSH to deploy and run /root/autodl-tmp/exp002/signals/compute_signal_summary.py on cqa1-21977. Script handles both key naming conventions, C006 blacklist, and outputs signal_summary_15B_3B.json."
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T21:04:18.487814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"ok\\\": true, \\\"error\\\": null}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703",
+            "tool": "mcp__agent-ml-research__send_progress",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T21:04:18.487993+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status: BLOCKED — no SSH access in this session.**\n\nWhat I've done:\n- Wrote `compute_signal_summary.py` — complete script that computes AUC(d005 vs d000) and Cohen's d(d100 vs d000) for all signal×benchmark combos for 1.5B and 3B\n- Handles C006 blacklist, both key naming conventions (`s1_embedding` / `embedding_similarity`), automatic directory discovery with _v3/_a32 priority\n- Registered as artifact `art_20260516_8b5cb5`\n\nWhat's needed to complete:\n1. A worker with SSH tools needs to copy the script to `/root/autodl-tmp/exp002/signals/compute_signal_summary.py`\n2. Run: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/exp002/signals && python compute_signal_summary.py`\n3. Output will be saved to `/root/autodl-tmp/exp002/signals/signal_summary_15B_3B.json`\n\nThe worker pool is full (6/6) and this session lacks SSH tools. The parent worker (`data:signal_heatmap_extract`) has SSH access and can deploy this."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_signal_auc_cohend_20260516T205703"
+          },
+          "id": "event-000097"
+        }
+      ],
+      "message_count": 97
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-signal-auc-cohend.md"
+}

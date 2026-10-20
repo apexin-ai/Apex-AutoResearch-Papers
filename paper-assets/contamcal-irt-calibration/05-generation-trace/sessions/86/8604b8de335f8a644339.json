@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8604b8de335f8a644339",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_25_1779506082.md",
+  "task_key": "loop_25_1779506082",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_25_1779506082.md",
+    "occurrence": 1,
+    "bytes": 4271,
+    "sha256": "eab8ec7cd616ea1061dd10090f8822d43768686aa2e84afa74088809cf84e58d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-23T03:10:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29999 的 gpu_ids 需查 `get_project_status`，不要假设所有 4 卡都可用（report.md 显示分配了 cuda:0，实际运行在 cuda:3）\n- cqa1-21977 只有 1×RTX 4090 D（cuda:0），不要在上面并行提交多个实验\n- Falcon3 结果判断标准（D215）：任何结果均直接提交 ARR，不再加内审轮次——不要因为 Falcon3 结果不理想而建议\"再做一轮审查\"\n- ARR May 25 截止（D+4=今天 5/23），时间极紧，所有操作优先级最高\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 4×RTX PRO 6000 Blackwell，工作目录未确认（需 Worker 探查），磁盘 427G/879G 可用（49%）\n- **cqa1-21977**: 1×RTX 4090 D，磁盘根分区 95% 已满 ⚠️，数据盘 1.5T/4.0T 可用\n- 活跃进程：\n  - `sft_falcon3_7b_d100_s42` — cqa1-21977, PID 666107, RUNNING（reconcile 确认存活）\n  - `sft_falcon3_7b_d050_s42_v2` — westd-29999, PID 600596, cuda:3, RUNNING（log: ~/runs/contamcal-irt-calibration/sft_falcon3_7b_d050_s42_v2.log）\n- Cron 活跃：1 个（监控 sft_falcon3_7b_d100_s42）\n- 模型路径 / conda env / Python 路径：未在本 session 探查到，需 Worker SSH 确认\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval_falcon3_d005_s42 失败 cron 回调，发现 eval_falcon3_d000/d005/d025_s42 三个 eval 全部 EXIT_CODE=1 失败。已派 Worker `worker_diagnose_eval_falcon3_failed_20260522T110904` 去 westd-29999 查日志诊断根因，**Worker 尚未回调**。\n\n**Registry 关键状态**：\n- RUNNING(2): `sft_falcon3_7b_d100_s42`（cqa1, d100 训练）, `sft_falcon3_7b_d050_s42_v2`（westd, d050 训练）\n- DONE/success: `sft_falcon3_7b_d000_s42_v2`, `sft_falcon3_7b_d005_s42_v2`, `sft_falcon3_7b_d025_s42_v2`（这三个 SFT 训练成功，但对应的 eval 全失败）\n- DONE/failed: `eval_falcon3_d000_s42`, `eval_falcon3_d005_s42`, `eval_falcon3_d025_s42`（全部 EXIT_CODE=1，命令 `python evaluate.py --benchmarks mmlu arc_challenge --mc-format aligned`）\n- PREPARING(42): 大量排队实验（eval_gemma2_mmlu_s0, eval_cross_family_cqa1, sft_llama3 等）\n- QUEUED(2): 未确认具体 exp_id\n\n**等待中**：\n- Worker `worker_diagnose_eval_falcon3_failed_20260522T110904` 回调 → 拿到根因后修复重提交 eval\n- sft_falcon3_7b_d100_s42 和 sft_falcon3_7b_d050_s42_v2 完成回调 → 需要对应 eval\n\n### 4. 📋 待办（条件触发式）\n- diagnose Worker 回调 → 读诊断报告 → 修复 evaluate.py 命令/参数 → 重新提交 eval_falcon3_d000/d005/d025_s42（westd-29999 cuda:0/1/2 应该空闲）\n- sft_falcon3_7b_d100_s42 完成 → 提交对应 eval（cqa1 或 westd）\n- sft_falcon3_7b_d050_s42_v2 完成 → 提交对应 eval（westd）\n- 所有 Falcon3 eval 完成 → 汇总 dose-response profile（d000/d005/d025/d050/d100）→ 判定 Falcon3 属于 4 种 pattern 中的哪个 → 更新论文 → 直接提交 ARR（D215）\n- **未向 Director 汇报本轮失败**——等诊断 Worker 回来后一并汇报根因+修复方案+重提交状态\n\n### 5. 🎯 战略上下文\n- **核心目标**：EMNLP 2026 ARR May 25 投稿。论文已基本就绪（Round 10 action matrix 全部 resolved，8 页 main text 编译通过），Falcon3 是第 6 个 model family 的 cross-family replication 数据\n- **Taxonomy**：Immune(Phi-4, LLaMA-3) / Collapse(Qwen-14B) / V-recovery(Qwen-7B) / Benefit(Gemma-2, OLMo-2)。Falcon3 结果决定它归入哪个 pattern\n- **D215 决策**：Falcon3 无论结果如何都直接提交，不再内审。所以 eval 修复后拿到数据即可更新论文提交\n- **易错点**：\n  - eval 命令缺参数——三个 eval 的 command 只写了 `python evaluate.py --benchmarks mmlu arc_challenge --mc-format aligned`，没有 checkpoint path / model path，很可能是根因\n  - westd-29999 GPU 分配可能有变化——report.md 显示\"westd-29999:cuda:0 空闲（分配了没跑）\"，但 eval 刚在 cuda:0/1/2 上跑完失败了，需确认当前 GPU 分配\n  - cqa1-21977 根分区 95% 满——在上面跑新任务前必须检查磁盘\n  - 413 个实验的 registry 很大（600K+ chars），直接 read_registry 会溢出，需用 jq 过滤\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-1779506082.md"
+}

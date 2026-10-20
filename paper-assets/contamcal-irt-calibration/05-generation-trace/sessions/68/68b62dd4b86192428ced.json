@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68b62dd4b86192428ced",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 3B para aligned",
+  "task_key": "worker_eval_exp_001_eval_3B_para_aligned_20260514T161451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_3B_para_aligned_20260514T161451_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "e14380a1f2da192e3e75334ebb1f6a125c4a576d60299277d4dd1c49885d99e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 0.5B d025 eval 正在跑 GSM8K（29%, 386/1319），约5s/item，GSM8K 还需 ~79分钟，之后还有 ARC 和 HumanEval。预计 cuda:3 还需 2-3 小时才空闲。\n\n**cuda:5 完全空闲（0MiB, 0%）**，可以改用 cuda:5 提交 3B paraphrase eval。是否改用 cuda:5？\n\n同时已确认：\n- `evaluate.py` 位于 `/root/contamcal-irt-calibration/exp001/evaluate.py`\n- paraphrase 参数是 `--paraphrase-dir /root/autodl-tmp/exp001/paraphrases/`\n- paraphrase 数据完整（mmlu, gsm8k, arc_challenge, humaneval 四个 json 文件都在）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-3b-para-aligned.md"
+}

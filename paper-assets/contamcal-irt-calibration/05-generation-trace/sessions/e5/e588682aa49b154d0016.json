@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e588682aa49b154d0016",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops volctrl progress check",
+  "task_key": "worker_ops_volctrl-progress-check_20260523T045011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_volctrl-progress-check_20260523T045011_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "4f978c74febb2d491ae3995577063f20a6fa0b6a2570ae8aa669fbb205d0e6dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **状态**：运行中（PID 752802，已运行 3h59m）\n- **进度**：3313 / 4159 steps（**79.6%**），epoch 0.74\n- **ETA**：剩余 846 steps × ~4.6s/step ≈ **65 分钟**（约 14:00 UTC 完成）\n- **训练指标**：loss ≈ 1.22，token accuracy ≈ 0.73，lr 衰减中（~9.6e-6）\n- **磁盘**：/root/autodl-tmp 已用 141G / 169G（**83%**），剩余 29G\n- **注意**：启动时有 bitsandbytes libnvJitLink 警告，但训练正常推进，未影响结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-volctrl-progress-check.md"
+}

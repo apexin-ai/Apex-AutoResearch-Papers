@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf606a48fce2e68327f8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval gsm8k fill gpu0 gpu2",
+  "task_key": "worker_eval_gsm8k-fill-gpu0-gpu2_20260521T085956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k-fill-gpu0-gpu2_20260521T085956_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "697836d964dfc99e8215ab5ebd1f8814b168be0ee214adca7119de0ab55732ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4/4 GPU 全部在用。\n\n**已完成 GSM8K eval 结果：**\n\n| Model | Dosage | Accuracy | Correct/Total |\n|-------|--------|----------|---------------|\n| Gemma-2-9b | d000_s0 | **17.82%** | 235/1319 |\n| Qwen2.5-14B | d000_s0 | **79.30%** | 1046/1319 |\n| Qwen2.5-14B | d005_s0 | **71.19%** | 939/1319 |\n| Qwen2.5-14B | d025_s0 | **74.98%** | 989/1319 |\n| Qwen2.5-14B | d050_s0 | **81.05%** | 1069/1319 |\n| Qwen2.5-14B | d100_s0 | **82.41%** | 1087/1319 |\n| Phi-4 | d000_s0 | **84.46%** | 1114/1319 |\n\n**新启动的 eval：**\n\n| GPU | Model | Dosage | PID | Status |\n|-----|-------|--------|-----|--------|\n| 0 | OLMo-2-7B d100_s0 | gsm8k | 502703 | 模型已加载，正在推理 (16705 MiB) |\n| 2 | Gemma-2-9b d100_s0 | gsm8k | 503544 | 模型已加载，正在推理 (19351 MiB) |\n\n**GPU 利用率确认：** 4/4 GPU 全部在工作（GPU 0: 16.7GB, GPU 1: 16.7GB, GPU 2: 19.4GB, GPU 3: 31.7GB）。\n\n**注意：** evaluate.py 当前 37775 bytes (md5: 17673bf3...)，与 C009 reference（37591 bytes）不一致。但 westd 上所有现有结果均使用同一版本，新 eval 也用同一文件，C010 一致性满足。Gemma-2 d000_s0 accuracy 17.82% 异常低，可能值得复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-fill-gpu0-gpu2.md"
+}

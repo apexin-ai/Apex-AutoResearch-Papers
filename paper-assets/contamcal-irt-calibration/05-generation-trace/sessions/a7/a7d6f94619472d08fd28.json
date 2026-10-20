@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7d6f94619472d08fd28",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit sft 3B d025 s42 a32 cuda2",
+  "task_key": "worker_submit_sft_3B_d025_s42_a32_cuda2_20260515T183749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_sft_3B_d025_s42_a32_cuda2_20260515T183749_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "8f31128e3228f97e1c689133a819669edc1e91a1708672dffc96aec151d31e2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**提交摘要：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `exp_001_sft_3B_d025_s42_a32` |\n| GPU | cuda:2, PID 612951, 12694 MiB |\n| tmux | `exp_001_sft_3B_d025_s42_a32` |\n| 模型 | Qwen2.5-3B |\n| 数据 | `sft_dosage_025.jsonl` (54133 samples) |\n| 关键参数 | `--lora-alpha 32`, `--seed 42`, `--lr 5e-5`, `--batch-size 1`, `--grad-accum 16` |\n| 输出 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42/` |\n| 进度 | 3384 steps, ~4.2s/it, 预计 ~4 小时 |\n| Registry | RUNNING |\n\n备注：GPU 5 上还有一个 `exp001_d025_3B_v3`（PID 589763）在跑相同参数但输出到 `Qwen2.5-3B_d025_v3_s42`，两者互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-sft-3b-d025-s42-a32-cuda2.md"
+}

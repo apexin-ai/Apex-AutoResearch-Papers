@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65c4718cd129cd3d6455",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt exclude items",
+  "task_key": "worker_code_irt-exclude-items_20260516T051153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt-exclude-items_20260516T051153_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "00430b8c93ee5512f1027fcb5d5dea022463a69da211adef0aa9813962a31798"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tests pass. Summary of changes to `artifacts/run_pooled_4bench_irt.py`:\n\n**New CLI args** (via `argparse`):\n- `--exclude-items <path.json>` — JSON file containing a list of `item_id` strings (e.g. `[\"mmlu_42\", \"mmlu_103\"]`). Items matching `{benchmark}_{column_index}` are masked out before Stan fitting.\n- `--min-item-variance <float>` — Items with cross-model variance below this threshold are excluded (default 0.0 = disabled). Addresses the HumanEval-para all-zeros problem.\n\n**New function** `filter_items()` (line 115) — removes items by exclusion set and/or low variance, returns filtered response matrix + stats.\n\n**Integration points**:\n- `run_single_benchmark_fit` — filters items after model exclusions, before exposure matrix construction (line 170)\n- `run_joint_fit` — filters per-benchmark items before concatenation (line 276)\n- `main()` — loads exclude JSON, records filter config in output metadata\n\nBackward compatible: no args = identical behavior to before.\n\nSync to remote needed before running on the server."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-exclude-items.md"
+}

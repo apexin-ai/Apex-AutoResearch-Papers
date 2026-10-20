@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "6d050d537c747b749f4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis 2pl ablation",
+  "task_key": "worker_analysis_2pl-ablation_20260514T234102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_2pl-ablation_20260514T234102.log",
+    "occurrence": 1,
+    "bytes": 1235893,
+    "sha256": "43570fa7b2e7fb26c36edfbf433be6fe1ec637f1a268a7af5587ba373aec025f"
+  },
+  "statistics": {
+    "messages": 779,
+    "user_turns": 1,
+    "tool_calls": 331,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 331,
+      "tool_result": 331,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 746,
+      "chunks": [
+        {
+          "path": "6d050d537c747b749f4b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d050d537c747b749f4b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d050d537c747b749f4b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d050d537c747b749f4b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6d050d537c747b749f4b-part-0005.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "6d050d537c747b749f4b-part-0005.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-2pl-ablation.md"
+}

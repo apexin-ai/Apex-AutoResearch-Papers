@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0d9679dfe2fdbfab127",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research s1 signal preparation",
+  "task_key": "worker_research_s1-signal-preparation_20260518T153654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_s1-signal-preparation_20260518T153654_result.json",
+    "occurrence": 1,
+    "bytes": 2501,
+    "sha256": "36806cf96817ce4d6ea13c38f702a7a41f16d33f65d2a548fad2af41c0346e89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## S1 Embedding Signal 在 7B 规模的准备状态\n\n### 1. sentence-transformers 安装状态\n- **未安装**。`sentence-transformers` 和 `faiss-gpu` 均未安装（仅有 `transformers 5.8.1`）\n- 需要安装：`sentence-transformers>=2.7.0`、`faiss-gpu>=1.7.0`（见 `requirements.txt`）\n- **无预下载 embedding 模型**。HF cache 中无 mpnet/bge/gte/e5 等 embedding 模型\n- 代码默认使用 `sentence-transformers/all-MiniLM-L6-v2`（~22M params，~80MB），需首次联网下载\n\n### 2. SFT 数据位置\n- 路径：`/root/autodl-tmp/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n- **注意**：代码默认指向 `/root/autodl-tmp/exp001/sft_data/`（不存在），需要传 `--sft-data-dir /root/autodl-tmp/sft_data`\n- d000: 50,000 行，d100: 66,533 行\n\n### 3. 代码位置和参数\n- **入口**：`/root/contamcal-irt-calibration/exp002/compute_signals.py`，通过 `--signal s1` 调用 `signals/s1_embedding.py`\n- **关键参数**：`--model-path`（仅用于推断 dosage 选 SFT 文件）、`--benchmark`、`--sft-data-dir`、`--output-dir`\n- **S1 不加载被评估的 LLM**，只用 sentence-transformers 编码 + FAISS 检索。`model-path` 仅用来从路径名推断 dosage\n\n### 4. 7B Checkpoints\n- 已有：`Qwen2.5-7B_d{000,005,025,050,100}_s42` + `Qwen2.5-7B_d{000,005}_s123`\n- 均为 LoRA adapter（lora_alpha=32, r=16），base model 指向 `/root/autodl-tmp/models/Qwen2.5-7B`\n- 无 merged 目录，之前 3B 的 run script 用的是 `merged/` 路径——7B 可能需要先 merge 或改代码直接用 adapter path\n\n### 5. VRAM 和时间估算\n- **S1 不需要加载 7B 模型**。VRAM 消耗仅为：\n  - all-MiniLM-L6-v2 编码器：~300MB GPU\n  - FAISS GPU index（d100 约 66K vectors × 384 dim）：~100MB\n  - 总计 **< 1GB VRAM**\n- 时间估算：编码 66K SFT texts + benchmark texts ≈ 2-5 min/benchmark，4 benchmarks ≈ 10-20 min\n- **但当前 4 块 GPU 全部满载运行**（61-80GB 使用，81-99% util），无空闲 GPU\n\n### 6. 准备工作清单\n1. 安装 `sentence-transformers` + `faiss-gpu`（或 `faiss-cpu`，S1 可 CPU fallback）\n2. 下载 `all-MiniLM-L6-v2` 模型到 HF cache\n3. 修改 `--sft-data-dir` 指向 `/root/autodl-tmp/sft_data`\n4. 等待某块 GPU 空闲（或用 CPU 跑，S1 encoding 用 CPU 约慢 5-10x 但仍可行）\n5. 7B checkpoints 暂无 merged 目录，但 S1 不加载 LLM，只需传正确的 adapter path 让代码推断 dosage 即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-s1-signal-preparation.md"
+}

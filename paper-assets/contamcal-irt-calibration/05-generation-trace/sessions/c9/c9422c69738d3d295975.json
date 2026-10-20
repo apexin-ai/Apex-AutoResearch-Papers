@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9422c69738d3d295975",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260516T031312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260516T031312_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "ba7873cc90acae44a1ade7ee1b3aa2df87799dfa9185880321959c9b51ebbcd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU STATUS ===\ncuda:0: 空闲 - 0 MiB / 24564 MiB, 无进程\ncuda:1: 占用 - 8985 MiB, PID 676497, evaluate.py Qwen2.5-3B_d000_s42 a32_aligned (运行 1h10m)\ncuda:2: 占用 - 8985 MiB, PID 679190, evaluate.py Qwen2.5-3B_d005_s42 a32_aligned (运行 57m)\ncuda:3: 占用 - 8985 MiB, PID 687347, evaluate.py Qwen2.5-3B_d100_a32_s42_v3 aligned (运行 8m)\ncuda:4: 占用 - 7075 MiB, PID 668217, compute_signals Qwen2.5-3B_d025_s123 (运行 2h22m)\ncuda:5: 占用 - 3537 MiB, PID 687036, compute_signals Qwen2.5-0.5B_d000_s123 (运行 8m)\n\n=== AVAILABLE GPUs ===\ncuda:0\n```\n\n**注意**：cuda:0 已确认空闲（0 MiB 显存占用，GPU 利用率 0%，无计算进程）。cuda:3 之前预期空闲，但实际正在跑 d100_a32_s42_v3 的 eval 任务。\n\n**C006 提醒**：cuda:1 (d000_s42) 和 cuda:2 (d005_s42) 的 adapter 路径匹配黑名单目录名，但 output dir 含 `a32` 标识，可能是 alpha=32 重训版本。如需确认，可 `cat adapter_config.json | grep lora_alpha` 验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

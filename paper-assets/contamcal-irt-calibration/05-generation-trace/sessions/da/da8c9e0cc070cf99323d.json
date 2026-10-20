@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da8c9e0cc070cf99323d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops volctrl check and eval",
+  "task_key": "worker_ops_volctrl-check-and-eval_20260523T013614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_volctrl-check-and-eval_20260523T013614_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "6d06825ff8d33e3895473496a07b92596f5ff915df1dcf8af3e9b8d76813a76b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练仍在运行，未完成。\n\n**训练状态：**\n- PID 752802 活跃，GPU 0 占用 19600MiB / 24564MiB，GPU-Util 97%\n- 进度：619/4159 steps（15%），已运行 ~44 分钟\n- 预估剩余：~4h18m（按 ~4.3s/step）\n- Loss 从 ~1.36 降至 ~1.22，token accuracy 从 ~0.70 升至 ~0.73，训练正常收敛\n- lora_adapter 目录已创建（08:52），checkpoint 开始写入\n\n**结论：**训练大概率不是 6h 前启动的，实际运行约 44 分钟，还需约 4.3 小时完成。不启动 eval，不更新 registry。\n\n需要我设置定时检查（约 4.5h 后回来看完成状态并启动 eval）吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-volctrl-check-and-eval.md"
+}

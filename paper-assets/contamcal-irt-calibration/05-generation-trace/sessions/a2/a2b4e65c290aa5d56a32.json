@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b4e65c290aa5d56a32",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose signals 3B killed",
+  "task_key": "worker_diagnose_signals-3B-killed_20260515T153007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_signals-3B-killed_20260515T153007_result.json",
+    "occurrence": 1,
+    "bytes": 2524,
+    "sha256": "d8b8a131c3cf79e748fac05b5e7293ad90f3d0875835c36e8d7ceb01b10a0028"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整情况已清晰。诊断结果如下：\n\n---\n\n## 诊断结果\n\n### 失败原因：两个独立问题\n\n**问题 1：Task 1 (d000_s42/mmlu) — SIGTERM 被杀**\n\n- **不是 OOM，不是 CUDA 错误**。SIGTERM (signal 15) 是外部显式 kill，不是 GPU 显存溢出（OOM 会导致 CUDA RuntimeError 或 kernel OOM killer 发 SIGKILL/9）。\n- 进程跑了 37 分钟（22:46 → 23:23），完成了 embedding + minkpp，selfcritique 跑到 83% (365/439) 时被杀。\n- **怀疑原因不成立**：日志显示 `GPU: 0`（不是 cuda:3），所以 exp_001_eval_3B (PID 576735) 在 cuda:3 的 8976 MiB 占用与本次实验**无关**。\n- **真实原因**：`compute_signals.py` 在 batch 运行期间被替换（旧版 228 行 → 新版 120 行，`.bak` 文件证实）。代码部署者可能同时 kill 了正在运行的进程。\n\n**问题 2：Tasks 2-12 — 参数不兼容 (rc=2)**\n\n- **代码版本冲突**：batch 运行期间 `compute_signals.py` 被替换成新版本（`--signal` 单数 required=True），但内存中的旧 `run_batch.py` 按旧版 API 构造命令（旧版用 `--signals` 复数 + 有 default 值）。\n- 新版要求 `--signal` 参数，旧 batch runner 没传 → 全部 argparse 错误退出。\n- 两个文件在 batch 结束后又被更新了一次（run_batch.py 23:31, compute_signals.py 23:33），当前磁盘版本已修复兼容性。\n\n### 已完成的信号\n\n仅 **d000_s42/mmlu** 的 2/3 信号：\n| 文件 | 状态 |\n|------|------|\n| `signal_embedding_mmlu.json` (6.1MB) | 完成 |\n| `signal_minkpp_mmlu.json` (2.1MB) | 完成 |\n| selfcritique mmlu | 83% 被杀，未保存 |\n\n其余 11 个 task × 3 信号 = **33 个信号计算 + 1 个 selfcritique 未完成 = 全部需重跑**。\n\n### 重跑建议\n\n1. **当前版本已修复**——run_batch.py 和 compute_signals.py 的参数接口已对齐（`--signal all`），可以直接重跑。\n2. **注意**：当前 resume 逻辑检查 `signals_merged_*.json`，由于没有任何 merged 文件，会重跑全部 12 个 task（包括 d000/mmlu 已完成的 embedding/minkpp，约多花 5-10 分钟，影响不大）。\n3. **GPU 选择**：日志显示上次用的是 `GPU: 0`。提交前按 C001/C002 检查目标 GPU 空闲状态；按 C004 显式设 `CUDA_VISIBLE_DEVICES`。\n4. `DOSAGES` 列表当前是 `[\"d000\", \"d005\", \"d100\"]`（3 个），日志显示上次跑了 4 个 dosage（含 d025）。如果需要 d025，需要加 `--only d025` 或修改 DOSAGES。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-signals-3b-killed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e118b36d68b5b02fe65c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft 15B d025 s123 v2",
+  "task_key": "worker_diagnose_exp_001_sft_15B_d025_s123_v2_20260515T133423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_15B_d025_s123_v2_20260515T133423_result.json",
+    "occurrence": 1,
+    "bytes": 1804,
+    "sha256": "f357e46068919930a7ab6952eaabdaf1502794bc0e9d046b62dc30c452b5d85c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断结果\n\n### 根因：训练实际上**成功完成**，EXIT_CODE=1 是误报\n\n### 证据\n\n训练跑完了全部 3384 步（epoch=1.0），所有产出文件完整：\n\n| 检查项 | 状态 |\n|--------|------|\n| 训练步数 | 3384/3384 (100%) |\n| 最终 loss | 1.2723 |\n| 运行时间 | 6729s (~1h52m) |\n| adapter_model.safetensors | 73MB ✓ |\n| adapter_config.json | ✓ |\n| tokenizer 文件 | ✓ |\n| checkpoint-3384 | ✓ |\n| train_config.json | ✓ (脚本最后一个 I/O) |\n| \"Training complete\" 日志 | ✓ (脚本最后一行 log) |\n| GPU 0 当前状态 | 空闲 (0MiB) |\n| 磁盘空间 | 42GB 剩余，充足 |\n\n### 误报原因\n\n日志开头有 bitsandbytes 加载失败的 traceback：\n\n```\n[ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\n```\n\n这是非致命错误——bitsandbytes 是 transformers/peft 的传递依赖，本次 bf16 LoRA 训练不需要它。但监控系统可能因为日志中的 `[ERROR]` 标签或 traceback 将实验标记为 EXIT_CODE=1。\n\n### 建议\n\n1. **不需要重跑** — checkpoint 完整可用，直接进入下游评估\n2. **消除误报**（可选）：`pip install nvidia-cuda-nvjitlink-cu12` 安装缺失的 `libnvJitLink.so.13`，或在 `train_sft.py` 中将 bitsandbytes 错误降级为 WARNING 而非 ERROR\n3. **v1 (pid 533174)** 的日志已不存在（`/tmp/sft_15B_d025_s123_v1.log` 不在了），无法确认 v1 是否也是同样的误报\n\n### 是否可以直接重试\n\n**不需要重试。** 训练已成功，`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter/` 下的 adapter 可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-15b-d025-s123-v2.md"
+}

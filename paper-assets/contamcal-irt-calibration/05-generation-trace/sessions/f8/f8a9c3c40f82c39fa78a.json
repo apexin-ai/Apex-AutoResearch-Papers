@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8a9c3c40f82c39fa78a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit signals 3B s123 batch",
+  "task_key": "worker_submit_signals_3B_s123_batch_20260516T143206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_signals_3B_s123_batch_20260516T143206_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "059403861420b23fd0d7eff62c6ef05abcdabcdd8fea4a3dd76fc49f890ee299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 上已经在跑目标任务**：PID 780943 正是 d000_s123_a32 的 `signal_s4_selfcritique_mmlu` 计算——这正是唯一缺失的文件。\n\n## 汇总\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| **d000_s123** (cuda:0) | ⏳ 运行中 | PID 780943 正在计算最后缺失的 `s4_selfcritique_mmlu`，其余 8/9 信号已完成 |\n| **d100_s123** (cuda:2) | ❌ C006 封禁 / ✅ 已完成 | `Qwen2.5-3B_d100_s123` alpha=16 被 C006 封禁；正确的 `d100_a32_s123` (alpha=32) 12/12 文件已完成 |\n| **d025_s123** (cuda:3) | ✅ 已完成 | `Qwen2.5-3B_d025_s123` (alpha=32) 12/12 文件已完成 |\n\n**无需提交任何新任务。** 三个实验要么已完成，要么正在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-signals-3b-s123-batch.md"
+}

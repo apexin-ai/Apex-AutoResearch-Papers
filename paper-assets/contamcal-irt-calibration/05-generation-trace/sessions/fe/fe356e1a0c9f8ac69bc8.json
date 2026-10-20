@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe356e1a0c9f8ac69bc8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run eval 3B d000 s42 a32 batch",
+  "task_key": "worker_run_eval_3B_d000_s42_a32_batch_20260516T002222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_eval_3B_d000_s42_a32_batch_20260516T002222_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "12411ca6125af0f88de809fd2ec65b7f91c508721ef62d4c1120b8fec4de9f72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| cuda:5 空闲 | **否** — PID 663067 `compute_signals.py` (d025_v3_s42, mmlu/s4, 运行 5min, 6876 MiB) |\n| checkpoint alpha | **lora_alpha=32** ✓ 合规 |\n| eval 提交 | **未提交** — GPU 5 被占，遵守 C001/C002 |\n| signals_v6 tmux | **V6_TMUX_DEAD** — session 已不存在，无需处理 |\n\n**需要等 cuda:5 上的 signals 任务跑完，或改用其他空闲 GPU 再提交 eval。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-eval-3b-d000-s42-a32-batch-copy-2.md"
+}

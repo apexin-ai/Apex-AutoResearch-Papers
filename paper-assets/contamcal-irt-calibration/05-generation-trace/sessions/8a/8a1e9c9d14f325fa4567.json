@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a1e9c9d14f325fa4567",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B instruct cuda3",
+  "task_key": "worker_eval_3B_instruct_cuda3_20260516T075138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B_instruct_cuda3_20260516T075138_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "e14495a479771ef4212c3aaca507633a0981396cb3535a2a580669b19db2e31d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册。总结：\n\n- **Job**: `exp_001_eval_3B_instruct_aligned_para` (PID 730671)\n- **GPU**: cuda:3 @ cqa1-21977\n- **状态**: RUNNING，模型下载中 (~5.7GB via ModelScope，约 20-30 min)\n- **流程**: 下载 Qwen2.5-3B-Instruct → aligned eval (4 benchmarks) → para_aligned eval (4 benchmarks)\n- **输出**:\n  - `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_aligned/`\n  - `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_para_aligned/`\n- **预计耗时**: 下载 ~30min + aligned eval ~2-3h + para_aligned eval ~2-3h ≈ 5-6h 总计\n- **日志**: `~/runs/contamcal-irt-calibration/exp_001_eval_3B_instruct_aligned_para.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-instruct-cuda3.md"
+}

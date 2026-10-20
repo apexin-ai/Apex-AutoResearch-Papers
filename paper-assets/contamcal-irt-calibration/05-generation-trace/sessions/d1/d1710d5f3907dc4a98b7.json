@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1710d5f3907dc4a98b7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen14b s123 mmlu exit",
+  "task_key": "worker_diag_qwen14b-s123-mmlu-exit_20260520T144613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen14b-s123-mmlu-exit_20260520T144613_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "1a6af8c27ebdddda1dc3faa27bd721117f171214b899a7a510e7ed4613962c1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**Qwen-14B s123 MMLU eval 完成，结果：**\n\n| Dosage | Accuracy |\n|--------|----------|\n| d000 | 68.67% |\n| d005 | 70.84% |\n| d025 | 63.68% |\n| d050 | 60.99% |\n| d100 | 55.93% |\n| **Δ(d100−d000)** | **-12.73pp** |\n\ns123 复现了 s42 的 U-collapse pattern（s42: -9.37pp → s123: -12.73pp），幅度更大。d005 出现反弹至 70.84%（高于 baseline d000），之后单调下降。\n\n**cuda:2 状态**：已空闲（0% utilization, 0 MiB memory）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen14b-s123-mmlu-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "986af93d3e2b2233026b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download and gpu status",
+  "task_key": "worker_ops_westd-download-and-gpu-status_20260518T101722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-and-gpu-status_20260518T101722_result.json",
+    "occurrence": 1,
+    "bytes": 3021,
+    "sha256": "033f5331c7997dc6877d2c8a34d7eb0e5bcf9174d5c196e6e0151312d3db09eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 逐项结果\n\n### 1. 模型下载进度\n\n| 模型 | safetensors 文件数 | 总大小 | incomplete 文件 | 状态 |\n|------|-------------------|--------|----------------|------|\n| **Qwen2.5-14B** | 5/8 | 26G | 无 | **下载中**，缺 shard 2, 3, 5 |\n| **gemma-2-9b** | 4/8 | 23G | 无 | **下载中**，缺 shard 2, 3, 4, 6 |\n| **phi-4** | 0 | 1.6G | 无 | **仅下载了配置文件**，safetensors 尚未开始 |\n| **OLMo-2-1124-7B** | 1/6 | 13G | 无 | **下载中**，只有 shard 6 |\n\n### 2. 下载进程\n\n两个活跃下载进程：\n- **Qwen2.5-14B**: PID 5066，由 `download_all.sh` 触发\n- **gemma-2-9b**: PID 6380，由 screen session `dl_gemma` 触发\n\nphi-4 和 OLMo-2 **无活跃下载进程**（可能在 download_all.sh 中排队等前面的完成）。\n\n### 3. GPU 状态\n\n4 × NVIDIA RTX PRO 6000 Blackwell (98GB each)\n\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|---------|----------|------|\n| 0 | 63281/97887 MiB | 99% | PID 17819 (7B pilot 训练) |\n| 1 | 0 MiB | 0% | **空闲** |\n| 2 | 0 MiB | 0% | **空闲** |\n| 3 | 0 MiB | 100% util, 0 MiB mem | **异常**：GPU-Util=100% 但无显存占用，无进程 |\n\nGPU 3 状态异常，可能是驱动残留状态，不影响使用但值得留意。\n\n### 4. 7B pilot 确认\n\n**PID 17819 运行正常。** 启动命令：\n```\npython exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 \\\n  --seed 42 --gpu 0 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\n```\n\n进度：**317/3125 steps (10%)**，速度 ~1.7-2.1 s/it，预计剩余 ~1.3-1.5 小时。\n\n### 5. train_sft.py 参数\n\n脚本路径：`exp001/train_sft.py`（不是根目录的 `train_sft.py`）\n\n全部可用参数（注意都用 **kebab-case**）：\n\n| 参数 | 必需 | 说明 |\n|------|------|------|\n| `--model-name` | **是** | 模型路径 |\n| `--data-path` | **是** | JSONL 训练数据路径 |\n| `--output-dir` | **是** | checkpoint 输出目录 |\n| `--seed` | 否 | 随机种子 |\n| `--max-seq-length` | 否 | 最大序列长度 |\n| `--lora-r` | 否 | LoRA rank |\n| `--lora-alpha` | 否 | LoRA alpha |\n| `--epochs` | 否 | 训练轮数 |\n| `--batch-size` | 否 | 单设备 batch size |\n| `--grad-accum` | 否 | 梯度累积步数 |\n| `--lr` | 否 | 学习率 |\n| `--merge` | 否 | 合并 LoRA 到完整模型（默认仅保存 adapter） |\n| `--cache-dir` | 否 | HF 缓存目录 |\n| `--gpu` | 否 | GPU 设备索引 |\n| `--gradient-checkpointing` | 否 | 梯度检查点（7B 必需，省显存） |\n| `--load-in-4bit` | 否 | 4-bit 量化加载（QLoRA） |\n| `--bnb-4bit-quant-type` | 否 | nf4 或 fp4 |\n| `--bnb-4bit-compute-dtype` | 否 | bfloat16 或 float16 |\n\n注意：没有 `--dosage` 参数，dosage 通过 `--data-path` 选择不同的 JSONL 文件实现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-and-gpu-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6805b525e01ca691f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit 3B d100 s123 para aligned eval",
+  "task_key": "worker_submit_3B_d100_s123_para_aligned_eval_20260515T181658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_3B_d100_s123_para_aligned_eval_20260515T181658_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "d397b947245d36423390d4a401245575e9a94daa4e790042a89a514f0e462f82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **实验**: `exp_001_eval_3B_d100_s123_para_aligned`\n- **服务器**: cqa1-21977, **GPU**: cuda:3\n- **PID**: 608809, tmux session 运行中\n- **日志**: `~/runs/contamcal-irt-calibration/exp_001_eval_3B_d100_s123_para_aligned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-3b-d100-s123-para-aligned-eval.md"
+}

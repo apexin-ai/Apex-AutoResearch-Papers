@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "befa2b7e686ce7f734aa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 05B d005 s123 para aligned",
+  "task_key": "worker_eval_exp_001_eval_05B_d005_s123_para_aligned_20260515T023923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_05B_d005_s123_para_aligned_20260515T023923_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "7786a8b2e88fcab6d86372aede5826376a36d54ec85bd2081243f3e1ec507c59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **前置条件**：adapter、paraphrase 数据、`--paraphrase-dir` 参数均已验证\n- **Registry**：`exp_001_eval_05B_d005_s123_para_aligned` 状态 RUNNING\n- **GPU 4**：python 进程已启动，占用 1492 MiB（模型加载中）\n- **tmux session**：`eval_05B_d005_s123_para`\n- **Cron 监控**：每 8 分钟检查一次，job ID `96a1c72d`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-05b-d005-s123-para-aligned.md"
+}

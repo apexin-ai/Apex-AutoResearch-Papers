@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66d3a882cc7c31a72402",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "director / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_16.md",
+    "occurrence": 1,
+    "bytes": 4975,
+    "sha256": "3d9ef333df287d4eb259711cc1d8f1d9626ef90165c0a748039805e78c053fb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_messages\nupdated: '2026-05-19T08:40:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-29999 GPU**: gpu_ids=[0,1,2,3]，全部 96GB RTX PRO 6000 Blackwell。当前 4/4 在用（3 训练 + 1 eval）\n- **cqa1-21977 GPU**: 只有 **1× RTX 4090D 24GB** (gpu_ids=[0])。Agent 反复误报 4 张，已纠正 3 次。下次 Agent 报 cqa1 多卡直接打回\n- Phi-4 14.7B (~30GB bf16) 不能上 cqa1（超 24GB）。Gemma-2 9B (~18GB) 勉强可能，需测试\n- evaluate.py 是项目唯一 eval 标准（MMLU 5-shot + ARC 25-shot, logprob MC）。禁止用 lm_eval（M017 教训：42pp 差异）\n- westd 无网络，HF 数据集需 SCP + HF_DATASETS_OFFLINE=1\n- **Variant A/B 未判定**——论文全文冻结定量 claim，用占位表述。不预判 negligible vs meaningful\n- **EMNLP 2026 ARR May 25 DDL**，约 6 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: root@westd-29999, 工作目录 /root/autodl-tmp/exp001/\n  - train_sft.py（LoRA SFT 训练，支持 --lora-targets）\n  - evaluate.py（MMLU+ARC eval）\n  - HF cache: /root/.cache/huggingface/（Qwen2.5 全系列 + Phi-4 + OLMo-2 + Gemma-2 基础模型均已下载）\n  - HF datasets cache: 已从 cqa1 SCP 过来，支持 offline eval\n- **cqa1-21977**: root@cqa1-21977, 工作目录 /root/autodl-tmp/exp001/\n  - evaluate.py 已部署，HF datasets cache 可用\n  - OLMo-2-7B 基础模型已下载\n  - Gemma-2-9B 模型 SCP 中（上次 66MB/18GB）\n- **活跃进程（westd）**:\n  - cuda:0: Phi-4 d100 训练 PID 121911\n  - cuda:1: Gemma-2 d100 训练 PID 110293\n  - cuda:2: OLMo-2 d100 训练 PID 114339\n  - cuda:3: Phi-4 eval batch (d025/d050 进行中)\n- **LoRA 统一配置**: 全家族 r=16 α=32 lr=5e-5 bf16 AUGMENT mode\n\n### 3. 📊 当前状态\n**刚做完**：\n- paper_framing.md 更新了 D147（benchmark-specific direction）、三层结论框架、OLMo-2 near-null 分析\n- Paper Agent 完成 C1-C3 + W1 + §6 中性化（Abstract/Intro/Conclusion 全部冻结定量 claim）\n- Paper Agent 收到 claim 矩阵更新 + cross-family Results section 预写指令\n\n**训练**（最后 3 个 run）：\n- Phi-4 d100 (cuda:0) — 刚启动，~5h\n- Gemma-2 d100 (cuda:1) — RUNNING，~3h\n- OLMo-2 d100 (cuda:2) — RUNNING，~5h\n\n**Eval 完成情况**：\n| Family | 完成 | 待 eval |\n|--------|------|---------|\n| Qwen 7B | 10/10 ✅ | — |\n| Qwen 14B | 5/5 ✅ | — |\n| Phi-4 | d000-d050 4/5 ✅ (cuda:3 跑着) | d100 |\n| OLMo-2 | d000-d025 3/5 ✅ (cqa1) | d050, d100 |\n| Gemma-2 | **0/5** ❌ 最大缺口 | 全部 |\n\n**等待中**：Phi-4 eval batch 完成回调、cqa1 Gemma-2 模型 SCP 完成、3 个 d100 训练 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- Phi-4 eval batch 完成（d025+d050 结果出）→ 更新 registry，启动 Phi-4 d100 eval（如 d100 训练也完成）或释放 cuda:3\n- Gemma-2 SCP 到 cqa1 完成 → 立即串行 eval d000/d005/d025/d050。**Gemma-2 结果决定 cross-family claim 成败**：正向 → 3/4 families positive（strong claim）；null → 2/4 positive，claim 大幅 downgrade\n- 任何 d100 训练完成 → 立即 eval（westd 空闲 GPU 或 SCP 到 cqa1）\n- 全部 eval 完成 → (1) IRT fitting with per-benchmark γ_k, (2) TOST equivalence test for ARC（bound ±1.5pp）, (3) Variant A/B 最终判定\n- OLMo-2 d050/d100 eval 出来 → 如果 MMLU 明确正向(≥1pp) → 三层框架 Layer 2 扩到 4/4；如果仍 null → 维持 3/4 hedge + Layer 3 exploratory\n- 14B s123 replication (D145) — d000_s123 + d050_s123 跑 Cohen's d，灰色地带最终判定需要这个\n- **M019 pattern**：Agent 训练完成后不自动启动下一任务——已记录 4 次。每次 cron 回调后检查 GPU 是否空闲，空了立即催\n\n### 5. 🎯 战略上下文\n**核心发现链**：\n- D146: scale × benchmark interaction（MMLU 随 scale 递增，ARC 递减/平坦）\n- D147: benchmark-specific contamination direction（MMLU positive, ARC null/negative）— 跨家族 3/3 方向一致\n- Phi-4 效应量 (+1.20pp@d050) < Qwen 14B (+2.28pp@d050) 尽管 Phi-4 更大 → 不纯粹 scale-dependent，family-specific 因素存在\n- OLMo-2 near-null 效应 → 三层结论框架（Layer 1 all non-negative / Layer 2 baseline≥65% positive / Layer 3 capability floor exploratory）\n\n**决策链**: D141(scope expansion) → D144(family framing) → D145(postpone Variant A/B) → D146(scale×benchmark) → D147(benchmark-specific direction)\n\n**易错点**：\n1. 不要 claim \"effect scales with model size\"——Phi-4 数据反驳了这个（更大但效应更小）。正确：effect varies by family and scale\n2. 不要 claim \"MMLU always positive\"——7B d005 两个家族都负向。必须限定 d025+\n3. OLMo-2 选择会被审稿人质疑（为什么选这么弱的模型）——justify: AllenAI 独立 + open source + 训练数据独立\n4. cqa1 永远只有 1 张卡，不管 Agent 报什么\n5. Gemma-2 eval 是论文能否 claim cross-family 的决定性因素——优先级最高\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16.md"
+}

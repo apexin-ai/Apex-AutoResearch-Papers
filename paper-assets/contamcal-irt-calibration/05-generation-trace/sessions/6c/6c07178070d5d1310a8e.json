@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c07178070d5d1310a8e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt fitting v3 rerun",
+  "task_key": "worker_ops_irt-fitting-v3-rerun_20260520T060841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt-fitting-v3-rerun_20260520T060841_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "b71e6a2b61c1f93ac813ebf6c9943f90d2c85685ea4ebf596944592e23ad4ceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IRT 2PL+γ fitting 完成，汇报如下：\n\n| 项目 | 结果 |\n|------|------|\n| h5netcdf | 已安装（requirement already satisfied） |\n| Respondent 数据 | **25/25** (5 families × 5 dosages) |\n| Fitting | 成功完成，退出码 0，ADVI 20000 iterations，Average Loss = 1.6079e+05 |\n| trace_mmlu.nc | **432MB**，内容完整 |\n\n**trace_mmlu.nc 内容：**\n- **Groups**: posterior, sample_stats, observed_data\n- **Posterior variables**: `theta` (1×1000×25), `a` (1×1000×14042), `b` (1×1000×14042), `gamma` (1×1000×14042), `log_a` (1×1000×14042)\n- **Dimensions**: 1 chain, 1000 draws, 25 respondents, 14042 items\n- **Library**: ArviZ 1.1.0, PyMC 6.0.0\n\n**Gamma (contamination effect) 摘要：**\n- mean(γ) = 0.0251 ± 0.3593\n- median(γ) = 0.0771\n- 58.0% items with γ > 0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-fitting-v3-rerun.md"
+}

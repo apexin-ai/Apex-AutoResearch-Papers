@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb3b3fcd0b2fcc57bd2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 d023 code mod sanity",
+  "task_key": "worker_code_exp_006_d023_code_mod_sanity_20260514T174350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_d023_code_mod_sanity_20260514T174350_result.json",
+    "occurrence": 1,
+    "bytes": 2558,
+    "sha256": "9d103cf9dbf9cb4822201dd4ca6e6d3a05f1b557e2c38ca1bfc2fef8fc14d142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sanity Run 结果摘要\n\n### 代码修改 (4项)\n\n| 修改项 | 状态 | 说明 |\n|--------|------|------|\n| `--max-items N` | 已完成 | default=None, 独立于 `--dry-run` 工作 |\n| `--aligned-only` | 已存在 | 代码已有此功能，无需修改 |\n| 删除 ADVI fallback | 不需要 | 代码中无 ADVI 代码 |\n| exp-002 signals 替代 oracle dosage | 已完成 | 新增 `--signals-dir` 参数 + `load_exp002_signals()` 函数 |\n\n### GSM8K 300-item Sanity Run\n\n**配置**: 0.5B scale, seed 42, aligned-only, 4 models (d000/d005/d025/d100), 300 items, 4pl_gamma + joint-fit\n\n**总耗时**: 376.6s (~6.3min)\n\n#### Per-benchmark IRT fit (300 items)\n| 指标 | 值 |\n|------|-----|\n| gamma | mean=-3.93, 95%CI=[-5.14, -2.57] |\n| ci_excludes_zero | True |\n| Rhat | 1.0062 |\n| ESS | 503 |\n| Divergences | 0 (0.00%) |\n| Sampling time | 23.5s |\n\n#### Joint fit (1319 items, 未截断)\n| 指标 | 值 |\n|------|-----|\n| gamma | mean=0.35, 95%CI=[-0.65, 1.40] |\n| ci_excludes_zero | False |\n| Rhat | 1.0081 |\n| ESS | 956 |\n| Divergences | 0 (0.00%) |\n| Sampling time | 190.9s |\n\n#### 评估指标 (MAE, 越低越好)\n| Method | MAE |\n|--------|-----|\n| B0_raw | 0.019 |\n| B1_remove_rescore | 0.019 |\n| B5_emperor | 0.019 |\n| B4_linear_reg | 0.021 |\n| IRT_4pl_gamma | **0.258** |\n| B6_dcr_fuzzy | 0.297 |\n\n### 关键问题\n\n1. **Per-benchmark gamma 为负 (-3.93)**：物理上不合理（应为正，表示污染提高分数）。原因：d025 没有 exp-002 signals，fallback 用 oracle dosage/100=0.25，而 d000 的 signal 值为 0.613。这导致 d000 的 exposure 反而高于 d025，破坏了 dose-response 单调性。\n\n2. **exp-002 signals**: `[0.613, 0.629, 0.25, 0.810]` 对应 d000/d005/d025/d100。d025 的 0.25 是 fallback 值。\n\n3. **Joint fit 未受 `--max-items` 限制**：用了全部 1319 items（joint_fit 模块内部未应用 max_items 截断）。但收敛正常，gamma=0.35 不显著。\n\n4. **IRT MAE (0.258) 高于 B0_raw (0.019)**：在这组数据上 IRT 校准反而比不做调整差，因为 gamma 为负导致校准方向错误。\n\n### exp-002 Signal 格式\n\n路径: `/root/autodl-tmp/exp002/signals/{model_dirname}/signals_merged_{benchmark}.json`\n\n格式: JSON array，每个 item 有 `{index, benchmark, s1_embedding, s2_minkpp, s3_constat (null), s4_selfcritique}`。当前实现使用 `s1_embedding` 的 mean 作为 per-model scalar。\n\n**可用的 model-benchmark 组合**: d000/d005/d100 × mmlu/gsm8k/arc_challenge。**d025 缺失**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-d023-code-mod-sanity.md"
+}

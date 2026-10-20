@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e97d640877d961afc08b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 d100 completion and results",
+  "task_key": "worker_ops_llama3-d100-completion-and-results_20260521T132655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-d100-completion-and-results_20260521T132655_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "f878394320c0b191a0fd2f82b9dcf0413ca913151a3d459e91a7ba6ce5dbcb3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nd100 训练: success (train_loss=1.404, epoch=1.0, runtime=11730s, lora_alpha=32 ✓)\nd100 eval: MMLU 已自动触发 (monitor 21:24:52 检测到 .done → 启动 GPU 3)\n           进度 244/14042 (~1.7%), ~24 it/s, ETA ~9min\nd100 MMLU: pending\nd100 ARC:  pending (MMLU 完成后需触发)\nregistry:  已更新 (conclusion=success, status=DONE)\nGPU 状态:  GPU 0-2 空闲, GPU 3 运行 d100 MMLU eval (PID 525833, 18.6GB)\n```\n\n**已有 LLaMA-3.1-8B 结果汇总：**\n\n| Dosage | MMLU | ARC |\n|--------|------|-----|\n| d000_s0 | 53.50% | 72.61% |\n| d025_s0 | 52.75% | 72.01% |\n| d100_s0 | pending | pending |\n\nd025 相比 d000 略降（MMLU -0.75pp, ARC -0.60pp），需要等 d100 结果看完整 dosage-response curve。MMLU eval 预计 ~9 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-d100-completion-and-results.md"
+}

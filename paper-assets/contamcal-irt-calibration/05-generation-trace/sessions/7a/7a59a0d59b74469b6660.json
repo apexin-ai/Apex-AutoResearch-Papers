@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a59a0d59b74469b6660",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code dosage regen",
+  "task_key": "worker_code_dosage_regen_20260514T000800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dosage_regen_20260514T000800_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "e8ea9f370fd6f741daad952a6c43b640665c3d43e53447ccfb74c1d84c027d6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**dosage 文件已经包含 MMLU，无需重新生成。**\n\n验证结果：\n- 所有 dosage 文件（005/025/050/100）于 May 14 07:16 重新生成，包含 MMLU + ARC + GSM8K 三个 benchmark\n- `data_meta.json` 确认：arc_challenge=1172, gsm8k=1319, mmlu=14042，总 contam=16533\n- MMLU contamination labels 完整：d005=703/14042, d100=14042/14042\n- d100 行数 66533 = 50000 base + 16533 contam，数学吻合\n\n任务已完成，不需要额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dosage-regen.md"
+}

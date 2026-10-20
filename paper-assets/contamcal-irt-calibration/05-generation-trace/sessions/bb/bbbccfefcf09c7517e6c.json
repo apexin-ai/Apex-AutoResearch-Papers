@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bbbccfefcf09c7517e6c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh westd phase2 progress v2",
+  "task_key": "worker_ssh_westd-phase2-progress-v2_20260519T111926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-progress-v2_20260519T111926.log",
+    "occurrence": 1,
+    "bytes": 748592,
+    "sha256": "046592fa512ec74eafce95b84656cd8f6785949ebb97483b67174a6757dddb24"
+  },
+  "statistics": {
+    "messages": 124,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "bbbccfefcf09c7517e6c-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "bbbccfefcf09c7517e6c-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-phase2-progress-v2.md"
+}

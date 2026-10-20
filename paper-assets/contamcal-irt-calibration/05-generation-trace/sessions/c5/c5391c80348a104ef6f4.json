@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5391c80348a104ef6f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "verify d005 s42 hyperparams",
+  "task_key": "worker_verify_d005_s42_hyperparams_20260515T200838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d005_s42_hyperparams_20260515T200838_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "24e0cb3a29971cefe681c7c99c72c22689369adcae8510433cb4c23fab08c6be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已充分。\n\n## 验证结果\n\n### d005_s42 (Qwen2.5-3B) 超参配置\n\n| 参数 | 实际值 | 标准值 | 状态 |\n|------|--------|--------|------|\n| **lora_alpha** | **32** | 16 | **不一致** |\n| **learning_rate** | **2e-4** (peak) | 5e-5 | **不一致** |\n| r | 16 | 16 | OK |\n| lora_dropout | 0.05 | - | - |\n| target_modules | 全部 7 个 proj | - | - |\n\n### 结论：**非标准配置，不能用**\n\nd005_s42 与 d000_s42（D071 发现的问题）完全一致：lr=2e-4, lora_alpha=32，均偏离标准配置（lr=5e-5, lora_alpha=16）。**不可加入 signals_3B_v6。**\n\n### Checkpoint 路径\n\n- adapter: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/`\n- checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/checkpoint-3177/`\n\n同批次的 0.5B 和 1.5B d005_s42 checkpoint 也在同目录下，大概率也是同样的非标准配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d005-s42-hyperparams.md"
+}

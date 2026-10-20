@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0c7a3519fb58ef27be",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp 001 eval 05B d100",
+  "task_key": "worker_submit_exp_001_eval_05B_d100_20260514T013138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_001_eval_05B_d100_20260514T013138_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "e205da55f4c06970ba4b73b2c68cf6848cbb4e2de269f2edf4bb64ed7b3f67e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_001_eval_05B_d100** 已提交到 cqa1-21977 GPU 4（PID 256503）\n- Registry 状态：RUNNING，provenance 已记录（model: Qwen2.5-0.5B, seed: 42, d100 checkpoint, 4 benchmarks）\n- 日志：`/tmp/eval_d100.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-001-eval-05b-d100.md"
+}

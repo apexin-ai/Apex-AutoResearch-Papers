@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d1ce9c173f357789748",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gpu state check",
+  "task_key": "worker_diagnose_gpu-state-check_20260516T004516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-state-check_20260516T004516_result.json",
+    "occurrence": 1,
+    "bytes": 2778,
+    "sha256": "9b5b3206759c7156bcd2d16581e7da60cc91584ee65be6340b452b66a5f7ac66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已齐全。以下是完整诊断报告。\n\n---\n\n## GPU 状态诊断报告（2026-05-16 ~08:45 UTC）\n\n### 各 GPU 占用详情\n\n| GPU | 显存占用 | 利用率 | PID | 进程 | 实验 | 运行时长 |\n|-----|---------|--------|-----|------|------|---------|\n| **0** | **23260/24564 MiB (95%)** | **96%** | 642763 | evaluate.py | d100_a32_s123 (mmlu/gsm8k/arc/humaneval aligned) | 3h10m |\n| **0** | ↑ 同上 | ↑ | 643167 | train_sft.py | **d005_s42** (alpha=32, lr=5e-5) | 3h09m |\n| 1 | 13341/24564 MiB (54%) | 43% | 628668 | train_sft.py | d100_a32_s42_v3 (alpha=32) | 4h34m |\n| 2 | 7537/24564 MiB (31%) | 61% | 652259 | compute_signals.py | d005_s123 / mmlu / signal=all | 1h41m |\n| 3 | 8985/24564 MiB (37%) | 71% | 655989 | evaluate.py | d025_v3_s42 aligned (mmlu/gsm8k/arc) | 1h24m |\n| 4 | 7445/24564 MiB (30%) | 59% | 662616 | compute_signals.py | d100_a32_s123 / mmlu / signal=all | ~30m |\n| 5 | 7531/24564 MiB (31%) | 63% | 663067 | compute_signals.py | d025_v3_s42 / mmlu / signal=s4 | ~27m |\n\n### cuda:0 冲突：**真实存在，严重**\n\n两个进程共享 GPU 0：\n- **PID 642763**（eval，8976 MiB）+ **PID 643167**（SFT 训练，14270 MiB）= 23246 MiB\n- 已占满 95% 显存，距 OOM 仅剩 ~1.3 GB\n- SFT 训练和 eval 互相争抢 compute，两者都会变慢\n- PID 643167 的 `--gpu 0` 说明它被显式提交到 cuda:0，与 eval 形成了调度冲突\n\n### cuda:4：**不空闲，signals_v8 正在运行**\n\n- PID 662616 正在 GPU 4 上运行 `compute_signals.py`（d100_a32_s123 / mmlu / signal=all）\n- 日志尾部显示 Self-critique mmlu 进度 **817/7021 (12%)**，~1.42s/it，预计还需 **~2.4h**\n- **signals_v8 没有失败**——它在正常推进\n\n### signals_v8 失败根因\n\n**signals_v8 未失败。** 日志最后一条有效输出是 `Self-critique mmlu: 12%` 进度条，无任何错误信息。PID 662616 活跃、GPU 4 有 59% 利用率。如果之前有一个旧的 v8 实例失败后被重启了，当前实例运行正常。\n\n### 额外注意\n\nPID 643167 正在训练 `Qwen2.5-3B_d005_s42`（输出目录在 C006 废弃黑名单上），但命令行中 `--lora-alpha 32` 是正确的。如果这是有意用 alpha=32 覆盖旧 alpha=16 checkpoint，则无问题；但输出目录名称未加 `_v3` 后缀，后续可能造成混淆。\n\n### 建议下一步\n\n1. **解决 cuda:0 冲突（紧急）**：二选一——要么 kill PID 642763（eval），等 SFT 完成后再跑；要么将 eval 迁移到其他卡（cuda:1 训练完成后有空间）\n2. **不要动 cuda:4**：signals_v8 正在跑，预计 ~2.4h 完成当前 mmlu self-critique 阶段\n3. **考虑 d005_s42 输出目录命名**：是否应改为 `Qwen2.5-3B_d005_v3_s42` 以区分旧 alpha=16 版本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-state-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1a4aa7815a07d248f10",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops critical gpu fix",
+  "task_key": "worker_ops_critical-gpu-fix_20260514T065510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_critical-gpu-fix_20260514T065510_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "2c1b0e792231cfeefa7621c04eb7748eb188fe02b1ca221a2b2f65178c8b80ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d025_05B_v3 OOM 死在 GPU 0 — 同一个 `CUDA_VISIBLE_DEVICES` 覆写 bug。PID 291380 (3B d100) 占了 13GB，PID 251924 (1.5B d100) 占了 9.8GB，导致 0.5B 模型也挤不进去。\n\n## 汇总\n\n### 1. PID 291380 kill\n已不存在（之前已被 kill 或自行退出）。GPU 0 当前 10055/24564 MiB (13%)。\n\n### 2. train_sft.py 修复\n服务器 `/root/contamcal-irt-calibration/exp001/train_sft.py` 第 113-114 行已删除：\n```diff\n-    if args.gpu:\n-        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n```\n`--gpu` 参数定义保留（argparse 中），但不再有任何引用。本地 artifact 副本同步更新。\n\n### 3. git commit\n服务器不是 git repo（代码直接部署），无法 commit。**文件已直接 sed 修复。**\n\n### 4. 3B d100 重提交 — **未执行（C001 约束）**\nGPU 3 已有 PID 319555 正确运行同一实验：\n- tmux session `exp_001_sft_d100_3B`，wrapper 设 `CUDA_VISIBLE_DEVICES=3`\n- 命令未传 `--gpu` 参数，bug 未触发，GPU 绑定正确\n- 进度：897/3384 steps (26%)，~3.5h 剩余\n- checkpoint 目录已清空重建，不影响后续 epoch 保存\n\n### 5. GPU 5 状态\n- PID 318748 运行 `evaluate.py`（Qwen2.5-3B raw baseline, gsm8k+humaneval），6548 MiB\n- **不是** d025 训练\n\n### 6. d025 实验状态\n- `exp_001_sft_d025_05B_v3` 在 step 897/3384 OOM 崩溃 — 同一个 CUDA_VISIBLE_DEVICES bug 导致跑到 GPU 0，被 3B d100 (13GB) + 1.5B d100 (9.8GB) 挤爆\n- lora_adapter 为空，需要重跑\n- 现在 bug 已修复，GPU 5 evaluate 跑完后可重提交 d025 到 GPU 5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-critical-gpu-fix.md"
+}

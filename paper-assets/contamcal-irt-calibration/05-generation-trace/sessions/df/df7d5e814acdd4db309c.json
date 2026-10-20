@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df7d5e814acdd4db309c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "data phase3 data readiness",
+  "task_key": "worker_data_phase3-data-readiness_20260513T234231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_phase3-data-readiness_20260513T234231_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "ff1dac6447e1bbe5964057c928121f13d73729ffe06dcc01386e8419f375dd5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报结果：\n\n## Phase 3 数据就绪状态\n\n### Paraphrase 文件\n| 文件 | 大小 |\n|------|------|\n| mmlu_paraphrases.json | 27MB (14,042 items) |\n| arc_challenge_paraphrases.json | 1.7MB (1,172 items) |\n| gsm8k_paraphrases.json | 2.2MB (1,319 items) |\n| humaneval_paraphrases.json | 500KB (额外) |\n\n### Dosage SFT 数据（已包含 MMLU+ARC+GSM8K 三个 benchmark）\n\n| Dosage | 总行数 | Clean | Contaminated | MMLU | ARC | GSM8K | 校验 |\n|--------|--------|-------|--------------|------|-----|-------|------|\n| 0% | 50,000 | 50,000 | 0 | — | — | — | — |\n| 5% | 50,826 | 50,000 | 826 | 703 | 50 | 73 | OK |\n| 25% | 54,133 | 50,000 | 4,133 | 3,540 | 257 | 336 | OK |\n| 50% | 58,266 | 50,000 | 8,266 | 7,040 | 556 | 670 | OK |\n| 100% | 66,533 | 50,000 | 16,533 | 14,042 | 1,172 | 1,319 | OK |\n\n所有 dosage 文件行数 = 50000 + contaminated 总数，labels 文件与 JSONL 完全匹配。\n\n**Phase 3 可以启动，无阻塞项。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-phase3-data-readiness.md"
+}

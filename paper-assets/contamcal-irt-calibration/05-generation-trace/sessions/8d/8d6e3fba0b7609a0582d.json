@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d6e3fba0b7609a0582d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops j16 theta 5domains check",
+  "task_key": "worker_ops_j16_theta_5domains_check_20260517T153900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j16_theta_5domains_check_20260517T153900_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "db845c08119e51fbd888365061d50cffe0e0109e2f99d764d83a6f2717b40a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**状态: 失败** — 0/5 domains 有 θ\n\n**详情:**\n- 脚本 `j16_theta_5domains` 仅完成了 Medical 的 MCMC 采样（23:18→23:26，481s），但在采样后提取 θ/写入文件前进程被杀\n- 其余 4 个 domain（Humanities, Social_Sciences, Business_Law, Other）未被处理\n- 无 error/traceback，推测 OOM-killed（CmdStan fit.stan_variable(\"theta\") 时内存峰值）\n\n**文件状态:**\n\n| Domain | irt_results.json | theta | 备注 |\n|--------|-----------------|-------|------|\n| STEM_Math | 1790B, 22:41 | YES | 早期独立运行成功 |\n| STEM_Science | 1743B, 22:50 | YES | 同上 |\n| STEM_CS_Eng | - | YES | 同上 |\n| Medical | 772B, 20:39 | NO | j16 run 完成采样但未写入 |\n| Humanities | ?, 20:49 | NO | 未被 j16 run 处理 |\n| Social_Sciences | ?, 21:04 | NO | 同上 |\n| Business_Law | ?, 21:17 | NO | 同上 |\n| Other | 768B, 21:29 | NO | 同上 |\n\n**需要重新运行** 5 个 domain 的 IRT fitting with theta extraction。建议减少 `iter_sampling` 或分批运行以降低内存峰值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-j16-theta-5domains-check.md"
+}

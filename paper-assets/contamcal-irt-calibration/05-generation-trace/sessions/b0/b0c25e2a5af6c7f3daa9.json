@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c25e2a5af6c7f3daa9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research paper results prep",
+  "task_key": "worker_research_paper-results-prep_20260514T083314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-results-prep_20260514T083314_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "e2e2d196edccf5634ee6ae7690da85d561ca778ebcc81ad5e23429f1004e6754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_draft/results_tables.md`，包含 6 张表格：\n\n1. **Table 1** — Model×Dosage eval 矩阵（12 格，6 格有数据，4 格确认 legacy format）\n2. **Table 2** — d000 跨 seed 一致性（MC benchmarks CV<5%，generation benchmarks 高方差）\n3. **Table 3** — MVP 4PL+γ base recovery（PASS，γ_rel_bias=6.8%）\n4. **Table 4** — MVP confounding robustness（PASS，θ-exposure corr=0.38 下仍可分离）\n5. **Table 5** — EXP-004 sweep（43/120 runs，AUC×N_models 矩阵）\n6. **Table 6** — SFT 训练汇总\n\n主要发现：\n- **实际可用于论文分析的 eval 结果为零** — 所有 0.5B eval 确认 legacy mc_format，1.5B/3B format 未标注，contaminated dosage (d005/d100) 只有 0.5B legacy 数据\n- **3B GSM8K 异常低**（0.117/0.176 vs 1.5B 的 0.637），需要排查\n- **Simulation 结果可直接用于论文**（MVP + EXP-004 前 43 runs 均可）\n- Gap analysis 列出了填满矩阵需要的实验清单"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-results-prep.md"
+}

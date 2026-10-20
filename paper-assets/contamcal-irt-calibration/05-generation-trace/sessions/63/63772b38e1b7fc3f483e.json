@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63772b38e1b7fc3f483e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify 15B eval start",
+  "task_key": "worker_ops_verify-15B-eval-start_20260514T092606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-15B-eval-start_20260514T092606_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "1cf9a8e4d75f32d57a6308251aedaab58a94792ff4dd58efc66f845411c0f6a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程正常运行。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 336750 | 存活，已运行 7m57s，状态 Ss+ |\n| 当前配置 | d000 original (Qwen2.5-1.5B + LoRA d000_s42) |\n| MMLU | **已完成**，accuracy = 0.5853 (8219/14042) |\n| GSM8K | **进行中**，33/1319 (~2.5%)，~6.4s/it，预计还需 ~2.3h |\n| GPU 1 显存 | 5857 MiB，utilization 48% |\n\nbitsandbytes 报了 `libnvJitLink.so.13` 加载失败的 warning，不影响推理，已正常跑过 MMLU 全量。无其他报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-15b-eval-start.md"
+}

@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0",
+  "id": "5bdcdcf983e220e516cb",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "ops verify 3B sft s123 startup",
+  "task_key": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_verify-3B-sft-s123-startup_20260515T120003.jsonl",
+    "occurrence": 1,
+    "bytes": 11976,
+    "sha256": "b6114d4d7d05d96b9e7d713d1de964db19d1e4068b61ab5e86fed77deb840774"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T12:00:41.264521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T12:00:41.264840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T12:00:41.265022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 555931,556011 -o pid,stat,etime,cmd"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T12:00:41.265157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T12:00:41.265342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n555931 Ss+        01:48 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_3B_d005_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_3B_d005_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log 2>&1\\\\n556011 Ss+        01:45 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_3B_d025_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d025_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_3B_d025_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=4 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/\n…[truncated 474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T12:00:41.265512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 68 %, 14903 MiB, 24564 MiB\\\\n1, 98 %, 15967 MiB, 24564 MiB\\\\n2, 88 %, 22936 MiB, 24564 MiB\\\\n3, 70 %, 8985 MiB, 24564 MiB\\\\n4, 86 %, 19285 MiB, 24564 MiB\\\\n5, 69 %, 8985 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:00:41.265666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T12:00:41.265792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d025_s123.log"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:00:41.265997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 19:58:39,325 [INFO] Training samples: 50826\\\\n2026-05-15 19:58:41,579 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rTokenizing train dataset:   0%|          | 0/50826 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   0%|          | 63/50826 [00:00<01:23, 610.82 examples/s]\\\\rTokenizing train dataset:   0%|          | 138/50826 [00:00<01:14, 677.70 examples/s]\\\\rTokenizing train dataset:   0%|          | 223/50826 [00:00<01:07, 745.96 examples/s]\\\\rTokenizing train dataset:   1%|          | 299/50826 [00:00<01:07, 749.84 examples/s]\\\\rTokenizing train dataset:   1%|          | 377/50826 [00:00<01:06, 757.27 examples/s]\\\\rTokenizing train dataset:   1%|          | 482/50826 [00:00<01:09, 729.28 examples/s]\\\\rTokenizing train dataset:   1%|          | 559/50826 [00:00<01:08, 738.92 examples/s]\\\\rTokenizing train dataset:   1%|▏         | 665/50826 [00:00<01:09, 717.77 examples/s]\\\\rTokenizing train dataset:   1%|▏         | 756/50826 [00:01<01:14, 675.37 examples/s]\\\n…[truncated 6430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T12:00:41.266226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 19:58:42,264 [INFO] Training samples: 54133\\\\n2026-05-15 19:58:43,991 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rTokenizing train dataset:   0%|          | 0/54133 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   0%|          | 111/54133 [00:00<00:49, 1099.85 examples/s]\\\\rTokenizing train dataset:   0%|          | 228/54133 [00:00<00:48, 1116.13 examples/s]\\\\rTokenizing train dataset:   1%|          | 354/54133 [00:00<00:45, 1176.16 examples/s]\\\\rTokenizing train dataset:   1%|          | 480/54133 [00:00<00:44, 1204.02 examples/s]\\\\rTokenizing train dataset:   1%|          | 601/54133 [00:00<00:44, 1200.64 examples/s]\\\\rTokenizing train dataset:   1%|▏         | 728/54133 [00:00<00:43, 1222.28 examples/s]\\\\rTokenizing train dataset:   2%|▏         | 910/54133 [00:00<00:43, 1215.91 examples/s]\\\\rTokenizing train dataset:   2%|▏         | 1052/54133 [00:00<00:53, 985.70 examples/s]\\\\rTokenizing train dataset:   2%|▏         | 1170/54133 [00:01<00:51, 1030.22 e\n…[truncated 6434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:00:41.266425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -c \"loss\" /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T12:00:41.266564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T12:00:41.266687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -c \"loss\" /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d025_s123.log"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:00:41.266811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T12:00:41.266983+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 项目 | exp_001_sft_3B_d005_s123 | exp_001_sft_3B_d025_s123 |\n|------|--------------------------|--------------------------|\n| PID | 555931 ✅ 存活 | 556011 ✅ 存活 |\n| 运行时间 | ~1m48s | ~1m45s |\n| GPU | cuda:2, 88% util, 22.9/24.6 GB | cuda:4, 86% util, 19.3/24.6 GB |\n| 训练样本 | 50,826 | 54,133 |\n| Tokenization | ✅ 完成 | ✅ 完成 |\n| 训练进度 | step 12/3177 (~3.5s/it) | step 17/3384 (~2.9s/it) |\n| Loss | 尚未输出（刚开始训练） | 尚未输出 |\n| 异常 | 无（bitsandbytes warning 可忽略，不影响训练） | 同左 |\n\n两个训练都正常启动，GPU 显存占用正常，无 OOM。bitsandbytes 的 `libnvJitLink.so.13` 报错是 warning 级别，不影响 LoRA 训练（只影响 8bit/4bit 量化功能）。预计首次 loss 输出在 step 10 的 eval log 或后续 logging step。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-3B-sft-s123-startup_20260515T120003"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/ops-verify-3b-sft-s123-startup.md"
+}

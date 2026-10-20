@@ -1,0 +1,1576 @@
+{
+  "schema_version": "1.0",
+  "session_id": "587e6397fd5b1c671b74",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T09:21:53.971Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MjE5s337cG4RPPEa5TNnMF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Synthetic: 6x20, dosages=[0, 0, 25, 50, 75, 100]\\\\n                                                                                                                                                                \\\\nContamCal gamma: 0.449 [-0.784, 1.762]\\\\nContamCal scores: ['0.583', '0.334', '0.580', '0.641', '0.450', '0.391']\\\\n                                                                                                                                                                \\\\n                                                                                                                                                                \\\\nBaselines run: ['B0_raw', 'B1_remove_rescore', 'B2_2pl_gamma', 'B3_vanilla_4pl', 'B4_linear_regression', 'B5_emperor_mitigation', 'B6_dcr_fuzzy']\\\\n\\\\n====================================================================================================\\\\n-------------------------------------------------------------------------------------------------------\\\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\\\n-------------------------------------------------------------------------------------------------------\\\\nContamCal_4PL+gamma              0.1216   0.1164   0.0250   0.17   0.50   0.67     0.28  0.467    0.449\\\\nB0_raw                           0.1272   0.1217   0.0251   0.17   0.67   0.83     0.37  0.552      ---\\\\nB1_remove_rescore                0.0967   0.0967   0.0157   0.50   0.67   0.83     0.44  0.733      ---\\\\nB2_2pl_gamma                     0.0854   0.0673   0.0142   0.50   0.83   0.83     0.33  0.467      ---\\\\nB3_vanilla_4pl                   0.1256   0.1197   0.0277   0.17   0.50   0.67     0.28  0.467      ---\\\\nB4_linear_regression             0.1448   0.1434   0.0332   0.33   0.50   0.67     0.79  0.600      ---\\\\nB5_emperor_mitigation            0.1214   0.1130   0.0225   0.17   0.67   0.83     0.39  0.600      ---\\\\nB6_dcr_fuzzy                     0.1329   0.1313   0.0243   0.17   0.33   0.50     0.27  0.600      ---\\\\n-------------------------------------------------------------------------------------------------------\\\\n\\\\n=== FULL PIPELINE TEST PASSED ===\\\\n  ContamCal + 7 baselines evaluated\\\\n  All 8 metrics + reliability diagram computed\\\\n  Results: /tmp/exp006_full_dryrun.json\\\\n\\\", \\\"stderr\\\": \\\"\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Sampling)]\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1194.10it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1194.60it/s, (Sampling completed)]\\\\n2026-05-14 17:21:47,647 [WARNING] Convergence issues detected! Consider increasing adapt_delta or warmup.\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Sampling)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1463.27it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1462.18it/s, (Sampling completed)]\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Sampling)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1317.32it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1316.95it/s, (Sampling completed)]\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "7ee8f01e-9d0f-4cee-970d-265f3d082e92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Synthetic: 6x20, dosages=[0, 0, 25, 50, 75, 100]\\\\n                                                                                                                                                                \\\\nContamCal gamma: 0.449 [-0.784, 1.762]\\\\nContamCal scores: ['0.583', '0.334', '0.580', '0.641', '0.450', '0.391']\\\\n                                                                                                                                                                \\\\n                                                                                                                                                                \\\\nBaselines run: ['B0_raw', 'B1_remove_rescore', 'B2_2pl_gamma', 'B3_vanilla_4pl', 'B4_linear_regression', 'B5_emperor_mitigation', 'B6_dcr_fuzzy']\\\\n\\\\n====================================================================================================\\\\n-------------------------------------------------------------------------------------------------------\\\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\\\n-------------------------------------------------------------------------------------------------------\\\\nContamCal_4PL+gamma              0.1216   0.1164   0.0250   0.17   0.50   0.67     0.28  0.467    0.449\\\\nB0_raw                           0.1272   0.1217   0.0251   0.17   0.67   0.83     0.37  0.552      ---\\\\nB1_remove_rescore                0.0967   0.0967   0.0157   0.50   0.67   0.83     0.44  0.733      ---\\\\nB2_2pl_gamma                     0.0854   0.0673   0.0142   0.50   0.83   0.83     0.33  0.467      ---\\\\nB3_vanilla_4pl                   0.1256   0.1197   0.0277   0.17   0.50   0.67     0.28  0.467      ---\\\\nB4_linear_regression             0.1448   0.1434   0.0332   0.33   0.50   0.67     0.79  0.600      ---\\\\nB5_emperor_mitigation            0.1214   0.1130   0.0225   0.17   0.67   0.83     0.39  0.600      ---\\\\nB6_dcr_fuzzy                     0.1329   0.1313   0.0243   0.17   0.33   0.50     0.27  0.600      ---\\\\n-------------------------------------------------------------------------------------------------------\\\\n\\\\n=== FULL PIPELINE TEST PASSED ===\\\\n  ContamCal + 7 baselines evaluated\\\\n  All 8 metrics + reliability diagram computed\\\\n  Results: /tmp/exp006_full_dryrun.json\\\\n\\\", \\\"stderr\\\": \\\"\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Sampling)]\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1194.10it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1194.60it/s, (Sampling completed)]\\\\n2026-05-14 17:21:47,647 [WARNING] Convergence issues detected! Consider increasing adapt_delta or warmup.\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Sampling)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1463.27it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1462.18it/s, (Sampling completed)]\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Warmup)]\\\\u001b[A\\\\n\\\\rchain 2:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Sampling)]\\\\u001b[A\\\\rchain 1:  50%|\\\\u001b[33m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Warmup)]\\\\rchain 1:  50%|\\\\u001b[34m█████     \\\\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Sampling)]\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling)]\\\\u001b[A\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling completed)]\\\\rchain 1: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1317.32it/s, (Sampling completed)]\\\\n\\\\n\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling completed)]\\\\u001b[A\\\\rchain 2: 100%|\\\\u001b[34m██████████\\\\u001b[0m| 400/400 [00:00<00:00, 1316.95it/s, (Sampling completed)]\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.73}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Synthetic: 6x20, dosages=[0, 0, 25, 50, 75, 100]\\n                                                                                                                                                                \\nContamCal gamma: 0.449 [-0.784, 1.762]\\nContamCal scores: ['0.583', '0.334', '0.580', '0.641', '0.450', '0.391']\\n                                                                                                                                                                \\n                                                                                                                                                                \\nBaselines run: ['B0_raw', 'B1_remove_rescore', 'B2_2pl_gamma', 'B3_vanilla_4pl', 'B4_linear_regression', 'B5_emperor_mitigation', 'B6_dcr_fuzzy']\\n\\n====================================================================================================\\n-------------------------------------------------------------------------------------------------------\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\n-------------------------------------------------------------------------------------------------------\\nContamCal_4PL+gamma              0.1216   0.1164   0.0250   0.17   0.50   0.67     0.28  0.467    0.449\\nB0_raw                           0.1272   0.1217   0.0251   0.17   0.67   0.83     0.37  0.552      ---\\nB1_remove_rescore                0.0967   0.0967   0.0157   0.50   0.67   0.83     0.44  0.733      ---\\nB2_2pl_gamma                     0.0854   0.0673   0.0142   0.50   0.83   0.83     0.33  0.467      ---\\nB3_vanilla_4pl                   0.1256   0.1197   0.0277   0.17   0.50   0.67     0.28  0.467      ---\\nB4_linear_regression             0.1448   0.1434   0.0332   0.33   0.50   0.67     0.79  0.600      ---\\nB5_emperor_mitigation            0.1214   0.1130   0.0225   0.17   0.67   0.83     0.39  0.600      ---\\nB6_dcr_fuzzy                     0.1329   0.1313   0.0243   0.17   0.33   0.50     0.27  0.600      ---\\n-------------------------------------------------------------------------------------------------------\\n\\n=== FULL PIPELINE TEST PASSED ===\\n  ContamCal + 7 baselines evaluated\\n  All 8 metrics + reliability diagram computed\\n  Results: /tmp/exp006_full_dryrun.json\\n\", \"stderr\": \"\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\rchain 1:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Warmup)]\\rchain 1:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1241.55it/s, (Sampling)]\\n\\rchain 2:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Warmup)]\\u001b[A\\n\\rchain 2:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1113.01it/s, (Sampling)]\\u001b[A\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling)]\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling)]\\u001b[A\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1278.01it/s, (Sampling completed)]\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1194.10it/s, (Sampling completed)]\\n\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1219.27it/s, (Sampling completed)]\\u001b[A\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1194.60it/s, (Sampling completed)]\\n2026-05-14 17:21:47,647 [WARNING] Convergence issues detected! Consider increasing adapt_delta or warmup.\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\rchain 2:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Warmup)]\\u001b[A\\n\\rchain 2:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1384.73it/s, (Sampling)]\\u001b[A\\rchain 1:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Warmup)]\\rchain 1:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1276.35it/s, (Sampling)]\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling)]\\u001b[A\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling)]\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1512.15it/s, (Sampling completed)]\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1463.27it/s, (Sampling completed)]\\n\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1573.24it/s, (Sampling completed)]\\u001b[A\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1462.18it/s, (Sampling completed)]\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/400 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\rchain 2:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Warmup)]\\u001b[A\\n\\rchain 2:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1252.34it/s, (Sampling)]\\u001b[A\\rchain 1:  50%|\\u001b[33m█████     \\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Warmup)]\\rchain 1:  50%|\\u001b[34m█████     \\u001b[0m| 200/400 [00:00<00:00, 1144.57it/s, (Sampling)]\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling)]\\u001b[A\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling)]\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1361.92it/s, (Sampling completed)]\\rchain 1: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1317.32it/s, (Sampling completed)]\\n\\n\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1409.63it/s, (Sampling completed)]\\u001b[A\\rchain 2: 100%|\\u001b[34m██████████\\u001b[0m| 400/400 [00:00<00:00, 1316.95it/s, (Sampling completed)]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.73}}"
+              }
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。ContamCal + 7 baselines 全部运行成功，8 个 metrics + reliability diagram 全部计算完成。\n\n接下来也验证一下 `run_exp006.py` 的 pipeline 入口和 `_summarize_vector` 函数。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "eaa52322-dc99-4256-88d9-9d4ef77a038f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018EYrkLBcTLuR5iBHmQc1CW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5129,
+                "cache_read_input_tokens": 103099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5129
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014MUM5PWymx9yx44qL8j6U3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"_summarize_vector\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "5994e758-d02f-42cb-8714-4766b716c609",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018EYrkLBcTLuR5iBHmQc1CW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5129,
+                "cache_read_input_tokens": 103099,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5129
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T09:22:03.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014MUM5PWymx9yx44qL8j6U3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"261:def _summarize_vector(draws):\\\\n321:    results[\\\\\\\"calibrated_scores\\\\\\\"] = _summarize_vector(cal_draws)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "dd570e8f-9c3a-4152-bf12-e5b8990ccf92",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"261:def _summarize_vector(draws):\\\\n321:    results[\\\\\\\"calibrated_scores\\\\\\\"] = _summarize_vector(cal_draws)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"261:def _summarize_vector(draws):\\n321:    results[\\\"calibrated_scores\\\"] = _summarize_vector(cal_draws)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HV1Tqzpu3spB4DtyXzPdi4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "tail -n +261 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "80ff45f1-9f4d-4477-ad28-15361afb9918",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0142uc1v8pCEaa4WpAaqVBo4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 518,
+                "cache_read_input_tokens": 108228,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 518
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T09:22:07.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HV1Tqzpu3spB4DtyXzPdi4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def _summarize_vector(draws):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Summarize posterior draws into point estimates and quantiles.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"q025\\\\\\\": np.round(np.percentile(draws, 2.5, axis=0), 4).tolist(),\\\\n        \\\\\\\"q975\\\\\\\": np.round(np.percentile(draws, 97.5, axis=0), 4).tolist(),\\\\n        \\\\\\\"q10\\\\\\\": np.round(np.percentile(draws, 10, axis=0), 4).tolist(),\\\\n        \\\\\\\"q90\\\\\\\": np.round(np.percentile(draws, 90, axis=0), 4).tolist(),\\\\n        \\\\\\\"q25\\\\\\\": np.round(np.percentile(draws, 25, axis=0), 4).tolist(),\\\\n        \\\\\\\"q75\\\\\\\": np.round(np.percentile(draws, 75, axis=0), 4).tolist(),\\\\n    }\\\\n\\\\n\\\\ndef extract_results(fit, y, model_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract all posterior summaries from fitted model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n\\\\n    # Gamma\\\\n    if model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n        gamma_draws = fit.stan_variable(\\\\\\\"gamma\\\\\\\")\\\\n        results[\\\\\\\"gamma\\\\\\\"] = {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(gamma_draws)), 4),\\\\n            \\\\\\\"sd\\\\\\\": round(float(np.std(gamma_draws)), 4),\\\\n            \\\\\\\"q025\\\\\\\": round(float(np.percentile(gamma_draws, 2.5)), 4),\\\\n            \\\\\\\"q975\\\\\\\": round(float(np.percentile(gamma_draws, 97.5)), 4),\\\\n            \\\\\\\"q10\\\\\\\": round(float(np.percentile(gamma_draws, 10)), 4),\\\\n            \\\\\\\"q90\\\\\\\": round(float(np.percentile(gamma_draws, 90)), 4),\\\\n            \\\\\\\"q25\\\\\\\": round(float(np.percentile(gamma_draws, 25)), 4),\\\\n            \\\\\\\"q75\\\\\\\": round(float(np.percentile(gamma_draws, 75)), 4),\\\\n            \\\\\\\"ci_excludes_zero\\\\\\\": bool(\\\\n                np.percentile(gamma_draws, 2.5) > 0 or\\\\n                np.percentile(gamma_draws, 97.5) < 0\\\\n            ),\\\\n        }\\\\n\\\\n    # Theta\\\\n    theta_draws = fit.stan_variable(\\\\\\\"theta\\\\\\\")\\\\n    results[\\\\\\\"theta\\\\\\\"] = {\\\\n        \\\\\\\"mean\\\\\\\": np.round(np.mean(theta_draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"sd\\\\\\\": np.round(np.std(theta_draws, axis=0), 4).tolist(),\\\\n    }\\\\n\\\\n    # Item parameters\\\\n    for param in [\\\\\\\"a\\\\\\\", \\\\\\\"b\\\\\\\"]:\\\\n        draws = fit.stan_variable(param)\\\\n        results[param] = {\\\\n            \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n            \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n        }\\\\n    if model_type != \\\\\\\"2pl_gamma\\\\\\\":\\\\n        for param in [\\\\\\\"c\\\\\\\", \\\\\\\"d\\\\\\\"]:\\\\n            draws = fit.stan_variable(param)\\\\n            results[param] = {\\\\n                \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n                \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n            }\\\\n\\\\n    # Calibrated scores with multi-level CIs\\\\n    cal_draws = fit.stan_variable(\\\\\\\"calibrated_score\\\\\\\")\\\\n    results[\\\\\\\"calibrated_scores\\\\\\\"] = _summarize_vector(cal_draws)\\\\n\\\\n    # Raw accuracy for reference\\\\n    results[\\\\\\\"raw_accuracy\\\\\\\"] = np.round(y.mean(axis=1), 4).tolist()\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ── Per-Benchmark Fitting ──\\\\n\\\\ndef run_benchmark_fit(bench_name, y, exposure, model_type, args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit IRT model for a single benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N_models, N_items = y.shape\\\\n    log.info(\\\\\\\"=== %s: %d models x %d items ===\\\\\\\", bench_name, N_models, N_items)\\\\n    log.info(\\\\\\\"Mean accuracy: %.3f\\\\\\\", y.mean())\\\\n\\\\n    stan_file = STAN_MODELS[model_type]\\\\n    stan_data = prepare_stan_data(y, exposure, model_type)\\\\n\\\\n    fit, elapsed = fit_stan_model(\\\\n        stan_file, stan_data,\\\\n        chains=args.chains,\\\\n        iter_warmup=args.warmup,\\\\n        iter_sampling=args.samples,\\\\n        adapt_delta=args.adapt_delta,\\\\n        max_treedepth=args.max_treedepth,\\\\n        seed=args.seed,\\\\n    )\\\\n\\\\n    diagnostics = check_convergence(fit)\\\\n    log.info(\\\\\\\"Convergence: Rhat=%.4f, ESS=%.0f, div=%.2f%% -> %s\\\\\\\",\\\\n             diagnostics.get(\\\\\\\"max_rhat\\\\\\\", 0),\\\\n             diagnostics.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n             diagnostics[\\\\\\\"divergent_pct\\\\\\\"],\\\\n             \\\\\\\"OK\\\\\\\" if diagnostics[\\\\\\\"all_ok\\\\\\\"] else \\\\\\\"WARNING\\\\\\\")\\\\n\\\\n    if not diagnostics[\\\\\\\"all_ok\\\\\\\"]:\\\\n        log.warning(\\\\\\\"Convergence issues detected! Consider increasing adapt_delta or warmup.\\\\\\\")\\\\n\\\\n    ppc = posterior_predictive_check(fit, y)\\\\n    results = extract_results(fit, y, model_type)\\\\n\\\\n    return {\\\\n        \\\\\\\"benchmark\\\\\\\": bench_name,\\\\n        \\\\\\\"model_type\\\\\\\": model_type,\\\\n        \\\\\\\"stan_file\\\\\\\": os.path.basena\\\\n\\\\n... [截断: 输出过长，省略 984 字符] ...\\\\n\\\\npe=str,\\\\n                         help=\\\\\\\"Direct path to exposure matrix (npy/csv/json)\\\\\\\")\\\\n\\\\n    parser.add_argument(\\\\\\\"--model-type\\\\\\\", choices=list(STAN_MODELS.keys()),\\\\n                        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n                        help=\\\\\\\"Stan model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"JSON with per-benchmark per-item exposure tau\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Single benchmark name (for direct matrix input)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode 1: direct matrix input\\\\n    if args.response_matrix:\\\\n        if not args.exposure_matrix and args.model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n            parser.error(\\\\\\\"--exposure-matrix required with --response-matrix \\\\\\\"\\\\n                         \\\\\\\"(unless --model-type=vanilla_4pl)\\\\\\\")\\\\n        y = load_matrix(args.response_matrix).astype(int)\\\\n        if args.exposure_matrix:\\\\n            exposure = load_matrix(args.exposure_matrix)\\\\n            assert y.shape == exposure.shape, (\\\\n                f\\\\\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\\\\\")\\\\n        else:\\\\n            exposure = np.zeros_like(y, dtype=float)\\\\n        bench_name = args.benchmark or \\\\\\\"benchmark\\\\\\\"\\\\n\\\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\\\n\\\\n        out_path = output_dir / f\\\\\\\"{bench_name}_{args.model_type}_results.json\\\\\\\"\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n        log.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n        return\\\\n\\\\n    # Mode 2: eval-dir input\\\\n    if not args.eval_dir:\\\\n        parser.error(\\\\\\\"Specify --eval-dir or --response-matrix\\\\\\\")\\\\n\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks)\\\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"])\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"eval_dir\\\\\\\",\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n        else:\\\\n            dosages_bench = dosages\\\\n\\\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\\\\\"n_items\\\\\\\"]])\\\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\\\n        all_results[\\\\\\\"benchmarks\\\\\\\"][bench] = result\\\\n\\\\n        bench_dir = output_dir / bench\\\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\\\n        with open(bench_dir / f\\\\\\\"{args.model_type}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n\\\\n    with open(output_dir / \\\\\\\"irt_calibration_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    log.info(\\\\\\\"All results saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "48ba7973-b429-4977-9b90-7da70015ef06",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def _summarize_vector(draws):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Summarize posterior draws into point estimates and quantiles.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"q025\\\\\\\": np.round(np.percentile(draws, 2.5, axis=0), 4).tolist(),\\\\n        \\\\\\\"q975\\\\\\\": np.round(np.percentile(draws, 97.5, axis=0), 4).tolist(),\\\\n        \\\\\\\"q10\\\\\\\": np.round(np.percentile(draws, 10, axis=0), 4).tolist(),\\\\n        \\\\\\\"q90\\\\\\\": np.round(np.percentile(draws, 90, axis=0), 4).tolist(),\\\\n        \\\\\\\"q25\\\\\\\": np.round(np.percentile(draws, 25, axis=0), 4).tolist(),\\\\n        \\\\\\\"q75\\\\\\\": np.round(np.percentile(draws, 75, axis=0), 4).tolist(),\\\\n    }\\\\n\\\\n\\\\ndef extract_results(fit, y, model_type):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract all posterior summaries from fitted model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n\\\\n    # Gamma\\\\n    if model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n        gamma_draws = fit.stan_variable(\\\\\\\"gamma\\\\\\\")\\\\n        results[\\\\\\\"gamma\\\\\\\"] = {\\\\n            \\\\\\\"mean\\\\\\\": round(float(np.mean(gamma_draws)), 4),\\\\n            \\\\\\\"sd\\\\\\\": round(float(np.std(gamma_draws)), 4),\\\\n            \\\\\\\"q025\\\\\\\": round(float(np.percentile(gamma_draws, 2.5)), 4),\\\\n            \\\\\\\"q975\\\\\\\": round(float(np.percentile(gamma_draws, 97.5)), 4),\\\\n            \\\\\\\"q10\\\\\\\": round(float(np.percentile(gamma_draws, 10)), 4),\\\\n            \\\\\\\"q90\\\\\\\": round(float(np.percentile(gamma_draws, 90)), 4),\\\\n            \\\\\\\"q25\\\\\\\": round(float(np.percentile(gamma_draws, 25)), 4),\\\\n            \\\\\\\"q75\\\\\\\": round(float(np.percentile(gamma_draws, 75)), 4),\\\\n            \\\\\\\"ci_excludes_zero\\\\\\\": bool(\\\\n                np.percentile(gamma_draws, 2.5) > 0 or\\\\n                np.percentile(gamma_draws, 97.5) < 0\\\\n            ),\\\\n        }\\\\n\\\\n    # Theta\\\\n    theta_draws = fit.stan_variable(\\\\\\\"theta\\\\\\\")\\\\n    results[\\\\\\\"theta\\\\\\\"] = {\\\\n        \\\\\\\"mean\\\\\\\": np.round(np.mean(theta_draws, axis=0), 4).tolist(),\\\\n        \\\\\\\"sd\\\\\\\": np.round(np.std(theta_draws, axis=0), 4).tolist(),\\\\n    }\\\\n\\\\n    # Item parameters\\\\n    for param in [\\\\\\\"a\\\\\\\", \\\\\\\"b\\\\\\\"]:\\\\n        draws = fit.stan_variable(param)\\\\n        results[param] = {\\\\n            \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n            \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n        }\\\\n    if model_type != \\\\\\\"2pl_gamma\\\\\\\":\\\\n        for param in [\\\\\\\"c\\\\\\\", \\\\\\\"d\\\\\\\"]:\\\\n            draws = fit.stan_variable(param)\\\\n            results[param] = {\\\\n                \\\\\\\"mean\\\\\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\\\n                \\\\\\\"sd\\\\\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\\\n            }\\\\n\\\\n    # Calibrated scores with multi-level CIs\\\\n    cal_draws = fit.stan_variable(\\\\\\\"calibrated_score\\\\\\\")\\\\n    results[\\\\\\\"calibrated_scores\\\\\\\"] = _summarize_vector(cal_draws)\\\\n\\\\n    # Raw accuracy for reference\\\\n    results[\\\\\\\"raw_accuracy\\\\\\\"] = np.round(y.mean(axis=1), 4).tolist()\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ── Per-Benchmark Fitting ──\\\\n\\\\ndef run_benchmark_fit(bench_name, y, exposure, model_type, args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit IRT model for a single benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N_models, N_items = y.shape\\\\n    log.info(\\\\\\\"=== %s: %d models x %d items ===\\\\\\\", bench_name, N_models, N_items)\\\\n    log.info(\\\\\\\"Mean accuracy: %.3f\\\\\\\", y.mean())\\\\n\\\\n    stan_file = STAN_MODELS[model_type]\\\\n    stan_data = prepare_stan_data(y, exposure, model_type)\\\\n\\\\n    fit, elapsed = fit_stan_model(\\\\n        stan_file, stan_data,\\\\n        chains=args.chains,\\\\n        iter_warmup=args.warmup,\\\\n        iter_sampling=args.samples,\\\\n        adapt_delta=args.adapt_delta,\\\\n        max_treedepth=args.max_treedepth,\\\\n        seed=args.seed,\\\\n    )\\\\n\\\\n    diagnostics = check_convergence(fit)\\\\n    log.info(\\\\\\\"Convergence: Rhat=%.4f, ESS=%.0f, div=%.2f%% -> %s\\\\\\\",\\\\n             diagnostics.get(\\\\\\\"max_rhat\\\\\\\", 0),\\\\n             diagnostics.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n             diagnostics[\\\\\\\"divergent_pct\\\\\\\"],\\\\n             \\\\\\\"OK\\\\\\\" if diagnostics[\\\\\\\"all_ok\\\\\\\"] else \\\\\\\"WARNING\\\\\\\")\\\\n\\\\n    if not diagnostics[\\\\\\\"all_ok\\\\\\\"]:\\\\n        log.warning(\\\\\\\"Convergence issues detected! Consider increasing adapt_delta or warmup.\\\\\\\")\\\\n\\\\n    ppc = posterior_predictive_check(fit, y)\\\\n    results = extract_results(fit, y, model_type)\\\\n\\\\n    return {\\\\n        \\\\\\\"benchmark\\\\\\\": bench_name,\\\\n        \\\\\\\"model_type\\\\\\\": model_type,\\\\n        \\\\\\\"stan_file\\\\\\\": os.path.basena\\\\n\\\\n... [截断: 输出过长，省略 984 字符] ...\\\\n\\\\npe=str,\\\\n                         help=\\\\\\\"Direct path to exposure matrix (npy/csv/json)\\\\\\\")\\\\n\\\\n    parser.add_argument(\\\\\\\"--model-type\\\\\\\", choices=list(STAN_MODELS.keys()),\\\\n                        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n                        help=\\\\\\\"Stan model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"JSON with per-benchmark per-item exposure tau\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Single benchmark name (for direct matrix input)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode 1: direct matrix input\\\\n    if args.response_matrix:\\\\n        if not args.exposure_matrix and args.model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n            parser.error(\\\\\\\"--exposure-matrix required with --response-matrix \\\\\\\"\\\\n                         \\\\\\\"(unless --model-type=vanilla_4pl)\\\\\\\")\\\\n        y = load_matrix(args.response_matrix).astype(int)\\\\n        if args.exposure_matrix:\\\\n            exposure = load_matrix(args.exposure_matrix)\\\\n            assert y.shape == exposure.shape, (\\\\n                f\\\\\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\\\\\")\\\\n        else:\\\\n            exposure = np.zeros_like(y, dtype=float)\\\\n        bench_name = args.benchmark or \\\\\\\"benchmark\\\\\\\"\\\\n\\\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\\\n\\\\n        out_path = output_dir / f\\\\\\\"{bench_name}_{args.model_type}_results.json\\\\\\\"\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n        log.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n        return\\\\n\\\\n    # Mode 2: eval-dir input\\\\n    if not args.eval_dir:\\\\n        parser.error(\\\\\\\"Specify --eval-dir or --response-matrix\\\\\\\")\\\\n\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks)\\\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"])\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"eval_dir\\\\\\\",\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n        else:\\\\n            dosages_bench = dosages\\\\n\\\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\\\\\"n_items\\\\\\\"]])\\\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\\\n        all_results[\\\\\\\"benchmarks\\\\\\\"][bench] = result\\\\n\\\\n        bench_dir = output_dir / bench\\\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\\\n        with open(bench_dir / f\\\\\\\"{args.model_type}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n\\\\n    with open(output_dir / \\\\\\\"irt_calibration_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    log.info(\\\\\\\"All results saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"def _summarize_vector(draws):\\n    \\\"\\\"\\\"Summarize posterior draws into point estimates and quantiles.\\\"\\\"\\\"\\n    return {\\n        \\\"mean\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\n        \\\"sd\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\n        \\\"q025\\\": np.round(np.percentile(draws, 2.5, axis=0), 4).tolist(),\\n        \\\"q975\\\": np.round(np.percentile(draws, 97.5, axis=0), 4).tolist(),\\n        \\\"q10\\\": np.round(np.percentile(draws, 10, axis=0), 4).tolist(),\\n        \\\"q90\\\": np.round(np.percentile(draws, 90, axis=0), 4).tolist(),\\n        \\\"q25\\\": np.round(np.percentile(draws, 25, axis=0), 4).tolist(),\\n        \\\"q75\\\": np.round(np.percentile(draws, 75, axis=0), 4).tolist(),\\n    }\\n\\n\\ndef extract_results(fit, y, model_type):\\n    \\\"\\\"\\\"Extract all posterior summaries from fitted model.\\\"\\\"\\\"\\n    results = {}\\n\\n    # Gamma\\n    if model_type != \\\"vanilla_4pl\\\":\\n        gamma_draws = fit.stan_variable(\\\"gamma\\\")\\n        results[\\\"gamma\\\"] = {\\n            \\\"mean\\\": round(float(np.mean(gamma_draws)), 4),\\n            \\\"sd\\\": round(float(np.std(gamma_draws)), 4),\\n            \\\"q025\\\": round(float(np.percentile(gamma_draws, 2.5)), 4),\\n            \\\"q975\\\": round(float(np.percentile(gamma_draws, 97.5)), 4),\\n            \\\"q10\\\": round(float(np.percentile(gamma_draws, 10)), 4),\\n            \\\"q90\\\": round(float(np.percentile(gamma_draws, 90)), 4),\\n            \\\"q25\\\": round(float(np.percentile(gamma_draws, 25)), 4),\\n            \\\"q75\\\": round(float(np.percentile(gamma_draws, 75)), 4),\\n            \\\"ci_excludes_zero\\\": bool(\\n                np.percentile(gamma_draws, 2.5) > 0 or\\n                np.percentile(gamma_draws, 97.5) < 0\\n            ),\\n        }\\n\\n    # Theta\\n    theta_draws = fit.stan_variable(\\\"theta\\\")\\n    results[\\\"theta\\\"] = {\\n        \\\"mean\\\": np.round(np.mean(theta_draws, axis=0), 4).tolist(),\\n        \\\"sd\\\": np.round(np.std(theta_draws, axis=0), 4).tolist(),\\n    }\\n\\n    # Item parameters\\n    for param in [\\\"a\\\", \\\"b\\\"]:\\n        draws = fit.stan_variable(param)\\n        results[param] = {\\n            \\\"mean\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\n            \\\"sd\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\n        }\\n    if model_type != \\\"2pl_gamma\\\":\\n        for param in [\\\"c\\\", \\\"d\\\"]:\\n            draws = fit.stan_variable(param)\\n            results[param] = {\\n                \\\"mean\\\": np.round(np.mean(draws, axis=0), 4).tolist(),\\n                \\\"sd\\\": np.round(np.std(draws, axis=0), 4).tolist(),\\n            }\\n\\n    # Calibrated scores with multi-level CIs\\n    cal_draws = fit.stan_variable(\\\"calibrated_score\\\")\\n    results[\\\"calibrated_scores\\\"] = _summarize_vector(cal_draws)\\n\\n    # Raw accuracy for reference\\n    results[\\\"raw_accuracy\\\"] = np.round(y.mean(axis=1), 4).tolist()\\n\\n    return results\\n\\n\\n# ── Per-Benchmark Fitting ──\\n\\ndef run_benchmark_fit(bench_name, y, exposure, model_type, args):\\n    \\\"\\\"\\\"Fit IRT model for a single benchmark.\\\"\\\"\\\"\\n    N_models, N_items = y.shape\\n    log.info(\\\"=== %s: %d models x %d items ===\\\", bench_name, N_models, N_items)\\n    log.info(\\\"Mean accuracy: %.3f\\\", y.mean())\\n\\n    stan_file = STAN_MODELS[model_type]\\n    stan_data = prepare_stan_data(y, exposure, model_type)\\n\\n    fit, elapsed = fit_stan_model(\\n        stan_file, stan_data,\\n        chains=args.chains,\\n        iter_warmup=args.warmup,\\n        iter_sampling=args.samples,\\n        adapt_delta=args.adapt_delta,\\n        max_treedepth=args.max_treedepth,\\n        seed=args.seed,\\n    )\\n\\n    diagnostics = check_convergence(fit)\\n    log.info(\\\"Convergence: Rhat=%.4f, ESS=%.0f, div=%.2f%% -> %s\\\",\\n             diagnostics.get(\\\"max_rhat\\\", 0),\\n             diagnostics.get(\\\"min_ess\\\", 0),\\n             diagnostics[\\\"divergent_pct\\\"],\\n             \\\"OK\\\" if diagnostics[\\\"all_ok\\\"] else \\\"WARNING\\\")\\n\\n    if not diagnostics[\\\"all_ok\\\"]:\\n        log.warning(\\\"Convergence issues detected! Consider increasing adapt_delta or warmup.\\\")\\n\\n    ppc = posterior_predictive_check(fit, y)\\n    results = extract_results(fit, y, model_type)\\n\\n    return {\\n        \\\"benchmark\\\": bench_name,\\n        \\\"model_type\\\": model_type,\\n        \\\"stan_file\\\": os.path.basena\\n\\n... [截断: 输出过长，省略 984 字符] ...\\n\\npe=str,\\n                         help=\\\"Direct path to exposure matrix (npy/csv/json)\\\")\\n\\n    parser.add_argument(\\\"--model-type\\\", choices=list(STAN_MODELS.keys()),\\n                        default=\\\"4pl_gamma\\\",\\n                        help=\\\"Stan model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--exposure-file\\\", type=str, default=None,\\n                        help=\\\"JSON with per-benchmark per-item exposure tau\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n                        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, default=None,\\n                        help=\\\"Single benchmark name (for direct matrix input)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode 1: direct matrix input\\n    if args.response_matrix:\\n        if not args.exposure_matrix and args.model_type != \\\"vanilla_4pl\\\":\\n            parser.error(\\\"--exposure-matrix required with --response-matrix \\\"\\n                         \\\"(unless --model-type=vanilla_4pl)\\\")\\n        y = load_matrix(args.response_matrix).astype(int)\\n        if args.exposure_matrix:\\n            exposure = load_matrix(args.exposure_matrix)\\n            assert y.shape == exposure.shape, (\\n                f\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\")\\n        else:\\n            exposure = np.zeros_like(y, dtype=float)\\n        bench_name = args.benchmark or \\\"benchmark\\\"\\n\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\n\\n        out_path = output_dir / f\\\"{bench_name}_{args.model_type}_results.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        log.info(\\\"Results saved to %s\\\", out_path)\\n        return\\n\\n    # Mode 2: eval-dir input\\n    if not args.eval_dir:\\n        parser.error(\\\"Specify --eval-dir or --response-matrix\\\")\\n\\n    data = load_eval_results(args.eval_dir, args.benchmarks)\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\"benchmarks\\\"])\\n    dosages = data[\\\"dosages\\\"]\\n\\n    all_results = {\\n        \\\"mode\\\": \\\"eval_dir\\\",\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\"n_items\\\"]])\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\n        all_results[\\\"benchmarks\\\"][bench] = result\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n        with open(bench_dir / f\\\"{args.model_type}_results.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    with open(output_dir / \\\"irt_calibration_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Everything looks good. Let me now fix the `run_all_baselines.py` dry-run which showed NaN values - it has a mapping issue. But actually, looking more carefully, the `run_all_baselines.py` is a separate standalone script that has its own interface wrapper. The main pipeline (`run_exp006.py`) uses `baselines.py` directly, so the `run_all_baselines.py` NaN issue is in its own `run_baselines` wrapper function.\n\nThe issue is that `run_all_baselines.py`'s `run_baselines()` function tries to map the `baselines.py` output (which returns vectors) into per-model results with `calibrated_accuracy` key, and there's a mismatch. Let me look at the relevant code.\n\n\nI've got everything I need from the core pipeline verification, so now I'll fix the `run_all_baselines.py` wrapper and then write up the status report. Let me examine the `run_baselines` function to understand the mapping issue.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "a55d6416-f056-487c-908a-beb1ece01c4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsYGg7AQFFCPTVXVud5LLf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3481,
+                "cache_read_input_tokens": 108746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "核心管线已通过验证。`run_all_baselines.py` 的独立脚本有 NaN 映射问题，修复它以确保独立 dry-run 也能正常工作。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "5fa05b87-f52f-4d64-a1c3-7264e833b94a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsYGg7AQFFCPTVXVud5LLf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3481,
+                "cache_read_input_tokens": 108746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WKQCsS2u3fdejNxiu3E6iW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"def run_baselines\" /root/contamcal-irt-calibration/exp006/run_all_baselines.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "0e14a629-45b2-4b8d-9d2e-9418e48f0525",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsYGg7AQFFCPTVXVud5LLf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3481,
+                "cache_read_input_tokens": 108746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-14T09:22:21.225Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WKQCsS2u3fdejNxiu3E6iW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"131:def run_baselines(data, skip_stan=False):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "e9517e2e-7fd6-43c7-94d6-a76cc3669a96",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"131:def run_baselines(data, skip_stan=False):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"131:def run_baselines(data, skip_stan=False):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CtXDznkEVwpkxUiabTgLeZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "tail -n +131 /root/contamcal-irt-calibration/exp006/run_all_baselines.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "86c30d9b-8a64-4fb4-b7ed-73e486bf1d2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015MjJW2ZfftfACWyzCdacXW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 540,
+                "cache_read_input_tokens": 112227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 540
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T09:22:25.246Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CtXDznkEVwpkxUiabTgLeZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_baselines(data, skip_stan=False):\\\\n    all_y = data[\\\\\\\"all_y\\\\\\\"]\\\\n    all_exposure = data[\\\\\\\"all_exposure\\\\\\\"]\\\\n    model_names = data[\\\\\\\"model_names\\\\\\\"]\\\\n    benchmark = data[\\\\\\\"benchmark\\\\\\\"]\\\\n    n_models = all_y.shape[0]\\\\n\\\\n    methods_to_run = dict(ALL_BASELINES)\\\\n    if skip_stan:\\\\n        methods_to_run.pop(\\\\\\\"vanilla_4pl\\\\\\\", None)\\\\n        methods_to_run.pop(\\\\\\\"single_signal_2pl_gamma\\\\\\\", None)\\\\n\\\\n    results = {}\\\\n    for method_name, calibrate_fn in methods_to_run.items():\\\\n        print(f\\\\\\\"  Running {method_name}...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n        method_results = []\\\\n\\\\n        for i in range(n_models):\\\\n            kwargs = {}\\\\n            if method_name in (\\\\\\\"vanilla_4pl\\\\\\\", \\\\\\\"single_signal_2pl_gamma\\\\\\\"):\\\\n                kwargs.update({\\\\n                    \\\\\\\"all_y\\\\\\\": all_y,\\\\n                    \\\\\\\"all_exposure\\\\\\\": all_exposure,\\\\n                    \\\\\\\"model_idx\\\\\\\": i,\\\\n                })\\\\n            try:\\\\n                r = calibrate_fn(\\\\n                    model_name=model_names[i],\\\\n                    benchmark=benchmark,\\\\n                    item_scores=all_y[i],\\\\n                    exposure_scores=all_exposure[i],\\\\n                    **kwargs,\\\\n                )\\\\n            except Exception as e:\\\\n                nan_ci = {f\\\\\\\"ci_{l}_{b}\\\\\\\": np.nan for l in [50, 80, 95] for b in [\\\\\\\"lower\\\\\\\", \\\\\\\"upper\\\\\\\"]}\\\\n                r = {\\\\n                    \\\\\\\"calibrated_accuracy\\\\\\\": np.nan,\\\\n                    \\\\\\\"method_name\\\\\\\": method_name,\\\\n                    \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": str(e)},\\\\n                }\\\\n                r.update(nan_ci)\\\\n            method_results.append(r)\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"done ({elapsed:.1f}s)\\\\\\\")\\\\n        results[method_name] = method_results\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef print_comparison_table(results, data, metrics):\\\\n    model_names = data[\\\\\\\"model_names\\\\\\\"]\\\\n    true_clean_acc = data[\\\\\\\"true_clean_acc\\\\\\\"]\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n    n_models = len(model_names)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"BASELINE COMPARISON TABLE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n\\\\n    header = f\\\\\\\"{'Method':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        header += f\\\\\\\"{'D=' + str(dosages[i]) + '%':>14} \\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n\\\\n    row = f\\\\\\\"{'TRUE_CLEAN':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        row += f\\\\\\\"{true_clean_acc[i]:>14.4f} \\\\\\\"\\\\n    print(row)\\\\n\\\\n    row = f\\\\\\\"{'OBSERVED':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        row += f\\\\\\\"{np.mean(data['all_y'][i]):>14.4f} \\\\\\\"\\\\n    print(row)\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n\\\\n    for method, method_results in results.items():\\\\n        row = f\\\\\\\"{method:<25} \\\\\\\"\\\\n        for i in range(n_models):\\\\n            r = method_results[i]\\\\n            acc = r[\\\\\\\"calibrated_accuracy\\\\\\\"]\\\\n            if np.isnan(acc):\\\\n                row += f\\\\\\\"{'NaN':>14} \\\\\\\"\\\\n            else:\\\\n                row += f\\\\\\\"{acc:>14.4f} \\\\\\\"\\\\n        print(row)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 90)\\\\n    print(\\\\\\\"EVALUATION METRICS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 90)\\\\n    print(f\\\\\\\"{'Method':<25} {'MAE':>8} {'Cov50':>8} {'Cov80':>8} {'Cov95':>8} {'Sharp':>8} {'KTau':>8} {'DoseMon':>8}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n    for method, m in metrics.items():\\\\n        print(f\\\\\\\"{method:<25} \\\\\\\"\\\\n              f\\\\\\\"{m['mae']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_50']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_80']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_95']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['sharpness']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['kendall_tau']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['dose_monotonicity']:>8.4f}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run all baseline calibration methods\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Use synthetic data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=str, help=\\\\\\\"Directory with real data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip Stan-based baselines\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-models\\\\\\\", type=int, default=5, help=\\\\\\\"Number of synthetic models\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-items\\\\\\\", type=int, default=10, help=\\\\\\\"Number of synthetic items\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"=== DRY RUN with synthetic data ===\\\\\\\")\\\\n        data = generate_synthetic_data(n_models=args.n_models, n_items=args.n_items)\\\\n        print(f\\\\\\\"Generated: {data['all_y'].shape[0]} models x {data['all_y'].shape[1]} items\\\\\\\")\\\\n        print(f\\\\\\\"Dosages: {data['dosages']}\\\\\\\")\\\\n        print(f\\\\\\\"True clean accuracies: {[f'{a:.4f}' for a in data['true_clean_acc']]}\\\\\\\")\\\\n        print()\\\\n    elif args.data_dir:\\\\n        data_path = Path(args.data_dir)\\\\n        all_y = np.load(data_path / \\\\\\\"all_y.npy\\\\\\\")\\\\n        all_exposure = np.load(data_path / \\\\\\\"all_exposure.npy\\\\\\\")\\\\n        with open(data_path / \\\\\\\"metadata.json\\\\\\\") as f:\\\\n            meta = json.load(f)\\\\n        data = {\\\\n            \\\\\\\"all_y\\\\\\\": all_y,\\\\n            \\\\\\\"all_exposure\\\\\\\": all_exposure,\\\\n            \\\\\\\"model_names\\\\\\\": meta[\\\\\\\"model_names\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": meta[\\\\\\\"benchmark\\\\\\\"],\\\\n            \\\\\\\"true_clean_acc\\\\\\\": np.array(meta.get(\\\\\\\"true_clean_acc\\\\\\\", [np.nan] * all_y.shape[0])),\\\\n            \\\\\\\"dosages\\\\\\\": meta.get(\\\\\\\"dosages\\\\\\\", [0] * all_y.shape[0]),\\\\n        }\\\\n    else:\\\\n        parser.error(\\\\\\\"Specify --dry-run or --data-dir\\\\\\\")\\\\n\\\\n    results = run_baselines(data, skip_stan=args.skip_stan)\\\\n    metrics = compute_metrics(results, data[\\\\\\\"true_clean_acc\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"])\\\\n    print_comparison_table(results, data, metrics)\\\\n\\\\n    if args.output:\\\\n        out = {\\\\n            \\\\\\\"results\\\\\\\": {},\\\\n            \\\\\\\"metrics\\\\\\\": metrics,\\\\n            \\\\\\\"data_info\\\\\\\": {\\\\n                \\\\\\\"n_models\\\\\\\": int(data[\\\\\\\"all_y\\\\\\\"].shape[0]),\\\\n                \\\\\\\"n_items\\\\\\\": int(data[\\\\\\\"all_y\\\\\\\"].shape[1]),\\\\n                \\\\\\\"dosages\\\\\\\": data[\\\\\\\"dosages\\\\\\\"],\\\\n                \\\\\\\"true_clean_acc\\\\\\\": data[\\\\\\\"true_clean_acc\\\\\\\"].tolist(),\\\\n            },\\\\n        }\\\\n        for method, mr in results.items():\\\\n            out[\\\\\\\"results\\\\\\\"][method] = []\\\\n            for r in mr:\\\\n                r_copy = dict(r)\\\\n                r_copy[\\\\\\\"details\\\\\\\"] = {k: (v if not isinstance(v, float) or not np.isnan(v) else None)\\\\n                                     for k, v in r.get(\\\\\\\"details\\\\\\\", {}).items()}\\\\n                out[\\\\\\\"results\\\\\\\"][method].append(r_copy)\\\\n        with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(out, f, indent=2, default=str)\\\\n        print(f\\\\\\\"\\\\\\\\nResults saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "c21a17a5-c0fd-4a93-a270-cca13397d4df",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_baselines(data, skip_stan=False):\\\\n    all_y = data[\\\\\\\"all_y\\\\\\\"]\\\\n    all_exposure = data[\\\\\\\"all_exposure\\\\\\\"]\\\\n    model_names = data[\\\\\\\"model_names\\\\\\\"]\\\\n    benchmark = data[\\\\\\\"benchmark\\\\\\\"]\\\\n    n_models = all_y.shape[0]\\\\n\\\\n    methods_to_run = dict(ALL_BASELINES)\\\\n    if skip_stan:\\\\n        methods_to_run.pop(\\\\\\\"vanilla_4pl\\\\\\\", None)\\\\n        methods_to_run.pop(\\\\\\\"single_signal_2pl_gamma\\\\\\\", None)\\\\n\\\\n    results = {}\\\\n    for method_name, calibrate_fn in methods_to_run.items():\\\\n        print(f\\\\\\\"  Running {method_name}...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t0 = time.time()\\\\n        method_results = []\\\\n\\\\n        for i in range(n_models):\\\\n            kwargs = {}\\\\n            if method_name in (\\\\\\\"vanilla_4pl\\\\\\\", \\\\\\\"single_signal_2pl_gamma\\\\\\\"):\\\\n                kwargs.update({\\\\n                    \\\\\\\"all_y\\\\\\\": all_y,\\\\n                    \\\\\\\"all_exposure\\\\\\\": all_exposure,\\\\n                    \\\\\\\"model_idx\\\\\\\": i,\\\\n                })\\\\n            try:\\\\n                r = calibrate_fn(\\\\n                    model_name=model_names[i],\\\\n                    benchmark=benchmark,\\\\n                    item_scores=all_y[i],\\\\n                    exposure_scores=all_exposure[i],\\\\n                    **kwargs,\\\\n                )\\\\n            except Exception as e:\\\\n                nan_ci = {f\\\\\\\"ci_{l}_{b}\\\\\\\": np.nan for l in [50, 80, 95] for b in [\\\\\\\"lower\\\\\\\", \\\\\\\"upper\\\\\\\"]}\\\\n                r = {\\\\n                    \\\\\\\"calibrated_accuracy\\\\\\\": np.nan,\\\\n                    \\\\\\\"method_name\\\\\\\": method_name,\\\\n                    \\\\\\\"details\\\\\\\": {\\\\\\\"error\\\\\\\": str(e)},\\\\n                }\\\\n                r.update(nan_ci)\\\\n            method_results.append(r)\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"done ({elapsed:.1f}s)\\\\\\\")\\\\n        results[method_name] = method_results\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef print_comparison_table(results, data, metrics):\\\\n    model_names = data[\\\\\\\"model_names\\\\\\\"]\\\\n    true_clean_acc = data[\\\\\\\"true_clean_acc\\\\\\\"]\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n    n_models = len(model_names)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"BASELINE COMPARISON TABLE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n\\\\n    header = f\\\\\\\"{'Method':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        header += f\\\\\\\"{'D=' + str(dosages[i]) + '%':>14} \\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n\\\\n    row = f\\\\\\\"{'TRUE_CLEAN':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        row += f\\\\\\\"{true_clean_acc[i]:>14.4f} \\\\\\\"\\\\n    print(row)\\\\n\\\\n    row = f\\\\\\\"{'OBSERVED':<25} \\\\\\\"\\\\n    for i in range(n_models):\\\\n        row += f\\\\\\\"{np.mean(data['all_y'][i]):>14.4f} \\\\\\\"\\\\n    print(row)\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n\\\\n    for method, method_results in results.items():\\\\n        row = f\\\\\\\"{method:<25} \\\\\\\"\\\\n        for i in range(n_models):\\\\n            r = method_results[i]\\\\n            acc = r[\\\\\\\"calibrated_accuracy\\\\\\\"]\\\\n            if np.isnan(acc):\\\\n                row += f\\\\\\\"{'NaN':>14} \\\\\\\"\\\\n            else:\\\\n                row += f\\\\\\\"{acc:>14.4f} \\\\\\\"\\\\n        print(row)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 90)\\\\n    print(\\\\\\\"EVALUATION METRICS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 90)\\\\n    print(f\\\\\\\"{'Method':<25} {'MAE':>8} {'Cov50':>8} {'Cov80':>8} {'Cov95':>8} {'Sharp':>8} {'KTau':>8} {'DoseMon':>8}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n    for method, m in metrics.items():\\\\n        print(f\\\\\\\"{method:<25} \\\\\\\"\\\\n              f\\\\\\\"{m['mae']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_50']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_80']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['coverage_95']:>8.2f} \\\\\\\"\\\\n              f\\\\\\\"{m['sharpness']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['kendall_tau']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{m['dose_monotonicity']:>8.4f}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run all baseline calibration methods\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Use synthetic data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=str, help=\\\\\\\"Directory with real data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Skip Stan-based baselines\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-models\\\\\\\", type=int, default=5, help=\\\\\\\"Number of synthetic models\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-items\\\\\\\", type=int, default=10, help=\\\\\\\"Number of synthetic items\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"=== DRY RUN with synthetic data ===\\\\\\\")\\\\n        data = generate_synthetic_data(n_models=args.n_models, n_items=args.n_items)\\\\n        print(f\\\\\\\"Generated: {data['all_y'].shape[0]} models x {data['all_y'].shape[1]} items\\\\\\\")\\\\n        print(f\\\\\\\"Dosages: {data['dosages']}\\\\\\\")\\\\n        print(f\\\\\\\"True clean accuracies: {[f'{a:.4f}' for a in data['true_clean_acc']]}\\\\\\\")\\\\n        print()\\\\n    elif args.data_dir:\\\\n        data_path = Path(args.data_dir)\\\\n        all_y = np.load(data_path / \\\\\\\"all_y.npy\\\\\\\")\\\\n        all_exposure = np.load(data_path / \\\\\\\"all_exposure.npy\\\\\\\")\\\\n        with open(data_path / \\\\\\\"metadata.json\\\\\\\") as f:\\\\n            meta = json.load(f)\\\\n        data = {\\\\n            \\\\\\\"all_y\\\\\\\": all_y,\\\\n            \\\\\\\"all_exposure\\\\\\\": all_exposure,\\\\n            \\\\\\\"model_names\\\\\\\": meta[\\\\\\\"model_names\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": meta[\\\\\\\"benchmark\\\\\\\"],\\\\n            \\\\\\\"true_clean_acc\\\\\\\": np.array(meta.get(\\\\\\\"true_clean_acc\\\\\\\", [np.nan] * all_y.shape[0])),\\\\n            \\\\\\\"dosages\\\\\\\": meta.get(\\\\\\\"dosages\\\\\\\", [0] * all_y.shape[0]),\\\\n        }\\\\n    else:\\\\n        parser.error(\\\\\\\"Specify --dry-run or --data-dir\\\\\\\")\\\\n\\\\n    results = run_baselines(data, skip_stan=args.skip_stan)\\\\n    metrics = compute_metrics(results, data[\\\\\\\"true_clean_acc\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"])\\\\n    print_comparison_table(results, data, metrics)\\\\n\\\\n    if args.output:\\\\n        out = {\\\\n            \\\\\\\"results\\\\\\\": {},\\\\n            \\\\\\\"metrics\\\\\\\": metrics,\\\\n            \\\\\\\"data_info\\\\\\\": {\\\\n                \\\\\\\"n_models\\\\\\\": int(data[\\\\\\\"all_y\\\\\\\"].shape[0]),\\\\n                \\\\\\\"n_items\\\\\\\": int(data[\\\\\\\"all_y\\\\\\\"].shape[1]),\\\\n                \\\\\\\"dosages\\\\\\\": data[\\\\\\\"dosages\\\\\\\"],\\\\n                \\\\\\\"true_clean_acc\\\\\\\": data[\\\\\\\"true_clean_acc\\\\\\\"].tolist(),\\\\n            },\\\\n        }\\\\n        for method, mr in results.items():\\\\n            out[\\\\\\\"results\\\\\\\"][method] = []\\\\n            for r in mr:\\\\n                r_copy = dict(r)\\\\n                r_copy[\\\\\\\"details\\\\\\\"] = {k: (v if not isinstance(v, float) or not np.isnan(v) else None)\\\\n                                     for k, v in r.get(\\\\\\\"details\\\\\\\", {}).items()}\\\\n                out[\\\\\\\"results\\\\\\\"][method].append(r_copy)\\\\n        with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(out, f, indent=2, default=str)\\\\n        print(f\\\\\\\"\\\\\\\\nResults saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_baselines(data, skip_stan=False):\\n    all_y = data[\\\"all_y\\\"]\\n    all_exposure = data[\\\"all_exposure\\\"]\\n    model_names = data[\\\"model_names\\\"]\\n    benchmark = data[\\\"benchmark\\\"]\\n    n_models = all_y.shape[0]\\n\\n    methods_to_run = dict(ALL_BASELINES)\\n    if skip_stan:\\n        methods_to_run.pop(\\\"vanilla_4pl\\\", None)\\n        methods_to_run.pop(\\\"single_signal_2pl_gamma\\\", None)\\n\\n    results = {}\\n    for method_name, calibrate_fn in methods_to_run.items():\\n        print(f\\\"  Running {method_name}...\\\", end=\\\" \\\", flush=True)\\n        t0 = time.time()\\n        method_results = []\\n\\n        for i in range(n_models):\\n            kwargs = {}\\n            if method_name in (\\\"vanilla_4pl\\\", \\\"single_signal_2pl_gamma\\\"):\\n                kwargs.update({\\n                    \\\"all_y\\\": all_y,\\n                    \\\"all_exposure\\\": all_exposure,\\n                    \\\"model_idx\\\": i,\\n                })\\n            try:\\n                r = calibrate_fn(\\n                    model_name=model_names[i],\\n                    benchmark=benchmark,\\n                    item_scores=all_y[i],\\n                    exposure_scores=all_exposure[i],\\n                    **kwargs,\\n                )\\n            except Exception as e:\\n                nan_ci = {f\\\"ci_{l}_{b}\\\": np.nan for l in [50, 80, 95] for b in [\\\"lower\\\", \\\"upper\\\"]}\\n                r = {\\n                    \\\"calibrated_accuracy\\\": np.nan,\\n                    \\\"method_name\\\": method_name,\\n                    \\\"details\\\": {\\\"error\\\": str(e)},\\n                }\\n                r.update(nan_ci)\\n            method_results.append(r)\\n        elapsed = time.time() - t0\\n        print(f\\\"done ({elapsed:.1f}s)\\\")\\n        results[method_name] = method_results\\n\\n    return results\\n\\n\\ndef print_comparison_table(results, data, metrics):\\n    model_names = data[\\\"model_names\\\"]\\n    true_clean_acc = data[\\\"true_clean_acc\\\"]\\n    dosages = data[\\\"dosages\\\"]\\n    n_models = len(model_names)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"BASELINE COMPARISON TABLE\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    header = f\\\"{'Method':<25} \\\"\\n    for i in range(n_models):\\n        header += f\\\"{'D=' + str(dosages[i]) + '%':>14} \\\"\\n    print(header)\\n    print(\\\"-\\\" * 100)\\n\\n    row = f\\\"{'TRUE_CLEAN':<25} \\\"\\n    for i in range(n_models):\\n        row += f\\\"{true_clean_acc[i]:>14.4f} \\\"\\n    print(row)\\n\\n    row = f\\\"{'OBSERVED':<25} \\\"\\n    for i in range(n_models):\\n        row += f\\\"{np.mean(data['all_y'][i]):>14.4f} \\\"\\n    print(row)\\n    print(\\\"-\\\" * 100)\\n\\n    for method, method_results in results.items():\\n        row = f\\\"{method:<25} \\\"\\n        for i in range(n_models):\\n            r = method_results[i]\\n            acc = r[\\\"calibrated_accuracy\\\"]\\n            if np.isnan(acc):\\n                row += f\\\"{'NaN':>14} \\\"\\n            else:\\n                row += f\\\"{acc:>14.4f} \\\"\\n        print(row)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 90)\\n    print(\\\"EVALUATION METRICS\\\")\\n    print(\\\"=\\\" * 90)\\n    print(f\\\"{'Method':<25} {'MAE':>8} {'Cov50':>8} {'Cov80':>8} {'Cov95':>8} {'Sharp':>8} {'KTau':>8} {'DoseMon':>8}\\\")\\n    print(\\\"-\\\" * 90)\\n    for method, m in metrics.items():\\n        print(f\\\"{method:<25} \\\"\\n              f\\\"{m['mae']:>8.4f} \\\"\\n              f\\\"{m['coverage_50']:>8.2f} \\\"\\n              f\\\"{m['coverage_80']:>8.2f} \\\"\\n              f\\\"{m['coverage_95']:>8.2f} \\\"\\n              f\\\"{m['sharpness']:>8.4f} \\\"\\n              f\\\"{m['kendall_tau']:>8.4f} \\\"\\n              f\\\"{m['dose_monotonicity']:>8.4f}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Run all baseline calibration methods\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Use synthetic data\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=str, help=\\\"Directory with real data\\\")\\n    parser.add_argument(\\\"--skip-stan\\\", action=\\\"store_true\\\", help=\\\"Skip Stan-based baselines\\\")\\n    parser.add_argument(\\\"--output\\\", type=str, default=None, help=\\\"Output JSON path\\\")\\n    parser.add_argument(\\\"--n-models\\\", type=int, default=5, help=\\\"Number of synthetic models\\\")\\n    parser.add_argument(\\\"--n-items\\\", type=int, default=10, help=\\\"Number of synthetic items\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        print(\\\"=== DRY RUN with synthetic data ===\\\")\\n        data = generate_synthetic_data(n_models=args.n_models, n_items=args.n_items)\\n        print(f\\\"Generated: {data['all_y'].shape[0]} models x {data['all_y'].shape[1]} items\\\")\\n        print(f\\\"Dosages: {data['dosages']}\\\")\\n        print(f\\\"True clean accuracies: {[f'{a:.4f}' for a in data['true_clean_acc']]}\\\")\\n        print()\\n    elif args.data_dir:\\n        data_path = Path(args.data_dir)\\n        all_y = np.load(data_path / \\\"all_y.npy\\\")\\n        all_exposure = np.load(data_path / \\\"all_exposure.npy\\\")\\n        with open(data_path / \\\"metadata.json\\\") as f:\\n            meta = json.load(f)\\n        data = {\\n            \\\"all_y\\\": all_y,\\n            \\\"all_exposure\\\": all_exposure,\\n            \\\"model_names\\\": meta[\\\"model_names\\\"],\\n            \\\"benchmark\\\": meta[\\\"benchmark\\\"],\\n            \\\"true_clean_acc\\\": np.array(meta.get(\\\"true_clean_acc\\\", [np.nan] * all_y.shape[0])),\\n            \\\"dosages\\\": meta.get(\\\"dosages\\\", [0] * all_y.shape[0]),\\n        }\\n    else:\\n        parser.error(\\\"Specify --dry-run or --data-dir\\\")\\n\\n    results = run_baselines(data, skip_stan=args.skip_stan)\\n    metrics = compute_metrics(results, data[\\\"true_clean_acc\\\"], data[\\\"dosages\\\"])\\n    print_comparison_table(results, data, metrics)\\n\\n    if args.output:\\n        out = {\\n            \\\"results\\\": {},\\n            \\\"metrics\\\": metrics,\\n            \\\"data_info\\\": {\\n                \\\"n_models\\\": int(data[\\\"all_y\\\"].shape[0]),\\n                \\\"n_items\\\": int(data[\\\"all_y\\\"].shape[1]),\\n                \\\"dosages\\\": data[\\\"dosages\\\"],\\n                \\\"true_clean_acc\\\": data[\\\"true_clean_acc\\\"].tolist(),\\n            },\\n        }\\n        for method, mr in results.items():\\n            out[\\\"results\\\"][method] = []\\n            for r in mr:\\n                r_copy = dict(r)\\n                r_copy[\\\"details\\\"] = {k: (v if not isinstance(v, float) or not np.isnan(v) else None)\\n                                     for k, v in r.get(\\\"details\\\", {}).items()}\\n                out[\\\"results\\\"][method].append(r_copy)\\n        with open(args.output, \\\"w\\\") as f:\\n            json.dump(out, f, indent=2, default=str)\\n        print(f\\\"\\\\nResults saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see the issue now. `run_all_baselines.py`'s `run_baselines()` function is calling baselines with a per-model interface:\n\n```python\nr = calibrate_fn(\n    model_name=model_names[i],\n    benchmark=benchmark,\n    item_scores=all_y[i],\n    exposure_scores=all_exposure[i],\n    **kwargs,\n)\n```\n\nBut `ALL_BASELINES` in `baselines.py` is a dict of `BaselineMethod` objects, which have a `.fit(y, exposure)` method that takes the FULL matrix and returns ALL models' calibrated scores at once. \n\nThe script is treating them as per-model callable functions, which doesn't match the actual API. This looks like leftover code from an older version with function-based baselines that never got updated when the system was refactored into classes. I need to rewrite it to properly use the class-based interface from `baselines.py` so it works as a standalone dry-run script.\n\nRefactoring the script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "641cd19a-b273-41e6-a155-7f27eb3b1364",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PBVXfDrdNVX2r3YvyJZB6J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2817,
+                "cache_read_input_tokens": 112767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2817
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_all_baselines.py` 使用的是旧的 per-model 接口，与 `baselines.py` 的矩阵接口不匹配。重写使其兼容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "3b05e8af-e1d7-45df-b575-b0aa04f508a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PBVXfDrdNVX2r3YvyJZB6J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2817,
+                "cache_read_input_tokens": 112767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2817
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRzABDtpWzQg5ZpoB4Wg1J",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /root/contamcal-irt-calibration/exp006/run_all_baselines.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Run all baseline calibration methods and compare results.\n\nUsage:\n    python run_all_baselines.py --dry-run                    # synthetic data, skip Stan\n    python run_all_baselines.py --dry-run --with-stan        # synthetic data, include Stan\n    python run_all_baselines.py --data-dir <path>            # real data\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy import stats\n\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\nfrom baselines import ALL_BASELINES, run_all_baselines\nfrom evaluate_calibration import evaluate_method, format_text_table\n\nlog = logging.getLogger(__name__)\n\n\ndef generate_synthetic_data(n_models=5, n_items=10, dosages=None, seed=42):\n    rng = np.random.default_rng(seed)\n    if dosages is None:\n        dosages = [0, 25, 50, 75, 100]\n    assert len(dosages) == n_models\n\n    true_theta = rng.normal(0, 1, n_models)\n    true_b = rng.normal(0, 1, n_items)\n    true_a = np.abs(rng.normal(1, 0.3, n_items))\n    true_gamma = 1.5\n\n    all_y = np.zeros((n_models, n_items), dtype=int)\n    all_exposure = np.zeros((n_models, n_items))\n    true_clean_acc = np.zeros(n_models)\n\n    for i in range(n_models):\n        dose_frac = dosages[i] / 100.0\n        n_contam = int(dose_frac * n_items)\n        contam_items = rng.choice(n_items, n_contam, replace=False) if n_contam > 0 else []\n\n        for j in range(n_items):\n            eta_clean = true_a[j] * (true_theta[i] - true_b[j])\n            p_clean = 1.0 / (1.0 + np.exp(-eta_clean))\n\n            if j in contam_items:\n                exposure = rng.uniform(0.5, 1.0)\n                all_exposure[i, j] = exposure\n                eta_contam = eta_clean + true_gamma * exposure\n                p_contam = 1.0 / (1.0 + np.exp(-eta_contam))\n                all_y[i, j] = int(rng.random() < p_contam)\n            else:\n                all_exposure[i, j] = rng.uniform(0, 0.1)\n                all_y[i, j] = int(rng.random() < p_clean)\n\n            true_clean_acc[i] += p_clean\n        true_clean_acc[i] /= n_items\n\n    model_names = [f\"model_{d}pct\" for d in dosages]\n    return {\n        \"all_y\": all_y,\n        \"all_exposure\": all_exposure,\n        \"true_clean_acc\": true_clean_acc,\n        \"dosages\": dosages,\n        \"model_names\": model_names,\n        \"benchmark\": \"synthetic\",\n        \"true_gamma\": true_gamma,\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Run all baseline calibration methods\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\", help=\"Use synthetic data\")\n    parser.add_argument(\"--data-dir\", type=str, help=\"Directory with real data\")\n    parser.add_argument(\"--skip-stan\", action=\"store_true\", help=\"Skip Stan-based baselines\")\n    parser.add_argument(\"--with-stan\", action=\"store_true\", help=\"Include Stan baselines in dry-run\")\n    parser.add_argument(\"--output\", type=str, default=None, help=\"Output JSON path\")\n    parser.add_argument(\"--n-models\", type=int, default=5, help=\"Number of synthetic models\")\n    parser.add_argument(\"--n-items\", type=int, default=10, help=\"Number of synthetic items\")\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO,\n                        format=\"%(asctime)s [%(levelname)s] %(message)s\")\n\n    if args.dry_run:\n        print(\"=== DRY RUN with synthetic data ===\")\n        data = generate_synthetic_data(n_models=args.n_models, n_items=args.n_items)\n        skip_stan = not args.with_stan\n    elif args.data_dir:\n        data_path = Path(args.data_dir)\n        all_y = np.load(data_path / \"all_y.npy\")\n        all_exposure = np.load(data_path / \"all_exposure.npy\")\n        with open(data_path / \"metadata.json\") as f:\n            meta = json.load(f)\n        data = {\n            \"all_y\": all_y,\n            \"all_exposure\": all_exposure,\n            \"model_names\": meta[\"model_names\"],\n            \"benchmark\": meta[\"benchmark\"],\n            \"true_clean_acc\": np.array(meta.get(\"true_clean_acc\", [np.nan] * all_y.shape[0])),\n            \"dosages\": meta.get(\"dosages\", [0] * all_y.shape[0]),\n        }\n        skip_stan = args.skip_stan\n    else:\n        parser.error(\"Specify --dry-run or --data-dir\")\n\n    y = data[\"all_y\"]\n    exposure = data[\"all_exposure\"]\n    dosages = data[\"dosages\"]\n    true_clean_acc = data[\"true_clean_acc\"]\n\n    print(f\"Data: {y.shape[0]} models x {y.shape[1]} items\")\n    print(f\"Dosages: {dosages}\")\n    print(f\"True clean acc: {[f'{a:.4f}' for a in true_clean_acc]}\")\n    print(f\"Observed acc:   {[f'{a:.4f}' for a in y.mean(axis=1)]}\")\n\n    # Run baselines via unified interface\n    results = run_all_baselines(y, exposure, skip_stan=skip_stan)\n\n    # Evaluate\n    all_metrics = []\n    for bname, bdata in results.items():\n        if \"error\" in bdata:\n            log.warning(\"Skipping %s: %s\", bname, bdata[\"error\"])\n            continue\n        m = evaluate_method(\n            method_name=bname,\n            scores=bdata[\"calibrated_scores\"],\n            ground_truth=true_clean_acc.tolist(),\n            ci_lower=bdata.get(\"ci_lower\"),\n            ci_upper=bdata.get(\"ci_upper\"),\n            ci_80_lower=bdata.get(\"ci_80_lower\"),\n            ci_80_upper=bdata.get(\"ci_80_upper\"),\n            ci_50_lower=bdata.get(\"ci_50_lower\"),\n            ci_50_upper=bdata.get(\"ci_50_upper\"),\n            dosages=dosages,\n        )\n        all_metrics.append(m)\n\n    print(f\"\\n{'='*80}\")\n    print(format_text_table(all_metrics))\n\n    if args.output:\n        out = {\n            \"metrics\": all_metrics,\n            \"baseline_results\": {k: v for k, v in results.items() if \"error\" not in v},\n            \"data_info\": {\n                \"n_models\": int(y.shape[0]),\n                \"n_items\": int(y.shape[1]),\n                \"dosages\": list(dosages) if isinstance(dosages, np.ndarray) else dosages,\n                \"true_clean_acc\": true_clean_acc.tolist(),\n            },\n        }\n        with open(args.output, \"w\") as f:\n            json.dump(out, f, indent=2, default=str)\n        print(f\"\\nResults saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "94b4f1c2-3910-4c99-9829-222da5047b1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PBVXfDrdNVX2r3YvyJZB6J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2817,
+                "cache_read_input_tokens": 112767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2817
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-14T09:23:07.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRzABDtpWzQg5ZpoB4Wg1J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "9d3fd437-4a3f-4102-9911-8d99a7545afa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GpraDkWwxL5KcNYrNSXpbH",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && python3 run_all_baselines.py --dry-run --output /tmp/exp006_dryrun_v2.json 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "29ca1b3a-78a1-4e2a-b798-1bdc7d370c7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F6LiJgEg18bqsVRQTT1dUA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2698,
+                "cache_read_input_tokens": 115584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2698
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-14T09:23:19.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GpraDkWwxL5KcNYrNSXpbH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 17:23:16,526 [INFO] Running B0_raw: Raw accuracy (no adjustment)\\\\n2026-05-14 17:23:16,526 [INFO]   B0_raw done in 0.0s\\\\n2026-05-14 17:23:16,526 [INFO] Running B1_remove_rescore: Remove flagged items and rescore\\\\n2026-05-14 17:23:16,527 [INFO] B1: threshold=0.449 (p75), kept=7/10 items\\\\n2026-05-14 17:23:16,546 [INFO]   B1_remove_rescore done in 0.0s\\\\n2026-05-14 17:23:16,546 [INFO] Skipping B2_2pl_gamma (--skip-stan)\\\\n2026-05-14 17:23:16,546 [INFO] Skipping B3_vanilla_4pl (--skip-stan)\\\\n2026-05-14 17:23:16,546 [INFO] Running B4_linear_regression: Linear exposure regression + bootstrap CI\\\\n2026-05-14 17:23:16,547 [INFO] B4: slope=-0.3737, R2=0.0964\\\\n2026-05-14 17:23:16,886 [INFO]   B4_linear_regression done in 0.3s\\\\n2026-05-14 17:23:16,886 [INFO] Running B5_emperor_mitigation: Emperor's mitigation (rephrasing + option shuffling)\\\\n2026-05-14 17:23:16,886 [INFO] B5: exposure-weighted downweighting (no rephrased data)\\\\n2026-05-14 17:23:16,920 [INFO]   B5_emperor_mitigation done in 0.0s\\\\n2026-05-14 17:23:16,920 [INFO] Running B6_dcr_fuzzy: DCR fuzzy inference (EMNLP 2025)\\\\n2026-05-14 17:23:16,922 [INFO] B6: mean DCR factor=0.4113\\\\n2026-05-14 17:23:17,895 [INFO]   B6_dcr_fuzzy done in 1.0s\\\\n=== DRY RUN with synthetic data ===\\\\nData: 5 models x 10 items\\\\nDosages: [0, 25, 50, 75, 100]\\\\nTrue clean acc: ['0.5416', '0.2642', '0.6378', '0.6758', '0.1429']\\\\nObserved acc:   ['0.7000', '0.2000', '0.9000', '0.6000', '0.2000']\\\\n\\\\n================================================================================\\\\n-------------------------------------------------------------------------------------------------------\\\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\\\n-------------------------------------------------------------------------------------------------------\\\\nB0_raw                           0.1236   0.1007   0.0214   0.60   0.80   1.00     0.46  0.527      ---\\\\nB1_remove_rescore                0.1475   0.1475   0.0340   0.60   0.60   0.80     0.57  0.447      ---\\\\nB4_linear_regression             0.2050   0.2050   0.0607   0.60   0.60   0.80     1.33  0.600      ---\\\\nB5_emperor_mitigation            0.1268   0.1056   0.0234   0.60   0.60   0.80     0.50  0.400      ---\\\\nB6_dcr_fuzzy                     0.1911   0.1911   0.0596   0.00   0.40   0.60     0.40  0.400      ---\\\\n-------------------------------------------------------------------------------------------------------\\\\n\\\\nResults saved to /tmp/exp006_dryrun_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "f5f02bc3-5f0f-49d8-939c-e619703d4e48",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 17:23:16,526 [INFO] Running B0_raw: Raw accuracy (no adjustment)\\\\n2026-05-14 17:23:16,526 [INFO]   B0_raw done in 0.0s\\\\n2026-05-14 17:23:16,526 [INFO] Running B1_remove_rescore: Remove flagged items and rescore\\\\n2026-05-14 17:23:16,527 [INFO] B1: threshold=0.449 (p75), kept=7/10 items\\\\n2026-05-14 17:23:16,546 [INFO]   B1_remove_rescore done in 0.0s\\\\n2026-05-14 17:23:16,546 [INFO] Skipping B2_2pl_gamma (--skip-stan)\\\\n2026-05-14 17:23:16,546 [INFO] Skipping B3_vanilla_4pl (--skip-stan)\\\\n2026-05-14 17:23:16,546 [INFO] Running B4_linear_regression: Linear exposure regression + bootstrap CI\\\\n2026-05-14 17:23:16,547 [INFO] B4: slope=-0.3737, R2=0.0964\\\\n2026-05-14 17:23:16,886 [INFO]   B4_linear_regression done in 0.3s\\\\n2026-05-14 17:23:16,886 [INFO] Running B5_emperor_mitigation: Emperor's mitigation (rephrasing + option shuffling)\\\\n2026-05-14 17:23:16,886 [INFO] B5: exposure-weighted downweighting (no rephrased data)\\\\n2026-05-14 17:23:16,920 [INFO]   B5_emperor_mitigation done in 0.0s\\\\n2026-05-14 17:23:16,920 [INFO] Running B6_dcr_fuzzy: DCR fuzzy inference (EMNLP 2025)\\\\n2026-05-14 17:23:16,922 [INFO] B6: mean DCR factor=0.4113\\\\n2026-05-14 17:23:17,895 [INFO]   B6_dcr_fuzzy done in 1.0s\\\\n=== DRY RUN with synthetic data ===\\\\nData: 5 models x 10 items\\\\nDosages: [0, 25, 50, 75, 100]\\\\nTrue clean acc: ['0.5416', '0.2642', '0.6378', '0.6758', '0.1429']\\\\nObserved acc:   ['0.7000', '0.2000', '0.9000', '0.6000', '0.2000']\\\\n\\\\n================================================================================\\\\n-------------------------------------------------------------------------------------------------------\\\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\\\n-------------------------------------------------------------------------------------------------------\\\\nB0_raw                           0.1236   0.1007   0.0214   0.60   0.80   1.00     0.46  0.527      ---\\\\nB1_remove_rescore                0.1475   0.1475   0.0340   0.60   0.60   0.80     0.57  0.447      ---\\\\nB4_linear_regression             0.2050   0.2050   0.0607   0.60   0.60   0.80     1.33  0.600      ---\\\\nB5_emperor_mitigation            0.1268   0.1056   0.0234   0.60   0.60   0.80     0.50  0.400      ---\\\\nB6_dcr_fuzzy                     0.1911   0.1911   0.0596   0.00   0.40   0.60     0.40  0.400      ---\\\\n-------------------------------------------------------------------------------------------------------\\\\n\\\\nResults saved to /tmp/exp006_dryrun_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.86}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 17:23:16,526 [INFO] Running B0_raw: Raw accuracy (no adjustment)\\n2026-05-14 17:23:16,526 [INFO]   B0_raw done in 0.0s\\n2026-05-14 17:23:16,526 [INFO] Running B1_remove_rescore: Remove flagged items and rescore\\n2026-05-14 17:23:16,527 [INFO] B1: threshold=0.449 (p75), kept=7/10 items\\n2026-05-14 17:23:16,546 [INFO]   B1_remove_rescore done in 0.0s\\n2026-05-14 17:23:16,546 [INFO] Skipping B2_2pl_gamma (--skip-stan)\\n2026-05-14 17:23:16,546 [INFO] Skipping B3_vanilla_4pl (--skip-stan)\\n2026-05-14 17:23:16,546 [INFO] Running B4_linear_regression: Linear exposure regression + bootstrap CI\\n2026-05-14 17:23:16,547 [INFO] B4: slope=-0.3737, R2=0.0964\\n2026-05-14 17:23:16,886 [INFO]   B4_linear_regression done in 0.3s\\n2026-05-14 17:23:16,886 [INFO] Running B5_emperor_mitigation: Emperor's mitigation (rephrasing + option shuffling)\\n2026-05-14 17:23:16,886 [INFO] B5: exposure-weighted downweighting (no rephrased data)\\n2026-05-14 17:23:16,920 [INFO]   B5_emperor_mitigation done in 0.0s\\n2026-05-14 17:23:16,920 [INFO] Running B6_dcr_fuzzy: DCR fuzzy inference (EMNLP 2025)\\n2026-05-14 17:23:16,922 [INFO] B6: mean DCR factor=0.4113\\n2026-05-14 17:23:17,895 [INFO]   B6_dcr_fuzzy done in 1.0s\\n=== DRY RUN with synthetic data ===\\nData: 5 models x 10 items\\nDosages: [0, 25, 50, 75, 100]\\nTrue clean acc: ['0.5416', '0.2642', '0.6378', '0.6758', '0.1429']\\nObserved acc:   ['0.7000', '0.2000', '0.9000', '0.6000', '0.2000']\\n\\n================================================================================\\n-------------------------------------------------------------------------------------------------------\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\n-------------------------------------------------------------------------------------------------------\\nB0_raw                           0.1236   0.1007   0.0214   0.60   0.80   1.00     0.46  0.527      ---\\nB1_remove_rescore                0.1475   0.1475   0.0340   0.60   0.60   0.80     0.57  0.447      ---\\nB4_linear_regression             0.2050   0.2050   0.0607   0.60   0.60   0.80     1.33  0.600      ---\\nB5_emperor_mitigation            0.1268   0.1056   0.0234   0.60   0.60   0.80     0.50  0.400      ---\\nB6_dcr_fuzzy                     0.1911   0.1911   0.0596   0.00   0.40   0.60     0.40  0.400      ---\\n-------------------------------------------------------------------------------------------------------\\n\\nResults saved to /tmp/exp006_dryrun_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.86}}"
+              }
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "`run_all_baselines.py` now works correctly - no more NaN values. All metrics computed properly.\n\nNow let me update the todos and write the status report.",
+              "signature": "EtUCClkIDRgCKkDsMEH9Hp3ncIiHGY3cFKwelR6itoOtXxC3iCZpIldi4rgWPvz3fq5LSTKfh0zGeG78o/jai5jKPzyqydgGGB3AMg9jbGF1ZGUtb3B1cy00LTY4ABIMSjL25U9o/Kf7hyhtGgyLT6e7bfvgJhCjQlwiMDqvlhwlgacKoWmMKXrJl/4d4gYnNMviY24jnlaIAyssdVGI04u9YQ2iZPq43Yd1QyqpAebhFsXrAU9M4C+ESQFsdE0RS8dhozXDZbEDxUnT5eY9Z6cVRZiTERx3Jw6eRnu+SCeSd51elClTuRYjXtYv0kMg6GdhoFBK6tc6M2nxlSSUMAfPN95Qk4q4pBGHXib73dNmArjzPet6z6n7qnULKVa7tOj50ILSuCTN/mSfa2nju2HQyWms7VeKQ/NEibmbDT+/bXDObkbYs7fn5lGOEP54njAckKmbiIkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "298933a2-7a3b-45d9-b9bc-e81659c26eac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MQVAqdTxHFAJYZKQmVR73K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1235,
+                "cache_read_input_tokens": 118282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1235
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_all_baselines.py` 修复完成，不再有 NaN 问题。所有组件通过验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "d1a4a4c7-d909-4be7-8e87-abc2d7e6f539",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MQVAqdTxHFAJYZKQmVR73K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1235,
+                "cache_read_input_tokens": 118282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1235
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GZiSocRDmRosjCaQgJ5pUf",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                    "status": "completed",
+                    "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                  },
+                  {
+                    "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                    "status": "completed",
+                    "activeForm": "Integrating new metrics into evaluation pipeline"
+                  },
+                  {
+                    "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                    "status": "completed",
+                    "activeForm": "Running dry-run validation"
+                  },
+                  {
+                    "content": "Fix run_all_baselines.py interface mismatch",
+                    "status": "completed",
+                    "activeForm": "Fixing run_all_baselines.py"
+                  },
+                  {
+                    "content": "Write status report and register artifact",
+                    "status": "in_progress",
+                    "activeForm": "Writing status report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "c9a71c0e-1097-44cf-a60e-3a00b807366c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MQVAqdTxHFAJYZKQmVR73K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1235,
+                "cache_read_input_tokens": 118282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1235
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-14T09:23:32.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GZiSocRDmRosjCaQgJ5pUf",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "e3e3fd77-cb60-4ced-b250-4a057ffe71ed",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                  "status": "completed",
+                  "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                },
+                {
+                  "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                  "status": "completed",
+                  "activeForm": "Integrating new metrics into evaluation pipeline"
+                },
+                {
+                  "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                  "status": "in_progress",
+                  "activeForm": "Running dry-run validation"
+                },
+                {
+                  "content": "Write status report and register artifact",
+                  "status": "pending",
+                  "activeForm": "Writing status report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                  "status": "completed",
+                  "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                },
+                {
+                  "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                  "status": "completed",
+                  "activeForm": "Integrating new metrics into evaluation pipeline"
+                },
+                {
+                  "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                  "status": "completed",
+                  "activeForm": "Running dry-run validation"
+                },
+                {
+                  "content": "Fix run_all_baselines.py interface mismatch",
+                  "status": "completed",
+                  "activeForm": "Fixing run_all_baselines.py"
+                },
+                {
+                  "content": "Write status report and register artifact",
+                  "status": "in_progress",
+                  "activeForm": "Writing status report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011jkbvRweV4VvyrsqPvuMZW",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp006-dryrun-results",
+                "type": "intermediate",
+                "description": "exp-006 full pipeline dry-run results: ContamCal 4PL+gamma + 7 baselines, all 8 metrics (MAE/ECE/MCE/Brier/Coverage/Sharpness/Kendall-tau/Dose-response) + reliability diagram data. Synthetic 6x20 data.",
+                "project": "contamcal-irt-calibration",
+                "exp_id": "exp-006",
+                "content": "{\n  \"status\": \"DRY-RUN PASSED\",\n  \"date\": \"2026-05-14T17:23Z\",\n  \"summary\": \"Full pipeline: ContamCal (IRT 4PL+gamma via CmdStanPy) + 7 baselines + 8 evaluation metrics\",\n  \"components_tested\": {\n    \"run_irt_calibration.py\": \"PASS - ContamCal via CmdStanPy NUTS, gamma estimated correctly\",\n    \"baselines.py\": \"PASS - All 7 baselines (B0-B6) run with unified interface\",\n    \"evaluate_calibration.py\": \"PASS - 8 metrics + reliability diagram data\",\n    \"run_all_baselines.py\": \"PASS - Standalone dry-run script fixed and validated\",\n    \"run_exp006.py\": \"OK - End-to-end pipeline ready (needs real data)\"\n  },\n  \"baselines\": {\n    \"B0_raw\": \"Raw accuracy (no adjustment)\",\n    \"B1_remove_rescore\": \"Remove high-exposure items, rescore\",\n    \"B2_2pl_gamma\": \"Single-signal 2PL+gamma IRT (Stan)\",\n    \"B3_vanilla_4pl\": \"Standard 4PL IRT without gamma (Stan)\",\n    \"B4_linear_regression\": \"Linear exposure regression + bootstrap CI\",\n    \"B5_emperor_mitigation\": \"Exposure-weighted downweighting\",\n    \"B6_dcr_fuzzy\": \"DCR fuzzy inference (Xu et al. EMNLP 2025)\"\n  },\n  \"metrics\": [\"MAE\", \"ECE\", \"MCE\", \"Brier Score\", \"Coverage@50/80/95%\", \"Sharpness\", \"Kendall tau\", \"Dose-response monotonicity\", \"Reliability diagram data\"],\n  \"stan_models\": {\n    \"contam_irt_4pl_simple.stan\": \"4PL+gamma (D013: Simple model, ME model deprecated)\",\n    \"contam_irt_2pl_gamma.stan\": \"2PL+gamma baseline (B2)\",\n    \"vanilla_4pl.stan\": \"Standard 4PL baseline (B3)\"\n  },\n  \"dry_run_results\": {\n    \"synthetic_data\": \"6 models x 20 items, dosages=[0,0,25,50,75,100]\",\n    \"ContamCal_gamma\": \"0.449 [-0.784, 1.762] (true=1.5, small N expected wide CI)\",\n    \"best_MAE\": \"B2_2pl_gamma (0.0854)\",\n    \"ContamCal_MAE\": \"0.1216\",\n    \"all_metrics_computed\": true,\n    \"reliability_diagram_generated\": true\n  },\n  \"environment\": {\n    \"server\": \"cqa1-21977\",\n    \"cmdstanpy\": \"1.3.0\",\n    \"cmdstan\": \"2.38.0\",\n    \"numpy\": \"2.2.6\",\n    \"scipy\": \"1.17.1\"\n  },\n  \"changes_made\": [\n    \"evaluate_calibration.py: Added metric_ece(), metric_mce(), metric_brier(), reliability_diagram_data(). Updated evaluate_method with ECE/MCE/Brier/reliability. Updated format_text_table and format_latex_table to include ECE/Brier columns.\",\n    \"run_all_baselines.py: Rewrote to use baselines.py's matrix-level API (was using stale per-model function API causing NaN outputs). Now uses evaluate_calibration.py for consistent metric reporting.\"\n  ]\n}",
+                "content_filename": "exp006_dryrun_report.json",
+                "tags": [
+                  "exp-006",
+                  "dry-run",
+                  "baselines",
+                  "evaluation",
+                  "IRT"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "83679146-3b6e-4764-bb15-c5f9ab9efdc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BVWWboAnkctJkpn7EWoiJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 399,
+                "cache_read_input_tokens": 119517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 399
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T09:23:58.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'status': 'DRY-RUN PASSE...ent metric reporting.\"]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_011jkbvRweV4VvyrsqPvuMZW"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "63c4ce86-8e31-4998-9d04-ab92db654bd2",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'status': 'DRY-RUN PASSE...ent metric reporting.\"]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011BSREehN2c7kPs8ZLWnTjP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp006-dryrun-results",
+                "type": "intermediate",
+                "description": "exp-006 full pipeline dry-run results: ContamCal 4PL+gamma + 7 baselines, all 8 metrics + reliability diagram. Synthetic 6x20.",
+                "project": "contamcal-irt-calibration",
+                "exp_id": "exp-006",
+                "content": "{\"status\":\"DRY-RUN PASSED\",\"date\":\"2026-05-14T17:23Z\",\"summary\":\"Full pipeline: ContamCal (IRT 4PL+gamma via CmdStanPy) + 7 baselines + 8 evaluation metrics\",\"components_tested\":{\"run_irt_calibration.py\":\"PASS\",\"baselines.py\":\"PASS - All 7 baselines\",\"evaluate_calibration.py\":\"PASS - 8 metrics + reliability diagram\",\"run_all_baselines.py\":\"PASS - fixed and validated\",\"run_exp006.py\":\"OK - needs real data\"},\"baselines\":[\"B0_raw\",\"B1_remove_rescore\",\"B2_2pl_gamma\",\"B3_vanilla_4pl\",\"B4_linear_regression\",\"B5_emperor_mitigation\",\"B6_dcr_fuzzy\"],\"metrics\":[\"MAE\",\"ECE\",\"MCE\",\"Brier\",\"Coverage@50/80/95\",\"Sharpness\",\"Kendall_tau\",\"Dose-response\",\"Reliability_diagram\"],\"changes\":[\"evaluate_calibration.py: +metric_ece +metric_mce +metric_brier +reliability_diagram_data; updated evaluate_method and format tables\",\"run_all_baselines.py: rewrote to use baselines.py matrix API (was stale per-model API causing NaN)\"]}",
+                "content_filename": "exp006_dryrun_report.json",
+                "tags": [
+                  "exp-006",
+                  "dry-run",
+                  "baselines",
+                  "evaluation",
+                  "IRT"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "61db4f8f-4b01-4176-a289-2543499f5c2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015wsxnADCP6Q4RPn7g8q418",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1322,
+                "cache_read_input_tokens": 119916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1322
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T09:24:08.827Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'status': 'DRY-RUN PASSE...odel API causing NaN)']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_011BSREehN2c7kPs8ZLWnTjP"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "5f674c31-522d-442d-bf19-7c17eea59f8e",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'status': 'DRY-RUN PASSE...odel API causing NaN)']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LRqz7WxedPA92HwuQ7TeNH",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp006-dryrun-results",
+                "type": "intermediate",
+                "description": "exp-006 full pipeline dry-run results: ContamCal 4PL+gamma + 7 baselines, all 8 metrics + reliability diagram. Synthetic 6x20.",
+                "project": "contamcal-irt-calibration",
+                "exp_id": "exp-006",
+                "source_path": "/tmp/exp006_full_dryrun.json",
+                "tags": [
+                  "exp-006",
+                  "dry-run",
+                  "baselines",
+                  "evaluation",
+                  "IRT"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "d05d6cca-8be3-4f0b-ba15-c6fad6eccdb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H3DAmroMBpBzXGoipc5N6g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 121238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-14T09:24:13.048Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LRqz7WxedPA92HwuQ7TeNH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /tmp/exp006_full_dryrun.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "ff05e064-a583-4010-a449-95bca62c9f7e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /tmp/exp006_full_dryrun.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /tmp/exp006_full_dryrun.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file is on the remote server, not locally. Let me register using content as a plain string.",
+              "signature": "EpoCClkIDRgCKkBpv83Kespy90IcIrxYWy3hWhrFA46vXufvZlZbhX7z/5FMjJdyciqEuvL4IVagwQhPWyD0PVsqrmBR5AwTx64UMg9jbGF1ZGUtb3B1cy00LTY4ABIMWzSCaDMoU9HVjXoTGgwB/3yDQq2QLvqvZIUiMLczIn/IbMzPWtTSaOuWHRWEFRWqWtFyKn7sXcH9o9uh+Nz6NVA83GoWYtVi6QRC4CpvJPeXyPMQ5SRqRMeon/vHKyKYRcTebsgNtw8ZDyW3gXWOAwpWyQcnYHNQa6v79QOB7Yti4xwvxmqhwVhzj6+1BO4RDxnnKyNMlLMWY6gnvmNg8GtiPtWe8IhJc/TJXYKs03EJFOLUxKBg1BZc8Ys+GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "4568b3c4-c4e3-47e5-863f-5ea66ac2fbcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpTwevHk6ghkPHsn22vnC2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 121947,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 319
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGXiAvqsNp9rsUm1EEcpef",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp006-dryrun-results",
+                "type": "intermediate",
+                "description": "exp-006 full pipeline dry-run: ContamCal 4PL+gamma + 7 baselines, 8 metrics + reliability diagram. All PASS.",
+                "project": "contamcal-irt-calibration",
+                "exp_id": "exp-006",
+                "content": "DRY-RUN PASSED (2026-05-14T17:23Z)\n\nPipeline: ContamCal (IRT 4PL+gamma via CmdStanPy NUTS) + 7 baselines + 8 evaluation metrics\n\nComponents tested:\n- run_irt_calibration.py: PASS - ContamCal via CmdStanPy, gamma=0.449 (true=1.5, small N)\n- baselines.py: PASS - All 7 baselines (B0-B6) with unified interface\n- evaluate_calibration.py: PASS - 8 metrics + reliability diagram\n- run_all_baselines.py: PASS - Standalone script fixed\n- run_exp006.py: OK - End-to-end pipeline ready (needs real data)\n\nBaselines: B0_raw, B1_remove_rescore, B2_2pl_gamma(Stan), B3_vanilla_4pl(Stan), B4_linear_reg, B5_emperor, B6_dcr_fuzzy\n\nMetrics: MAE, ECE, MCE, Brier, Coverage@50/80/95%, Sharpness, Kendall_tau, Dose-response, Reliability_diagram\n\nChanges:\n1. evaluate_calibration.py: +metric_ece +metric_mce +metric_brier +reliability_diagram_data; updated evaluate_method and format tables\n2. run_all_baselines.py: rewrote to use baselines.py matrix API (was stale per-model API causing NaN)",
+                "content_filename": "exp006_dryrun_report.txt",
+                "tags": [
+                  "exp-006",
+                  "dry-run",
+                  "baselines",
+                  "evaluation",
+                  "IRT"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "6b2bd355-b738-4479-addb-dbb51d70bd36",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpTwevHk6ghkPHsn22vnC2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 121947,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 319
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T09:24:23.048Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGXiAvqsNp9rsUm1EEcpef",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_eba3d8\\\", \\\"name\\\": \\\"exp006-dryrun-results\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"exp-006 full pipeline dry-run: ContamCal 4PL+gamma + 7 baselines, 8 metrics + reliability diagram. All PASS.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/exp-006/intermediate/exp006_dryrun_report.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": \\\"exp-006\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T09:24:22.962570+00:00\\\", \\\"tags\\\": [\\\"exp-006\\\", \\\"dry-run\\\", \\\"baselines\\\", \\\"evaluation\\\", \\\"IRT\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "fff23978-25b8-4672-ac73-f4afbdce273f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_eba3d8\\\", \\\"name\\\": \\\"exp006-dryrun-results\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"exp-006 full pipeline dry-run: ContamCal 4PL+gamma + 7 baselines, 8 metrics + reliability diagram. All PASS.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/exp-006/intermediate/exp006_dryrun_report.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": \\\"exp-006\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T09:24:22.962570+00:00\\\", \\\"tags\\\": [\\\"exp-006\\\", \\\"dry-run\\\", \\\"baselines\\\", \\\"evaluation\\\", \\\"IRT\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_eba3d8\", \"name\": \"exp006-dryrun-results\", \"type\": \"intermediate\", \"description\": \"exp-006 full pipeline dry-run: ContamCal 4PL+gamma + 7 baselines, 8 metrics + reliability diagram. All PASS.\", \"path\": \"projects/contamcal-irt-calibration/artifacts/exp-006/intermediate/exp006_dryrun_report.txt\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": \"exp-006\", \"skill\": \"\", \"created_at\": \"2026-05-14T09:24:22.962570+00:00\", \"tags\": [\"exp-006\", \"dry-run\", \"baselines\", \"evaluation\", \"IRT\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015p42uQ5BnjkeCbKB4oYLtg",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                    "status": "completed",
+                    "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                  },
+                  {
+                    "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                    "status": "completed",
+                    "activeForm": "Integrating new metrics into evaluation pipeline"
+                  },
+                  {
+                    "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                    "status": "completed",
+                    "activeForm": "Running dry-run validation"
+                  },
+                  {
+                    "content": "Fix run_all_baselines.py interface mismatch",
+                    "status": "completed",
+                    "activeForm": "Fixing run_all_baselines.py"
+                  },
+                  {
+                    "content": "Write status report and register artifact",
+                    "status": "completed",
+                    "activeForm": "Writing status report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "2d584f24-9e96-4d72-850a-2b9c1225b9c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SriWH2Q3F8gGpxHMDx1MRz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 122266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 986
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-14T09:24:29.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015p42uQ5BnjkeCbKB4oYLtg",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "e559851c-c832-4003-aa1b-01f4f4abb8a4",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                  "status": "completed",
+                  "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                },
+                {
+                  "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                  "status": "completed",
+                  "activeForm": "Integrating new metrics into evaluation pipeline"
+                },
+                {
+                  "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                  "status": "completed",
+                  "activeForm": "Running dry-run validation"
+                },
+                {
+                  "content": "Fix run_all_baselines.py interface mismatch",
+                  "status": "completed",
+                  "activeForm": "Fixing run_all_baselines.py"
+                },
+                {
+                  "content": "Write status report and register artifact",
+                  "status": "in_progress",
+                  "activeForm": "Writing status report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Add ECE, MCE, Brier Score, reliability diagram to evaluate_calibration.py",
+                  "status": "completed",
+                  "activeForm": "Adding ECE/MCE/Brier/reliability metrics to evaluate_calibration.py"
+                },
+                {
+                  "content": "Integrate new metrics into evaluate_method, format_text_table, format_latex_table",
+                  "status": "completed",
+                  "activeForm": "Integrating new metrics into evaluation pipeline"
+                },
+                {
+                  "content": "Dry-run validate full pipeline (run_exp006.py --dry-run)",
+                  "status": "completed",
+                  "activeForm": "Running dry-run validation"
+                },
+                {
+                  "content": "Fix run_all_baselines.py interface mismatch",
+                  "status": "completed",
+                  "activeForm": "Fixing run_all_baselines.py"
+                },
+                {
+                  "content": "Write status report and register artifact",
+                  "status": "completed",
+                  "activeForm": "Writing status report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\nexp-006 代码**已基本完成**，dry-run 全部通过。\n\n### 代码状态\n\n| 组件 | 状态 | 说明 |\n|------|------|------|\n| `run_irt_calibration.py` | ✅ | ContamCal 4PL+γ via CmdStanPy NUTS |\n| `baselines.py` (7 baselines) | ✅ | B0-B6 全部实现，统一矩阵接口 |\n| `evaluate_calibration.py` | ✅ **已补全** | +ECE, MCE, Brier Score, reliability diagram |\n| `run_exp006.py` | ✅ | 端到端 pipeline |\n| `run_all_baselines.py` | ✅ **已修复** | 旧接口导致 NaN，已重写 |\n| Stan models (3) | ✅ | 4PL+γ simple, 2PL+γ, vanilla 4PL |\n\n### 本次修改\n\n1. **`evaluate_calibration.py`**: 新增 `metric_ece()`, `metric_mce()`, `metric_brier()`, `reliability_diagram_data()`。更新 `evaluate_method` 输出 8 个 metrics + reliability diagram data。更新 LaTeX/text 表格格式含 ECE/Brier 列。\n\n2. **`run_all_baselines.py`**: 重写为使用 `baselines.py` 的矩阵级 API（原代码使用废弃的 per-model 函数接口导致全部 NaN）。\n\n### Dry-run 验证\n\n- 合成数据 6×20（6 models, 20 items, dosages=[0,0,25,50,75,100]）\n- ContamCal + 7 baselines 全部运行成功\n- 8 个评估 metrics + reliability diagram 全部计算正确\n- Stan 采样正常（CmdStanPy 1.3.0 + CmdStan 2.38.0）\n\n### 等待真实数据\n\nPipeline 已就绪，等 exp-002 signals → exp-003 RRF 完成后即可用真实数据运行 `run_exp006.py`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "uuid": "6f3a2583-82cc-423a-90ba-62edcd538109",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UepXRxywH8dpqGwcyQxSLb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 123252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\nexp-006 代码**已基本完成**，dry-run 全部通过。\n\n### 代码状态\n\n| 组件 | 状态 | 说明 |\n|------|------|------|\n| `run_irt_calibration.py` | ✅ | ContamCal 4PL+γ via CmdStanPy NUTS |\n| `baselines.py` (7 baselines) | ✅ | B0-B6 全部实现，统一矩阵接口 |\n| `evaluate_calibration.py` | ✅ **已补全** | +ECE, MCE, Brier Score, reliability diagram |\n| `run_exp006.py` | ✅ | 端到端 pipeline |\n| `run_all_baselines.py` | ✅ **已修复** | 旧接口导致 NaN，已重写 |\n| Stan models (3) | ✅ | 4PL+γ simple, 2PL+γ, vanilla 4PL |\n\n### 本次修改\n\n1. **`evaluate_calibration.py`**: 新增 `metric_ece()`, `metric_mce()`, `metric_brier()`, `reliability_diagram_data()`。更新 `evaluate_method` 输出 8 个 metrics + reliability diagram data。更新 LaTeX/text 表格格式含 ECE/Brier 列。\n\n2. **`run_all_baselines.py`**: 重写为使用 `baselines.py` 的矩阵级 API（原代码使用废弃的 per-model 函数接口导致全部 NaN）。\n\n### Dry-run 验证\n\n- 合成数据 6×20（6 models, 20 items, dosages=[0,0,25,50,75,100]）\n- ContamCal + 7 baselines 全部运行成功\n- 8 个评估 metrics + reliability diagram 全部计算正确\n- Stan 采样正常（CmdStanPy 1.3.0 + CmdStan 2.38.0）\n\n### 等待真实数据\n\nPipeline 已就绪，等 exp-002 signals → exp-003 RRF 完成后即可用真实数据运行 `run_exp006.py`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 659221,
+            "duration_api_ms": 620170,
+            "num_turns": 61,
+            "stop_reason": "end_turn",
+            "session_id": "ab084135-5135-4327-baff-ec195ea62643",
+            "total_cost_usd": 3.2567107500000008,
+            "usage": {
+              "input_tokens": 49,
+              "cache_creation_input_tokens": 111719,
+              "cache_read_input_tokens": 3597388,
+              "output_tokens": 30316,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 111719,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 618,
+                  "cache_read_input_tokens": 123252,
+                  "cache_creation_input_tokens": 308,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 308
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1508,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001628,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 49,
+                "outputTokens": 30316,
+                "cacheReadInputTokens": 3597388,
+                "cacheCreationInputTokens": 111719,
+                "webSearchRequests": 0,
+                "costUSD": 3.2550827500000006,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bdd4ac50-da97-468c-964e-6c3072c2fd4c"
+          },
+          "id": "event-000168"
+        }
+      ]
+    }
+  ]
+}

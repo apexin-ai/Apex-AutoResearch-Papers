@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cad7ab0aea4c9cfef4cc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 s0 progress check",
+  "task_key": "worker_ops_cqa1-s0-progress-check_20260520T030405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-s0-progress-check_20260520T030405_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "99865f135e565066930ce0873ff56d29e3eb10b8534e7a18515f65edafe1fbfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-7B s0 训练状态\n\n| 项目 | 状态 |\n|------|------|\n| **当前训练** | d000 (dosage=0%, 第1个) |\n| **进度** | 376/3125 steps (12%) |\n| **速度** | ~4.3 s/step |\n| **已运行** | ~27 分钟 |\n| **剩余** | ~3h 20min (当前 d000) |\n| **已完成 checkpoint** | 0/5 (d000 目录已创建但训练中) |\n\n**注意事项：**\n- bitsandbytes 的 `libnvJitLink.so.13` 报错是非致命 warning（8bit optimizer 加载失败），训练正常进行\n- GPU 0 使用 21.3GB/24.6GB 显存，利用率 100%，运行正常\n- lora_alpha=32 ✓（符合 C006 约束）\n\n**预计完成时间：**\n- d000 单个: ~3.7h total → 约 14:20 CST 完成\n- 全部 5 个 dosage (d000→d005→d025→d050→d100): 假设顺序训练，每个 ~3.7h → 全部完成约需 **18.5h**，预计 **明天 05:00 CST** 左右全部完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-s0-progress-check.md"
+}

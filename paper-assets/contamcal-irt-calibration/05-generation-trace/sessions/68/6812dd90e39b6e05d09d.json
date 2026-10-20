@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6812dd90e39b6e05d09d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh fix vllm gpu4",
+  "task_key": "worker_ssh_fix-vllm-gpu4_20260513T184711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-vllm-gpu4_20260513T184711_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "718c255ecb9f9f30411e1d47d82d8e964d450634a745405babafcd9f922a2a12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 修复成功。\n\n```\n=== vLLM Fix Result ===\nStatus: FIXED\nvLLM version: 0.20.2\ntorch version: 2.11.0+cu130\nRoot cause: torch._inductor.select_algorithm.py 中 TritonTemplate 和 extern kernel 的 \n            duplicate 断言在 vLLM 初始化时被重复触发（PyTorch 2.11 兼容性问题）\nFix: 注释掉 select_algorithm.py 中两行 duplicate 断言（line 1775, 2264）\n     备份保存在 select_algorithm.py.bak\n\nPerformance:\n  - 模型加载: 17.2s\n  - 单条生成: 0.87s\n  - 10条批量: 1.68s (0.168s/prompt)\n  - 吞吐量: ~600 tokens/s output\n\nRecommendation: \n  - vLLM 已可用，可以用来加速 MMLU paraphrase\n  - GPU 0 当前有 15GB 占用（transformers 进程），是否 kill 并用 vLLM 重跑由你决定\n  - 注意：pip upgrade torch 会覆盖 patch，需要重新打\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-vllm-gpu4.md"
+}

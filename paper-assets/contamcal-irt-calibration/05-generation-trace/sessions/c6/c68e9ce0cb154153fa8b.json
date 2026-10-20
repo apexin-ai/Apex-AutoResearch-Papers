@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c68e9ce0cb154153fa8b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify rrf d098 fix",
+  "task_key": "worker_ops_verify-rrf-d098-fix_20260516T024022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-rrf-d098-fix_20260516T024022_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "2fd6277d181075734432cc5018f6df46bfd0e7f612768cbf5c30f35e9025d2eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n**s3 移除状态: done** — `SIGNAL_KEYS = [\"s1_embedding\", \"s2_minkpp\", \"s4_selfcritique\"]`，s3_constat 已移除。`SIGNAL_NAMES` 和 `sig_name_map` 也已同步清理。\n\n**dual format 匹配: 正常** — `sig_name_map` 映射了 `s1_embedding→embedding`, `s2_minkpp→minkpp`, `s4_selfcritique→selfcritique`，代码先尝试 `signal_{sig_key}_{bench}.json`，失败后回退 `signal_{sig_name}_{bench}.json`。\n\n**SKIP_PATTERNS 状态: 需要补充** — 当前只有 `SKIP_PATTERNS = [\"DEPRECATED\"]`（第40行），在第224行做 `if any(pat in model_id for pat in SKIP_PATTERNS)` 过滤。这不会匹配 C006 要求的 alpha=16 废弃目录：\n- `Qwen2.5-3B_d000_s42`\n- `Qwen2.5-3B_d000_v2_s42`\n- `Qwen2.5-3B_d005_s42`\n- `Qwen2.5-3B_d025_s42`\n- `Qwen2.5-3B_d100_s42`\n\n除非这些目录已被重命名为包含 \"DEPRECATED\" 字样，否则不会被跳过。\n\n**备份文件**: 存在，`rrf_aggregation.py.bak`，2026-05-16 09:27。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-rrf-d098-fix.md"
+}

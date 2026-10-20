@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e52f23357291e0cbeacf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 3B d100 s123 para aligned v2 cuda2",
+  "task_key": "worker_submit_eval_3B_d100_s123_para_aligned_v2_cuda2_20260515T184801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_3B_d100_s123_para_aligned_v2_cuda2_20260515T184801_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "422e6af1ff96c7ef1c85d5375a1e5f308555582dee740715725171701d489ad2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_001_eval_3B_d100_s123_para_aligned_v2` is RUNNING on cuda:2 (PID 614412, 7.5GB VRAM, 90% util). Registry spec is complete with all provenance fields.\n\nSummary:\n- **Old output dir** cleaned\n- **Job** auto-submitted by registry, running on cuda:2 with `CUDA_VISIBLE_DEVICES=2`\n- **Benchmarks**: mmlu, gsm8k, arc_challenge, humaneval (paraphrased_aligned, mc-format=aligned)\n- **Checkpoint**: Qwen2.5-3B_d100_s123 lora_adapter (alpha=16)\n- **Registry**: RUNNING, parent=exp_001_sft_3B_d100_s123\n\nv1 OOM'd at GSM8K 22% on cuda:3. This run has cuda:2 exclusively — should complete cleanly given the 24GB 4090D is otherwise idle."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-3b-d100-s123-para-aligned-v2-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e35b8161f770a90608b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 paper data prep",
+  "task_key": "worker_analysis_falcon3-paper-data-prep_20260522T131429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-paper-data-prep_20260522T131429_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "838973607c363a82254739247ad899c942359517f1045d2c59da7f90df247207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已注册 `art_20260522_2e1572`。产出包含：\n\n1. **Table 1 更新行** — Falcon3 MMLU/ARC 完整 5-dosage 数据，Δ(d100)=+4.19pp/+4.01pp，Pattern=Benefit\n2. **三家 Benefit 对比表** — Falcon3 vs OLMo-2 vs Gemma-2 逐 dosage MMLU+ARC 数据，含 shape/consistency 对比。Falcon3 MMLU benefit magnitude 最大(+4.19pp)\n3. **SFT tax** — 8.63pp，Rank 3/7，已引用 `sft_tax_analysis.md` 现有数据\n4. **Cross-benchmark consistency** — MMLU×ARC agreement 从 5/6 (83%) 升到 **6/7 (86%)**，Falcon3 双 Benefit 一致\n5. **Taxonomy 更新** — Benefit×3 成为最多类别(43%)；baseline gradient 三个 Benefit 家族全部 <62%，强化 vulnerability gradient"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-paper-data-prep.md"
+}

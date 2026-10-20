@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b25448dd8cab29a40899",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops collect d000 mmlu start d025 arc",
+  "task_key": "worker_ops_collect-d000-mmlu-start-d025-arc_20260521T123738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-d000-mmlu-start-d025-arc_20260521T123738_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "58dbc78bdf1271c3260c1db5f4de43ce6a7c3afe574456590467ac69d4b19e18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nd000 MMLU accuracy: 53.50% (7512/14042)\nd025 ARC eval: 启动成功, PID 522938, 模型已加载完成正在评估中\nGPU 状态:\n  GPU 0: 93%, 18591/97887 MiB (d025 MMLU 运行中)\n  GPU 1: 0%,  18589/97887 MiB (d025 ARC 刚启动，模型已加载)\n  GPU 2: 96%, 18591/97887 MiB (d000 ARC 运行中)\n  GPU 3: 97%, 37913/97887 MiB (其他任务)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-d000-mmlu-start-d025-arc.md"
+}

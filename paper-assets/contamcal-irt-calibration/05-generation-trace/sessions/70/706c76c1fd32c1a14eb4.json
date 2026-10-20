@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "706c76c1fd32c1a14eb4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 status and tasks",
+  "task_key": "worker_ops_cqa1-status-and-tasks_20260518T092026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-status-and-tasks_20260518T092026_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "7b729acbac73acabf49e8301521ca33d71b0d8451cf8a3b1faaa35675796e09e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## 1. GPU 状态\n**RTX 4090D — 完全空闲**（0 MiB / 24564 MiB, 0% utilization, 无 GPU 进程）\n\n仅有后台 tensorboard + jupyter-lab 在运行，无任何 python 训练/eval/IRT 进程。\n\n## 2. exp_006_mmlu_vanilla_2pl_fullitems\n**已完成，不在运行。**\n- 4 条 MCMC chain 的 CSV 文件均已生成（`vanilla_2pl_fullitems_chains/` 下 chain 1-4，162MB-296MB）\n- 日志 `vanilla_2pl_tau_fullitems.log` 最后更新 May 17 23:27\n- 无对应进程存活\n\n最近完成的实验是 `mmlu_domain_irt_j16_qwen`（今天 11:45 完成，DONE_MARKER 已写入），8 个 MMLU domain + pooled 结果均已输出。\n\n## 3. cqa1-21977 上可执行任务\n**cqa1-21977 上目前没有待执行的 GPU 密集型任务。**\n\n原因：\n- 所有 ≤3B 的训练 (exp001)、信号计算 (exp002)、IRT fitting (exp006) 已全部完成\n- 最新 IRT 实验（cross-family、domain gamma、vanilla 2PL、exclusion sensitivity、gamma prior sensitivity、random 300 baseline、J=16 Qwen-only）均已跑完\n- 当前工作重心已转移到 **westd-29999**（4× RTX PRO 6000 96GB）做 7B/14B 五家族扩展训练\n- cqa1-21977 的角色变为\"等 westd 训练完 → 做 eval/signals/IRT\"\n\n## 4. 磁盘\n119G / 169G（70%），51G 可用。exp001 35G、exp006 3.3G、exp002 737M。\n\n**结论：cqa1-21977 空闲，无可执行任务。下一批任务要等 westd-29999 上 7B/14B SFT 完成后的 eval → signals → IRT 阶段。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-status-and-tasks.md"
+}

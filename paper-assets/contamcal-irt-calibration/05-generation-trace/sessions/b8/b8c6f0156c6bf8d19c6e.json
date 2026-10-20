@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b8c6f0156c6bf8d19c6e",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "eval qwen7b s0 prep",
+  "task_key": "worker_eval_qwen7b-s0-prep_20260521T070823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen7b-s0-prep_20260521T070823.log",
+    "occurrence": 1,
+    "bytes": 604215,
+    "sha256": "29b59a22ff5dd5e47f184d973f152977ad0ebcbf5d85dcff17b5c8d8261c7fb3"
+  },
+  "statistics": {
+    "messages": 463,
+    "user_turns": 1,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 190,
+      "tool_result": 190,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "b8c6f0156c6bf8d19c6e-part-0001.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 407,
+      "chunks": [
+        {
+          "path": "b8c6f0156c6bf8d19c6e-part-0001.json",
+          "message_count": 124
+        },
+        {
+          "path": "b8c6f0156c6bf8d19c6e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8c6f0156c6bf8d19c6e-part-0003.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-qwen7b-s0-prep.md"
+}

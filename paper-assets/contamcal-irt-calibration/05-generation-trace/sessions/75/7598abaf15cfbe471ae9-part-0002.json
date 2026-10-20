@@ -1,0 +1,680 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7598abaf15cfbe471ae9",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, so the S1-only GSM8K v2 result (N=8, 4PL+γ):\n- Calibrated scores: [0.3993, 0.3955, 0.3932, 0.3857, 0.6159, 0.6079, 0.6067, 0.5919]\n- Raw accuracy: [0.3692, 0.3624, 0.3662, 0.3654, 0.6543, 0.6482, 0.6535, 0.6497]\n\n\n- Residual MAE = 0.0367, γ = 0.1871\n\nThis is from an earlier S1-only run where the calibrated scores diverge slightly from the raw values. I'm wondering if that 11× figure isn't actually computed from the JSON but rather a hand-calculated number that made its way into the writing plan and paper documentation. Let me trace back through the decisions and writing plan files to see where it first shows up.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "179927f7-9d63-4b82-9792-bb522604f21c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFPNUwDMbgDhkzapXzDww1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5564,
+                "cache_read_input_tokens": 107950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5564
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LS4XeRngRi4zo8DCcSFAA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml",
+                "offset": 45,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "7cd920c8-36cb-44c7-8cb1-d44fb8d624db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFPNUwDMbgDhkzapXzDww1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5564,
+                "cache_read_input_tokens": 107950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5564
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-17T16:40:37.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LS4XeRngRi4zo8DCcSFAA",
+              "type": "tool_result",
+              "content": "45\t    name: \"Identifiability\"\n46\t    summary: >\n47\t      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.\n48\t      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.\n49\t      Triple impossibility limited to \"IRT + membership-inference specific\" (C3 fix).\n50\t    evidence: [exp-004]\n51\t    key_data: \"Sim sweep 20 conditions × 200 runs\"\n52\t    priority: 2\n53\t  C4:\n54\t    name: \"Conditional Calibration (DEMOTED)\"\n55\t    summary: >\n56\t      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;\n57\t      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.\n58\t      Calibration improvement entirely from IRT ability estimation (θ separation from noise).\n59\t      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.\n60\t      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.\n61\t      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).\n62\t      D120: calibration value decomposition — all calibration benefit from θ, not γ.\n63\t    evidence: [exp-006]\n64\t    priority: 3\n65\t    narrative_constraint: >\n66\t      NEVER imply γ brings calibration improvement. Two distinct values:\n67\t      (a) IRT framework → calibration (robust θ estimation even without γ);\n68\t      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).\n69\t      This STRENGTHENS the diagnostic framing (D118).\n70\t\n71\tpaper_outline:\n72\t  abstract:\n73\t    word_budget: 200\n74\t    dependencies: [introduction, results, conclusion]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "b2d24978-5f9e-4809-a58d-9c4d68b944d1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml",
+                "content": "    name: \"Identifiability\"\n    summary: >\n      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.\n      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.\n      Triple impossibility limited to \"IRT + membership-inference specific\" (C3 fix).\n    evidence: [exp-004]\n    key_data: \"Sim sweep 20 conditions × 200 runs\"\n    priority: 2\n  C4:\n    name: \"Conditional Calibration (DEMOTED)\"\n    summary: >\n      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;\n      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.\n      Calibration improvement entirely from IRT ability estimation (θ separation from noise).\n      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.\n      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.\n      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).\n      D120: calibration value decomposition — all calibration benefit from θ, not γ.\n    evidence: [exp-006]\n    priority: 3\n    narrative_constraint: >\n      NEVER imply γ brings calibration improvement. Two distinct values:\n      (a) IRT framework → calibration (robust θ estimation even without γ);\n      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).\n      This STRENGTHENS the diagnostic framing (D118).\n\npaper_outline:\n  abstract:\n    word_budget: 200\n    dependencies: [introduction, results, conclusion]",
+                "numLines": 30,
+                "startLine": 45,
+                "totalLines": 466
+              }
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The writing_plan says \"GSM8K overcorrection 11× (fails gating → honest negative)\". But the actual explanation of where 11 comes from is still not clear.\n\nLet me look at this from yet another angle. Let me look at the comparison table in the paper:\n\nFor the N=24 data:\n- B0-Raw GSM8K MAE = 0.169\n- B3-Vanilla2PL GSM8K MAE = 0.006\n- ContamCal (2PL+γ) GSM8K MAE = 0.006\n\n\nHere, ContamCal doesn't actually make things worse compared to B3—both achieve 0.006 MAE. But maybe the overcorrection refers to how the gamma correction overshoots in one direction relative to the actual contamination signal. If I calculate the ratio of gamma's variance to its mean squared using the posterior estimates (γ_mean = 0.0639, γ_sd = 0.2208), that gives roughly 11× as the noise-to-signal ratio. I see the issue now—I need to look at the ratio of noise variance to signal variance more carefully. When I calculate (σ² - μ²)/μ², I get approximately 11, which makes sense as the proportion of noise relative to the signal in the gamma correction. The total variance breaks down into noise contribution of 0.04875 and signal contribution of 0.00408, giving me that 12:1 ratio when I divide them directly. 1 unit of genuine contamination effect\" — that interpretation clicks. The posterior distribution shows a mean of 0.0639 with standard deviation 0.2208, giving that noise-to-signal ratio of about 12 to 1. Let me verify this by decomposing the posterior variance of γ² into its uncertainty and squared mean components to see if the breakdown matches what they're reporting.\n\nComputing it out: the variance contributes 0.04875 and the squared mean contributes 0.00408, so noise dominates at 92.3% versus signal at 7.7%, yielding a ratio of roughly 11.95. That should round to 12, but the paper explicitly states 11, so either they used slightly different posterior summaries or there's some rounding I'm missing. Let me check what the provenance file actually specifies and whether different sample sizes might account for the discrepancy. I'm trying different ratios from the N=24 dataset to see if I can derive that factor of 11—looking at gamma_mean divided by residual_mae gives around 10.3, which is close but not exact. Let me check if the ratio of standard deviation to mean squared might work instead, since (σ/μ)² for this data comes to roughly 12, which is in the ballpark.\n\nThe most plausible explanation is that 11× represents the noise-to-signal variance ratio, calculated as (γ_sd / γ_mean)² ≈ (0.2208 / 0.0639)² ≈ 11.95, then rounded down to 11. The slight discrepancy could come from using different posterior statistics or a different MCMC run.\n\nNow I'm reconsidering whether this interpretation is correct by looking at the actual MAE ratios from the evaluation results to see if they align with this 11× figure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "79c6c9a5-05dd-4fc0-abf6-ab6736eaa20c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQLAUbDxRX37bbXDgPScLd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 984,
+                "cache_read_input_tokens": 113514,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 984
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HN6NGDhant4DcsU3HEzkFq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/autodl-tmp/exp006/results_pooled_gsm8k_v1 -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "305334df-8704-4075-9fe2-218777bb9a4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQLAUbDxRX37bbXDgPScLd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 984,
+                "cache_read_input_tokens": 113514,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 984
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-17T16:41:23.039Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HN6NGDhant4DcsU3HEzkFq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/irt_4pl_gamma.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/baselines.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.tex\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/joint_fit/joint_fit_results.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/exp006_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "4736b5dd-c0d8-41bc-9bc9-bfdc8687ab6c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/irt_4pl_gamma.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/baselines.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.tex\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/joint_fit/joint_fit_results.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/exp006_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/irt_4pl_gamma.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/baselines.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.tex\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/joint_fit/joint_fit_results.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/exp006_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V5ttKkdmdhB9JP2Sk2ifkW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "9ad17fa3-b3c5-41a3-b50e-2edcf772177c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DQLAUbDxRX37bbXDgPScLd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 984,
+                "cache_read_input_tokens": 113514,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 984
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-17T16:41:23.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V5ttKkdmdhB9JP2Sk2ifkW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/gsm8k/irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/arc_challenge/irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "852afae4-300c-4f5a-a664-d092e367b4ef",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/gsm8k/irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/arc_challenge/irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/gsm8k/irt_results.json\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/arc_challenge/irt_results.json\\n/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PLRL8HqVHt7CaaXrrtBnFQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/evaluation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "de5d24a5-e22c-49eb-83f5-3f57dc0427dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017q2hK3ZnXRDbsownS9mLSq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3051,
+                "cache_read_input_tokens": 114498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3051
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-17T16:41:27.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PLRL8HqVHt7CaaXrrtBnFQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"IRT_4pl_gamma\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.064738,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.064751,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.030943,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.106042\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.037039,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.049458,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.01903,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.089885\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.077703,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.008126,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.008172,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.001763,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.016594\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.3,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.3,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.2,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.05668000000000002,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.037559999999999996,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.019869999999999995,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.4869,\\\\n      \\\\\\\"p_value\\\\\\\": 0.074839,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": {\\\\n      \\\\\\\"gamma_mean\\\\\\\": 2.1397,\\\\n      \\\\\\\"gamma_positive\\\\\\\": true,\\\\n      \\\\\\\"ci_excludes_zero\\\\\\\": true,\\\\n      \\\\\\\"q025\\\\\\\": 1.4203,\\\\n      \\\\\\\"q975\\\\\\\": 2.8929\\\\n    },\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": -0.0994,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.2047,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.24444,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.22457,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.2196,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.250442,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.32392,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.36366,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.34379,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.3569,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.36366,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.4034,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.38353,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.385767,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.377138,\\\\n        \\\\\\\"count\\\\\\\": 3\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.4034,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.44314,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.42327,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.4095,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.44314,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.48288,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.46301,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.4588,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.56236,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.6021,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.58223,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.59395,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B0_raw\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.212851,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.027402,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.027005,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.006219,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.054262\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.6,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.04902043475258992,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.03207337333223475,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.01688631677021703,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.426,\\\\n      \\\\\\\"p_value\\\\\\\": 0.119052,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.6172,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.148635,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.235178,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.206331,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.207733,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.350569,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.408264,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.379416,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365807,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.378127,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n\\\\n\\\\n... [截断: 输出过长，省略 7948 字符] ...\\\\n\\\\n.403322,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.600834,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.654284,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.627559,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.643915,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B5_emperor_mitigation\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.212851,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.027402,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.027005,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.006219,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.054262\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.6,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.04868460955269142,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.03200909780136466,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.01683093252463986,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.426,\\\\n      \\\\\\\"p_value\\\\\\\": 0.119052,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.5963,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.148635,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.235178,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.206331,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.207733,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.350569,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.408264,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.379416,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365807,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.378127,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.639045,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.69674,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.667892,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.662244,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.449393,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B6_dcr_fuzzy\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.106983,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10539,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.042424,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.170067\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.106983,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10539,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.042424,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.170067\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.192275,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.022036,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.021771,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.007475,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.037514\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.4,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.039029725429361936,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.025616958782931264,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.013471809964498435,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.3651,\\\\n      \\\\\\\"p_value\\\\\\\": 0.181521,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.6172,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.173237,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.146513,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.173237,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.226687,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.199962,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.188822,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.333586,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.387036,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.360311,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365934,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.377138,\\\\n        \\\\\\\"count\\\\\\\": 3\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.600834,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.654284,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.627559,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.651251,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "1251f8b9-753a-4188-a465-162a15f24eae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"IRT_4pl_gamma\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.064738,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.064751,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.030943,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.106042\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.037039,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.049458,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.01903,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.089885\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.077703,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.008126,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.008172,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.001763,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.016594\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.3,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.3,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.2,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.05668000000000002,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.037559999999999996,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.019869999999999995,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.4869,\\\\n      \\\\\\\"p_value\\\\\\\": 0.074839,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": {\\\\n      \\\\\\\"gamma_mean\\\\\\\": 2.1397,\\\\n      \\\\\\\"gamma_positive\\\\\\\": true,\\\\n      \\\\\\\"ci_excludes_zero\\\\\\\": true,\\\\n      \\\\\\\"q025\\\\\\\": 1.4203,\\\\n      \\\\\\\"q975\\\\\\\": 2.8929\\\\n    },\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": -0.0994,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.2047,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.24444,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.22457,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.2196,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.250442,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.32392,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.36366,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.34379,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.3569,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.36366,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.4034,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.38353,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.385767,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.377138,\\\\n        \\\\\\\"count\\\\\\\": 3\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.4034,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.44314,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.42327,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.4095,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.44314,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.48288,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.46301,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.4588,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.56236,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.6021,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.58223,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.59395,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B0_raw\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.212851,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.027402,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.027005,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.006219,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.054262\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.6,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.04902043475258992,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.03207337333223475,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.01688631677021703,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.426,\\\\n      \\\\\\\"p_value\\\\\\\": 0.119052,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.6172,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.148635,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.235178,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.206331,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.207733,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.350569,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.408264,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.379416,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365807,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.378127,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n\\\\n\\\\n... [截断: 输出过长，省略 7948 字符] ...\\\\n\\\\n.403322,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.600834,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.654284,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.627559,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.643915,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B5_emperor_mitigation\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.107405,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.105839,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.033876,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.194117\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.212851,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.027402,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.027005,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.006219,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.054262\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.6,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.04868460955269142,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.03200909780136466,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.01683093252463986,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.426,\\\\n      \\\\\\\"p_value\\\\\\\": 0.119052,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.5963,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.148635,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.177483,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.235178,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.206331,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.207733,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.350569,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.408264,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.379416,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365807,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.378127,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.639045,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.69674,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.667892,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.662244,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.449393,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      }\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"B6_dcr_fuzzy\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.106983,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10539,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.042424,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.170067\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.106983,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10539,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.042424,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.170067\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.192275,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.022036,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.021771,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.007475,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.037514\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.5,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.4,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.3,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.039029725429361936,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.025616958782931264,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.013471809964498435,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.3651,\\\\n      \\\\\\\"p_value\\\\\\\": 0.181521,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": NaN,\\\\n        \\\\\\\"ci_lower\\\\\\\": NaN,\\\\n        \\\\\\\"ci_upper\\\\\\\": NaN\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": null,\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.6172,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.119788,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.173237,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.146513,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.119788,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.119788,\\\\n        \\\\\\\"count\\\\\\\": 1\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.173237,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.226687,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.199962,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.188822,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.381097,\\\\n        \\\\\\\"count\\\\\\\": 4\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.333586,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.387036,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.360311,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.365934,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.377138,\\\\n        \\\\\\\"count\\\\\\\": 3\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.600834,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.654284,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.627559,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.651251,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.51769,\\\\n        \\\\\\\"count\\\\\\\": 2\\\\n      }\\\\n    ]\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"method\\\": \\\"IRT_4pl_gamma\\\",\\n    \\\"mae\\\": {\\n      \\\"value\\\": 0.064738,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.064751,\\n        \\\"ci_lower\\\": 0.030943,\\n        \\\"ci_upper\\\": 0.106042\\n      }\\n    },\\n    \\\"ece\\\": {\\n      \\\"value\\\": 0.037039,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.049458,\\n        \\\"ci_lower\\\": 0.01903,\\n        \\\"ci_upper\\\": 0.089885\\n      }\\n    },\\n    \\\"mce\\\": 0.077703,\\n    \\\"brier\\\": {\\n      \\\"value\\\": 0.008126,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.008172,\\n        \\\"ci_lower\\\": 0.001763,\\n        \\\"ci_upper\\\": 0.016594\\n      }\\n    },\\n    \\\"coverage_95\\\": 0.3,\\n    \\\"coverage_80\\\": 0.3,\\n    \\\"coverage_50\\\": 0.2,\\n    \\\"sharpness_95\\\": 0.05668000000000002,\\n    \\\"sharpness_80\\\": 0.037559999999999996,\\n    \\\"sharpness_50\\\": 0.019869999999999995,\\n    \\\"kendall_tau\\\": {\\n      \\\"tau\\\": 0.4869,\\n      \\\"p_value\\\": 0.074839,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": NaN,\\n        \\\"ci_lower\\\": NaN,\\n        \\\"ci_upper\\\": NaN\\n      }\\n    },\\n    \\\"dose_response\\\": {\\n      \\\"gamma_mean\\\": 2.1397,\\n      \\\"gamma_positive\\\": true,\\n      \\\"ci_excludes_zero\\\": true,\\n      \\\"q025\\\": 1.4203,\\n      \\\"q975\\\": 2.8929\\n    },\\n    \\\"dose_monotonicity_tau\\\": -0.0994,\\n    \\\"reliability_diagram\\\": [\\n      {\\n        \\\"bin_lower\\\": 0.2047,\\n        \\\"bin_upper\\\": 0.24444,\\n        \\\"bin_center\\\": 0.22457,\\n        \\\"mean_calibrated\\\": 0.2196,\\n        \\\"mean_ground_truth\\\": 0.250442,\\n        \\\"count\\\": 2\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.32392,\\n        \\\"bin_upper\\\": 0.36366,\\n        \\\"bin_center\\\": 0.34379,\\n        \\\"mean_calibrated\\\": 0.3569,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.36366,\\n        \\\"bin_upper\\\": 0.4034,\\n        \\\"bin_center\\\": 0.38353,\\n        \\\"mean_calibrated\\\": 0.385767,\\n        \\\"mean_ground_truth\\\": 0.377138,\\n        \\\"count\\\": 3\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.4034,\\n        \\\"bin_upper\\\": 0.44314,\\n        \\\"bin_center\\\": 0.42327,\\n        \\\"mean_calibrated\\\": 0.4095,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.44314,\\n        \\\"bin_upper\\\": 0.48288,\\n        \\\"bin_center\\\": 0.46301,\\n        \\\"mean_calibrated\\\": 0.4588,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.56236,\\n        \\\"bin_upper\\\": 0.6021,\\n        \\\"bin_center\\\": 0.58223,\\n        \\\"mean_calibrated\\\": 0.59395,\\n        \\\"mean_ground_truth\\\": 0.51769,\\n        \\\"count\\\": 2\\n      }\\n    ]\\n  },\\n  {\\n    \\\"method\\\": \\\"B0_raw\\\",\\n    \\\"mae\\\": {\\n      \\\"value\\\": 0.107405,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.105839,\\n        \\\"ci_lower\\\": 0.033876,\\n        \\\"ci_upper\\\": 0.194117\\n      }\\n    },\\n    \\\"ece\\\": {\\n      \\\"value\\\": 0.107405,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.105839,\\n        \\\"ci_lower\\\": 0.033876,\\n        \\\"ci_upper\\\": 0.194117\\n      }\\n    },\\n    \\\"mce\\\": 0.212851,\\n    \\\"brier\\\": {\\n      \\\"value\\\": 0.027402,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.027005,\\n        \\\"ci_lower\\\": 0.006219,\\n        \\\"ci_upper\\\": 0.054262\\n      }\\n    },\\n    \\\"coverage_95\\\": 0.6,\\n    \\\"coverage_80\\\": 0.5,\\n    \\\"coverage_50\\\": 0.3,\\n    \\\"sharpness_95\\\": 0.04902043475258992,\\n    \\\"sharpness_80\\\": 0.03207337333223475,\\n    \\\"sharpness_50\\\": 0.01688631677021703,\\n    \\\"kendall_tau\\\": {\\n      \\\"tau\\\": 0.426,\\n      \\\"p_value\\\": 0.119052,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": NaN,\\n        \\\"ci_lower\\\": NaN,\\n        \\\"ci_upper\\\": NaN\\n      }\\n    },\\n    \\\"dose_response\\\": null,\\n    \\\"dose_monotonicity_tau\\\": 0.6172,\\n    \\\"reliability_diagram\\\": [\\n      {\\n        \\\"bin_lower\\\": 0.119788,\\n        \\\"bin_upper\\\": 0.177483,\\n        \\\"bin_center\\\": 0.148635,\\n        \\\"mean_calibrated\\\": 0.119788,\\n        \\\"mean_ground_truth\\\": 0.119788,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.177483,\\n        \\\"bin_upper\\\": 0.235178,\\n        \\\"bin_center\\\": 0.206331,\\n        \\\"mean_calibrated\\\": 0.207733,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.350569,\\n        \\\"bin_upper\\\": 0.408264,\\n        \\\"bin_center\\\": 0.379416,\\n        \\\"mean_calibrated\\\": 0.365807,\\n        \\\"mean_ground_truth\\\": 0.378127,\\n        \\\"count\\\": 4\\n      },\\n\\n\\n... [截断: 输出过长，省略 7948 字符] ...\\n\\n.403322,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.600834,\\n        \\\"bin_upper\\\": 0.654284,\\n        \\\"bin_center\\\": 0.627559,\\n        \\\"mean_calibrated\\\": 0.643915,\\n        \\\"mean_ground_truth\\\": 0.51769,\\n        \\\"count\\\": 2\\n      }\\n    ]\\n  },\\n  {\\n    \\\"method\\\": \\\"B5_emperor_mitigation\\\",\\n    \\\"mae\\\": {\\n      \\\"value\\\": 0.107405,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.105839,\\n        \\\"ci_lower\\\": 0.033876,\\n        \\\"ci_upper\\\": 0.194117\\n      }\\n    },\\n    \\\"ece\\\": {\\n      \\\"value\\\": 0.107405,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.105839,\\n        \\\"ci_lower\\\": 0.033876,\\n        \\\"ci_upper\\\": 0.194117\\n      }\\n    },\\n    \\\"mce\\\": 0.212851,\\n    \\\"brier\\\": {\\n      \\\"value\\\": 0.027402,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.027005,\\n        \\\"ci_lower\\\": 0.006219,\\n        \\\"ci_upper\\\": 0.054262\\n      }\\n    },\\n    \\\"coverage_95\\\": 0.6,\\n    \\\"coverage_80\\\": 0.5,\\n    \\\"coverage_50\\\": 0.3,\\n    \\\"sharpness_95\\\": 0.04868460955269142,\\n    \\\"sharpness_80\\\": 0.03200909780136466,\\n    \\\"sharpness_50\\\": 0.01683093252463986,\\n    \\\"kendall_tau\\\": {\\n      \\\"tau\\\": 0.426,\\n      \\\"p_value\\\": 0.119052,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": NaN,\\n        \\\"ci_lower\\\": NaN,\\n        \\\"ci_upper\\\": NaN\\n      }\\n    },\\n    \\\"dose_response\\\": null,\\n    \\\"dose_monotonicity_tau\\\": 0.5963,\\n    \\\"reliability_diagram\\\": [\\n      {\\n        \\\"bin_lower\\\": 0.119788,\\n        \\\"bin_upper\\\": 0.177483,\\n        \\\"bin_center\\\": 0.148635,\\n        \\\"mean_calibrated\\\": 0.119788,\\n        \\\"mean_ground_truth\\\": 0.119788,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.177483,\\n        \\\"bin_upper\\\": 0.235178,\\n        \\\"bin_center\\\": 0.206331,\\n        \\\"mean_calibrated\\\": 0.207733,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.350569,\\n        \\\"bin_upper\\\": 0.408264,\\n        \\\"bin_center\\\": 0.379416,\\n        \\\"mean_calibrated\\\": 0.365807,\\n        \\\"mean_ground_truth\\\": 0.378127,\\n        \\\"count\\\": 4\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.639045,\\n        \\\"bin_upper\\\": 0.69674,\\n        \\\"bin_center\\\": 0.667892,\\n        \\\"mean_calibrated\\\": 0.662244,\\n        \\\"mean_ground_truth\\\": 0.449393,\\n        \\\"count\\\": 4\\n      }\\n    ]\\n  },\\n  {\\n    \\\"method\\\": \\\"B6_dcr_fuzzy\\\",\\n    \\\"mae\\\": {\\n      \\\"value\\\": 0.106983,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.10539,\\n        \\\"ci_lower\\\": 0.042424,\\n        \\\"ci_upper\\\": 0.170067\\n      }\\n    },\\n    \\\"ece\\\": {\\n      \\\"value\\\": 0.106983,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.10539,\\n        \\\"ci_lower\\\": 0.042424,\\n        \\\"ci_upper\\\": 0.170067\\n      }\\n    },\\n    \\\"mce\\\": 0.192275,\\n    \\\"brier\\\": {\\n      \\\"value\\\": 0.022036,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": 0.021771,\\n        \\\"ci_lower\\\": 0.007475,\\n        \\\"ci_upper\\\": 0.037514\\n      }\\n    },\\n    \\\"coverage_95\\\": 0.5,\\n    \\\"coverage_80\\\": 0.4,\\n    \\\"coverage_50\\\": 0.3,\\n    \\\"sharpness_95\\\": 0.039029725429361936,\\n    \\\"sharpness_80\\\": 0.025616958782931264,\\n    \\\"sharpness_50\\\": 0.013471809964498435,\\n    \\\"kendall_tau\\\": {\\n      \\\"tau\\\": 0.3651,\\n      \\\"p_value\\\": 0.181521,\\n      \\\"bootstrap_95ci\\\": {\\n        \\\"mean\\\": NaN,\\n        \\\"ci_lower\\\": NaN,\\n        \\\"ci_upper\\\": NaN\\n      }\\n    },\\n    \\\"dose_response\\\": null,\\n    \\\"dose_monotonicity_tau\\\": 0.6172,\\n    \\\"reliability_diagram\\\": [\\n      {\\n        \\\"bin_lower\\\": 0.119788,\\n        \\\"bin_upper\\\": 0.173237,\\n        \\\"bin_center\\\": 0.146513,\\n        \\\"mean_calibrated\\\": 0.119788,\\n        \\\"mean_ground_truth\\\": 0.119788,\\n        \\\"count\\\": 1\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.173237,\\n        \\\"bin_upper\\\": 0.226687,\\n        \\\"bin_center\\\": 0.199962,\\n        \\\"mean_calibrated\\\": 0.188822,\\n        \\\"mean_ground_truth\\\": 0.381097,\\n        \\\"count\\\": 4\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.333586,\\n        \\\"bin_upper\\\": 0.387036,\\n        \\\"bin_center\\\": 0.360311,\\n        \\\"mean_calibrated\\\": 0.365934,\\n        \\\"mean_ground_truth\\\": 0.377138,\\n        \\\"count\\\": 3\\n      },\\n      {\\n        \\\"bin_lower\\\": 0.600834,\\n        \\\"bin_upper\\\": 0.654284,\\n        \\\"bin_center\\\": 0.627559,\\n        \\\"mean_calibrated\\\": 0.651251,\\n        \\\"mean_ground_truth\\\": 0.51769,\\n        \\\"count\\\": 2\\n      }\\n    ]\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "results_pooled_gsm8k_v1 evaluation data:\n- IRT_4pl_gamma: MAE = 0.064738\n- B0_raw: MAE = 0.107405\n\nIRT is BETTER than raw (0.065 vs 0.107), ratio = 0.065/0.107 = 0.60, or 0.107/0.065 = 1.65×.\n\nNot 11 either.\n\nLet me look at the scale_stratified results more carefully, or the \"oracle\" results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "e5702aec-91fc-4816-95c7-bc4bf5244134",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SHDTjknb3MTDTXwaYfn9qe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5035,
+                "cache_read_input_tokens": 117549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5035
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MYQQRQjUQm6dkk6Gi83E1K",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/autodl-tmp/exp006 -type d -name \"*oracle*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "cdd8bc7b-06f9-45ee-b0a5-7ccb8b466d69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SHDTjknb3MTDTXwaYfn9qe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5035,
+                "cache_read_input_tokens": 117549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5035
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-17T16:41:35.743Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MYQQRQjUQm6dkk6Gi83E1K",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/oracle_exposure_ablation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "bcc6d42e-3349-4a50-83dd-ff9a2dfe8c7e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/oracle_exposure_ablation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/oracle_exposure_ablation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The oracle exposure ablation only has MMLU and ARC, not GSM8K. The oracle GSM8K results from D035/D037 must have been stored elsewhere (maybe deleted or in a different location).\n\nLet me take a step back. I've been searching for a specific computation, but the evidence suggests this might have been a hand-calculated or LLM-generated number. Looking at the evidence:\n\n1. `paper_provenance.yaml` entry C094: `overcorrection_ratio_gsm8k = 11` (citing exp-006)\n2. `writing_plan.yaml`: \"GSM8K overcorrection 11×\"  \n\n\n3. `coverage_audit_0516.md`: \"MAE 11× worse than raw\"\n4. The paper text: \"the model corrects 11 units of noise for every 1 unit of genuine contamination effect\"\n\nThere's a discrepancy here—the coverage audit claims MAE is 11× worse than raw, but the actual data shows N=24 cal_mae is 27× better than raw, not worse. The paper's description about correcting 11 units of noise per 1 unit of contamination effect doesn't align with the GSM8K statistics I'm seeing (γ_mean = 0.0639, γ_sd = 0.2), so I need to figure out where this 11× figure actually comes from.\n\nLooking at the variance decomposition, the ratio of noise to genuine effect works out to roughly 12 when I compute (σ/μ)² using the standard deviation and mean, which is close to the stated 11 but suggests either rounding or a slightly different calculation method was used in the original computation. I'm working through different interpretations of what that ratio of 11 or 12 represents. The most straightforward reading seems to be the ratio of the standard deviation to the mean squared, (γ_sd/γ_mean)² ≈ 12, which would capture the relative uncertainty in the correction term. The coefficient of variation squared—(0.2208/0.0639)² ≈ 11.94, floored to 11—likely explains the exact multiplier, though I can't be entirely certain since the paper may have generated this value without rigorous verification, as the review notes suggest.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "ad66b6fd-6d18-4c2d-8bc5-cb64ef62d569",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S38kKEmxCRpeg6yCmDHyqB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 342,
+                "cache_read_input_tokens": 122584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 342
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕。以下是结论。\n\n## 11× overcorrection ratio 的来源分析\n\n### 论文原文 (results.tex:64)\n> \"the GSM8K overcorrection ratio is 11×: the model corrects 11 units of noise for every 1 unit of genuine contamination effect\"\n\n### 溯源数据\n来自 **exp-006 pooled IRT 2PL+γ N=24 GSM8K** (`pooled_irt_2pl_gamma_n16_fixed/gsm8k/irt_results.json`):\n- γ_mean = **0.0639**\n- γ_sd = **0.2208**\n- CI = [-0.3636, 0.4902] (非显著)\n\n### 最可能的计算公式\n\n**噪声-信号方差比 (γ_sd / γ_mean)²**:\n\n```\n(0.2208 / 0.0639)² = 3.456² = 11.94 → floor → 11\n```\n\n语义：γ 后验中，方差（噪声）是均值平方（信号）的 ~12 倍。也就是说模型每修正 1 单位真实污染效应，就同时修正了 ~11 单位噪声。因为 γ 不显著（CI 跨零），绝大部分\"校正\"是在修正随机波动。\n\n### 关键问题\n\n1. **没有显式代码计算这个指标** — 代码库中无 `overcorrection_ratio` 函数，也无任何 Python 脚本输出这个数字\n2. **paper_provenance.yaml (C094)** 只记录 `metric: overcorrection_ratio_gsm8k, value: 11`，没有记录计算公式\n3. **coverage_audit_0516.md** 中称 \"MAE 11× worse than raw\"，但实际数据中 GSM8K cal_MAE (0.006) **远优于** raw_MAE (0.169)，这个描述与数据不匹配\n4. (0.2208/0.0639)² = 11.94 取整到 11 而非 12，四舍五入不一致\n\n### 建议\n\n这个数字大概率是 Paper Agent 写作时手算或近似产出，没有 rigorous computation pipeline。审稿人回复时应：\n- 明确给出公式：overcorrection ratio = Var(γ) / E[γ]² = σ²/μ²\n- 用精确数字：(0.2208²)/(0.0639²) = **11.9**\n- 或干脆改用更直观的指标：γ 的 95% CI 跨零且宽度是均值的 13.4 倍"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "uuid": "1e9087dd-7256-406b-80b9-c620096b160f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S38kKEmxCRpeg6yCmDHyqB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 342,
+                "cache_read_input_tokens": 122584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 342
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕。以下是结论。\n\n## 11× overcorrection ratio 的来源分析\n\n### 论文原文 (results.tex:64)\n> \"the GSM8K overcorrection ratio is 11×: the model corrects 11 units of noise for every 1 unit of genuine contamination effect\"\n\n### 溯源数据\n来自 **exp-006 pooled IRT 2PL+γ N=24 GSM8K** (`pooled_irt_2pl_gamma_n16_fixed/gsm8k/irt_results.json`):\n- γ_mean = **0.0639**\n- γ_sd = **0.2208**\n- CI = [-0.3636, 0.4902] (非显著)\n\n### 最可能的计算公式\n\n**噪声-信号方差比 (γ_sd / γ_mean)²**:\n\n```\n(0.2208 / 0.0639)² = 3.456² = 11.94 → floor → 11\n```\n\n语义：γ 后验中，方差（噪声）是均值平方（信号）的 ~12 倍。也就是说模型每修正 1 单位真实污染效应，就同时修正了 ~11 单位噪声。因为 γ 不显著（CI 跨零），绝大部分\"校正\"是在修正随机波动。\n\n### 关键问题\n\n1. **没有显式代码计算这个指标** — 代码库中无 `overcorrection_ratio` 函数，也无任何 Python 脚本输出这个数字\n2. **paper_provenance.yaml (C094)** 只记录 `metric: overcorrection_ratio_gsm8k, value: 11`，没有记录计算公式\n3. **coverage_audit_0516.md** 中称 \"MAE 11× worse than raw\"，但实际数据中 GSM8K cal_MAE (0.006) **远优于** raw_MAE (0.169)，这个描述与数据不匹配\n4. (0.2208/0.0639)² = 11.94 取整到 11 而非 12，四舍五入不一致\n\n### 建议\n\n这个数字大概率是 Paper Agent 写作时手算或近似产出，没有 rigorous computation pipeline。审稿人回复时应：\n- 明确给出公式：overcorrection ratio = Var(γ) / E[γ]² = σ²/μ²\n- 用精确数字：(0.2208²)/(0.0639²) = **11.9**\n- 或干脆改用更直观的指标：γ 的 95% CI 跨零且宽度是均值的 13.4 倍"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 488555,
+            "duration_api_ms": 480036,
+            "num_turns": 56,
+            "stop_reason": "end_turn",
+            "session_id": "f33da877-c214-47cb-a6a4-231d22ceb67c",
+            "total_cost_usd": 2.4650232499999998,
+            "usage": {
+              "input_tokens": 39,
+              "cache_creation_input_tokens": 111085,
+              "cache_read_input_tokens": 2417976,
+              "output_tokens": 22349,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 111085,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2214,
+                  "cache_read_input_tokens": 122584,
+                  "cache_creation_input_tokens": 342,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 342
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2744,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0028339999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 39,
+                "outputTokens": 22349,
+                "cacheReadInputTokens": 2417976,
+                "cacheCreationInputTokens": 111085,
+                "webSearchRequests": 0,
+                "costUSD": 2.4621892499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e56495bd-f42c-40ad-889d-ef9bb93a5769"
+          },
+          "id": "event-000144"
+        }
+      ]
+    }
+  ]
+}

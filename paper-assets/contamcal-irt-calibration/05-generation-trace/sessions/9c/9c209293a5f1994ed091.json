@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c209293a5f1994ed091",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 004 fisher heatmap w4",
+  "task_key": "worker_diagnose_exp_004_fisher_heatmap_w4_20260516T204303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_004_fisher_heatmap_w4_20260516T204303_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "cc76d4d2050599dca81ec8ec6bbff33e6f058e25cdde206fce1f10651c228b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：exp_004_fisher_heatmap_w4 失败（部分完成）。**\n\n- **完成数**：7/18 conditions\n- **失败点**：`arc_N16` 的 200 次 rep 全部跑完，但写结果文件时报 `OSError: [Errno 28] No space left on device`\n- **根因**：磁盘满（写入时刻满，现在已恢复到 79% / 37GB 可用——可能有临时文件被清理了）\n\n**已完成的 conditions**：\n| Benchmark | N=5 | N=10 | N=16 |\n|-----------|-----|------|------|\n| mmlu | ✓ | ✓ | ✓ |\n| gsm8k | ✓ | ✓ | ✗ |\n| arc | ✓ | ✓ | ✗ |\n\n**缺失 11 个**：gsm8k_N16, arc_N16, 以及所有 N=20/N=30/N=50（如果预期 6 个 N 值的话）。\n\n实际看代码预期的 N 值列表才能确认是 18 还是其他数目，但至少 gsm8k_N16 和 arc_N16 未产出，且 N>16 的全部未运行。进程已终止，当前磁盘空间恢复，可以安全重跑缺失 conditions。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-004-fisher-heatmap-w4.md"
+}

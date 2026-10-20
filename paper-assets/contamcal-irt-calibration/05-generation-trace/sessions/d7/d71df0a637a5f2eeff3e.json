@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d71df0a637a5f2eeff3e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 05B d000 s123 aligned",
+  "task_key": "worker_analysis_exp_001_eval_05B_d000_s123_aligned_20260515T102545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_05B_d000_s123_aligned_20260515T102545_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "47a44f3c608edbf80daf4860a1390cd4aee3a261fb9632f9a2e3ac171db076a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总如下：\n\n## 结果 (Qwen2.5-0.5B, d000, s123, aligned)\n- MMLU: 42.16%\n- GSM8K: 34.12%\n- ARC-Challenge: 49.74%\n- HumanEval: 10.37%\n\n## 对比\n\n| Benchmark | d000_s123 | d000_s42 | d100_s123 | Δ(s123 vs s42) | Δ(d000 vs d100, s123) |\n|-----------|-----------|----------|-----------|-----------------|----------------------|\n| MMLU | 42.16% | 39.79% | 30.58% | +2.37 | +11.58 |\n| GSM8K | 34.12% | 36.92% | 37.98% | -2.80 | -3.87 |\n| ARC-Challenge | 49.74% | 46.93% | 36.69% | +2.81 | +13.05 |\n| HumanEval | 10.37% | 10.98% | 10.37% | -0.61 | ±0.00 |\n\n## 结论\n**success** — eval 正常完成，分数合理。\n\n- seed 间差异（s123 vs s42）在 ±3pp 以内，跨 seed 稳定性可接受\n- d000 vs d100 在 MMLU 和 ARC 上差距大（+11~13pp），符合预期：0% contamination 的 0.5B 模型 MC 能力显著弱于 100% contamination 模型，但 d100 的 GSM8K 反而更高（+3.87pp），可能因为 GSM8K contamination 训练数据直接包含了正确推理路径\n- HumanEval pass@1 ~10% 在三组间几乎无变化，说明 contamination 对代码生成无影响（符合预期，contamination 数据不含 code）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-05b-d000-s123-aligned.md"
+}

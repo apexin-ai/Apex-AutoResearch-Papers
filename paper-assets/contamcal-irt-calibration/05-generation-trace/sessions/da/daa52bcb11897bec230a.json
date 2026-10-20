@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa52bcb11897bec230a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status and submit ready",
+  "task_key": "worker_ops_gpu-status-and-submit-ready_20260515T052650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-and-submit-ready_20260515T052650_result.json",
+    "occurrence": 1,
+    "bytes": 1839,
+    "sha256": "e141857861197a6585760e0cc74f16fd56dbadcab1c12eb5d3e4558897e891a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用状态汇总\n\n### GPU 占用情况\n\n| GPU | PID | 进程 | 显存占用 | GPU-Util | 状态 |\n|-----|-----|------|----------|----------|------|\n| cuda:0 | 498153 | SFT: Qwen2.5-0.5B_d025_s123 | 12462/24564 MiB | 98% | 正常运行 (1h26m) |\n| cuda:1 | 492660 | Eval: 3B_d000_v2_s123_aligned | 8976/24564 MiB | 67% | 正常运行 (2h05m) |\n| cuda:2 | 506625 | Eval: 3B_d100_v2_s123_aligned | 8976/24564 MiB | 62% | 正常运行 (7m) |\n| cuda:3 | 503791 | Eval: 3B_d025_v2_aligned | 8976/24564 MiB | 66% | 正常运行 (29m) |\n| cuda:4 | 494109 | Eval: 0.5B_d000_s42_v2 (v7) | 3686/24564 MiB | 34% | 正常运行 (1h59m) |\n| **cuda:5** | — | — | **0 MiB** | **0%** | **空闲** |\n\n### 空闲 GPU\n\n**cuda:5** — 完全空闲，可提交实验。\n\n### RUNNING 实验进程状态\n\n| 实验 | 状态 | 备注 |\n|------|------|------|\n| exp_001_sft_05B_d025_s123_v2 (pid=498153) | ✅ 存活 | GPU 0, SFT 训练中 |\n| exp_001_eval_3B_d000_v2_s123_aligned (pid=492660) | ✅ 存活 | GPU 1 |\n| exp_001_eval_3B_d100_v2_s123_aligned (pid=506625) | ✅ 存活 | GPU 2 |\n| exp_001_eval_3B_d025_v2_aligned (pid=503791) | ✅ 存活 | GPU 3 |\n| exp_001_eval_05B_d000_s42_v7 (pid=494109) | ✅ 存活 | GPU 4 |\n\n### CPU 实验进程状态\n\n| 实验 | 状态 | 备注 |\n|------|------|------|\n| exp_004_sim_sweep_v5 (pid=652931) | ❌ **进程不存在** | 已退出，需检查是完成还是异常 |\n| exp006-s1only-gsm8k-2pl (pid=496852) | ✅ 存活 | 运行 1h39m, IRT 2PL+gamma, 4 chains |\n\n### 注意事项\n\n- 有 4 个 defunct 僵尸进程 (contam_irt_4pl_*, pid 452486-452491)，不占资源但建议清理\n- 有 1 个旧的 defunct python 进程 (pid=318424)\n- exp_004_sim_sweep_v5 (pid=652931) 进程已不存在，需要检查日志确认是正常完成还是异常退出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-submit-ready.md"
+}

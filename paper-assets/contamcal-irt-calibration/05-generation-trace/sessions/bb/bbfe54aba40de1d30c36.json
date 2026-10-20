@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbfe54aba40de1d30c36",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis parametric dr fitting v2",
+  "task_key": "worker_analysis_parametric-dr-fitting-v2_20260521T162436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_parametric-dr-fitting-v2_20260521T162436_result.json",
+    "occurrence": 1,
+    "bytes": 2629,
+    "sha256": "a0208c681a46bb8476cdb60ba9676f12d9d698a6869419b78a84bb8b3b2cc280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plot 在服务器 `/root/contamcal-irt-calibration/artifacts/parametric_dr_fitting/dr_model_selection_fits.{png,pdf}`。\n\n## AICc Model Selection Summary\n\n| Family | Constant | Linear | Quadratic | Hill | Best → Classification | Alg1 | Match |\n|--------|----------|--------|-----------|------|-----------------------|------|-------|\n| **Phi-4** | w=0.008 | w=0.304 | w=0.112 | **w=0.575** | Hill → **Benefit** | Immune | N |\n| **Qwen-14B** | w=0.000 | w=0.307 | w=0.142 | **w=0.551** | Hill → **Collapse** | Collapse | **Y** |\n| **Qwen-7B** | w=0.159 | w=0.041 | w=0.031 | **w=0.768** | Hill → **Collapse** | V-recovery | N |\n| **Gemma-2** | **w=0.386** | w=0.312 | w=0.187 | w=0.115 | Constant → **Immune** | Benefit | N |\n| **OLMo-2** | **w=0.620** | w=0.126 | w=0.015 | w=0.239 | Constant → **Immune** | Benefit | N |\n\n**Strict consistency: 1/5. Parsimony (dAICc<2) consistency: 1/5.**\n\n## Best Model Parameters (95% CI)\n\n| Family | Model | Key Params | 95% CI |\n|--------|-------|------------|--------|\n| Phi-4 | Hill | Emax=+2.43, EC50=1.00 | Emax=[-2.01, 6.88] (crosses 0) |\n| Qwen-14B | Hill | Emax=−43.19, EC50=1.71 | Emax=[-119.9, 33.5] (wide, but direction clear) |\n| Qwen-7B | Hill | Emax=−1.65, EC50=0.001 | Emax=[-2.42, -0.89] (significant, step-function decline) |\n| Gemma-2 | Constant | c=65.25 | c=[64.32, 66.19] |\n| OLMo-2 | Constant | c=55.93 | c=[55.54, 56.32] |\n\n## Discrepancy Analysis\n\n1. **Phi-4** (AICc: Benefit, Alg1: Immune): +1.17pp increase across full dose range. Hill beats Constant (dAICc=8.5), but Emax CI crosses 0. Effect is statistically detectable but practically marginal — Alg1's \"Immune\" label uses an implicit effect-size threshold.\n\n2. **Qwen-7B** (AICc: Collapse, Alg1: V-recovery): Hill fits a rapid step-down (EC50≈0, Emax=−1.65) — essentially \"any contamination causes −1.65pp, then flat.\" Quadratic (which captures V-shape) has dAICc=6.4 — AICc strongly penalizes the extra parameter. The V-recovery in mean trajectory (64.29→65.40) is not statistically separable from noise given cross-seed variance.\n\n3. **Gemma-2/OLMo-2** (AICc: Immune, Alg1: Benefit): No model outperforms Constant. Linear slopes are 1.94 and 0.07 with CIs crossing 0. Algorithm 1's \"Benefit\" classification is not supported by formal model selection.\n\n## 产出文件\n\n- 服务器: `/root/contamcal-irt-calibration/artifacts/parametric_dr_fitting/` (CSV, JSON, PDF, PNG)\n- 脚本: `/root/contamcal-irt-calibration/scripts/parametric_dr_model_selection.py`\n- 已注册: `aic_model_selection_summary.csv` (art_20260521_7181a2)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-parametric-dr-fitting-v2.md"
+}

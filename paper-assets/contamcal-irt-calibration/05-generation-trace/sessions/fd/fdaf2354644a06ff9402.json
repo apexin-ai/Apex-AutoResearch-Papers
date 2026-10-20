@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdaf2354644a06ff9402",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd full status update",
+  "task_key": "worker_ssh_westd-full-status-update_20260519T052220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-full-status-update_20260519T052220_result.json",
+    "occurrence": 1,
+    "bytes": 2365,
+    "sha256": "3ea21257406a11dcd7f38a0c5c572025e407c2c342e9de0785bb132410df1530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 Full Status Report\n\n**Server verified**: 4× NVIDIA RTX PRO 6000 Black, 97887 MiB each ✓\n\n---\n\n### GPU Overview (nvidia-smi)\n\n| GPU | Memory | Util | Process PID | Status |\n|-----|--------|------|-------------|--------|\n| 0 | 0 / 97887 MiB | 0% | — | **IDLE** |\n| 1 | 52087 / 97887 MiB | 79% | 110298 | Gemma d100 |\n| 2 | 37195 / 97887 MiB | 62% | 106255 | OLMo-2 d005 v2 |\n| 3 | 56709 / 97887 MiB | 60% | 103574 | Phi-4 d050 |\n\n---\n\n### 1. OLMo-2 d025 (cuda:0, PID 102091) — COMPLETED ✓\n\n- **Process**: Dead (exited cleanly)\n- **.done sentinel**: Exists (May 19 13:18)\n- **Final metrics**:\n  - Steps: **3384/3384** (100%)\n  - train_loss: **0.9582**\n  - mean_token_accuracy: **0.7732**\n  - entropy: 0.9835\n  - Runtime: **7420s (~2h04m)**\n  - EXIT_CODE=0\n\n---\n\n### 2. OLMo-2 d005 v2 (cuda:2, PID 106250) — RUNNING\n\n- **Process**: Alive (wrapper 106250, GPU child 106255)\n- **Progress**: **2459/3177 (77.4%)**\n- Latest loss: 0.8955, accuracy: 0.778\n- **ETA**: ~25 min remaining (~2.1s/it)\n\n---\n\n### 3. Phi-4 d050 (cuda:3, PID 103574) — RUNNING\n\n- **Process**: Alive (main + 32 torch compile workers)\n- **Progress**: **2214/3642 (60.8%)**\n- Latest loss: 1.149, accuracy: 0.735\n- **ETA**: ~1h07m remaining (~2.8s/it)\n\n---\n\n### 4. Gemma d100 (cuda:1, PID 110293) — RUNNING (just started)\n\n- **Process**: Alive (wrapper 110293, GPU child 110298)\n- **Progress**: **50/4159 (1.2%)**\n- Latest loss: 2.527, accuracy: 0.487 (warmup phase)\n- **ETA**: ~3h05m remaining (~2.7s/it)\n\n---\n\n### 5. Gemma d050 — COMPLETED ✓ (previously finished)\n\n- **.done sentinel**: Exists (May 19 13:11)\n- **Final metrics**:\n  - Steps: **3642/3642** (100%)\n  - train_loss: **1.260**\n  - mean_token_accuracy: **0.7239**\n  - entropy: 1.155\n  - Runtime: **10400s (~2h53m)**\n  - EXIT_CODE=0\n\n---\n\n### Summary\n\n| Experiment | Status | Progress | Loss | Accuracy |\n|-----------|--------|----------|------|----------|\n| OLMo-2 d025 | **DONE** | 100% | 0.958 | 0.773 |\n| Gemma d050 | **DONE** | 100% | 1.260 | 0.724 |\n| OLMo-2 d005 v2 | Running | 77% | 0.896 | 0.778 |\n| Phi-4 d050 | Running | 61% | 1.149 | 0.735 |\n| Gemma d100 | Running | 1% | 2.527 | 0.487 |\n\n**GPU 0 is now free.** OLMo-2 d005 v2 should finish next (~25 min), then Phi-4 d050 (~1h), then Gemma d100 (~3h)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-full-status-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0a3556b98907a10c828",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh verify phi4 eval alive",
+  "task_key": "worker_ssh_verify-phi4-eval-alive_20260519T070708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-phi4-eval-alive_20260519T070708_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "9f9ac59a604ab2b6d699de6402437cc74adf4e405ed46f280a0b0a1659364295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **PID 118080**: 存活，cuda:3 上运行中\n- **cuda:3 VRAM**: 31706 MiB / 97887 MiB，GPU-Util 99%，功耗 602W/600W（满载）\n- **当前进度**: MMLU eval，6026/14042（约 43%），速度 ~9 it/s，预计剩余 ~15 分钟\n\n日志显示正在跑 MMLU benchmark，尚未看到 dosage 级别信息（d005/d025/d050）。这是单个 benchmark 内的进度，MMLU 完成后会继续下一个 dosage 或 benchmark。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-phi4-eval-alive.md"
+}

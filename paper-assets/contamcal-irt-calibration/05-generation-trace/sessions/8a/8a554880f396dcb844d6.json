@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a554880f396dcb844d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "prep exp008 data setup",
+  "task_key": "worker_prep_exp008_data_setup_20260514T151351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp008_data_setup_20260514T151351_result.json",
+    "occurrence": 1,
+    "bytes": 3294,
+    "sha256": "80d207dadf811a3264f07c731e490414f16271b8f4512c59f2e5cd50027f8612"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。\n\n---\n\n## 产出汇总\n\n### 1. Symlink 设置 ✅\n\n6 个 symlinks 全部创建成功：\n- `sft_clean/{mmlu,gsm8k,arc_challenge}/` → exp-002 `d000_s42` signals\n- `sft_contam/{mmlu,gsm8k,arc_challenge}/` → exp-002 `d005_s42` signals\n\n### 2. 数据格式验证 ✅\n\n| Benchmark | Records | 格式 |\n|-----------|---------|------|\n| mmlu | 14,042 | ✓ |\n| gsm8k | 1,319 | ✓ |\n| arc_challenge | 1,172 | ✓ |\n\n每条记录字段：`index, benchmark, s1_embedding, s2_minkpp, s3_constat (null), s4_selfcritique`。s3_constat 为 null（3sig 模式），与 run_exp008.sh 的 `SIGNALS=\"embedding minkpp selfcritique\"` 一致。\n\n### 3. base + rl_aligned Signal 计算命令\n\n两个 regime 的目录尚不存在，需要计算。模型已就位。\n\n**base regime（3 benchmarks）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=<GPU_ID>\n\nfor bench in mmlu gsm8k arc_challenge; do\n  mkdir -p /root/autodl-tmp/exp008/signals/base/${bench}\n  python /root/contamcal-irt-calibration/exp002/compute_signals.py \\\n    --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n    --benchmark ${bench} \\\n    --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n    --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl \\\n    --output-dir /root/autodl-tmp/exp008/signals/base/${bench} \\\n    --signals embedding minkpp selfcritique\ndone\n```\n\n**rl_aligned regime（3 benchmarks）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=<GPU_ID>\n\nfor bench in mmlu gsm8k arc_challenge; do\n  mkdir -p /root/autodl-tmp/exp008/signals/rl_aligned/${bench}\n  python /root/contamcal-irt-calibration/exp002/compute_signals.py \\\n    --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct \\\n    --benchmark ${bench} \\\n    --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n    --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl \\\n    --output-dir /root/autodl-tmp/exp008/signals/rl_aligned/${bench} \\\n    --signals embedding minkpp selfcritique\ndone\n```\n\n或者**一步到位**运行完整 pipeline（会自动跳过已有 sft_clean/sft_contam signals）：\n```bash\nbash /root/contamcal-irt-calibration/exp008/run_exp008.sh <GPU_ID>\n```\n\n### 4. 预计 GPU 时间\n\n从 exp-002 日志（4090D 单卡）：\n- d000（clean adapter，类似 base）：3 benchmarks ~11 min\n- base/rl_aligned 是 full model（无 adapter merge 开销），预计 **~10-15 min/regime**\n- 两个 regime 串行：**~20-30 min**\n- 如分两张卡并行：**~15 min**\n\n### 5. 风险与问题\n\n| 问题 | 状态 |\n|------|------|\n| **所有 6 GPU 被占用** | GPU 2/5 负载最轻（3.7GB），正在跑 exp001 evaluate.py（d100/d025），预计短时间内完成 |\n| **base regime: model=ref-model** | 设计如此——Min-K++ z-score 趋近 0，作为 clean baseline |\n| **C001 约束** | 提交前需 `nvidia-smi` 确认目标 GPU 无 exp008 同类进程 |\n| **run_exp008.sh 完整 pipeline** | 包含 Step 2 signal survival analysis（`run_signal_survival.py` 已就位），signal 计算完成后可直接跑 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp008-data-setup.md"
+}

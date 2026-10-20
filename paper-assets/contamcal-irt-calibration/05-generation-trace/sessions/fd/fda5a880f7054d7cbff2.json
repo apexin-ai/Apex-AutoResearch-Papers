@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda5a880f7054d7cbff2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops investigate s42 rerun pids",
+  "task_key": "worker_ops_investigate_s42_rerun_pids_20260514T022317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate_s42_rerun_pids_20260514T022317_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "4fff1dbc22671ebe8242b312d3b57c26a905cd08a00f62a09808453018f46b6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态\n- PID 257853: **已死**\n- PID 257034: **已死**\n\n## 决策执行\n- **两个都死 → 需重跑**\n\n## 输出目录\n`/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/` — **空目录**（仅 `.` 和 `..`，无产出文件）\n\n## GPU 状态\n当前 GPU 上运行的进程（均非 s42 rerun）：\n| PID | 显存占用 |\n|--------|----------|\n| 251924 | 10046 MiB |\n| 249294 | 8948 MiB |\n| 255322 | 3658 MiB |\n| 242591 | 8948 MiB |\n| 243300 | 5820 MiB |\n| 250610 | 5820 MiB |\n\ns42 rerun 两个进程都已退出且未产出任何结果，需要重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-s42-rerun-pids.md"
+}

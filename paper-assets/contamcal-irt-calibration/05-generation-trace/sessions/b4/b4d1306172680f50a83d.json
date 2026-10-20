@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4d1306172680f50a83d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 1 5B d025 aligned",
+  "task_key": "worker_eval_1_5B_d025_aligned_20260514T182349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_5B_d025_aligned_20260514T182349_result.json",
+    "occurrence": 1,
+    "bytes": 77,
+    "sha256": "d38806be0127bf92c0b6ec85d1b78eaa6d2622492754ae425d5d649fc06b5810"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已处理，eval 任务正常运行中，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-5b-d025-aligned.md"
+}

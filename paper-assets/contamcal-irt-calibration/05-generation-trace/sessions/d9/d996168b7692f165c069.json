@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d996168b7692f165c069",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 disk cleanup",
+  "task_key": "worker_ops_cqa1-disk-cleanup_20260519T214031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-disk-cleanup_20260519T214031_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "be0449755c913c32ed117ad479f6c3f1689876ae33de16bb9379216e02514db6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K eval (PID 285390) 仍正常运行。\n\n**清理结果：**\n\n| 阶段 | 删除内容 | 释放空间 |\n|------|---------|---------|\n| Phase 1 | `.hf_cache/models--Qwen--Qwen2.5-3B/`, `models--Qwen--Qwen2.5-0.5B/`, `models--sentence-transformers--*` × 2 | ~8GB |\n| Phase 2 | `Llama-3.2-3B_d{000,005,025,100}_s42/merged/` × 4 | ~24GB |\n| Phase 3 | `structfuse/m1_extraction/` | ~13GB |\n| **总计** | | **~45GB** |\n\n**磁盘状态：** 98% (4.7GB free) → **72% (49GB free)**\n\n未删除：所有 eval 结果、所有 lora_adapter、所有基模型（被 adapter_config 引用的路径完整保留）、所有 .log 文件。Llama merged 模型如需要可从 base + adapter 重建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77a4958ab1bdd6164df6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis irt fitting v2",
+  "task_key": "worker_analysis_irt-fitting-v2_20260520T031009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt-fitting-v2_20260520T031009_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "1c7396e51a75a0f64037d84688ee57fe21bff84267c63c5ad454b5c7b3754e7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动并在运行（PID 265452）。\n\n```\nIRT fitting: 已启动\ntmux session: irt_fitting_mmlu_v3\nPID: 265452 (python fit_irt_2pl_gamma.py)\nPyMC: 已安装 (conda base, python 3.12)\n命令: python fit_irt_2pl_gamma.py --benchmark mmlu --data-dir irt_data_v3/ --output-dir results/irt/ --method advi --draws 1000 --seed 42\n预计运行时间: ~30-60min (ADVI, 25×14042)\n监控: tail /root/runs/contamcal-irt-calibration/irt_fitting_mmlu_v3.log\nRegistry: irt_fitting_mmlu_v3 (PREPARING)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-fitting-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f936e16b5d63f2fbf37",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep s123 eval scripts",
+  "task_key": "worker_ops_prep-s123-eval-scripts_20260520T112959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-s123-eval-scripts_20260520T112959_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "61b973623776defb4dbddef12113fc2ddc397d3f8a3156853523c466a3e779a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本全部就绪，语法验证通过。\n\n**脚本汇总**:\n\n| 脚本 | GPU | Base Model | Batch Size |\n|------|-----|-----------|------------|\n| `scripts/eval_gemma2_s123_mmlu.sh` | CUDA:2 | `/root/autodl-tmp/models/gemma-2-9b` | 8 |\n| `scripts/eval_qwen14b_s123_mmlu.sh` | CUDA:2 | `/root/autodl-tmp/models/Qwen2.5-14B` | 4 |\n| `scripts/eval_phi4_s123_mmlu.sh` | CUDA:0 | `/root/autodl-tmp/models/phi-4` | 8 |\n\n**Checkpoint 路径确认** (15/15 全部存在，lora_alpha=32):\n\n- Gemma-2: `gemma-2-9b_d{000,005,025,050,100}_s123/lora_adapter/` ✓\n- Qwen-14B: `Qwen2.5-14B_d{000,005,025,050,100}_s123/lora_adapter/` ✓\n- Phi-4: `phi-4_d{000,005,025,050,100}_s123/lora_adapter/` ✓\n\n**evaluate.py**: md5=`17673bf373f00f83ccc41fc1d355a4cd` ✓（与 OLMo-2 脚本中的 EXPECTED_MD5 一致）\n\nQwen-14B batch_size 降到 4（14B 参数量约为其他 7-9B 模型的 2 倍，防 OOM）。未提交，等 GPU 释放后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-s123-eval-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7c67513c78282206c1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval olmo2 s42 rerun",
+  "task_key": "worker_analysis_eval_olmo2_s42_rerun_20260521T154505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_olmo2_s42_rerun_20260521T154505_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "34245af143aa0897410039a91e6320f6fec4938d66ed3558ddde685777afe13f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/eval_olmo2_s42_rerun_analysis.md`。\n\n## 结果摘要\n\n**d000 MMLU 基线验证通过**：53.79% 精确匹配，确认不是 58.60%。\n\n**ARC**：5 个 dosage 全部与论文值精确匹配（0.00pp 偏差）。\n\n**MMLU 偏差**：\n\n| Dosage | Paper | Rerun | Δ |\n|--------|-------|-------|---|\n| d000 | 53.79 | 53.79 | 0.00 ✅ |\n| d005 | 55.89 | 56.14 | +0.25 ✅ |\n| d025 | 57.73 | 56.17 | **-1.56** ⚠️ |\n| d050 | 57.44 | 57.25 | -0.19 ✅ |\n| d100 | 58.60 | 57.00 | **-1.60** ⚠️ |\n\nd025 和 d100 的 MMLU 偏低 ~1.6pp，可能原因是 evaluate.py 版本差异（rerun 37775 bytes vs reference 37591 bytes），mc_suffix 处理差异只影响 MMLU 不影响 ARC。\n\n**Pattern 分类**：OLMo-2 仍为 **Benefit**，无需修改。rerun MMLU 增幅 3.21pp（paper 4.81pp），ARC 增幅 3.92pp 完全一致。\n\n**建议下一步**：用 37591-byte reference evaluate.py 对 d025/d100 做验证 eval，确认偏差来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-olmo2-s42-rerun.md"
+}

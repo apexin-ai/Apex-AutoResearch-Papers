@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a12b2ebe7bf6f88a5bd8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops signals gap check d000 s42 mmlu",
+  "task_key": "worker_ops_signals-gap-check-d000-s42-mmlu_20260515T182644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_signals-gap-check-d000-s42-mmlu_20260515T182644_result.json",
+    "occurrence": 1,
+    "bytes": 2001,
+    "sha256": "ae2d451a7e159bd1cfcf483dabcec7183425f256ff41b3931daca2e6b2916bca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总所有发现：\n\n## 诊断结果\n\n### 缺失范围\n\n**不仅是 3B d000_s42 的 mmlu**——所有 3B 模型的 mmlu selfcritique 都缺失：\n\n| Model | Dosage | mmlu s4 | mmlu merged | gsm8k s4 | arc s4 |\n|-------|--------|---------|-------------|----------|--------|\n| 0.5B  | all    | ✅ (旧命名) | ✅ | ✅ | ✅ |\n| 1.5B  | all    | ✅ (旧命名) | ✅ | ✅ | ✅ |\n| 3B    | d000   | ❌ | ❌ | ✅ | ✅ |\n| 3B    | d005   | ❌ | ❌ | ❌ | ✅ |\n| 3B    | d025   | ❌ (仅有 s1) | ❌ | ❌ | ❌ |\n\n### 根因\n\n**3B mmlu selfcritique 在运行中崩溃（大概率 OOM），不是设计跳过。**\n\n证据：\n1. **代码无特殊处理**：`s4_selfcritique.py` 对所有 benchmark 逻辑完全一致，没有 mmlu 跳过逻辑\n2. **compute_signals.py 无 try/except**：s4 崩溃会直接杀死整个进程\n3. **规模差异巨大**：mmlu 有 **14,042** 项，gsm8k 仅 1,319，arc 仅 1,172。selfcritique 需要对每项做 `model.generate()` 生成答案再做 critique forward pass，3B 模型处理 14K 项的显存和时间开销约 10 倍于 gsm8k/arc\n4. **时间线佐证**：d000 的 mmlu s2 完成于 00:28，gsm8k s1 直到 01:07 才开始（39 分钟空白），这段时间 s4 被尝试但未产出文件\n5. **渐进退化**：d000 完成了 gsm8k/arc 全部信号，d005 只完成 arc，d025 仅有 mmlu s1——pipeline 被逐步中断\n\n### 需要补算\n\n**是，需要补算。** 3B 的 mmlu selfcritique 缺失会导致：\n- `signals_merged_mmlu.json` 无法生成（merge 需要 ≥2 信号在同一次运行中完成）\n- 下游 RRF 聚合跳过 mmlu\n- 3B 模型的污染检测在 mmlu 上缺少 selfcritique 维度\n\n**补算建议**：\n- 单独运行 `--benchmark mmlu --signal s4`（不需要重算 s1/s2）\n- 降低 batch_size（当前 32 太大，建议 2-4）\n- 运行后再单独做 merge（需要加载已有 s1/s2 结果合并）\n- 3 个 dosage（d000/d005/d025）都需要补"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-signals-gap-check-d000-s42-mmlu.md"
+}

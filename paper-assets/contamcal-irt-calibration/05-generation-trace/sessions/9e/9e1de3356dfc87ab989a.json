@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e1de3356dfc87ab989a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze eval 3B d005 s123 gsm8k",
+  "task_key": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "b7b57c06b271dc3b74ebe42c8a9c7c5ad8c1cd8a002a08ddfc921f1964ab4059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n**结果汇总：**\n- GSM8K exact_match = **63.08%** (832/1319)\n- 运行时间 ~3h，GPU hours 3.25\n- 结果文件：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun/`\n- 之前 d000_s42_para_aligned 报 4.8% 几乎可以确认是 CoT 提取 bug，63% 在 3B 模型 GSM8K 上是合理水平"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-3b-d005-s123-gsm8k.md"
+}

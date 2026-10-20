@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4ce7aa72bbf62ede870b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops registry batch fix and gpu1",
+  "task_key": "worker_ops_registry_batch_fix_and_gpu1_20260514T210615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_batch_fix_and_gpu1_20260514T210615.log",
+    "occurrence": 1,
+    "bytes": 623138,
+    "sha256": "446b49de2d81a7aedc2b71fef90f949f34214872dfbbfdf7b6a8e8788bb7ec14"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 10
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 258,
+      "chunks": [
+        {
+          "path": "4ce7aa72bbf62ede870b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ce7aa72bbf62ede870b-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-registry-batch-fix-and-gpu1.md"
+}

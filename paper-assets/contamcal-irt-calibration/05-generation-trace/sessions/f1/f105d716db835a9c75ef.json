@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f105d716db835a9c75ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp002 signal dryrun",
+  "task_key": "worker_ops_exp002-signal-dryrun_20260514T084100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002-signal-dryrun_20260514T084100_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "52de64feebe81d47e0ad731cdb658fd5435f3c3f84a8a5a67bad4e5ebbb3d16d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报：\n\n## 验证结果：**脚本就绪，可立即运行**\n\n### 1. 脚本\n- `run_signals_05B.sh` ✓ — 完整，3sig 模式跑 embedding/minkpp/selfcritique，遍历 d000/d005/d100 × mmlu/gsm8k/arc_challenge\n- `compute_signals.py` ✓ — 支持 `--dry-run`\n- `aggregate_rrf.py` ✓\n\n### 2. Python 依赖\n- `torch`, `faiss`, `sentence_transformers` ✓ — 均已安装在 `/root/miniconda3/lib/python3.12/site-packages/`\n- sentence-transformers 模型 `all-MiniLM-L6-v2` 和 `all-mpnet-base-v2` 已缓存\n\n### 3. 数据文件\n| 资源 | 状态 |\n|------|------|\n| Base model `Qwen2.5-0.5B` | ✓ 已缓存 |\n| LoRA d000_s42 | ✓ `adapter_model.safetensors` 存在 |\n| LoRA d005_s42 | ✓ |\n| LoRA d100_s42 | ✓ |\n| SFT data (000/005/100) | ✓ 50000/50826/66533 行 |\n| Benchmark: mmlu | ✓ 已缓存 |\n| Benchmark: gsm8k | ✓ 已缓存 |\n| Benchmark: arc_challenge | ✓ 已缓存 |\n\n### 4. 运行命令\n```bash\nCUDA_VISIBLE_DEVICES=1 bash /root/contamcal-irt-calibration/exp002/run_signals_05B.sh 3sig\n```\n\n### 5. 预计运行时间\n3 dosage × 3 benchmark × 3 signal = 27 个信号计算任务。0.5B 模型较小，单 GPU 估计 **1.5–3 小时**（取决于 selfcritique 的生成量和 embedding 编码速度）。\n\n### 6. 注意事项\n- 运行前需按 C001 约束执行 `nvidia-smi` 确认 cuda:1 无同类进程\n- 脚本首行 `source /etc/network_turbo` 已配置（benchmark 数据虽已缓存，但 HF datasets 仍可能检查更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp002-signal-dryrun.md"
+}

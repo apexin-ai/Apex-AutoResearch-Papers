@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe87cc27f23ccfe86b28",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gsm8k gemma2 format chat",
+  "task_key": "worker_fix_gsm8k-gemma2-format-chat_20260520T063516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gsm8k-gemma2-format-chat_20260520T063516_result.json",
+    "occurrence": 1,
+    "bytes": 1644,
+    "sha256": "3f38d531753f260cdc93c0bc81ec091ccc8f235c37629dc00a9497c64585a1ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gemma-2 d000 GSM8K eval 已启动。PID 303300 在 GPU 3 上，19342 MiB 显存。模型已加载，开始 eval。\n\n## 汇报\n\n### 1. format_as_chat 修复详情\n修复了 4 处 generation-based `format_as_chat` 调用，全部加上 `system_prompt=\"You are a helpful assistant.\"`：\n- **行 321**（evaluate_gsm8k）：GSM8K 8-shot CoT eval\n- **行 377**（evaluate_humaneval）：HumanEval eval\n- **行 554**（evaluate_paraphrased - GSM8K 分支）：paraphrased GSM8K eval\n- **行 586**（evaluate_paraphrased - HumanEval 分支）：paraphrased HumanEval eval\n\n未修改的调用：\n- 行 215, 505（log-prob MCQ 路径，不需要 system_prompt）\n- 行 223, 510（generation MCQ 路径，已有 system_prompt）\n\n`format_as_chat` 函数签名已支持 `system_prompt` 参数（default=None），无需修改函数本身。\n\n### 2. evaluate.py 新 md5\n```\n17673bf373f00f83ccc41fc1d355a4cd\n```\n\n### 3. Smoke test 对比结果\n- Qwen-14B d000 旧版（无 system_prompt）: **60.80%**\n- Qwen-14B d000 新版（加 system_prompt）: **61.18%**\n- 偏差: **+0.38pp**，在 ±1pp 范围内 → **通过**\n\n修复不影响 Qwen 模型数据有效性，仅影响 Gemma-2 的 chat template 格式。\n\n### 4. Gemma-2 重跑状态\n- **PID**: 303300（实际 Python 进程）\n- **GPU**: cuda:3，19342 MiB\n- **脚本**: `run_gemma2_gsm8k_fixed.sh`，顺序跑 d000 → d100\n- **日志**: `/root/contamcal-irt-calibration/gsm8k_gemma2_s42_fixed.log`\n- **输出目录**: `results/gsm8k/gemma2_d000_s42_fixed/` 和 `results/gsm8k/gemma2_d100_s42_fixed/`\n- 模型已加载完成，GSM8K eval 已开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gsm8k-gemma2-format-chat.md"
+}

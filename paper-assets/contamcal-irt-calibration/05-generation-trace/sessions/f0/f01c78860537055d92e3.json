@@ -1,0 +1,689 @@
+{
+  "schema_version": "1.0",
+  "id": "f01c78860537055d92e3",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "code irt exclude items",
+  "task_key": "worker_code_irt-exclude-items_20260516T051153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_irt-exclude-items_20260516T051153.jsonl",
+    "occurrence": 1,
+    "bytes": 36785,
+    "sha256": "5463e534c66860878ef5a9a6e2752074ee5c6754a976dbbba78f9f91f5cd409a"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:15:26.794924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:15:26.800672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/run_pooled*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:15:26.801153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ".venv/lib/python3.14/site-packages/pip/__init__.py\n.venv/lib/python3.14/site-packages/pip/__main__.py\n.venv/lib/python3.14/site-packages/pip/__pip-runner__.py\n.venv/lib/python3.14/site-packages/pip/_internal/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/build_env.py\n.venv/lib/python3.14/site-packages/pip/_internal/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/autocompletion.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/cmdoptions.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main_parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/progress_bars.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/status_codes.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/check.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/completion.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/debug.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/download.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/freeze.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/hash.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/help.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/index.py\n.venv/lib/python3.14/site-p\n…[truncated 5041 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Glob",
+            "elapsed_ms": 6
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:15:26.801452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/run_pooled_irt_n16.sh\nartifacts/run_pooled_4bench_irt.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:15:26.801710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T05:15:26.802161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\n4\t\n5\tRuns:\n6\t  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\n7\t  2. Joint fit (shared gamma) across benchmarks using intersection models\n8\t\n9\tExclusion rules:\n10\t  D044: GSM8K exclude d000 configs (format confound)\n11\t  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\n12\t  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\n13\t  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\n14\t\n15\tExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\n16\t\"\"\"\n17\t\n18\timport json\n19\timport logging\n20\timport os\n21\timport sys\n22\timport time\n23\tfrom pathlib import Path\n24\t\n25\timport numpy as np\n26\t\n27\tsys.path.insert(0, \"/root/contamcal-irt-calibration/exp006\")\n28\tfrom run_irt_calibration import (\n29\t    load_pooled_eval_results,\n30\t    prepare_stan_data,\n31\t    fit_stan_model,\n32\t    check_convergence,\n33\t    posterior_predictive_check,\n34\t    extract_results,\n35\t    _summarize_vector,\n36\t    STAN_MODELS,\n37\t)\n38\t\n39\tlog = logging.getLogger(__name__)\n40\t\n41\tBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc_challenge\", \"humaneval\"]\n42\tSCALES = [\"0.5B\", \"1.5B\", \"3B\"]\n43\tMODEL_TYPE = \"2pl_gamma\"\n44\tSTAN_FILE = STAN_MODELS[MODEL_TYPE]\n45\t\n46\tOUTPUT_DIR = Path(\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\")\n47\tEVAL_DIR = \"/root/autodl-tmp/exp001/eval_results\"\n48\t\n49\t\n50\tdef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\n51\t    \"\"\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\"\"\"\n52\t    keep = np.ones(len(models), dtype=bool)\n53\t    reasons = []\n54\t\n55\t    for i, m in enumerate(models):\n56\t        dirname = m.get(\"dirname\", \"\")\n57\t        scale = m.get(\"scale\", \"\")\n58\t        dosage = m.get(\"dosage\", 0)\n59\t\n60\t        # D046/D047: base pretrained\n61\t        if \"base_pretrained\" in dirname:\n62\t            keep[i] = False\n63\t            reasons.a\n…[truncated 16333 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:15:26.809617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_irt_n16.sh"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:15:26.810101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/bin/bash\n2\tset -euo pipefail\n3\t\n4\t# Pooled IRT (N>=16) across 3 scales × 4 dosages × 2 seeds\n5\t# Benchmarks: ARC + GSM8K, S1-only exposure, MCMC warmup=2000 samples=2000\n6\t\n7\tEVAL_DIR=\"/root/autodl-tmp/exp001/eval_results\"\n8\tCKPT_DIR=\"/root/autodl-tmp/exp001/checkpoints\"\n9\tSIGNALS_DIR=\"/root/autodl-tmp/exp002/signals\"\n10\tOUTPUT_DIR=\"/root/autodl-tmp/exp006/results_pooled_n16\"\n11\tEXP006_DIR=\"/root/contamcal-irt-calibration/exp006\"\n12\tMIN_N=16\n13\t\n14\tSCALES=(\"0.5B\" \"1.5B\" \"3B\")\n15\tDOSAGES=(\"000\" \"005\" \"025\" \"100\")\n16\tSEEDS=(\"42\" \"123\")\n17\tBENCHMARKS=(\"arc_challenge\" \"gsm8k\")\n18\t\n19\tDRY_RUN=\"\"\n20\tFORCE_ORACLE=0\n21\tfor arg in \"$@\"; do\n22\t    case \"$arg\" in\n23\t        --dry-run) DRY_RUN=\"--dry-run\" ;;\n24\t        --oracle)  FORCE_ORACLE=1 ;;\n25\t    esac\n26\tdone\n27\t\n28\techo \"============================================\"\n29\techo \"  Pooled IRT N>=${MIN_N} — Prerequisite Check\"\n30\techo \"============================================\"\n31\techo \"\"\n32\t\n33\t# Phase 1: Check aligned eval availability\n34\tMISSING_EVAL=()\n35\tMISSING_SFT=()\n36\tFOUND=0\n37\t\n38\tfor scale in \"${SCALES[@]}\"; do\n39\t    for dose in \"${DOSAGES[@]}\"; do\n40\t        for seed in \"${SEEDS[@]}\"; do\n41\t            tag=\"${scale} d${dose} s${seed}\"\n42\t            eval_path=\"${EVAL_DIR}/Qwen2.5-${scale}_d${dose}_s${seed}_aligned\"\n43\t            ckpt_path=\"${CKPT_DIR}/Qwen2.5-${scale}_d${dose}_s${seed}\"\n44\t\n45\t            if [ -f \"${eval_path}/eval_results.json\" ]; then\n46\t                printf \"  ✓ %-22s eval DONE\\n\" \"$tag\"\n47\t                FOUND=$((FOUND + 1))\n48\t            elif [ -d \"${ckpt_path}/lora_adapter\" ]; then\n49\t                printf \"  ✗ %-22s SFT done, eval MISSING\\n\" \"$tag\"\n50\t                MISSING_EVAL+=(\"$tag\")\n51\t            else\n52\t                printf \"  ✗ %-22s SFT MISSING\\n\" \"$tag\"\n53\t                MISSING_SFT+=(\"$tag\")\n54\t            fi\n55\t        done\n56\t    done\n57\tdone\n58\t\n59\techo \"\"\n60\techo \"── Summary ──\"\n61\techo \"Aligned evals complete: ${FOUND}/24\"\n62\techo \"SFT done, eval needed\n…[truncated 3423 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:15:26.810567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "import json\nimport logging\nimport os\nimport sys\nimport time\nfrom pathlib import Path",
+              "new_string": "import argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\nfrom pathlib import Path"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:15:26.810928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:15:26.811150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "def run_single_benchmark_fit(bench, data, args_dict):",
+              "new_string": "def filter_items(responses, benchmark, exclude_set=None, min_variance=0.0):\n    \"\"\"Remove items by exclusion list and/or low cross-model variance.\n\n    Returns (filtered_responses, kept_indices, stats_dict).\n    \"\"\"\n    n_models, n_items = responses.shape\n    keep = np.ones(n_items, dtype=bool)\n\n    n_excluded_by_list = 0\n    if exclude_set:\n        for j in range(n_items):\n            if f\"{benchmark}_{j}\" in exclude_set:\n                keep[j] = False\n                n_excluded_by_list += 1\n\n    n_excluded_by_var = 0\n    if min_variance > 0:\n        item_var = np.var(responses, axis=0)\n        low_var = item_var < min_variance\n        low_var &= keep\n        n_excluded_by_var = int(low_var.sum())\n        keep[low_var] = False\n\n    kept_indices = np.where(keep)[0]\n    stats = {\n        \"original\": n_items,\n        \"excluded_by_list\": n_excluded_by_list,\n        \"excluded_by_variance\": n_excluded_by_var,\n        \"remaining\": int(keep.sum()),\n    }\n    return responses[:, keep], kept_indices, stats\n\n\ndef run_single_benchmark_fit(bench, data, args_dict, exclude_set=None, min_item_variance=0.0):"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T05:15:26.816657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 5
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T05:15:26.817011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "offset": "145",
+              "limit": "30"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:15:26.817249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "145\t    return responses[:, keep], kept_indices, stats\n146\t\n147\t\n148\tdef run_single_benchmark_fit(bench, data, args_dict, exclude_set=None, min_item_variance=0.0):\n149\t    \"\"\"Run IRT fit for a single benchmark with exclusions.\"\"\"\n150\t    if bench not in data[\"benchmarks\"]:\n151\t        log.warning(\"Benchmark %s not in data, skipping\", bench)\n152\t        return None\n153\t\n154\t    bd = data[\"benchmarks\"][bench]\n155\t    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\n156\t        data[\"models\"], data[\"dosages\"],\n157\t        bd[\"responses\"], bd[\"valid_mask\"], bench\n158\t    )\n159\t\n160\t    # Apply valid mask\n161\t    if not valid_filt.all():\n162\t        active = valid_filt.astype(bool)\n163\t        models_filt = [m for m, v in zip(models_filt, active) if v]\n164\t        dosages_filt = dosages_filt[active]\n165\t        responses_filt = responses_filt[active]\n166\t\n167\t    n_models = len(models_filt)\n168\t    n_items = bd[\"n_items\"]\n169\t    log.info(\"[%s] N_models=%d, N_items=%d\", bench, n_models, n_items)\n170\t\n171\t    if n_models < 3:\n172\t        log.warning(\"[%s] Too few models (%d), skipping\", bench, n_models)\n173\t        return None\n174\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:15:26.817541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "    n_models = len(models_filt)\n    n_items = bd[\"n_items\"]\n    log.info(\"[%s] N_models=%d, N_items=%d\", bench, n_models, n_items)\n\n    if n_models < 3:\n        log.warning(\"[%s] Too few models (%d), skipping\", bench, n_models)\n        return None\n\n    exposure = build_oracle_exposure(dosages_filt, n_items)\n    stan_data = prepare_stan_data(responses_filt, exposure, MODEL_TYPE)",
+              "new_string": "    n_models = len(models_filt)\n    n_items = bd[\"n_items\"]\n\n    if exclude_set or min_item_variance > 0:\n        responses_filt, kept_indices, fstats = filter_items(\n            responses_filt, bench, exclude_set, min_item_variance\n        )\n        n_items = fstats[\"remaining\"]\n        log.info(\"[%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n                 bench, fstats[\"original\"], n_items,\n                 fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n\n    log.info(\"[%s] N_models=%d, N_items=%d\", bench, n_models, n_items)\n\n    if n_models < 3:\n        log.warning(\"[%s] Too few models (%d), skipping\", bench, n_models)\n        return None\n\n    exposure = build_oracle_exposure(dosages_filt, n_items)\n    stan_data = prepare_stan_data(responses_filt, exposure, MODEL_TYPE)"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:15:26.817900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:15:26.818135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "def run_joint_fit(data, benchmarks_to_include, args_dict):",
+              "new_string": "def run_joint_fit(data, benchmarks_to_include, args_dict, exclude_set=None, min_item_variance=0.0):"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:15:26.825558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 7
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:15:26.825976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "offset": "250",
+              "limit": "30"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T05:15:26.826241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "250\t             len(common_dirnames), len(per_bench_filtered))\n251\t\n252\t    if len(common_dirnames) < 3:\n253\t        log.warning(\"Too few common models (%d) for joint fit\", len(common_dirnames))\n254\t        return None\n255\t\n256\t    # Build concatenated matrices using common model order\n257\t    ref_bench = list(per_bench_filtered.keys())[0]\n258\t    ref_models = per_bench_filtered[ref_bench][\"models\"]\n259\t    ordered_dirnames = [m[\"dirname\"] for m in ref_models if m[\"dirname\"] in common_dirnames]\n260\t\n261\t    all_y = []\n262\t    all_exp = []\n263\t    slices = {}\n264\t    col_offset = 0\n265\t    joint_models = None\n266\t    joint_dosages = None\n267\t\n268\t    for bench, bf in per_bench_filtered.items():\n269\t        dirname_to_idx = {m[\"dirname\"]: i for i, m in enumerate(bf[\"models\"])}\n270\t        indices = [dirname_to_idx[d] for d in ordered_dirnames]\n271\t\n272\t        resp_ordered = bf[\"responses\"][indices]\n273\t        dosages_ordered = bf[\"dosages\"][indices]\n274\t        n_items = bf[\"n_items\"]\n275\t\n276\t        exposure = build_oracle_exposure(dosages_ordered, n_items)\n277\t\n278\t        all_y.append(resp_ordered)\n279\t        all_exp.append(exposure)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T05:15:26.826521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "        resp_ordered = bf[\"responses\"][indices]\n        dosages_ordered = bf[\"dosages\"][indices]\n        n_items = bf[\"n_items\"]\n\n        exposure = build_oracle_exposure(dosages_ordered, n_items)",
+              "new_string": "        resp_ordered = bf[\"responses\"][indices]\n        dosages_ordered = bf[\"dosages\"][indices]\n        n_items = bf[\"n_items\"]\n\n        if exclude_set or min_item_variance > 0:\n            resp_ordered, kept_indices, fstats = filter_items(\n                resp_ordered, bench, exclude_set, min_item_variance\n            )\n            n_items = fstats[\"remaining\"]\n            log.info(\"[joint/%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n                     bench, fstats[\"original\"], n_items,\n                     fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n\n        exposure = build_oracle_exposure(dosages_ordered, n_items)"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T05:15:26.826885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:15:26.827129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "offset": "348",
+              "limit": "130"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:15:26.833529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "348\t        \"benchmark_slices\": {k: list(v) for k, v in slices.items()},\n349\t        \"models\": [{\"dirname\": m[\"dirname\"], \"dosage\": m[\"dosage\"],\n350\t                     \"scale\": m.get(\"scale\", \"\")} for m in joint_models],\n351\t        \"dosages\": joint_dosages.tolist(),\n352\t        \"fit_time_sec\": round(elapsed, 1),\n353\t        \"diagnostics\": diagnostics,\n354\t        \"posterior_predictive\": ppc,\n355\t        \"global_gamma\": results.get(\"gamma\", {}),\n356\t        \"calibrated_scores\": results.get(\"calibrated_scores\", {}),\n357\t        \"calibrated_scores_per_benchmark\": per_bench_cal,\n358\t    }\n359\t\n360\t\n361\tdef main():\n362\t    logging.basicConfig(\n363\t        level=logging.INFO,\n364\t        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n365\t    )\n366\t\n367\t    args_dict = {\n368\t        \"chains\": 4,\n369\t        \"warmup\": 1000,\n370\t        \"samples\": 1000,  # 4000 total draws (4 chains x 1000)\n371\t        \"adapt_delta\": 0.95,\n372\t        \"max_treedepth\": 12,\n373\t        \"seed\": 42,\n374\t        \"parallel_chains\": 1,\n375\t    }\n376\t\n377\t    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n378\t\n379\t    log.info(\"Loading pooled eval results: scales=%s, benchmarks=%s\", SCALES, BENCHMARKS)\n380\t    t0 = time.time()\n381\t    data = load_pooled_eval_results(\n382\t        EVAL_DIR, SCALES, benchmarks=BENCHMARKS, aligned_only=True\n383\t    )\n384\t    log.info(\"Loaded %d models in %.1fs\", len(data[\"models\"]), time.time() - t0)\n385\t    log.info(\"Dosages: %s\", data[\"dosages\"].tolist())\n386\t    log.info(\"Benchmarks: %s\", list(data[\"benchmarks\"].keys()))\n387\t\n388\t    all_results = {\n389\t        \"config\": {\n390\t            \"model_type\": MODEL_TYPE,\n391\t            \"scales\": SCALES,\n392\t            \"benchmarks\": BENCHMARKS,\n393\t            \"exposure\": \"oracle_dosage\",\n394\t            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n395\t                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n396\t            \"stan_config\": args_dict,\n397\t        },\n398\t        \"per_benchmar\n…[truncated 3501 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 6
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T05:15:26.834023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+              "old_string": "def main():\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    args_dict = {\n        \"chains\": 4,\n        \"warmup\": 1000,\n        \"samples\": 1000,  # 4000 total draws (4 chains x 1000)\n        \"adapt_delta\": 0.95,\n        \"max_treedepth\": 12,\n        \"seed\": 42,\n        \"parallel_chains\": 1,\n    }\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    log.info(\"Loading pooled eval results: scales=%s, benchmarks=%s\", SCALES, BENCHMARKS)\n    t0 = time.time()\n    data = load_pooled_eval_results(\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS, aligned_only=True\n    )\n    log.info(\"Loaded %d models in %.1fs\", len(data[\"models\"]), time.time() - t0)\n    log.info(\"Dosages: %s\", data[\"dosages\"].tolist())\n    log.info(\"Benchmarks: %s\", list(data[\"benchmarks\"].keys()))\n\n    all_results = {\n        \"config\": {\n            \"model_type\": MODEL_TYPE,\n            \"scales\": SCALES,\n            \"benchmarks\": BENCHMARKS,\n            \"exposure\": \"oracle_dosage\",\n            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n            \"stan_config\": args_dict,\n        },\n        \"per_benchmark\": {},\n        \"joint_fit\": None,\n    }\n\n    # Phase 1: Per-benchmark IRT fits\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 1: Per-benchmark IRT fits\")\n    log.info(\"=\" * 60)\n\n    for bench in BENCHMARKS:\n        log.info(\"-\" * 40)\n        log.info(\"Fitting %s...\", bench)\n        result = run_single_benchmark_fit(bench, data, args_dict)\n        if result:\n            all_results[\"per_benchmark\"][bench] = result\n            g = result[\"gamma\"]\n            d = result[\"diagnostics\"]\n            log.info(\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n                     bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n                     d.get(\"divergent_count\", 0))\n\n            bench_dir = OUTPUT_DIR / bench\n            bench_dir.mkdir(parents=True, exist_ok=True)\n            with open(bench_dir / \"irt_results.json\", \"w\") as f:\n                json.dump(result, f, indent=2)\n\n    # Phase 2: Joint fit (shared gamma)\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 2: Joint fit (shared gamma across benchmarks)\")\n    log.info(\"=\" * 60)\n\n    included_benchmarks = list(all_results[\"per_benchmark\"].keys())\n    joint_result = run_joint_fit(data, included_benchmarks, args_dict)",
+              "new_string": "def parse_args():\n    parser = argparse.ArgumentParser(\n        description=\"Pooled 4-benchmark IRT analysis (2PL+gamma)\"\n    )\n    parser.add_argument(\n        \"--exclude-items\", type=str, default=None,\n        help=\"JSON file with list of item_ids to exclude (e.g. [\\\"mmlu_42\\\", \\\"mmlu_103\\\"])\",\n    )\n    parser.add_argument(\n        \"--min-item-variance\", type=float, default=0.0,\n        help=\"Exclude items with cross-model variance below this threshold (default: 0, disabled)\",\n    )\n    return parser.parse_args()\n\n\ndef main():\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    args = parse_args()\n\n    exclude_set = None\n    if args.exclude_items:\n        with open(args.exclude_items) as f:\n            exclude_list = json.load(f)\n        exclude_set = set(exclude_list)\n        log.info(\"Loaded %d item_ids to exclude from %s\", len(exclude_set), args.exclude_items)\n\n    args_dict = {\n        \"chains\": 4,\n        \"warmup\": 1000,\n        \"samples\": 1000,\n        \"adapt_delta\": 0.95,\n        \"max_treedepth\": 12,\n        \"seed\": 42,\n        \"parallel_chains\": 1,\n    }\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    log.info(\"Loading pooled eval results: scales=%s, benchmarks=%s\", SCALES, BENCHMARKS)\n    t0 = time.time()\n    data = load_pooled_eval_results(\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS, aligned_only=True\n    )\n    log.info(\"Loaded %d models in %.1fs\", len(data[\"models\"]), time.time() - t0)\n    log.info(\"Dosages: %s\", data[\"dosages\"].tolist())\n    log.info(\"Benchmarks: %s\", list(data[\"benchmarks\"].keys()))\n\n    all_results = {\n        \"config\": {\n            \"model_type\": MODEL_TYPE,\n            \"scales\": SCALES,\n            \"benchmarks\": BENCHMARKS,\n            \"exposure\": \"oracle_dosage\",\n            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n            \"item_filter\": {\n                \"exclude_items_file\": args.exclude_items,\n                \"exclude_items_count\": len(exclude_set) if exclude_set else 0,\n                \"min_item_variance\": args.min_item_variance,\n            },\n            \"stan_config\": args_dict,\n        },\n        \"per_benchmark\": {},\n        \"joint_fit\": None,\n    }\n\n    # Phase 1: Per-benchmark IRT fits\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 1: Per-benchmark IRT fits\")\n    log.info(\"=\" * 60)\n\n    for bench in BENCHMARKS:\n        log.info(\"-\" * 40)\n        log.info(\"Fitting %s...\", bench)\n        result = run_single_benchmark_fit(\n            bench, data, args_dict, exclude_set, args.min_item_variance\n        )\n        if result:\n            all_results[\"per_benchmark\"][bench] = result\n            g = result[\"gamma\"]\n            d = result[\"diagnostics\"]\n            log.info(\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n                     bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n                     d.get(\"divergent_count\", 0))\n\n            bench_dir = OUTPUT_DIR / bench\n            bench_dir.mkdir(parents=True, exist_ok=True)\n            with open(bench_dir / \"irt_results.json\", \"w\") as f:\n                json.dump(result, f, indent=2)\n\n    # Phase 2: Joint fit (shared gamma)\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 2: Joint fit (shared gamma across benchmarks)\")\n    log.info(\"=\" * 60)\n\n    included_benchmarks = list(all_results[\"per_benchmark\"].keys())\n    joint_result = run_joint_fit(\n        data, included_benchmarks, args_dict, exclude_set, args.min_item_variance\n    )"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:15:26.834577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:15:26.834832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T05:15:26.841352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\n4\t\n5\tRuns:\n6\t  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\n7\t  2. Joint fit (shared gamma) across benchmarks using intersection models\n8\t\n9\tExclusion rules:\n10\t  D044: GSM8K exclude d000 configs (format confound)\n11\t  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\n12\t  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\n13\t  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\n14\t\n15\tExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\n16\t\"\"\"\n17\t\n18\timport argparse\n19\timport json\n20\timport logging\n21\timport os\n22\timport sys\n23\timport time\n24\tfrom pathlib import Path\n25\t\n26\timport numpy as np\n27\t\n28\tsys.path.insert(0, \"/root/contamcal-irt-calibration/exp006\")\n29\tfrom run_irt_calibration import (\n30\t    load_pooled_eval_results,\n31\t    prepare_stan_data,\n32\t    fit_stan_model,\n33\t    check_convergence,\n34\t    posterior_predictive_check,\n35\t    extract_results,\n36\t    _summarize_vector,\n37\t    STAN_MODELS,\n38\t)\n39\t\n40\tlog = logging.getLogger(__name__)\n41\t\n42\tBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc_challenge\", \"humaneval\"]\n43\tSCALES = [\"0.5B\", \"1.5B\", \"3B\"]\n44\tMODEL_TYPE = \"2pl_gamma\"\n45\tSTAN_FILE = STAN_MODELS[MODEL_TYPE]\n46\t\n47\tOUTPUT_DIR = Path(\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\")\n48\tEVAL_DIR = \"/root/autodl-tmp/exp001/eval_results\"\n49\t\n50\t\n51\tdef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\n52\t    \"\"\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\"\"\"\n53\t    keep = np.ones(len(models), dtype=bool)\n54\t    reasons = []\n55\t\n56\t    for i, m in enumerate(models):\n57\t        dirname = m.get(\"dirname\", \"\")\n58\t        scale = m.get(\"scale\", \"\")\n59\t        dosage = m.get(\"dosage\", 0)\n60\t\n61\t        # D046/D047: base pretrained\n62\t        if \"base_pretrained\" in dirname:\n63\t            keep[i] = False\n64\t  \n…[truncated 19802 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Read",
+            "elapsed_ms": 6
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:15:26.841790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport ast, sys\nwith open('artifacts/run_pooled_4bench_irt.py') as f:\n    tree = ast.parse(f.read())\nprint('AST parse OK')\n# Check argparse setup\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef) and node.name == 'parse_args':\n        print(f'parse_args defined at line {node.lineno}')\n    if isinstance(node, ast.FunctionDef) and node.name == 'filter_items':\n        print(f'filter_items defined at line {node.lineno}')\n\"\n",
+              "description": "Verify Python AST parses correctly"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:15:26.842057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "AST parse OK\nfilter_items defined at line 115\nparse_args defined at line 361"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T05:15:26.842303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nimport sys, os\n# Inline the filter_items function for testing\ndef filter_items(responses, benchmark, exclude_set=None, min_variance=0.0):\n    n_models, n_items = responses.shape\n    keep = np.ones(n_items, dtype=bool)\n    n_excluded_by_list = 0\n    if exclude_set:\n        for j in range(n_items):\n            if f'{benchmark}_{j}' in exclude_set:\n                keep[j] = False\n                n_excluded_by_list += 1\n    n_excluded_by_var = 0\n    if min_variance > 0:\n        item_var = np.var(responses, axis=0)\n        low_var = item_var < min_variance\n        low_var &= keep\n        n_excluded_by_var = int(low_var.sum())\n        keep[low_var] = False\n    kept_indices = np.where(keep)[0]\n    stats = {\n        'original': n_items,\n        'excluded_by_list': n_excluded_by_list,\n        'excluded_by_variance': n_excluded_by_var,\n        'remaining': int(keep.sum()),\n    }\n    return responses[:, keep], kept_indices, stats\n\n# Test 1: no filtering\nresp = np.array([[1,0,1,0,1],[0,1,0,1,0],[1,1,0,0,1]], dtype=float)\nout, idx, stats = filter_items(resp, 'mmlu')\nassert stats == {'original': 5, 'excluded_by_list': 0, 'excluded_by_variance': 0, 'remaining': 5}\nassert out.shape == (3, 5)\nprint('Test 1 (no filter): PASS')\n\n# Test 2: exclude by list\nexcl = {'mmlu_1', 'mmlu_3'}\nout, idx, stats = filter_items(resp, 'mmlu', exclude_set=excl)\nassert stats['excluded_by_list'] == 2\nassert stats['remaining'] == 3\nassert out.shape == (3, 3)\nassert list(idx) == [0, 2, 4]\nprint('Test 2 (exclude list): PASS')\n\n# Test 3: variance filter (item with all same values -> var=0)\nresp2 = np.array([[1,0,0.5],[1,0,0.6],[1,0,0.4]], dtype=float)\nout, idx, stats = filter_items(resp2, 'test', min_variance=0.001)\nassert stats['excluded_by_variance'] == 2  # col 0 (all 1s) and col 1 (all 0s)\nassert stats['remaining'] == 1\nassert out.shape == (3, 1)\nprint('Test 3 (variance filter): PASS')\n\n# Test 4: both filters together\nresp3 = np.array([[1,0,0.5,0.8],[1,0,0.6,0.2],[1,0,0.4,0.5]], dtype=float)\nexcl3 = {'bench_2'}\nout, idx, stats = filter_items(resp3, 'bench', exclude_set=excl3, min_variance=0.001)\nassert stats['excluded_by_list'] == 1  # item 2\nassert stats['excluded_by_variance'] == 2  # items 0 and 1 (zero variance)\nassert stats['remaining'] == 1  # only item 3 survives\nprint('Test 4 (both filters): PASS')\n\n# Test 5: exclude from wrong benchmark has no effect\nexcl5 = {'gsm8k_0', 'gsm8k_1'}\nout, idx, stats = filter_items(resp, 'mmlu', exclude_set=excl5)\nassert stats['excluded_by_list'] == 0\nassert stats['remaining'] == 5\nprint('Test 5 (wrong benchmark): PASS')\n\nprint('All tests passed.')\n\"\n",
+              "description": "Unit test filter_items function"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T05:15:26.842591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Test 1 (no filter): PASS\nTest 2 (exclude list): PASS\nTest 3 (variance filter): PASS\nTest 4 (both filters): PASS\nTest 5 (wrong benchmark): PASS\nAll tests passed."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T05:15:26.842863+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tests pass. Summary of changes to `artifacts/run_pooled_4bench_irt.py`:\n\n**New CLI args** (via `argparse`):\n- `--exclude-items <path.json>` — JSON file containing a list of `item_id` strings (e.g. `[\"mmlu_42\", \"mmlu_103\"]`). Items matching `{benchmark}_{column_index}` are masked out before Stan fitting.\n- `--min-item-variance <float>` — Items with cross-model variance below this threshold are excluded (default 0.0 = disabled). Addresses the HumanEval-para all-zeros problem.\n\n**New function** `filter_items()` (line 115) — removes items by exclusion set and/or low variance, returns filtered response matrix + stats.\n\n**Integration points**:\n- `run_single_benchmark_fit` — filters items after model exclusions, before exposure matrix construction (line 170)\n- `run_joint_fit` — filters per-benchmark items before concatenation (line 276)\n- `main()` — loads exclude JSON, records filter config in output metadata\n\nBackward compatible: no args = identical behavior to before.\n\nSync to remote needed before running on the server."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_irt-exclude-items_20260516T051153"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/code-irt-exclude-items.md"
+}

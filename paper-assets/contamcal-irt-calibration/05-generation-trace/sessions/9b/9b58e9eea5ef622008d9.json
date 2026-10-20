@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b58e9eea5ef622008d9",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_3_1778739256.md",
+  "task_key": "loop_3_1778739256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778739256.md",
+    "occurrence": 1,
+    "bytes": 6366,
+    "sha256": "0bb7b49fec9904b82dc59af5f6b0481bb47b71532961e47d5c7b67656245da2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T06:13:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cqa1-21977 cuda:0-5（全 6 卡），不允许用其他服务器的 GPU\n- `--gpu N` 参数多次导致 CUDA_VISIBLE_DEVICES 覆盖失效（v1/v2 d005 OOM、d025 OOM 事故），**必须在命令中显式 export CUDA_VISIBLE_DEVICES=N**，不能依赖框架注入\n- 1.5B/3B SFT 必须 batch_size=1, grad_accum=16（batch_size=2 在 24GB 4090D 上 OOM，已有 exp_001_sft_d100_15B 事故）\n- `server: local` 实验（exp_004、exp_005）**禁止 ssh_read_only 查进程**，只能用 Bash `ps -p PID`（两次误标事故教训，Reviewer CRITICAL）\n- `server: local` 实验**不注册 cron**（cron 只支持 SSH）\n- evaluate.py 不支持 --gpu 参数（v1 eval 全部因此崩溃），eval 用 CUDA_VISIBLE_DEVICES 控制 GPU\n- 大文件必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- SSH 前必须 `source /etc/network_turbo`，HF 下载设 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D (24GB each)，cuda:0-5\n- **工作目录**: `/root/contamcal-irt-calibration/` (代码)，`/root/autodl-tmp/exp001/` (数据/checkpoints/eval)\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **模型路径**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/lora_adapter`\n- **Eval 输出**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dosage}_s{seed}/`\n- **Stan model**: `contam_irt_4pl_simple.stan`（D013 确认 Simple IRT，弃用 ME model）\n- **exp-004 sim sweep**: 本地 CPU，PID 340553，log `/tmp/exp004_sweep.log`，27/120 完成\n- **exp-005 v3**: 本地 CPU，PID 339838，log `artifacts/exp005_noise_propagation/exp005_v3.log`\n\n### 3. 📊 当前状态\n**刚完成**: session-start 初始化、读取全量 registry + ROADMAP + memory。上一轮 session 在 ~05:08 UTC 前活跃。\n\n**RUNNING 实验 (GPU)**:\n| exp_id | GPU | 任务 | PID |\n|--------|-----|------|-----|\n| exp_001_sft_d100_15B_v2 | cuda:0 | 1.5B 100% SFT | 251924 |\n| exp_001_eval_05B_d005 | cuda:1 | 0.5B 5% eval | 255322 |\n| exp_001_eval_05B_d000_s42_v5 | cuda:2 | 0.5B 0% s42 eval | 266511 |\n| exp_001_sft_d100_3B | cuda:3 | 3B 100% SFT | 291373 |\n| exp_001_sft_d005_15B | cuda:4 | 1.5B 5% SFT | 271916 |\n| exp_001_sft_d025_05B_v2 | cuda:5 | 0.5B 25% SFT | 299016 |\n| exp_001_eval_05B_d100_v5 | cuda:2 | 0.5B 100% eval | 266780 |\n\n⚠️ cuda:2 有两个 RUNNING eval（v5 d000 和 v5 d100），可能 GPU 冲突——下一个 session 首件事应确认这两个进程是否都还活着，如果一个被 OOM 了需要重跑。\n\n**RUNNING 实验 (CPU 本地)**:\n- exp_004_sim_sweep: PID 340553, 27/120, ETA May 16-17\n- exp_005_noise_prop_v3: PID 339838, ETA ~14:30 UTC today (May 14)\n\n**RUNNING 但可能 stale**:\n- exp_001_eval_3B_d000_s42: PID 249294, cuda:1，提交于 ~08:54 但 last updated 00:55——已跑 7+ 小时，3B eval 正常需 ~4h，可能已完成或挂死，需 SSH 确认\n\n**等待中**: \n- exp_001_eval_05B_d100_v2 是 PENDING 状态（等人工审批），但 v5 已在跑，v2 应该废弃\n- exp-002 signal pipeline 代码、exp-006 baselines 代码尚未完成——这是当前**最高优先级瓶颈**（软件依赖而非算力）\n- 大量 PREPARING 状态的 killed/failed 重试版本（v3/v4/v6 等）可以清理\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 确认 cuda:2 上两个 eval 是否冲突 → 如果一个死了，杀掉后重提\n- **立即**: SSH 确认 exp_001_eval_3B_d000_s42 (PID 249294) 是否还活 → 完成则收 metrics → 释放 cuda:1\n- **exp_005_v3 完成回调** (ETA ~14:30 UTC today) → 分析 noise propagation 结果 → 更新 registry + report.md → 汇报 Director\n- **0.5B d025 SFT 完成** (exp_001_sft_d025_05B_v2, ~53min) → 提交 0.5B d025 eval → 补齐 4 点 dose-response 曲线\n- **0.5B eval 全部完成** (d000/d005/d100 三组) → **立即 spawn Worker 写 exp-002 signal pipeline 代码**（4 signals + dry-run）→ 这是 critical path 瓶颈\n- **exp-002 代码完成** → 跑 0.5B signals on {d000, d005, d100} → exp-003 RRF → exp-006 IRT calibration（**核心结果**）\n- **1.5B d100 SFT 完成** → 提交 1.5B d100 eval → GPU 0 释放给 3B d100（如果 3B d100 还没跑完）\n- **GPU 空出** → 按优先级队列：3B d005 SFT → 1.5B d025 SFT → 3B d025 SFT\n- **exp-004 sim sweep 每 AUC 条件 10 seeds 完成** → 增量分析 γ recovery\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，距今 11 天\n- **核心论文**: ContamCal — post-hoc statistical calibration via contamination-augmented 4PL IRT\n- **3 Core Claims**: (C1) Calibration 4PL IRT recovers true performance, (C2) Signal survival & RRF aggregation, (C3) Identifiability bounds + uncertainty propagation\n- **Critical Path 瓶颈是代码不是算力**: exp-002 signal pipeline 和 exp-006 baselines 代码未写——这两个是论文核心结果的前置依赖，必须最高优先级 spawn CPU Workers 写代码\n- **已知重要发现**: γ 在 AUC=0.55 就可辨识（比预期好很多）；AUC=0.80 CI 反常更宽（可能是 exposure-ability collinearity，需更多 seeds 确认）\n- **D013**: 用 Simple IRT model，弃用 ME model（ME 欠识别）\n- **D015**: C2 \"cliff-like\" claim 需条件限定——无 RL checkpoint 时降级\n- **Table 2 风险**: Related Work 表中 \"RL-robust partial✓\" 唯一证据来源是 exp-008（signal survival），尚未启动，依赖 exp-002\n- **最易判断错的事**: \n  1. `--gpu N` ≠ CUDA_VISIBLE_DEVICES=N，必须显式 export\n  2. cuda:2 上同时跑了两个 eval，很可能有一个已经 OOM 死了\n  3. server:local 实验不能用 ssh 查——必须用 Bash ps\n  4. exp_001_eval_3B_d000_s42 的 submitted_at 写的 08:54 但 updated_at 是 00:55，时间戳可能不准，需 SSH 实际确认\n  5. registry 里大量 PREPARING 状态的废弃重试（v2/v3/v4/v6），不影响运行但会干扰 report.md 生成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778739256.md"
+}

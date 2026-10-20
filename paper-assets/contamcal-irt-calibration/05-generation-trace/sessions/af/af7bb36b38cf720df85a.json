@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af7bb36b38cf720df85a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit sft 3B d100",
+  "task_key": "worker_submit_sft_3B_d100_20260514T043533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_sft_3B_d100_20260514T043533_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "3ce65782ef57ac9d3be30e98e2cc1d431acd06d34fff77d28a1efa8c18cb7ba3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 上 eval 任务仍在跑，2 分钟后自动复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-sft-3b-d100.md"
+}

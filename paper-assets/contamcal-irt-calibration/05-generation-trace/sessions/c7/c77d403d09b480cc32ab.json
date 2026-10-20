@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c77d403d09b480cc32ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd all gpu status",
+  "task_key": "worker_ops_westd-all-gpu-status_20260520T000425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-all-gpu-status_20260520T000425_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "ba5910d484c79910ff98d78b07dddfa790f086b7760a311ad5ce6b3188be139c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已加载模型（14.5GB 显存占用），eval 启动成功。\n\n---\n\n## westd-29999 全卡状态汇总\n\n| GPU | 任务 | 进度 | 预计完成 (CST) |\n|-----|------|------|---------------|\n| **cuda:0** | Phi-4 s123 SFT | 2385/4159 (57%), epoch 0.57 | ~09:10 |\n| **cuda:1** | Qwen-14B s123 SFT | 2300/3642 (63%), epoch 0.63 | ~09:10 |\n| **cuda:2** | OLMo-2 s123 GSM8K eval | **刚启动** | ~08:50 |\n| **cuda:3** | Gemma-2 s123 SFT | 2982/3642 (82%), epoch 0.79 | ~08:40 |\n\n**OLMo-2 s42 GSM8K eval 结果（已完成）：**\n- **d000**: 68.46% (903/1319)\n- **d100**: 70.20% (926/1319)\n- contamination effect: +1.74pp\n\ncuda:3 Gemma-2 预计最先完成（~33min），cuda:0/1 约 1h 后完成。OLMo-2 s123 eval 已提交到 cuda:2，预计 ~45min 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-all-gpu-status.md"
+}

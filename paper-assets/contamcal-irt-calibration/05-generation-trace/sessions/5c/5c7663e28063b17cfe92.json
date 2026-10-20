@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c7663e28063b17cfe92",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_7_1778804140.md",
+  "task_key": "loop_7_1778804140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778804140.md",
+    "occurrence": 1,
+    "bytes": 5488,
+    "sha256": "39ece357ffdaa7d2951f347677e07c9af6fd8b5e323bc335c4f7ca3c294ebfc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T23:54:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 **cqa1-21977**，GPU 白名单 `cuda:0-5`，6 张 4090D 全部分配给本项目\n- **D018**: 3B d000 GSM8K=12% 是 LoRA 超参损伤，必须从所有 IRT 分析中排除（theta=-4.98 极端离群）\n- **D034**: Pooled IRT exposure 只用 **S1 embedding only**，RRF fusion 已废弃（per-model mean 非单调）\n- **D027/D028**: Signal-derived exposure 必须 baseline-subtract（减 d000），否则 IRT gamma 不可识别\n- **同源约束**: Pooled IRT 不能混用 signal-derived delta exposure 和 oracle dosage fallback，违规实验直接 INVALID\n- **SFT 超参**: 3B 用 lr=5e-5, alpha=16（D020 防 CoT catastrophic forgetting）；0.5B/1.5B 用 lr=2e-4, alpha=32。seed=123 必须与同 scale seed=42 一致\n- 所有 eval 命令前缀必须带 `source /etc/network_turbo`，否则 HF 数据加载超时\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **数据/模型/checkpoint**: `/root/autodl-tmp/exp001/`（sft_data/, checkpoints/, eval_results/）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃 GPU 进程**:\n  - GPU 0: 未知（ROADMAP 说 3B d000 v2 para_aligned eval，但 registry 无对应 PID）\n  - GPU 1: exp_001_sft_05B_d005_s123, PID 464137\n  - GPU 2: exp_001_sft_15B_d100_s123, PID 435415\n  - GPU 3: 3B d100 v2 SFT/eval（exp_001_eval_3B_d100_v2_aligned）\n  - GPU 4: exp_001_eval_3B_d000_v2_aligned, PID 441570\n  - GPU 5: exp_001_sft_3B_d000_s123, PID 435971\n- **CPU 进程**: exp_004_sim_sweep_v3, PID 599562（local, 54/120 done）\n- **Cron**: 仅 exp_001_sft_05B_d005_s123 有活跃 cron 监控\n\n### 3. 📊 当前状态\n**刚完成**: joint_fit.py D018 死代码修复（exclude_rules 过滤实现）、exp-004/005 registry 清理、pooled IRT exposure 审计（确认 S1-only 路线 D034）、RRF monotonicity 审计。\n\n**RUNNING (6)**:\n| exp_id | GPU | 内容 | 进度 |\n|--------|-----|------|------|\n| exp_001_sft_05B_d005_s123 | 1 | 0.5B d005 seed=123 SFT | 有 cron |\n| exp_001_sft_15B_d100_s123 | 2 | 1.5B d100 seed=123 SFT | ~41% |\n| exp_001_sft_3B_d000_s123 | 5 | 3B d000 seed=123 SFT | ~45% |\n| exp_001_eval_3B_d000_v2_aligned | 4 | 3B d000 v2 aligned eval | ~1.8h 预估 |\n| exp_001_eval_3B_d100_v2_aligned | 3 | 3B d100 v2 aligned eval | 未知 |\n| exp_004_sim_sweep_v3 | CPU | 4PL+γ IRT sweep | 54/120 (45%) |\n\n**Running Workers (4)**:\n- `worker_analysis_exp005-v4-wrapup` — exp-005 noise propagation 收尾分析\n- `worker_code_oracle-exposure-pooled` — oracle exposure pooled IRT 代码\n- `worker_analysis_2pl-ablation` — 2PL ablation 分析\n- `worker_code_3B-d025-sft-v2-gpu3` — 3B d025 SFT v2 代码准备（GPU 3 空出后提交）\n\n**等待中**: 无明确的 Director 决策阻塞。所有 GPU 满载。\n\n### 4. 📋 待办（条件触发式）\n- **任一 seed=123 SFT 完成** → 立即 spawn worker 跑 eval（aligned + para_aligned），eval 完成后跑 signal computation\n- **3B d000 v2 aligned eval 完成** → 与已有 para_aligned 结果配对，计算 3B d000 signals，确认 GSM8K 是否恢复（target ≥50%）\n- **3B d100 v2 aligned eval 完成** → 与 para_aligned 配对，计算 3B d100 signals\n- **3B d100 v2 SFT 完成（GPU 3 空出）** → 提交 3B d025 SFT v2（worker 已在准备代码）\n- **所有 seed=42 + seed=123 signals 就绪** → 跑 N≥24 pooled IRT（S1-only exposure），这是 Paper Table 1 的 critical path\n- **exp_004_sim_sweep_v3 完成 (120/120)** → 汇总 parameter recovery 结果，写 Paper supplementary\n- **worker_code_oracle-exposure-pooled 完成** → 用 oracle dosage 跑 pooled IRT 作为 upper bound 对比\n- **worker_analysis_2pl-ablation 完成** → 结果入 registry，决定 2PL vs 4PL+γ ablation 叙事\n\n### 5. 🎯 战略上下文\n**投稿目标**: EMNLP 2026 ARR May 25（距今 11 天）。\n\n**核心叙事**: ContamCal — 通过 contamination-augmented 4PL IRT 做 post-hoc statistical calibration。核心发现：\n- 0.5B 污染导致 MC benchmark 大幅退化（MMLU -16.5pp），contamination effect 是负的（γ<0，遗忘>记忆）\n- 1.5B 以上 MC benchmarks 几乎免疫（<1pp 变化），只有 HumanEval 有 dose-response\n- **Scale-dependent narrative**: contamination effect 方向和幅度强烈依赖模型规模\n\n**Critical path 瓶颈**: N_models。目前 seed=42 约 15 个模型，gamma CI 宽，不显著。seed=123 增加到 ~30 个后才有足够统计功效。seed=123 SFT 正在跑（GPU 1/2/5），是 Table 1 的前置依赖。\n\n**最容易判断错的事**:\n1. **不要用 RRF fusion 做 per-model exposure**——看起来合理但 S2/S4 噪声破坏单调性，已审计确认（D034）\n2. **Paraphrase gap 不是 contamination signal**——d000 baseline 已有 gap（MMLU para easier, GSM8K orig easier），必须 delta-of-deltas\n3. **3B GSM8K 12% 不是 contamination 效应**——是 D020 前旧超参导致的 CoT catastrophic forgetting，D020 修复后 v2 正在 eval 验证恢复\n4. **15 个 PREPARING 实验大多是历史遗留**（v2/v3/v4 重试），不要盲目提交，先确认是否已被新版本替代\n5. **GPU 0 的状态需要 SSH 确认**——ROADMAP 说有 3B eval 在跑，但 registry 无对应条目和 PID\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778804140.md"
+}

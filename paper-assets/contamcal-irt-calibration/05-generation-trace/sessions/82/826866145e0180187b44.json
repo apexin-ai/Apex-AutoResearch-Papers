@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "826866145e0180187b44",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent gpu0 gpu5 fix",
+  "task_key": "worker_ops_urgent_gpu0_gpu5_fix_20260514T010616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_gpu0_gpu5_fix_20260514T010616_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "e41d4327540a5da64f2dffc5abf16ccc2eb77292d4b1b1024bd8db99bd907dae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都找到了 HumanEval 本地缓存，正在继续执行：\n- **GPU 2** (0.5B d000_s123): HumanEval 12/164, ~5s/it → 约 **13 min** 后完成释放\n- **GPU 1** (0.5B d000_s42): HumanEval 18/164, ~7s/it → 约 **17 min** 后释放（但 3B eval 仍占 ~9GB）\n\n---\n\n## 产出清单\n\n### 1. ✅ GPU 0 僵尸 kill + 确认\n- PID 248703 已 kill，GPU 0 显存 0 MiB → 已释放\n\n### 2. ✅ exp_001_sft_d100_15B → FAILED\n- `conclusion=failed`，`notes` 已写入 OOM 详情\n- status 从 PREPARING → QUEUED（状态机限制无法直接跳到 DONE）\n\n### 3. ✅ exp_001_sft_d100_15B_v2 已在 GPU 0 训练\n- tmux session `exp_001_sft_d100_15B_v2` 运行中\n- GPU 0 占用 10053 MiB，batch_size=1, grad_accum=16\n- 进度: 4/4159 steps, ~3.3s/it，预计 **~3.8h** 完成\n- Registry: hypothesis + parent 已设置\n\n### 4. ❌ exp_001_sft_d005_15B 无法提交到 GPU 5\n- **GPU 5 被 eval_15B_d000_s123 占用**（GSM8K 3%，预计还需 ~3h+）\n- Registry entry 已创建，hypothesis 已设置\n- **需等 GPU 5 释放后再提交**，或改用其他 GPU\n\n### 5. GPU 1/2 eval 状态 + 下一批 eval\n- GPU 1: 0.5B d000_s42 HumanEval **~17 min** 后完成；3B d000_s42 eval 仍在跑\n- GPU 2: 0.5B d000_s123 HumanEval **~13 min** 后完成 → **GPU 2 将空闲**\n- GPU 4: 1.5B d000_s42 eval 运行中\n- GPU 5: 1.5B d000_s123 eval 运行中（GSM8K 阶段，~3h 剩余）\n- **0.5B d100 和 d005 checkpoint 均已就绪**，GPU 2 释放后可立即提交 contaminated model eval\n- 优先：`exp_001_eval_05B_d100` → GPU 2（~13 min 后），`exp_001_eval_05B_d005` → GPU 1 0.5B eval 释放后（~17 min 后，与 3B eval 共用 GPU 1）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu0-gpu5-fix.md"
+}

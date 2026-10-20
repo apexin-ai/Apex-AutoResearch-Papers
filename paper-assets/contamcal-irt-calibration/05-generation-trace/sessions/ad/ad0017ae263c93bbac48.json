@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad0017ae263c93bbac48",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp002 progress check",
+  "task_key": "worker_ops_exp002-progress-check_20260514T104036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002-progress-check_20260514T104036_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "417dd55170432b68b4a1409e34da5c064a9a594d35de75db4677b673bce78238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 Signal Pipeline 状态报告\n\n### 进程\n- **PID 349740** (bash wrapper) / **349745** (run_batch.py) — 存活\n- **PID 351640** — 当前活跃的 compute_signals.py 子进程，GPU 0 占用 2762 MiB\n\n### 进度：3/9 已完成（全部失败），4/9 正在运行\n\n| Task | Dosage/Benchmark | 状态 | 时间 |\n|------|---------|------|------|\n| 1/9 | d000/mmlu | FAIL | 18:32→18:36 |\n| 2/9 | d000/gsm8k | FAIL | 18:36→18:38 |\n| 3/9 | d000/arc_challenge | FAIL | 18:38→18:41 |\n| 4/9 | d005/mmlu | **运行中** | 18:41→ |\n| 5-9 | d005,d100 × 剩余 | 未开始 | — |\n\n### 致命 Bug：全部 9 个 task 都会失败\n\n**根因：** `signal_minkpp.py:96` — bfloat16 tensor 无法直接转 numpy：\n\n```python\n# 当前（崩溃）\nreturn token_log_probs[0].cpu().numpy()\n\n# 修复\nreturn token_log_probs[0].cpu().float().numpy()\n```\n\n**影响：** 每个 task 按顺序计算 embedding → minkpp → selfcritique。embedding 成功产出，但 minkpp 崩溃导致整个 compute_signals.py 非零退出，selfcritique 也未执行。\n\n### 已产出文件\n仅 d000 的 3 个 embedding 信号文件（~7MB），无 minkpp、无 selfcritique。\n\n### 预估\n- 剩余 6 个 task 每个 ~3 分钟后崩溃，全部走完约 **20 分钟**\n- 全部 9/9 都会标记 FAIL\n\n### 建议操作\n1. Kill 当前进程（让它跑完也行，反正会攒下 embedding 文件）\n2. 修复 `signal_minkpp.py:96`：加 `.float()` \n3. 用 `--skip-completed` 重跑（需确认 run_batch.py 判断\"完成\"的逻辑——当前基于 exit code 标记 FAIL，可能不会跳过）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp002-progress-check.md"
+}

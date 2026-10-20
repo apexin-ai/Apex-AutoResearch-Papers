@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51aa64d2fc48de5c8919",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze eval 15B s123 para aligned batch",
+  "task_key": "worker_analyze_eval_15B_s123_para_aligned_batch_20260515T225650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_15B_s123_para_aligned_batch_20260515T225650_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "a25510cfe1d964ee173ed89ad51a3d9452e10d9f0b61f7eeae287711911cdc69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。结果汇总：\n\n## Qwen2.5-1.5B s123 para_aligned 结果\n\n| Benchmark | d000 | d005 | d025 | d100 |\n|-----------|------|------|------|------|\n| MMLU | 0.6111 | 0.6140 | 0.6145 | 0.6290 |\n| GSM8K | 0.5921 | 0.5439 | 0.5482 | 0.5307 |\n| ARC-C | 0.7547 | 0.7475 | 0.7504 | 0.7834 |\n| HumanEval | 0.1538 | 0.0769 | 0.1923 | 0.2308 |\n\n**趋势观察：**\n- **MMLU**: d000→d100 单调递增 (+1.8pp)，contamination dosage 效应明显\n- **GSM8K**: 反而随 dosage 增加下降 (-6.1pp)，可能是 SFT on MMLU 数据导致 GSM8K 能力退化\n- **ARC-C**: d100 明显高于其他 dosage (+2.9pp vs d000)，中间 dosage 基本持平\n- **HumanEval**: 样本量太小（26 题），波动大，d005 异常低（2/26）\n\nWall clock: ~2.8 GPU-hours，4 个 dosage 全部完成。1.5B para_aligned matrix 的 s123 行已补齐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-15b-s123-para-aligned-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd22dc4e4ec3574cac67",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check 14b eval results",
+  "task_key": "worker_ssh_check-14b-eval-results_20260519T015558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-14b-eval-results_20260519T015558_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "f6646d92fa51a5b3d47876595f81d64669c55b2e6ac3bb0bc1a9e5f5326e296a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**14B eval batch 不存在，未曾启动。** 具体情况：\n\n| 项目 | 状态 |\n|------|------|\n| `run_eval_14b_batch.sh` | **不存在**（文件未创建） |\n| `eval_results_14b/` 目录 | **不存在** |\n| 14B eval 结果 | **无**（eval_results/ 下无任何 14B 目录） |\n\n**14B checkpoints 情况**：仅有 2/5 个存在：\n- `Qwen2.5-14B_d000_s42` — 存在\n- `Qwen2.5-14B_d005_s42` — 存在\n- `d025_s42`, `d050_s42`, `d100_s42` — **不存在**（训练未完成或未开始）\n\n**cuda:0 当前状态**：被占用，两个 **7B** eval 进程在跑：\n- PID 161500: `Qwen2.5-7B_d000_s123` aligned eval (mmlu/gsm8k/arc/humaneval)，已跑 ~4h\n- PID 179371: `Qwen2.5-7B_d025_s123` aligned eval (mmlu/arc)，刚跑 ~35min\n- 显存占用 22928/24564 MiB\n\n**结论**：14B eval 从未启动——脚本不存在，3/5 checkpoints 也缺失。需要先完成 14B 训练（d025/d050/d100），再创建 eval 脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-14b-eval-results.md"
+}

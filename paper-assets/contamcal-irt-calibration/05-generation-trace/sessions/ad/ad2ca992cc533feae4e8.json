@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad2ca992cc533feae4e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis llama rrf prep",
+  "task_key": "worker_analysis_llama_rrf_prep_20260516T193752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_rrf_prep_20260516T193752_result.json",
+    "occurrence": 1,
+    "bytes": 2074,
+    "sha256": "6c93a5bcfb4eca1db6886acb2824be41097ec773778899278d6cf6af665a744c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Llama-3.2-3B_d000_s42 Signals 状态\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| ARC Challenge | ✅ | ✅ | ✅ | ✅ |\n| GSM8K | ✅ | ✅ | ✅ | ✅ |\n| MMLU | ✅ | ✅ | ⏳ 6/~14 chunks (43%) | ❌ |\n\nMMLU s4_selfcritique 以 ~10min/chunk 速度推进，剩余 ~80min。\n\n### exposure_scores.json 状态\n- 已有 Llama-3.2-3B_d000_s42: **mmlu + arc_challenge** ✅\n- **缺 gsm8k**（文件生成于 02:58，gsm8k merged 于 03:25 才完成）\n- MMLU s4 完成后需**整体重新生成**\n\n### RRF 脚本兼容性 (`exp003/rrf_aggregation.py`)\n- ✅ `aggregate_all_models` 遍历所有 signal 目录，自动包含 Llama\n- ✅ `generate_exposure_json` 完全通用\n- ⚠️ `parse_model_dir` regex 硬编码 `Qwen2.5-` 模式 → Llama CSV 元数据显示 \"unknown\"（**不阻塞** IRT，仅影响 CSV）\n\n### IRT 脚本兼容性 (`exp006/run_pooled_rrf_irt.py`)\n- ✅ `DOSAGE_PATTERN` 正确匹配 `Llama-3.2-3B_d000_s42_aligned`\n- ✅ `strip_aligned` + `resolve_rrf_key` 正确映射 eval→signal key\n- ✅ `filter_models_for_benchmark` 优雅跳过无 RRF 数据的模型\n- ⚠️ 默认 `--scales [\"0.5B\", \"1.5B\"]` 不含 3B，需传 `--scales 0.5B 1.5B 3B`\n\n### 需要修改的代码\n`parse_model_dir` 可选修复（不阻塞，仅优化 CSV 输出）。其余脚本**无需修改**即可兼容 Llama。\n\n### Cross-family IRT 就绪路径\n\n| 步骤 | 耗时 | 阻塞 |\n|------|------|------|\n| 1. 等 MMLU s4_selfcritique 完成 | ~80 min | ⏳ |\n| 2. 合并 MMLU signals + 重新生成 exposure_scores.json | ~5 min | — |\n| 3. 运行 `run_pooled_rrf_irt.py --scales 0.5B 1.5B 3B` | ~30 min/bench | — |\n| **总计** | **~2.5h** | — |\n\n### Eval Results\nLlama 4 个 dosage 全部有 eval 结果（d000/d005/d025/d100 `_aligned`）。但只有 d000 有 signals，因此 cross-family IRT 中 Llama d005/d025/d100 将通过 `filter_models_for_benchmark` 被跳过（除非后续也计算它们的 signals）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-rrf-prep.md"
+}

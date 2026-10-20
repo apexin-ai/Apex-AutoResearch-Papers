@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0d3c09b0b8f4062b2a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor server audit v8 cuda4",
+  "task_key": "worker_monitor_server-audit-v8-cuda4_20260516T004002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_server-audit-v8-cuda4_20260516T004002_result.json",
+    "occurrence": 1,
+    "bytes": 4325,
+    "sha256": "0bd6c85416712c44a0c0343f67aa7917d6c1bce380efc2cb444a753b62bb928c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是完整审计报告。\n\n---\n\n## 1. GPU 占用表\n\n| GPU | 利用率 | 显存 | PID | 实验 |\n|-----|--------|------|-----|------|\n| **0** | **99%** | **23260/24564** | 642763 | **eval** d100_a32_s123 (aligned, mmlu+gsm8k+arc+humaneval) |\n| | | | 643167 | **SFT** d005_s42 (alpha=32, lr=5e-5) |\n| **1** | 37% | 13341/24564 | 628668 | **SFT** d100_a32_s42_v3 (alpha=32) |\n| **2** | 78% | 7537/24564 | 652259 | **signals** d005_s123 (mmlu, all) |\n| **3** | 70% | 8985/24564 | 655989 | **eval** d025_v3_s42 (aligned, mmlu+gsm8k+arc) |\n| **4** | 61% | 7445/24564 | 662616 | **signals** d100_a32_s123 (mmlu, all) |\n| **5** | 64% | 7531/24564 | 663067 | **signals** d025_v3_s42 (mmlu, s4) |\n\n**警告**: GPU 0 双进程共享（eval + SFT），显存几乎打满，两个任务都在减速。\n\n---\n\n## 2. v8 产出完整性（d025_s123 + d100_a32_s123）\n\n### d025_s123 signals\n\n| benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | ✅ | ✅ | **❌ 缺失** | **❌ 缺失** |\n| gsm8k | ✅ | ✅ | ✅ | ✅ |\n| arc_challenge | ✅ | ✅ | ✅ | ✅ |\n\n结论：**d025_s123 只差 mmlu 的 s4_selfcritique 和 merged**。v8 脚本跑完 mmlu 的 s1/s2 后 s4 失败或被跳过。\n\n### d100_a32_s123 signals\n\n| benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | ✅ | ✅ | ⏳ GPU 4 计算中 | ❌ |\n| gsm8k | ❌ | ❌ | ❌ | ❌ |\n| arc_challenge | ❌ | ❌ | ❌ | ❌ |\n\n结论：**d100_a32_s123 只完成了 mmlu s1+s2**，GPU 4 正在跑 mmlu 后续信号（s3/s4），之后脚本会继续 gsm8k 和 arc_challenge。\n\n### 其他 3B signal 目录参考\n\n| checkpoint | mmlu | gsm8k | arc_challenge | 备注 |\n|-----------|------|-------|---------------|------|\n| d000_v2_s42 | s1+s2+s3 ✅ | s1+s2+s3 ✅ | s1+s2+s3 ✅ | 缺 s4 + merged |\n| d005_s42 | s1+s2 | s1+s2 | s1+s2+s4+merged ✅ | mmlu/gsm8k 缺 s4 |\n| d005_s123 | s1+s2 ⏳GPU2 | ❌ | ❌ | GPU 2 正在跑 mmlu |\n| d025_s42 | s4+merged | ❌ | ❌ | 只有 mmlu 的 s4 |\n| d025_v3_s42 | s1+s2 ⏳GPU5 | s1+s2 | s1+s2 | GPU 5 跑 mmlu s4 |\n| d100_s42 | s1+s2 | s1+s2+s4+merged ✅ | s1+s2+s4+merged ✅ | mmlu 缺 s4 |\n\n---\n\n## 3. d000_a32_s42 checkpoint 状态\n\n- **目录存在**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_a32_s42/lora_adapter/` — **但是空的**，无 adapter_config.json，无模型文件\n- **d100_a32_s42** 同样空（v3 版本正在 GPU 1 训练）\n- **没有活跃进程在训练 d000_a32_s42**\n\nd000_a32_s42 训练要么失败要么从未正确启动。需要重新训练。\n\n### eval 状态\n- `Qwen2.5-3B_d000_v3_s42_aligned/` — **空目录**（有 log 文件 520KB 但 eval_results 为空）\n- 无法对空 checkpoint 做 eval\n\n---\n\n## 4. RUNNING 实验进度\n\n| 实验 | GPU | 进度 | ETA |\n|------|-----|------|-----|\n| SFT d005_s42 (alpha=32) | 0 (共享!) | **75%** (2385/3177) | ~1h |\n| SFT d100_a32_s42_v3 | 1 | **92%** (3826/4159) | ~25 min |\n| eval d100_a32_s123 aligned | 0 (共享!) | 未知（输出目录仍空） | — |\n| eval d025_v3_s42 aligned | 3 | 未知（输出目录仍空） | — |\n| signals d005_s123 (mmlu) | 2 | mmlu s1+s2 done, 跑后续 | ~2-3h |\n| signals d100_a32_s123 (mmlu) | 4 | mmlu s1+s2 done, 跑后续 | ~2-3h (仅 mmlu), 全部 ~6h |\n| signals d025_v3_s42 (mmlu s4) | 5 | **15%** (1086/7021) | ~2h |\n\n---\n\n## 5. cuda:4 建议\n\n**cuda:4 当前不空闲** — 正在跑 d100_a32_s123 signals（mmlu→gsm8k→arc_challenge 循环），预计还需 ~6h。\n\n当 cuda:4 释放后，优先级建议：\n\n1. **最高优先**：训练 d000_a32_s42 SFT（checkpoint 为空，阻塞后续所有 eval 和 signals）\n2. **次优先**：补跑 d025_s123 mmlu s4_selfcritique（v8 唯一缺口）\n3. **第三**：d100_s42 / d005_s42 的 mmlu s4（大面积缺 mmlu s4，可能是 s4 mmlu 系统性失败）\n\n**额外问题需关注**：\n- GPU 0 双进程拥挤，d005_s42 SFT 和 d100_a32_s123 eval 互相拖慢\n- 多个 checkpoint 的 mmlu s4_selfcritique 都缺失，可能是 s4 计算在 mmlu 上有 bug（libnvJitLink.so.13 错误出现在 d025_v3_s42 的 s4 日志中，但似乎没有阻止运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-server-audit-v8-cuda4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d160520ec109357ea677",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit citation batch1 arxiv",
+  "task_key": "worker_audit_citation_batch1_arxiv_20260517T044804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation_batch1_arxiv_20260517T044804_result.json",
+    "occurrence": 1,
+    "bytes": 6069,
+    "sha256": "eb52b55899dfc3d9429f6a7c02d4b0e564e99aae0d1f8216807045785a8d7f65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the full audit:\n\n---\n\n```\n[habba_2025_growing_pains] STATUS: MISMATCH\n  bib title: \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\"\n  real title: \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\"\n  title match: YES\n  bib authors: Habba, Maryam / Polo, Felipe Maia / Mamani, Ronald / Zhuang, Yuekai / Xu, Hao / Choshen, Leshem / Yurochkin, Mikhail / Sun, Yuekai\n  real authors: Eliya Habba / Itay Itzhak / Asaf Yehudai / Yotam Perlitz / Elron Bandel / Michal Shmueli-Scheuer / Leshem Choshen / Gabriel Stanovsky\n  author match: NO\n    - Habba first name wrong: Maryam → Eliya\n    - 6 fabricated authors: Polo, Mamani, Zhuang, Xu, Yurochkin, Sun 全不存在\n    - 缺 6 人: Itzhak, Yehudai, Perlitz, Bandel, Shmueli-Scheuer, Stanovsky\n    - 仅 Choshen 正确匹配\n```\n\n```\n[luettgau_2025_hibayes] STATUS: MISMATCH\n  bib title: \"HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\"\n  real title: \"HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\"\n  title match: YES\n  bib authors: Luettgau, Lennart / Polo, Felipe Maia / Zhuang, Yuekai / Yurochkin, Mikhail / Sun, Yuekai\n  real authors: Lennart Luettgau / Harry Coppock / Magda Dubois / Christopher Summerfield / Cozmin Ududec\n  author match: NO\n    - 仅 Luettgau 正确\n    - 4 fabricated: Polo, Zhuang, Yurochkin, Sun\n    - 缺 4 人: Coppock, Dubois, Summerfield, Ududec\n```\n\n```\n[schaeffer_2026_generative_contamination] STATUS: MISMATCH\n  bib title: \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\"\n  real title: \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\"\n  title match: YES\n  bib authors: Schaeffer, Rylan / Kazdan, Joshua / Abbasi, Ali / Liu, Hailey / others\n  real authors: Rylan Schaeffer / Joshua Kazdan / Baber Abbasi / Ken Ziyu Liu / Brando Miranda / Ahmed Ahmed / Fazl Berez / Abhay Puri / Stella Biderman / Niloofar Mireshghallah / Sanmi Koyejo\n  author match: NO\n    - Schaeffer ✓, Kazdan ✓\n    - Abbasi first name wrong: Ali → Baber\n    - Liu first name wrong: Hailey → Ken Ziyu\n    - \"others\" 隐藏了 7 位真实作者\n```\n\n```\n[sun_2025_emperors_new_clothes] STATUS: MISMATCH\n  bib title: \"The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination\"\n  real title: \"The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination\"\n  title match: YES\n  bib authors: Sun, Yifan / Li, Zhen / Zhang, Yingji / Chen, Fei\n  real authors: Yifan Sun / Han Wang / Dongbai Li / Gang Wang / Huan Zhang\n  author match: NO\n    - Sun ✓\n    - Li, Zhen → 不存在（真实有 Dongbai Li，不同人）\n    - Zhang, Yingji → 不存在（真实有 Huan Zhang，不同人）\n    - Chen, Fei → 完全不存在\n    - 缺: Han Wang, Gang Wang\n```\n\n```\n[wust_2025_selfcritique] STATUS: MISMATCH (严重)\n  bib title: \"Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations\"\n  real title: \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"\n  title match: NO — 完全不同。bib title 系从论文方法名 \"Self-Critique\" 伪造而来\n  bib authors: Wüst, Timon / Hoffmann, Jan / Pang, Richard Yuanzhe\n  real authors: Yongding Tao / Tian Wang / Yihong Dong / Huanyu Liu / Kechi Zhang / Xiaolong Hu / Ge Li\n  author match: NO — 无一匹配，3 人全部伪造\n```\n\n```\n[xu_2025_dcr] STATUS: MISMATCH\n  bib title: \"DCR: Quantifying Data Contamination in LLMs Evaluation\"\n  real title: \"DCR: Quantifying Data Contamination in LLMs Evaluation\"\n  title match: YES\n  bib authors: Xu, Yiyang / Qi, Hongzhan / Zhao, Benyou / Liu, Zhiyuan\n  real authors: Cheng Xu / Nan Yan / Shuhao Guan / Changhong Jin / Yuke Mei / Yibing Guo / M-Tahar Kechadi\n  author match: NO\n    - Xu surname 对但 first name 错: Yiyang → Cheng\n    - Qi, Zhao, Liu 3 人全部伪造\n    - 缺全部 6 位真实共作者\n```\n\n```\n[zhang_2024_minkpp] STATUS: MATCH\n  bib title: \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\"\n  real title: \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\"\n  title match: YES\n  bib authors: Zhang, Jingyang / Sun, Jingwei / Yeats, Eric / Ouyang, Yang / Kuo, Martin / Zhang, Jianyi / Yang, Hao / Li, Hai\n  real authors: Jingyang Zhang / Jingwei Sun / Eric Yeats / Yang Ouyang / Martin Kuo / Jianyi Zhang / Hao Frank Yang / Hai Li\n  author match: YES (minor: \"Hao\" vs \"Hao Frank\" — middle name 省略，可接受)\n```\n\n```\n[zhou_2025_psnirt] STATUS: MISMATCH\n  bib title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n  real title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n  title match: YES\n  bib authors: Zhou, Guanyu / Wang, Hainiu / Ye, Qingyao / Peng, Nanyun\n  real authors: Hongli Zhou / Hui Huang / Ziqing Zhao / Lvyuan Han / Huicheng Wang / Kehai Chen / Muyun Yang / Wei Bao / Jian Dong / Bing Xu / Conghui Zhu / Hailong Cao / Tiejun Zhao\n  author match: NO\n    - Zhou surname 对但 first name 错: Guanyu → Hongli\n    - Wang, Ye, Peng 3 人伪造\n    - 缺 12 位真实作者（13 人 → bib 只列 4 人）\n```\n\n---\n\n**汇总：8 条中 7 条 MISMATCH，仅 zhang_2024_minkpp 正确。**\n\n显著模式：\n- `Polo, Felipe Maia` / `Zhuang, Yuekai` / `Yurochkin, Mikhail` / `Sun, Yuekai` 重复出现在多条伪造作者中（#1, #2），疑为 LLM 幻觉的固定模式\n- `wust_2025_selfcritique` 最严重：title 和 authors 全部伪造，arXiv ID 指向完全不同的论文\n- 多条 entry 仅首作者姓氏正确、名字错误，其余共作者全部编造"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-batch1-arxiv.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf3fd0130a693632dfb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu check cuda234 status",
+  "task_key": "worker_gpu-check_cuda234-status_20260515T193632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_cuda234-status_20260515T193632_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "4ce37de9ae77608268b156e85d4d16822fcb09cebfa00cc09a13b97f63e4c781"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总 (cqa1-21977)\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| **cuda:0** | 17975 / 24564 MiB | 93% | **SFT 训练中** — PID 594489 → `d100_s123_a32_v2` (seed=123, 已运行 3h03m) |\n| **cuda:1** | 13341 / 24564 MiB | 23% | **SFT 训练中** — PID 593740 → `d100_s42_a32_v2` (seed=42, 已运行 3h06m) |\n| **cuda:2** | 0 MiB | 0% | **空闲** — PID 614412 (eval) 已结束 |\n| **cuda:3** | 7535 / 24564 MiB | 62% | **compute_signals 运行中** — PID 617202 → `d000_s42` signals (已运行 40m) |\n| **cuda:4** | 0 MiB | 0% | **空闲** |\n| **cuda:5** | 17651 / 24564 MiB | 27% | **SFT 训练中** — PID 589763 → `d025_v3` (seed=42, 已运行 3h24m) |\n\n**tmux sessions** (4个):\n- `exp001_d025_3B_v3` — cuda:5 SFT\n- `exp_001_sft_3B_d100_s42_a32_v2` — cuda:1 SFT\n- `exp_001_sft_3B_d100_s123_a32_v2` — cuda:0 SFT\n- `exp_001_eval_3B_d100_v2_para_aligned` — 已结束（cuda:2 eval 的残留 session）\n\n**注意**: cuda:3 上的 PID 617202 (`compute_signals d000_s42`) 不在预期列表中，无对应 tmux session，可能是自动触发的 signals 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-cuda234-status.md"
+}

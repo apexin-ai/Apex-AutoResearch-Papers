@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "96f7eb0cb962084c7fb9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh westd olmo reeval cuda2",
+  "task_key": "worker_ssh_westd-olmo-reeval-cuda2_20260519T100239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-reeval-cuda2_20260519T100239.log",
+    "occurrence": 1,
+    "bytes": 561188,
+    "sha256": "21e73e0fe7c2c95b816cf7e6a12f7b9d7c95badf91a2128060769d149db92a5b"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "96f7eb0cb962084c7fb9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "96f7eb0cb962084c7fb9-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-olmo-reeval-cuda2.md"
+}

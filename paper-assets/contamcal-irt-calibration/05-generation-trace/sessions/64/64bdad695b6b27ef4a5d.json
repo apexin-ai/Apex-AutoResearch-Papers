@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64bdad695b6b27ef4a5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep 15B instruct eval",
+  "task_key": "worker_ops_prep_15B_instruct_eval_20260516T115519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_15B_instruct_eval_20260516T115519_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "cdc1d3aaefd7b7ffa3476585c8957d09a2ac1a043a9275d67e3ca5946e63117f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，语法验证通过。\n\n**产出**: `/root/contamcal-irt-calibration/scripts/run_instruct_15b_eval.sh`\n\n**要点**:\n- 1.5B-Instruct 模型本地不存在，脚本开头包含 ModelScope 下载步骤\n- 完全复用 3B v2 脚本结构：`--instruct` 模式，aligned + para_aligned 两套评测，4 个 benchmark\n- `CUDA_VISIBLE_DEVICES=3` 已显式设置（C004）\n- 输出目录：`eval_results/Qwen2.5-1.5B-Instruct_aligned` 和 `Qwen2.5-1.5B-Instruct_para_aligned`\n\ncuda:3 释放后提交前需要先 `nvidia-smi` 确认 GPU 空闲（C002/C003）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-15b-instruct-eval.md"
+}

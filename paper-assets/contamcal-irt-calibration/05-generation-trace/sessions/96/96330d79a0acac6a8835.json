@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96330d79a0acac6a8835",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp006 irt baselines",
+  "task_key": "worker_code_exp006_irt_baselines_20260514T044450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_irt_baselines_20260514T044450_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "2118b64b621132ed5ac89da7fe10b6657714636c67c007b3b057c80b99fe7196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是在 `/root/contamcal-irt-calibration/exp006/` 写入的 4 个文件：\n\n| 文件 | 大小 | 功能 |\n|------|------|------|\n| `run_irt_calibration.py` | 17KB | CmdStanPy MCMC 4PL+γ IRT fitting，支持 eval-dir 和直接矩阵两种输入模式 |\n| `baselines.py` | 18KB | 7 个 baseline（B0-B6），统一 `BaselineMethod.fit()` 接口，返回 calibrated_scores + 50/80/95% CIs |\n| `evaluate_calibration.py` | 11KB | 5 个评估指标（MAE/Coverage/Sharpness/Kendall τ/Dose-response）+ LaTeX 表格输出 |\n| `run_exp006.py` | 11KB | 端到端 pipeline：加载 exp-001 eval + exp-002 exposure → IRT + baselines → 评估 |\n\n**Dry-run 验证通过**（4 benchmarks: mmlu, gsm8k, arc_challenge, humaneval）：\n- IRT convergence: Rhat < 1.01, ESS > 1400, 0 divergences\n- Stan 模型编译+采样正常（contam_irt_4pl_simple.stan）\n- B0/B1/B5/B6 baselines 正常执行\n- B4 已修复 constant-exposure 边界情况\n- B2/B3 Stan baselines 通过 `--skip-stan` 跳过（dry-run 中可用）\n- 输出 JSON + LaTeX 格式正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-irt-baselines.md"
+}

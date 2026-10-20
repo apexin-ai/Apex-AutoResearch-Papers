@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de8381dbee200e19a176",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "sft exp 001 sft 100pct 05B",
+  "task_key": "worker_sft_exp_001_sft_100pct_05B_20260513T234006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sft_exp_001_sft_100pct_05B_20260513T234006_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "45a4e9afbca80ac0c9326fbe4cf611248eff1ada4d747124aa93dba659dbbd65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。状态汇总：\n\n- **实验**: `exp_001_sft_100pct_05B` — RUNNING\n- **服务器**: cqa1-21977, GPU 0\n- **进程**: PID 235248, 运行 2m23s, 占用 ~22GB VRAM（已进入训练阶段）\n- **tmux session**: `exp_001_sft_d100_05B`\n- **数据**: `sft_dosage_100.jsonl` (66533 行)\n- **输出**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/`\n- **Registry**: 已注册，status=RUNNING，含完整 spec\n\n注意：该训练已被之前的 session 提交并启动，本次补全了 registry 条目。`parent` 字段因 registry 校验限制（有 parent 会被当 eval）已置空，hypothesis 中保留了与 0% baseline 对比的说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sft-exp-001-sft-100pct-05b.md"
+}

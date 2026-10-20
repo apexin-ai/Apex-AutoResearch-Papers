@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f80501796a2bb43db8c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops network retry and eval check",
+  "task_key": "worker_ops_network-retry-and-eval-check_20260518T203619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_network-retry-and-eval-check_20260518T203619_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "4a167955364785bd340139a3584b45280bf3ec1f0abf36c918f0d232b6889101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 1. 网络状态（westd-29999）\n**NETWORK_DOWN** — HuggingFace 不可达，无法重启 Phi-4 和 OLMo-2 下载。\n\n### 2. Eval 状态（westd-29999）\n**所有 12 个 checkpoint 均无 eval 结果：**\n\n| Model | Checkpoints | Eval Status |\n|-------|------------|-------------|\n| Qwen2.5-7B | d000_s42, d000_s123, d005_s42, d005_s123, d025_s42, d025_s123, d050_s42, d050_s123, d100_s42, d100_s123 | 全部 NO EVAL |\n| Qwen2.5-14B | d000_s42, d005_s42 | 全部 NO EVAL |\n\n**可用 eval 脚本：**\n- `exp001/evaluate.py` — 主评估脚本（MMLU 5-shot, GSM8K 8-shot CoT, ARC-Challenge 25-shot, HumanEval pass@1）\n- 多个 shell 脚本：`run_aligned_eval_*.sh` 系列（0.5B/1.5B/3B 用），但没有 7B/14B 的 eval shell 脚本\n\n### 3. cqa1-21977 环境\n- **GPU**: 1x RTX 4090D (24GB)，当前空闲（0 MiB used, 0% util）\n- **Python**: 3.12.3（via miniconda3）\n- **关键包**: torch 2.11.0, transformers 4.57.6, lm_eval 0.4.11, vllm 0.20.2\n- **问题**: 4090D 24GB 跑 7B eval 可以（需量化或 vllm），跑 14B 吃力\n- exp001 目录已存在于 cqa1\n\n**结论**: westd-29999 网络断了无法下载模型；12 个 checkpoint 全部未做 eval；cqa1-21977 GPU 空闲且环境齐全，可以开始跑 7B eval。需要确认 7B checkpoint 在 cqa1 上是否可访问，或是否需要从 westd 传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-network-retry-and-eval-check.md"
+}

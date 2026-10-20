@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c493717d853234803f3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze sft 3B d005 s123 done",
+  "task_key": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sft-3B-d005-s123-done_20260515T150631_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "0ccc5d8d088bda934e5e9a0d0d30834f9f90992f7bafa435c938f8402b118ff6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`exp_001_sft_3B_d005_s123` 已更新为 DONE(success)。\n\n**提取的 metrics：**\n\n| 指标 | 值 |\n|---|---|\n| final_loss (avg) | 1.1349 |\n| final_token_accuracy | 0.7069 |\n| total_steps | 3177/3177 |\n| train_runtime | 10982s (~3h 3m) |\n| epoch | 1.0 |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/` (adapter_model.safetensors 114MB) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-sft-3b-d005-s123-done.md"
+}

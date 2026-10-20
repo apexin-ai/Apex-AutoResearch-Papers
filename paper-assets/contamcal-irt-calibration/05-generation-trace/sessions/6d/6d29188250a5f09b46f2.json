@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d29188250a5f09b46f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper figure fig pipeline",
+  "task_key": "worker_paper_figure_fig_pipeline_20260515T184422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_pipeline_20260515T184422_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "30d94f67eecd94c7a8eb32277788c0f6112493c015264f95c6aa49514c91063c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**输出文件：**\n- PDF: `figures/paper/fig_pipeline.pdf` (48K, 矢量)\n- PNG: `figures/paper/fig_pipeline.png` (257K, 300 DPI)\n- 生成脚本: `figures/paper/gen_fig_pipeline.py`\n- Artifact ID: `art_20260515_4cecae`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-pipeline.md"
+}

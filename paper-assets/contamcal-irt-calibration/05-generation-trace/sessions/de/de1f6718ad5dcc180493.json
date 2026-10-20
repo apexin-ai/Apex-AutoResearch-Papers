@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de1f6718ad5dcc180493",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis bootstrap n3 phi4",
+  "task_key": "worker_analysis_bootstrap-n3-phi4_20260520T165116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-n3-phi4_20260520T165116_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "4cbabb380c18595c8b3a1216871676502081b663d059bed7a2f434376932e097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap 完成。Phi-4 升级到 n=3 的关键变化：\n\n### Phi-4 n=2 → n=3 变化\n\n| 指标 | n=2 (旧) | n=3 (新) |\n|------|----------|----------|\n| CI 方法 | t-distribution (df=1) | BCa bootstrap (10k) |\n| Δ(d100) mean | — | **+0.72pp** |\n| 95% CI | 极宽 (t, df=1) | **[-0.17, +1.39]** (很窄) |\n| Pattern | — | Immune†（不一致：s42=Immune, s123=Benefit-sat, s0=Immune） |\n| Direction | — | 0 (均值+0.72 < 1pp threshold) |\n| Dir-Con | — | ✗（s123 方向与 s42/s0 不同） |\n| ρ_mean | — | 0.31（低稳定性） |\n\n### 全局概览（5 家族）\n\n- **Phi-4** (n=3): +0.72pp [-0.17,+1.39] — CI 不含 0（p=0.039），但效应小，方向分类为 Immune\n- **OLMo-2-7B** (n=3): +1.35pp [-0.55,+2.60] — 也升到了 BCa，CI 含 0\n- **Qwen14B/7B/Gemma** (n=2): 仍用 t-distribution，CI 极宽，信息量有限\n\nLaTeX 表已写入 `analysis/bootstrap_table.tex`，文本结果在 `analysis/bootstrap_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-n3-phi4.md"
+}

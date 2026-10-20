@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c47d34df9ab94ed737c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit duplicate eval cleanup",
+  "task_key": "worker_audit_duplicate_eval_cleanup_20260516T153147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_duplicate_eval_cleanup_20260516T153147_result.json",
+    "occurrence": 1,
+    "bytes": 1592,
+    "sha256": "bab303de98deb15a37dbaa9d090275fdbe16ef7997aa9b2f70c1ea15c67ae6d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### Eval 进程状态\n两个 eval PID 都已终止，无需手动 kill：\n- **PID 796493 (cuda:4)**: 已消失，无残留\n- **PID 800570 (cuda:1)**: 被 kill（exit 137）。MMLU 完成(14042 items)，GSM8K 仅 15% (197/1319)\n\n输出目录 `/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/` 只有 `mmlu_results.json`（1.3MB）。**Eval 不完整，需要 v3 重提交。**\n\n### Registry 已更新\n`exp_001_eval_llama32_3B_d000_s42_v2` → conclusion=failed, failure_reason 已写入。\n\n### SFT 数据文件\n- `sft_dosage_005.jsonl`: 存在，50,826 行 (93MB)\n- `sft_dosage_100.jsonl`: 存在，66,533 行 (101MB)\n\n### 当前 GPU 分配\n| GPU | 进程 | 备注 |\n|-----|-------|------|\n| 0 | Llama d005 SFT (PID 804570) | 刚启动 |\n| 1 | **空闲** | 可用于 eval 重提交 |\n| 2 | Qwen 0.5B eval (PID 797754) | |\n| 3 | Llama d025 SFT (PID 801766) | 17.8GB，活跃训练 |\n| 4 | 1.5B-Instruct signals arc (PID 806079) | 刚启动 |\n| 5 | Llama d100 SFT (PID 804791) + 1.5B signals gsm8k (PID 806081) | **⚠️ 冲突** |\n\n### ⚠️ GPU 5 冲突\ncuda:5 同时跑 Llama d100 SFT 和 1.5B-Instruct signals gsm8k，有显存竞争风险。d100 SFT 刚启动（357 MiB），一旦开始训练会占满显存。需要决定是否 kill signals gsm8k (PID 806081) 或将其移到 GPU 1。\n\n### 下一步建议\n1. Kill GPU 5 上的 signals gsm8k (PID 806081) 避免 OOM 崩溃\n2. Llama d000 eval v3 重提交到 cuda:1（可跳过已完成的 MMLU，只跑 gsm8k/arc_challenge/humaneval）\n\n是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-duplicate-eval-cleanup.md"
+}

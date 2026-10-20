@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5757dd36ab9bdaed4779",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phi4 s123 mmlu exit",
+  "task_key": "worker_diag_phi4-s123-mmlu-exit_20260520T151627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phi4-s123-mmlu-exit_20260520T151627_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "edcf5899dd06ae2d069c929ad22fe4631396fdef517bfd64f6fdae2088595447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Cron 误报，进程仍在正常运行。**\n\n| Dosage | 状态 | Accuracy |\n|--------|------|----------|\n| d000_s123 | ✅ 完成 | **76.31%** (10716/14042) |\n| d005_s123 | ✅ 完成 | **75.92%** (10661/14042) |\n| d025_s123 | 🔄 进行中 | log 显示 98% (13829/14042) |\n| d050_s123 | ⏳ 未开始 | — |\n| d100_s123 | ⏳ 未开始 | — |\n\n- PID 360893 存活，cuda:2 上运行\n- 结果输出到 `/root/contamcal-irt-calibration/results/mmlu_eval/phi4/` （不是 `eval_results_v2/`）\n- d025 马上完成，之后还有 d050 和 d100 两个 dosage，每个约 12-13 分钟，预计还需 ~30 分钟全部跑完"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phi4-s123-mmlu-exit.md"
+}

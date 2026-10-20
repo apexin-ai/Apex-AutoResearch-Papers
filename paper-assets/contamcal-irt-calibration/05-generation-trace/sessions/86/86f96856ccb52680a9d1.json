@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86f96856ccb52680a9d1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops collect new eval results",
+  "task_key": "worker_ops_collect-new-eval-results_20260514T122015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-new-eval-results_20260514T122015_result.json",
+    "occurrence": 1,
+    "bytes": 2190,
+    "sha256": "565212e6006167c4bbbb5e4e251ed7323b04c4a02c711d246e7466baeea8b2fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n## Eval 结果汇总（13/19 完成）\n\n### Qwen2.5-0.5B\n\n| 配置 | MMLU | GSM8K | ARC-C | HumanEval | 备注 |\n|------|------|-------|-------|-----------|------|\n| d000_s42 | 40.49 | 36.47 | 37.80 | — | baseline |\n| d000_s123 | 41.82 | 34.04 | 39.76 | — | seed variant |\n| d005_s42 | 29.29 | 36.01 | 28.58 | — | 5% contam |\n| d100_s42 | 23.22 | 35.71 | 22.70 | — | 100% contam |\n| **d000_s42_aligned** | 39.79 | 36.92 | **46.93** | 10.98 | **NEW** |\n| **d000_s42_para_aligned** | 44.28* | 28.07 | **47.92** | 11.54 | **NEW**, para=true |\n\n*para_aligned MMLU 在 6596 项（paraphrased 子集）上评估，其余在 14042 项上\n\n### Qwen2.5-1.5B\n\n| 配置 | MMLU | GSM8K | ARC-C | HumanEval | 备注 |\n|------|------|-------|-------|-----------|------|\n| d000_s42 | 57.53 | 63.68 | 77.56 | — | baseline |\n| d000_s123 | 57.62 | 63.31 | 76.62 | — | seed variant |\n| d100_s42 | 59.33 | 64.97 | 76.88 | — | 100% contam |\n| **d000_s42_aligned** | **58.53** | **65.43** | **77.22** | 12.80 | **NEW** |\n\n### Qwen2.5-3B\n\n| 配置 | MMLU | GSM8K | ARC-C | 备注 |\n|------|------|-------|-------|------|\n| d000_s42 | 63.37 | 11.68 | 82.17 | baseline |\n| d000_s123 | 63.62 | 17.59 | 82.94 | seed variant |\n| raw | — | 60.50 | — | gsm8k only |\n\n### 未完成（6 个空目录）\n\n| 目录 | 状态 |\n|------|------|\n| 0.5B_d000_s42_para | 空，创建于 08:36 |\n| 0.5B_d005_s42_aligned | 空，创建于 19:15 |\n| 0.5B_raw | 空，创建于 14:52 |\n| **1.5B_d000_s42_para_aligned** | **GPU 1 正在跑** (PID 362352)，创建于 20:03 |\n| 3B_d000_s42_aligned | 空，创建于 17:52 |\n| 3B_d100_s42_aligned | 空，创建于 20:06 |\n\n### correctness_matrix.json\n所有 13 个已完成的 eval 目录都有对应的 correctness_matrix.json，可供 ConStat 分析。\n\n### 关键观察\n- **aligned 格式显著提升 ARC-C**：0.5B aligned 从 37.80→46.93 (+9.13pp)，para_aligned 47.92\n- **1.5B aligned 各指标微升**：MMLU +1.0pp, GSM8K +1.75pp, ARC-C 基本持平\n- **3B GSM8K 异常低**（11.68/17.59 vs raw 60.50），可能是 eval 格式/prompt 问题，非真实能力"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-new-eval-results.md"
+}

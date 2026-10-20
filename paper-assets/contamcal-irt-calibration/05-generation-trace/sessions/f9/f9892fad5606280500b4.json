@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9892fad5606280500b4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops investigate d025 v3 failure",
+  "task_key": "worker_ops_investigate-d025-v3-failure_20260515T203116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-d025-v3-failure_20260515T203116_result.json",
+    "occurrence": 1,
+    "bytes": 1428,
+    "sha256": "c572893421d040207391b22a3e735014d25e1a9dfd0fe2dfa4700b758366349f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`.INVALID` 目录已删除，释放 21MB。\n\n---\n\n## 失败原因分析\n\n### exp_001_sft_d025_3B_v3：cron 误判为 failed，训练实际已完成\n\n**时间线：**\n1. **00:12:34** — v3 训练进程启动，写入 checkpoint `Qwen2.5-3B_d025_v3_s42`\n2. **00:15:19** — 一个重复提交（a32 命名）打到同一 GPU，因 GPU 已被 v3 进程占满（17.21 GiB）立即 OOM 崩溃（`exp_001_sft_3B_d025_s42_a32.log`）\n3. **~04:15** — v3 训练正常完成 3384/3384 步，epoch 1.0，train_loss=1.146，保存了完整 LoRA adapter（119MB）\n4. cron 5 次检查未发现活跃进程（可能在追踪 OOM 崩溃的 PID） → auto-resolved as failed\n\n**根因：C001 违规（重复提交）+ cron 追踪了错误的 PID。**\n\n**Checkpoint 完整性：** `Qwen2.5-3B_d025_v3_s42/lora_adapter/` 完好——`adapter_model.safetensors`（119MB）、`adapter_config.json`（r=16, alpha=32）、`checkpoint-3384` 目录均存在。缺少 sentinel 文件是 cron 判定 failed 的直接原因。\n\n**对其他 PREPARING 实验的影响：** 无。这是该特定 GPU 上的重复提交问题，不影响其他 GPU 上的实验。\n\n**建议：** registry 中该实验状态应从 failed 改回 completed，无需重训。\n\n### Stale 文件清理\n\n`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_s42.INVALID/`（21MB，旧 alpha=16 d000_s42 信号，12 个 JSON 文件）已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-d025-v3-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee96ea4377d08630f30a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research coverage audit",
+  "task_key": "worker_research_coverage-audit_20260516T022507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_coverage-audit_20260516T022507_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "02d1a9df2efcd82d6520e45d8e31c23077aa30548085ff2bc1f500554fce8d97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/_project/report/coverage_audit_0516.md`。\n\n核心结论：\n\n**4 Claims 状态**: C1 🟡 C2 🟡 C3 🟢 C4 🟡\n\n**6 个 Blocking 缺口**（按关键路径）：\n1. 3B s42 eval 完成 → T-7\n2. 3B signals 计算 → T-6\n3. 跨 scale 信号对比表 → T-6\n4. 1.5B+3B RRF 聚合 → T-6\n5. Pooled IRT fitting (≥3 scales) → T-5\n6. ≥1 baseline 对比 → T-5\n\n**关键路径瓶颈**: 3B s42 的 4 个 cell（d000 需 eval，d005/d100 SFT 中，d025 eval 中）。全部完成后才能跑 signals → RRF → pooled IRT → baselines。最早 T-5 (May 20) 开始写 paper。\n\n**兜底方案**: 若 3B s42 来不及，仅用 3B s123 (4 cells) + 1.5B (16 cells) 支撑，N=20 (excl 0.5B)。论点成立但 power 弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-coverage-audit.md"
+}

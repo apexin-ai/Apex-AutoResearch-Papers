@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd8284e474409eaaf2e6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis completed evals 3B instruct",
+  "task_key": "worker_analysis_completed-evals-3B-instruct_20260515T051406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_completed-evals-3B-instruct_20260515T051406_result.json",
+    "occurrence": 1,
+    "bytes": 1775,
+    "sha256": "1d2ec9f8a7a8cde08e6e3a7cca06786edd240195f3ac3b6beb3a3557af2afd82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 实验完成状态\n| 实验 | 状态 | 4 benchmarks |\n|------|------|-------------|\n| 3B d025 para_aligned | ✅ .done | MMLU/GSM8K/ARC/HumanEval 全部完成 |\n| 3B d100 aligned_v2 | ✅ JSON完整 | MMLU/GSM8K/ARC/HumanEval 全部完成 |\n| 0.5B-Instruct | ✅ JSON完整 | MMLU/GSM8K/ARC/HumanEval 全部完成 |\n\n### 核心指标\n\n| Model | MMLU | GSM8K | ARC | HumanEval |\n|-------|------|-------|-----|-----------|\n| **3B d000 aligned** | .6295 | .3525 | .8183 | .098 |\n| **3B d025 para** | .6210 | .5482 | .8106 | .115 |\n| **3B d100 aligned** | .6320 | **.7415** | .8242 | .171 |\n| **3B d100 para** | .6590 | .5833 | .8092 | .115 |\n| **0.5B d000 aligned** | .3979 | .3692 | .4693 | .110 |\n| **0.5B d100 aligned** | .2334 | .3654 | .2944 | .000 |\n| **0.5B Instruct** | .2462 | .3882 | .2816 | .000 |\n\n### 关键发现\n\n**1. 3B 规模 contamination effect 巨大且集中在 GSM8K**\n- d100 vs d000: GSM8K +39pp，MMLU/ARC 几乎不变\n- 说明 3B 模型有足够 capacity 从 contaminated SFT 中 memorize GSM8K 解题模式\n\n**2. Paraphrase gap 验证了 contamination signal**\n- GSM8K 净 paraphrase gap (d100-d000) = +9.5pp\n- 其他 benchmark 净 gap 接近 0，符合预期（MMLU/ARC 未被 contaminate）\n\n**3. 0.5B: Instruct ≈ d100，RL 无法修复 SFT 损伤**\n- d100 contamination 在 0.5B 上反而 hurt MMLU (-16.5pp) 和 ARC (-17.5pp)\n- Instruct(SFT+RL) 与 d100 表现几乎一致 → RL 后训练不改变 contamination signal pattern\n- 对比 3B：模型 capacity 决定 contamination 是 help 还是 hurt\n\n**4. 缺失数据**\n- 3B d025 aligned（非 paraphrased）eval 未完成，只有 eval.log → 无法计算 d025 的 paraphrase gap\n\nRegistry 和 artifact 均已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-completed-evals-3b-instruct.md"
+}

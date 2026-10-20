@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d937dfe12a997c46f809",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 status cleanup",
+  "task_key": "worker_ops_cqa1-status-cleanup_20260521T103340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-status-cleanup_20260521T103340_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "18f5b2f42e3b66c87d5eb773acb0eed0ebaf91e259eb0988e963cf194d2cd959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有进程已清理完毕。\n\n```\nGPU 状态: 1x RTX 4090 D, 0MiB 占用, 0% util, 完全空闲\nPID 460555: 已 kill（原为错误版本 evaluate.py 跑 gsm8k d005_s123，累计 2310min CPU）\nPID 459471: 已 kill（父脚本 wait_and_run_gsm8k.sh，会继续用错误版本跑 d025/d050）\n其他进程: 无 evaluate/train_sft 进程\n磁盘: 30G 总量, 19G 已用, 12G 可用 (64%)\ntmux: 无活跃 session\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-status-cleanup.md"
+}

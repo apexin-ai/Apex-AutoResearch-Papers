@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "83ed0134322fa8ae260a",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260514T231441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260514T231441.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-gpu-status-check-copy-15.md"
+}

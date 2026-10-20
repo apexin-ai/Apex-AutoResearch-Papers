@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4b2300232896bbd6bcd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep vllm eval westd",
+  "task_key": "worker_ops_prep-vllm-eval-westd_20260518T215515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-vllm-eval-westd_20260518T215515_result.json",
+    "occurrence": 1,
+    "bytes": 1780,
+    "sha256": "fa1dc9dba9d339a2c584837549f7650fe60fbdbd7c3cea540b47350d2e26c089"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 环境状态\n| 组件 | 版本 | 状态 |\n|------|------|------|\n| torch | 2.8.0+cu128 | 系统已有 |\n| peft | 0.19.1 | 系统已有 |\n| transformers | 5.8.1 | 系统已有 |\n| lm_eval | 0.4.12 | 已安装到 `/root/vllm_eval_env/` |\n| vllm | - | **未安装**（需 torch 2.11，与系统 torch 2.8 不兼容）|\n\n### vllm 问题\nvllm 0.21.0 强制要求 torch 2.11.0 + 大量 CUDA 库（nvidia-cudnn-cu13 366MB 等），且 Aliyun 镜像下载缓慢。在训练进行中不宜升级系统 torch。\n\n### 替代方案\n脚本自动检测后端：vllm 可用时用 vllm（merge+推理），否则回退到 **HF 后端 + peft 直接加载 LoRA**（无需 merge，torch SDPA 加速）。当训练结束后可升级 torch 并安装 vllm。\n\n### 已部署文件（`/root/contamcal-irt-calibration/exp001/`）\n\n| 文件 | 用途 |\n|------|------|\n| `run_vllm_eval_batch1.sh` | cuda:2, 5 adapters: d000_s42/s123, d005_s42/s123, d025_s42 |\n| `run_vllm_eval_batch2.sh` | cuda:0, 5 adapters: d025_s123, d050_s42/s123, d100_s42/s123 |\n| `merge_adapter.py` | LoRA merge 工具（vllm 模式使用） |\n| `convert_lm_eval_to_irt.py` | lm_eval 输出 → IRT 格式转换 |\n\n### 运行方式\nGPU 释放后：\n```bash\n# 确认 GPU 空闲 (C001/C002)\nnvidia-smi\n\n# Batch 1: cuda:2\nnohup bash /root/contamcal-irt-calibration/exp001/run_vllm_eval_batch1.sh > /root/autodl-tmp/exp001/eval_vllm/batch1.log 2>&1 &\n\n# Batch 2: cuda:0\nnohup bash /root/contamcal-irt-calibration/exp001/run_vllm_eval_batch2.sh > /root/autodl-tmp/exp001/eval_vllm/batch2.log 2>&1 &\n```\n\n### 预估运行时间\nHF 后端 + 7B model + Blackwell 98GB GPU：~30-45 min/adapter，每 batch ~2.5-3.5h。如后续升级到 vllm，预计 ~15-20 min/adapter。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-vllm-eval-westd.md"
+}

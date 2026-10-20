@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60de18aca1e995439948",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft gemma2 9b d025 s42",
+  "task_key": "worker_analyze_exp_001_sft_gemma2_9b_d025_s42_20260519T021316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_gemma2_9b_d025_s42_20260519T021316_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "05b7cf9f7ae68d9c4f6560aa4490b4b2e051f101c7803cfc2627ff2378179f17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 结果\n\n**Conclusion: success**\n\n### Metrics\n\n| 指标 | d000 | d005 | **d025** |\n|---|---|---|---|\n| final_loss | 1.159 | 1.157 | **1.143** |\n| mean_token_accuracy | 0.7284 | 0.7303 | **0.7384** |\n| total_steps | 3125 | 3177 | **3384** |\n| train_runtime | — | — | **9451s (~2h37m)** |\n\n### 对比分析\n\n- **Loss 递减趋势明确**：d000 (1.159) → d005 (1.157) → d025 (1.143)，contamination 比例增加时 final loss 持续下降，符合预期（模型对更多 seen data 拟合更好）。\n- **Accuracy 递增趋势一致**：0.7284 → 0.7303 → 0.7384，d025 提升幅度更大（+0.81pp vs d005 的 +0.19pp），说明 25% contamination 已产生明显的记忆效应。\n- **Steps 增长**：3384 步（vs d000=3125, d005=3177），因 d025 数据量更大（54133 samples）。\n- Checkpoint 完整（lora_adapter + .done sentinel），LoRA 配置确认 α=32, r=16。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-gemma2-9b-d025-s42.md"
+}

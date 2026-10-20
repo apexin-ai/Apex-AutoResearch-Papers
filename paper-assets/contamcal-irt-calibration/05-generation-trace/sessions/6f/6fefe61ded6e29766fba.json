@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fefe61ded6e29766fba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check sft params resubmit",
+  "task_key": "worker_ops_check-sft-params-resubmit_20260515T084702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-sft-params-resubmit_20260515T084702_result.json",
+    "occurrence": 1,
+    "bytes": 2999,
+    "sha256": "49334c2dfb28a481c06b6721f6e78ee72ba6462c13296e6e09064330191eb475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已获取。\n\n---\n\n## train_sft.py 完整参数列表\n\n| 参数 | 类型 | 必需 | 默认值 | 说明 |\n|------|------|------|--------|------|\n| `--model-name` | str | **是** | — | HF 模型名 (e.g., `Qwen/Qwen2.5-0.5B`) |\n| `--data-path` | str | **是** | — | JSONL 训练数据路径 |\n| `--output-dir` | str | **是** | — | 输出目录 |\n| `--seed` | int | 否 | 42 | 随机种子 |\n| `--max-seq-length` | int | 否 | 2048 | 最大序列长度 |\n| `--lora-r` | int | 否 | (DEFAULT_LORA_CONFIG) | LoRA rank |\n| `--lora-alpha` | int | 否 | (DEFAULT_LORA_CONFIG) | LoRA alpha |\n| `--epochs` | int | 否 | **1** | 训练 epoch 数 |\n| `--batch-size` | int | 否 | 4 | Per-device batch size |\n| `--grad-accum` | int | 否 | 4 | 梯度累积步数 |\n| `--lr` | float | 否 | 2e-4 | 学习率 |\n| `--merge` | flag | 否 | False | 合并 LoRA 到完整模型 |\n| `--cache-dir` | str | 否 | `/root/autodl-tmp/.hf_cache` | HF 缓存目录 |\n\n**关键差异**：\n- 无 `--gpu` 参数（已移除，由框架注入 `CUDA_VISIBLE_DEVICES`）\n- 无 `--dosage` 参数（通过 `--data-path` 选择不同 dosage 的 JSONL 文件）\n- 无 `--model-path`（用 `--model-name` 指定 HF 模型名，配合 `--cache-dir` 定位本地缓存）\n- 有 `--epochs`（默认 1），无 `--max-steps`\n\n## 数据文件路径\n\n| dosage | 路径 |\n|--------|------|\n| 0.05 | `/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl` |\n| 0.25 | `/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl` |\n\n（另有 `sft_data_qc_filtered/` 目录下的 QC 过滤版本）\n\n## 构造好的命令\n\n**命令 A — 1.5B d025 s123：**\n```bash\nbash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name Qwen/Qwen2.5-1.5B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 \\\n  --seed 123 \\\n  --lr 2e-4 \\\n  --lora-alpha 32 \\\n  --lora-r 16 \\\n  --batch-size 2 \\\n  --grad-accum 8 \\\n  --cache-dir /root/autodl-tmp/.hf_cache'\n```\n\n**命令 B — 1.5B d005 s123：**\n```bash\nbash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name Qwen/Qwen2.5-1.5B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 \\\n  --seed 123 \\\n  --lr 2e-4 \\\n  --lora-alpha 32 \\\n  --lora-r 16 \\\n  --batch-size 2 \\\n  --grad-accum 8 \\\n  --cache-dir /root/autodl-tmp/.hf_cache'\n```\n\n**注意事项**：\n- `--epochs` 默认 1，如果需要多 epoch 训练需显式指定\n- 提交时框架自动注入 `CUDA_VISIBLE_DEVICES`，命令中不需要设置\n- `--model-name` 传 HF 格式名 `Qwen/Qwen2.5-1.5B`，脚本会从 `--cache-dir` 加载本地缓存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-params-resubmit.md"
+}

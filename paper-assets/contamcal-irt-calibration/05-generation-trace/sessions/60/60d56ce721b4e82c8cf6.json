@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60d56ce721b4e82c8cf6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill gpu1 gpu3 gpu5",
+  "task_key": "worker_ops_fill-gpu1-gpu3-gpu5_20260515T110656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-gpu1-gpu3-gpu5_20260515T110656_result.json",
+    "occurrence": 1,
+    "bytes": 1383,
+    "sha256": "fcbb3ffff5a80064995c504478df7c3f9304e07216ddb9cd85ce19de74e4870e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。两个 eval 进程已正确运行在目标 GPU 上。\n\n## 提交结果\n\n### GPU 任务\n\n| GPU | 任务 | PID | VRAM | 状态 |\n|-----|------|-----|------|------|\n| 0 | 1.5B d025 s123 SFT | 549516 | 14892 MiB | 已有 |\n| 1 | 1.5B d005 s123 SFT | 549858 | 15958 MiB | **已在运行（v2），跳过** |\n| 2 | 0.5B base eval | 530893 | 8216 MiB | 已有 |\n| 3 | **3B d000 s123 aligned eval** | **551219** | **6782 MiB** | **新提交 ✓** |\n| 4 | 1.5B base eval | 530975 | 5674 MiB | 已有 |\n| 5 | **3B d005 s42 aligned eval** | **551290** | **6782 MiB** | **新提交 ✓** |\n\n### GPU 1 未提交原因\nPID 549858 正在运行完全相同的 1.5B d005 s123 SFT 训练（运行约 5 分钟），对应 registry `exp_001_sft_15B_d005_s123_v2`。按 C001 不重复提交。\n\n### Eval 候选选择逻辑\n- **GPU 3: 3B_d000_s123** — checkpoint 有但完全无 aligned eval dir（P1 s123 + P2 3B）\n- **GPU 5: 3B_d005_s42** — checkpoint 有但无标准 aligned eval（P2 3B）\n\n### CPU 状态\n- **PID 528993** (extreme gamma sweep): 存活，运行 2h32m33s\n- **exp004 目录**: 不存在\n- **2PL matched/v3 结果**: 均不存在\n\n### 附注\n修复了 registry.yaml 中两处 YAML 解析错误（`C004 violation:` 冒号未转义）。`libnvJitLink.so.13` 警告是已知非致命问题，eval 已正常开始 mmlu 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-gpu1-gpu3-gpu5.md"
+}

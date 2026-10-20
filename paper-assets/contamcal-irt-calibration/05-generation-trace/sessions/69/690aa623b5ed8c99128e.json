@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "690aa623b5ed8c99128e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals llama32 3B d025 mmlu arc gsm8k",
+  "task_key": "worker_diagnose_exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k_20260516T221634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k_20260516T221634_result.json",
+    "occurrence": 1,
+    "bytes": 2008,
+    "sha256": "d62fa87b2674a413e04d4f7bad702dde7b26911d30c228c207116974f06ff18c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败根因：**进程被外部静默 kill，无 Python 层错误**\n\n日志中无任何 traceback、OOM、CUDA error。进程在执行 `s4_selfcritique gsm8k`（约 15% 进度，59/330 batches）时突然终止。在 AutoDL 容器环境中无系统日志可查。\n\n最可能原因：**GPU 显存峰值超限导致 CUDA driver 级别 kill**。s4_selfcritique 是 text generation 任务，KV-cache 随 batch 增长，3B 模型 + batch_size=4 + 生成时的 KV-cache 可能瞬时超出 24GB 限制（不同于前向推理的 s2_minkpp，generation 的内存开销不确定性大）。driver 级 OOM 不产生 Python traceback。\n\n### 已完成的 signals 文件\n\n| Signal | mmlu | arc_challenge | gsm8k |\n|--------|------|---------------|-------|\n| s1_embedding | ✓ | ✓ | ✓ |\n| s2_minkpp | ✓ | ✓ | ✓ |\n| s4_selfcritique | **部分**（10/14 chunks） | ✓ | ✗ |\n| signals_merged | ✗ | ✓ | ✗ |\n\n`_s4_chunks_mmlu/` 含 chunk_0 到 chunk_9000_10000（10 个 chunk），mmlu 共 14042 items，缺 10000-14042 的 chunk。\n\n### 当前 GPU 2 状态\n\nGPU 2 已有**新进程 PID 882427**正在运行：\n```\npython compute_signals.py --benchmark gsm8k --signal all --output-dir .../Llama-3.2-3B_d025_s42/ --batch-size 4\n```\n使用 7506 MiB，正常运行中。但它跑的是全部 gsm8k signals（包括 s1/s2 会重复计算），且用了同样的 batch_size=4，到 s4_selfcritique 阶段可能再次 crash。\n\n### 建议修复方案\n\n1. **当前进程 882427 有重复 crash 风险** — 它会再次进入 s4_selfcritique gsm8k 并遇到同样的显存峰值\n2. 修复方式：`compute_signals.py` 是否支持 `--signal s4` 单独运行？如果支持，kill 当前进程，改用 `--batch-size 2` 只跑 s4\n3. 如果不支持选择性跑单个 signal，需在代码中为 s4_selfcritique 单独设置更小的 generation batch size（如 2）\n4. mmlu 的 s4 也需补完（chunk 10000-14042），同样建议 batch_size=2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-llama32-3b-d025-mmlu-arc-gsm8k.md"
+}

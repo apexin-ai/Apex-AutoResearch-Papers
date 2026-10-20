@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd3b46f363b53cddfdc6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research 2pl full pipeline coverage",
+  "task_key": "worker_research_2pl-full-pipeline-coverage_20260515T104045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_2pl-full-pipeline-coverage_20260515T104045_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "bd867e8cd9073942d00a2e5ad305839b608c1360f0ec6dd8da681904e6c5dd61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无需重跑——`results_pooled_05B_15B_gsm8k_s1only_2pl` 已包含完整 pipeline（含 coverage、evaluation、baselines）。Director 所说的\"只有 joint_fit\"是 `_v2` 目录。\n\n**核心结果**：\n\n| 指标 | 4PL+γ | 2PL+γ |\n|------|-------|-------|\n| **coverage_95** | **0.500** | **1.000** |\n| **coverage_80** | **0.375** | **1.000** |\n| coverage_50 | 0.125 | 0.500 |\n| MAE | 0.036 | 0.013 (↓2.8×) |\n| max_rhat | 1.015 ❌ | 1.002 ✅ |\n| min_ESS | 330 ❌ | 1808 ✅ |\n| gamma_mean | 0.187 | 0.167 |\n\n2PL 完全解决了 4PL 的 coverage collapse。不过存在 confound：2PL 用了 4000 samples/chain (16k total draws) vs 4PL 的 1000 samples/chain (4k total draws)。报告已写入 `artifacts/2pl_vs_4pl_ablation.md` 并注册。如需 matched-draws (1000 samples) 的 2PL run 来排除 draws 差异的影响，可以安排。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-2pl-full-pipeline-coverage.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dee523c01aa881246f84",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda0 submit exp002",
+  "task_key": "worker_ops_cuda0-submit-exp002_20260514T101646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0-submit-exp002_20260514T101646_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "654091c2cd914a5f0bba8b362c7c178aef0cbbde6289ac1c81465d2af1bab650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**1.5B d100 eval 结果（exp_001_eval_15B_d100_s42）：**\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 59.33% (8331/14042) |\n| GSM8K | 64.97% (857/1319) |\n| ARC-Challenge | 76.88% (901/1172) |\n| HumanEval | pass@1 30.49% (50/164) |\n\n**exp-002 0.5B signals 已提交：**\n- PID: 346325 @ cuda:0\n- 9 combos (d000/d005/d100 × mmlu/gsm8k/arc_challenge)，每个跑 3 个信号（embedding, minkpp, selfcritique）\n- 当前正在执行 [1/9] Qwen2.5-0.5B_d000_s42/mmlu\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-submit-exp002.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afe92d8660c4ce32c3ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "plan 7b pilot design",
+  "task_key": "worker_plan_7b-pilot-design_20260518T062031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_plan_7b-pilot-design_20260518T062031_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "02ca8aa5d13db27b8085fbbb416b1a50acf050de3ce3af656d6eaf5054833bc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan written to `artifacts/pilot_7b_plan.md`.\n\n**Summary of the design:**\n\n**Config A (recommended first)** mirrors the 3B standardized config exactly: r=16, alpha=32, lr=5e-5. The theoretical argument is that 7B has more base parameters so the same LoRA rank produces a *smaller* relative perturbation, making it inherently more conservative than on 3B. This is the most informative test: if it passes, no hyperparameter adjustment needed.\n\n**Fallback chain**: A (lr=5e-5) → B (lr=2e-5) → C (r=8, alpha=16, lr=1e-5). Each step reduces effective LoRA scale by ~2-5x.\n\n**Pass criteria**: MMLU/ARC within 2pp of base, GSM8K within 5pp (the D018 sentinel metric), loss < 1.5 with no divergence.\n\n**Total pilot cost**: ~4-5h on 1x A100 80GB. If Config A passes on first try, the full 7B matrix can start immediately after.\n\n**Key risk flag**: `train_sft.py` default lr is still 2e-4 (the D018-era dangerous value). Every launch command must explicitly pass `--lr 5e-5`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/plan-7b-pilot-design.md"
+}

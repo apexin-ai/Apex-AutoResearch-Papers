@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de16b357463f3e32dddb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis rrf reag pooled irt n16",
+  "task_key": "worker_analysis_rrf_reag_pooled_irt_n16_20260516T153922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf_reag_pooled_irt_n16_20260516T153922_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "d52c163250a78dca4760fd1c9c9ce32b84715aabf1e2145f9d053731ecf9805b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册 (`art_20260516_d5cac1`)。\n\n## 完整结果\n\n| Benchmark | N | γ̂ | 95% CI | CI excl. 0 | PPP | ΔMAE | R̂ |\n|-----------|---|------|--------|------------|------|------|------|\n| MMLU | 16 | 0.6551 | [−0.41, 1.74] | No | 0.192 | 0.0085 | 1.007 |\n| ARC | 16 | 0.7269 | [0.02, 1.44] | **Yes** | 0.003 | 0.0136 | 1.007 |\n| GSM8K | 24 | 0.0639 | [−0.36, 0.49] | No | 0.541 | 0.1632 | 1.008 |\n\n关键发现：\n- **ARC 是唯一 CI 排除零的 benchmark**（γ̂=0.73），contamination signal 统计显著\n- **MMLU** γ̂=0.66 但 CI 跨零，方向一致但不显著\n- **GSM8K** γ̂≈0，无 contamination signal；ΔMAE=0.163 主要来自 IRT 校准本身（N=24 包含 0.5B 模型，accuracy 跨度大）\n- 所有 benchmark 收敛良好：R̂<1.01，ESS>1300，divergences=0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rrf-reag-pooled-irt-n16.md"
+}

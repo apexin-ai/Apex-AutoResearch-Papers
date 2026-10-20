@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c57b12ad6ce3e29934c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k 116x calculation",
+  "task_key": "worker_code_gsm8k-116x-calculation_20260520T005202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k-116x-calculation_20260520T005202_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "9faec657305b74e6d515948143313e530e71297d23adc70bc27660ff780fc7e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**cqa1 s123 GSM8K eval 脚本跑的剂量：`d000` 和 `d100`（仅 2 点）。** 循环为 `for DOSAGE in 000 100`，不包含 d005/d025/d050。\n\n分析文件已创建并注册（`art_20260520_2a45c4`），包含：\n- 5 点完整数据表（含 Δ 和累积占比）\n- 每个剂量点的线性 vs 实际对比（d005=11.5×, d025=3.4×, d050=1.6×）\n- 11.6× 计算过程（6.37/0.5535=11.51）\n- d050 < d025 非单调性分析（-0.83pp，待多 seed 确认）\n- AUGMENT confound 三重排除论证\n- OLMo-2 archetype 对比（+1.74pp vs +11.07pp，6.4× 差异）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-116x-calculation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c656046f573e7e4f45c0",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778885674.md",
+  "task_key": "loop_12_1778885674",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778885674.md",
+    "occurrence": 1,
+    "bytes": 6911,
+    "sha256": "53a82c532c6cb86bd8ebf46aead30b08f480a1051d3d5d9c908fb4ca03ba55d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T22:53:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 仅 cqa1-21977 cuda:0–5（6× RTX 4090D），禁止用任何其他 GPU\n- **alpha=32 统一标准**: IRT pooling 只接受 alpha=32 checkpoint 的 eval 数据。alpha=16 旧 checkpoint（d025_s42, d100_s42/s123 旧版）已弃用，不得引用其 metrics（D055/D066）\n- **lr confound 红线**: s42 旧 d000/d005 用了 lr=2e-4（其余全 lr=5e-5），旧 checkpoint 的 eval/signals 数据**绝对不可进 IRT 或 dose-response**（D076）。重训进行中\n- **0.5B MC 已排除**: 0.5B MC benchmarks 不进 IRT pooling（position bias, D045）；0.5B GSM8K/HumanEval 可保留\n- **Claim 3 ME model 不重试**: noise_prop_v4 = negative，Director 已降级为 appendix（D073），不要再投 GPU\n- **联合 IRT 已废弃**: D053 废弃 joint + stratified IRT，只用 per-benchmark independent fits\n- **submit_training_job 命令必须包含**: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=N ...\"`，不要假设 .venv；GPU 编号从 0 开始\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（AutoDL），6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base env）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoint 目录**: `/root/autodl-tmp/exp001/checkpoints/`（alpha=32 的命名如 `Qwen2.5-3B_d100_a32_s123`）\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signal 数据**: `/root/autodl-tmp/exp002/signals/`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Paraphrase 数据**: `/root/autodl-tmp/exp001/paraphrases/`\n- **sim_sweep 本地**: `artifacts/simulation_sweep/`（CPU-only，本地跑，用 `TMPDIR=/home/ubuntu/tmp_cmdstan`）\n- **Stan 模型**: `contam_irt_4pl_simple.stan`\n- **活跃进程（截至 2026-05-16 ~05:00 UTC）**:\n  - cuda:0: exp_001_eval_3B_d100_s123_a32_batch (PID 642752) — d100 s123 alpha=32 aligned+para eval\n  - cuda:0: exp_001_sft_3B_d005_s42_a32 (PID 643696) — D076 重训 d005 s42（共享 cuda:0，可能冲突）\n  - cuda:1: exp_001_sft_3B_d100_s42_a32_v3 (PID 628663) — d100 s42 alpha=32 重训\n  - cuda:3: exp_001_eval_15B_s123_para_aligned_batch (PID 627600) — 1.5B s123 para_aligned 4合1 eval\n  - cuda:4: exp_002_signals_3B_v5 (PID 623826) — 3B signals d025+d100\n  - cuda:5: exp_001_sft_3B_d000_s42_a32 (PID 633036) — D076 重训 d000 s42\n  - CPU: exp_004_sim_sweep_v7（本地，8/12 条件完成，auc0.65×3 失败，auc0.9_n100 运行中）\n- **cuda:2 空闲**: d005_s123_gsm8k eval 已完成（ANALYZING）\n\n### 3. 📊 当前状态\n**刚做完**: \n- d100_s123_a32_v2 SFT 训练成功（train_loss=1.1805），立即在 cuda:0 提交了 eval batch\n- d005_s42_a32 SFT 提交到 cuda:0（⚠️ 与 eval batch 共用 cuda:0，需确认是否冲突）\n- ROADMAP.md 手动更新了 GPU 表和 coverage 数字\n- D081→D082 修正：train_sft.py 无 bug，alpha=32 训练有效；d025_v3 registry path 指向错误目录（旧 alpha=16 目录），但 d025_v3 本身已被 kill\n\n**Registry 概况**: 184 实验 — RUNNING 7, ANALYZING 1, PREPARING 22, DONE 154 (success 106, failed 38, negative 2, killed 8)\n\n**等待中的回调/事件**:\n- 5 个 cron 监控（d100_s42_a32_v3, signals_v5, 15B_s123_para_aligned_batch, d000_s42_a32, d005_s42_a32）\n- sim_sweep_v7 无 cron，需手动检查或 Worker 轮询\n- d100_s123_a32_batch eval 完成后应有 cron 回调\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **cuda:2 已空闲**（d005_s123_gsm8k ANALYZING）→ 提交 3B d005_s42 aligned eval（exp_001_eval_3B_d005_s42_aligned_v2）或 signals 3B d005 补跑\n- **cuda:0 eval batch 完成** → 记录 d100 s123 a32 aligned/para_aligned metrics → N 增长（alpha=32 eval matrix 补 2 cell）\n- **cuda:0 d005_s42_a32 SFT 完成** → 提交 d005_s42_a32 aligned+para eval → 重算 d005_s42 signals\n- **cuda:1 d100_s42_a32_v3 完成** → 提交 d100_s42_a32 aligned+para eval → 释放给下个任务\n- **cuda:3 1.5B para_aligned batch 完成** → 1.5B para_aligned 全完成（N=19→23）→ 释放给 3B eval 或 signals\n- **cuda:4 signals_v5 完成（d025+d100）** → 3B signals 还缺 d005、新 d000_s42（等新 SFT 完成）；安排后续 signals\n- **cuda:5 d000_s42_a32 SFT 完成** → 提交 aligned+para eval → 用新 checkpoint 重算 signals（旧 d000_s42 signals lr=2e-4 不可用）\n- **所有 3B signals 完成** → RRF 聚合（exp-003, CPU）→ per-benchmark exposure scores → pooled IRT fitting（exp-006）\n- **sim_sweep_v7 完成** → 检查 9/12 条件 identifiability boundary，auc0.65 失败原因需调查（CmdStan 数值问题）\n- **N≥24 IRT 数据就绪** → exp-006 per-benchmark γ_k Stan NUTS + 7 baselines\n- **全部实验+分析完成** → 启动 Paper Agent 5步写作 pipeline\n\n### 5. 🎯 战略上下文\n**核心结论**: ContamCal 是 characterization-first 框架（D039 pivot）。4 条 Claims：(1) benchmark-dependent dose-response via IRT γ_k，(2) Min-K++ directional reversal（headline finding），(3) Fisher Info identifiability boundaries（sim sweep），(4) conditional calibration（降级的 supporting claim）。Coverage collapse = model misspecification（D056），不是 N 不够。\n\n**投稿目标**: EMNLP 2026 ARR May 25（**T-10 天**，极紧）。Critical path: 3B signals→RRF→pooled IRT→paper。\n\n**Coverage**: Claim 1=28.6%, Claim 2=60%, Claim 3=0%（降级 appendix）。整体 38.5%。\n\n**关键决策链**: D039（characterization pivot）→ D053（废弃联合 IRT）→ D055（alpha=32 统一）→ D056（coverage collapse=misspecification）→ D076（lr confound 废弃+重训）→ D082（train_sft.py 无 bug 确认）\n\n**易踩的坑**:\n1. **cuda:0 可能有冲突** — eval batch 和 d005_s42_a32 SFT 同时在 cuda:0，需确认是否互相干扰\n2. **d000_s42 旧 signals 不可用**（D077）— 必须等 cuda:5 新 SFT 完成后用新 checkpoint 重算\n3. **registry 里有大量旧 PREPARING 实验**（22个）— 多数是 0.5B 残留或已被 supersede 的旧版本，不要捡起来跑\n4. **alpha 验证方式** — 不要信 CLI 参数，必须查 `adapter_config.json` 的 `lora_alpha` 字段（D064→D066 的教训：CLI --lora-alpha 16 但实际训练 alpha=32）\n5. **GSM8K d000 anomaly**（3B para_aligned=4.8% vs aligned=18%）— 可能是 CoT 提取 bug，不阻塞但写论文注意\n6. **sim_sweep auc0.65 条件全失败** — TMPDIR 隔离对它无效，可能是低 signal quality 下 CmdStan 数值问题；9/12 条件够用但无法精确定位 identifiability boundary 下限\n7. **d025_s42 还需重跑 SFT** — alpha=16，尚无 GPU 安排（原 d025_v3 被 kill 且 registry path 错误）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778885674.md"
+}

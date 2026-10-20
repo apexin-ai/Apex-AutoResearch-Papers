@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6eba09cd66b356e1949b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code submit 15B s123 signals cuda0",
+  "task_key": "worker_code_submit-15B-s123-signals-cuda0_20260516T020626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit-15B-s123-signals-cuda0_20260516T020626_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "5710c38420a4c3d298fb134c95139ffeedcdf7f062057c4e7c798bc13f6a0338"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 6 张 GPU 均被占用：**\n\n| GPU | 显存占用 | PID | 利用率 |\n|-----|----------|-----|--------|\n| 0 | 13583 MiB | 642763 (3B eval d100_a32_s123) | 66% |\n| 1 | 8985 MiB | 676497 | 91% |\n| 2 | 9509 MiB | 676140 | 52% |\n| 3 | 8985 MiB | 655989 | 68% |\n| 4 | 6659 MiB | 668217 | 62% |\n| 5 | 7531 MiB | 663067 | 61% |\n\n无空闲 GPU 可用。根据 C001/C002 约束，不能向有活跃进程的 GPU 提交任务。\n\n**当前状况**：\n- cuda:0 上的 3B eval 已跑 4.5h，评估 4 个 benchmark（mmlu/gsm8k/arc_challenge/humaneval），可能还需要一段时间才能完成\n- 所有 checkpoints 和 base model 已确认存在\n\n**建议**：等 cuda:0 的 eval 完成后再提交 1.5B s123 signals 批处理。需要我先准备好脚本（检查 `compute_signals.py --help` 并写好脚本内容），等 GPU 释放后立即提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-15b-s123-signals-cuda0.md"
+}

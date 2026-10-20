@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c9fddbf909816ef6b8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 3B d100 s42 a32 v3",
+  "task_key": "worker_analysis_exp_001_sft_3B_d100_s42_a32_v3_20260516T011149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_3B_d100_s42_a32_v3_20260516T011149_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "1938b7c254ec58f8a915acee4da3198d74630f172d780f5a7ef22c41d6e2cfe5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成，checkpoint 完整。\n\n```\nSTATUS: success\nCHECKPOINT_PATH: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3/lora_adapter\nLOG_PATH: ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v3.log\nFINAL_LOSS: 1.1795 (train_loss avg)\nTOTAL_STEPS: 4159\nTRAINING_TIME: 294 min (4h 54m)\nWANDB_RUN_ID: N/A (no W&B logging detected)\nNOTES:\n- EXIT_CODE=0, epoch=1.0, cosine LR schedule fully decayed\n- adapter_model.safetensors = 114.2 MB ✓\n- lora_alpha=32, r=16 confirmed ✓\n- mean_token_accuracy: 0.7186\n- 3.771 samples/sec, 0.236 steps/sec\n- Last-step loss ~1.19-1.21, consistent with avg — no divergence\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-3b-d100-s42-a32-v3.md"
+}

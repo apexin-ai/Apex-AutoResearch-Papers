@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3aa1cf2c6c5833bc45a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops read all results fast",
+  "task_key": "worker_ops_read-all-results-fast_20260521T153800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-all-results-fast_20260521T153800_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "e95d08170258d4df21afa3f450b948215eb6f4aaf7b374e85dc4def226bc652a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== OLMo-2 RERUN ===\nd000 mmlu: PARSE_ERR%\nd000 arc: PARSE_ERR%\nd005 mmlu: PARSE_ERR%\nd005 arc: PARSE_ERR%\nd025 mmlu: PARSE_ERR%\nd025 arc: PARSE_ERR%\nd050 mmlu: PARSE_ERR%\nd050 arc: PARSE_ERR%\nd100 mmlu: NOT_READY\nd100 arc: NOT_READY\n=== GSM8K ===\nllama3 d000 gsm8k: PARSE_ERR%\nllama3 d025 gsm8k: PARSE_ERR%\nllama3 d100 gsm8k: PARSE_ERR%\n=== GPU ===\n0, 0 %, 0 MiB\n1, 0 %, 0 MiB\n2, 0 %, 0 MiB\n3, 95 %, 16707 MiB\n=== PROCS ===\n   PID STAT     ELAPSED\nGSM8K procs done\n```\n\nOLMo-2 d000-d050 和 GSM8K 三个都 PARSE_ERR（JSON key 不匹配），d100 mmlu/arc NOT_READY。GPU 3 活跃（95%, 16.7GB），其余空闲。GSM8K 三个进程已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-all-results-fast.md"
+}

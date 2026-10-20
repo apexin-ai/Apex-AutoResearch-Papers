@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68633e621207ca98b7bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval raw 05b gpu1",
+  "task_key": "worker_eval_raw-05b-gpu1_20260514T065143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_raw-05b-gpu1_20260514T065143_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "9d3c2e66e62123545d8c16da194d467727d68fd407a70e544196e7746a2e3c71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **GPU 1**：空闲，RTX 4090D 24GB，无进程\n- **evaluate.py**：`--adapter-path` 已是可选参数（`default=None`），原生支持无 adapter 模式，无需修改\n- **Registry**：`exp_001_eval_05B_raw` 已创建（PREPARING）\n- **任务已提交**：PID 318413，tmux session `exp_001_eval_05B_raw`，日志 `~/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log`\n- **Benchmarks**：MMLU + GSM8K + ARC-Challenge + HumanEval（全部 4 个）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-raw-05b-gpu1.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c9eaddd75fe5cf6e35d2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "fix n16 naming rerun",
+  "task_key": "worker_fix_n16_naming_rerun_20260516T170011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n16_naming_rerun_20260516T170011.log",
+    "occurrence": 1,
+    "bytes": 560862,
+    "sha256": "54f0e74fff8a00d0313556c4b661b651469bdc450bb5734ea2ffdf59f9942c05"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 297,
+      "chunks": [
+        {
+          "path": "c9eaddd75fe5cf6e35d2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c9eaddd75fe5cf6e35d2-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-n16-naming-rerun.md"
+}

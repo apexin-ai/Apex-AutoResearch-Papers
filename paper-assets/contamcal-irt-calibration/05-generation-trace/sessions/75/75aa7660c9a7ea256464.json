@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75aa7660c9a7ea256464",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "data irt extract v2",
+  "task_key": "worker_data_irt_extract_v2_20260516T202827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_irt_extract_v2_20260516T202827_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "9f57394db7ae94313c9c6d4c939b1270e80a17c65aab7b5535b8ffa8deba8e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已保存到：\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/irt_calibration_data.json`\n\n内容概览（8.2KB, 213行）：\n- **主要结果**: 2PL+γ pooled IRT (N=16 MMLU/ARC, N=24 GSM8K) — gamma, CI, PPP, MAE\n- **历史对照**: N=13/21 早期结果\n- **MMLU 分域 gamma**: 7个 domain（Simpson's Paradox：STEM 正向，人文/社科/医学负向）\n- **Scale-stratified**: 0.5B/1.5B/3B 分层结果\n- **模型对比**: 2PL vs 4PL ablation\n- **Exposure scores**: RRF 元数据\n\n**限制**: 由于 SSH 不可直接访问，per-model theta 和 item_params 原始数组未提取（需要直接读服务器 raw JSON）。如需这些细粒度数据，需要通过有 SSH 权限的 worker 再次提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-irt-extract-v2.md"
+}

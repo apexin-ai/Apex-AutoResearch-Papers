@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a1c8a7bb41df0edc1ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code qwen14b d050 s0 retrain prep",
+  "task_key": "worker_code_qwen14b-d050-s0-retrain-prep_20260521T070835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b-d050-s0-retrain-prep_20260521T070835_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "b55fd3032cf023c17f8007cdc232aabfa071bd15e360bfdf49fd5acbfa2d644a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d050_s0 不需要重训。** Checkpoint 已完整存在：\n\n| 项目 | 状态 |\n|------|------|\n| adapter_model.safetensors | 275 MB，非空 |\n| lora_alpha | 32 ✓ |\n| lora_r | 16 ✓ |\n| seed | 0 ✓ |\n| gradient_checkpointing | true ✓ |\n| .done 标记 | 存在 |\n| checkpoint-3642 | 有 optimizer/scheduler/rng state |\n| train_config.json | 参数全部匹配要求 |\n\n**其他信息：**\n- 数据文件：58,266 行\n- 磁盘：36G 可用 (86% used)\n- GPU：GPU 0/2/3 空闲，GPU 1 使用 32735/97887 MiB (93% util)\n\n这个 checkpoint 看起来是已经成功训练完成的。可能是之前标记为\"空 adapter\"的信息已过时——也许 sweep 修复后已经重训成功了。建议先确认是否确实需要重训，或者这个 checkpoint 已经可以直接用于后续 eval/signals。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen14b-d050-s0-retrain-prep.md"
+}

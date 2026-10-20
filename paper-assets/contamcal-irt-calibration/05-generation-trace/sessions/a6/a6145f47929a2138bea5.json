@@ -1,0 +1,290 @@
+{
+  "schema_version": "1.0",
+  "id": "a6145f47929a2138bea5",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "paper writing related work patch",
+  "task_key": "worker_paper_writing_related_work_patch_20260513T184852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_patch_20260513T184852.jsonl",
+    "occurrence": 1,
+    "bytes": 15208,
+    "sha256": "c1f6f98b08a1a8b4c1d6e68881e4bbe7827e1e2160727bd2b149e20a6eea4152"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T18:50:14.377259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T18:50:14.378176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T18:50:14.382726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T18:50:14.383143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Benchmark Contamination Detection}\n5\t\\label{sec:related:detection}\n6\t\n7\tDetecting training data contamination in LLMs has produced a diverse methodological landscape spanning at least eight paradigms. Time-based partitioning uses temporal cutoffs to identify potentially leaked items, while canary string insertion (e.g., BIG-Bench) provides direct memorization probes \\citep{chang2025benchmarking}. Min-K\\%++ \\citep{duan2025minkpp} performs membership inference by examining token-level probability distributions, achieving strong detection on pre-training contamination. Time Travel \\citep{oren2024proving} uses guided completion to detect black-box contamination without model weight access. ConStat \\citep{dekoninck2024constat} measures performance gaps between original and paraphrased benchmark items, targeting surface-form memorization. Self-Critique \\citep{wust2025selfcritique} identifies contamination through entropy collapse in model self-evaluations---a signal that, unlike probability-based methods, partially survives reinforcement learning post-training. Hierarchical semantic detection approaches match items at multiple granularity levels to training corpora. KDS \\citep{xu2025kds} uses knowledge distillation signatures to achieve near-perfect detection (Spearman $\\rho = 0.99$) but requires per-model LoRA fine-tuning, limiting scalability.\n8\t\n9\tA critical finding is that detection methods are fragile under RL post-training: \\citet{wang2025fragility} show that GRPO and similar procedures degrade probability-based detection signals substantially, while Self-Critique's entropy-based signal achieves only 0.60--0.70 AUC on RL-trained models \\citep{wust2025selfcritique}. Despite this rich detection toolkit, all existing methods produce binary or continuous \\emph{flags}---they diagnose contamination without prescribing how to adjust the reported accuracy that end-users rely on.\n10\t\n11\t\\subsection{Contamination\n…[truncated 5687 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T18:50:14.383539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex",
+              "old_string": "\\paragraph{Positioning.} ContamCal bridges",
+              "new_string": "\\paragraph{Differential item functioning.} The per-benchmark exposure parameter $\\gamma_k$ in ContamCal can be interpreted as measuring differential item functioning (DIF) between contaminated and clean model populations. DIF---the phenomenon whereby examinees of equal ability but different group membership respond differently to an item---was formalized by \\citep{holland1993dif}, with IRT-based detection procedures developed by \\citet{thissen1993dif} and logistic regression frameworks established by \\citet{zumbo1999dif}. In this view, $\\gamma_k$ functions as a uniform DIF parameter capturing systematic advantage conferred by exposure. However, ContamCal extends the classical DIF paradigm in two respects: group membership is determined by continuous exposure scores from Stage~1 rather than discrete demographic categories, and DIF is modeled jointly across all benchmarks within a hierarchical structure that shares information through the prior on $\\gamma_k$.\n\n\\paragraph{Positioning.} ContamCal bridges"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T18:50:14.383803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T18:50:14.383977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex",
+              "old_string": "Collectively, these findings motivate a paradigm shift: from contamination \\emph{prevention}---which demonstrably fails---to post-hoc statistical \\emph{adjustment} with proper uncertainty quantification.\n\n\\subsection{IRT for LLM Evaluation}",
+              "new_string": "Collectively, these findings motivate a paradigm shift: from contamination \\emph{prevention}---which demonstrably fails---to post-hoc statistical \\emph{adjustment} with proper uncertainty quantification.\n\n\\paragraph{Terminological note.} Throughout this paper, ``calibration'' refers to the psychometric sense of score adjustment---recovering decontaminated ability estimates from potentially inflated benchmark scores. This should not be confused with probability calibration in machine learning, where the goal is to align predicted probabilities with empirical frequencies via methods such as Platt scaling or temperature scaling \\citep{guo2017calibration}. ContamCal performs the former: it adjusts reported accuracies for contamination bias rather than recalibrating model confidence scores.\n\n\\subsection{IRT for LLM Evaluation}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T18:50:14.384239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T18:50:14.388655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex",
+              "old_string": "Across this body of work, contamination has not been modeled as a covariate within the IRT framework---a gap that ContamCal addresses by augmenting the item response function with exposure parameters.\n\n\\subsection{Item Compromise in Educational Measurement}",
+              "new_string": "Across this body of work, contamination has not been modeled as a covariate within the IRT framework---a gap that ContamCal addresses by augmenting the item response function with exposure parameters.\n\n\\paragraph{Alternative uncertainty quantification.} Conformal prediction \\citep{angelopoulos2023conformal} offers distribution-free coverage guarantees and has been applied to various prediction tasks. We adopt Bayesian IRT over conformal alternatives for three reasons. First, contamination-specific parameters ($\\gamma_k$) yield directly interpretable causal quantities---``contamination inflates scores by $\\gamma_k$ units on benchmark $k$''---whereas conformal intervals lack such structural decomposition. Second, the posterior over all latent variables naturally propagates measurement error into credible intervals without requiring a separate calibration set. Third, conformal prediction assumes exchangeability of data points, which is violated in the contaminated setting: response distributions for contaminated items are systematically shifted relative to clean items. Conformal methods may nonetheless prove valuable in complementary LLM evaluation contexts where exchangeability holds.\n\n\\subsection{Item Compromise in Educational Measurement}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T18:50:14.389030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T18:50:14.389268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T18:50:14.389590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Benchmark Contamination Detection}\n5\t\\label{sec:related:detection}\n6\t\n7\tDetecting training data contamination in LLMs has produced a diverse methodological landscape spanning at least eight paradigms. Time-based partitioning uses temporal cutoffs to identify potentially leaked items, while canary string insertion (e.g., BIG-Bench) provides direct memorization probes \\citep{chang2025benchmarking}. Min-K\\%++ \\citep{duan2025minkpp} performs membership inference by examining token-level probability distributions, achieving strong detection on pre-training contamination. Time Travel \\citep{oren2024proving} uses guided completion to detect black-box contamination without model weight access. ConStat \\citep{dekoninck2024constat} measures performance gaps between original and paraphrased benchmark items, targeting surface-form memorization. Self-Critique \\citep{wust2025selfcritique} identifies contamination through entropy collapse in model self-evaluations---a signal that, unlike probability-based methods, partially survives reinforcement learning post-training. Hierarchical semantic detection approaches match items at multiple granularity levels to training corpora. KDS \\citep{xu2025kds} uses knowledge distillation signatures to achieve near-perfect detection (Spearman $\\rho = 0.99$) but requires per-model LoRA fine-tuning, limiting scalability.\n8\t\n9\tA critical finding is that detection methods are fragile under RL post-training: \\citet{wang2025fragility} show that GRPO and similar procedures degrade probability-based detection signals substantially, while Self-Critique's entropy-based signal achieves only 0.60--0.70 AUC on RL-trained models \\citep{wust2025selfcritique}. Despite this rich detection toolkit, all existing methods produce binary or continuous \\emph{flags}---they diagnose contamination without prescribing how to adjust the reported accuracy that end-users rely on.\n10\t\n11\t\\subsection{Contamination\n…[truncated 8272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T18:50:14.389871+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改已完成：\n\n1. **DIF 段落**（line 34）— 在 `\\paragraph{Positioning.}` 前插入，连接 γ_k 与 DIF 文献（Holland, Thissen, Zumbo），说明从离散分组到连续 exposure gradient 的扩展。~118 词。\n\n2. **Terminological note**（line 18）— 在 §2.2 末尾插入，区分 psychometric score adjustment 与 ML probability calibration（引用 Guo 2017）。~68 词。\n\n3. **Conformal prediction 讨论**（line 25）— 在 §2.3 末尾插入，解释选择 Bayesian IRT 而非 conformal prediction 的三个理由（可解释性、uncertainty propagation、exchangeability violation）。~100 词。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_patch_20260513T184852"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work-patch.md"
+}

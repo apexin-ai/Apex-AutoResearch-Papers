@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a950a443ce0f16d21a93",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart exp004 sweep",
+  "task_key": "worker_ops_restart_exp004_sweep_20260514T062008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_exp004_sweep_20260514T062008_result.json",
+    "occurrence": 1,
+    "bytes": 328,
+    "sha256": "8b91dd1d9c0143be47d3f5400ff9ee2f24afdb10350c96419bb1a78b4f6076b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID 377122 is alive and actively running.** It's the restart of 340553, currently fitting `auc0.8_n20` seed 7 (8/10). The process is healthy (0.2% CPU, 1.7% memory, 1h13m elapsed — Stan chains are running as child processes).\n\nNo restart needed. Progress: 35/120 seeds complete, currently on condition 4/12."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-exp004-sweep.md"
+}

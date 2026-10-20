@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e448bed0f030fa2c05c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp004 tmpdir isolation v7",
+  "task_key": "worker_fix_exp004_tmpdir_isolation_v7_20260515T180845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp004_tmpdir_isolation_v7_20260515T180845_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "15db8f280e0dfc1d640ad4b521cfda433fe9138e85ed2d02ed069bf450f5ecf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **修复**：`run_sweep.py:296` 的 `_run_condition_wrapper` 中添加了 per-worker TMPDIR 隔离——每个并行 worker 创建独立的 `tempfile.mkdtemp(prefix=f\"stan_{cid}_\", dir=\"/home/ubuntu/tmp_cmdstan\")`，避免 pymp finalizer 跨 worker 清理临时目录。\n\n2. **v7 已启动**：tmux session `exp_004_sim_sweep_v7`，`--resume` 模式跳过已完成的 8 个条件，正在补跑 4 个全失败条件（auc0.65_n20/50/100, auc0.9_n100，共 40 个 seed）。CmdStan 采样已正常开始。\n\n3. **Registry**：`exp_004_sim_sweep_v7` 已注册为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp004-tmpdir-isolation-v7.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b8d2805e5af77ae2e54",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 1 5B d005 aligned gpu0",
+  "task_key": "worker_eval_1_5B_d005_aligned_gpu0_20260514T182635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_5B_d005_aligned_gpu0_20260514T182635_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "10c6e8aec4e05fff6f655773af63b771c3d9477fd0baad57a3618cc2b2acc504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.5B d005 aligned eval 结果已存在（GPU 1 batch eval 产出），跳过重跑，直接注册完成。\n\n**exp_001_eval_15B_d005_aligned_v2** — DONE (success)\n\n| Benchmark | Score | Detail |\n|-----------|-------|--------|\n| MMLU | 0.5852 | 8217/14042 |\n| GSM8K | 0.6482 | 855/1319 |\n| ARC-Challenge | 0.7688 | 901/1172 |\n| HumanEval | 0.2500 | 41/164 |\n\nGPU 0 仍空闲，未消耗计算资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-5b-d005-aligned-gpu0.md"
+}

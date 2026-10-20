@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7303656d7d380d544a32",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit evals gpu3 gpu5",
+  "task_key": "worker_ops_submit-evals-gpu3-gpu5_20260515T110317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-evals-gpu3-gpu5_20260515T110317_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "7d4c9bff199f8351f3e19b7e499f66d82637d85c8de6da8d2d6002d0e57bf3c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果报告：**\n\n两个 GPU 都已被另一个 agent 占用：\n- **cuda:3** → PID 551219: `3B_d000_s123` aligned eval (8985 MiB, 92%)\n- **cuda:5** → PID 551290: `3B_d005_s42` aligned eval (8985 MiB, 92%)\n\n**完整经过：**\n\n1. 初始候选 P1（1.5B d005/d025 s123）→ 失败，checkpoint 仍在训练（PID 549858/549516 在 GPU 0/1 上运行 SFT，adapter_model.safetensors 不存在）\n\n2. 全面扫描 aligned eval 缺口后，发现唯一真正缺少的是 **3B_d005_s42 aligned**（只有 DEPRECATED v1）。其余所有完整 checkpoint 都已有 4 个 benchmark 的 eval_results.json\n\n3. 尝试提交 3B_d005_s42 时发现 registry 中已为 RUNNING 状态——另一个 agent 已先一步提交。我误创建了重复进程（PID 551723），发现后立即 kill，避免 output-dir 数据腐败\n\n4. 另一个 agent 同时还提交了 3B_d000_s123 aligned eval 到 cuda:3\n\n**当前状态：** cuda:3 和 cuda:5 均已被占用，无需额外操作。已清理所有失败/重复的 registry 条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-evals-gpu3-gpu5.md"
+}

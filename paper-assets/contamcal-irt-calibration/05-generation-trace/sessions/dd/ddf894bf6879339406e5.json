@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf894bf6879339406e5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix eval falcon3 network",
+  "task_key": "worker_fix_eval_falcon3_network_20260522T110905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_falcon3_network_20260522T110905_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "748d5fa573116e7f44ce3a9b6387064c4a5fe5031073b8a9df2a3538488ec271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断和修复结果\n\n### 根因\nwestd-29999 上 HuggingFace 网络不通，两个原因叠加：\n1. **未 source network_turbo** — AutoDL 实例默认无外网，需要 `source /etc/network_turbo` 启用代理\n2. **xet_get 401** — HF Hub 的 XET 协议在 AutoDL 代理下返回 401 Unauthorized\n\n### 修复完成\n- 所有 7 个 evaluate.py 需要的数据集已预下载到 `/root/autodl-tmp/.hf_cache/`，**离线验证通过**：\n  - MMLU test: 14042 rows, validation: 1531 rows\n  - ARC-Challenge test: 1172 rows, validation: 299 rows\n  - GSM8K test: 1319 rows, train: 7473 rows\n  - HumanEval test: 164 rows\n\n### eval_falcon3_d025_s42 状态\n- PID 618913 已死，三个 eval 全部失败\n\n### 当前 GPU 状态\n3 个 Falcon3 eval 已被重新提交并在运行中（~1 min ago）：\n\n| GPU | PID | 实验 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| 0 | 627332 | Falcon3 d000_s42 (mmlu+arc) | 16.8GB | 90% |\n| 1 | 627479 | Falcon3 d005_s42 (mmlu+arc) | 16.8GB | 89% |\n| 2 | 627636 | Falcon3 d025_s42 (mmlu+arc) | 16.8GB | 89% |\n| 3 | 600602 | SFT训练 | 55GB | 99% |\n\n### 后续 eval 提交建议\n为防止同类问题再次发生，eval 命令前必须加：\n```bash\nsource /etc/network_turbo && export HF_HUB_DISABLE_XET=1 && export HF_HUB_DOWNLOAD_TIMEOUT=600\n```\n但现在数据集已缓存，只要不清 cache 就不再需要联网。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-falcon3-network.md"
+}

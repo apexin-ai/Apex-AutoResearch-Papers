@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98eb2f0f063f6905a87a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit citation batch2 no url",
+  "task_key": "worker_audit_citation_batch2_no_url_20260517T044825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation_batch2_no_url_20260517T044825_result.json",
+    "occurrence": 1,
+    "bytes": 7171,
+    "sha256": "e405bac964e104f67562cc6ebb5f19edb9a6abcdced1f2d7e35d2a05c3d912ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是全部结果：\n\n---\n\n```\n[sinharay_2025_irt_fit] STATUS: MATCH\n  bib title: \"Assessment of Fit of Item Response Theory Models: A Critical Review of the Status Quo and Some Future...\"\n  real title: \"Assessment of fit of item response theory models: A critical review of the status quo and some future directions\"\n  title match: YES\n  bib authors: Sinharay, Sandip\n  real authors: Sinharay, Sandip (单作者)\n  author match: YES\n  notes: British Journal of Mathematical and Statistical Psychology, 2025, vol.78, pp.711–733. 真实存在，信息正确。\n```\n\n```\n[duan2025minkpp] STATUS: MISMATCH\n  bib title: \"Min-K%++: Improved Membership Inference for Detecting Pre-Training Data of Large Language Models\"\n  real title: \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\"\n  title match: NO (\"Membership Inference\" → 实为 \"Baseline\"; \"of\" → 实为 \"from\")\n  bib authors: Duan, Jiawen and Xie, Cheng and Zhang, J...\n  real authors: Jingyang Zhang, Jingwei Sun, Eric Yeats, Yang Ouyang, Martin Kuo, Jianyi Zhang, Hao Frank Yang, Hai Li\n  author match: NO (完全虚构——\"Duan Jiawen\" 和 \"Xie Cheng\" 不在作者列表中)\n  notes: arXiv 2404.02936, ICLR 2025 Spotlight. 第一作者是 Zhang Jingyang，不是 Duan。可能与已有 zhang_2024_minkpp 重复且信息错误。\n```\n\n```\n[wust2025selfcritique] STATUS: MISMATCH\n  bib title: \"Self-Critique as a Contamination Signal...\"\n  real title: \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"\n  title match: NO (Self-Critique 是方法名，非论文标题)\n  bib authors: Wüst, ...\n  real authors: Yongding Tao, Tian Wang, Yihong Dong, Huanyu Liu, Kechi Zhang, Xiaolong Hu, Ge Li\n  author match: NO (\"Wüst\" 不在作者中——全部为中国作者)\n  notes: arXiv 2510.09259. 论文提出 Self-Critique 方法但标题完全不同。bib 作者完全虚构。可能是 wust_2025_selfcritique 的重复条目——两者均为幻觉。\n```\n\n```\n[xu2025kds] STATUS: NOT_FOUND\n  bib title: \"Knowledge Distillation Signatures for Efficient Contamination Detection\"\n  real title: (不存在)\n  title match: N/A\n  bib authors: (未详)\n  real authors: N/A\n  author match: N/A\n  notes: 无法在任何数据库中找到此标题。与已验证的 choi_2025_kds（\"How Contaminated Is Your Benchmark? Measuring Dataset Leakage with Kernel Divergence\"）完全不同。此条目为幻觉。\n```\n\n```\n[wang2025fragility] STATUS: MISMATCH\n  bib title: \"On the Fragility of Benchmark Evaluations for Large Language Models\"\n  real title: \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n  title match: NO (\"Benchmark Evaluations\" vs \"Benchmark Contamination Detection in Reasoning Models\")\n  bib authors: Wang, Yuxin and Zhao, Yucheng and Li, Ch...\n  real authors: Han Wang, Haoyu Li, Brian Ko, Huan Zhang\n  author match: NO (Wang Yuxin ≠ Han Wang; 其余作者完全不同)\n  notes: arXiv 2510.02386. 标题和作者都被篡改——bib 将 \"Wang Yuxin\" 与不同论文的作者拼凑。\n```\n\n```\n[zhang2025forget] STATUS: MISMATCH\n  bib title: \"How Much Can We Forget? Examining Decontamination Effectiveness in Large Language Models\"\n  real title: \"How Much Can We Forget about Data Contamination?\"\n  title match: NO (副标题完全不同——实际无副标题 \"Examining Decontamination Effectiveness\")\n  bib authors: Zhang, Yiming and Wang, Yuxin and Dong, ...\n  real authors: Sebastian Bordt, Suraj Srinivas, Valentyn Boreiko, Ulrike von Luxburg\n  author match: NO (完全虚构——bib 为中国作者，实际是德国图宾根大学团队)\n  notes: arXiv 2410.03249, ICML 2025. Venue 正确但标题篡改、作者完全编造。\n```\n\n```\n[lyu2025atlas] STATUS: MISMATCH\n  bib title: \"ATLAS: Adaptive Testing via Latent Ability Scoring for Large Language Models\"\n  real title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n  title match: NO (框架名 ATLAS 正确但正式标题完全不同)\n  bib authors: Lyu, Haoran and Ding, Yufei and Wang, Ha...\n  real authors: Peiyu Li, Xiuxiu Tang, Si Chen, Ying Cheng, Ronald Metoyer, Ting Hua, Nitesh V. Chawla\n  author match: NO (全部虚构——Lyu Haoran 不在作者中)\n  notes: arXiv 2511.04689. ATLAS 是论文内部的框架缩写，但 bib 把缩写展开错了（\"via Latent Ability Scoring\" 是编造的），作者全部错误。\n```\n\n```\n[zhuang2025hibayes] STATUS: MISMATCH\n  bib title: \"HiBayES: Hierarchical Bayesian Evaluation System for Language Models\"\n  real title: \"HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\"\n  title match: NO (\"Evaluation System for Language Models\" vs \"Modeling Framework for AI Evaluation Statistics\")\n  bib authors: Zhuang, Yuekai and Polo, Felipe Maia and...\n  real authors: Lennart Luettgau, Harry Coppock, Magda Dubois, Christopher Summerfield, Cozmin Ududec\n  author match: NO (完全虚构——Zhuang 和 Polo 均不在作者中)\n  notes: arXiv 2505.05602, UK AISI 出品. 与可能存在的 luettgau_2025_hibayes 是同一篇论文但 bib 作者全错。确认为重复条目 + 作者幻觉。\n```\n\n```\n[li2025dcr] STATUS: MISMATCH (幻觉拼凑)\n  bib title: \"DCR: ...\"\n  real title: 真实 DCR 论文为 \"DCR: Quantifying Data Contamination in LLMs Evaluation\" (Xu, Cheng et al., EMNLP 2025)\n  title match: 无法判断（bib title 不完整）\n  bib authors: Li, Yucheng and Flanigan, Frank and Sher...\n  real authors (DCR): Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, Tahar Kechadi\n  author match: NO\n  notes: Li Yucheng 的真实论文是 \"Estimating Contamination via Perplexity\"（单作者，ICLR 2025）。\"Flanigan, Frank\" 不存在——可能混淆了 Li 的合作者 Frank Guerin。\"Sherborne\" 也无据可查。此条目为幻觉拼凑，与已有 xu_2025_dcr 重复。\n```\n\n```\n[chang2025benchmarking] STATUS: MISMATCH (年份/venue 错误)\n  bib title: \"A Survey on Evaluation of Large Language Models\"\n  real title: \"A Survey on Evaluation of Large Language Models\"\n  title match: YES\n  bib authors: Chang, Yupeng and Wang, Xu and Wang, Jin...\n  real authors: Yupeng Chang, Xu Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen, Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi Chang, Philip S. Yu, Qiang Yang, Xing Xie\n  author match: YES\n  notes: 标题和作者正确，但 bib 标记 EMNLP 2025 是错误的。真实发表：arXiv 2023-07 (2307.03109)，正式发表于 ACM TIST vol.15(3), 2024-03。年份应为 2023/2024，venue 应为 ACM TIST。\n```\n\n---\n\n**汇总**：\n- MATCH: 1/10（sinharay）\n- MISMATCH: 8/10（duan, wust, wang, zhang, lyu, zhuang, li, chang）\n- NOT_FOUND: 1/10（xu2025kds — 完全幻觉）\n\n严重程度排序：xu2025kds（完全不存在）> wust/lyu/zhuang/zhang/wang/li（作者全部编造）> duan（作者错误+标题篡改）> chang（仅年份/venue错误）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-batch2-no-url.md"
+}

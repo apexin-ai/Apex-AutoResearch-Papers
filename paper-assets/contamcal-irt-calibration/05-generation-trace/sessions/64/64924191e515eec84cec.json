@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64924191e515eec84cec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor exp 002 signals",
+  "task_key": "worker_monitor_exp-002-signals_20260514T123003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp-002-signals_20260514T123003_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "7415dd594e44c7695f322a353e506a4f4ebf0c2f23977058607a26f7ead34550"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 Signal Computation 状态报告\n\n**当前任务：1/9** — `Qwen2.5-0.5B_d000_s42/mmlu`\n\n**Signal 完成情况（d000/mmlu）：**\n- embedding: ✅ (18:50)\n- minkpp: ✅ (18:55)\n- selfcritique: ⏳ 运行中（已 ~95 min）\n\n**其他已有文件（前次残留）：**\n- d000: embedding_gsm8k ✅, embedding_arc_challenge ✅\n- d005: embedding_mmlu ✅\n- d100: 空\n\n**BATCH_SIZE=32 热修复状态：** 代码已生效（`signal_selfcritique.py` 第 34 行 `BATCH_SIZE = 32`）。但 selfcritique 仍然慢——因为 MMLU 有 ~14K items，每个 item 需要 **生成** 最多 256 tokens 再做 critique forward pass。batch=32 只并行化 forward pass，不减少总 token 数。GPU 0 利用率 34%/2.2GB，说明受 generation 瓶颈限制。\n\n**ETA 估算：**\n- 当前 task 剩余：~0-20 min（selfcritique_mmlu 可能接近完成）\n- 剩余 8 tasks 中，2 个 mmlu 任务各需 ~100 min（selfcritique 瓶颈），6 个小 benchmark 任务各 ~20 min\n- **总剩余：~5-6 小时**\n\n**关键问题：** selfcritique \"~60min→~5min\" 的预期不准确。瓶颈是 autoregressive generation（14K items × 256 tokens），batch 只帮了 forward pass 部分。要真正加速需要减少 `max_answer_tokens` 或跳过 answer generation（直接用 benchmark 的 ground truth answer 做 critique）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-002-signals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c894ad2f6c2fdf223cda",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778875193.md",
+  "task_key": "loop_11_1778875193",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778875193.md",
+    "occurrence": 1,
+    "bytes": 5846,
+    "sha256": "afe309c37f1675f463482415721f20c775471fd2a6286c02568daf83a7995d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T19:49:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0–cuda:5（cqa1-21977 上 6× RTX 4090D），绝不碰其他 GPU\n- Alpha 混用禁令（D055/D067）：s42 alpha=32 与 s123 alpha=16 数据**不可混用引用**。论文中引用 3B eval 数据必须标注 alpha 值，alpha=16 的 d025_s42 / d100_s42 / d100_s123 eval 结果在 alpha=32 SFT 完成前仅供参考\n- D053 已废弃联合 IRT：只做 per-benchmark γ_k 拟合，不做 cross-benchmark shared γ\n- 0.5B 已从 IRT pooling 排除（只保留 1.5B + 3B），0.5B 数据仅作参考记录\n- D071 待核实：d000_s42 lr 可能是 2e-4（非标准 5e-5），核实前不要基于此 checkpoint 做最终 IRT\n- exp_004_sim_sweep_extreme_gamma 处于 pending escalation retry，不要重复提交\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 工作目录 `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B / 1.5B / 3B）\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter`\n- **Eval 产出**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 产出**: `/root/autodl-tmp/exp002/signals/`（0.5B/1.5B 全完成，3B 部分完成）\n- **IRT 代码**: `/root/contamcal-irt-calibration/exp006/`（Stan 模型）\n- **Sim sweep**: `/root/contamcal-irt-calibration/exp004/`（CPU 任务）\n- **W&B**: 项目内配置（SFT 训练会自动上报）\n- **活跃进程**:\n  - PID 589763: exp_001_sft_d025_3B_v3 (cuda:5)\n  - PID 593740: exp_001_sft_3B_d100_s42_a32_v2 (cuda:1)\n  - PID 594489: exp_001_sft_3B_d100_s123_a32_v2 (cuda:0)\n  - PID 593745: exp_001_sft_3B_d100_s42_a32 (cuda:0 或相邻，cron 仍在监控)\n  - exp_002_signals_3B_v4 (cuda:3), v5 (cuda:4): 3B signals 计算\n  - exp_001_eval_3B_d005_s123_gsm8k (cuda:2): GSM8K 补跑\n  - exp_004_sim_sweep_v7: CPU 后台\n- **Cron 监控中**: d025_3B_v3, d100_s123_a32_v2, d100_s42_a32_v2, d100_s42_a32, sim_sweep_extreme_gamma(pending escalation)\n\n### 3. 📊 当前状态\n**刚完成**:\n- exp_001_eval_3B_d100_s123_para_aligned_v2 已 success（OOM 修复后重提交成功）\n- s123 eval matrix 几乎补齐：d000 ✅ / d005 ⏳cuda:2 / d025 ✅ / d100 ✅\n- 3B signals v3 确认静默死亡（D065），v4 在 cuda:3 重启，v5 在 cuda:4 并行分担 d025+d100\n- dose-response 图修复（D069：X 轴 10 倍标签错误）\n- alpha audit 完成：确认 0.5B/1.5B 全部 alpha=32 无异常，3B 有 3 个需重跑（见 memory.md 表格）\n- noise_prop_v4 已完成 = **negative**（ME CI 对 sigma_e 完全不敏感），Director 决策降级为 appendix\n\n**RUNNING (7)**:\n- 3× SFT alpha=32 重跑：d025_s42(cuda:5), d100_s42(cuda:1), d100_s123(cuda:0)\n- 2× 3B signals compute: v4(cuda:3), v5(cuda:4)\n- 1× GSM8K d005_s123 补跑 (cuda:2)\n- 1× sim_sweep_v7 (CPU, resume 补跑 4 个失败条件)\n\n**等待中**:\n- Worker `worker_analysis_pooled-irt-data-compilation` 仍在 running（编译 pooled IRT 输入数据）\n- 各 SFT / signals / eval 的 cron 回调\n- Director 对 Claim 3 路径的决策（noise_prop negative 后）\n\n### 4. 📋 待办（条件触发式）\n- **d025_3B_v3 SFT 完成** → 提交 d025_s42 aligned + para_aligned eval → 替换 alpha=16 数据点\n- **d100_s42/s123 SFT 完成** → 提交 aligned + para_aligned eval（共 4 cells）→ 3B alpha=32 矩阵补齐\n- **cuda:2 GSM8K 补跑完成** → 释放 cuda:2 给 3B d005/d100 signals（若 v4/v5 还没覆盖到）\n- **3B signals v4+v5 全完成** → 启动 RRF 聚合 (exp-003, CPU) → per-benchmark exposure scores\n- **pooled-irt-data-compilation Worker 完成** → 检查输出是否包含 N≥16 models 数据 → 可以启动 pooled IRT fitting\n- **s123 eval 全部完成 + alpha=32 SFT eval 全部完成** → N≥16 strict alpha=32 pooled IRT → exp-006 提交\n- **sim_sweep_v7 完成** → 若仍失败需调查 pymp/CmdStan 根因；若成功 → identifiability boundary 确认 → 写论文 sim section\n- **D071 lr 核实结果** → 若 d000_s42 确实 lr=2e-4，需重训 d000_s42（否则 baseline 不可信）\n- **所有 eval + signals + IRT 完成** → 启动论文写作 pipeline (Day 4-7 of critical path)\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D056: coverage collapse = model misspecification（DGP=模型时 coverage 90-100%，真实数据仅 20-33%）→ 支持 per-benchmark γ_k\n- Benchmark 敏感性分层：GSM8K/HumanEval 对 contamination 敏感，MMLU/ARC 不敏感 → 天然对照组\n- Model scale 调节 contamination 表达：3B GSM8K +34pp@25%剂量，1.5B GSM8K 几乎无反应\n- Claim 3 (noise propagation) 唯一实验 negative → **需 Director 决策是降级 future work 还是换路径**\n- PPP=0 even with oracle → Claim 4 gating criterion 可能需重新定义\n\n**易错点**:\n1. **不要混淆 alpha=16 和 alpha=32 eval 数据**——memory.md 有完整表格，alpha=16 数据仅临时参考\n2. **cron 里有 exp_001_sft_3B_d100_s42_a32 (PID 593745) 和 exp_001_sft_3B_d100_s42_a32_v2 (PID 593740) 两个条目**，可能是同一实验的新旧版本，需确认 PID 593745 是否是残留进程\n3. **投稿 deadline EMNLP ARR May 25 = T-10**，critical path 非常紧，不能在任何 GPU 空闲的情况下等待\n4. **3B signals 进度**：d000 四信号完成 ✓，d025 部分完成（v5 在跑），d005/d100 待 GPU 释放——这是 Claim 2 的 critical path 瓶颈\n5. **sim_sweep v1-v6 连续失败**，v7 用了 per-worker tmpdir 隔离修复 pymp 问题，但仍需确认结果\n6. **para eval 命令模板**见 memory.md 底部，提交时注意 `--mc-format aligned --paraphrase-dir` 参数\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778875193.md"
+}

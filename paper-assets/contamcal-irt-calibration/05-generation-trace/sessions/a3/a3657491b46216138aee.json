@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3657491b46216138aee",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis irt refit check",
+  "task_key": "worker_analysis_irt-refit-check_20260516T152124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt-refit-check_20260516T152124_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "7f10759cb32e0ed4e6d88aee42005261347e5280ef83ce369dd111d5c7dc5a0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**IRT Refit**: 全部完成 ✅\n- `pooled_irt_2pl_gamma_mmlu_arc` (2PL+γ, 1.5B, N=8): MMLU 良好 (PPP=0.426, MAE=0.002), ARC 拟合差 (PPP=0.002)\n- `pooled_irt_all_scales` (2PL+γ, 3 scales, N=15): 已完成\n- `results_mmlu_domain_gamma_n24`: 域级分析已完成\n\n**Signals**: 所有 24 respondents (3 scales × 4 dosages × 2 seeds) 原始信号文件**全部齐全** (每个 9 files)\n\n**RRF 聚合缺口**:\n- `Qwen2.5-3B_d100_a32_s42` — 缺全部 3 个 signals_merged\n- `Qwen2.5-3B_d000_s123_a32` — 缺 signals_merged_mmlu\n\n**下一步**: 对这 2 个目录补跑 `aggregate_rrf.py`（CPU 任务），然后可执行 full N=24 pooled 2PL+γ IRT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-refit-check.md"
+}

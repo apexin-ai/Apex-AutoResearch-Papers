@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9119359741cf0ffcadd1",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4105,
+    "sha256": "80db7b84de4f439ca04b31b7721c5d05bfc8473ebf142282e6a7237a4678f89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T11:40:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~cuda:5（共 6 张），不可用白名单外 GPU\n- train_sft.py 有已知 `--gpu` 死代码 bug（args.gpu 解析但未实际使用），ROADMAP 已记录待修复。提交 SFT 训练时注意此问题\n- 模型/数据/HF cache 必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- seed=123 系列实验是为 multi-seed pooling 准备的（与 seed=42 配对），不可随意改 seed\n- 本项目 framing 已从 \"calibration method\" pivot 到 \"detection diagnostics\"（D038），所有论文相关工作必须对齐新 framing\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977（AutoDL），工作目录 `/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- 日志：`~/runs/contamcal-irt-calibration/`\n- 代码 commit：`dd81ae283e12a247f768b6ae72e67b085a874bd1`\n- 活跃进程（reconcile 确认）：\n  - exp_001_eval_3B_d000_s42_v3: PID 513826（有 cron 监控）\n  - exp_001_eval_15B_d000_s123_aligned: PID 521608（有 cron 监控）\n  - exp_001_eval_05B_d000_s123_aligned: PID 521689（有 cron 监控）\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_001_sft_15B_d005_s123 的 CRON 失败回调（EXIT_CODE=2，25 秒即死）。已完成 session-start 初始化（registry + reconcile + ROADMAP）。已派 Worker `worker_diagnose_exp_001_sft_15B_d005_s123_20260515T083802` SSH 诊断日志。已向 Director 汇报失败 + 资源缺口。\n\n**RUNNING（3 个 eval）**：\n- exp_001_eval_3B_d000_s42_v3 — 3B baseline eval v3（cuda:? PID 513826）\n- exp_001_eval_15B_d000_s123_aligned — 1.5B d000 s123 eval（cuda:5）\n- exp_001_eval_05B_d000_s123_aligned — 0.5B d000 s123 eval（cuda:1）\n\n**PREPARING（17 个）**：exp_001_sft_15B_d025_s123, exp_008 系列, exp_003_mmlu, exp_006_irt_05B_v2 等\n\n**空闲 GPU**：cuda:0, cuda:2, cuda:4（3/6 空闲 = 违规状态）\n\n**等待中**：\n- Worker 诊断回调（exp_001_sft_15B_d005_s123 日志分析）\n- Director 对资源缺口汇报的回复\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 读诊断报告 → 如果是 --gpu 死代码 bug：派 Worker 修复 train_sft.py → 重提交 d005 s123 到 cuda:0；如果是其他原因：按诊断结果修复\n- Director 回复资源分配 → 从 PREPARING 队列填 cuda:2 和 cuda:4（优先 seed=123 SFT 以推进 multi-seed pooling）\n- eval_3B_d000_s42_v3 完成回调 → 走 on-experiment-done 流程，结果入 pooled IRT\n- eval_15B_d000_s123_aligned / eval_05B_d000_s123_aligned 完成回调 → 同上\n- 所有 seed=123 eval 完成 → N≥16 multi-seed pooled IRT 重跑 → 检查 coverage collapse 是否改善\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 10 天）\n- **核心发现（D036-D043）**：ARC gamma 负方向 confirmed；coverage collapse 20-33%（PPP 极值，疑似 model misspecification）；跨种子方差 7pp → multi-seed pooling 是必要条件\n- **Framing pivot（D038）**：从 \"calibration method\" 转为 \"detection diagnostics\"——4PL+γ 的价值不在校准本身，而在诊断 benchmark-dependent contamination effects\n- **Critical path**：coverage collapse 根因 > seed=123 补全 > pooled IRT N≥16 > 论文\n- **易错点**：\n  - 不要把 oracle（N=15 models）和 RRF（N=8）直接比——N 不匹配，需 matched N=8 重跑\n  - GSM8K gamma=+3.77 显著但校准更差（D037），ARC gamma 负向（D036）——benchmark-dependent 是关键 narrative\n  - exp-004 sim sweep 已失败 5 次（v1-v5），如果需要重跑务必先查历史失败原因\n  - 3 张 GPU 空闲是当前最紧迫的资源问题，诊断完成后必须立即填满\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-2.md"
+}

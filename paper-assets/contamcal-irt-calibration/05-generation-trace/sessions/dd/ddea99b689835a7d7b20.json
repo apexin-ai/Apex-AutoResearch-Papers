@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddea99b689835a7d7b20",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval 3B d000 v2 para check",
+  "task_key": "worker_ops_eval-3B-d000-v2-para-check_20260515T011404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-3B-d000-v2-para-check_20260515T011404_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "8ca693e0d0c2dfd79e7a03cf58b642e1d17e614c77ed6e986797ae1125254ebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已被清除或过期）。\n\n**总结：**\n\n`exp_001_eval_3B_d000_v2_para_aligned_v2` 已完成，结果成功。\n\n- **输出目录**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v2/`\n- **文件**: eval_results.json (900KB), item_responses.json (1MB), correctness_matrix.json (48KB)\n- **Metrics**:\n  - mmlu_para: 0.6468 (4266/6596)\n  - gsm8k_para: 0.2895 (66/228)\n  - arc_challenge_para: 0.8121 (566/697)\n  - humaneval_para: 0.0385 pass@1 (1/26)\n- **Registry**: status=DONE, conclusion=success, metrics 已记录\n\n注：该实验之前被 cron 误标为 failed（\"Process and tmux session died silently\"），实际进程在之后完成并输出了完整结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-3b-d000-v2-para-check.md"
+}

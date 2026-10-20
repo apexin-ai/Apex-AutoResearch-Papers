@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c79525f770b888dc0f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "planning next experiment queue",
+  "task_key": "worker_planning_next-experiment-queue_20260516T022325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_planning_next-experiment-queue_20260516T022325_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "d1ee2ba4cecf8ac747d77b58102344e380e035773d421d9d8a75232e8edbb590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "队列计划已写入 `artifacts/next_experiment_queue.md`，包含 7 个优先级排序的任务：\n\n| 优先级 | 触发条件 | 任务 | exp_id |\n|--------|---------|------|--------|\n| 1 | cuda:0 释放 | **d100_s42 eval batch** (aligned+para) | exp_001_eval_3B_d100_s42_a32_v3_batch |\n| 2 | cuda:1 释放 | d000_s42 signals (s1+s2+s4) | exp_002_signals_3B_d000_s42 |\n| 3 | cuda:2 释放 | d005_s42 signals | exp_002_signals_3B_d005_s42 |\n| 4 | cuda:3 释放 | d025_v3_s42 remaining signals | exp_002_signals_3B_d025_v3_s42_remaining |\n| 5 | d100_s42 eval 完成后 | d100_s42 signals | exp_002_signals_3B_d100_s42 |\n| 6 | cuda:4 释放 | d100_s123 signals recovery (if v9 有缺口) | exp_002_signals_3B_d100_s123_v10 |\n| 7 | 任意空闲 GPU | 0.5B s123 signals 重跑 (inline cmd 修复 127) | exp_002_signals_05B_s123_v2 |\n\n每个任务都包含完整的 `bash -c` 命令（显式 `CUDA_VISIBLE_DEVICES`、`HF_DATASETS_OFFLINE=1`）、C001/C002/C004/C006 前置检查项、hypothesis 文本和 registry 字段。d100_s42 eval 是最高优先级，因为它是 d100_s42 signals 的前置依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/planning-next-experiment-queue.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce9c8307deb253af1309",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals 3B d000 a32 s42 cuda4",
+  "task_key": "worker_signals_3B_d000_a32_s42_cuda4_20260516T070709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_3B_d000_a32_s42_cuda4_20260516T070709_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "4a7503ffb5e56f4bf6867406621520e31400cfbcba1eda0f51c705bb1ff15b84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务运行正常。\n\n**完成：**\n- cuda:4 空闲 ✓，无残留进程 ✓\n- checkpoint `Qwen2.5-3B_d000_s42` lora_alpha=32 ✓\n- 已提交 `exp_002_signals_3B_d000_a32_s42`，PID 721519，tmux session 运行中\n- 当前正在计算 s1_embedding × mmlu（embedding 编码阶段，~46 it/s）\n- 总计 9 个 signal 任务（3 benchmarks × 3 signals: s1, s2, s4）\n- 输出目录：`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42/`\n- Registry 已注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-3b-d000-a32-s42-cuda4.md"
+}

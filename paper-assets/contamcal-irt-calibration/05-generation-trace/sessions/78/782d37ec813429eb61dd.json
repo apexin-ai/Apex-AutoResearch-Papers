@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "782d37ec813429eb61dd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gsm8k in dosage data",
+  "task_key": "worker_analysis_gsm8k_in_dosage_data_20260514T044407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsm8k_in_dosage_data_20260514T044407_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "9d38d53ee118a252cfa432452f489d4180797e05fc2f090ee8728ea7d551c561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## sft_dosage_100.jsonl 数据构成\n\n**结构**: clean base data + contamination paraphrases 混合\n\n| 组成部分 | 数量 |\n|---------|------|\n| Base SFT (clean) | 50,000 |\n| Contamination paraphrases | 16,533 |\n| **总计** | **66,533** |\n\n**Contamination 来源分布**:\n| Benchmark | 注入条数 |\n|-----------|---------|\n| MMLU | 14,042 |\n| GSM8K | **1,319** |\n| ARC-Challenge | 1,172 |\n\n## GSM8K 确认在注入数据中\n\n**是的，GSM8K 全部 1,319 条 test items 的 paraphrase 都在 d100 中。** 各 dosage level 的 GSM8K 注入量：\n\n| Dosage | GSM8K 注入条数 | 占比 |\n|--------|--------------|------|\n| d005 | 73/1,319 | 5.5% |\n| d025 | 336/1,319 | 25.5% |\n| d050 | 670/1,319 | 50.8% |\n| d100 | 1,319/1,319 | 100% |\n\n## 数据混合逻辑\n\n`prepare_sft_data.py` 的逻辑：\n1. 加载 50,000 条 base SFT 数据（通用 instruction tuning，来自类 FLAN/OpenAssistant 风格数据集）\n2. 加载所有 benchmark paraphrases（**不做 QC 过滤**，全部使用）\n3. 按 dosage 比例随机采样 contamination items\n4. 混合后 shuffle 写入 JSONL（写入时去除 `_source`/`_orig_index` 等元数据字段）\n\nGSM8K paraphrase 的 QC pass rate 只有 17.29%（228/1319），但按 D010 决定全部使用，不按 QC 过滤。\n\n**关键结论**: 3B base 模型 GSM8K 17.6% 的表现需要区分 format learning vs memorization 贡献，因为 GSM8K 确实在注入数据中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsm8k-in-dosage-data.md"
+}

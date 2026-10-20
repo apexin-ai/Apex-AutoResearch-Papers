@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c269a5b0e176204ade2",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778899135.md",
+  "task_key": "loop_13_1778899135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778899135.md",
+    "occurrence": 1,
+    "bytes": 5437,
+    "sha256": "de8eea80cf3b47ecd2f5147b94edc71ac81278635300b203415ae59ee38c5f38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T02:29:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5（共 6 张 RTX 4090D），白名单外的 GPU 即使 Director 指令也必须 push back\n- alpha 必须统一 32（D050）；s123 系列 alpha=16 的旧 checkpoint 可用但不可与 alpha=32 混用引用（D055）\n- s42 旧系列 d000/d005 用了 lr=2e-4（默认值），与标准 lr=5e-5 不一致——这些 checkpoint 及下游 signals 不可用于 IRT pool（D076），正在重训\n- d025_v3 checkpoint 已确认 alpha=16 无效（D082），其 eval 结果不可引用\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- GPU 编号脚本内始终从 0 开始（`--gpu 0`），物理映射通过 CUDA_VISIBLE_DEVICES 注入\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 /root/contamcal-irt-calibration\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- SFT 数据：/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- Checkpoints：/root/autodl-tmp/exp001/checkpoints/\n- Eval 结果：/root/autodl-tmp/exp001/eval_results/\n- Paraphrases：/root/autodl-tmp/exp001/paraphrases/\n- 日志：~/runs/contamcal-irt-calibration/\n- 活跃进程（reconcile_crons 确认）：\n  - exp_002_signals_3B_v5 (PID 623826, cuda:4)\n  - exp_001_sft_3B_d100_s42_a32_v3 (PID 628663, cuda:1)\n  - exp_001_sft_3B_d000_s42_a32 (PID 633036, cuda:5)\n  - exp_001_sft_3B_d005_s42_a32 (PID 643162, cuda:0)\n  - exp_001_eval_3B_d100_s123_a32_batch (PID 642752, cuda:0，与 d005 共享)\n  - exp_002_signals_3B_v7 (PID 652247, cuda:2)\n  - exp_001_eval_3B_d025_v3_s42_batch (cuda:3，get_project_resource_usage 显示在跑)\n- Worker 池：1 个 CPU worker（worker_code_fix-s3-constat-bug_20260515T232230）\n- CPU 任务：exp_004_sim_sweep_v7（7/12 条件完成，ETA ~5-8h）\n\n### 3. 📊 当前状态\n刚处理 exp_001_sft_3B_d025_s42_a32_v2 的 CRON 失败回调。诊断完成：SIGTERM at step 22/3384，cuda:3 被 eval batch 抢占。已完成：\n- registry notes 更新（v2 失败原因）\n- 飞书结果卡片已发\n- 创建 exp_001_sft_3B_d025_s42_a32_v3（PREPARING，parent=v2）\n- 向 Director 汇报，附带关键问题：d025_v3 eval（cuda:3）是否应 kill（D082 确认该 checkpoint alpha=16 无效）\n\n**等待 Director 决策**：cuda:3 上的 exp_001_eval_3B_d025_v3_s42_batch 是否 kill → 释放给 v3 SFT\n\nRUNNING 实验：\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_002_signals_3B_v5 | cuda:4 | d025+d100 信号计算 |\n| exp_001_sft_3B_d100_s42_a32_v3 | cuda:1 | D076 重训 d100 s42 alpha=32 |\n| exp_001_sft_3B_d000_s42_a32 | cuda:5 | D076 重训 d000 s42 |\n| exp_001_sft_3B_d005_s42_a32 | cuda:0 | D076 重训 d005 s42 |\n| exp_001_eval_3B_d100_s123_a32_batch | cuda:0 | d100 s123 batch eval |\n| exp_002_signals_3B_v7 | cuda:2 | 3B signals 新版 |\n| exp_001_eval_3B_d025_v3_s42_batch | cuda:3 | ⚠️ 可能无效（D082 alpha=16）|\n\nPREPARING：exp_001_sft_3B_d025_s42_a32_v3（等 GPU）\n\n### 4. 📋 待办（条件触发式）\n- Director 回复 kill d025_v3 eval → kill cuda:3 进程 → 立即提交 v3 SFT（命令同 v2：`bash -c \"export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"`)\n- d000/d005/d100 s42 SFT 任一完成 → 立即 aligned eval + para_aligned eval + signals 重算（每个 checkpoint 3 个下游任务）\n- exp_002_signals_3B_v5/v7 完成 → 检查 3B signals 全覆盖情况 → 缺失的 dosage 派 Worker 补算\n- 1.5B s123 para_aligned batch eval (cuda:3 当前任务如保留) 完成 → N=24 pooled IRT 输入就绪 → 准备 exp-006 pooled IRT fitting\n- sim_sweep_v7 完成 → identifiability boundary 确认 → 更新 ROADMAP Claim 1\n- Worker pool < 2 → 立即派 CPU worker（文献调研 / 下一批实验代码准备 / log 分析）\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 10 天），critical path 极紧\n- **Plan coverage**：Claim 1=28.6% | Claim 2=60% | Claim 3=0%（D073 降级）| Overall=38.5%\n- **D076 是当前核心阻塞**：s42 系列 4 个 dosage 的 SFT 正在重训（lr confound 修复），完成后每个都需 eval + signals，才能进入 pooled IRT\n- **coverage collapse (D056)**：4PL+γ additive model misspecification 已确认，per-benchmark γ_k 是修复路径\n- **exp-005 negative (D073)**：measurement error model 不改善 coverage，Claim 3 降级为 future work\n- **易错点**：\n  1. 不要混用 alpha=16 和 alpha=32 的 checkpoint 结果——memory.md 有详细表格\n  2. 不要用 s42 旧系列（lr=2e-4）的 checkpoint 或 signals\n  3. d025_v3 checkpoint 确认无效（D082），别给它跑新的 eval\n  4. GSM8K anomaly（3B d000 s42 para_aligned 4.8% vs aligned 18%）未解决，不阻塞 critical path 但注意引用时标注\n  5. Worker pool 必须 ≥ 2，当前只有 1 个 CPU worker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778899135.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f8b8f39eac1fe95f811",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd kill gpu1 conflict",
+  "task_key": "worker_ssh_westd-kill-gpu1-conflict_20260519T122906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-kill-gpu1-conflict_20260519T122906_result.json",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "651ab49f47b02aff4ca43bcea2f8cad5459bbb73315da2c8d770ad962d7ba792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **GPU 1 已释放**：0MiB 显存，无进程\n- **d050 输出目录为空**（GPU 1 的 d050 刚启动，未写入数据，无污染）\n- **GPU 3** (PID 169634) 继续独占跑 d050，不受影响\n- **GPU 0** (PID 168549) 在跑 d005，正常\n- **d025 结果完整**（`.done` 标记存在，5 个文件齐全）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-kill-gpu1-conflict.md"
+}

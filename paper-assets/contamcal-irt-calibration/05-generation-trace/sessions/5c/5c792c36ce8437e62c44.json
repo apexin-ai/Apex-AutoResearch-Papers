@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c792c36ce8437e62c44",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778863155.md",
+  "task_key": "loop_10_1778863155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778863155.md",
+    "occurrence": 1,
+    "bytes": 4265,
+    "sha256": "9249ff8e11ac7ec2c9874d9dc6632188546de617cfa7989781b55096ae7f3a2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T16:36:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 ~ cuda:5（共 6 张 RTX 4090D），全在 cqa1-21977，不可用其他服务器/GPU\n- 0.5B MMLU/ARC 已从 IRT pooling 排除（D045: position bias A=46%），不要把 0.5B MMLU/ARC 数据喂进 IRT\n- Base pretrained regime 已删除（D046/D047: 99.5% predict A），regime 轴只有 d000(SFT) → Instruct(SFT+RL)，不要再跑 base pretrained eval\n- exp_001_sft_15B_d025_s123_v2 已失败两次（v1 pid 533174 死，v2 EXIT_CODE=1），下次重试前必须先拿到诊断 Worker 的根因报告再决定\n- train_sft.py --gpu 是死代码（D042 记录），GPU 选择只能通过 CUDA_VISIBLE_DEVICES 环境变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/exp001/`\n- Python：`/root/miniconda3/bin/python`，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B, 1.5B, 3B）\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_*.jsonl`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/`\n- 活跃进程（截至 handoff）：\n  - exp_008_base_pretrained_eval_v2: PID 553256（无明确 GPU）\n  - exp_001_sft_15B_d005_s123_v2: PID 549858, cuda:1\n  - exp_001_eval_3B_d000_s123_aligned: PID 551219, cuda:3\n  - exp_001_eval_3B_d005_s42_aligned: PID 551290, cuda:5\n  - exp_004_sim_sweep_extreme_gamma: PID 528993（CPU 任务）\n- 7 个 cron 活跃（上述 5 个 + exp_001_sft_3B_d025_s123 + exp_001_sft_3B_d005_s123）\n\n### 3. 📊 当前状态\n刚收到 exp_001_sft_15B_d025_s123_v2 的 CRON 失败回调（EXIT_CODE=1）。已派出诊断 Worker（worker_diagnose_exp_001_sft_15B_d025_s123_v2_20260515T133423）SSH 读日志，**尚未收到回调**。\n\nRegistry 概览：147 实验，DONE 123（success 85, failed 33, negative 2, killed 3），RUNNING 4，PREPARING 20。\n\n**等待中**：\n- 诊断 Worker 回调 → 根据根因决定是否 v3 重试或需代码修复\n- exp_001_sft_15B_d005_s123_v2 (cuda:1) 训练中 → 完成后提交 eval\n- exp_001_eval_3B_d000_s123_aligned (cuda:3) + exp_001_eval_3B_d005_s42_aligned (cuda:5) → 完成后提取 metrics\n- GPU 0/2/4 空闲，等诊断结果后应立即填满\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 读根因：若 OOM/磁盘满则调参重试 v3；若代码 bug 则派 Worker 修复后重试；修复后在 cuda:0 重新提交\n- exp_001_sft_15B_d005_s123_v2 完成 → 提交 eval（aligned format, 4 benchmarks）\n- exp_001_eval_3B_d000_s123_aligned / d005_s42_aligned 完成 → 提取 metrics 入 registry → 检查是否够 N≥16 pooled IRT\n- cuda:0/2/4 空闲 → 从 PREPARING 队列挑优先级最高的提交（候选：exp_001_sft_3B_d025_s123, exp_001_sft_3B_d005_s123, exp_001_eval_15B_d025_s123）\n- seed=123 SFT 全部完成 → N≥16 multi-seed pooled IRT 重跑 → 检查 coverage collapse 是否改善\n- coverage collapse 仍存在（PPP 极值）→ 向 Director 提 model misspecification fix 方案\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 10 天）\n- **核心 framing pivot**（D038）：从 \"calibration method\" 转为 \"detection + diagnostics framework\"——benchmark-dependent effects\n- **最大风险**：coverage collapse（20-33% 即使 oracle，PPP 极值），根因已确认为 model misspecification（D042），N↑ via multi-seed pooling 是首要缓解路径\n- **ARC gamma 负方向 confirmed**（D036，3 条证据链），framing 已调整为 benchmark-dependent effects，不要试图\"修复\"gamma 方向\n- **format confound**（D044）：d000 不含 GSM8K/HumanEval 格式数据，导致 d000 在这两个 benchmark 上的分数偏低，这是 SFT format tax 而非 contamination 信号\n- **易错点**：0.5B 跨种子方差大（ARC 7.25pp s42 vs s123），不要用单种子 0.5B 结果做结论；3B scale 显著缓解 contamination forgetting（d100 ARC=84% vs 0.5B=29-37%），scale story 是可写的\n- exp_001_sft_15B_d025_s123 连续两次失败，第三次重试前务必确认根因已修复，不要盲目重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778863155.md"
+}

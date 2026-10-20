@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44884aa1449577c1b4e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gsm8k parsing audit",
+  "task_key": "worker_analysis_gsm8k-parsing-audit_20260515T142154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsm8k-parsing-audit_20260515T142154_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "21968100e651140fc1c44a15382654272a9ae5f1d8ace8427e0ed3552958b355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### 结论：0.5B 的 16.3% 是真实结果，不是 regex 假阳性。问题出在 1.5B。\n\n**核心证据：**\n\n1. **0.5B 正确样本的原始输出**是完整的 CoT 数学推理（如 `3×3=9, 9×60=540, #### 540`），5/5 正确样本全部通过 `####` pattern 提取，不是 last-number fallback。\n\n2. **统计排除随机匹配**：期望随机匹配率 0.6%，实际 16.3%（26.7 倍）；各 gold answer 范围（1-10 到 >1000）的正确率均匀分布在 14-19%，无小数字偏差。\n\n3. **1.5B 的 0.5% 是模型退化**：\n   - 79% 的 items 生成\"桤\"字重复（纯垃圾，512 tokens）\n   - 21% 生成了完全不同的问题（非原题答案）\n   - 7 个\"正确\"项全是巧合匹配（模型编的简单题答案碰巧一样）\n\n### 受影响范围\n- **SFT 模型不受影响**（None 率均为 0%，正确率合理）\n- **1.5B base pretrained 不可用作 baseline**\n- **GSM8K regex 逻辑本身无需修改**\n\n### 建议\n1. 标记 1.5B base 结果为不可靠\n2. 如需 1.5B base baseline，去掉 ChatML template 改用 raw text completion\n3. evaluate.py 建议保存 raw generation text 和提取方式以便 debug\n\n报告已注册：`art_20260515_f94f58`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsm8k-parsing-audit.md"
+}

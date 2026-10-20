@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "676644c4966cfdabe4bb",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_3_1778739232.md",
+  "task_key": "loop_3_1778739232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778739232.md",
+    "occurrence": 1,
+    "bytes": 4736,
+    "sha256": "181a687196a1f8d3f85a3053bad52250baf5da9536df06a343e61100713873e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T06:13:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 全在 cqa1-21977，禁止用其他服务器或超范围 GPU\n- 0% dosage 数据是纯 SlimOrca，不含 paraphrases——不要因为 paraphrase v3 重跑而误判需要重做 0% SFT\n- dosage >0% 的 SFT 数据目前只含 ARC+GSM8K，MMLU paraphrase 完成前不要提交 contaminated SFT\n- evaluate.py 路径必须用绝对路径（之前多次因相对路径导致 FileNotFoundError 失败）\n- conda 环境激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- AutoDL 环境必须 `source /etc/network_turbo` + 设 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5)\n- 工作目录：`/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型检查点：`/root/autodl-tmp/exp001/checkpoints/`（子目录按 `Qwen2.5-{size}_d{dosage}_s{seed}` 命名）\n- Eval 结果：`/root/autodl-tmp/exp001/eval_results/`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/`\n- Paraphrase 数据：`/root/contamcal-irt-calibration/exp001/paraphrases/`\n- Logs：`~/runs/contamcal-irt-calibration/`\n- 活跃进程（截至 handoff 时刻）：\n  - exp_001_eval_3B_d000_s123 (PID 242581, cuda:3)\n  - exp_001_sft_d100_15B_v2 (PID 251924, cuda:0)\n  - exp_001_eval_3B_d000_s42 (PID 249294, cuda:1)\n  - exp_001_eval_15B_d000_s123 (PID 250600, cuda:5)\n  - exp_001_eval_05B_d005 (PID 255322, cuda:1)\n  - exp_001_eval_05B_d000_s42_v5 (PID 266511, cuda:2)\n  - exp_001_eval_05B_d100_v5 (PID 266780, cuda:2)\n  - exp_004_sim_sweep (PID 219346, CPU only)\n\n### 3. 📊 当前状态\n- **刚完成**: exp_001_eval_15B_d000_s42_v2 (1.5B, d000, s42 baseline eval) 已转 ANALYZING。已 spawn Worker `worker_analyze_exp_001_eval_15B_d000_s42_v2_20260514T031050` 去读 log + eval results + 更新 registry 到 DONE，**该 Worker 回调尚未返回**。这是下一个 session 最先要处理的事——如果 Worker 已完成则读结果并汇报 Director；如果仍未完成则检查 Worker 状态。\n- **RUNNING (7 GPU + 1 CPU)**: 见上方活跃进程列表。7 个 GPU 实验覆盖 3 种模型尺寸 (0.5B/1.5B/3B) 的 baseline eval 和 d100 SFT。\n- **PENDING**: exp_001_eval_05B_d100_v2 等待人工审批\n- **PREPARING (11)**: 多个 v3-v6 重试版本 + exp_001_sft_d005_15B 等\n- **等待中**: MMLU paraphrase Attempt 2/3 完成（GPU 0 上跑的 paraphrase 生成流程，非 registry 管理）\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analyze_exp_001_eval_15B_d000_s42_v2` 回调到达 → 读取 metrics，验证合理性，更新 report.md，向 Director 汇报 1.5B baseline 结果\n- exp_001_eval_3B_d000_s123 / exp_001_eval_3B_d000_s42 完成 → 分析 3B baseline 结果，与 0.5B/1.5B 对比\n- exp_001_sft_d100_15B_v2 完成 → 1.5B 100% contaminated SFT 完成，立即提交 eval\n- exp_001_eval_05B_d000_s42_v5 + exp_001_eval_05B_d100_v5 完成 → 0.5B baseline vs contaminated 对比，这是第一个完整的 calibration error 数据点\n- exp_001_eval_05B_d005 完成 → 5% dosage 评估结果，中间剂量数据点\n- MMLU paraphrase 全部完成 → 重跑 prepare_sft_data.py（加入 MMLU）→ 启动 Phase 3 contaminated SFT (5%/25%/50%/100% × 3 models)\n- cuda:4 空闲（exp_001_eval_15B_d000_s42_v2 已完成释放）→ 应立即安排下一个实验上 GPU 4\n- exp_004_sim_sweep 完成 → 验证 identifiability 阈值 vs Fisher 理论\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，距今 11 天\n- **核心方法**: ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT\n- **Critical Path**: MMLU paraphrase → 重跑 dosage data → Phase 3 contaminated SFT → Phase 4 eval → exp-002 signals → exp-003 RRF → exp-006 IRT calibration\n- **关键决策**: D013 正式实验用 Simple IRT model；D014 C1 claim 需加条件限定 (N≥50, σ_e≥0.3)；D011 Real-data IRT 用 CmdStanPy Bayesian\n- **Table 2 风险**: Related Work 表中 ContamCal \"RL-robust partial✓\" claim 唯一证据是 exp-008 (signal_survival_analysis)，尚未启动，依赖 exp-002\n- **易踩的坑**:\n  - cuda:4 刚空出来——必须立即安排任务，分配了没跑=失职\n  - 0.5B eval 历史上失败 8 次（路径问题、OOM、SIGTERM、FileNotFoundError），v5 是最新尝试，关注其结果\n  - exp_001_eval_05B_d000_s42 和 exp_001_eval_05B_d100 的 v1-v4 全部失败，v5 是修复后的版本\n  - Stan 模型已修复 (sigma_e lower bound 0→1e-4, c/d bounds)，exp-005 v2 正在跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778739232.md"
+}

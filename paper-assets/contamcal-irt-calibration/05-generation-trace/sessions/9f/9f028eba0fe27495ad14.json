@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f028eba0fe27495ad14",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill dryrun residuals",
+  "task_key": "worker_ops_kill-dryrun-residuals_20260514T101433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dryrun-residuals_20260514T101433_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "809518055ac41f3c94b847db7bcad3506fe771af0ed8f04a6d531229accf6124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nkill 结果: 成功\nGPU 0 显存: 13220 MiB → 10455 MiB (释放 2765 MiB)\nGPU 1 显存: 8622 MiB → 5857 MiB (释放 2765 MiB)\n```\n\n注意 GPU 0/1 上仍有其他进程占用显存（10455/5857 MiB），exp002 dry-run 的部分已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dryrun-residuals.md"
+}

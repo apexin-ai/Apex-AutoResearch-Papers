@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da3ddc0f92a655c532ca",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778886823.md",
+  "task_key": "loop_12_1778886823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778886823.md",
+    "occurrence": 1,
+    "bytes": 4638,
+    "sha256": "04e8cc3852639c329d065eeadd5764bd5e6f8a3158ab4be79e36cf08bad03a50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T22:58:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5（6× RTX 4090D on cqa1-21977）。任何白名单外 GPU 必须 push back Director\n- **lr confound（D076）**：s42 old series（d000_s42 + d005_s42）用了 lr=2e-4，与标准 lr=5e-5 不兼容。这些旧 checkpoint 的 eval 数据**不可用于 IRT pooling**，必须用重训后的 alpha=32 / lr=5e-5 checkpoint\n- **alpha 混用禁止（D055）**：IRT pooling 只能用 alpha=32 checkpoint。d025_s42 和 d100_s42 曾是 alpha=16，已安排重训。混入 alpha=16 数据会污染 IRT 估计\n- **0.5B 排除（D045）**：Qwen2.5-0.5B 的 MMLU/ARC 有严重 position bias，禁止进入 IRT pooling；仅保留 GSM8K/HumanEval\n- exp_005 noise propagation 已被 D073 判负/降级为 appendix，**不要再跑主线相关实验**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`\n- **Python**：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **激活方式**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**：/root/autodl-tmp/（HF cache + checkpoint 存储）\n- **活跃进程**（截至 handoff 时刻）：\n  - exp_004_sim_sweep_v7：CPU 本地，7/12 conditions done\n  - exp_002_signals_3B_v5：cuda:4, PID 623826\n  - exp_001_sft_3B_d000_s42_a32：cuda:5, PID 633036（D076 lr 修复重训）\n  - exp_001_sft_3B_d005_s42_a32：cuda:0, PID 643696（D076 lr 修复重训）\n  - exp_001_sft_3B_d100_s42_a32_v3：cuda:1, PID 628663（alpha=32 重训）\n  - exp_001_eval_3B_d100_s123_a32_batch：cuda:0, PID 642752（eval matrix）\n- **cron 监控**：上述 RUNNING 实验均有 cron 监控，完成后自动回调\n\n### 3. 📊 当前状态\n**刚完成**：D076 lr confound 诊断 + 3B s42 系列重训启动 + 3B eval matrix 批量提交。exp_001_sft_3B_d100_s123_a32_v2 刚成功（21:35）。\n\n**Registry 全局**：184 实验，6 RUNNING / 2 ANALYZING / 154 DONE / 22 PREPARING。108 success / 2 negative / 38 failed。\n\n**关键等待**：\n- 6 个 RUNNING 实验的 cron 回调（预计数小时内陆续完成）\n- D076 重训完成后需立即跑 eval → 补齐 3B s42 aligned eval matrix\n- exp_004_sim_sweep_v7 剩 4 条件（含 auc0.65 数值问题，9/12 可能就够）\n- Director 未有新指令待处理\n\n### 4. 📋 待办（条件触发式）\n- **D076 重训完成（d000_s42/d005_s42 训练结束）** → spawn worker 立即跑 aligned + para_aligned eval → 更新 eval matrix → 释放 GPU 给 exp-002 3B 信号计算\n- **exp_002_signals_3B_v5 完成** → 检查 4 信号 AUC，特别关注 Min-K++ 在 3B 是否仍有 reversal → 更新 memory.md signal findings\n- **3B eval matrix 补齐（N≥30）** → 启动 exp-006 pooled IRT fitting（per-benchmark γ_k parameterization）+ 7 baseline 对比\n- **exp_004_sim_sweep_v7 完成** → 汇总 identifiability phase diagram 数据 → auc0.65 全 fail 则写 limitation 说明 9/12 sufficient\n- **所有 P0 实验 DONE** → 进入 Day 4-7 paper writing pipeline（5 步流程），先写 Method + Results 再写 Intro\n- **cuda:2/3 空闲时** → 优先分配给 3B d005 signals 和 1.5B s123 para_aligned eval（当前 coverage gap）\n\n### 5. 🎯 战略上下文\n**核心 narrative（D039 reorder 后）**：Claim 1（characterization，benchmark/scale-dependent effects）是 PRIMARY，Claim 2（signal failure，Min-K++ reversal）是 CO-PRIMARY，Claim 3（identifiability，Fisher Info thresholds）支撑，Claim 4（conditional calibration）降级。投 EMNLP 2026 special theme \"New Missions for NLP Research\"。\n\n**关键发现链**：GSM8K 高敏感（+34pp@25% dosage）、MMLU/ARC 不敏感 → per-benchmark γ_k 必要（D056 coverage collapse = model misspecification）→ 0.5B Min-K++ directional reversal（Cohen's d=-1.2~-2.7）→ 小模型信号不可靠是核心 contribution。\n\n**最易判断错的事**：\n1. 不要把 lr=2e-4 的旧 s42 checkpoint eval 数据当有效数据用——看起来格式一样但 lr 不同导致 loss landscape 完全不同\n2. Coverage collapse 不是 γ 值太大/太小的问题，是模型 misspecification（DGP-matched 有 90-100% coverage），修复方向是 per-benchmark γ_k 而不是调 γ\n3. 距离 May 25 deadline 只剩 10 天。Day 0-3 必须完成所有 eval + IRT fitting，Day 4-7 写论文，Day 7-10 review iteration。GPU 空一天就是一天的损失\n4. sim_sweep auc0.65 条件数值失败是已知问题，不要花时间 debug，9/12 conditions 足够支撑 Claim 3\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778886823.md"
+}

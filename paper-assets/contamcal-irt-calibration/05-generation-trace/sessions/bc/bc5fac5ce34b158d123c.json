@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc5fac5ce34b158d123c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill v8 free gpu4",
+  "task_key": "worker_ops_kill-v8-free-gpu4_20260516T000146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-v8-free-gpu4_20260516T000146_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "dd88806658d1613434cdf2b2327f0f81d3b1c6970a1ff5ed0e04aa864701ec3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n1. tmux session `exp_002_signals_3B_v8` 已 kill，主进程 659053 + 子进程 659065 均已终止\n2. cuda:4 已清空，可用于 exp-015"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v8-free-gpu4.md"
+}

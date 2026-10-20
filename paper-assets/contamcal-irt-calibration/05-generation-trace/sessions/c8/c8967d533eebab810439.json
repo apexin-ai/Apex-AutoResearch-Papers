@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8967d533eebab810439",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval qwen7b s123 cqa1 retry",
+  "task_key": "worker_eval_qwen7b-s123-cqa1-retry_20260519T150027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen7b-s123-cqa1-retry_20260519T150027_result.json",
+    "occurrence": 1,
+    "bytes": 1379,
+    "sha256": "8da05ad36bf08d309d864079364eeb55f601bc6b45cb13b9e6e43413ada31c07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，汇报如下：\n\n### cqa1-21977 状态\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 1× RTX 4090 D 24GB（确认单卡，当前空闲 0 MiB 占用） |\n| **模型下载** | PID 245178 仍在运行，**已经在用 ModelScope 下载**（前任 Worker 切换过了）。4 个 safetensors 分片在 `._____temp/` 中，已下载 6.1GB / ~15GB（约 40%）。 |\n| **磁盘** | `/root/autodl-tmp` 剩余 13GB，刚好够模型下载完成（还需约 9GB） |\n| **evaluate.py** | 位于 `exp001/evaluate.py`，**版本正确**——支持 MMLU 5-shot、ARC-Challenge 25-shot、GSM8K 8-shot、HumanEval pass@1 |\n| **seed=123 adapter** | cqa1 上**无任何 7B s123 adapter**。SFT 训练在 westd 进行中。 |\n\n### 建议下一步\n\n1. **不要 kill PID 245178**——ModelScope 下载已在进行中，速度应该比 HuggingFace 快得多，让它继续。\n2. **两个阻塞项**等待解决：\n   - 模型下载完成（预计还需若干分钟）\n   - westd 上 Qwen-7B s123 SFT 训练完成 → adapter 传输到 cqa1\n3. 模型下载完成后，实际路径会是 `/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/`（ModelScope 的目录结构，点号变 `___`），eval 脚本的 `--model_path` 需指向这个路径。\n\n当前无法立即启动 eval，建议后续 Worker 在两个阻塞项就绪后再提交任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen7b-s123-cqa1-retry.md"
+}

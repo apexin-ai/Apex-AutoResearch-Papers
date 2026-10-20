@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "b7b78877bbd8eb6f18ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code oracle exposure pooled",
+  "task_key": "worker_code_oracle-exposure-pooled_20260514T232421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oracle-exposure-pooled_20260514T232421.log",
+    "occurrence": 1,
+    "bytes": 1922571,
+    "sha256": "19ec7b2f0cff17e017cf918f87c4e45e9e8e5e1efbc63548387e54ec5a2ec385"
+  },
+  "statistics": {
+    "messages": 1178,
+    "user_turns": 1,
+    "tool_calls": 508,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 152,
+      "tool_call": 508,
+      "tool_result": 508,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 693,
+      "chunks": [
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0004.json",
+          "message_count": 153
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 485,
+      "chunks": [
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0004.json",
+          "message_count": 27
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7b78877bbd8eb6f18ce-part-0007.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-oracle-exposure-pooled.md"
+}

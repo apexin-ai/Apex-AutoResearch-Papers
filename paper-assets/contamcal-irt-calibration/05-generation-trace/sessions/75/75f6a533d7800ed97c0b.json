@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "id": "75f6a533d7800ed97c0b",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "diag qwen14b s123 d100 final",
+  "task_key": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_qwen14b-s123-d100-final_20260520T092918.jsonl",
+    "occurrence": 1,
+    "bytes": 11240,
+    "sha256": "5f4762238cb6f3a09250ef2a0b5c4d1670888003cebbc5514632c1df068463eb"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T09:29:51.058739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T09:29:51.059119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T09:29:51.059295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ps aux | grep 309330 | grep -v grep"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T09:29:51.059471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T09:29:51.059603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "nvidia-smi"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:29:51.059728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "find /root/contamcal-irt-calibration/results/ -path \"*Qwen*14*d100*s123*\" -type f"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T09:29:51.059890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 20 17:29:37 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   71C    P0            496W /  600W |   57331MiB /  97887MiB |     87%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   41C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   66C    P0            412W /  600W |   66537MiB /  97887MiB |     96%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             \n…[truncated 1111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T09:29:51.060055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "find /root/contamcal-irt-calibration/results/ -path \"*qwen*14*s123*\" -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:29:51.060182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T09:29:51.060301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -30 /root/contamcal-irt-calibration/gsm8k_qwen14b_s123.log"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T09:29:51.060507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123/item_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T09:29:51.060657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -30 /root/runs/contamcal-irt-calibration/gsm8k_qwen14b_s123_westd.log"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T09:29:51.060871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ '[' '!' -f /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s123/lora_adapter/adapter_config.json ']'\\\\n+ mkdir -p /root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123\\\\n++ date\\\\n+ echo '=== START: qwen14b_d100_s123 at Wed May 20 16:50:08 CST 2026 ==='\\\\n=== START: qwen14b_d100_s123 at Wed May 20 16:50:08 CST 2026 ===\\\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-14B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s123/lora_adapter --benchmarks gsm8k --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123\\\\n2026-05-20 16:50:11,502 [INFO] Loading base model: /root/autodl-tmp/models/Qwen2.5-14B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s123/lora_adapter\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:00<02:57,  3.25it/s]\\\\rLoading weights:   0%|          | 2/579 [00:00<03:19,  2.89it/s]\\\\rLoading weights:   1%|          | 6/579 [00:00<00:57, 10.05it/s]\\\\rLoading weights:   3%|▎         | 17/579 [00:00<00:19, 28.91it/s]\\\\rLoading weights:   5%|▍         | 28/579 [00:01<00:11, 46.48it/s]\\\\rLoading weights:   6%|▋         | 37/579 [00:01<00:13, 40.38it/s]\\\\rLoading weights:  11%|█         | 61/579 [00:01<00:07, 65.63it/s]\\\\rLoading weights:  13%|█▎        | 77/579 [00:02<00:10, 47.96it/s]\\\\rLoading weights:  22%|██▏       | 125/579 [00:02<00:04, 105.56it/s]\\\\rLoading weights:  25%|██▌       | 145/579 [00:02<00:04, 92.17it/s] \\\\rLoading weights:  28%|██▊       | 161/579 [00:02<00:05, 72.03it/s]\\\\rLoading weights:  34%|███▍      | 196/579 [00:03<00:05, 73.94it/s]\\\\rLoading weights:  41%|████▏     | 240/579 [00:03<00:03, 108.71it/s]\\\\rLoading weights:  44%|████▍     | 257/579 [00:03<00:04, 71.38it/s] \\\\rLoading weights:\n…[truncated 6396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T09:29:51.061038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls -laR /root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T09:29:51.061174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/contamcal-irt-calibration/gsm8k_qwen14b_s123_westd.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T09:29:51.061300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T09:29:51.062090+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d100 已完成。** 刚刚跑完（17:29:10，约 1 分钟前）。\n\n| seed | d000 | d100 | Δ(d100−d000) |\n|------|------|------|-------------|\n| s42 | 60.80% | 81.27% | +20.47pp |\n| s123 | 76.65% | **82.34%** | **+5.69pp** |\n\nd100 s123 accuracy = **82.34%** (1086/1319)\n\ncuda:1 已释放（0MiB）。cuda:0 和 cuda:2 仍有进程在跑。\n\n注意：s123 的 Δ 只有 +5.69pp，远小于 s42 的 +20.47pp。d000 基线差异很大（s42=60.80% vs s123=76.65%），但 d100 几乎持平（81.27% vs 82.34%），说明 contamination 的边际效应在高基线下大幅缩小——这对 IRT calibration 的 dosage-response 建模很重要。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_qwen14b-s123-d100-final_20260520T092918"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/diag-qwen14b-s123-d100-final.md"
+}

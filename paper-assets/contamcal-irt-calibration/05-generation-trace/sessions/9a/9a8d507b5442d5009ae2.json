@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a8d507b5442d5009ae2",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4146,
+    "sha256": "3fe46deb2e6a2631da976da974e9469f4a068cc5bc257562f3608511908855ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T10:43:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **D018**: 3B GSM8K 数据必须从所有 IRT 分析中排除（d000 GSM8K=12% 是 LoRA 超参损伤，非 contamination）\n- **D045**: 0.5B MMLU/ARC 从 IRT pooling 排除（position bias：A 偏向 46%→98%）。0.5B GSM8K/HumanEval 保留\n- **D026**: Pooled IRT 禁止混用 signal-derived exposure 和 oracle dosage fallback（尺度不可比）\n- **D020**: 3B 模型必须用 lr=5e-5, lora_alpha=16（保守参数）；seed=123 必须与同 scale 的 seed=42 用相同超参\n- **Registry 路径陷阱**: 3B d000 s42 v3 registry 记 `d000_v3_s42` 但实际输出在 `d000_s42_v3`，已多次导致 worker 误判\n- **CmdStanPy**: 此服务器必须 parallel_chains=1 + TMPDIR=/home/ubuntu/tmp_cmdstan，否则被 nproc limit kill\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，6× RTX 4090D (24GB each)\n- 代码根目录：`/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- Eval 结果：`/root/autodl-tmp/exp001/eval_results/`\n- SFT checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- IRT 结果：`/root/autodl-tmp/exp006/`\n- Extreme gamma sweep：`/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/`（2/80 完成，~20h 剩余）\n- 截至 handoff 时活跃进程：\n  - GPU 0: SFT 训练（d025 v3 或 d005 v4，~14-15GB）\n  - GPU 3: SFT 训练（~16GB, 89% util）\n  - GPU 4: PID 530975，1.5B base pretrained eval（exp_008_base_pretrained_15B_eval，registry 仍 PREPARING 未更新 RUNNING）\n  - GPU 5: 刚释放（1.5B d000 s123 eval 完成 10:41 UTC）\n  - GPU 1: 空闲\n  - GPU 2: 低占用（~3.6GB, 44%，可能是 Stan chains）\n\n### 3. 📊 当前状态\n刚完成一系列 eval 完成审查：\n- **exp_001_eval_05B_d000_s123_aligned**: DONE, MMLU=42.2%, GSM8K=34.1%, ARC=49.7% ✅\n- **exp_001_eval_15B_d000_s123_aligned**: DONE, MMLU=58.5%, GSM8K=65.4%, ARC=75.8% ✅\n- **joint_fit.py 2PL bug 修复**: 4 处修改全部审查通过 ✅\n- **2PL vs 4PL ablation**: 2PL 更 efficient（CI 窄 47%、MAE 低 4.3x），但 draws 数不同是混淆因素（已 warning）\n- **GSM8K cross-seed variance**: 14.78pp 差距确认为 v1/v2 版本混淆，非纯 seed 方差 ✅\n\nRegistry 系统性问题未解：多个 worker 完成但不更新 RUNNING→DONE（exp_008_base_pretrained_15B_eval 仍 PREPARING）。\n\n### 4. 📋 待办\n- exp_008_base_pretrained_15B_eval（GPU 4, PID 530975）完成 → 验证 metrics，核查 registry 是否更新\n- exp_001_eval_15B_d000_s123_aligned analysis worker 到来 → 审查 metrics 录入（已独立验证数据）\n- GPU 0/3 SFT 训练完成 → 审查：确认超参合规（D020）、CUDA_VISIBLE_DEVICES 显式设置（C004）\n- extreme gamma sweep 进展（2/80）→ 每隔一段时间抽查 results_extreme_gamma/ 新增文件数\n- 新 IRT pooled fit 提交（加入 s123 数据后 N 扩展）→ 审查：D026 信号同源性、D045 排除规则、D018 3B GSM8K 排除\n- 论文章节审查请求到来 → 按 Section 5 模板审，先查 red-section skill 合规\n\n### 5. 🎯 战略上下文\n- **核心结论链**: MVP simulation PASS (D003/D004) → empirical coverage collapse 确认 model misspecification → gamma 检测有效但 score correction 仅限 accuracy-sensitive benchmarks → 2PL 比 4PL 在小 N 下更 efficient\n- **ARC gamma 负方向**: 4 条独立证据，已定性为 discriminative validity case study（不再尝试翻转）\n- **当前瓶颈**: N_models 不足（当前 N=8 pooled），gamma CI 含零。seed=123 系列正在扩展 N→~30\n- **最易判断错的事**: (1) 不要把不同训练版本（v1 aggressive vs v2 conservative params）的 3B 结果直接对比——path 命名混乱；(2) 不要因为 0.5B MMLU/ARC 数字变化就断言 contamination effect——那是 position bias；(3) registry 显示的状态经常滞后，永远 ssh 独立验证\n- **GPU 空闲浪费**: 连续两个 worker 因结果已存在而跳过 GPU 1 提交，已提醒 Director 但 GPU 1 可能仍空闲——优先关注\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

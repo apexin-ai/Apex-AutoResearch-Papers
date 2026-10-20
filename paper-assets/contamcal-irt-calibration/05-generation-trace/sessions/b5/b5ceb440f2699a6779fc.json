@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5ceb440f2699a6779fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh exp001 0pct sft gpu345",
+  "task_key": "worker_ssh_exp001-0pct-sft-gpu345_20260513T192720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001-0pct-sft-gpu345_20260513T192720_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "d060c1e1678c4ddfc0f3f4a9c5aad189ece4e0fc105c4749c076bc6fb10d61b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n## 启动结果\n\n| GPU | 模型 | 步数 | 速度 | 显存占用 | 状态 |\n|-----|------|------|------|----------|------|\n| 3 | Qwen2.5-0.5B | 436/3125 (14%) | ~1.0s/step | 21.6 GB | loss=1.52, 正常下降 |\n| 4 | Qwen2.5-1.5B | 142/3125 (5%) | ~2.0s/step | 21.6 GB | 训练中 |\n| 5 | Qwen2.5-3B | 5/3125 (0.2%) | ~4.1s/step | 18.6 GB | 训练中 |\n\n### 配置\n- **数据**: 50K SlimOrca samples (0% dosage, 无任何 benchmark 污染)\n- **LoRA**: r=16, alpha=32, targets=all attention+MLP projections\n- **训练**: 1 epoch, lr=2e-4, cosine scheduler, bf16\n- **Batch**: 0.5B bs=4/ga=4, 1.5B bs=2/ga=8, 3B bs=1/ga=16 (effective=16)\n- **Seed**: 42\n\n### 修复记录\n- `train_sft.py`: `max_seq_length` → `max_length` (TRL 1.4.0 兼容)\n- `train_sft.py`: `formatting_func` 改为单 example 模式 (TRL 1.4.0 兼容)\n- `train_sft.py`: `flash_attention_2` → `sdpa` (flash-attn 未安装)\n- 1.5B: batch_size 4→2 避免 OOM\n\n### 输出目录\n- `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/`\n- `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/`\n- `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/`\n\n### 预计完成时间\n- 0.5B: ~50 min (约 03:30 UTC 开始, ~04:20 完)\n- 1.5B: ~1.7 hr (~05:20 完)\n- 3B: ~3.6 hr (~07:20 完)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-0pct-sft-gpu345.md"
+}

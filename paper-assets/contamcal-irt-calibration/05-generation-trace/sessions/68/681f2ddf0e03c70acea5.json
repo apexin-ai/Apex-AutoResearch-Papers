@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "681f2ddf0e03c70acea5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd phi4 s0 launch",
+  "task_key": "worker_ops_westd-phi4-s0-launch_20260520T030953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-phi4-s0-launch_20260520T030953_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "503d29744223c4a17c8e481e25226aab905eb179f3743e90434554eda1845f41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPhi-4 s0 训练: 已启动\nPID: 265106\ntmux: sft_phi4_s0_sweep\n脚本路径: /root/autodl-tmp/exp001/run_phi4_s0.sh\n```\n\n模型已加载完成（243/243 weights），d000 dosage 开始训练。5 dosage sweep (d000→d005→d025→d050→d100) 将依次执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-phi4-s0-launch.md"
+}

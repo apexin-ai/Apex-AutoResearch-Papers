@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea881633f72ff73ffbe1",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778945377.md",
+  "task_key": "loop_16_1778945377",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778945377.md",
+    "occurrence": 1,
+    "bytes": 4075,
+    "sha256": "0d93d900c025cba2ea452f93d057bffa2c3741d1ccc9d58307ff9be4364ebae6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T15:24:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5（共 6 张 4090D），禁止用白名单外的 GPU\n- 3B checkpoints 必须用 `_a32_` 版本（lr=5e-5, alpha=32, D076 retrained）。旧版 alpha=16 已废弃并加入 ALPHA16_BLOCKLIST\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- signals 脚本使用 GPU（embedding 计算），不是纯 CPU 任务\n- cuda:1 当前空闲但尚未获得 Director 重新分配确认——已在汇报中请求，不可未批先用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/autodl-tmp/exp001/`（SFT/eval）、`/root/autodl-tmp/exp002/signals/`（signals）\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型 checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{scale}_{dosage}_{seed}/lora_adapter`\n- RRF/IRT 代码：`/root/contamcal-irt-calibration/exp003/` (RRF)、`/root/contamcal-irt-calibration/exp006/` (IRT)\n- Stan models：`/root/contamcal-irt-calibration/stan_models/`（5 个已编译）\n- Logs：`/root/runs/contamcal-irt-calibration/`\n- 活跃 cron 进程：\n  - exp_002_signals_15B_s123_batch: PID 691872, cuda:0\n  - exp_002_signals_15B_d100_s123_cuda2: PID 746777, cuda:2\n  - exp_001_sft_llama32_3B_d000_s42: PID 752961, cuda:4\n  - exp_002_signals_05B_s123_v2: tmux=exp002_05B_s123_v2, cuda:5\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化：\n- 修复了 `exp_002_signals_3B_d100_a32_s42` 从 ANALYZING → DONE(success)（analysis worker 在上一轮完成但 callback 未处理）\n- 向 Director 汇报了 **pooled IRT N=23 里程碑**（论文核心 γ 数字就绪）\n- 更新了 memory.md（GPU 状态 + pooled IRT insight）\n- Spawned 2 个 CPU 分析 Worker：`mmlu_domain_gamma_n24_with_3B` + `scale_stratified_irt`\n\n**4 个 Worker 运行中**：\n1. `worker_code_fix_instruct_eval_chat_template` — 修复 3B-Instruct eval chat template，正在 re-run（turn 13, cuda:3）\n2. `worker_audit_rrf_naming_dedup` — 检查 eval_results 命名重复（turn 6, CPU）\n3. `worker_analysis_mmlu_domain_gamma_n24_with_3B` — MMLU domain gamma 含 3B 重跑（刚 spawn）\n4. `worker_analysis_scale_stratified_irt` — 按 scale 分层 IRT 拟合（刚 spawn）\n\n**等待**：Director 对 cuda:1 分配的确认 + 4 个 Worker 回调\n\n### 4. 📋 待办\n- Director 确认 cuda:1 分配 → spawn worker 提交 3B d000_s123 signals（eval 已存在，只差 signals 提取）\n- mmlu_domain_gamma_n24 Worker 完成 → 对比之前 N<24 结果，看 3B 是否改变 domain heterogeneity pattern\n- scale_stratified_irt Worker 完成 → 看 γ 是否 scale-dependent（支撑 Claim 1 narrative）\n- instruct eval fix Worker 完成 → 3B-Instruct 结果入 registry，cuda:3 释放后分配下一任务（0.5B/1.5B-Instruct eval per P0-C）\n- 1.5B s123 signals (cuda:0 + cuda:2) 完成 → 全量 RRF 重跑 (N≥27)，pooled IRT 更新\n- Llama SFT (cuda:4) 完成 → eval + signals pipeline → 跨模型族验证\n- 所有 signals 就绪 → exp-003 final RRF → exp-006 final pooled IRT → 论文 data freeze\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR May 25 = T-9 天**。pooled IRT (N=23) 已完成——论文核心 γ 数字就绪，可开始 Results 写作\n- Critical path 现在是：1.5B s123 + Llama 跨族 → final IRT → paper draft\n- exp_006_pooled_irt_all_scales 结果：MMLU γ=0.52, GSM8K γ=0.17, ARC γ=0.49，方向一致为正。GSM8K Δ_MAE=0.155 最大。ARC PPP=0.027 边际\n- 3B s123 signals 缺口小：只差 d000（d005/d025/d100 已有）。但 d000 eval 用的是哪个 checkpoint 需确认（可能是旧 alpha=16）\n- 易错点：`signals_05B_s123_v2` 和 `exp_002_signals_05B_s123_v2` 是两条 registry 记录但可能是同一实验（命名不一致），audit worker 在查这个\n- Claim 3 (noise propagation) 仍是 go/no-go 待定（exp_005 negative，sim_sweep 间接支撑）。T-7 前需 Director 决策\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778945377.md"
+}

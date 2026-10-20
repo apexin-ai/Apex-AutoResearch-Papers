@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4202f37878f6e2ef37e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp004 reorder auc080",
+  "task_key": "worker_code_exp004_reorder_auc080_20260514T042939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004_reorder_auc080_20260514T042939_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "69b375d63c8bb4708f08ce022e0b9e240b19d700ca09f1235394734c6ae72d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stan chains 3-4 已运行约 19 分钟，状态为 R（运行中）。\n\n---\n\n**总结：**\n\n1. **已完成修改**：`run_sweep.py` 的 SUBSET AUC 顺序从 `[0.55, 0.65, 0.80, 0.90]` 改为 `[0.80, 0.90, 0.55, 0.65]`\n\n2. **自动重启监控已部署**（PID 362586）：每 5 秒检查 auc0.55_n100 的 seed 数。当 seed 6 保存后（当前 Stan chains 完成），自动 kill 旧进程并重启 sweep。不会 kill 正在运行的 Stan。\n\n3. **AUC=0.80 现有结果**：仅 1 个 seed（N=50, seed 0），CI95 宽度 16.2pp，是 AUC=0.55 同 N 的 1.86 倍。gamma_sd=0.0408 vs AUC=0.55 的 ~0.016。确实系统性偏宽，但需要更多 seed 确认方差。\n\n4. **预计时间线**：Stan chains 预计再跑 20-70 分钟完成 → 自动重启 → AUC=0.80 的 N=20 fit 较快（~7-11min/seed）→ 首批 AUC=0.80 结果约 1-2 小时内可用。\n\n可以用 `cat /tmp/restart_sweep_monitor.log` 和 `cat /tmp/sweep_restart.log` 监控进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-reorder-auc080.md"
+}

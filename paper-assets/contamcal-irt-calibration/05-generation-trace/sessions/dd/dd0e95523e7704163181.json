@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd0e95523e7704163181",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix c009 md5 s123 scripts",
+  "task_key": "worker_fix_c009-md5-s123-scripts_20260520T082936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c009-md5-s123-scripts_20260520T082936_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "897706b2a4f7505d77fe3725804c1b76c2ce7183a2c501a227cda65b3b61b347"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成，5 个文件的 EXPECTED_MD5 已改为 `17673bf373f00f83ccc41fc1d355a4cd`：\n\n1. `run_gsm8k_gemma2_s123.sh`\n2. `run_gsm8k_olmo2_s123.sh`\n3. `run_gsm8k_phi4_s123.sh`\n4. `run_gsm8k_qwen14b_s123.sh`\n5. `run_gsm8k_qwen7b_s123.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c009-md5-s123-scripts.md"
+}

@@ -1,0 +1,742 @@
+{
+  "schema_version": "1.0",
+  "id": "a42d0e6e68f9191a06a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code add d050 commands",
+  "task_key": "worker_code_add-d050-commands_20260518T102747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add-d050-commands_20260518T102747.log",
+    "occurrence": 1,
+    "bytes": 95394,
+    "sha256": "a3c21130ba89b67bdab52b5f2958e1fb2047b30fbec8f53c65c5093a1a5d7c67"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "96151863-1061-470f-a7a2-5e76435004a6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779109200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "6bc31095-9175-4d66-b881-db7a48f91b20",
+                "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the file first, then make the edits as specified.",
+              "signature": "EvgBClkIDRgCKkAI71c/E2qZc00nliMYKmy1UYD4huGR0GK3OpzuszyzMdUtUiwKS1/5/o54hX26pt0zB+HKEKOUQWIFrvbs8KLeMg9jbGF1ZGUtb3B1cy00LTY4ABIMQXMIpsyD6asz56j7Ggw9A1Jwe2vkqdIt80ciMECCobNU6tKgmGgl/0oqXo5YY52YBMK6vXy1asnVw9gJs2Ri7p4ma9wIwBaVSygQaCpN8tjBdkgpW0H4oUn3NqcW3NXhnJGc6nRU6Z+tE+Qo2/YhEoKtNQfbVnWoCOtCLXnnrlYRmBfPhELnyRWHb5zclH0cH91rX08sbBS1kiQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "42336078-96a1-41cc-9909-66ba07663346",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016eC43eqAbtFWzepQhQFPK4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14760,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14760
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146HLSfiK9gnBKDE5KxMRXi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "bbc6ac58-b099-4fa9-8ba7-534708a77390",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016eC43eqAbtFWzepQhQFPK4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14760,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14760
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T10:28:01.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0146HLSfiK9gnBKDE5KxMRXi",
+              "type": "tool_result",
+              "content": "1\t# D141 Model Matrix Batch Commands\n2\t\n3\tServer: cqa1-21977 | GPUs 0-3\n4\tTotal: 24 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)\n5\t\n6\t## Model Matrix\n7\t\n8\t| Model | Path | Runs | GPU | bs | ga | Seeds |\n9\t|-------|------|------|-----|----|----|-------|\n10\t| Qwen2.5-7B | Qwen2.5-7B | 8 (4d×2s) | cuda:0 | 2 | 8 | 42,123 |\n11\t| Qwen2.5-14B | Qwen2.5-14B | 4 (4d×1s) | cuda:2 | 1 | 16 | 42 |\n12\t| Phi-4 | phi-4 | 4 (4d×1s) | cuda:1 | 1 | 16 | 42 |\n13\t| OLMo-2-7B | OLMo-2-1124-7B | 4 (4d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |\n14\t| Gemma-2-9B | gemma-2-9b | 4 (4d×1s) | cuda:3 | 1 | 16 | 42 |\n15\t\n16\t## Pre-launch Checklist (per C001-C006)\n17\t\n18\t```bash\n19\t# 1. Check all GPUs idle\n20\tnvidia-smi\n21\t\n22\t# 2. Check no residual processes\n23\tps aux | grep train_sft | grep -v grep\n24\t```\n25\t\n26\t---\n27\t\n28\t## Batch 1: cuda:0 (Qwen2.5-7B d000/d005 s42,s123), cuda:1 (Phi-4), cuda:2 (14B), cuda:3 (Gemma)\n29\t\n30\t### cuda:0 — Qwen2.5-7B d000 s42\n31\t\n32\t```bash\n33\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n34\t```\n35\t\n36\t### cuda:0 — Qwen2.5-7B d005 s42\n37\t\n38\t```bash\n39\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n40\t```\n41\t\n42\t### cuda:0 — Qwen2.5-7B d000 s123\n43\t\n44\t```bash\n45\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n46\t```\n47\t\n48\t### cuda:0 — Qwen2.5-7B d005 s123\n49\t\n50\t```bash\n51\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n52\t```\n53\t\n54\t### cuda:1 — Phi-4 d000 s42\n55\t\n56\t```bash\n57\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n58\t```\n59\t\n60\t### cuda:1 — Phi-4 d005 s42\n61\t\n62\t```bash\n63\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n64\t```\n65\t\n66\t### cuda:1 — Phi-4 d025 s42\n67\t\n68\t```bash\n69\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n70\t```\n71\t\n72\t### cuda:1 — Phi-4 d100 s42\n73\t\n74\t```bash\n75\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n76\t```\n77\t\n78\t### cuda:2 — Qwen2.5-14B d000 s42\n79\t\n80\t```bash\n81\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n82\t```\n83\t\n84\t### cuda:2 — Qwen2.5-14B d005 s42\n85\t\n86\t```bash\n87\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n88\t```\n89\t\n90\t### cuda:2 — Qwen2.5-14B d025 s42\n91\t\n92\t```bash\n93\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n94\t```\n95\t\n96\t### cuda:2 — Qwen2.5-14B d100 s42\n97\t\n98\t```bash\n99\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n100\t```\n101\t\n102\t### cuda:3 — Gemma-2-9B d000 s42\n103\t\n104\t```bash\n105\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n106\t```\n107\t\n108\t### cuda:3 — Gemma-2-9B d005 s42\n109\t\n110\t```bash\n111\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n112\t```\n113\t\n114\t### cuda:3 — Gemma-2-9B d025 s42\n115\t\n116\t```bash\n117\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n118\t```\n119\t\n120\t### cuda:3 — Gemma-2-9B d100 s42\n121\t\n122\t```bash\n123\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n124\t```\n125\t\n126\t---\n127\t\n128\t## Batch 2: cuda:0 (Qwen7B d025/d100 s42,s123), cuda:1 (OLMo-2)\n129\t\n130\t### cuda:0 — Qwen2.5-7B d025 s42\n131\t\n132\t```bash\n133\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n134\t```\n135\t\n136\t### cuda:0 — Qwen2.5-7B d100 s42\n137\t\n138\t```bash\n139\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n140\t```\n141\t\n142\t### cuda:0 — Qwen2.5-7B d025 s123\n143\t\n144\t```bash\n145\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n146\t```\n147\t\n148\t### cuda:0 — Qwen2.5-7B d100 s123\n149\t\n150\t```bash\n151\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n152\t```\n153\t\n154\t### cuda:1 — OLMo-2-7B d000 s42\n155\t\n156\t```bash\n157\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n158\t```\n159\t\n160\t### cuda:1 — OLMo-2-7B d005 s42\n161\t\n162\t```bash\n163\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n164\t```\n165\t\n166\t### cuda:1 — OLMo-2-7B d025 s42\n167\t\n168\t```bash\n169\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n170\t```\n171\t\n172\t### cuda:1 — OLMo-2-7B d100 s42\n173\t\n174\t```bash\n175\tbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n176\t```\n177\t\n178\t---\n179\t\n180\t## Summary Table\n181\t\n182\t| # | Batch | GPU | Model | Dosage | Seed | bs | ga |\n183\t|---|-------|-----|-------|--------|------|----|----|\n184\t| 1 | 1 | 0 | Qwen2.5-7B | d000 | 42 | 2 | 8 |\n185\t| 2 | 1 | 0 | Qwen2.5-7B | d005 | 42 | 2 | 8 |\n186\t| 3 | 1 | 0 | Qwen2.5-7B | d000 | 123 | 2 | 8 |\n187\t| 4 | 1 | 0 | Qwen2.5-7B | d005 | 123 | 2 | 8 |\n188\t| 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |\n189\t| 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |\n190\t| 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |\n191\t| 8 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |\n192\t| 9 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |\n193\t| 10 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |\n194\t| 11 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |\n195\t| 12 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |\n196\t| 13 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |\n197\t| 14 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |\n198\t| 15 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |\n199\t| 16 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |\n200\t| 17 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |\n201\t| 18 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |\n202\t| 19 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |\n203\t| 20 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |\n204\t| 21 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |\n205\t| 22 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |\n206\t| 23 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |\n207\t| 24 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |\n208\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "b5557a8a-6ddd-4fce-bb46-532401395b13",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md",
+                "content": "# D141 Model Matrix Batch Commands\n\nServer: cqa1-21977 | GPUs 0-3\nTotal: 24 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)\n\n## Model Matrix\n\n| Model | Path | Runs | GPU | bs | ga | Seeds |\n|-------|------|------|-----|----|----|-------|\n| Qwen2.5-7B | Qwen2.5-7B | 8 (4d×2s) | cuda:0 | 2 | 8 | 42,123 |\n| Qwen2.5-14B | Qwen2.5-14B | 4 (4d×1s) | cuda:2 | 1 | 16 | 42 |\n| Phi-4 | phi-4 | 4 (4d×1s) | cuda:1 | 1 | 16 | 42 |\n| OLMo-2-7B | OLMo-2-1124-7B | 4 (4d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |\n| Gemma-2-9B | gemma-2-9b | 4 (4d×1s) | cuda:3 | 1 | 16 | 42 |\n\n## Pre-launch Checklist (per C001-C006)\n\n```bash\n# 1. Check all GPUs idle\nnvidia-smi\n\n# 2. Check no residual processes\nps aux | grep train_sft | grep -v grep\n```\n\n---\n\n## Batch 1: cuda:0 (Qwen2.5-7B d000/d005 s42,s123), cuda:1 (Phi-4), cuda:2 (14B), cuda:3 (Gemma)\n\n### cuda:0 — Qwen2.5-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d000 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Batch 2: cuda:0 (Qwen7B d025/d100 s42,s123), cuda:1 (OLMo-2)\n\n### cuda:0 — Qwen2.5-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d025 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Summary Table\n\n| # | Batch | GPU | Model | Dosage | Seed | bs | ga |\n|---|-------|-----|-------|--------|------|----|----|\n| 1 | 1 | 0 | Qwen2.5-7B | d000 | 42 | 2 | 8 |\n| 2 | 1 | 0 | Qwen2.5-7B | d005 | 42 | 2 | 8 |\n| 3 | 1 | 0 | Qwen2.5-7B | d000 | 123 | 2 | 8 |\n| 4 | 1 | 0 | Qwen2.5-7B | d005 | 123 | 2 | 8 |\n| 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |\n| 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |\n| 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |\n| 8 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |\n| 9 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |\n| 10 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |\n| 11 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |\n| 12 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |\n| 13 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |\n| 14 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |\n| 15 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |\n| 16 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |\n| 17 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |\n| 18 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |\n| 19 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |\n| 20 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |\n| 21 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |\n| 22 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |\n| 23 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |\n| 24 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |\n",
+                "numLines": 208,
+                "startLine": 1,
+                "totalLines": 208
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to make several edits:\n\n1. Change server name from \"cqa1-21977\" to \"westd-29999\"\n2. Change total from 24 to 29\n3. Update the model matrix table to reflect 5d instead of 4d for each model, and update Qwen2.5-7B to 10 runs (5d×2s)\n4. Insert d050 commands between d025 and d100 for each model\n5. Update the summary table\n\nLet me also update the Batch headers and model matrix runs counts.\n\n\nI'm adjusting the run counts across all models—Qwen2.5-7B goes from 8 to 10 runs, while the others each increase from 4 to 5 runs by adding that extra dimension.\n\nNow I need to systematically insert the new d050 commands for each model, making sure to place them in the right GPU slots and update the summary table to reflect the new totals. I'm realizing the user only specified 5 new runs total, so that's just the d050 s42 configuration for Qwen2.5-7B, bringing it from 8 to 9 runs. The matrix layout might need adjustment to reflect this single-seed addition rather than a full 2-seed expansion. I need to figure out the right format for the model matrix counts. Qwen2.5-7B will have 9 total runs now with the new d050 additions, but the existing \"4d×2s\" notation doesn't cleanly represent that, so I'll need to find a clearer way to express the breakdown or just use the total count. I'm mapping out where the d050 configurations need to be inserted in each batch. For Phi-4, OLMo-2-7B, and the other models, I need to place d050 between d025 and d100 in their respective GPU assignments across both batches. I'm deciding whether to make targeted edits or rewrite the entire file—given how scattered these changes are throughout, rewriting the whole thing will be cleaner and less error-prone. I need to be careful about the model matrix though, particularly how to represent Qwen2.5-7B's run count now that it has mixed dosages and seeds. I'll reorganize everything sequentially in the updated file instead of trying to track individual batch placements.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "b47e8c83-4dad-4939-ace7-aea000d9c056",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VevYJsKoJm47pqE22zKmx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7381,
+                "cache_read_input_tokens": 26601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U3xpWv1bxL8BTK55Nw8MS7",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md",
+                "content": "# D141 Model Matrix Batch Commands\n\nServer: westd-29999 | GPUs 0-3\nTotal: 29 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)\n\n## Model Matrix\n\n| Model | Path | Runs | GPU | bs | ga | Seeds |\n|-------|------|------|-----|----|----|-------|\n| Qwen2.5-7B | Qwen2.5-7B | 9 (5d×s42+4d×s123) | cuda:0 | 2 | 8 | 42,123 |\n| Qwen2.5-14B | Qwen2.5-14B | 5 (5d×1s) | cuda:2 | 1 | 16 | 42 |\n| Phi-4 | phi-4 | 5 (5d×1s) | cuda:1 | 1 | 16 | 42 |\n| OLMo-2-7B | OLMo-2-1124-7B | 5 (5d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |\n| Gemma-2-9B | gemma-2-9b | 5 (5d×1s) | cuda:3 | 1 | 16 | 42 |\n\n## Pre-launch Checklist (per C001-C006)\n\n```bash\n# 1. Check all GPUs idle\nnvidia-smi\n\n# 2. Check no residual processes\nps aux | grep train_sft | grep -v grep\n```\n\n---\n\n## Batch 1: cuda:0 (Qwen2.5-7B d000/d005 s42,s123), cuda:1 (Phi-4), cuda:2 (14B), cuda:3 (Gemma)\n\n### cuda:0 — Qwen2.5-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d000 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Batch 2: cuda:0 (Qwen7B d025/d050/d100 s42,s123), cuda:1 (OLMo-2)\n\n### cuda:0 — Qwen2.5-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d025 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Summary Table\n\n| # | Batch | GPU | Model | Dosage | Seed | bs | ga |\n|---|-------|-----|-------|--------|------|----|----|\n| 1 | 1 | 0 | Qwen2.5-7B | d000 | 42 | 2 | 8 |\n| 2 | 1 | 0 | Qwen2.5-7B | d005 | 42 | 2 | 8 |\n| 3 | 1 | 0 | Qwen2.5-7B | d000 | 123 | 2 | 8 |\n| 4 | 1 | 0 | Qwen2.5-7B | d005 | 123 | 2 | 8 |\n| 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |\n| 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |\n| 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |\n| 8 | 1 | 1 | Phi-4 | d050 | 42 | 1 | 16 |\n| 9 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |\n| 10 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |\n| 11 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |\n| 12 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |\n| 13 | 1 | 2 | Qwen2.5-14B | d050 | 42 | 1 | 16 |\n| 14 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |\n| 15 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |\n| 16 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |\n| 17 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |\n| 18 | 1 | 3 | Gemma-2-9B | d050 | 42 | 1 | 16 |\n| 19 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |\n| 20 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |\n| 21 | 2 | 0 | Qwen2.5-7B | d050 | 42 | 2 | 8 |\n| 22 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |\n| 23 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |\n| 24 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |\n| 25 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |\n| 26 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |\n| 27 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |\n| 28 | 2 | 1 | OLMo-2-7B | d050 | 42 | 2 | 8 |\n| 29 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "897577d4-2d52-4c85-95d1-8f6fc9221e89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VevYJsKoJm47pqE22zKmx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7381,
+                "cache_read_input_tokens": 26601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T10:29:53.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U3xpWv1bxL8BTK55Nw8MS7",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "d58a2ef6-8a1f-44b6-8645-818a360c9b86",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md",
+              "content": "# D141 Model Matrix Batch Commands\n\nServer: westd-29999 | GPUs 0-3\nTotal: 29 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)\n\n## Model Matrix\n\n| Model | Path | Runs | GPU | bs | ga | Seeds |\n|-------|------|------|-----|----|----|-------|\n| Qwen2.5-7B | Qwen2.5-7B | 9 (5d×s42+4d×s123) | cuda:0 | 2 | 8 | 42,123 |\n| Qwen2.5-14B | Qwen2.5-14B | 5 (5d×1s) | cuda:2 | 1 | 16 | 42 |\n| Phi-4 | phi-4 | 5 (5d×1s) | cuda:1 | 1 | 16 | 42 |\n| OLMo-2-7B | OLMo-2-1124-7B | 5 (5d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |\n| Gemma-2-9B | gemma-2-9b | 5 (5d×1s) | cuda:3 | 1 | 16 | 42 |\n\n## Pre-launch Checklist (per C001-C006)\n\n```bash\n# 1. Check all GPUs idle\nnvidia-smi\n\n# 2. Check no residual processes\nps aux | grep train_sft | grep -v grep\n```\n\n---\n\n## Batch 1: cuda:0 (Qwen2.5-7B d000/d005 s42,s123), cuda:1 (Phi-4), cuda:2 (14B), cuda:3 (Gemma)\n\n### cuda:0 — Qwen2.5-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d000 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Batch 2: cuda:0 (Qwen7B d025/d050/d100 s42,s123), cuda:1 (OLMo-2)\n\n### cuda:0 — Qwen2.5-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d025 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d050 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Summary Table\n\n| # | Batch | GPU | Model | Dosage | Seed | bs | ga |\n|---|-------|-----|-------|--------|------|----|----|\n| 1 | 1 | 0 | Qwen2.5-7B | d000 | 42 | 2 | 8 |\n| 2 | 1 | 0 | Qwen2.5-7B | d005 | 42 | 2 | 8 |\n| 3 | 1 | 0 | Qwen2.5-7B | d000 | 123 | 2 | 8 |\n| 4 | 1 | 0 | Qwen2.5-7B | d005 | 123 | 2 | 8 |\n| 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |\n| 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |\n| 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |\n| 8 | 1 | 1 | Phi-4 | d050 | 42 | 1 | 16 |\n| 9 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |\n| 10 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |\n| 11 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |\n| 12 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |\n| 13 | 1 | 2 | Qwen2.5-14B | d050 | 42 | 1 | 16 |\n| 14 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |\n| 15 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |\n| 16 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |\n| 17 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |\n| 18 | 1 | 3 | Gemma-2-9B | d050 | 42 | 1 | 16 |\n| 19 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |\n| 20 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |\n| 21 | 2 | 0 | Qwen2.5-7B | d050 | 42 | 2 | 8 |\n| 22 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |\n| 23 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |\n| 24 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |\n| 25 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |\n| 26 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |\n| 27 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |\n| 28 | 2 | 1 | OLMo-2-7B | d050 | 42 | 2 | 8 |\n| 29 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 17,
+                  "newStart": 1,
+                  "newLines": 17,
+                  "lines": [
+                    " # D141 Model Matrix Batch Commands",
+                    " ",
+                    "-Server: cqa1-21977 | GPUs 0-3",
+                    "-Total: 24 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)",
+                    "+Server: westd-29999 | GPUs 0-3",
+                    "+Total: 29 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)",
+                    " ",
+                    " ## Model Matrix",
+                    " ",
+                    " | Model | Path | Runs | GPU | bs | ga | Seeds |",
+                    " |-------|------|------|-----|----|----|-------|",
+                    "-| Qwen2.5-7B | Qwen2.5-7B | 8 (4d×2s) | cuda:0 | 2 | 8 | 42,123 |",
+                    "-| Qwen2.5-14B | Qwen2.5-14B | 4 (4d×1s) | cuda:2 | 1 | 16 | 42 |",
+                    "-| Phi-4 | phi-4 | 4 (4d×1s) | cuda:1 | 1 | 16 | 42 |",
+                    "-| OLMo-2-7B | OLMo-2-1124-7B | 4 (4d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |",
+                    "-| Gemma-2-9B | gemma-2-9b | 4 (4d×1s) | cuda:3 | 1 | 16 | 42 |",
+                    "+| Qwen2.5-7B | Qwen2.5-7B | 9 (5d×s42+4d×s123) | cuda:0 | 2 | 8 | 42,123 |",
+                    "+| Qwen2.5-14B | Qwen2.5-14B | 5 (5d×1s) | cuda:2 | 1 | 16 | 42 |",
+                    "+| Phi-4 | phi-4 | 5 (5d×1s) | cuda:1 | 1 | 16 | 42 |",
+                    "+| OLMo-2-7B | OLMo-2-1124-7B | 5 (5d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |",
+                    "+| Gemma-2-9B | gemma-2-9b | 5 (5d×1s) | cuda:3 | 1 | 16 | 42 |",
+                    " ",
+                    " ## Pre-launch Checklist (per C001-C006)",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 69,
+                  "oldLines": 6,
+                  "newStart": 69,
+                  "newLines": 12,
+                  "lines": [
+                    " bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    " ```",
+                    " ",
+                    "+### cuda:1 — Phi-4 d050 s42",
+                    "+",
+                    "+```bash",
+                    "+bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    "+```",
+                    "+",
+                    " ### cuda:1 — Phi-4 d100 s42",
+                    " ",
+                    " ```bash"
+                  ]
+                },
+                {
+                  "oldStart": 93,
+                  "oldLines": 6,
+                  "newStart": 99,
+                  "newLines": 12,
+                  "lines": [
+                    " bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    " ```",
+                    " ",
+                    "+### cuda:2 — Qwen2.5-14B d050 s42",
+                    "+",
+                    "+```bash",
+                    "+bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    "+```",
+                    "+",
+                    " ### cuda:2 — Qwen2.5-14B d100 s42",
+                    " ",
+                    " ```bash"
+                  ]
+                },
+                {
+                  "oldStart": 117,
+                  "oldLines": 6,
+                  "newStart": 129,
+                  "newLines": 12,
+                  "lines": [
+                    " bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    " ```",
+                    " ",
+                    "+### cuda:3 — Gemma-2-9B d050 s42",
+                    "+",
+                    "+```bash",
+                    "+bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"",
+                    "+```",
+                    "+",
+                    " ### cuda:3 — Gemma-2-9B d100 s42",
+                    " ",
+                    " ```bash"
+                  ]
+                },
+                {
+                  "oldStart": 125,
+                  "oldLines": 7,
+                  "newStart": 143,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ---",
+                    " ",
+                    "-## Batch 2: cuda:0 (Qwen7B d025/d100 s42,s123), cuda:1 (OLMo-2)",
+                    "+## Batch 2: cuda:0 (Qwen7B d025/d050/d100 s42,s123), cuda:1 (OLMo-2)",
+                    " ",
+                    " ### cuda:0 — Qwen2.5-7B d025 s42",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 133,
+                  "oldLines": 6,
+                  "newStart": 151,
+                  "newLines": 12,
+                  "lines": [
+                    " bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"",
+                    " ```",
+                    " ",
+                    "+### cuda:0 — Qwen2.5-7B d050 s42",
+                    "+",
+                    "+```bash",
+                    "+bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"",
+                    "+```",
+                    "+",
+                    " ### cuda:0 — Qwen2.5-7B d100 s42",
+                    " ",
+                    " ```bash"
+                  ]
+                },
+                {
+                  "oldStart": 169,
+                  "oldLines": 6,
+                  "newStart": 193,
+                  "newLines": 12,
+                  "lines": [
+                    " bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"",
+                    " ```",
+                    " ",
+                    "+### cuda:1 — OLMo-2-7B d050 s42",
+                    "+",
+                    "+```bash",
+                    "+bash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"",
+                    "+```",
+                    "+",
+                    " ### cuda:1 — OLMo-2-7B d100 s42",
+                    " ",
+                    " ```bash"
+                  ]
+                },
+                {
+                  "oldStart": 188,
+                  "oldLines": 20,
+                  "newStart": 218,
+                  "newLines": 25,
+                  "lines": [
+                    " | 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |",
+                    " | 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |",
+                    " | 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |",
+                    "-| 8 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |",
+                    "-| 9 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |",
+                    "-| 10 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |",
+                    "-| 11 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |",
+                    "-| 12 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |",
+                    "-| 13 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |",
+                    "-| 14 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |",
+                    "-| 15 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |",
+                    "-| 16 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |",
+                    "-| 17 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |",
+                    "-| 18 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |",
+                    "-| 19 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |",
+                    "-| 20 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |",
+                    "-| 21 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |",
+                    "-| 22 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |",
+                    "-| 23 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |",
+                    "-| 24 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |",
+                    "+| 8 | 1 | 1 | Phi-4 | d050 | 42 | 1 | 16 |",
+                    "+| 9 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |",
+                    "+| 10 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |",
+                    "+| 11 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |",
+                    "+| 12 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |",
+                    "+| 13 | 1 | 2 | Qwen2.5-14B | d050 | 42 | 1 | 16 |",
+                    "+| 14 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |",
+                    "+| 15 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |",
+                    "+| 16 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |",
+                    "+| 17 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |",
+                    "+| 18 | 1 | 3 | Gemma-2-9B | d050 | 42 | 1 | 16 |",
+                    "+| 19 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |",
+                    "+| 20 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |",
+                    "+| 21 | 2 | 0 | Qwen2.5-7B | d050 | 42 | 2 | 8 |",
+                    "+| 22 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |",
+                    "+| 23 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |",
+                    "+| 24 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |",
+                    "+| 25 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |",
+                    "+| 26 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |",
+                    "+| 27 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |",
+                    "+| 28 | 2 | 1 | OLMo-2-7B | d050 | 42 | 2 | 8 |",
+                    "+| 29 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |"
+                  ]
+                }
+              ],
+              "originalFile": "# D141 Model Matrix Batch Commands\n\nServer: cqa1-21977 | GPUs 0-3\nTotal: 24 runs (bf16 LoRA, lr=5e-5, r=16, alpha=32, epochs=1)\n\n## Model Matrix\n\n| Model | Path | Runs | GPU | bs | ga | Seeds |\n|-------|------|------|-----|----|----|-------|\n| Qwen2.5-7B | Qwen2.5-7B | 8 (4d×2s) | cuda:0 | 2 | 8 | 42,123 |\n| Qwen2.5-14B | Qwen2.5-14B | 4 (4d×1s) | cuda:2 | 1 | 16 | 42 |\n| Phi-4 | phi-4 | 4 (4d×1s) | cuda:1 | 1 | 16 | 42 |\n| OLMo-2-7B | OLMo-2-1124-7B | 4 (4d×1s) | cuda:1 (Batch 2) | 2 | 8 | 42 |\n| Gemma-2-9B | gemma-2-9b | 4 (4d×1s) | cuda:3 | 1 | 16 | 42 |\n\n## Pre-launch Checklist (per C001-C006)\n\n```bash\n# 1. Check all GPUs idle\nnvidia-smi\n\n# 2. Check no residual processes\nps aux | grep train_sft | grep -v grep\n```\n\n---\n\n## Batch 1: cuda:0 (Qwen2.5-7B d000/d005 s42,s123), cuda:1 (Phi-4), cuda:2 (14B), cuda:3 (Gemma)\n\n### cuda:0 — Qwen2.5-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d000 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d005 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — Phi-4 d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:2 — Qwen2.5-14B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:3 — Gemma-2-9B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Batch 2: cuda:0 (Qwen7B d025/d100 s42,s123), cuda:1 (OLMo-2)\n\n### cuda:0 — Qwen2.5-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d025 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:0 — Qwen2.5-7B d100 s123\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d000 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d005 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d025 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n### cuda:1 — OLMo-2-7B d100 s42\n\n```bash\nbash -c \"cd /root/contamcal-irt-calibration && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-1124-7B_d100_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\"\n```\n\n---\n\n## Summary Table\n\n| # | Batch | GPU | Model | Dosage | Seed | bs | ga |\n|---|-------|-----|-------|--------|------|----|----|\n| 1 | 1 | 0 | Qwen2.5-7B | d000 | 42 | 2 | 8 |\n| 2 | 1 | 0 | Qwen2.5-7B | d005 | 42 | 2 | 8 |\n| 3 | 1 | 0 | Qwen2.5-7B | d000 | 123 | 2 | 8 |\n| 4 | 1 | 0 | Qwen2.5-7B | d005 | 123 | 2 | 8 |\n| 5 | 1 | 1 | Phi-4 | d000 | 42 | 1 | 16 |\n| 6 | 1 | 1 | Phi-4 | d005 | 42 | 1 | 16 |\n| 7 | 1 | 1 | Phi-4 | d025 | 42 | 1 | 16 |\n| 8 | 1 | 1 | Phi-4 | d100 | 42 | 1 | 16 |\n| 9 | 1 | 2 | Qwen2.5-14B | d000 | 42 | 1 | 16 |\n| 10 | 1 | 2 | Qwen2.5-14B | d005 | 42 | 1 | 16 |\n| 11 | 1 | 2 | Qwen2.5-14B | d025 | 42 | 1 | 16 |\n| 12 | 1 | 2 | Qwen2.5-14B | d100 | 42 | 1 | 16 |\n| 13 | 1 | 3 | Gemma-2-9B | d000 | 42 | 1 | 16 |\n| 14 | 1 | 3 | Gemma-2-9B | d005 | 42 | 1 | 16 |\n| 15 | 1 | 3 | Gemma-2-9B | d025 | 42 | 1 | 16 |\n| 16 | 1 | 3 | Gemma-2-9B | d100 | 42 | 1 | 16 |\n| 17 | 2 | 0 | Qwen2.5-7B | d025 | 42 | 2 | 8 |\n| 18 | 2 | 0 | Qwen2.5-7B | d100 | 42 | 2 | 8 |\n| 19 | 2 | 0 | Qwen2.5-7B | d025 | 123 | 2 | 8 |\n| 20 | 2 | 0 | Qwen2.5-7B | d100 | 123 | 2 | 8 |\n| 21 | 2 | 1 | OLMo-2-7B | d000 | 42 | 2 | 8 |\n| 22 | 2 | 1 | OLMo-2-7B | d005 | 42 | 2 | 8 |\n| 23 | 2 | 1 | OLMo-2-7B | d025 | 42 | 2 | 8 |\n| 24 | 2 | 1 | OLMo-2-7B | d100 | 42 | 2 | 8 |\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新：服务器名改为 westd-29999，总数改为 29，5 个 d050 run 分别插入各模型的 d025 和 d100 之间，Batch 2 标题和 summary table 同步更新。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "uuid": "3d561633-3e16-492a-a58c-9fc7312dbe78",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PedXMVL4hQNmJjVJSCWMkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10720,
+                "cache_read_input_tokens": 33982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10720
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新：服务器名改为 westd-29999，总数改为 29，5 个 d050 run 分别插入各模型的 d025 和 d100 之间，Batch 2 标题和 summary table 同步更新。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 120769,
+            "duration_api_ms": 121959,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "5192f869-ba10-4666-a87f-760d9d0119b6",
+            "total_cost_usd": 0.51668225,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 32861,
+              "cache_read_input_tokens": 72424,
+              "output_tokens": 10865,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32861,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 33982,
+                  "cache_creation_input_tokens": 10720,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 10720
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3354,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003439,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 10865,
+                "cacheReadInputTokens": 72424,
+                "cacheCreationInputTokens": 32861,
+                "webSearchRequests": 0,
+                "costUSD": 0.51324325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2bef99b8-b899-45d8-b3dd-24f359b1ee3b"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-add-d050-commands.md"
+}

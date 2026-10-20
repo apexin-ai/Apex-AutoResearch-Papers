@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f3c611c6234c5cc121",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval gsm8k restart westd",
+  "task_key": "worker_eval_gsm8k-restart-westd_20260521T071122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k-restart-westd_20260521T071122_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "650ecc82da2b659ba1b07b8180e4c81b6d814dc5150519e67d4cd0f5f84c78b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部正常推理中，C009/C006 检查通过（否则脚本会 exit 1）。\n\n```\nGPU 分配:\n  cuda:0 → Gemma-2 d000 s0 GSM8K   PID 492703  (~1h30m ETA)\n  cuda:1 → Qwen-14B d100 s0 GSM8K  PID 481803  (未动)\n  cuda:2 → Qwen-14B d050 s0 GSM8K  PID 492186  (~1h43m ETA)\n  cuda:3 → Phi-4 d000 s0 GSM8K     PID 493644  (~1h13m ETA)\n\n日志:\n  /tmp/eval_qwen14b_d050_gsm8k.log\n  /tmp/eval_gemma2_d000_gsm8k.log\n  /tmp/eval_phi4_d000_gsm8k.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-restart-westd.md"
+}

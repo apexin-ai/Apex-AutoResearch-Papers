@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c6156d1a6032d015dd0",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778870328.md",
+  "task_key": "loop_11_1778870328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778870328.md",
+    "occurrence": 1,
+    "bytes": 4417,
+    "sha256": "4963cf376c48b6cfebff7e9b1e977de90f95ea788202bb911002e8e503efb417"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T18:38:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977，不可用其他卡/服务器\n- 3B s42 有两套 checkpoint：alpha=16（exp_001_sft_3B_d000_s42）和 alpha=32（exp_001_sft_3B_d000_v2）。D048/D049/D050 统一 alpha=32，alpha=16 结果需确认是否 deprecated，**不要用 alpha=16 checkpoint 产出的 metrics 写入论文**\n- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 0.5B MMLU/ARC 从 IRT pooling 排除（D045: position bias A=46%）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977，工作目录 /root/contamcal-irt-calibration\n- Python: /root/miniconda3/bin/python (conda base env)\n- 模型缓存: /root/autodl-tmp/.hf_cache/Qwen/\n- Checkpoints: /root/autodl-tmp/exp001/checkpoints/\n- Eval 输出: /root/autodl-tmp/exp001/eval_results/\n- Paraphrases: /root/autodl-tmp/exp001/paraphrases/\n- Signals: /root/autodl-tmp/exp002/signals/\n- 活跃进程 (reconcile 确认):\n  - GPU 0: exp_001_eval_15B_d005_s123_v2 (PID 566224, tmux=exp_001_eval_15B_d005_s123_v2)\n  - GPU 1: exp_001_eval_15B_d025_s123_v2 (PID 566311, tmux=exp_001_eval_15B_d025_s123_v2)\n  - GPU 2: exp_001_eval_3B_d005_s123_aligned (PID 580693)\n  - GPU 3: exp_001_eval_3B_d025_s123_aligned (PID 576730)\n  - GPU 4: exp_001_eval_3B_d005_s123_para_aligned (PID 584228, 刚提交)\n  - GPU 5: exp_001_eval_3B_d025_s123_para_aligned (PID 584310, 刚提交)\n  - CPU: exp_004_sim_sweep_extreme_gamma (PID 528993)\n- Workers (5/6):\n  - worker_analysis_run-pooled-4bench-irt-v2 (2h+, 计算 per-benchmark calibrated scores from joint model)\n  - worker_fix_exp_002_signals_3B_gpu_interface (修 GPU mapping bug)\n  - worker_bugfix_gpu-mapping-signals3B (找到 run_batch.py GPU 处理逻辑 bug)\n  - worker_diagnose_signals-3B-killed (调查 exp_002_signals_3B 被 SIGTERM)\n  - worker_analysis_exp_001_eval_3B_para_aligned_batch (turn 19, 读取 d000/d100 s42 para_aligned eval 结果)\n\n### 3. 📊 当前状态\n刚处理 CRON 回调: exp_001_eval_3B_d000_s42_para_aligned 和 exp_001_eval_3B_d100_s42_para_aligned 正常退出转 ANALYZING。已派 Worker 读取 metrics（turn 19 进行中），**metrics 尚未写入 registry，尚未标记 DONE**。\n\n空闲 GPU 4/5 已立即提交 3B d005/d025 s123 para_aligned eval，registry spec 已写入但状态可能仍显示 PREPARING（submit_training_job 已实际启动 tmux，cron 会跟踪）。\n\n已向 Director 汇报中间状态，提醒 alpha=16 vs alpha=32 问题待确认。\n\nPREPARING 队列（18 个）关键项: exp_001_eval_3B_d005_s42_aligned_v2, exp_001_sft_15B_d025_s123, exp_008_instruct_rl_proxy, exp_006_irt_05B_v2\n\n### 4. 📋 待办\n- worker_analysis_exp_001_eval_3B_para_aligned_batch 回调 → 提取 metrics → update_registry(DONE, metrics) → 对比 v2 alpha=32 结果 → 如果 alpha=16 结果无额外价值则标 deprecated\n- GPU 0/1 空闲（1.5B eval 完成后）→ 提交 1.5B d005/d025 s123 para_aligned eval\n- GPU 2/3 空闲（3B aligned eval 完成后）→ 可提交 3B d005_s42_aligned_v2 或 3B d100 s123 相关 eval\n- worker_analysis_run-pooled-4bench-irt-v2 回调 → 检查 pooled IRT calibrated scores → 对比 coverage 是否改善（critical path: coverage collapse 调查）\n- signals_3B bug 修复 Workers (×3) 回调 → 合并修复 → 重新提交 exp_002_signals_3B\n- Director 回复 alpha=16 deprecated 决策 → 清理或保留相关实验\n\n### 5. 🎯 战略上下文\n- 投稿目标: EMNLP 2026 ARR May 25（距今 10 天）\n- Coverage collapse（20-33%）是最高优先级问题（D042 确认 model misspecification）。multi-seed pooled IRT（N≥16）是主要希望——seed=123 eval 正在批量完成中\n- 3B s42 有两代 SFT: 原始 alpha=16 和 D050 后 alpha=32。v2（alpha=32）才是论文用数据。alpha=16 eval 可能是冗余运行\n- exp_002_signals_3B 反复失败（SIGTERM/GPU mapping bug），3 个 Worker 在修。修好后 3B signals 才能计算，blocking exp-003 RRF aggregation 和 exp-006 IRT calibration\n- 易错点: (1) 不要混用 alpha=16 和 alpha=32 的 metrics 做对比 (2) 0.5B MMLU/ARC 必须排除 (3) d000 counterfactual 使 gamma 捕获 SFT_tax+contamination（D043），不是纯 contamination signal (4) GSM8K/HumanEval 格式 confound 对 d000 baseline 有影响（D044）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778870328.md"
+}

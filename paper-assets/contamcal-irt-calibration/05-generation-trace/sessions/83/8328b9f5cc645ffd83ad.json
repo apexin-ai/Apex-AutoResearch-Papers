@@ -1,0 +1,1887 @@
+{
+  "schema_version": "1.0",
+  "id": "8328b9f5cc645ffd83ad",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "paper figure fig pipeline",
+  "task_key": "worker_paper_figure_fig_pipeline_20260515T184422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_pipeline_20260515T184422.log",
+    "occurrence": 1,
+    "bytes": 83884,
+    "sha256": "bd933832286211c3451f1e4f1e9f27a93bf9a6d3a99e0c124cd8d517dc26b44f"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "assistant": 8,
+      "tool_call": 11,
+      "tool_result": 11,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "pending"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d53dcb11-4738-4c93-a432-bea158e8ea44",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to generate a conceptual pipeline diagram for their ContamCal paper. Let me first check the output directory exists, then write the Python script and execute it.",
+              "signature": "Eu8CClkIDRgCKkDpPzXlrc4fZTuXsNq9wTszYBC5RTzquk0l4D8lx1TnwFAgmsaAmRTEjWVLp6F1tatwIJ3EiTnKoxFyFTQG+jWxMg9jbGF1ZGUtb3B1cy00LTY4ABIMqyNi/dnsSUpK3sDgGgzUskMOb58DLGTdc88iMLnNmqW3N92QoOHNslPFMaqpVDl2iVhBqihKzBru3VR2CqQrkz1XoASddJLnPvnAXirDAdD032hHCWiCtvdGjEOQW24ykouAzl7EjmXP2Qd/Pqld2zT7ss9YzDXdh9e8jSX5MJJIoHqDFH+WcGqeIe+GmityAm3TWoDAhemPwlqPwafwvGCLbQrlXhiC90Awb5eI1CjFtP9G8BY7xAQONYZ8Qm+B/HjPrfmDKz8NfqRvEvSS/6o0ggKtsVDcFBtLQ8Pxi/g3NPSh6bTlf3fgWOxRiM845YX+/6+4/dcFABCsr3IUEZAxFKRQ0lsATDfwvks/qI6MrxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "65b40789-477f-4b4b-9ea3-5e661a757638",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ub4e3Ty17NNVhxaL6vgWt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12447,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12447
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the environment and write the figure generation script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "3556ea98-6ca6-498f-9cfb-c9311907293b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ub4e3Ty17NNVhxaL6vgWt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12447,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12447
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BodBQ57d3xY9XoStxiJz5f",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+                "description": "Check if figures/paper directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "d7fae64d-33ac-4c80-a923-96682db6e3c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ub4e3Ty17NNVhxaL6vgWt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12447,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12447
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:44:47.403Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BodBQ57d3xY9XoStxiJz5f",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "8b710fe7-d4a5-44fd-b600-87b5c0faa477",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T7R8CjLFMA2LVBpHpXCurX",
+              "name": "Bash",
+              "input": {
+                "command": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.venv/bin/python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "description": "Check matplotlib version"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "bda38a12-3467-4056-ac09-ae0dbb0f767c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ub4e3Ty17NNVhxaL6vgWt5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12447,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12447
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778886000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0308dcde-0466-4176-b5b6-bda3f2cbdc21",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14"
+              }
+            }
+          ],
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:44:49.351Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T7R8CjLFMA2LVBpHpXCurX",
+              "type": "tool_result",
+              "content": "3.10.9",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "991dee50-e03b-4dac-96d3-c97bfb74bcb9",
+            "tool_use_result": {
+              "stdout": "3.10.9",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Directory exists, matplotlib 3.10.9 available. Writing the script now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "b5f514f3-d381-414f-9f67-9afaa24a35ae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171EwaBaV22gjprPqkehL57",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 372,
+                "cache_read_input_tokens": 24288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 372
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F1H3VNueHsHv2iQo2Hggjd",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito inspired palette\nC_BLUE_BG = '#D6EAF8'       # stage 1 background\nC_GREEN_BG = '#D5F5E3'      # stage 2 background\nC_S1_GOOD = '#009E73'       # S1 reliable (green)\nC_S2_FAIL = '#D55E00'       # S2 failure (vermillion)\nC_S3_GRAY = '#999999'       # S3 data-dependent\nC_S4_WEAK = '#E69F00'       # S4 weak (orange)\nC_FUSION = '#0072B2'        # fusion box (blue)\nC_IRT = '#56B4E9'           # IRT model box\nC_OUTPUT = '#CC79A7'        # output boxes (reddish purple)\nC_INPUT = '#F0E442'         # input boxes (yellow)\nC_ARROW = '#444444'\nC_TEXT = '#222222'\nC_STAGE_LABEL = '#333333'\n\nfig, ax = plt.subplots(figsize=(10, 4.5))\nax.set_xlim(0, 10)\nax.set_ylim(0, 4.5)\nax.axis('off')\n\ndef add_box(ax, xy, w, h, color, text, fontsize=9, text_color=C_TEXT,\n            alpha=0.92, linewidth=0.8, edgecolor='#666666', bold=False,\n            box_style=\"round,pad=0.08\", zorder=3):\n    box = FancyBboxPatch(xy, w, h, boxstyle=box_style,\n                         facecolor=color, edgecolor=edgecolor,\n                         linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    cx = xy[0] + w / 2\n    cy = xy[1] + h / 2\n    weight = 'bold' if bold else 'normal'\n    ax.text(cx, cy, text, ha='center', va='center', fontsize=fontsize,\n            color=text_color, weight=weight, zorder=zorder + 1,\n            linespacing=1.25)\n    return box\n\ndef add_arrow(ax, posA, posB, color=C_ARROW, lw=1.2, style='->', zorder=2):\n    arrow = FancyArrowPatch(posA, posB,\n                            arrowstyle=style, color=color,\n                            linewidth=lw, mutation_scale=12,\n                            connectionstyle=\"arc3,rad=0.0\",\n                            zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Stage backgrounds ──\nbg1 = FancyBboxPatch((0.15, 0.15), 4.55, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_BLUE_BG, edgecolor='#7FB3D8',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg1)\n\nbg2 = FancyBboxPatch((5.1, 0.15), 4.75, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_GREEN_BG, edgecolor='#82D8A2',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg2)\n\n# Stage labels\nax.text(2.42, 4.12, 'Stage 1: Multi-Signal Exposure Mapping',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\nax.text(7.47, 4.12, 'Stage 2: Contamination-Augmented IRT',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\n\n# ── Stage 1 ──\n\n# Input box\nadd_box(ax, (0.35, 2.7), 1.1, 0.7, C_INPUT, 'LLM +\\nBenchmark\\nItems',\n        fontsize=8.5, bold=True, edgecolor='#B8A800')\n\n# Signal boxes (stacked vertically)\nsig_x = 2.0\nsig_w = 2.2\nsig_h = 0.55\nsig_gap = 0.12\nsigs = [\n    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)', C_S1_GOOD, '#006B4F'),\n    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)', C_S2_FAIL, '#8B3A00'),\n    ('S3: ConStat\\n(needs paraphrase data)', C_S3_GRAY, '#555555'),\n    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)', C_S4_WEAK, '#946200'),\n]\n\nsig_tops = []\nfor i, (label, color, ec) in enumerate(sigs):\n    y = 3.35 - i * (sig_h + sig_gap)\n    add_box(ax, (sig_x, y), sig_w, sig_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            alpha=0.88, bold=False, linewidth=1.0)\n    sig_tops.append(y + sig_h / 2)\n\n# Arrows from input to signals\ninput_right = 0.35 + 1.1\nfor sy in sig_tops:\n    add_arrow(ax, (input_right + 0.02, 3.05), (sig_x - 0.02, sy), lw=0.9)\n\n# RRF Fusion box\nfus_x, fus_y, fus_w, fus_h = 2.55, 0.55, 1.3, 0.55\nadd_box(ax, (fus_x, fus_y), fus_w, fus_h, C_FUSION,\n        'RRF Fusion\\n→ $e_{ij}$', fontsize=9, text_color='white',\n        bold=True, edgecolor='#004C7F')\n\n# Arrows from signals to fusion\nfor sy in sig_tops:\n    add_arrow(ax, (sig_x + sig_w / 2, sy - sig_h / 2 + 0.02),\n              (fus_x + fus_w / 2, fus_y + fus_h), lw=0.9)\n\n# Annotation: training-free\nax.text(0.6, 0.45, 'Training-free\\n(avoids meta-circularity)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#0055A0', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor='white',\n                  edgecolor='#0072B2', alpha=0.7, linewidth=0.6))\n\n# ── Arrow from Stage 1 to Stage 2 ──\nadd_arrow(ax, (fus_x + fus_w, fus_y + fus_h / 2),\n          (5.45, 2.0), color=C_FUSION, lw=1.8, style='-|>')\n\n# Also arrow from input to stage 2 (item responses)\nadd_arrow(ax, (0.9, 2.7), (5.45, 2.55), color='#888888', lw=1.0, style='->')\nax.text(3.0, 2.48, '$y_{ij}$ (item responses)', fontsize=7.5,\n        color='#555555', ha='center', va='center', fontstyle='italic', zorder=5)\nax.text(4.4, 1.05, '$e_{ij}$ (exposure scores)', fontsize=7.5,\n        color=C_FUSION, ha='center', va='center', fontstyle='italic', zorder=5)\n\n# ── Stage 2 ──\n\n# IRT model box\nirt_x, irt_y, irt_w, irt_h = 5.5, 1.35, 2.6, 1.8\nadd_box(ax, (irt_x, irt_y), irt_w, irt_h, C_IRT,\n        '', fontsize=9, edgecolor='#2E86C1', linewidth=1.2)\n\n# IRT model text (multi-line, placed manually for control)\nax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,\n        'Per-Benchmark 4PL+γ IRT',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_TEXT, zorder=5)\n\nirt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'\n          r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')\nax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 - 0.05,\n        irt_eq, ha='center', va='center', fontsize=8,\n        color=C_TEXT, zorder=5)\n\nax.text(irt_x + irt_w / 2, irt_y + 0.25,\n        'Per-benchmark fitting (D053)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#1A5276', zorder=5)\n\n# Output boxes\nout_x = 8.5\nout_w = 1.3\nout_h = 0.65\nout_gap = 0.2\noutputs = [\n    ('Per-benchmark\\n$\\\\gamma_k$\\n(characterization)', C_OUTPUT, '#8B4C75'),\n    ('Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)', C_OUTPUT, '#8B4C75'),\n    ('Bayesian CIs\\n(uncertainty)', C_OUTPUT, '#8B4C75'),\n]\n\nout_centers = []\nfor i, (label, color, ec) in enumerate(outputs):\n    y = 3.25 - i * (out_h + out_gap)\n    add_box(ax, (out_x, y), out_w, out_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            bold=True, linewidth=1.0)\n    out_centers.append(y + out_h / 2)\n\n# Arrows from IRT to outputs\nfor oy in out_centers:\n    add_arrow(ax, (irt_x + irt_w, irt_y + irt_h / 2),\n              (out_x - 0.02, oy), color='#8B4C75', lw=1.2)\n\n# ── Save ──\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')\nfig.savefig(out_dir / 'fig_pipeline.png', format='png')\nplt.close(fig)\nprint('Saved fig_pipeline.pdf and fig_pipeline.png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "144caa4c-0ded-4471-9a97-f646e2bca9b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171EwaBaV22gjprPqkehL57",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 372,
+                "cache_read_input_tokens": 24288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 372
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:45:35.053Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F1H3VNueHsHv2iQo2Hggjd",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "4eade8be-47e2-49d8-88f9-aa9b1a7bdf97",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito inspired palette\nC_BLUE_BG = '#D6EAF8'       # stage 1 background\nC_GREEN_BG = '#D5F5E3'      # stage 2 background\nC_S1_GOOD = '#009E73'       # S1 reliable (green)\nC_S2_FAIL = '#D55E00'       # S2 failure (vermillion)\nC_S3_GRAY = '#999999'       # S3 data-dependent\nC_S4_WEAK = '#E69F00'       # S4 weak (orange)\nC_FUSION = '#0072B2'        # fusion box (blue)\nC_IRT = '#56B4E9'           # IRT model box\nC_OUTPUT = '#CC79A7'        # output boxes (reddish purple)\nC_INPUT = '#F0E442'         # input boxes (yellow)\nC_ARROW = '#444444'\nC_TEXT = '#222222'\nC_STAGE_LABEL = '#333333'\n\nfig, ax = plt.subplots(figsize=(10, 4.5))\nax.set_xlim(0, 10)\nax.set_ylim(0, 4.5)\nax.axis('off')\n\ndef add_box(ax, xy, w, h, color, text, fontsize=9, text_color=C_TEXT,\n            alpha=0.92, linewidth=0.8, edgecolor='#666666', bold=False,\n            box_style=\"round,pad=0.08\", zorder=3):\n    box = FancyBboxPatch(xy, w, h, boxstyle=box_style,\n                         facecolor=color, edgecolor=edgecolor,\n                         linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    cx = xy[0] + w / 2\n    cy = xy[1] + h / 2\n    weight = 'bold' if bold else 'normal'\n    ax.text(cx, cy, text, ha='center', va='center', fontsize=fontsize,\n            color=text_color, weight=weight, zorder=zorder + 1,\n            linespacing=1.25)\n    return box\n\ndef add_arrow(ax, posA, posB, color=C_ARROW, lw=1.2, style='->', zorder=2):\n    arrow = FancyArrowPatch(posA, posB,\n                            arrowstyle=style, color=color,\n                            linewidth=lw, mutation_scale=12,\n                            connectionstyle=\"arc3,rad=0.0\",\n                            zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Stage backgrounds ──\nbg1 = FancyBboxPatch((0.15, 0.15), 4.55, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_BLUE_BG, edgecolor='#7FB3D8',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg1)\n\nbg2 = FancyBboxPatch((5.1, 0.15), 4.75, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_GREEN_BG, edgecolor='#82D8A2',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg2)\n\n# Stage labels\nax.text(2.42, 4.12, 'Stage 1: Multi-Signal Exposure Mapping',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\nax.text(7.47, 4.12, 'Stage 2: Contamination-Augmented IRT',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\n\n# ── Stage 1 ──\n\n# Input box\nadd_box(ax, (0.35, 2.7), 1.1, 0.7, C_INPUT, 'LLM +\\nBenchmark\\nItems',\n        fontsize=8.5, bold=True, edgecolor='#B8A800')\n\n# Signal boxes (stacked vertically)\nsig_x = 2.0\nsig_w = 2.2\nsig_h = 0.55\nsig_gap = 0.12\nsigs = [\n    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)', C_S1_GOOD, '#006B4F'),\n    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)', C_S2_FAIL, '#8B3A00'),\n    ('S3: ConStat\\n(needs paraphrase data)', C_S3_GRAY, '#555555'),\n    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)', C_S4_WEAK, '#946200'),\n]\n\nsig_tops = []\nfor i, (label, color, ec) in enumerate(sigs):\n    y = 3.35 - i * (sig_h + sig_gap)\n    add_box(ax, (sig_x, y), sig_w, sig_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            alpha=0.88, bold=False, linewidth=1.0)\n    sig_tops.append(y + sig_h / 2)\n\n# Arrows from input to signals\ninput_right = 0.35 + 1.1\nfor sy in sig_tops:\n    add_arrow(ax, (input_right + 0.02, 3.05), (sig_x - 0.02, sy), lw=0.9)\n\n# RRF Fusion box\nfus_x, fus_y, fus_w, fus_h = 2.55, 0.55, 1.3, 0.55\nadd_box(ax, (fus_x, fus_y), fus_w, fus_h, C_FUSION,\n        'RRF Fusion\\n→ $e_{ij}$', fontsize=9, text_color='white',\n        bold=True, edgecolor='#004C7F')\n\n# Arrows from signals to fusion\nfor sy in sig_tops:\n    add_arrow(ax, (sig_x + sig_w / 2, sy - sig_h / 2 + 0.02),\n              (fus_x + fus_w / 2, fus_y + fus_h), lw=0.9)\n\n# Annotation: training-free\nax.text(0.6, 0.45, 'Training-free\\n(avoids meta-circularity)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#0055A0', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor='white',\n                  edgecolor='#0072B2', alpha=0.7, linewidth=0.6))\n\n# ── Arrow from Stage 1 to Stage 2 ──\nadd_arrow(ax, (fus_x + fus_w, fus_y + fus_h / 2),\n          (5.45, 2.0), color=C_FUSION, lw=1.8, style='-|>')\n\n# Also arrow from input to stage 2 (item responses)\nadd_arrow(ax, (0.9, 2.7), (5.45, 2.55), color='#888888', lw=1.0, style='->')\nax.text(3.0, 2.48, '$y_{ij}$ (item responses)', fontsize=7.5,\n        color='#555555', ha='center', va='center', fontstyle='italic', zorder=5)\nax.text(4.4, 1.05, '$e_{ij}$ (exposure scores)', fontsize=7.5,\n        color=C_FUSION, ha='center', va='center', fontstyle='italic', zorder=5)\n\n# ── Stage 2 ──\n\n# IRT model box\nirt_x, irt_y, irt_w, irt_h = 5.5, 1.35, 2.6, 1.8\nadd_box(ax, (irt_x, irt_y), irt_w, irt_h, C_IRT,\n        '', fontsize=9, edgecolor='#2E86C1', linewidth=1.2)\n\n# IRT model text (multi-line, placed manually for control)\nax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,\n        'Per-Benchmark 4PL+γ IRT',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_TEXT, zorder=5)\n\nirt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'\n          r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')\nax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 - 0.05,\n        irt_eq, ha='center', va='center', fontsize=8,\n        color=C_TEXT, zorder=5)\n\nax.text(irt_x + irt_w / 2, irt_y + 0.25,\n        'Per-benchmark fitting (D053)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#1A5276', zorder=5)\n\n# Output boxes\nout_x = 8.5\nout_w = 1.3\nout_h = 0.65\nout_gap = 0.2\noutputs = [\n    ('Per-benchmark\\n$\\\\gamma_k$\\n(characterization)', C_OUTPUT, '#8B4C75'),\n    ('Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)', C_OUTPUT, '#8B4C75'),\n    ('Bayesian CIs\\n(uncertainty)', C_OUTPUT, '#8B4C75'),\n]\n\nout_centers = []\nfor i, (label, color, ec) in enumerate(outputs):\n    y = 3.25 - i * (out_h + out_gap)\n    add_box(ax, (out_x, y), out_w, out_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            bold=True, linewidth=1.0)\n    out_centers.append(y + out_h / 2)\n\n# Arrows from IRT to outputs\nfor oy in out_centers:\n    add_arrow(ax, (irt_x + irt_w, irt_y + irt_h / 2),\n              (out_x - 0.02, oy), color='#8B4C75', lw=1.2)\n\n# ── Save ──\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')\nfig.savefig(out_dir / 'fig_pipeline.png', format='png')\nplt.close(fig)\nprint('Saved fig_pipeline.pdf and fig_pipeline.png')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wz6JLg3QJqFmsrAqbdstFn",
+              "name": "Bash",
+              "input": {
+                "command": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.venv/bin/python3 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+                "description": "Generate pipeline figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "6174337f-6479-431e-bd1f-cbc391a6274a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xi9am1z8cXvjLnCEgCVuEG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3880,
+                "cache_read_input_tokens": 24660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3880
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "befh0xcog",
+                "tool_use_id": "toolu_01Wz6JLg3QJqFmsrAqbdstFn",
+                "description": "Generate pipeline figure",
+                "task_type": "local_bash",
+                "uuid": "92380917-0855-45fb-a83b-12e739b0a622",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "befh0xcog",
+                "tool_use_id": "toolu_01Wz6JLg3QJqFmsrAqbdstFn",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Generate pipeline figure",
+                "uuid": "25f03f8e-a3c9-4dc9-86f6-784c468042d4",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T18:45:48.166Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wz6JLg3QJqFmsrAqbdstFn",
+              "type": "tool_result",
+              "content": "Saved fig_pipeline.pdf and fig_pipeline.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "35ed8c83-6bad-45d3-bed9-b3381029d167",
+            "tool_use_result": {
+              "stdout": "Saved fig_pipeline.pdf and fig_pipeline.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YBsZM5PcRNkT9XWMVg63Sv",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.{pdf,png}",
+                "description": "Verify output files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "83352949-ff48-494a-ad3e-ac40f1303ba2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014T7QpyocYx8k1MdkT74HwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 178,
+                "cache_read_input_tokens": 28540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 178
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T18:45:51.444Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YBsZM5PcRNkT9XWMVg63Sv",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  48K May 15 18:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.pdf\n-rw-r--r-- 1 ubuntu ubuntu 257K May 15 18:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "aa3ed84f-1d5d-4da2-ad1b-02b915dfb73f",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu  48K May 15 18:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.pdf\n-rw-r--r-- 1 ubuntu ubuntu 257K May 15 18:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HGX3JZ7x3sd76wk4YkVFFW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "358e8a59-05df-420f-97eb-faeefbfbab5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DHSaZcBY43kwH3phATEKF5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 262,
+                "cache_read_input_tokens": 28718,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 262
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T18:45:57.777Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HGX3JZ7x3sd76wk4YkVFFW",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "236ddab4-0405-4acb-9463-bb4e0b3014bd",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 263060
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure looks good overall! Let me review it against the requirements:\n\n1. ✅ Two-stage pipeline with left (blue) and right (green) backgrounds\n2. ✅ Stage 1: Input → 4 signals → RRF Fusion\n3. ✅ Stage 2: IRT model → 3 output boxes\n4. ✅ Signal boxes color-coded: S1 green, S2 vermillion/red, S3 gray, S4 orange\n\n\n5. ✅ Arrows connecting modules\n6. ✅ \"Training-free\" annotation\n7. ✅ \"Per-benchmark fitting (D053)\" annotation\n8. ✅ IRT equation shown\n9. ✅ Output boxes showing γ_k, θ_j^clean, Bayesian CIs\n\nI'm noticing a few layout issues to fix: the signal arrows converging into the RRF fusion box are creating some visual overlap with the \"y_ij (item responses)\" text, and the \"exposure scores\" label is bleeding into the Stage 2 area. I should also check the arrow paths from the input to the signals.\n\nThe current design has the input arrows fanning out to all four signals, then converging down to fusion, which creates a lot of crossing paths and visual density in Stage 1. The y_ij arrow crossing from input to Stage 2 works well, but I need to clean up the readability of the labels and reduce the clutter from the signal-to-fusion connections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "e5767b86-5b44-47b7-8618-4ad1f88a2e6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHmCmVvYxJ1NYbLm6Cj6G6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 28980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The basic structure is there but the layout needs refinement — the arrows are cluttered and some labels overlap. Let me improve it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "7a1521e6-e781-4bcb-b518-37304a1a1504",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHmCmVvYxJ1NYbLm6Cj6G6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 28980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwuirmCA3E3vzPnEmmHsAq",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+                "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito inspired palette\nC_BLUE_BG = '#DAEAF6'\nC_GREEN_BG = '#D5F5E3'\nC_S1_GOOD = '#009E73'\nC_S2_FAIL = '#D55E00'\nC_S3_GRAY = '#888888'\nC_S4_WEAK = '#E69F00'\nC_FUSION = '#0072B2'\nC_IRT = '#56B4E9'\nC_OUTPUT = '#CC79A7'\nC_INPUT = '#F0E442'\nC_ARROW = '#555555'\nC_TEXT = '#222222'\n\nfig, ax = plt.subplots(figsize=(10, 4.5))\nax.set_xlim(0, 10)\nax.set_ylim(0, 4.5)\nax.axis('off')\n\n\ndef add_box(ax, x, y, w, h, fc, text, fs=9, tc=C_TEXT, bold=False,\n            ec='#666666', lw=0.8, alpha=0.92, zorder=3, va_offset=0):\n    box = FancyBboxPatch((x, y), w, h, boxstyle=\"round,pad=0.08\",\n                         facecolor=fc, edgecolor=ec, linewidth=lw,\n                         alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    weight = 'bold' if bold else 'normal'\n    ax.text(x + w / 2, y + h / 2 + va_offset, text,\n            ha='center', va='center', fontsize=fs, color=tc,\n            weight=weight, zorder=zorder + 1, linespacing=1.2)\n\n\ndef arrow(ax, x1, y1, x2, y2, color=C_ARROW, lw=1.2, style='-|>',\n          rad=0.0, zorder=2):\n    a = FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,\n                        color=color, linewidth=lw, mutation_scale=12,\n                        connectionstyle=f\"arc3,rad={rad}\", zorder=zorder)\n    ax.add_patch(a)\n\n\n# ═══════════ Stage backgrounds ═══════════\nbg1 = FancyBboxPatch((0.1, 0.1), 4.7, 4.25, boxstyle=\"round,pad=0.12\",\n                      facecolor=C_BLUE_BG, edgecolor='#8CB8D8',\n                      linewidth=1.5, alpha=0.45, zorder=0)\nax.add_patch(bg1)\n\nbg2 = FancyBboxPatch((5.15, 0.1), 4.75, 4.25, boxstyle=\"round,pad=0.12\",\n                      facecolor=C_GREEN_BG, edgecolor='#8CD8A8',\n                      linewidth=1.5, alpha=0.45, zorder=0)\nax.add_patch(bg2)\n\n# Stage labels\nax.text(2.45, 4.15, 'Stage 1: Multi-Signal Exposure Mapping',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color='#1A3A5C', zorder=5)\nax.text(7.52, 4.15, 'Stage 2: Contamination-Augmented IRT',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color='#1A5C3A', zorder=5)\n\n# ═══════════ Stage 1: Left half ═══════════\n\n# Input box (left edge)\ninp_x, inp_y, inp_w, inp_h = 0.3, 1.85, 1.05, 0.75\nadd_box(ax, inp_x, inp_y, inp_w, inp_h, C_INPUT,\n        'LLM +\\nBenchmark\\nItems', fs=8.5, bold=True, ec='#B8A800')\n\n# 4 signal boxes (column, right of input)\nsig_x = 1.75\nsig_w = 2.3\nsig_h = 0.52\nsigs_data = [\n    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)',       C_S1_GOOD, '#006B4F'),\n    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)',         C_S2_FAIL, '#8B3A00'),\n    ('S3: ConStat\\n(needs paraphrase data)',                    C_S3_GRAY, '#555555'),\n    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)',            C_S4_WEAK, '#946200'),\n]\n\nsig_centers_y = []\ntop_y = 3.55\ngap = 0.09\nfor i, (label, fc, ec) in enumerate(sigs_data):\n    sy = top_y - i * (sig_h + gap)\n    add_box(ax, sig_x, sy, sig_w, sig_h, fc, label,\n            fs=7.5, tc='white', ec=ec, lw=1.0, alpha=0.88)\n    sig_centers_y.append(sy + sig_h / 2)\n\n# Arrows: input → each signal\ninp_cx = inp_x + inp_w\ninp_cy = inp_y + inp_h / 2\nfor cy in sig_centers_y:\n    arrow(ax, inp_cx + 0.02, inp_cy, sig_x - 0.04, cy, lw=0.8,\n          style='->', rad=0.0)\n\n# RRF Fusion box (below signals, centered)\nfus_x, fus_y, fus_w, fus_h = 2.1, 0.45, 1.6, 0.6\nadd_box(ax, fus_x, fus_y, fus_w, fus_h, C_FUSION,\n        'RRF Fusion → $e_{ij}$', fs=9.5, tc='white',\n        bold=True, ec='#004C7F')\n\n# Arrows: signals → fusion (converge)\nfus_top_cx = fus_x + fus_w / 2\nfor cy in sig_centers_y:\n    arrow(ax, sig_x + sig_w / 2, cy - sig_h / 2 + 0.01,\n          fus_top_cx, fus_y + fus_h, lw=0.7, style='->')\n\n# \"Training-free\" annotation (bottom-left)\nax.text(0.65, 0.55, 'Training-free\\n(avoids meta-circularity)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#005599', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor='white',\n                  edgecolor='#0072B2', alpha=0.75, linewidth=0.7))\n\n# ═══════════ Connecting arrows Stage1 → Stage2 ═══════════\n\n# e_ij arrow (from fusion to IRT)\nirt_x, irt_y, irt_w, irt_h = 5.55, 1.2, 2.55, 2.05\narrow(ax, fus_x + fus_w, fus_y + fus_h / 2,\n      irt_x - 0.04, irt_y + 0.5,\n      color=C_FUSION, lw=1.6, style='-|>')\nax.text(4.55, 0.98, '$e_{ij}$', fontsize=9.5, color=C_FUSION,\n        ha='center', va='center', fontweight='bold', fontstyle='italic', zorder=5)\n\n# y_ij arrow (from input down and across to IRT)\narrow(ax, inp_cx + 0.02, inp_y,\n      irt_x - 0.04, irt_y + irt_h - 0.4,\n      color='#777777', lw=1.0, style='->', rad=-0.25)\nax.text(3.2, 1.62, '$y_{ij}$ (responses)', fontsize=7.5,\n        color='#555555', ha='center', va='center', fontstyle='italic',\n        zorder=5, rotation=-8)\n\n# ═══════════ Stage 2: Right half ═══════════\n\n# IRT model box (large)\nadd_box(ax, irt_x, irt_y, irt_w, irt_h, C_IRT, '',\n        ec='#2980B9', lw=1.3, alpha=0.35)\n\n# IRT title\nax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,\n        'Per-Benchmark 4PL+γ IRT', ha='center', va='center',\n        fontsize=10, fontweight='bold', color='#1A4971', zorder=5)\n\n# IRT equation\nirt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'\n          r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')\nax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 + 0.05,\n        irt_eq, ha='center', va='center', fontsize=8.5,\n        color=C_TEXT, zorder=5)\n\n# \"Per-benchmark fitting\" note\nax.text(irt_x + irt_w / 2, irt_y + 0.25,\n        'Per-benchmark fitting (D053)', ha='center', va='center',\n        fontsize=7.5, fontstyle='italic', color='#1A5276', zorder=5)\n\n# Output boxes (right of IRT)\nout_x = 8.5\nout_w = 1.3\nout_h = 0.62\nout_gap = 0.18\noutputs = [\n    'Per-benchmark\\n$\\\\gamma_k$\\n(characterization)',\n    'Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)',\n    'Bayesian CIs\\n(uncertainty)',\n]\n\nout_centers_y = []\nout_top = 3.35\nfor i, label in enumerate(outputs):\n    oy = out_top - i * (out_h + out_gap)\n    add_box(ax, out_x, oy, out_w, out_h, C_OUTPUT, label,\n            fs=7.5, tc='white', ec='#8B4C75', bold=True, lw=1.0)\n    out_centers_y.append(oy + out_h / 2)\n\n# Arrows: IRT → outputs\nirt_right = irt_x + irt_w\nirt_mid_y = irt_y + irt_h / 2\nfor oy in out_centers_y:\n    arrow(ax, irt_right + 0.01, irt_mid_y,\n          out_x - 0.04, oy, color='#8B4C75', lw=1.1, style='-|>')\n\n# ═══════════ Save ═══════════\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')\nfig.savefig(out_dir / 'fig_pipeline.png', format='png')\nplt.close(fig)\nprint('Done: fig_pipeline.pdf + fig_pipeline.png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "49c53bd5-f697-4424-bed1-6378431c1c3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHmCmVvYxJ1NYbLm6Cj6G6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 28980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T18:46:48.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwuirmCA3E3vzPnEmmHsAq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "31dda475-0dd9-418a-84f2-f65d8c12a7a8",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+              "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito inspired palette\nC_BLUE_BG = '#DAEAF6'\nC_GREEN_BG = '#D5F5E3'\nC_S1_GOOD = '#009E73'\nC_S2_FAIL = '#D55E00'\nC_S3_GRAY = '#888888'\nC_S4_WEAK = '#E69F00'\nC_FUSION = '#0072B2'\nC_IRT = '#56B4E9'\nC_OUTPUT = '#CC79A7'\nC_INPUT = '#F0E442'\nC_ARROW = '#555555'\nC_TEXT = '#222222'\n\nfig, ax = plt.subplots(figsize=(10, 4.5))\nax.set_xlim(0, 10)\nax.set_ylim(0, 4.5)\nax.axis('off')\n\n\ndef add_box(ax, x, y, w, h, fc, text, fs=9, tc=C_TEXT, bold=False,\n            ec='#666666', lw=0.8, alpha=0.92, zorder=3, va_offset=0):\n    box = FancyBboxPatch((x, y), w, h, boxstyle=\"round,pad=0.08\",\n                         facecolor=fc, edgecolor=ec, linewidth=lw,\n                         alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    weight = 'bold' if bold else 'normal'\n    ax.text(x + w / 2, y + h / 2 + va_offset, text,\n            ha='center', va='center', fontsize=fs, color=tc,\n            weight=weight, zorder=zorder + 1, linespacing=1.2)\n\n\ndef arrow(ax, x1, y1, x2, y2, color=C_ARROW, lw=1.2, style='-|>',\n          rad=0.0, zorder=2):\n    a = FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,\n                        color=color, linewidth=lw, mutation_scale=12,\n                        connectionstyle=f\"arc3,rad={rad}\", zorder=zorder)\n    ax.add_patch(a)\n\n\n# ═══════════ Stage backgrounds ═══════════\nbg1 = FancyBboxPatch((0.1, 0.1), 4.7, 4.25, boxstyle=\"round,pad=0.12\",\n                      facecolor=C_BLUE_BG, edgecolor='#8CB8D8',\n                      linewidth=1.5, alpha=0.45, zorder=0)\nax.add_patch(bg1)\n\nbg2 = FancyBboxPatch((5.15, 0.1), 4.75, 4.25, boxstyle=\"round,pad=0.12\",\n                      facecolor=C_GREEN_BG, edgecolor='#8CD8A8',\n                      linewidth=1.5, alpha=0.45, zorder=0)\nax.add_patch(bg2)\n\n# Stage labels\nax.text(2.45, 4.15, 'Stage 1: Multi-Signal Exposure Mapping',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color='#1A3A5C', zorder=5)\nax.text(7.52, 4.15, 'Stage 2: Contamination-Augmented IRT',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color='#1A5C3A', zorder=5)\n\n# ═══════════ Stage 1: Left half ═══════════\n\n# Input box (left edge)\ninp_x, inp_y, inp_w, inp_h = 0.3, 1.85, 1.05, 0.75\nadd_box(ax, inp_x, inp_y, inp_w, inp_h, C_INPUT,\n        'LLM +\\nBenchmark\\nItems', fs=8.5, bold=True, ec='#B8A800')\n\n# 4 signal boxes (column, right of input)\nsig_x = 1.75\nsig_w = 2.3\nsig_h = 0.52\nsigs_data = [\n    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)',       C_S1_GOOD, '#006B4F'),\n    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)',         C_S2_FAIL, '#8B3A00'),\n    ('S3: ConStat\\n(needs paraphrase data)',                    C_S3_GRAY, '#555555'),\n    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)',            C_S4_WEAK, '#946200'),\n]\n\nsig_centers_y = []\ntop_y = 3.55\ngap = 0.09\nfor i, (label, fc, ec) in enumerate(sigs_data):\n    sy = top_y - i * (sig_h + gap)\n    add_box(ax, sig_x, sy, sig_w, sig_h, fc, label,\n            fs=7.5, tc='white', ec=ec, lw=1.0, alpha=0.88)\n    sig_centers_y.append(sy + sig_h / 2)\n\n# Arrows: input → each signal\ninp_cx = inp_x + inp_w\ninp_cy = inp_y + inp_h / 2\nfor cy in sig_centers_y:\n    arrow(ax, inp_cx + 0.02, inp_cy, sig_x - 0.04, cy, lw=0.8,\n          style='->', rad=0.0)\n\n# RRF Fusion box (below signals, centered)\nfus_x, fus_y, fus_w, fus_h = 2.1, 0.45, 1.6, 0.6\nadd_box(ax, fus_x, fus_y, fus_w, fus_h, C_FUSION,\n        'RRF Fusion → $e_{ij}$', fs=9.5, tc='white',\n        bold=True, ec='#004C7F')\n\n# Arrows: signals → fusion (converge)\nfus_top_cx = fus_x + fus_w / 2\nfor cy in sig_centers_y:\n    arrow(ax, sig_x + sig_w / 2, cy - sig_h / 2 + 0.01,\n          fus_top_cx, fus_y + fus_h, lw=0.7, style='->')\n\n# \"Training-free\" annotation (bottom-left)\nax.text(0.65, 0.55, 'Training-free\\n(avoids meta-circularity)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#005599', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor='white',\n                  edgecolor='#0072B2', alpha=0.75, linewidth=0.7))\n\n# ═══════════ Connecting arrows Stage1 → Stage2 ═══════════\n\n# e_ij arrow (from fusion to IRT)\nirt_x, irt_y, irt_w, irt_h = 5.55, 1.2, 2.55, 2.05\narrow(ax, fus_x + fus_w, fus_y + fus_h / 2,\n      irt_x - 0.04, irt_y + 0.5,\n      color=C_FUSION, lw=1.6, style='-|>')\nax.text(4.55, 0.98, '$e_{ij}$', fontsize=9.5, color=C_FUSION,\n        ha='center', va='center', fontweight='bold', fontstyle='italic', zorder=5)\n\n# y_ij arrow (from input down and across to IRT)\narrow(ax, inp_cx + 0.02, inp_y,\n      irt_x - 0.04, irt_y + irt_h - 0.4,\n      color='#777777', lw=1.0, style='->', rad=-0.25)\nax.text(3.2, 1.62, '$y_{ij}$ (responses)', fontsize=7.5,\n        color='#555555', ha='center', va='center', fontstyle='italic',\n        zorder=5, rotation=-8)\n\n# ═══════════ Stage 2: Right half ═══════════\n\n# IRT model box (large)\nadd_box(ax, irt_x, irt_y, irt_w, irt_h, C_IRT, '',\n        ec='#2980B9', lw=1.3, alpha=0.35)\n\n# IRT title\nax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,\n        'Per-Benchmark 4PL+γ IRT', ha='center', va='center',\n        fontsize=10, fontweight='bold', color='#1A4971', zorder=5)\n\n# IRT equation\nirt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'\n          r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')\nax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 + 0.05,\n        irt_eq, ha='center', va='center', fontsize=8.5,\n        color=C_TEXT, zorder=5)\n\n# \"Per-benchmark fitting\" note\nax.text(irt_x + irt_w / 2, irt_y + 0.25,\n        'Per-benchmark fitting (D053)', ha='center', va='center',\n        fontsize=7.5, fontstyle='italic', color='#1A5276', zorder=5)\n\n# Output boxes (right of IRT)\nout_x = 8.5\nout_w = 1.3\nout_h = 0.62\nout_gap = 0.18\noutputs = [\n    'Per-benchmark\\n$\\\\gamma_k$\\n(characterization)',\n    'Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)',\n    'Bayesian CIs\\n(uncertainty)',\n]\n\nout_centers_y = []\nout_top = 3.35\nfor i, label in enumerate(outputs):\n    oy = out_top - i * (out_h + out_gap)\n    add_box(ax, out_x, oy, out_w, out_h, C_OUTPUT, label,\n            fs=7.5, tc='white', ec='#8B4C75', bold=True, lw=1.0)\n    out_centers_y.append(oy + out_h / 2)\n\n# Arrows: IRT → outputs\nirt_right = irt_x + irt_w\nirt_mid_y = irt_y + irt_h / 2\nfor oy in out_centers_y:\n    arrow(ax, irt_right + 0.01, irt_mid_y,\n          out_x - 0.04, oy, color='#8B4C75', lw=1.1, style='-|>')\n\n# ═══════════ Save ═══════════\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')\nfig.savefig(out_dir / 'fig_pipeline.png', format='png')\nplt.close(fig)\nprint('Done: fig_pipeline.pdf + fig_pipeline.png')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 9,
+                  "newStart": 1,
+                  "newLines": 7,
+                  "lines": [
+                    " import matplotlib",
+                    " matplotlib.use('Agg')",
+                    " import matplotlib.pyplot as plt",
+                    "-import matplotlib.patches as mpatches",
+                    " from matplotlib.patches import FancyBboxPatch, FancyArrowPatch",
+                    "-import numpy as np",
+                    " from pathlib import Path",
+                    " ",
+                    " plt.rcParams.update({"
+                  ]
+                },
+                {
+                  "oldStart": 16,
+                  "oldLines": 181,
+                  "newStart": 14,
+                  "newLines": 187,
+                  "lines": [
+                    " })",
+                    " ",
+                    " # Okabe-Ito inspired palette",
+                    "-C_BLUE_BG = '#D6EAF8'       # stage 1 background",
+                    "-C_GREEN_BG = '#D5F5E3'      # stage 2 background",
+                    "-C_S1_GOOD = '#009E73'       # S1 reliable (green)",
+                    "-C_S2_FAIL = '#D55E00'       # S2 failure (vermillion)",
+                    "-C_S3_GRAY = '#999999'       # S3 data-dependent",
+                    "-C_S4_WEAK = '#E69F00'       # S4 weak (orange)",
+                    "-C_FUSION = '#0072B2'        # fusion box (blue)",
+                    "-C_IRT = '#56B4E9'           # IRT model box",
+                    "-C_OUTPUT = '#CC79A7'        # output boxes (reddish purple)",
+                    "-C_INPUT = '#F0E442'         # input boxes (yellow)",
+                    "-C_ARROW = '#444444'",
+                    "+C_BLUE_BG = '#DAEAF6'",
+                    "+C_GREEN_BG = '#D5F5E3'",
+                    "+C_S1_GOOD = '#009E73'",
+                    "+C_S2_FAIL = '#D55E00'",
+                    "+C_S3_GRAY = '#888888'",
+                    "+C_S4_WEAK = '#E69F00'",
+                    "+C_FUSION = '#0072B2'",
+                    "+C_IRT = '#56B4E9'",
+                    "+C_OUTPUT = '#CC79A7'",
+                    "+C_INPUT = '#F0E442'",
+                    "+C_ARROW = '#555555'",
+                    " C_TEXT = '#222222'",
+                    "-C_STAGE_LABEL = '#333333'",
+                    " ",
+                    " fig, ax = plt.subplots(figsize=(10, 4.5))",
+                    " ax.set_xlim(0, 10)",
+                    " ax.set_ylim(0, 4.5)",
+                    " ax.axis('off')",
+                    " ",
+                    "-def add_box(ax, xy, w, h, color, text, fontsize=9, text_color=C_TEXT,",
+                    "-            alpha=0.92, linewidth=0.8, edgecolor='#666666', bold=False,",
+                    "-            box_style=\"round,pad=0.08\", zorder=3):",
+                    "-    box = FancyBboxPatch(xy, w, h, boxstyle=box_style,",
+                    "-                         facecolor=color, edgecolor=edgecolor,",
+                    "-                         linewidth=linewidth, alpha=alpha, zorder=zorder)",
+                    "+",
+                    "+def add_box(ax, x, y, w, h, fc, text, fs=9, tc=C_TEXT, bold=False,",
+                    "+            ec='#666666', lw=0.8, alpha=0.92, zorder=3, va_offset=0):",
+                    "+    box = FancyBboxPatch((x, y), w, h, boxstyle=\"round,pad=0.08\",",
+                    "+                         facecolor=fc, edgecolor=ec, linewidth=lw,",
+                    "+                         alpha=alpha, zorder=zorder)",
+                    "     ax.add_patch(box)",
+                    "-    cx = xy[0] + w / 2",
+                    "-    cy = xy[1] + h / 2",
+                    "     weight = 'bold' if bold else 'normal'",
+                    "-    ax.text(cx, cy, text, ha='center', va='center', fontsize=fontsize,",
+                    "-            color=text_color, weight=weight, zorder=zorder + 1,",
+                    "-            linespacing=1.25)",
+                    "-    return box",
+                    "+    ax.text(x + w / 2, y + h / 2 + va_offset, text,",
+                    "+            ha='center', va='center', fontsize=fs, color=tc,",
+                    "+            weight=weight, zorder=zorder + 1, linespacing=1.2)",
+                    " ",
+                    "-def add_arrow(ax, posA, posB, color=C_ARROW, lw=1.2, style='->', zorder=2):",
+                    "-    arrow = FancyArrowPatch(posA, posB,",
+                    "-                            arrowstyle=style, color=color,",
+                    "-                            linewidth=lw, mutation_scale=12,",
+                    "-                            connectionstyle=\"arc3,rad=0.0\",",
+                    "-                            zorder=zorder)",
+                    "-    ax.add_patch(arrow)",
+                    "-    return arrow",
+                    " ",
+                    "-# ── Stage backgrounds ──",
+                    "-bg1 = FancyBboxPatch((0.15, 0.15), 4.55, 4.15,",
+                    "-                      boxstyle=\"round,pad=0.12\",",
+                    "-                      facecolor=C_BLUE_BG, edgecolor='#7FB3D8',",
+                    "-                      linewidth=1.5, alpha=0.5, zorder=0)",
+                    "+def arrow(ax, x1, y1, x2, y2, color=C_ARROW, lw=1.2, style='-|>',",
+                    "+          rad=0.0, zorder=2):",
+                    "+    a = FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,",
+                    "+                        color=color, linewidth=lw, mutation_scale=12,",
+                    "+                        connectionstyle=f\"arc3,rad={rad}\", zorder=zorder)",
+                    "+    ax.add_patch(a)",
+                    "+",
+                    "+",
+                    "+# ═══════════ Stage backgrounds ═══════════",
+                    "+bg1 = FancyBboxPatch((0.1, 0.1), 4.7, 4.25, boxstyle=\"round,pad=0.12\",",
+                    "+                      facecolor=C_BLUE_BG, edgecolor='#8CB8D8',",
+                    "+                      linewidth=1.5, alpha=0.45, zorder=0)",
+                    " ax.add_patch(bg1)",
+                    " ",
+                    "-bg2 = FancyBboxPatch((5.1, 0.15), 4.75, 4.15,",
+                    "-                      boxstyle=\"round,pad=0.12\",",
+                    "-                      facecolor=C_GREEN_BG, edgecolor='#82D8A2',",
+                    "-                      linewidth=1.5, alpha=0.5, zorder=0)",
+                    "+bg2 = FancyBboxPatch((5.15, 0.1), 4.75, 4.25, boxstyle=\"round,pad=0.12\",",
+                    "+                      facecolor=C_GREEN_BG, edgecolor='#8CD8A8',",
+                    "+                      linewidth=1.5, alpha=0.45, zorder=0)",
+                    " ax.add_patch(bg2)",
+                    " ",
+                    " # Stage labels",
+                    "-ax.text(2.42, 4.12, 'Stage 1: Multi-Signal Exposure Mapping',",
+                    "+ax.text(2.45, 4.15, 'Stage 1: Multi-Signal Exposure Mapping',",
+                    "         ha='center', va='center', fontsize=11, fontweight='bold',",
+                    "-        color=C_STAGE_LABEL, zorder=5)",
+                    "-ax.text(7.47, 4.12, 'Stage 2: Contamination-Augmented IRT',",
+                    "+        color='#1A3A5C', zorder=5)",
+                    "+ax.text(7.52, 4.15, 'Stage 2: Contamination-Augmented IRT',",
+                    "         ha='center', va='center', fontsize=11, fontweight='bold',",
+                    "-        color=C_STAGE_LABEL, zorder=5)",
+                    "+        color='#1A5C3A', zorder=5)",
+                    " ",
+                    "-# ── Stage 1 ──",
+                    "+# ═══════════ Stage 1: Left half ═══════════",
+                    " ",
+                    "-# Input box",
+                    "-add_box(ax, (0.35, 2.7), 1.1, 0.7, C_INPUT, 'LLM +\\nBenchmark\\nItems',",
+                    "-        fontsize=8.5, bold=True, edgecolor='#B8A800')",
+                    "+# Input box (left edge)",
+                    "+inp_x, inp_y, inp_w, inp_h = 0.3, 1.85, 1.05, 0.75",
+                    "+add_box(ax, inp_x, inp_y, inp_w, inp_h, C_INPUT,",
+                    "+        'LLM +\\nBenchmark\\nItems', fs=8.5, bold=True, ec='#B8A800')",
+                    " ",
+                    "-# Signal boxes (stacked vertically)",
+                    "-sig_x = 2.0",
+                    "-sig_w = 2.2",
+                    "-sig_h = 0.55",
+                    "-sig_gap = 0.12",
+                    "-sigs = [",
+                    "-    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)', C_S1_GOOD, '#006B4F'),",
+                    "-    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)', C_S2_FAIL, '#8B3A00'),",
+                    "-    ('S3: ConStat\\n(needs paraphrase data)', C_S3_GRAY, '#555555'),",
+                    "-    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)', C_S4_WEAK, '#946200'),",
+                    "+# 4 signal boxes (column, right of input)",
+                    "+sig_x = 1.75",
+                    "+sig_w = 2.3",
+                    "+sig_h = 0.52",
+                    "+sigs_data = [",
+                    "+    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)',       C_S1_GOOD, '#006B4F'),",
+                    "+    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)',         C_S2_FAIL, '#8B3A00'),",
+                    "+    ('S3: ConStat\\n(needs paraphrase data)',                    C_S3_GRAY, '#555555'),",
+                    "+    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)',            C_S4_WEAK, '#946200'),",
+                    " ]",
+                    " ",
+                    "-sig_tops = []",
+                    "-for i, (label, color, ec) in enumerate(sigs):",
+                    "-    y = 3.35 - i * (sig_h + sig_gap)",
+                    "-    add_box(ax, (sig_x, y), sig_w, sig_h, color, label,",
+                    "-            fontsize=7.5, text_color='white', edgecolor=ec,",
+                    "-            alpha=0.88, bold=False, linewidth=1.0)",
+                    "-    sig_tops.append(y + sig_h / 2)",
+                    "+sig_centers_y = []",
+                    "+top_y = 3.55",
+                    "+gap = 0.09",
+                    "+for i, (label, fc, ec) in enumerate(sigs_data):",
+                    "+    sy = top_y - i * (sig_h + gap)",
+                    "+    add_box(ax, sig_x, sy, sig_w, sig_h, fc, label,",
+                    "+            fs=7.5, tc='white', ec=ec, lw=1.0, alpha=0.88)",
+                    "+    sig_centers_y.append(sy + sig_h / 2)",
+                    " ",
+                    "-# Arrows from input to signals",
+                    "-input_right = 0.35 + 1.1",
+                    "-for sy in sig_tops:",
+                    "-    add_arrow(ax, (input_right + 0.02, 3.05), (sig_x - 0.02, sy), lw=0.9)",
+                    "+# Arrows: input → each signal",
+                    "+inp_cx = inp_x + inp_w",
+                    "+inp_cy = inp_y + inp_h / 2",
+                    "+for cy in sig_centers_y:",
+                    "+    arrow(ax, inp_cx + 0.02, inp_cy, sig_x - 0.04, cy, lw=0.8,",
+                    "+          style='->', rad=0.0)",
+                    " ",
+                    "-# RRF Fusion box",
+                    "-fus_x, fus_y, fus_w, fus_h = 2.55, 0.55, 1.3, 0.55",
+                    "-add_box(ax, (fus_x, fus_y), fus_w, fus_h, C_FUSION,",
+                    "-        'RRF Fusion\\n→ $e_{ij}$', fontsize=9, text_color='white',",
+                    "-        bold=True, edgecolor='#004C7F')",
+                    "+# RRF Fusion box (below signals, centered)",
+                    "+fus_x, fus_y, fus_w, fus_h = 2.1, 0.45, 1.6, 0.6",
+                    "+add_box(ax, fus_x, fus_y, fus_w, fus_h, C_FUSION,",
+                    "+        'RRF Fusion → $e_{ij}$', fs=9.5, tc='white',",
+                    "+        bold=True, ec='#004C7F')",
+                    " ",
+                    "-# Arrows from signals to fusion",
+                    "-for sy in sig_tops:",
+                    "-    add_arrow(ax, (sig_x + sig_w / 2, sy - sig_h / 2 + 0.02),",
+                    "-              (fus_x + fus_w / 2, fus_y + fus_h), lw=0.9)",
+                    "+# Arrows: signals → fusion (converge)",
+                    "+fus_top_cx = fus_x + fus_w / 2",
+                    "+for cy in sig_centers_y:",
+                    "+    arrow(ax, sig_x + sig_w / 2, cy - sig_h / 2 + 0.01,",
+                    "+          fus_top_cx, fus_y + fus_h, lw=0.7, style='->')",
+                    " ",
+                    "-# Annotation: training-free",
+                    "-ax.text(0.6, 0.45, 'Training-free\\n(avoids meta-circularity)',",
+                    "+# \"Training-free\" annotation (bottom-left)",
+                    "+ax.text(0.65, 0.55, 'Training-free\\n(avoids meta-circularity)',",
+                    "         ha='center', va='center', fontsize=7.5, fontstyle='italic',",
+                    "-        color='#0055A0', zorder=5,",
+                    "+        color='#005599', zorder=5,",
+                    "         bbox=dict(boxstyle='round,pad=0.15', facecolor='white',",
+                    "-                  edgecolor='#0072B2', alpha=0.7, linewidth=0.6))",
+                    "+                  edgecolor='#0072B2', alpha=0.75, linewidth=0.7))",
+                    " ",
+                    "-# ── Arrow from Stage 1 to Stage 2 ──",
+                    "-add_arrow(ax, (fus_x + fus_w, fus_y + fus_h / 2),",
+                    "-          (5.45, 2.0), color=C_FUSION, lw=1.8, style='-|>')",
+                    "+# ═══════════ Connecting arrows Stage1 → Stage2 ═══════════",
+                    " ",
+                    "-# Also arrow from input to stage 2 (item responses)",
+                    "-add_arrow(ax, (0.9, 2.7), (5.45, 2.55), color='#888888', lw=1.0, style='->')",
+                    "-ax.text(3.0, 2.48, '$y_{ij}$ (item responses)', fontsize=7.5,",
+                    "-        color='#555555', ha='center', va='center', fontstyle='italic', zorder=5)",
+                    "-ax.text(4.4, 1.05, '$e_{ij}$ (exposure scores)', fontsize=7.5,",
+                    "-        color=C_FUSION, ha='center', va='center', fontstyle='italic', zorder=5)",
+                    "+# e_ij arrow (from fusion to IRT)",
+                    "+irt_x, irt_y, irt_w, irt_h = 5.55, 1.2, 2.55, 2.05",
+                    "+arrow(ax, fus_x + fus_w, fus_y + fus_h / 2,",
+                    "+      irt_x - 0.04, irt_y + 0.5,",
+                    "+      color=C_FUSION, lw=1.6, style='-|>')",
+                    "+ax.text(4.55, 0.98, '$e_{ij}$', fontsize=9.5, color=C_FUSION,",
+                    "+        ha='center', va='center', fontweight='bold', fontstyle='italic', zorder=5)",
+                    " ",
+                    "-# ── Stage 2 ──",
+                    "+# y_ij arrow (from input down and across to IRT)",
+                    "+arrow(ax, inp_cx + 0.02, inp_y,",
+                    "+      irt_x - 0.04, irt_y + irt_h - 0.4,",
+                    "+      color='#777777', lw=1.0, style='->', rad=-0.25)",
+                    "+ax.text(3.2, 1.62, '$y_{ij}$ (responses)', fontsize=7.5,",
+                    "+        color='#555555', ha='center', va='center', fontstyle='italic',",
+                    "+        zorder=5, rotation=-8)",
+                    " ",
+                    "-# IRT model box",
+                    "-irt_x, irt_y, irt_w, irt_h = 5.5, 1.35, 2.6, 1.8",
+                    "-add_box(ax, (irt_x, irt_y), irt_w, irt_h, C_IRT,",
+                    "-        '', fontsize=9, edgecolor='#2E86C1', linewidth=1.2)",
+                    "+# ═══════════ Stage 2: Right half ═══════════",
+                    " ",
+                    "-# IRT model text (multi-line, placed manually for control)",
+                    "+# IRT model box (large)",
+                    "+add_box(ax, irt_x, irt_y, irt_w, irt_h, C_IRT, '',",
+                    "+        ec='#2980B9', lw=1.3, alpha=0.35)",
+                    "+",
+                    "+# IRT title",
+                    " ax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,",
+                    "-        'Per-Benchmark 4PL+γ IRT',",
+                    "-        ha='center', va='center', fontsize=9, fontweight='bold',",
+                    "-        color=C_TEXT, zorder=5)",
+                    "+        'Per-Benchmark 4PL+γ IRT', ha='center', va='center',",
+                    "+        fontsize=10, fontweight='bold', color='#1A4971', zorder=5)",
+                    " ",
+                    "+# IRT equation",
+                    " irt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'",
+                    "           r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')",
+                    "-ax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 - 0.05,",
+                    "-        irt_eq, ha='center', va='center', fontsize=8,",
+                    "+ax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 + 0.05,",
+                    "+        irt_eq, ha='center', va='center', fontsize=8.5,",
+                    "         color=C_TEXT, zorder=5)",
+                    " ",
+                    "+# \"Per-benchmark fitting\" note",
+                    " ax.text(irt_x + irt_w / 2, irt_y + 0.25,",
+                    "-        'Per-benchmark fitting (D053)',",
+                    "-        ha='center', va='center', fontsize=7.5, fontstyle='italic',",
+                    "-        color='#1A5276', zorder=5)",
+                    "+        'Per-benchmark fitting (D053)', ha='center', va='center',",
+                    "+        fontsize=7.5, fontstyle='italic', color='#1A5276', zorder=5)",
+                    " ",
+                    "-# Output boxes",
+                    "+# Output boxes (right of IRT)",
+                    " out_x = 8.5",
+                    " out_w = 1.3",
+                    "-out_h = 0.65",
+                    "-out_gap = 0.2",
+                    "+out_h = 0.62",
+                    "+out_gap = 0.18",
+                    " outputs = [",
+                    "-    ('Per-benchmark\\n$\\\\gamma_k$\\n(characterization)', C_OUTPUT, '#8B4C75'),",
+                    "-    ('Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)', C_OUTPUT, '#8B4C75'),",
+                    "-    ('Bayesian CIs\\n(uncertainty)', C_OUTPUT, '#8B4C75'),",
+                    "+    'Per-benchmark\\n$\\\\gamma_k$\\n(characterization)',",
+                    "+    'Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)',",
+                    "+    'Bayesian CIs\\n(uncertainty)',",
+                    " ]",
+                    " ",
+                    "-out_centers = []",
+                    "-for i, (label, color, ec) in enumerate(outputs):",
+                    "-    y = 3.25 - i * (out_h + out_gap)",
+                    "-    add_box(ax, (out_x, y), out_w, out_h, color, label,",
+                    "-            fontsize=7.5, text_color='white', edgecolor=ec,",
+                    "-            bold=True, linewidth=1.0)",
+                    "-    out_centers.append(y + out_h / 2)",
+                    "+out_centers_y = []",
+                    "+out_top = 3.35",
+                    "+for i, label in enumerate(outputs):",
+                    "+    oy = out_top - i * (out_h + out_gap)",
+                    "+    add_box(ax, out_x, oy, out_w, out_h, C_OUTPUT, label,",
+                    "+            fs=7.5, tc='white', ec='#8B4C75', bold=True, lw=1.0)",
+                    "+    out_centers_y.append(oy + out_h / 2)",
+                    " ",
+                    "-# Arrows from IRT to outputs",
+                    "-for oy in out_centers:",
+                    "-    add_arrow(ax, (irt_x + irt_w, irt_y + irt_h / 2),",
+                    "-              (out_x - 0.02, oy), color='#8B4C75', lw=1.2)",
+                    "+# Arrows: IRT → outputs",
+                    "+irt_right = irt_x + irt_w",
+                    "+irt_mid_y = irt_y + irt_h / 2",
+                    "+for oy in out_centers_y:",
+                    "+    arrow(ax, irt_right + 0.01, irt_mid_y,",
+                    "+          out_x - 0.04, oy, color='#8B4C75', lw=1.1, style='-|>')",
+                    " ",
+                    "-# ── Save ──",
+                    "+# ═══════════ Save ═══════════",
+                    " out_dir = Path(__file__).parent",
+                    " fig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')",
+                    " fig.savefig(out_dir / 'fig_pipeline.png', format='png')",
+                    " plt.close(fig)",
+                    "-print('Saved fig_pipeline.pdf and fig_pipeline.png')",
+                    "+print('Done: fig_pipeline.pdf + fig_pipeline.png')"
+                  ]
+                }
+              ],
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito inspired palette\nC_BLUE_BG = '#D6EAF8'       # stage 1 background\nC_GREEN_BG = '#D5F5E3'      # stage 2 background\nC_S1_GOOD = '#009E73'       # S1 reliable (green)\nC_S2_FAIL = '#D55E00'       # S2 failure (vermillion)\nC_S3_GRAY = '#999999'       # S3 data-dependent\nC_S4_WEAK = '#E69F00'       # S4 weak (orange)\nC_FUSION = '#0072B2'        # fusion box (blue)\nC_IRT = '#56B4E9'           # IRT model box\nC_OUTPUT = '#CC79A7'        # output boxes (reddish purple)\nC_INPUT = '#F0E442'         # input boxes (yellow)\nC_ARROW = '#444444'\nC_TEXT = '#222222'\nC_STAGE_LABEL = '#333333'\n\nfig, ax = plt.subplots(figsize=(10, 4.5))\nax.set_xlim(0, 10)\nax.set_ylim(0, 4.5)\nax.axis('off')\n\ndef add_box(ax, xy, w, h, color, text, fontsize=9, text_color=C_TEXT,\n            alpha=0.92, linewidth=0.8, edgecolor='#666666', bold=False,\n            box_style=\"round,pad=0.08\", zorder=3):\n    box = FancyBboxPatch(xy, w, h, boxstyle=box_style,\n                         facecolor=color, edgecolor=edgecolor,\n                         linewidth=linewidth, alpha=alpha, zorder=zorder)\n    ax.add_patch(box)\n    cx = xy[0] + w / 2\n    cy = xy[1] + h / 2\n    weight = 'bold' if bold else 'normal'\n    ax.text(cx, cy, text, ha='center', va='center', fontsize=fontsize,\n            color=text_color, weight=weight, zorder=zorder + 1,\n            linespacing=1.25)\n    return box\n\ndef add_arrow(ax, posA, posB, color=C_ARROW, lw=1.2, style='->', zorder=2):\n    arrow = FancyArrowPatch(posA, posB,\n                            arrowstyle=style, color=color,\n                            linewidth=lw, mutation_scale=12,\n                            connectionstyle=\"arc3,rad=0.0\",\n                            zorder=zorder)\n    ax.add_patch(arrow)\n    return arrow\n\n# ── Stage backgrounds ──\nbg1 = FancyBboxPatch((0.15, 0.15), 4.55, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_BLUE_BG, edgecolor='#7FB3D8',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg1)\n\nbg2 = FancyBboxPatch((5.1, 0.15), 4.75, 4.15,\n                      boxstyle=\"round,pad=0.12\",\n                      facecolor=C_GREEN_BG, edgecolor='#82D8A2',\n                      linewidth=1.5, alpha=0.5, zorder=0)\nax.add_patch(bg2)\n\n# Stage labels\nax.text(2.42, 4.12, 'Stage 1: Multi-Signal Exposure Mapping',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\nax.text(7.47, 4.12, 'Stage 2: Contamination-Augmented IRT',\n        ha='center', va='center', fontsize=11, fontweight='bold',\n        color=C_STAGE_LABEL, zorder=5)\n\n# ── Stage 1 ──\n\n# Input box\nadd_box(ax, (0.35, 2.7), 1.1, 0.7, C_INPUT, 'LLM +\\nBenchmark\\nItems',\n        fontsize=8.5, bold=True, edgecolor='#B8A800')\n\n# Signal boxes (stacked vertically)\nsig_x = 2.0\nsig_w = 2.2\nsig_h = 0.55\nsig_gap = 0.12\nsigs = [\n    ('S1: Embedding Similarity\\n(AUC > 0.95, reliable)', C_S1_GOOD, '#006B4F'),\n    ('S2: Min-K++\\n(AUC ~ 0.47, ⚠ reversal at 0.5B)', C_S2_FAIL, '#8B3A00'),\n    ('S3: ConStat\\n(needs paraphrase data)', C_S3_GRAY, '#555555'),\n    ('S4: Self-Critique\\n(AUC ~ 0.50, ineffective)', C_S4_WEAK, '#946200'),\n]\n\nsig_tops = []\nfor i, (label, color, ec) in enumerate(sigs):\n    y = 3.35 - i * (sig_h + sig_gap)\n    add_box(ax, (sig_x, y), sig_w, sig_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            alpha=0.88, bold=False, linewidth=1.0)\n    sig_tops.append(y + sig_h / 2)\n\n# Arrows from input to signals\ninput_right = 0.35 + 1.1\nfor sy in sig_tops:\n    add_arrow(ax, (input_right + 0.02, 3.05), (sig_x - 0.02, sy), lw=0.9)\n\n# RRF Fusion box\nfus_x, fus_y, fus_w, fus_h = 2.55, 0.55, 1.3, 0.55\nadd_box(ax, (fus_x, fus_y), fus_w, fus_h, C_FUSION,\n        'RRF Fusion\\n→ $e_{ij}$', fontsize=9, text_color='white',\n        bold=True, edgecolor='#004C7F')\n\n# Arrows from signals to fusion\nfor sy in sig_tops:\n    add_arrow(ax, (sig_x + sig_w / 2, sy - sig_h / 2 + 0.02),\n              (fus_x + fus_w / 2, fus_y + fus_h), lw=0.9)\n\n# Annotation: training-free\nax.text(0.6, 0.45, 'Training-free\\n(avoids meta-circularity)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#0055A0', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor='white',\n                  edgecolor='#0072B2', alpha=0.7, linewidth=0.6))\n\n# ── Arrow from Stage 1 to Stage 2 ──\nadd_arrow(ax, (fus_x + fus_w, fus_y + fus_h / 2),\n          (5.45, 2.0), color=C_FUSION, lw=1.8, style='-|>')\n\n# Also arrow from input to stage 2 (item responses)\nadd_arrow(ax, (0.9, 2.7), (5.45, 2.55), color='#888888', lw=1.0, style='->')\nax.text(3.0, 2.48, '$y_{ij}$ (item responses)', fontsize=7.5,\n        color='#555555', ha='center', va='center', fontstyle='italic', zorder=5)\nax.text(4.4, 1.05, '$e_{ij}$ (exposure scores)', fontsize=7.5,\n        color=C_FUSION, ha='center', va='center', fontstyle='italic', zorder=5)\n\n# ── Stage 2 ──\n\n# IRT model box\nirt_x, irt_y, irt_w, irt_h = 5.5, 1.35, 2.6, 1.8\nadd_box(ax, (irt_x, irt_y), irt_w, irt_h, C_IRT,\n        '', fontsize=9, edgecolor='#2E86C1', linewidth=1.2)\n\n# IRT model text (multi-line, placed manually for control)\nax.text(irt_x + irt_w / 2, irt_y + irt_h - 0.25,\n        'Per-Benchmark 4PL+γ IRT',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_TEXT, zorder=5)\n\nirt_eq = (r'$P(y\\!=\\!1) = c_i + \\frac{d_i - c_i}'\n          r'{1 + e^{-a_i(\\theta_j - b_i + \\gamma_k \\cdot e_{ij})}}$')\nax.text(irt_x + irt_w / 2, irt_y + irt_h / 2 - 0.05,\n        irt_eq, ha='center', va='center', fontsize=8,\n        color=C_TEXT, zorder=5)\n\nax.text(irt_x + irt_w / 2, irt_y + 0.25,\n        'Per-benchmark fitting (D053)',\n        ha='center', va='center', fontsize=7.5, fontstyle='italic',\n        color='#1A5276', zorder=5)\n\n# Output boxes\nout_x = 8.5\nout_w = 1.3\nout_h = 0.65\nout_gap = 0.2\noutputs = [\n    ('Per-benchmark\\n$\\\\gamma_k$\\n(characterization)', C_OUTPUT, '#8B4C75'),\n    ('Calibrated\\n$\\\\theta_j^{\\\\mathrm{clean}}$\\n(calibration)', C_OUTPUT, '#8B4C75'),\n    ('Bayesian CIs\\n(uncertainty)', C_OUTPUT, '#8B4C75'),\n]\n\nout_centers = []\nfor i, (label, color, ec) in enumerate(outputs):\n    y = 3.25 - i * (out_h + out_gap)\n    add_box(ax, (out_x, y), out_w, out_h, color, label,\n            fontsize=7.5, text_color='white', edgecolor=ec,\n            bold=True, linewidth=1.0)\n    out_centers.append(y + out_h / 2)\n\n# Arrows from IRT to outputs\nfor oy in out_centers:\n    add_arrow(ax, (irt_x + irt_w, irt_y + irt_h / 2),\n              (out_x - 0.02, oy), color='#8B4C75', lw=1.2)\n\n# ── Save ──\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_pipeline.pdf', format='pdf')\nfig.savefig(out_dir / 'fig_pipeline.png', format='png')\nplt.close(fig)\nprint('Saved fig_pipeline.pdf and fig_pipeline.png')\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Whx5xLPkigqHkKaZaTsnK6",
+              "name": "Bash",
+              "input": {
+                "command": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.venv/bin/python3 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_pipeline.py",
+                "description": "Regenerate pipeline figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "4421f216-67cc-4b33-894e-805b4406dff5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QLapVbmJighN5WGMWMMNh3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3981,
+                "cache_read_input_tokens": 29319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3981
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bregy2wmw",
+                "tool_use_id": "toolu_01Whx5xLPkigqHkKaZaTsnK6",
+                "description": "Regenerate pipeline figure",
+                "task_type": "local_bash",
+                "uuid": "b7c3a8e8-bb37-4969-92c2-7ce63b5e0f3a",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bregy2wmw",
+                "tool_use_id": "toolu_01Whx5xLPkigqHkKaZaTsnK6",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Regenerate pipeline figure",
+                "uuid": "1c994d7b-2949-46a9-a84d-90f936195ea7",
+                "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T18:47:02.831Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Whx5xLPkigqHkKaZaTsnK6",
+              "type": "tool_result",
+              "content": "Done: fig_pipeline.pdf + fig_pipeline.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "65333918-6cae-4d8c-a80d-6ce468ba13c9",
+            "tool_use_result": {
+              "stdout": "Done: fig_pipeline.pdf + fig_pipeline.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NitiNK7am5A4KMKKoHCjmN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "f71d3db4-9bf1-4da9-99e6-f68cfbcb162e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XuUw6YGuPb9tiaXHYhNnn4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 180,
+                "cache_read_input_tokens": 33300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 180
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T18:47:10.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NitiNK7am5A4KMKKoHCjmN",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "38bf8b8b-b056-4550-b57f-9cf8ac9cecb5",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 257807
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This looks much better. The layout is cleaner:\n- Two stages clearly separated with blue/green backgrounds\n- 4 signal boxes with distinct colors (green/red/gray/orange)\n- RRF Fusion at the bottom of Stage 1\n- IRT model box with equation in Stage 2\n- 3 output boxes on the right\n- Arrows connecting everything\n- \"Training-free\" annotation\n- \"Per-benchmark fitting (D053)\" annotation\n\nA few things I could improve:\n1. The y_ij label/arrow is a bit hard to see - it curves under the signal boxes\n\n\n2. The IRT equation is small but readable, though the subscripts might be difficult to parse when printed at column width\n\nThe overall proportions look good. I should verify the full equation is visible - the $\\theta_j - b_i + \\gamma_k \\cdot e_{ij}$ part in the exponent is crucial and appears to be there, just quite small. This is looking solid enough to register.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "10164414-4e34-4063-94af-e28edba43899",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019w9gaGnQ6vwfm6dhnoyYiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 33480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Layout is cleaner now. Let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "bd3f84d7-fd85-4e2c-8aa5-4ec404f8c03c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019w9gaGnQ6vwfm6dhnoyYiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 33480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LFs5akqczYbG2gTmR4jstr",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "9ea843dd-5b60-421b-b9f5-c8b44ff722a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019w9gaGnQ6vwfm6dhnoyYiW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 33480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T18:47:22.085Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LFs5akqczYbG2gTmR4jstr",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "b41961c0-c17c-4d39-b485-dafc52340a2d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CmWtjr1BhkdGwDfKrpSvAy",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "fig_pipeline",
+                "type": "chart",
+                "description": "ContamCal 2-stage pipeline conceptual diagram for Section 3 (Method). Stage 1: Multi-Signal Exposure Mapping (4 signals + RRF fusion). Stage 2: Contamination-Augmented 4PL+γ IRT with per-benchmark fitting.",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/fig_pipeline.pdf",
+                "tags": [
+                  "paper",
+                  "method",
+                  "pipeline",
+                  "section3"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "6eb38352-1ec7-4a61-bbb2-6753fc354f09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017po9gy7ksewnoYxKHRDBHQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1037,
+                "cache_read_input_tokens": 33819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1037
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T18:47:27.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CmWtjr1BhkdGwDfKrpSvAy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_4cecae\\\", \\\"name\\\": \\\"fig_pipeline\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"ContamCal 2-stage pipeline conceptual diagram for Section 3 (Method). Stage 1: Multi-Signal Exposure Mapping (4 signals + RRF fusion). Stage 2: Contamination-Augmented 4PL+γ IRT with per-benchmark fitting.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/chart/fig_pipeline.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:47:27.400167+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"pipeline\\\", \\\"section3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "2eeb926f-d6d6-422e-8f9c-c904a7ef046d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_4cecae\\\", \\\"name\\\": \\\"fig_pipeline\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"ContamCal 2-stage pipeline conceptual diagram for Section 3 (Method). Stage 1: Multi-Signal Exposure Mapping (4 signals + RRF fusion). Stage 2: Contamination-Augmented 4PL+γ IRT with per-benchmark fitting.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/chart/fig_pipeline.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:47:27.400167+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"pipeline\\\", \\\"section3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_4cecae\", \"name\": \"fig_pipeline\", \"type\": \"chart\", \"description\": \"ContamCal 2-stage pipeline conceptual diagram for Section 3 (Method). Stage 1: Multi-Signal Exposure Mapping (4 signals + RRF fusion). Stage 2: Contamination-Augmented 4PL+γ IRT with per-benchmark fitting.\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/chart/fig_pipeline.pdf\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T18:47:27.400167+00:00\", \"tags\": [\"paper\", \"method\", \"pipeline\", \"section3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**输出文件：**\n- PDF: `figures/paper/fig_pipeline.pdf` (48K, 矢量)\n- PNG: `figures/paper/fig_pipeline.png` (257K, 300 DPI)\n- 生成脚本: `figures/paper/gen_fig_pipeline.py`\n- Artifact ID: `art_20260515_4cecae`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "uuid": "804902e5-2900-42a3-8e90-4c23423b6e44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SCnvRRdi7izQ4UT8685FAy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 592,
+                "cache_read_input_tokens": 34856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 592
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**输出文件：**\n- PDF: `figures/paper/fig_pipeline.pdf` (48K, 矢量)\n- PNG: `figures/paper/fig_pipeline.png` (257K, 300 DPI)\n- 生成脚本: `figures/paper/gen_fig_pipeline.py`\n- Artifact ID: `art_20260515_4cecae`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 171551,
+            "duration_api_ms": 148015,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "6c086cbc-6e76-4f50-838a-f9618a316a14",
+            "total_cost_usd": 0.52587925,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 23607,
+              "cache_read_input_tokens": 311801,
+              "output_tokens": 8795,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23607,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 106,
+                  "cache_read_input_tokens": 34856,
+                  "cache_creation_input_tokens": 592,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 592
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 8795,
+                "cacheReadInputTokens": 311801,
+                "cacheCreationInputTokens": 23607,
+                "webSearchRequests": 0,
+                "costUSD": 0.5233942500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2400,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002485,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "036f3427-c3e7-49cb-ab7c-d8f294f74899"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig-pipeline.md"
+}

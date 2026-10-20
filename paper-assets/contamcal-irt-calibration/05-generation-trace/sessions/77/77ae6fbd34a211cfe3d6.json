@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77ae6fbd34a211cfe3d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d000 s123 aligned",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d000_s123_aligned_20260515T143706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d000_s123_aligned_20260515T143706_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "f6583c2a4a8c7841f02564fbd114d05f3d5822e3d9f92d9f2c52051a4cf8ed24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。三个 accuracy 分别对应 mmlu (line 6), gsm8k (line 84265), arc_challenge (line 92186)，humaneval 用 `pass@1`。\n\n```\nMETRICS:\nmmlu_accuracy: 0.6332\ngsm8k_accuracy: 0.1812\narc_challenge_accuracy: 0.8328\nhumaneval_pass1: 0.0854\nSENTINEL: exists\nFILES: [.done, correctness_matrix.json, eval_results.json, item_responses.json]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d000-s123-aligned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba6323ef05745f153f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval raw 3b gpu5",
+  "task_key": "worker_eval_raw-3b-gpu5_20260514T065154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_raw-3b-gpu5_20260514T065154_result.json",
+    "occurrence": 1,
+    "bytes": 128,
+    "sha256": "e9e6d145a0343793ebe2a20c69eb3ffce708076640bea6f2a6384cceae063414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 5 已被占用，模型加载成功：PID 318748，显存 6546MiB，GPU-Util 18%。eval 任务正在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-raw-3b-gpu5.md"
+}

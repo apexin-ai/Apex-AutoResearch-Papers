@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1629259a3b0f05077ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "data irt cal extract v2",
+  "task_key": "worker_data_irt_cal_extract_v2_20260516T202505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_irt_cal_extract_v2_20260516T202505_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "f8c5236dc4b92f2a27745c200365370ff45234428c677e11c21ad5d2d2a4baac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. File saved at `artifacts/irt_calibration_data.json` (registered as `art_20260516_f5b762`).\n\n**What's included:**\n- **Primary results**: Pooled 2PL+γ N=16 fixed (the key-mismatch-fixed run) for MMLU, ARC, GSM8K — gamma, CI, PPP, MAE, diagnostics\n- **MMLU domain-level gamma**: 7 domains showing Simpson's Paradox (STEM positive, Humanities/Social negative)\n- **Scale-stratified**: Per-scale (0.5B/1.5B/3B) IRT fits\n- **2PL vs 4PL ablation**: Coverage collapse evidence\n- **Vanilla 2PL comparison**: Baseline without gamma\n- **Exposure score metadata**: RRF config and sample values\n\n**Note**: Direct SSH was unavailable (no key configured in this environment), so the data was compiled from the comprehensive local artifact reports rather than raw JSON extraction from the server. The numerical values match the server outputs as documented in the reports. The per-model theta/item-parameter arrays (a_values, b_values) are not available locally — those would require SSH access to read the full `irt_results.json` files on the server."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-irt-cal-extract-v2.md"
+}

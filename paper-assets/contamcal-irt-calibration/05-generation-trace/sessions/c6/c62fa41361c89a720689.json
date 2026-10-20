@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c62fa41361c89a720689",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778947769.md",
+  "task_key": "loop_16_1778947769",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778947769.md",
+    "occurrence": 1,
+    "bytes": 4620,
+    "sha256": "2a7fb0a530ef4c23064c42384b115c961f4c9eb7d116f8ff5f2fe315992002ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T15:29:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0~5 (cqa1-21977)，全部 6 张已分配本项目，不可用其他设备\n- Llama-3.2-3B 模型路径: `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`（注意三下划线转义）\n- SFT 训练必须 `--gradient-checkpointing --merge --lr 5e-5 --batch-size 2 --grad-accum 8`（3B 模型在 4090D 24GB 下的固定配置）\n- ARC benchmark PPP=0.002 → 论文不能对 ARC γ 绝对值做 claim，只能说 pattern/ranking（D112 决策）\n- MMLU domain gamma claim 限定 STEM-only（D114），Medical 域排除（D112 model misfit）\n- D108 措辞已降级为\"domain heterogeneity evidence\"，不是\"domain-dependent contamination\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D (24GB each)\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/` (Qwen2.5-0.5B, 1.5B, 3B; Llama-3.2-3B)\n- **数据路径**: `/root/autodl-tmp/exp001/sft_data/` (sft_dosage_000/005/025/100.jsonl)\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 结果**: `/root/autodl-tmp/exp001/signals/`（已全部完成 24 respondents）\n- **RRF 脚本**: `/root/contamcal-irt-calibration/exp002/aggregate_rrf.py`\n- **IRT 脚本**: `/root/contamcal-irt-calibration/exp006/`\n- **W&B**: 项目 contamcal-irt-calibration\n- **活跃进程**: PID 801761 (Llama-3.2-3B d025 SFT, cuda:3, tmux session)\n- **Cron**: reconcile 返回 0 active（本 session 无 cron，需要 submit_training_job 重新注册监控）\n\n### 3. 📊 当前状态\n**刚完成**: 上一轮 session 完成了全部 Qwen 系列 signals (24 respondents)、多轮 pooled IRT (D109/D116)、MMLU domain gamma N=24 (D108/D115)、scale-stratified IRT (D110 negative)。\n\n**RUNNING (2)**:\n1. `exp_001_sft_llama32_3B_d025_s42` — Llama-3.2-3B d025 SFT, cuda:3, PID 801761\n2. `exp_001_eval_05B_instruct` — 0.5B-Instruct eval (RL observational claim), cuda:2\n\n**活跃 Worker (3)**:\n1. `worker_ops_gpu_audit_and_fill` — GPU 审计并填充空闲卡\n2. `worker_ops_kill_and_fill_instruct_signals` — 清理旧任务 + 填充 instruct signals\n3. `worker_analysis_rrf_gap_fill_n24` — 补 3B d100_s42 和 d000_s123 缺失的 RRF merged files\n\n**PREPARING (22)**: 大量待提交实验，含 Llama eval、1.5B SFT、3B aligned evals 等。\n\n**等待中**: 3 个 Worker 回调；无活跃 Cron（需重建监控）。\n\n### 4. 📋 待办（条件触发式）\n- Worker `rrf_gap_fill_n24` 完成 → 跑 N=24 全 respondent pooled 2PL+γ IRT（核心论文数字）\n- Worker `gpu_audit_and_fill` 完成 → 确认 6 张卡是否全满，空卡立即填 Llama d000/d005 SFT\n- `exp_001_sft_llama32_3B_d025_s42` 完成 → eval + signals → Llama 加入 cross-family IRT\n- `exp_001_eval_05B_instruct` 完成 → 1.5B/3B-Instruct eval 串接（P0-C RL observational claim）\n- Llama d000 SFT 完成 → d005/d025/d100 SFT 启动（cuda:4 已指定）\n- 全部 Llama signals 完成 → cross-family pooled IRT → Claim 2 (family-invariance) 数据\n- N=24 pooled IRT 出结果 → 如果 Simpson's paradox 持续 → 论文 Claim 1 锁定数字，开始 paper draft\n- 7B 云 GPU 审批通过 → 立即 spawn worker 做 7B SFT pipeline\n\n### 5. 🎯 战略上下文\n- **核心结论**: ContamCal 2PL+γ 在 aggregate level γ≈0（看似无 contamination），但 MMLU 分 8 cognitive domains 后 5/7 domains significant（Simpson's paradox）。这是论文核心 story (D108/D116)。\n- **投稿 deadline**: EMNLP 2026 ARR May 25，T-9 天。Critical path 是 N=24 pooled IRT 数字 + Llama cross-family 验证 + paper draft。\n- **易错点 1**: 3B 模型全用 `alpha=32`（LoRA rank），路径含 `_a32` 后缀。不要和非 a32 的旧 checkpoint 混淆。\n- **易错点 2**: d005 曾出现 cron false positive（报 FAILED 实际成功），遇到 3B d005 失败先 SSH 确认再信。\n- **易错点 3**: `submit_training_job` 提交后本 session 无 cron（reconcile=0），需确认 RUNNING 实验有 cron 监控，否则手动 `register_cron`。\n- **决策链**: D106(scope expansion→Llama) → D107(Claim 3 identifiability GO) → D108(domain heterogeneity) → D110(scale-stratified negative) → D114(STEM-only scope) → D115(7/8 domains done) → D116(Simpson's paradox confirmed)\n- **Scale-stratified IRT 是 negative (D110)**: 不要再尝试 per-scale 单独 fit，统计力不够。只用 pooled cross-scale。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778947769.md"
+}

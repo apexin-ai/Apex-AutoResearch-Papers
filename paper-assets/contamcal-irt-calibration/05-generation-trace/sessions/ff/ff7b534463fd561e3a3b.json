@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7b534463fd561e3a3b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart stuck downloads",
+  "task_key": "worker_ops_restart-stuck-downloads_20260518T145048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-stuck-downloads_20260518T145048_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "81d27e6946b49cd07a1a725d00d1ee479beda7b2fc37244b435f48d0f51ef649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gemma 也在增长了（0 → 10MB）。两个下载都在正常推进。\n\n## 汇报\n\n| 模型 | 旧 PID | 操作 | 新 PID | 状态 |\n|---|---|---|---|---|\n| OLMo-2 | 19571 | killed + 清 lock/incomplete + 重启 | **35305** | 下载中，~2.8 MB/s |\n| Gemma | 6380 | killed + 清 lock/incomplete + 重启 | **35312** | 下载中，刚开始写入 |\n| Phi-4 | 19608 | 未动 | 19608 | 继续运行 |\n\n第一次重启因 `--resume-download` 参数不存在而失败，第二次 Gemma 缺 token 403。第三次两个都卡在旧 lock 文件上。最终清理了 `.cache/` 下的 `.lock` 和 `.incomplete` 文件后成功启动，加了 `--max-workers 1` 降低并发。OLMo-2 已有 ~19G 缓存（6 个 shard 中部分已完成），Gemma 已有 ~26G 缓存（18 个文件中部分已完成），剩余文件正在下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-stuck-downloads.md"
+}

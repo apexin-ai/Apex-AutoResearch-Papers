@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a695407aad30a8e9c51",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 05B d000 s123",
+  "task_key": "worker_analyze_exp_001_eval_05B_d000_s123_20260514T012753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_05B_d000_s123_20260514T012753_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "63ff19e82b6b817cf552a7a141f475d55b176759c48a04c6862e477df1de9314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen2.5-0.5B Baseline (d000) 评估结果\n\n| Benchmark | seed=123 | seed=42 | Δ |\n|-----------|----------|---------|---|\n| MMLU | **41.82%** (5873/14042) | 40.49% (5686/14042) | +1.33 |\n| GSM8K | **34.04%** (449/1319) | 36.47% (481/1319) | -2.43 |\n| ARC-Challenge | **39.76%** (466/1172) | 37.80% (443/1172) | +1.96 |\n| HumanEval | **10.37%** (17/164) | 10.98% (18/164) | -0.61 |\n\n- 评估耗时约 2h39m (06:45 → 09:24)，无报错，EXIT_CODE=0\n- 两个 seed 之间差异在 ±2.5% 以内，属于正常随机波动\n- 0% contamination baseline 的表现符合 0.5B 模型预期水平\n\nRegistry 已更新：metrics、conclusion=success、status=DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-05b-d000-s123.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67bc86d8c901ef00a99f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops P0 P3 director v4",
+  "task_key": "worker_ops_P0-P3-director-v4_20260516T135144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_P0-P3-director-v4_20260516T135144_result.json",
+    "occurrence": 1,
+    "bytes": 2137,
+    "sha256": "3571f0ecf986de520b095a9751a87f03c69073fec7402b62211a3e303701fd7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n**P1 结果**: \n- Kill PID 784230 (3B d000_s123 重复进程) ✓ 已确认 DEAD\n- Kill PID 785585 (Llama eval 旧进程) ✓ 已确认 DEAD\n- nvidia-smi 确认每卡最多一个进程，无重复\n\n**P0 结果**:\n- 无错误脚本进程在运行，无需额外 kill\n- 已删除 4 个无效域结果目录\n- v4 进程启动成功：PID=789935 (python子进程), 父bash PID=789930\n- 日志确认 MCMC 4 chains warmup→sampling 正常启动\n- Registry 已更新为 RUNNING\n\n**P2 结果**: Pooled IRT N=20+ 已成功完成，结果：\n\n| Bench | N_mod | N_item | γ̂ | 95% CI | R̂ | ESS | PPP | rawMAE | calMAE | ΔMAE |\n|-------|-------|--------|------|--------|------|-----|------|--------|--------|------|\n| mmlu | 13 | 300 | 0.5502 | [-0.572, 1.709] | 1.006 | 1564 | 0.227 | 0.0140 | 0.0051 | **0.0089** |\n| gsm8k | 21 | 300 | 0.3784 | [-0.100, 0.847] | 1.008 | 1476 | 0.105 | 0.1470 | 0.0119 | **0.1351** |\n| arc_challenge | 13 | 300 | 0.8616 | [0.092, 1.630] | 1.007 | 1553 | 0.003 | 0.0324 | 0.0229 | **0.0094** |\n\n注意：arc_challenge PPP=0.003 极低（模型拟合不佳），且用了 4PL+γ 但 N=13 < 16（违反 C008 规则）。gsm8k 校准改善最大（ΔMAE=0.135）。结果存于 `/root/autodl-tmp/exp006/results_pooled_n20`。\n\n**P3 结果**: GPU 状态表\n\n| GPU | 进程 PID | 显存 | 利用率 | 对应实验 |\n|-----|---------|------|--------|---------|\n| 0 | 780943 | 6902 MiB | 63% | signals 3B d000_s123 (mmlu s4) |\n| 1 | 780591 | 1768 MiB | 30% | signals 0.5B-Instruct (mmlu s4) |\n| 2 | 790124 | 7814 MiB | 86% | signals 3B d000_s123 (下一信号) |\n| 3 | — | 0 MiB | 0% | 空闲 |\n| 4 | 785955 | 8304 MiB | 87% | eval Llama-3.2-3B_d000_s42 |\n| 5 | 786898 | 3650 MiB | 54% | eval Qwen2.5-1.5B-Instruct |\n\nPID 存活检查：\n- 760236 (signals_05B_s123_v2 注册PID): **DEAD** — 实际已被新进程 780591 接替\n- 782625 (eval_15B bash wrapper): ALIVE\n- 785949 (eval_llama32 bash wrapper): ALIVE  \n- 784219 (signals_3B_d000_s123 bash wrapper): ALIVE\n- GPU 进程 780943/780591/785955/786898: 全部 ALIVE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-p3-director-v4.md"
+}

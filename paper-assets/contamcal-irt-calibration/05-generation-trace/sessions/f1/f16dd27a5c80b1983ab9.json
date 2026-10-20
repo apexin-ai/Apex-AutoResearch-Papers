@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f16dd27a5c80b1983ab9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag restart qwen14b evals urgent",
+  "task_key": "worker_diag_restart-qwen14b-evals-urgent_20260521T032813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_restart-qwen14b-evals-urgent_20260521T032813_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "16fa0017c4970e25b2dd74a55ffaeaf34a1ca641feee7a30758235d88ab13c8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 GPU 满载运行。\n\n## 结果汇总\n\n### 原来的 3 个 eval：全部已成功完成（不是崩溃）\n\n| Job | Accuracy | 状态 |\n|-----|----------|------|\n| d100 MMLU s0 | 43.85% (6157/14042) | `.done` ✓ |\n| d100 ARC s0 | 81.06% (950/1172) | `.done` ✓ |\n| partial ARC s0 (d000/d005/d025/d100) | 全部完成 | `.done` ✓ |\n\nGPU 空闲原因是任务跑完了，不是崩溃。\n\n### 新启动的 3 个 MMLU s0 eval\n\n| GPU | Dosage | tmux session | 速度 | 预估完成 |\n|-----|--------|-------------|------|----------|\n| cuda:0 | d000 | `eval_mmlu_d000_s0` | ~17 it/s | ~11:46 |\n| cuda:2 | d005 | `eval_mmlu_d005_s0` | ~17 it/s | ~11:46 |\n| cuda:3 | d025 | `eval_mmlu_d025_s0` | ~12 it/s | ~11:52 |\n\n### 当前 GPU 状态\n\n| GPU | VRAM | Util | 任务 |\n|-----|------|------|------|\n| cuda:0 | 32.7 GB | 95% | MMLU d000 s0 eval |\n| cuda:1 | 42.9 GB | 53% | d050 retrain (65%, ~1h45m) |\n| cuda:2 | 32.7 GB | 96% | MMLU d005 s0 eval |\n| cuda:3 | 32.7 GB | 95% | MMLU d025 s0 eval |\n\n### 仍缺的 Qwen-14B eval\n\n- **MMLU s0 d050**: 等 d050 retrain 完成后再跑\n- **ARC s0 d050**: 同上\n- **MMLU s42**: 全部 5 个 dosage 都未做（ARC s42 已完成）\n- **GSM8K s0**: 全部未做（cqa1 在跑 GSM8K？）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-restart-qwen14b-evals-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abef6171719ccc487bf5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code sft 05B d025 submit",
+  "task_key": "worker_code_sft_05B_d025_submit_20260514T042522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft_05B_d025_submit_20260514T042522_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "cfda9f94796fcd8edb877b95623f382aadba7d99a81dba240e5cf3a2d4d4886d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Tokenizing 进行中 (16%)。一切正常。\n\n---\n\n## 任务完成汇总\n\n### eval_15B_d000_s123 结果（Qwen2.5-1.5B d000 s123）\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| MMLU | accuracy | **0.5762** (8091/14042) |\n| GSM8K | exact_match | **0.6331** (835/1319) |\n| ARC Challenge | accuracy | **0.7662** (898/1172) |\n| HumanEval | pass@1 | **0.1707** (28/164) |\n\n### d025 数据\n- 已存在：`/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl`\n- 行数：54133（50000 + 25% × 16533 = 54133）✓\n\n### 0.5B d025 SFT 训练\n- **PID**: 291068（主进程），GPU 5 上 PID 290905/291074\n- **GPU**: cuda:5，当前 710MiB（tokenizing 阶段，训练开始后会增长到 ~4-6GB）\n- **日志**: `/root/runs/contamcal-irt-calibration/exp_001_sft_d025_05B.log`\n- **输出**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42`\n- **预计完成**: ~53 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-05b-d025-submit.md"
+}

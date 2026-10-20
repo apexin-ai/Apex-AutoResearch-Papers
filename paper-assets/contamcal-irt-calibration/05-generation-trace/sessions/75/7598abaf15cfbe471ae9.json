@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7598abaf15cfbe471ae9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops w6 overcorrection source",
+  "task_key": "worker_ops_w6_overcorrection_source_20260517T163408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w6_overcorrection_source_20260517T163408.log",
+    "occurrence": 1,
+    "bytes": 669168,
+    "sha256": "5d3e08febd1a57be76e068eccdb7106fe2cbf2f730744eefe193f0825ff1c66a"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "7598abaf15cfbe471ae9-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "7598abaf15cfbe471ae9-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-w6-overcorrection-source.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1656c216f9d09babb88",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd data verify eval prep",
+  "task_key": "worker_ops_westd-data-verify-eval-prep_20260518T065728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-data-verify-eval-prep_20260518T065728_result.json",
+    "occurrence": 1,
+    "bytes": 3488,
+    "sha256": "a28a0cba4a5c4d8ffbf0a667abcd95b425fda247c4ef99270aad4ed12ce26e6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果如下：\n\n---\n\n## 任务 1: SFT 数据验证\n\n### 文件清单 + 行数\n\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `sft_dosage_000.jsonl` | 50,000 | 88MB |\n| `sft_dosage_005.jsonl` | 50,826 | 89MB |\n| `sft_dosage_025.jsonl` | 54,133 | 90MB |\n| `sft_dosage_050.jsonl` | 58,266 | 92MB |\n| `sft_dosage_100.jsonl` | 66,533 | 96MB |\n\n### 辅助文件\n- `data_meta.json` — 完整元数据（base 50K, contam 16533 总样本, benchmarks: arc_challenge=1172, gsm8k=1319, mmlu=14042）\n- `data_meta_0pct.json` — d000 元数据（SlimOrca, 50K, seed=42）\n- `contamination_labels_*.json` — 3 benchmarks × 4 dosages (d005/d025/d050/d100) = 12 个标签文件\n\n### 数据完整性\n- **dosage 齐全**: d000 (0%), d005 (5%), d025 (25%), d050 (50%), d100 (100%) — 5 个 level 全部到位\n- **行数合理**: d000=50K base，每个 dosage 增量与污染比例一致（d005 +826, d025 +4133, d050 +8266, d100 +16533）\n- **JSON 格式正确**: 抽样确认为 `{\"messages\": [{\"role\":..., \"content\":...}, ...]}` 标准 chat format\n- **注意**: data_meta 里有 d050 dosage（50%），但 cqa1 上原始项目只提到 d000/d005/d025/d100。**d050 是 westd 新增还是遗漏待确认**\n\n---\n\n## 任务 2: Eval 脚本\n\n| 脚本 | 功能 |\n|------|------|\n| `exp001/train_sft.py` | LoRA SFT 训练（peft + trl） |\n| `exp001/evaluate.py` | Benchmark 评估（MMLU 5-shot, GSM8K 8-shot CoT, ARC-Challenge 25-shot, HumanEval pass@1），输出 per-item correctness matrix |\n| `exp001/prepare_sft_data.py` | 构建 SFT 混合数据 |\n| `exp001/rescore_gsm8k.py` | GSM8K 重新评分 |\n| `exp002/compute_signals.py` | 信号提取主脚本 |\n| `exp002/signals/s1_embedding.py` ~ `s4_selfcritique.py` | 4 种信号：embedding/minkpp/constat/selfcritique |\n| `exp002/run_batch.py` | 批量信号计算 |\n| `exp006/` | IRT 校准全套（2PL/4PL, baselines, ablation 等） |\n| `exp008/` | Signal survival analysis |\n| `scripts/gen_eval_matrix.py` | 生成 eval 结果汇总矩阵 |\n\n**eval 脚本支持 7B/14B**: 配置文件已就绪（`configs/qwen25_7b.yaml`, `qwen25_14b.yaml`, `qwen25_14b_qlora.yaml`, `llama31_8b.yaml`），参数已针对大模型调整（14B: bs=1, grad_accum=16）。\n\n---\n\n## 任务 3: 环境就绪度\n\n| 项目 | 状态 |\n|------|------|\n| Python | `/root/miniconda3/bin/python3` 3.12.3 — **不在 PATH 中**，需 `export PATH=/root/miniconda3/bin:$PATH` 或用绝对路径 |\n| PyTorch | 2.8.0+cu128, CUDA available |\n| GPU | 4× NVIDIA RTX PRO 6000 Blackwell (98GB VRAM each), **全部空闲**（0MB 使用） |\n| 依赖 | peft, trl, transformers 均可导入 |\n| CUDA | Driver 580.82.09, CUDA 13.0 |\n\n---\n\n## 关键问题\n\n1. **模型下载未完成** — 3 个模型全部正在下载中（`download_all.sh` PID 5060 运行中），当前只有 config/tokenizer 文件，**无 .safetensors 权重文件**：\n   - Qwen2.5-7B: 480MB / ~15GB（4 个 shard .incomplete）\n   - Qwen2.5-14B: 3.6GB / ~28GB（8 个 shard .incomplete）\n   - Mistral-7B-v0.3: 962MB / ~15GB（4 个 shard .incomplete）\n   - 7B 之前下载超时重试过多次（dl_7b.log 显示 timeout errors）\n\n2. **Python 不在 PATH** — 所有脚本用 `python3` 调用会失败，需要先 `conda init` 或设置 PATH\n\n3. **d050 dosage** — westd 上有 d050 数据，需确认这是否是预期的（cqa1 原始设计里有 d000/d005/d025/d100，d050 可能是后来补充的）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-data-verify-eval-prep.md"
+}

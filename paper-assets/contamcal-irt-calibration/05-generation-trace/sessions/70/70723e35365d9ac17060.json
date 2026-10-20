@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70723e35365d9ac17060",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 d100 submit",
+  "task_key": "worker_ops_falcon3-cqa1-d100-submit_20260522T041752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-d100-submit_20260522T041752_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "43fb5b902fdd64f0020b5aaf29ea9ef1194223bc60def3808e789f903d2641ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Falcon3-7B-Base d100 SFT 训练已在 cqa1-21977 GPU 0 启动：\n\n- **PID**: 648295\n- **GPU**: cuda:0, RTX 4090D 24GB\n- **配置**: LoRA r=16, alpha=32, bs=4×4, gradient-checkpointing\n- **数据**: 66533 samples (sft_dosage_100.jsonl)\n- **输出**: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42`\n- **日志**: `/root/autodl-tmp/exp001/checkpoints/falcon3_7b_d100_s42.log`\n- **Registry**: `sft_falcon3_7b_d100_s42` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-d100-submit.md"
+}

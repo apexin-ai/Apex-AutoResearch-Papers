@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f90b0736963d71fc95f6",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778875419.md",
+  "task_key": "loop_11_1778875419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778875419.md",
+    "occurrence": 1,
+    "bytes": 6707,
+    "sha256": "2bcf0cccc4fb7ab79dc1f707bd46a61bdf0f4f88cf1f22112b037ed511c0999b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T19:59:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cqa1-21977 的 cuda:0-5（6× RTX 4090D），绝对不可用其他 GPU\n- **alpha 混用禁令（D055/D067）**：s123 有 alpha=16 的旧 checkpoint（d100_s123），s42 有 alpha=16 的旧 checkpoint（d025_s42, d100_s42）——这些正在重跑 alpha=32 版本，**旧 alpha=16 数据不可混入论文正式结果或 pooled IRT**\n- **s42 旧系列 lr 混淆（D074/D075）**：d000_s42 和 d005_s42 用了 lr=2e-4（非标准 5e-5），不可用于 dose-response 跨剂量对比。d000_s42 的原始 checkpoint 可用于 signals 和 single-dose eval，但不能与其他 dose 组成系列\n- **Claim 3（ME model）已判负（D072/D073）**：降级为 appendix，不要再跑 noise_prop 相关实验\n- **exp_001_sft_3B_d100_s42_a32 (无 v2 后缀)** PID 593745 是 cuda:1 上的 orphan——被 v2 (PID 593740) 取代但可能仍在跑，已标记 failed，不要误认为有效进程\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（AutoDL），工作目录 `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B`（0.5B/1.5B 同目录结构）\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/`（子目录按 `Qwen2.5-{size}_{dose}_{seed}` 命名）\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals**: `/root/autodl-tmp/exp002/signals/`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Paraphrases**: `/root/autodl-tmp/exp001/paraphrases/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **Sim sweep 产出**: 本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/`\n- **活跃进程**:\n  - cuda:0 — exp_001_sft_3B_d100_s123_a32_v2, PID 594489, tmux session\n  - cuda:1 — exp_001_sft_3B_d100_s42_a32_v2, PID 593740, ~30% ETA ~3h\n  - cuda:2 — exp_001_eval_3B_d005_s123_gsm8k, PID 623480\n  - cuda:4 — exp_002_signals_3B_v5, PID 623826 (d025+d100 only)\n  - cuda:5 — exp_001_sft_d025_3B_v3, PID 589763 (d025 s42 alpha=32)\n  - CPU(local) — exp_004_sim_sweep_v7 (resume 4 failed conditions)\n  - **cuda:3 — 空闲**（para_aligned_v2 已完成，原占用已释放）\n- **Cron 监控**: 6 个 active cron 对应上述 6 个 RUNNING 实验\n- **Workers running**: 2 个诊断 Worker（signals_3B_v4 失败诊断 + signals-3B-diagnostic）\n\n### 3. 📊 当前状态\n**刚完成**: exp_002_signals_3B_v4 failed（进程反复死亡），已派 2 个 Worker 诊断原因。exp_001_eval_3B_d100_s123_para_aligned_v2 成功（最后一个 s123 para_aligned slot）。exp_004_sim_sweep_extreme_gamma 成功。\n\n**RUNNING 6 个实验**:\n| ID | GPU | 内容 | 进度 |\n|----|-----|------|------|\n| exp_001_sft_3B_d100_s123_a32_v2 | cuda:0 | D055 alpha=32 重跑 | 运行中 |\n| exp_001_sft_3B_d100_s42_a32_v2 | cuda:1 | D055 alpha=32 重跑 | ~30%, ETA ~3h |\n| exp_001_eval_3B_d005_s123_gsm8k | cuda:2 | GSM8K gap-fill (D068) | 运行中 |\n| exp_002_signals_3B_v5 | cuda:4 | 3B d025+d100 signals | 运行中 |\n| exp_001_sft_d025_3B_v3 | cuda:5 | D055 d025 s42 alpha=32 | 运行中 |\n| exp_004_sim_sweep_v7 | CPU | 4 failed conditions resume | 运行中 |\n\n**PREPARING 21 个实验**（最重要的几个）:\n- exp_001_eval_3B_d005_s42_para_aligned — 等 GPU 释放\n- exp_001_sft_3B_d100_s123_a32 — d100 s123 alpha=32（可能与 v2 重复，需确认）\n- exp_008_instruct_rl_proxy — RL regime 对比（D021 Problem 3）\n- 1.5B s123 para_aligned eval 系列 — 补齐后 1.5B 贡献 16 models\n\n**等待中**:\n- 2 个 Worker 回调（signals_3B_v4 诊断）\n- cuda:3 空闲，可立即利用\n- SFT 完成后需提交对应 eval（aligned + para_aligned）\n\n### 4. 📋 待办（条件触发式）\n- **signals_3B_v4 诊断 Worker 返回** → 根据失败原因决定是否需要 v6 补跑，或 v5 已覆盖 d025+d100\n- **exp_001_eval_3B_d005_s123_gsm8k 完成** → cuda:2 释放 → 立即启动 3B d005 或 d100 signals（exp-002 gap-fill）\n- **exp_001_sft_d025_3B_v3 (cuda:5) 完成** → 提交 d025_s42 aligned eval + para_aligned eval\n- **exp_001_sft_3B_d100_s42_a32_v2 (cuda:1) 完成** → 提交 d100_s42 aligned eval + para_aligned eval\n- **exp_001_sft_3B_d100_s123_a32_v2 (cuda:0) 完成** → 提交 d100_s123 aligned eval + para_aligned eval\n- **cuda:3 现在空闲** → 应立即派上用场：1.5B s123 para_aligned eval（4 cells）或 3B d000_s123 para_aligned eval（SFT 已存在）\n- **所有 3B alpha=32 eval 完成 + signals 完成** → RRF 聚合 (exp-003, CPU) → pooled IRT fitting (per-benchmark γ_k)\n- **sim_sweep_v7 完成** → 检查 4 个失败条件是否全部通过，确认 identifiability boundary\n- **N≥16 pooled IRT 前置条件已满足 (N=19)** → 可以先用现有 alpha=32 数据启动 pooled IRT fitting，后续数据增量加入\n\n### 5. 🎯 战略上下文\n**投稿倒计时 T-10（EMNLP 2026 ARR May 25）**。Critical path: SFT 完成 → eval → signals → RRF → pooled IRT → paper writing (Day 4-7) → review (Day 7-10)。\n\n**核心结论链**:\n- D039: pivot 到 characterization-first framing（calibration demoted to Claim 4）\n- D053: 废弃联合 IRT，改 per-benchmark γ_k\n- D056: coverage collapse = model misspecification（simulation 证实）\n- D072/D073: Claim 3 (ME model) negative → appendix only\n- D055/D067: alpha 混用问题真实存在，正在重跑 3 个 SFT\n\n**易错点**:\n1. **不要把 alpha=16 checkpoint 的 eval 结果混入 pooled IRT**——memory.md 有详细的 alpha 分布表，严格按此筛选\n2. **cuda:3 空闲是失职**——应立即利用。最高优先级：1.5B s123 para_aligned eval（4 cells，补齐后 1.5B=16 models）\n3. **s42 lr 混淆**：d000_s42 和 d005_s42 的旧 SFT 用了 lr=2e-4，不能做 dose-response 系列对比。但 d025_s42 和 d100_s42 正在用 lr=5e-5 重跑，完成后 s42 系列只有 d025+d100 可用于 dose-response\n4. **signals v4 失败但 v5 在跑**：v5 只覆盖 d025+d100，d000+d005 的 3B signals 仍缺。诊断 Worker 返回后需确认 d000 signals 是否在 v3/v4 中已完成（memory.md 记录 d000_s42 四信号完成）\n5. **PPP=0 风险（ROADMAP ⚠️ 3）**：即使 oracle 条件下 PPP=0，per-benchmark IRT 是修复路径，若仍为 0 则 Claim 4 gating criterion 需降级为 future work\n6. **GSM8K anomaly**：3B d000 s42 para_aligned GSM8K=4.8%（aligned ~18%），疑 CoT 提取 bug，不阻塞 critical path 但需在论文中说明\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778875419.md"
+}

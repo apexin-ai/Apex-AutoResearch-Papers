@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fecae7e7f80156b0126",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 15B para cuda3",
+  "task_key": "worker_eval_15B_para_cuda3_20260515T181820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_15B_para_cuda3_20260515T181820_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "b4758e9c9a42cf593518d14ca6db4ca34ad05be46382f4c422007e297934bcc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 当前被占用**，正在跑 `Qwen2.5-3B_d025_s123` 的 para eval（PID 608198，启动于 02:16:55）。\n\n无法提交新任务到 cuda:3。所有 6 张 GPU 都有活跃进程在跑。需要等当前 3B para eval 完成后才能提交 1.5B para eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-15b-para-cuda3.md"
+}

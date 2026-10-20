@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66fe50df1f4ce0550589",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phi4 s123 partial recovery",
+  "task_key": "worker_diag_phi4-s123-partial-recovery_20260520T152350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phi4-s123-partial-recovery_20260520T152350_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "32dd1cc562ba6acf2b5f03da276b328ae8015ef85af738ceef9ee88a2e5724e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行中，无需干预。\n\n**当前状态：**\n\n| Dosage | 状态 | Accuracy |\n|--------|------|----------|\n| d000 | 完成 | 76.31% |\n| d005 | 完成 | 75.92% |\n| d025 | 运行中 (57%, 8095/14042) | — |\n| d050 | 待运行 | — |\n| d100 | 待运行 | — |\n\nPID 365465 在 cuda:2 上正常运行（31706 MiB），原脚本会顺序跑完 d025 → d050 → d100。\n\n**预计时间：**\n- d025 剩余 ~5 分钟（18.4 items/s）\n- d050、d100 各 ~13 分钟\n- 全部完成约 **31 分钟后**（~23:50 CST）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phi4-s123-partial-recovery.md"
+}

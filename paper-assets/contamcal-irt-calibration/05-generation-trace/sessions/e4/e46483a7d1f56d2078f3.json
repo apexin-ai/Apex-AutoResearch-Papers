@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e46483a7d1f56d2078f3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix s4 oom and submit v9",
+  "task_key": "worker_code_fix-s4-oom-and-submit-v9_20260516T004604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-s4-oom-and-submit-v9_20260516T004604_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "01f18a1634659a4613c1fe86931dd0b79fa1532504e1da373b1d8110127269cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:4 now has only PID 668217 (v9) at 6876 MiB. All v8 residuals cleared.\n\n## 产出总结\n\n### 1. PID 662616 处置\n- **已 kill**。运行 v8 unpatched s4_selfcritique on d100_a32_s123 mmlu，816/7021 items 处。内存 7.4 GB 稳定但使用无 OOM 防护的旧代码。\n\n### 2. compute_signals.py 修改 (s4_selfcritique.py)\n**分段处理机制**，仅在 items > 2000 且有 output_dir 时激活：\n- `CHUNK_SIZE = 1000` — 每 1000 items 为一段\n- 每段处理完后保存到 `{output_dir}/_s4_chunks_{benchmark}/chunk_{start}_{end}.json`\n- 段间执行 `torch.cuda.empty_cache()` + `gc.collect()` 释放 GPU 显存碎片\n- **断点续跑**：已存在的 chunk 文件直接加载跳过，OOM 后重启只需重算当前段\n- items ≤ 2000 时行为与原代码完全一致（gsm8k 1319 items / arc 1172 items 不受影响）\n- 额外 kill 了两个 v8 残留进程：PID 667203 (gsm8k) 和 PID 667651 (arc_challenge)\n\n### 3. Dry-run 验证\n`python -c \"import compute_signals; print('IMPORT_OK')\"` → IMPORT_OK\n\n### 4. v9 提交结果\n- **exp_id**: exp_002_signals_3B_v9\n- **PID**: 668217\n- **GPU**: cuda:4 (CUDA_VISIBLE_DEVICES=4)\n- **tmux session**: exp_002_signals_3B_v9\n- **优化**：d100_a32_s123 mmlu 改用 `--signal s4`（s1/s2 已存在），跳过 ~16 min 冗余计算\n- **修正**：`--signal selfcritique` → `--signal s4`（argparse 只接受 s1/s2/s3/s4/all）\n\n### 5. nvidia-smi 验证\nPID 668217 独占 cuda:4，6876 MiB，正在处理 d025_s123 mmlu s4 chunk [0:1000]（chunked mode active，14042 items → 15 chunks）。\n\n**任务队列**：d025_s123 mmlu s4 → d100_a32_s123 mmlu s4 → d100_a32_s123 gsm8k all → d100_a32_s123 arc all → V9_ALL_DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-s4-oom-and-submit-v9.md"
+}

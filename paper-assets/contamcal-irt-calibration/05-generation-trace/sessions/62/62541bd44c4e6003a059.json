@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62541bd44c4e6003a059",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d025 mmlu rrf final fix",
+  "task_key": "worker_ops_d025_mmlu_rrf_final_fix_20260517T003746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d025_mmlu_rrf_final_fix_20260517T003746_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "f723184aa128b30d45c5bc02d2de2e9e1ec5cded8bf058b1b674cc653ec96e3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n## 结果\n\n| 指标 | 旧值 (s1+s2 only) | 新值 (s1+s2+s4) |\n|------|-------------------|-----------------|\n| **MMLU γ mean** | 0.7095 | **0.2132** |\n| **MMLU γ 95% CI** | [-0.3775, 1.8215] | **[-0.7813, 1.2546]** |\n| **CI excludes zero** | False | False |\n| **N respondents** | ? (likely fewer) | **20** |\n| **N items** | 300 | 300 |\n| **PPP** | — | **0.8652** |\n| **residual MAE** | — | **0.0166** |\n| **Rhat** | — | 1.0076 (ok) |\n| **Divergent** | — | 0 |\n\n关键变化：加入 s4_selfcritique 后，MMLU contamination effect (γ) 从 0.71 降至 0.21，CI 更集中。N 从旧运行升至 20（包含 0.5B/1.5B/3B 全量模型但 0.5B eval 未匹配所以实际是 1.5B+3B 共 20 个）。\n\n已完成：\n1. 确认并删除旧 RRF 文件\n2. 用 3 信号重生成 `rrf_d025/per_model/` 和 `exposure_scores.json`\n3. 更新 `rrf_cross_family_v3/exposure_scores.json`（7 个 d025 模型）\n4. 重跑 MMLU IRT (2PL+γ, scales=0.5B/1.5B/3B, N=20)\n5. 结果写回 `results_cross_family_irt_v3/pooled_rrf_irt_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d025-mmlu-rrf-final-fix.md"
+}

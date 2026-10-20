@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc10ea67ea2da6207980",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 s0 progress",
+  "task_key": "worker_diag_gemma2-s0-progress_20260520T110509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-s0-progress_20260520T110509_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "50564eaccfd6b5a126fb388cb7844ba04eca60b1ab536bc627e62abc6f93b5f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemma-2 s0 sweep 状态 (westd cuda:1):**\n\n| 项目 | 值 |\n|---|---|\n| PID | 314035 存活，运行 1h18m |\n| 当前 dosage | **d000**（第一个） |\n| 进度 | **step 1650/3125 (52.8%)**，epoch 0.46 |\n| 速度 | ~2.7s/it，预计剩余 ~68 min 完成 d000 |\n| Loss | ~1.17，token accuracy ~0.73 |\n| GPU 1 | 利用率 71%，显存 95.5/97.9 GB |\n\nCheckpoint 目录已创建 d000/d005/d025/d050 四个文件夹（d005/d025/d050 目前为空目录，仅预建）。d000 训练完成后会依次进入后续 dosage。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-s0-progress.md"
+}

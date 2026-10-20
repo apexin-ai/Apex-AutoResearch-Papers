@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e8f0d5d3c45d86130a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep qwen7b s0 cqa1 eval",
+  "task_key": "worker_ops_prep-qwen7b-s0-cqa1-eval_20260520T202810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-qwen7b-s0-cqa1-eval_20260520T202810_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "ec2b8de718733ad5281a3e4d4920c7dbe75c0ed47a64bf2ee14d98206b2248c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. eval 环境就绪状态\n\n| 项目 | 状态 |\n|------|------|\n| evaluate.py | `/root/contamcal-irt-calibration/exp001/evaluate.py` — md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes，与 reference hash 一致 (C009) |\n| MMLU 数据集 | 已缓存，14042 test + 1531 val |\n| ARC-Challenge 数据集 | 已缓存，1172 test + 299 val |\n| Python/conda | `/root/miniconda3/bin/python` (conda base) |\n| GPU | RTX 4090D 24GB，cuda:0 当前在训练 (PID 389216, 20GB) |\n\n### 2. 脚本路径\n\n- MMLU: `/root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_mmlu_cqa1.sh`\n- ARC: `/root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_arc_cqa1.sh`\n\n两个脚本均遵守 C004 (显式 CUDA_VISIBLE_DEVICES=0)、C006 (lora_alpha=32 检查)、C009 (evaluate.py md5 校验)。输出到 `/root/autodl-tmp/exp001/eval_results_v2/qwen7b_{dosage}_s0/`。已有结果会自动跳过。\n\n### 3. 需注意的问题\n\n- **d100_s0 尚未完成训练**：d000-d050 的 lora_adapter 已就绪，d100_s0/lora_adapter/ 目录为空。脚本会自动 SKIP 未就绪的 checkpoint，等 d100 训练完写出 adapter_config.json 后可重跑补上。\n- **运行方式**：训练完成后，先跑 MMLU 再跑 ARC（串行），预计 MMLU ~10min/dosage × 5 + ARC ~5min/dosage × 5 ≈ 75min 总计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-qwen7b-s0-cqa1-eval.md"
+}

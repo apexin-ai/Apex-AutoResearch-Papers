@@ -1,0 +1,1814 @@
+{
+  "schema_version": "1.0",
+  "id": "c543657e5e4fcd3ab2a3",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "ops qwen14b gsm8k eval 3gpu",
+  "task_key": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128.jsonl",
+    "occurrence": 1,
+    "bytes": 54427,
+    "sha256": "ea21dedb3008f507d78c76b0891333944a3677f619ecb7dd0916ee94a2195140"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:54:39.549248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:54:39.549619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:54:39.549811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:54:39.549952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:54:39.550084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"455006, GPU-dd9d2fb8-7478-9423-b709-13953a545b3a, 42902 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:54:39.550211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 42911 MiB, 97887 MiB, 95 %\\\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:54:39.550379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls -d /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0 2>&1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:54:39.550532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:54:39.550651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "md5sum /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:54:39.550768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'md5sum' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:54:39.550919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:54:39.551044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:54:39.551158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T03:54:39.551278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:54:39.551451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T03:54:39.551593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:54:39.551708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "md5sum /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T03:54:39.551823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "python3 /root/contamcal-irt-calibration/exp001/evaluate.py --help"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T03:54:39.551939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"17673bf373f00f83ccc41fc1d355a4cd  /root/contamcal-irt-calibration/exp001/evaluate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:54:39.552052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python script execution not allowed; use -c for inline expressions only. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T03:54:39.552219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:54:39.552394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T03:54:39.552522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:54:39.552645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T03:54:39.552758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T03:54:39.552876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T03:54:39.552987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cd /root/contamcal-irt-calibration && python exp001/evaluate.py --help 2>&1 | head -60"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T03:54:39.553105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T03:54:39.553250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "source /root/miniconda3/bin/activate base && cd /root/contamcal-irt-calibration && python exp001/evaluate.py --help 2>&1 | head -80"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T03:54:39.553422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: evaluate.py [-h] --model-path MODEL_PATH\\\\n                   [--benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]]\\\\n                   [--adapter-path ADAPTER_PATH]\\\\n                   [--paraphrase-dir PARAPHRASE_DIR] --output-dir OUTPUT_DIR\\\\n                   [--max-samples MAX_SAMPLES] [--mc-format {aligned,legacy}]\\\\n                   [--batch-size BATCH_SIZE] [--instruct]\\\\n                   [--cache-dir CACHE_DIR] [--max-items MAX_ITEMS]\\\\n                   [--subsample-seed SUBSAMPLE_SEED]\\\\n\\\\nEvaluate model on contamination benchmarks\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model-path MODEL_PATH\\\\n                        Path to model checkpoint (merged or HF model name)\\\\n  --benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]\\\\n                        Benchmarks to evaluate\\\\n  --adapter-path ADAPTER_PATH\\\\n                        Path to LoRA adapter. If set, loads base model from\\\\n                        --model-path and adapter separately.\\\\n  --paraphrase-dir PARAPHRASE_DIR\\\\n                        Directory with paraphrase JSONs. If set, evaluates on\\\\n                        paraphrased items instead of originals.\\\\n  --output-dir OUTPUT_DIR\\\\n                        Output directory for evaluation results\\\\n  --max-samples MAX_SAMPLES\\\\n                        Max samples per benchmark (for dry-run testing)\\\\n  --mc-format {aligned,legacy}\\\\n                        MC answer format: 'aligned' uses 'The answer is X.'\\\\n                        (matches SFT), 'legacy' uses 'Answer: X'\\\\n  --batch-size BATCH_SIZE\\\\n                        Batch size for evaluation\\\\n  --instruct            Enable Instruct model evaluation (generation-based\\\\n                        MCQ, markdown code extraction)\\\\n  --cache-dir CACHE_DIR\\\\n                        HuggingFace cache \n…[truncated 382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T03:54:39.553607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/contamcal-irt-calibration/scripts/seed0/"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T03:54:39.553755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_gemma2_d100_s0_arc.sh\\\\neval_gemma2_d100_s0_mmlu.sh\\\\neval_qwen14b_d050_s0_arc.sh\\\\neval_qwen14b_d050_s0_mmlu.sh\\\\neval_qwen14b_s0_arc_partial.sh\\\\neval_qwen14b_s0_batch.sh\\\\nretrain_gemma2_d100_s0.sh\\\\nretrain_qwen14b_d050_s0.sh\\\\nsft_gemma2_s0_sweep.sh\\\\nsft_phi4_s0_sweep.sh\\\\nsft_qwen14b_s0_sweep.sh\\\\nsft_qwen7b_olmo2_s0_sweep.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T03:54:39.553957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d050_s0_arc.sh"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T03:54:39.554121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e -x\\\\n\\\\n# C009: evaluate.py md5 verification\\\\nEXPECTED_MD5=\\\\\\\"17673bf373f00f83ccc41fc1d355a4cd\\\\\\\"\\\\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\\\\nif [ \\\\\\\"$ACTUAL_MD5\\\\\\\" != \\\\\\\"$EXPECTED_MD5\\\\\\\" ]; then\\\\n  echo \\\\\\\"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\\\\\\\"\\\\n  exit 1\\\\nfi\\\\n\\\\n# C004: explicit CUDA device\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\\\n\\\\nPYTHON=/root/miniconda3/bin/python\\\\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\\\nCKPT=/root/autodl-tmp/exp001/checkpoints\\\\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\\\\n\\\\n# Adapter path auto-detection\\\\nADAPTER_BASE=\\\\\\\"$CKPT/Qwen2.5-14B_d050_s0\\\\\\\"\\\\nif [ -f \\\\\\\"${ADAPTER_BASE}/lora_adapter/adapter_config.json\\\\\\\" ]; then\\\\n    ADAPTER=\\\\\\\"${ADAPTER_BASE}/lora_adapter\\\\\\\"\\\\nelif [ -f \\\\\\\"${ADAPTER_BASE}/adapter_config.json\\\\\\\" ]; then\\\\n    ADAPTER=\\\\\\\"${ADAPTER_BASE}\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"ERROR: adapter not found at ${ADAPTER_BASE}\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\n# C006: verify lora_alpha=32\\\\nALPHA=$(grep -o '\\\\\\\"lora_alpha\\\\\\\": [0-9]*' \\\\\\\"$ADAPTER/adapter_config.json\\\\\\\" | grep -o '[0-9]*')\\\\nif [ \\\\\\\"$ALPHA\\\\\\\" != \\\\\\\"32\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: lora_alpha=$ALPHA (expected 32)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\nOUT_DIR=\\\\\\\"/root/contamcal-irt-calibration/results/qwen14b_d050_s0_arc\\\\\\\"\\\\nmkdir -p \\\\\\\"$OUT_DIR\\\\\\\"\\\\n\\\\necho \\\\\\\"=== START: qwen14b_d050_s0_arc at $(date) ===\\\\\\\"\\\\n$PYTHON $EVAL \\\\\\\\\\\\n    --model-path \\\\\\\"$MODEL\\\\\\\" \\\\\\\\\\\\n    --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n    --benchmarks arc_challenge \\\\\\\\\\\\n    --batch-size 2 \\\\\\\\\\\\n    --output-dir \\\\\\\"$OUT_DIR\\\\\\\"\\\\necho \\\\\\\"=== DONE: qwen14b_d050_s0_arc at $(date), exit=$? ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T03:54:39.554305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat > /root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh << 'SCRIPT'\n#!/bin/bash\nset -e -x\n\n# C009: evaluate.py md5 verification\nEXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\nif [ \"$ACTUAL_MD5\" != \"$EXPECTED_MD5\" ]; then\n  echo \"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\"\n  exit 1\nfi\n\n# C004: explicit CUDA device\nexport CUDA_VISIBLE_DEVICES=0\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\n\nPYTHON=/root/miniconda3/bin/python\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\nCKPT=/root/autodl-tmp/exp001/checkpoints\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\n\n# Adapter path auto-detection\nADAPTER_BASE=\"$CKPT/Qwen2.5-14B_d000_s0\"\nif [ -f \"${ADAPTER_BASE}/lora_adapter/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}/lora_adapter\"\nelif [ -f \"${ADAPTER_BASE}/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}\"\nelse\n    echo \"ERROR: adapter not found at ${ADAPTER_BASE}\"\n    exit 1\nfi\n\n# C006: verify lora_alpha=32\nALPHA=$(grep -o '\"lora_alpha\": [0-9]*' \"$ADAPTER/adapter_config.json\" | grep -o '[0-9]*')\nif [ \"$ALPHA\" != \"32\" ]; then\n    echo \"ERROR: lora_alpha=$ALPHA (expected 32)\"\n    exit 1\nfi\n\nOUT_DIR=\"/root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/d000_s0\"\nmkdir -p \"$OUT_DIR\"\n\necho \"=== START: qwen14b_d000_s0_gsm8k at $(date) ===\"\n$PYTHON $EVAL \\\n    --model-path \"$MODEL\" \\\n    --adapter-path \"$ADAPTER\" \\\n    --benchmarks gsm8k \\\n    --batch-size 2 \\\n    --output-dir \"$OUT_DIR\"\necho \"=== DONE: qwen14b_d000_s0_gsm8k at $(date), exit=$? ===\"\nSCRIPT"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T03:54:39.554508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T03:54:39.554645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat > /root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh << 'SCRIPT'\n#!/bin/bash\nset -e -x\n\n# C009: evaluate.py md5 verification\nEXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\nif [ \"$ACTUAL_MD5\" != \"$EXPECTED_MD5\" ]; then\n  echo \"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\"\n  exit 1\nfi\n\n# C004: explicit CUDA device\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\n\nPYTHON=/root/miniconda3/bin/python\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\nCKPT=/root/autodl-tmp/exp001/checkpoints\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\n\n# Adapter path auto-detection\nADAPTER_BASE=\"$CKPT/Qwen2.5-14B_d005_s0\"\nif [ -f \"${ADAPTER_BASE}/lora_adapter/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}/lora_adapter\"\nelif [ -f \"${ADAPTER_BASE}/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}\"\nelse\n    echo \"ERROR: adapter not found at ${ADAPTER_BASE}\"\n    exit 1\nfi\n\n# C006: verify lora_alpha=32\nALPHA=$(grep -o '\"lora_alpha\": [0-9]*' \"$ADAPTER/adapter_config.json\" | grep -o '[0-9]*')\nif [ \"$ALPHA\" != \"32\" ]; then\n    echo \"ERROR: lora_alpha=$ALPHA (expected 32)\"\n    exit 1\nfi\n\nOUT_DIR=\"/root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/d005_s0\"\nmkdir -p \"$OUT_DIR\"\n\necho \"=== START: qwen14b_d005_s0_gsm8k at $(date) ===\"\n$PYTHON $EVAL \\\n    --model-path \"$MODEL\" \\\n    --adapter-path \"$ADAPTER\" \\\n    --benchmarks gsm8k \\\n    --batch-size 2 \\\n    --output-dir \"$OUT_DIR\"\necho \"=== DONE: qwen14b_d005_s0_gsm8k at $(date), exit=$? ===\"\nSCRIPT"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T03:54:39.554782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T03:54:39.554907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat > /root/contamcal-irt-calibration/scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh << 'SCRIPT'\n#!/bin/bash\nset -e -x\n\n# C009: evaluate.py md5 verification\nEXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\nif [ \"$ACTUAL_MD5\" != \"$EXPECTED_MD5\" ]; then\n  echo \"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\"\n  exit 1\nfi\n\n# C004: explicit CUDA device\nexport CUDA_VISIBLE_DEVICES=3\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\n\nPYTHON=/root/miniconda3/bin/python\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\nCKPT=/root/autodl-tmp/exp001/checkpoints\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\n\n# Adapter path auto-detection\nADAPTER_BASE=\"$CKPT/Qwen2.5-14B_d025_s0\"\nif [ -f \"${ADAPTER_BASE}/lora_adapter/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}/lora_adapter\"\nelif [ -f \"${ADAPTER_BASE}/adapter_config.json\" ]; then\n    ADAPTER=\"${ADAPTER_BASE}\"\nelse\n    echo \"ERROR: adapter not found at ${ADAPTER_BASE}\"\n    exit 1\nfi\n\n# C006: verify lora_alpha=32\nALPHA=$(grep -o '\"lora_alpha\": [0-9]*' \"$ADAPTER/adapter_config.json\" | grep -o '[0-9]*')\nif [ \"$ALPHA\" != \"32\" ]; then\n    echo \"ERROR: lora_alpha=$ALPHA (expected 32)\"\n    exit 1\nfi\n\nOUT_DIR=\"/root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/d025_s0\"\nmkdir -p \"$OUT_DIR\"\n\necho \"=== START: qwen14b_d025_s0_gsm8k at $(date) ===\"\n$PYTHON $EVAL \\\n    --model-path \"$MODEL\" \\\n    --adapter-path \"$ADAPTER\" \\\n    --benchmarks gsm8k \\\n    --batch-size 2 \\\n    --output-dir \"$OUT_DIR\"\necho \"=== DONE: qwen14b_d025_s0_gsm8k at $(date), exit=$? ===\"\nSCRIPT"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T03:54:39.555046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T03:54:39.555182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cd /root/contamcal-irt-calibration/scripts/seed0 && chmod +x eval_qwen14b_d000_s0_gsm8k.sh eval_qwen14b_d005_s0_gsm8k.sh eval_qwen14b_d025_s0_gsm8k.sh && bash -n eval_qwen14b_d000_s0_gsm8k.sh && echo \"d000 OK\" && bash -n eval_qwen14b_d005_s0_gsm8k.sh && echo \"d005 OK\" && bash -n eval_qwen14b_d025_s0_gsm8k.sh && echo \"d025 OK\""
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T03:54:39.555308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d000 OK\\\\nd005 OK\\\\nd025 OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T03:54:39.555477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T03:54:39.555595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T03:54:39.555725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "hypothesis",
+              "value": "Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d000 clean SFT baseline establishes uncontaminated GSM8K performance",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T03:54:39.555850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "hypothesis",
+              "value": "Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T03:54:39.555986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d000_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:17.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:17.099Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d000 clean SFT baseline establishes uncontaminated GSM8K performance\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7157}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T03:54:39.556118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "hypothesis",
+              "value": "Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d025 medium-dosage contamination effect on GSM8K",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T03:54:39.556285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d005_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:18.681Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:18.681Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5726}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T03:54:39.556451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d025_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:20.188Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:20.188Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d025 medium-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4654}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T03:54:39.556595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:0', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T03:54:39.556730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8458}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T03:54:39.556854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:2', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T03:54:39.556992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8506}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T03:54:39.557118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:3', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T03:54:39.557247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8609}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T03:54:39.557416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "status",
+              "value": "PENDING",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T03:54:39.557541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "status",
+              "value": "PENDING",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T03:54:39.557658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "status",
+              "value": "PENDING",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T03:54:39.557785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d000_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:17.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:35.905Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d000 clean SFT baseline establishes uncontaminated GSM8K performance\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7235}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T03:54:39.557918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d005_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:18.681Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:38.593Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7014}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T03:54:39.558054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d025_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:20.188Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:41.290Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d025 medium-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6295}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T03:54:39.558219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:0', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T03:54:39.558370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8726}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T03:54:39.558500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:2', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T03:54:39.558632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8643}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T03:54:39.558755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:3', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T03:54:39.558884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8268}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T03:54:39.559041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T03:54:39.559163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T03:54:39.559279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T03:54:39.559428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d000_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:17.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:53:57.813Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d000 clean SFT baseline establishes uncontaminated GSM8K performance\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7631}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T03:54:39.559564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d005_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:18.681Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:00.903Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0006}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T03:54:39.559704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d025_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:20.188Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:03.631Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d025 medium-dosage contamination effect on GSM8K\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6801}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T03:54:39.559838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d000_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:0', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T03:54:39.559970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:2', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T03:54:39.560116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d000_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:17.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:10.914Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d000 clean SFT baseline establishes uncontaminated GSM8K performance\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu_ids\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"gsm8k\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7107}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T03:54:39.560280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_qwen14b_gsm8k_d025_s0",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh', 'server': 'westd-29999', 'gpu_ids': 'cuda:3', 'model_name': 'Qwen2.5-14B', 'seed': 0, 'data_path': 'gsm8k', 'data_count': 0, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter', 'eval_data': 'gsm8k'}"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T03:54:39.560458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d005_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:18.681Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:13.606Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu_ids\\\": \\\"cuda:2\\\", \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"gsm8k\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7099}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T03:54:39.560606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_qwen14b_gsm8k_d025_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:53:20.188Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:16.373Z\\\", \\\"hypothesis\\\": \\\"Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d025 medium-dosage contamination effect on GSM8K\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu_ids\\\": \\\"cuda:3\\\", \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"gsm8k\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T03:54:39.560757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cd /root/contamcal-irt-calibration && tmux new-session -d -s eval_q14b_d000_gsm8k \"bash scripts/seed0/eval_qwen14b_d000_s0_gsm8k.sh 2>&1 | tee /tmp/eval_q14b_d000_gsm8k.log\" && tmux new-session -d -s eval_q14b_d005_gsm8k \"bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh 2>&1 | tee /tmp/eval_q14b_d005_gsm8k.log\" && tmux new-session -d -s eval_q14b_d025_gsm8k \"bash scripts/seed0/eval_qwen14b_d025_s0_gsm8k.sh 2>&1 | tee /tmp/eval_q14b_d025_gsm8k.log\" && echo \"ALL 3 LAUNCHED\""
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T03:54:39.560888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ALL 3 LAUNCHED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T03:54:39.561021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T03:54:39.561141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"455006, GPU-dd9d2fb8-7478-9423-b709-13953a545b3a, 42902 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T03:54:39.561257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T03:54:39.561438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -5 /tmp/eval_q14b_d000_gsm8k.log"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T03:54:39.561564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 28731 MiB, 97887 MiB, 2 %\\\\n1, 42911 MiB, 97887 MiB, 94 %\\\\n2, 28731 MiB, 97887 MiB, 4 %\\\\n3, 28731 MiB, 97887 MiB, 1 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T03:54:39.561693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== START: qwen14b_d000_s0_gsm8k at Thu May 21 11:54:23 CST 2026 ===\\\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-14B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter --benchmarks gsm8k --batch-size 2 --output-dir /root/contamcal-irt-calibration/results/gsm8k_eval/qwen14b/d000_s0\\\\n2026-05-21 11:54:27,754 [INFO] Loading base model: /root/autodl-tmp/models/Qwen2.5-14B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/579 [00:00<04:11,  2.30it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T03:54:39.561934+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部成功启动并在加载模型。\n\n**启动确认：**\n\n| 实验 | GPU | 显存占用 | 状态 |\n|------|-----|---------|------|\n| eval_qwen14b_gsm8k_d000_s0 | cuda:0 | 28731 MiB / 97887 MiB | 模型加载中 |\n| eval_qwen14b_gsm8k_d005_s0 | cuda:2 | 28731 MiB / 97887 MiB | 模型加载中 |\n| eval_qwen14b_gsm8k_d025_s0 | cuda:3 | 28731 MiB / 97887 MiB | 模型加载中 |\n| (existing job) | cuda:1 | 42911 MiB | 不受影响 |\n\nC009 md5 ✓，C006 lora_alpha=32 ✓，C004 显式 CUDA_VISIBLE_DEVICES ✓，C001/C002 GPU 空闲已确认 ✓。\n\n**预估完成时间：** GSM8K 1319 道题，14B 模型 batch_size=2，约 40-60 分钟，预计 ~12:40-13:00 CST。\n\n日志路径：`/tmp/eval_q14b_d{000,005,025}_gsm8k.log`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/ops-qwen14b-gsm8k-eval-3gpu.md"
+}

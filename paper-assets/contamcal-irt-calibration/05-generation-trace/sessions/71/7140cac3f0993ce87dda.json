@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7140cac3f0993ce87dda",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 05B d005 s123 aligned result",
+  "task_key": "worker_ops_check-05B-d005-s123-aligned-result_20260515T031717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-05B-d005-s123-aligned-result_20260515T031717_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "18998a1ea154b8cc4be03622c14fa868ce2b9aece986097fab84b71746493b5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 success，metrics 已记录。Cron 列表为空，无需删除。\n\n**实验 exp_001_eval_05B_d005_s123_aligned 已成功完成。**\n\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| mmlu | accuracy | 30.02% (4216/14042) |\n| gsm8k | accuracy | 36.77% (485/1319) |\n| arc_challenge | accuracy | 29.78% (349/1172) |\n| humaneval | pass@1 | 9.76% (16/164) |\n\ncuda:1 已释放（0 MiB, 0% utilization），可用于下一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-05b-d005-s123-aligned-result.md"
+}

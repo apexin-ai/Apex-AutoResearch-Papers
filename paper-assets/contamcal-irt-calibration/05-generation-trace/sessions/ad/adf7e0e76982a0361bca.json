@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adf7e0e76982a0361bca",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp004 sweep recovery",
+  "task_key": "worker_code_exp004-sweep-recovery_20260515T000815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004-sweep-recovery_20260515T000815_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "b83d31d07643eefc6183ee0c3789ed4450417f972f11614e2f04f3c00546bf9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，总结：\n\n1. **/tmp 清理完成** — 从 100% 恢复到 1%（18MB/3.9GB）\n2. **持久化 TMPDIR 创建** — `/home/ubuntu/tmp_cmdstan`，cmdstanpy 临时文件现在写到根分区（51GB 可用）\n3. **run_sweep.py 修改** — 添加 `--resume` 参数，resume 模式下移除已失败的 seed 记录再重跑，避免重复条目\n4. **exp_004_sim_sweep_v4 已启动** — 注册为 RUNNING，server=cqa1-21977，tmux session `exp_004_sim_sweep_v4`\n5. **Resume 验证通过** — 正确跳过已完成的 4 个条件（auc0.8_n20/n50, auc0.55_n20/n50），正在补跑 auc0.8_n100 (4 seeds) 和 auc0.9_n20 (6 seeds)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-sweep-recovery.md"
+}

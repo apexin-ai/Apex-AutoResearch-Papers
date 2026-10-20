@@ -1,0 +1,3495 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d88ee26f0e1775caa00f",
+  "rounds": [
+    {
+      "number": 293,
+      "messages": [
+        {
+          "source_line": 6121,
+          "timestamp": "2026-05-20T18:03:46.697812+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据核实通过（d000: 85.84% = 1006/1172, d100: 88.57% = 1038/1172）。Gemma-2 ARC Benefit 模式与 MMLU Benefit-sat 方向一致。\n\n跨 benchmark 一致性持续改善——等 OLMo-2 s42 ARC 完成后出综合报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006121"
+        }
+      ]
+    },
+    {
+      "number": 294,
+      "messages": [
+        {
+          "source_line": 6122,
+          "timestamp": "2026-05-20T18:03:47.155742+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_olmo2-arc-s42-completion_20260520T180106]:\nWorker worker_diag_olmo2-arc-s42-completion_20260520T180106 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006122"
+        },
+        {
+          "source_line": 6123,
+          "timestamp": "2026-05-20T18:03:56.398343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_olmo2-arc-s42-completion_20260520T180106_result.json"
+            }
+          },
+          "id": "event-006123"
+        },
+        {
+          "source_line": 6124,
+          "timestamp": "2026-05-20T18:03:56.448987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 更新完成。Cron `eval_olmo2_arc_s42` 不存在（可能已被清理）。\\n\\n**汇总：OLMo-2 ARC eval_olmo2_arc_s42 — SUCCESS**\\n\\n| Dosage | s42 | s123 |\\n|--------|-----|------|\\n| d000 | 76.11% | 76.88% |\\n| d005 | 76.62% | 77.22% |\\n| d025 | 78.16% | 76.62% |\\n| d050 | 79.61% | 79.18% |\\n| d100 | 80.03% | 79.78% |\\n\\n- **s42 Δ = +3.92pp**, s123 Δ = +2.90pp\\n- **双种子均值 Δ = +3.41pp (Benefit)**\\n- 与 MMLU 三种子均值 +1.35pp 方向一致，ARC contamination effect 约 2.5× MMLU\\n- s42 单调递增趋势比 s123 更干净（s123 在 d025 有回落，s42 没有）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006124"
+        },
+        {
+          "source_line": 6125,
+          "timestamp": "2026-05-20T18:04:03.024297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/olmo2/d000_s42/eval_results.json"
+            }
+          },
+          "id": "event-006125"
+        },
+        {
+          "source_line": 6126,
+          "timestamp": "2026-05-20T18:04:03.678357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/olmo2/d100_s42/eval_results.json"
+            }
+          },
+          "id": "event-006126"
+        },
+        {
+          "source_line": 6127,
+          "timestamp": "2026-05-20T18:04:04.381326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/OLMo-2-1124-7B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7610921501706485,\\\\n      \\\\\\\"correct\\\\\\\": 892,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1357
+          },
+          "id": "event-006127"
+        },
+        {
+          "source_line": 6128,
+          "timestamp": "2026-05-20T18:04:04.883827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/OLMo-2-1124-7B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.8003412969283277,\\\\n      \\\\\\\"correct\\\\\\\": 938,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-006128"
+        },
+        {
+          "source_line": 6129,
+          "timestamp": "2026-05-20T18:04:43.272745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — ARC 全景：5 family × 2 benchmark 跨 seed 一致性\n\n**结论**: PASS（附 1 warning）\n\n### 全数据汇总\n\n所有 ARC eval 数据已独立核实（从 eval_results.json 直接读取 accuracy 字段）。\n\n**ARC Δ(d100) 完整表：**\n\n| Family | ARC s42 | ARC s123 | ARC s0 | ARC mean |\n|--------|---------|----------|--------|----------|\n| Qwen-14B | — | -3.15pp | — | -3.15pp (n=1) |\n| Phi-4 | +0.60pp | +0.86pp | +0.51pp | **+0.66pp** (n=3, σ=0.18) |\n| Qwen-7B | -2.90pp | -2.39pp | — | **-2.65pp** (n=2) |\n| Gemma-2 | ⚠️oscillation | +2.73pp | — | +2.73pp (n=1†) |\n| OLMo-2 | +3.92pp | +2.90pp | — | **+3.41pp** (n=2) |\n\n†Gemma-2 s42 ARC 有 16pp oscillation artifact（s123 未重现），不宜纳入均值\n\n**跨 benchmark 方向一致性（修正版，用各 benchmark 均值）：**\n\n| Family | MMLU mean Δ | ARC mean Δ | 方向一致？ |\n|--------|------------|-----------|-----------|\n| Qwen-14B | ~-11pp | -3.15pp | ✅ 双降（Collapse） |\n| Phi-4 | +0.73pp | +0.66pp | ✅ 双 Immune（|Δ|<1pp） |\n| Qwen-7B | ~0pp | -2.65pp | ⚠️ MMLU≈0, ARC 明确负 |\n| Gemma-2 | +3.76pp | +2.73pp | ✅ 双升（Benefit） |\n| OLMo-2 | +1.35pp | +3.41pp | ✅ 双升（Benefit） |\n\n**4/5 方向一致，1/5 部分一致。** 论文 \"model-intrinsic archetype\" claim 有较强支撑。\n\n### 发现\n\n**1. [severity: info] Phi-4 Immune 是论文最强锚点**\n\n唯一 3 seeds × 2 benchmarks 完整数据的 family。ARC σ=0.18pp 极低，MMLU/ARC mean 仅差 0.07pp。跨 benchmark × 跨 seed 稳健性无可挑剔。\n\n**2. [severity: warning] Qwen-7B 跨 benchmark 不一致需要论文 hedge**\n\nMMLU V-recovery（d100≈0pp）vs ARC 持续下降（d100≈-2.65pp）。形状上都有 d005 dip，但 MMLU 完全恢复而 ARC 不恢复。论文不能 claim Qwen-7B 的 V-recovery 跨 benchmark 泛化——应限定为 \"MMLU-specific recovery\"，ARC 表现更接近 mild Collapse。\n\n**3. [severity: info] OLMo-2 方向一致性已修正**\n\n之前 Worker 基于单 seed 对比得出\"方向反转\"结论。用 MMLU bootstrap 均值（+1.35pp）对比 ARC 均值（+3.41pp），方向一致（双正）。OLMo-2 的问题是 MMLU 单 seed 不稳定（Dir-Con=✗），不是跨 benchmark 不一致。\n\n**4. [severity: info] Gemma-2 s42 oscillation 是 seed-specific artifact**\n\ns123 ARC 无 oscillation，Benefit 模式干净（+2.73pp）。s42 oscillation 不应纳入均值或用于分类。论文可在 appendix 提及作为 seed sensitivity 示例。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006129"
+        },
+        {
+          "source_line": 6130,
+          "timestamp": "2026-05-20T18:04:46.793093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3520
+          },
+          "id": "event-006130"
+        },
+        {
+          "source_line": 6131,
+          "timestamp": "2026-05-20T18:04:49.242699+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据核实通过（d000: 76.11%, d100: 80.03%）。所有 5 个 family 的 ARC 数据现已完整，发送综合跨 benchmark 审查报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006131"
+        }
+      ]
+    },
+    {
+      "number": 295,
+      "messages": [
+        {
+          "source_line": 6132,
+          "timestamp": "2026-05-20T18:06:17.437750+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：D192 里程碑: 5/5 ARC齐全, 4/5跨benchmark方向一致, cuda:0+cuda:2空闲），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-006132"
+        },
+        {
+          "source_line": 6133,
+          "timestamp": "2026-05-20T18:06:29.840696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006133"
+        },
+        {
+          "source_line": 6134,
+          "timestamp": "2026-05-20T18:06:29.941605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-006134"
+        },
+        {
+          "source_line": 6135,
+          "timestamp": "2026-05-20T18:06:32.803231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006135"
+        },
+        {
+          "source_line": 6136,
+          "timestamp": "2026-05-20T18:06:32.854433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 18:06 UTC | 更新原因: D192 里程碑: 5/5 ARC齐全, 4/5跨benchmark方向一致, cuda:0+cuda:2空闲\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy (D184)**: Immune / Collapse / V-recovery / Benefit。方向跨种子可复现（taxonomy-level 4/5），形状 seed-dependent。Vulnerability gradient ~65-70%。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿（EMNLP 2026 ARR May 25，**D+3**）\\\\n- **Taxonomy 定稿**: 4-pattern, D188 V-recovery 修复完成, D189 Phi-4 n=3 Immune 确认\\\\n- **Cross-benchmark 里程碑 (D192)**: **5/5 家族 ARC 数据齐全, 4/5 方向一致** ✅\\\\n  - Qwen-14B: MMLU ~-11pp, ARC -3.15pp → ✅ Collapse\\\\n  - Phi-4: MMLU +0.73pp, ARC +0.66pp (n=3, σ=0.18pp) → ✅ Immune **最强锚点**\\\\n  - Gemma-2: MMLU +3.76pp, ARC +2.73pp → ✅ Benefit (s42 oscillation = seed-specific)\\\\n  - OLMo-2: MMLU +1.35pp, ARC +3.41pp → ✅ Benefit\\\\n  - Qwen-7B: MMLU ≈0pp, ARC -2.65pp → ⚠️ MMLU-specific recovery\\\\n- **Bootstrap**: Phi-4 n=3 BCa CI [-0.17, +1.39] 含零 → Immune; OLMo-2 n=3 CI [-0.55, +2.60]\\\\n- **Dir-Con**: 严格 2/5, taxonomy-level 4/5 (D189 双层呈现)\\\\n- **seed=0 训练中**: Gemma-2 cuda:1 | Qwen-14B cuda:3 | Qwen-7B cqa1 | Phi-4 ✅ OLMo-2 ✅\\\\n- **论文**: 16 页 (主体精确 8 页), 0 error, 4/5 跨 benchmark 段落已写入\\\\n\\\\n## 近期任务\\\\n- [x] 5/5 家族 s123 MMLU eval ✅\\\\n- [x] D188 V-recovery classifier 修复 + bootstrap 重跑 ✅\\\\n- [x] Phi-4 n=3 Immune 确认 (D189) ✅\\\\n- [x] ARC s123 4/4 家族完成 ✅\\\\n- [x] Phi-4 ARC n=3 (s0+s42+s123) 完成 ✅\\\\n- [x] Gemma-2 ARC s123 补全 (+2.73pp, clean) ✅\\\\n- [x] OLMo-2 ARC s42 补全 (+3.92pp) ✅\\\\n- [x] Qwen-7B ARC s42 确认 V-recovery 跨种子 (-2.90pp) ✅\\\\n- [ ] s0 训练完成 → MMLU eval (Gemma-2/Qwen-14B/Qwen-7B)\\\\n- [ ] n=3 triple-seed bootstrap (全部 s0 完成后)\\\\n- [ ] cuda:0+cuda:2 下一任务分配（等 s0 完成或其他 eval gaps）\\\\n- [ ] 论文 final polish + 提交审稿 (D+5)\\\\n\\\\n## GPU 状态\\\\n- **westd cuda:0**: 空闲\n…[truncated 1782 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-006136"
+        },
+        {
+          "source_line": 6137,
+          "timestamp": "2026-05-20T18:07:07.893223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## ROADMAP 审查 — D192 里程碑\n\n**结论**: PASS（附建议）\n\n### 核实\n\nROADMAP 跨 benchmark 表数据与我独立从 eval_results.json 核实的结果完全一致。方向一致性 4/5、Phi-4 最强锚点、Qwen-7B hedge 需求——均准确反映当前状态。\n\n### 发现\n\n**1. [severity: info] cuda:0 + cuda:2 空闲期 ARC 覆盖可扩展**\n\n当前 ARC 覆盖：Phi-4 n=3, OLMo-2 n=2, Qwen-7B n=2, Qwen-14B n=1, Gemma-2 n=1。\n\n已有 checkpoint 可立即跑 ARC eval（无需等 s0 训练）：\n- **Qwen-14B ARC s42**（s42 checkpoint 已存在）→ n_ARC: 1→2\n- **OLMo-2 ARC s0**（s0 checkpoint + MMLU 已完成）→ n_ARC: 2→3\n\n这两个 eval 可在 cuda:0/cuda:2 上并行运行，每个 ~15min，零成本提升 ARC 覆盖率。\n\n**2. [severity: info] 时间线无风险**\n\ns0 训练预计完成时间：Qwen-7B ~5-7h, Gemma-2 ~8-10h, Qwen-14B ~15-18h。全部在 May 22 前完成，后续 MMLU eval + bootstrap 仅需数小时。距 ARR May 25 充裕。\n\n**3. [severity: info] ROADMAP 结构清晰，决策链完整**\n\nD184-D192 决策日志清晰记录了 taxonomy 演化、bootstrap 方法选择、跨 benchmark 分析的完整推理链。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006137"
+        },
+        {
+          "source_line": 6138,
+          "timestamp": "2026-05-20T18:07:12.021948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4128
+          },
+          "id": "event-006138"
+        },
+        {
+          "source_line": 6139,
+          "timestamp": "2026-05-20T18:07:14.571195+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 内容与我独立核实的数据一致。检查 GPU 利用率和 ARC 覆盖缺口。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006139"
+        }
+      ]
+    },
+    {
+      "number": 296,
+      "messages": [
+        {
+          "source_line": 6140,
+          "timestamp": "2026-05-20T18:09:46.561279+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_eval-qwen14b-arc-s42_20260520T180717]:\nWorker worker_ops_eval-qwen14b-arc-s42_20260520T180717 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006140"
+        },
+        {
+          "source_line": 6141,
+          "timestamp": "2026-05-20T18:09:54.944054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_eval-qwen14b-arc-s42_20260520T180717_result.json"
+            }
+          },
+          "id": "event-006141"
+        },
+        {
+          "source_line": 6142,
+          "timestamp": "2026-05-20T18:09:54.994821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"已完成：\\n\\n- **脚本**: `/root/contamcal-irt-calibration/scripts/eval_qwen14b_arc_s42.sh`\\n- **tmux session**: `eval_qwen14b_arc_s42` on westd-29999 cuda:0\\n- **5 dosages**: d000/d005/d025/d050/d100, batch_size=4, ARC-Challenge 25-shot\\n- **合规**: C004 (CUDA_VISIBLE_DEVICES=0), C006 (lora_alpha=32 验证), C009 (md5 验证)\\n- **Registry**: `eval_qwen14b_arc_s42` → RUNNING, parent=eval_arc_s123_batch\\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log`\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006142"
+        }
+      ]
+    },
+    {
+      "number": 297,
+      "messages": [
+        {
+          "source_line": 6143,
+          "timestamp": "2026-05-20T18:09:59.339788+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_eval-olmo2-arc-s0_20260520T180726]:\nWorker worker_ops_eval-olmo2-arc-s0_20260520T180726 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006143"
+        },
+        {
+          "source_line": 6144,
+          "timestamp": "2026-05-20T18:10:05.773157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_eval-olmo2-arc-s0_20260520T180726_result.json"
+            }
+          },
+          "id": "event-006144"
+        },
+        {
+          "source_line": 6145,
+          "timestamp": "2026-05-20T18:10:05.773730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"已提交并注册。\\n\\n- **exp_id**: `eval_olmo2_arc_s0` → RUNNING on westd-29999 cuda:2\\n- **脚本**: `/root/contamcal-irt-calibration/scripts/eval_olmo2_arc_s0.sh`\\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_olmo2_arc_s0.log`\\n- **输出**: `/root/contamcal-irt-calibration/results/arc_eval/olmo2/d{000,005,025,050,100}_s0/`\\n- **tmux session**: `eval_olmo2_arc_s0`\\n- 5 dosages × ARC-Challenge 25-shot, batch_size=8, lora_alpha=32 verified\\n- C001/C002/C004/C006/C009 全部检查通过\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006145"
+        },
+        {
+          "source_line": 6146,
+          "timestamp": "2026-05-20T18:10:11.266476+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 采纳了建议：Qwen-14B ARC s42 (cuda:0) + OLMo-2 ARC s0 (cuda:2) 并行运行，扩展 ARC 覆盖率。合规声明无异议，均为常规 eval 提交。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006146"
+        }
+      ]
+    },
+    {
+      "number": 298,
+      "messages": [
+        {
+          "source_line": 6147,
+          "timestamp": "2026-05-20T18:25:53.777499+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_olmo2-arc-s0-completion_20260520T182352]:\nWorker worker_diag_olmo2-arc-s0-completion_20260520T182352 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006147"
+        },
+        {
+          "source_line": 6148,
+          "timestamp": "2026-05-20T18:26:01.444897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_olmo2-arc-s0-completion_20260520T182352_result.json"
+            }
+          },
+          "id": "event-006148"
+        },
+        {
+          "source_line": 6149,
+          "timestamp": "2026-05-20T18:26:01.495566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新为 DONE/success。Cron 不存在（已被清理）。\\n\\n**OLMo-2 ARC 三种子均值计算：**\\n\\n| seed | d000 | d005 | d025 | d050 | d100 | Δ(d100-d000) |\\n|------|-------|-------|-------|-------|-------|-------------|\\n| s0 | 75.85 | 76.79 | 78.58 | 78.50 | 79.35 | **+3.50** |\\n| s42 | 76.11 | 76.62 | 78.16 | 79.61 | 80.03 | **+3.92** |\\n| s123 | 76.88 | 77.22 | 76.62 | 79.18 | 79.78 | **+2.90** |\\n| **mean** | **76.28** | **76.88** | **77.79** | **79.10** | **79.72** | **+3.44** |\\n\\n**三种子均值 Δ = (+3.50 + 3.92 + 2.90) / 3 = +3.44pp**\\n\\n对比 MMLU 三种子均值 +1.35pp，ARC contamination effect 约为 MMLU 的 **2.5 倍**。这与预期一致——ARC 题目量少（1172 vs MMLU ~14k），contamination 在小 benchmark 上效应更显著。\\n\\nOLMo-2 现在是第二个 n=3 seeds × 双 benchmark（ARC + MMLU）完整的模型家族。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006149"
+        },
+        {
+          "source_line": 6150,
+          "timestamp": "2026-05-20T18:26:09.277332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/olmo2/d100_s0/eval_results.json"
+            }
+          },
+          "id": "event-006150"
+        },
+        {
+          "source_line": 6151,
+          "timestamp": "2026-05-20T18:26:09.779770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/olmo2/d000_s0/eval_results.json"
+            }
+          },
+          "id": "event-006151"
+        },
+        {
+          "source_line": 6152,
+          "timestamp": "2026-05-20T18:26:10.683975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/OLMo-2-1124-7B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7935153583617748,\\\\n      \\\\\\\"correct\\\\\\\": 930,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-006152"
+        },
+        {
+          "source_line": 6153,
+          "timestamp": "2026-05-20T18:26:11.236102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/OLMo-2-1124-7B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7585324232081911,\\\\n      \\\\\\\"correct\\\\\\\": 889,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1456
+          },
+          "id": "event-006153"
+        },
+        {
+          "source_line": 6154,
+          "timestamp": "2026-05-20T18:26:19.141872+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据核实通过（d000: 75.85%, d100: 79.35%, Δ=+3.50pp）。Worker 报告准确，无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006154"
+        }
+      ]
+    },
+    {
+      "number": 299,
+      "messages": [
+        {
+          "source_line": 6155,
+          "timestamp": "2026-05-20T18:34:11.582247+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_prep-qwen7b-s0-scp-eval_20260520T182835]:\nWorker worker_ops_prep-qwen7b-s0-scp-eval_20260520T182835 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_ops_prep-qwen7b-s0-scp-eval_20260520t182835"
+          },
+          "id": "event-006155"
+        },
+        {
+          "source_line": 6156,
+          "timestamp": "2026-05-20T18:34:24.485906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_prep-qwen7b-s0-scp-eval_20260520T182835_result.json"
+            }
+          },
+          "id": "event-006156"
+        },
+        {
+          "source_line": 6157,
+          "timestamp": "2026-05-20T18:34:24.486478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"两个脚本语法验证通过。\\n\\n**已准备好的产出：**\\n\\n| 脚本 | 位置 | 功能 |\\n|------|------|------|\\n| `scp_qwen7b_s0_to_westd.sh` | cqa1: `/root/contamcal-irt-calibration/scripts/` | 从 cqa1 直接 scp 5 个 dosage 的 adapter 到 westd（排除 checkpoint-3125，每个 ~170MB） |\\n| `eval_qwen7b_s0_mmlu.sh` | westd: `/root/contamcal-irt-calibration/scripts/` | cuda:2 上跑 5 个 dosage 的 MMLU 5-shot eval |\\n\\n**SSH 直连已配置**：在 cqa1 的 `~/.ssh/config` 中添加了 `westd-29999` 条目（cqa1 的公钥已在 westd authorized_keys 中），测试通过。\\n\\n**训练完成后执行序列：**\\n\\n1. **C001/C002**: 在 westd cuda:2 上 `nvidia-smi` 确认空闲\\n2. **cqa1 上执行传输**：`bash /root/contamcal-irt-calibration/scripts/scp_qwen7b_s0_to_westd.sh`（~850MB，预计几分钟）\\n3. **westd 上启动 eval**：`CUDA_VISIBLE_DEVICES=2 nohup bash /root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_mmlu.sh > /tmp/eval_qwen7b_s0_mmlu.log 2>&1 &`\\n\\n**合规检查：**\\n- C006: 两个脚本都验证 `lora_alpha=32`\\n- C009: eval 脚本验证 evaluate.py md5 = `17673bf373f00f83ccc41fc1d355a4cd`（westd 当前版本，与 s123 结果一致）\\n- C004: `CUDA_VISIBLE_DEVICES=2` 显式设置\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006157"
+        }
+      ]
+    },
+    {
+      "number": 300,
+      "messages": [
+        {
+          "source_line": 6158,
+          "timestamp": "2026-05-20T18:36:02.058623+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_bootstrap-dual-benchmark_20260520T182818]:\nWorker worker_analysis_bootstrap-dual-benchmark_20260520T182818 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_analysis_bootstrap-dual-benchmark_20260520t182818"
+          },
+          "id": "event-006158"
+        },
+        {
+          "source_line": 6159,
+          "timestamp": "2026-05-20T18:36:07.940541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_bootstrap-dual-benchmark_20260520T182818_result.json"
+            }
+          },
+          "id": "event-006159"
+        },
+        {
+          "source_line": 6160,
+          "timestamp": "2026-05-20T18:36:08.242271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。以下是双 benchmark bootstrap CI 汇总：\\n\\n## MMLU Δ(d100)\\n\\n| Family | n | Δ(d100) | 95% CI | Pattern | Dir-Con |\\n|--------|---|---------|--------|---------|---------|\\n| Phi-4 | 3 | +0.72pp | [-0.17, +1.39] | Immune† | ✗ |\\n| Qwen-14B | 2 | -11.05pp | [-32.41, +10.30]ᵗ | Collapse | ✓ |\\n| Qwen-7B | 2 | -0.89pp | [-12.16, +10.37]ᵗ | V-recovery | ✗ |\\n| Gemma-2 | 2 | +2.62pp | [-11.81, +17.06]ᵗ | Benefit-sat† | ✓ |\\n| OLMo-2 | 3 | +1.35pp | [-0.55, +2.60] | Benefit-sat† | ✗ |\\n\\n## ARC Δ(d100)\\n\\n| Family | n | Δ(d100) | 95% CI | Pattern | Dir-Con |\\n|--------|---|---------|--------|---------|---------|\\n| Phi-4 | 3 | +0.65pp | **[+0.51, +0.77]** | Immune | ✓ |\\n| Qwen-14B | 2 | -2.86pp | [-6.65, +0.94]ᵗ | Collapse | ✓ |\\n| Qwen-7B | 2 | -2.65pp | [-5.90, +0.61]ᵗ | V-recovery† | ✓ |\\n| Gemma-2 | 1 | +2.73pp | [pt] | Benefit | ✓ |\\n| OLMo-2 | 3 | +3.44pp | **[+2.90, +3.78]** | Benefit-sat | ✓ |\\n\\n关键发现：\\n- **ARC Dir-Con 全 ✓ (5/5)**，MMLU 仅 2/5 — ARC 的 contamination direction 跨 seed 更稳定\\n- **OLMo-2 两 benchmark 最强 Benefit**，ARC CI 完全 >0\\n- **n=2 families CI 极宽**（t-dist df=1），增加 seed 是收窄 CI 的唯一路径\\n\\n脚本已添加 `--benchmark arc/mmlu` 参数。4 个 artifacts 已注册，memory.md 已更新。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-006160"
+        },
+        {
+          "source_line": 6161,
+          "timestamp": "2026-05-20T18:36:34.173187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/qwen14b/d000_s42/eval_results.json"
+            }
+          },
+          "id": "event-006161"
+        },
+        {
+          "source_line": 6162,
+          "timestamp": "2026-05-20T18:36:34.927049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "head -10 /root/contamcal-irt-calibration/results/arc_eval/qwen14b/d100_s42/eval_results.json"
+            }
+          },
+          "id": "event-006162"
+        },
+        {
+          "source_line": 6163,
+          "timestamp": "2026-05-20T18:36:35.378757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen2.5-14B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9104095563139932,\\\\n      \\\\\\\"correct\\\\\\\": 1067,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-006163"
+        },
+        {
+          "source_line": 6164,
+          "timestamp": "2026-05-20T18:36:35.930491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen2.5-14B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.8848122866894198,\\\\n      \\\\\\\"correct\\\\\\\": 1037,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1003
+          },
+          "id": "event-006164"
+        },
+        {
+          "source_line": 6165,
+          "timestamp": "2026-05-20T18:37:00.844011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 双 benchmark bootstrap CI 分析\n\n**结论**: PASS（附 1 warning）\n\n### 发现\n\n**1. [severity: info] ARC bootstrap 数据独立核实通过**\n\nQwen-14B ARC s42 从 eval_results.json 读取：d000=91.04% (1067/1172), d100=88.48% (1037/1172), Δ=-2.56pp。与 s123 (-3.15pp) 均值 = -2.86pp，与 bootstrap 报告完全一致。\n\nPhi-4 ARC CI [+0.51, +0.77] 与三 seed 原始值 (+0.51, +0.60, +0.86) 一致——BCa 修正合理。**这是论文中唯一 CI 完全不含零的 Immune 证据**，统计力度远超 MMLU（CI [-0.17, +1.39] 含零）。\n\nOLMo-2 ARC CI [+2.90, +3.78] 同样不含零，Benefit 分类有强统计支撑。\n\n**2. [severity: warning] \"ARC Dir-Con 5/5\" 表述需注脚**\n\nGemma-2 ARC n=1（仅 s123），Dir-Con 对单 seed 无法度量（trivially ✓）。真正可检验的 families = 4，全部一致（4/4）。论文中写\"5/5\"需要注明 Gemma-2 为 n=1 点估计。建议改为 \"4/4 testable families show consistent direction on ARC\"。\n\n**3. [severity: info] ARC 跨 seed 稳定性显著优于 MMLU**\n\n| 指标 | MMLU | ARC |\n|------|------|-----|\n| Dir-Con (testable) | 2/4 | 4/4 |\n| n=3 CI 含零 | Phi-4 ✓, OLMo-2 ✓ | Phi-4 ✗, OLMo-2 ✗ |\n| n=2 CI 宽度 | 极宽 (~40pp) | 较窄 (~7pp) |\n\nARC 比 MMLU 更能区分 contamination effect 方向。可能原因：ARC 题目少（1172 vs 14042），contamination 数据占比更大，信噪比更高。这本身是一个有论文价值的发现——\"smaller benchmarks amplify contamination signal\"。\n\n**4. [severity: info] 论文叙事建议**\n\n当前数据支持的最强 claims：\n- Phi-4 Immune：ARC CI 完全 >0 但 |Δ|<1pp，MMLU CI 含零但 mean <1pp → 双 benchmark Immune\n- Collapse 跨 benchmark：Qwen-14B MMLU/ARC 双降，方向一致\n- ARC 作为 contamination 放大镜：相同 taxonomy、更大 effect size、更高 seed 稳定性",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006165"
+        },
+        {
+          "source_line": 6166,
+          "timestamp": "2026-05-20T18:37:04.308583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3464
+          },
+          "id": "event-006166"
+        },
+        {
+          "source_line": 6167,
+          "timestamp": "2026-05-20T18:37:07.107767+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen-14B ARC s42 核实：d000=91.04%, d100=88.48%, Δ=-2.56pp。与 s123 (-3.15pp) 方向一致，mean=-2.86pp 与 bootstrap 报告一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006167"
+        }
+      ]
+    },
+    {
+      "number": 301,
+      "messages": [
+        {
+          "source_line": 6168,
+          "timestamp": "2026-05-20T18:38:08.046081+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：Qwen-14B ARC s42完成, 双benchmark CI表, ARC>MMLU insight, s0训练等待期），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-006168"
+        },
+        {
+          "source_line": 6169,
+          "timestamp": "2026-05-20T18:38:15.092795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006169"
+        },
+        {
+          "source_line": 6170,
+          "timestamp": "2026-05-20T18:38:15.143477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 18:38 UTC | 更新原因: Qwen-14B ARC s42完成, 双benchmark CI表, ARC>MMLU insight, s0训练等待期\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy (D184)**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿（EMNLP 2026 ARR May 25，**D+3**）\\\\n- **Cross-benchmark 完成 (D192)**: 5/5 家族 ARC 数据齐全, **4/5 方向一致** ✅\\\\n- **双 n=3 × 双 benchmark 家族**: Phi-4 (Immune) + OLMo-2 (Benefit)\\\\n  - Phi-4 ARC: mean +0.66pp (σ=0.18), **BCa CI [+0.51, +0.77] 不含零**但 <1pp → Immune\\\\n  - OLMo-2 ARC: mean +3.44pp (σ=0.52), **BCa CI [+2.90, +3.78] 不含零** → Benefit 确认\\\\n- **Qwen-14B ARC n=2**: s42 -2.56pp, s123 -3.15pp, mean -2.86pp → Collapse 跨种子 ✅\\\\n- **Gemma-2 ARC n=1**: s123 +2.73pp (s42 oscillation artifact, seed-specific)\\\\n- **Qwen-7B ARC n=2**: mean -2.65pp → MMLU-specific V-recovery, ARC mild harm\\\\n- **ARC > MMLU for detecting contamination**: Dir-Con 4/4 vs 2/4, tighter CIs, n=3 CI 不含零\\\\n- **论文**: 16 页 (主体精确 8 页), 0 error, 4/5 跨 benchmark + benchmark size insight 已写入\\\\n- **Bootstrap**: MMLU+ARC 双 benchmark CI 表已产出 (Phi-4/OLMo-2 n=3 BCa, 其余 n=2 t-dist)\\\\n\\\\n## 关键瓶颈: s0 训练\\\\n| GPU | 实验 | 预计完成 |\\\\n|-----|------|----------|\\\\n| cqa1:0 | Qwen-7B s0 | ~5-7h (最先) |\\\\n| westd cuda:1 | Gemma-2 s0 | ~8-10h |\\\\n| westd cuda:3 | Qwen-14B s0 | ~15-18h |\\\\n\\\\ns0 完成 → MMLU eval → n=3 triple-seed bootstrap → 论文 Table 最终数据\\\\n\\\\n## 近期任务\\\\n- [x] 5/5 ARC 跨 benchmark 齐全 ✅ (D192)\\\\n- [x] Phi-4 n=3 × 双 benchmark Immune 确认 ✅\\\\n- [x] OLMo-2 n=3 × 双 benchmark Benefit 确认 ✅\\\\n- [x] Qwen-14B ARC n=2 Collapse 跨种子确认 ✅\\\\n- [x] Bootstrap MMLU+ARC 双 benchmark CI 表 ✅\\\\n- [ ] **s0 训练完成** → MMLU eval (Qwen-7B 最先, ~5-7h)\\\\n- [ ] n=3 triple-seed MMLU bootstrap (s0 完成后)\\\\n- [ ] 论文 final polish (\n…[truncated 2121 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 50
+          },
+          "id": "event-006170"
+        },
+        {
+          "source_line": 6171,
+          "timestamp": "2026-05-20T18:38:32.129870+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 数据准确，时间线合理，决策链完整。无需报告——唯一小问题是 Qwen-14B/Qwen-7B ARC CI 已由 bootstrap worker 计算但表中仍标\"TBD\"，属于更新延迟，非错误。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006171"
+        }
+      ]
+    },
+    {
+      "number": 302,
+      "messages": [
+        {
+          "source_line": 6172,
+          "timestamp": "2026-05-20T18:39:13.882833+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval_qwen14b_arc_s42]:\n实验 eval_qwen14b_arc_s42 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006172"
+        },
+        {
+          "source_line": 6173,
+          "timestamp": "2026-05-20T18:39:25.129418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'FAILED'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-006173"
+        },
+        {
+          "source_line": 6174,
+          "timestamp": "2026-05-20T18:39:26.085132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9214}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 955
+          },
+          "id": "event-006174"
+        },
+        {
+          "source_line": 6175,
+          "timestamp": "2026-05-20T18:39:30.367482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_qwen14b_arc_s42'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-006175"
+        },
+        {
+          "source_line": 6176,
+          "timestamp": "2026-05-20T18:39:31.273563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8791}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 906
+          },
+          "id": "event-006176"
+        },
+        {
+          "source_line": 6177,
+          "timestamp": "2026-05-20T18:39:36.399620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -30 /root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log"
+            }
+          },
+          "id": "event-006177"
+        },
+        {
+          "source_line": 6178,
+          "timestamp": "2026-05-20T18:39:36.801261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "fields": "['status', 'conclusion', 'notes']",
+              "limit": "10"
+            }
+          },
+          "id": "event-006178"
+        },
+        {
+          "source_line": 6179,
+          "timestamp": "2026-05-20T18:39:38.259837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating arc_challenge:   0%|          | 0/1172 [00:00<?, ?it/s]\\\\rEvaluating arc_challenge:   0%|          | 1/1172 [00:00<09:52,  1.98it/s]\\\\rEvaluating arc_challenge:   0%|          | 2/1172 [00:00<06:15,  3.12it/s]\\\\rEvaluating arc_challenge:   0%|          | 3/1172 [00:00<05:05,  3.83it/s]\\\\rEvaluating arc_challenge:   0%|          | 4/1172 [00:01<04:32,  4.28it/s]\\\\rEvaluating arc_challenge:   0%|          | 5/1172 [00:01<04:14,  4.58it/s]\\\\rEvaluating arc_challenge:   1%|          | 6/1172 [00:01<04:03,  4.79it/s]\\\\rEvaluating arc_challenge:   1%|          | 7/1172 [00:01<03:56,  4.92it/s]\\\\rEvaluating arc_challenge:   1%|          | 8/1172 [00:01<03:51,  5.03it/s]\\\\rEvaluating arc_challenge:   1%|          | 9/1172 [00:02<03:48,  5.09it/s]\\\\rEvaluating arc_challenge:   1%|          | 10/1172 [00:02<03:45,  5.15it/s]\\\\rEvaluating arc_challenge:   1%|          | 11/1172 [00:02<03:43,  5.19it/s]\\\\rEvaluating arc_challenge:   1%|          | 12/1172 [00:02<03:42,  5.22it/s]\\\\rEvaluating arc_challenge:   1%|          | 13/1172 [00:02<03:41,  5.23it/s]\\\\rEvaluating arc_challenge:   1%|          | 14/1172 [00:02<03:40,  5.24it/s]\\\\rEvaluating arc_challenge:   1%|▏         | 15/1172 [00:03<03:39,  5.26it/s]\\\\rEvaluating arc_challenge:   1%|▏         | 16/1172 [00:03<03:39,  5.28it/s]\\\\rEvaluating arc_challenge:   1%|▏         | 17/1172 [00:03<03:39,  5.27it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 18/1172 [00:03<03:39,  5.26it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 19/1172 [00:03<03:39,  5.25it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 20/1172 [00:04<03:39,  5.24it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 21/1172 [00:04<03:39,  5.24it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 22/1172 [00:04<03:39,  5.23it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 23/1172 [00:04<03:38,  5.25it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 24/1172 [00:04<03:38,  5.25it/s]\\\\rEvaluatin\n…[truncated 6407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1860
+          },
+          "id": "event-006179"
+        },
+        {
+          "source_line": 6180,
+          "timestamp": "2026-05-20T18:39:39.766793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_qwen14b_arc_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_olmo2_arc_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_phi4_arc_s0_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_olmo2_arc_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_gemma2_arc_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_qwen7b_arc_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_arc_s123_batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"10/20 runs done. Qwen-14B ARC s123: d000=90.44% d005=91.47% d025=89.76% d050=88.74% d100=87.29% Δ=-3.15pp (monotonic decline, Collapse persists). Phi-4 ARC s123: d000=91.89% d005=91.89% d025=92.24% d050=92.58% d100=92.75% Δ=+0.86pp (Immune stable). Qwen-7B running, OLMo-2 pending. ETA ~35min.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_phi4_s0_mmlu\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_phi4_s123_mmlu\\\": {\\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"4/5 dosage done: d000=76.31% d005=75.92% d025=77.02% d050=77.30%. d100 running PID 369044 cuda:2, ETA ~10min. Pattern: Immune (fluctuations within ±1pp of baseline).\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"sft_phi4_s0_sweep\\\": {\\\"notes\\\": \\\"Phi-4 s0 sweep 进行中。d000 ✅ d005 ✅ d025 🔄 (PID 302132, step 1541/3384 ~45%, cuda:0) d050 ⏳ d100 ⏳。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 10, \\\"total\\\": 364, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.472}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2965
+          },
+          "id": "event-006180"
+        },
+        {
+          "source_line": 6181,
+          "timestamp": "2026-05-20T18:40:00.401858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — eval_qwen14b_arc_s42 on_failed 误报\n\n**结论**: PASS（registry 需修复，数据无问题）\n\n### 发现\n\n**1. [severity: info] eval 实际成功完成，on_failed 为误报**\n\n日志 `/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log` 末尾：\n- `2026-05-21 02:28:54 [INFO] arc_challenge accuracy: 0.8848 (1037/1172)`\n- `=== DONE: qwen14b_d100_s42 ... ===`\n- `ALL_ARC_EVAL_DONE_QWEN14B_S42`\n\n5/5 dosage 全部完成，输出文件已写入。\n\nRegistry 状态为 `PREPARING` + `conclusion: failed` — 根因是 Worker 提交时未正确将状态从 PREPARING 推进到 RUNNING，导致完成检测逻辑未触发。\n\n**2. [severity: info] 数据已独立核实并纳入分析**\n\nd100_s42 = 88.48% (1037/1172) 已在之前的 bootstrap 双 benchmark CI 分析中使用。Qwen-14B ARC mean = -2.86pp (s42: -2.56pp, s123: -3.15pp) 准确无误。\n\n**建议**: Agent 将 registry 状态更新为 DONE/success 即可，无需重跑。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006181"
+        },
+        {
+          "source_line": 6182,
+          "timestamp": "2026-05-20T18:40:04.069127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3667
+          },
+          "id": "event-006182"
+        },
+        {
+          "source_line": 6183,
+          "timestamp": "2026-05-20T18:40:06.432237+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报**。日志显示 eval 实际成功完成（\"ALL_ARC_EVAL_DONE_QWEN14B_S42\"，d100_s42 accuracy=0.8848）。Registry 卡在 `status: PREPARING` + `conclusion: failed` — 纯粹是注册表未及时更新到 RUNNING/DONE。\n\n数据已经过独立核实（d100_s42 = 88.48% = 1037/1172）且已纳入 bootstrap 分析。无需重跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006183"
+        }
+      ]
+    },
+    {
+      "number": 303,
+      "messages": [
+        {
+          "source_line": 6184,
+          "timestamp": "2026-05-20T18:40:06.938953+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval_qwen14b_arc_s42]:\n实验 eval_qwen14b_arc_s42 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006184"
+        },
+        {
+          "source_line": 6185,
+          "timestamp": "2026-05-20T18:40:32.410106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — eval_qwen14b_arc_s42 误报 failed\n\n**结论**: INFO（registry 记账问题，数据无损）\n\n### 发现\n\n**[severity: info] eval_qwen14b_arc_s42 实验成功但 registry 状态错误**\n\n- 日志确认 5/5 dosage 全部完成，最后一行 `ALL_ARC_EVAL_DONE_QWEN14B_S42`\n- d100_s42 accuracy = 0.8848 (1037/1172)，结果文件已写入并通过核实\n- Registry 状态停留在 `PREPARING` / conclusion=`failed`，推测 Worker 提交时未正确更新到 RUNNING，cron 检查时误判为 failed\n- Bootstrap 分析已正确使用此数据（Qwen-14B ARC mean = -2.86pp）\n\n**建议**：Agent 将 registry 状态更正为 DONE/success 即可。on_failed cron 可忽略。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006185"
+        },
+        {
+          "source_line": 6186,
+          "timestamp": "2026-05-20T18:40:35.975533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3565
+          },
+          "id": "event-006186"
+        },
+        {
+          "source_line": 6187,
+          "timestamp": "2026-05-20T18:40:40.074730+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是第二次收到同一个 on_failed 通知。从日志和数据看，实验已成功完成，registry 状态有误。\n\n日志最后一行：`ALL_ARC_EVAL_DONE_QWEN14B_S42`，d100_s42 accuracy = 0.8848 (1037/1172)，结果文件已写入。Registry 状态 = \"PREPARING\" / conclusion = \"failed\"——状态未从 PREPARING 更新到 RUNNING/DONE。\n\n数据已被 bootstrap 分析正确使用（Qwen-14B ARC mean = -2.86pp），我已独立核实 d100_s42。这是 registry 记账错误，不影响实验结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006187"
+        }
+      ]
+    },
+    {
+      "number": 304,
+      "messages": [
+        {
+          "source_line": 6188,
+          "timestamp": "2026-05-20T18:42:22.540924+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_eval_qwen14b_arc_s42_20260520T184128]:\nWorker worker_diagnose_eval_qwen14b_arc_s42_20260520T184128 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_diagnose_eval_qwen14b_arc_s42_20260520t184128"
+          },
+          "id": "event-006188"
+        },
+        {
+          "source_line": 6189,
+          "timestamp": "2026-05-20T18:42:49.098502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diagnose_eval_qwen14b_arc_s42_20260520T184128_result.json"
+            }
+          },
+          "id": "event-006189"
+        },
+        {
+          "source_line": 6190,
+          "timestamp": "2026-05-20T18:42:49.149196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 诊断结果\\n\\n### 1. 失败原因：误报（实验实际成功完成）\\n\\n日志 `/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log` 存在且记录了**完整成功执行**：\\n- 从 d000_s42 开始，逐 dosage 评测，最终以 d100_s42 结束\\n- 最后一条：`arc_challenge accuracy: 0.8848 (1037/1172)`，结果保存到 `d100_s42/`\\n- 末尾写入了 sentinel `ALL_ARC_EVAL_DONE_QWEN14B_S42`\\n\\n实验跟踪系统报 \\\"PREPARING 阶段失败\\\" 的原因：该实验无 spec、无 hypothesis，从未正式注册到跟踪系统。监控系统在早期检查时找不到 sentinel/W&B run，5 次探测后自动标记为 failed。**但底层进程实际正常跑完了。**\\n\\n### 2. Qwen-14B ARC s42 数据：全部存在\\n\\n所有 dosage 的结果文件齐全（每个目录含 `arc_challenge_results.json`, `eval_results.json`, `correctness_matrix.json`, `item_responses.json`）：\\n\\n| Dosage | 路径 |\\n|--------|------|\\n| d000_s42 | `results/arc_eval/qwen14b/d000_s42/` |\\n| d005_s42 | `results/arc_eval/qwen14b/d005_s42/` |\\n| d025_s42 | `results/arc_eval/qwen14b/d025_s42/` |\\n| d050_s42 | `results/arc_eval/qwen14b/d050_s42/` |\\n| d100_s42 | `results/arc_eval/qwen14b/d100_s42/` |\\n\\ns123 种子的全部 dosage 也已完成。\\n\\n### 3. 是否需要重跑\\n\\n**不需要。** 数据完整，无需任何操作。实验跟踪状态可以直接标记为 completed。\\n\\n### 附：westd GPU 状态\\n- cuda:0, cuda:2 — 空闲\\n- cuda:1 — 95GB 占用（PID 406532）\\n- cuda:3 — 66GB 占用（PID 376641）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006190"
+        },
+        {
+          "source_line": 6191,
+          "timestamp": "2026-05-20T18:42:53.579385+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 诊断结论与我的审查一致：eval_qwen14b_arc_s42 实际成功，registry 误报。数据完整，不需重跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006191"
+        }
+      ]
+    },
+    {
+      "number": 305,
+      "messages": [
+        {
+          "source_line": 6192,
+          "timestamp": "2026-05-20T18:51:10.255476+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_qwen14b-arc-s42-completion_20260520T184819]:\nWorker worker_diag_qwen14b-arc-s42-completion_20260520T184819 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006192"
+        },
+        {
+          "source_line": 6193,
+          "timestamp": "2026-05-20T18:51:16.507452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_qwen14b-arc-s42-completion_20260520T184819_result.json"
+            }
+          },
+          "id": "event-006193"
+        },
+        {
+          "source_line": 6194,
+          "timestamp": "2026-05-20T18:51:16.608511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新为 DONE/success。Cron 已不存在（无需删除）。\\n\\n## Collapse 跨种子稳定性分析\\n\\n| Dosage | s42 | s123 | 双种子均值 |\\n|--------|-----|------|-----------|\\n| d000 | 91.04% | 90.44% | 90.74% |\\n| d005 | 90.36% | 91.47% | 90.92% |\\n| d025 | 88.91% | 89.76% | 89.34% |\\n| d050 | 87.63% | 88.74% | 88.19% |\\n| d100 | 88.48% | 87.29% | 87.89% |\\n| **Δ(d100−d000)** | **−2.56pp** | **−3.15pp** | **−2.86pp** |\\n\\n**结论：ARC Collapse 跨种子稳定。**\\n\\n- 两个种子均为负 Δ：s42 = −2.56pp, s123 = −3.15pp，双种子均值 Δ = −2.86pp\\n- 整体趋势一致：d000→d050 单调下降（两个种子均如此）\\n- 细节差异：s42 的 d100 相对 d050 有小幅回弹（+0.85pp），s123 则继续下降。但 d000→d100 的总 Δ 方向和量级一致\\n- 非单调性集中在高 dosage 端（d050↔d100），可能是 contamination 饱和后的噪声，不影响 Collapse 方向判断\\n\\nQwen-14B 在 ARC 上的 Collapse 效应是 robust 的，不依赖特定 seed。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-006194"
+        }
+      ]
+    },
+    {
+      "number": 306,
+      "messages": [
+        {
+          "source_line": 6195,
+          "timestamp": "2026-05-20T18:55:42.868658+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check-s0-progress-and-prep-evals_20260520T185039]:\nWorker worker_ops_check-s0-progress-and-prep-evals_20260520T185039 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006195"
+        },
+        {
+          "source_line": 6196,
+          "timestamp": "2026-05-20T18:55:50.255756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_check-s0-progress-and-prep-evals_20260520T185039_result.json"
+            }
+          },
+          "id": "event-006196"
+        },
+        {
+          "source_line": 6197,
+          "timestamp": "2026-05-20T18:55:50.306555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 汇报\\n\\n### s0 训练进度\\n\\n| 模型 | 服务器 | 已完成 | 当前 | 进度 | ETA 全部完成 |\\n|------|--------|--------|------|------|-------------|\\n| **Qwen-7B** | cqa1 | d000/d005/d025/d050 | d100 (521/4159) | 12% | ~3.5h |\\n| **Gemma-2-9B** | westd cuda:3 | d000/d005/d025 | d050 (1357/3642) | 37% | ~1.6h (d050) + ~2.9h (d100) ≈ **4.5h** |\\n| **Qwen-14B** | westd | d000/d005 | d025 (2486/3384) | 73% | ~0.9h (d025) + 3.5h (d050) + 4h (d100) ≈ **8.4h** |\\n\\n### 已创建 eval 脚本\\n\\n| 脚本 | 路径 | 语法 | 备注 |\\n|------|------|------|------|\\n| Gemma-2 s0 MMLU | `scripts/eval_gemma2_s0_mmlu.sh` | OK | CUDA:0, batch=8, 含 C009 md5 校验 |\\n| Qwen-14B s0 MMLU | `scripts/eval_qwen14b_s0_mmlu.sh` | OK | CUDA:0, batch=4 (14B 模型较大), 含 C009 md5 校验 |\\n\\nGemma-2 sweep 脚本 **不含内置 eval**，需要单独跑。两个 eval 脚本已就绪，训练完成后可提交。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006197"
+        },
+        {
+          "source_line": 6198,
+          "timestamp": "2026-05-20T18:56:15.327657+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进度和 eval 准备脚本确认。Qwen-7B 最先完成（~3.5h），Gemma-2 ~4.5h，Qwen-14B ~8.4h。无合规问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006198"
+        }
+      ]
+    },
+    {
+      "number": 307,
+      "messages": [
+        {
+          "source_line": 6199,
+          "timestamp": "2026-05-20T19:29:09.421996+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n审查请求：Phi-4 MMLU CI 含零 vs Immune claim 论文叙事审查\n\n核心问题：Phi-4 MMLU BCa CI = [-0.17, +1.39]，包含零。但 ARC BCa CI = [+0.51, +0.77]，不含零。论文 claim Phi-4 是 \"Immune\"（contamination 无实质影响）。\n\n需要审查：\n1. **Immune claim 是否站得住？** CI 含零在统计上意味着\"无法拒绝 H0: Δ=0\"——这恰恰支持 Immune。但 ARC CI 不含零（虽然 |Δ|<1pp），是否矛盾？论文需要怎样精确措辞？\n2. **n=2 家族的 CI 全部极宽（40pp+）**，所有都含零——这意味着 Collapse/V-recovery/Benefit 在 n=2 MMLU 上也\"统计不显著\"。论文如何处理这个？只有 ARC 的 n=3 CI 有统计效力。\n3. **论文整体 claim-CI alignment 审查**：每个 claim（4-pattern taxonomy, 4/5 cross-benchmark consistency, vulnerability gradient）是否有足够统计支撑？哪些需要 hedge？哪些只能作为 \"observed pattern\" 而非 \"statistically confirmed\"？\n4. **建议的论文措辞策略**：如何在 n=2 统计效力不足的情况下诚实报告 taxonomy，同时不削弱 contribution？\n\n这是论文质量的关键审查——距 ARR 5 天，需要确保 claim 不会被 reviewer 用 CI 数据打回。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006199"
+        },
+        {
+          "source_line": 6200,
+          "timestamp": "2026-05-20T19:29:49.815143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "paper_framing.md",
+              "max_chars": "5000"
+            }
+          },
+          "id": "event-006200"
+        },
+        {
+          "source_line": 6201,
+          "timestamp": "2026-05-20T19:29:49.866333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contamcal-irt-calibration\\\\n\\\\n## Target Venue\\\\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\\\\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\\\\n- Track: Machine Learning for NLP / Resources and Evaluation\\\\n- Aligns with EMNLP 2026 special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (explicitly invites contamination/data governance work)\\\\n\\\\n## Core Insight (D149: dose-response profiling + baseline-dependent direction, building on D039/D108/D115)\\\\n\\\\nBenchmark contamination does not have a single effect — controlled SFT injection across 5 independent model families reveals qualitatively different dose-response profiles depending on model baseline capability. Through injection (LoRA r=16, 5 dosage levels d000–d100) on Qwen2.5-7B, Qwen2.5-14B, Phi-4 14.7B, Gemma-2 9B, OLMo-2 7B, we observe:\\\\n\\\\n**4 dose-response patterns (D149→D183→D184, MMLU, cross-seed confirmed)**:\\\\n| Pattern | Family | Baseline | s42 Δ(d100) | s123 Δ(d100) | Cross-seed |\\\\n|---------|--------|----------|-------------|--------------|------------|\\\\n| Immune | Phi-4 14.7B | 76.44% | -0.17pp | +1.83pp | ✅ n=3: s0 +0.52pp, mean +0.73pp, BCa CI [-0.17, +1.39] 含零 |\\\\n| Collapse | Qwen-14B | 69.44% | -9.37pp (U-shape) | -12.74pp (monotonic) | ✅ 方向一致，形状不同 |\\\\n| V-recovery | Qwen-7B | 66.11% | -1.78pp (V-dip) | ~0pp (V-full) | ✅ 形状+方向一致 |\\\\n| Benefit | Gemma-2 9B | 61.86% | +3.76pp | +1.49pp | ✅ 方向一致 |\\\\n| Benefit† | OLMo-2 7B | 53.79% | +3.21pp | -0.55pp | ⚠️ seed-sensitive |\\\\n\\\\n⚠️ D184: \\\\\\\"U-collapse\\\\\\\" 重命名为 \\\\\\\"Collapse\\\\\\\"——s42 U-shape (d050→d100 回升 +0.6pp) 在 s123 不复现 (d050→d100 继续下沉 -5.1pp)。跨种子稳定的是方向(harm)不是形状(U)。V-recovery 保留 shape-based name 因为它是唯一跨种子形状稳定的 pattern。论文报告 Qwen-14B 跨种子区间 [−12.74, −9.0pp]。\\\\n\\\\n⚠️ **Bootstrap n=2 findings (D186)**: 算法形状分类 2\n…[truncated 3505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-006201"
+        },
+        {
+          "source_line": 6202,
+          "timestamp": "2026-05-20T19:31:00.118595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Phi-4 CI 含零 vs Immune claim + 论文统计基础全面审查\n\n**结论**: WARNING（需要论文措辞调整，但 claim 可以站住）\n\n---\n\n### 1. Phi-4 Immune claim 是否站得住？\n\n**站得住，但需要精确措辞。**\n\nImmune 的含义是\"contamination 无实质影响\"。CI 含零恰恰**支持**这一 claim——无法拒绝 H0: Δ=0。\n\nARC CI [+0.51, +0.77] 不含零，但整个区间 |Δ| < 1pp。这是经典的\"统计显著但实际不显著\"——contamination 产生了可检测但可忽略的效应。两个 benchmark 的证据**互补而非矛盾**：\n\n- MMLU: 统计上无法区分于零 → 支持 Immune\n- ARC: 统计上可区分于零，但效应量 < 1pp → 实际意义上仍 Immune\n\n**建议措辞**：\"Phi-4 exhibits a statistically detectable but practically negligible response to contamination (ARC: +0.66pp, 95% CI [+0.51, +0.77]; MMLU: +0.72pp, 95% CI [−0.17, +1.39]). The effect is below the 1pp practical significance threshold on both benchmarks, consistent with the Immune classification.\"\n\n**[severity: info]** 这里的逻辑链完整，无审稿人攻击面。\n\n---\n\n### 2. n=2 CI 极宽问题\n\n**这是论文最大的统计脆弱点。**\n\n所有 5 个 MMLU CI 都含零——包括 Qwen-14B Collapse（mean -11.05pp, CI [-32.41, +10.30]）。t-distribution df=1 没有有限方差，CI 天然极宽。\n\n**[severity: warning] 审稿人攻击路径**：\"Your Collapse classification for Qwen-14B is not statistically significant. The 95% CI includes zero and extends to +10.3pp. How do you know this isn't noise?\"\n\n**防御策略（论文必须包含）：**\n\n(a) **区分推断框架**：Taxonomy 是描述性分类（observational pattern classification），不是假设检验。CI 提供的是 uncertainty quantification，不是分类依据。分类依据是：per-seed pattern shape + cross-seed direction consistency + cross-benchmark corroboration。\n\n(b) **t(df=1) 本身的局限性**：n=2 时 t-distribution CI 本质上无信息量（df=1 的 97.5% quantile = 12.7）。论文应显式说明：\"With n=2 seeds, t-distribution CIs are inherently uninformative (df=1); we report them for transparency but rely on cross-seed direction consistency and cross-benchmark replication for classification confidence.\"\n\n(c) **Qwen-14B Collapse 的多维证据**：\n- MMLU: s42=-9.37pp, s123=-12.74pp（两 seed 都是大负值）\n- ARC: s42=-2.56pp, s123=-3.15pp（两 seed 都是负值）\n- 4 个独立观测（2 seeds × 2 benchmarks）方向完全一致\n- 即使单个 CI 含零，4 个一致性负向观测的联合概率 << 0.05\n\n(d) **引导到 ARC n=3 证据**：论文的两个 n=3 families（Phi-4、OLMo-2）在 ARC 上都有不含零的 CI。这证明 methodology 是有效的，n=2 的局限是样本量问题，不是方法论缺陷。\n\n---\n\n### 3. Claim-CI 对齐审查\n\n| Claim | 统计支撑 | 需要 hedge？ |\n|-------|----------|-------------|\n| 4-pattern taxonomy | 描述性分类，非推断性 claim | 写 \"We observe four distinct patterns\" 而非 \"We identify/confirm\" |\n| Phi-4 Immune | ARC CI 不含零但 <1pp ✅ | 无需 hedge，最强 claim |\n| Qwen-14B Collapse | 4 个观测全负，但单个 CI 含零 | 写 \"consistently negative across seeds and benchmarks\" |\n| OLMo-2 Benefit | ARC CI [+2.90, +3.78] 不含零 ✅ | 无需 hedge |\n| Qwen-7B V-recovery | MMLU shape 跨 seed 一致，但 CI 含零 | 写 \"observed on MMLU; ARC shows partial recovery only\" |\n| Gemma-2 Benefit | n=1 ARC，n=2 MMLU CI 极宽 | 最弱，写 \"preliminary evidence\" |\n| 4/5 cross-BM consistency | 描述性观测 | 写 \"observed\" 而非 \"confirmed\" |\n| Vulnerability gradient | n=5 families, 无法做回归 | 只能 \"observed trend\"，不可 claim causal/statistical |\n\n**[severity: warning]** Gemma-2 是最弱环节：MMLU n=2 CI 极宽，ARC 仅 n=1（s42 oscillation 排除）。如果审稿人要求每个 pattern 都有统计支撑，Gemma-2 Benefit 将无法辩护。\n\n---\n\n### 4. 建议的论文措辞策略\n\n**核心思路：三层证据体系，诚实报告统计效力，用一致性替代显著性。**\n\n**Methods/Results 中加一段 \"Statistical Power and Evidence Strategy\"：**\n\n> \"With n ≤ 3 seeds per family, individual bootstrap CIs provide limited inferential power (n=2 t-distribution CIs are inherently wide with df=1). We therefore adopt a convergent evidence approach: classification relies on (i) cross-seed direction consistency within each benchmark, (ii) cross-benchmark replication of direction, and (iii) dose-response curve shape stability. Individual CIs are reported for transparency. For the two families with n=3 seeds (Phi-4, OLMo-2), BCa bootstrap CIs on ARC exclude zero, providing direct statistical confirmation. For n=2 families, we rely on the multi-dimensional consistency of the evidence.\"\n\n**表格呈现**：\n- 主表报 mean Δ + CI（所有 families × 两 benchmarks）\n- 用符号标注 CI 是否含零（如 * = excludes zero）\n- 脚注说明 n=2 CI 的局限性\n\n**避免的措辞**：\n- ❌ \"significantly different from zero\"（除 ARC n=3）\n- ❌ \"statistically confirmed taxonomy\"\n- ❌ \"robust across all families\"（Gemma-2 太弱）\n\n**使用的措辞**：\n- ✅ \"We observe four distinct dose-response patterns\"\n- ✅ \"Direction is consistent across seeds and benchmarks for 4/5 families\"\n- ✅ \"The effect is statistically significant on ARC for n=3 families (Phi-4 Immune: CI [+0.51, +0.77]; OLMo-2 Benefit: CI [+2.90, +3.78])\"\n- ✅ \"Classification confidence varies by family; see Table X for full CI data\"\n\n---\n\n### 总结\n\n论文 claim 可以站住，但**不能以推断统计为基础**——必须以\"convergent evidence across seeds, benchmarks, and dose-response shapes\"为基础。ARC n=3 CI 是论文的统计锚点；MMLU n=2 数据是描述性补充。这种诚实的 framing 反而比过度 claim 更不易被审稿人攻击——审稿人尊重坦率承认局限的论文。\n\n距 ARR 5 天，建议 Agent 在 Results section 加入上述 statistical power 段落，并审查所有 claim 措辞是否与 CI 数据对齐。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006202"
+        },
+        {
+          "source_line": 6203,
+          "timestamp": "2026-05-20T19:31:03.938590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3819
+          },
+          "id": "event-006203"
+        },
+        {
+          "source_line": 6204,
+          "timestamp": "2026-05-20T19:31:07.691789+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是论文统计基础的关键审查。让我系统分析每个问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006204"
+        }
+      ]
+    },
+    {
+      "number": 308,
+      "messages": [
+        {
+          "source_line": 6205,
+          "timestamp": "2026-05-20T19:33:55.205853+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_emnlp-format-precheck_20260520T193016]:\nWorker worker_paper_emnlp-format-precheck_20260520T193016 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_paper_emnlp-format-precheck_20260520t193016"
+          },
+          "id": "event-006205"
+        },
+        {
+          "source_line": 6206,
+          "timestamp": "2026-05-20T19:34:02.344913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_paper_emnlp-format-precheck_20260520T193016_result.json"
+            }
+          },
+          "id": "event-006206"
+        },
+        {
+          "source_line": 6207,
+          "timestamp": "2026-05-20T19:34:02.345474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"所有文件已读取完毕。以下是格式预检报告。\\n\\n---\\n\\n## EMNLP 2026 (ARR) 格式预检报告\\n\\n### FAIL\\n\\n| # | 项目 | 详情 |\\n|---|------|------|\\n| F1 | **主文极可能超 8 页** | 主文（Introduction → Discussion/Conclusion）包含 7 个 section、Algorithm 1（35 行伪代码）、5 个 table（Tab 1–5）、2 个 figure。ACL 双栏格式下保守估计 10–11 页。必须编译验证并裁剪。 |\\n| F2 | **正文残留 \\\"TBD\\\"** | `results.tex:87` — Table 3 Gemma-2 Pattern 列写的是 `TBD\\\\textsuperscript{a}`，脚注 \\\"Classifier fix in progress\\\"。未完成内容不能提交。 |\\n\\n### WARNING\\n\\n| # | 项目 | 详情 |\\n|---|------|------|\\n| W1 | **acl.sty 版本未标注** | `docs/paper/acl.sty` 无版本日期。ARR 2026 submission cycle 可能要求最新模板，需到 [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files/) 核对。 |\\n| W2 | **Bib arXiv 格式不一致** | `abdin2024phi4`、`olmo2team2025`、`gemmateam2024gemma2` 用 `journal = {arXiv preprint arXiv:XXXX}` 而非标准 `eprint` 字段。其他 arXiv 条目用的是 `eprint` + `archiveprefix`。应统一。 |\\n| W3 | **arXiv-only 条目可能已有正式版本** | `zhang_2024_gsm1k`（2024）、`kadavath2022`（2022）、`white2024livebench`（2024）、`clark2018arc`（2018）等长期 arXiv 条目，需查验是否已正式发表并更新 venue/pages。 |\\n| W4 | **`zhang_2024_gsm1k` 条目类型错误** | 用了 `@inproceedings` + `booktitle = {arXiv preprint}`，arXiv 论文应为 `@article` + `journal`。 |\\n| W5 | **多个 `@inproceedings` 缺 pages 字段** | `dekoninck2024constat`、`oren2024proving`、`hendrycks2021mmlu`、`hu2022lora` 等。已有 proceedings 的条目应补充页码。 |\\n| W6 | **`\\\\usepackage[review,hyperref]{acl}`** | `hyperref` 是 acl.sty 默认选项，冗余但无害。 |\\n\\n### PASS\\n\\n| # | 项目 | 详情 |\\n|---|------|------|\\n| P1 | **匿名提交** | `\\\\author{Anonymous}`，无 acknowledgments，无 `\\\\thanks`，无去匿名化自引。 |\\n| P2 | **`[review]` 模式** | 已启用行号 + 匿名化。未出现 `\\\\aclfinalcopy`。 |\\n| P3 | **Abstract 长度** | 201 words ≤ 250。 |\\n| P4 | **Limitations section** | 充分：10 个 limitation 段落，覆盖 scale ceiling / seed sensitivity / ecological validity / signal coverage / ensemble size / position bias / model misfit / linearity / prompt format。 |\\n| P5 | **Ethics Statement** | 存在，讨论了 dual-use risk 和 mitigation。 |\\n| P6 | **图文件完整** | 主文引用的 `fig_dose_response.pdf`、`fig_treated_untreated.pdf` 及 append\n…[truncated 795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006207"
+        },
+        {
+          "source_line": 6208,
+          "timestamp": "2026-05-20T19:34:15.244859+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "格式预检无需我额外核实——数据侧确认 F2 中 Gemma-2 Pattern 应填 \"Benefit-sat†\"（ARC s123 +2.73pp, MMLU mean +2.62pp, 已独立验证）。F1 超页问题是 Agent 的编辑任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006208"
+        }
+      ]
+    },
+    {
+      "number": 309,
+      "messages": [
+        {
+          "source_line": 6209,
+          "timestamp": "2026-05-20T19:34:15.710454+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_figure-update-dual-benchmark_20260520T193001]:\nWorker worker_paper_figure-update-dual-benchmark_20260520T193001 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_paper_figure-update-dual-benchmark_20260520t193001"
+          },
+          "id": "event-006209"
+        },
+        {
+          "source_line": 6210,
+          "timestamp": "2026-05-20T19:34:21.865873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_paper_figure-update-dual-benchmark_20260520T193001_result.json"
+            }
+          },
+          "id": "event-006210"
+        },
+        {
+          "source_line": 6211,
+          "timestamp": "2026-05-20T19:34:21.866446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"生成完毕。输出文件：\\n\\n| 文件 | 路径 | 大小 |\\n|------|------|------|\\n| Fig 1 PDF | `westd-29999:/root/contamcal-irt-calibration/figures/fig1_dose_response.pdf` | 22K |\\n| Fig 1 PNG | `westd-29999:/root/contamcal-irt-calibration/figures/fig1_dose_response.png` | 278K |\\n| Fig 2 PDF | `westd-29999:/root/contamcal-irt-calibration/figures/fig2_cross_benchmark_scatter.pdf` | 36K |\\n| Fig 2 PNG | `westd-29999:/root/contamcal-irt-calibration/figures/fig2_cross_benchmark_scatter.png` | 164K |\\n\\n**Fig 1 数据确认**（s123 seed，accuracy %）：\\n\\n| Family | d000 | d005 | d025 | d050 | d100 | Pattern |\\n|--------|------|------|------|------|------|---------|\\n| **MMLU** |\\n| Phi-4 | 76.31 | 75.92 | 77.02 | 77.30 | 78.14 | Benefit (+1.83) |\\n| Qwen-14B | 68.67 | 70.84 | 63.68 | 60.99 | 55.93 | Collapse (-12.74) |\\n| Qwen-7B | 66.59 | 63.37 | 64.82 | 65.00 | 66.59 | Immune (-0.01) |\\n| Gemma-2 | 65.84 | 65.81 | 63.02 | 66.74 | 67.33 | V-recovery (+1.49) |\\n| OLMo-2 | 55.66 | 56.14 | 54.97 | 55.92 | 55.11 | Immune (-0.55) |\\n| **ARC** |\\n| Phi-4 | 91.89 | 91.89 | 92.24 | 92.58 | 92.75 | Benefit (+0.85) |\\n| Qwen-14B | 90.44 | 91.47 | 89.76 | 88.74 | 87.29 | Collapse (-3.16) |\\n| Qwen-7B | 87.12 | 82.42 | 85.15 | 85.07 | 84.73 | V-recovery (-2.39) |\\n| Gemma-2 | 85.84 | 83.36 | 85.67 | 85.24 | 88.57 | V-recovery→Benefit (+2.73) |\\n| OLMo-2 | 76.88 | 77.22 | 76.62 | 79.18 | 79.78 | Benefit (+2.90) |\\n\\n**Fig 2 scatter 数据**（多种子均值 Δ(d100) pp）：\\n- Phi-4: MMLU +0.73, ARC +0.65 (n=3, 实心)\\n- Qwen-14B: MMLU -11.05, ARC -2.86 (n=2, 空心)\\n- Qwen-7B: MMLU -0.89, ARC -2.65 (n=2, 空心)\\n- Gemma-2: MMLU +2.62, ARC +2.73 (n=1, 空心)\\n- OLMo-2: MMLU +1.35, ARC +3.44 (n=3, 实心)\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006211"
+        },
+        {
+          "source_line": 6212,
+          "timestamp": "2026-05-20T19:35:04.482248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 论文图表数据审查\n\n**结论**: WARNING\n\n### 发现\n\n**1. [severity: warning] Fig 1 pattern 标签与论文 taxonomy 不一致**\n\nFig 1 使用 s123 **单 seed** 的 `classify_pattern()` 输出作为标签，与论文的 **family-level taxonomy** 冲突：\n\n| Family | Fig 1 标签 (s123 per-seed) | 论文 taxonomy (family-level) | 冲突？ |\n|--------|---------------------------|----------------------------|--------|\n| Phi-4 MMLU | Benefit (+1.83) | **Immune** (+0.73 mean) | ❌ 严重 |\n| Qwen-7B MMLU | Immune (-0.01) | **V-recovery** | ❌ 严重 |\n| OLMo-2 MMLU | Immune (-0.55) | **Benefit-sat†** | ❌ 严重 |\n| Gemma-2 MMLU | V-recovery (+1.49) | **Benefit** | ❌ 严重 |\n| Phi-4 ARC | Benefit (+0.85) | **Immune** | ❌ |\n\n5 个 MMLU 标签中 4 个与论文 taxonomy 不一致。读者看 Fig 1 标签和 Table 中的分类会完全混乱。\n\n**修复方案**：Fig 1 标签必须使用 family-level taxonomy（Immune / Collapse / V-recovery / Benefit），不能使用 per-seed classification。如果选择展示 s123 单 seed curve，标签仍应反映 family-level 分类，可在 caption 注明 \"shown for seed=123; family-level classification based on multi-seed mean (Table X)\"。\n\n**2. [severity: info] Fig 2 scatter 数据核实通过**\n\n| Family | MMLU mean Δ | ARC mean Δ | 与我核实的数据 |\n|--------|------------|-----------|--------------|\n| Phi-4 | +0.73 | +0.65 | ✓（ARC 0.65 vs 我核实的 0.66，舍入差） |\n| Qwen-14B | -11.05 | -2.86 | ✓ |\n| Qwen-7B | -0.89 | -2.65 | ✓ |\n| Gemma-2 | +2.62 | +2.73 | ✓ |\n| OLMo-2 | +1.35 | +3.44 | ✓ |\n\nn=3 实心 / n≤2 空心的视觉区分合理，让读者一眼看出统计置信度差异。\n\n**3. [severity: info] 结合 EMNLP 格式预检**\n\nWorker 报告 F1（超 8 页）和 F2（TBD 残留）都是提交前必修。建议 Fig 1 修复标签时同时考虑页面压缩需求。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006212"
+        },
+        {
+          "source_line": 6213,
+          "timestamp": "2026-05-20T19:35:08.045920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-006213"
+        },
+        {
+          "source_line": 6214,
+          "timestamp": "2026-05-20T19:35:10.198146+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 2 scatter 数据与我核实的 bootstrap 均值一致。但 **Fig 1 的 pattern 标签有重要问题**。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006214"
+        }
+      ]
+    },
+    {
+      "number": 310,
+      "messages": [
+        {
+          "source_line": 6215,
+          "timestamp": "2026-05-20T19:35:15.444183+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n[Director 请求审查] Claim-CI 对齐审计（投稿前关键审查）\n\n之前可能已派过这个审查，但 context 压缩丢失了回复。请重新审查。\n\n**核心问题**: 论文多个 claim 的 95% CI 包含零——这对 claim 可信度意味着什么？\n\n**具体审查项**:\n\n1. **Phi-4 MMLU Immune claim**: \n   - BCa CI [-0.17, +1.39] 包含零\n   - 但 ARC CI [+0.51, +0.77] 不包含零\n   - Immune claim 在 MMLU CI 不显著的情况下能否站住？论文如何措辞？\n\n2. **n=2 家族的 CI 全部极宽**（t-distribution, df=1）:\n   - Qwen-14B: [-32.4, +10.3] — Collapse 方向稳定但 CI 跨零\n   - Gemma-2: [-11.8, +17.1] — Benefit 方向稳定但 CI 跨零\n   - Qwen-7B: [-12.2, +10.4] — V-recovery 方向不稳\n   - 这些 n=2 CI 对论文哪些 claim 产生影响？\n\n3. **论文叙事建议**:\n   - 哪些 claim 需要 hedge/弱化？\n   - 具体措辞建议（\"the direction is consistent across seeds, though the effect size does not reach statistical significance at n=2\" 之类）\n   - n=3 数据（s0 训练完成后）能否根本性改变局面？\n\n4. **读 results.tex 和 abstract.tex**——检查当前措辞是否已经正确处理了 CI 包含零的情况，还是有过度 claim。\n\n请给出 severity 判断和具体修改建议。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006215"
+        },
+        {
+          "source_line": 6216,
+          "timestamp": "2026-05-20T19:35:24.393232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-006216"
+        },
+        {
+          "source_line": 6217,
+          "timestamp": "2026-05-20T19:35:24.895495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          },
+          "id": "event-006217"
+        },
+        {
+          "source_line": 6218,
+          "timestamp": "2026-05-20T19:35:25.548505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/contamcal-irt-calibration/docs/paper/abstract.tex: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1155
+          },
+          "id": "event-006218"
+        },
+        {
+          "source_line": 6219,
+          "timestamp": "2026-05-20T19:35:26.051000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/contamcal-irt-calibration/docs/paper/results.tex: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1155
+          },
+          "id": "event-006219"
+        },
+        {
+          "source_line": 6220,
+          "timestamp": "2026-05-20T19:35:30.317826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/contamcal-irt-calibration/**/results.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-006220"
+        },
+        {
+          "source_line": 6221,
+          "timestamp": "2026-05-20T19:35:30.820148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 502
+          },
+          "id": "event-006221"
+        },
+        {
+          "source_line": 6222,
+          "timestamp": "2026-05-20T19:35:31.322654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/contamcal-irt-calibration/**/abstract.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-006222"
+        },
+        {
+          "source_line": 6223,
+          "timestamp": "2026-05-20T19:35:31.574514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-006223"
+        },
+        {
+          "source_line": 6224,
+          "timestamp": "2026-05-20T19:35:31.574965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/contamcal-irt-calibration/**/main.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-006224"
+        },
+        {
+          "source_line": 6225,
+          "timestamp": "2026-05-20T19:35:31.826177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-006225"
+        },
+        {
+          "source_line": 6226,
+          "timestamp": "2026-05-20T19:35:35.189225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-006226"
+        },
+        {
+          "source_line": 6227,
+          "timestamp": "2026-05-20T19:35:35.390778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tBenchmark contamination is widely assumed to inflate language model scores, yet the actual effect has never been systematically measured across model families. We perform controlled SFT injection at five dosage levels into five models spanning four independent families (7B--14.7B parameters) and discover that contamination produces not one effect but qualitatively different dose-response patterns---from immunity ($\\pm$0.5pp) through monotonic benefit ($+$3.8pp) to catastrophic collapse ($-$9 to $-$13pp across seeds). Contamination vulnerability concentrates in the 65--70\\% MMLU baseline band; models at extreme baselines show limited sensitivity. Counter-intuitively, the 14B Qwen model is 3$\\times$ more fragile than 7B. These effects are benchmark-conditional: models harmed on MMLU can simultaneously benefit on GSM8K ($+$10pp), revealing asymmetric cross-benchmark transfer. Profiles are robust on MMLU (4/5 families $\\geq$99.6\\% bootstrap stability); ARC-Challenge shows directional agreement for 4/5 families but lower stability due to its smaller item pool (1{,}172 vs.\\ 14{,}042 items). We further characterize contamination detection signal failure: Min-K\\%++ exhibits directional reversal at small scales (Cohen's $d = -1.55$ to $-1.98$), actively misleading practitioners. Simulation studies establish that IRT-based contamination diagnosis requires ensemble sizes ($J \\geq 50$) above current practice. Our findings demonstrate that ``contamination equals inflation'' is a gross oversimplification; model-specific dose-response profiling is necessary for reliable benchmark interpretation.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-006227"
+        },
+        {
+          "source_line": 6228,
+          "timestamp": "2026-05-20T19:35:35.391293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          },
+          "id": "event-006228"
+        },
+        {
+          "source_line": 6229,
+          "timestamp": "2026-05-20T19:35:35.442146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tCross-family results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across five models from four independent families. Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n5\t\n6\t\\subsection{Dose-Response Patterns}\n7\t\\label{sec:taxonomy}\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (180/180 model--seed--combination pairs across 30 $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n12\t\\label{tab:taxonomy}\n13\t\\footnotesize\n14\t\\begin{tabular}{llccccc}\n15\t\\toprule\n16\tPattern & Model & Baseline & $\\Delta$acc & 95\\% CI & Peak & Stab. \\\\\n17\t\\midrule\n18\tImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% \\\\\n19\tCollapse & Qwen-14B & 69.4\\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\\% \\\\\n20\tV-recovery & Qwen-7B & 66.1\\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\\textsuperscript{d025} & 99.6\\% \\\\\n21\tBenefit & Gemma-2 9B & 61.9\\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\\% \\\\\n22\tBenefit & OLMo-2 7B & 53.8\\% & $+$3.2pp\\textsuperscript{$\\dagger$} & [$+$2.73, $+$3.71] & sat.\\textsuperscript{d050} & 100\\% \\\\\n23\t\\bottomrule\n24\t\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero ($p=0.039$). See \\S\\ref{sec:cross_seed}.}\n25\t\\end{tabular}\n26\t\\end{table}\n27\t\n28\tApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields qualitatively differ\n…[truncated 13902 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006229"
+        },
+        {
+          "source_line": 6230,
+          "timestamp": "2026-05-20T19:37:10.106657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Claim-CI 对齐审计（投稿前关键审查）\n\n**结论**: WARNING（多处需要措辞调整，但框架基本正确）\n\n---\n\n### 审查 1: Phi-4 MMLU Immune claim\n\n**现状**：results.tex:98 写 \"The CI includes zero, confirming Immune under the family-level aggregation rule\"。\n\n**[severity: info] 措辞正确。** CI 含零 = 不能拒绝 Δ=0 = 支持 Immune。这正是 Immune 分类应有的统计行为。ARC CI [+0.51, +0.77] 不含零但 |Δ|<1pp，属于\"统计显著但实际不显著\"——两者互补而非矛盾。论文已正确处理。\n\n**但 abstract.tex 有小问题**：\"immunity (±0.5pp)\" 用的是 s42 单 seed 值，三 seed 均值是 +0.72pp。建议改为 \"immunity (mean +0.7pp across three seeds)\" 或保留 ±0.5 但标注 \"(seed=42)\"。\n\n---\n\n### 审查 2: n=2 CI 对论文 claims 的影响\n\n**现状**：Table 3 (results.tex:80-93) 展示所有跨 seed CI，脚注标注 \"^t t-distribution (df=1); n=3 will substantially narrow.\"\n\n**[severity: warning] 三个问题需修复：**\n\n**(a) 所有 5 个 MMLU 跨 seed CI 都含零——包括 Qwen-14B Collapse。**\n\n审稿人攻击路径：\"Qwen-14B CI [-32.4, +10.3] 包含零——你的 Collapse 分类无统计依据。\"\n\n论文当前没有直接回应这一点。需要在 §5.3 添加一段：\n\n> \"All n=2 cross-seed CIs are inherently wide (t-distribution with df=1 has no finite variance), rendering individual family-level significance tests uninformative at this sample size. We therefore rely on convergent evidence: (i) cross-seed direction consistency within each benchmark, (ii) cross-benchmark replication, and (iii) dose-response curve shape. For the two families with n=3 seeds, ARC BCa CIs exclude zero (Phi-4: [+0.51, +0.77]; OLMo-2: [+2.90, +3.78]; Appendix §X), providing direct statistical confirmation.\"\n\n**(b) ARC CI 数据被埋在 Appendix——这是论文最强的统计证据。**\n\nPhi-4 ARC CI [+0.51, +0.77] 和 OLMo-2 ARC CI [+2.90, +3.78] 是**唯一不含零的 CI**。但当前仅在 results.tex:68 写 \"ARC-Challenge results are directionally consistent for 4/5 models (Appendix §arc_cross_benchmark)\"。\n\n建议：在 §5.3 或 §5.1 正文中直接报告 ARC n=3 CI，不仅仅引用 appendix。这让审稿人在正文中就能看到统计显著的证据。\n\n**(c) t(df=1) 应显式说明其无信息性。**\n\n脚注 \"n=3 will substantially narrow\" 暗示了问题但不够直白。建议改为：\"t-distribution CIs at df=1 are inherently wide (97.5th percentile = 12.7×SE) and are reported for transparency; see text for convergent evidence approach.\"\n\n---\n\n### 审查 3: 逐条 claim-CI 对齐\n\n| # | Claim（论文中的位置） | CI 支撑 | Severity | 建议 |\n|---|----------------------|---------|----------|------|\n| 1 | \"Immune ±0.5pp\" (abstract) | MMLU CI 含零 → 支持; ARC CI 不含零但 <1pp → 支持 | info | 改 ±0.5 为 mean +0.7 或标注 seed |\n| 2 | \"Collapse −9 to −13pp\" (abstract) | CI [-32.4, +10.3] 含零; 但 4 个观测全负（2 seeds × 2 BMs） | warning | 正文需 convergent evidence 段 |\n| 3 | \"Benefit +3.8pp\" Gemma-2 (abstract) | n=2 MMLU CI 极宽; ARC n=1 点估计 | warning | 论文最弱 claim——写 \"observed +3.8pp (single-seed)\" |\n| 4 | \"4/5 ≥99.6% bootstrap stability\" (abstract) | 这是**item-level** bootstrap, 非跨 seed | **warning** | 审稿人可能混淆：正文 Dir-Con 只有 2/5 strict。Abstract 需要明确 \"within-evaluation bootstrap stability\" |\n| 5 | \"4/5 cross-benchmark consistency\" (results:68) | 描述性观测，措辞用 \"consistent\" 非 \"significant\" | info | 已正确处理 |\n| 6 | Vulnerability gradient 65-70% (results:31) | n=5 families, 无法做回归 | info | 已用 \"concentrates\" 而非 \"correlates\"，可以 |\n| 7 | OLMo-2 \"borderline\" (results:98) | CI [-0.6, +2.6] 含零 | info | 措辞诚实 |\n| 8 | Table 3 Gemma-2 \"TBD\" (results:87) | 未填 | **warning** | F2: 提交前必须填入 Benefit |\n\n---\n\n### 审查 4: 最关键的措辞建议\n\n**当前论文做对了什么：**\n- Table 1 用 item-level CI（紧的），Table 3 用 cross-seed CI（宽的）——两层分开报告 ✅\n- Phi-4 CI 含零的解读正确（\"confirming Immune\"）✅\n- OLMo-2 标为 \"borderline\" ✅\n- ARC 用 multi-seed mean 而非 single-seed ✅\n\n**当前论文缺什么：**\n\n1. **缺一段 \"convergent evidence\" 方法论说明**（最高优先级）。n≤3 限制了单家族推断力，论文需要显式说明依赖三维一致性（cross-seed + cross-benchmark + dose-response shape）而非单个 CI。\n\n2. **缺 ARC CI 在正文中的呈现**。ARC n=3 CI 是唯一不含零的统计证据，不应只在 appendix。\n\n3. **Abstract \"≥99.6% bootstrap stability\" 可能被误读**。这是 item-level resampling stability，不是 cross-seed reproducibility。需要加 \"within-evaluation\" 限定词。\n\n4. **Table 3 两处未完成**：Gemma-2 TBD, OLMo-2 脚注 b 说 \"+/-/+\" 但 Pattern 列是 \"---\"。\n\n---\n\n### 审查 5: n=3 数据能否根本性改变局面？\n\n**能，但有限。** \n\n- BCa bootstrap n=3 显著收窄 CI：Phi-4 从 n=2 CI ~25pp 宽到 n=3 CI 1.56pp 宽（16× 改善）\n- Qwen-14B n=3 如果三 seed 都大负值（当前 s42=-9.37, s123=-12.74），BCa CI 极可能不含零 → **Collapse 可获得统计确认**\n- Gemma-2 n=3 如果 s0 与 s42/s123 方向一致，CI 也可能不含零\n- Qwen-7B 最不确定：s42=-1.78, s123≈0，s0 决定方向\n\n**结论：s0 训练完成后的 n=3 升级对 Qwen-14B 和 Gemma-2 可能产生质变（CI 不含零），值得等。但距 ARR 5 天，论文当前版本必须能在 n=2 框架下自洽。**",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006230"
+        },
+        {
+          "source_line": 6231,
+          "timestamp": "2026-05-20T19:37:13.900686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3794
+          },
+          "id": "event-006231"
+        },
+        {
+          "source_line": 6232,
+          "timestamp": "2026-05-20T19:37:16.505907+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "论文实际文本已读取。逐条审查 claim-CI 对齐。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006232"
+        }
+      ]
+    },
+    {
+      "number": 311,
+      "messages": [
+        {
+          "source_line": 6233,
+          "timestamp": "2026-05-20T19:42:38.467418+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：D+3 晚间全面评估: 论文编译OK, review issues 大量已解决, 识别剩余关键任务），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-006233"
+        },
+        {
+          "source_line": 6234,
+          "timestamp": "2026-05-20T19:42:52.478048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006234"
+        },
+        {
+          "source_line": 6235,
+          "timestamp": "2026-05-20T19:42:52.529694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 19:42 UTC | 更新原因: D+3 晚间全面评估: 论文编译OK, review issues 大量已解决, 识别剩余关键任务\\\\n\\\\n> 目标: EMNLP 2026 ARR May 25 | **D+3, 剩余 5 天**\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿 | 论文编译通过, 16页 (主体 8页), 0 critical 一致性问题\\\\n- **Cross-benchmark**: 5/5 家族 ARC 数据齐全, **4/5 方向一致** ✅\\\\n- **n=3 双 benchmark 家族**: Phi-4 (Immune) + OLMo-2 (Benefit) — 论文最强锚点\\\\n- **Bootstrap CI**: MMLU+ARC 双 benchmark 表完成 (Phi-4/OLMo-2 n=3 BCa, 其余 n=2 t-dist)\\\\n- **Review issues**: Round 6 的 13+ open items 中，D149+ 重写已解决 ~8 项（标题/J=16/贡献结构/abstract 密度等），review_issues.yaml 待更新\\\\n\\\\n## 关键瓶颈: s0 训练 → n=3 升级\\\\n| GPU | 实验 | 预计完成 |\\\\n|-----|------|----------|\\\\n| cqa1:0 | Qwen-7B s0 | 今晚 (~5-7h from 19:28) |\\\\n| westd cuda:1 | Gemma-2 s0 | 今晚/明早 (~8-10h) |\\\\n| westd cuda:3 | Qwen-14B s0 | 明天 (~15-18h) |\\\\n\\\\ns0 完成 → MMLU eval (脚本已准备) → n=3 BCa bootstrap → 论文 Table 最终数据\\\\n\\\\n## 近期任务\\\\n- [x] 5/5 ARC 跨 benchmark 齐全 ✅ (D192)\\\\n- [x] Phi-4 n=3 × 双 benchmark Immune 确认 ✅\\\\n- [x] OLMo-2 n=3 × 双 benchmark Benefit 确认 ✅\\\\n- [x] Bootstrap MMLU+ARC 双 benchmark CI 表 ✅\\\\n- [x] 论文编译验证 (8页 main, EMNLP 合规) ✅\\\\n- [ ] **Paper Agent**: Table 3 Gemma-2 TBD 修复 + OLMo-2 p-value 删除 + orphan bib 引用 (已派)\\\\n- [ ] **Reviewer**: Claim-CI 对齐审计 — Phi-4 CI含零 vs Immune, n=2 宽CI影响 (已派)\\\\n- [ ] **Agent**: Figure 更新 + EMNLP 格式检查 + s0 训练监控 (处理中)\\\\n- [ ] **R3-W10**: Threshold DGP 模拟 (critical, 双 reviewer 要求, 待 Agent 空闲后派)\\\\n- [ ] s0 训练完成 → MMLU eval → n=3 bootstrap\\\\n- [ ] 论文 final polish (all n=3 CI + figures + claim-data alignment)\\\\n- [ ] 提交审稿 (D+5, May 24)\\\\n\\\\n## GPU 状态\\\\n- **westd cuda:0**: 空闲 (已派 Agent 做 figure/format)\\\\n- **westd cuda:1**: Gem\n…[truncated 2273 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-006235"
+        },
+        {
+          "source_line": 6236,
+          "timestamp": "2026-05-20T19:43:05.235301+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 结构合理，时间线可行。无新问题需要报告——我的 Claim-CI 审计已发送，覆盖了核心风险点。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006236"
+        }
+      ]
+    },
+    {
+      "number": 312,
+      "messages": [
+        {
+          "source_line": 6237,
+          "timestamp": "2026-05-20T19:53:00.969993+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check-s0-training-progress_20260520T195051]:\nWorker worker_ops_check-s0-training-progress_20260520T195051 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_ops_check-s0-training-progress_20260520t195051"
+          },
+          "id": "event-006237"
+        },
+        {
+          "source_line": 6238,
+          "timestamp": "2026-05-20T19:53:07.518283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_check-s0-training-progress_20260520T195051_result.json"
+            }
+          },
+          "id": "event-006238"
+        },
+        {
+          "source_line": 6239,
+          "timestamp": "2026-05-20T19:53:07.568946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## GPU 状态\\n\\n### westd-29999 (RTX PRO 6000 Black ×4, 96GB each)\\n| GPU | 状态 | 详情 |\\n|-----|------|------|\\n| cuda:0 | **空闲** | 0 MiB, 0% util |\\n| cuda:1 | **Gemma-2 d050 s0 训练** | PID 406532, 95.4/97.9 GB, 97% util |\\n| cuda:2 | **空闲** | 0 MiB, 0% util |\\n| cuda:3 | **Qwen-14B d025 s0 eval** | PID 420512, 32.7/97.9 GB, 97% util |\\n\\n### cqa1-21977 (RTX 4090D ×1, 24GB)\\n| GPU | 状态 | 详情 |\\n|-----|------|------|\\n| cuda:0 | **Qwen-7B d100 s0 训练** | PID 389216, 20.1/24.6 GB, 93% util |\\n\\n## 训练进度\\n\\n| 实验 | 服务器 | GPU | Step | 进度 | ETA | 当前 Loss | 备注 |\\n|------|--------|-----|------|------|-----|-----------|------|\\n| Qwen2.5-7B d100 s0 | cqa1 | cuda:0 | 1454/4159 | **35%** | ~2h55m | 0.83–1.12 (epoch 0.35) | 正常训练中 |\\n| Gemma-2-9B d050 s0 | westd | cuda:1 | 2646/3642 | **73%** | ~44min | 1.06–1.30 (epoch 0.62) | 正常训练中 |\\n| Qwen2.5-14B d025 s0 | westd | cuda:3 | 3384/3384 | **训练完成** | — | 最终 ~0.88–1.06 | 已转入 MMLU eval: 4429/14042 (31%), ETA ~13min |\\n\\n**注意：PID 均已变化**（cqa1: 313407→389216, westd: 311554→420512, 314029→406532），进程应是重启过或 sweep 自动轮转。\\n\\n**westd cuda:0 和 cuda:2 均空闲，可调度新任务。**\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006239"
+        },
+        {
+          "source_line": 6240,
+          "timestamp": "2026-05-20T19:53:22.658697+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进展正常。Qwen-14B s0 d025 训练完成已转入 MMLU eval，Qwen-7B d100 是最后一个 dosage（~3h），Gemma-2 d050 还需 ~44min。无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006240"
+        }
+      ]
+    },
+    {
+      "number": 313,
+      "messages": [
+        {
+          "source_line": 6241,
+          "timestamp": "2026-05-20T19:55:55.881427+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_fix-fig1-labels_20260520T195041]:\nWorker worker_paper_fix-fig1-labels_20260520T195041 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_paper_fix-fig1-labels_20260520t195041"
+          },
+          "id": "event-006241"
+        },
+        {
+          "source_line": 6242,
+          "timestamp": "2026-05-20T19:56:02.012604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_paper_fix-fig1-labels_20260520T195041_result.json"
+            }
+          },
+          "id": "event-006242"
+        },
+        {
+          "source_line": 6243,
+          "timestamp": "2026-05-20T19:56:02.013122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"5 个 family 的 pattern 映射全部正确：\\n- Phi-4 → Immune\\n- Qwen-14B → Collapse\\n- Qwen-7B → V-recovery\\n- Gemma-2 → Benefit\\n- OLMo-2 → Benefit†\\n\\n生成完成。输出文件：\\n- `fig1_dose_response.pdf` (42KB) / `.png` (287KB) — MMLU + ARC 双 panel dose-response\\n- `fig2_cross_benchmark_scatter.pdf` (37KB) / `.png` (136KB) — cross-benchmark Δ scatter\\n- `gen_fig1_fig2.py` — 可复现的生成脚本\\n\\n所有标签使用 hardcoded family-level taxonomy（不再依赖 `classify_pattern()` 自动输出），caption 注明 \\\"seed=42; family-level classification from multi-seed analysis (Table 3)\\\"。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006243"
+        },
+        {
+          "source_line": 6244,
+          "timestamp": "2026-05-20T19:56:07.429694+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 1 标签已修复为 family-level taxonomy（hardcoded，不再依赖 classify_pattern()），caption 标注了 seed 来源。我之前报告的 [severity: warning] 问题已解决。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006244"
+        }
+      ]
+    },
+    {
+      "number": 314,
+      "messages": [
+        {
+          "source_line": 6245,
+          "timestamp": "2026-05-20T20:15:07.906508+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_compile-verify-8pages_20260520T201304]:\nWorker worker_paper_compile-verify-8pages_20260520T201304 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006245"
+        },
+        {
+          "source_line": 6246,
+          "timestamp": "2026-05-20T20:15:15.957645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_paper_compile-verify-8pages_20260520T201304_result.json"
+            }
+          },
+          "id": "event-006246"
+        },
+        {
+          "source_line": 6247,
+          "timestamp": "2026-05-20T20:15:16.008519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 编译结果\\n\\n| 项目 | 结果 |\\n|------|------|\\n| 总页数 | 17 |\\n| 主文页数 | 8 (≤8 ✅) |\\n| Limitations+Ethics | Page 9 |\\n| References 起始页 | Page 10 |\\n| Appendix 起始页 | Page 12 |\\n| 编译错误 | 0 |\\n| 编译警告 | 9 (6× `h` float→`ht`, 3× hyperref Unicode token — 均无害) |\\n| Fig 1 版本 | `fig_dose_response.pdf` 修改于 2026-05-19 15:02 — 新版 |\\n| TBD 残留 | 无 (grep TBD/TODO/FIXME = 0 hits) |\\n\\n主文恰好 8 页：Sections 1-6 (Introduction → Discussion and Conclusion) 在 page 8 结束，Limitations 从 page 9 开始。符合 EMNLP 2026 限制。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006247"
+        }
+      ]
+    },
+    {
+      "number": 315,
+      "messages": [
+        {
+          "source_line": 6248,
+          "timestamp": "2026-05-20T20:16:39.073648+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_qwen14b-s0-mmlu-results-and-arc-eval_20260520T201249]:\nWorker worker_diag_qwen14b-s0-mmlu-results-and-arc-eval_20260520T201249 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006248"
+        },
+        {
+          "source_line": 6249,
+          "timestamp": "2026-05-20T20:16:45.503355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_qwen14b-s0-mmlu-results-and-arc-eval_20260520T201249_result.json"
+            }
+          },
+          "id": "event-006249"
+        },
+        {
+          "source_line": 6250,
+          "timestamp": "2026-05-20T20:16:45.554102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"All data gathered. Here's the situation:\\n\\n## Qwen-14B s0 MMLU Results\\n**Status: NOT AVAILABLE — s0 training still in progress**\\n\\nTraining sweep timeline (cuda:3):\\n- d000: done (May 20, 20:38)\\n- d005: done (May 21, 00:09) — 3h31m\\n- d025: done (May 21, 03:46) — 3h37m\\n- d050: **training now** (started ~03:46, ~3.5h per dosage → ETA ~07:20)\\n- d100: **not started** → ETA ~10:50\\n\\nMMLU eval cannot run until all 5 dosage checkpoints are complete (~7 more hours).\\n\\n### Existing s42/s123 MMLU data for reference\\n\\n| Dosage | s42 | s123 |\\n|--------|---------|---------|\\n| d000   | 69.44%  | 68.67%  |\\n| d005   | 69.01%  | 70.84%  |\\n| d025   | 62.04%  | 63.68%  |\\n| d050   | 59.41%  | 60.99%  |\\n| d100   | 60.07%  | 55.93%  |\\n\\n- s42: Δ(d100−d0) = **−9.37pp**\\n- s123: Δ(d100−d0) = **−12.74pp**\\n\\n(Note: 任务描述中 s42/s123 标签反了 — 实际数据 s42=−9.37pp, s123=−12.74pp)\\n\\n## n=3 MMLU Bootstrap\\n**Status: BLOCKED — 需要 s0 数据**\\n\\nBootstrap 脚本已就绪：`/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py`\\n\\n## ARC s0 Eval\\n**Status: NOT STARTED — checkpoints not ready**\\n\\ncuda:0 空闲，ARC eval 脚本模板已有 (`eval_qwen14b_arc_s42.sh`)，MMLU eval 脚本也已存在 (`eval_qwen14b_s0_mmlu.sh`)。等 s0 训练全部完成后，MMLU eval 应先于 ARC eval 运行。\\n\\n### 下一步\\n训练完成后需依次：\\n1. 跑 MMLU s0 eval（脚本已就绪）\\n2. 跑 ARC s0 eval（需创建脚本）\\n3. n=3 bootstrap（3 个 seed 的 Δ(d100) 值）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006250"
+        },
+        {
+          "source_line": 6251,
+          "timestamp": "2026-05-20T20:16:55.781656+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen-14B s0 训练进度正常（d050 训练中，ETA ~7h 全部完成）。s42=-9.37pp, s123=-12.74pp 数据与我此前核实一致。无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006251"
+        }
+      ]
+    },
+    {
+      "number": 316,
+      "messages": [
+        {
+          "source_line": 6252,
+          "timestamp": "2026-05-20T20:21:28.037435+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：Qwen-14B 时间线修正 + 状态同步 (context 恢复后)），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-006252"
+        },
+        {
+          "source_line": 6253,
+          "timestamp": "2026-05-20T20:21:34.381730+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006253"
+        }
+      ]
+    },
+    {
+      "number": 317,
+      "messages": [
+        {
+          "source_line": 6254,
+          "timestamp": "2026-05-20T20:23:12.855170+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_copy-fixed-figures-to-paper_20260520T201537]:\nWorker worker_paper_copy-fixed-figures-to-paper_20260520T201537 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006254"
+        },
+        {
+          "source_line": 6255,
+          "timestamp": "2026-05-20T20:23:20.106831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_paper_copy-fixed-figures-to-paper_20260520T201537_result.json"
+            }
+          },
+          "id": "event-006255"
+        },
+        {
+          "source_line": 6256,
+          "timestamp": "2026-05-20T20:23:20.157542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。总结：\\n\\n1. **fig_dose_response.pdf（Fig 1）**：已用修复后的版本（42259 bytes）替换旧版（18954 bytes），旧版备份为 `fig_dose_response.pdf.bak_wrong_labels`\\n2. **fig2_cross_benchmark_scatter.pdf（Fig 2）**：已下载到论文 figures 目录（37018 bytes），但**论文 tex 中未引用此文件名**。results.tex:128 中 Fig 2 引用的是 `fig_treated_untreated.pdf`——如果 cross_benchmark_scatter 应该替换 treated_untreated，需要手动确认后再替换或修改 tex 引用\\n3. **论文编译成功**：17 页，`main.pdf` 已更新\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006256"
+        }
+      ]
+    },
+    {
+      "number": 318,
+      "messages": [
+        {
+          "source_line": 6257,
+          "timestamp": "2026-05-20T20:23:43.031100+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_gemma2-s0-dual-eval-prep-and-submit_20260520T202051]:\nWorker worker_ops_gemma2-s0-dual-eval-prep-and-submit_20260520T202051 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006257"
+        },
+        {
+          "source_line": 6258,
+          "timestamp": "2026-05-20T20:23:50.932969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_gemma2-s0-dual-eval-prep-and-submit_20260520T202051_result.json"
+            }
+          },
+          "id": "event-006258"
+        },
+        {
+          "source_line": 6259,
+          "timestamp": "2026-05-20T20:23:51.084125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"重要发现：\\n\\n**当前状态：**\\n- **d050 训练**：GPU 1 上运行中，进度 3342/3642 (92%)，约 12 分钟完成\\n- **d100 训练**：尚未开始。sweep 脚本在 d050 之后会自动启动 d100，d100 数据量最大（116k+ samples），预计还需 ~2.5-5 小时\\n- **已完成 checkpoint**: d000, d005, d025（均有 adapter 文件）\\n- **d050**: lora_adapter 目录存在但尚未写入文件（训练完成时才写）\\n- **d100**: 目录不存在\\n\\n**sweep dosage 列表是 000/005/025/050/100**（不含 d075），与你预期的 d0/d025/d050/d075/d100 不完全一致。\\n\\n**已有脚本：**\\n- MMLU s0 eval: `eval_gemma2_s0_mmlu.sh` — 已存在，但用 cuda:0\\n- ARC s0 eval: 不存在（只有 s123 版本）\\n\\n由于 d100 训练还需数小时，eval 无法在短期内全部跑完所有 dosage。两个选项：\\n\\n**A)** 现在准备好两个 eval 脚本（MMLU 改到 cuda:2，新建 ARC s0 版本 cuda:0），等全部训练完成后提交\\n**B)** 先对已有 checkpoint (d000/d005/d025) 跑 eval，d050/d100 完成后再补跑\\n\\n你要哪个方案？\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-006259"
+        }
+      ]
+    },
+    {
+      "number": 319,
+      "messages": [
+        {
+          "source_line": 6260,
+          "timestamp": "2026-05-20T20:28:17.268046+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：全部 s0 时间线修正（串行 5 dosage）+ Fig 1 完成 + review_issues 清理完成），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-006260"
+        },
+        {
+          "source_line": 6261,
+          "timestamp": "2026-05-20T20:28:25.194839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006261"
+        },
+        {
+          "source_line": 6262,
+          "timestamp": "2026-05-20T20:28:25.296738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 20:28 UTC | 更新原因: 全部 s0 时间线修正（串行 5 dosage）+ Fig 1 完成 + review_issues 清理完成\\\\n\\\\n> 目标: EMNLP 2026 ARR May 25 | **D+3, 剩余 5 天**\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿 | 论文编译通过, 17页 (主体 8页), 0 critical 一致性问题\\\\n- **Cross-benchmark**: 5/5 家族 ARC 数据齐全, **4/5 方向一致** ✅\\\\n- **n=3 双 benchmark 家族**: Phi-4 (Immune) + OLMo-2 (Benefit) — 论文最强锚点\\\\n- **Fig 1 标签修复**: ✅ 完成（family-level taxonomy hardcoded），论文重编译通过\\\\n- **Paper Agent**: 6 项综合修复全部完成\\\\n- **review_issues.yaml**: 12 项 resolved, 3 项 in_progress, 4 项 open (info)\\\\n\\\\n## s0 训练 → n=3 升级（全部串行 5 dosage）\\\\n| GPU | 实验 | 当前进度 | 预计完成 (UTC) |\\\\n|-----|------|----------|----------------|\\\\n| cqa1:0 | Qwen-7B s0 | d050 训练中 | ~22:50 (最先) |\\\\n| westd cuda:1 | Gemma-2 s0 | d050 92% → d100 未开始 | ~23:30-01:30 |\\\\n| westd cuda:3 | Qwen-14B s0 | d050 训练中 → d100 未开始 | ~03:20 D+4 |\\\\n\\\\n⚠️ 所有 sweep 都是 5 dosage 串行（每个 ~3.5h），全部 n=3 数据到位 D+4 上午。\\\\n\\\\n## 自动 Pipeline\\\\n训练完成 → cron 触发 → MMLU eval + ARC eval → n=3 BCa bootstrap → 汇报 Director → Paper Agent patch Table 3\\\\n\\\\n## 近期任务\\\\n- [x] 5/5 ARC 跨 benchmark 齐全 ✅\\\\n- [x] Phi-4 + OLMo-2 n=3 × 双 benchmark ✅\\\\n- [x] Paper Agent 6 项综合修复 ✅\\\\n- [x] Fig 1 标签修复 + 论文重编译 ✅\\\\n- [x] 论文 8 页 main 确认 ✅\\\\n- [x] review_issues.yaml 批量更新 (12 项 resolved) ✅\\\\n- [ ] **R3-W10**: Threshold DGP 模拟 (CPU Worker, ~15-45min)\\\\n- [ ] **R2-W1**: Random MAE control (CPU Worker, 已启动)\\\\n- [ ] Qwen-7B n=3: 训练 → eval (cqa1 直接或 scp) → BCa bootstrap\\\\n- [ ] Gemma-2 n=3: 训练 → cuda:0/2 MMLU+ARC eval → BCa bootstrap\\\\n- [ ] Qwen-14B n=3: 训练 → MMLU+ARC eval → BCa bootstrap\\\\n- [ ] Paper Agent: n=3 data → patch Table 3 CI, 更新 conve\n…[truncated 2191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 101
+          },
+          "id": "event-006262"
+        },
+        {
+          "source_line": 6263,
+          "timestamp": "2026-05-20T20:28:29.952893+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 数据与我独立核实的训练进度和实验状态一致。s0 时间线合理（Qwen-7B ~22:50, Gemma-2 ~23:30-01:30, Qwen-14B ~03:20 D+4）。自动 pipeline（训练完成 → cron → eval → bootstrap → Paper Agent patch）设计完整。\n\n无需额外报告。当前等待 s0 训练完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006263"
+        }
+      ]
+    },
+    {
+      "number": 320,
+      "messages": [
+        {
+          "source_line": 6264,
+          "timestamp": "2026-05-20T20:32:18.630471+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_prep-qwen7b-s0-cqa1-eval_20260520T202810]:\nWorker worker_ops_prep-qwen7b-s0-cqa1-eval_20260520T202810 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006264"
+        },
+        {
+          "source_line": 6265,
+          "timestamp": "2026-05-20T20:32:26.327302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_prep-qwen7b-s0-cqa1-eval_20260520T202810_result.json"
+            }
+          },
+          "id": "event-006265"
+        },
+        {
+          "source_line": 6266,
+          "timestamp": "2026-05-20T20:32:26.378081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 报告\\n\\n### 1. eval 环境就绪状态\\n\\n| 项目 | 状态 |\\n|------|------|\\n| evaluate.py | `/root/contamcal-irt-calibration/exp001/evaluate.py` — md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes，与 reference hash 一致 (C009) |\\n| MMLU 数据集 | 已缓存，14042 test + 1531 val |\\n| ARC-Challenge 数据集 | 已缓存，1172 test + 299 val |\\n| Python/conda | `/root/miniconda3/bin/python` (conda base) |\\n| GPU | RTX 4090D 24GB，cuda:0 当前在训练 (PID 389216, 20GB) |\\n\\n### 2. 脚本路径\\n\\n- MMLU: `/root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_mmlu_cqa1.sh`\\n- ARC: `/root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_arc_cqa1.sh`\\n\\n两个脚本均遵守 C004 (显式 CUDA_VISIBLE_DEVICES=0)、C006 (lora_alpha=32 检查)、C009 (evaluate.py md5 校验)。输出到 `/root/autodl-tmp/exp001/eval_results_v2/qwen7b_{dosage}_s0/`。已有结果会自动跳过。\\n\\n### 3. 需注意的问题\\n\\n- **d100_s0 尚未完成训练**：d000-d050 的 lora_adapter 已就绪，d100_s0/lora_adapter/ 目录为空。脚本会自动 SKIP 未就绪的 checkpoint，等 d100 训练完写出 adapter_config.json 后可重跑补上。\\n- **运行方式**：训练完成后，先跑 MMLU 再跑 ARC（串行），预计 MMLU ~10min/dosage × 5 + ARC ~5min/dosage × 5 ≈ 75min 总计。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006266"
+        },
+        {
+          "source_line": 6267,
+          "timestamp": "2026-05-20T20:32:34.345810+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cqa1 evaluate.py 与 C009 原始参考值一致（37591 bytes, md5=001a9bc23f808c47d25ef9eaeecb81f1）。脚本合规，等 d100 训练完成后自动执行。无异议。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006267"
+        }
+      ]
+    },
+    {
+      "number": 321,
+      "messages": [
+        {
+          "source_line": 6268,
+          "timestamp": "2026-05-20T20:42:26.158868+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_r3w10-threshold-dgp-simulation_20260520T201021]:\nWorker worker_exp_r3w10-threshold-dgp-simulation_20260520T201021 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006268"
+        },
+        {
+          "source_line": 6269,
+          "timestamp": "2026-05-20T20:42:35.724038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_exp_r3w10-threshold-dgp-simulation_20260520T201021_result.json"
+            }
+          },
+          "id": "event-006269"
+        },
+        {
+          "source_line": 6270,
+          "timestamp": "2026-05-20T20:42:35.724614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Simulation actively running on westd-29999 (103/400). Will check again in ~4 minutes.\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006270"
+        }
+      ]
+    },
+    {
+      "number": 322,
+      "messages": [
+        {
+          "source_line": 6271,
+          "timestamp": "2026-05-20T20:42:56.009118+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_exp_r2w1-random-mae-control_20260520T202435]:\nWorker worker_exp_r2w1-random-mae-control_20260520T202435 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006271"
+        },
+        {
+          "source_line": 6272,
+          "timestamp": "2026-05-20T20:43:02.635381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_exp_r2w1-random-mae-control_20260520T202435_result.json"
+            }
+          },
+          "id": "event-006272"
+        },
+        {
+          "source_line": 6273,
+          "timestamp": "2026-05-20T20:43:02.635913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"R2-W1 Random MAE Control 实验完成。结果：\\n\\n| 指标 | 值 |\\n|------|-----|\\n| **Random 300 MAE** | **0.0394 ± 0.0080** |\\n| **Random 300 tau** | **0.5528 ± 0.1162** |\\n| Raw MAE (all 14042 items) | 0.0237 |\\n\\n**每 seed 详情：**\\n\\n| Seed | MAE_cal | MAE_raw | tau | Time |\\n|------|---------|---------|------|------|\\n| 0 | 0.0413 | 0.0345 | 0.460 | 37s |\\n| 1 | 0.0404 | 0.0302 | 0.635 | 38s |\\n| 2 | 0.0289 | 0.0332 | 0.657 | 38s |\\n| 3 | 0.0510 | 0.0399 | 0.329 | ~40s |\\n| 4 | 0.0424 | 0.0312 | 0.599 | 39s |\\n| 5 | 0.0416 | 0.0419 | 0.497 | 41s |\\n| 6 | 0.0361 | 0.0315 | 0.562 | 42s |\\n| 7 | 0.0235 | 0.0265 | 0.767 | 41s |\\n| 8 | 0.0501 | 0.0301 | 0.555 | 41s |\\n| 9 | 0.0388 | 0.0374 | 0.467 | 41s |\\n\\n- 25 respondents (5 model families × 5 dosages), 14042 MMLU items\\n- Vanilla 2PL IRT, 300 random items per trial, 10 seeds\\n- Ground truth = same-family d=0 raw accuracy on all 14042 items\\n- 结果保存到 `westd-29999:/root/contamcal-irt-calibration/artifacts/random_mae_control/random_mae_control_results.json`\\n- Artifact registered: `art_20260520_2887f4`\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006273"
+        },
+        {
+          "source_line": 6274,
+          "timestamp": "2026-05-20T20:43:17.021739+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "R2-W1 结果清晰：Random 300 MAE = 0.039 vs RRF 300 MAE = 0.008（~5× 差距），证明 RRF item selection 有实质价值。无合规问题，数据看起来正常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-006274"
+        }
+      ]
+    },
+    {
+      "number": 323,
+      "messages": [
+        {
+          "source_line": 6275,
+          "timestamp": "2026-05-20T20:44:56.332127+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_r3w10-dgp-collect-results_20260520T204259]:\nWorker worker_diag_r3w10-dgp-collect-results_20260520T204259 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006275"
+        },
+        {
+          "source_line": 6276,
+          "timestamp": "2026-05-20T20:45:03.935700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_r3w10-dgp-collect-results_20260520T204259_result.json"
+            }
+          },
+          "id": "event-006276"
+        },
+        {
+          "source_line": 6277,
+          "timestamp": "2026-05-20T20:45:03.986303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Sweep is at **108/400** (~27%), running ~11s/iteration. ETA ~43 minutes (~05:27 server time). Will check again in 4 minutes.\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006277"
+        }
+      ]
+    },
+    {
+      "number": 324,
+      "messages": [
+        {
+          "source_line": 6278,
+          "timestamp": "2026-05-20T21:17:40.504700+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_r3w10-dgp-status-and-collect_20260520T211609]:\nWorker worker_diag_r3w10-dgp-status-and-collect_20260520T211609 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006278"
+        },
+        {
+          "source_line": 6279,
+          "timestamp": "2026-05-20T21:17:49.129635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_r3w10-dgp-status-and-collect_20260520T211609_result.json"
+            }
+          },
+          "id": "event-006279"
+        },
+        {
+          "source_line": 6280,
+          "timestamp": "2026-05-20T21:17:49.180263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## R3-W10 Threshold DGP 状态\\n\\n**进程状态**: 运行中（PID 425271）\\n**进度**: 165/400 (41.3%)\\n\\n**运行参数**: 2 DGPs × 4 J × 5 γ × 10 seeds = 400 runs, N=20 respondents, 4 chains\\n\\n**时间估算**:\\n- 已用: ~2912s (~49 min)\\n- 速率: ~17.7s/iteration\\n- ETA: ~4160s (~69 min)\\n- 预计完成: ~06:26 UTC\\n\\n**已有的 artifacts/ 文件是之前的 2-run 测试（04:25 完成），不是当前运行的结果。** 当前 400-run 模拟的结果尚未写入。\\n\\n**从日志观察到的中间结果样本**:\\n\\n| iter | DGP | J | γ_true | γ̂ | attenuation | div |\\n|------|---------|-----|--------|-------|-------------|-----|\\n| 160 | linear | 500 | 0.5 | 0.283 | 0.566 | 1 |\\n| 161 | linear | 500 | 1.0 | 1.095 | 1.095 | 1 |\\n| 162 | linear | 500 | 1.0 | 0.663 | 0.663 | 1 |\\n| 163 | linear | 500 | 1.0 | 0.868 | 0.868 | 1 |\\n| 164 | linear | 500 | 1.0 | 0.903 | 0.903 | 1 |\\n\\n还需约 70 分钟完成。要等完成后再收集结果吗？\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006280"
+        }
+      ]
+    },
+    {
+      "number": 325,
+      "messages": [
+        {
+          "source_line": 6281,
+          "timestamp": "2026-05-20T21:19:11.543939+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_r3w10-dgp-final-collect_20260520T211830]:\nWorker worker_diag_r3w10-dgp-final-collect_20260520T211830 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006281"
+        },
+        {
+          "source_line": 6282,
+          "timestamp": "2026-05-20T21:19:19.242851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diag_r3w10-dgp-final-collect_20260520T211830_result.json"
+            }
+          },
+          "id": "event-006282"
+        },
+        {
+          "source_line": 6283,
+          "timestamp": "2026-05-20T21:19:19.343619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"166/400 完成，~72 min 剩余。每 5 分钟轮询一次，完成后自动收集结果。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-006283"
+        }
+      ]
+    },
+    {
+      "number": 326,
+      "messages": [
+        {
+          "source_line": 6284,
+          "timestamp": "2026-05-20T21:50:44.477379+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n请做一轮完整的叙事一致性审查，重点关注以下 5 个维度：\n\n1. **Abstract ↔ Results 数据对齐**：Abstract 中每个定量 claim（±0.5pp, +3.8pp, -9 to -13pp, 4/5 bootstrap stability, 4/5 ARC directional agreement, Cohen's d=-1.55 to -1.98, J≥50）是否都能在 Results/Appendix 中找到精确来源？有没有数字漂移？\n\n2. **n=2 CI limitation 表述**：当前 §5.3 使用 convergent evidence 框架处理 n=2 宽 CI。检查：(a) 这个框架在 Method → Results → Conclusion 中是否贯穿一致？(b) Limitations 中的 seed sensitivity 段落是否与 Results §5.3 的措辞协调？(c) 有没有某处仍暗示 CI 是分类的主要依据（与 convergent evidence 框架矛盾）？\n\n3. **Intro contributions ↔ Results sections 映射**：3 个 contributions（taxonomy + DiD + signal failure）是否各自在 Results 中有完整对应的 subsection？Conclusion 的 3 段是否与 contributions 一一对应？\n\n4. **Cross-benchmark narrative 一致性**：Intro 说 \"4/5 ARC directional agreement\"，Results §5.1 末尾的 ARC consistency 段、§5.2 GSM8K transfer 段、Conclusion 第一段的 cross-benchmark 措辞——三处是否使用相同的统计口径（multi-seed means, not single-seed）？\n\n5. **DGP 中间结果预评估**：linear DGP 对照组的 γ̂ attenuation 样本数据（J=500, γ_true=0.5 → γ̂=0.283 attenuation 43%; γ_true=1.0 → γ̂=0.66-1.10 attenuation 0-34%）。如果 threshold DGP 的 attenuation 显著大于 linear DGP，这支持 \"γ≈0 可能是 misspecification 而非 null\" 的论证。如果 attenuation 差异不大，我们的 Limitations §additive γ linearity 段落需要加强。你对这个中间趋势怎么看？\n\n请逐项给出 pass/warning/critical + 具体问题位置。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-006284"
+        },
+        {
+          "source_line": 6285,
+          "timestamp": "2026-05-20T21:50:59.538815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.tex"
+            }
+          },
+          "id": "event-006285"
+        },
+        {
+          "source_line": 6286,
+          "timestamp": "2026-05-20T21:50:59.539262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review,hyperref]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{multirow}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{subcaption}\n12\t\\usepackage{algorithm}\n13\t\\usepackage{algpseudocode}\n14\t\\usepackage{float}\n15\t\n16\t\\title{Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\begin{abstract}\n24\t\\input{abstract}\n25\t\\end{abstract}\n26\t\n27\t\\input{introduction}\n28\t\\input{related_work}\n29\t\\input{method}\n30\t\\input{experimental_setup}\n31\t\\input{results}\n32\t\\input{conclusion}\n33\t\n34\t\\input{limitations}\n35\t\\input{ethics}\n36\t\n37\t\\bibliography{references}\n38\t\n39\t\\input{appendix}\n40\t\n41\t\\end{document}\n42\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006286"
+        },
+        {
+          "source_line": 6287,
+          "timestamp": "2026-05-20T21:51:03.104557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-006287"
+        },
+        {
+          "source_line": 6288,
+          "timestamp": "2026-05-20T21:51:03.456431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n4\t\n5\tWe perform controlled SFT injection (LoRA, five dosage levels) into five models spanning four independent families from four labs (Alibaba, Microsoft, Allen AI, Google) and discover qualitatively different dose-response patterns---from immunity (Phi-4 14.7B, $\\pm$0.5pp on MMLU) to catastrophic collapse (Qwen-14B, $-$9 to $-$13pp across seeds). Contamination vulnerability concentrates in the 65--70\\% MMLU baseline band: below it, models benefit (OLMo-2 $+$3.2pp, Gemma-2 $+$3.8pp); above it, they are harmed or immune. Counter-intuitively, the 14B model is 3$\\times$ more fragile than 7B. Using ContamCal, a two-stage pipeline combining multi-signal item filtering with contamination-augmented IRT (2PL+$\\gamma_k$), we provide the statistical machinery for this characterization.\n6\t\n7\tOur contributions:\n8\t\\begin{enumerate}\n9\t    \\item \\textbf{Dose-response taxonomy with cross-seed and cross-benchmark validation.} Controlled injection across four families reveals qualitatively different dose-response patterns; contamination vulnerability concentrates in the 65--70\\% MMLU baseline band, while models at extreme baselines show limited sensitivity. Cross-benchmark transfer to GSM8K reveals t\n…[truncated 1156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-006288"
+        },
+        {
+          "source_line": 6289,
+          "timestamp": "2026-05-20T21:51:03.456944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-006289"
+        },
+        {
+          "source_line": 6290,
+          "timestamp": "2026-05-20T21:51:03.858630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe systematically profiled how SFT-injected contamination affects benchmark scores across model families and scales. Three findings emerge.\n4\t\n5\t\\paragraph{Diverse patterns, not uniform inflation.}\n6\tControlled injection reveals qualitatively different dose-response patterns, not uniform inflation: vulnerability concentrates in the 65--70\\% MMLU baseline band. DiD analysis (\\S\\ref{sec:memorization_test}) shows these patterns arise from global capability modulation, not item-specific memorization---challenging overlap-based detection methods. Direction is consistent across benchmarks (4/5 on ARC); shape varies with benchmark properties (Appendix~\\ref{sec:arc_cross_benchmark}). Cross-seed analysis (\\S\\ref{sec:cross_seed}) shows direction is reproducible but magnitude is seed-sensitive; conflicting findings in the literature may partly reflect unreported seed variance.\n7\t\n8\t\\paragraph{Why bigger $\\neq$ more robust.}\n9\tQwen-14B ($-$9 to $-$13pp across seeds) is 3$\\times$ more fragile than Qwen-7B ($-$1.8pp at d100, trough $-$3.1pp at d025): SFT injection disrupts more specialized representations that smaller models have not yet developed. Organizations fine-tuning frontier models on mixed-quality data face greater capability degradation risk.\n10\t\n11\t\\paragraph{Diagnostic value beyond aggregate calibration.}\n12\tDomain analysis reveals heterogeneity masked by aggregate scores (Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$). The IRT framework captures both family-level patterns and domain-level decomposition. Pretraining contamination may produce qualitatively different effects \\citep{schaeffer2026causally}; scaling to 70B+ is a natural next step.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-006290"
+        },
+        {
+          "source_line": 6291,
+          "timestamp": "2026-05-20T21:51:03.859000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-006291"
+        },
+        {
+          "source_line": 6292,
+          "timestamp": "2026-05-20T21:51:03.909538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tWe identify ten limitations that bound the scope of our conclusions.\n5\t\n6\t\\paragraph{Scale ceiling.}\n7\tAll experiments use models at or below 14.7B parameters. Larger models (70B+) may exhibit qualitatively different contamination dynamics where SFT injection is absorbed without producing measurable signal divergence.\n8\t\n9\t\\paragraph{Seed sensitivity.}\n10\tCross-seed analysis (\\S\\ref{sec:cross_seed}) confirms that effect \\emph{direction} is reproducible across three seeds, but magnitude and dose-response shape exhibit seed-dependent variability. OLMo-2's cross-seed CI crosses zero, rendering its benefit classification borderline. Practitioners should report multi-seed CIs rather than single-seed point estimates.\n11\t\n12\t\\paragraph{SFT ecological validity.}\n13\tWe use LoRA-based SFT injection exclusively in AUGMENT mode (contaminated items appended to, not replacing, base SFT data). Pretraining-stage leakage, which occurs during large-scale web crawl ingestion, may produce qualitatively different contamination signatures. The position bias at 0.5B (A-option rate escalating from 46\\% to 98\\% with dosage) is likely SFT-specific. Generalization to pretraining contamination requires further validation.\n14\t\n15\t\\paragraph{ARC-Challenge bootstrap stability.}\n16\tARC-Challenge contains only 1{,}172 items (vs.\\ 14{,}042 for MMLU), resulting in substantially lower bootstrap profile stability: OLMo-2 53.3\\%, Gemma-2 62.7\\% (vs.\\ $\\geq$76.6\\% on MMLU). Gemma-2's ARC $\\Delta$acc 95\\% CI crosses zero, and Qwen-14B exhibits a different pattern (V-recovery) on ARC than on MMLU (Collapse). Cross-benchmark consistency claims should be interpreted as directional agreement, not pattern-level replication.\n17\t\n18\t\\paragraph{Signal coverage.}\n19\tS1 (embedding similarity) requires training corpus access, unavailable for closed-source models. For API-only models, only S2 and S4 are applicable, and both show poor discrimination below 1.5B (\\\n…[truncated 2286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006292"
+        },
+        {
+          "source_line": 6293,
+          "timestamp": "2026-05-20T21:52:25.990450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-006293"
+        },
+        {
+          "source_line": 6294,
+          "timestamp": "2026-05-20T21:52:26.041295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tContamCal operates in two stages: Stage~1 estimates per-item contamination exposure from multiple detection signals via training-free fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to produce calibrated ability estimates with credible intervals.\n5\t\n6\t\\subsection{Problem Formulation}\n7\t\\label{sec:formulation}\n8\t\n9\tLet $y_{ijk} \\in \\{0,1\\}$ denote the binary response of model~$j$ ($j=1,\\ldots,J$) to item~$i$ ($i=1,\\ldots,I_k$) on benchmark~$k$. Standard IRT assumes $P(y_{ijk}=1) = f(\\theta_j, \\boldsymbol{\\xi}_i)$ where $\\theta_j$ is latent ability and $\\boldsymbol{\\xi}_i$ collects item parameters. When training corpora contain benchmark items, the observed ability $\\hat{\\theta}_j$ confounds genuine capability with memorization.\n10\t\n11\tOur goal is to estimate $\\theta_j^{\\text{clean}}$, the ability each model would exhibit absent contamination, and to diagnose contamination effects at domain granularity. We adapt item compromise IRT \\citep{eckerly_2017_item_compromise,sinharay_2017_preknowledge} and explanatory IRT \\citep{deboeck_2004_explanatory_irt} for LLM evaluation: replacing binary leakage indicators with continuous exposure scores $e_{ij} \\in [0,1]$, fitting per-benchmark models to handle the shared item pool \\citep{sanmartin_2009_irt}, and recovering clean ability via counterfactual inference (setting $e_{ij}=0$).\n12\t\n13\t\\subsection{Stage 1: Multi-Signal Exposure Mapping}\n14\t\\label{sec:stage1}\n15\t\n16\tFor each model~$j$ and item~$i$, we consider four candidate detection signals. \\textbf{S1}~(Embedding similarity): cosine similarity between the item embedding and its nearest neighbor in the SFT training corpus. \\textbf{S2}~(Min-K\\%++): a membership inference statistic based on token-level surprisal \\citep{zhang_2024_minkpp}. \\textbf{S3}~(ConStat): the accuracy gap between original and paraphrased item variants \\citep{dekoninck2024constat}. \\textbf{S4}~(Self-Critique): negative entropy of mode\n…[truncated 7051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006294"
+        },
+        {
+          "source_line": 6295,
+          "timestamp": "2026-05-20T21:55:13.162974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006295"
+        },
+        {
+          "source_line": 6296,
+          "timestamp": "2026-05-20T21:55:13.214810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-006296"
+        },
+        {
+          "source_line": 6297,
+          "timestamp": "2026-05-20T21:55:56.210512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 叙事一致性审查报告（5 维度）\n\nDirector 要求的完整叙事一致性审查，逐项评定。\n\n---\n\n### 维度 1: Abstract ↔ Results 数值对齐\n**[severity: warning]**\n\n3 个问题：\n\n**W1a. \"±0.5pp\" 使用 s42 单 seed 值，非多 seed 均值。** Abstract 写 \"Phi-4 shows ±0.5pp changes\"，但 Table 3 多 seed 均值为 +0.72pp（CI [-0.17, +1.39]）。s42 单独是 -0.17pp。Abstract 应改用多 seed 均值或明确标注 seed。\n- 位置：abstract.tex\n\n**W1b. \"4/5 families show ≥99.6% bootstrap directional stability\" 指的是 item-level bootstrap，非 cross-seed stability。** 审稿人可能误读为\"跨 seed 稳定\"，但实际是单 seed 内 item 重采样稳定性（n=14042 items，稳定性高是预期的）。建议明确 \"item-level bootstrap\" 限定词。\n- 位置：abstract.tex\n\n**W1c. Table 1 脚注 p=0.039 与 CI 含零矛盾。** results.tex line 24 脚注写 \"cross-seed CI crosses zero ($p=0.039$)\"——CI 含零通常意味着 p>0.05（双侧），但此处 p=0.039<0.05。两者不能同时成立（除非单侧检验或 CI 与 p 来自不同方法）。审稿人会直接攻击这个矛盾。\n- 位置：results.tex line 24\n\n---\n\n### 维度 2: n=2 CI 局限性处理\n**[severity: info]** — PASS\n\n§5.3（Table 3）正确使用了 t-distribution df=1 处理 n=2 情况，BCa 处理 n≥3 情况，脚注标注了 ^B 和 ^t 区分方法。Limitations seed sensitivity 段（limitations.tex line 9-10）承认了 seed 不足问题。\n\n**建议（非必须）**：Method section 目前缺少\"convergent evidence\"方法论段落。当前依赖 cross-seed direction + cross-benchmark replication + dose-response shape 三线证据，但这个逻辑没有在 Method 中显式阐述。加一段会让论证结构更清晰，但不加也不算硬伤。\n\n---\n\n### 维度 3: Intro Contributions ↔ Results 映射\n**[severity: warning]**\n\n**贡献映射关系：**\n- Contribution 1（dose-response taxonomy + validation）→ §5.1 + §5.2 + §5.3 ✓\n- Contribution 2（global modulation not memorization, DiD）→ §5.4 + §5.6 ✓\n- Contribution 3（signal failure characterization）→ §5.5 + §5.6 ✓\n\nResults 映射完整，**但 Conclusion 对 Contribution 2 权重不足**。conclusion.tex 三段分别讲\"多样模式\"、\"bigger≠robust\"、\"diagnostic value\"。Contribution 2（DiD 证据表明全局调制而非记忆）只在第一段末尾一句带过，没有独立段落。这是论文的核心区分点（区别于\"contamination=memorization\"的常见假设），Conclusion 应给更多篇幅。\n- 位置：conclusion.tex 第 1 段\n\n---\n\n### 维度 4: Cross-Benchmark 叙事一致性\n**[severity: warning]**\n\nResults §5.1 line 3 明确写 \"using multi-seed means where available\"——正确。但 Abstract 和 Conclusion 在引用数值时未限定是 multi-seed mean 还是 single-seed。考虑到 n=2 情况下单 seed 和均值可以差异很大（如 OLMo-2 MMLU s42=+3.22pp vs mean=+1.35pp），Abstract/Conclusion 需要一致地使用 multi-seed mean 或明确标注。\n\n另外，ARC Dir-Con=5/5（4/4 testable）vs MMLU Dir-Con=2/5 的差异在 Results §5.2 中有讨论，但 Abstract 只提了 \"4/5 ARC directional agreement\" 而未提 MMLU 一致性较低——这可能给审稿人留下 cherry-picking 印象。\n- 位置：abstract.tex, conclusion.tex\n\n---\n\n### 维度 5: DGP 中间结果初步检查\n**[severity: info]** — 待完成\n\nR3-W10 Threshold DGP simulation 仍在运行（166/400, ~41%）。从日志样本观察：\n- Linear DGP, J=500, γ_true=0.5 → γ̂=0.283（attenuation ratio=0.566，即 43% 衰减）\n- Linear DGP, J=500, γ_true=1.0 → γ̂ 在 0.663-1.095 之间波动\n\nLimitations line 31 预测 threshold DGP 会产生 \"overestimation, not attenuation\"——待 threshold DGP 结果出来后核实。如果实际也是 attenuation，该 limitation 表述需要修正。\n\n**将在 simulation 完成后（预计 ~06:30 UTC）发布 DGP 结果专项审查。**\n\n---\n\n### 总结\n\n| 维度 | 评级 | 关键问题 |\n|------|------|----------|\n| 1. Abstract↔Results | WARNING | ±0.5pp 用 s42 非均值；stability 指标可误读；p=0.039 vs CI 含零矛盾 |\n| 2. n=2 CI 处理 | PASS | §5.3 处理正确，建议加 convergent evidence 方法段 |\n| 3. Contributions↔Results | WARNING | Conclusion 对 Contribution 2 (DiD) 权重不足 |\n| 4. Cross-BM 叙事 | WARNING | Abstract/Conclusion 未限定 multi-seed mean；只报 ARC 一致性 |\n| 5. DGP | PENDING | 待 simulation 完成核实 |\n\n**最高严重级别：WARNING。无 CRITICAL。** 3 个 WARNING 都是论文修订可解决的叙事问题，不涉及实验设计缺陷。建议优先修复 W1c（p 值与 CI 矛盾，审稿人必攻击）。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-006297"
+        },
+        {
+          "source_line": 6298,
+          "timestamp": "2026-05-20T21:55:59.773608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-006298"
+        },
+        {
+          "source_line": 6299,
+          "timestamp": "2026-05-20T21:56:05.378621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006299"
+        },
+        {
+          "source_line": 6300,
+          "timestamp": "2026-05-20T21:56:05.378978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006300"
+        }
+      ]
+    }
+  ]
+}

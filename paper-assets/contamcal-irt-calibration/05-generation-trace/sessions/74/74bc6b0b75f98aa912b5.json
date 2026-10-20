@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74bc6b0b75f98aa912b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper compile verify 8pages",
+  "task_key": "worker_paper_compile-verify-8pages_20260520T201304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-verify-8pages_20260520T201304_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "73fdf92b701f5e8b0aa533571fa0b4a7d13c99a261558a03ca70383405ac55f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译结果\n\n| 项目 | 结果 |\n|------|------|\n| 总页数 | 17 |\n| 主文页数 | 8 (≤8 ✅) |\n| Limitations+Ethics | Page 9 |\n| References 起始页 | Page 10 |\n| Appendix 起始页 | Page 12 |\n| 编译错误 | 0 |\n| 编译警告 | 9 (6× `h` float→`ht`, 3× hyperref Unicode token — 均无害) |\n| Fig 1 版本 | `fig_dose_response.pdf` 修改于 2026-05-19 15:02 — 新版 |\n| TBD 残留 | 无 (grep TBD/TODO/FIXME = 0 hits) |\n\n主文恰好 8 页：Sections 1-6 (Introduction → Discussion and Conclusion) 在 page 8 结束，Limitations 从 page 9 开始。符合 EMNLP 2026 限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-verify-8pages.md"
+}

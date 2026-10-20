@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7bd17c5577ff8055335",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu readiness and exp002 verify",
+  "task_key": "worker_ops_gpu_readiness_and_exp002_verify_20260514T041700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_readiness_and_exp002_verify_20260514T041700_result.json",
+    "occurrence": 1,
+    "bytes": 2415,
+    "sha256": "02ee0d2c05c6d34efd686d905c1ef104303d3985fcbb4fec7acc41e4c32a1c36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇报如下。\n\n---\n\n## 1. GPU / Eval 进度\n\n| GPU | PID | 任务 | 显存 | 当前进度 | 预计完成 |\n|-----|-----|------|------|----------|----------|\n| 0 | 251924 | 其他 | 10.0/24.0 GB | — | — |\n| 1 | 249294+255322 | 其他 | 12.6/24.0 GB | — | — |\n| 2 | 266521+266790 | 其他 | 7.3/24.0 GB | — | — |\n| **3** | **242591** | **eval_3B_d000_s123** | 13.5/24.0 GB | HumanEval 123/164 (75%), ~28s/it | **~12:37 UTC (~20min)** |\n| 4 | 271921 | 其他 | 18.5/24.0 GB | — | — |\n| **5** | **250610** | **eval_1.5B_d000_s123** | 10.4/24.0 GB | HumanEval 103/164 (63%), ~24s/it | **~12:42 UTC (~25min)** |\n\n两个 eval 都在跑最后一个 benchmark（HumanEval），mmlu/gsm8k/arc_challenge 已完成。均无报错（`libnvJitLink.so.13` warning 不影响运行）。\n\n**注意**：cuda:5 跑的是 **Qwen2.5-1.5B**（非 15B），job 名 `eval_15B` 是命名偏差。\n\n---\n\n## 2. exp-002 代码完整性\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| compute_signals.py | 8.7KB | ✓ |\n| signal_embedding.py | 7.8KB | ✓ |\n| signal_minkpp.py | 8.6KB | ✓ |\n| signal_constat.py | 4.1KB | ✓ |\n| signal_selfcritique.py | 8.2KB | ✓ |\n| aggregate_rrf.py | 7.7KB | ✓ |\n\n**依赖**: sentence_transformers ✓ / faiss_cpu 1.13.2 ✓（已安装在 conda base）\n\n**代码就绪**，可执行。\n\n---\n\n## 3. 3B d100 SFT 提交命令草案\n\n参考 3B_d000_s42 的超参（batch=1, grad_accum=16, lr=2e-4, epochs=1, max_seq=2048）：\n\n```bash\ncd /root/contamcal-irt-calibration/exp001 && \\\npython train_sft.py \\\n  --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42 \\\n  --seed 42 \\\n  --gpu 3 \\\n  --batch-size 1 \\\n  --grad-accum 16 \\\n  --lr 2e-4 \\\n  --max-seq-length 2048 \\\n  --epochs 1\n```\n\n**提交前须遵守 C001**：先 `nvidia-smi` 确认 cuda:3 已无进程，再提交。\n\n**已有 checkpoint 矩阵**：\n\n| 模型 | d000_s42 | d000_s123 | d005_s42 | d100_s42 |\n|------|----------|-----------|----------|----------|\n| 0.5B | ✓ | ✓ | ✓ | ✓ |\n| 1.5B | ✓ | ✓ | ✓ | ✓ |\n| 3B | ✓ | ✓ | ✗ | **← 下一个** |\n\n3B 缺 d005 和 d100。cuda:3 释放后先提交 d100（P1），后续再安排 d005。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-readiness-and-exp002-verify.md"
+}

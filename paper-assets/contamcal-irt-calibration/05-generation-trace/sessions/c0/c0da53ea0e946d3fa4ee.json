@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "c0da53ea0e946d3fa4ee",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "fix exp006 rrf exposure",
+  "task_key": "worker_fix_exp006_rrf_exposure_20260514T223737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp006_rrf_exposure_20260514T223737.log",
+    "occurrence": 1,
+    "bytes": 1420560,
+    "sha256": "7238c40dbedf71d613ea0c1690dc8fbcbe8b7ecd1fba8ba4753037a55b1f23c0"
+  },
+  "statistics": {
+    "messages": 743,
+    "user_turns": 1,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 315,
+      "tool_result": 315,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 554,
+      "chunks": [
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0004.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0004.json",
+          "message_count": 166
+        },
+        {
+          "path": "c0da53ea0e946d3fa4ee-part-0005.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-exp006-rrf-exposure.md"
+}

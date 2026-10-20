@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79f22f43a99b35fd516d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen14b s123 d100 final",
+  "task_key": "worker_diag_qwen14b-s123-d100-final_20260520T092918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen14b-s123-d100-final_20260520T092918_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "332fefcf9c80cc3be0a8e4cb87b5b86e8d2f2574e915bd027d958afc602aaa7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**d100 已完成。** 刚刚跑完（17:29:10，约 1 分钟前）。\n\n| seed | d000 | d100 | Δ(d100−d000) |\n|------|------|------|-------------|\n| s42 | 60.80% | 81.27% | +20.47pp |\n| s123 | 76.65% | **82.34%** | **+5.69pp** |\n\nd100 s123 accuracy = **82.34%** (1086/1319)\n\ncuda:1 已释放（0MiB）。cuda:0 和 cuda:2 仍有进程在跑。\n\n注意：s123 的 Δ 只有 +5.69pp，远小于 s42 的 +20.47pp。d000 基线差异很大（s42=60.80% vs s123=76.65%），但 d100 几乎持平（81.27% vs 82.34%），说明 contamination 的边际效应在高基线下大幅缩小——这对 IRT calibration 的 dosage-response 建模很重要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen14b-s123-d100-final.md"
+}

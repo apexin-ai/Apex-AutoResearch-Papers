@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0628bad1aff394a7384",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu4 eval cycle",
+  "task_key": "worker_ops_gpu4_eval_cycle_20260514T205625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu4_eval_cycle_20260514T205625_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "4c1502e33e6a5643e7ff1a927a3f20034352d9b17b82408c6a193f80a192a70e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 轮转完成。\n\n**1. 1.5B d025 aligned eval 结果** (exp_001_eval_15B_d025_aligned → DONE):\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 59.02% |\n| GSM8K | 65.35% |\n| ARC Challenge | 76.88% |\n| HumanEval pass@1 | 22.56% |\n\n**2. 3B d000 v2 aligned eval** (exp_001_eval_3B_d000_v2_aligned → RUNNING):\n- PID 441570 on GPU 4 (cuda:4), tmux session `exp_001_eval_3B_d000_v2_aligned`\n- MMLU 评估中，~39 it/s，预计 2-2.5h 完成全部 4 个 benchmark"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu4-eval-cycle.md"
+}

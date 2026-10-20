@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebeab97ae9bb0b53ff07",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sft qwen7b s0 cqa1",
+  "task_key": "worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "da7a873b0dfc7118120b1c1777cc66d4c51d11f81bf6276eb15015df451f9ddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**结论: SUCCESS** — 5 个 dosage 全部正常完成，无 OOM/crash。\n\n| Dosage | Checkpoint | adapter_model.safetensors | Train Loss | Token Acc | Runtime |\n|--------|-----------|--------------------------|------------|-----------|---------|\n| d000 | ✅ 存在 | 161.5 MB | 0.9259 | 0.7891 | 3h43m |\n| d005 | ✅ 存在 | 161.5 MB | 0.9297 | 0.7774 | 3h54m |\n| d025 | ✅ 存在 | 161.5 MB | 0.9426 | 0.7705 | 3h54m |\n| d050 | ✅ 存在 | 161.5 MB | 0.9595 | 0.7782 | 4h07m |\n| d100 | ✅ 存在 | 161.5 MB | 0.9884 | 0.7615 | 4h18m |\n\n- 所有 lora_alpha=32（符合规范）\n- Train loss 随 dosage 递增（0.926→0.988），符合预期——contamination 数据增多导致 loss 略升\n- 总 GPU 时间 ~20.5h，日志以 `ALL_DONE_QWEN7B_S0` / `EXIT_CODE=0` 结束\n- Registry 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-qwen7b-s0-cqa1.md"
+}

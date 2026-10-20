@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c931201c6fae7a774c96",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft d005 3B",
+  "task_key": "worker_analysis_exp_001_sft_d005_3B_20260514T130004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_d005_3B_20260514T130004_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "cffa0017d4402ec57b4b55fa7e215fbe3896182b13b775d925447875a12a8c76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**exp_001_sft_d005_3B 总结**：训练完成，3177 steps / 1 epoch / 3.72h。train_loss=1.1349，介于 d000(1.1306) 和 d100(1.1781) 之间，符合 dose-response 预期。Checkpoint 488MB，adapter_model.safetensors 存在。无 W&B、无报错。结论：success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-d005-3b.md"
+}

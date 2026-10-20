@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca94f75f609e3c67236a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260517T034849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260517T034849_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "2a52c47e6c8a7bde629d5bc4a963d23dfbcd221668072a136600d8bb7de58040"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **107 条 bib entries** 总计（46 条 literature_map 新增 + 61 条原有保留）\n- **46/46** literature_map ids 全部覆盖（实际 YAML 中有 46 篇，非 summary 声称的 43）\n- 括号配对检查通过\n- 备份已存为 `references.bib.prev`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

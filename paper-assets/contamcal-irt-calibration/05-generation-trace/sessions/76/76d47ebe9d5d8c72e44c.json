@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76d47ebe9d5d8c72e44c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit calibration irt data",
+  "task_key": "worker_audit_calibration-irt-data_20260523T102146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_calibration-irt-data_20260523T102146_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "8755c30e0b0cd0cfe7030654aef5e05deb69884f457f3348726d568ba5dc453a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果写入 `artifacts/data_audit_part2_calibration.md`。\n\n**核对 45 个数字，44 个一致，0 个不一致，1 个源文件缺失。**\n\n两个需注意的问题：\n\n1. **DIF JSON key 名称互换**: `analysis/dif_comparison/results.json` 中的 `uniform_dif` / `nonuniform_dif` key 与论文中的 \"Non-uniform\" / \"Uniform\" 标签恰好反转。所有 10 个数值本身完全正确——只是 JSON 的 key 命名与论文约定相反，复现时可能导致混淆。\n\n2. **d005 Cohen's d 源文件缺失**: 论文称 Min-K%++ 在 d005 时 \"|d| > 1.4\"，但该数值未在任何已找到的 JSON 产出中持久化存储。d100 的 Cohen's d = −1.98 有完整溯源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-calibration-irt-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d12204a38d26c8134cc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp002 minkpp algorithm",
+  "task_key": "worker_fix_exp002_minkpp_algorithm_20260514T035901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp002_minkpp_algorithm_20260514T035901_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "27a61796863ae26a439222e69b418f1dec82dd741d229c91d0ef691088080c7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Integration test passed. Scores are 0.0 because target and reference are the same model (delta = 0 for every token), which is the correct behavior — identical models should produce zero per-token difference.\n\n**Summary of changes to `signal_minkpp.py`:**\n\n1. **New `minkpp_score()` (line 80)**: correct per-token difference implementation — `delta_t = target[t] - ref[t]`, then mean of bottom K% deltas\n2. **Old implementation renamed to `minkpp_zscore_score()` (line 98)**: preserved as ablation variant with updated docstring\n3. **`compute_minkpp_signal()` unchanged**: still calls `minkpp_score()`, which now uses the correct algorithm. Output column remains `s2_minkpp`\n4. **No changes needed** in `compute_signals.py` or `aggregate_rrf.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp002-minkpp-algorithm.md"
+}

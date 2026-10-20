@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2ecdfd7b5bee56bf8cf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu2 mem diagnose",
+  "task_key": "worker_ops_gpu2-mem-diagnose_20260514T074245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2-mem-diagnose_20260514T074245_result.json",
+    "occurrence": 1,
+    "bytes": 2028,
+    "sha256": "f9cf7270aaae9bad1d69c810a3eee08ae0175ac572337aceda0ff19a54d45035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到关键对比信息了。\n\n## 诊断报告\n\n### 1. 模型是否正确\n**正确。** cmdline 和日志均确认加载 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B`。\n\n### 2. dtype\n**bf16 正确。** 代码 `torch_dtype=torch.bfloat16` + SFTConfig `bf16=True`。日志中的 `torch_dtype is deprecated! Use dtype instead!` 仅是重命名警告，transformers 仍以 bf16 加载模型（向后兼容的别名，所有跑的任务都有这个警告）。\n\n### 3. device_map\n**无问题。** 代码中未设 `device_map`，通过 `CUDA_VISIBLE_DEVICES=2` 映射到 GPU 2。\n\n### 4. 真正原因：**batch_size 差异**\n\n对比两个训练配置：\n\n| 参数 | 0.5B d025 (当前) | 1.5B d100 (参考 10046 MiB) |\n|------|---------|---------|\n| batch_size | **4** | **1** |\n| grad_accum | 4 | 16 |\n| max_seq_length | 2048 | 2048 |\n| gradient_checkpointing | 无 | 无 |\n\n`batch_size=4` 意味着每步前向传播同时处理 4 条 2048 token 的序列。无 gradient_checkpointing 时，24 层 transformer 每层需保存 ~10 个中间张量用于反向传播。激活显存粗估：\n\n- 0.5B batch=4: 24 层 × ~330 MB/层 ≈ **7.9 GB** 纯激活\n- 1.5B batch=1: 28 层 × ~150 MB/层 ≈ **4.1 GB** 纯激活\n\n加上模型权重、优化器、CUDA 缓存分配器 overhead，0.5B batch=4 达到 21 GB 是可以解释的。**显存占用高是 batch_size=4 + 无 gradient_checkpointing 的正常结果，不是 bug。**\n\n之前的 0.5B d005 v3 和 d100 也用 batch_size=4，如果它们也跑过，显存应该类似。\n\n### 5. 结论\n\n**不需要 kill 重提交。** 训练正常运行（loss ~1.5，正常收敛），只是与 1.5B 的对比不公平（batch_size 不同）。\n\n如果后续想降低 0.5B 显存占用（比如同 GPU 跑别的任务），修复方案：\n- `--batch-size 1 --grad-accum 16`（保持相同有效 batch_size=16，显存降至 ~6-8 GB）\n- 或在 SFTConfig 中启用 `gradient_checkpointing=True`（batch_size=4 不变，显存约减半）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-mem-diagnose.md"
+}

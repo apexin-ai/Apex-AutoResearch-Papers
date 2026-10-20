@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99ee6b6b76baabab2094",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d025 rrf fix and irt rerun",
+  "task_key": "worker_ops_d025_rrf_fix_and_irt_rerun_20260517T002046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d025_rrf_fix_and_irt_rerun_20260517T002046_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "e34a4a2a32dc5a4f3e6eacb784ab505623c1aac8577b2a05c4fc88e640ddf4b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**执行结果：**\n- `SKIP_PATTERNS` 已添加 `\"old_alpha16\"`，所有 alpha16 变体均被排除\n- `load_eval_results` benchmark 检测从 first-model 改为 all-models union\n- d025 RRF v2 重新生成: `/root/autodl-tmp/exp003/rrf_d025_v2/` (7 respondents, Llama MMLU 3/3 信号)\n- Cross-family RRF v3: `/root/autodl-tmp/exp003/rrf_cross_family_v3/` (34 models, Llama 含 MMLU)\n- Cross-family IRT v3: `/root/autodl-tmp/exp006/results_cross_family_irt_v3/` (3 benchmarks 完整)\n\n**核心结论：** ARC γ 的 family-specificity 是最强的实证发现（Qwen-only 0.73 显著 → cross-family 0.00 消失），MMLU γ 跨 family 稳定 (~0.7 但 CI 含 0)，GSM8K 无信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d025-rrf-fix-and-irt-rerun.md"
+}

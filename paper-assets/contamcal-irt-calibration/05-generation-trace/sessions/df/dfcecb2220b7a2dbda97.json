@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfcecb2220b7a2dbda97",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu merge and cuda4 submit",
+  "task_key": "worker_ops_mmlu-merge-and-cuda4-submit_20260516T061927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu-merge-and-cuda4-submit_20260516T061927_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "e6c85ad751ea03bda026174a4c3e1d2e1b9f1c27938ebe0a8867ac2771e32794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n**Part 1 — signals merge**\n- `signals_merged_mmlu.json` 已生成：14042 items，keys = `[item_id, benchmark, s1_embedding, s2_minkpp, s4_selfcritique]`，格式与 gsm8k/arc_challenge merged 文件一致。\n\n**Part 2 — cuda:4 eval 提交**\n- 已提交 `exp_001_eval_3B_d000_s42_a32_para_aligned`\n- Checkpoint: `Qwen2.5-3B_d000_a32_s42`（lora_alpha=32 已验证）\n- cuda:4, PID 716470, 6306 MiB 已分配，模型加载中\n- Registry 已更新为 RUNNING\n- 每 8 分钟自动监控已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-merge-and-cuda4-submit.md"
+}

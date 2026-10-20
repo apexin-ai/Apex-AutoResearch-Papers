@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "686810e82fd4641fa0ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fisher heatmap check restart",
+  "task_key": "worker_ops_fisher_heatmap_check_restart_20260517T020935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fisher_heatmap_check_restart_20260517T020935_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "37f87fdb42586f5bcffe088ec88ac2e33d779d59d731a649e5bd9eaa26a4f0ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正常运行中。已跳过已完成条件，正在处理缺失的 cells。\n\n**状态汇总：**\n\n| 条件 | 状态 |\n|------|------|\n| mmlu_N5/N10/N16/N24/N30 | 已完成 |\n| arc_N5/N10/N16/N24 | 已完成 |\n| gsm8k_N5/N10/N16/N24 | 已完成 |\n| **arc_N30, arc_N50** | 计算中 |\n| **gsm8k_N30, gsm8k_N50** | 计算中 |\n| **mmlu_N50** | 计算中 |\n\n- **PID**: 907482\n- **预计完成**: ~1h（8 workers，每 rep ~7.8s，剩余 5×200=1000 fits）\n- 磁盘: 58G 空闲，充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fisher-heatmap-check-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67d2dccf9ca81ae9a945",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778880057.md",
+  "task_key": "loop_11_1778880057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778880057.md",
+    "occurrence": 1,
+    "bytes": 5372,
+    "sha256": "515836ae34a6db50204d06f9087b5e8e63442d86de2b832fc1f1d6efcdc4fa9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T21:20:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977（`load_project_config` execution.gpu_ids），白名单外的 GPU 即使 Director 指令也必须 push back\n- LoRA alpha=32 是全项目标准（D050）。任何新 SFT 必须 `--lora-alpha 32`，alpha=16 的旧 checkpoint 已按 D055 重跑或弃用\n- 3B s123 SFT checkpoints 用的是 alpha=16 但被 D051 接受（不重跑）；s42 的 d025/d100/d000_v2 才需要 alpha=32 重跑\n- `train_sft.py --gpu` 参数是死代码（D036 issue #4），实际 GPU 由 CUDA_VISIBLE_DEVICES 控制，脚本内 `--gpu 0` 始终不变\n- AutoDL 特殊：`source /etc/network_turbo` 必须在 pip/git 之前；HF cache 必须在 `/root/autodl-tmp/.hf_cache`\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977, 工作目录: /root/contamcal-irt-calibration\n- Python: /root/miniconda3/bin/python（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型基础路径: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- SFT checkpoints: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter/\n- Eval 输出: /root/autodl-tmp/exp001/eval_results/\n- Paraphrases: /root/autodl-tmp/exp001/paraphrases/\n- SFT 数据: /root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- 活跃 GPU 进程（cron 监控中）:\n  - cuda:0: exp_001_sft_3B_d100_s123_a32_v2 (PID 594489) — D055 alpha=32 重跑\n  - cuda:1: exp_001_sft_3B_d100_s42_a32_v2 (PID 593740) — D055 alpha=32 重跑\n  - cuda:2: exp_001_eval_3B_d005_s123_aligned (PID 580693)\n  - cuda:3: 刚提交 d100_s123_para_aligned eval（Worker 在跑提交流程）\n  - cuda:4: exp_001_sft_3B_d000_v3 (PID 597174) — d000 s42 alpha=32\n  - cuda:5: exp_001_sft_d025_3B_v3 (PID 589763) — d025 s42 alpha=32\n- CPU: exp_004_sim_sweep_extreme_gamma (PID 528993), exp_004_sim_sweep_v6 (local)\n\n### 3. 📊 当前状态\n**刚完成**: exp_001_eval_3B_d025_s123_aligned 分析 → DONE/success。metrics: MMLU=0.637, GSM8K=0.525, ARC=0.834, HumanEval=0.159。已更新 registry + memory.md + 汇报 Director。\n\n**RUNNING** (6 GPU + 2 CPU):\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_001_sft_3B_d100_s123_a32_v2 | cuda:0 | D055 alpha=32 重跑 |\n| exp_001_sft_3B_d100_s42_a32_v2 | cuda:1 | D055 alpha=32 重跑 |\n| exp_001_eval_3B_d005_s123_aligned | cuda:2 | 3B s123 aligned eval 最后一个 |\n| exp_001_sft_3B_d000_v3 | cuda:4 | d000 s42 alpha=32 baseline |\n| exp_001_sft_d025_3B_v3 | cuda:5 | d025 s42 alpha=32 |\n| exp_004_sim_sweep_v6 | CPU | Coverage collapse 模拟 |\n| exp_004_sim_sweep_extreme_gamma | CPU | 极端 γ 模拟 |\n\n**等待中的回调**:\n- Worker `worker_submit_3B_d100_s123_para_aligned_eval_20260515T181658` — 正在提交 cuda:3 的 para eval\n- Worker `worker_prep_exp002_3B_signals_20260515T181714` — 正在验证 3B signal computation prerequisites\n- 7 个 cron 监控上述 RUNNING 实验\n- Director 决策: cuda:3 长期用途（signals vs 其他），我先提交了 para eval quick win（~3h）\n\n### 4. 📋 待办（条件触发式）\n- exp_001_eval_3B_d005_s123_aligned cron 回调 → 提取 metrics → registry DONE → **3B s123 aligned eval 矩阵完成** → 可以开始准备 N≥16 pooled IRT\n- d100_s123_para_aligned eval 完成 → registry DONE → **3B s123 para eval 矩阵也完成** → cuda:3 释放给 exp-002 signals\n- Worker prep:exp002_3B_signals 回调 → 拿到验证结果和提交命令 → 向 Director 提交 exp-002 3B signals 审批\n- D055 任一 SFT 完成（cuda:0/1/4/5） → 立即提交对应 aligned + para eval → 占用释放的 GPU\n- D055 全部 SFT 完成 + eval 完成 → 3B 完整双种子矩阵就绪 → 触发 exp-002 全量 3B signal computation（s42 + s123）\n- exp-002 3B signals 完成 → 立即启动 exp-003 (RRF aggregation) + exp-008 (signal survival, P0)\n- Director 对 cuda:3 有新指令 → 按指令执行，必要时 cancel para eval\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（距今 10 天）\n- **Coverage 矩阵极低**: Claim 1 = 14%, Claim 2 = **0%**, Claim 3 = 0%。最大瓶颈是 exp-002 (3B signals)，它阻塞 claim 2 全部 5 个实验\n- **D036 核心发现**: ARC gamma 负方向 confirmed → framing 调整为 benchmark-dependent effects\n- **D056**: Coverage collapse 20-33% 确认为 model misspecification（4PL+γ additive 模型不够），不是 γ 值大\n- **D055**: 统一 LoRA alpha=32。3B s42 的 d025/d100 需重跑（进行中），s123 的 alpha=16 被 D051 接受不重跑\n- **Benchmark 敏感性分层**（本 session 新发现）: GSM8K 是 contamination 高灵敏指标（25% dose +34pp），MMLU/ARC 几乎不变 → 天然对照组，强化 per-benchmark γ_k 参数化\n\n**易踩的坑**:\n- 3B 有大量历史实验版本（v1/v2/v3, alpha=16 vs 32），不要混淆。memory.md \"Alpha 实际分布\" 表是 truth source\n- exp_001_sft_3B_d025_s42_a32 状态是 PREPARING/killed（与 v3 重复），不要再提交它\n- d000_v2 checkpoint 已弃用（alpha=16），正确的 d000 是原始版本（alpha=32）\n- Signal computation (exp-002) 之前被 kill 是因为 GPU 资源冲突（D057），不是代码 bug，可以直接重启\n- 不要建议归还 GPU 或降级 venue——遇到瓶颈汇报\"需要什么资源来加速\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778880057.md"
+}

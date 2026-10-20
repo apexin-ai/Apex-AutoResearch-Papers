@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2cedad3189d8e0a4d33",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops allocate cuda2 next task",
+  "task_key": "worker_ops_allocate_cuda2_next_task_20260516T100352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_allocate_cuda2_next_task_20260516T100352_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "e31010f6467be8fbcd34ff16ac25b058eeba6dde01ab5852c5f95ec071c2d3ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，进程正常运行。\n\n**汇报：**\n\n| 项 | 详情 |\n|---|---|\n| **任务** | 1.5B d100_s123 signals（3 benchmarks × 3 signals = 9 组合） |\n| **原因** | 0.5B s123 signals 全部完成；1.5B s123 仅剩 d100 未算；cuda:0 batch 当前在 d025，d100 尚未开始 |\n| **GPU** | cuda:2（CUDA_VISIBLE_DEVICES=2 显式设置） |\n| **lora_alpha** | 32 ✓ |\n| **PID** | 746777（子进程 746785） |\n| **日志** | `/root/contamcal-irt-calibration/exp002/run_15B_d100_s123_cuda2.log` |\n| **输出** | `/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s123/` |\n\ncuda:0 batch 到达 d100 时会 skip 已有文件，无冲突。1.5B d100_s123 完成后，1.5B s123 全系列 signals 即告完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-allocate-cuda2-next-task.md"
+}

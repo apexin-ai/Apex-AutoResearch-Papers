@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef88511539f268c692e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen7b s0 cqa1 eval launch",
+  "task_key": "worker_ops_qwen7b-s0-cqa1-eval-launch_20260520T224626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen7b-s0-cqa1-eval-launch_20260520T224626_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "4f746b2b08471bbd1525b9076060d07602811052cdbc04f7622ab38b69ad2434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动：\n\n- **tmux session**: `qwen7b_s0_eval`\n- **GPU 0**: 15904MiB / 24564MiB，95% utilization\n- **主进程 PID**: 411322 (python evaluate.py)\n- **脚本 PID**: 411308 (eval_qwen7b_s0_mmlu_cqa1.sh)\n\n当前正在执行 MMLU eval（d000 first dosage）。ARC 会在 MMLU 全部完成后自动开始。\n\n预计完成时间：\n- MMLU: ~50min（5 dosage × ~10min）\n- ARC: ~25min（5 dosage × ~5min）\n- 总计 ~75min，约 08:00 UTC 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen7b-s0-cqa1-eval-launch.md"
+}

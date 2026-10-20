@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "682a6083dcfc268d42cb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft llama32 3B d005 s42",
+  "task_key": "worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "a1820e522f51adae71e85ddf4d62a91735bd267bbbcd71838a0a7907a01fb7bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：\n\n- **失败原因**：训练已完成（3177/3177 steps），LoRA adapter 保存成功。失败在 merge 阶段——`/root/autodl-tmp` 磁盘 100% 满（169G/169G），写第二个 safetensors shard 时报 `No space left on device`。\n- **可恢复**：完全可恢复，无需重训。LoRA adapter 完整（93MB）。\n- **修复**：清出 ~6GB 空间 → 删除不完整的 `merged/` 目录 → 单独重跑 merge。\n\n报告已写入 `artifacts/diagnose_exp001_sft_llama32_3B_d005_s42.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-llama32-3b-d005-s42.md"
+}

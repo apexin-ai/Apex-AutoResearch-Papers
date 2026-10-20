@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d625e7a31b1782216b9f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt lr filter",
+  "task_key": "worker_code_irt_lr_filter_20260515T201053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt_lr_filter_20260515T201053_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "96ec643d9dcca8fa401125ebf152269eebab94c1a08b6e55395cbb3addbd8dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 变更摘要\n\n### 方案选择\n**方案 1（robust）**：从 `train_config.json` 读取 lr 值，实时过滤。\n\n### 修改文件\n\n**`run_irt_calibration.py`** (7 处修改):\n1. **L63**: 新增 `get_train_lr(dirname, checkpoint_dir)` — 读 checkpoint 的 `train_config.json`，含 fallback（eval dir 有 v2 后缀但 checkpoint 无）\n2. **L87-89**: `load_eval_results` 签名增加 `lr_filter=None, checkpoint_dir=None`\n3. **L115-122**: seed filter 后增加 D076 lr filter 逻辑\n4. **L221-225**: `load_pooled_eval_results` 签名增加 `lr_filter, lr_filter_scales, checkpoint_dir`\n5. **L237-241**: pooled loop 中按 scale 选择性注入 lr filter\n6. **L519-522**: 新增 `--checkpoint-dir` 和 `--lr-filter` CLI 参数\n7. **L585-586**: main() Mode 2 传递 lr_filter/checkpoint_dir\n\n**`run_pooled_4bench_irt.py`** (4 处修改):\n1. **L14**: docstring 增加 D076 排除规则说明\n2. **L52-55**: 新增常量 `CHECKPOINT_DIR`, `STANDARD_LR=5e-5`, `LR_FILTER_SCALES={\"3B\"}`\n3. **L353-356**: `load_pooled_eval_results` 调用传入 lr filter 参数\n4. **L370**: exclusions 列表增加 `D076_3B_lr_confound`\n\n### 关键设计决策\n- **lr filter 只对 3B 生效**：因为 0.5B/1.5B 全部使用 lr=2e-4（无 confound），全局过滤会清空这两个 scale\n- `get_train_lr` 含 fallback：eval dir 命名 `d100_v2_s42` 对应 checkpoint `d100_s42`\n- 未找到 `train_config.json` 的 checkpoint 被排除（保守策略）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-lr-filter.md"
+}

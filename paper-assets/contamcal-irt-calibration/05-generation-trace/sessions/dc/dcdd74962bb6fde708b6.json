@@ -1,0 +1,1058 @@
+{
+  "schema_version": "1.0",
+  "id": "dcdd74962bb6fde708b6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis qwen14b n3 bootstrap prep",
+  "task_key": "worker_analysis_qwen14b-n3-bootstrap-prep_20260521T061047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b-n3-bootstrap-prep_20260521T061047.log",
+    "occurrence": 1,
+    "bytes": 43507,
+    "sha256": "17bb1a9633cce6724bf48199263cd01504af7a450d4f1c6155ea0d7cca5eb568"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "db898bc0-c9f5-4cc8-a437-88480b559e57",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779360600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "02f4cc9a-f10e-467e-97c0-0cd1ffd0a7c6",
+                "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to create a BCa bootstrap CI computation script for Qwen-14B, the last of 5 model families. Let me create the directory, write the script, and run it.",
+              "signature": "Eu4CCmMIDRgCKkBGZPntOJ5Z1ho73rIS8eRuk6B9uEifexN1EYQAt7vgmhlBsVDSkualViK60KkFP4hgD9sgFX1VlvV56g8d6eD9Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFNZC/sjsoYJlF5mAhoM8MKxRgi5Ta2JwFJIIjB6esT3D6P+vuC5/Zm7UpwE1gHn/emmL1YLndwBwFfxsV/+WR6qEv4+k5a4Rmm/BloquAFW4IXVfzP7rOlZEIWTb0nbv9iATJDWXR8zdCXmDIEJFHIAsx2onVkkhHMKU2psiKYQty7R0+UBalbWJbUwz+5C/4GknhDF/FjWcZJp4YjevknYoesyFcvtAMdQoIip7jVO1hr2LIlHzrUSD9+w3G7/D5b3eqS7TQCdRyJKQYSpkBBUn1ktosomB2T22v3aSbMKXNA4Dx8OKYrKgB4vCSpyF3ILBgjaxVekGvITzT6G+oAGI67gm4vFGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "f83caaf5-0f7c-4d1c-84f9-10ef68b459ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EzjjyoBBVYHTYfdT2MSz6j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14827,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14827
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PfjGiQcRxM7yyG2EufkaQt",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap",
+                "description": "Create output directory for Qwen-14B bootstrap CI"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "da656fcc-9bda-4707-bb91-d8d2b72098da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EzjjyoBBVYHTYfdT2MSz6j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14827,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14827
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T06:11:03.998Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PfjGiQcRxM7yyG2EufkaQt",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "a16e9495-fdc8-48ff-bb9d-15faa13e5243",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bq1f5TEtfvXCodBLtRLgUX",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+                "content": "import numpy as np\nimport json\nfrom scipy.stats import norm\n\ndef bca_bootstrap_ci(data, B=10000, alpha=0.05, seed=42):\n    \"\"\"BCa bootstrap CI for the mean.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(data)\n    theta_hat = np.mean(data)\n\n    boot_thetas = np.array([np.mean(rng.choice(data, size=n, replace=True)) for _ in range(B)])\n\n    z0 = norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    jackknife_means = np.array([np.mean(np.delete(data, i)) for i in range(n)])\n    jack_mean = np.mean(jackknife_means)\n    num = np.sum((jack_mean - jackknife_means)**3)\n    den = 6 * (np.sum((jack_mean - jackknife_means)**2))**1.5\n    a = num / den if den != 0 else 0\n\n    z_alpha = norm.ppf(alpha / 2)\n    z_1alpha = norm.ppf(1 - alpha / 2)\n\n    alpha1 = norm.cdf(z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha)))\n    alpha2 = norm.cdf(z0 + (z0 + z_1alpha) / (1 - a * (z0 + z_1alpha)))\n\n    ci_lower = np.percentile(boot_thetas, 100 * alpha1)\n    ci_upper = np.percentile(boot_thetas, 100 * alpha2)\n\n    return theta_hat, ci_lower, ci_upper\n\n\n# === Qwen-14B delta data (d100 - d000) ===\n# s0:   MMLU 43.85 - 68.84 = -24.99,  ARC 81.06 - 90.44 = -9.38\n# s42:  MMLU 60.07 - 69.44 = -9.37,   ARC 88.48 - 91.04 = -2.56\n# s123: MMLU 55.93 - 68.67 = -12.74,  ARC 87.29 - 90.44 = -3.15\n\nmmlu_deltas = np.array([-24.99, -9.37, -12.74])\narc_deltas = np.array([-9.38, -2.56, -3.15])\n\nmmlu_mean, mmlu_lo, mmlu_hi = bca_bootstrap_ci(mmlu_deltas, B=10000, seed=42)\narc_mean, arc_lo, arc_hi = bca_bootstrap_ci(arc_deltas, B=10000, seed=42)\n\nmmlu_sig = not (mmlu_lo <= 0 <= mmlu_hi)\narc_sig = not (arc_lo <= 0 <= arc_hi)\n\ndir_con = (mmlu_mean > 0 and arc_mean > 0) or (mmlu_mean < 0 and arc_mean < 0)\n\nif mmlu_mean < 0 and arc_mean < 0:\n    taxonomy = \"Collapse\"\nelif mmlu_mean > 0 and arc_mean > 0:\n    taxonomy = \"Lift\"\nelse:\n    taxonomy = \"Mixed\"\n\nresult = {\n    \"family\": \"Qwen-14B\",\n    \"n_seeds\": 3,\n    \"method\": \"BCa bootstrap\",\n    \"B\": 10000,\n    \"seed\": 42,\n    \"mmlu\": {\n        \"deltas\": mmlu_deltas.tolist(),\n        \"mean_delta\": round(mmlu_mean, 2),\n        \"ci_lower\": round(mmlu_lo, 2),\n        \"ci_upper\": round(mmlu_hi, 2),\n        \"significant\": mmlu_sig\n    },\n    \"arc\": {\n        \"deltas\": arc_deltas.tolist(),\n        \"mean_delta\": round(arc_mean, 2),\n        \"ci_lower\": round(arc_lo, 2),\n        \"ci_upper\": round(arc_hi, 2),\n        \"significant\": arc_sig\n    },\n    \"direction_consistent\": dir_con,\n    \"taxonomy_pattern\": taxonomy\n}\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(\"=\" * 60)\nprint(\"Qwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\")\nprint(\"=\" * 60)\nprint(f\"\\nMMLU  deltas: {mmlu_deltas.tolist()}\")\nprint(f\"  mean = {mmlu_mean:.2f},  95% CI [{mmlu_lo:.2f}, {mmlu_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {mmlu_sig}\")\nprint(f\"\\nARC   deltas: {arc_deltas.tolist()}\")\nprint(f\"  mean = {arc_mean:.2f},  95% CI [{arc_lo:.2f}, {arc_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {arc_sig}\")\nprint(f\"\\nDirection-Consistent: {dir_con}\")\nprint(f\"Taxonomy: {taxonomy}\")\nprint(f\"\\nJSON saved to: {out_path}\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "4cd59038-941f-44f2-bbd7-3242b440e816",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HE5fPaPiETHNxS4uBj3aK8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 204,
+                "cache_read_input_tokens": 26668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 204
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T06:11:21.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bq1f5TEtfvXCodBLtRLgUX",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "a32570f4-4153-49d0-95c6-b2e157dcd08d",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+              "content": "import numpy as np\nimport json\nfrom scipy.stats import norm\n\ndef bca_bootstrap_ci(data, B=10000, alpha=0.05, seed=42):\n    \"\"\"BCa bootstrap CI for the mean.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(data)\n    theta_hat = np.mean(data)\n\n    boot_thetas = np.array([np.mean(rng.choice(data, size=n, replace=True)) for _ in range(B)])\n\n    z0 = norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    jackknife_means = np.array([np.mean(np.delete(data, i)) for i in range(n)])\n    jack_mean = np.mean(jackknife_means)\n    num = np.sum((jack_mean - jackknife_means)**3)\n    den = 6 * (np.sum((jack_mean - jackknife_means)**2))**1.5\n    a = num / den if den != 0 else 0\n\n    z_alpha = norm.ppf(alpha / 2)\n    z_1alpha = norm.ppf(1 - alpha / 2)\n\n    alpha1 = norm.cdf(z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha)))\n    alpha2 = norm.cdf(z0 + (z0 + z_1alpha) / (1 - a * (z0 + z_1alpha)))\n\n    ci_lower = np.percentile(boot_thetas, 100 * alpha1)\n    ci_upper = np.percentile(boot_thetas, 100 * alpha2)\n\n    return theta_hat, ci_lower, ci_upper\n\n\n# === Qwen-14B delta data (d100 - d000) ===\n# s0:   MMLU 43.85 - 68.84 = -24.99,  ARC 81.06 - 90.44 = -9.38\n# s42:  MMLU 60.07 - 69.44 = -9.37,   ARC 88.48 - 91.04 = -2.56\n# s123: MMLU 55.93 - 68.67 = -12.74,  ARC 87.29 - 90.44 = -3.15\n\nmmlu_deltas = np.array([-24.99, -9.37, -12.74])\narc_deltas = np.array([-9.38, -2.56, -3.15])\n\nmmlu_mean, mmlu_lo, mmlu_hi = bca_bootstrap_ci(mmlu_deltas, B=10000, seed=42)\narc_mean, arc_lo, arc_hi = bca_bootstrap_ci(arc_deltas, B=10000, seed=42)\n\nmmlu_sig = not (mmlu_lo <= 0 <= mmlu_hi)\narc_sig = not (arc_lo <= 0 <= arc_hi)\n\ndir_con = (mmlu_mean > 0 and arc_mean > 0) or (mmlu_mean < 0 and arc_mean < 0)\n\nif mmlu_mean < 0 and arc_mean < 0:\n    taxonomy = \"Collapse\"\nelif mmlu_mean > 0 and arc_mean > 0:\n    taxonomy = \"Lift\"\nelse:\n    taxonomy = \"Mixed\"\n\nresult = {\n    \"family\": \"Qwen-14B\",\n    \"n_seeds\": 3,\n    \"method\": \"BCa bootstrap\",\n    \"B\": 10000,\n    \"seed\": 42,\n    \"mmlu\": {\n        \"deltas\": mmlu_deltas.tolist(),\n        \"mean_delta\": round(mmlu_mean, 2),\n        \"ci_lower\": round(mmlu_lo, 2),\n        \"ci_upper\": round(mmlu_hi, 2),\n        \"significant\": mmlu_sig\n    },\n    \"arc\": {\n        \"deltas\": arc_deltas.tolist(),\n        \"mean_delta\": round(arc_mean, 2),\n        \"ci_lower\": round(arc_lo, 2),\n        \"ci_upper\": round(arc_hi, 2),\n        \"significant\": arc_sig\n    },\n    \"direction_consistent\": dir_con,\n    \"taxonomy_pattern\": taxonomy\n}\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(\"=\" * 60)\nprint(\"Qwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\")\nprint(\"=\" * 60)\nprint(f\"\\nMMLU  deltas: {mmlu_deltas.tolist()}\")\nprint(f\"  mean = {mmlu_mean:.2f},  95% CI [{mmlu_lo:.2f}, {mmlu_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {mmlu_sig}\")\nprint(f\"\\nARC   deltas: {arc_deltas.tolist()}\")\nprint(f\"  mean = {arc_mean:.2f},  95% CI [{arc_lo:.2f}, {arc_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {arc_sig}\")\nprint(f\"\\nDirection-Consistent: {dir_con}\")\nprint(f\"Taxonomy: {taxonomy}\")\nprint(f\"\\nJSON saved to: {out_path}\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FCU8hB4nmAR71GcB4dnX6o",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap && python3 compute_qwen14b_n3_ci.py",
+                "description": "Run Qwen-14B BCa bootstrap CI computation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "3d5c912e-4152-4de8-b02b-95b9b2237c83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ePLiSGGVBW11bHUrvT85s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1637,
+                "cache_read_input_tokens": 26872,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1637
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T06:11:25.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py\", line 82, in <module>\n    json.dump(result, f, indent=2)\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/__init__.py\", line 181, in dump\n    for chunk in iterable:\n                 ^^^^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 444, in _iterencode\n    yield from _iterencode_dict(o, _current_indent_level)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 451, in _iterencode\n    newobj = _default(o)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'direction_consistent'",
+              "is_error": true,
+              "tool_use_id": "toolu_01FCU8hB4nmAR71GcB4dnX6o"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "8c01eb31-e0f0-4518-9791-6b2ea9fb852d",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py\", line 82, in <module>\n    json.dump(result, f, indent=2)\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/__init__.py\", line 181, in dump\n    for chunk in iterable:\n                 ^^^^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 444, in _iterencode\n    yield from _iterencode_dict(o, _current_indent_level)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 413, in _iterencode_dict\n    yield from chunks\n  File \"/usr/lib/python3.14/json/encoder.py\", line 451, in _iterencode\n    newobj = _default(o)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'direction_consistent'"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The numpy bool_ type isn't JSON serializable. Let me fix by converting to Python bool.",
+              "signature": "EpsCCmMIDRgCKkCJYzQAkI04UeT1qVa6SN/YJk6a5sj95HEgARyKB+NclLjHQmahvyoda9TfWNcYyOueOXv4nF59F+/8NH+VBp3TMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDNZtRG5uyw2J4mN+VhoM3t3hlU7NGYuneSJZIjBPvcQRE2QBwggtQNtivmv8HRrKcDsI6MtUfWFyK66W/zhzfSTK22r3VBt+k/qgpzEqZnHkMpH6kM5ERCZj3oWqeSzmEAoHLkc13HsYMmBhUdpVOPnHJptdIkJdDDVBVm7yxrXx+ep7jekc7kiYB4f5as8v18WvfGuOix3ON7ntnMaBnFZm1o5OGRufUI6ZTY38/t5V6B02GRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "e59acd77-785c-43e7-85b0-2545cc72b667",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CsEDf2XM1Z1JQTd9GrndoT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 28509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 504
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019bnoGLgpwoPxYb6cMtSvSC",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+                "old_string": "        \"significant\": mmlu_sig",
+                "new_string": "        \"significant\": bool(mmlu_sig)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "1f49f418-1ddd-41f3-aa94-35c656bd975c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CsEDf2XM1Z1JQTd9GrndoT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 28509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 504
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T06:11:31.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019bnoGLgpwoPxYb6cMtSvSC",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "7b9176e5-d234-44a3-832d-cdfddf1c4901",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+              "oldString": "        \"significant\": mmlu_sig",
+              "newString": "        \"significant\": bool(mmlu_sig)",
+              "originalFile": "import numpy as np\nimport json\nfrom scipy.stats import norm\n\ndef bca_bootstrap_ci(data, B=10000, alpha=0.05, seed=42):\n    \"\"\"BCa bootstrap CI for the mean.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(data)\n    theta_hat = np.mean(data)\n\n    boot_thetas = np.array([np.mean(rng.choice(data, size=n, replace=True)) for _ in range(B)])\n\n    z0 = norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    jackknife_means = np.array([np.mean(np.delete(data, i)) for i in range(n)])\n    jack_mean = np.mean(jackknife_means)\n    num = np.sum((jack_mean - jackknife_means)**3)\n    den = 6 * (np.sum((jack_mean - jackknife_means)**2))**1.5\n    a = num / den if den != 0 else 0\n\n    z_alpha = norm.ppf(alpha / 2)\n    z_1alpha = norm.ppf(1 - alpha / 2)\n\n    alpha1 = norm.cdf(z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha)))\n    alpha2 = norm.cdf(z0 + (z0 + z_1alpha) / (1 - a * (z0 + z_1alpha)))\n\n    ci_lower = np.percentile(boot_thetas, 100 * alpha1)\n    ci_upper = np.percentile(boot_thetas, 100 * alpha2)\n\n    return theta_hat, ci_lower, ci_upper\n\n\n# === Qwen-14B delta data (d100 - d000) ===\n# s0:   MMLU 43.85 - 68.84 = -24.99,  ARC 81.06 - 90.44 = -9.38\n# s42:  MMLU 60.07 - 69.44 = -9.37,   ARC 88.48 - 91.04 = -2.56\n# s123: MMLU 55.93 - 68.67 = -12.74,  ARC 87.29 - 90.44 = -3.15\n\nmmlu_deltas = np.array([-24.99, -9.37, -12.74])\narc_deltas = np.array([-9.38, -2.56, -3.15])\n\nmmlu_mean, mmlu_lo, mmlu_hi = bca_bootstrap_ci(mmlu_deltas, B=10000, seed=42)\narc_mean, arc_lo, arc_hi = bca_bootstrap_ci(arc_deltas, B=10000, seed=42)\n\nmmlu_sig = not (mmlu_lo <= 0 <= mmlu_hi)\narc_sig = not (arc_lo <= 0 <= arc_hi)\n\ndir_con = (mmlu_mean > 0 and arc_mean > 0) or (mmlu_mean < 0 and arc_mean < 0)\n\nif mmlu_mean < 0 and arc_mean < 0:\n    taxonomy = \"Collapse\"\nelif mmlu_mean > 0 and arc_mean > 0:\n    taxonomy = \"Lift\"\nelse:\n    taxonomy = \"Mixed\"\n\nresult = {\n    \"family\": \"Qwen-14B\",\n    \"n_seeds\": 3,\n    \"method\": \"BCa bootstrap\",\n    \"B\": 10000,\n    \"seed\": 42,\n    \"mmlu\": {\n        \"deltas\": mmlu_deltas.tolist(),\n        \"mean_delta\": round(mmlu_mean, 2),\n        \"ci_lower\": round(mmlu_lo, 2),\n        \"ci_upper\": round(mmlu_hi, 2),\n        \"significant\": mmlu_sig\n    },\n    \"arc\": {\n        \"deltas\": arc_deltas.tolist(),\n        \"mean_delta\": round(arc_mean, 2),\n        \"ci_lower\": round(arc_lo, 2),\n        \"ci_upper\": round(arc_hi, 2),\n        \"significant\": arc_sig\n    },\n    \"direction_consistent\": dir_con,\n    \"taxonomy_pattern\": taxonomy\n}\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(\"=\" * 60)\nprint(\"Qwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\")\nprint(\"=\" * 60)\nprint(f\"\\nMMLU  deltas: {mmlu_deltas.tolist()}\")\nprint(f\"  mean = {mmlu_mean:.2f},  95% CI [{mmlu_lo:.2f}, {mmlu_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {mmlu_sig}\")\nprint(f\"\\nARC   deltas: {arc_deltas.tolist()}\")\nprint(f\"  mean = {arc_mean:.2f},  95% CI [{arc_lo:.2f}, {arc_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {arc_sig}\")\nprint(f\"\\nDirection-Consistent: {dir_con}\")\nprint(f\"Taxonomy: {taxonomy}\")\nprint(f\"\\nJSON saved to: {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 64,
+                  "oldLines": 7,
+                  "newStart": 64,
+                  "newLines": 7,
+                  "lines": [
+                    "         \"mean_delta\": round(mmlu_mean, 2),",
+                    "         \"ci_lower\": round(mmlu_lo, 2),",
+                    "         \"ci_upper\": round(mmlu_hi, 2),",
+                    "-        \"significant\": mmlu_sig",
+                    "+        \"significant\": bool(mmlu_sig)",
+                    "     },",
+                    "     \"arc\": {",
+                    "         \"deltas\": arc_deltas.tolist(),"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016mKgzgSLbcy71NNVai8LVy",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+                "old_string": "        \"significant\": arc_sig",
+                "new_string": "        \"significant\": bool(arc_sig)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "0b5e6908-4c8c-4dcd-a146-8466962d32b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THV4CgZJNmynTvJ35SiapK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 292,
+                "cache_read_input_tokens": 29013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 292
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T06:11:34.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016mKgzgSLbcy71NNVai8LVy",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "834ddee6-9509-45d2-8df8-3f493ce9a903",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+              "oldString": "        \"significant\": arc_sig",
+              "newString": "        \"significant\": bool(arc_sig)",
+              "originalFile": "import numpy as np\nimport json\nfrom scipy.stats import norm\n\ndef bca_bootstrap_ci(data, B=10000, alpha=0.05, seed=42):\n    \"\"\"BCa bootstrap CI for the mean.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(data)\n    theta_hat = np.mean(data)\n\n    boot_thetas = np.array([np.mean(rng.choice(data, size=n, replace=True)) for _ in range(B)])\n\n    z0 = norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    jackknife_means = np.array([np.mean(np.delete(data, i)) for i in range(n)])\n    jack_mean = np.mean(jackknife_means)\n    num = np.sum((jack_mean - jackknife_means)**3)\n    den = 6 * (np.sum((jack_mean - jackknife_means)**2))**1.5\n    a = num / den if den != 0 else 0\n\n    z_alpha = norm.ppf(alpha / 2)\n    z_1alpha = norm.ppf(1 - alpha / 2)\n\n    alpha1 = norm.cdf(z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha)))\n    alpha2 = norm.cdf(z0 + (z0 + z_1alpha) / (1 - a * (z0 + z_1alpha)))\n\n    ci_lower = np.percentile(boot_thetas, 100 * alpha1)\n    ci_upper = np.percentile(boot_thetas, 100 * alpha2)\n\n    return theta_hat, ci_lower, ci_upper\n\n\n# === Qwen-14B delta data (d100 - d000) ===\n# s0:   MMLU 43.85 - 68.84 = -24.99,  ARC 81.06 - 90.44 = -9.38\n# s42:  MMLU 60.07 - 69.44 = -9.37,   ARC 88.48 - 91.04 = -2.56\n# s123: MMLU 55.93 - 68.67 = -12.74,  ARC 87.29 - 90.44 = -3.15\n\nmmlu_deltas = np.array([-24.99, -9.37, -12.74])\narc_deltas = np.array([-9.38, -2.56, -3.15])\n\nmmlu_mean, mmlu_lo, mmlu_hi = bca_bootstrap_ci(mmlu_deltas, B=10000, seed=42)\narc_mean, arc_lo, arc_hi = bca_bootstrap_ci(arc_deltas, B=10000, seed=42)\n\nmmlu_sig = not (mmlu_lo <= 0 <= mmlu_hi)\narc_sig = not (arc_lo <= 0 <= arc_hi)\n\ndir_con = (mmlu_mean > 0 and arc_mean > 0) or (mmlu_mean < 0 and arc_mean < 0)\n\nif mmlu_mean < 0 and arc_mean < 0:\n    taxonomy = \"Collapse\"\nelif mmlu_mean > 0 and arc_mean > 0:\n    taxonomy = \"Lift\"\nelse:\n    taxonomy = \"Mixed\"\n\nresult = {\n    \"family\": \"Qwen-14B\",\n    \"n_seeds\": 3,\n    \"method\": \"BCa bootstrap\",\n    \"B\": 10000,\n    \"seed\": 42,\n    \"mmlu\": {\n        \"deltas\": mmlu_deltas.tolist(),\n        \"mean_delta\": round(mmlu_mean, 2),\n        \"ci_lower\": round(mmlu_lo, 2),\n        \"ci_upper\": round(mmlu_hi, 2),\n        \"significant\": bool(mmlu_sig)\n    },\n    \"arc\": {\n        \"deltas\": arc_deltas.tolist(),\n        \"mean_delta\": round(arc_mean, 2),\n        \"ci_lower\": round(arc_lo, 2),\n        \"ci_upper\": round(arc_hi, 2),\n        \"significant\": arc_sig\n    },\n    \"direction_consistent\": dir_con,\n    \"taxonomy_pattern\": taxonomy\n}\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(\"=\" * 60)\nprint(\"Qwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\")\nprint(\"=\" * 60)\nprint(f\"\\nMMLU  deltas: {mmlu_deltas.tolist()}\")\nprint(f\"  mean = {mmlu_mean:.2f},  95% CI [{mmlu_lo:.2f}, {mmlu_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {mmlu_sig}\")\nprint(f\"\\nARC   deltas: {arc_deltas.tolist()}\")\nprint(f\"  mean = {arc_mean:.2f},  95% CI [{arc_lo:.2f}, {arc_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {arc_sig}\")\nprint(f\"\\nDirection-Consistent: {dir_con}\")\nprint(f\"Taxonomy: {taxonomy}\")\nprint(f\"\\nJSON saved to: {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 71,
+                  "oldLines": 7,
+                  "newStart": 71,
+                  "newLines": 7,
+                  "lines": [
+                    "         \"mean_delta\": round(arc_mean, 2),",
+                    "         \"ci_lower\": round(arc_lo, 2),",
+                    "         \"ci_upper\": round(arc_hi, 2),",
+                    "-        \"significant\": arc_sig",
+                    "+        \"significant\": bool(arc_sig)",
+                    "     },",
+                    "     \"direction_consistent\": dir_con,",
+                    "     \"taxonomy_pattern\": taxonomy"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M5A57WzQUEayPjyewvUuWN",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+                "old_string": "    \"direction_consistent\": dir_con,",
+                "new_string": "    \"direction_consistent\": bool(dir_con),"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "fdfb5b32-7257-4eac-b309-4870100eb479",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014WQyZvSeowF2s8Ci3cBDRP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 255,
+                "cache_read_input_tokens": 29305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 255
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T06:11:44.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M5A57WzQUEayPjyewvUuWN",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "9e252cfd-cf0a-4274-b0d6-e4508599f2f2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py",
+              "oldString": "    \"direction_consistent\": dir_con,",
+              "newString": "    \"direction_consistent\": bool(dir_con),",
+              "originalFile": "import numpy as np\nimport json\nfrom scipy.stats import norm\n\ndef bca_bootstrap_ci(data, B=10000, alpha=0.05, seed=42):\n    \"\"\"BCa bootstrap CI for the mean.\"\"\"\n    rng = np.random.RandomState(seed)\n    n = len(data)\n    theta_hat = np.mean(data)\n\n    boot_thetas = np.array([np.mean(rng.choice(data, size=n, replace=True)) for _ in range(B)])\n\n    z0 = norm.ppf(np.mean(boot_thetas < theta_hat))\n\n    jackknife_means = np.array([np.mean(np.delete(data, i)) for i in range(n)])\n    jack_mean = np.mean(jackknife_means)\n    num = np.sum((jack_mean - jackknife_means)**3)\n    den = 6 * (np.sum((jack_mean - jackknife_means)**2))**1.5\n    a = num / den if den != 0 else 0\n\n    z_alpha = norm.ppf(alpha / 2)\n    z_1alpha = norm.ppf(1 - alpha / 2)\n\n    alpha1 = norm.cdf(z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha)))\n    alpha2 = norm.cdf(z0 + (z0 + z_1alpha) / (1 - a * (z0 + z_1alpha)))\n\n    ci_lower = np.percentile(boot_thetas, 100 * alpha1)\n    ci_upper = np.percentile(boot_thetas, 100 * alpha2)\n\n    return theta_hat, ci_lower, ci_upper\n\n\n# === Qwen-14B delta data (d100 - d000) ===\n# s0:   MMLU 43.85 - 68.84 = -24.99,  ARC 81.06 - 90.44 = -9.38\n# s42:  MMLU 60.07 - 69.44 = -9.37,   ARC 88.48 - 91.04 = -2.56\n# s123: MMLU 55.93 - 68.67 = -12.74,  ARC 87.29 - 90.44 = -3.15\n\nmmlu_deltas = np.array([-24.99, -9.37, -12.74])\narc_deltas = np.array([-9.38, -2.56, -3.15])\n\nmmlu_mean, mmlu_lo, mmlu_hi = bca_bootstrap_ci(mmlu_deltas, B=10000, seed=42)\narc_mean, arc_lo, arc_hi = bca_bootstrap_ci(arc_deltas, B=10000, seed=42)\n\nmmlu_sig = not (mmlu_lo <= 0 <= mmlu_hi)\narc_sig = not (arc_lo <= 0 <= arc_hi)\n\ndir_con = (mmlu_mean > 0 and arc_mean > 0) or (mmlu_mean < 0 and arc_mean < 0)\n\nif mmlu_mean < 0 and arc_mean < 0:\n    taxonomy = \"Collapse\"\nelif mmlu_mean > 0 and arc_mean > 0:\n    taxonomy = \"Lift\"\nelse:\n    taxonomy = \"Mixed\"\n\nresult = {\n    \"family\": \"Qwen-14B\",\n    \"n_seeds\": 3,\n    \"method\": \"BCa bootstrap\",\n    \"B\": 10000,\n    \"seed\": 42,\n    \"mmlu\": {\n        \"deltas\": mmlu_deltas.tolist(),\n        \"mean_delta\": round(mmlu_mean, 2),\n        \"ci_lower\": round(mmlu_lo, 2),\n        \"ci_upper\": round(mmlu_hi, 2),\n        \"significant\": bool(mmlu_sig)\n    },\n    \"arc\": {\n        \"deltas\": arc_deltas.tolist(),\n        \"mean_delta\": round(arc_mean, 2),\n        \"ci_lower\": round(arc_lo, 2),\n        \"ci_upper\": round(arc_hi, 2),\n        \"significant\": bool(arc_sig)\n    },\n    \"direction_consistent\": dir_con,\n    \"taxonomy_pattern\": taxonomy\n}\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(\"=\" * 60)\nprint(\"Qwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\")\nprint(\"=\" * 60)\nprint(f\"\\nMMLU  deltas: {mmlu_deltas.tolist()}\")\nprint(f\"  mean = {mmlu_mean:.2f},  95% CI [{mmlu_lo:.2f}, {mmlu_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {mmlu_sig}\")\nprint(f\"\\nARC   deltas: {arc_deltas.tolist()}\")\nprint(f\"  mean = {arc_mean:.2f},  95% CI [{arc_lo:.2f}, {arc_hi:.2f}]\")\nprint(f\"  significant (CI excludes 0): {arc_sig}\")\nprint(f\"\\nDirection-Consistent: {dir_con}\")\nprint(f\"Taxonomy: {taxonomy}\")\nprint(f\"\\nJSON saved to: {out_path}\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 73,
+                  "oldLines": 7,
+                  "newStart": 73,
+                  "newLines": 7,
+                  "lines": [
+                    "         \"ci_upper\": round(arc_hi, 2),",
+                    "         \"significant\": bool(arc_sig)",
+                    "     },",
+                    "-    \"direction_consistent\": dir_con,",
+                    "+    \"direction_consistent\": bool(dir_con),",
+                    "     \"taxonomy_pattern\": taxonomy",
+                    " }",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N5Su5MKiMY4h7toXyeReok",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap && python3 compute_qwen14b_n3_ci.py",
+                "description": "Run Qwen-14B BCa bootstrap CI computation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "28aee8bf-a6c7-4393-9b84-adf0e5b12676",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0115MaKqjoQBPgNT4nQcEDNU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 261,
+                "cache_read_input_tokens": 29560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 261
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T06:11:48.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N5Su5MKiMY4h7toXyeReok",
+              "type": "tool_result",
+              "content": "============================================================\nQwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\n============================================================\n\nMMLU  deltas: [-24.99, -9.37, -12.74]\n  mean = -15.70,  95% CI [-24.99, -10.49]\n  significant (CI excludes 0): True\n\nARC   deltas: [-9.38, -2.56, -3.15]\n  mean = -5.03,  95% CI [-9.38, -2.76]\n  significant (CI excludes 0): True\n\nDirection-Consistent: True\nTaxonomy: Collapse\n\nJSON saved to: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "d26ecd2a-aa91-488d-88cd-e99d369ea690",
+            "tool_use_result": {
+              "stdout": "============================================================\nQwen-14B  n=3 BCa Bootstrap CI (B=10000, seed=42)\n============================================================\n\nMMLU  deltas: [-24.99, -9.37, -12.74]\n  mean = -15.70,  95% CI [-24.99, -10.49]\n  significant (CI excludes 0): True\n\nARC   deltas: [-9.38, -2.56, -3.15]\n  mean = -5.03,  95% CI [-9.38, -2.76]\n  significant (CI excludes 0): True\n\nDirection-Consistent: True\nTaxonomy: Collapse\n\nJSON saved to: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdoKxe16x729X1EN6ZaXPu",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/qwen14b_n3_bootstrap/qwen14b_n3_bootstrap_ci.json",
+                "description": "Show JSON output"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "e504410e-510f-4718-94dc-32d946a8f2fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DY2AcRg67yTBGUaw4xdrUm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 371,
+                "cache_read_input_tokens": 29821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 371
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T06:11:52.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdoKxe16x729X1EN6ZaXPu",
+              "type": "tool_result",
+              "content": "{\n  \"family\": \"Qwen-14B\",\n  \"n_seeds\": 3,\n  \"method\": \"BCa bootstrap\",\n  \"B\": 10000,\n  \"seed\": 42,\n  \"mmlu\": {\n    \"deltas\": [\n      -24.99,\n      -9.37,\n      -12.74\n    ],\n    \"mean_delta\": -15.7,\n    \"ci_lower\": -24.99,\n    \"ci_upper\": -10.49,\n    \"significant\": true\n  },\n  \"arc\": {\n    \"deltas\": [\n      -9.38,\n      -2.56,\n      -3.15\n    ],\n    \"mean_delta\": -5.03,\n    \"ci_lower\": -9.38,\n    \"ci_upper\": -2.76,\n    \"significant\": true\n  },\n  \"direction_consistent\": true,\n  \"taxonomy_pattern\": \"Collapse\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "a7ee65c5-f914-48fe-99ab-bb0cd198307c",
+            "tool_use_result": {
+              "stdout": "{\n  \"family\": \"Qwen-14B\",\n  \"n_seeds\": 3,\n  \"method\": \"BCa bootstrap\",\n  \"B\": 10000,\n  \"seed\": 42,\n  \"mmlu\": {\n    \"deltas\": [\n      -24.99,\n      -9.37,\n      -12.74\n    ],\n    \"mean_delta\": -15.7,\n    \"ci_lower\": -24.99,\n    \"ci_upper\": -10.49,\n    \"significant\": true\n  },\n  \"arc\": {\n    \"deltas\": [\n      -9.38,\n      -2.56,\n      -3.15\n    ],\n    \"mean_delta\": -5.03,\n    \"ci_lower\": -9.38,\n    \"ci_upper\": -2.76,\n    \"significant\": true\n  },\n  \"direction_consistent\": true,\n  \"taxonomy_pattern\": \"Collapse\"\n}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen-14B 结果：\n\n| Benchmark | Mean Δ | 95% BCa CI | Significant |\n|-----------|--------|------------|-------------|\n| MMLU | -15.70 | [-24.99, -10.49] | ✅ |\n| ARC | -5.03 | [-9.38, -2.76] | ✅ |\n\n- **Dir-Con**: ✅（两个 benchmark 均为负向）\n- **Taxonomy**: Collapse\n\n5 个家族汇总：\n\n| Family | MMLU CI | ARC CI | Dir-Con | Pattern |\n|--------|---------|--------|---------|---------|\n| Phi-4 | [-0.17, +1.39] | [+0.51, +0.77] | ✅ | — |\n| OLMo-2 | [-0.55, +2.60] | [+2.90, +3.78] | ✅ | — |\n| Qwen-7B | [-1.82, -0.34] | [-2.90, -2.08] | ✅ | Collapse |\n| Gemma-2 | [+1.49, +3.14] | [-1.97, +1.42] | ✗ | Mixed |\n| **Qwen-14B** | **[-24.99, -10.49]** | **[-9.38, -2.76]** | **✅** | **Collapse** |\n\nQwen-14B 是 5 个家族中 contamination effect 最强的，MMLU 平均下降 15.7pp，ARC 下降 5.03pp，两端 CI 均远离 0。Table 3 可更新。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "uuid": "282c281e-1995-4778-92ff-0e715db293e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017FWyUfbmkq4jAC2aKAKeGq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 30192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 374
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen-14B 结果：\n\n| Benchmark | Mean Δ | 95% BCa CI | Significant |\n|-----------|--------|------------|-------------|\n| MMLU | -15.70 | [-24.99, -10.49] | ✅ |\n| ARC | -5.03 | [-9.38, -2.76] | ✅ |\n\n- **Dir-Con**: ✅（两个 benchmark 均为负向）\n- **Taxonomy**: Collapse\n\n5 个家族汇总：\n\n| Family | MMLU CI | ARC CI | Dir-Con | Pattern |\n|--------|---------|--------|---------|---------|\n| Phi-4 | [-0.17, +1.39] | [+0.51, +0.77] | ✅ | — |\n| OLMo-2 | [-0.55, +2.60] | [+2.90, +3.78] | ✅ | — |\n| Qwen-7B | [-1.82, -0.34] | [-2.90, -2.08] | ✅ | Collapse |\n| Gemma-2 | [+1.49, +3.14] | [-1.97, +1.42] | ✗ | Mixed |\n| **Qwen-14B** | **[-24.99, -10.49]** | **[-9.38, -2.76]** | **✅** | **Collapse** |\n\nQwen-14B 是 5 个家族中 contamination effect 最强的，MMLU 平均下降 15.7pp，ARC 下降 5.03pp，两端 CI 均远离 0。Table 3 可更新。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 65804,
+            "duration_api_ms": 63702,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "9b1f3e09-abc0-45ac-8a40-797e3b0b90e6",
+            "total_cost_usd": 0.32131175,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 18725,
+              "cache_read_input_tokens": 241781,
+              "output_tokens": 3160,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18725,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 440,
+                  "cache_read_input_tokens": 30192,
+                  "cache_creation_input_tokens": 374,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 374
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 4210,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.004335,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 3160,
+                "cacheReadInputTokens": 241781,
+                "cacheCreationInputTokens": 18725,
+                "webSearchRequests": 0,
+                "costUSD": 0.31697675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f0197452-103c-485e-8817-670af670b487"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-qwen14b-n3-bootstrap-prep.md"
+}

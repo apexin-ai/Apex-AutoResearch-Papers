@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c11f212941bae521c335",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code pipeline readiness",
+  "task_key": "worker_code_pipeline_readiness_20260514T123858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pipeline_readiness_20260514T123858_result.json",
+    "occurrence": 1,
+    "bytes": 2242,
+    "sha256": "5c424af02325ab6b8af062b32194ef962bcdecdda7ef42b5e5ec355aff6413ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the readiness report:\n\n---\n\n## Pipeline Readiness Report\n\n### 1. exp-003 RRF Aggregation (CPU)\n\n| 检查项 | 状态 |\n|--------|------|\n| `aggregate_rrf.py` 存在 | ✅ 12KB, 今天 18:44 更新 |\n| `--generate-exposure` 标志 | ✅ 存在 |\n| `--signal-dir`, `--benchmarks`, `--k`, `--normalize` 参数 | ✅ 全部存在 |\n| 输出目录 `/root/autodl-tmp/exp003/` | ❌ **不存在，需创建** |\n| 0.5B signal 文件 | ⚠️ 进行中（见下） |\n\n**当前 0.5B signal 完成度：**\n- `d000_s42`: embedding×3 + minkpp_mmlu = 4/12 文件\n- `d005_s42`: embedding_mmlu = 1/12 文件\n- 缺失：minkpp (gsm8k, arc), constat (全部), selfcritique (全部)\n\n### 2. exp-006 IRT Calibration + 7 Baselines\n\n| 检查项 | 状态 |\n|--------|------|\n| Stan 模型已编译 | ✅ 4个 (2pl_gamma, 4pl, 4pl_simple, vanilla_4pl) |\n| CmdStanPy | ✅ v1.3.0, cmdstan-2.38.0 |\n| baselines.py (B0-B6) | ✅ 7个基线全部实现 (Raw, Remove-rescore, Single-signal 2PL+γ, Vanilla 4PL, Linear regression, Emperor, DCR fuzzy) |\n| `run_exp006.py` | ✅ 有 `--dry-run` 和 `--skip-stan` 标志 |\n| `evaluate_calibration.py` | ✅ 存在 |\n| `baselines/` 独立目录 | ⚠️ 无独立目录，baselines 统一在 `baselines.py`（`_baselines_v1/` 是旧版模块化代码） |\n\n### 3. exp-002 后续 (1.5B/3B Signals)\n\n| 检查项 | 状态 |\n|--------|------|\n| `compute_signals.py` | ✅ 8KB, 今天 18:04 更新 |\n| selfcritique `BATCH_SIZE=32` 热修复 | ✅ `signal_selfcritique.py` 中硬编码 `BATCH_SIZE = 32`，不受 args.batch_size 影响 |\n| 1.5B eval 结果 | ✅ 6个变体 (d000_s42, d000_s123, d100_s42, aligned, para_aligned, d005_s42_aligned) |\n| 3B eval 结果 | ✅ 5个变体 (d000_s42, d000_s123, raw, d000_s42_aligned, d100_s42_aligned) |\n\n---\n\n### Blockers\n\n1. **❌ `/root/autodl-tmp/exp003/` 目录不存在** — 需要在 exp-003 启动前创建（`mkdir -p /root/autodl-tmp/exp003`），或确认 `aggregate_rrf.py` 会自动创建。\n\n### 无 Blocker 项\n\n整个 pipeline 代码和依赖就绪。exp-002 0.5B signals 完成后，exp-003 和 exp-006 可立即启动，唯一需要的预操作是创建 exp003 输出目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pipeline-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f302311da2ba3efc09d5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd cqa1 status check",
+  "task_key": "worker_ops_westd-cqa1-status-check_20260520T033012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cqa1-status-check_20260520T033012_result.json",
+    "occurrence": 1,
+    "bytes": 2177,
+    "sha256": "fff2e64cdc4d5562e93974ec4c7d021d852ced7b4be5286bab349f12beffc982"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全了。汇总结果：\n\n## 实验状态汇总\n\n### westd-29999 (4× RTX PRO 6000 Blackwell 96GB)\n\n| GPU | 实验 | PID | 状态 | 进度 | ETA |\n|-----|------|-----|------|------|-----|\n| cuda:0 (75%, 58/98GB) | Phi-4 s0 sweep | 265121 | **still_running** | d000 训练中, 451/3125 (14%), ~2.4s/it | ~1h45m |\n| cuda:1 (81%, 62/98GB) | Qwen-14B d100_s123 retrain | 246779 | **still_running** | 1905/4159 (46%), ~2.9s/it | ~1h50m |\n| cuda:2 (95%, 67/98GB) | OLMo-2 s0 sweep | 261133 | **still_running** | d000 已完成(checkpoint-3125), d005 训练中 ~40-45% | ~1h |\n| cuda:3 (90%, 95/98GB) | Gemma-2 d100_s123 retrain | 246861 | **still_running** | 1956/4159 (47%), ~3.0s/it | ~1h50m |\n| CPU | IRT fitting MMLU v3 | 265452 | **crashed** | fitting 完成但保存失败 | — |\n\n### cqa1-21977 (1× RTX 4090D 24GB)\n\n| GPU | 实验 | PID | 状态 | 进度 | ETA |\n|-----|------|-----|------|------|-----|\n| cuda:0 (33%, 21/25GB) | Qwen-7B s0 sweep | 313418 | **still_running** | d000 训练中, ~24% (761/3125), ~4.3s/it | ~2h45m |\n\n### IRT fitting 详情\n\n两次运行（原始 + rerun）的 2PL+γ fitting 均在 25 respondents × 14042 items 上**成功完成**，但都在保存 trace 时崩溃：\n- 第一次: `AttributeError: module 'arviz' has no attribute 'to_netcdf'`\n- 第二次（rerun）: `ValueError: cannot write NetCDF files ... none of the suitable backend libraries (netCDF4, h5netcdf) are installed`\n\nFitting 控制台输出的关键结果：\n- **mean(γ) = 0.0256 ± 0.3587, median(γ) = 0.0778**\n- **57.8% items with γ > 0**\n- `/root/contamcal-irt-calibration/analysis/irt_results/mmlu_v3/` 目录为空，无文件落盘\n\n**修复方案**: westd 上 `pip install h5netcdf` 后重跑即可。\n\n### 磁盘\n\n| 服务器 | 根分区 | 数据盘 |\n|--------|--------|--------|\n| westd | 1.4/30G (5%) | 192/250G (77%) |\n| cqa1 | 19/30G (64%) | 121/169G (72%) |\n\n### 结论\n- 4 个 GPU 训练全部 **still_running**，registry 误标 failed 确认是假阳性\n- IRT fitting 需要装 h5netcdf 后重跑保存步骤（fitting 已完成，只差落盘）\n- cqa1 根分区 64% 偏高，需关注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cqa1-status-check.md"
+}

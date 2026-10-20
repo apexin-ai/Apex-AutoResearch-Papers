@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "667b468cca65414ee468",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "debug exp002 minkpp crash",
+  "task_key": "worker_debug_exp002-minkpp-crash_20260514T105031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp002-minkpp-crash_20260514T105031_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "2889c43cb53af0ec100762574b80dbe6a38ce3ff53a15b574ef4823937a273ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 完整 Traceback\n\n```\nFile \"signal_minkpp.py\", line 161, in compute_minkpp_signal\n    lp = compute_token_logprobs(target_model, target_tok, text, max_length)\nFile \"signal_minkpp.py\", line 96, in compute_token_logprobs\n    return token_log_probs[0].cpu().numpy()\nTypeError: Got unsupported ScalarType BFloat16\n```\n\n### 根因\n\n`signal_minkpp.py:compute_token_logprobs` 返回 `token_log_probs[0].cpu().numpy()`，模型以 bfloat16 推理，bfloat16 tensor 无法直接转 numpy。需要 `.float()` 中间转换。\n\n### selfcritique 没有独立 bug\n\nselfcritique 看起来\"FAIL\"是因为 compute_signals.py 按顺序执行 `embedding → minkpp → selfcritique`，minkpp 崩溃后进程直接退出，selfcritique 从未运行。dryrun4 测试证实 selfcritique 独立运行 **PASS**。\n\n### 当前状态：已修复，已在跑\n\n- `signal_minkpp.py` 已在 18:46:03 修复为 `.cpu().float().numpy()`\n- 新的 batch run (PID 353388) 在 18:46:36 启动，使用修复后的代码\n- 9 个任务（3 dosages × 3 benchmarks），GPU 0\n- 当前在 task 1/9 (d000_s42/mmlu)，进程 353390 活跃运行中（724% CPU, 4138 MiB GPU）\n- 无需额外干预"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-exp002-minkpp-crash.md"
+}

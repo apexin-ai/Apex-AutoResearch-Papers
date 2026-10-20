@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59cbea1abc0aa7e0a306",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp006 oracle gsm8k extended v2 results",
+  "task_key": "worker_analysis_exp006-oracle-gsm8k-extended-v2-results_20260515T025018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp006-oracle-gsm8k-extended-v2-results_20260515T025018_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "04526f93f1fcf471e7418b205a7fe72a042b996637ba87e320d41a2e38f6655f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**仍在运行中**，尚未完成。关键发现：\n\n1. **当前 MCMC 状态**：chains 按顺序运行（非并行），chain 1 已完成（26:34），chain 2/3 已完成，chain 4 在采样中（~52%, 3100/6000）。按 ~3.93 it/s 计算，chain 4 剩余 ~12 分钟，预计 **11:04 服务器时间**完成。\n\n2. **`exp006_results.json` 来自先前失败的尝试**：`total_time_sec: 759.6`，IRT 部分显示 error（retcodes=[1,1,1,1]，4 chains 全部失败）。当前运行是重试，chains 正常采样中。\n\n3. **已有 baseline 评估结果**（来自失败运行，baselines 本身有效）：\n\n| Method | MAE | ECE | Kendall τ | Coverage 95% |\n|--------|-----|-----|-----------|-------------|\n| B0_raw | 0.005 | 0.005 | 0.838 | 100% |\n| B1_remove_rescore | 0.005 | 0.005 | 0.838 | 100% |\n| B4_linear_regression | 0.008 | 0.008 | — | 100% |\n| B5_emperor_mitigation | 0.005 | 0.005 | 0.838 | 100% |\n| B6_dcr_fuzzy | 0.138 | 0.137 | 0.415 | 56.3% |\n\n4. **gamma、rhat、ESS、PPP 均不可用** — 需等 MCMC 完成后才有 IRT 结果。\n\n建议 ~15 分钟后重新采集。是否需要我设置定时轮询？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp006-oracle-gsm8k-extended-v2-results.md"
+}

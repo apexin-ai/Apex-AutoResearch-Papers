@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecfc4bc86dbe4f4bdfb9",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_4_1778758741.md",
+  "task_key": "loop_4_1778758741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778758741.md",
+    "occurrence": 1,
+    "bytes": 5654,
+    "sha256": "d68fdfaeb46c09a3367ea8a980cb1d71132d3525a4261b44c5eb10cd2243acd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:55:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 全属本项目（cqa1-21977），不可用其他 GPU\n- `server: local` 实验（exp_004, exp_005）**禁止用 SSH 查状态**，只能 `ps -p PID`，不注册 cron。两次误标事故教训\n- 所有脚本已删除 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 覆写，GPU 绑定由 submit_training_job wrapper 控制，脚本内只用 `cuda:0`。**不要在脚本里加回去**\n- MC eval 必须用 `--mc-format aligned`（D017），legacy 结果仅供诊断。只有 aligned-aligned pair 的 ConStat 结果有效\n- cron failed 回调不可盲信——先 SSH 查 GPU 上是否仍有 python 训练进程（wrapper PID ≠ python PID）\n- 3B GSM8K 已排除出 dose-response 分析（D018），3B MMLU/ARC 仍可用\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D (cuda:0-5)\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Checkpoint 目录**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 输出**: `/root/autodl-tmp/exp001/eval_results/{Model}_d{dosage}_s{seed}/`\n- **Stan 模型**: `contam_irt_4pl_simple.stan`（主），CmdStanPy + CmdStan 2.38.0 已装\n- **活跃 GPU 进程**:\n  - cuda:0 — exp_002_signals_05B, PID 353382 (信号计算 S1/S2/S4, 27 tasks)\n  - cuda:1 — exp_001_eval_15B_aligned_batch, PID 336750\n  - cuda:2 — exp_001_eval_05B_aligned_batch, PID 332207\n  - cuda:3 — exp_001_sft_d100_3B, PID 319555\n  - cuda:4 — exp_001_sft_d005_3B（cron PID 335346，registry 缺 server/gpu/pid 需补）\n  - cuda:5 — exp_001_eval_3B_d000_aligned, PID 342935\n- **本地 CPU 进程**:\n  - exp_004_sim_sweep_v2, PID 411032 (27/120 done, ETA May 16-17)\n  - exp_005_noise_prop_v3, PID 426335 (ETA ~14:30-15:30 UTC today)\n- **Cron 活跃**: 4 个 (exp_001_sft_d100_3B, exp_001_sft_d005_3B, exp_001_eval_3B_d000_aligned, exp_002_signals_05B)\n\n### 3. 📊 当前状态\n**刚完成**: 1.5B d100 eval (success), 3B raw gen eval (success), 0.5B raw eval (success)。D017 aligned 格式全面部署，0.5B/1.5B aligned batch eval 正在跑。\n\n**8 个 RUNNING 实验**:\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_002_signals_05B | cuda:0 | 0.5B 三信号计算（S1+S2+S4），critical path 起点 |\n| exp_001_eval_15B_aligned_batch | cuda:1 | 1.5B d000/d005/d100 aligned eval batch |\n| exp_001_eval_05B_aligned_batch | cuda:2 | 0.5B d000/d005/d100 aligned eval batch |\n| exp_001_sft_d100_3B | cuda:3 | 3B 100% dosage SFT，~214min |\n| exp_001_sft_d005_3B | cuda:4 | 3B 5% dosage SFT，~214min |\n| exp_001_eval_3B_d000_aligned | cuda:5 | 3B d000 aligned eval，诊断 GSM8K collapse |\n| exp_004_sim_sweep_v2 | local | IRT 参数恢复 sim，120 条件，ETA May 16-17 |\n| exp_005_noise_prop_v3 | local | ME-aware noise prop，ETA today 14:30 UTC |\n\n**10 个 PREPARING**: 全是旧版本 eval（v2/v3/v4/v6）和 0.5B d005 retry，已被 aligned batch 取代，可清理。\n\n**等待中**: 无 pending Worker 回调。4 个 cron 在监控。无 Director 待决策。\n\n### 4. 📋 待办（条件触发式）\n- **exp_002_signals_05B 完成 → exp_003 RRF aggregation (CPU, fast) → exp_006 IRT calibration (核心结果！)**。这是 critical path，完成后立刻派 Worker\n- **exp_001_eval_05B_aligned_batch 完成 → 数据送 exp-002 ConStat (S3) 补算**（ConStat 需要 paraphrase eval 结果）\n- **exp_005_noise_prop_v3 完成 (ETA today) → 验证 noise propagation 结果，更新 registry，写 report**\n- **GPU 1/2 eval 完成 → 先确认 exp-002 是否还需 GPU → 若不需要，提交 0.5B d025 SFT (P2, ~53min) → d025 eval → 4 点 dose-response 曲线**\n- **3B SFT (GPU 3/4) 完成 → 提交 3B d100/d005 aligned eval → 3B 数据点**\n- **exp-002 + exp-003 完成 → exp-008 signal survival (P0, ~2.7h, 可 4 GPU 并行)**。C2 core contribution 唯一证据\n- **exp_004 每批 AUC 条件完成 → 增量分析**（已发现 AUC=0.80 CI 异常，collinearity-induced attenuation）\n- **exp_001_sft_d005_3B registry 缺 spec → 补录 server/gpu/pid 信息**\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25，距今 **11 天**\n- **核心 story**: ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。3 个 core claims:\n  - C1: γ parameter recoverable (exp-004/005 支撑，AUC≥0.55 即可辨识)\n  - C2: signal survival across training regimes (exp-008，**尚未启动**，Table 2 \"RL-robust partial✓\" claim 唯一证据)\n  - C3: calibrated scores improve benchmark reliability (exp-006, 等 exp-002/003)\n- **Critical path 瓶颈是软件**: exp-002 信号 → exp-003 RRF → exp-006 IRT，代码都写好了在跑\n- **关键决策链**: D009 HumanEval 降 appendix → D010 用全 paraphrases → D011 CmdStanPy Bayesian → D013 Simple IRT model → D016 Min-K++ ref model 用 d000 fine-tuned → D017 aligned MC 格式 → D018 3B GSM8K 排除\n- **易错点**:\n  - 不要把 legacy eval 和 aligned eval 混用比较\n  - exp_001_sft_d005_3B 的 registry 记录不完整（缺 server/gpu/pid），需要补\n  - exp-008 是 C2 的唯一证据，如果结果不支持必须删 Table 2 \"RL-robust\" claim\n  - 10 个 PREPARING 实验大多是历史遗留，被 aligned batch 取代，不要重新提交这些旧版本\n  - exp_004 高 AUC (0.80) 下 γ 有 attenuation bias，论文 Discussion 需讨论\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778758741.md"
+}

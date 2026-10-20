@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb2f9e472d434f86be4a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent gpu fill and status",
+  "task_key": "worker_ops_urgent-gpu-fill-and-status_20260518T153037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-fill-and-status_20260518T153037_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "659534cde292668173d11903c15f2de65c99676f0087867a29ec12e12c56584c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认。汇报如下：\n\n---\n\n## GPU 状态汇报\n\n| GPU | 完成/运行 | 详情 |\n|-----|----------|------|\n| **cuda:0** | d025_s42 **完成** → 已启动 d100_s42 | 完成 loss=0.9429, adapter 154MB, 耗时 1h34m. 新任务 PID 36665, 已加载模型(559MiB) |\n| **cuda:1** | d050_s42 **运行中** | 46% (1695/3642), loss~0.93, ETA ~45min |\n| **cuda:2** | 14B d000_s42 **运行中** | 89% (2771/3125), loss~0.90, ETA ~18min |\n| **cuda:3** | d000_s123 **完成** → 已启动 d005_s123 | 完成 loss=0.9249, adapter 154MB, 耗时 1h47m. 新任务 PID 36943, 已加载模型(559MiB) |\n\n## 模型下载进度\n\n| 模型 | safetensors | 大小 | incomplete | 状态 |\n|------|------------|------|-----------|------|\n| **Phi-4** | 3 files | 23G | 3 | 下载中 (PID 19608, 运行 5h+) |\n| **OLMo-2-7B** | 4 files | 19G | 1 | 下载中 (PID 35305) |\n| **Gemma-2-9B** | 6 files | 26G | 1 | 下载中 (PID 35312) |\n\n14B d000_s42 约 18min 后完成，届时 cuda:2 可启动 14B d005_s42。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-fill-and-status.md"
+}

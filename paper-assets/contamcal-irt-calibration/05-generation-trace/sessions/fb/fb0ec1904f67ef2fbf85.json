@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb0ec1904f67ef2fbf85",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp008 fix sftdata",
+  "task_key": "worker_code_exp008-fix-sftdata_20260514T083407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-fix-sftdata_20260514T083407_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "d56ab8382081d0619019e6ea77f57ec021fb70cc664768f6b134240958d14aad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，语法验证通过。\n\n**Diff:**\n```\n- 11: SFT_DATA=\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\"\n+ 11: SFT_DATA=\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\"\n```\n\nd005 数据文件已确认存在（93MB），脚本语法无误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-fix-sftdata.md"
+}

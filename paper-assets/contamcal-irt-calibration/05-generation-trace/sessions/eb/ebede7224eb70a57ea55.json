@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebede7224eb70a57ea55",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis r6w3 training curves extraction",
+  "task_key": "worker_analysis_r6w3-training-curves-extraction_20260521T014518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r6w3-training-curves-extraction_20260521T014518_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "045d7bef6163e127538712f6ca3164909bb8c7cad06ddfb0023f91f412ed269a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| 覆盖率 | **68/75** 组合 |\n| 数据文件 | `westd-29999:/root/contamcal-irt-calibration/artifacts/training_curves/training_curves_data.json` (4.1MB) |\n| 提取脚本 | `westd-29999:/root/contamcal-irt-calibration/scripts/extract_training_curves.py` |\n| Artifact ID | `art_20260521_5fc135` |\n\n**每条曲线数据点数**（与 dosage 正相关，因为更高 dosage 训练样本更多）：\n- d000: 312 pts, d005: 317 pts, d025: 338 pts, d050: 364 pts, d100: 415 pts\n\n**缺失 7 个组合**（训练目录存在但 checkpoint 为空）：\n- Qwen-7B: s0 全部 5 个 dosage\n- Qwen-14B: d050/s0\n- Gemma-2: d100/s0\n\n**数据质量**：所有 68 条曲线 loss 均单调递减（first > last），无异常突增。起始 loss 按家族分层明显：Gemma-2 最高（~5.5-5.8），OLMo-2（~2.1-2.4），Phi-4（~1.5-1.7），Qwen-14B/7B（~1.3-1.6）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r6w3-training-curves-extraction.md"
+}

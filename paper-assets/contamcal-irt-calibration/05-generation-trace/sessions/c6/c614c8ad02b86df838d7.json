@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c614c8ad02b86df838d7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis extract eval metrics 3B d000 s123 para",
+  "task_key": "worker_analysis_extract-eval-metrics-3B-d000-s123-para_20260515T045442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract-eval-metrics-3B-d000-s123-para_20260515T045442_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "1885cccd6cdb173488add4998efc5731c003439429379603b4ec8f3ee5d590de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n**Metrics（已写入 registry）**\n\n| Benchmark | Score |\n|-----------|-------|\n| mmlu_para_accuracy | 0.6512 |\n| gsm8k_para_accuracy | 0.1491 |\n| arc_challenge_para_accuracy | 0.8121 |\n| humaneval_para_pass@1 | 0.0385 |\n\n**路径（已写入 registry）**\n- checkpoint_path: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter`\n- log_path: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned/eval_results.json`\n\n**输出目录文件**\n\n| 文件 | 大小 |\n|------|------|\n| eval_results.json | 878K |\n| correctness_matrix.json | 47K |\n| item_responses.json | 986K |\n\n三个文件均存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-eval-metrics-3b-d000-s123-para.md"
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "d38b3bce9e2e8da71881",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp006 baselines",
+  "task_key": "worker_code_exp006_baselines_20260514T033232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_baselines_20260514T033232.log",
+    "occurrence": 1,
+    "bytes": 537561,
+    "sha256": "af1db55cd101eb13a5762c49c31651e5fc335daa038ed4793b5a10d956beec18"
+  },
+  "statistics": {
+    "messages": 298,
+    "user_turns": 3,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 65,
+      "assistant": 25,
+      "tool_call": 101,
+      "user": 3,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "d38b3bce9e2e8da71881-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "d38b3bce9e2e8da71881-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "d38b3bce9e2e8da71881-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "d38b3bce9e2e8da71881-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "d38b3bce9e2e8da71881-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp006-baselines.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6d6d3849ebbc2981d3a",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778892603.md",
+  "task_key": "loop_13_1778892603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778892603.md",
+    "occurrence": 1,
+    "bytes": 6823,
+    "sha256": "806e6768219c19b2d31f83472a7e1fde8f6e15e8df1a0ad86174f1c50373b41d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T00:49:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：cqa1-21977 上 cuda:0–5（6× RTX 4090D 24GB）。无其他服务器。`get_project_status` 的 `gpu_ids` 是唯一权威来源，白名单外 GPU 必须 push back Director\n- **Alpha=16 checkpoint 黑名单（C006）**：Qwen2.5-3B_d000_s42, d000_v2_s42, d005_s42, d025_s42, d100_s42（不含 _v3/_v2 重训版本）。启动前必须 `cat adapter_config.json | grep lora_alpha` 确认 =32\n- **lr confound（D076）**：s42 旧系列 d000/d005 曾用 lr=2e-4，已重训为 lr=5e-5。旧 checkpoint 及下游 signals 不可用于 IRT pool\n- **Signal pipeline = S1-only（D034）**：RRF fusion 废弃，exposure 仅用 s1_embedding。S2/S4 仅用于 Claim 2 反面证据（\"信号失败\"表征）\n- **CUDA_VISIBLE_DEVICES 必须显式（C004）**：每条 submit 命令必须自带 `CUDA_VISIBLE_DEVICES=N`\n- **submit_training_job 不支持 shell builtin**：conda activate 需 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **EMNLP ARR May 25 = 2026-05-25**（D006 reinstated，距今 9 天）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977（AutoDL），6× RTX 4090D 24GB\n- **工作目录**：`/root/contamcal-irt-calibration/`（代码）、`/root/autodl-tmp/`（数据+模型+结果）\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型 cache**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoint 目录**：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter`\n- **Eval 输出**：`/root/autodl-tmp/exp001/eval_results/`\n- **Signal 输出**：`/root/autodl-tmp/exp002/signals/`\n- **Simulation sweep**：本地 `artifacts/simulation_sweep/`（CPU only）\n- **W&B**：未配置（指标从 log/registry 读取）\n- **网络**：pip/git 前需 `source /etc/network_turbo`；HF 下载需 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n\n### 3. 📊 当前状态\n\n**8 个 RUNNING 实验**（截至 session 结束，registry 快照 ~05-16 08:44 UTC）：\n\n| exp_id | GPU | 任务 | 预估剩余 |\n|--------|-----|------|---------|\n| exp_004_sim_sweep_v7 | CPU | 模拟 sweep（9/12 done, auc0.65×3 全失败, auc0.9_n100 在跑） | ~4-5h |\n| exp_001_sft_3B_d005_s42_a32 | cuda:0 | D076 重训 3B d005 s42 lr=5e-5 alpha=32 | ~1h（74%时） |\n| exp_001_sft_3B_d100_s42_a32_v3 | cuda:1 | D076 重训 3B d100 s42 alpha=32 | ~6-8h |\n| exp_001_eval_3B_d100_s123_a32_batch | cuda:0 | 3B d100 s123 aligned+para eval（GSM8K 69%时） | 数小时 |\n| exp_002_signals_3B_v7 | cuda:2 | 3B d005_s123 signals（mmlu, 全信号） | 数小时 |\n| exp_001_eval_3B_d025_v3_s42_batch | cuda:3 | 3B d025 v3 s42 aligned eval（曾报 on_failed hook） | 需检查是否存活 |\n| exp_002_signals_3B_d025_v3_s42 | cuda:5 | d025_v3_s42 s4 selfcritique signal | 数小时 |\n| exp_002_signals_3B_v8_recovery | cuda:4 | d100_a32_s123 mmlu 全信号（v8 OOM recovery） | 数小时 |\n\n**23 个 PREPARING 实验**，关键排队项：\n- exp_001_sft_3B_d025_s42_a32_v3（D076 retrain，需 GPU 释放）\n- exp_001_sft_3B_d000_v4 / d000_s42（d000 重训）\n- exp_001_eval_3B_d005_s42_para_aligned / d005_s123 eval（s42 矩阵缺口）\n- exp_008_instruct_rl_proxy（D021 RL proxy 实验，无需训练只需 signal 计算）\n\n**本 session 完成了**：\n- d000_s42 alpha=32 SFT 重训 ✅（loss=1.1324，需 eval）\n- 1.5B s123 para_aligned 全矩阵 ✅（8/8 完成）\n- D076 lr confound 诊断 + 全系列重训启动\n- D081-D086 alpha 审计风波（train_sft.py 无 bug，d025_v3_s42 确认有效）\n- exp_004 v7 进度推进（9/12 conditions, auc0.65 无法修复）\n- 3B signals orphan 进程清理（D078-D079）\n\n**⚠️ 需关注**：\n- exp_001_eval_3B_d025_v3_s42_batch 有 on_failed hook 触发记录（05-16 00:35 UTC），需检查进程是否存活\n- cuda:0 双进程冲突（SFT + eval），SFT 应先完成释放显存\n\n### 4. 📋 待办（条件触发式）\n- **d005_s42 SFT 完成（cuda:0）** → eval aligned + para_aligned → 然后 signals 计算 → 填补 3B s42 矩阵缺口\n- **d100_s42 SFT 完成（cuda:1）** → eval aligned + para_aligned → 3B s42 矩阵最后一块\n- **d025_v3_s42 eval 完成/失败确认（cuda:3）** → 若失败则重提；若成功 → para_aligned eval → signals\n- **d100_s123_a32 eval 完成（cuda:0）** → 释放 GPU 给 d000_s42 eval（已完成 SFT，等 GPU）\n- **signals v7 (d005_s123) 完成** → 加上 v8_recovery (d100_a32_s123) 完成 → 检查 3B s123 signal 覆盖\n- **sim_sweep_v7 完成** → 汇总 9/12 条件结论；auc0.65 失败不阻塞（9/12 够支撑 Claim 1）\n- **3B s42 全矩阵 eval 完成** → pooled IRT N 可达 ~35（0.5B 8 + 1.5B 16 + 3B ~11）→ 启动 exp-006 pooled IRT fitting\n- **pooled IRT fitting 完成** → 7 baselines 对比 → 确定最终指标 → 启动论文写作 pipeline\n- **所有 SFT 重训+eval+signals 完成** → RRF/S1 聚合（exp-003）→ per-benchmark exposure scores → IRT fitting\n\n### 5. 🎯 战略上下文\n\n**项目核心**：ContamCal = 用 contamination-augmented IRT 表征 benchmark contamination 效应（方向/尺度/信号有效性），而非\"修复\"分数。D039 pivot 后以 characterization 为主、calibration 降级为条件性 claim。\n\n**关键结论链**：\n- D003: 4PL+γ identifiability 通过（MVP）\n- D032-D034: pooled IRT 首次结果揭示 ARC γ 显著负（forgetting），S1-only 优于 RRF\n- D036: coverage collapse 严重（20-33% vs 95%）→ D056 确认为 model misspecification\n- D039: Dream 三档一致建议 characterization-first framing\n- D076: lr confound 发现 → s42 全系列重训\n- D085: 1.5B GSM8K 随 dosage 递减 = catastrophic forgetting 证据\n\n**最容易判断错的事**：\n1. **alpha 混用陷阱**：不要信任 registry 的 alpha 字段——只信 `cat adapter_config.json | grep lora_alpha` 的结果。已经有 D064→D066 的翻车教训\n2. **d000_s42 旧 checkpoint 有两份**：`Qwen2.5-3B_d000_s42`（lr=2e-4，废弃）和新重训的（lr=5e-5，可用）。路径名可能相同但内容不同。以 D076 后的训练时间戳为准\n3. **0.5B MMLU/ARC 数据排除**（D045）：0.5B MC benchmark 有严重 position bias，IRT pooling 时只用 GSM8K/HumanEval\n4. **exp_004 sim_sweep auc0.65 条件无法修复**：CmdStan 数值问题，不是代码 bug。9/12 条件够用，不要再投入时间修复\n5. **coverage collapse 是 model misspecification，不是 γ 太大**（D056）：per-benchmark γ_k 是修复路径，不是调参\n6. **3B d025_v3_s42 eval 有 on_failed hook 记录**——可能已经死了，接手后第一件事是 SSH 检查这个进程\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778892603.md"
+}

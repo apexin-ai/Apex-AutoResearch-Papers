@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc69000c1a6af501c74e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 15B d000 s42 v2",
+  "task_key": "worker_analyze_exp_001_eval_15B_d000_s42_v2_20260514T031050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_15B_d000_s42_v2_20260514T031050_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "7987bd38873e9ed6754f47881595078dd295e80bc46df22e877a74dbe2b40146"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n## exp_001_eval_15B_d000_s42_v2 结果\n\n**模型**: Qwen2.5-1.5B + LoRA (0% dosage, seed=42)\n\n| Benchmark | Metric | Score | Detail |\n|-----------|--------|-------|--------|\n| MMLU | accuracy | **0.5753** | 8079/14042 |\n| GSM8K | exact_match | **0.6368** | 840/1319 |\n| ARC-Challenge | accuracy | **0.7756** | 909/1172 |\n| HumanEval | pass@1 | **0.1280** | 21/164 |\n\n**结论**: success — 所有分数处于 Qwen2.5-1.5B 经 SlimOrca SFT 后的合理水平，无异常。MMLU ~57.5% 略高于基础模型的公开水平（SFT 微调有轻微提升属正常），GSM8K 63.7% 合理，ARC-Challenge 77.6% 偏高表现良好，HumanEval 12.8% 对 1.5B 模型属正常范围。作为 0% contamination baseline，这组数据可用于后续 dosage 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-15b-d000-s42-v2.md"
+}

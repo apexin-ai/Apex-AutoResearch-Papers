@@ -1,0 +1,1127 @@
+{
+  "schema_version": "1.0",
+  "id": "cc76427694197e486fd3",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "critical alpha audit and checkpoint verify",
+  "task_key": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036.jsonl",
+    "occurrence": 1,
+    "bytes": 48477,
+    "sha256": "037b0ac39c2dc713d87f158ca4d1d9567795471877cb7a372f6dc4cd9fbdabeb"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T18:54:08.354268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "ssh read execute",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T18:54:08.361413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "ToolSearch",
+            "elapsed_ms": 7
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T18:54:08.361862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_*/lora_adapter/ -name adapter_config.json -exec python3 -c \"import json,sys; p=sys.argv[1]; d=json.load(open(p)); print(f'{p}|alpha={d[\\\"lora_alpha\\\"]}|r={d[\\\"r\\\"]}')\" {} \\;"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T18:54:08.362127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T18:54:08.368409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_*/lora_adapter/ -name adapter_config.json -exec python3 -c \"import json,sys; p=sys.argv[1]; d=json.load(open(p)); print(f'{p}|alpha={d[\\\"lora_alpha\\\"]}|r={d[\\\"r\\\"]}')\" {} \\;"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:54:08.368788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:54:08.369057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*/lora_adapter/ -name adapter_config.json -exec python3 -c \"import json,sys; p=sys.argv[1]; d=json.load(open(p)); print(f'{p}|alpha={d[\\\"lora_alpha\\\"]}|r={d[\\\"r\\\"]}')\" {} \\;"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:54:08.369293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T18:54:08.369547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"lora_alpha\\|LoraConfig\\|lora_config\" /root/contamcal-irt-calibration/exp001/train_sft.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:54:08.369866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:54:08.370089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -ld /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000*/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T18:54:08.370305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 3 root root 34 May 16 00:52 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_a32_s42/\\\\ndrwxr-xr-x 3 root root 63 May 14 08:15 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/\\\\ndrwxr-xr-x 3 root root 63 May 14 07:20 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/\\\\ndrwxr-xr-x 3 root root 63 May 15 08:02 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/\\\\ndrwxr-xr-x 3 root root 63 May 15 03:45 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T18:54:08.376751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "for dir in /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_*/lora_adapter/; do if [ -f \"${dir}adapter_config.json\" ]; then alpha=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['lora_alpha'])\" 2>/dev/null); r=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['r'])\" 2>/dev/null); echo \"$(basename $(dirname $(dirname $dir)))|alpha=$alpha|r=$r\"; fi; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T18:54:08.377051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T18:54:08.377288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "for dir in /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_*/lora_adapter/; do if [ -f \"${dir}adapter_config.json\" ]; then alpha=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['lora_alpha'])\" 2>/dev/null); r=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['r'])\" 2>/dev/null); echo \"$(basename $(dirname $(dirname $dir)))|alpha=$alpha|r=$r\"; fi; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T18:54:08.377956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T18:54:08.378192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "for dir in /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*/lora_adapter/; do if [ -f \"${dir}adapter_config.json\" ]; then alpha=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['lora_alpha'])\" 2>/dev/null); r=$(python3 -c \"import json; print(json.load(open('${dir}adapter_config.json'))['r'])\" 2>/dev/null); echo \"$(basename $(dirname $(dirname $dir)))|alpha=$alpha|r=$r\"; fi; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T18:54:08.382510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\ncheckpoints|alpha=|r=\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T18:54:08.382748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"lora_alpha\\|LoraConfig\\|lora_config\" /root/contamcal-irt-calibration/exp001/train_sft.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T18:54:08.382976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19:from peft import LoraConfig, get_peft_model, TaskType\\\\n34:    \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n97:    parser.add_argument(\\\\\\\"--lora-alpha\\\\\\\", type=int, default=DEFAULT_LORA_CONFIG[\\\\\\\"lora_alpha\\\\\\\"],\\\\n135:    lora_config = LoraConfig(\\\\n137:        lora_alpha=args.lora_alpha,\\\\n145:                lora_config.r, lora_config.lora_alpha, lora_config.target_modules)\\\\n180:        peft_config=lora_config,\\\\n207:        \\\\\\\"lora_alpha\\\\\\\": args.lora_alpha,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T18:54:08.383200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "for dir in /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000*/; do echo \"=== $(basename $dir) ===\"; ls -la \"${dir}lora_adapter/adapter_config.json\" 2>/dev/null; ls -la \"${dir}lora_adapter/adapter_model.safetensors\" 2>/dev/null; python3 -c \"import json; d=json.load(open('${dir}lora_adapter/adapter_config.json')); print(f'alpha={d[\\\"lora_alpha\\\"]}, r={d[\\\"r\\\"]}')\" 2>/dev/null; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T18:54:08.383471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"=== Qwen2.5-3B_d000_a32_s42 ===\\\\n=== Qwen2.5-3B_d000_s123 ===\\\\n-rw-r--r-- 1 root root 1121 May 14 08:15 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 14 08:15 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_model.safetensors\\\\n=== Qwen2.5-3B_d000_s42 ===\\\\n-rw-r--r-- 1 root root 1121 May 14 07:20 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 14 07:20 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_model.safetensors\\\\n=== Qwen2.5-3B_d000_v2_s123 ===\\\\n-rw-r--r-- 1 root root 1121 May 15 08:02 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 15 08:02 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_model.safetensors\\\\n=== Qwen2.5-3B_d000_v2_s42 ===\\\\n-rw-r--r-- 1 root root 1121 May 15 03:45 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 15 03:45 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T18:54:08.383748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/ -name adapter_config.json -path \"*/Qwen2.5-3B_*/lora_adapter/*\" | sort | while read f; do dir=$(echo \"$f\" | sed 's|/root/autodl-tmp/exp001/checkpoints/||' | cut -d/ -f1); alpha=$(python3 -c \"import json; print(json.load(open('$f'))['lora_alpha'])\"); r=$(python3 -c \"import json; print(json.load(open('$f'))['r'])\"); ts=$(stat -c '%y' \"$f\" | cut -d. -f1); echo \"$dir|alpha=$alpha|r=$r|created=$ts\"; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T18:54:08.384037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-3B_d000_s123|alpha=|r=|created=2026-05-14 08:15:02\\\\nQwen2.5-3B_d000_s123|alpha=|r=|created=2026-05-14 08:15:01\\\\nQwen2.5-3B_d000_s42|alpha=|r=|created=2026-05-14 07:20:21\\\\nQwen2.5-3B_d000_s42|alpha=|r=|created=2026-05-14 07:20:20\\\\nQwen2.5-3B_d000_v2_s123|alpha=|r=|created=2026-05-15 08:02:06\\\\nQwen2.5-3B_d000_v2_s123|alpha=|r=|created=2026-05-15 08:02:05\\\\nQwen2.5-3B_d000_v2_s42|alpha=|r=|created=2026-05-15 03:45:44\\\\nQwen2.5-3B_d000_v2_s42|alpha=|r=|created=2026-05-15 03:45:44\\\\nQwen2.5-3B_d005_s123|alpha=|r=|created=2026-05-15 23:02:36\\\\nQwen2.5-3B_d005_s123|alpha=|r=|created=2026-05-15 23:02:35\\\\nQwen2.5-3B_d005_s42|alpha=|r=|created=2026-05-14 20:55:37\\\\nQwen2.5-3B_d005_s42|alpha=|r=|created=2026-05-14 20:55:37\\\\nQwen2.5-3B_d025_s123|alpha=|r=|created=2026-05-15 22:42:07\\\\nQwen2.5-3B_d025_s123|alpha=|r=|created=2026-05-15 22:42:06\\\\nQwen2.5-3B_d025_s42|alpha=|r=|created=2026-05-15 11:56:19\\\\nQwen2.5-3B_d025_s42|alpha=|r=|created=2026-05-15 11:56:18\\\\nQwen2.5-3B_d100_s123|alpha=|r=|created=2026-05-15 13:17:05\\\\nQwen2.5-3B_d100_s123|alpha=|r=|created=2026-05-15 13:17:05\\\\nQwen2.5-3B_d100_s42|alpha=|r=|created=2026-05-15 07:05:57\\\\nQwen2.5-3B_d100_s42|alpha=|r=|created=2026-05-15 07:05:56\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: py\n…[truncated 1102 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T18:54:08.384269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/ -name adapter_config.json -path \"*/Qwen2.5-0.5B_*/lora_adapter/*\" | sort | while read f; do dir=$(echo \"$f\" | sed 's|/root/autodl-tmp/exp001/checkpoints/||' | cut -d/ -f1); alpha=$(python3 -c \"import json; print(json.load(open('$f'))['lora_alpha'])\"); r=$(python3 -c \"import json; print(json.load(open('$f'))['r'])\"); ts=$(stat -c '%y' \"$f\" | cut -d. -f1); echo \"$dir|alpha=$alpha|r=$r|created=$ts\"; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T18:54:08.390678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123|alpha=|r=|created=2026-05-14 05:36:16\\\\nQwen2.5-0.5B_d000_s123|alpha=|r=|created=2026-05-14 05:36:15\\\\nQwen2.5-0.5B_d000_s42|alpha=|r=|created=2026-05-14 04:31:19\\\\nQwen2.5-0.5B_d000_s42|alpha=|r=|created=2026-05-14 04:31:19\\\\nQwen2.5-0.5B_d005_s123|alpha=|r=|created=2026-05-15 08:42:00\\\\nQwen2.5-0.5B_d005_s123|alpha=|r=|created=2026-05-15 08:41:59\\\\nQwen2.5-0.5B_d005_s42|alpha=|r=|created=2026-05-14 08:54:22\\\\nQwen2.5-0.5B_d005_s42|alpha=|r=|created=2026-05-14 08:54:22\\\\nQwen2.5-0.5B_d025_s123|alpha=|r=|created=2026-05-15 13:39:50\\\\nQwen2.5-0.5B_d025_s123|alpha=|r=|created=2026-05-15 13:39:50\\\\nQwen2.5-0.5B_d025_s42|alpha=|r=|created=2026-05-14 16:30:05\\\\nQwen2.5-0.5B_d025_s42|alpha=|r=|created=2026-05-14 16:30:04\\\\nQwen2.5-0.5B_d100_s123|alpha=|r=|created=2026-05-15 05:29:04\\\\nQwen2.5-0.5B_d100_s123|alpha=|r=|created=2026-05-15 05:29:04\\\\nQwen2.5-0.5B_d100_s42|alpha=|r=|created=2026-05-14 08:49:56\\\\nQwen2.5-0.5B_d100_s42|alpha=|r=|created=2026-05-14 08:49:55\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: \n…[truncated 536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 6
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T18:54:08.390967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/ -name adapter_config.json -path \"*/Qwen2.5-1.5B_*/lora_adapter/*\" | sort | while read f; do dir=$(echo \"$f\" | sed 's|/root/autodl-tmp/exp001/checkpoints/||' | cut -d/ -f1); alpha=$(python3 -c \"import json; print(json.load(open('$f'))['lora_alpha'])\"); r=$(python3 -c \"import json; print(json.load(open('$f'))['r'])\"); ts=$(stat -c '%y' \"$f\" | cut -d. -f1); echo \"$dir|alpha=$alpha|r=$r|created=$ts\"; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T18:54:08.391241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-1.5B_d000_s123|alpha=|r=|created=2026-05-14 06:23:19\\\\nQwen2.5-1.5B_d000_s123|alpha=|r=|created=2026-05-14 06:23:18\\\\nQwen2.5-1.5B_d000_s42|alpha=|r=|created=2026-05-14 05:22:54\\\\nQwen2.5-1.5B_d000_s42|alpha=|r=|created=2026-05-14 05:22:54\\\\nQwen2.5-1.5B_d005_s123|alpha=|r=|created=2026-05-15 20:52:10\\\\nQwen2.5-1.5B_d005_s123|alpha=|r=|created=2026-05-15 20:52:10\\\\nQwen2.5-1.5B_d005_s42|alpha=|r=|created=2026-05-14 16:44:50\\\\nQwen2.5-1.5B_d005_s42|alpha=|r=|created=2026-05-14 16:44:49\\\\nQwen2.5-1.5B_d025_s123|alpha=|r=|created=2026-05-15 20:56:58\\\\nQwen2.5-1.5B_d025_s123|alpha=|r=|created=2026-05-15 20:56:57\\\\nQwen2.5-1.5B_d025_s42|alpha=|r=|created=2026-05-15 01:32:37\\\\nQwen2.5-1.5B_d025_s42|alpha=|r=|created=2026-05-15 01:32:37\\\\nQwen2.5-1.5B_d100_s123|alpha=|r=|created=2026-05-15 08:26:42\\\\nQwen2.5-1.5B_d100_s123|alpha=|r=|created=2026-05-15 08:26:41\\\\nQwen2.5-1.5B_d100_s42|alpha=|r=|created=2026-05-14 15:38:50\\\\nQwen2.5-1.5B_d100_s42|alpha=|r=|created=2026-05-14 15:38:50\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: command not found\\\\nbash: line 1: python3: \n…[truncated 536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T18:54:08.391514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "sed -n '28,45p' /root/contamcal-irt-calibration/exp001/train_sft.py; echo \"---LINE 90-100---\"; sed -n '90,105p' /root/contamcal-irt-calibration/exp001/train_sft.py; echo \"---LINE 130-150---\"; sed -n '130,150p' /root/contamcal-irt-calibration/exp001/train_sft.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T18:54:08.391784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nDEFAULT_LORA_CONFIG = {\\\\n    \\\\\\\"r\\\\\\\": 16,\\\\n    \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n    \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n        \\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\",\\\\n        \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n}\\\\n\\\\nDEFAULT_TRAINING_ARGS = {\\\\n    \\\\\\\"num_train_epochs\\\\\\\": 1,\\\\n---LINE 90-100---\\\\n                        help=\\\\\\\"Output directory for checkpoints\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42,\\\\n                        help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048,\\\\n                        help=\\\\\\\"Maximum sequence length\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--lora-r\\\\\\\", type=int, default=DEFAULT_LORA_CONFIG[\\\\\\\"r\\\\\\\"],\\\\n                        help=\\\\\\\"LoRA rank\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--lora-alpha\\\\\\\", type=int, default=DEFAULT_LORA_CONFIG[\\\\\\\"lora_alpha\\\\\\\"],\\\\n                        help=\\\\\\\"LoRA alpha\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--epochs\\\\\\\", type=int, default=1, help=\\\\\\\"Number of training epochs\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=4, help=\\\\\\\"Per-device batch size\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--grad-accum\\\\\\\", type=int, default=4, help=\\\\\\\"Gradient accumulation steps\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=2e-4, help=\\\\\\\"Learning rate\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--merge\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Merge LoRA into full model (default: adapter-only to save disk)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\",\\\\n---LINE 130-150---\\\\n        trust_rem\n…[truncated 952 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T18:54:08.392037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -ld /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000*/ 2>/dev/null; echo \"---EVAL LOGS---\"; grep -r \"d000_s123\\|d000_v2_s123\\|adapter-path\\|adapter_path\" /root/runs/contamcal-irt-calibration/*d000*s123*.log 2>/dev/null | head -20; echo \"---RUNS DIR---\"; ls /root/runs/contamcal-irt-calibration/ 2>/dev/null | grep d000 | head -20",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T18:54:08.399355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 2 root root 122 May 15 22:24 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned/\\\\ndrwxr-xr-x 2 root root 105 May 14 14:39 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42/\\\\ndrwxr-xr-x 2 root root 122 May 15 23:28 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned/\\\\ndrwxr-xr-x 2 root root 122 May 15 17:47 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/\\\\ndrwxr-xr-x 2 root root  74 May 14 12:37 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s123_DEPRECATED/\\\\ndrwxr-xr-x 2 root root 105 May 14 21:04 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED/\\\\ndrwxr-xr-x 2 root root 105 May 15 15:05 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned/\\\\ndrwxr-xr-x 2 root root  89 May 15 12:09 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned/\\\\ndrwxr-xr-x 2 root root 105 May 15 08:18 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_aligned/\\\\ndrwxr-xr-x 2 root root 105 May 15 07:05 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned/\\\\ndrwxr-xr-x 2 root root  89 May 15 09:02 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v2/\\\\ndrwxr-xr-x 2 root root 105 May 15 09:59 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v3/\\\\ndrwxr-xr-x 2 root root   6 May 15 14:40 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v3_s42_aligned/\\\\n---EVAL LOGS---\\\\n/root/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s123.log:2026-05-14 06:45:54,448 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter\\\\n/root/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s123.log:2026-05-14 09:24:52,501 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s123/eval_results.json\\\\n/root/\n…[truncated 4784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 7
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T18:54:08.399833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/ -name adapter_config.json -path \"*/lora_adapter/*\" | sort | while read f; do dir=$(echo \"$f\" | sed 's|/root/autodl-tmp/exp001/checkpoints/||' | cut -d/ -f1); alpha=$(/root/miniconda3/bin/python3 -c \"import json; print(json.load(open('$f'))['lora_alpha'])\"); r=$(/root/miniconda3/bin/python3 -c \"import json; print(json.load(open('$f'))['r'])\"); ts=$(stat -c '%y' \"$f\" | cut -d. -f1); echo \"$dir|alpha=$alpha|r=$r|created=$ts\"; done",
+              "warn": "True"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T18:54:08.400116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"d000_s123\\|adapter-path\\|adapter_path\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s123.log | head -10",
+              "warn": "True"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T18:54:08.400362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"d000.*s123\\|adapter-path\\|adapter_path\\|lora_alpha\\|alpha\" /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_s123.log 2>/dev/null | head -15; echo \"---V2 LOG---\"; grep -n \"d000.*s123\\|adapter-path\\|adapter_path\\|lora_alpha\\|alpha\" /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_v2.log 2>/dev/null | head -15",
+              "warn": "True"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T18:54:08.400686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_a32_s42/",
+              "warn": "True"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T18:54:08.404263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123|alpha=32|r=16|created=2026-05-14 05:36:16\\\\nQwen2.5-0.5B_d000_s123|alpha=32|r=16|created=2026-05-14 05:36:15\\\\nQwen2.5-0.5B_d000_s42|alpha=32|r=16|created=2026-05-14 04:31:19\\\\nQwen2.5-0.5B_d000_s42|alpha=32|r=16|created=2026-05-14 04:31:19\\\\nQwen2.5-0.5B_d005_s123|alpha=32|r=16|created=2026-05-15 08:42:00\\\\nQwen2.5-0.5B_d005_s123|alpha=32|r=16|created=2026-05-15 08:41:59\\\\nQwen2.5-0.5B_d005_s42|alpha=32|r=16|created=2026-05-14 08:54:22\\\\nQwen2.5-0.5B_d005_s42|alpha=32|r=16|created=2026-05-14 08:54:22\\\\nQwen2.5-0.5B_d025_s123|alpha=32|r=16|created=2026-05-15 13:39:50\\\\nQwen2.5-0.5B_d025_s123|alpha=32|r=16|created=2026-05-15 13:39:50\\\\nQwen2.5-0.5B_d025_s42|alpha=32|r=16|created=2026-05-14 16:30:05\\\\nQwen2.5-0.5B_d025_s42|alpha=32|r=16|created=2026-05-14 16:30:04\\\\nQwen2.5-0.5B_d100_s123|alpha=32|r=16|created=2026-05-15 05:29:04\\\\nQwen2.5-0.5B_d100_s123|alpha=32|r=16|created=2026-05-15 05:29:04\\\\nQwen2.5-0.5B_d100_s42|alpha=32|r=16|created=2026-05-14 08:49:56\\\\nQwen2.5-0.5B_d100_s42|alpha=32|r=16|created=2026-05-14 08:49:55\\\\nQwen2.5-1.5B_d000_s123|alpha=32|r=16|created=2026-05-14 06:23:19\\\\nQwen2.5-1.5B_d000_s123|alpha=32|r=16|created=2026-05-14 06:23:18\\\\nQwen2.5-1.5B_d000_s42|alpha=32|r=16|created=2026-05-14 05:22:54\\\\nQwen2.5-1.5B_d000_s42|alpha=32|r=16|created=2026-05-14 05:22:54\\\\nQwen2.5-1.5B_d005_s123|alpha=32|r=16|created=2026-05-15 20:52:10\\\\nQwen2.5-1.5B_d005_s123|alpha=32|r=16|created=2026-05-15 20:52:10\\\\nQwen2.5-1.5B_d005_s42|alpha=32|r=16|created=2026-05-14 16:44:50\\\\nQwen2.5-1.5B_d005_s42|alpha=32|r=16|created=2026-05-14 16:44:49\\\\nQwen2.5-1.5B_d025_s123|alpha=32|r=16|created=2026-05-15 20:56:58\\\\nQwen2.5-1.5B_d025_s123|alpha=32|r=16|created=2026-05-15 20:56:57\\\\nQwen2.5-1.5B_d025_s42|alpha=32|r=16|created=2026-05-15 01:32:37\\\\nQwen2.5-1.5B_d025_s42|alpha=32|r=16|created=2026-05-15 01:32:37\\\\nQwen2.5-1.5B_d100_s123|alpha=32|r=16|created=2026-05-15 08:26:42\\\\nQwen2.5-1.5B_d1\n…[truncated 1590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T18:54:08.404593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3:2026-05-14 08:18:40,645 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter\\\\n34:2026-05-14 12:37:33,129 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123/eval_results.json\\\\n35:2026-05-14 12:37:33,141 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123/correctness_matrix.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T18:54:08.404823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:2026-05-15 04:22:57,315 [INFO] LoRA config: r=16, alpha=16, targets={'q_proj', 'down_proj', 'v_proj', 'gate_proj', 'k_proj', 'up_proj', 'o_proj'}\\\\n303:2026-05-15 08:02:07,032 [INFO] LoRA adapter saved to /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\\\\n---V2 LOG---\\\\n5:2026-05-15 00:16:47,379 [INFO] LoRA config: r=16, alpha=16, targets={'gate_proj', 'up_proj', 'k_proj', 'q_proj', 'o_proj', 'v_proj', 'down_proj'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T18:54:08.405037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   34 May 16 00:52 .\\\\ndrwxr-xr-x 33 root root 4096 May 16 00:52 ..\\\\ndrwxr-xr-x  2 root root   10 May 16 00:52 lora_adapter\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T18:54:08.405297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"adapter:\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log 2>/dev/null | head -3; echo \"---s123_aligned---\"; grep \"adapter:\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s123_aligned.log 2>/dev/null | head -3; echo \"---v2_s123_aligned---\"; grep \"adapter:\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_v2_aligned.log 2>/dev/null | head -3",
+              "warn": "True"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T18:54:08.408508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 17:52:09,945 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\\\\n---s123_aligned---\\\\n---v2_s123_aligned---\\\\n2026-05-15 05:03:05,230 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 3
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T18:54:08.408740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_a32_s42/lora_adapter/",
+              "warn": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T18:54:08.408962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 2 root root 10 May 16 00:52 .\\\\ndrwxr-xr-x 3 root root 34 May 16 00:52 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T18:54:08.409168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"lora_alpha\\|alpha\" /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_s123.log 2>/dev/null | head -5",
+              "warn": "True"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T18:54:08.415441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 04:22:57,315 [INFO] LoRA config: r=16, alpha=16, targets={'q_proj', 'down_proj', 'v_proj', 'gate_proj', 'k_proj', 'up_proj', 'o_proj'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 6
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T18:54:08.415752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/runs/contamcal-irt-calibration/ | grep \"3B_d000.*s123\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T18:54:08.415992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_001_eval_3B_d000_s123.log\\\\nexp_001_sft_3B_d000_s123.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T18:54:08.416202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"adapter:\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s123_aligned.log 2>/dev/null; echo \"===\"; head -10 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s123_aligned.log 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T18:54:08.416485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T18:54:08.416739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned/; echo \"===METADATA===\"; cat /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned/eval_results.json 2>/dev/null | /root/miniconda3/bin/python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps({k:v for k,v in d.items() if k in ['adapter_path','checkpoint','model','config','lora_alpha']}, indent=2))\" 2>/dev/null; echo \"===HEAD===\"; head -5 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned/eval_results.json 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T18:54:08.416970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4372\\\\ndrwxr-xr-x  2 root root     122 May 15 22:24 .\\\\ndrwxr-xr-x 68 root root    4096 May 16 02:49 ..\\\\n-rw-r--r--  1 root root       0 May 15 22:24 .done\\\\n-rw-r--r--  1 root root  106813 May 15 22:24 correctness_matrix.json\\\\n-rw-r--r--  1 root root 2056744 May 15 22:24 eval_results.json\\\\n-rw-r--r--  1 root root 2295206 May 15 22:24 item_responses.json\\\\n===METADATA===\\\\n{}\\\\n===HEAD===\\\\n{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T18:54:08.417179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned/eval_results.json 2>/dev/null | /root/miniconda3/bin/python3 -c \"import json,sys; d=json.load(sys.stdin); [print(k) for k in d.keys()]\" 2>/dev/null",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T18:54:08.423490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_path\\\\nparaphrased\\\\nbenchmarks\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 6
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T18:54:08.423995+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是完整审计结果。\n\n---\n\n## 子任务 B：全量 checkpoint lora_alpha 审计\n\n### 完整对照表\n\n| Model | Checkpoint | lora_alpha | r | Created | Bug Affected? |\n|-------|-----------|------------|---|---------|--------------|\n| **0.5B** | d000_s42 | **32** | 16 | May 14 04:31 | YES |\n| | d000_s123 | **32** | 16 | May 14 05:36 | YES |\n| | d005_s42 | **32** | 16 | May 14 08:54 | YES |\n| | d005_s123 | **32** | 16 | May 15 08:42 | YES |\n| | d025_s42 | **32** | 16 | May 14 16:30 | YES |\n| | d025_s123 | **32** | 16 | May 15 13:40 | YES |\n| | d100_s42 | **32** | 16 | May 14 08:50 | YES |\n| | d100_s123 | **32** | 16 | May 15 05:29 | YES |\n| **1.5B** | d000_s42 | **32** | 16 | May 14 05:23 | YES |\n| | d000_s123 | **32** | 16 | May 14 06:23 | YES |\n| | d005_s42 | **32** | 16 | May 14 16:45 | YES |\n| | d005_s123 | **32** | 16 | May 15 20:52 | YES |\n| | d025_s42 | **32** | 16 | May 15 01:33 | YES |\n| | d025_s123 | **32** | 16 | May 15 20:57 | YES |\n| | d100_s42 | **32** | 16 | May 14 15:39 | YES |\n| | d100_s123 | **32** | 16 | May 15 08:27 | YES |\n| **3B** | d000_s42 | **32** | 16 | May 14 07:20 | YES |\n| | d000_s123 | **32** | 16 | May 14 08:15 | YES |\n| | d000_v2_s42 | 16 | 16 | May 15 03:46 | no (fixed) |\n| | d000_v2_s123 | 16 | 16 | May 15 08:02 | no (fixed) |\n| | d005_s42 | **32** | 16 | May 14 20:56 | YES |\n| | d005_s123 | **32** | 16 | May 15 23:03 | YES |\n| | d025_s42 | 16 | 16 | May 15 11:56 | no |\n| | d025_s123 | **32** | 16 | May 15 22:42 | YES |\n| | d100_s42 | 16 | 16 | May 15 07:06 | no |\n| | d100_s123 | 16 | 16 | May 15 13:17 | no |\n| | d000_a32_s42 | N/A (空目录) | - | May 16 00:52 | 训练未完成 |\n\n### 统计\n\n- **alpha=32（受影响）：22 个 checkpoint**（全部 0.5B × 8、全部 1.5B × 8、3B × 6）\n- **alpha=16（正确）：5 个 checkpoint**（3B d000_v2_s42/s123、d025_s42、d100_s42/s123）\n- **空目录：1 个**（3B d000_a32_s42，训练中或失败）\n\n### train_sft.py 代码分析\n\n**根因不是参数传递 bug，而是默认值问题：**\n\n```python\n# line 34: 默认值是 32\nDEFAULT_LORA_CONFIG = {\n    \"r\": 16,\n    \"lora_alpha\": 32,   # ← 这里\n}\n\n# line 97: argparse default 引用了这个 32\nparser.add_argument(\"--lora-alpha\", type=int, \n                    default=DEFAULT_LORA_CONFIG[\"lora_alpha\"])\n\n# line 135-137: 参数传递本身是正确的\nlora_config = LoraConfig(\n    r=args.lora_r,\n    lora_alpha=args.lora_alpha,  # ← 正确传递\n)\n```\n\n**结论**：代码逻辑没问题，`args.lora_alpha` 正确传入 `LoraConfig`。问题是 `DEFAULT_LORA_CONFIG[\"lora_alpha\"]` = 32。凡是训练命令未显式指定 `--lora-alpha 16` 的，都会默认用 32。v2 runs 的 SFT 日志确认 `alpha=16`，说明 v2 训练时显式传了 `--lora-alpha 16`。\n\n---\n\n## 子任务 C：d000_s123 版本确认\n\n### d000 相关 3B checkpoint 对比\n\n| 目录 | alpha | r | 创建时间 | 状态 |\n|------|-------|---|---------|------|\n| Qwen2.5-3B_d000_s123 | 32 | 16 | May 14 08:15 | 完整 |\n| Qwen2.5-3B_d000_s42 | 32 | 16 | May 14 07:20 | 完整 |\n| Qwen2.5-3B_d000_v2_s123 | 16 | 16 | May 15 08:02 | 完整 |\n| Qwen2.5-3B_d000_v2_s42 | 16 | 16 | May 15 03:46 | 完整 |\n| Qwen2.5-3B_d000_a32_s42 | N/A | - | May 16 00:52 | 空目录 |\n\n### Eval 用了哪个 checkpoint？\n\n**3B d000_s123 eval（`exp_001_eval_3B_d000_s123.log`）：**\n```\nLoading adapter: .../Qwen2.5-3B_d000_s123/lora_adapter\n```\n→ 用的是**原始 d000_s123（alpha=32）**，不是 v2\n\n**3B d000_s123_aligned eval：**\n- 结果目录 `eval_results/Qwen2.5-3B_d000_s123_aligned/` 存在（May 15 22:24）\n- runs 目录无单独 log 文件\n- eval_results.json 未记录 adapter_path\n- 按命名约定，使用的也是 `Qwen2.5-3B_d000_s123`（alpha=32）\n\n**3B d000_v2 aligned eval（`exp_001_eval_3B_d000_v2_aligned.log`）：**\n```\nLoading adapter: .../Qwen2.5-3B_d000_v2_s42/lora_adapter\n```\n→ v2 eval 用的是 v2_s42（alpha=16）\n\n### 结论\n\n1. **Baseline eval（3B d000_s123）用的是 alpha=32 的原始 checkpoint**，不是 registry 中记录的 v2 版本\n2. d000_s123（alpha=32，May 14）和 d000_v2_s123（alpha=16，May 15）是两个不同的 checkpoint\n3. **全部 0.5B 和 1.5B checkpoint 均为 alpha=32，从未被重训**\n4. 3B 中只有 5/11 个 checkpoint 是 alpha=16（v2 修复版 + 部分后续训练），其余 6 个仍为 alpha=32\n5. **3B d005_s123（May 15 23:03）和 d025_s123（May 15 22:42）在 v2 修复之后仍训出 alpha=32**，说明这些训练命令未显式传 `--lora-alpha 16`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/critical-alpha-audit-and-checkpoint-verify.md"
+}

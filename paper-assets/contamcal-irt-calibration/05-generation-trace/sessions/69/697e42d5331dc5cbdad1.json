@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "697e42d5331dc5cbdad1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda5 conflict fix",
+  "task_key": "worker_ops_cuda5-conflict-fix_20260514T000250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda5-conflict-fix_20260514T000250_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "97c76d29141c5a7e445fad1192875e715ba82e2bcd545041918169aab6d61104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕，**无需执行任何 kill 操作**。\n\n## GPU 状态报告\n\n| GPU | PID | 显存占用 | 利用率 | 对应实验 |\n|-----|-----|---------|--------|---------|\n| 0 | 235248 | 21986 / 24564 MiB | 100% | 未知实验 |\n| 1 | 229375 | 3658 / 24564 MiB | 34% | 未知实验 |\n| 2 | 229521 | 3658 / 24564 MiB | 33% | 未知实验 |\n| 3 | 216254 | 17318 / 24564 MiB | 60% | 未知实验 |\n| 4 | 221376 | 5820 / 24564 MiB | 44% | 未知实验 |\n| 5 | 239734 | 21988 / 24564 MiB | 77% | **exp_001_sft_d005_05B_v3** |\n\n## cuda:5 冲突处理结果\n\n**无冲突。** 实际情况：\n\n- **exp_001_sft_d005_05B_v3** (PID 239729→子进程 239734): **存活**，已运行 5h13m，GPU 5 上占 21988 MiB，利用率 77%，正常训练中。保留。\n- **exp_001_sft_d005_05B_r3** (PID 240163): **已死**，ps 中无此进程，GPU 上也无对应 PID。无需 kill。\n- **exp_001_eval_3B_d000_s42_v2** (PID 237865): **已死**，ps 中无此进程，GPU 上也无对应 PID。\n\n## cuda:5 残留检查\n\ncuda:5 上仅有 PID 239734（v3 的 python 子进程），无其他残留进程。\n\n## 异常发现\n\n无异常。6 块 GPU 各跑 1 个进程，无 GPU 空闲，无多进程冲突。GPU 0 利用率 100% 但这属于正常满载训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda5-conflict-fix.md"
+}

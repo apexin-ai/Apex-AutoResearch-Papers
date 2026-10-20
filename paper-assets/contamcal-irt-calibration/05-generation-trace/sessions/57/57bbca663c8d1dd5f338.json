@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57bbca663c8d1dd5f338",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill gpu0123 urgent",
+  "task_key": "worker_ops_fill_gpu0123_urgent_20260517T081026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill_gpu0123_urgent_20260517T081026_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "19c7676dd86019ac85d7bd39daad8a71951ef6b0959cf181f514ba7d1b366fd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 GPU 全部活跃（cuda:3 正在初始化，稍后就会显示显存占用）：\n\n| GPU | 任务 | 显存 | 状态 |\n|-----|------|------|------|\n| cuda:0 | 1.5B GSM8K s4 → s1 | 4991MiB | ✅ 运行中 |\n| cuda:1 | 3B s1 (mmlu→arc→gsm) | 585MiB | ✅ 运行中 |\n| cuda:2 | DeepSeek s1 (mmlu→arc→gsm) | 585MiB | ✅ 运行中 |\n| cuda:3 | 0.5B s1 (mmlu→arc→gsm) | 初始化中 | ✅ 加载中 |\n| cuda:4 | 0.5B MMLU s4 (已有) | 3901MiB | ✅ 运行中 |\n| cuda:5 | 1.5B MMLU s4 (已有) | 3661MiB | ✅ 运行中 |\n\ns1_embedding 任务轻量（sentence-transformers ~585MiB），会较快完成。cuda:0 上的 1.5B GSM8K s4 是 Priority 1 缺失项，完成后会自动继续跑 1.5B 的 s1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-gpu0123-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5758b961232e1b672cc1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp008 signal survival",
+  "task_key": "worker_code_exp008_signal_survival_20260514T040430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008_signal_survival_20260514T040430_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "3634227e2b153d1db0b5c99b4f6c8d7f88f63945f8b4b364861681936cfec933"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。创建的文件和验证结果：\n\n**文件（`/root/contamcal-irt-calibration/exp008/`）：**\n\n| 文件 | 用途 |\n|------|------|\n| `signal_survival_analysis.py` | 核心分析：Cohen's d、Spearman ρ、AUROC、Wilcoxon 检验 |\n| `run_signal_survival.py` | 端到端执行：加载 signal JSON → 分析 → 报告 |\n| `plot_survival.py` | 可视化：AUC 对比柱状图 + signal decay 散点图 |\n\n**dry-run 结果（`--dry-run --max-items 10`）：**\n- 4/4 signals 正常计算，summary table 输出正确\n- `survival_report.json` (1.9KB)、`survival_auc_comparison.pdf` (16KB)、`signal_decay_scatter.pdf` (23KB) 均已生成\n- 无报错，无 GPU 依赖\n\n**实际使用时的命令：**\n```bash\npython run_signal_survival.py \\\n  --sft-signals-dir /path/to/sft_signals/ \\\n  --rl-signals-dir /path/to/rl_signals/ \\\n  --labels-file /path/to/labels.json \\\n  --output-dir /root/contamcal-irt-calibration/outputs/exp008/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-signal-survival-copy-2.md"
+}

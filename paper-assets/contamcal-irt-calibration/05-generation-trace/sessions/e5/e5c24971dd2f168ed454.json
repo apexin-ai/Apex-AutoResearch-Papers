@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5c24971dd2f168ed454",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gemma2 d100 s0 retrain and partial eval",
+  "task_key": "worker_ops_gemma2-d100-s0-retrain-and-partial-eval_20260520T220154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemma2-d100-s0-retrain-and-partial-eval_20260520T220154_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "9dfbfc9897fc797d595193387d94ff8e67a2bdfa93381cb50c6b9d4335af235c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部启动成功，3 个任务都在加载模型中。\n\n**状态汇总：**\n\n| 任务 | GPU | tmux session | 状态 |\n|------|-----|-------------|------|\n| d100 重训练 (+ gradient_checkpointing) | cuda:0 | `gemma2_d100_retrain` | 加载模型中 |\n| MMLU eval d000-d050 | cuda:1 | `gemma2_mmlu_s0` | 开始 d000 eval |\n| ARC eval d000-d050 | cuda:2 | `gemma2_arc_s0` | 开始 d000 eval |\n| Qwen-14B s0 (已有) | cuda:3 | - | 运行中 |\n\n**OOM 修复**：d100 重训加了 `--gradient-checkpointing`。原 sweep 使用 `batch_size=2, grad_accum=8` 无 gradient checkpointing，d050 (58266 samples) 通过但 d100 (66533 samples) OOM。\n\n**Sweep 脚本修复**：在每个 dosage 训练完成后加入 `adapter_model.safetensors` 存在检查，不存在则 `exit 1`。d100 自动启用 gradient checkpointing。\n\n**预计完成时间**：\n- Eval (MMLU/ARC)：~1 小时\n- d100 重训练：~4-5 小时（gradient checkpointing 有 ~30% 速度开销）\n\n**日志路径**：\n- `/root/contamcal-irt-calibration/logs/retrain_gemma2_d100_s0.log`\n- `/root/contamcal-irt-calibration/logs/eval_gemma2_s0_mmlu.log`\n- `/root/contamcal-irt-calibration/logs/eval_gemma2_s0_arc.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gemma2-d100-s0-retrain-and-partial-eval.md"
+}

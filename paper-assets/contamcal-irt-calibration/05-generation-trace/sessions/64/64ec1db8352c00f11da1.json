@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64ec1db8352c00f11da1",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_2_1778728464.md",
+  "task_key": "loop_2_1778728464",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778728464.md",
+    "occurrence": 1,
+    "bytes": 5842,
+    "sha256": "470a7340981d7034ff125772a74006c091585695b31f2b9bfb5764ed8db54b90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T03:09:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977，全部分配给本项目，**提交前必须 nvidia-smi 确认目标 GPU 无冲突进程**\n- **1.5B/3B SFT 必须 batch_size=1, grad_accum=16**（batch_size=2 在 24GB 4090D OOM，已两次事故）；0.5B 可 batch_size=4, grad_accum=4\n- **--gpu 参数必须匹配物理 GPU 编号**，不能假设 CUDA_VISIBLE_DEVICES 映射\n- 论文 IRT 结果**必须用 CmdStanPy Bayesian MCMC**，禁用 PyTorch MLE（D011）\n- 0% dosage = 纯 SlimOrca 50000 条（不含 paraphrases），dosage >0% 使用 ALL paraphrases 含 QC fail（D010 \"noisy contamination\"）\n- exp-008 signal_survival_analysis 是 Table 2 \"RL-robust partial✓\" claim 唯一证据，未启动；若结果不支持**必须删 claim**\n- 投稿 deadline: **EMNLP 2026 ARR May 25**，距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D (24GB each)\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/.hf_cache/Qwen/` (Qwen2.5-0.5B, 1.5B, 3B)\n- **数据路径**: `/root/autodl-tmp/exp001/sft_data/` (sft_dosage_{005,025,050,100}.jsonl)\n- **Checkpoint 路径**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 输出**: `/root/autodl-tmp/exp001/eval_results/`\n- **Stan models**: `contam_irt_4pl_simple.stan` (正式), `contam_irt_4pl_me.stan` (备用)\n- **活跃 GPU 进程**:\n  - GPU 0: exp_001_sft_d100_15B_v2 (PID 251924, 1.5B d100 SFT)\n  - GPU 1: exp_001_eval_05B_d005 (PID 255322) + exp_001_eval_3B_d000_s42 (PID 249294)\n  - GPU 2: exp_001_eval_05B_d100_v5 (PID 266780) + exp_001_eval_05B_d000_s42_v5 (PID 266511)\n  - GPU 3: exp_001_eval_3B_d000_s123 (PID 242581)\n  - GPU 4: exp_001_eval_15B_d000_s42_v2 (PID 243290)\n  - GPU 5: exp_001_eval_15B_d000_s123 (PID 250600)\n- **CPU**: exp_004_sim_sweep (PID 219346, ~28h total), exp_005_noise_prop_v2 (PID 251971, 50 Stan fits)\n- **Cron**: 8 active crons 监控上述 RUNNING 实验（无 cron_id 在 registry 中，但 reconcile 确认 8 个都 still running）\n\n### 3. 📊 当前状态\n**刚完成**: Session 初始化，reconcile 了 8 个 cron（全部 still running）。\n\n**Registry 概览**: 43 experiments total — 13 success, 8 failed, 1 killed, 9 RUNNING, 11 PREPARING, 1 PENDING。\n\n**RUNNING 实验** (9):\n| exp_id | GPU | 任务 |\n|--------|-----|------|\n| exp_001_sft_d100_15B_v2 | cuda:0 | 1.5B d100 SFT（Phase 3 首个 contaminated SFT） |\n| exp_001_eval_05B_d005 | cuda:1 | 0.5B d005 eval |\n| exp_001_eval_3B_d000_s42 | cuda:1 | 3B s42 baseline eval |\n| exp_001_eval_05B_d000_s42_v5 | cuda:2 | 0.5B s42 baseline eval (v5) |\n| exp_001_eval_05B_d100_v5 | cuda:2 | 0.5B d100 contaminated eval (v5) |\n| exp_001_eval_3B_d000_s123 | cuda:3 | 3B s123 baseline eval |\n| exp_001_eval_15B_d000_s42_v2 | cuda:4 | 1.5B s42 baseline eval |\n| exp_001_eval_15B_d000_s123 | cuda:5 | 1.5B s123 baseline eval |\n| exp_004_sim_sweep | CPU | 4PL+γ parameter recovery sweep |\n\n**等待中**:\n- 8 个 cron 回调（上述 RUNNING 实验完成时触发）\n- exp_005_noise_prop_v2 在 CPU 跑 Stan fits（无 cron，需手动检查）\n- 11 个 PREPARING 实验等 GPU 空出\n\n### 4. 📋 待办（条件触发式）\n- **GPU 0 空出**（1.5B d100 SFT 完成）→ 按 memory.md 优先级提交 1.5B d005 SFT → 然后 3B d100/d005\n- **GPU 1/2/3/4/5 eval 完成** → 分析 eval 结果（correctness_matrix.json for IRT）→ 空出的 GPU 按优先级接 Phase 3 SFT（0.5B d025/d050 优先用小 GPU）\n- **exp_004_sim_sweep 完成** → 验证 identifiability 阈值 vs Fisher 理论（Theorem 1），结果入 paper\n- **exp_005_noise_prop_v2 完成** → 验证 ME model coverage improvement，与 D014 条件限定呼应\n- **所有 0% eval 完成** → 汇总 baseline scores，确认 4 benchmarks 全部有 item-level output → IRT fitting ready\n- **Phase 3 SFT 全部完成** → Phase 4 contaminated eval → exp-002 信号提取 → exp-003 RRF → **exp-006 IRT calibration**（核心实验）\n- **exp-006 完成** → exp-008 signal_survival_analysis（C2 claim 唯一证据）\n\n### 5. 🎯 战略上下文\n**项目核心**: ContamCal — 用 contamination-augmented 4PL IRT 做 post-hoc statistical calibration。投 EMNLP 2026 ARR May 25。\n\n**关键决策链**:\n- D006: 投稿目标 EMNLP ARR May 25（12→11 天）\n- D010: 使用 ALL paraphrases（含 QC fail）= \"noisy contamination\" condition\n- D011: 正式用 CmdStanPy Bayesian，弃 PyTorch MLE\n- D013: 正式用 Simple IRT model，弃 Analytic ME model\n- D014: C1 claim 需条件限定（γ recovery 依赖 N≥50 且 σ_e≥0.3）\n\n**已完成 checkpoints**: 0.5B d000×2seeds + d005 + d100, 1.5B d000×2seeds, 3B d000×2seeds（共 8 个）。1.5B d100 正在跑。\n\n**Critical path**: Phase 3 contaminated SFT (8 remaining jobs, ~7-21h depending on parallelism) → Phase 4 eval → exp-002/003/006/008。**时间极紧**。\n\n**易踩的坑**:\n1. v3/v4/v5/v6 重复实验很多（evaluate.py bug、SIGKILL、GPU 冲突导致反复重提交），不要被 PREPARING 中带 conclusion=killed 的老实验迷惑——它们是历史残留，不需要重提交\n2. GPU 1/2 各有两个 eval 进程共享，可能互相争显存导致 OOM kill——如果 cron 回调报 failed，检查是否因并发\n3. exp_005 noise_prop_v2 没有 cron 监控（CPU job），完成后不会自动回调，需要主动 SSH 检查\n4. `load_paraphrased_benchmark` 有已知 bug（`'list' object has no attribute 'get'`），paraphrased eval 可能受影响\n5. Phase 3 SFT 命令模板在 memory.md 中已准备好（含正确的 batch_size/grad_accum），直接用不要改参数\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778728464.md"
+}

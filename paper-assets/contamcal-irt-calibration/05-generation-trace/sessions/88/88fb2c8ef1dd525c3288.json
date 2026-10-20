@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88fb2c8ef1dd525c3288",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd gemma d000 v2 must complete",
+  "task_key": "worker_ssh_westd-gemma-d000-v2-must-complete_20260519T113101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-d000-v2-must-complete_20260519T113101_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "8df6f6d51cfad99f2611c60a5309b0633f4253536a4622aeb2b37a9f8788ca78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemma-2 d000 eval 完成。**\n\n### 结果\n\n**gemma2_d000:**\n- MMLU: **0.6186** (61.86%)\n- ARC Challenge: **0.8601** (86.01%)\n\n文件确认存在：`eval_results_v2/gemma2_d000/eval_results.json`\n\n### eval_results_v2 完整状态\n\n| Model | MMLU | ARC | Status |\n|-------|------|-----|--------|\n| gemma2_d000 | 0.6186 | 0.8601 | DONE |\n| gemma2_d005 | 0.6342 | 0.7782 | DONE |\n| gemma2_d025 | 0.6456 | 0.8737 | DONE |\n| gemma2_d050 | 0.6401 | 0.7108 | DONE |\n| gemma2_d100 | — | — | INCOMPLETE |\n| phi4_d000 | 0.7644 | 0.9206 | DONE |\n| phi4_d005 | 0.7636 | 0.9181 | DONE |\n| phi4_d025 | 0.7698 | 0.9232 | DONE |\n| phi4_d050 | — | — | INCOMPLETE |\n| qwen14b_d000 | 0.6944 | 0.9104 | DONE |\n| qwen14b_d005 | 0.6901 | 0.9036 | DONE |\n| qwen14b_d025 | 0.6204 | 0.8891 | DONE |\n| qwen14b_d050 | — | — | INCOMPLETE |\n| qwen7b_d000 | 0.6611 | 0.8788 | DONE |\n| qwen7b_d005 | 0.6474 | 0.8609 | DONE |\n| qwen7b_d025 | 0.6298 | 0.8404 | DONE |\n| qwen7b_d050 | 0.6307 | 0.8456 | DONE |\n| qwen7b_d100 | 0.6433 | 0.8498 | DONE |\n\n3 个 INCOMPLETE（gemma2_d100, phi4_d050, qwen14b_d050）仍在其他 GPU 上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-gemma-d000-v2-must-complete.md"
+}

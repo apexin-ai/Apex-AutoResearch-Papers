@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c1c507501940080edc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B d000 v2 s123 eval check",
+  "task_key": "worker_ops_3B-d000-v2-s123-eval-check_20260515T041013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-d000-v2-s123-eval-check_20260515T041013_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "ce0becb47069cec5c0780aedc0bf67183c6168efe1c5c4895bba9c99f1c95d9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n**para_aligned (cuda:2, PID 492733)** — 已完成 ✓\n- 进程已退出，3 个输出文件完整（eval_results.json + correctness_matrix.json + item_responses.json）\n- Registry 已更新：DONE/success\n- Metrics: mmlu=0.6512, gsm8k=0.1491, arc_challenge=0.8121, humaneval=0.0385\n- cuda:2 已释放\n\n**aligned (cuda:1, PID 492660)** — 仍在运行\n- 进程存活，输出目录为空（尚未写出结果）\n- Registry 已注册为 RUNNING，gpu=cqa1-21977:cuda:1\n- cuda:1 仍被占用\n\n**Cron**: 当前 session 无活跃 cron（之前 session 的 cron 已触发/清理）。\n\naligned 还需要继续等待。需要我设置 cron 监控它吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-d000-v2-s123-eval-check.md"
+}

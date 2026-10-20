@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f73609bd6455ad9ae5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "status gpu check",
+  "task_key": "worker_status_gpu-check_20260516T145402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_gpu-check_20260516T145402_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "b0dd0255d96f5730d3d5729f1a086228b8394b5f6bc816f56946ba3a7d0161ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。结果摘要：\n\n**GPU 状态：** 4 块占用 (0/2/4/5)，2 块空闲 (1/3)\n\n**4 个 RUNNING 实验：**\n- `exp_001_eval_15B_instruct` (cuda:5) — ALIVE，mmlu paraphrased 71%，预计还需 ~10 min 完成全部\n- `exp_001_eval_05B_instruct` (cuda:2) — ALIVE，运行 13 min\n- `exp_006_mmlu_domain_gamma_n24_v4` (CPU) — **COMPLETED**，7/7 domain 结果齐全\n- `exp_006_pooled_irt_rrf_n25_v2` (CPU) — **COMPLETED**，结果已写入\n\n**额外发现：**\n- GPU 0 有未注册的 compute_signals 进程 (3B_d000_s123_a32, s4 mmlu, ~80% done, 运行 2h09m)\n- GPU 4 有未注册的 Llama-3.2-3B_d000_s42 aligned eval (运行 17 min)\n- 所有历史 PID (691872, 760236, 764449, 752961, 746777) 均已结束\n\n报告已保存至 `artifacts/gpu_status_loop17.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-gpu-check.md"
+}

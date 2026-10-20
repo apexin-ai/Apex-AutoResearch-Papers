@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d801e251da89acd655d8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d100 s42 a32 batch",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d100_s42_a32_batch_20260516T063112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d100_s42_a32_batch_20260516T063112_result.json",
+    "occurrence": 1,
+    "bytes": 1833,
+    "sha256": "0affa8c3bc174fee63a038acade5c83c388960d0f5138fe34a66341134bb79e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "signals v9 实际已成功完成（`V9_ALL_DONE`）。两个实验都是监控误报。\n\n---\n\n## 诊断报告\n\n### exp_001_eval_3B_d100_s42_a32_batch\n\n**根本原因：监控误报（wrapper 进程死亡，子进程存活）**\n\n| 项目 | 状态 |\n|------|------|\n| PID 687347（batch wrapper） | 已死亡，`/proc/687347` 不存在 |\n| PID 687341（para_aligned eval） | **仍在 GPU 3 运行**，9008MiB，56% 利用率 |\n| aligned eval | ✅ 已完成，`.done` + 完整结果（14:21 写入） |\n| para_aligned eval | ⏳ 运行中，输出目录为空（结果在 eval 全部完成后一次性写入） |\n| batch log | 从未创建（wrapper 死在 log 重定向之前或之后） |\n| checkpoint | ✅ `Qwen2.5-3B_d100_a32_s42_v3/lora_adapter`，lora_alpha=32 确认 |\n\n**PID 687341 cmdline 确认**：\n```\nevaluate.py --adapter-path .../Qwen2.5-3B_d100_a32_s42_v3/lora_adapter \n--output-dir .../Qwen2.5-3B_d100_a32_s42_para_aligned \n--paraphrase-dir .../paraphrases\n```\n\n进程 11:06 启动，aligned 部分 14:21 完成（~3h15m），para_aligned 预计类似耗时，应在 14:30-15:00 之间完成。**不需要重试，等 PID 687341 跑完即可。**\n\n### exp_002_signals_3B_d100_s123_v9\n\n**根本原因：同样是监控误报**\n\nlog 显示 `V9_ALL_DONE Sat May 16 14:17:17 CST 2026`，结果已保存到 `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/`。\n\n### 建议\n\n1. **不要重试任何一个实验**——两个都没有真正失败\n2. 等 PID 687341 完成后检查 `Qwen2.5-3B_d100_a32_s42_para_aligned/` 目录是否出现 `.done`\n3. 监控系统的根因：batch wrapper PID 与实际 eval Python PID 不同，监控只跟踪 wrapper PID。应考虑让 batch 脚本记录子进程 PID 或用 sentinel 文件而非 PID 存活作为判定依据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d100-s42-a32-batch.md"
+}

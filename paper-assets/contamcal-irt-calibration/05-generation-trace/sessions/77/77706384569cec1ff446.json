@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "77706384569cec1ff446",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops olmo2 baseline trace",
+  "task_key": "worker_ops_olmo2-baseline-trace_20260521T141009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo2-baseline-trace_20260521T141009.log",
+    "occurrence": 1,
+    "bytes": 582579,
+    "sha256": "a3baa4bca4616799c6f3d5b0535ed842b55611e7179558c6c63aaaa91f9a497f"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "77706384569cec1ff446-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "77706384569cec1ff446-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-olmo2-baseline-trace.md"
+}

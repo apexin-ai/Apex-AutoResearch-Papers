@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d069e57a9432dada7c8a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check exp002 remote",
+  "task_key": "worker_ssh_check_exp002_remote_20260514T013348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp002_remote_20260514T013348_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "430fa9a8606a20c0c4829f57e7dd11636ae88a5b782825908f57e30604d7a64e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**远程无 exp002 代码。**\n\n服务器上现有 Python 文件：\n\n| 路径 | 状态 |\n|------|------|\n| `exp001/train_sft.py` | 存在 |\n| `exp001/prepare_sft_data.py` | 存在 |\n| `exp001/evaluate.py` | 存在 |\n| `exp001/paraphrase_gen.py` | 存在 |\n| `exp001/prepare_0pct_data.py` | 存在 |\n| `exp001/prepare_qc_only_data.py` | 存在 |\n| `exp006/run_irt_calibration.py` | 存在 |\n| `exp006/run_irt_stan.py` | 存在 |\n\n没有 `exp002` 目录，也没有任何与 detection signal（Min-K++、ConStat、self-critique、embedding distance）相关的脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp002-remote.md"
+}

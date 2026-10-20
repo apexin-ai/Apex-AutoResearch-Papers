@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c6e96a4ba4eb9b46fbf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis rrf full n20 rerun",
+  "task_key": "worker_analysis_rrf_full_n20_rerun_20260516T131509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf_full_n20_rerun_20260516T131509_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "fc7eb78ae32f1a2109f9cfea66506992c4d9fe737f1632ee26a2799d431f9945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IRT 正在运行，MMLU 的 chain 1 已在 sampling 阶段。\n\n## 报告\n\n### RRF 聚合结果\n- **N=25 respondents**（新 `exposure_scores.json` 路径：`/root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json`）\n- 组成：\n  - 0.5B s42: 4 (d000/d005/d025/d100)\n  - 0.5B s123: 4 (d000/d005/d025/d100)\n  - 1.5B s42: 4 (d000/d005/d025/d100)\n  - 1.5B s123: 4 (d000/d005/d025/d100)\n  - 3B s42: 4 (d000_a32, d005_a32, d025_v3, d100_a32)\n  - 3B s123: 4 (d000_s123_a32, d005, d025, d100_a32)\n  - Base: 1 (`Qwen2.5-0.5B-Instruct`，来自 signal 目录自动发现)\n- 比旧 N=23 多了 `Qwen2.5-3B_d000_s123_a32`（仅 MMLU）和 `Qwen2.5-0.5B-Instruct`\n\n### 注意事项\n- `Qwen2.5-0.5B-Instruct` 是 base model（无 dose/seed），RRF 脚本自动发现了它。IRT 侧依赖 eval_results 目录匹配，不会影响 IRT\n- `Qwen2.5-3B_d000_s123_a32` 只有 MMLU 的 4 个文件（可能不完整，仅 1 benchmark 有 signal）\n- 3B s42 中 d025 使用的是 `d025_v3` 命名（无 `_a32_`），但来自 alpha=32 重训\n\n### Pooled IRT 2PL+γ\n- **PID=785832**，运行中\n- MMLU: N_models=13（D045 排除了 8 个 0.5B）, 300 items (subsampled)\n- 4 chains x 1000 warmup + 1000 samples, adapt_delta=0.95\n- 日志：`/tmp/irt_pooled_n20.log`\n- 输出：`/root/autodl-tmp/exp006/results_pooled_n20/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rrf-full-n20-rerun.md"
+}

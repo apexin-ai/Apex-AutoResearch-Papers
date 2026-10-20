@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5b72a86e2f1de9de685",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent kill cuda0 conflict",
+  "task_key": "worker_ops_urgent_kill_cuda0_conflict_20260516T125100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_kill_cuda0_conflict_20260516T125100_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "9d8d876d27b59383d2243eadea91bbf83b198e16b2b46b8f615c83568eb3077c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **PID 777654 (3B_d000_s123 误跑 cuda:0)** | 已不存在（kill 前已死） |\n| **PID 778505 (1.5B d100_s123)** | **已死** — 进程不存在，冲突导致进程损坏 |\n\n### 全 GPU 进程表\n\n| GPU | PID | 显存 | 进程 |\n|-----|-----|------|------|\n| cuda:0 | 780943 | 7058 MiB | 3B_d000_s123 signals (mmlu, s4) — 运行 6min |\n| cuda:1 | 780591 | 2110 MiB | 0.5B d000_s123 signals (mmlu, s4) — 运行 7min |\n| cuda:2 | — | 0 MiB | **空闲** ✓ |\n| cuda:3 | 764460 | 6610 MiB | python3 进程 |\n| cuda:4 | — | 0 MiB | 空闲 |\n| cuda:5 | — | 0 MiB | **空闲** ✓ |\n\n### 结论\n\n- cuda:2 和 cuda:5 确认空闲\n- **需要重跑 1.5B d100_s123 arc_challenge on cuda:0**（PID 778505 已死，当前 cuda:0 被 3B_d000_s123 占用，需等其完成或选其他空闲 GPU）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-kill-cuda0-conflict.md"
+}

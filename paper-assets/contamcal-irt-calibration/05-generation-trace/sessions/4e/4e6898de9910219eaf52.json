@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4e6898de9910219eaf52",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d005 aligned",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d005_aligned_20260514T165606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d005_aligned_20260514T165606_result.json",
+    "occurrence": 1,
+    "bytes": 1896,
+    "sha256": "e65f5f9fb79bac2a3a7af825d30ffd61b75ef54706b8f8563acfad85f731f7ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**成功完成**，被误判为 failed。\n\n日志全程记录在 `/root/autodl-tmp/exp001/eval_results/eval_3B_d005_aligned.log`（不是 `/tmp/eval_3B_d005.log`），4 个 benchmark 全部跑完：\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| mmlu | 0.6345 | 8909/14042 |\n| gsm8k | 0.2077 | 274/1319 |\n| arc_challenge | 0.8294 | 972/1172 |\n| humaneval (pass@1) | 0.1463 | 24/164 |\n\n最后一行日志 `2026-05-15 00:24:08 — \"3B d005 aligned eval done.\"` 确认正常退出。进程死亡和 tmux session 消失都是因为任务已完成自然退出。\n\n```json\n{\"root_cause\":\"监控系统在 /tmp/eval_3B_d005.log 找不到日志（实际在 /root/autodl-tmp/exp001/eval_results/eval_3B_d005_aligned.log），且无 sentinel/W&B 标记，5次探活均判定 process dead → auto-resolved as failed。实验实际已于 2026-05-15 00:24:08 正常完成，4个benchmark结果完整。\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将实验状态从 failed 改回 completed\",\"将结果注册到实验追踪系统\",\"修复监控系统的日志路径探测逻辑，使其检查 output-dir 下的日志和结果文件是否存在\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "监控系统在 /tmp/eval_3B_d005.log 找不到日志（实际在 /root/autodl-tmp/exp001/eval_results/eval_3B_d005_aligned.log），且无 sentinel/W&B 标记，5次探活均判定 process dead → auto-resolved as failed。实验实际已于 2026-05-15 00:24:08 正常完成，4个benchmark结果完整。",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将实验状态从 failed 改回 completed",
+                "将结果注册到实验追踪系统",
+                "修复监控系统的日志路径探测逻辑，使其检查 output-dir 下的日志和结果文件是否存在"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d005-aligned-copy-2.md"
+}

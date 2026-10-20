@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e62230d3ad20e50ecec7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval olmo2 arc s0",
+  "task_key": "worker_ops_eval-olmo2-arc-s0_20260520T180726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-olmo2-arc-s0_20260520T180726_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "d8117ba358e79772f869081799d221a884c9b5ed6ed23ace019668aea0c2b178"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n- **exp_id**: `eval_olmo2_arc_s0` → RUNNING on westd-29999 cuda:2\n- **脚本**: `/root/contamcal-irt-calibration/scripts/eval_olmo2_arc_s0.sh`\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_olmo2_arc_s0.log`\n- **输出**: `/root/contamcal-irt-calibration/results/arc_eval/olmo2/d{000,005,025,050,100}_s0/`\n- **tmux session**: `eval_olmo2_arc_s0`\n- 5 dosages × ARC-Challenge 25-shot, batch_size=8, lora_alpha=32 verified\n- C001/C002/C004/C006/C009 全部检查通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-olmo2-arc-s0.md"
+}

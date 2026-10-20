@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f0d0feda016f9da91be",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen14b s0 mmlu results and arc eval",
+  "task_key": "worker_diag_qwen14b-s0-mmlu-results-and-arc-eval_20260520T201249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen14b-s0-mmlu-results-and-arc-eval_20260520T201249_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "2a3617893627f71008112a4da1ed44bb2102e58d73cb966013352d097aa9b024"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data gathered. Here's the situation:\n\n## Qwen-14B s0 MMLU Results\n**Status: NOT AVAILABLE — s0 training still in progress**\n\nTraining sweep timeline (cuda:3):\n- d000: done (May 20, 20:38)\n- d005: done (May 21, 00:09) — 3h31m\n- d025: done (May 21, 03:46) — 3h37m\n- d050: **training now** (started ~03:46, ~3.5h per dosage → ETA ~07:20)\n- d100: **not started** → ETA ~10:50\n\nMMLU eval cannot run until all 5 dosage checkpoints are complete (~7 more hours).\n\n### Existing s42/s123 MMLU data for reference\n\n| Dosage | s42 | s123 |\n|--------|---------|---------|\n| d000   | 69.44%  | 68.67%  |\n| d005   | 69.01%  | 70.84%  |\n| d025   | 62.04%  | 63.68%  |\n| d050   | 59.41%  | 60.99%  |\n| d100   | 60.07%  | 55.93%  |\n\n- s42: Δ(d100−d0) = **−9.37pp**\n- s123: Δ(d100−d0) = **−12.74pp**\n\n(Note: 任务描述中 s42/s123 标签反了 — 实际数据 s42=−9.37pp, s123=−12.74pp)\n\n## n=3 MMLU Bootstrap\n**Status: BLOCKED — 需要 s0 数据**\n\nBootstrap 脚本已就绪：`/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py`\n\n## ARC s0 Eval\n**Status: NOT STARTED — checkpoints not ready**\n\ncuda:0 空闲，ARC eval 脚本模板已有 (`eval_qwen14b_arc_s42.sh`)，MMLU eval 脚本也已存在 (`eval_qwen14b_s0_mmlu.sh`)。等 s0 训练全部完成后，MMLU eval 应先于 ARC eval 运行。\n\n### 下一步\n训练完成后需依次：\n1. 跑 MMLU s0 eval（脚本已就绪）\n2. 跑 ARC s0 eval（需创建脚本）\n3. n=3 bootstrap（3 个 seed 的 Δ(d100) 值）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen14b-s0-mmlu-results-and-arc-eval.md"
+}

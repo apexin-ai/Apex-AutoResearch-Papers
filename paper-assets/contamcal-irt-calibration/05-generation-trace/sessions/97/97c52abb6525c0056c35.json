@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "97c52abb6525c0056c35",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "run mvp sim p2",
+  "task_key": "worker_run_mvp_sim_p2_20260513T062439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_mvp_sim_p2_20260513T062439.log",
+    "occurrence": 1,
+    "bytes": 1512040,
+    "sha256": "29470dc0d27e43fced53d74583257232e030881380209f226fa3bd0f9d2e12cb"
+  },
+  "statistics": {
+    "messages": 1555,
+    "user_turns": 1,
+    "tool_calls": 670,
+    "roles": {
+      "log": 1,
+      "system": 53,
+      "record": 1,
+      "assistant": 153,
+      "tool_call": 670,
+      "tool_result": 669,
+      "user": 1,
+      "result": 7
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1322,
+      "chunks": [
+        {
+          "path": "97c52abb6525c0056c35-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0008.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "97c52abb6525c0056c35-part-0008.json",
+          "message_count": 118
+        },
+        {
+          "path": "97c52abb6525c0056c35-part-0009.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-mvp-sim-p2-copy-3.md"
+}

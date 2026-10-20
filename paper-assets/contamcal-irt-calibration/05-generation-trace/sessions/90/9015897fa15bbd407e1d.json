@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9015897fa15bbd407e1d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gemma2 9b d000 s42",
+  "task_key": "worker_analysis_gemma2_9b_d000_s42_20260518T205347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_9b_d000_s42_20260518T205347_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "bc72179d6f43e4e90cd8b4406fcff1a0d5bfe432c92cd7602538fac1c72b6289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型权重加载完成（464/464）。训练即将开始。\n\n---\n\n## Part 1: Gemma-2-9B d000 s42 分析结果\n\n| Metric | Value |\n|---|---|\n| **status** | SUCCESS |\n| **final_loss** | 1.159 |\n| **avg_train_loss** | 1.257 |\n| **total_steps** | 3125 |\n| **epoch** | 1.0 |\n| **final_token_accuracy** | 0.7284 |\n| **avg_token_accuracy** | 0.7196 |\n| **runtime** | ~2h 37min (9453s) |\n| **adapter_size** | 206.2 MB |\n| **lora_r / lora_alpha** | 16 / 32 ✓ |\n| **total_flos** | 9.85e+17 |\n| **errors/warnings** | 无（`torch_dtype` deprecated warning 无害） |\n\n**Conclusion**: loss 正常收敛（5.65 → 1.16），token accuracy 从 0.30 升至 0.73，checkpoint 完整。Gemma-2-9B 训练兼容性确认。\n\n## Part 2: Gemma-2-9B d005 提交状态\n\n| Field | Value |\n|---|---|\n| **exp_id** | exp_001_sft_gemma2_9b_d005_s42 |\n| **PID** | 62861 |\n| **GPU** | cuda:1 (CUDA_VISIBLE_DEVICES=1 显式设置) |\n| **tmux session** | gemma2_d005 |\n| **server** | westd-29999 |\n| **data** | sft_dosage_005.jsonl (50826 行) |\n| **log** | /root/autodl-tmp/exp001/logs/gemma2_d005_s42.log |\n| **status** | 模型权重加载完成，即将开始训练 |\n\n## 注意事项\n- **无独立 log 文件**：d000 训练没有产生 `/root/autodl-tmp/exp001/logs/gemma2_d000_s42.log`（logs 目录不存在），metrics 从 `checkpoint-3125/trainer_state.json` 提取。已为 d005 创建 logs 目录并通过 tee 输出日志。\n- **W&B**：`list_wandb_runs` 工具报错（参数签名不匹配），未能检查 W&B run。如需 W&B 数据需排查工具问题。\n- d005 预计运行 ~2.5h（与 d000 类似），基于 50826 samples / batch=16 ≈ 3177 steps。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma2-9b-d000-s42.md"
+}

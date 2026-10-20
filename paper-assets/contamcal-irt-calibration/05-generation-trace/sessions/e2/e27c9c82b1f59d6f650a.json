@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e27c9c82b1f59d6f650a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B d025 s123",
+  "task_key": "worker_eval_3B-d025-s123_20260515T145211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B-d025-s123_20260515T145211_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "b36ffa1445c90a2d5d0663dd48ea7f0bd54c7447a268bf32e69e36805c368374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 4 被占用，无法提交。**\n\nPID 576825 正在 GPU 4 上运行另一个 eval 任务（`Qwen2.5-3B_d100_s42_para_aligned`，已运行 ~1 分 21 秒）。\n\n当前所有 GPU 状态：\n\n| GPU | 已用显存 | 进程 |\n|-----|---------|------|\n| 0 | 14186 MiB | 2 个进程 |\n| 1 | 5857 MiB | 1 个进程 |\n| 2 | 19325 MiB | 1 个进程 |\n| 3 | 8985 MiB | 1 个进程 |\n| 4 | 7539 MiB | `d100_s42_para_aligned` eval |\n| 5 | 7539 MiB | 1 个进程 |\n\n6 张卡全部在用。按 C001 约束，目标 GPU 有同类进程时不提交。需要等 GPU 4 上的 eval 完成，或指定其他 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-d025-s123.md"
+}

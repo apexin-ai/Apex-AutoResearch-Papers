@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "b45429e5253c8aa918f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 3B d100 s123 v9",
+  "task_key": "worker_diagnose_exp_002_signals_3B_d100_s123_v9_20260516T061513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_3B_d100_s123_v9_20260516T061513_result.json",
+    "occurrence": 1,
+    "bytes": 2478,
+    "sha256": "c3dfa631f8909ec7f1e3beaffdbb4d82743a90673c5683b6bfb84586830d2a4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：实验未失败。**\n\nv9 wrapper 脚本按 benchmark 分开启动独立进程：\n- `=== d100_a32_s123 mmlu s4 ===` (line 63，仅补算 s4)\n- `=== d100_a32_s123 gsm8k all ===` (line 124，PID 712011，正常完成后退出)\n- `=== d100_a32_s123 arc_challenge all ===` (line 206，PID 713193，刚刚 14:17 完成)\n\n用户观察到的\"进程死亡\"实际上是**每个 benchmark 子进程正常退出**，wrapper 随后启动下一个 benchmark 的新进程。\n\n当前 d100_a32_s123 output 状态：\n\n| benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | ✓ (08:18) | ✓ (08:27) | ✓ (14:03) | **缺失** |\n| gsm8k | ✓ (14:05) | ✓ (14:06) | ✓ (14:10) | ✓ (14:10) |\n| arc_challenge | ✓ (14:12) | ✓ (14:13) | ✓ (14:17) | ✓ (14:17) |\n\n唯一缺失：`signals_merged_mmlu.json`。原因是 mmlu 用 `--signal s4` 模式运行（仅补算 s4），不会触发 merge 步骤。\n\n```json\n{\"root_cause\":\"非故障。Wrapper脚本为每个benchmark启动独立进程，PID 712011完成gsm8k后正常退出(exit 0)，PID 713193接力完成arc_challenge。用户误将进程正常退出判断为死亡。\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复进程问题\",\"补跑 signals_merged_mmlu.json: python compute_signals.py --model-path ... --adapter-path .../d100_a32_s123/lora_adapter --benchmark mmlu --signal merge_only --output-dir .../Qwen2.5-3B_d100_a32_s123（或手动合并3个mmlu signal文件）\"],\"can_auto_fix\":true,\"partial_outputs\":\"mmlu(s1+s2+s4), gsm8k(全部+merged), arc_challenge(全部+merged)\",\"missing_outputs\":\"signals_merged_mmlu.json\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "非故障。Wrapper脚本为每个benchmark启动独立进程，PID 712011完成gsm8k后正常退出(exit 0)，PID 713193接力完成arc_challenge。用户误将进程正常退出判断为死亡。",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复进程问题",
+                "补跑 signals_merged_mmlu.json: python compute_signals.py --model-path ... --adapter-path .../d100_a32_s123/lora_adapter --benchmark mmlu --signal merge_only --output-dir .../Qwen2.5-3B_d100_a32_s123（或手动合并3个mmlu signal文件）"
+              ],
+              "can_auto_fix": true,
+              "partial_outputs": "mmlu(s1+s2+s4), gsm8k(全部+merged), arc_challenge(全部+merged)",
+              "missing_outputs": "signals_merged_mmlu.json"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-3b-d100-s123-v9.md"
+}

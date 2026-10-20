@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "81c9baa2b4485ba905cc",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh westd gemma arc bug diagnosis",
+  "task_key": "worker_ssh_westd-gemma-arc-bug-diagnosis_20260519T095919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-arc-bug-diagnosis_20260519T095919.log",
+    "occurrence": 1,
+    "bytes": 886656,
+    "sha256": "c57ee639c7f20541b281acaab7f40e2d6a3a39781b3fd3467a9b6d8b51491366"
+  },
+  "statistics": {
+    "messages": 268,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "81c9baa2b4485ba905cc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81c9baa2b4485ba905cc-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-gemma-arc-bug-diagnosis.md"
+}

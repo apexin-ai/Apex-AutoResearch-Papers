@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac5f181ffc968f504194",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 s123 mmlu exit",
+  "task_key": "worker_diag_olmo2-s123-mmlu-exit_20260520T113040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-s123-mmlu-exit_20260520T113040_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "ec50649b8bcf8d283e59507d4c24b159354519981200b27279dca191da29950a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OLMo-2 s123 MMLU eval **尚未退出**，仍在运行中：\n\n- **PID 331098**: `evaluate.py` 运行中，elapsed 4m41s，当前在 d000_s123 的 MMLU 评估，进度 ~48% (6710/14042)\n- **cuda:2**: 92% utilization, 16.7GB / 97.9GB 显存占用\n- **结果文件**: 尚未生成（d000 还没跑完，后续还有 d005/d025/d050/d100）\n\n脚本是串行跑 5 个 dosage 的，每个 ~8-10 分钟，预计总计还需 **40-50 分钟**完成全部评估。无需操作，等进程结束后再检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-s123-mmlu-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "547447a2ff4c42f61c29",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code eval pipeline check",
+  "task_key": "worker_code_eval_pipeline_check_20260514T003024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_pipeline_check_20260514T003024_result.json",
+    "occurrence": 1,
+    "bytes": 1964,
+    "sha256": "5bbef5a1063e6e0a255322e992e267c791748f2d2f2c2da713f2da0ed05c9f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出总结\n\n### 现状\n\n| 能力 | 状态 |\n|------|------|\n| 4 benchmarks (MMLU/GSM8K/ARC/HumanEval) | ✅ 已有 |\n| item-level 输出 (`per_item` in `eval_results.json`) | ✅ 已有 |\n| IRT 用 correctness matrix | ✅ 已有 (`correctness_matrix.json`) |\n| 批量链式触发 (train all → eval all) | ✅ 已有 (`run_exp001.sh --phase all`) |\n| 单 job train→eval 链式触发 | ❌ 缺失 → **已补** |\n| `--max-samples` dry-run 参数 | ❌ 缺失 → **已补** |\n| 结构化 `item_responses.json` | ❌ 缺失 → **已补** |\n\n### 修改文件\n\n1. **`evaluate.py`** (575→600 行)\n   - 新增 `--max-samples` 参数，截断每个 benchmark 的样本数\n   - 新增 `item_responses.json` 输出：`{item_id, benchmark, correct, model_answer, gold_answer}`\n\n2. **`train_and_eval.sh`** (新建)\n   - 单 job 链式执行：SFT train → eval(original）→ eval（paraphrased）\n   - 用法：`bash train_and_eval.sh --model Qwen/Qwen2.5-0.5B --dosage 5 --seed 42 --gpu 0`\n   - 支持 `--eval-only`（只跑 eval）、`--max-samples N`（dry-run）\n   - 内置 skip 逻辑（已有结果自动跳过）\n\n### 输出路径规范\n\n```\n/root/autodl-tmp/exp001/eval_results/{Model}_d{dosage:03d}_s{seed}/\n├── eval_results.json        # 完整结果（含 per_item）\n├── correctness_matrix.json  # IRT 用二值矩阵\n└── item_responses.json      # 结构化 item-level 响应\n```\n\n### Dry-run 验证\n\n用 `Qwen2.5-0.5B_d000_s42` + `--max-samples 5` + `arc_challenge` 验证通过，3 个输出文件格式正确。\n\n### 注意事项\n- AutoDL 上跑 eval 需要 `HF_HUB_OFFLINE=1`（模型/数据集已缓存）或先 `source /etc/network_turbo`\n- paraphrased eval 有一个预存 bug（`load_paraphrased_benchmark` 中 `'list' object has no attribute 'get'`），与本次修改无关，需后续修复\n- bitsandbytes 的 `libnvJitLink.so.13` 警告不影响功能"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-check.md"
+}

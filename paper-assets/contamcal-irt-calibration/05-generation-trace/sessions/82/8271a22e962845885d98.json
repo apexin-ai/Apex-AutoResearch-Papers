@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8271a22e962845885d98",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779346912.md",
+  "task_key": "loop_23_1779346912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779346912.md",
+    "occurrence": 1,
+    "bytes": 4030,
+    "sha256": "756327dc6a57a37cc9ccd9dc4cd3b123ff0aaa0aa3ae264f75ed0136700d20b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T03:44:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + cqa1 cuda:0。**不得在白名单外启动实验**\n- cuda:2 GPU 冲突教训：eval_olmo2_s123_mmlu 刚因与 sft_olmo2_s0_sweep 共用 cuda:2 而 OOM 死亡。**同一张卡不能同时跑 SFT 和 eval**，eval 必须等该卡 SFT 完成后再提交\n- evaluate.py 版本锁：westd/cqa1 统一 md5=`17673bf373f00f83ccc41fc1d355a4cd`。eval 脚本内已有 md5 校验，不要跳过\n- EMNLP 2026 ARR May 25 deadline，D+2/6，**s0 sweep 完成前不要抢 GPU 跑其他东西**\n- Gemma-2 GSM8K 已正式排除（D175: catastrophic forgetting），不要再尝试\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**：工作目录 `/root/contamcal-irt-calibration/`，Python `/root/miniconda3/bin/python`，conda base env\n  - 模型：`/root/autodl-tmp/models/{OLMo-2-1124-7B, Phi-4, gemma-2-9b-it, Qwen2.5-{7B,14B}-Instruct}`\n  - Checkpoints：`/root/autodl-tmp/exp001/checkpoints/{Family}_d{dose}_s{seed}/lora_adapter`\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 磁盘：427GB/879GB 可用（49% 用）\n  - 活跃 PID：Phi-4 s0 cuda:0 (302132), Gemma-2 s0 cuda:1 (314035), Qwen-14B s0 cuda:3 (311554)\n  - **cuda:2 当前空闲**（sft_olmo2_s0_sweep 已完成，eval_olmo2_s123_mmlu 已失败）\n- **cqa1-21977**：Qwen-7B s0 cuda:0 (PID 313407)\n  - 磁盘：`/autodl-pub` 198G/7T（98% 满 ⚠️），根分区 818G/879G 可用\n\n### 3. 📊 当前状态\n**刚做完**：session 初始化 + eval_olmo2_s123_mmlu 失败诊断启动\n\n**正在等待**：\n- Worker `worker_diagnose_eval_olmo2_s123_mmlu_20260520T114029` 回调——SSH 到 westd 查日志/dmesg 确认 root cause（高度怀疑 cuda:2 GPU 冲突 OOM）\n\n**RUNNING 实验**（4 个 s0 sweep，全部是 triple-seed 第三颗种子）：\n| exp_id | server:gpu | 说明 |\n|--------|-----------|------|\n| sft_phi4_s0_sweep | westd:0 | Phi-4 s0 dose-response |\n| sft_gemma2_s0_sweep | westd:1 | Gemma-2 s0 dose-response |\n| sft_qwen14b_s0_sweep | westd:3 | Qwen-14B s0 dose-response |\n| sft_qwen7b_s0_cqa1 | cqa1:0 | Qwen-7B s0 dose-response |\n\n**PREPARING**（31 个，关键的）：\n- eval_olmo2_s123_mmlu（本次失败的，需重跑）\n- 多个 phase2_eval 批次（等 GPU 释放）\n\n**尚未向 Director 汇报本次失败**——等 Worker 诊断结果后一并汇报。\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose 回调到达 → 确认 root cause → update_registry notes → **在 cuda:2 空闲时重新提交 eval_olmo2_s123_mmlu**（当前 cuda:2 已空闲，sft_olmo2_s0_sweep 已完成）→ 向 Director 汇报失败原因+重跑计划\n- 任一 s0 sweep 完成 cron 回调 → on-experiment-done 流程 → 该 GPU 释放后立即排 eval（MMLU + GSM8K）\n- 全部 5 家族 s0 完成 → triple-seed bootstrap CI 计算（D+3 任务）\n- OLMo-2 s0 sweep 已完成 → 其 eval (eval_olmo2_s0_mmlu) 也已 success → **只差 s123 eval 这一个数据点**就能凑齐 OLMo-2 triple-seed\n\n### 5. 🎯 战略上下文\n- **核心 story**：5 families × 5 dosages × 3 seeds × 2 benchmarks (MMLU+GSM8K) 的 contamination dose-response。发现 5 种 archetype（Immune/U-collapse/V-recovery/Benefit/Benefit-sat），由 baseline ability threshold 64.7% 决定方向，GSM8K 跨基准迁移有 3 种 pattern（Null/Consistent/Reversal）\n- **当前瓶颈**：s0 sweep 训练中（~5-6h 每家族），完成后紧接 eval。eval_olmo2_s123_mmlu 是 OLMo-2 triple-seed 的最后缺口，**优先级最高，确诊后立即重跑**\n- **易错点**：\n  1. 不要在有 SFT 跑着的 GPU 上同时启动 eval——OLMo-2 7B eval 需要 ~14GB VRAM，SFT 也吃满 GPU，两者共存必 OOM\n  2. Qwen-14B GSM8K 数据 d000 baseline 是 seed-sensitive 的（D177），报告时用 range [+5.7, +20.5pp] 而非单一数字\n  3. D179 记录了 s123 MMLU eval 4/5 家族缺失——OLMo-2 是其中之一，修复后还需检查其他 3 家族（Phi-4/Gemma-2/Qwen-14B）的 s123 eval 状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779346912.md"
+}

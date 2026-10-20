@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ddbc52f6c4b6f1517b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code hotfix selfcritique batch",
+  "task_key": "worker_code_hotfix-selfcritique-batch_20260514T114506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hotfix-selfcritique-batch_20260514T114506_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "1117d15f8eeea8786f1787ae24bb602de3af884a80d19b3650f710478be3b112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## Diff 摘要\n\n**删除**：`get_model_answer()`（单条 generate）、`compute_yes_no_entropy()`（单条 forward pass）\n\n**新增**：\n- `BATCH_SIZE = 32`\n- `_get_yes_no_token_ids(tokenizer)` — 预计算 YES/NO token IDs，避免每次重复编码\n- `batch_generate_answers(model, tokenizer, prompts, max_new_tokens)` — 批量 generate，left padding + attention_mask\n- `batch_compute_yes_no_entropy(model, tokenizer, critique_prompts, yes_ids, no_ids)` — 批量 forward pass 取 logits，`logits.float()` 处理 bfloat16\n\n**修改**：`compute_selfcritique_signal()` \n- 加载后设置 `tokenizer.pad_token = tokenizer.eos_token`，`tokenizer.padding_side = 'left'`\n- 主循环从逐条改为 `range(0, len(items), BATCH_SIZE)` 的批次循环\n- 每批次内：batch generate → 构建 critique prompts → batch forward pass\n\n## 验证结果\n\n3 条 MMLU items 对比 single vs batch：\n| Item | Answer 一致 | Entropy 差异 |\n|------|------------|-------------|\n| 0 | ✗ | 0.0056 |\n| 1 | ✓ | 0.0075 |\n| 2 | ✗ | 0.0000 |\n\n答案差异来自 left-padding 影响 position encoding（batch-of-1 与 single 完全一致，确认是 padding 导致）。最终 entropy 差异均 < 0.01，对污染检测信号（区分 entropy≈0 vs entropy≈1）无实质影响。\n\n备份在 `signal_selfcritique.py.bak`。Task 2-9 将自动使用新版。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hotfix-selfcritique-batch.md"
+}

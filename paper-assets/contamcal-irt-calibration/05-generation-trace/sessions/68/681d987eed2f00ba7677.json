@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "681d987eed2f00ba7677",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 gpu2 check",
+  "task_key": "worker_ssh_westd-phase2-gpu2-check_20260519T105902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-gpu2-check_20260519T105902_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "0b4eb07972521441c76d94788da131a8d4965e98c9b0891e405b13de3cc73713"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. GPU 2 eval 进度：**1/6 完成，正在跑第 2 个**\n\n| 任务 | 状态 |\n|------|------|\n| qwen7b_d000 | **完成** |\n| qwen7b_d005 | **运行中** (PID 149714) |\n| qwen7b_d025 | 未开始 |\n| qwen7b_d050 | 未开始 |\n| qwen7b_d100 | 未开始 |\n| gemma2_d000 | 未开始 |\n\n原 PID 147533 已退出，当前 GPU 2 进程是 PID 149714（qwen7b_d005 eval）。\n\n### 2. GPU 2 已完成结果\n\n| 模型 | MMLU | ARC |\n|------|------|-----|\n| qwen7b_d000 | 0.6611 | 0.8788 |\n\n### 3. 所有已完成 eval（跨 GPU）\n\n| 模型 | MMLU | ARC |\n|------|------|-----|\n| phi4_d000 | 0.7644 | 0.9206 |\n| qwen7b_d000 | 0.6611 | 0.8788 |\n| sanity_check_gemma2_d005_arc | N/A | 0.7782 |\n\n### 4. 其他 3 个 GPU 进程状态\n\n| GPU | PID | 任务 | 状态 |\n|-----|-----|------|------|\n| 0 | 150487 | phi4_d005 | **运行中** (刚启动 ~1min) |\n| 1 | 147458 | qwen14b_d000 | **运行中** (原始 PID，MMLU 评测中) |\n| 3 | 147609 | gemma2_d005 | **运行中** (原始 PID) |\n\n4 个 GPU 全部在工作，无空闲。无失败任务。GPU 2 还有 4 个任务排队。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-gpu2-check.md"
+}

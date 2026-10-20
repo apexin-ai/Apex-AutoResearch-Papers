@@ -1,0 +1,1711 @@
+{
+  "schema_version": "1.0",
+  "id": "92962227da5b26d0b6d7",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "code exp008 signal survival",
+  "task_key": "worker_code_exp008_signal_survival_20260514T151627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp008_signal_survival_20260514T151627.jsonl",
+    "occurrence": 1,
+    "bytes": 68043,
+    "sha256": "3dbb4a0c496efaa2f8097aa2efb2dbc8cd23143bd679cb66feecb3190349f40f"
+  },
+  "statistics": {
+    "messages": 86,
+    "user_turns": 0,
+    "tool_calls": 43,
+    "roles": {
+      "tool_call": 43,
+      "tool_result": 43
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:21:56.251807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T15:21:56.252385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T15:21:56.252742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'SSH读取exp008/所有4个文件代码', 'status': 'in_progress', 'activeForm': '读取exp008代码文件'}, {'content': '检查exp-002信号输出文件是否存在且非空', 'status': 'pending', 'activeForm': '检查exp-002信号输出'}, {'content': '审查代码：输入路径对齐、逻辑正确性、依赖分析', 'status': 'pending', 'activeForm': '审查代码逻辑和路径'}, {'content': '确认是否纯CPU、是否需要额外输入', 'status': 'pending', 'activeForm': '分析运行依赖'}, {'content': '执行dry-run或准备提交命令', 'status': 'pending', 'activeForm': '执行或准备命令'}, {'content': '汇报结果', 'status': 'pending', 'activeForm': '汇报审查结果'}]"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T15:21:56.253090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T15:21:56.259455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T15:21:56.259753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T15:21:56.260037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T15:21:56.260519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — core analysis module.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nComputes:\\\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\\\n\\\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cohen's d effect size between two groups.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1 = group1.var(ddof=1)\\\\n    var2 = group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\n\\\\n\\\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUROC and Cohen's d for contamination detection in one regime.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v = values[mask]\\\\n    lab = labels[mask].astype(int)\\\\n    contam = lab == 1\\\\n    clean = la\n…[truncated 7478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T15:21:56.262612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/run_signal_survival.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T15:21:56.262841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/signal_survival.py"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T15:21:56.263086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/plot_survival.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T15:21:56.269388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp002/signals/"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T15:21:56.269934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival — end-to-end execution script.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nUsage:\\\\n  python run_signal_survival.py \\\\\\\\\\\\n    --regime-dirs base=/path/base SFT_clean=/path/sft RL=/path/rl \\\\\\\\\\\\n    --labels-file /path/to/labels.json \\\\\\\\\\\\n    --output-dir /path/to/exp008_output/\\\\n\\\\n  # Legacy 2-regime (still works):\\\\n  python run_signal_survival.py \\\\\\\\\\\\n    --sft-signals-dir /path/sft/ --rl-signals-dir /path/rl/ \\\\\\\\\\\\n    --labels-file labels.json\\\\n\\\\n  # Quick validation with mock data:\\\\n  python run_signal_survival.py --dry-run --max-items 10\\\\n  python run_signal_survival.py --dry-run --max-items 10 --regime-names base SFT RL DPO\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nfrom signal_survival_analysis import (\\\\n    SIGNAL_KEYS,\\\\n    print_summary_table,\\\\n    run_survival_analysis,\\\\n    save_report,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_signal_file(path: Path, signal_key: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load a signal JSON file and validate it has expected fields.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    if not isinstance(data, list) or len(data) == 0:\\\\n        raise ValueError(f\\\\\\\"Expected non-empty list in {path}\\\\\\\")\\\\n    if signal_key not in data[0]:\\\\n        raise ValueError(f\\\\\\\"Signal key '{signal_key}' not found in {path}\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_signals_from_dir(signals_dir: Path) -> dict[str, list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load all signal files from a directory.\\\\n    Returns {signal_key: [records]}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signals = {}\\\\n\\\\n    merged_files = list(signals_dir.glob(\\\\\\\"signals_merged_*.json\\\\\\\"))\\\\n    if merged_files:\\\\n        logger.info(\\\\\\\"Found\n…[truncated 7141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T15:21:56.270516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — main script (v3).\\\\n\\\\nAnalyzes how contamination detection signals survive across training regimes\\\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\\\n\\\\\\\"cliff-like signal degradation under RL alignment.\\\\\\\"\\\\n\\\\nInput:\\\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\\\n    Record format: [{\\\\\\\"index\\\\\\\": int, \\\\\\\"benchmark\\\\\\\": str, \\\\\\\"s1_embedding\\\\\\\": float, ...}]\\\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\\\n\\\\nOutput (to --output-dir):\\\\n  - per_benchmark/{benchmark}/survival_report.json\\\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\\\n  - cross_benchmark_summary.json — aggregated statistics\\\\n  - Console summary table\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nALL_SIGNAL_KEYS = [\\\\n    \\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\", \\\\\\\"rrf_score\\\\\\\",\\\\n]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n    \\\\\\\"rrf_score\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n}\\\\nDEFAULT_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nCLIFF_THRESHOLD = 0.7\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data \n…[truncated 7085 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T15:21:56.270996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival — visualization.\\\\nv2: Extended to N regimes; primary output is AUC heatmap (paper Figure 2).\\\\n\\\\nGenerates:\\\\n  1. AUC heatmap: signal x regime AUROC matrix\\\\n  2. Pairwise delta-AUC heatmap: AUC change between adjacent regime pairs\\\\n\\\\nInput:  survival_report.json (from run_signal_survival.py)\\\\nOutput: PDF files in output directory\\\\n\\\\nDependencies: matplotlib, seaborn (optional fallback to imshow), numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef _try_import_seaborn():\\\\n    try:\\\\n        import seaborn as sns\\\\n        return sns\\\\n    except ImportError:\\\\n        logger.warning(\\\\\\\"seaborn not available, falling back to matplotlib imshow\\\\\\\")\\\\n        return None\\\\n\\\\n\\\\ndef plot_auc_heatmap(report: dict, output_path: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Signal x regime AUC heatmap (paper Figure 2 format).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sns = _try_import_seaborn()\\\\n\\\\n    auc_matrix = report[\\\\\\\"auc_matrix\\\\\\\"]\\\\n    regime_names = report[\\\\\\\"regime_names\\\\\\\"]\\\\n\\\\n    signals = [k for k in SIGNAL_KEYS if k in auc_matrix]\\\\n    if not signals:\\\\n        logger.warning(\\\\\\\"No signals to plot\\\\\\\")\\\\n        return\\\\n\\\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\\\n    data = np.array([\\\\n        [auc_matrix[s].get(r, float(\\\\\\\"nan\\\\\\\")) for r in regime_names]\\\\n        for s in signals\\\\n    ])\\\\n\\\\n    fig, ax = plt.subplots(\\\\n        figsize=(max(3.5, 1.5\n…[truncated 6261 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T15:21:56.271291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 5 root root  151 May 14 21:29 .\\\\ndrwxr-xr-x 3 root root   29 May 14 15:57 ..\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:06 Qwen2.5-0.5B_d000_s42\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:29 Qwen2.5-0.5B_d005_s42\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:58 Qwen2.5-0.5B_d100_s42\\\\n-rw-r--r-- 1 root root  561 May 14 21:58 batch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T15:21:56.277739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T15:21:56.278007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16048\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:06 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  515053 May 14 18:41 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  567771 May 14 20:49 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6093045 May 14 18:50 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root    2179 May 14 16:00 signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\\\n-rw-r--r-- 1 root root  185943 May 14 21:05 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  199977 May 14 20:50 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121205 May 14 18:55 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  254781 May 14 21:06 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276624 May 14 21:05 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2934171 May 14 21:04 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239249 May 14 21:06 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258901 May 14 21:05 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2756294 May 14 21:04 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T15:21:56.278359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T15:21:56.278612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16016\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:58 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  513223 May 14 21:56 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  566915 May 14 21:52 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6043238 May 14 21:33 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root  185963 May 14 21:57 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  199993 May 14 21:52 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121519 May 14 21:39 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  256439 May 14 21:58 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276957 May 14 21:53 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2952787 May 14 21:48 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239643 May 14 21:58 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258969 May 14 21:53 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2758329 May 14 21:48 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T15:21:56.278828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T15:21:56.279057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16048\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:29 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  514645 May 14 21:27 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  567631 May 14 21:23 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6077177 May 14 18:45 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root  185939 May 14 21:28 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  200053 May 14 21:24 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121481 May 14 21:12 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  256587 May 14 21:29 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276365 May 14 21:25 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2952548 May 14 21:20 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239694 May 14 21:29 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258884 May 14 21:25 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2759581 May 14 21:20 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T15:21:56.279278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp002/ -name \"labels_*\" -o -name \"contamination_labels*\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T15:21:56.285627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T15:21:56.285857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -5 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T15:21:56.286080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.9028400778770447,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T15:21:56.286289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/contamcal-irt-calibration/ -name \"labels_*\" -o -name \"contamination_labels*\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T15:21:56.286527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T15:21:56.286837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'SSH读取exp008/所有4个文件代码', 'status': 'completed', 'activeForm': '读取exp008代码文件'}, {'content': '检查exp-002信号输出文件是否存在且非空', 'status': 'in_progress', 'activeForm': '检查exp-002信号输出'}, {'content': '审查代码：输入路径对齐、逻辑正确性、依赖分析', 'status': 'pending', 'activeForm': '审查代码逻辑和路径'}, {'content': '确认是否纯CPU、是否需要额外输入', 'status': 'pending', 'activeForm': '分析运行依赖'}, {'content': '执行dry-run或准备提交命令', 'status': 'pending', 'activeForm': '执行或准备命令'}, {'content': '汇报结果', 'status': 'pending', 'activeForm': '汇报审查结果'}]"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T15:21:56.287111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T15:21:56.296383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/contamcal-irt-calibration/ -name \"labels*\" -type f"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T15:21:56.296742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T15:21:56.296997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/ -name \"labels*\" -type f"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T15:21:56.297230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T15:21:56.297463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -3 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T15:21:56.297678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T15:21:56.297882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json')); print(list(d[0].keys())); print(len(d))\""
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T15:21:56.298086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T15:21:56.298285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/ -name \"*contam*\" -o -name \"*dosage*\" -o -name \"*inject*\""
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T15:21:56.306730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_005.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_025.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\\\n/root/autodl-tmp/exp001/s\n…[truncated 992 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 8
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T15:21:56.307023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/exp008/"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T15:21:56.307249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nexp008_output\\\\nplot_survival.py\\\\nrun_exp008.sh\\\\nrun_exp008.sh.bak\\\\nrun_signal_survival.py\\\\nsignal_survival.py\\\\nsignal_survival_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T15:21:56.307556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/run_exp008.sh"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T15:21:56.307947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -euo pipefail\\\\n\\\\nGPUS=\\\\\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\"\\\\nD005_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\"  # d005: mixed 0/1 labels, AUC computable\\\\nSFT_DATA=\\\\\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\\\\"\\\\nLABELS_DIR=\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\n\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/exp008\\\\\\\"\\\\nSIGNALS_DIR=\\\\\\\"${OUTPUT_BASE}/signals\\\\\\\"\\\\nRESULTS_DIR=\\\\\\\"${OUTPUT_BASE}/results\\\\\\\"\\\\n\\\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\\\nSIGNALS=\\\\\\\"embedding minkpp selfcritique\\\\\\\"\\\\n\\\\nSCRIPT_DIR=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\\\\"\\\\nCOMPUTE_SCRIPT=\\\\\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\\\\\"\\\\nSURVIVAL_SCRIPT=\\\\\\\"${SCRIPT_DIR}/run_signal_survival.py\\\\\\\"\\\\n\\\\n# === Environment ===\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=\\\\\\\"$GPUS\\\\\\\"\\\\n\\\\n# === Regime definitions ===\\\\ndeclare -A REGIME_MODEL\\\\nREGIME_MODEL[base]=\\\\\\\"$BASE_MODEL\\\\\\\"\\\\nREGIME_MODEL[sft_clean]=\\\\\\\"$D000_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[sft_contam]=\\\\\\\"$D005_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[rl_aligned]=\\\\\\\"$INSTRUCT_MODEL\\\\\\\"\\\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\\\n\\\\necho \\\\\\\"=== exp-008 Signal Survival ===\\\\\\\"\\\\necho \\\\\\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\\\\\"\\\\necho \\\\\\\"Regimes: ${REGIMES[*]}\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 0: Convert labels to {index: 0/1} format ===\\\\nmkdir -p \\\\\\\"${OUTPUT_BASE}/labels\\\\\\\"\\\\nfor bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n    SRC=\\\\\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\\\\\"\\\\n    DST=\\\\\\\"${OUTPUT_BASE}/labels/labels_${benc\n…[truncated 2285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T15:21:56.308225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/run_exp008.sh.bak"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T15:21:56.316710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -euo pipefail\\\\n\\\\nGPUS=\\\\\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\"\\\\nD005_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\"  # d005: mixed 0/1 labels, AUC computable\\\\nSFT_DATA=\\\\\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\\\\"\\\\nLABELS_DIR=\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\n\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/exp008\\\\\\\"\\\\nSIGNALS_DIR=\\\\\\\"${OUTPUT_BASE}/signals\\\\\\\"\\\\nRESULTS_DIR=\\\\\\\"${OUTPUT_BASE}/results\\\\\\\"\\\\n\\\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\\\nSIGNALS=\\\\\\\"embedding minkpp selfcritique\\\\\\\"\\\\n\\\\nSCRIPT_DIR=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\\\\"\\\\nCOMPUTE_SCRIPT=\\\\\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\\\\\"\\\\nSURVIVAL_SCRIPT=\\\\\\\"${SCRIPT_DIR}/run_signal_survival.py\\\\\\\"\\\\n\\\\n# === Environment ===\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=\\\\\\\"$GPUS\\\\\\\"\\\\n\\\\n# === Regime definitions ===\\\\ndeclare -A REGIME_MODEL REGIME_ADAPTER\\\\nREGIME_MODEL[base]=\\\\\\\"$BASE_MODEL\\\\\\\";           REGIME_ADAPTER[base]=\\\\\\\"\\\\\\\"\\\\nREGIME_MODEL[sft_clean]=\\\\\\\"$BASE_MODEL\\\\\\\";      REGIME_ADAPTER[sft_clean]=\\\\\\\"$D000_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[sft_contam]=\\\\\\\"$BASE_MODEL\\\\\\\";     REGIME_ADAPTER[sft_contam]=\\\\\\\"$D005_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[rl_aligned]=\\\\\\\"$INSTRUCT_MODEL\\\\\\\"; REGIME_ADAPTER[rl_aligned]=\\\\\\\"\\\\\\\"\\\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\\\n\\\\necho \\\\\\\"=== exp-008 Signal Survival ===\\\\\\\"\\\\necho \\\\\\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\\\\\"\\\\necho \\\\\\\"Regimes: ${REGIMES[*]}\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 0: Convert labels to {index: 0/1} format ===\\\\nmkdir -\n…[truncated 2630 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 8
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T15:21:56.317002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/contamcal-irt-calibration/exp008/exp008_output/"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T15:21:56.317267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 80\\\\ndrwxr-xr-x 3 root root  4096 May 14 20:48 .\\\\ndrwxr-xr-x 4 root root  4096 May 14 21:55 ..\\\\n-rw-r--r-- 1 root root  8323 May 14 21:53 cliff_analysis.json\\\\n-rw-r--r-- 1 root root  2010 May 14 21:53 cross_benchmark_summary.json\\\\ndrwxr-xr-x 5 root root    68 May 14 20:48 per_benchmark\\\\n-rw-r--r-- 1 root root 23361 May 14 12:07 signal_decay_scatter.pdf\\\\n-rw-r--r-- 1 root root 16612 May 14 12:07 survival_auc_comparison.pdf\\\\n-rw-r--r-- 1 root root  8765 May 14 22:17 survival_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T15:21:56.317530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -20 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T15:21:56.317765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T15:21:56.318015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 100,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 14042,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T15:21:56.318216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14049 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T15:21:56.325502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp008/"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T15:21:56.325827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   29 May 14 23:14 .\\\\ndrwxr-xr-x 16 root root 4096 May 14 23:14 ..\\\\ndrwxr-xr-x  4 root root   53 May 14 23:14 signals\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T15:21:56.326100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp008/ -type d"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T15:21:56.326391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp008/\\\\n/root/autodl-tmp/exp008/signals\\\\n/root/autodl-tmp/exp008/signals/sft_clean\\\\n/root/autodl-tmp/exp008/signals/sft_clean/mmlu\\\\n/root/autodl-tmp/exp008/signals/sft_clean/gsm8k\\\\n/root/autodl-tmp/exp008/signals/sft_clean/arc_challenge\\\\n/root/autodl-tmp/exp008/signals/sft_contam\\\\n/root/autodl-tmp/exp008/signals/sft_contam/mmlu\\\\n/root/autodl-tmp/exp008/signals/sft_contam/gsm8k\\\\n/root/autodl-tmp/exp008/signals/sft_contam/arc_challenge\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T15:21:56.326652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/cross_benchmark_summary.json"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T15:21:56.327016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"arc_challenge\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_signal_aggregated\\\\\\\": {\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9975,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0044,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9873,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0067,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.6105,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.0671\\\\n    },\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9918,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0072,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.9968,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0055,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9841,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0162,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.9733,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.0231\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9962,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0033,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.9981,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0019,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9981,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0019,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.7092,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.1178\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9975,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0022,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.993,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0077,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9771,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0088,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.5473,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.079\\\\n    },\\\\\n…[truncated 756 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T15:21:56.333007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T15:21:56.333302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T15:21:56.333545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -50 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T15:21:56.333781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 5,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 703,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T15:21:56.334068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp008/signals/ -type f"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T15:21:56.334344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T15:21:56.334548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/survival_report.json"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T15:21:56.335026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9943,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.899,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.7695,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6829\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9695,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9467,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8343,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7848\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9771,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9448,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8133,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6467\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8914,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7086\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.6603,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.8074,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.1501,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6708\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7157,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.322,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.254,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.1604\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7081,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.261,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.2469,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5573\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.7205,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.347,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.7833,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.8725\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"base_vs_sft_clean\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.6603,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n        \\\\\\\"spearman_r\n…[truncated 8581 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T15:21:56.335286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/mmlu/"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T15:21:56.343443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"survival_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 8
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T15:21:56.343748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/mmlu/survival_report.json"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T15:21:56.344288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.0,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.0,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.781\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9848,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9676,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6114\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9905,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.3124\\\\n    },\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9924,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9867,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5362\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.1114,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.32,\\\\n      \\\\\\\"sft_contam\\\\\\\": 4.4787,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 3.037\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.2537,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.8832,\\\\n      \\\\\\\"sft_contam\\\\\\\": 4.1447,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.0976\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.5298,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.1116,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.3158,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.2961\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.3915,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.7025,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.783,\\\\n      \\\\\\\"rl_aligned\\\\\\\": -0.697\\\\n    },\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.3423,\\\\n      \\\\\\\"sft_clean\\\\\\\": 4.4199,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.9419,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.2179\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": \n…[truncated 8568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T15:21:56.344586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T15:21:56.344797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -200 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T15:21:56.345006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"414 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T15:21:56.356518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"%s: AUC %s\\\\\\\",\\\\n            SIGNAL_LABELS[sig_key],\\\\n            \\\\\\\" -> \\\\\\\".join(\\\\n                f\\\\\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\\\\\" for r in regime_names\\\\n            ),\\\\n        )\\\\n\\\\n    # Backward compat per_signal (maps first adjacent pair to old SFT/RL keys)\\\\n    per_signal: dict[str, dict] = {}\\\\n    if adjacent_pairs:\\\\n        first_pair_key = f\\\\\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\\\\\"\\\\n        for sig_key, pm in pairwise_tests.get(first_pair_key, {}).items():\\\\n            per_signal[sig_key] = {\\\\n                \\\\\\\"signal_label\\\\\\\": SIGNAL_LABELS.get(sig_key, sig_key),\\\\n                \\\\\\\"n_items\\\\\\\": pm[\\\\\\\"n_items\\\\\\\"],\\\\n                \\\\\\\"n_contaminated\\\\\\\": pm[\\\\\\\"n_contaminated\\\\\\\"],\\\\n                \\\\\\\"n_clean\\\\\\\": pm[\\\\\\\"n_clean\\\\\\\"],\\\\n                \\\\\\\"effect_size_sft\\\\\\\": pm[\\\\\\\"effect_size_a\\\\\\\"],\\\\n                \\\\\\\"effect_size_rl\\\\\\\": pm[\\\\\\\"effect_size_b\\\\\\\"],\\\\n                \\\\\\\"effect_size_ratio\\\\\\\": pm.get(\\\\\\\"effect_size_ratio\\\\\\\"),\\\\n                \\\\\\\"spearman_rho\\\\\\\": pm.get(\\\\\\\"spearman_rho\\\\\\\"),\\\\n                \\\\\\\"spearman_p\\\\\\\": pm.get(\\\\\\\"spearman_p\\\\\\\"),\\\\n                \\\\\\\"auc_sft\\\\\\\": pm.get(\\\\\\\"auc_a\\\\\\\"),\\\\n                \\\\\\\"auc_rl\\\\\\\": pm.get(\\\\\\\"auc_b\\\\\\\"),\\\\n                \\\\\\\"auc_ratio\\\\\\\": pm.get(\\\\\\\"auc_ratio\\\\\\\"),\\\\n                \\\\\\\"wilcoxon_stat\\\\\\\": pm.get(\\\\\\\"wilcoxon_stat\\\\\\\"),\\\\n                \\\\\\\"wilcoxon_p\\\\\\\": pm.get(\\\\\\\"wilcoxon_p\\\\\\\"),\\\\n            }\\\\n\\\\n    # Summary: signal \\\\\\\"survives\\\\\\\" if last regime AUC >= 0.6 and d-ratio >= 0.5\\\\n    last_regime = regime_names[-1]\\\\n    first_regime = regime_names[0]\\\\n    surviving = []\\\\n    for sig_key in auc_matrix:\\\\n        auc_last = auc_matrix[sig_key].get(last_regime)\\\\n        d_first = effect_size_matrix.get(sig_key, {}).get(first_regime)\\\\n        d_last = effect_size_matrix.get(sig_key, {}).get(last_regime)\\\\n     \n…[truncated 6385 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 11
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T15:21:56.356988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"wilcoxon_stat.*= N\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T15:21:56.357250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"129:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T15:21:56.357485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"= N$\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T15:21:56.357696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T15:21:56.357896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"wilcoxon\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T15:21:56.358116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"125:        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\\\n126:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = float(w_stat)\\\\n127:        result[\\\\\\\"wilcoxon_p\\\\\\\"] = float(f\\\\\\\"{w_p:.2e}\\\\\\\")\\\\n129:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = None\\\\n130:        result[\\\\\\\"wilcoxon_p\\\\\\\"] = None\\\\n240:                \\\\\\\"wilcoxon_stat\\\\\\\": pm.get(\\\\\\\"wilcoxon_stat\\\\\\\"),\\\\n241:                \\\\\\\"wilcoxon_p\\\\\\\": pm.get(\\\\\\\"wilcoxon_p\\\\\\\"),\\\\n400:            f\\\\\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T15:21:56.363476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -220 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T15:21:56.363904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — core analysis module.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nComputes:\\\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\\\n\\\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cohen's d effect size between two groups.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1 = group1.var(ddof=1)\\\\n    var2 = group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\n\\\\n\\\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUROC and Cohen's d for contamination detection in one regime.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v = values[mask]\\\\n    lab = labels[mask].astype(int)\\\\n    contam = lab == 1\\\\n    clean = la\n…[truncated 6004 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T15:21:56.364189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"def \\|class \" /root/contamcal-irt-calibration/exp008/signal_survival.py"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T15:21:56.364440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T15:21:56.364648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -350 /root/contamcal-irt-calibration/exp008/signal_survival.py"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-14T15:21:56.365045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — main script (v3).\\\\n\\\\nAnalyzes how contamination detection signals survive across training regimes\\\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\\\n\\\\\\\"cliff-like signal degradation under RL alignment.\\\\\\\"\\\\n\\\\nInput:\\\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\\\n    Record format: [{\\\\\\\"index\\\\\\\": int, \\\\\\\"benchmark\\\\\\\": str, \\\\\\\"s1_embedding\\\\\\\": float, ...}]\\\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\\\n\\\\nOutput (to --output-dir):\\\\n  - per_benchmark/{benchmark}/survival_report.json\\\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\\\n  - cross_benchmark_summary.json — aggregated statistics\\\\n  - Console summary table\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nALL_SIGNAL_KEYS = [\\\\n    \\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\", \\\\\\\"rrf_score\\\\\\\",\\\\n]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n    \\\\\\\"rrf_score\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n}\\\\nDEFAULT_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nCLIFF_THRESHOLD = 0.7\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data \n…[truncated 7159 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008_signal_survival_20260514T151627",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        }
+      ],
+      "message_count": 86
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp008-signal-survival.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c948812bb2a1ce67e8c3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 15B instruct mmlu",
+  "task_key": "worker_diagnose_exp_002_signals_15B_instruct_mmlu_20260516T190311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_15B_instruct_mmlu_20260516T190311_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "3a34e504f9485004033985c87ff02b220a57e6e28560454e74d0723c865496f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：进程正常退出，实验成功完成。**\n\nMMLU signals 全部生成完毕：\n| 文件 | 大小 | 时间 |\n|------|------|------|\n| signal_s1_embedding_mmlu.json | 7.5MB | May 16 23:51 |\n| signal_s2_minkpp_mmlu.json | 2.7MB | May 16 23:57 |\n| signal_s4_selfcritique_mmlu.json | 3.2MB | May 17 02:01 |\n| signals_merged_mmlu.json | 2.4MB | May 17 02:01 |\n\n进程退出原因：任务完成，正常结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-15b-instruct-mmlu-copy-2.md"
+}

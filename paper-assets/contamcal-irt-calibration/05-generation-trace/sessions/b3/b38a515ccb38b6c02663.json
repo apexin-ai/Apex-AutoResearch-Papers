@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b38a515ccb38b6c02663",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops c3 ci coverage",
+  "task_key": "worker_ops_c3_ci_coverage_20260517T145149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c3_ci_coverage_20260517T145149_result.json",
+    "occurrence": 1,
+    "bytes": 1447,
+    "sha256": "f4a282eaa392a80bbdc194c48684fb8929acedbdb86b480b059018c1e7622957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are complete. Here's the summary:\n\n## CI Coverage Results\n\n| Benchmark | Level | Coverage | Nominal | Diff | z-score |\n|-----------|-------|----------|---------|------|---------|\n| **MMLU** | 50% | **0.833** | 0.50 | +0.33 | +2.83 |\n| MMLU | 80% | 0.889 | 0.80 | +0.09 | +0.94 |\n| MMLU | 95% | 1.000 | 0.95 | +0.05 | +0.97 |\n| **ARC** | 50% | 0.450 | 0.50 | -0.05 | -0.45 |\n| ARC | 80% | 0.650 | 0.80 | -0.15 | -1.68 |\n| ARC | 95% | 0.900 | 0.95 | -0.05 | -1.03 |\n\n**Key findings:**\n\n1. **MMLU (N=18, 300 items)**: Posterior CIs are **over-conservative** (especially 50% CI covers 83% of models). The 2PL+gamma model's parameter uncertainty provides generous coverage at model level. This means calibrated score uncertainties are trustworthy (if anything, too wide).\n\n2. **ARC (N=20, 300 items)**: CIs are **slightly under-covering** at 80% level (65% vs 80%, z=-1.68). This suggests mild model misfit for some ARC models, though with N=20 the SE~0.09 makes this borderline significant.\n\n3. **Item-bin coverage = 0% everywhere**: This is expected. The posterior CI on predicted means is extremely narrow (parameter uncertainty only). The actual obs-pred discrepancy at the item level reflects IRT model limitations (the 2PL sigmoid attenuates extreme responses), not CI failure.\n\n4. Model-level residual MAE: MMLU=0.009, ARC=0.015.\n\n**Output saved to**: `/root/autodl-tmp/exp006/ci_coverage_analysis/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c3-ci-coverage.md"
+}

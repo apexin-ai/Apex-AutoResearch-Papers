@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e05004785e1f410ee197",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp 001 sft d025 3B v3",
+  "task_key": "worker_submit_exp_001_sft_d025_3B_v3_20260515T161027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_001_sft_d025_3B_v3_20260515T161027_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "be5d70e1cb4ef44184296114d499bbff8116bc88100f873adfceb2d3e843465a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_001_sft_d025_3B_v3** 已在 GPU 5 上启动，PID 589763，占用 7698 MiB\n- tmux session: `exp001_d025_3B_v3`\n- 训练数据: 54133 samples, 3384 steps\n- lora-alpha=32, seed=42, lr=5e-5\n- 输出目录: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42`\n- Registry 已更新为 RUNNING\n\n注意：脚本不接受 `--gpu` 参数（任务描述中有此参数），GPU 选择完全通过 `CUDA_VISIBLE_DEVICES=5` 控制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-001-sft-d025-3b-v3.md"
+}

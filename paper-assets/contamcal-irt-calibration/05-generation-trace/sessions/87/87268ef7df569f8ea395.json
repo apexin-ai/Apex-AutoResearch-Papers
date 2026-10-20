@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87268ef7df569f8ea395",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code stratified irt a32 fix",
+  "task_key": "worker_code_stratified-irt-a32-fix_20260516T054855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_stratified-irt-a32-fix_20260516T054855_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "82317dbda1847ddfa32dd0276226822025935e6f9029d90200a8f11be35b37b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Local copy updated. Summary of changes in `exp006/run_irt_calibration.py`:\n\n**1. Regex** (line 43-45): \n```\n_d(\\d+)(?:_(?:v\\d+|a(\\d+)))?_s(\\d+)(?:_a(\\d+))?(_para)?(_aligned)?(?:_v\\d+)?$\n```\nNow handles `_a\\d+` before seed (`_d100_a32_s123`) and after seed (`_d000_s42_a32`).\n\n**2. `parse_model_dir_name`** (line 62): Added `has_alpha` field. Group indices updated (1→dosage, 3→seed, 5→para, 6→aligned).\n\n**3. Dedup logic** (lines 138-149): After collecting models, groups by `(model_name, dosage, seed, is_para)`. If both `_a32_` and non-alpha dirs exist for the same key, keeps only the `_a32_` version.\n\n**Dry-run results:**\n- 3B: 8 models, `_a32_` dirs correctly recognized and preferred (replaced 3 non-alpha duplicates: `d000_v2_s42`, `d005_s42`, `d100_v2_s123`)\n- 0.5B: 8 models, unchanged\n- 1.5B: 8 models, unchanged\n- Unrecognized dirs (13) are all expected: Instruct, base_pretrained, raw, DEPRECATED, gsm8k_rerun, `d025_v2_aligned` (no seed)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-stratified-irt-a32-fix.md"
+}

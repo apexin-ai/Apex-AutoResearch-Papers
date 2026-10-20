@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e31c8726b5155369d352",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh phase1 check and phase2 3 launch",
+  "task_key": "worker_ssh_phase1-check-and-phase2-3-launch_20260513T191733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_phase1-check-and-phase2-3-launch_20260513T191733_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "1bc9d94a32b82c5f00de6d502ad768020aff4dc10592889bbaa23fe36d7991e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态已清晰。\n\n```\n=== exp-001 Status Report ===\n\nGPU Health:\n  GPU 0: RTX 4090D, 100%, 22195/24564 MiB  [MMLU vLLM generation]\n  GPU 1: RTX 4090D,  95%, 15049/24564 MiB  [GSM8K attempt 2 retry]\n  GPU 2: RTX 4090D,  94%, 15119/24564 MiB  [ARC attempt 1 finishing]\n  GPU 3: RTX 4090D,   0%,     0/24564 MiB  [idle]\n  GPU 4: RTX 4090D,   0%,     0/24564 MiB  [idle]\n  GPU 5: RTX 4090D,   0%,     0/24564 MiB  [idle]\n\nPhase 1 Paraphrase:\n  MMLU:          IN_PROGRESS — vLLM gen 31/878 batches (3.5%), ETA ~1h50m\n  GSM8K:         IN_PROGRESS — attempt 1 done (42/42), QC retry attempt 2 starting (0/38 batches), ETA ~27min\n  ARC-Challenge: IN_PROGRESS — attempt 1 at 34/37 batches (92%), ETA ~2.5min + QC/retry\n  HumanEval:     DONE (164 items, 26/164 QC pass = 15.9%) — 降级为 appendix per D009\n\nPhase 2 Data Prep:\n  Status: BLOCKED — waiting for MMLU (critical bottleneck)\n\nPhase 3 SFT Training:\n  Status: BLOCKED — waiting for Phase 2\n\nBottleneck: MMLU vLLM generation at 3.5% (878 batches total, ~8s/batch).\n预计最早可启动 Phase 2 时间: ~2 hours from now.\n```\n\n**注意事项：**\n- GSM8K 和 ARC 的 vLLM 初始化均失败（Qwen2.5-7B-Instruct 的模板冲突），回退到 transformers，速度慢很多（~43-50s/batch vs vLLM 的 ~5-8s/batch）\n- MMLU 使用 vLLM 成功，速度快但数据量大（14K items vs GSM8K 1.3K / ARC 1.2K）\n- GSM8K 第一轮生成完成后大量 QC 失败，正在第二轮重试（38 batches ≈ 大部分items需要重新生成）\n- GPU 3-5 空闲，如果 paraphrase_gen 支持多 GPU 分布式生成，可以加速 MMLU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-phase1-check-and-phase2-3-launch.md"
+}

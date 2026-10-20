@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d107d67270b6926f8b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu exp002 signals d025 rrf",
+  "task_key": "worker_gpu_exp002_signals_d025_rrf_20260514T182659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_exp002_signals_d025_rrf_20260514T182659_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "a76b1ed45d2ad7645958b94ba353842aea85459c5934affe9668a6329146d3bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个子任务状态汇总：\n\n---\n\n### 子任务 A：exp-002 signal pipeline on d025\n- **状态**: RUNNING on GPU 2 (PID 422128, tmux session `exp002-signal-d025-05B`)\n- **任务**: 3 个 benchmark (mmlu → gsm8k → arc_challenge)，信号 embedding + minkpp + selfcritique\n- **ConStat (S3) 自动跳过**: d025 的 eval_results 目录是 `_aligned` 后缀，run_batch.py 路径约定不匹配，ConStat 条件不满足\n- **输出**: `/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/`\n- **预计 ~20 min**\n\n---\n\n### 子任务 B：RRF exposure 排序调查结果\n\n**原始信号排序 (期望 d000 < d005 < d100):**\n\n| 信号 | mmlu | gsm8k | arc_challenge |\n|------|------|-------|--------------|\n| S1 embedding | OK | OK | OK |\n| S2 minkpp | **反向** (d100<d005<d000) | **反向** | **反向** |\n| S4 selfcritique | OK | d005/d100 互换 | OK |\n\n**两个核心问题:**\n1. **S2 minkpp 极性相反**: 高值 = 不太可能被记忆。所有 3 个 benchmark 全部反向。如果直接做 RRF 融合不翻转极性，d000 会被推高\n2. **S1 embedding 基线非零**: d000 的 gsm8k s1 均值 = 0.6131（Director 报告的那个 0.613），clean model 天然有较高 embedding 相似度基线\n\n**Delta exposure 方案验证:**\n- `delta(model, item) = signal(model, item) - signal(d000, item)`\n- delta_s1: d000=0, d005=+0.016~0.085, d100=+0.197~0.379 — **完美单调递增**\n- delta_s2: d000=0, d005=-0.20~-0.30, d100=-0.27~-0.37 — 方向正确（更负 = 更污染）\n- delta_s4: 信号弱且噪声大，区分度不高\n\n**结论**: Delta exposure 方案可行，同时 RRF 融合前必须翻转 S2 minkpp 极性（取负或 `1 - normalized_value`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp002-signals-d025-rrf.md"
+}

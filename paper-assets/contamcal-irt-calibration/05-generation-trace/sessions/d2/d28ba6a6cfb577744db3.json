@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d28ba6a6cfb577744db3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix train sft gpu param",
+  "task_key": "worker_code_fix-train-sft-gpu-param_20260515T045911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-train-sft-gpu-param_20260515T045911_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "95dceba6757f22c4ca0db00333b07dec6a4dff0f6932f374dacb0d3ecd96f1ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**改动**：`exp001/train_sft.py` 中移除了 `--gpu` argparse 参数（原第93-94行）和 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu` 覆盖逻辑（原第112-113行）。后续 GPU 选择完全由调用方的 `CUDA_VISIBLE_DEVICES` 环境变量控制。`evaluate.py` 无同类问题。已 commit（`dd81ae2`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-train-sft-gpu-param.md"
+}

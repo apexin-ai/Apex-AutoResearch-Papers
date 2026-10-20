@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb213697271675a7600f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check downloads and cuda1",
+  "task_key": "worker_ops_check-downloads-and-cuda1_20260518T180904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-downloads-and-cuda1_20260518T180904_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "35fab54c0d7b6dd6df587c7c096a47216384cccb6b1f35e72023c4149a97c903"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## 模型下载状态\n\n| 模型 | 需要 shards | 已有 | 缺少 | 状态 |\n|------|------------|------|------|------|\n| **Phi-4** | 6 | 5 | `model-00005-of-00006.safetensors` | **不完整** |\n| **OLMo-2-1124-7B** | 6 | 5 | `model-00003-of-00006.safetensors` | **不完整** |\n| **Gemma-2-9B** | 8 | 8 | 无 | **完成** |\n\n无下载进程在运行，缺失的 shards 不会自动补全。\n\n## GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| cuda:0 | 62.6G/97.9G | 86% | PID 46066 - 训练中 |\n| **cuda:1** | **0/97.9G** | **0%** | **空闲** |\n| cuda:2 | 63.6G/97.9G | 69% | PID 38920 - Qwen2.5-14B d005 s42 |\n| cuda:3 | 62.8G/97.9G | 99% | PID 46876 - Qwen2.5-7B d100 s123 |\n\n## 磁盘\n\n137G/250G used，剩余 114G (45%)。\n\n## 结论\n\n- **cuda:1 完全空闲**，可用\n- **Phi-4 不能训练**：缺 shard 5，需先补下载\n- **Gemma-2-9B 可以训练**：8/8 shards 完整，可立即在 cuda:1 启动\n- **OLMo-2 也不完整**：缺 shard 3\n\n下一步需要：恢复 Phi-4 和 OLMo-2 的下载（`huggingface-cli download --resume`），或者先用已就绪的 Gemma-2-9B 在 cuda:1 开训。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-downloads-and-cuda1.md"
+}

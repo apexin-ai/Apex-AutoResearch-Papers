@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "807a3175e5cfa1b71965",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778885863.md",
+  "task_key": "loop_12_1778885863",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778885863.md",
+    "occurrence": 1,
+    "bytes": 4609,
+    "sha256": "d52f00797cd96d9fac05b7b1eff17a325efb750867d309c53a11c41078ce9c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T22:54:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0-5`（服务器 cqa1-21977），**不可用其他 GPU**\n- 所有 SFT 必须 `--lora-alpha 32`（D050 标准），alpha=16 checkpoint 全部 invalid（D055/D081）\n- s42 旧系列 d000/d005（lr=2e-4）的 checkpoint 和下游 signals **不可用于 IRT pool**（D076），必须等 lr=5e-5 重训版本\n- submit 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- AutoDL 网络：pip/git 前 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n- exp-005 noise propagation 已判 negative（D073），**不要重试**，降级 appendix\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（AutoDL, 6× RTX 4090D）\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base，**不是 venv**）\n- **模型 cache**: `/root/autodl-tmp/.hf_cache`\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_a32_{seed}/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 输出**: `/root/autodl-tmp/exp002/signals/`\n- **Sim sweep**: `/root/autodl-tmp/exp004/`\n- **活跃进程**（reconcile_crons 确认）:\n  - PID 628663 — exp_001_sft_3B_d100_s42_a32_v3（cuda:1）\n  - PID 633036 — exp_001_sft_3B_d000_s42_a32（cuda:5，D076 重训）\n  - PID 643162 — exp_001_sft_3B_d005_s42_a32（cuda:0，D076 重训）\n  - PID 642752 — exp_001_eval_3B_d100_s123_a32_batch（cuda:2 或 3）\n  - PID 623826 — exp_002_signals_3B_v5（cuda:4，d025+d100 signals）\n  - CPU — exp_004_sim_sweep_v7（8/12 条件完成，auc0.65×3 失败，auc0.9_n100 在跑）\n\n### 3. 📊 当前状态\n上一轮 session 完成了：D076 lr confound 诊断 + d000/d005 s42 重训提交、d100 s123 alpha=32 SFT 完成 → eval batch 启动、1.5B s123 para_aligned 四合一 eval 可能已完成（ROADMAP 中 cuda:3 PID 627600 不在 reconcile 列表中，说明已结束）、3B d005 s123 GSM8K eval（cuda:2 PID 623480）也不在 reconcile 中，已结束。\n\n**RUNNING（6 个）**: 3 个 SFT 重训 + 1 eval batch + 1 signals + 1 sim sweep（见上）\n**PREPARING 有价值的**: exp_001_sft_3B_d000_v4（等 GPU）、exp_001_eval_3B_d005_s42_para_aligned（等 cuda:3）、exp_008_instruct_rl_proxy（signals 已算完，待 3-regime 分析）\n**等待中**: 无 Worker 回调待处理；5 个 cron 监控活跃；无 Director 决策待回复\n\n**关键缺口**: Plan coverage 仅 38.5%，距 EMNLP deadline 10 天。Critical path = GPU jobs 完成 → 3B signals 全完 → RRF 聚合 → IRT fitting → paper 写作。\n\n### 4. 📋 待办（条件触发式）\n- cuda:3 已释放（1.5B eval 完成）→ 启动 exp_001_eval_3B_d005_s42_para_aligned 或其他待提交 eval\n- d100_s42_a32_v3 SFT 完成 → aligned + para_aligned eval → cuda:1 释放给 d025_s42 重跑\n- d000_s42_a32 / d005_s42_a32 SFT 完成 → 各自 aligned + para_aligned eval + signals 重算（用新 checkpoint）\n- d100_s123_a32 eval batch 完成 → 收录 eval metrics 到 memory.md matrix，更新 IRT pooling N count\n- signals_3B_v5 完成 → 确认 d025/d100 信号覆盖 → 剩 d005 signals 待 GPU → RRF 聚合（exp-003，CPU）\n- sim_sweep_v7 完成（auc0.9_n100）→ 汇总 identifiability boundary → 更新 Claim 1 evidence\n- N≥16 IRT pool ready → 启动 exp-006 pooled IRT fitting（per-benchmark γ_k + 7 baselines）\n- 所有 P0 数据就绪 → 启动 paper writing pipeline（5 步）\n\n### 5. 🎯 战略上下文\n**核心结论链**：coverage collapse = model misspecification（D056）→ per-benchmark γ_k 必要（D053）→ Claim 1 是 characterization（诊断性发现），不是\"修复分数\"。Claim 3 唯一实验 negative（D073），降级 appendix。\n\n**最易判断错的事**:\n1. **alpha=16 vs 32**：历史上多次提交了 alpha=16 的 SFT（D081/D055），代码默认值可能不是 32。每次提交 SFT 务必显式 `--lora-alpha 32`\n2. **lr confound**：只有 s42 的 d000 和 d005 受影响（lr=2e-4），s123 系列和 d025/d100 s42 不受影响。不要扩大排除范围\n3. **cuda:3 可能已空闲**：reconcile 没看到 PID 627600（1.5B eval），应立即确认并分配新任务\n4. **sim_sweep auc0.65 失败不阻塞**：9/12 条件够用（D073 精神），不要死磕 CmdStan 数值问题\n5. **10 天 deadline**：paper 写作至少需要 4-5 天，GPU 实验窗口实际只剩 5 天。并行铺代码/数据准备是唯一出路，串行必死\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778885863.md"
+}

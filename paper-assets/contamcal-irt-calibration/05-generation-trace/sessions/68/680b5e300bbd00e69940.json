@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "680b5e300bbd00e69940",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_2_1778739733.md",
+  "task_key": "loop_2_1778739733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778739733.md",
+    "occurrence": 1,
+    "bytes": 5321,
+    "sha256": "6baf8d1acce3f6892971a0235ff6802a80d39038c065a4c5d4988fc0fc1e5e6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T06:17:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配：cuda:0-5 全部属于本项目（cqa1-21977），但 **--gpu 参数必须用物理卡号**——train_sft.py 内部会用 `--gpu` 值覆盖 `CUDA_VISIBLE_DEVICES`，`--gpu 0` ≠ \"分配的第一块卡\"，而是物理 GPU 0\n- GPU 5 是重灾区：d025_05B 已失败 3 次（v1: zombie process; v2: 被外部 SIGKILL; v3: 错误 bs=2）。Director 指令 bs=4 grad_accum=4 重提交，但上一个 Worker 发现 d025 数据序列更长可能需要 bs=2 grad_accum=8——需要 Worker 实测确认\n- exp-002 compute_signals.py 需要 GPU（embedding + Min-K%++ 推断），Director 已预授权：eval 完成后立即用释放的 GPU 跑 0.5B × {d000, d005, d100}，不需要等审批\n- SFT checkpoint 是 LoRA adapter 不是完整模型——exp-002 signal 脚本需要 base model + PeftModel.from_pretrained() 加载\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D (24GB each)，cuda:0-5\n- 工作目录：/root/contamcal-irt-calibration/\n- Python：/root/miniconda3/bin/python（conda base env，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：/root/autodl-tmp/.hf_cache/\n- SFT 数据：/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl\n- Checkpoints：/root/autodl-tmp/exp001/checkpoints/qwen25_{05B,15B,3B}_d{XXX}_s42/\n- Eval 结果：/root/contamcal-irt-calibration/exp001/eval_results/\n- exp-002 代码：/root/contamcal-irt-calibration/exp002/（8 文件，dry-run 通过）\n- exp-006 代码：/root/contamcal-irt-calibration/exp006/（4 文件，dry-run 通过）\n- Stan 模型：contam_irt_4pl_simple.stan（收敛良好，Rhat<1.01）\n- 活跃 crons（reconcile 时刻 7 个 RUNNING）：\n  - exp_001_sft_d100_15B_v2 (PID 251924), exp_001_sft_d100_3B (PID 291373), exp_001_sft_d005_15B (PID 271916)\n  - exp_001_eval_05B_d005 (PID 255322, GPU 1), exp_001_eval_05B_d000_s42_v5 (PID 266511, GPU 2), exp_001_eval_05B_d100_v5 (PID 266780, GPU 2)\n  - exp_001_eval_3B_d000_s42 (PID 249294)\n- CPU 实验：exp_004_sim_sweep (PID 340553, ETA May 16-17), exp_005_noise_prop_v3 (PID 339838, ETA ~14:30 UTC today)\n\n### 3. 📊 当前状态\n**刚完成**：\n- exp-006 IRT baselines 代码（4 文件，dry-run 通过）\n- exp-002 signal pipeline 代码确认就绪（8 文件，4 signals + RRF）\n- GPU 5 旧 Worker 完成：发现 v2 失败原因是 `--gpu 0` 导致跑到物理 GPU 0 与 d100 冲突。已用 `--gpu 5` + bs=2 grad_accum=8 重提交为 v2\n\n**正在跑的 3 个 Worker**（刚 spawn，MCP 断连前成功启动）：\n1. `worker_ops_gpu_status_full_check_20260514T061248` — P0 全 GPU 状态检查\n2. `worker_fix_exp002_pipeline_dosage_lora_20260514T061310` — P1 修复 dosage 命名 + LoRA adapter 加载\n3. `worker_analysis_3B_gsm8k_inversion_v2_20260514T061315` — P2 3B GSM8K 倒挂排查\n\n**等待回调**：上述 3 个 Worker 完成后需要处理结果并汇报 Director。\n\n**Director 未收到的汇报**：之前 Pool 满时无法 spawn GPU 5 修复 Worker，向 Director 报告了 Pool blocker。Director 随后发了新 session 任务清单（P0/P1/P2），3 个 Worker 已派出但结果未回。\n\n### 4. 📋 待办（条件触发式）\n- GPU status Worker 完成 → 汇总 6 GPU 状态表，确认哪些 eval 已完成，哪些 GPU 空闲\n- 0.5B eval 全部完成（d000+d005+d100）→ 立即派 Worker 跑 exp-002 compute_signals.py（Director 预授权，不需等审批），用释放的 GPU\n- exp-002 pipeline fix Worker 完成 → 确认 dosage 命名 + LoRA 加载已修复，sync 到服务器\n- 3B GSM8K Worker 完成 → 汇报 Director 根因（eval 解析问题 vs 真实性能）\n- GPU 5 d025_05B 训练完成（~5h from ~05:00 UTC）→ 跑 eval，然后加入 exp-002 signal 管线\n- exp_005_noise_prop_v3 完成（ETA ~14:30 UTC）→ 分析结果，更新 registry\n- exp-002 signals 完成 → exp-003 RRF aggregation（CPU，fast）→ exp-006 IRT calibration（core result）\n- exp-006 IRT 结果出来 → 这是论文 Table 1 核心数据，立即汇报 Director + 写 Results\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 11 天）\n- **Critical Path**：exp-002 signals → exp-003 RRF → exp-006 IRT calibration = 论文核心结果。当前瓶颈是 0.5B eval 完成 + exp-002 代码修复\n- **关键决策链**：D006(EMNLP 回归) → D009(HumanEval 降级 appendix) → D011(CmdStanPy Bayesian) → D013(Simple IRT, 弃 ME model) → D014(C1 claim 需条件限定 N≥50 σ_e≥0.3) → D015(C2 cliff-like claim 需条件限定)\n- **Table 2 风险**：Related Work 表中 ContamCal \"RL-robust partial✓\" claim 唯一证据来源是 exp-008（未启动），若结果不支持需删除\n- **易踩坑**：\n  - d025 数据比 d005/d100 序列更长，bs=4 可能 OOM（上个 Worker 用了 bs=2 grad_accum=8），但 Director 要求 bs=4 grad_accum=4——需实测\n  - exp-002 输出格式（list-of-dicts）需要 trivial 转换才能接 exp-006 的 --exposure-file（flat float array by benchmark）\n  - 3B s42 eval 目录曾为空——可能是 checkpoint 路径问题而非 GSM8K 倒挂本身\n  - Cron 系统对 server:local 实验不走 ssh 查进程（D013 后沉淀的规范）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778739733.md"
+}

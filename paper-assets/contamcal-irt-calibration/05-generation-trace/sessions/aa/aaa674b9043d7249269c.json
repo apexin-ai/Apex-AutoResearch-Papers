@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa674b9043d7249269c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "paper figure fig calibration",
+  "task_key": "worker_paper_figure_fig_calibration_20260516T201935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_calibration_20260516T201935.log",
+    "occurrence": 1,
+    "bytes": 987742,
+    "sha256": "3aaeb7189dfa38f877b32cf7fc57c3bc60373c2f2bb053fe09258a67454dac9f"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 57,
+      "tool_result": 57,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "aaa674b9043d7249269c-part-0001.json",
+          "message_count": 61
+        },
+        {
+          "path": "aaa674b9043d7249269c-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "aaa674b9043d7249269c-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig-calibration.md"
+}

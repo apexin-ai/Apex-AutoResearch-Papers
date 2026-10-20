@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e64b702b0f7721927bc3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops phase3 sft readiness v2",
+  "task_key": "worker_ops_phase3-sft-readiness-v2_20260514T025400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_phase3-sft-readiness-v2_20260514T025400_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "8735907217b87a455d4a7098c09f8d5f2a191eb6e80dbf347de6a01bc963b98d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成，结果汇总：\n\n### 就绪状态\n\n| 检查项 | 结果 |\n|--------|------|\n| Dosage 数据 (d005/025/050/100) | ✅ 全部存在 (50826/54133/58266/66533 行) |\n| 基础模型 (0.5B/1.5B/3B) | ✅ 全部存在 |\n| 0.5B d005 checkpoint | ✅ |\n| 0.5B d100 checkpoint | ✅ |\n| 1.5B d100 | 🏃 GPU 0 仍在训练 (PID 251924, lora_adapter 为空) |\n\n### GPU 现状\n所有 6 GPU 均在使用中：GPU 0 跑 1.5B d100 SFT，GPU 1-5 跑各种 eval jobs。\n\n### 修正\n- 脚本实际参数用 **hyphen 格式**：`--model-name`、`--data-path`、`--batch-size`、`--grad-accum`、`--lr`、`--epochs`（非 underscore）\n- 待做 SFT 实际是 **9 jobs**（用户列表里 1.5B d100 虽有 checkpoint 目录但尚未完成，仍在训练）\n\n完整的 9 条 submit command 已保存到 `memory.md` 的 \"Phase 3 SFT 提交计划\" section。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-phase3-sft-readiness-v2.md"
+}

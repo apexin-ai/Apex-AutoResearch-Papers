@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f73e5fd83c33017595",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent collect all llama3 results",
+  "task_key": "worker_ops_urgent-collect-all-llama3-results_20260521T131152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-collect-all-llama3-results_20260521T131152_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "b8e51e5565fce3ed3893f01b72eacddc852fc7ffc22265c78bbc1ce81a9dc00a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nd000: MMLU=53.50%, ARC=72.61%\nd025: MMLU=52.75%, ARC=72.01%\nd100: MMLU=pending, ARC=pending\nd100 SFT: 进行中 3924/4159 steps (94%), epoch 0.92, ETA ~11min\nGPU: [0] idle | [1] idle | [2] idle | [3] 77% 37.9/97.9GB (d100 SFT)\n活跃进程:\n  - PID 510203: train_sft.py Meta-Llama-3.1-8B d100_s0 (CUDA:3)\n  - PID 521160: monitor_llama3_eval.sh d100 (等训练完自动启 eval)\n```\n\nd100 SFT 还有约 235 步（~11分钟）就完成。d025 monitor 已不在运行（只剩 d100 monitor）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-collect-all-llama3-results.md"
+}

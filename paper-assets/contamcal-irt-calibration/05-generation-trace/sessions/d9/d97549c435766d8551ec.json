@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "d97549c435766d8551ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis exp008 instruct signals",
+  "task_key": "worker_analysis_exp008-instruct-signals_20260515T052707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp008-instruct-signals_20260515T052707.log",
+    "occurrence": 1,
+    "bytes": 2046799,
+    "sha256": "99841fb408cf93e3b916ca6d3536d709de7a7cb4e083813412fbaaf578507fa2"
+  },
+  "statistics": {
+    "messages": 1242,
+    "user_turns": 1,
+    "tool_calls": 566,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 566,
+      "tool_result": 566,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 740,
+      "chunks": [
+        {
+          "path": "d97549c435766d8551ec-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 502,
+      "chunks": [
+        {
+          "path": "d97549c435766d8551ec-part-0005.json",
+          "message_count": 160
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d97549c435766d8551ec-part-0007.json",
+          "message_count": 162
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp008-instruct-signals.md"
+}

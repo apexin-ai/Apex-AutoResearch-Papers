@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79c177b5fa7789d2e5ff",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 gsm8k extract metrics",
+  "task_key": "worker_ops_cqa1-gsm8k-extract-metrics_20260520T001111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-gsm8k-extract-metrics_20260520T001111_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "a6c02da9c486c0a1d2d2928933e1537344e2d230400c732a18f66aefa4cc9871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n```\nGSM8K Qwen-7B s42 全剂量准确率:\nd000: 70.58%  (baseline)\nd005: 76.95%  (+6.37pp)\nd025: 80.06%  (+9.48pp)\nd050: 79.23%  (+8.65pp)\nd100: 81.65%  (+11.07pp)\n\n剂量-效应曲线形状: 非线性凹形（concave/saturating）\ncqa1 GPU 当前状态: GPU 0 在跑 s123 GSM8K eval (qwen7b_d000_s123), 91% utilization\n```\n\n**关键发现**：曲线强烈非线性。仅 5% 剂量即获得总效应的 57.5%（+6.37 / +11.07），之后迅速饱和。d050 (79.23%) 甚至低于 d025 (80.06%)，出现非单调回落。\n\n**判断：强烈支持 AUGMENT confound。** 如果是 genuine memorization，增益应随污染 item 数量近似线性增长；实际观察到的\"低剂量即饱和 + 非单调\"模式，更一致的解释是 SFT 训练本身教会了通用数学推理能力，与污染剂量关系不大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-gsm8k-extract-metrics.md"
+}

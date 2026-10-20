@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95149bd0e3c791394eb4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp r3w10 threshold dgp simulation",
+  "task_key": "worker_exp_r3w10-threshold-dgp-simulation_20260520T201021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r3w10-threshold-dgp-simulation_20260520T201021_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "0e357e7351cf87ae95912b13448c81b50ab750c22892882d02e25da525dea34a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Simulation actively running on westd-29999 (103/400). Will check again in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r3w10-threshold-dgp-simulation.md"
+}

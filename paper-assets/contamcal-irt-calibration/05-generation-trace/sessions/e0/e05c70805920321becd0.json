@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e05c70805920321becd0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 001 sft d100 3B",
+  "task_key": "worker_diag_exp_001_sft_d100_3B_20260514T120944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_001_sft_d100_3B_20260514T120944_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "6f7c2e1229fd1b6e42e5ac6afc74f4738cdb2198013021cdc12363e31f260129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练实际已成功完成，EXIT_CODE=129 是误报。**\n\n关键发现：\n- 全部 4159/4159 steps 完成，epoch 1.0，train_loss=1.178，token accuracy=72.1%\n- LoRA adapter 完整保存（115M adapter_model.safetensors + tokenizer + checkpoint-4159 含 optimizer state）\n- SIGHUP 发生在训练结束之后，影响的是 wrapper shell 而非 Python 进程——与之前的 cron false positive 模式一致\n\n**无需重训**，直接用 `lora_adapter/` 做下游评估即可。建议 wrapper 加 `trap '' HUP` 避免后续误报。\n\n诊断报告已写入 `artifacts/diag_exp_001_sft_d100_3B.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-001-sft-d100-3b.md"
+}

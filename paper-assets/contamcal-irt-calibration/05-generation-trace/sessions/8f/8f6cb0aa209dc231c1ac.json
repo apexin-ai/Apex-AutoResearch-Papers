@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f6cb0aa209dc231c1ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix paraphrased eval bug",
+  "task_key": "worker_code_fix_paraphrased_eval_bug_20260514T025236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_paraphrased_eval_bug_20260514T025236_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "20226f902a0bb0a76b62f72c75b7813dcc98beb01fbc70922d85ade83fedae82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Local copy updated. No git repo exists, so no commit/push possible.\n\n**修复总结：**\n\n`load_paraphrased_benchmark` 有三个 bug，全部已修复（服务器 + 本地 artifact 副本）：\n\n1. **ARC crash**（报错 `'list' object has no attribute 'get'`）：paraphrase JSON 中 `original[\"choices\"]` 是 `[\"A) text\", ...]` 列表格式，但代码用 `.get(\"text\")` 当 dict 访问。修复：检测 list 类型时解析 `\"A) text\"` 为 `label=\"A\"`, `text=\"text\"`。\n\n2. **MMLU 双前缀**：choices 是 `\"A) 0\"` 格式，`evaluate_paraphrased` 又加了一次前缀变成 `\"A) A) 0\"`。修复：load 时用 regex 去掉 `\"A) \"` 前缀。\n\n3. **HumanEval None**：`paraphrase_parsed` 为 JSON `null`，`dict.get(key, {})` 在 key 存在且值为 None 时返回 None 而非 `{}`。修复：改用 `item.get(\"paraphrase_parsed\") or {}`。\n\n验证结果：四个 benchmark 全部加载成功（mmlu: 6596, arc: 697, gsm8k: 228, humaneval: 26 items）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-paraphrased-eval-bug.md"
+}

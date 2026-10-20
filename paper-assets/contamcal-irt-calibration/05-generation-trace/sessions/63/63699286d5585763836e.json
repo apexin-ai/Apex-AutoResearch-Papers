@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63699286d5585763836e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify completions and 05b pid",
+  "task_key": "worker_ops_verify-completions-and-05b-pid_20260516T014832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-completions-and-05b-pid_20260516T014832_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "663c077d3daa0230177eadbaedf48377606ea212af9ca78822655416afe2a7ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 05B batch\n- **PID**: N/A — tmux session `exp_002_signals_05B_s123_batch` 不存在\n- **GPU 1**: 0 MiB / 24564 MiB, 0% util — 完全空闲\n- **所有 tmux sessions**: 无任何 05B 相关 session\n- **结论**: 任务未成功提交或已崩溃退出。需要重新提交。\n\n## d100_s42_a32_v3\n- **Completed**: YES\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3/lora_adapter/`\n- **adapter_model.safetensors**: 存在, 119.8 MB\n- **lora_alpha**: 32 ✓\n- **Final loss**: 1.206, epoch 1.0, mean_token_accuracy 0.723\n- **Train runtime**: 17645s (~4.9h), 4159/4159 steps\n- **EXIT_CODE**: 0\n- **Conclusion**: **success**\n\n## sim_sweep_v7\n- `exp004/` 目录不存在，全盘 `find *sim_sweep*` 也无结果\n- **Conclusion**: 路径可能有误，或结果在其他位置。需要 Reviewer 确认实际路径。\n\n## v8_recovery outputs\n- **signal_s1_embedding_mmlu.json**: 存在, 14042 items, 7.8 MB\n- **signal_s2_minkpp_mmlu.json**: 存在, 14042 items, 2.9 MB\n- **signal_s4_selfcritique_mmlu.json**: 不存在（OOM 前未完成）\n- **Conclusion**: s1 + s2 完整 (各 14042 items)，s4 缺失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-completions-and-05b-pid.md"
+}

@@ -1,0 +1,3532 @@
+{
+  "schema_version": "1.0",
+  "session_id": "93d147ffef899f26c5dd",
+  "rounds": [
+    {
+      "number": 284,
+      "messages": [
+        {
+          "source_line": 6481,
+          "timestamp": "2026-05-26T10:14:55.376490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/references.bib"
+            }
+          },
+          "id": "event-006481"
+        },
+        {
+          "source_line": 6482,
+          "timestamp": "2026-05-26T10:14:55.678518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Literature Map Entries (keys from literature_map.yaml ids)\n3\t% ============================================================\n4\t\n5\t% --- LLaMA-3 ---\n6\t\n7\t@article{grattafiori2024llama3,\n8\t  author    = {Grattafiori, Aaron and Dubey, Abhimanyu and Jauhri, Abhinav and others},\n9\t  title     = {The Llama 3 Herd of Models},\n10\t  journal   = {arXiv preprint arXiv:2407.21783},\n11\t  year      = {2024},\n12\t}\n13\t\n14\t% --- Restored entries (required by reviewer) ---\n15\t\n16\t@book{camilli_1994_dif,\n17\t  author    = {Camilli, Gregory and Shepard, Lorrie A.},\n18\t  title     = {Methods for Identifying Biased Test Items},\n19\t  series    = {Measurement Methods for the Social Sciences},\n20\t  publisher = {Sage Publications},\n21\t  year      = {1994},\n22\t  address   = {Thousand Oaks, CA},\n23\t  isbn      = {978-0-8039-4416-9}\n24\t}\n25\t\n26\t@article{swaminathan_1990_dif,\n27\t  author  = {Swaminathan, Hariharan and Rogers, H. Jane},\n28\t  title   = {Detecting Differential Item Functioning Using Logistic Regression Procedures},\n29\t  journal = {Journal of Educational Measurement},\n30\t  volume  = {27},\n31\t  number  = {4},\n32\t  pages   = {361--370},\n33\t  year    = {1990},\n34\t  doi     = {10.1111/j.1745-3984.1990.tb00754.x}\n35\t}\n36\t\n37\t@book{holland_1993_dif,\n38\t  editor    = {Holland, Paul W. and Wainer, Howard},\n39\t  title     = {Differential Item Functioning},\n40\t  publisher = {Lawrence Erlbaum Associates},\n41\t  year      = {1993},\n42\t  address   = {Hillsdale, NJ}\n43\t}\n44\t\n45\t@article{xu_2024_leakage,\n46\t  author        = {Xu, Ruijie and Wang, Zengzhi and Fan, Run-Ze and Liu, Pengfei},\n47\t  title         = {Benchmarking Benchmark Leakage in Large Language Models},\n48\t  journal       = {arXiv preprint},\n49\t  year          = {2024},\n50\t  eprint        = {2404.18824},\n51\t  archiveprefix = {arXiv},\n52\t  url           = {https://arxiv.org/abs/2404.18824}\n53\t}\n54\t\n55\t@inproceedings{li_2024_task_contamination,\n56\t  author    = {Li, Chan\n…[truncated 26360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-006482"
+        },
+        {
+          "source_line": 6483,
+          "timestamp": "2026-05-26T10:16:16.273712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Citation verification group A (1-21)",
+              "prompt": "## Task: Verify 21 bibliography entries for academic correctness\n\nYou are verifying citations in a research paper's .bib file. For EACH entry below, verify:\n1. Paper exists (search Semantic Scholar API or arXiv)\n2. Author names are correct\n3. Year is correct\n4. Title is correct\n5. Venue/conference is correct\n6. DOI/arXiv ID is correct (if present)\n\n**Method**: Use WebFetch to query `https://api.semanticscholar.org/graph/v1/paper/search?query=TITLE_KEYWORDS&limit=3&fields=title,authors,year,venue,externalIds` for each paper. For arXiv papers, also check `https://arxiv.org/abs/ARXIV_ID`. If Semantic Scholar fails, try `https://api.openalex.org/works?search=TITLE_KEYWORDS&per_page=3`.\n\n**Output format** for each entry:\n```\ncite_key: ✓ or ✗\n  If ✗: field_name: WRONG_VALUE → CORRECT_VALUE\n```\n\nHere are the 21 entries to verify:\n\n```bibtex\n1. grattafiori2024llama3 - \"The Llama 3 Herd of Models\" - Grattafiori et al. - arXiv:2407.21783 - 2024\n2. camilli_1994_dif - \"Methods for Identifying Biased Test Items\" - Camilli & Shepard - Sage - 1994\n3. swaminathan_1990_dif - \"Detecting Differential Item Functioning Using Logistic Regression Procedures\" - Swaminathan & Rogers - J Educational Measurement 27(4):361-370 - 1990\n4. holland_1993_dif - \"Differential Item Functioning\" (edited book) - Holland & Wainer - LEA - 1993\n5. xu_2024_leakage - \"Benchmarking Benchmark Leakage in Large Language Models\" - Xu, Wang, Fan, Liu - arXiv:2404.18824 - 2024\n6. li_2024_task_contamination - \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" - Li & Flanigan - AAAI 2024 38(16):18471-18480\n7. liang_2023_helm - \"Holistic Evaluation of Language Models\" - Bommasani et al. - Annals of NYAS 1525(1):140-146 - 2023 (NOTE: cite key says \"liang\" but first author is Bommasani)\n8. magar_2022_contamination - \"Data Contamination: From Memorization to Exploitation\" - Magar & Schwartz - ACL 2022 Short - doi:10.18653/v1/2022.acl-short.18\n9. kocyigit2025impact - \"The Impact of Post-training on Data Contamination\" - Kocyigit & Yildirim - arXiv:2601.06103 - 2026\n10. zhou_2025_psnirt - \"Lost in Benchmarks? Rethinking LLM Benchmarking with IRT\" - Zhou, Wang, Ye, Peng - AAAI 2026 - arXiv:2505.15055\n11. choi_2025_kds - \"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in LLMs with Kernel Divergence\" - Choi, Khanov, Wei, Li - ICML 2025 - arXiv:2502.00678\n12. cormack_2009_rrf - \"Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods\" - Cormack, Clarke, Buettcher - SIGIR 2009 pp.758-759\n13. deboeck_2004_explanatory_irt - \"Explanatory Item Response Models\" (edited book) - De Boeck & Wilson - Springer 2004\n14. dong_2024_cdd - \"Generalization or Memorization: Data Contamination and Trustworthy Evaluation for LLMs\" - Dong et al. - Findings ACL 2024 - arXiv:2402.15938\n15. eckerly_2017_item_compromise - \"Detecting Preknowledge and Item Compromise\" - Eckerly - in Handbook of Quantitative Methods for Detecting Cheating - Routledge 2017\n16. guo_2017_calibration - \"On Calibration of Modern Neural Networks\" - Guo, Pleiss, Sun, Weinberger - ICML 2017 pp.1321-1330 - arXiv:1706.04599\n17. habba_2025_growing_pains - \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" - Habba et al. - arXiv:2604.12843 - 2026\n18. lalor_2024_irt_nlp - \"Item Response Theory for Natural Language Processing\" - Lalor, Rodriguez, Sedoc, Hernandez-Orallo - EACL 2024 Tutorials\n19. xu2025dcr - \"DCR: Quantifying Data Contamination in LLMs Evaluation\" - Xu et al. - EMNLP 2025 pp.23002-23020 - arXiv:2507.11405\n20. luettgau_2025_hibayes - \"HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\" - Luettgau et al. - arXiv:2505.05602 - 2025\n21. polo_2024_tinybenchmarks - \"tinyBenchmarks: Evaluating LLMs with Fewer Examples\" - Polo et al. - ICML 2024 - arXiv:2402.14992\n```\n\n**Special flags to check:**\n- Entry 7 (liang_2023_helm): The cite key says \"liang_2023\" but the first author listed is Bommasani. Check if Liang is actually a co-author or if the key is misleading.\n- Entry 9 (kocyigit2025impact): cite key says 2025 but year field is 2026. Check which is correct.\n- Entry 19 (xu2025dcr): Check arXiv:2507.11405 - this is a July 2025 arXiv ID, verify it matches this paper.\n\nBe thorough. Report ALL issues found.\n",
+              "model": "sonnet"
+            }
+          },
+          "id": "event-006483"
+        },
+        {
+          "source_line": 6484,
+          "timestamp": "2026-05-26T10:16:38.273040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006484"
+        },
+        {
+          "source_line": 6485,
+          "timestamp": "2026-05-26T10:16:38.273604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006485"
+        },
+        {
+          "source_line": 6486,
+          "timestamp": "2026-05-26T10:16:38.273880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=The+Llama+3+Herd+of+Models+Grattafiori&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006486"
+        },
+        {
+          "source_line": 6487,
+          "timestamp": "2026-05-26T10:16:38.274102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006487"
+        },
+        {
+          "source_line": 6488,
+          "timestamp": "2026-05-26T10:16:38.274358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Methods+for+Identifying+Biased+Test+Items+Camilli+Shepard&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006488"
+        },
+        {
+          "source_line": 6489,
+          "timestamp": "2026-05-26T10:16:38.274593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006489"
+        },
+        {
+          "source_line": 6490,
+          "timestamp": "2026-05-26T10:16:38.274836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Detecting+Differential+Item+Functioning+Using+Logistic+Regression+Swaminathan+Rogers&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006490"
+        },
+        {
+          "source_line": 6491,
+          "timestamp": "2026-05-26T10:16:38.275066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006491"
+        },
+        {
+          "source_line": 6492,
+          "timestamp": "2026-05-26T10:16:38.275277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Differential+Item+Functioning+Holland+Wainer&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006492"
+        },
+        {
+          "source_line": 6493,
+          "timestamp": "2026-05-26T10:16:38.275535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006493"
+        },
+        {
+          "source_line": 6494,
+          "timestamp": "2026-05-26T10:16:38.275751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Benchmarking+Benchmark+Leakage+Large+Language+Models+Xu+Wang+Fan&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006494"
+        },
+        {
+          "source_line": 6495,
+          "timestamp": "2026-05-26T10:16:38.275957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006495"
+        },
+        {
+          "source_line": 6496,
+          "timestamp": "2026-05-26T10:16:38.276169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Task+Contamination+Language+Models+May+Not+Be+Few-Shot+Anymore+Li+Flanigan&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006496"
+        },
+        {
+          "source_line": 6497,
+          "timestamp": "2026-05-26T10:16:38.276338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006497"
+        },
+        {
+          "source_line": 6498,
+          "timestamp": "2026-05-26T10:16:38.276500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Holistic+Evaluation+of+Language+Models+Bommasani+HELM&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response with title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006498"
+        },
+        {
+          "source_line": 6499,
+          "timestamp": "2026-05-26T10:16:38.276629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006499"
+        },
+        {
+          "source_line": 6500,
+          "timestamp": "2026-05-26T10:16:38.276749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2407.21783",
+              "prompt": "Extract: paper title, all authors (especially first author), year of submission/publication"
+            }
+          },
+          "id": "event-006500"
+        },
+        {
+          "source_line": 6501,
+          "timestamp": "2026-05-26T10:16:38.779620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"The Llama 3 Herd of Models\"\n\n**First Author:** Aaron Grattafiori\n\n**Year of Submission:** 2024 (submitted July 31, 2024)\n\n**Complete Author List:** The paper lists 559 authors total. The initial authors include Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, and continues through an extensive collaboration. The document notes \"et al. (460 additional authors not shown)\" indicating the full team extends well beyond those explicitly listed in the visible author section."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 502
+          },
+          "id": "event-006501"
+        },
+        {
+          "source_line": 6502,
+          "timestamp": "2026-05-26T10:16:38.780020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Citation verification group B (22-42)",
+              "prompt": "## Task: Verify 21 bibliography entries for academic correctness\n\nYou are verifying citations in a research paper's .bib file. For EACH entry below, verify:\n1. Paper exists (search Semantic Scholar API or arXiv)\n2. Author names are correct\n3. Year is correct\n4. Title is correct\n5. Venue/conference is correct\n6. DOI/arXiv ID is correct (if present)\n\n**Method**: Use WebFetch to query `https://api.semanticscholar.org/graph/v1/paper/search?query=TITLE_KEYWORDS&limit=3&fields=title,authors,year,venue,externalIds` for each paper. For arXiv papers, also check `https://arxiv.org/abs/ARXIV_ID`. If Semantic Scholar fails, try `https://api.openalex.org/works?search=TITLE_KEYWORDS&per_page=3`.\n\n**Output format** for each entry:\n```\ncite_key: ✓ or ✗\n  If ✗: field_name: WRONG_VALUE → CORRECT_VALUE\n```\n\nHere are the 21 entries to verify:\n\n```bibtex\n22. shi_2023_minkprob - \"Detecting Pretraining Data from Large Language Models\" - Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, Zettlemoyer - ICLR 2024 - arXiv:2310.16789\n23. sinharay_2017_preknowledge - \"Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test\" - Sinharay - J Educational & Behavioral Statistics 42(1) - 2017\n24. tao2025detecting - \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\" - Tao et al. - arXiv:2510.09259 - 2025\n25. zhang_2024_gsm1k - \"A Careful Examination of Large Language Model Performance on Grade School Arithmetic\" - Zhang et al. - arXiv:2405.00332 - 2024\n26. zhang_2024_minkpp - \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\" - Zhang et al. - ICLR 2025 - arXiv:2404.02936\n27. lord_1980_irt - \"Applications of Item Response Theory to Practical Testing Problems\" - Lord - LEA 1980\n28. hambleton_1991_irt - \"Fundamentals of Item Response Theory\" - Hambleton, Swaminathan, Rogers - Sage 1991\n29. kadavath2022 - \"Language Models (Mostly) Know What They Know\" - Kadavath et al. - arXiv:2207.05221 - 2022\n30. hoffman2014 - \"The No-U-Turn Sampler\" - Hoffman & Gelman - JMLR 15(47):1593-1623 - 2014\n31. carpenter2017 - \"Stan: A Probabilistic Programming Language\" - Carpenter et al. - J Statistical Software 76(1):1-32 - 2017\n32. dekoninck2024constat - \"ConStat: Performance-Based Contamination Detection in LLMs\" - Dekoninck, Müller, Vechev - NeurIPS 2024\n33. oren2024proving - \"Proving Test Set Contamination in Black Box Language Models\" - Oren, Meister, Chatterji, Ladhak, Hashimoto - ICLR 2024\n34. sun2025emperor - \"The Emperor's New Clothes in Benchmarking?\" - Sun, Wang, Li, Wang, Zhang - ICML 2025 - arXiv:2503.16402\n35. hendrycks2021mmlu - \"Measuring Massive Multitask Language Understanding\" - Hendrycks et al. - ICLR 2021\n36. cobbe2021gsm8k - \"Training Verifiers to Solve Math Word Problems\" - Cobbe et al. - arXiv:2110.14168 - 2021\n37. clark2018arc - \"Think you have Solved Question Answering? Try ARC\" - Clark et al. - arXiv:1803.05457 - 2018\n38. chang2025benchmarking - \"A Survey on Evaluation of Large Language Models\" - Chang et al. - ACM TIST 15(3):1-45 - 2024 (NOTE: cite key says 2025 but year is 2024) - doi:10.1145/3641289\n39. white2024livebench - \"LiveBench: A Challenging, Contamination-Limited LLM Benchmark\" - White et al. - ICLR 2025 - arXiv:2406.19314\n40. qwen2024qwen25 - \"Qwen2.5 Technical Report\" - Yang et al. - arXiv:2412.15115 - 2024\n41. hu2022lora - \"LoRA: Low-Rank Adaptation of Large Language Models\" - Hu et al. - ICLR 2022 - arXiv:2106.09685\n42. gelman2012why - \"Why We (Usually) Don't Have to Worry About Multiple Comparisons\" - Gelman, Hill, Yajima - J Research on Educational Effectiveness 5(2):189-211 - 2012 - doi:10.1080/19345747.2011.618213\n```\n\n**Special flags to check:**\n- Entry 24 (tao2025detecting): arXiv:2510.09259 - this is October 2025. Verify it exists and matches.\n- Entry 38 (chang2025benchmarking): Key says 2025, year field says 2024. Which is correct?\n- Entry 36 (cobbe2021gsm8k): This is the GSM8K paper. Verify it's still arXiv-only or if published at a venue.\n\nBe thorough. Report ALL issues found.\n",
+              "model": "sonnet"
+            }
+          },
+          "id": "event-006502"
+        },
+        {
+          "source_line": 6503,
+          "timestamp": "2026-05-26T10:17:01.748693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2404.18824",
+              "prompt": "Extract: paper title, all authors (first 5), year of submission"
+            }
+          },
+          "id": "event-006503"
+        },
+        {
+          "source_line": 6504,
+          "timestamp": "2026-05-26T10:17:01.749308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Extraction\n\n**Title:** \"Benchmarking Benchmark Leakage in Large Language Models\"\n\n**Authors (first 5):**\n1. Ruijie Xu\n2. Zengzhi Wang\n3. Run-Ze Fan\n4. Pengfei Liu\n\n**Year of Submission:** 2024"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006504"
+        },
+        {
+          "source_line": 6505,
+          "timestamp": "2026-05-26T10:17:01.749675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/arXiv:2404.18824?fields=title,authors,year,venue,externalIds",
+              "prompt": "Return all fields: title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006505"
+        },
+        {
+          "source_line": 6506,
+          "timestamp": "2026-05-26T10:17:01.749911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006506"
+        },
+        {
+          "source_line": 6507,
+          "timestamp": "2026-05-26T10:17:01.750148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Task+Contamination+Language+Models+May+Not+Be+Few-Shot+Anymore&per_page=3",
+              "prompt": "Return title, authors, publication year, venue/journal name, DOI for each result"
+            }
+          },
+          "id": "event-006507"
+        },
+        {
+          "source_line": 6508,
+          "timestamp": "2026-05-26T10:17:01.751276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Search Results Summary\n\n## Result 1\n**Title:** \"Task Contamination: Language Models May Not Be Few-Shot Anymore\"\n\n**Authors:** Changmao Li, Jeffrey Flanigan\n\n**Publication Year:** 2024\n\n**Venue:** Proceedings of the AAAI Conference on Artificial Intelligence\n\n**DOI:** https://doi.org/10.1609/aaai.v38i16.29808\n\n---\n\n## Result 2\n**Title:** \"Task Contamination: Language Models May Not Be Few-Shot Anymore\"\n\n**Authors:** Changmao Li, Jeffrey Flanigan\n\n**Publication Year:** 2023\n\n**Venue:** arXiv (Cornell University)\n\n**DOI:** https://doi.org/10.48550/arxiv.2312.16337\n\n---\n\n## Result 3\n**Title:** \"Assessing the medical reasoning skills of GPT-4 in complex ophthalmology cases\"\n\n**Authors:** Daniel Milad, Fares Antaki, Jason Milad, Andrew Farah, Thomas Khairy, David Mikhail, Charles-Édouard Giguère, Samir Touma, Allison Bernstein, Andrei-Alexandru Szigiato, Taylor Nayman, Guillaume A. Mullie, Renaud Duval\n\n**Publication Year:** 2024\n\n**Venue:** British Journal of Ophthalmology\n\n**DOI:** https://doi.org/10.1136/bjo-2023-325053"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-006508"
+        },
+        {
+          "source_line": 6509,
+          "timestamp": "2026-05-26T10:17:01.751924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Holistic+Evaluation+of+Language+Models+HELM+Bommasani&per_page=3",
+              "prompt": "Return title, authors (first 5), publication year, venue/journal name, DOI for each result"
+            }
+          },
+          "id": "event-006509"
+        },
+        {
+          "source_line": 6510,
+          "timestamp": "2026-05-26T10:17:01.752248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006510"
+        },
+        {
+          "source_line": 6511,
+          "timestamp": "2026-05-26T10:17:01.752486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006511"
+        },
+        {
+          "source_line": 6512,
+          "timestamp": "2026-05-26T10:17:01.752699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Detecting+Pretraining+Data+Large+Language+Models+Shi&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006512"
+        },
+        {
+          "source_line": 6513,
+          "timestamp": "2026-05-26T10:17:01.752932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006513"
+        },
+        {
+          "source_line": 6514,
+          "timestamp": "2026-05-26T10:17:01.753222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Detection+Item+Preknowledge+Likelihood+Ratio+Test+Score+Test+Sinharay&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006514"
+        },
+        {
+          "source_line": 6515,
+          "timestamp": "2026-05-26T10:17:01.753478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2510.09259",
+              "prompt": "Return the title, authors, abstract summary, and submission date of this paper"
+            }
+          },
+          "id": "event-006515"
+        },
+        {
+          "source_line": 6516,
+          "timestamp": "2026-05-26T10:17:01.753688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2405.00332",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006516"
+        },
+        {
+          "source_line": 6517,
+          "timestamp": "2026-05-26T10:17:01.753932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2404.02936",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006517"
+        },
+        {
+          "source_line": 6518,
+          "timestamp": "2026-05-26T10:17:01.754183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Papers on Item Preknowledge Detection\n\n```json\n{\n  \"papers\": [\n    {\n      \"title\": \"Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test\",\n      \"authors\": [\n        {\n          \"authorId\": \"5107025\",\n          \"name\": \"S. Sinharay\"\n        }\n      ],\n      \"year\": 2017,\n      \"venue\": \"\",\n      \"externalIds\": {\n        \"MAG\": \"2532353081\",\n        \"DOI\": \"10.3102/1076998616673872\",\n        \"CorpusId\": 126049543\n      }\n    },\n    {\n      \"title\": \"Higher-Order Asymptotics and Its Application to Testing the Equality of the Examinee Ability Over Two Sets of Items\",\n      \"authors\": [\n        {\n          \"authorId\": \"5107025\",\n          \"name\": \"S. Sinharay\"\n        },\n        {\n          \"authorId\": \"2569170\",\n          \"name\": \"J. L. Jensen\"\n        }\n      ],\n      \"year\": 2018,\n      \"venue\": \"Psychometrika\",\n      \"externalIds\": {\n        \"MAG\": \"2811352068\",\n        \"DOI\": \"10.1007/s11336-018-9627-8\",\n        \"CorpusId\": 49487488,\n        \"PubMed\": \"29951971\"\n      }\n    },\n    {\n      \"title\": \"Autoencoder-based confidence score for item preknowledge detection\",\n      \"authors\": [\n        {\n          \"authorId\": \"2330535634\",\n          \"name\": \"Yiqin Pan\"\n        }\n      ],\n      \"year\": 2024,\n      \"venue\": \"Behaviormetrika\",\n      \"externalIds\": {\n        \"DOI\": \"10.1007/s41237-024-00243-4\",\n        \"CorpusId\": 274010166\n      }\n    }\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006518"
+        },
+        {
+          "source_line": 6519,
+          "timestamp": "2026-05-26T10:17:01.754468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Language+Models+Mostly+Know+What+They+Know+Kadavath&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006519"
+        },
+        {
+          "source_line": 6520,
+          "timestamp": "2026-05-26T10:17:01.754677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006520"
+        },
+        {
+          "source_line": 6521,
+          "timestamp": "2026-05-26T10:17:01.754864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"A Careful Examination of Large Language Model Performance on Grade School Arithmetic\"\n\n**Authors:** Hugh Zhang, Jeff Da, Dean Lee, Vaughn Robinson, Catherine Wu, Will Song, Tiffany Zhao, Pranav Raja, Charlotte Zhuang, Dylan Slack, Qin Lyu, Sean Hendryx, Russell Kaplan, Michele Lunati, and Summer Yue\n\n**Submission Date:** May 1, 2024 (v1), with the most recent revision on November 22, 2024 (v4)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-006521"
+        },
+        {
+          "source_line": 6522,
+          "timestamp": "2026-05-26T10:17:01.755358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\"\n\n**Authors:** Jingyang Zhang, Jingwei Sun, Eric Yeats, Yang Ouyang, Martin Kuo, Jianyi Zhang, Hao Frank Yang, and Hai Li\n\n**Submission Date:** April 3, 2024 (v1); most recent revision February 12, 2025 (v4)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-006522"
+        },
+        {
+          "source_line": 6523,
+          "timestamp": "2026-05-26T10:17:01.755638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary\n\n**Title:** \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"\n\n**Authors:** Yongding Tao, Tian Wang, Yihong Dong, Huanyu Liu, Kechi Zhang, Xiaolong Hu, and Ge Li\n\n**Submission Date:** October 10, 2025 (v1); revised March 18, 2026 (v2)\n\n**Abstract Summary:**\n\nThe paper addresses a critical vulnerability in evaluating large language models: detecting when benchmark data inadvertently appears in training sets during the reinforcement learning phase. The researchers propose \"Self-Critique,\" a detection method based on observing how models converge to narrower reasoning patterns after RL training. They introduce RL-MIA, a benchmark for simulating this contamination scenario, and demonstrate their approach achieves \"an AUC improvement of up to 30%\" compared to existing baselines that perform \"close to a random guess.\""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2
+          },
+          "id": "event-006523"
+        },
+        {
+          "source_line": 6524,
+          "timestamp": "2026-05-26T10:17:01.755886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=No-U-Turn+Sampler+Hoffman+Gelman&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006524"
+        },
+        {
+          "source_line": 6525,
+          "timestamp": "2026-05-26T10:17:01.756104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006525"
+        },
+        {
+          "source_line": 6526,
+          "timestamp": "2026-05-26T10:17:01.756301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2310.16789",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006526"
+        },
+        {
+          "source_line": 6527,
+          "timestamp": "2026-05-26T10:17:01.756550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2207.05221",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006527"
+        },
+        {
+          "source_line": 6528,
+          "timestamp": "2026-05-26T10:17:01.756770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=No-U-Turn+Sampler+Hoffman+Gelman+JMLR&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006528"
+        },
+        {
+          "source_line": 6529,
+          "timestamp": "2026-05-26T10:17:01.756991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Detecting Pretraining Data from Large Language Models\"\n\n**Authors:** Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, and Luke Zettlemoyer\n\n**Submission Date:** October 25, 2023 (v1); last revised March 9, 2024 (v3)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006529"
+        },
+        {
+          "source_line": 6530,
+          "timestamp": "2026-05-26T10:17:01.757186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006530"
+        },
+        {
+          "source_line": 6531,
+          "timestamp": "2026-05-26T10:17:01.757481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Stan+Probabilistic+Programming+Language+Carpenter&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006531"
+        },
+        {
+          "source_line": 6532,
+          "timestamp": "2026-05-26T10:17:01.757731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Language Models (Mostly) Know What They Know\"\n\n**Submission Date:** July 11, 2022 (v1)\n\n**Authors:** The paper has 36 authors total, led by Saurav Kadavath and including notable researchers such as Tom Brown, Dario Amodei, Chris Olah, and Jared Kaplan, among others from Anthropic and collaborating institutions."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1
+          },
+          "id": "event-006532"
+        },
+        {
+          "source_line": 6533,
+          "timestamp": "2026-05-26T10:17:01.758129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006533"
+        },
+        {
+          "source_line": 6534,
+          "timestamp": "2026-05-26T10:17:01.808950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=ConStat+Performance-Based+Contamination+Detection+LLMs+Dekoninck&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006534"
+        },
+        {
+          "source_line": 6535,
+          "timestamp": "2026-05-26T10:17:01.918841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Citation verification group C (43-63)",
+              "prompt": "## Task: Verify 21 bibliography entries for academic correctness\n\nYou are verifying citations in a research paper's .bib file. For EACH entry below, verify:\n1. Paper exists (search Semantic Scholar API or arXiv)\n2. Author names are correct\n3. Year is correct\n4. Title is correct\n5. Venue/conference is correct\n6. DOI/arXiv ID is correct (if present)\n\n**Method**: Use WebFetch to query `https://api.semanticscholar.org/graph/v1/paper/search?query=TITLE_KEYWORDS&limit=3&fields=title,authors,year,venue,externalIds` for each paper. For arXiv papers, also check `https://arxiv.org/abs/ARXIV_ID`. If Semantic Scholar fails, try `https://api.openalex.org/works?search=TITLE_KEYWORDS&per_page=3`.\n\n**Output format** for each entry:\n```\ncite_key: ✓ or ✗\n  If ✗: field_name: WRONG_VALUE → CORRECT_VALUE\n```\n\nHere are the 21 entries to verify:\n\n```bibtex\n43. han2026quantifying - \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" - Han, Song, Lee, Jo - Findings EACL 2026 pp.6070-6088\n44. schaeffer2026causally - \"Causally Quantifying the Effect of Test Set Contamination on Generative Benchmarks\" - Schaeffer et al. - NeurIPS 2025 (but key says 2026) - arXiv:2601.04301\n45. chen2025benchmarking - \"Benchmarking Large Language Models Under Data Contamination: A Survey\" - Chen et al. - EMNLP 2025 pp.10080-10098\n46. singh2024evaluation - \"Evaluation Data Contamination in LLMs: How Do We Measure It and (When) Does It Matter?\" - Singh et al. - arXiv:2411.03923 - 2024\n47. de_ayala_2009_irt - \"The Theory and Practice of Item Response Theory\" - De Ayala - Guilford Press 2009\n48. hill1910aggregation - \"The Possible Effects of the Aggregation of the Molecules of Haemoglobin on Its Dissociation Curves\" - Hill, A.V. - J Physiology 40:iv-vii - 1910\n49. ritz2015dose - \"Dose-Response Analysis Using R\" - Ritz, Baty, Streibig, Gerhard - CRC Press 2015\n50. balloccu2024leak - \"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\" - Balloccu et al. - EACL 2024 - arXiv:2402.03927\n51. bordt2025forget - \"How Much Can We Forget about Data Contamination?\" - Bordt, Nori, Caruana - arXiv:2502.08640 - 2025\n52. golchin2024time - \"Time Travel in LLMs: Tracing Data Contamination\" - Golchin & Surdeanu - ICLR 2024 - arXiv:2308.08493\n53. sainz2023nlp - \"NLP Evaluation in Trouble\" - Sainz et al. - Findings EMNLP 2023 - arXiv:2310.18018\n54. yang2023rethinking - \"Rethinking Benchmark and Contamination for Language Models with Rephrased Samples\" - Yang et al. - arXiv:2311.04850 - 2023\n55. schroeders_2025_irt_sample_size - \"Sample-Size Planning in Item-Response Theory: A Tutorial\" - Schroeders & Gnambs - Advances in Methods and Practices in Psych Science - 2025\n56. abdin2024phi4 - \"Phi-4 Technical Report\" - Abdin et al. - arXiv:2412.08905 - 2024\n57. olmo2team2025 - \"2 OLMo 2 Furious\" - Team OLMo et al. - arXiv:2501.00656 - 2025\n58. gemmateam2024gemma2 - \"Gemma 2: Improving Open Language Models at a Practical Size\" - Gemma Team - arXiv:2408.00118 - 2024\n59. rodriguez2021evaluation - \"Evaluation Examples Are Not Equally Informative\" - Rodriguez et al. - ACL 2021 pp.4486-4503 - doi:10.18653/v1/2021.acl-long.346\n60. carlini2023quantifying - \"Quantifying Memorization Across Neural Language Models\" - Carlini et al. - ICLR 2023 - arXiv:2202.07646\n61. bordt2024forget - \"How Much Can We Forget about Data Contamination?\" - Bordt, Srinivas, Boreiko, von Luxburg - ICML 2025 - arXiv:2410.03249\n62. gu2024olmes - \"OLMES: A Standard for Language Model Evaluations\" - Gu et al. - arXiv:2406.08446 - 2024\n63. tiiuae2024falcon3 - \"The Falcon 3 Family of Open Models\" - Technology Innovation Institute - HuggingFace Blog - 2024\n```\n\n**Special flags to check:**\n- Entries 51 (bordt2025forget) and 61 (bordt2024forget): SAME TITLE \"How Much Can We Forget about Data Contamination?\" but DIFFERENT authors and different arXiv IDs. Are these genuinely two different papers? This seems suspicious.\n- Entry 44 (schaeffer2026causally): Key says 2026, venue says NeurIPS 2025. Check which year is correct.\n- Entry 57 (olmo2team2025): Unusual title \"2 OLMo 2 Furious\". Verify this is real.\n- Entry 63 (tiiuae2024falcon3): Blog post, not a paper. Verify the URL is correct.\n\nBe thorough. Report ALL issues found.\n",
+              "model": "sonnet"
+            }
+          },
+          "id": "event-006535"
+        },
+        {
+          "source_line": 6536,
+          "timestamp": "2026-05-26T10:17:02.674673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Proving+Test+Set+Contamination+Black+Box+Language+Models+Oren&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006536"
+        },
+        {
+          "source_line": 6537,
+          "timestamp": "2026-05-26T10:17:04.739411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006537"
+        },
+        {
+          "source_line": 6538,
+          "timestamp": "2026-05-26T10:17:04.790091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-006538"
+        },
+        {
+          "source_line": 6539,
+          "timestamp": "2026-05-26T10:17:05.342956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Papers on Contamination Detection in Large Language Models\n\nHere is the complete JSON data for the three papers:\n\n```json\n[\n  {\n    \"paperId\": \"54311e1b1250e87194bcaf4036bfefd8d5ce5acf\",\n    \"title\": \"ConStat: Performance-Based Contamination Detection in Large Language Models\",\n    \"authors\": [\n      \"Jasper Dekoninck\",\n      \"Mark Niklas Müller\",\n      \"Martin T. Vechev\"\n    ],\n    \"year\": 2024,\n    \"venue\": \"Neural Information Processing Systems\",\n    \"externalIds\": {\n      \"DBLP\": \"conf/nips/DekoninckMV24\",\n      \"ArXiv\": \"2405.16281\",\n      \"DOI\": \"10.48550/arXiv.2405.16281\",\n      \"CorpusId\": 270063170\n    }\n  },\n  {\n    \"paperId\": \"b48b0c1459825279faade0aec43c3e80ae6997d4\",\n    \"title\": \"Does Data Contamination Detection Work (Well) for LLMs? A Survey and Evaluation on Detection Assumptions\",\n    \"authors\": [\n      \"Yujuan Fu\",\n      \"Özlem Uzuner\",\n      \"Meliha Yetisgen-Yildiz\",\n      \"Fei Xia\"\n    ],\n    \"year\": 2024,\n    \"venue\": \"North American Chapter of the Association for Computational Linguistics\",\n    \"externalIds\": {\n      \"DBLP\": \"conf/naacl/FuUYX25\",\n      \"ArXiv\": \"2410.18966\",\n      \"DOI\": \"10.48550/arXiv.2410.18966\",\n      \"CorpusId\": 273549214\n    }\n  },\n  {\n    \"paperId\": \"2a18d341e0bf30df759470c243cf5b17bcfd286e\",\n    \"title\": \"Contamination Detection for VLMs using Multi-Modal Semantic Perturbation\",\n    \"authors\": [\n      \"Jaden Park\",\n      \"Mu Cai\",\n      \"Feng Yao\",\n      \"Jingbo Shang\",\n      \"Soochahn Lee\",\n      \"Yong Jae Lee\"\n    ],\n    \"year\": 2025,\n    \"venue\": \"arXiv.org\",\n    \"externalIds\": {\n      \"DBLP\": \"journals/corr/abs-2511-03774\",\n      \"ArXiv\": \"2511.03774\",\n      \"DOI\": \"10.48550/arXiv.2511.03774\",\n      \"CorpusId\": 282812426\n    }\n  }\n]\n```\n\nThese papers address methods for detecting whether training datasets have contaminated large language models and vision-language models."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3534
+          },
+          "id": "event-006539"
+        },
+        {
+          "source_line": 6540,
+          "timestamp": "2026-05-26T10:17:06.199038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"papers\": [\n    {\n      \"paperId\": \"c871377b208814713c18e25633866323a2982136\",\n      \"title\": \"Proving Test Set Contamination in Black Box Language Models\",\n      \"authors\": [\n        \"Yonatan Oren\",\n        \"Nicole Meister\",\n        \"Niladri S. Chatterji\",\n        \"Faisal Ladhak\",\n        \"Tatsunori Hashimoto\"\n      ],\n      \"year\": 2023,\n      \"venue\": \"International Conference on Learning Representations\",\n      \"externalIds\": {\n        \"ArXiv\": \"2310.17623\",\n        \"DBLP\": \"journals/corr/abs-2310-17623\",\n        \"DOI\": \"10.48550/arXiv.2310.17623\",\n        \"CorpusId\": 264490730\n      }\n    },\n    {\n      \"paperId\": \"39cd4334630fa5eb5d25682c731cbd2490f39ae2\",\n      \"title\": \"Hair-Trigger Alignment: Black-Box Evaluation Cannot Guarantee Post-Update Alignment\",\n      \"authors\": [\n        \"Yavuz Faruk Bakman\",\n        \"D. Yaldiz\",\n        \"S. Avestimehr\",\n        \"Sai Praneeth Karimireddy\"\n      ],\n      \"year\": 2026,\n      \"venue\": \"arXiv.org\",\n      \"externalIds\": {\n        \"DBLP\": \"journals/corr/abs-2601-22313\",\n        \"ArXiv\": \"2601.22313\",\n        \"DOI\": \"10.48550/arXiv.2601.22313\",\n        \"CorpusId\": 285241566\n      }\n    },\n    {\n      \"paperId\": \"5356b21a1afe4816287d940e9438e729d394bc74\",\n      \"title\": \"Contamination Report for Multilingual Benchmarks\",\n      \"authors\": [\n        \"Sanchit Ahuja\",\n        \"Varun Gumma\",\n        \"Sunayana Sitaram\"\n      ],\n      \"year\": 2024,\n      \"venue\": \"arXiv.org\",\n      \"externalIds\": {\n        \"ArXiv\": \"2410.16186\",\n        \"DBLP\": \"journals/corr/abs-2410-16186\",\n        \"DOI\": \"10.48550/arXiv.2410.16186\",\n        \"CorpusId\": 273507876\n      }\n    }\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3524
+          },
+          "id": "event-006540"
+        },
+        {
+          "source_line": 6541,
+          "timestamp": "2026-05-26T10:17:06.801928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Search Results Summary\n\n## Result 1\n**Title:** \"Intelligent Clinical Documentation: Harnessing Generative AI for Patient-Centric Clinical Note Generation\"\n\n**Authors (First 5):** Anjanava Biswas, Wrick Talukdar (only 2 authors listed)\n\n**Publication Year:** 2024\n\n**Venue:** International Journal of Innovative Science and Research Technology (IJISRT)\n\n**DOI:** https://doi.org/10.38124/ijisrt/ijisrt24may1483\n\n---\n\n## Result 2\n**Title:** \"Holistic Evaluation of Language Models\"\n\n**Authors (First 5):** Rishi Bommasani, Percy Liang, Tony Lee (only 3 authors listed in provided excerpt)\n\n**Publication Year:** 2023\n\n**Venue:** Annals of the New York Academy of Sciences\n\n**DOI:** https://doi.org/10.1111/nyas.15007\n\n---\n\n## Result 3\n**Title:** \"A Survey of Large Language Models\"\n\n**Authors (First 5):** Wayne Xin Zhao, Kun Zhou, Junyi Li, Tianyi Tang, Xiaolei Wang\n\n**Publication Year:** 2026\n\n**Venue:** Frontiers of Computer Science\n\n**DOI:** https://doi.org/10.1007/s11704-026-60308-3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5049
+          },
+          "id": "event-006541"
+        },
+        {
+          "source_line": 6542,
+          "timestamp": "2026-05-26T10:17:09.112182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Quantifying+Data+Contamination+Psychometric+Evaluations+LLMs&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006542"
+        },
+        {
+          "source_line": 6543,
+          "timestamp": "2026-05-26T10:17:09.364500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works/https://doi.org/10.1111/nyas.15007",
+              "prompt": "Return full list of authors (authorships), publication year, title, venue, volume, issue, pages"
+            }
+          },
+          "id": "event-006543"
+        },
+        {
+          "source_line": 6544,
+          "timestamp": "2026-05-26T10:17:09.466568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2503.16402",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006544"
+        },
+        {
+          "source_line": 6545,
+          "timestamp": "2026-05-26T10:17:10.471057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Measuring+Massive+Multitask+Language+Understanding+Hendrycks&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006545"
+        },
+        {
+          "source_line": 6546,
+          "timestamp": "2026-05-26T10:17:10.748569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1636
+          },
+          "id": "event-006546"
+        },
+        {
+          "source_line": 6547,
+          "timestamp": "2026-05-26T10:17:10.756041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Causally+Quantifying+Effect+Test+Set+Contamination+Generative+Benchmarks&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006547"
+        },
+        {
+          "source_line": 6548,
+          "timestamp": "2026-05-26T10:17:10.881505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 410
+          },
+          "id": "event-006548"
+        },
+        {
+          "source_line": 6549,
+          "timestamp": "2026-05-26T10:17:11.556295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2110.14168",
+              "prompt": "Return the title, authors, submission date, and any venue/conference information for this paper"
+            }
+          },
+          "id": "event-006549"
+        },
+        {
+          "source_line": 6550,
+          "timestamp": "2026-05-26T10:17:11.556841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 800
+          },
+          "id": "event-006550"
+        },
+        {
+          "source_line": 6551,
+          "timestamp": "2026-05-26T10:17:11.808180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Publication Details\n\n**Authors:**\n1. Rishi Bommasani (corresponding author)\n2. Percy Liang\n3. Tong Lee\n\n**Publication Year:** 2023\n\n**Title:** \"Holistic Evaluation of Language Models\"\n\n**Venue:** Annals of the New York Academy of Sciences\n\n**Volume:** 1525\n\n**Issue:** 1\n\n**Pages:** 140–146"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2443
+          },
+          "id": "event-006551"
+        },
+        {
+          "source_line": 6552,
+          "timestamp": "2026-05-26T10:17:11.859042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination\"\n\n**Authors:** Yifan Sun, Han Wang, Dongbai Li, Gang Wang, and Huan Zhang\n\n**Submission Date:** March 20, 2025"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2392
+          },
+          "id": "event-006552"
+        },
+        {
+          "source_line": 6553,
+          "timestamp": "2026-05-26T10:17:12.060700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Benchmarking+Large+Language+Models+Data+Contamination+Survey+EMNLP&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006553"
+        },
+        {
+          "source_line": 6554,
+          "timestamp": "2026-05-26T10:17:12.362423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/1803.05457",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006554"
+        },
+        {
+          "source_line": 6555,
+          "timestamp": "2026-05-26T10:17:12.965175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 904
+          },
+          "id": "event-006555"
+        },
+        {
+          "source_line": 6556,
+          "timestamp": "2026-05-26T10:17:13.367224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/10.1145/3641289?fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds"
+            }
+          },
+          "id": "event-006556"
+        },
+        {
+          "source_line": 6557,
+          "timestamp": "2026-05-26T10:17:13.518404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Evaluation+Data+Contamination+LLMs+How+Measure+Matter+Singh&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006557"
+        },
+        {
+          "source_line": 6558,
+          "timestamp": "2026-05-26T10:17:13.619364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2406.19314",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006558"
+        },
+        {
+          "source_line": 6559,
+          "timestamp": "2026-05-26T10:17:14.423104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\"\n\n**Authors:** Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa Schoenick, and Oyvind Tafjord\n\n**Submission Date:** March 14, 2018"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2060
+          },
+          "id": "event-006559"
+        },
+        {
+          "source_line": 6560,
+          "timestamp": "2026-05-26T10:17:14.473753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Training Verifiers to Solve Math Word Problems\"\n\n**Authors:** Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman\n\n**Submission Date:** October 27, 2021 (v1); November 18, 2021 (v2)\n\n**Venue/Conference Information:** No specific conference or venue is mentioned. This is an arXiv preprint (arXiv:2110.14168) in the Computer Science - Machine Learning category with cross-listing in Computation and Language."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2917
+          },
+          "id": "event-006560"
+        },
+        {
+          "source_line": 6561,
+          "timestamp": "2026-05-26T10:17:14.725157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2211.09110",
+              "prompt": "Extract paper title, first 5 authors including whether \"Percy Liang\" or \"Rishi Bommasani\" is listed as first author, year submitted"
+            }
+          },
+          "id": "event-006561"
+        },
+        {
+          "source_line": 6562,
+          "timestamp": "2026-05-26T10:17:14.826119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1307
+          },
+          "id": "event-006562"
+        },
+        {
+          "source_line": 6563,
+          "timestamp": "2026-05-26T10:17:15.378756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Leak+Cheat+Repeat+Data+Contamination+Evaluation+Malpractices+Closed-Source+LLMs+Balloccu&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006563"
+        },
+        {
+          "source_line": 6564,
+          "timestamp": "2026-05-26T10:17:15.831082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 452
+          },
+          "id": "event-006564"
+        },
+        {
+          "source_line": 6565,
+          "timestamp": "2026-05-26T10:17:16.333888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"paperId\": \"888728745dbb769e29ed475d4f7661eebe1a71cf\",\n  \"title\": \"A Survey on Evaluation of Large Language Models\",\n  \"authors\": [\n    {\"authorId\": \"2140050490\", \"name\": \"Yu-Chu Chang\"},\n    {\"authorId\": \"2206577797\", \"name\": \"Xu Wang\"},\n    {\"authorId\": \"1519290245\", \"name\": \"Jindong Wang\"},\n    {\"authorId\": \"48608007\", \"name\": \"Yuan Wu\"},\n    {\"authorId\": \"2543684\", \"name\": \"Kaijie Zhu\"},\n    {\"authorId\": \"2051536212\", \"name\": \"Hao Chen\"},\n    {\"authorId\": \"2145500840\", \"name\": \"Linyi Yang\"},\n    {\"authorId\": \"3393196\", \"name\": \"Xiaoyuan Yi\"},\n    {\"authorId\": \"35504092\", \"name\": \"Cunxiang Wang\"},\n    {\"authorId\": \"2108024279\", \"name\": \"Yidong Wang\"},\n    {\"authorId\": \"2147205193\", \"name\": \"Weirong Ye\"},\n    {\"authorId\": \"2211964951\", \"name\": \"Yue Zhang\"},\n    {\"authorId\": \"2131636065\", \"name\": \"Yi Chang\"},\n    {\"authorId\": \"2191036692\", \"name\": \"Philip S. Yu\"},\n    {\"authorId\": \"2158406244\", \"name\": \"Qian Yang\"},\n    {\"authorId\": \"1576441343\", \"name\": \"Xingxu Xie\"}\n  ],\n  \"year\": 2023,\n  \"venue\": \"ACM Transactions on Intelligent Systems and Technology\",\n  \"externalIds\": {\n    \"DBLP\": \"journals/tist/ChangWWWYZCYWWYZCYYX24\",\n    \"ArXiv\": \"2307.03109\",\n    \"DOI\": \"10.1145/3641289\",\n    \"CorpusId\": 259360395\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2966
+          },
+          "id": "event-006565"
+        },
+        {
+          "source_line": 6566,
+          "timestamp": "2026-05-26T10:17:16.334259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Holistic Evaluation of Language Models\"\n\n**First Five Authors:**\n1. Percy Liang (first author)\n2. Rishi Bommasani\n3. Tony Lee\n4. Dimitris Tsipras\n5. Dilara Soylu\n\n**Year Submitted:** 2022 (specifically November 16, 2022)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1609
+          },
+          "id": "event-006566"
+        },
+        {
+          "source_line": 6567,
+          "timestamp": "2026-05-26T10:17:16.435006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=How+Much+Can+We+Forget+Data+Contamination+Bordt&limit=5&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for ALL results - there may be two different papers with similar titles"
+            }
+          },
+          "id": "event-006567"
+        },
+        {
+          "source_line": 6568,
+          "timestamp": "2026-05-26T10:17:16.736945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 301
+          },
+          "id": "event-006568"
+        },
+        {
+          "source_line": 6569,
+          "timestamp": "2026-05-26T10:17:16.787657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# LiveBench Paper Information\n\n**Title:** \"LiveBench: A Challenging, Contamination-Limited LLM Benchmark\"\n\n**Authors:** Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Ben Feuer, Siddhartha Jain, Ravid Shwartz-Ziv, Neel Jain, Khalid Saifullah, Sreemanti Dey, Shubh-Agrawal, Sandeep Singh Sandha, Siddartha Naidu, Chinmay Hegde, Yann LeCun, Tom Goldstein, Willie Neiswanger, and Micah Goldblum\n\n**Submission Date:** June 27, 2024 (v1); Last revised April 18, 2025 (v2)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3168
+          },
+          "id": "event-006569"
+        },
+        {
+          "source_line": 6570,
+          "timestamp": "2026-05-26T10:17:18.946768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2412.15115",
+              "prompt": "Return the title, authors, and submission date of this paper"
+            }
+          },
+          "id": "event-006570"
+        },
+        {
+          "source_line": 6571,
+          "timestamp": "2026-05-26T10:17:19.900902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2106.09685",
+              "prompt": "Return the title, authors, submission date, and any venue/conference information for this paper"
+            }
+          },
+          "id": "event-006571"
+        },
+        {
+          "source_line": 6572,
+          "timestamp": "2026-05-26T10:17:20.003878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.04301",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006572"
+        },
+        {
+          "source_line": 6573,
+          "timestamp": "2026-05-26T10:17:21.309704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Qwen2.5 Technical Report\n\n**Title:** \"Qwen2.5 Technical Report\"\n\n**Authors:** The paper lists 42 authors from the Qwen team, including An Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, and 38 additional contributors.\n\n**Submission Date:** The paper was initially submitted on December 19, 2024, with a revised version released on January 3, 2025."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2362
+          },
+          "id": "event-006573"
+        },
+        {
+          "source_line": 6574,
+          "timestamp": "2026-05-26T10:17:21.761973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Data+Contamination+From+Memorization+to+Exploitation+Magar+Schwartz&per_page=3",
+              "prompt": "Return title, authors, publication year, venue, DOI for each result"
+            }
+          },
+          "id": "event-006574"
+        },
+        {
+          "source_line": 6575,
+          "timestamp": "2026-05-26T10:17:21.812803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Why+We+Usually+Dont+Have+to+Worry+Multiple+Comparisons+Gelman+Hill+Yajima&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006575"
+        },
+        {
+          "source_line": 6576,
+          "timestamp": "2026-05-26T10:17:22.516109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Impact+Post-training+Data+Contamination+Kocyigit&per_page=3",
+              "prompt": "Return title, authors, publication year, venue, DOI for each result"
+            }
+          },
+          "id": "event-006576"
+        },
+        {
+          "source_line": 6577,
+          "timestamp": "2026-05-26T10:17:22.717911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# LoRA Paper Information\n\n**Title:** \"LoRA: Low-Rank Adaptation of Large Language Models\"\n\n**Authors:** Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen\n\n**Submission Date:** June 17, 2021 (v1); revised October 16, 2021 (v2)\n\n**Venue/Conference Information:** No specific conference or venue is listed. This paper was published on arXiv (arXiv:2106.09685) in the Computation and Language category. The page indicates it has been cited in blog posts and academic databases but does not specify a formal conference or journal publication venue."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2817
+          },
+          "id": "event-006577"
+        },
+        {
+          "source_line": 6578,
+          "timestamp": "2026-05-26T10:17:22.718279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 905
+          },
+          "id": "event-006578"
+        },
+        {
+          "source_line": 6579,
+          "timestamp": "2026-05-26T10:17:23.221403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=No-U-Turn+Sampler+adaptively+setting+path+lengths+Hamiltonian+Monte+Carlo&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006579"
+        },
+        {
+          "source_line": 6580,
+          "timestamp": "2026-05-26T10:17:23.372477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\"\n\n**Authors:** Rylan Schaeffer, Joshua Kazdan, Baber Abbasi, Ken Ziyu Liu, Brando Miranda, Ahmed Ahmed, Fazl Berez, Abhay Puri, Stella Biderman, Niloofar Mireshghallah, and Sanmi Koyejo\n\n**Submission Date:** January 7, 2026 (v1); February 6, 2026 (v2)\n\n**Venue/Conference Information:** No specific conference or venue is mentioned. The paper is published on arXiv under Computer Science > Machine Learning (cs.LG) and Computation and Language (cs.CL) categories. The arXiv identifier is 2601.04301."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3368
+          },
+          "id": "event-006580"
+        },
+        {
+          "source_line": 6581,
+          "timestamp": "2026-05-26T10:17:24.125885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 904
+          },
+          "id": "event-006581"
+        },
+        {
+          "source_line": 6582,
+          "timestamp": "2026-05-26T10:17:24.277010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Stan+probabilistic+programming+language+Carpenter+Gelman+Hoffman&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006582"
+        },
+        {
+          "source_line": 6583,
+          "timestamp": "2026-05-26T10:17:24.428195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 151
+          },
+          "id": "event-006583"
+        },
+        {
+          "source_line": 6584,
+          "timestamp": "2026-05-26T10:17:25.434557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2410.03249",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006584"
+        },
+        {
+          "source_line": 6585,
+          "timestamp": "2026-05-26T10:17:26.891705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## 1. Speak, Memory: An Archaeology of Books Known to ChatGPT/GPT-4\n\n**Authors:** Kent K. Chang, Mackenzie Hạnh Cramer, Sandeep Soni, David Bamman\n\n**Publication Year:** 2023\n\n**Venue:** Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)\n\n**DOI:** https://doi.org/10.18653/v1/2023.emnlp-main.453\n\n---\n\n## 2. Natural Language Processing in the Era of Large Language Models\n\n**Authors:** Arkaitz Zubiaga\n\n**Publication Year:** 2024\n\n**Venue:** Frontiers in Artificial Intelligence\n\n**DOI:** https://doi.org/10.3389/frai.2023.1350306\n\n---\n\n## 3. NLP Evaluation in Trouble: On the Need to Measure LLM Data Contamination for Each Benchmark\n\n**Authors:** Oscar Sainz, Jon Ander Campos, Iker García-Ferrero, Julen Etxaniz, Oier López de Lacalle, Eneko Agirre\n\n**Publication Year:** 2023\n\n**Venue:** Findings of the Association for Computational Linguistics: EMNLP 2023\n\n**DOI:** https://doi.org/10.18653/v1/2023.findings-emnlp.722"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5129
+          },
+          "id": "event-006585"
+        },
+        {
+          "source_line": 6586,
+          "timestamp": "2026-05-26T10:17:27.143156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Why+We+Usually+Don%27t+Have+to+Worry+About+Multiple+Comparisons+Gelman&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006586"
+        },
+        {
+          "source_line": 6587,
+          "timestamp": "2026-05-26T10:17:27.546555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Extraction Summary\n\n**Title:** \"How Much Can We Forget about Data Contamination?\"\n\n**Authors:** Sebastian Bordt, Suraj Srinivas, Valentyn Boreiko, and Ulrike von Luxburg\n\n**Submission Date:** October 4, 2024 (v1); most recent revision June 16, 2025 (v4)\n\n**Venue/Conference:** ICML 2025 (International Conference on Machine Learning)\n\n**Classification:** Computer Science > Machine Learning (cs.LG)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2111
+          },
+          "id": "event-006587"
+        },
+        {
+          "source_line": 6588,
+          "timestamp": "2026-05-26T10:17:28.099230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=No-U-Turn+Sampler+Hoffman+Gelman+JMLR&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006588"
+        },
+        {
+          "source_line": 6589,
+          "timestamp": "2026-05-26T10:17:29.153911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Stan+Probabilistic+Programming+Language+Carpenter+Gelman&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006589"
+        },
+        {
+          "source_line": 6590,
+          "timestamp": "2026-05-26T10:17:29.606094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Search Results Summary\n\n## Result 1\n**Title:** \"Honey and its nutritional and anti-inflammatory value\"\n\n**Authors:** Yazan Ranneh, Abdah Md Akim, Hasiah Ab Hamid, Huzwah Khaza'ai, Abdulmannan Fadel, Zainul Amiruddin Zakaria, Mohammed H. Albujja, Mohd Fadzelly Abu Bakar\n\n**Publication Year:** 2021\n\n**Venue:** BMC Complementary Medicine and Therapies\n\n**DOI:** https://doi.org/10.1186/s12906-020-03170-5\n\n---\n\n## Result 2\n**Title:** \"Protective Effect of Breastfeeding on the Adverse Health Effects Induced by Air Pollution: Current Evidence and Possible Mechanisms\"\n\n**Authors:** Monika A. Zielinska-Pukos, Jadwiga Hamułka\n\n**Publication Year:** 2019\n\n**Venue:** International Journal of Environmental Research and Public Health\n\n**DOI:** https://doi.org/10.3390/ijerph16214181\n\n---\n\n## Result 3\n**Title:** \"UAV Ad Hoc Network Routing Algorithms in Space–Air–Ground Integrated Networks: Challenges and Directions\"\n\n**Authors:** Yuxi Lu, Wu Wen, Kostromitin Konstantin Igorevich, Peng Ren, Hongxia Zhang, Youxiang Duan, Hailong Zhu, Peiying Zhang\n\n**Publication Year:** 2023\n\n**Venue:** Drones\n\n**DOI:** https://doi.org/10.3390/drones7070448"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 7089
+          },
+          "id": "event-006590"
+        },
+        {
+          "source_line": 6591,
+          "timestamp": "2026-05-26T10:17:29.807406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.08640",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006591"
+        },
+        {
+          "source_line": 6592,
+          "timestamp": "2026-05-26T10:17:30.109832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Measuring+Massive+Multitask+Language+Understanding+Hendrycks&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006592"
+        },
+        {
+          "source_line": 6593,
+          "timestamp": "2026-05-26T10:17:30.813041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=LoRA+Low-Rank+Adaptation+Large+Language+Models+Hu&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006593"
+        },
+        {
+          "source_line": 6594,
+          "timestamp": "2026-05-26T10:17:32.119283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.06103",
+              "prompt": "Extract paper title, first 3 authors, year/date of submission. Does this paper exist?"
+            }
+          },
+          "id": "event-006594"
+        },
+        {
+          "source_line": 6595,
+          "timestamp": "2026-05-26T10:17:32.772618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** Stan: A Probabilistic Programming Language\n\n**Authors:** Bob Carpenter, Andrew Gelman, Matthew D. Hoffman, Daniel C. Lee, Ben Goodrich, Michael Betancourt, Marcus A. Brubaker, Jiqiang Guo, Peter Li, Allen Riddell\n\n**Year:** 2017\n\n**Venue:** Journal of Statistical Software\n\n**DOI:** https://doi.org/10.18637/jss.v076.i01\n\n---\n\n## Result 2\n**Title:** Bayesian model averaging: a tutorial (with comments by M. Clyde, David Draper and E. I. George, and a rejoinder by the authors)\n\n**Authors:** Jennifer A. Hoeting, David Madigan, Adrian E. Raftery, Chris Volinsky\n\n**Year:** 1999\n\n**Venue:** Statistical Science\n\n**DOI:** https://doi.org/10.1214/ss/1009212519\n\n---\n\n## Result 3\n**Title:** Fixed and random effects models: making an informed choice\n\n**Authors:** Andrew Bell, Malcolm Fairbrother, Kelvyn Jones\n\n**Year:** 2018\n\n**Venue:** Quality & Quantity\n\n**DOI:** https://doi.org/10.1007/s11135-018-0802-x"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5629
+          },
+          "id": "event-006595"
+        },
+        {
+          "source_line": 6596,
+          "timestamp": "2026-05-26T10:17:33.024796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information Extract\n\n**Title:** \"Utility Engineering: Analyzing and Controlling Emergent Value Systems in AIs\"\n\n**Authors:** Mantas Mazeika, Xuwang Yin, Rishub Tamirisa, Jaehyuk Lim, Bruce W. Lee, Richard Ren, Long Phan, Norman Mu, Adam Khoja, Oliver Zhang, and Dan Hendrycks\n\n**Submission Date:** February 12, 2025 (revised February 19, 2025)\n\n**Venue/Conference Information:** None specified. This is an arXiv preprint (arXiv:2502.08640) in the Computer Science - Machine Learning category. The paper includes a research website reference but no traditional conference or journal venue is listed."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3217
+          },
+          "id": "event-006596"
+        },
+        {
+          "source_line": 6597,
+          "timestamp": "2026-05-26T10:17:33.077715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works/https://doi.org/10.18653/v1/2022.acl-short.18",
+              "prompt": "Return title, authors, publication year, venue, DOI"
+            }
+          },
+          "id": "event-006597"
+        },
+        {
+          "source_line": 6598,
+          "timestamp": "2026-05-26T10:17:33.228927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** \"Bayesian statistics and modelling\"\n\n**Authors:** Rens van de Schoot, Sarah Depaoli, Ruth King, Bianca Kramer, Kaspar Märtens, Mahlet G. Tadesse, Marina Vannucci, Andrew Gelman, Duco Veen, Joukje E. Willemsen, Christopher Yau\n\n**Year:** 2021\n\n**Venue:** Nature Reviews Methods Primers\n\n**DOI:** https://doi.org/10.1038/s43586-020-00001-2\n\n---\n\n## Result 2\n**Title:** \"Accelerating MCMC algorithms\"\n\n**Authors:** Christian P. Robert, Vìctor Elvira, Nick Tawn, Changye Wu\n\n**Year:** 2018\n\n**Venue:** Wiley Interdisciplinary Reviews Computational Statistics\n\n**DOI:** https://doi.org/10.1002/wics.1435\n\n---\n\n## Result 3\n**Title:** \"Stochastic Gradient Markov Chain Monte Carlo\"\n\n**Authors:** Christopher Nemeth, Paul Fearnhead\n\n**Year:** 2020\n\n**Venue:** Journal of the American Statistical Association\n\n**DOI:** https://doi.org/10.1080/01621459.2020.1847120"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5129
+          },
+          "id": "event-006598"
+        },
+        {
+          "source_line": 6599,
+          "timestamp": "2026-05-26T10:17:34.283475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** \"brms: An R Package for Bayesian Multilevel Models Using Stan\"\n**Authors:** Paul-Christian Bürkner\n**Year:** 2017\n**Venue:** Journal of Statistical Software\n**DOI:** https://doi.org/10.18637/jss.v080.i01\n\n## Result 2\n**Title:** \"Stan: A Probabilistic Programming Language\"\n**Authors:** Bob Carpenter, Andrew Gelman, Matthew D. Hoffman, Daniel C. Lee, Ben Goodrich, Michael Betancourt, Marcus A. Brubaker, Jiqiang Guo, Peter Li, Allen Riddell\n**Year:** 2017\n**Venue:** Journal of Statistical Software\n**DOI:** https://doi.org/10.18637/jss.v076.i01\n\n## Result 3\n**Title:** \"Rank-Normalization, Folding, and Localization: An Improved R̂ for Assessing Convergence of MCMC (with Discussion)\"\n**Authors:** Aki Vehtari, Andrew Gelman, Daniel Simpson, Bob Carpenter, Paul-Christian Bürkner\n**Year:** 2020\n**Venue:** Bayesian Analysis\n**DOI:** https://doi.org/10.1214/20-ba1221"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5129
+          },
+          "id": "event-006599"
+        },
+        {
+          "source_line": 6600,
+          "timestamp": "2026-05-26T10:17:35.087236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"The Impact of Post-training on Data Contamination\"\n\n**First 3 Authors:**\n1. Muhammed Yusuf Kocyigit\n2. Caglar Yildirim\n3. (Only 2 authors listed)\n\n**Submission Date:** January 3, 2026\n\n**Does this paper exist?** Yes. The paper is registered on arXiv as arXiv:2601.06103 and is classified under Computer Science > Machine Learning. It presents a controlled study examining how dataset contamination behaves during post-training stages in large language model development, using Qwen2.5 and Gemma3 models."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2967
+          },
+          "id": "event-006600"
+        },
+        {
+          "source_line": 6601,
+          "timestamp": "2026-05-26T10:17:35.690073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Details\n\n**Title:** \"Data Contamination: From Memorization to Exploitation\"\n\n**Authors:** Inbal Magar and Roy Schwartz\n\n**Publication Year:** 2022\n\n**Venue:** Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)\n\n**DOI:** https://doi.org/10.18653/v1/2022.acl-short.18"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2612
+          },
+          "id": "event-006601"
+        },
+        {
+          "source_line": 6602,
+          "timestamp": "2026-05-26T10:17:36.901402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=How+Much+Can+We+Forget+about+Data+Contamination+Bordt+Nori+Caruana&limit=5&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for all results"
+            }
+          },
+          "id": "event-006602"
+        },
+        {
+          "source_line": 6603,
+          "timestamp": "2026-05-26T10:17:37.353671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 452
+          },
+          "id": "event-006603"
+        },
+        {
+          "source_line": 6604,
+          "timestamp": "2026-05-26T10:17:37.454535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2308.08493",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006604"
+        },
+        {
+          "source_line": 6605,
+          "timestamp": "2026-05-26T10:17:37.906782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** Parameter-efficient fine-tuning of large-scale pre-trained language models\n\n**Authors:** Ning Ding, Yujia Qin, Guang Yang, Fuchao Wei, Zonghan Yang, Yusheng Su, Shengding Hu, Yulin Chen, Chi-Min Chan, Weize Chen, Jing Yi, Weilin Zhao, Xiaozhi Wang, Zhiyuan Liu, Hai-Tao Zheng, Jianfei Chen, Yang Liu, Jie Tang, Juanzi Li, Maosong Sun\n\n**Year:** 2023\n\n**Venue:** Nature Machine Intelligence\n\n**DOI:** https://doi.org/10.1038/s42256-023-00626-4\n\n---\n\n## Result 2\n**Title:** Edge Intelligence: Paving the Last Mile of Artificial Intelligence With Edge Computing\n\n**Authors:** Zhi Zhou, Xu Chen, En Li, Liekang Zeng, Ke Luo, Junshan Zhang\n\n**Year:** 2019\n\n**Venue:** Proceedings of the IEEE\n\n**DOI:** https://doi.org/10.1109/jproc.2019.2918951\n\n---\n\n## Result 3\n**Title:** T2I-Adapter: Learning Adapters to Dig Out More Controllable Ability for Text-to-Image Diffusion Models\n\n**Authors:** Chong Mou, Xintao Wang, Liangbin Xie, Yanze Wu, Jian Zhang, Zhongang Qi, Ying Shan\n\n**Year:** 2024\n\n**Venue:** Proceedings of the AAAI Conference on Artificial Intelligence\n\n**DOI:** https://doi.org/10.1609/aaai.v38i5.28226"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 7093
+          },
+          "id": "event-006605"
+        },
+        {
+          "source_line": 6606,
+          "timestamp": "2026-05-26T10:17:38.409440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2505.15055",
+              "prompt": "Extract paper title, first 5 authors, year/date of submission, and any venue information"
+            }
+          },
+          "id": "event-006606"
+        },
+        {
+          "source_line": 6607,
+          "timestamp": "2026-05-26T10:17:38.610981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Papers Summary\n\n## 1. LLaMA: Open and Efficient Foundation Language Models\n- **Authors:** Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, Aurelien Rodriguez, Armand Joulin, Édouard Grave, Guillaume Lample\n- **Year:** 2023\n- **Venue:** arXiv (Cornell University)\n- **DOI:** https://doi.org/10.48550/arxiv.2302.13971\n\n## 2. Large Language Models Encode Clinical Knowledge\n- **Authors:** Karan Singhal, Shekoofeh Azizi, Tao Tu, S. Sara Mahdavi, Jason Lee, Hyung Won Chung, Nathan Scales, Ajay Kumar Tanwani, Heather Cole-Lewis, Stephen Pfohl, Perry W. Payne, Martin Seneviratne, Paul Gamble, Christopher Kelly, Abubakr Babiker, Nathanael Schärli, Aakanksha Chowdhery, P. Mansfield, Dina Demner-Fushman, Blaise Agüera y Arcas, Dale R. Webster, Greg S. Corrado, Yossi Matias, Katherine Chou, Juraj Gottweis, Nenad Tomašev, Yun Liu, Alvin Rajkomar, Joëlle Barral, Christopher Semturs, Alan Karthikesalingam, Vivek Natarajan\n- **Year:** 2023\n- **Venue:** Nature\n- **DOI:** https://doi.org/10.1038/s41586-023-06291-2\n\n## 3. Scaling Instruction-Finetuned Language Models\n- **Authors:** Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Eric Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, Albert Webson, Shixiang Gu, Zhuyun Dai, Mirac Suzgun, Xinyun Chen, Aakanksha Chowdhery, and others\n- **Year:** 2022\n- **Venue:** arXiv (Cornell University)\n- **DOI:** https://doi.org/10.48550/arxiv.2210.11416"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 8501
+          },
+          "id": "event-006607"
+        },
+        {
+          "source_line": 6608,
+          "timestamp": "2026-05-26T10:17:38.862484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.00678",
+              "prompt": "Extract paper title, first 5 authors, year/date of submission, and any venue information"
+            }
+          },
+          "id": "event-006608"
+        },
+        {
+          "source_line": 6609,
+          "timestamp": "2026-05-26T10:17:39.817401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Details\n\n**Title:** \"Time Travel in LLMs: Tracing Data Contamination in Large Language Models\"\n\n**Authors:** Shahriar Golchin and Mihai Surdeanu\n\n**Submission Date:** August 16, 2023 (initial version); most recent revision February 21, 2024\n\n**Venue:** Published at ICLR 2024 as a Spotlight paper, recognized as being \"in the notable top 5%\" of submissions"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2362
+          },
+          "id": "event-006609"
+        },
+        {
+          "source_line": 6610,
+          "timestamp": "2026-05-26T10:17:40.822038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n\n**First 5 Authors:**\n1. Hongli Zhou\n2. Hui Huang\n3. Ziqing Zhao\n4. Lvyuan Han\n5. Huicheng Wang\n\n**Submission Date:** May 21, 2025 (v1)\n\n**Venue:** Accepted to AAAI 2026 as an oral presentation"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2412
+          },
+          "id": "event-006610"
+        },
+        {
+          "source_line": 6611,
+          "timestamp": "2026-05-26T10:17:41.548055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence\"\n\n**First 5 Authors:**\n1. Hyeong Kyu Choi\n2. Maxim Khanov\n3. Hongxin Wei\n4. Yixuan Li\n5. (Only 4 authors listed)\n\n**Submission Date:** February 2, 2025 (v1); May 20, 2025 (v2)\n\n**Venue:** ICML 2025"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2685
+          },
+          "id": "event-006611"
+        },
+        {
+          "source_line": 6612,
+          "timestamp": "2026-05-26T10:17:42.352479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2310.18018",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006612"
+        },
+        {
+          "source_line": 6613,
+          "timestamp": "2026-05-26T10:17:42.352969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Why+We+Usually+Don't+Have+to+Worry+About+Multiple+Comparisons+Gelman+2012&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006613"
+        },
+        {
+          "source_line": 6614,
+          "timestamp": "2026-05-26T10:17:42.807533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2311.04850",
+              "prompt": "Extract: paper title, authors, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006614"
+        },
+        {
+          "source_line": 6615,
+          "timestamp": "2026-05-26T10:17:43.310129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 957
+          },
+          "id": "event-006615"
+        },
+        {
+          "source_line": 6616,
+          "timestamp": "2026-05-26T10:17:43.812574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Measuring+Massive+Multitask+Language+Understanding+ICLR+2021&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006616"
+        },
+        {
+          "source_line": 6617,
+          "timestamp": "2026-05-26T10:17:44.816910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1004
+          },
+          "id": "event-006617"
+        },
+        {
+          "source_line": 6618,
+          "timestamp": "2026-05-26T10:17:44.867780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=LoRA+Low+Rank+Adaptation+Large+Language+Models+ICLR+2022&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006618"
+        },
+        {
+          "source_line": 6619,
+          "timestamp": "2026-05-26T10:17:44.868191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Reciprocal+Rank+Fusion+Outperforms+Condorcet+Cormack+Clarke&per_page=3",
+              "prompt": "Return title, authors, publication year, venue/conference, pages, DOI for each result"
+            }
+          },
+          "id": "event-006619"
+        },
+        {
+          "source_line": 6620,
+          "timestamp": "2026-05-26T10:17:45.120353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination for each Benchmark\"\n\n**Authors:** Oscar Sainz, Jon Ander Campos, Iker García-Ferrero, Julen Etxaniz, Oier Lopez de Lacalle, and Eneko Agirre\n\n**Submission Date:** October 27, 2023\n\n**Venue:** EMNLP 2024 (Findings track)\n\nThe paper addresses concerns about data contamination in LLM evaluation, arguing that when models train on benchmark test sets, their performance becomes artificially inflated and compromises scientific validity."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2767
+          },
+          "id": "event-006620"
+        },
+        {
+          "source_line": 6621,
+          "timestamp": "2026-05-26T10:17:45.823838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Explanatory+Item+Response+Models+De+Boeck+Wilson+Springer&per_page=3",
+              "prompt": "Return title, authors, publication year, publisher, DOI for each result"
+            }
+          },
+          "id": "event-006621"
+        },
+        {
+          "source_line": 6622,
+          "timestamp": "2026-05-26T10:17:46.176524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 1308
+          },
+          "id": "event-006622"
+        },
+        {
+          "source_line": 6623,
+          "timestamp": "2026-05-26T10:17:46.227298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=No-U-Turn+Sampler+adaptively+setting+path+lengths+Hamiltonian&limit=3&fields=title,authors,year,venue,externalIds",
+              "prompt": "Return the full JSON response including title, authors, year, venue, externalIds for each paper"
+            }
+          },
+          "id": "event-006623"
+        },
+        {
+          "source_line": 6624,
+          "timestamp": "2026-05-26T10:17:46.227753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information Extract\n\n**Title:** \"Rethinking Benchmark and Contamination for Language Models with Rephrased Samples\"\n\n**Authors:** Shuo Yang, Wei-Lin Chiang, Lianmin Zheng, Joseph E. Gonzalez, Ion Stoica\n\n**Submission Date:** November 8, 2023 (v1); revised November 11, 2023 (v2)\n\n**Venue/Conference:** None specified. This is an arXiv preprint in the Computer Science category (Computation and Language - cs.CL), not published in a traditional conference or journal at the time of this posting.\n\n**Additional Detail:** The paper addresses concerns about test data contamination in language model training datasets through an LLM-based decontamination approach, with publicly available tools."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3420
+          },
+          "id": "event-006624"
+        },
+        {
+          "source_line": 6625,
+          "timestamp": "2026-05-26T10:17:46.529276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 429"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 301
+          },
+          "id": "event-006625"
+        },
+        {
+          "source_line": 6626,
+          "timestamp": "2026-05-26T10:17:49.892969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works/https://doi.org/10.1080/19345747.2011.618213",
+              "prompt": "Return title, authors, year, venue, doi for this work"
+            }
+          },
+          "id": "event-006626"
+        },
+        {
+          "source_line": 6627,
+          "timestamp": "2026-05-26T10:17:50.094228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Search Results Summary\n\n## Result 1\n**Title:** \"P. de Boeck and M. Wilson (eds.) (2004). Explanatory item response models: A generalized linear and nonlinear approach...\"\n\n**Authors:** Jay Verkuilen\n\n**Publication Year:** 2006\n\n**Publisher:** Springer Science+Business Media\n\n**DOI:** https://doi.org/10.1007/s11336-005-1333-7\n\n---\n\n## Result 2\n**Title:** \"Using Explanatory Item Response Models to Analyze Group Differences in Science Achievement\"\n\n**Authors:** Derek C. Briggs\n\n**Publication Year:** 2008\n\n**Publisher:** Taylor & Francis\n\n**DOI:** https://doi.org/10.1080/08957340801926086\n\n---\n\n## Result 3\n**Title:** \"Bayesian Item Response Modeling in R with brms and Stan\"\n\n**Authors:** Paul-Christian Bürkner\n\n**Publication Year:** 2021\n\n**Publisher:** Foundation for Open Access Statistics\n\n**DOI:** https://doi.org/10.18637/jss.v100.i05"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 4270
+          },
+          "id": "event-006627"
+        },
+        {
+          "source_line": 6628,
+          "timestamp": "2026-05-26T10:17:50.094742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2412.08905",
+              "prompt": "Extract: paper title, authors list (first few), submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006628"
+        },
+        {
+          "source_line": 6629,
+          "timestamp": "2026-05-26T10:17:50.195486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2501.00656",
+              "prompt": "Extract: paper title, authors list (first few), submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006629"
+        },
+        {
+          "source_line": 6630,
+          "timestamp": "2026-05-26T10:17:50.446929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Academic Results Summary\n\n## 1. SemEval-2016 Task 3: Community Question Answering\n\n**Authors:** Preslav Nakov, Lluís Màrquez, Alessandro Moschitti, Walid Magdy, Hamdy Mubarak, Abed Alhakim Freihat, Jim Glass, Bilal Randeree\n\n**Publication Year:** 2016\n\n**Venue:** Proceedings of the 10th International Workshop on Semantic Evaluation (SemEval-2016)\n\n**Pages:** 525–545\n\n**DOI:** https://doi.org/10.18653/v1/s16-1083\n\n---\n\n## 2. Cross-Domain Modeling of Sentence-Level Evidence for Document Retrieval\n\n**Authors:** Zeynep Akkalyoncu Yilmaz, Wei Yang, Haotian Zhang, Jimmy Lin\n\n**Publication Year:** 2019\n\n**Venue:** Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\n\n**Pages:** Not specified\n\n**DOI:** https://doi.org/10.18653/v1/d19-1352\n\n---\n\n## 3. Benchmarking Retrieval-Augmented Generation for Medicine\n\n**Authors:** Guangzhi Xiong, Qiao Jin, Zhiyong Lu, Aidong Zhang\n\n**Publication Year:** 2024\n\n**Venue:** Findings of the Association for Computational Linguistics ACL 2024\n\n**Pages:** 6233–6251\n\n**DOI:** https://doi.org/10.18653/v1/2024.findings-acl.372"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5578
+          },
+          "id": "event-006630"
+        },
+        {
+          "source_line": 6631,
+          "timestamp": "2026-05-26T10:17:51.100558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=No-U-Turn+Sampler+Hoffman+Gelman+2014&per_page=3&filter=publication_year:2014",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006631"
+        },
+        {
+          "source_line": 6632,
+          "timestamp": "2026-05-26T10:17:52.455991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Publication Details\n\n**Title:** \"Why We (Usually) Don't Have to Worry About Multiple Comparisons\"\n\n**Authors:** Andrew Gelman (Columbia University), Jennifer Hill (New York University), Masanao Yajima (University of California, Los Angeles)\n\n**Year:** 2012\n\n**Venue:** Journal of Research on Educational Effectiveness, Volume 5, Issue 2, pages 189-211\n\n**DOI:** https://doi.org/10.1080/19345747.2011.618213"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2563
+          },
+          "id": "event-006632"
+        },
+        {
+          "source_line": 6633,
+          "timestamp": "2026-05-26T10:17:53.159172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://dl.acm.org/doi/10.1145/1571941.1572114",
+              "prompt": "Extract: paper title, authors, year, conference/venue, pages"
+            }
+          },
+          "id": "event-006633"
+        },
+        {
+          "source_line": 6634,
+          "timestamp": "2026-05-26T10:17:53.410608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# OLMo 2 Paper Information\n\n**Title:** \"2 OLMo 2 Furious\"\n\n**Lead Authors:** Team OLMo, Pete Walsh, Luca Soldaini, Dirk Groeneveld, Kyle Lo (and 38 additional co-authors)\n\n**Submission Date:** December 31, 2024\n\n**Venue/Conference:** A shortened version was accepted to COLM 2025\n\n**Key Details:** The paper presents OLMo 2, describing it as \"the next generation of fully open language models\" available in 7B, 13B, and 32B scales. The work emphasizes transparent release of model weights, training data, code, and intermediate checkpoints, positioning these models competitively against other open-weight models while maintaining full transparency in training methodology."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3215
+          },
+          "id": "event-006634"
+        },
+        {
+          "source_line": 6635,
+          "timestamp": "2026-05-26T10:17:53.611838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Phi-4 Technical Report - Extraction\n\n**Paper Title:** \"Phi-4 Technical Report\"\n\n**Authors (First Few):** Marah Abdin, Jyoti Aneja, Harkirat Behl, Sébastien Bubeck, Ronen Eldan, and Suriya Gunasekar (27 authors total)\n\n**Submission Date:** December 12, 2024\n\n**Venue/Conference Information:** None listed. This is an arXiv preprint (arXiv:2412.08905) in the Computer Science category, specifically filed under Computation and Language (cs.CL) and Artificial Intelligence (cs.AI).\n\n**Key Note:** The paper describes \"a 14-billion parameter language model developed with a training recipe that is centrally focused on data quality,\" incorporating synthetic data throughout training rather than relying primarily on organic sources."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3517
+          },
+          "id": "event-006635"
+        },
+        {
+          "source_line": 6636,
+          "timestamp": "2026-05-26T10:17:53.662493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 403"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 503
+          },
+          "id": "event-006636"
+        },
+        {
+          "source_line": 6637,
+          "timestamp": "2026-05-26T10:17:53.964643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2402.15938",
+              "prompt": "Extract paper title, first 5 authors, year/date of submission, and any venue information"
+            }
+          },
+          "id": "event-006637"
+        },
+        {
+          "source_line": 6638,
+          "timestamp": "2026-05-26T10:17:56.174506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models\"\n\n**First 5 Authors:**\n1. Yihong Dong\n2. Xue Jiang\n3. Huanyu Liu\n4. Zhi Jin\n5. Bin Gu\n\n**Submission Date:** February 24, 2024 (v1), with final revision on May 31, 2024 (v3)\n\n**Venue:** ACL (Association for Computational Linguistics)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2209
+          },
+          "id": "event-006638"
+        },
+        {
+          "source_line": 6639,
+          "timestamp": "2026-05-26T10:17:56.277347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2408.00118",
+              "prompt": "Extract: paper title, authors/team name, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006639"
+        },
+        {
+          "source_line": 6640,
+          "timestamp": "2026-05-26T10:17:56.629385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2202.07646",
+              "prompt": "Extract: paper title, authors list, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006640"
+        },
+        {
+          "source_line": 6641,
+          "timestamp": "2026-05-26T10:17:57.533487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Search Results Summary\n\n**Result 1:**\n- **Title:** \"Probabilistic programming\"\n- **Authors:** Andrew D. Gordon, Thomas A. Henzinger, Aditya V. Nori, Sriram K. Rajamani\n- **Year:** 2014\n- **Venue:** Future of Software Engineering Proceedings\n- **DOI:** https://doi.org/10.1145/2593882.2593900\n\n**Result 2:**\n- **Title:** \"Comprehensive Functional Annotation of 77 Prostate Cancer Risk Loci\"\n- **Authors:** Dennis J. Hazelett, Suhn K. Rhie, Malaina Gaddis, Chunli Yan, Daniel L. Lakeland, Simon G. Coetzee, Brian E. Henderson, Houtan Noushmehr, Wendy Cozen, Zsofia Kote‐Jarai, Rosalind A. Eeles, Douglas F. Easton, Christopher A. Haiman, Wange Lu, Peggy Farnham, Gerhard A. Coetzee\n- **Year:** 2014\n- **Venue:** PLoS Genetics\n- **DOI:** https://doi.org/10.1371/journal.pgen.1004102\n\n**Result 3:**\n- **Title:** \"Parallel MCMC with generalized elliptical slice sampling\"\n- **Authors:** Robert Nishihara, Iain Murray, Ryan P. Adams\n- **Year:** 2014\n- **Venue:** Journal of Machine Learning Research\n- **DOI:** https://doi.org/10.5555/2627435.2670318"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 6432
+          },
+          "id": "event-006641"
+        },
+        {
+          "source_line": 6642,
+          "timestamp": "2026-05-26T10:17:59.040346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Reciprocal+Rank+Fusion+Outperforms+Condorcet+Individual+Rank+Learning+SIGIR+2009&per_page=3",
+              "prompt": "Return title, authors, publication year, venue/conference, pages, DOI"
+            }
+          },
+          "id": "event-006642"
+        },
+        {
+          "source_line": 6643,
+          "timestamp": "2026-05-26T10:17:59.141188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Quantifying Memorization Across Neural Language Models\"\n\n**Authors:** Nicholas Carlini, Daphne Ippolito, Matthew Jagielski, Katherine Lee, Florian Tramer, Chiyuan Zhang\n\n**Submission Date:** February 15, 2022 (with final revision on March 6, 2023)\n\n**Venue/Conference:** No specific conference venue is listed. The paper is published on arXiv as a Computer Science preprint (arXiv:2202.07646), classified under Machine Learning (cs.LG) and Computation and Language (cs.CL)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2511
+          },
+          "id": "event-006643"
+        },
+        {
+          "source_line": 6644,
+          "timestamp": "2026-05-26T10:17:59.693876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Gemma 2 Paper Details\n\n**Title:** \"Gemma 2: Improving Open Language Models at a Practical Size\"\n\n**Team/Authors:** Gemma Team (197 authors total, led by Morgane Riviere, Shreya Pathak, and Pier Giuseppe Sessa)\n\n**Submission Date:** July 31, 2024 (with final revision on October 2, 2024)\n\n**Venue/Conference:** arXiv preprint (cs.CL - Computation and Language)\n\n**Key Information:**\nThe paper introduces models ranging from 2 to 27 billion parameters. Researchers employed \"several known technical modifications to the Transformer architecture, such as interleaving local-global attentions and group-query attention,\" plus knowledge distillation training for smaller variants."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 3418
+          },
+          "id": "event-006644"
+        },
+        {
+          "source_line": 6645,
+          "timestamp": "2026-05-26T10:17:59.694381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/1706.04599",
+              "prompt": "Extract paper title, authors, year/date of submission, and any venue information"
+            }
+          },
+          "id": "event-006645"
+        },
+        {
+          "source_line": 6646,
+          "timestamp": "2026-05-26T10:18:01.352932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=No-U-Turn+Sampler+NUTS+JMLR+Hoffman&per_page=5",
+              "prompt": "Return title, authors, year, venue, doi for each result, looking for the Hoffman Gelman NUTS paper"
+            }
+          },
+          "id": "event-006646"
+        },
+        {
+          "source_line": 6647,
+          "timestamp": "2026-05-26T10:18:02.307364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Measuring+Massive+Multitask+Language+Understanding+Hendrycks+ICLR&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006647"
+        },
+        {
+          "source_line": 6648,
+          "timestamp": "2026-05-26T10:18:02.308000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2406.08446",
+              "prompt": "Extract: paper title, authors list, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006648"
+        },
+        {
+          "source_line": 6649,
+          "timestamp": "2026-05-26T10:18:02.510445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"On Calibration of Modern Neural Networks\"\n\n**Authors:** Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger\n\n**Submission Date:** June 14, 2017 (v1); revised August 3, 2017 (v2)\n\n**Venue:** ICML 2017\n\nThe paper investigates how modern neural networks produce poorly calibrated probability estimates compared to older models, and proposes temperature scaling as an effective post-processing solution."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2816
+          },
+          "id": "event-006649"
+        },
+        {
+          "source_line": 6650,
+          "timestamp": "2026-05-26T10:18:02.962925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=LoRA+Low-Rank+Adaptation+Large+Language+Models+Hu+Shen&per_page=3",
+              "prompt": "Return title, authors, year, venue, doi for each result"
+            }
+          },
+          "id": "event-006650"
+        },
+        {
+          "source_line": 6651,
+          "timestamp": "2026-05-26T10:18:02.963442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2402.03927",
+              "prompt": "Extract: paper title, authors list, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006651"
+        },
+        {
+          "source_line": 6652,
+          "timestamp": "2026-05-26T10:18:04.773914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# OLMES Paper Details\n\n**Title:** \"OLMES: A Standard for Language Model Evaluations\"\n\n**Authors:** Yuling Gu, Oyvind Tafjord, Bailey Kuehl, Dany Haddad, Jesse Dodge, and Hannaneh Hajishirzi\n\n**Submission Date:** June 12, 2024 (with revision on February 11, 2025)\n\n**Venue:** Findings of NAACL 2025\n\nThe paper proposes a documented, open standard for reproducible language model evaluation, addressing inconsistencies in evaluation practices across the field."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2465
+          },
+          "id": "event-006652"
+        },
+        {
+          "source_line": 6653,
+          "timestamp": "2026-05-26T10:18:04.925472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Articles Summary\n\n## 1. SemEval-2016 Task 3: Community Question Answering\n\n**Authors:** Preslav Nakov, Lluís Màrquez, Alessandro Moschitti, Walid Magdy, Hamdy Mubarak, Abed Alhakim Freihat, Jim Glass, Bilal Randeree\n\n**Publication Year:** 2016\n\n**Venue:** Proceedings of the 10th International Workshop on Semantic Evaluation (SemEval-2016)\n\n**Pages:** 525–545\n\n**DOI:** https://doi.org/10.18653/v1/s16-1083\n\n---\n\n## 2. Matching Patients to Clinical Trials with Large Language Models\n\n**Authors:** Qiao Jin, Zifeng Wang, Charalampos S. Floudas, Fangyuan Chen, Changlin Gong, Dara Bracken-Clarke, Elisabetta Xue, Yifan Yang, Jimeng Sun, Zhiyong Lu\n\n**Publication Year:** 2024\n\n**Venue:** Nature Communications\n\n**Pages:** 9074\n\n**DOI:** https://doi.org/10.1038/s41467-024-53081-z\n\n---\n\n## 3. SemEval-2017 Task 3: Community Question Answering\n\n**Authors:** Preslav Nakov, Doris Hoogeveen, Lluís Màrquez, Alessandro Moschitti, Hamdy Mubarak, Timothy Baldwin, Karin Verspoor\n\n**Publication Year:** 2017\n\n**Venue:** Proceedings of the 11th International Workshop on Semantic Evaluation (SemEval-2017)\n\n**Pages:** 27–48\n\n**DOI:** https://doi.org/10.18653/v1/s17-2003"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 5885
+          },
+          "id": "event-006653"
+        },
+        {
+          "source_line": 6654,
+          "timestamp": "2026-05-26T10:18:05.228736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\"\n\n**Authors:** Simone Balloccu, Patrícia Schmidtová, Mateusz Lango, Ondřej Dušek\n\n**Submission Date:** February 6, 2024 (v1); February 22, 2024 (v2)\n\n**Venue:** EACL 2024 main conference"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 2265
+          },
+          "id": "event-006654"
+        },
+        {
+          "source_line": 6655,
+          "timestamp": "2026-05-26T10:18:07.591950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the provided search results, I cannot find the Hoffman Gelman NUTS paper. The results show 5 papers related to Bayesian methods and Monte Carlo sampling:\n\n1. **Stochastic Gradient Markov Chain Monte Carlo**\n   - Authors: Christopher Nemeth, Paul Fearnhead\n   - Year: 2020\n   - Venue: Journal of the American Statistical Association\n   - DOI: https://doi.org/10.1080/01621459.2020.1847120\n\n2. **Adaptive Hamiltonian and Riemann Manifold Monte Carlo Samplers**\n   - Authors: Ziyu Wang, Shakir Mohamed, Nando de Freitas\n   - Year: 2013\n   - Venue: arXiv\n   - DOI: https://doi.org/10.48550/arxiv.1302.6182\n\n3. **Frequentism and Bayesianism: A Python-driven Primer**\n   - Authors: Jake Vanderplas\n   - Year: 2014\n   - Venue: Proceedings of the Python in Science Conferences\n   - DOI: https://doi.org/10.25080/majora-14bd3278-00e\n\n4. **Bayesian Approaches to Distribution Regression**\n   - Authors: Ho Chung Leon Law, Danica J. Sutherland, Dino Sejdinović, Seth Flaxman\n   - Year: 2017\n   - Venue: arXiv\n   - DOI: https://doi.org/10.48550/arxiv.1705.04293\n\n5. **Octofitter: Fast, Flexible, and Accurate Orbit Modeling to Detect Exoplanets**\n   - Authors: William Thompson et al.\n   - Year: 2023\n   - Venue: The Astronomical Journal\n   - DOI: https://doi.org/10.3847/1538-3881/acf5cc\n\nThe NUTS (No-U-Turn Sampler) paper by Hoffman and Gelman does not appear in these results."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 6239
+          },
+          "id": "event-006655"
+        },
+        {
+          "source_line": 6656,
+          "timestamp": "2026-05-26T10:18:07.993886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://api.openalex.org/works?search=Reciprocal+Rank+Fusion+Cormack+Clarke+Buettcher+SIGIR&per_page=5",
+              "prompt": "Return title, authors, publication year, venue/conference, pages, DOI for the Cormack et al. RRF paper from SIGIR 2009"
+            }
+          },
+          "id": "event-006656"
+        },
+        {
+          "source_line": 6657,
+          "timestamp": "2026-05-26T10:18:08.546241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** \"Scaling Instruction-Finetuned Language Models\"\n**Authors:** Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, and 28 others\n**Year:** 2022\n**Venue:** arXiv (Cornell University)\n**DOI:** https://doi.org/10.48550/arxiv.2210.11416\n\n## Result 2\n**Title:** \"Toward expert-level medical question answering with large language models\"\n**Authors:** K. K. Singhal, Tao Tu, Juraj Gottweis, Rory Sayres, Ellery Wulczyn, and 34 others\n**Year:** 2025\n**Venue:** Nature Medicine\n**DOI:** https://doi.org/10.1038/s41591-024-03423-7\n\n## Result 3\n**Title:** \"Toward Causal Representation Learning\"\n**Authors:** Bernhard Schölkopf, Francesco Locatello, Stefan Bauer, Nan Rosemary Ke, Nal Kalchbrenner, Anirudh Goyal, Yoshua Bengio\n**Year:** 2021\n**Venue:** Proceedings of the IEEE\n**DOI:** https://doi.org/10.1109/jproc.2021.3058954"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 6238
+          },
+          "id": "event-006657"
+        },
+        {
+          "source_line": 6658,
+          "timestamp": "2026-05-26T10:18:08.597543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2604.12843",
+              "prompt": "Extract paper title, first 5 authors, year/date of submission, and any venue information"
+            }
+          },
+          "id": "event-006658"
+        },
+        {
+          "source_line": 6659,
+          "timestamp": "2026-05-26T10:18:09.300841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Research Results Summary\n\n## Result 1\n**Title:** \"A comprehensive survey on support vector machine classification: Applications, challenges and trends\"\n\n**Authors:** Jair Cervantes, Farid García-Lamont, Lisbeth Rodríguez-Mazahua, Asdrúbal López-Chau\n\n**Year:** 2020\n\n**Venue:** Neurocomputing\n\n**DOI:** https://doi.org/10.1016/j.neucom.2019.10.118\n\n---\n\n## Result 2\n**Title:** \"T2I-Adapter: Learning Adapters to Dig Out More Controllable Ability for Text-to-Image Diffusion Models\"\n\n**Authors:** Chong Mou, Xintao Wang, Liangbin Xie, Yanze Wu, Jian Zhang, Zhongang Qi, Ying Shan\n\n**Year:** 2024\n\n**Venue:** Proceedings of the AAAI Conference on Artificial Intelligence\n\n**DOI:** https://doi.org/10.1609/aaai.v38i5.28226\n\n---\n\n## Result 3\n**Title:** \"A Survey of Large Language Models\"\n\n**Authors:** Wayne Xin Zhao, Kun Zhou, Junyi Li, Tianyi Tang, and 19 additional co-authors\n\n**Year:** 2026\n\n**Venue:** Frontiers of Computer Science\n\n**DOI:** https://doi.org/10.1007/s11704-026-60308-3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "elapsed_ms": 6337
+          },
+          "id": "event-006659"
+        },
+        {
+          "source_line": 6660,
+          "timestamp": "2026-05-26T10:18:09.502161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2411.03923",
+              "prompt": "Extract: paper title, authors list, submission date/year, and any venue/conference information"
+            }
+          },
+          "id": "event-006660"
+        }
+      ]
+    }
+  ]
+}

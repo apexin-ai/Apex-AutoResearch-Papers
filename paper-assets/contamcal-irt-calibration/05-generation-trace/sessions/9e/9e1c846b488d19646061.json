@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e1c846b488d19646061",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis olmo2 rerun bias",
+  "task_key": "worker_analysis_olmo2-rerun-bias_20260522T235724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_olmo2-rerun-bias_20260522T235724_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "3dfaaf72ded8ac5db5e37fce1fa77903c3a8c7a3ffc8ca1499fd7f75a899143a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册 (`art_20260523_909504`)。\n\n核心结论：\n\n- **ARC 5/5 dosage 0.00pp 偏差** — MCQ 代码、adapter 加载、推理均可复现\n- **MMLU d025/d100 ~1.6pp 偏差** — 最可能来源是原始 eval 与 rerun 的硬件环境差异导致的浮点非确定性（ARC 1172 items 完美复现 vs MMLU 14042 items 累积偏移）\n- **偏差 (1.6pp) < 跨 seed 变异范围 (3.76pp)** — 在噪声带内\n- **Pattern classification 不变** — OLMo-2 两套值下均为 Benefit，不影响任何论文 claim\n- Appendix 一句话声明已写好，建议主表使用 rerun 值（已用于 bootstrap CI）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-olmo2-rerun-bias.md"
+}

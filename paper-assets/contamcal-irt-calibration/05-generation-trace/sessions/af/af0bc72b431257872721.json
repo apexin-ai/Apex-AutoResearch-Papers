@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af0bc72b431257872721",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp008 eval check",
+  "task_key": "worker_ops_exp008_eval_check_20260517T124308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp008_eval_check_20260517T124308_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "7af0ada6f8c9993095f46ea82cc5b0b04b9204fef983596ed6c55d0ccf773fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No cron jobs in this session. The cron was likely created in a previous session and has already been cleaned up.\n\n## 结果\n- 状态: **success**\n- GSM8K accuracy: **0.163** (215/1319)\n- ARC-Challenge accuracy: **0.228** (267/1172)\n- 输出文件: `eval_results.json`, `correctness_matrix.json`, `item_responses.json`, `.done` sentinel 均已生成\n- Registry 已更新为 DONE/success，metrics 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp008-eval-check.md"
+}

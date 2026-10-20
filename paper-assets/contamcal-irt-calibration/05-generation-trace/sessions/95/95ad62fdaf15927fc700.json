@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95ad62fdaf15927fc700",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 gsm8k intermediate dosage",
+  "task_key": "worker_ops_cqa1-gsm8k-intermediate-dosage_20260519T222459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-gsm8k-intermediate-dosage_20260519T222459_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "67320ea4b8d1f8fc427925abcf5c7fb2c19483378039075722728d2592d807f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d005 eval 正在推进中（165 batches, ~10s/batch, 预计 ~28min）。bitsandbytes 警告如预期不影响运行。\n\n**执行摘要：**\n\n| 项目 | 状态 |\n|------|------|\n| d005/d025/d050 adapters | 全部存在，alpha=32 ✓ |\n| evaluate.py md5 | 001a9bc2... 匹配 ✓ |\n| GPU 0 | 已占用，d005 eval 进行中（~10s/batch × 165 batches） |\n| 实验注册 | `gsm8k_qwen7b_s42_intermediate_cqa1` QUEUED → RUNNING |\n| 预计完成 | ~90min（3 dosages × ~30min） |\n| d000+d100 SCP | cqa1→westd 不通，需从 westd 反向拉取 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-gsm8k-intermediate-dosage.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1588a048b40b5cdd775",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sft qwen14b s0 sweep",
+  "task_key": "worker_analysis_sft_qwen14b_s0_sweep_20260521T020512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_qwen14b_s0_sweep_20260521T020512_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "5ea02f0603973c0773449ec0933109d735a8926d23f61b2e6fa557612e5f37c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n## sft_qwen14b_s0_sweep 结果\n\n| Dosage | 训练 | Train Loss | MMLU | Δ from d000 |\n|--------|------|-----------|------|-------------|\n| d000 | ✅ | 0.9095 | 68.84% | — |\n| d005 | ✅ | 0.9134 | 68.86% | +0.02pp |\n| d025 | ✅ | 0.9261 | 65.05% | -3.79pp |\n| d050 | ❌ | — | — | — |\n| d100 | ✅ | 0.9695 | 43.85% | -24.99pp |\n\n**d050 崩溃原因**: `RuntimeError: Pin memory thread exited unexpectedly`，在 52%（step 1902/3642）处中断。Adapter 目录为空，无输出。这是已知的同一 bug 模式。\n\n**关键发现**: s0 的 MMLU 崩溃幅度（d100: -24.99pp）远超 s42（-9.37pp），说明 seed 间方差很大，triple-seed CI 确实必要。\n\n**状态**: Registry 已更新为 DONE/negative。报告已注册为 artifact。**d050 需要单独重训。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-qwen14b-s0-sweep.md"
+}

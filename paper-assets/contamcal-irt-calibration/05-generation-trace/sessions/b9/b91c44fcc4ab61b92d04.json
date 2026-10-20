@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b91c44fcc4ab61b92d04",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check mmlu paraphrase",
+  "task_key": "worker_ssh_check-mmlu-paraphrase_20260513T235148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-mmlu-paraphrase_20260513T235148_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "f340ee60b37baeed9490cc05f9b83bc141f62db7077cf865937dc32f750997cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### mmlu_paraphrases.json — 已就绪\n\n| 项目 | 值 |\n|------|-----|\n| 路径 | `/root/autodl-tmp/exp001/paraphrases/mmlu_paraphrases.json` |\n| 大小 | 27.3 MB |\n| 行数 | 407,015 |\n| 条目数 | 14,042（JSON array，每条含 `index`, `benchmark`, `original`, `paraphrase_raw`, `paraphrase_text`, `similarity`, `bleu`, `passed_qc`） |\n| 生成时间 | 2026-05-14 06:57 |\n| 完整性 | JSON 正常闭合（末尾 `]`），文件完整 |\n\n每条含 `question` 出现约 41,059 次（原题 + paraphrase 各含 question 字段 + paraphrase_raw 内嵌），结构正常。MMLU 标准测试集 14,042 题，全部覆盖。\n\n### dosage 文件现状\n\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `sft_dosage_000.jsonl` | 50,000 | 88 MB |\n| `sft_dosage_005.jsonl` | 50,826 | 89 MB |\n| `sft_dosage_025.jsonl` | 54,133 | 90 MB |\n| `sft_dosage_050.jsonl` | 58,266 | 92 MB |\n| `sft_dosage_100.jsonl` | 66,533 | 96 MB |\n\n另有 12 个 `contamination_labels_*.json` 文件（mmlu/arc_challenge/gsm8k × 4 dosage levels）和 `data_meta.json`。数据全部就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-mmlu-paraphrase.md"
+}

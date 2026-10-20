@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2bd635cf69cc0af80d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval metrics compilation",
+  "task_key": "worker_analysis_eval-metrics-compilation_20260515T182150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-metrics-compilation_20260515T182150_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "fc597f918352087738eb1fb7c1be3bb7d1e6b2a0f9584a1bbd8b74097c55dfce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "矩阵已写入 memory.md。核心结论：\n\n**N=19（alpha=32 strict） ≥ 16 ✅，可以开始 pooled IRT fitting。**\n\n当前填充情况：\n- **1.5B aligned**: 8/8 全满\n- **1.5B para_aligned**: 4/8（s123 全部缺失，仅需跑 eval）\n- **3B aligned (α32)**: 4/8 done + 1 running\n- **3B para_aligned (α32)**: 3/8 done + 1 running\n\n最优先补缺（不需等 SFT，只跑 eval）：\n1. **1.5B s123 para_aligned** × 4 cells — 补齐后 1.5B 单独贡献 16 models\n2. **3B d000_s123 para_aligned** + **3B d005_s42 para_aligned** — 已有 α32 SFT\n\nDose-response 关键趋势：\n- 1.5B: MC benchmarks (MMLU/GSM8K/ARC) 对 contamination 完全不敏感 (<1pp)，仅 HumanEval 有 +11-18pp dose-response\n- 3B: GSM8K 极敏感 (+34pp @ 25% dosage)，MMLU/ARC 不敏感。**model scale 调节 contamination 表达强度**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-metrics-compilation.md"
+}

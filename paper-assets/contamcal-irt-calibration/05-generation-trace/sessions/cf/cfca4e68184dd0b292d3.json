@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfca4e68184dd0b292d3",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778888230.md",
+  "task_key": "loop_12_1778888230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778888230.md",
+    "occurrence": 1,
+    "bytes": 4509,
+    "sha256": "1dd0446c2bdb7d342af03c60ace0c79be01603cc5c745a2e83accecae9b862b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T23:17:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 @ cqa1-21977，6 张 RTX 4090D，全部分配给本项目\n- s42 系列 d000+d005 用了 lr=2e-4（非标准），与 d025/d100 的 lr=5e-5 不可混用引用（D074/D075）。s123 系列统一 lr=5e-5 是干净的\n- alpha 混用: s42 统一 alpha=32（D050），s123 alpha=16 已接受但不可与 s42 alpha=32 混合引用（D055）\n- d000_s42 旧 checkpoint 及其下游信号已判定不可用（D076/D077），不要用它做 IRT 或 eval\n- submit_training_job 的 command 必须 `bash -c \"...\"` 包裹（tmux 默认 sh，不识别 source/conda activate）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977，工作目录 /root/contamcal-irt-calibration\n- Python: /root/miniconda3/bin/python（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型缓存: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B（及 0.5B/1.5B）\n- 数据: /root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- Checkpoints: /root/autodl-tmp/exp001/checkpoints/\n- Eval results: /root/autodl-tmp/exp001/eval_results/\n- Signals: /root/autodl-tmp/exp002/signals/\n- 活跃进程:\n  - cuda:0: exp_001_sft_3B_d100_s123_a32_v2 (PID 594489, tmux session)\n  - cuda:1: exp_001_sft_3B_d100_s42_a32_v3 (PID 628663, 刚提交的重启)\n  - cuda:2: exp_001_eval_3B_d005_s123_gsm8k (PID 623480)\n  - cuda:4: exp_002_signals_3B_v5 (PID 623826)\n  - cuda:5: exp_001_sft_d025_3B_v3 (PID 589763)\n  - cuda:3: 空闲，待 signals_v6 worker 完成后提交\n  - CPU: exp_004_sim_sweep_v7 运行中\n- Cron 监控: 上述 RUNNING 实验均已注册 cron\n\n### 3. 📊 当前状态\n刚处理 exp_001_sft_3B_d100_s42_a32_v2 的 SIGTERM 失败回调。诊断: exit code 143（外部 kill）在 step 3030/4159 (73%)，非 OOM 非代码错误。已提交 v3 到 cuda:1 从头训练，registry + cron 已更新，已向 Director 汇报。\n\nRUNNING 实验:\n- exp_001_sft_3B_d100_s123_a32_v2 (cuda:0): 3B d100 s123 alpha=32 SFT\n- exp_001_sft_3B_d100_s42_a32_v3 (cuda:1): 刚提交，v2 SIGTERM 后重启\n- exp_001_eval_3B_d005_s123_gsm8k (cuda:2): GSM8K 单 benchmark 补跑\n- exp_002_signals_3B_v5 (cuda:4): d025+d100 信号计算\n- exp_001_sft_d025_3B_v3 (cuda:5): 3B d025 s42 alpha=32 SFT\n- exp_004_sim_sweep_v7 (CPU): identifiability boundary 模拟\n\n等待中:\n- Worker 池满 (6/6): ops:check-d000-s42-lr / code:exp_002_signals_3B_v6 ×2 / knowledge:plan-registry-refresh / code:irt_lr_filter / ops:d077_orphan_cleanup\n- cuda:3 等 signals_v6 worker 完成后提交\n- SIGTERM 根因调查需等 Worker 释放\n\n### 4. 📋 待办（条件触发式）\n- signals_v6 code worker 完成 → 立即在 cuda:3 提交 exp_002_signals_3B_v6\n- cuda:2 eval 完成 → 释放给 exp-002 3B d005 signals（或其他待办 eval）\n- exp_001_sft_d025_3B_v3 (cuda:5) 完成 → eval d025 s42 para_aligned\n- exp_001_sft_3B_d100_s123_a32_v2 (cuda:0) 完成 → eval d100 s123 aligned/para_aligned\n- 3B s123 eval matrix 全完成（差 d005 aligned + d100 para_aligned）→ 编译 N≥16 pooled IRT 输入\n- 3B signals 全完成 → RRF 聚合 (exp-003, CPU) → per-benchmark exposure scores\n- sim_sweep_v7 完成 → 若成功则 identifiability boundary 确认；若失败则 v1-v7 连续失败需根因调查\n- Worker 释放 → spawn 诊断 worker 调查 v2 SIGTERM 根因（可能与 D078/D079 orphan cleanup 相关）\n\n### 5. 🎯 战略上下文\n- 投稿目标: EMNLP 2026 ARR May 25（距今 10 天）\n- Critical path: 3B signals 全完成 → RRF → pooled IRT → baselines → paper\n- Claim 3 (measurement error model) 已降级为 appendix negative（D072/D073，noise_prop_v4 negative）\n- PPP=0 即使 oracle 也为 0，per-benchmark IRT 是修复路径（D053/D059）\n- Coverage collapse 确认为 model misspecification（D056），per-benchmark γ_k 是必要修复\n- s42 lr confound 是重大发现（D074）：d000+d005 lr=2e-4 vs d025/d100 lr=5e-5，导致 d000_s42/d005_s42 不可用于 dose-response，需 lr=5e-5 重训（d000_v3 已提交但也失败了，需关注）\n- 易错点: (1) 不要混用 s42 alpha=32 和 s123 alpha=16 的结果 (2) d000_s42 旧系列（lr=2e-4）不可用，只有 d000_v3（lr=5e-5, alpha=32）才是有效的 (3) Worker 池经常满，提交前先 list_workers 检查 (4) submit_training_job 后不要用 update_registry(field=\"spec\") 覆盖——会丢失 submit 自动写入的 command/server/gpu/pid 字段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778888230.md"
+}

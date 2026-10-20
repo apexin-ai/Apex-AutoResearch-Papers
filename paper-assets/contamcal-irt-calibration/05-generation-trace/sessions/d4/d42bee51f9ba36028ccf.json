@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d42bee51f9ba36028ccf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cross family pooled irt refit",
+  "task_key": "worker_ops_cross_family_pooled_irt_refit_20260517T000103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cross_family_pooled_irt_refit_20260517T000103_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "98eb8baeb4ea734e6117d7b9a33865dcda90d7c3c5aff78f37f8fafb4f842e86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\nCross-family pooled IRT 完成。\n\n### 核心发现：ARC 污染信号具有 family-specificity\n\n| Benchmark | Pool | N | γ | 95% CI | PPP | cal_MAE |\n|-----------|------|---|---|--------|-----|---------|\n| **ARC** | Qwen-only | 16 | **0.727** | [0.02, 1.44] | 0.003 | 0.020 |\n| **ARC** | Qwen+Llama | 20 | **0.002** | [-0.57, 0.60] | 0.449 | 0.015 |\n| GSM8K | Qwen-only | 24 | 0.064 | [-0.36, 0.49] | 0.541 | 0.006 |\n| GSM8K | Qwen+Llama | 28 | -0.110 | [-0.52, 0.28] | 0.832 | 0.008 |\n\n### 关键结论\n\n1. **ARC family-specificity 强烈确认**：Qwen-only γ=0.73 (CI excludes zero)，加入 4 个 Llama respondents 后 γ→0.00 (CI includes zero)。Δγ = -0.725。\n2. **GSM8K**：两个 pool 的 γ 都接近零，GSM8K 的 RRF 信号本身不足以支撑 contamination 效应估计。\n3. **诊断良好**：所有 fit 无 divergences，Rhat < 1.01，ESS > 1300。\n4. **解读**：Llama 模型的 RRF exposure scores 在各 dosage 间无明显区分（~0.15-0.18），说明 RRF 信号是 Qwen-specific 的。当 IRT 模型看到 Llama 有相似 exposure 但无对应 performance boost 时，global γ 被拉向零。\n\n### 产出文件\n- 结果 JSON: `/root/autodl-tmp/exp006/results_cross_family_irt_v2/pooled_rrf_irt_results.json`\n- Combined RRF: `/root/autodl-tmp/exp003/rrf_cross_family_qwen_llama/exposure_scores.json` (29 models)\n- Qwen-only baseline: `/root/autodl-tmp/exp006/results_pooled_irt_qwen_n24/pooled_rrf_irt_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cross-family-pooled-irt-refit.md"
+}

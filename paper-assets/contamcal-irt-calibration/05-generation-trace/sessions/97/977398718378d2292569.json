@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "977398718378d2292569",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 d100 sft done",
+  "task_key": "worker_analysis_falcon3_d100_sft_done_20260522T124457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3_d100_sft_done_20260522T124457_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "00fd4743705c57ccd833ba67838dd1aaacabc80f993a6fd2497bd15552f8df27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练结果\n- 状态: **成功** (epoch 1.0, 正常结束)\n- 总 steps: **4159 / 4159** (checkpoint-4159 存在，415 条 loss 日志 × 每 10 步一条 = 4150 logged steps，完整)\n- 最终 train loss: **1.0672** (train_loss 平均值)\n- 最后一条 loss: 1.1171 (step ~4150), 倒数第二条: 1.0357 (step ~4140)\n- Checkpoint 路径: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter/`\n- adapter_model.safetensors: **169 MB**\n- lora_alpha: 32, r: 16, lr: 5e-5 (符合标准化配置)\n- 训练时长: **4.87 小时** (17527 秒)\n- 训练样本数: 66533, throughput: 3.80 samples/sec, 0.237 steps/sec\n- mean_token_accuracy: 0.767\n- W&B run ID: **未记录** (日志中无 wandb 痕迹，训练未开启 W&B logging)\n\n## 异常\n- W&B 未启用：训练日志中无任何 wandb 相关输出，此次训练未上报 W&B metrics\n- 无其他异常，训练正常完成，checkpoint 完整（含 final adapter + checkpoint-4159 with optimizer/scheduler states）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-d100-sft-done.md"
+}

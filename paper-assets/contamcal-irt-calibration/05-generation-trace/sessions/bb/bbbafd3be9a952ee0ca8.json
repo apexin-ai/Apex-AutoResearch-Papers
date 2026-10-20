@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbbafd3be9a952ee0ca8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd cuda2 gsm8k launch",
+  "task_key": "worker_ops_westd-cuda2-gsm8k-launch_20260519T230509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cuda2-gsm8k-launch_20260519T230509_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "39bb7f5afb17bc126027fcc2c3765a4fb2beedc227d5a158e0dacf837039a023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**OLMo-2 s42 GSM8K eval 已在 westd cuda:2 运行中**\n- PID 226152, 14.5GB VRAM 已分配, GPU-Util 9% (模型加载中)\n- 脚本含 C009 md5 校验 + CUDA_VISIBLE_DEVICES=2, 跑 d000 + d100\n- 日志: `~/runs/contamcal-irt-calibration/gsm8k_olmo2_s42_westd.log`\n\n**Qwen-7B s123 GSM8K 就绪**: 5/5 dosage checkpoints (d000/d005/d025/d050/d100) 均在 westd。OLMo-2 完成后可直接接上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda2-gsm8k-launch.md"
+}

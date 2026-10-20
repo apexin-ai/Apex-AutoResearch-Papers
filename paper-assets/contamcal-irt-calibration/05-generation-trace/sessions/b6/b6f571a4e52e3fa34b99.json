@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6f571a4e52e3fa34b99",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu eval status check",
+  "task_key": "worker_ops_gpu-eval-status-check_20260514T114145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-eval-status-check_20260514T114145_result.json",
+    "occurrence": 1,
+    "bytes": 2535,
+    "sha256": "a9a08666b66580b0fd7bc3ae29b03eab23d4dd0de043368cfc50c58b2f429679"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the summary:\n\n---\n\n## GPU 状态总览 (2026-05-14 19:42 UTC)\n\n| GPU | 实验 | PID | VRAM | 进度 | ETA |\n|-----|------|-----|------|------|-----|\n| 0 | exp-002 signals 0.5B | 353390 | 2.1/24.6 GB | Task 4/9 (d005/mmlu)，task 1-3 标记 FAIL | ~未知 |\n| 1 | 1.5B d000 aligned eval | 336765 | 5.9/24.6 GB | GSM8K 1308/1319 (99%) | GSM8K ~1min，之后 ARC+HumanEval ~30-45min |\n| 2 | **0.5B d005 aligned eval (NEW)** | **356787** | 3.7/24.6 GB | 刚启动 26min | ~1h |\n| 3 | 3B d100 SFT | 319555 | 13.3/24.6 GB | **3846/4159 (92%)** | **~22min** |\n| 4 | 3B d005 SFT | 335351 | 21.8/24.6 GB | 2170/3177 (68%) | ~65min |\n| 5 | 3B d000 aligned eval | 342940 | 9.0/24.6 GB | GSM8K 289/1319 (22%) | GSM8K ~86min，之后 ARC+HumanEval |\n\n---\n\n## 已完成：0.5B d000 aligned eval (PID 354435)\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | **39.79%** (5587/14042) |\n| GSM8K | **36.92%** |\n| ARC Challenge | **46.93%** |\n| HumanEval | **pass@1 = 10.98%** |\n\nGPU 2 已自动接续启动 **0.5B d005 aligned eval** (PID 356787)。\n\n---\n\n## exp-002 signals (GPU 0) — 有问题\n\nBatch runner 日志显示 task 1-3 (d000 的 mmlu/gsm8k/arc_challenge) 全部标记 **FAIL**，stderr 中出现模型类型列表输出（可能是 `selfcritique` signal 的兼容性问题）。但部分 signal 文件已成功写入：\n\n**d000 已有文件:**\n- `signal_embedding_mmlu.json` (6.1MB)\n- `signal_embedding_gsm8k.json` (568KB)\n- `signal_embedding_arc_challenge.json` (515KB)\n- `signal_minkpp_mmlu.json` (2.1MB)\n- 缺失: minkpp_{gsm8k,arc_challenge}, selfcritique_{mmlu,gsm8k,arc_challenge}\n\n**d005 已有文件:**\n- `signal_embedding_mmlu.json` (6.1MB)\n- 其余待计算\n\n当前 PID 353390 仍在运行 d000/mmlu 的 compute_signals.py，说明可能有子任务仍在计算或重试。\n\n---\n\n## 训练进度\n\n- **3B d100 SFT** (GPU 3): epoch 0.83, loss ~1.13, 92% 完成，**~22 min 完成**\n- **3B d005 SFT** (GPU 4): epoch 0.60, loss ~1.12, 68% 完成，~65 min\n- 3B d100 的 checkpoint 目录还是空的（未保存 lora_adapter），3B d005 的 lora_adapter 目录已创建但为空\n\n---\n\n## 关键关注点\n\n1. **3B d100 SFT 即将完成** (~22min)，完成后 GPU 3 空闲，可安排 3B d100 eval\n2. **exp-002 signals selfcritique 可能有 bug**，embedding 和 minkpp 能产出但 selfcritique 导致 task 标记 FAIL，需要排查\n3. **1.5B aligned eval 接近完成** GSM8K (99%)，但还有 ARC+HumanEval 要跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-eval-status-check.md"
+}

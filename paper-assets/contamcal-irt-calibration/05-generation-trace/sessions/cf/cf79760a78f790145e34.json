@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf79760a78f790145e34",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code llama eval restart",
+  "task_key": "worker_code_llama_eval_restart_20260516T150044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama_eval_restart_20260516T150044_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "eaa18827ff10efce4b62c14afa8c1aca0825cd89aad682ec2f132dcbe187136b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交成功。\n\n## 报告\n\n**GPU 状态：**\n| GPU | 状态 | 显存占用 | 用途 |\n|-----|------|----------|------|\n| 0 | 在用 | 7213/24564 MiB | python 进程 |\n| 1 | ~~空闲~~ → 已分配 | 0 → eval | Llama eval v2 |\n| 2 | 在用 | 1473/24564 MiB | python3 进程 |\n| 3 | 空闲 | 0/24564 MiB | 可用 |\n| 4 | 在用 | 8313/24564 MiB | python3 (85% util) |\n| 5 | 在用 | 3627/24564 MiB | python3 (54% util) |\n\n**已提交：**\n- exp_id: `exp_001_eval_llama32_3B_d000_s42_v2`\n- GPU: cuda:1\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged` (lora_alpha=32 ✓)\n- 模式: aligned (mc-format aligned)\n- Benchmarks: mmlu, gsm8k, arc_challenge, humaneval\n- 日志: `~/runs/contamcal-irt-calibration/exp_001_eval_llama32_3B_d000_s42_v2.log`\n\n**Registry 中 RUNNING 实验（4个）：**\n1. exp_001_eval_05B_instruct\n2. exp_001_eval_15B_instruct\n3. exp_006_pooled_irt_rrf_n25_v2\n4. exp_006_mmlu_domain_gamma_n24_v4\n\n**剩余空闲 GPU：** cuda:3 可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-eval-restart.md"
+}

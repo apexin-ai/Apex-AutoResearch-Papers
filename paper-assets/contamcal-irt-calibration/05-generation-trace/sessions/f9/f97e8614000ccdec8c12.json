@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f97e8614000ccdec8c12",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops disk cleanup merge",
+  "task_key": "worker_ops_disk-cleanup-merge_20260516T175215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-merge_20260516T175215_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "c95ec35196341e85b7c7e8edcfd147f99f61f5e0e341074a287b870a1df34aee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出汇报\n\n| 项目 | 结果 |\n|------|------|\n| (a) 释放空间 | **~43GB**（5.1GB → 49GB，merge 后净余 43GB） |\n| (b) d005 merge | **成功** — 2 个 safetensors (4.7G + 1.4G = 6.1G)，含 tokenizer |\n| (c) 当前剩余 | **43GB 可用**（≥20GB for d100 ✓） |\n\n清理明细：\n- alpha=16 checkpoints (Qwen2.5-3B_d100/d025/d100_s123 + v2_s42/v2_s123): ~3GB\n- starcoder2-3b cache: 12GB\n- Qwen3-8B: 16GB\n- Qwen3-14B-AWQ: 9.4GB\n- open_hermes-2.5 dataset: 1.7GB\n- 旧日志 + /tmp CSVs + d005 残留 merged/: ~1GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-merge.md"
+}

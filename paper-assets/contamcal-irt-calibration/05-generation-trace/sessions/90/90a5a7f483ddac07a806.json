@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90a5a7f483ddac07a806",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd post restart recovery",
+  "task_key": "worker_ops_westd-post-restart-recovery_20260520T030357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-post-restart-recovery_20260520T030357_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "c6f1c7d85b2699eccb797ef66260cda411500ce96628fb7b17bc02012d75545b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "lora_alpha=32，符合 C006。\n\n```\nwestd-29999 服务器状态:\n  可达: 是\n  uptime: 222 天（无重启）\n  GPU 状态: 1/4 空闲（GPU 0），3/4 占用\n  磁盘: root 5% / data 77%\n  缓存 symlink: 正常 → /root/autodl-tmp/.cache_migrated\n\n实验恢复评估:\n  Phi-4 s123 GSM8K eval:    ✅ 结果完整，无需重跑（d000+d100 均有 .done 标记）\n  Qwen-14B d100_s123 retrain: 🔄 正在运行，1400/4159 (34%)，ETA ~2h16m\n  Gemma-2 d100_s123 retrain:  🔄 正在运行，1437/4159 (35%)，ETA ~1h54m\n  OLMo-2 s0 sweep:           🔄 d000 已完成，d005 正在训练 289/3177 (9%)，d025/d050/d100 待跑\n\n需要重启的任务: 无\n```\n\n03:02 UTC 的 4 个 failed 标记是**误报**。实验已被重启（tmux 会话创建于今天 09:14-09:55 UTC），目前全部正常运行。GPU 0 空闲可用（Phi-4 eval 已完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-post-restart-recovery.md"
+}

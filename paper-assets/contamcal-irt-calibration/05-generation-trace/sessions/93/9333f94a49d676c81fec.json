@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9333f94a49d676c81fec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup false exit files",
+  "task_key": "worker_ops_cleanup-false-exit-files_20260515T135717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-false-exit-files_20260515T135717_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "aa4d4f0be378bd5b6397642abca7bb5555155d5e700b18afc4256da04309f757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Exit files**：两个假阳性文件已删除（`exp_001_eval_15B_d025_s123.exit`、`exp_001_eval_15B_d005_s123.exit`）\n- **Eval 进程**：PID 566224 和 566311 均正常运行（状态 `Rl`，已运行约 15 分钟），未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-false-exit-files.md"
+}

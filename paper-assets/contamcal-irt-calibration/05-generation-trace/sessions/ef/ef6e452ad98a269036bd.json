@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef6e452ad98a269036bd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit cross seed volume appendix",
+  "task_key": "worker_audit_cross-seed-volume-appendix_20260523T102207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_cross-seed-volume-appendix_20260523T102207_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "fc6ad8fa206bced9c6697c182b3671a30679f1a4e9b7a34144ab68e8f2cdd9ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告写入 `artifacts/data_audit_part3_crossseed_volume.md`。\n\n**结果：未发现数据不一致。** 核心发现：\n\n- **Volume control**：9 个原始精度值中 7 个在 cqa1 上直接验证一致，分解比例（45/55%、43/57%、53/47%）重新计算全部正确。Appendix 表与主文完全一致。\n- **Cross-seed table**：Qwen-7B 和 Falcon3 从原始 JSON 逐项验证通过（6 个 seed×dosage 组合全部精确匹配）；Phi-4 从 westd registry 验证通过。方向一致性 5/6 和严格符号一致性 3/6 均可从表中复现。\n- **tab:gsm8k_dose**：Qwen-7B 5 个 dosage 的 GSM8K 精度全部精确匹配原始文件。其余模型 registry 值一致。\n- **tab:gsm8k_transfer**：6 个模型的 MMLU/GSM8K delta 均从源数据复现一致。\n\n**3 个低优先级注意项**：\n1. Falcon3 d000 MMLU/ARC 原始 JSON 不在 cqa1 上（目录为空），58.77%/81.57% 来自 westd\n2. Qwen-14B GSM8K d050 (81.05%) registry 显示 PREPARING 状态，建议确认 westd 上的原始文件\n3. Phi-4 在 tab:gsm8k_dose (+1.14pp, s0) 和 tab:gsm8k_transfer (−0.5pp, s123) 使用不同 seed 但后者缺少 footnote 标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-cross-seed-volume-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81ec8926ef33d87c61f7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check exp004 v3 status",
+  "task_key": "worker_ops_check-exp004-v3-status_20260515T001202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp004-v3-status_20260515T001202_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "89a30114c44c48c58b4140c9bbdd6e77b67198558926731a646bfa094081b7e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认并更新 registry。\n\n**exp-004 v3 (PID 599562) 状态：异常退出（磁盘配额超限）**\n\n| 指标 | 值 |\n|------|-----|\n| 失败原因 | `Errno 122: Disk quota exceeded`（cmdstanpy MCMC 临时文件撑满 /tmp） |\n| 崩溃位置 | 第 10/12 个 condition (`auc0.65_n50_prior1.0_binary`) |\n| 结果文件 | 11/12 个 config 已保存，缺失 `auc0.65_n100_prior1.0_binary` |\n| 成功 runs | **57/120**（47.5%） |\n| 失败 runs | 50 runs 因磁盘满失败，13 runs 未执行 |\n\nRegistry 已更新为 `DONE/failed`，failure_reason 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp004-v3-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6caebdc2cff2a42dff2d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp random 300 tau baseline",
+  "task_key": "worker_exp_random-300-tau-baseline_20260517T215924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_random-300-tau-baseline_20260517T215924_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "32a3e09f08e212fcf6d9f4b1e5e0f707d1306186ed883ba507f3a7a5f5ba43fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果\n\n| 条件 | τ (Kendall) | p-value |\n|------|------------|---------|\n| **Random 300 items** | **0.058 ± 0.063** | 全部 > 0.38（不显著） |\n| **RRF 300 items** | **0.731** | < 0.001 |\n\n### 5个种子的详细结果\n\n| Seed | τ_cal | p | τ_raw | Rhat | ESS | Time |\n|------|-------|---|-------|------|-----|------|\n| 42 | -0.019 | 0.917 | -0.013 | 1.007 | 1347 | 51s |\n| 123 | 0.105 | 0.555 | 0.144 | 1.007 | 1479 | 51s |\n| 456 | 0.154 | 0.385 | 0.213 | 1.006 | 1382 | 49s |\n| 789 | 0.043 | 0.808 | 0.056 | 1.006 | 1550 | 51s |\n| 1024 | 0.006 | 0.972 | -0.038 | 1.007 | 1466 | 50s |\n\n### 结论\n\nRandom 300 items τ ≈ 0（与随机排序无异），RRF 300 items τ = 0.73。RRF 选择效果是压倒性的，τ 提升约 12.6 倍。这直接证明 RRF 信号选择的有效性——不是因为用了更少的 items，而是因为选对了 items。\n\n**注意**：实验加载了 N=20 模型（含 4 个重复的 3B alpha=16 s42 模型），unified_baselines_n16 使用 N=16。结论不受影响。\n\n数据保存在 `cqa1-21977:/root/autodl-tmp/exp006/random_300_tau_baseline.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-random-300-tau-baseline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfdd4dacff6f617fefcb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sft retry gpu0 gpu1",
+  "task_key": "worker_ops_sft-retry-gpu0-gpu1_20260515T110259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-retry-gpu0-gpu1_20260515T110259_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "ec046d6eba66ae5ae31a5ddfd509b1cc812822e46141899ef5512e58a0e07a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 重试已提交并正常训练中：\n\n| 实验 | exp_id | GPU | PID | 步数 | 预计时长 |\n|------|--------|-----|-----|------|----------|\n| 1.5B d025 s123 | `exp_001_sft_15B_d025_s123_v2` | cuda:0 | 549516 | 0/3384 | ~1h55m |\n| 1.5B d005 s123 | `exp_001_sft_15B_d005_s123_v2` | cuda:1 | 549858 | 0/3177 | ~1h50m |\n\n日志路径：`/tmp/sft_15B_d025_s123_v2.log`、`/tmp/sft_15B_d005_s123_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-retry-gpu0-gpu1.md"
+}

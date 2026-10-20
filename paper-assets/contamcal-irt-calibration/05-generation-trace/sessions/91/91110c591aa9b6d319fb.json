@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91110c591aa9b6d319fb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify 3B d100 eval start",
+  "task_key": "worker_ops_verify-3B-d100-eval-start_20260514T121028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-3B-d100-eval-start_20260514T121028_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "37af49e7e39c053e12171a28fd05f7276610b83482ce0ebde7e7c51546f166c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Auto-relay 成功触发，eval 正常运行。\n\n**汇总**：\n\n| 项目 | 状态 |\n|------|------|\n| Relay 脚本 | `run_eval_3B_d100_auto.sh` (PID 361360) 19:55 启动，成功等待 SFT 完成 |\n| Eval 进程 | PID **362942**，20:06 启动，GPU 3，94% 利用率 |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter/` ✓ 存在，adapter_model.safetensors 114MB |\n| 输出目录 | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_aligned/` ✓ 已创建（尚空，eval 进行中） |\n| 日志 | `/root/runs/contamcal-irt-calibration/eval_3B_d100_aligned.log` ✓ |\n| 当前进度 | MMLU 评估中，~66% (9316/14042)，~37 it/s |\n| bitsandbytes 警告 | `libnvJitLink.so.13` 加载失败，非致命，不影响 eval |\n\n预计 MMLU 剩余约 2 分钟完成，之后还有 gsm8k、arc_challenge、humaneval 三个 benchmark。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-3b-d100-eval-start.md"
+}

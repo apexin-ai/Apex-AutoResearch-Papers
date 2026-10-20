@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "942145f73b7524d9eff0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "viz fig calibration fix",
+  "task_key": "worker_viz_fig_calibration_fix_20260516T214016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_calibration_fix_20260516T214016_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "51296a55a391b734ee0d1621efddfebd0acc302888f524b7fae55e1da6524ea0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**生成结果:**\n\n文件位置: `cqa1-21977:/root/autodl-tmp/artifacts/fig_calibration.{pdf,png}`\n\n**数据 (N=16, 同一批 respondents):**\n\n| Benchmark | Raw MAE | Vanilla 2PL | 2PL+γ |\n|-----------|---------|-------------|--------|\n| MMLU | 0.0155 | 0.0068 | 0.0072 |\n| ARC-C | 0.0338 | 0.0158 | 0.0201 |\n| GSM8K | 0.1694 | 0.0063 | 0.0062 |\n\n**图表特征:**\n- 三组并排条形图 (灰色=raw, 蓝色=vanilla 2PL, 橙色=2PL+γ)\n- 标题: \"IRT-Based Calibration vs Raw Scores\"\n- 每个 bar 顶部有数值标注\n- 无 PASS/FAIL 标签、无 D120 注释、无破折号\n- 专业学术风格，紧凑布局\n\n**Caption 建议:** Calibration improvement primarily comes from IRT ability estimation framework itself (raw → 2PL). The contamination-aware γ parameter provides diagnostic value for identifying domain-differential effects rather than improving calibration accuracy (vanilla 2PL ≈ 2PL+γ across all benchmarks)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-calibration-fix.md"
+}

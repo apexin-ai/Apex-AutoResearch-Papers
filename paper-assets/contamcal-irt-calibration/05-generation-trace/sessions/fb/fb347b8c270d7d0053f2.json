@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fb347b8c270d7d0053f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis 15B para aligned batch and simsweep",
+  "task_key": "worker_analysis_15B_para_aligned_batch_and_simsweep_20260515T230421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_15B_para_aligned_batch_and_simsweep_20260515T230421.log",
+    "occurrence": 1,
+    "bytes": 681624,
+    "sha256": "eb8aea7c7284981197b3556e91a3e55a872c1f5afe8e41cb4027243f182e9ed9"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 1,
+      "assistant": 26,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "fb347b8c270d7d0053f2-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "fb347b8c270d7d0053f2-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-15b-para-aligned-batch-and-simsweep.md"
+}

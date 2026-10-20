@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d9ddae8df6df4928d16",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose disk and experiments",
+  "task_key": "worker_diagnose_disk_and_experiments_20260516T210214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_disk_and_experiments_20260516T210214_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "c60e0eeac0ebaeecde877eab1fd8f3b934e4d18e7c0ec28d1accb015ebdd71be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。汇总结果：\n\n---\n\n```\nTASK1_RESULT: {\"disk_freed_gb\": 19, \"disk_available_gb\": 45, \"can_rerun_fisher\": true}\n```\n\n清理明细：\n- `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct` — 15GB（项目不使用7B）\n- HF cache 未使用数据集（SlimOrca, OpenHermes-2.5, SWE-smith）— 3.1GB\n- Arrow datasets 缓存 — 3.5GB\n- `/tmp` 临时文件 — 206MB\n- `__pycache__` + 空壳模型目录 — 少量\n\n---\n\n```\nTASK2_RESULT: {\"actually_succeeded\": true, \"metrics\": {\"mmlu\": 0.4256, \"arc_challenge\": 0.5956, \"gsm8k\": 0.2722, \"humaneval_pass@1\": 0.0122}, \"missing_benchmarks\": []}\n```\n\n4 个 benchmark 结果文件齐全，`.done` sentinel 存在。EXIT_CODE=1 可能由 HumanEval 子进程的非零返回触发（代码执行沙箱常见），但结果数据完整有效。\n\n---\n\n```\nTASK3_RESULT: {\"process_alive\": false, \"root_cause\": \"PID 859360 已死亡，但 ARC/GSM8K signals 实际已全部完成。当前有替代 MMLU session (tmux: signals_llama32_3B_d005_mmlu, PID 842929) 在 cuda:4 运行中\", \"partial_results\": true, \"recommended_action\": \"无需重提交 arc/gsm8k — 已有完整结果(embedding+minkpp+selfcritique+merged)。等待当前 MMLU session 完成即可。\"}\n```\n\nLlama-3.2-3B_d005_s42 signals 当前状态：\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | merged |\n|-----------|:---:|:---:|:---:|:---:|\n| arc_challenge | ✓ | ✓ | ✓ | ✓ |\n| gsm8k | ✓ | ✓ | ✓ | ✓ |\n| mmlu | ✓ | ✓ | 运行中(PID 842929) | 待生成 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-disk-and-experiments.md"
+}

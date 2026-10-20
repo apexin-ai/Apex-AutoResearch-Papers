@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebd2c6cf64db8217761b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu exp002 signals 15B",
+  "task_key": "worker_gpu_exp002_signals_15B_20260514T194928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_exp002_signals_15B_20260514T194928_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "8c23d8ca1b0f2c766c00b6c4393167a2a6e36631b0e38c2856f4134be356d0a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 GPU 2 上运行，registry 已更新为 RUNNING。\n\n**状态汇总：**\n- **实验 ID**: `exp002-signals-1p5B`\n- **GPU**: cuda:2，tmux session `exp002-signals-1p5B`\n- **任务**: 4 dosages (d000, d005, d025, d100) × 3 benchmarks (mmlu, gsm8k, arc_challenge) = **12 个子任务**\n- **Signals**: S1 Embedding, S2 Min-K++, S4 SelfCritique（S3 ConStat 跳过——缺少 paraphrase eval results）\n- **输出**: `/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d{XXX}_s42/`\n- **日志**: `~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log`\n- 第 1/12 个子任务（Qwen2.5-1.5B_d000_s42/mmlu）已开始执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp002-signals-15b.md"
+}

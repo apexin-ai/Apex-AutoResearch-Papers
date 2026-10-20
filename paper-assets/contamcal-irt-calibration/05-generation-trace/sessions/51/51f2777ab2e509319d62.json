@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51f2777ab2e509319d62",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eij bj correlation",
+  "task_key": "worker_analysis_eij-bj-correlation_20260522T231724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eij-bj-correlation_20260522T231724_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "264c7d73885d09dfdd705117d1862c6c8367f76266ab480141409479fb912fc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成至 `artifacts/eij_bj_correlation.md`。\n\n核心结论：**τ_j（per-item RRF exposure）与 b_j（item difficulty）的相关性可忽略不计**——所有 benchmark 的 Pearson |r| < 0.13，R² < 1.4%。γ 的 identifiability 不受影响，原因：\n1. exposure 和 difficulty 在数据空间近乎正交\n2. γ 的识别来自 dosage 跨 respondent 的变化（0→5→25→100），在 dosage=0 时 γ 项消失，b 从 clean respondent 识别，即使 τ-b 有相关也不影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eij-bj-correlation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d3b652c4ead5157b4da",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prepare eval scripts gemma2 qwen14b",
+  "task_key": "worker_ops_prepare-eval-scripts-gemma2-qwen14b_20260521T001753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-eval-scripts-gemma2-qwen14b_20260521T001753_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "44e0d8702a8507be07f56d07d2e59579020be923d2abdea695f08e486e3f159b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本已创建并赋权。\n\n### 产出\n\n| 脚本 | 路径 | 关键参数 |\n|------|------|---------|\n| Gemma-2 d100 MMLU | `scripts/seed0/eval_gemma2_d100_s0_mmlu.sh` | `CUDA=0`, model=gemma-2-9b, benchmark=mmlu, batch=8 |\n| Gemma-2 d100 ARC | `scripts/seed0/eval_gemma2_d100_s0_arc.sh` | `CUDA=0`, model=gemma-2-9b, benchmark=arc_challenge, batch=8 |\n| Qwen-14B 全dosage | `scripts/seed0/eval_qwen14b_s0_batch.sh` | `CUDA=1`, model=Qwen2.5-14B, benchmark=mmlu+arc_challenge, batch=4, dosage=000/005/025/050/100 |\n\n所有脚本包含：C009 md5 校验、C004 显式 CUDA_VISIBLE_DEVICES、C006 lora_alpha=32 检查、adapter 存在性检查。参数格式与现有 `scripts/eval_gemma2_s0_mmlu.sh` / `eval_qwen14b_s0_mmlu.sh` 完全一致。\n\n启动时需根据实际 GPU 空闲情况调整 `CUDA_VISIBLE_DEVICES`（Gemma-2 训练完后 cuda:0 释放可直接用；Qwen-14B 需等 cuda:1 或 cuda:3 释放）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-eval-scripts-gemma2-qwen14b.md"
+}

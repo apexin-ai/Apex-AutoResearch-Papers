@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd958e1005acefedbd8c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download progress loop",
+  "task_key": "worker_ops_westd-download-progress-loop_20260518T083213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-progress-loop_20260518T083213_result.json",
+    "occurrence": 1,
+    "bytes": 47,
+    "sha256": "75df0b72c57bd0d84d331fdbc46891ed2d2eca61ad834886b48c759280c9812e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 分钟后自动再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-progress-loop.md"
+}

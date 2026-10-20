@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e5872b25060a9b1fa9ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh server cleanup and exp001 launch",
+  "task_key": "worker_ssh_server-cleanup-and-exp001-launch_20260513T175223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_server-cleanup-and-exp001-launch_20260513T175223.log",
+    "occurrence": 1,
+    "bytes": 723410,
+    "sha256": "a992b356c1fe26793de074bbd5c46beb2382a412a1d0f9598da22ba66b56bb5d"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 49,
+      "tool_call": 65,
+      "tool_result": 65,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "e5872b25060a9b1fa9ef-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "e5872b25060a9b1fa9ef-part-0001.json",
+          "message_count": 26
+        },
+        {
+          "path": "e5872b25060a9b1fa9ef-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-server-cleanup-and-exp001-launch.md"
+}

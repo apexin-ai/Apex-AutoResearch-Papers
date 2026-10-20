@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "985ee6866f6bb7d9be70",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops w10 exclusion sensitivity",
+  "task_key": "worker_ops_w10_exclusion_sensitivity_20260517T145216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w10_exclusion_sensitivity_20260517T145216.log",
+    "occurrence": 1,
+    "bytes": 693419,
+    "sha256": "d49afe13329784727c5bb7dd59a03a67a085367e4f6da7816dac93a7bfac17d9"
+  },
+  "statistics": {
+    "messages": 339,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 2,
+      "assistant": 76,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 10
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 339,
+      "chunks": [
+        {
+          "path": "985ee6866f6bb7d9be70-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "985ee6866f6bb7d9be70-part-0002.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-w10-exclusion-sensitivity.md"
+}

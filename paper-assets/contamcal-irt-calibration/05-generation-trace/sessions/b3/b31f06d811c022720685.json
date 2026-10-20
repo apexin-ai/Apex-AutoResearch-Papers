@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "b31f06d811c022720685",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "compute exp009 qwen instruct recovery",
+  "task_key": "worker_compute_exp009_qwen_instruct_recovery_20260517T060318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_exp009_qwen_instruct_recovery_20260517T060318.log",
+    "occurrence": 1,
+    "bytes": 1075914,
+    "sha256": "deb2064d7172ee83e5a287d14805eadaad4b83dcd738a174e20ede4753427a98"
+  },
+  "statistics": {
+    "messages": 757,
+    "user_turns": 1,
+    "tool_calls": 312,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 312,
+      "tool_result": 312,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 743,
+      "chunks": [
+        {
+          "path": "b31f06d811c022720685-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31f06d811c022720685-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31f06d811c022720685-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31f06d811c022720685-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31f06d811c022720685-part-0005.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "b31f06d811c022720685-part-0005.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/compute-exp009-qwen-instruct-recovery.md"
+}

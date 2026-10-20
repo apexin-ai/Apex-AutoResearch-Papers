@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67162fa0ded5529740d1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check s0 training progress",
+  "task_key": "worker_ops_check-s0-training-progress_20260520T195051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-s0-training-progress_20260520T195051_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "4fd30e945b3d93a828f4d5117d3b3cbf46ee76a7ee29d57f8218881988f1eaaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n### westd-29999 (RTX PRO 6000 Black ×4, 96GB each)\n| GPU | 状态 | 详情 |\n|-----|------|------|\n| cuda:0 | **空闲** | 0 MiB, 0% util |\n| cuda:1 | **Gemma-2 d050 s0 训练** | PID 406532, 95.4/97.9 GB, 97% util |\n| cuda:2 | **空闲** | 0 MiB, 0% util |\n| cuda:3 | **Qwen-14B d025 s0 eval** | PID 420512, 32.7/97.9 GB, 97% util |\n\n### cqa1-21977 (RTX 4090D ×1, 24GB)\n| GPU | 状态 | 详情 |\n|-----|------|------|\n| cuda:0 | **Qwen-7B d100 s0 训练** | PID 389216, 20.1/24.6 GB, 93% util |\n\n## 训练进度\n\n| 实验 | 服务器 | GPU | Step | 进度 | ETA | 当前 Loss | 备注 |\n|------|--------|-----|------|------|-----|-----------|------|\n| Qwen2.5-7B d100 s0 | cqa1 | cuda:0 | 1454/4159 | **35%** | ~2h55m | 0.83–1.12 (epoch 0.35) | 正常训练中 |\n| Gemma-2-9B d050 s0 | westd | cuda:1 | 2646/3642 | **73%** | ~44min | 1.06–1.30 (epoch 0.62) | 正常训练中 |\n| Qwen2.5-14B d025 s0 | westd | cuda:3 | 3384/3384 | **训练完成** | — | 最终 ~0.88–1.06 | 已转入 MMLU eval: 4429/14042 (31%), ETA ~13min |\n\n**注意：PID 均已变化**（cqa1: 313407→389216, westd: 311554→420512, 314029→406532），进程应是重启过或 sweep 自动轮转。\n\n**westd cuda:0 和 cuda:2 均空闲，可调度新任务。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s0-training-progress.md"
+}

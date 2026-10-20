@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c6fbbf771f52534f62b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft 3B d100 s42 a32",
+  "task_key": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221_result.json",
+    "occurrence": 1,
+    "bytes": 1832,
+    "sha256": "b34fa84619a1f7b5f3207e3ae77f20a1bf881191d382604d84c8898ef8d8ef2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 的日志名可能不同，PID 589763 直接在 GPU 5 运行中，从 ps 看到它是 `Qwen2.5-3B_d025_v3_s42` 训练。汇总如下：\n\n## GPU 状态总览\n\n| GPU | PID | 显存占用 | GPU利用率 | 实验 | 状态 |\n|-----|-----|---------|----------|------|------|\n| 0 | 594494 | 17960/24564 MiB | 66% | `exp_001_sft_3B_d100_s123_a32_v2` (train_sft, d100, seed=123) | ✅ 运行中, 130/4159 steps (~8min) |\n| 1 | 593745 | 13316/24564 MiB | 31% | `exp_001_sft_3B_d100_s42_a32_v2` (train_sft, d100, seed=42) | ✅ 运行中, 180/4159 steps (~12min) |\n| 2 | 580698 | 8976/24564 MiB | 64% | `exp_001_eval_3B_d005_s123_aligned` (evaluate, mmlu→GSM8K) | ✅ 运行中, GSM8K 671/1319 (51%), 运行 1h36m |\n| 3 | 576735 | 8976/24564 MiB | 67% | `exp_001_eval_3B_d025_s123_aligned` (evaluate, mmlu→GSM8K) | ✅ 运行中, GSM8K 839/1319 (64%), 运行 1h51m |\n| 4 | 590509 | 9658/24564 MiB | 91% | `compute_signals.py` (Qwen2.5-3B_d000_s42, mmlu, signal=all) | ✅ 运行中, 运行 29min |\n| 5 | 589763 | 17640/24564 MiB | 5% | `exp_001_sft_d025_3B_v3` (train_sft, d025_v3, seed=42) | ✅ 运行中, 运行 30min |\n\n## 关键结论\n\n- **6 张 GPU 全满，无空闲 GPU**\n- **所有 6 个进程健康运行中**，无报错、无挂起\n- 两个 v2 SFT 重试（d100_s42 和 d100_s123）都在正常训练，总共 4159 steps，ETA 约 4.5 小时\n- 两个 eval 实验都已完成 mmlu，正在跑 GSM8K，预计各还需 ~1 小时\n- bitsandbytes 的 `libnvJitLink.so.13` 警告是非致命的，不影响训练/评估\n- GPU 4 上跑的是 `compute_signals.py`（exp002 信号提取），不是 exp001 实验\n- v3 日志文件名不是 `exp_001_sft_d025_3B_v3.log`，没有找到对应 3B 版本的日志（只找到 `exp_001_sft_d025_05B_v3.log`），但进程 589763 在 GPU 5 上正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-3b-d100-s42-a32.md"
+}

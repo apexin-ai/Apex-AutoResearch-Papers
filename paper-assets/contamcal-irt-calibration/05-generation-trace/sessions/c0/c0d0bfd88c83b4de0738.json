@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0d0bfd88c83b4de0738",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "plan 7b 14b batch prep",
+  "task_key": "worker_plan_7b-14b-batch-prep_20260518T070410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_plan_7b-14b-batch-prep_20260518T070410_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "330991baba81e8b67314a3fee25d1d663e748272f6c54af7f5c85a111ef4875b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建并注册：`artifacts/batch_matrix_commands.md`\n\n内容包含：\n- **Batch 1 初始启动**（4 卡并行）：Qwen-7B×2 + 14B + Llama-8B 各 1 run\n- **Batch 1 续**：Qwen-7B 共 8 runs（cuda:0/1 各 4 sequential），14B 4 runs（cuda:2），Llama 4 runs（cuda:3）\n- **Batch 2**：Mistral 4 runs（cuda:0），Gemma 4 runs（cuda:1）\n- 每条命令完整可复制：`CUDA_VISIBLE_DEVICES=N` + `source activate` + 全参数（`--lr 5e-5` 显式）\n- 末尾 Summary Table 总览 24 runs 的 GPU/model/dosage/seed 分配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/plan-7b-14b-batch-prep.md"
+}

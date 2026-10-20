@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d39ed40057c5feb06b4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 004 sim sweep extreme gamma",
+  "task_key": "worker_diagnose_exp_004_sim_sweep_extreme_gamma_20260515T195037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_004_sim_sweep_extreme_gamma_20260515T195037_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "9bfed021826dbd6c8dab8aa19286111edca54813349704d02f22e5eb75da8b36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**判断：success** — 实验正常完成，Cron 报告是误判。\n\n**日志关键内容（末尾）：**\n```\nseed 9 (10/10): OK γ=3.9021 θ_corr=0.9481 (712.2s)\n\n=== EXTREME GAMMA SWEEP COMPLETE (11.1h) ===\nSummary written to .../results_extreme_gamma/sweep_summary.json (8 conditions)\nEXTREME_GAMMA_SWEEP_DONE\n```\n\n**进程状态：** 已正常退出，无残留进程。\n\n**结果概览（8 条件 × 10 seeds）：**\n\n| γ_true | 条件 | γ_bias | γ_RMSE | CI95% coverage | θ_corr |\n|--------|------|--------|--------|----------------|--------|\n| 2.0 | 4 条件 | 0.005~0.034 | 0.09~0.12 | **1.00** | 0.95~0.97 |\n| 4.0 | 4 条件 | -0.23~0.04 | 0.18~0.29 | **0.90** | 0.91~0.96 |\n\nγ=2.0 恢复准确（bias<0.04, CI95 全覆盖）；γ=4.0 有轻微负偏（低AUC+少模型时 bias=-0.23），CI95 覆盖 90%。\n\n**Registry 更新：**\n- 创建 `exp_004_sim_sweep_extreme_gamma`（QUEUED → RUNNING → DONE）\n- conclusion = success\n- log_path, checkpoint_path, metrics 已设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-004-sim-sweep-extreme-gamma.md"
+}

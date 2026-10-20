@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c05497c424dc63724cae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit gpu state check",
+  "task_key": "worker_audit_gpu_state_check_20260516T152649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gpu_state_check_20260516T152649_result.json",
+    "occurrence": 1,
+    "bytes": 2271,
+    "sha256": "5342aaefa77f4df7bcaf2c6e6e1938793e5a14adb5a00ad090f8c84ae83f8068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### GPU 状态 (6× RTX 4090 D, 24GB)\n\n| GPU | 显存占用 | GPU利用率 | 状态 | 进程 |\n|-----|---------|-----------|------|------|\n| **0** | 0 MiB | 0% | **空闲** | — |\n| **1** | 8313 MiB | 82% | 占用 | PID 800570 - `evaluate.py` Llama-3.2-3B_d000_s42 aligned eval (mmlu/gsm8k/arc/humaneval) |\n| **2** | 1511 MiB | 37% | 占用 | PID 797754 - `evaluate.py` Qwen2.5-0.5B-Instruct (mmlu/gsm8k/humaneval) |\n| **3** | 17853 MiB | 100% | 占用 | PID 801766 - `train_sft.py` Llama-3.2-3B d025_s42 (lr=5e-5, alpha=32 implied) |\n| **4** | 8313 MiB | 85% | 占用 | PID 796493 - `evaluate.py` Llama-3.2-3B_d000_s42 aligned eval (重复任务，同 GPU1) |\n| **5** | 0 MiB | 0% | **空闲** | — |\n\n### 活跃进程详情\n\n| PID | GPU | 任务 | 启动时间 | 运行时长 |\n|-----|-----|------|---------|---------|\n| 801766 | cuda:3 | SFT Llama-3.2-3B d025_s42 | 23:07 | ~20min |\n| 800570 | cuda:1 | Eval Llama-3.2-3B_d000_s42_aligned | 23:01 | ~25min |\n| 797754 | cuda:2 | Eval Qwen2.5-0.5B-Instruct | 22:41 | ~35min |\n| 796493 | cuda:4 | Eval Llama-3.2-3B_d000_s42_aligned | 22:37 | ~50min |\n\n### tmux sessions\ntmux 命令被 read-only 模式阻止，无法检查。\n\n### 两个 RUNNING 实验状态\n\n- **exp_001_sft_llama32_3B_d025_s42**: **有实际进程** — PID 801766 在 GPU 3 上训练中，日志 `exp_001_sft_llama32_3B_d025_s42.log` 最后更新 23:27（持续写入）\n- **exp_001_eval_05B_instruct**: **有实际进程** — PID 797754 在 GPU 2 上跑 Qwen2.5-0.5B-Instruct 评估\n\n### 最近 5 个日志（按更新时间）\n\n1. `exp_001_sft_llama32_3B_d025_s42.log` — 23:27 (活跃)\n2. `exp_001_eval_llama32_3B_d000_s42_v2.log` — 23:27 (活跃)\n3. `exp_002_signals_15B_s123_batch.log` — 20:42\n4. `signals_05B_s123_v2.log` — 20:19\n5. `signals_05B_s123_batch.log` — 19:01\n\n### 注意事项\n\n1. **GPU 1 和 GPU 4 跑了同一个 eval 任务**（Llama-3.2-3B_d000_s42_aligned），可能是重复提交\n2. 有 8 个 `contam_irt_2pl_` **僵尸进程**（状态 Z, defunct），不占资源但应清理\n3. 有 2 个 modelscope 下载进程（PID 752362, 700982）仍在后台挂着，占内存但无 GPU\n4. GPU 0 和 GPU 5 完全空闲，可用于新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-gpu-state-check.md"
+}

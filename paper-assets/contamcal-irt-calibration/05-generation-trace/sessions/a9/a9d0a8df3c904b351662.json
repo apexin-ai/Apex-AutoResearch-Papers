@@ -1,0 +1,1227 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d0a8df3c904b351662",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "code batch logprob mcq",
+  "task_key": "worker_code_batch-logprob-mcq_20260518T123443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_batch-logprob-mcq_20260518T123443.jsonl",
+    "occurrence": 1,
+    "bytes": 54849,
+    "sha256": "4725b2942f7f6e9ca327433fe0b7fb87a59591e29b7ec530ee85e40ebd1b1993"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T12:52:34.341094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T12:52:34.341540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T12:52:34.341737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"def compute_choice_logprobs\\|def evaluate_mcq\\|def evaluate_gsm8k\\|def main\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T12:52:34.341884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T12:52:34.342011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n -e \"def compute_choice_logprobs\" -e \"def evaluate_mcq\" -e \"def evaluate_gsm8k\" -e \"def main\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T12:52:34.342144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"139:def compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n158:def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n269:def evaluate_gsm8k(model, tokenizer, num_fewshot: int, cache_dir: str,\\\\n637:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T12:52:34.342267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -n 268 /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T12:52:34.342652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\nLLAMA3_CHAT_TEMPLATE = (\\\\n    \\\\\\\"{% set loop_messages = messages %}\\\\\\\"\\\\n    \\\\\\\"{% for message in loop_messages %}\\\\\\\"\\\\n    \\\\\\\"{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>\\\\\\\\n\\\\\\\\n' + message['content'] | trim + '<|eot_id|>' %}\\\\\\\"\\\\n    \\\\\\\"{% if loop.first %}{% set content = bos_token + content %}{% endif %}\\\\\\\"\\\\n    \\\\\\\"{{ content }}\\\\\\\"\\\\n    \\\\\\\"{% endfor %}\\\\\\\"\\\\n    \\\\\\\"{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>\\\\\\\\n\\\\\\\\n' }}{% endif %}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_model_a\n…[truncated 7341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T12:52:34.342878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "sed -n '139,157p' /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T12:52:34.343018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T12:52:34.343141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "sed -n '158,268p' /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T12:52:34.343261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T12:52:34.343442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"batch.size\\|batch_size\\|max.items\\|max_items\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T12:52:34.343573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T12:52:34.343691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T12:52:34.343956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\nLLAMA3_CHAT_TEMPLATE = (\\\\n    \\\\\\\"{% set loop_messages = messages %}\\\\\\\"\\\\n    \\\\\\\"{% for message in loop_messages %}\\\\\\\"\\\\n    \\\\\\\"{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>\\\\\\\\n\\\\\\\\n' + message['content'] | trim + '<|eot_id|>' %}\\\\\\\"\\\\n    \\\\\\\"{% if loop.first %}{% set content = bos_token + content %}{% endif %}\\\\\\\"\\\\n    \\\\\\\"{{ content }}\\\\\\\"\\\\n    \\\\\\\"{% endfor %}\\\\\\\"\\\\n    \\\\\\\"{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>\\\\\\\\n\\\\\\\\n' }}{% endif %}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_model_a\n…[truncated 7227 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T12:52:34.344143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -n 157 /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T12:52:34.344383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\nLLAMA3_CHAT_TEMPLATE = (\\\\n    \\\\\\\"{% set loop_messages = messages %}\\\\\\\"\\\\n    \\\\\\\"{% for message in loop_messages %}\\\\\\\"\\\\n    \\\\\\\"{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>\\\\\\\\n\\\\\\\\n' + message['content'] | trim + '<|eot_id|>' %}\\\\\\\"\\\\n    \\\\\\\"{% if loop.first %}{% set content = bos_token + content %}{% endif %}\\\\\\\"\\\\n    \\\\\\\"{{ content }}\\\\\\\"\\\\n    \\\\\\\"{% endfor %}\\\\\\\"\\\\n    \\\\\\\"{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>\\\\\\\\n\\\\\\\\n' }}{% endif %}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_model_a\n…[truncated 3992 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T12:52:34.344568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -n +158 /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T12:52:34.344846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n                 mc_format: str = \\\\\\\"aligned\\\\\\\", use_generation: bool = False) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown MCQ benchmark: {benchmark}\\\\\\\")\\\\n\\\\n    # Build few-shot examples from validation set\\\\n    fewshot_examples = []\\\\n    if num_fewshot > 0 and val_ds is not None:\\\\n        indices = list(range(min(num_fewshot, len(val_ds))))\\\\n        for idx in indices:\\\\n            row = val_ds[idx]\\\\n            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\\\n\\\\n    fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n    if max_samples:\\\\n        ds = ds.select(range(min(max_samples, len(ds))))\\\\n\\\\n    correct = 0\\\\n    total = 0\\\\n    per_item = []\\\\n\\\\n    for row in tqdm(ds, desc=f\\\\\\\"Evaluating {benchmark}\\\\\\\"):\\\\n        if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n            choices_text = row[\\\\\\\"choices\\\\\\\"]\\\\n            answer_idx = row[\\\\\\\"answer\\\\\\\"]\\\\n            answer_letter = CHOICE_LETTERS[answer_idx]\\\\n            question = row[\\\\\\\"question\\\\\\\"]\\\\n            choices_display = [f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate\n…[truncated 7200 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T12:52:34.345046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"compute_choice_logprobs\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T12:52:34.345181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"139:def compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n222:            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n455:                logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T12:52:34.345304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"batch_size\\|batch-size\\|max_samples\\|max-items\\|max.items\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T12:52:34.346090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T12:52:34.346291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"batch_size\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T12:52:34.346521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"159:                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n270:                   batch_size: int, max_samples: int = None) -> dict:\\\\n318:def evaluate_humaneval(model, tokenizer, cache_dir: str, batch_size: int, max_samples: int = None, is_instruct: bool = False) -> dict:\\\\n401:                         num_fewshot: int, cache_dir: str, batch_size: int,\\\\n695:                                          cfg[\\\\\\\"num_fewshot\\\\\\\"], args.cache_dir, args.batch_size,\\\\n701:                                  args.cache_dir, args.batch_size, args.max_samples,\\\\n706:                                    args.cache_dir, args.batch_size, args.max_samples)\\\\n708:            result = evaluate_humaneval(model, tokenizer, args.cache_dir, args.batch_size, args.max_samples,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T12:52:34.346673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"max_samples\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T12:52:34.346833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"159:                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n181:    if max_samples:\\\\n182:        ds = ds.select(range(min(max_samples, len(ds))))\\\\n270:                   batch_size: int, max_samples: int = None) -> dict:\\\\n272:    if max_samples:\\\\n273:        ds = ds.select(range(min(max_samples, len(ds))))\\\\n318:def evaluate_humaneval(model, tokenizer, cache_dir: str, batch_size: int, max_samples: int = None, is_instruct: bool = False) -> dict:\\\\n320:    if max_samples:\\\\n321:        ds = ds.select(range(min(max_samples, len(ds))))\\\\n701:                                  args.cache_dir, args.batch_size, args.max_samples,\\\\n706:                                    args.cache_dir, args.batch_size, args.max_samples)\\\\n708:            result = evaluate_humaneval(model, tokenizer, args.cache_dir, args.batch_size, args.max_samples,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T12:52:34.347269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat > /tmp/patch_eval.py << 'PATCHEOF'\nimport sys\n\nfilepath = '/root/contamcal-irt-calibration/exp001/evaluate.py'\n\nwith open(filepath, 'r') as f:\n    lines = f.readlines()\n\ncompute_return_line = None\nmcq_start_line = None\nformat_mcq_start_line = None\n\nfor i, line in enumerate(lines):\n    if line.strip() == 'return choice_logprobs' and compute_return_line is None:\n        compute_return_line = i\n    if line.startswith('def evaluate_mcq('):\n        mcq_start_line = i\n    if line.startswith('def format_mcq_example('):\n        format_mcq_start_line = i\n\nif compute_return_line is None or mcq_start_line is None or format_mcq_start_line is None:\n    print(f\"ERROR: markers not found: compute_return={compute_return_line}, mcq_start={mcq_start_line}, format_mcq={format_mcq_start_line}\")\n    sys.exit(1)\n\nprint(f\"Found: compute_return L{compute_return_line+1}, mcq_start L{mcq_start_line+1}, format_mcq L{format_mcq_start_line+1}\")\n\nnew_lines = []\n\n# Keep everything up to and including \"return choice_logprobs\"\nnew_lines.extend(lines[:compute_return_line + 1])\n\n# 2 blank lines before new function\nnew_lines.append('\\n')\nnew_lines.append('\\n')\n\nbatch_fn = '''\\\ndef batch_compute_choice_logprobs(model, tokenizer, prompts: list[str], choices_list: list[list[str]]) -> list[list[float]]:\n    \"\"\"Compute log probabilities of choice tokens for a batch of prompts.\"\"\"\n    if not prompts:\n        return []\n\n    old_padding_side = tokenizer.padding_side\n    tokenizer.padding_side = \"left\"\n\n    inputs = tokenizer(prompts, return_tensors=\"pt\", padding=True, truncation=True, max_length=2048).to(model.device)\n\n    with torch.no_grad():\n        outputs = model(**inputs)\n\n    tokenizer.padding_side = old_padding_side\n\n    last_logits = outputs.logits[:, -1, :]\n    log_probs = torch.log_softmax(last_logits, dim=-1)\n\n    results = []\n    for i, choices in enumerate(choices_list):\n        item_logprobs = []\n        for choice in choices:\n            token_ids = tokenizer.encode(choice, add_special_tokens=False)\n            if token_ids:\n                item_logprobs.append(log_probs[i, token_ids[0]].item())\n            else:\n                item_logprobs.append(float(\"-inf\"))\n        results.append(item_logprobs)\n\n    return results\n'''\nnew_lines.append(batch_fn)\n\n# 2 blank lines before evaluate_mcq\nnew_lines.append('\\n')\nnew_lines.append('\\n')\n\nnew_mcq = '''\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\n                 cache_dir: str, batch_size: int, max_samples: int = None,\n                 mc_format: str = \"aligned\", use_generation: bool = False) -> dict:\n    \"\"\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\"\"\"\n    if benchmark == \"mmlu\":\n        ds = load_dataset(\"cais/mmlu\", \"all\", split=\"test\", cache_dir=cache_dir)\n        val_ds = load_dataset(\"cais/mmlu\", \"all\", split=\"validation\", cache_dir=cache_dir)\n    elif benchmark == \"arc_challenge\":\n        ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\", cache_dir=cache_dir)\n        val_ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"validation\", cache_dir=cache_dir)\n    else:\n        raise ValueError(f\"Unknown MCQ benchmark: {benchmark}\")\n\n    fewshot_examples = []\n    if num_fewshot > 0 and val_ds is not None:\n        indices = list(range(min(num_fewshot, len(val_ds))))\n        for idx in indices:\n            row = val_ds[idx]\n            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\n\n    fewshot_prefix = \"\\\\n\\\\n\".join(fewshot_examples) + \"\\\\n\\\\n\" if fewshot_examples else \"\"\n\n    if max_samples:\n        ds = ds.select(range(min(max_samples, len(ds))))\n\n    correct = 0\n    total = 0\n    per_item = []\n\n    items = []\n    for row in ds:\n        if benchmark == \"mmlu\":\n            choices_text = row[\"choices\"]\n            answer_idx = row[\"answer\"]\n            answer_letter = CHOICE_LETTERS[answer_idx]\n            question = row[\"question\"]\n            choices_display = [f\"{CHOICE_LETTERS[i]}) {c}\" for i, c in enumerate(choices_text)]\n        elif benchmark == \"arc_challenge\":\n            choices_text = row[\"choices\"][\"text\"]\n            labels = row[\"choices\"][\"label\"]\n            answer_letter = row[\"answerKey\"]\n            question = row[\"question\"]\n            choices_display = [f\"{l}) {t}\" for l, t in zip(labels, choices_text)]\n\n        mc_suffix = \"The answer is \" if mc_format == \"aligned\" else \"Answer:\"\n        raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + f\"\\\\n{mc_suffix}\"\n        prompt = format_as_chat(tokenizer, raw_prompt)\n        choice_tokens = labels if benchmark == \"arc_challenge\" else [CHOICE_LETTERS[i] for i in range(len(choices_text))]\n\n        items.append({\n            \"prompt\": prompt,\n            \"raw_prompt\": raw_prompt,\n            \"choice_tokens\": choice_tokens,\n            \"answer_letter\": answer_letter,\n        })\n\n    if use_generation:\n        for item in tqdm(items, desc=f\"Evaluating {benchmark}\"):\n            sys_msg = \"Answer multiple choice questions with ONLY the letter of the correct option.\"\n            prompt = format_as_chat(tokenizer, item[\"raw_prompt\"], system_prompt=sys_msg)\n            inputs = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=2048).to(model.device)\n            with torch.no_grad():\n                output_ids = model.generate(\n                    **inputs, max_new_tokens=5, do_sample=False,\n                    pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\n                )\n            generated = tokenizer.decode(output_ids[0][inputs[\"input_ids\"].shape[1]:], skip_special_tokens=True)\n            pred_letter = extract_mcq_answer(generated, item[\"choice_tokens\"])\n            if pred_letter is None:\n                pred_letter = item[\"choice_tokens\"][0]\n\n            is_correct = pred_letter == item[\"answer_letter\"]\n            correct += int(is_correct)\n            total += 1\n            per_item.append({\"index\": total - 1, \"correct\": is_correct, \"pred\": pred_letter, \"gold\": item[\"answer_letter\"]})\n    else:\n        for batch_start in tqdm(range(0, len(items), batch_size), desc=f\"Evaluating {benchmark}\"):\n            batch = items[batch_start:batch_start + batch_size]\n            prompts = [item[\"prompt\"] for item in batch]\n            choices_list = [item[\"choice_tokens\"] for item in batch]\n\n            batch_logprobs = batch_compute_choice_logprobs(model, tokenizer, prompts, choices_list)\n\n            for item, logprobs in zip(batch, batch_logprobs):\n                pred_idx = int(np.argmax(logprobs))\n                pred_letter = item[\"choice_tokens\"][pred_idx]\n                is_correct = pred_letter == item[\"answer_letter\"]\n                correct += int(is_correct)\n                total += 1\n                per_item.append({\"index\": total - 1, \"correct\": is_correct, \"pred\": pred_letter, \"gold\": item[\"answer_letter\"]})\n\n    accuracy = correct / total if total > 0 else 0.0\n    return {\"accuracy\": accuracy, \"correct\": correct, \"total\": total, \"per_item\": per_item}\n'''\nnew_lines.append(new_mcq)\n\n# 2 blank lines before format_mcq_example\nnew_lines.append('\\n')\nnew_lines.append('\\n')\n\n# Keep everything from format_mcq_example onwards\nnew_lines.extend(lines[format_mcq_start_line:])\n\nwith open(filepath, 'w') as f:\n    f.writelines(new_lines)\n\nprint(\"PATCH OK\")\nPATCHEOF\necho \"Script written\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T12:52:34.347546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T12:52:34.347685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "python3 /tmp/patch_eval.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T12:52:34.347820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 /tmp/patch_eval.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T12:52:34.347944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python /tmp/patch_eval.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T12:52:34.348067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found: compute_return L155, mcq_start L158, format_mcq L235\\\\nPATCH OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T12:52:34.348202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python -c \"import ast; ast.parse(open('/root/contamcal-irt-calibration/exp001/evaluate.py').read()); print('SYNTAX OK')\""
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T12:52:34.348345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T12:52:34.348532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n -e \"def compute_choice_logprobs\" -e \"def batch_compute_choice_logprobs\" -e \"def evaluate_mcq\" -e \"def format_mcq_example\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T12:52:34.348687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"139:def compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n158:def batch_compute_choice_logprobs(model, tokenizer, prompts: list[str], choices_list: list[list[str]]) -> list[list[float]]:\\\\n190:def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n285:def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\\\\\"aligned\\\\\\\") -> str:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T12:52:34.348823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -n 284 /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T12:52:34.349089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\nLLAMA3_CHAT_TEMPLATE = (\\\\n    \\\\\\\"{% set loop_messages = messages %}\\\\\\\"\\\\n    \\\\\\\"{% for message in loop_messages %}\\\\\\\"\\\\n    \\\\\\\"{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>\\\\\\\\n\\\\\\\\n' + message['content'] | trim + '<|eot_id|>' %}\\\\\\\"\\\\n    \\\\\\\"{% if loop.first %}{% set content = bos_token + content %}{% endif %}\\\\\\\"\\\\n    \\\\\\\"{{ content }}\\\\\\\"\\\\n    \\\\\\\"{% endfor %}\\\\\\\"\\\\n    \\\\\\\"{% if add_generation_prompt %}{{ '<|start_header_id|>assistant<|end_header_id|>\\\\\\\\n\\\\\\\\n' }}{% endif %}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_model_a\n…[truncated 7297 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T12:52:34.349305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T12:52:34.349468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T12:52:34.349622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/contamcal-irt-calibration/exp001 && CUDA_VISIBLE_DEVICES=0 python evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter --output-dir /tmp/eval_test_batch --benchmarks mmlu --batch-size 16 --max-samples 50 --subsample-seed 42 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T12:52:34.349764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"usage: evaluate.py [-h] --model-path MODEL_PATH\\\\n                   [--benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]]\\\\n                   [--adapter-path ADAPTER_PATH]\\\\n                   [--paraphrase-dir PARAPHRASE_DIR] --output-dir OUTPUT_DIR\\\\n                   [--max-samples MAX_SAMPLES] [--mc-format {aligned,legacy}]\\\\n                   [--batch-size BATCH_SIZE] [--instruct]\\\\n                   [--cache-dir CACHE_DIR]\\\\nevaluate.py: error: unrecognized arguments: --subsample-seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T12:52:34.349903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/contamcal-irt-calibration/exp001 && CUDA_VISIBLE_DEVICES=0 python evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter --output-dir /tmp/eval_test_batch --benchmarks mmlu --batch-size 16 --max-samples 50 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T12:52:34.350067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 20:50:56,547 [INFO] Loading base model: /root/autodl-tmp/models/Qwen2.5-7B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 479, in cached_files\\\\n    hf_hub_download(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 106, in _inner_fn\\\\n    validate_repo_id(arg_value)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 154, in validate_repo_id\\\\n    raise HFValidationError(\\\\nhuggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter'. Use `repo_type` argument if needed.\\\\n\\\\nDuring handling of the above exception, another exception occurred:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/contamcal-irt-calibration/exp001/evaluate.py\\\\\\\", line 813, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/contamcal-irt-calibration/exp001/evaluate.py\\\\\\\", line 718, in main\\\\n    model, tokenizer = load_model_and_tokenizer(args.model_path, args.cache_dir, args.adapter_path)\\\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/contamcal-irt-calibration/exp001/evaluate.py\\\\\\\", line 62, in load_model_and_tokenizer\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\\\\\", line 1089, in from_pretrained\\\\n    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)\\\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/pyt\n…[truncated 1571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T12:52:34.350241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T12:52:34.350407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Llama-3.2-3B_d000_s42\\\\nLlama-3.2-3B_d005_s42\\\\nLlama-3.2-3B_d025_s42\\\\nLlama-3.2-3B_d100_s42\\\\nQwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s123\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s123\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s123\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s123\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s123\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s123\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_a32_s123\\\\nQwen2.5-3B_d000_a32_s42\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d005_s123\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d025_a32_s42\\\\nQwen2.5-3B_d025_s123\\\\nQwen2.5-3B_d025_v3_s42\\\\nQwen2.5-3B_d100_a32_s123\\\\nQwen2.5-3B_d100_a32_s42\\\\nQwen2.5-3B_d100_a32_s42_v3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T12:52:34.350540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T12:52:34.350662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/models/"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T12:52:34.350785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T12:52:34.350915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LLM-Research\\\\nLlama-3.2-3B\\\\nQwen\\\\ndeepseek-ai\\\\nst\\\\nunsloth\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T12:52:34.351035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/models/Qwen/"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T12:52:34.351159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B\\\\nQwen2.5-0.5B-Instruct\\\\nQwen2.5-0.5B-Instruct-hf\\\\nQwen2.5-1.5B\\\\nQwen2.5-1.5B-Instruct\\\\nQwen2.5-3B\\\\nQwen2.5-3B-Instruct\\\\nQwen2___5-0___5B\\\\nQwen2___5-1___5B\\\\nQwen2___5-1___5B-Instruct\\\\nQwen2___5-3B\\\\nQwen2___5-3B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T12:52:34.351289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/contamcal-irt-calibration/exp001 && CUDA_VISIBLE_DEVICES=0 python evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter --output-dir /tmp/eval_test_batch --benchmarks mmlu --batch-size 16 --max-samples 50 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T12:52:34.351482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 20:51:22,804 [INFO] Loading base model: /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-18 20:51:23,638 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-18 20:51:24,344 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n2026-05-18 20:51:29,420 [INFO] Evaluating mmlu...\\\\n\\\\rEvaluating mmlu:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rEvaluating mmlu:  25%|██▌       | 1/4 [00:00<00:01,  2.24it/s]\\\\rEvaluating mmlu:  75%|███████▌  | 3/4 [00:00<00:00,  5.56it/s]\\\\rEvaluating mmlu: 100%|██████████| 4/4 [00:00<00:00,  6.13it/s]\\\\n2026-05-18 20:51:41,287 [INFO] mmlu accuracy: 0.2200 (11/50)\\\\n2026-05-18 20:51:41,288 [INFO] Saved mmlu to /tmp/eval_test_batch/mmlu_results.json\\\\n2026-05-18 20:51:41,2\n…[truncated 457 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T12:52:34.351654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/contamcal-irt-calibration/exp001 && CUDA_VISIBLE_DEVICES=0 python evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter --output-dir /tmp/eval_test_single --benchmarks mmlu --batch-size 1 --max-samples 50 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T12:52:34.351829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 20:51:57,399 [INFO] Loading base model: /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-18 20:51:58,209 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-18 20:51:58,583 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n2026-05-18 20:52:02,984 [INFO] Evaluating mmlu...\\\\n\\\\rEvaluating mmlu:   0%|          | 0/50 [00:00<?, ?it/s]\\\\rEvaluating mmlu:   2%|▏         | 1/50 [00:00<00:16,  2.92it/s]\\\\rEvaluating mmlu:  12%|█▏        | 6/50 [00:00<00:02, 16.64it/s]\\\\rEvaluating mmlu:  22%|██▏       | 11/50 [00:00<00:01, 26.40it/s]\\\\rEvaluating mmlu:  32%|███▏      | 16/50 [00:00<00:01, 32.80it/s]\\\\rEvaluating mmlu:  42%|████▏     | 21/50 [00:00<00:00, 37.62it/s]\\\\rEvaluating mmlu:  52%|█████▏   \n…[truncated 1003 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T12:52:34.351999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python -c \"\nimport json\nb = json.load(open('/tmp/eval_test_batch/mmlu_results.json'))\ns = json.load(open('/tmp/eval_test_single/mmlu_results.json'))\nmatch = sum(1 for a,b in zip(b['per_item'], s['per_item']) if a['pred']==b['pred'] and a['correct']==b['correct'])\ntotal = len(b['per_item'])\nprint(f'Per-item match: {match}/{total}')\nif match != total:\n    for i,(a,b) in enumerate(zip(b['per_item'], s['per_item'])):\n        if a['pred'] != b['pred']:\n            print(f'  Mismatch at {i}: batch={a[\\\"pred\\\"]} single={b[\\\"pred\\\"]}')\n\"\n"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T12:52:34.352141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Per-item match: 50/50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T12:52:34.352306+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "50/50 per-item 完全一致。\n\n## 改造结果\n\n**修改的函数**：\n1. **新增 `batch_compute_choice_logprobs`** (L158-188)：接收一批 prompts + choices，left-pad tokenize → 单次 batch forward → 取每条 `logits[:, -1, :]` 计算 log_softmax → 返回每条的 choice logprobs\n2. **改写 `evaluate_mcq`** (L190-283)：先预处理所有 items 到列表，非 generation 模式下按 `batch_size` 分批调用 `batch_compute_choice_logprobs`；generation 模式保持逐条不变\n\n**关键 diff**：\n- `tokenizer.padding_side = \"left\"` 保证 batch padding 正确（结束后恢复原值）\n- `padding=True, truncation=True, max_length=2048` 用于 batch tokenize\n- `logits[:, -1, :]` 取最后位置（left-pad 下所有序列的真实最后 token 都在末尾）\n- `compute_choice_logprobs` 保留不动（`evaluate_paraphrased` 仍在使用）\n\n**验证**：Qwen2.5-0.5B d000_s42, MMLU 50 items\n- batch-size=16: accuracy=0.2200, 4 batch iterations\n- batch-size=1: accuracy=0.2200, 50 iterations\n- **Per-item match: 50/50**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_batch-logprob-mcq_20260518T123443"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/code-batch-logprob-mcq.md"
+}

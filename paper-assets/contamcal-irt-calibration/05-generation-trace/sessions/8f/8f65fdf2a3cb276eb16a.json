@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f65fdf2a3cb276eb16a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify monitor script",
+  "task_key": "worker_ops_verify-monitor-script_20260521T103812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-monitor-script_20260521T103812_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "30d7c90d1e6f7863bfe5749c87bb4ff0d1a9d01fadfb9a6c2cfe8e2b92ef7a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-29999 上**不存在** LLaMA-3 eval 监控脚本。搜索结果汇总：\n\n```\n脚本路径: 不存在 (无 monitor_llama3_eval.sh 或类似文件)\n```\n\n找到的 LLaMA 相关脚本（均非监控脚本）：\n\n| 脚本 | 用途 |\n|------|------|\n| `exp001/configs/run_llama31_8b_example.sh` | 8B SFT 训练示例模板（非 eval） |\n| `scripts/run_llama3b_d000_eval.sh` | 3B d000 单次 eval（mmlu/gsm8k/arc_challenge/humaneval），不是监控循环 |\n| `exp002/run_s1_llama_cuda0.sh` | 3B d000+d005 signal 计算（cuda:0） |\n| `exp002/run_s1_llama_cuda1.sh` | 3B d025+d100 signal 计算（cuda:1） |\n\n唯一的监控脚本是 `exp001/olmo2_monitor.sh`，用于 OLMo2 eval（轮询 GPU 空闲后启动 olmo2_eval_gpu0/gpu1）。\n\n如果你指的是 LLaMA-3.1-8B 训练完成后自动触发 eval 的监控，需要新建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-monitor-script.md"
+}

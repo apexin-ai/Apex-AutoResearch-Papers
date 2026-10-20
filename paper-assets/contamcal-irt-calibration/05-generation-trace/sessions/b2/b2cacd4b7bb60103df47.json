@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2cacd4b7bb60103df47",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda2 orphan 622856",
+  "task_key": "worker_ops_cuda2_orphan_622856_20260515T203102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_orphan_622856_20260515T203102_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "6f06bddd7d06a0885ef97a7eb194e213ecf683aead62e5b8536f7a6b991c0f3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 622856 已死**，进程不存在。无需 kill。\n- **cuda:2 当前占用**：6797 MiB，唯一进程是 PID 623491（6788 MiB）——这应该是合法实验 exp_001_eval_3B_d005_s123_gsm8k 的子进程（registry PID 623480 的 child）。\n- PID 622856 的 7526 MiB 显存已自动释放。cuda:2 空闲显存 17285 MiB。\n\n**结论**：orphan 进程已自行退出，cuda:2 恢复正常，无需人工干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-orphan-622856.md"
+}

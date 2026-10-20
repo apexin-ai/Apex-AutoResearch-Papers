@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9b3049492ef1ddc6a30",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval results compilation",
+  "task_key": "worker_analysis_eval-results-compilation_20260514T125616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-results-compilation_20260514T125616_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "83b473507d448343f8ba29d2992b49320a171ed744263afe954fde1a64d06c91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/report_eval_compilation.md` 并注册为 `art_20260514_69dbcf`。\n\n核心数据：\n\n- **Aligned 已完成**：4/24 cells (16.7%) — 0.5B d000 (original+para), 1.5B d000, 1.5B d100\n- **运行中**：9 cells，完成后达 54.2%\n- **主要缺口**：d025 全线缺失（4 点曲线关键中间点），3B paraphrase 全部未开始\n- **唯一可算 delta**：0.5B d000 baseline (MMLU −4.5pp, GSM8K +8.9pp, ARC −1.0pp)，反映 paraphrase 难度差异 noise floor\n- **1.5B d000→d100**：MMLU +0.80pp, GSM8K −0.46pp, ARC −0.34pp — 100% 污染下 MC benchmark 变化极小，HumanEval +17.7pp 显著但 appendix-only"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-results-compilation.md"
+}

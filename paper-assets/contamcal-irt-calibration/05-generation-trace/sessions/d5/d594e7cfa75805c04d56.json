@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d594e7cfa75805c04d56",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh exp 001 env setup",
+  "task_key": "worker_ssh_exp-001-env-setup_20260513T172844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp-001-env-setup_20260513T172844_result.json",
+    "occurrence": 1,
+    "bytes": 1776,
+    "sha256": "ceeeaf520c69ab26e1ae90b8f451f1959f4029fa711ae9fa321acc444ce6e431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## exp-001 环境搭建完成\n\n### 1. Python/CUDA/Torch\n| 项目 | 版本 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.11.0+cu130 |\n| CUDA | True (driver 580.76.05) |\n| transformers | 4.57.6 |\n| peft | 0.19.0 |\n| trl | 1.4.0 |\n| accelerate | 1.13.0 |\n| lm_eval | 0.4.11 |\n\n### 2. GPU (6× RTX 4090D)\n| 设备 | 显存 |\n|------|------|\n| cuda:0-5 | 6× NVIDIA GeForce RTX 4090 D 23GB |\n\n### 3. 模型下载状态\n| 模型 | 大小 | 路径 |\n|------|------|------|\n| Qwen2.5-0.5B | 954M | `/root/autodl-tmp/models/Qwen/Qwen2___5-0___5B` |\n| Qwen2.5-1.5B | 2.9G | `/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B` |\n| Qwen2.5-3B | 5.8G | `/root/autodl-tmp/models/Qwen/Qwen2___5-3B` |\n| Qwen2.5-7B-Instruct | 15G | `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct` |\n| all-MiniLM-L6-v2 | 88M | `/root/autodl-tmp/models/st/` |\n\n### 4. Benchmark 数据集\n| 数据集 | 条数 |\n|--------|------|\n| MMLU (test) | 14,042 |\n| GSM8K (test) | 1,319 |\n| ARC-Challenge (test) | 1,172 |\n| HumanEval (test) | 164 |\n| OpenHermes-2.5 (train) | 1,001,551 |\n\n### 5. 磁盘使用\n- `/root/autodl-tmp`: 169G 总量, **162G 已用, 7.3G 剩余 (96%)**\n\n### 6. 注意事项\n- **磁盘紧张**：autodl-tmp 只剩 7.3G。旧项目模型（Mistral-7B 14G, Qwen2.5-14B 系列 ~27G, DPO-merged ~30G）占用大量空间。如不再需要可清理释放 ~70G\n- **ModelScope 路径**：模型目录使用 `___` 替代 `.`（如 `Qwen2___5-0___5B`），加载时注意路径\n- **环境激活**：使用 `source /root/contamcal-irt-calibration/env_setup.sh` 一键配置所有环境变量\n- **faiss-gpu 未安装**：当前安装的是 faiss-cpu，如需 GPU 加速相似度搜索需另装"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-001-env-setup.md"
+}

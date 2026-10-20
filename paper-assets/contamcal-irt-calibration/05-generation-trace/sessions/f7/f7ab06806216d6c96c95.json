@@ -1,0 +1,1379 @@
+{
+  "schema_version": "1.0",
+  "id": "f7ab06806216d6c96c95",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analysis rrf precheck 05b 15b",
+  "task_key": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_rrf_precheck_05b_15b_20260516T083219.jsonl",
+    "occurrence": 1,
+    "bytes": 52869,
+    "sha256": "d2e93ebf0652cddad457bb56a0cbfe9c0e1e3fd4a972f4cc438e44aef95e1f6f"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T08:36:27.812451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T08:36:27.812935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T08:36:27.813224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/contamcal-irt-calibration -name \"*rrf*\" -o -name \"*aggregat*\" | grep -v __pycache__"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T08:36:27.813434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T08:36:27.813572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -d /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B*/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T08:36:27.813698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -d /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B*/"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T08:36:27.813826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T08:36:27.813956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T08:36:27.814076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/contamcal-irt-calibration -name \"*rrf*\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T08:36:27.814196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/contamcal-irt-calibration': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T08:36:27.814368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/contamcal-irt-calibration -name \"*aggregat*\""
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T08:36:27.814516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/contamcal-irt-calibration': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T08:36:27.814635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/contamcal-irt-calibration/exp003/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T08:36:27.814752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/contamcal-irt-calibration/exp003/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T08:36:27.814887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root -name \"*rrf*\" -type f"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T08:36:27.815001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root -name \"*aggregat*\" -type f"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T08:36:27.815111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T08:36:27.815237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/mozilla__bleach.73871d76.func_pm_remove_cond__z5hhrrfv.json\\\\n/root/autodl-tmp/structfuse/m1_extraction/pyca__pyopenssl.04766a49.func_basic__rrfnc4cx.json\\\\n/root/autodl-tmp/structfuse/m1_extraction/python-trio__trio.cfbbe2c1.combine_file__nrrfjbc7.json\\\\n/root/autodl-tmp/structfuse/m1_extraction/borntyping__python-colorlog.dfa10f59.combine_file__xrrfmhcy.json\\\\n/root/autodl-tmp/structfuse/m1_extraction/pyupio__safety.7654596b.func_basic__9rrfqi4i.json\\\\n/root/autodl-tmp/structfuse/m1_extraction/cantools__cantools.0c6a7871.func_basic__3iavrrfw.json\\\\n/root/autodl-tmp/exp003/exp003_real_test/rrf_scores_Qwen2.5-0.5B_d005_s42_mmlu.json\\\\n/root/contamcal-irt-calibration/exp006/run_exp006.py.bak_pre_rrf_fix\\\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\\\n/root/contamcal-irt-calibration/exp003/__pycache__/rrf_aggregation.cpython-312.pyc\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py.bak\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py.bak2\\\\n\\\", \\\"stderr\\\": \\\"find: '/root/miniconda3/pkgs/_libgcc_mutex-0.1-main': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/_openmp_mutex-5.1-1_gnu': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/cache': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/pybind11-abi-5-hd3eb1b0_0': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T08:36:27.815456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/m1_repos/tobymao__sqlglot/sqlglot/expressions/aggregate.py\\\\n/root/autodl-tmp/exp003/exposure_aggregated.json\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/acero/aggregate_node.h\\\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/compute/api_aggregate.h\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/_libs/window/aggregations.cpython-312-x86_64-linux-gnu.so\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/_libs/window/aggregations.pyi\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/test_aggregation.py\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/groupby/aggregate/test_aggregate.py\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/groupby/aggregate/__pycache__/test_aggregate.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/window/test_cython_aggregations.py\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/window/__pycache__/test_cython_aggregations.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/pandas/tests/__pycache__/test_aggregation.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/super_glue/cb/aggregate.py\\\\n/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/super_glue/cb/__pycache__/aggregate.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/opentelemetry/sdk/metrics/_internal/aggregation.py\\\\n/root/miniconda3/lib/python3.12/site-packages/opentelemetry/sdk/metrics/_internal/__pycache__/aggregation.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/modelscope/models/cv/video_object_segmentation/aggregate.py\\\\n/root/miniconda3/lib/python3.12/site-packages/modelscope/models/cv/video_object_segmentation/__pycache__/aggregate.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/site-packages/modelscope/ops/quadtree_attention/src/value_aggregation.cpp\\\\n/root/miniconda3/lib\n…[truncated 2420 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T08:36:27.815611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"env_setup.sh\\\\nexp001\\\\nexp002\\\\nexp003\\\\nexp004_sim_sweep\\\\nexp006\\\\nexp008\\\\nexp008_new\\\\ninstruct_signals.log\\\\noutputs\\\\nrun_15B_s123_para_batch.sh\\\\nrun_instruct_signals.sh\\\\nscripts\\\\nstan_models\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T08:36:27.815749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T08:36:27.816015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\\\nALPHA16_BLOCKLIST = {\\\\n    \\\\\\\"Qwen2.5-3B_d000_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d000_v2_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d005_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d025_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d100_s42\\\\\\\",\\\\n}\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\n…[truncated 7347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T08:36:27.816174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123/"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T08:36:27.816307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T08:36:27.816504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s123/"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T08:36:27.816646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_gsm8k.json\\\\nsignal_s4_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T08:36:27.816806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T08:36:27.816935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T08:36:27.817054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s123/"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T08:36:27.817176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_gsm8k.json\\\\nsignal_s4_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T08:36:27.817294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s123/"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T08:36:27.817438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T08:36:27.817559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T08:36:27.817680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T08:36:27.817793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s123/"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T08:36:27.817906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T08:36:27.818016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T08:36:27.818131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T08:36:27.818282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T08:36:27.818430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T08:36:27.818554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T08:36:27.818677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T08:36:27.818790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T08:36:27.818918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T08:36:27.819032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T08:36:27.819142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T08:36:27.819258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T08:36:27.819406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T08:36:27.819575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -d /root/autodl-tmp/exp002/signals/Qwen2.5-3B*/"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T08:36:27.819693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -d /root/autodl-tmp/exp002/signals/Qwen2.5-*/"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T08:36:27.819815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T08:36:27.819945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s42/\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T08:36:27.820115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"def aggregate_all\\|BLOCKLIST\\|SKIP\\|DEPRECATED\\|dirname\\|skip\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T08:36:27.820240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T08:36:27.820378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -200 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T08:36:27.820630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\\\nALPHA16_BLOCKLIST = {\\\\n    \\\\\\\"Qwen2.5-3B_d000_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d000_v2_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d005_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d025_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d100_s42\\\\\\\",\\\\n}\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\n…[truncated 5518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T08:36:27.820793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -n +200 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T08:36:27.821049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\\\n\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        rec = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", benchmark),\\\\n            \\\\\\\"exposure\\\\\\\": float(exposure[i]),\\\\n            \\\\\\\"rrf_raw\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in active:\\\\n            rec[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n            rec[sig] = float(item.get(sig, 0.0) or 0.0)\\\\n        results.append(rec)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\\\n                         k: int = DEFAULT_K, normalize: bool = True,\\\\n                         dosage_filter: str = None, limit: int = 0) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Aggregate across all model directories in signal_root.\\\\n\\\\n    Returns {model_id: {benchmark: [per-item results]}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_root = Path(signal_root)\\\\n    results = {}\\\\n\\\\n    for model_dir in sorted(signal_root.iterdir()):\\\\n        if not model_dir.is_dir():\\\\n            continue\\\\n        model_id = model_dir.name\\\\n        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\\\n            logger.info(\\\\\\\"Skipping deprecated dir: %s\\\\\\\", model_id)\\\\n            continue\\\\n        if dosage_filter and dosage_filter not in model_id:\\\\n            continue\\\\n\\\\n        results[model_id] = {}\\\\n        for bench in benchmarks:\\\\n            agg = aggregate_single(str(model_dir), bench, k=k,\\\\n                                   normalize=normalize, limit=limit)\\\\n            if agg:\\\\n                results[model_id][bench] = agg\\\\n                logger.info(\\\\\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\\\\\",\\\\n                            model_id, bench, len(agg),\\\\n                            min(r[\\\\\\\"exposure\\\\\\\"] for r in agg),\n…[truncated 7024 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T08:36:27.821249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "mkdir -p /tmp/rrf_05B_15B && cd /tmp/rrf_05B_15B && rm -f Qwen2.5-* && for d in /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_* /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_*; do ln -sf \"$d\" \"$(basename $d)\"; done && ls"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T08:36:27.821414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s123\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s123\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s123\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T08:36:27.821549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cd /root/contamcal-irt-calibration/exp003 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python rrf_aggregation.py --signal-root /tmp/rrf_05B_15B --output-dir /tmp/rrf_dryrun --generate-exposure --limit 5 2>&1"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T08:36:27.821718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 16:35:20,392 [INFO] Qwen2.5-0.5B_d000_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,408 [INFO] Qwen2.5-0.5B_d000_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,412 [INFO] Qwen2.5-0.5B_d000_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,452 [INFO] Qwen2.5-0.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,456 [INFO] Qwen2.5-0.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,459 [INFO] Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,497 [INFO] Qwen2.5-0.5B_d005_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,501 [INFO] Qwen2.5-0.5B_d005_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,504 [INFO] Qwen2.5-0.5B_d005_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,542 [INFO] Qwen2.5-0.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,546 [INFO] Qwen2.5-0.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,549 [INFO] Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,742 [INFO] Qwen2.5-0.5B_d025_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,742 [WARNING] No signal files found in /tmp/rrf_05B_15B/Qwen2.5-0.5B_d025_s123 for gsm8k\\\\n2026-05-16 16:35:20,742 [WARNING] No signal files found in /tmp/rrf_05B_15B/Qwen2.5-0.5B_d025_s123 for arc_challenge\\\\n2026-05-16 16:35:20,778 [INFO] Qwen2.5-0.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,781 [INFO] Qwen2.5-0.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,785 [INFO] Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,820 [INFO] Qwen2.5-0.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:20,824 [\n…[truncated 4920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T08:36:27.821897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cd /root/contamcal-irt-calibration/exp003 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python rrf_aggregation.py --signal-root /tmp/rrf_05B_15B --output-dir /root/autodl-tmp/exp003/rrf_05B_15B --generate-exposure --csv 2>&1"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T08:36:27.822074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 16:35:41,977 [INFO] Qwen2.5-0.5B_d000_s123/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:41,998 [INFO] Qwen2.5-0.5B_d000_s123/gsm8k: 1319 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,008 [INFO] Qwen2.5-0.5B_d000_s123/arc_challenge: 1172 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,129 [INFO] Qwen2.5-0.5B_d000_s42/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,139 [INFO] Qwen2.5-0.5B_d000_s42/gsm8k: 1319 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,149 [INFO] Qwen2.5-0.5B_d000_s42/arc_challenge: 1172 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,270 [INFO] Qwen2.5-0.5B_d005_s123/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,280 [INFO] Qwen2.5-0.5B_d005_s123/gsm8k: 1319 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,290 [INFO] Qwen2.5-0.5B_d005_s123/arc_challenge: 1172 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,416 [INFO] Qwen2.5-0.5B_d005_s42/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,427 [INFO] Qwen2.5-0.5B_d005_s42/gsm8k: 1319 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,436 [INFO] Qwen2.5-0.5B_d005_s42/arc_challenge: 1172 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,690 [INFO] Qwen2.5-0.5B_d025_s123/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,690 [WARNING] No signal files found in /tmp/rrf_05B_15B/Qwen2.5-0.5B_d025_s123 for gsm8k\\\\n2026-05-16 16:35:42,691 [WARNING] No signal files found in /tmp/rrf_05B_15B/Qwen2.5-0.5B_d025_s123 for arc_challenge\\\\n2026-05-16 16:35:42,803 [INFO] Qwen2.5-0.5B_d025_s42/mmlu: 14042 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,813 [INFO] Qwen2.5-0.5B_d025_s42/gsm8k: 1319 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,823 [INFO] Qwen2.5-0.5B_d025_s42/arc_challenge: 1172 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 16:35:42,941 [INFO] Qwen2.5-0.5B_d100_s42/mmlu: 14042 it\n…[truncated 5196 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T08:36:27.822250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp003/rrf_05B_15B/"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T08:36:27.822403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exposure_aggregated.json\\\\nexposure_scores.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T08:36:27.822531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cd /root/contamcal-irt-calibration/exp003 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, numpy as np\n\n# Check exposure_scores.json\nwith open('/root/autodl-tmp/exp003/rrf_05B_15B/exposure_scores.json') as f:\n    exp = json.load(f)\n\nprint('=== Exposure Scores Summary ===')\nprint(f'Total respondents: {len(exp)}')\nfor model_id in sorted(exp.keys()):\n    bd = exp[model_id]\n    benches = sorted(bd.keys())\n    sigs = bd[benches[0]].get('signals_used', [])\n    counts = {b: bd[b]['item_count'] for b in benches}\n    means = {b: np.mean(bd[b]['exposure_scores']) for b in benches}\n    print(f'  {model_id}: benchmarks={benches}, signals={sigs}')\n    for b in benches:\n        print(f'    {b}: n={counts[b]}, mean_exposure={means[b]:.4f}')\n\n# Check aggregated\nwith open('/root/autodl-tmp/exp003/rrf_05B_15B/exposure_aggregated.json') as f:\n    agg = json.load(f)\nprint(f'\\n=== Aggregated (cross-respondent mean) ===')\nfor bench, scores in agg.items():\n    arr = np.array(scores)\n    print(f'  {bench}: n={len(arr)}, mean={arr.mean():.4f}, std={arr.std():.4f}, min={arr.min():.4f}, max={arr.max():.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T08:36:27.822697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Exposure Scores Summary ===\\\\nTotal respondents: 13\\\\n  Qwen2.5-0.5B_d000_s123: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.1799\\\\n    gsm8k: n=1319, mean_exposure=0.1325\\\\n    mmlu: n=14042, mean_exposure=0.0423\\\\n  Qwen2.5-0.5B_d000_s42: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.2074\\\\n    gsm8k: n=1319, mean_exposure=0.1574\\\\n    mmlu: n=14042, mean_exposure=0.0377\\\\n  Qwen2.5-0.5B_d005_s123: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.1956\\\\n    gsm8k: n=1319, mean_exposure=0.1718\\\\n    mmlu: n=14042, mean_exposure=0.0553\\\\n  Qwen2.5-0.5B_d005_s42: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.1888\\\\n    gsm8k: n=1319, mean_exposure=0.1686\\\\n    mmlu: n=14042, mean_exposure=0.0527\\\\n  Qwen2.5-0.5B_d025_s123: benchmarks=['mmlu'], signals=['s1_embedding', 's2_minkpp']\\\\n    mmlu: n=14042, mean_exposure=0.0341\\\\n  Qwen2.5-0.5B_d025_s42: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.1892\\\\n    gsm8k: n=1319, mean_exposure=0.1584\\\\n    mmlu: n=14042, mean_exposure=0.0366\\\\n  Qwen2.5-0.5B_d100_s42: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_exposure=0.1728\\\\n    gsm8k: n=1319, mean_exposure=0.1437\\\\n    mmlu: n=14042, mean_exposure=0.0467\\\\n  Qwen2.5-1.5B_d000_s123: benchmarks=['arc_challenge', 'gsm8k', 'mmlu'], signals=['s1_embedding', 's2_minkpp', 's4_selfcritique']\\\\n    arc_challenge: n=1172, mean_e\n…[truncated 1651 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T08:36:27.822904+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "RRF 聚合完成。\n\n---\n\n## 报告\n\n### 输出文件\n- `/root/autodl-tmp/exp003/rrf_05B_15B/exposure_scores.json` — 每 respondent×benchmark 的逐 item exposure\n- `/root/autodl-tmp/exp003/rrf_05B_15B/exposure_aggregated.json` — 跨 respondent 均值\n\n### 纳入的 respondents（13 个）\n\n| Scale | 完整 (3 bench × 3 signals) | 部分 |\n|-------|---------------------------|------|\n| 0.5B | d000_s42, d000_s123, d005_s42, d005_s123, d025_s42, d100_s42 | d025_s123 (仅 mmlu, 2 signals) |\n| 1.5B | d000_s42, d000_s123, d005_s42, d025_s42, d100_s42 | d005_s123 (仅 mmlu, 2 signals) |\n\n### 排除/缺失\n- **alpha=16 目录**：无（blocklist 仅含 3B 条目，0.5B/1.5B 不受影响）\n- **完全缺失的 s123 目录**：0.5B_d100_s123、1.5B_d025_s123、1.5B_d100_s123\n\n### 不完整目录详情\n- `0.5B_d025_s123`：只有 `signal_s1_embedding_mmlu.json` + `signal_s2_minkpp_mmlu.json`（缺 s4、缺 gsm8k/arc）\n- `1.5B_d005_s123`：同上\n- `0.5B_d000_s123`：缺 `signal_s4_selfcritique_gsm8k.json`（gsm8k 只用了 2/3 signals，arc/mmlu 正常）\n\n### 聚合统计（跨 respondent 均值）\n| Benchmark | N items | Mean exposure | Std | Max |\n|-----------|---------|--------------|-----|-----|\n| mmlu | 14,042 | 0.0411 | 0.0335 | 0.3182 |\n| gsm8k | 1,319 | 0.1600 | 0.0756 | 0.5916 |\n| arc_challenge | 1,172 | 0.1848 | 0.0782 | 0.5359 |\n\n### 命名一致性\n- s42 目录使用 `signal_embedding_*` 命名（无 s1_ 前缀）\n- s123 目录使用 `signal_s1_embedding_*` 命名（有前缀）\n- 代码已处理两种命名模式，dry-run 和 full-run 均正常\n\n### 结论\nDry-run 通过，full-run 已产出 exposure scores。两个部分目录（d025_s123、d005_s123）的 signals 并未全部完成，代码用可用 signals 做了 graceful degradation。如需 downstream IRT 使用，建议确认这些部分 respondent 是否应包含在内，或者等它们补完后重新 aggregate。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rrf_precheck_05b_15b_20260516T083219"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-rrf-precheck-05b-15b.md"
+}

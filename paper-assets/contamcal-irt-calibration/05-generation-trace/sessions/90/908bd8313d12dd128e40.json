@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "908bd8313d12dd128e40",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag s2 minkpp integrity check",
+  "task_key": "worker_diag_s2_minkpp_integrity_check_20260516T225939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_s2_minkpp_integrity_check_20260516T225939_result.json",
+    "occurrence": 1,
+    "bytes": 2304,
+    "sha256": "fb698c91318c77c6fe02f9705dcc671ee135809025423bf574dce0d6547d24ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## s2_minkpp 诊断结果\n\n### Merged files 是否包含 s2？\n- Llama d005 MMLU: **有** s2_minkpp（值 = -1.690）\n- Llama d005 ARC: **有** s2_minkpp（值 = -1.513）\n- Llama d005 GSM8K: **有** s2_minkpp（值 = -1.506）\n- Llama d000 MMLU: **有** s2_minkpp（值 = -1.665）\n- Qwen 0.5B_d000_s42 MMLU: **有** s2_minkpp（值 = 1.781）\n- Qwen 1.5B_d000_s42 MMLU: **有** s2_minkpp（值 = 1.924）\n\n### 独立 s2 文件存在性\n| 模型 | arc | gsm8k | mmlu |\n|------|-----|-------|------|\n| Llama d000 s42 | ✓ 250KB | ✓ 272KB | ✓ 2.8MB |\n| Llama d005 s42 | ✓ 250KB | ✓ 272KB | ✓ 2.8MB |\n| Llama d025 s42 | ✓ 250KB | ✓ 272KB | ✓ 2.8MB |\n| Llama d100 s42 | ✓ 250KB | **缺失** | ✓ 2.8MB |\n| Qwen 0.5B s42 (all doses) | 旧命名 `signal_minkpp_*` | 同左 | 同左 |\n| Qwen 1.5B s42 (all doses) | 旧命名 `signal_minkpp_*` | 同左 | 同左 |\n| Qwen 3B a32 s42 | ✓ | ✓ | ✓ |\n| Qwen 0.5B s123 (all doses) | ✓ | ✓ | ✓ |\n| Qwen 1.5B s123 (all doses) | ✓ | ✓ | ✓ |\n| Qwen 0.5B-Instruct | ✓ | ✓ | ✓ |\n| Qwen 1.5B-Instruct | ✓ | ✓ | ✓ |\n\n### Bug 范围结论\n- [x] **所有数据安全，s2 存在**（merged files 均含 s2_minkpp 字段）\n- [ ] ~~仅影响 HF_OFFLINE 新提交~~\n- [ ] ~~影响所有 Llama signals~~\n- [ ] ~~影响 Qwen + Llama 全部~~\n\n**唯一缺口**: Llama d100 s42 的 GSM8K 整体未计算（不止 s2，而是 s1/s2/s4/merged 全部缺失）。这是任务未完成，不是 s2 特定 bug。\n\n### tokenizer 依赖分析\n\n`s2_minkpp.py` 通过 `utils.load_model_and_tokenizer()` 加载 tokenizer：\n- 调用 `AutoTokenizer.from_pretrained(model_path, cache_dir=\"/root/autodl-tmp/.hf_cache\", trust_remote_code=True)`\n- 代码中 **无** `HF_HUB_OFFLINE` 或 `local_files_only` 参数\n- 模型文件在本地 cache (`/root/autodl-tmp/.hf_cache`)，tokenizer 从本地加载无网络依赖\n- **不存在 HF_OFFLINE 导致 tokenizer 加载失败的风险**\n\n### 结论\n**假设不成立**。s2_minkpp 信号在所有已完成的 compute_signals 任务中都正常存在。Qwen s42 目录中的旧文件命名 (`signal_minkpp_*` vs `signal_s2_minkpp_*`) 不影响 merged 数据。需要补的仅有 Llama-3.2-3B_d100_s42 的 GSM8K 全部信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-s2-minkpp-integrity-check.md"
+}

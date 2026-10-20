@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96c885c212986b5a21d0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh verify sft data version",
+  "task_key": "worker_ssh_verify-sft-data-version_20260513T205822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-sft-data-version_20260513T205822_result.json",
+    "occurrence": 1,
+    "bytes": 1743,
+    "sha256": "07407095b3f58523a6523458c5f7745817f4cb8e0a846331163979d618ead375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n---\n\n## 结果\n\n### 1. `sft_dosage_000.jsonl` **不含任何 paraphrase 数据** ✓\n\n| 检查项 | 结果 |\n|--------|------|\n| `data_meta_0pct.json` | `\"base_dataset\": \"Open-Orca/SlimOrca\"`, `\"contamination\": \"none\"` |\n| `_source` 字段（脚本注入标记） | **0** 匹配 |\n| `paraphrase_parsed` 字段 | **0** 匹配 |\n| `paraphrased_prompt` 字段 | **0** 匹配 |\n| \"paraphrase\" 文本 grep | 237 匹配——全是 SlimOrca 原始 NLI 任务内容（\"Are these sentences paraphrases of each other?\"），**非注入数据** |\n\n**脚本逻辑确认**：`prepare_sft_data.py` 以 `sft_dosage_000.jsonl` 为 `--base-data` 输入，仅对 dosage > 0% 混入 paraphrases。0% 文件是独立从 SlimOrca 采样的纯净数据。\n\n### 2. 时间线\n\n| 文件 | 修改时间 (May 14) |\n|------|----------|\n| sft_dosage_000.jsonl | 03:33 |\n| humaneval_paraphrases.json | 03:10 |\n| arc_challenge_paraphrases.json | 03:52 |\n| gsm8k_paraphrases.json | 04:11 |\n| sft_dosage_005~100.jsonl | 04:17 |\n\n0% 文件独立生成，不依赖任何 paraphrase 文件。\n\n### 3. 结论：当前 0% SFT 训练有效，不受 paraphrase 版本影响\n\n### 4. MMLU 进度\n\n- 总量: 14,042 items\n- Attempt 1 完成 4,112 items → Attempt 2 剩余 9,930 items\n- Attempt 2 进度: **139/621 batches (22%)**，~10s/batch\n- 日志最后更新: 05:00 (服务器时间)\n- 剩余 482 batches × ~10s ≈ **80 min**\n- **ETA: ~06:20 服务器时间 (+0800)**\n\n### 5. 需注意\n\ndosage > 0% 文件（04:17 生成）目前仅含 arc_challenge + gsm8k paraphrases，**不含 humaneval 和 MMLU**。MMLU paraphrasing 完成后需重新运行 `prepare_sft_data.py` 更新这些文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-sft-data-version.md"
+}

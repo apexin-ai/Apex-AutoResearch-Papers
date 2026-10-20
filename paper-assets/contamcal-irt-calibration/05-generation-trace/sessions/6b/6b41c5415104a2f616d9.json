@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "6b41c5415104a2f616d9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops cqa1 download scp phi4 olmo2",
+  "task_key": "worker_ops_cqa1-download-scp-phi4-olmo2_20260518T210039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-download-scp-phi4-olmo2_20260518T210039.log",
+    "occurrence": 1,
+    "bytes": 669519,
+    "sha256": "9fce19650e6bd225d72eea427415c6d961066574342cc3d7e46a6f9df6ecd591"
+  },
+  "statistics": {
+    "messages": 613,
+    "user_turns": 0,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 280,
+      "tool_result": 280,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 613,
+      "chunks": [
+        {
+          "path": "6b41c5415104a2f616d9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b41c5415104a2f616d9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b41c5415104a2f616d9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b41c5415104a2f616d9-part-0004.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cqa1-download-scp-phi4-olmo2.md"
+}

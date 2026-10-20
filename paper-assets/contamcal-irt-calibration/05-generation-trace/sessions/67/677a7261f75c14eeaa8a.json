@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "677a7261f75c14eeaa8a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code scale stratified irt",
+  "task_key": "worker_code_scale-stratified-irt_20260516T052844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scale-stratified-irt_20260516T052844_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "835b8041d2f635fcaff8d7e20aeb1ec9cb523f8c733cd8d7e4926d4c905958d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Implementation complete. Summary of changes to `run_pooled_4bench_irt.py`:\n\n**New function: `filter_data_by_scale(data, target_scale)`** (line 108)\n- Filters the pooled data dict to only models of a given scale\n- Returns None if no models match\n\n**New function: `run_scale_stratified(data, args_dict, exclude_set, min_item_variance)`** (line 380)\n- Loops over 0.5B / 1.5B / 3B, filters data per scale\n- Runs `run_single_benchmark_fit` for each scale × benchmark combination\n- Warns when only 1 dosage level (gamma prior-dominated)\n- Saves per-scale JSON results to `OUTPUT_DIR/scale_stratified/<scale>/`\n- Prints summary table with γ̂, CI, R̂, ESS, N_models, N_items\n- Flags convergence issues (R̂ > 1.01, ESS < 400, small N)\n\n**Refactored: `run_pooled(data, args_dict, exclude_set, args)`** (line 502)\n- Extracted from `main()` — identical behavior to before\n\n**Modified: `parse_args()`** (line 619)\n- Added `--stratify-by-scale` flag\n- Added CLI args for Stan config (`--chains`, `--warmup`, `--samples`, etc.) — previously hardcoded\n\n**Modified: `main()`** (line 645)\n- Branches on `args.stratify_by_scale`: calls `run_scale_stratified` or `run_pooled`\n\nD045 exclusion remains active — 0.5B on mmlu/arc_challenge will show as SKIPPED in the table, which is the expected behavior (position bias confound)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scale-stratified-irt.md"
+}

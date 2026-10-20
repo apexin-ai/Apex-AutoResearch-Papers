@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab64a676285919df101e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops p0 v8 finalize and gpu check",
+  "task_key": "worker_ops_p0-v8-finalize-and-gpu-check_20260516T004203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-v8-finalize-and-gpu-check_20260516T004203_result.json",
+    "occurrence": 1,
+    "bytes": 2512,
+    "sha256": "c99866d0cfe64cb2643d337db3f2a969e2b4ee0bd2bc7de708afd7c5400f13d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇总如下：\n\n---\n\n## 1. v8 状态：**STILL RUNNING**\n\n- tmux session 已死，但进程树存活：`659057(timeout) → 659058(bash) → 662616(python)` 在 **GPU 4** 上运行\n- 当前任务：d100_a32_s123 / mmlu self-critique，进度 9% (654/7021)，ETA ~2.5h\n- 还剩 d100_a32_s123 的 gsm8k + arc_challenge 未开始\n\n**d025_s123 signals（部分完成）：**\n| Signal | mmlu | gsm8k | arc_challenge |\n|--------|------|-------|---------------|\n| s1_embedding | ✓ | ✓ | ✓ |\n| s2_minkpp | ✓ | ✓ | ✓ |\n| s4_selfcritique | **MISSING** | ✓ | ✓ |\n| merged | **MISSING** | ✓ | ✓ |\n\n**d100_a32_s123 signals（进行中）：**\n| Signal | mmlu | gsm8k | arc_challenge |\n|--------|------|-------|---------------|\n| s1_embedding | ✓ | pending | pending |\n| s2_minkpp | ✓ | pending | pending |\n| s4_selfcritique | **9% running** | pending | pending |\n| merged | pending | pending | pending |\n\n- **No cron jobs** found in current session → 无需删除\n- **不改 registry status**，v8 仍在运行\n\n---\n\n## 2. 全 GPU 状态表\n\n| GPU | Used/Total MiB | Util | PID | Elapsed | Task |\n|-----|---------------|------|-----|---------|------|\n| 0 | 23260/24564 | 95% | 642763 | 3:08h | eval d100_a32_s123_aligned |\n| 0 | (shared) | | 643167 | 3:07h | SFT d005_s42 alpha=32 |\n| 1 | 13341/24564 | 34% | 628668 | 4:32h | SFT d100_a32_s42_v3 |\n| 2 | 7537/24564 | 61% | 652259 | 1:39h | signals d005_s123 mmlu |\n| 3 | 8985/24564 | 70% | 655989 | 1:22h | eval d025_v3_s42 (GSM8K 38%) |\n| 4 | 7445/24564 | 57% | 662616 | 0:29h | **v8**: signals d100_a32_s123 mmlu s4 |\n| 5 | 7531/24564 | 63% | 663067 | 0:27h | signals d025_v3_s42 mmlu s4 |\n\n**全部 6 张卡都在跑，无空闲 GPU。**\n\n---\n\n## 3. d000 eval：**无法提交**\n\n- d000_s42 checkpoint 确认 **alpha=32, r=16** ✓（合规）\n- 但所有 GPU 都被占用，无法提交 eval\n- 最早可能空闲的是 **GPU 3**（eval d025_v3_s42 GSM8K 38%，预计还需 ~1.5h）\n\n---\n\n## 4. v6 tmux：**DEAD** ✓ 无需处理\n\n---\n\n## 5. exp-015 状态\n\n- **数据已生成**：`sft_dosage_100_qc_only.jsonl`（57,547 行）+ 4 个 benchmark 的 contamination labels（arc/gsm8k/humaneval/mmlu）\n- **无训练进程**，无 tmux session — 数据准备完毕但训练未启动\n\n---\n\n**下一步建议**：等 GPU 3 的 d025_v3_s42 eval 完成后提交 d000 eval 到 GPU 3。d025_s123 的 mmlu s4_selfcritique 失败需要后续排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-v8-finalize-and-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a31f6d021485d8b42061",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gpu2 final resubmit",
+  "task_key": "worker_fix_gpu2_final_resubmit_20260514T023859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu2_final_resubmit_20260514T023859_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "3732932defe9539a33beaaf48c402bf7a065c0cf4d235c8e6c3cd04d71443779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**1. 诊断结果：** GPU 2 初始状态 0 个进程，v4 实验已被 kill。\n\n**2. 采取行动：** 清理输出目录 → 串行提交 v5 两个 eval 任务。\n\n**3. 最终 GPU 2 状态：** 2 个进程\n| PID | 显存 |\n|-----|------|\n| 266521 | 1492 MiB |\n| 266790 | 1492 MiB |\n\n**4. 实验信息：**\n| exp_id | 任务 | tmux PID |\n|--------|------|----------|\n| exp_001_eval_05B_d000_s42_v5 | 0% dosage baseline eval | 266511 |\n| exp_001_eval_05B_d100_v5 | 100% dosage contaminated eval | 266780 |\n\n两个任务均已在 GPU 2 上正常运行，Registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu2-final-resubmit.md"
+}

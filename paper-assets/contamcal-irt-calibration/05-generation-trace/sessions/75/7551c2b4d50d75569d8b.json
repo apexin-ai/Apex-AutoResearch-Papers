@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7551c2b4d50d75569d8b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code bootstrap triple seed",
+  "task_key": "worker_code_bootstrap-triple-seed_20260520T121153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-triple-seed_20260520T121153_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "38717abf33b2ebb4f60f5c68183fd512c6f93c5b5001f3b7c7f8fb7c924ae46f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "交付总结：\n\n**脚本**: `/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py` (583 行)\n\n**Dry-run 结果**:\n\n| 测试 | 状态 |\n|------|------|\n| `--seeds 42`: 发现 25/25 文件 (5 家族 × 5 dosage) | 通过 |\n| n=1 退化为 point estimate，无 bootstrap 报错 | 通过 |\n| `--seeds 42,123,0`: 发现 35/75 文件，OLMo-2 有 3 seeds | 通过 |\n| OLMo-2 三种子 bootstrap CI 正常计算 (Δd100: +1.35pp [-0.55, +2.60], p=0.039) | 通过 |\n| OLMo-2 Spearman ρ 计算 (3 pairs, mean=0.033) | 通过 |\n| Pattern 分类: Phi-4=Immune, Qwen14B=U-collapse, Qwen7B=V-recovery, Gemma/OLMo=Benefit-sat | 通过 |\n| OLMo-2 跨种子不一致 (s42=Benefit-sat, s123=Immune, s0=Benefit-sat) 正确标记 No | 通过 |\n| LaTeX table 语法正确 | 通过 |\n| 输出文件: `bootstrap_results.txt` + `bootstrap_table.tex` | 通过 |\n\n**数据来源**: s42 从 `analysis/results/gsm8k/mmlu_summary.csv` 读取；s123/s0 从 `results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json` 读取。两种格式自动合并，JSON 优先于 CSV。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-triple-seed.md"
+}

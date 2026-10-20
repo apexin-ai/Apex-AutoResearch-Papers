@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f05812752e0c97d3f9a7",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops c3 ci coverage",
+  "task_key": "worker_ops_c3_ci_coverage_20260517T145149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c3_ci_coverage_20260517T145149.log",
+    "occurrence": 1,
+    "bytes": 776849,
+    "sha256": "d47aa05fec52700a0e509f8baff1a4978ef8e3b193f2fa9e77893e9b11e65bae"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 246,
+      "chunks": [
+        {
+          "path": "f05812752e0c97d3f9a7-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "f05812752e0c97d3f9a7-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-c3-ci-coverage.md"
+}

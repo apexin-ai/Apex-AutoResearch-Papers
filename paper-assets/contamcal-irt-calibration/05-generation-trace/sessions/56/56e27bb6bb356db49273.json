@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56e27bb6bb356db49273",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code phase2 analysis script",
+  "task_key": "worker_code_phase2-analysis-script_20260519T120028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2-analysis-script_20260519T120028_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "38a291abacf3c0c7563e8cfc6a58ac0a3ff0e198e8cc4eec1ba9482238a9d762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行成功。结果摘要：\n\n**已完成**: gemma2 全 5 dosage, phi4 d000-d050 (缺 d100), qwen14b d000-d050 (缺 d100), qwen7b 全 5 dosage, olmo2 全部缺失。\n\n**MMLU 趋势**:\n- **gemma2**: +3.76pp (d000→d100), 非单调, Spearman r=0.90 (p=0.037, 显著)\n- **qwen14b**: 严格递减 (r=-1.0), d000 0.694 → d050 0.594, 下降 10pp\n- **qwen7b**: -1.78pp, 非单调, r=-0.60 (不显著)\n- **phi4**: 基本持平, 非单调\n\n**ARC 趋势**:\n- **gemma2 ARC**: 大幅振荡 (0.86→0.78→0.87→0.71→0.85), r=-0.30, 符合预期的不可靠标注\n- **qwen14b/qwen7b ARC**: 均递减\n\n三个输出文件已生成：\n- `phase2_summary.csv`\n- `phase2_mmlu_dose_response.pdf`\n- `phase2_arc_dose_response.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-analysis-script.md"
+}

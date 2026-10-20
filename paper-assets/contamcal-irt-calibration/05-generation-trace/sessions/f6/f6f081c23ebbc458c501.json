@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6f081c23ebbc458c501",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis s2 removal ablation",
+  "task_key": "worker_analysis_s2-removal-ablation_20260523T104524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2-removal-ablation_20260523T104524_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "12baf327a307dc4aae4fa11d995464acd7207ee81f1c69a1a4f9d7faa1a46837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fit 1 is progressing well (~65% sampling on chain 1). Will check back in 2 minutes for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-removal-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4486edd2ea4c8f409a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diag 15B d100 s123 and realloc cuda2",
+  "task_key": "worker_ops_diag_15B_d100_s123_and_realloc_cuda2_20260516T131115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diag_15B_d100_s123_and_realloc_cuda2_20260516T131115_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "63001acdf5cd7f01f0616d4fc52f43c2bbee29824a7730b00f1bb0b65c69167e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part A: exp_002_signals_15B_d100_s123_cuda2\n**SUCCESS** — 9/9 signals 全部完成（3 benchmarks × 3 signals），输出目录 `/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s123/`。Registry 已更新 (conclusion=success)。Cron 不存在（已被清理）。\n\n### Part B: cuda:2 重新分配\n**1.5B s123 全部完成** — d000/d005/d025/d100 四个 dosage 均 9/9，无缺失。0.5B s123 同样全部完成。\n\n按 C007 优先级下移，发现 **3B d000_s123_a32 仅 2/9**（s1_mmlu, s2_mmlu），是唯一未完成的 s123 信号集。\n\n已提交：**3B d000_s123_a32 signals → cuda:2**\n- 脚本: `run_3B_d000_s123_signals_v2.sh`（移除了 `$1` GPU 参数依赖，C004 compliant）\n- PID: 784219 (shell) / 784230 (python, 6788 MiB on cuda:2)\n- alpha=32 confirmed (C006)\n- 将跳过 2 个已完成信号，计算剩余 7 个\n- Registry: `exp_002_signals_3B_d000_s123_cuda2` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diag-15b-d100-s123-and-realloc-cuda2.md"
+}

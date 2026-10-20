@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "98fcbd6e48a2b3ebca35",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "compute exp009 instruct eval signals",
+  "task_key": "worker_compute_exp009_instruct_eval_signals_20260517T041625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_exp009_instruct_eval_signals_20260517T041625_result.json",
+    "occurrence": 1,
+    "bytes": 2362580,
+    "sha256": "470259b9aae37a7f03dde0f048793fb44e14b86b2533566296f03413ee0f8641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2362600,
+                "serialized_sha256": "1f60db0e73610a5bd69202f85f41d7ed838c4eab859055fca8c179c1f5a19967",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-exp009-instruct-eval-signals.md"
+}

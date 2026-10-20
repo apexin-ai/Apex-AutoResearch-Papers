@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5d82081ab93bb8b93a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis stratified irt long poll",
+  "task_key": "worker_analysis_stratified-irt-long-poll_20260515T140843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stratified-irt-long-poll_20260515T140843_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "4343f06c5a6fe74828bfb898aaec01a209272080fec9a1fe42f398237ba57b1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。当前状态：\n- PID 569344 运行中（7 分钟）\n- 正在拟合 0.5B/gsm8k，chain 3 warmup 5%\n- 后续还有 0.5B/{arc_challenge, humaneval} + 1.5B/全部 + 3B/全部\n- 后台监控脚本（PID 570266）会在进程结束时自动生成标记文件\n- 270 秒后首次轮询进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stratified-irt-long-poll.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8baa61e91bbdcb08fb04",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix pooled irt paths urgent",
+  "task_key": "worker_ops_fix-pooled-irt-paths-urgent_20260515T011237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-pooled-irt-paths-urgent_20260515T011237_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "19f8f7f4c260e1dfb6830bc416c69c2fcda9d24b8f4d7698334759c34c664f00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果：\n\n**脚本修改** — Phase 1 和 Phase 2 均已添加 `3B && s42` 条件分支，使用 `_v2_` 路径。\n\n**v1 目录重命名**：\n- `Qwen2.5-3B_d000_s42_aligned` → `_v1_..._DEPRECATED`\n- `Qwen2.5-3B_d005_s42_aligned` → `_v1_..._DEPRECATED`\n- `Qwen2.5-3B_d100_s42_aligned` → `_v1_..._DEPRECATED`\n\n**dry-run 验证**：\n- `3B d000 s42` → eval DONE（正确命中 `d000_v2_s42_aligned`）\n- `3B d100 s42` → SFT MISSING（`d100_v2_s42_aligned` 目录存在但为空，eval 尚未完成）\n- 0.5B/1.5B 全部不受影响\n- 无 v1 旧路径被匹配：`ls -d *_s42_aligned` 只返回 v2 目录\n\n备份文件保存在 `run_pooled_irt_n16.sh.bak`。\n\n注意：`d100_v2_s42_aligned/` 目录是空的（无 `eval_results.json`），需要补跑 3B d100 v2 的 aligned eval 才能在 pooled IRT 中纳入该配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-pooled-irt-paths-urgent.md"
+}

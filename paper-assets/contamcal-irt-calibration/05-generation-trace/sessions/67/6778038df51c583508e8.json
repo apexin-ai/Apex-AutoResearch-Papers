@@ -1,0 +1,683 @@
+{
+  "schema_version": "1.0",
+  "id": "6778038df51c583508e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops registry backfill running",
+  "task_key": "worker_ops_registry-backfill-running_20260515T182447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-backfill-running_20260515T182447.log",
+    "occurrence": 1,
+    "bytes": 48997,
+    "sha256": "5c1901252fb7a2db48ea37a35ead99fd778fae7d6eff77766ea088bcbdb24f67"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778886000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b3dd1dea-7003-4693-9736-7a9b5e28cc66",
+                "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a022abf3-a721-4a2b-ad1a-5d6c73ea4810",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break this task down:\n\n1. I need to check if each experiment is still running\n2. Read training commands\n3. Create registry entries for each\n\nLet me start by checking the current registry and confirming which experiments are running on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "148508df-7435-4a73-a5df-dbee10a66f46",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRTbWR8s2YgBSvgDjVsiAC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12403,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12403
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我先并行做三件事：查 registry 现有条目、确认服务器上各 PID 存活状态、读取各进程的命令行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "018a7ead-a6f1-483a-817f-445492d2cf71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRTbWR8s2YgBSvgDjVsiAC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12403,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12403
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KQi8QWaUZa2dHq6ENvcv77",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "d1547dbe-6602-4778-aa45-582716537f85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRTbWR8s2YgBSvgDjVsiAC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12403,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12403
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T18:25:11.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01KQi8QWaUZa2dHq6ENvcv77",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "a65c0005-7870-4de6-8582-6beb39d99ef1",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P3q3XvuTe3MrFJYNUZm6L6",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "limit": 0,
+                "fields": [
+                  "exp_id",
+                  "status"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "1d2165c4-0c28-4e22-a413-ee80bc8d7475",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zMytmgzEZYks4uPk9QomN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1538,
+                "cache_read_input_tokens": 24244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1538
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPYiH21YFodXFmrmD8C36e",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ps -p 589763,593740,594489,597174,580693 -o pid,etime,state,comm --no-headers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "6aed65da-c469-4a48-b4b4-152750982925",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zMytmgzEZYks4uPk9QomN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1538,
+                "cache_read_input_tokens": 24244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1538
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T18:25:20.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P3q3XvuTe3MrFJYNUZm6L6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_3B_d005_s42_para_aligned\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d100_s123_para_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d000_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_004_sim_sweep_v7\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_3B_d025_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s42_a32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d100_s42_a32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v6\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_3B_d005_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s123_a32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_15B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d005_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d025_s42_a32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_d025_3B_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d100_s123_a32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_3B_d000_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_s42_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s123_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s42_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d025_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_15B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d005_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_15B_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_15B_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s42_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d100_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-s1only-gsm8k-2pl\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d025_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_15B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_instruct_rl_proxy\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_05B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v7\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-arc-4pl-pooled\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_instruct_05B_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-arc-2pl\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-gsm8k-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-arc\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-gsm8k-extended-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-gsm8k-extended\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-gsm8k\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-gsm8k-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-mmlu-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-arc-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp002-signals-1p5B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp002-signal-d025-05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_arc\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_pooled_gsm8k_v1\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_003_mmlu_item_aligned_gap\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_gsm8k\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-gsm8k-d024-delta\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d005_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_006_irt_05B_v1\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_signal_survival_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_signal_survival\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_003_rrf_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_raw_gen\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_15B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_3B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B_r3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_d005_05B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_100pct_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_injection\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_15B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_05B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_sim_confounding\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_sim_4pl_gamma\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 172, \\\"total\\\": 172, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0444}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "f33af707-49b2-487f-b177-bf4016f8a600",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_3B_d005_s42_para_aligned\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d100_s123_para_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d000_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_004_sim_sweep_v7\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_3B_d025_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s42_a32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d100_s42_a32\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v6\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_3B_d005_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s123_a32_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_15B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d005_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_3B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d025_s42_a32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_d025_3B_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d100_s123_a32\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_3B_d000_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_s42_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s123_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_sft_3B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s42_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d025_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_15B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d005_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_15B_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_15B_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_base_pretrained_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_s42_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d100_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-s1only-gsm8k-2pl\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d025_s123\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_15B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_instruct_rl_proxy\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_05B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v7\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-arc-4pl-pooled\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_instruct_05B_eval\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d025_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-arc-2pl\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-gsm8k-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-arc\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-gsm8k-extended-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_3B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-oracle-gsm8k-extended\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-s1only-gsm8k\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d005_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-gsm8k-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_15B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_v2_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-mmlu-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-pooled-05B-15B-arc-v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp002-signals-1p5B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_004_sim_sweep_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_05B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp002-signal-d025-05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_arc\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d025_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_pooled_gsm8k_v1\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_003_mmlu_item_aligned_gap\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_gsm8k\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp006-gsm8k-d024-delta\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_15B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d005_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_006_irt_05B_v1\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_signal_survival_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_008_signal_survival\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d005\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_006_irt_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_003_rrf_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_002_signals_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_aligned\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d100_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_raw_gen\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v5\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_15B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d025_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_005_noise_prop_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v6\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d000_s42_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_05B_d100\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d100_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_3B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_15B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B_r3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_eval_3B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_001_sft_d005_05B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_d005_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_100pct_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_3B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_injection\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_15B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_05B_s123\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_15B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_sft_0pct_05B\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_sim_confounding\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"mvp_sim_4pl_gamma\\\": {\\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 172, \\\"total\\\": 172, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0444}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_001_eval_3B_d005_s42_para_aligned\": {\"status\": \"PREPARING\"}, \"exp_001_eval_3B_d100_s123_para_aligned\": {\"status\": \"RUNNING\"}, \"exp_001_sft_3B_d000_v3\": {\"status\": \"RUNNING\"}, \"exp_004_sim_sweep_v7\": {\"status\": \"RUNNING\"}, \"exp_001_eval_3B_d025_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d100_s42_a32_v2\": {\"status\": \"RUNNING\"}, \"exp_001_sft_3B_d100_s42_a32\": {\"status\": \"DONE\"}, \"exp_002_signals_3B_v2\": {\"status\": \"DONE\"}, \"exp_005_noise_prop_v4\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep_v6\": {\"status\": \"RUNNING\"}, \"exp_001_eval_3B_d005_s123_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d025_s123_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d100_s123_a32_v2\": {\"status\": \"RUNNING\"}, \"exp_001_eval_15B_d005_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d005_s123_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d025_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d025_s123_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_3B_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_d100_3B_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d025_s42_a32\": {\"status\": \"PREPARING\"}, \"exp_001_sft_d025_3B_v3\": {\"status\": \"RUNNING\"}, \"exp_001_sft_3B_d100_s123_a32\": {\"status\": \"PREPARING\"}, \"exp_001_sft_3B_d000_v2\": {\"status\": \"DONE\"}, \"exp_002_signals_3B\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_s42_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_s42_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d005_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d005_s123_aligned\": {\"status\": \"RUNNING\"}, \"exp_001_sft_3B_d025_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d005_s42_aligned\": {\"status\": \"DONE\"}, \"exp_008_base_pretrained_eval_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d005_s123\": {\"status\": \"PREPARING\"}, \"exp_001_eval_3B_d025_s123\": {\"status\": \"PREPARING\"}, \"exp_001_sft_15B_d025_s123_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_15B_d005_s123_v2\": {\"status\": \"DONE\"}, \"exp_008_base_pretrained_15B_eval_v2\": {\"status\": \"DONE\"}, \"exp_008_base_pretrained_15B_eval\": {\"status\": \"DONE\"}, \"exp_008_base_pretrained_eval\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d005_s42_aligned_v2\": {\"status\": \"PREPARING\"}, \"exp_001_eval_15B_d000_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d100_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_s42_v3\": {\"status\": \"DONE\"}, \"exp006-s1only-gsm8k-2pl\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d025_v2_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_v2_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_15B_d025_s123\": {\"status\": \"PREPARING\"}, \"exp_001_sft_15B_d005_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d025_s123_aligned\": {\"status\": \"DONE\"}, \"exp_008_instruct_rl_proxy\": {\"status\": \"PREPARING\"}, \"exp_001_sft_05B_d025_s123_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s42_v7\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep_v5\": {\"status\": \"DONE\"}, \"exp006-oracle-arc-4pl-pooled\": {\"status\": \"DONE\"}, \"exp_008_instruct_05B_eval\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_v2_aligned_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d025_v2_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d100_s123\": {\"status\": \"DONE\"}, \"exp006-oracle-arc-2pl\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_s123_para_aligned\": {\"status\": \"DONE\"}, \"exp006-pooled-s1only-gsm8k-v2\": {\"status\": \"DONE\"}, \"exp006-pooled-s1only-arc\": {\"status\": \"DONE\"}, \"exp006-oracle-gsm8k-extended-v2\": {\"status\": \"DONE\"}, \"exp_001_sft_05B_d025_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d005_s123_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s42\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d005_s123_aligned\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep_v4\": {\"status\": \"DONE\"}, \"exp_001_sft_3B_d000_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_para_aligned_v3\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_para_aligned_v2\": {\"status\": \"DONE\"}, \"exp006-oracle-gsm8k-extended\": {\"status\": \"DONE\"}, \"exp006-pooled-s1only-gsm8k\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_v2_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_05B_d005_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_aligned\": {\"status\": \"DONE\"}, \"exp006-pooled-05B-15B-gsm8k-v2\": {\"status\": \"DONE\"}, \"exp_001_sft_15B_d100_s123\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep_v3\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_v2_aligned\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_3B\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_s123_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_v2_para_aligned\": {\"status\": \"DONE\"}, \"exp006-pooled-05B-15B-mmlu-v2\": {\"status\": \"DONE\"}, \"exp006-pooled-05B-15B-arc-v2\": {\"status\": \"DONE\"}, \"exp_005_noise_prop\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep\": {\"status\": \"DONE\"}, \"exp002-signals-1p5B\": {\"status\": \"DONE\"}, \"exp_004_sim_sweep_v2\": {\"status\": \"DONE\"}, \"exp_005_noise_prop_v3\": {\"status\": \"DONE\"}, \"exp_001_sft_05B_d100_s123\": {\"status\": \"DONE\"}, \"exp002-signal-d025-05B\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d025_aligned_v2\": {\"status\": \"DONE\"}, \"exp_006_irt_05B_arc\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d025_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d005_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d025_para_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_para_aligned\": {\"status\": \"DONE\"}, \"exp_006_pooled_gsm8k_v1\": {\"status\": \"DONE\"}, \"exp_003_mmlu_item_aligned_gap\": {\"status\": \"PREPARING\"}, \"exp_001_eval_15B_aligned_batch\": {\"status\": \"DONE\"}, \"exp_006_irt_05B_gsm8k\": {\"status\": \"DONE\"}, \"exp006-gsm8k-d024-delta\": {\"status\": \"PREPARING\"}, \"exp_001_eval_15B_d100_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d005_aligned_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_d100_3B\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_aligned_v4\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_15B\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d005_aligned\": {\"status\": \"DONE\"}, \"exp_006_irt_05B_v2\": {\"status\": \"PREPARING\"}, \"exp_006_irt_05B_v1\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d025_aligned\": {\"status\": \"DONE\"}, \"exp_008_signal_survival_v4\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_aligned_v3\": {\"status\": \"DONE\"}, \"exp_008_signal_survival\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d100_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_aligned_v2\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d005_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_aligned_batch\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d005\": {\"status\": \"DONE\"}, \"exp_006_irt_05B\": {\"status\": \"DONE\"}, \"exp_003_rrf_05B\": {\"status\": \"DONE\"}, \"exp_002_signals_05B\": {\"status\": \"DONE\"}, \"exp_001_sft_d005_3B\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_aligned\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d100_s42\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_raw_gen\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_raw\": {\"status\": \"DONE\"}, \"exp_001_sft_d005_15B\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_05B_v3\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_v5\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s42_v5\": {\"status\": \"DONE\"}, \"exp_001_sft_d100_15B_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_s42\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_05B_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d100_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_d025_05B\": {\"status\": \"DONE\"}, \"exp_001_eval_3B_d000_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d000_s123\": {\"status\": \"DONE\"}, \"exp_005_noise_prop_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d000_s42_v2\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s42_v6\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d100_v6\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d100_v4\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d000_s42_v4\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d000_s42_v2\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d100_v3\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d000_s42_v3\": {\"status\": \"PREPARING\"}, \"exp_001_eval_05B_d100\": {\"status\": \"DONE\"}, \"exp_001_eval_05B_d000_s123\": {\"status\": \"DONE\"}, \"exp_001_sft_d100_15B\": {\"status\": \"DONE\"}, \"exp_001_sft_d005_05B_v3\": {\"status\": \"DONE\"}, \"exp_001_sft_d100_05B\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_3B_s123\": {\"status\": \"DONE\"}, \"exp_001_eval_15B_d000_s42\": {\"status\": \"DONE\"}, \"exp_001_sft_d005_05B_r3\": {\"status\": \"PREPARING\"}, \"exp_001_eval_3B_d000_s42_v2\": {\"status\": \"PREPARING\"}, \"exp_001_sft_d005_05B_v2\": {\"status\": \"DONE\"}, \"exp_001_sft_d005_05B\": {\"status\": \"DONE\"}, \"exp_001_sft_100pct_05B\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_3B\": {\"status\": \"DONE\"}, \"exp_001_sft_injection\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_15B_s123\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_05B_s123\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_15B\": {\"status\": \"DONE\"}, \"exp_001_sft_0pct_05B\": {\"status\": \"DONE\"}, \"mvp_sim_confounding\": {\"status\": \"DONE\"}, \"mvp_sim_4pl_gamma\": {\"status\": \"DONE\"}}, \"count\": 172, \"total\": 172, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0444}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T18:25:22.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WPYiH21YFodXFmrmD8C36e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"580693    03:19:00 S bash\\\\n589763    02:12:55 R python\\\\n593740    01:54:54 S bash\\\\n594489    01:51:14 S bash\\\\n597174    01:33:23 S bash\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "b1b2786d-d141-47fa-8e8f-22996887923c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"580693    03:19:00 S bash\\\\n589763    02:12:55 R python\\\\n593740    01:54:54 S bash\\\\n594489    01:51:14 S bash\\\\n597174    01:33:23 S bash\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.92}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"580693    03:19:00 S bash\\n589763    02:12:55 R python\\n593740    01:54:54 S bash\\n594489    01:51:14 S bash\\n597174    01:33:23 S bash\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the registry results. The experiments that already exist in the registry:\n\n1. **exp_001_sft_d025_3B_v3** — status: RUNNING ✓ (already exists)\n2. **exp_001_sft_3B_d100_s42_a32_v2** — status: RUNNING ✓ (already exists)\n3. **exp_001_sft_3B_d100_s123_a32_v2** — status: RUNNING ✓ (already exists)\n4. **exp_001_sft_3B_d000_v3** — status: RUNNING ✓ (already exists)\n\n\n5. **exp_001_eval_3B_d005_s123_aligned** — status: RUNNING ✓ (already exists)\n6. **exp_004_sim_sweep_v7** — status: RUNNING ✓ (already exists)\n\nAll six experiments are already in the registry with RUNNING status, so there's nothing new to create. Though I'm noticing a discrepancy—the task mentioned the registry should have only 39 experiments, but it's showing 172 total entries.\n\nNow I'm checking which processes are still alive. Several bash and Python processes are running with varying elapsed times, the longest being over three hours. Let me verify the tmux session for exp_004_sim_sweep_v7 to confirm everything's still active.\n\nAll six experiments are already registered and running—no new ones need to be added. I should let the user know that all the expected experiments are accounted for and active.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "bde7c766-0be5-4c26-aa09-d6cf08685406",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMAA4pAhsNCxxhCFCoRQEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5167,
+                "cache_read_input_tokens": 25782,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个实验均已存在于 registry 中，且状态都是 RUNNING：\n\n| 实验 | Registry 状态 | PID | 存活 | 运行时间 |\n|------|-------------|-----|------|---------|\n| exp_001_sft_d025_3B_v3 | RUNNING | 589763 | ✓ (R) | 2h12m |\n| exp_001_sft_3B_d100_s42_a32_v2 | RUNNING | 593740 | ✓ (S) | 1h54m |\n| exp_001_sft_3B_d100_s123_a32_v2 | RUNNING | 594489 | ✓ (S) | 1h51m |\n| exp_001_sft_3B_d000_v3 | RUNNING | 597174 | ✓ (S) | 1h33m |\n| exp_001_eval_3B_d005_s123_aligned | RUNNING | 580693 | ✓ (S) | 3h19m |\n| exp_004_sim_sweep_v7 | RUNNING | — (tmux) | — | — |\n\nRegistry 当前共 172 条实验，不是 39 条。6 个目标实验全部已有条目且状态为 RUNNING，无需补录，全部跳过。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "uuid": "437fbf2b-a7ac-4c4a-b92b-78abb99719e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMAA4pAhsNCxxhCFCoRQEi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5167,
+                "cache_read_input_tokens": 25782,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5167
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个实验均已存在于 registry 中，且状态都是 RUNNING：\n\n| 实验 | Registry 状态 | PID | 存活 | 运行时间 |\n|------|-------------|-----|------|---------|\n| exp_001_sft_d025_3B_v3 | RUNNING | 589763 | ✓ (R) | 2h12m |\n| exp_001_sft_3B_d100_s42_a32_v2 | RUNNING | 593740 | ✓ (S) | 1h54m |\n| exp_001_sft_3B_d100_s123_a32_v2 | RUNNING | 594489 | ✓ (S) | 1h51m |\n| exp_001_sft_3B_d000_v3 | RUNNING | 597174 | ✓ (S) | 1h33m |\n| exp_001_eval_3B_d005_s123_aligned | RUNNING | 580693 | ✓ (S) | 3h19m |\n| exp_004_sim_sweep_v7 | RUNNING | — (tmux) | — | — |\n\nRegistry 当前共 172 条实验，不是 39 条。6 个目标实验全部已有条目且状态为 RUNNING，无需补录，全部跳过。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36918,
+            "duration_api_ms": 34610,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "bc90b1b3-259b-447d-92de-58a247ad95ce",
+            "total_cost_usd": 0.18982749999999998,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 19108,
+              "cache_read_input_tokens": 61867,
+              "output_tokens": 1486,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19108,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1032,
+                  "cache_read_input_tokens": 25782,
+                  "cache_creation_input_tokens": 5167,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5167
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2199,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002289,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1486,
+                "cacheReadInputTokens": 61867,
+                "cacheCreationInputTokens": 19108,
+                "webSearchRequests": 0,
+                "costUSD": 0.1875385,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ec0fe56e-d098-4a40-9b18-8831c3ec8e5f"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-registry-backfill-running.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61865be8027513fe426e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "compute mmlu domain irt no05b",
+  "task_key": "worker_compute_mmlu_domain_irt_no05b_20260517T063601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_mmlu_domain_irt_no05b_20260517T063601_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "173338eb0f1f560eda244d75a2df422141c39b2ac3fe9012732c8d560ba7cb6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Running confirmed. Let me record the previous J=16 results for later comparison and report what's been set up.\n\nThe run is active in tmux session `irt_no05b` on cqa1-21977. Summary:\n\n**Setup complete:**\n- Script: `/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py`\n- Output: `/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/`\n- J=13 models confirmed (8×1.5B + 5×3B, no 0.5B)\n- 8 domains + 1 pooled fit, 2PL+γ, 4 chains × 1000w + 1000s\n- Estimated runtime: ~45-90 min total\n\n**Previous J=16 results (for later comparison):**\n\n| Domain | γ_mean | 95% CI | PPP |\n|--------|--------|--------|-----|\n| Other | 1.3415 | [0.675, 2.029] | 0.000 |\n| Business_Law | 0.6084 | [0.215, 1.004] | 0.003 |\n| Humanities | 0.4729 | [0.202, 0.749] | 0.001 |\n| STEM_Science | 0.3608 | [-0.057, 0.814] | 0.041 |\n| STEM_CS_Eng | 0.2937 | [-0.496, 1.122] | 0.227 |\n| Social_Sciences | 0.2828 | [0.028, 0.524] | 0.011 |\n| Medical | 0.2655 | [-0.110, 0.645] | 0.074 |\n| STEM_Math | -0.549 | [-1.266, 0.093] | 0.964 |\n\nThe run will produce `summary.json` with all diagnostics and a `pooled/` subdirectory for the aggregate γ test. I'll check back when it's done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-mmlu-domain-irt-no05b.md"
+}

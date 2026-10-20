@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d973214d253387cdce45",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260514T020734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260514T020734_result.json",
+    "occurrence": 1,
+    "bytes": 2151,
+    "sha256": "9ab19483c30f1e14894ccb05e5bcc40ae8f283a284cb06996c884c7d7ae38cc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### PID 存活状态：全部 ALIVE\n\n| exp_id | GPU | PID | 运行时间 | 当前进度 |\n|--------|-----|-----|---------|---------|\n| exp_001_sft_d100_15B_v2 | cuda:0 | 251924 | 59min | SFT training: step 1098/4159 (**26%**), loss~1.30, ETA ~2h45m |\n| exp_001_eval_3B_d000_s42 | cuda:1 | 249294 | 1h14m | GSM8K: 490/1319 (**37%**), ETA ~1h54m |\n| exp_001_eval_05B_d100 | cuda:2 | 256503 | 35min | GSM8K: 274/1319 (**21%**), ETA ~1h47m |\n| exp_001_eval_3B_d000_s123 | cuda:3 | 242581 | 1h49m | GSM8K: 781/1319 (**59%**), ETA ~1h15m |\n| exp_001_eval_15B_d000_s42_v2 | cuda:4 | 243290 | 1h44m | GSM8K: 957/1319 (**73%**), ETA ~41m |\n| exp_001_eval_15B_d000_s123 | cuda:5 | 250600 | 1h09m | GSM8K: 610/1319 (**46%**), ETA ~1h23m |\n\n所有 eval 已完成 MMLU，当前均在跑 GSM8K（之后还有 arc_challenge、humaneval）。\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 | 温度 |\n|-----|-------|---------|------|\n| 0 | 95% | 13716/24564 MiB | 41°C |\n| 1 | 100% | 12620/24564 MiB | 50°C |\n| 2 | 99% | 10993/24564 MiB | 50°C |\n| 3 | 60% | 8957/24564 MiB | 52°C |\n| 4 | 99% | 9492/24564 MiB | 54°C |\n| 5 | 46% | 5829/24564 MiB | 46°C |\n\n### 已完成的 eval 结果\n\n仅 **Qwen2.5-0.5B_d000_s123** 有 eval_results.json：\n- MMLU: **41.82%** (5873/14042)\n- HumanEval 结果也在内\n\n其余 eval 目录均为空（正在运行中）。\n\n### 空闲 GPU\n**无**——6 块 GPU 全部在用。\n\n### 异常发现\n\n1. **GPU 争用**：发现 2 个未跟踪的 0.5B_d000_s42 eval 进程：\n   - PID 257034 在 cuda:2（与 exp_001_eval_05B_d100 共享）\n   - PID 257853 在 cuda:0（与 SFT 训练共享）\n   \n   这两个额外进程可能拖慢 cuda:0 的 SFT 训练和 cuda:2 的 eval。\n\n2. **HF 连接超时**：exp_001_eval_05B_d100 启动时遇到 HuggingFace GSM8K 数据集下载超时（重试 5 次），已恢复。\n\n3. **GPU 3/5 利用率偏低**（60%/46%）：3B 和 1.5B 模型做 generation 时计算与访存交替，属正常现象。\n\n4. **bitsandbytes 警告**：所有 eval 进程有 `libnvJitLink.so.13` 加载失败，不影响运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-7.md"
+}

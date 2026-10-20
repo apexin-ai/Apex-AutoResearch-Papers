@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a74265294f6cf46318fa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 3B d000 s123 gpu5",
+  "task_key": "worker_gpu_sft_3B_d000_s123_gpu5_20260514T202009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_3B_d000_s123_gpu5_20260514T202009_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "2afdc9bb4bcd51106f96722c25bec08817bb7a22486f08e26c7d127204408519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，GPU 验证已在上方确认通过。训练正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-3b-d000-s123-gpu5.md"
+}

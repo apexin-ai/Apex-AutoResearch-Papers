@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1096516160227635df9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh cqa1 gpu check",
+  "task_key": "worker_ssh_cqa1-gpu-check_20260519T000021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cqa1-gpu-check_20260519T000021_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "cdf7265ea53cd2fddf4e239f5f54b4dbf2c08debd9a5f1eec0035ce3185a749c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 信息\n\n| 项目 | 值 |\n|------|-----|\n| GPU 数量 | **1 张** |\n| 型号 | NVIDIA GeForce RTX 4090 D |\n| 显存 | 24564 MiB（总），已用 22928 MiB |\n| CUDA | 13.0 |\n| Driver | 580.76.05 |\n\n当前 GPU 上有 2 个 Python 进程：PID 161500（6106 MiB）和 PID 170366（16808 MiB）。\n\n## Eval 进程状态\n\nPID 160404 **存活**，是 `run_eval_mmlu_arc_original.sh` 的启动 shell（05:51 启动）。实际执行脚本的子进程是 PID 160406（`bash /root/contamcal-irt-calibration/exp001/run_eval_mmlu_arc_original.sh`）。GPU 上的两个 Python 进程（161500、170366）应为该 eval 脚本产生的评估任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cqa1-gpu-check.md"
+}

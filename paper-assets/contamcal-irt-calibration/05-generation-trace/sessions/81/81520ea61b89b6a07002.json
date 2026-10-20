@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81520ea61b89b6a07002",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose qwen14b retrain exit",
+  "task_key": "worker_diagnose_qwen14b-retrain-exit_20260520T052638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen14b-retrain-exit_20260520T052638_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "9c04f5754c5cf09220781e0151619b5272600c3a4e23e6c30e05c28d7dd5592c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## 诊断结果\n\n**sft_qwen14b_d100_s123_retrain: 训练成功完成 ✓**\n\n| 项目 | 状态 |\n|------|------|\n| PID 246779 | 已退出（正常完成） |\n| .done marker | 存在 |\n| epoch | 1.0 (4159/4159 steps) |\n| final loss | 0.925 |\n| token accuracy | 0.761 |\n| adapter size | 275MB |\n| lora_alpha | 32 ✓ (非废弃 alpha=16) |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s123/lora_adapter/` |\n\n**注意**: sweep log 末尾有一条 `No space left on device` 错误（09:15 CST），但这是更早的一次失败尝试。实际训练在 13:21 CST 完成，checkpoint 完整。\n\n## cuda:1 状态\n\n**westd-29999 cuda:1 空闲可用**: 0% GPU util, 0 MiB 显存。可接 GSM8K eval。\n\n（注：数据盘 `/root/autodl-tmp` 使用率 79% (196G/250G)，eval 应该没问题但后续大任务需注意磁盘空间。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen14b-retrain-exit.md"
+}

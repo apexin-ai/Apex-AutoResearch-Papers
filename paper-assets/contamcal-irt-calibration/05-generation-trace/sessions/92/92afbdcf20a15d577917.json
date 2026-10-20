@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "92afbdcf20a15d577917",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260517T021118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_20260517T021118.jsonl",
+    "occurrence": 1,
+    "bytes": 26425,
+    "sha256": "5df2ff2f1bc576b5a05aa275cbaf290acb8dfe7361b6c087de1a092bd23f4f4b"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T02:13:35.738902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/experiments.tex",
+              "offset": "85"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T02:13:35.739333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\t    \\tau = \\frac{C - D}{\\binom{N}{2}},\n86\t\\end{equation}\n87\twhere $C$ and $D$ are the numbers of concordant and discordant pairs. Values near 1 indicate that calibration preserves the true model ordering; deviations reveal methods that correct absolute scores but distort relative comparisons.\n88\t\n89\t\\paragraph{Dose-response monotonicity.}\n90\tWe verify that the estimated contamination effect increases monotonically with dosage. Specifically, we compute Spearman's rank correlation between dosage level~$d$ and the posterior mean $\\hat{\\gamma}_k$ across the five dosage conditions per benchmark. Monotonic dose-response is a necessary (though not sufficient) condition for valid contamination modeling.\n91\t\n92\t\\subsection{Results}\n93\t\\label{sec:results}\n94\t\n95\t\\paragraph{Main calibration results.}\n96\tTable~\\ref{tab:main_results} presents calibration performance across all methods and benchmarks. \\textbf{[PLACEHOLDER: exp-006]} ContamCal achieves MAE of \\textbf{[PLACEHOLDER: exp-006]} percentage points averaged across benchmarks, compared to \\textbf{[PLACEHOLDER: exp-006]} for the best baseline (B6, DCR). The 95\\% credible intervals achieve \\textbf{[PLACEHOLDER: exp-006]}\\% coverage (nominal: 95\\%), with average width of \\textbf{[PLACEHOLDER: exp-006]} percentage points. Ranking preservation (Kendall's~$\\tau$) is \\textbf{[PLACEHOLDER: exp-006]}, indicating that calibration largely preserves the ground-truth model ordering.\n97\t\n98\t\\begin{table}[t]\n99\t\\centering\n100\t\\small\n101\t\\begin{tabular}{l cccc c}\n102\t\\toprule\n103\t\\textbf{Method} & \\textbf{MMLU} & \\textbf{GSM8K} & \\textbf{ARC-C} & \\textbf{HE} & \\textbf{Avg} \\\\\n104\t\\midrule\n105\t\\multicolumn{6}{l}{\\emph{MAE $\\downarrow$ (percentage points)}} \\\\\n106\tB0. Raw & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n107\tB1. Remove-rescore & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n108\tB2. 2PL+$\\gamma$ & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n109\tB3. Vanilla 4PL & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n110\tB4. Linear reg. & XX.X & XX.X & XX.X & XX.X & XX.\n…[truncated 7923 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T02:13:35.739567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/experiments.tex",
+              "limit": "91"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T02:13:35.739790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate ContamCal through controlled contamination injection across multiple model scales, dosage levels, and benchmarks. The experimental design provides ground-truth clean performance for every configuration, enabling direct measurement of calibration quality.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:exp_setup}\n8\t\n9\tOur evaluation follows a controlled SFT injection pipeline: we deliberately contaminate models at known dosage levels, compute detection signals, fit the contamination-augmented IRT model, and compare calibrated scores against the known ground truth. This design provides the internal validity necessary for rigorous evaluation---we know the true contamination status of every item for every model.\n10\t\n11\tWe use the Qwen2.5 model family at three scales---0.5B, 1.5B, and 3B parameters---all fine-tuned via LoRA. A separate Qwen2.5-7B-Instruct model serves as the paraphrase generator for ConStat signal computation (\\S\\ref{sec:stage1}). We evaluate on four benchmarks spanning diverse evaluation modalities:\n12\t\\begin{itemize}\n13\t    \\item \\textbf{MMLU} \\citep{hendrycks2021mmlu}: knowledge-intensive multiple-choice (14,042 items);\n14\t    \\item \\textbf{GSM8K} \\citep{cobbe2021gsm8k}: mathematical reasoning with free-form answers (1,319 items);\n15\t    \\item \\textbf{ARC-Challenge} \\citep{clark2018arc}: science reasoning multiple-choice (1,172 items);\n16\t    \\item \\textbf{HumanEval} \\citep{chen2021humaneval}: code generation with execution-based evaluation (164 items).\n17\t\\end{itemize}\n18\tHumanEval's small item count may limit 4PL parameter estimation reliability; we include it to test ContamCal at the boundary of applicability.\n19\t\n20\t\\subsection{Controlled Contamination Injection}\n21\t\\label{sec:injection}\n22\t\n23\tFor each model scale, we inject contamination at five dosage levels: 0\\% (clean baseline), 5\\%, 25\\%, 50\\%, and 100\\% of benchmark items. At each dosage level~$d$, a random subset of $\\lfl\n…[truncated 7238 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T02:13:35.740032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/experiments.tex",
+              "old_string": "\\subsection{Results}\n\\label{sec:results}\n\n\\paragraph{Main calibration results.}\nTable~\\ref{tab:main_results} presents calibration performance across all methods and benchmarks. \\textbf{[PLACEHOLDER: exp-006]} ContamCal achieves MAE of \\textbf{[PLACEHOLDER: exp-006]} percentage points averaged across benchmarks, compared to \\textbf{[PLACEHOLDER: exp-006]} for the best baseline (B6, DCR). The 95\\% credible intervals achieve \\textbf{[PLACEHOLDER: exp-006]}\\% coverage (nominal: 95\\%), with average width of \\textbf{[PLACEHOLDER: exp-006]} percentage points. Ranking preservation (Kendall's~$\\tau$) is \\textbf{[PLACEHOLDER: exp-006]}, indicating that calibration largely preserves the ground-truth model ordering.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{l cccc c}\n\\toprule\n\\textbf{Method} & \\textbf{MMLU} & \\textbf{GSM8K} & \\textbf{ARC-C} & \\textbf{HE} & \\textbf{Avg} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{MAE $\\downarrow$ (percentage points)}} \\\\\nB0. Raw & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB1. Remove-rescore & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB2. 2PL+$\\gamma$ & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB3. Vanilla 4PL & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB4. Linear reg. & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB5. Emperor's & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB6. DCR & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n\\textbf{ContamCal} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{50\\% CI Coverage $\\uparrow$ (nominal: 50\\%)}} \\\\\nB2. 2PL+$\\gamma$ & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB3. Vanilla 4PL & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB4. Linear reg. & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n\\textbf{ContamCal} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{80\\% CI Coverage $\\uparrow$ (nominal: 80\\%)}} \\\\\nB2. 2PL+$\\gamma$ & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB3. Vanilla 4PL & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB4. Linear reg. & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n\\textbf{ContamCal} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{95\\% CI Coverage $\\uparrow$ (nominal: 95\\%)}} \\\\\nB2. 2PL+$\\gamma$ & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB3. Vanilla 4PL & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\nB4. Linear reg. & XX.X & XX.X & XX.X & XX.X & XX.X \\\\\n\\textbf{ContamCal} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} & \\textbf{XX.X} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{Kendall's $\\tau$ $\\uparrow$}} \\\\\nB0. Raw & X.XX & X.XX & X.XX & X.XX & X.XX \\\\\nB6. DCR & X.XX & X.XX & X.XX & X.XX & X.XX \\\\\n\\textbf{ContamCal} & \\textbf{X.XX} & \\textbf{X.XX} & \\textbf{X.XX} & \\textbf{X.XX} & \\textbf{X.XX} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Main calibration results across four benchmarks. \\textbf{[PLACEHOLDER: exp-006]} MAE: mean absolute error between calibrated and ground-truth clean accuracy (lower is better). Coverage at 50\\%/80\\%/95\\%: fraction of true values within credible interval (closer to nominal is better). HE\\,=\\,HumanEval, ARC-C\\,=\\,ARC-Challenge. Best results in \\textbf{bold}.}\n\\label{tab:main_results}\n\\end{table}\n\n\\paragraph{RRF signal ablation.}\nTable~\\ref{tab:rrf_ablation} reports signal aggregation ablations. \\textbf{[PLACEHOLDER: exp-003]} Full four-signal RRF achieves AUC of \\textbf{[PLACEHOLDER: exp-003]} for contaminated-vs-clean discrimination, compared to \\textbf{[PLACEHOLDER: exp-003]} for the best single signal. Drop-one analysis reveals that removing \\textbf{[PLACEHOLDER: exp-003]} causes the largest AUC decrease, while removing \\textbf{[PLACEHOLDER: exp-003]} has minimal impact, suggesting complementary rather than redundant signal contributions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{l cc}\n\\toprule\n\\textbf{Configuration} & \\textbf{AUC} & \\textbf{$\\Delta$AUC} \\\\\n\\midrule\n\\multicolumn{3}{l}{\\emph{Single-signal}} \\\\\nEmbedding retrieval & [TBD] & --- \\\\\nMin-K\\%++ & [TBD] & --- \\\\\nConStat & [TBD] & --- \\\\\nSelf-Critique & [TBD] & --- \\\\\n\\midrule\n\\multicolumn{3}{l}{\\emph{Drop-one from full RRF}} \\\\\n$-$ Embedding & [TBD] & [TBD] \\\\\n$-$ Min-K\\%++ & [TBD] & [TBD] \\\\\n$-$ ConStat & [TBD] & [TBD] \\\\\n$-$ Self-Critique & [TBD] & [TBD] \\\\\n\\midrule\nFull RRF (4 signals) & \\textbf{[TBD]} & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Signal aggregation ablation. \\textbf{[PLACEHOLDER: exp-003]} AUC for contaminated-vs-clean item discrimination, averaged across benchmarks and model scales. $\\Delta$AUC: change relative to full RRF.}\n\\label{tab:rrf_ablation}\n\\end{table}\n\n\\paragraph{RRF $k$-sensitivity.}\nTable~\\ref{tab:k_sensitivity} shows that calibration MAE and detection AUC are stable across $k \\in \\{20, 40, 60, 80, 100\\}$, confirming that ContamCal is not sensitive to the RRF smoothing constant. \\textbf{[PLACEHOLDER: exp-003]}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{l ccccc}\n\\toprule\n$k$ & 20 & 40 & \\textbf{60} & 80 & 100 \\\\\n\\midrule\nMAE & [TBD] & [TBD] & \\textbf{[TBD]} & [TBD] & [TBD] \\\\\nAUC & [TBD] & [TBD] & \\textbf{[TBD]} & [TBD] & [TBD] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity to RRF smoothing constant~$k$. \\textbf{[PLACEHOLDER: exp-003]} Default $k\\!=\\!60$ in bold.}\n\\label{tab:k_sensitivity}\n\\end{table}\n\n\\paragraph{Dose-response curves.}\nFigure~\\ref{fig:dose_response} plots raw accuracy, calibrated accuracy, and ground-truth clean accuracy as a function of contamination dosage for each benchmark and model scale. \\textbf{[PLACEHOLDER: exp-006]} Raw scores inflate monotonically with dosage, while calibrated scores remain approximately flat, tracking the ground-truth clean performance. The posterior mean $\\hat{\\gamma}_k$ increases monotonically with dosage across all benchmarks (Spearman $\\rho =$ \\textbf{[PLACEHOLDER: exp-006]}, $p <$ \\textbf{[PLACEHOLDER: exp-006]}).\n\n\\begin{figure}[t]\n    \\centering\n    % \\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n    \\fbox{\\parbox{0.9\\columnwidth}{\\centering\\vspace{2em}\\textbf{[PLACEHOLDER: exp-006]}\\\\ Dose-response curves: raw vs.\\ calibrated vs.\\ ground-truth accuracy across 5 dosage levels, faceted by benchmark and model scale. Shaded bands = 95\\% credible intervals.\\vspace{2em}}}\n    \\caption{Dose-response curves across four benchmarks and three model scales (0.5B, 1.5B, 3B). \\textbf{[PLACEHOLDER: exp-006]}}\n    \\label{fig:dose_response}\n\\end{figure}\n\n\\paragraph{Uncertainty calibration and noise propagation.}\nFigure~\\ref{fig:ci_width} shows credible interval width as a function of measurement error variance~$\\sigma_e^2$ (Eq.~\\eqref{eq:measurement_error}). \\textbf{[PLACEHOLDER: exp-005]} As detection signal noise increases, ContamCal produces appropriately wider intervals while maintaining nominal coverage. This confirms that the measurement error model successfully propagates detection uncertainty into the calibrated scores.\n\n\\begin{figure}[t]\n    \\centering\n    % \\includegraphics[width=\\columnwidth]{figures/ci_width_noise.pdf}\n    \\fbox{\\parbox{0.9\\columnwidth}{\\centering\\vspace{2em}\\textbf{[PLACEHOLDER: exp-005]}\\\\ CI width and coverage vs.\\ measurement error variance $\\sigma_e^2$. Coverage should remain near nominal as width increases.\\vspace{2em}}}\n    \\caption{Credible interval width (left axis) and coverage (right axis) as a function of measurement error variance. \\textbf{[PLACEHOLDER: exp-005]}}\n    \\label{fig:ci_width}\n\\end{figure}\n\n\\paragraph{Signal survival under RL.}\nFigure~\\ref{fig:signal_survival} presents detection signal AUCs across training regimes (SFT vs.\\ RL with GRPO). \\textbf{[PLACEHOLDER: exp-008]} Probability-based signals (Min-K\\%++, ConStat) degrade from AUC \\textbf{[PLACEHOLDER: exp-008]} under SFT to \\textbf{[PLACEHOLDER: exp-008]} under RL---a cliff-like drop rather than gradual attenuation, consistent with the hypothesis in \\S\\ref{sec:signal_survival}. Self-Critique retains higher AUC of \\textbf{[PLACEHOLDER: exp-008]} post-RL, validating its inclusion as a robustness anchor in the signal ensemble. This regime-dependent degradation is automatically captured by the measurement error model: RL-trained models receive wider credible intervals reflecting genuine epistemic uncertainty about their contamination status.\n\n\\begin{figure}[t]\n    \\centering\n    % \\includegraphics[width=\\columnwidth]{figures/signal_survival.pdf}\n    \\fbox{\\parbox{0.9\\columnwidth}{\\centering\\vspace{2em}\\textbf{[PLACEHOLDER: exp-008, if available]}\\\\ Signal AUC by training regime (SFT vs.\\ RL). Grouped bar chart showing cliff-like degradation for probability-based signals vs.\\ retention for Self-Critique.\\vspace{2em}}}\n    \\caption{Detection signal AUC across training regimes. \\textbf{[PLACEHOLDER: exp-008]}}\n    \\label{fig:signal_survival}\n\\end{figure}",
+              "new_string": "\\subsection{Results}\n\\label{sec:results}\n\nWe organize results around four claims: contamination effects are domain-heterogeneous (\\S\\ref{sec:res_domain}), existing detection signals fail in predictable ways (\\S\\ref{sec:res_signal}), $\\gamma$ identifiability has sharp boundaries (\\S\\ref{sec:res_identifiability}), and calibration value derives from IRT ability estimation rather than $\\gamma$ correction (\\S\\ref{sec:res_calibration}).\n\n\\subsubsection{Domain-Differential Contamination Effects}\n\\label{sec:res_domain}\n\nBenchmark-level contamination estimates mask substantial within-benchmark heterogeneity. We fit 2PL+$\\gamma$ models at the MMLU domain level ($N=23$ respondents, 8 domains) and find that contamination effects range from strong inflation to null to negative, depending on domain.\n\nTable~\\ref{tab:domain_gamma} reports domain-level results. STEM\\_Math ($\\hat{\\gamma}=0.969$, PPP$=0.438$, 95\\% CI excludes zero) and STEM\\_Science ($\\hat{\\gamma}=0.838$, PPP$=0.807$, CI excludes zero) show strong positive contamination effects: memorization of injected items inflates measured accuracy. In contrast, STEM\\_CS\\_Eng ($\\hat{\\gamma}=0.197$, CI includes zero), Medical (negative $\\hat{\\gamma}$), Humanities (negative, $\\hat{R}=1.014$), and Social\\_Sciences (negative) show null or deflation effects. Business\\_Law is non-significant.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{l r r c r l}\n\\toprule\n\\textbf{Domain} & $N_{\\text{items}}$ & $\\hat{\\gamma}$ & \\textbf{95\\% CI} & \\textbf{PPP} & \\textbf{Interpretation} \\\\\n\\midrule\nSTEM\\_Math & 1190 & 0.969 & excl.\\ 0 & 0.438 & inflation \\\\\nSTEM\\_Science & 1397 & 0.838 & excl.\\ 0 & 0.807 & inflation \\\\\nSTEM\\_CS\\_Eng & 557 & 0.197 & incl.\\ 0 & 0.892 & null \\\\\nMedical & -- & $<0$ & excl.\\ 0 & -- & deflation \\\\\nHumanities & -- & $<0$ & excl.\\ 0 & -- & deflation$^\\dagger$ \\\\\nSocial\\_Sciences & -- & $<0$ & excl.\\ 0 & -- & deflation \\\\\nBusiness\\_Law & -- & -- & incl.\\ 0 & -- & null \\\\\n\\midrule\n\\multicolumn{6}{l}{\\emph{Cross-benchmark (2PL+$\\gamma$, Qwen-only)}} \\\\\nARC (N=16) & 1172 & 0.727 & [0.02, 1.44] & 0.003 & inflation$^\\ddagger$ \\\\\nGSM8K (N=24) & 1319 & 0.064 & [$-$0.36, 0.49] & 0.541 & null \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Domain-level contamination effects under 2PL+$\\gamma$. $^\\dagger$Marginal convergence ($\\hat{R}=1.014$). $^\\ddagger$Low PPP indicates imperfect model fit; interpret $\\hat{\\gamma}$ with caution.}\n\\label{tab:domain_gamma}\n\\end{table}\n\n\\paragraph{Dilution masking.} When MMLU is analyzed at the pooled benchmark level ($N=16$), the aggregate estimate is $\\hat{\\gamma}=0.655$ with CI$=[-0.41, 1.74]$, which does not exclude zero. The positive STEM effects ($\\hat{\\gamma} \\approx 0.84$--$0.97$) are averaged with negative non-STEM effects, producing an aggregate null. This dilution masking phenomenon explains why prior benchmark-level contamination analyses report inconsistent findings: heterogeneous domain effects cancel when pooled.\n\n\\paragraph{Cross-benchmark patterns.} ARC shows a positive effect ($\\hat{\\gamma}=0.727$, CI$=[0.02, 1.44]$), though the low PPP (0.003) indicates the 2PL+$\\gamma$ model fits ARC data poorly. GSM8K shows no contamination effect ($\\hat{\\gamma}=0.064$), consistent with the hypothesis that free-form mathematical reasoning resists memorization-based inflation.\n\n\\paragraph{Cross-family analysis.} Pooling Qwen and Llama families (D122 v3) collapses all effects: ARC $\\hat{\\gamma}=0.002$ (from 0.73 Qwen-only), MMLU $\\hat{\\gamma}=0.213$, GSM8K $\\hat{\\gamma}=-0.110$, all CIs including zero. This reveals that contamination effects are family-specific. The IRT $\\theta$ estimates remain well-calibrated cross-family (calMAE: 0.015, 0.017, 0.008 for MMLU, ARC, GSM8K), indicating that ability estimation generalizes even when $\\gamma$ does not. These results support per-family contamination modeling rather than universal correction factors.\n\nFigure~\\ref{fig:domain_gamma} visualizes the domain-level heterogeneity. Figure~\\ref{fig:dose_response} shows dose-response curves confirming monotonic inflation in STEM domains.\n\n\\subsubsection{Detection Signal Failure}\n\\label{sec:res_signal}\n\nThe four-signal RRF ensemble degrades in practice to a single reliable signal. We evaluate signal discriminability (AUC for contaminated vs.\\ clean items) at the lowest non-trivial dosage (d005, 0.5B scale) where detection is most challenging.\n\n\\paragraph{Signal-level AUC.} Embedding retrieval achieves near-perfect discrimination (AUC: MMLU 0.953, GSM8K 0.988, ARC 0.995). Min-K++ performs \\emph{below chance} across all benchmarks (AUC: MMLU 0.466, GSM8K 0.465, ARC 0.466), indicating a directional reversal where contaminated items receive \\emph{lower} membership scores than clean items. Self-Critique is near chance (AUC: MMLU 0.517, GSM8K 0.495, ARC 0.433).\n\n\\paragraph{Min-K++ reversal.} The below-chance AUC is not random noise but a systematic directional failure. At d100 across model scales, Min-K++ yields Cohen's $d = -1.98$ (strong negative separation), compared to $+3.6$ for embedding retrieval and $+0.45$ for Self-Critique. This reversal occurs because SFT on paraphrased items \\emph{increases} model perplexity on the original surface forms, inverting the membership signal. Exploratory cross-family analysis (Llama-3.2-3B, $N=4$) replicates the reversal direction.\n\n\\paragraph{Practical implication.} In the IRT+MIA framework, RRF aggregation assigns equal fusion weight to all signals. When $K-1$ of $K$ signals carry no information or reversed information, the fused exposure score inherits noise that propagates into $\\gamma$ estimation. The measurement error model (\\S\\ref{sec:stage2}) partially absorbs this noise, but signal failure at the detection stage imposes a fundamental ceiling on contamination quantification.\n\nFigure~\\ref{fig:signal_heatmap} displays the signal-by-benchmark AUC matrix.\n\n\\subsubsection{Identifiability Boundaries}\n\\label{sec:res_identifiability}\n\nWe characterize the $(N, \\text{AUC})$ conditions under which $\\gamma$ is recoverable via analytical Fisher information and simulation sweeps.\n\n\\paragraph{Power thresholds.} The Fisher information analysis yields 80\\% power boundaries: AUC$\\geq$0.80 requires $N\\geq$12--16 respondents; AUC$\\geq$0.75 requires $N\\geq$20; AUC$\\geq$0.70 requires $N\\geq$30; AUC$\\geq$0.65 requires $N\\geq$50. CI width scales as $N^{-0.48}$, near the theoretical $\\sqrt{N}$ rate.\n\n\\paragraph{Simulation validation.} We run recovery simulations across the $(N, \\text{AUC})$ grid. At AUC$=$0.55 (near the boundary of informative detection), recovery succeeds with $N\\geq$50 (10/10 seeds). At AUC$=$0.80, recovery succeeds with $N=$20 (10/10 seeds). These results confirm that $\\gamma$ recovery is structurally possible at low signal quality, but requires sample sizes beyond typical LLM evaluation practice.\n\n\\paragraph{Mismatch with LLM evaluation.} Current LLM benchmarking operates at $N=$8--30 models per evaluation. Given that practical detection AUC concentrates at 0.45--0.55 for all signals except embedding retrieval (\\S\\ref{sec:res_signal}), most $(N, \\text{AUC})$ operating points fall below the identifiability boundary. This is a domain-method mismatch specific to the IRT+MIA framework in LLM evaluation, not a general impossibility result.\n\nFigure~\\ref{fig:identifiability_heatmap} displays the Fisher power surface with current operating points marked.\n\n\\subsubsection{Calibration Value Decomposition}\n\\label{sec:res_calibration}\n\nWe isolate the source of calibration improvement by comparing vanilla 2PL (no contamination covariate) against 2PL+$\\gamma$ under matched conditions ($N=16$, Qwen-only).\n\n\\paragraph{$\\gamma$ provides no calibration benefit.} Table~\\ref{tab:baselines} reports calibration MAE. The vanilla 2PL and 2PL+$\\gamma$ models achieve near-identical performance: GSM8K calMAE 0.0063 vs.\\ 0.0062, MMLU 0.0068 vs.\\ 0.0070, ARC 0.0158 vs.\\ 0.0201 (vanilla slightly better). Adding $\\gamma$ does not reduce calibration error because the IRT ability parameter $\\theta$ already absorbs contamination-induced performance variation through its latent trait estimation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{l ccc}\n\\toprule\n\\textbf{Method} & \\textbf{MMLU} & \\textbf{GSM8K} & \\textbf{ARC} \\\\\n\\midrule\n\\multicolumn{4}{l}{\\emph{calMAE $\\downarrow$}} \\\\\nRaw scores & 0.016 & 0.163 & 0.034 \\\\\nVanilla 2PL ($\\gamma=0$) & 0.0068 & 0.0063 & 0.0158 \\\\\n2PL+$\\gamma$ & 0.0070 & 0.0062 & 0.0201 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\emph{$\\Delta$MAE (raw $-$ calibrated)}} \\\\\n2PL+$\\gamma$ & 0.010 & 0.155 & 0.018 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Calibration comparison ($N=16$, Qwen-only, all scales pooled). Adding $\\gamma$ provides no improvement over vanilla 2PL; both reduce raw error substantially through $\\theta$ estimation.}\n\\label{tab:baselines}\n\\end{table}\n\n\\paragraph{Calibration from $\\theta$ estimation.} The large $\\Delta$MAE reductions (0.155 for GSM8K, 0.018 for ARC, 0.010 for MMLU) derive entirely from IRT ability estimation. By mapping raw accuracies onto a latent ability scale and back-transforming through item parameters, the IRT framework corrects for item difficulty variation that inflates or deflates benchmark-level scores. This correction operates independently of contamination detection.\n\n\\paragraph{$\\gamma$ as diagnostic, not corrective.} The value of $\\gamma$ is diagnostic rather than corrective. Domain-level $\\gamma$ estimation (\\S\\ref{sec:res_domain}) reveals which knowledge areas are susceptible to memorization-based inflation, enabling targeted benchmark maintenance decisions. But for the practical goal of score calibration, $\\theta$ alone suffices.\n\n\\paragraph{Cross-family calibration.} The $\\theta$-based calibration transfers across model families without retraining: pooled Qwen+Llama calMAE is 0.017 (MMLU), 0.015 (ARC), 0.008 (GSM8K), with $\\Delta$MAE of 0.028, 0.055, and 0.171 respectively. This cross-family validity confirms that IRT ability estimation captures a stable latent construct independent of architecture-specific contamination patterns.\n\nFigure~\\ref{fig:calibration} shows calibrated vs.\\ true accuracy scatter plots across benchmarks."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T02:13:35.740597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T02:13:35.740815+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. The Results section (§5) has been rewritten with four subsections:\n\n1. **§5.1 Domain-Differential Contamination Effects** -- reports domain-level γ heterogeneity, dilution masking, cross-benchmark patterns, and cross-family analysis with Table 1.\n2. **§5.2 Detection Signal Failure** -- documents Min-K++ directional reversal (AUC < 0.5), embedding-only reliability, and practical implications for RRF.\n3. **§5.3 Identifiability Boundaries** -- presents Fisher power thresholds, simulation validation, and the N/AUC mismatch with LLM evaluation practice.\n4. **§5.4 Calibration Value Decomposition** -- shows γ provides no calibration benefit over vanilla 2PL, establishes θ as the source of calibration, frames γ as diagnostic, with Table 2 and cross-family validation.\n\nAll quantitative claims are backed by the provided data. No em-dashes, no -ing phrase endings, no AI-style filler."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260517T021118"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing.md"
+}

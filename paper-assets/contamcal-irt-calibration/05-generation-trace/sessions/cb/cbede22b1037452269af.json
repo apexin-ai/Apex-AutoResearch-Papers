@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbede22b1037452269af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code signals 3B v6",
+  "task_key": "worker_code_signals_3B_v6_20260515T201034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_signals_3B_v6_20260515T201034_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "710408d9a9066abd0c9457ac97c56938899004a75924c5745bf7df1fb16d4901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "signals_3B_v6 已启动并注册。\n\n**总结：**\n- Orphan PID 617201/617202 已不存在（无需 kill）\n- GPU 3 上有一个 1.5B evaluate 进程（PID 627614，6.4GB），与 signals 3B 共存无问题\n- 直接用 compute_signals.py（run_batch.py 不支持 `_v2` 命名），9 个任务顺序执行：3 benchmarks (mmlu/gsm8k/arc_challenge) × 3 signals (s1/s2/s4)\n- 跳过 s3_constat（d000_v2 无 eval_results）\n- checkpoint: `Qwen2.5-3B_d000_v2_s42/lora_adapter`，ref_model 为自身\n- tmux session: `signals_3B_v6`，log: `/root/autodl-tmp/exp002/signals/signals_3B_v6.log`\n- GPU 3 显存 12.7GB/24GB，正常运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-signals-3b-v6.md"
+}

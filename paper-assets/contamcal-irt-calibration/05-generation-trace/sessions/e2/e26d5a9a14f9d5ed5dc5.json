@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e26d5a9a14f9d5ed5dc5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code falcon3 chatml fix",
+  "task_key": "worker_code_falcon3-chatml-fix_20260522T040727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_falcon3-chatml-fix_20260522T040727_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "d8eef9fb38c2bb30209dd76ae20588cae43bfc42c9f1ef2754ea9aaa133c533d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器都修改完成：\n\n- **westd-29999**: `falcon` 已移除（行164），CHATML_TEMPLATE 在 else 分支（行171）\n- **cqa1-21977**: `falcon` 已移除（行151），CHATML_TEMPLATE 已定义（行73）并在 else 分支使用（行155）\n\n两台服务器上 `falcon` 关键字已不存在，Falcon3 模型会走 else 分支使用 ChatML template。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-falcon3-chatml-fix.md"
+}

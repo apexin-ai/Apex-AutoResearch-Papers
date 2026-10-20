@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5314f100d1731e2d0e16",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 005 failure",
+  "task_key": "worker_analysis_exp004_005_failure_20260514T031759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_005_failure_20260514T031759_result.json",
+    "occurrence": 1,
+    "bytes": 1397,
+    "sha256": "4841eb418c289269a71260d6c9fb900e5d9d7873449fd473ddaa7f0a844b9ed7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告已保存。以下是结论：\n\n---\n\n## 诊断结果\n\n### exp_005_noise_prop v1 — 修复前\n- 运行 2026-05-13 18:31→20:47，**正是发现 Stan bug 的那次 run**\n- sigma_e=0 导致 normal_lpdf crash，c/d 边界导致 chain 崩溃，max_treedepth 不够\n\n### exp_005_noise_prop v2 — 修复后，但因基础设施问题失败\n- Stan 三项修复已生效（sigma_e≥1e-4, c/d∈[0.001,0.999], treedepth=12）\n- **根因：/tmp tmpfs 3.9GB 被 ME model CSV 输出耗尽**，simple model 4 链全部 disk quota exceeded\n- ME model 独立问题：10231 参数 vs 9000 观测 → Rhat=1.945（严重欠识别）\n- **不需要重跑**：后续 diag 实验已跑通，D013 弃用 ME model，D014 限定 γ 适用条件\n\n### exp_004_sim_sweep — 不受 Stan bug 影响，仍在运行\n- 使用独立模型 `contam_irt_4pl_sweep.stan`\n- **PID 219346 仍存活**（10h+），但 seed 6 of auc0.55_n100 卡在 warmup（max_depth=10 未设 12）\n- 已完成 3/12 条件，结果质量优异（γ bias <2%, 0 divergences）\n- **建议：kill 后修改 max_depth=12，跳过已完成条件重启**；或直接使用现有 3 条件数据（已覆盖 AUC=0.55 × 3 个 N_models 水平）\n\n### 重跑优先级\n1. **exp_005**: 不需要重跑（LOW）\n2. **exp_004**: 建议 kill+restart 修复 max_depth（MEDIUM），或直接用已有结果（LOW）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-005-failure.md"
+}

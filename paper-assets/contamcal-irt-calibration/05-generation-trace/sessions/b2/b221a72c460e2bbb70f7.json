@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b221a72c460e2bbb70f7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh scp hf datasets cache",
+  "task_key": "worker_ssh_scp-hf-datasets-cache_20260519T001721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp-hf-datasets-cache_20260519T001721_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "fd71ea7e35c18a02fc9f3bea2509a0a0f5c212ef50d7d9ba53ca8c99c3aeff84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| SCP cqa1→westd | 成功（220M, 22s） |\n| datasets cache 大小 | 220M（含 hub metadata） |\n| evaluate.py --help | 正常，无网络错误 |\n| ARC-Challenge test | 1172 items |\n| MMLU test | 14042 items |\n| GSM8K test | 1319 items |\n| HumanEval test | 164 items |\n\n4 个 benchmark 的离线加载全部验证通过，`HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1` 模式下从 `/root/autodl-tmp/.hf_cache` 正常读取 cached 数据。cqa1 临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scp-hf-datasets-cache.md"
+}

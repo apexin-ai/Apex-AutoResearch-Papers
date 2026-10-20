@@ -1,0 +1,1356 @@
+{
+  "schema_version": "1.0",
+  "id": "cd287278fb5f1f08e96a",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code aligned eval scripts",
+  "task_key": "worker_code_aligned-eval-scripts_20260514T080412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_aligned-eval-scripts_20260514T080412.log",
+    "occurrence": 1,
+    "bytes": 73042,
+    "sha256": "ef76c1bebc293f00abf8df1a7e8cdc23eeaac27b51aecbd3efe6c8a99a1864fb"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2be64144-fb57-4eee-ad9b-b27df026f68e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778761800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ee64673e-9d76-4f3d-afd7-3de392ebeee8",
+                "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the evaluate.py arguments on the remote server, then create the script accordingly.",
+              "signature": "EqcCClkIDRgCKkDij1IcVIDteCqKGx2PH9gLaVeCkE7DftYt0ae5PK5LyvXWbZ+PGmHQ/pggzqqXpCiSqYEuut6+PVGJaXh7zw/WMg9jbGF1ZGUtb3B1cy00LTY4ABIMnDKqhgu6ZAclaz5aGgyivZtz4uXipsgGPYkiMEzcbuqrQmh372ZzC4wlHUkT2tqwvf0eWlMJpnpD+AUJgwMvl0nzofNTcgPQNS2wTip8s3K8t50PzRIbnmRQfwwvfmsyG0CL1aZuc4lHzcxy8WSDu2DfSZ8uSXvUkZRLeNI4cmle9BIlb8jPSKaIfhIQE72kT6PfVqWiAmi7A3R77fX38OGC2MYqU/fVjvEl9lLA69U4iMVlSDB7FkOn1CY7HY9+kC/RyBGq3ePgaxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "b4ba57ac-dc52-4950-a976-9854866668d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jo3R8xwy6wLmEjWiJ78qiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11806,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11806
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检查 evaluate.py 的实际参数和 paraphrase 数据路径。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "4ab4f9b3-e2b1-40b7-985e-cb85a7abff7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jo3R8xwy6wLmEjWiJ78qiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11806,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11806
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JxuBNYTBXbpbbqqPsCnxsJ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "db682ef1-1ddd-4829-9f42-a8751c646a4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jo3R8xwy6wLmEjWiJ78qiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11806,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11806
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:04:34.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JxuBNYTBXbpbbqqPsCnxsJ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "ec0af5a3-02cd-45a5-ab65-08ede0e9b409",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017nKCGzk2VtFpg4XZoH49qY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cd /root/contamcal-irt-calibration/exp001 && head -200 evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "62309113-6fcc-4391-b6c4-c1d3b8761e93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016xHq9u3tbw2Am1hCzsi7WZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 731,
+                "cache_read_input_tokens": 23647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 731
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:04:37.662Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017nKCGzk2VtFpg4XZoH49qY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "48dc6cc3-6d1d-42bc-8c59-ec9d9a72e59a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XRsvCS3Lh6M23PDS8QSiYK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -200 /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "3743e979-11ed-4085-b26c-9118d6cd2b5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UBezfDZt4W9uAGogsgYSxZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 206,
+                "cache_read_input_tokens": 24378,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 206
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:04:42.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XRsvCS3Lh6M23PDS8QSiYK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown MCQ benchmark: {benchmark}\\\\\\\")\\\\n\\\\n    # Build few-shot examples from validation set\\\\n    fewshot_examples = []\\\\n    if num_fewshot > 0 and val_ds is not None:\\\\n        indices = list(range(min(num_fewshot, len(val_ds))))\\\\n        for idx in indices:\\\\n            row = val_ds[idx]\\\\n            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\\\n\\\\n    fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n    if max_samples:\\\\n        ds = ds.select(range(min(max_samples, len(ds))))\\\\n\\\\n    correct = 0\\\\n    total = 0\\\\n    per_item = []\\\\n\\\\n    for row in tqdm(ds, desc=f\\\\\\\"Evaluating {benchmark}\\\\\\\"):\\\\n        if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n            choices_text = row[\\\\\\\"choices\\\\\\\"]\\\\n            answer_idx = row[\\\\\\\"answer\\\\\\\"]\\\\n            answer_letter = CHOICE_LETTERS[answer_idx]\\\\n            question = row[\\\\\\\"question\\\\\\\"]\\\\n            choices_display = [f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices_text)]\\\\n        elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n            choices_text = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n            labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n            answer_letter = row[\\\\\\\"answerKey\\\\\\\"]\\\\n            question = row[\\\\\\\"question\\\\\\\"]\\\\n            choices_display = [f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices_text)]\\\\n\\\\n        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n        raw_prompt = fewshot_prefix + f\\\\\\\"Question: {question}\\\\\\\\n\\\\\\\" + \\\\\\\"\\\\\\\\n\\\\\\\".join(choices_display) + f\\\\\\\"\\\\\\\\n{mc_suffix}\\\\\\\"\\\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\\\n\\\\n        choice_tokens = labels if benchmark == \\\\\\\"arc_challenge\\\\\\\" else [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\\\n        logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n        pred_idx = int(np.argmax(logprobs))\\\\n        pred_letter = choice_tokens[pred_idx]\\\\n\\\\n        is_correct = pred_letter == answer_letter\\\\n        correct += int(is_correct)\\\\n        total += 1\\\\n        per_item.append({\\\\\\\"index\\\\\\\": total - 1, \\\\\\\"correct\\\\\\\": is_correct, \\\\\\\"pred\\\\\\\": pred_letter, \\\\\\\"gold\\\\\\\": answer_letter})\\\\n\\\\n    accuracy = correct / total if total > 0 else 0.0\\\\n    return {\\\\\\\"accuracy\\\\\\\": accuracy, \\\\\\\"correct\\\\\\\": correct, \\\\\\\"total\\\\\\\": total, \\\\\\\"per_item\\\\\\\": per_item}\\\\n\\\\n\\\\ndef format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\\\\\"aligned\\\\\\\") -> str:\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        choices = row[\\\\\\\"choices\\\\\\\"]\\\\n        answer_letter = CHOICE_LETTERS[row[\\\\\\\"answer\\\\\\\"]]\\\\n        choices_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices))\\\\n        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer_letter}.\\\\\\\"\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nAnswer: {answer_letter}\\\\\\\"\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        choices = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n        labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n        answer = row[\\\\\\\"answerKey\\\\\\\"]\\\\n        choices_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices))\\\\n        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer}.\\\\\\\"\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nAnswer: {answer}\\\\\\\"\\\\n\\\\n\\\\n# ── GSM8K evaluation ──\\\\n\\\\ndef extract_gsm8k_answer(text: str) -> str | None:\\\\n    # Look for #### pattern first\\\\n    match = re.search(r'####\\\\\\\\s*(.+?)(?:\\\\\\\\n|$)', text)\\\\n    if match:\\\\n        answer = match.group(1).strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        answer = re.sub(r'[^-\\\\\\\\d.]', '', answer)\\\\n        return answer\\\\n    # Try to find last number\\\\n    numbers = re.findall(r'-?\\\\\\\\d+(?:,\\\\\\\\d{3})*(?:\\\\\\\\.\\\\\\\\d+)?', text)\\\\n    if numbers:\\\\n        return numbers[-1].replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return None\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "5e358df7-a130-4740-bc47-e3742639863c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown MCQ benchmark: {benchmark}\\\\\\\")\\\\n\\\\n    # Build few-shot examples from validation set\\\\n    fewshot_examples = []\\\\n    if num_fewshot > 0 and val_ds is not None:\\\\n        indices = list(range(min(num_fewshot, len(val_ds))))\\\\n        for idx in indices:\\\\n            row = val_ds[idx]\\\\n            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\\\n\\\\n    fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n    if max_samples:\\\\n        ds = ds.select(range(min(max_samples, len(ds))))\\\\n\\\\n    correct = 0\\\\n    total = 0\\\\n    per_item = []\\\\n\\\\n    for row in tqdm(ds, desc=f\\\\\\\"Evaluating {benchmark}\\\\\\\"):\\\\n        if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n            choices_text = row[\\\\\\\"choices\\\\\\\"]\\\\n            answer_idx = row[\\\\\\\"answer\\\\\\\"]\\\\n            answer_letter = CHOICE_LETTERS[answer_idx]\\\\n            question = row[\\\\\\\"question\\\\\\\"]\\\\n            choices_display = [f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices_text)]\\\\n        elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n            choices_text = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n            labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n            answer_letter = row[\\\\\\\"answerKey\\\\\\\"]\\\\n            question = row[\\\\\\\"question\\\\\\\"]\\\\n            choices_display = [f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices_text)]\\\\n\\\\n        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n        raw_prompt = fewshot_prefix + f\\\\\\\"Question: {question}\\\\\\\\n\\\\\\\" + \\\\\\\"\\\\\\\\n\\\\\\\".join(choices_display) + f\\\\\\\"\\\\\\\\n{mc_suffix}\\\\\\\"\\\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\\\n\\\\n        choice_tokens = labels if benchmark == \\\\\\\"arc_challenge\\\\\\\" else [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\\\n        logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n        pred_idx = int(np.argmax(logprobs))\\\\n        pred_letter = choice_tokens[pred_idx]\\\\n\\\\n        is_correct = pred_letter == answer_letter\\\\n        correct += int(is_correct)\\\\n        total += 1\\\\n        per_item.append({\\\\\\\"index\\\\\\\": total - 1, \\\\\\\"correct\\\\\\\": is_correct, \\\\\\\"pred\\\\\\\": pred_letter, \\\\\\\"gold\\\\\\\": answer_letter})\\\\n\\\\n    accuracy = correct / total if total > 0 else 0.0\\\\n    return {\\\\\\\"accuracy\\\\\\\": accuracy, \\\\\\\"correct\\\\\\\": correct, \\\\\\\"total\\\\\\\": total, \\\\\\\"per_item\\\\\\\": per_item}\\\\n\\\\n\\\\ndef format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\\\\\"aligned\\\\\\\") -> str:\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        choices = row[\\\\\\\"choices\\\\\\\"]\\\\n        answer_letter = CHOICE_LETTERS[row[\\\\\\\"answer\\\\\\\"]]\\\\n        choices_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices))\\\\n        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer_letter}.\\\\\\\"\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nAnswer: {answer_letter}\\\\\\\"\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        choices = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n        labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n        answer = row[\\\\\\\"answerKey\\\\\\\"]\\\\n        choices_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices))\\\\n        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer}.\\\\\\\"\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nAnswer: {answer}\\\\\\\"\\\\n\\\\n\\\\n# ── GSM8K evaluation ──\\\\n\\\\ndef extract_gsm8k_answer(text: str) -> str | None:\\\\n    # Look for #### pattern first\\\\n    match = re.search(r'####\\\\\\\\s*(.+?)(?:\\\\\\\\n|$)', text)\\\\n    if match:\\\\n        answer = match.group(1).strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        answer = re.sub(r'[^-\\\\\\\\d.]', '', answer)\\\\n        return answer\\\\n    # Try to find last number\\\\n    numbers = re.findall(r'-?\\\\\\\\d+(?:,\\\\\\\\d{3})*(?:\\\\\\\\.\\\\\\\\d+)?', text)\\\\n    if numbers:\\\\n        return numbers[-1].replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return None\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBenchmark evaluation for contamination-injected models.\\n\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\nper-item correctness matrix for downstream IRT analysis.\\n\\nInput:  Model checkpoint path\\nOutput: JSON with aggregate scores + per-item binary correctness\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport subprocess\\nimport tempfile\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nBENCHMARK_CONFIGS = {\\n    \\\"mmlu\\\": {\\\"num_fewshot\\\": 5, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"gsm8k\\\": {\\\"num_fewshot\\\": 8, \\\"metric\\\": \\\"exact_match\\\"},\\n    \\\"arc_challenge\\\": {\\\"num_fewshot\\\": 25, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"humaneval\\\": {\\\"num_fewshot\\\": 0, \\\"metric\\\": \\\"pass@1\\\"},\\n}\\n\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\n\\nMMLU_SUBJECTS = None  # loaded dynamically\\n\\nCHOICE_LETTERS = \\\"ABCDEFGHIJ\\\"\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\n    \\\"\\\"\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\"\\\"\\\"\\n    if adapter_path:\\n        logger.info(\\\"Loading base model: %s + adapter: %s\\\", model_path, adapter_path)\\n        from peft import PeftModel\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\n    \\\"\\\"\\\"Wrap content in chat template to match SFT training format.\\\"\\\"\\\"\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": user_content}]\\n    return tokenizer.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True\\n    )\\n\\n\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\n    \\\"\\\"\\\"Compute log probabilities of each choice token given prompt.\\\"\\\"\\\"\\n    inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n    with torch.no_grad():\\n        outputs = model(**inputs)\\n    logits = outputs.logits[0, -1, :]  # last token logits\\n    log_probs = torch.log_softmax(logits, dim=-1)\\n\\n    choice_logprobs = []\\n    for choice in choices:\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\n        if token_ids:\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\n        else:\\n            choice_logprobs.append(float(\\\"-inf\\\"))\\n\\n    return choice_logprobs\\n\\n\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\n                 mc_format: str = \\\"aligned\\\") -> dict:\\n    \\\"\\\"\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        val_ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n    else:\\n        raise ValueError(f\\\"Unknown MCQ benchmark: {benchmark}\\\")\\n\\n    # Build few-shot examples from validation set\\n    fewshot_examples = []\\n    if num_fewshot > 0 and val_ds is not None:\\n        indices = list(range(min(num_fewshot, len(val_ds))))\\n        for idx in indices:\\n            row = val_ds[idx]\\n            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\n\\n    fewshot_prefix = \\\"\\\\n\\\\n\\\".join(fewshot_examples) + \\\"\\\\n\\\\n\\\" if fewshot_examples else \\\"\\\"\\n\\n    if max_samples:\\n        ds = ds.select(range(min(max_samples, len(ds))))\\n\\n    correct = 0\\n    total = 0\\n    per_item = []\\n\\n    for row in tqdm(ds, desc=f\\\"Evaluating {benchmark}\\\"):\\n        if benchmark == \\\"mmlu\\\":\\n            choices_text = row[\\\"choices\\\"]\\n            answer_idx = row[\\\"answer\\\"]\\n            answer_letter = CHOICE_LETTERS[answer_idx]\\n            question = row[\\\"question\\\"]\\n            choices_display = [f\\\"{CHOICE_LETTERS[i]}) {c}\\\" for i, c in enumerate(choices_text)]\\n        elif benchmark == \\\"arc_challenge\\\":\\n            choices_text = row[\\\"choices\\\"][\\\"text\\\"]\\n            labels = row[\\\"choices\\\"][\\\"label\\\"]\\n            answer_letter = row[\\\"answerKey\\\"]\\n            question = row[\\\"question\\\"]\\n            choices_display = [f\\\"{l}) {t}\\\" for l, t in zip(labels, choices_text)]\\n\\n        mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n        raw_prompt = fewshot_prefix + f\\\"Question: {question}\\\\n\\\" + \\\"\\\\n\\\".join(choices_display) + f\\\"\\\\n{mc_suffix}\\\"\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n        choice_tokens = labels if benchmark == \\\"arc_challenge\\\" else [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\n        logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\n        pred_idx = int(np.argmax(logprobs))\\n        pred_letter = choice_tokens[pred_idx]\\n\\n        is_correct = pred_letter == answer_letter\\n        correct += int(is_correct)\\n        total += 1\\n        per_item.append({\\\"index\\\": total - 1, \\\"correct\\\": is_correct, \\\"pred\\\": pred_letter, \\\"gold\\\": answer_letter})\\n\\n    accuracy = correct / total if total > 0 else 0.0\\n    return {\\\"accuracy\\\": accuracy, \\\"correct\\\": correct, \\\"total\\\": total, \\\"per_item\\\": per_item}\\n\\n\\ndef format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\"aligned\\\") -> str:\\n    if benchmark == \\\"mmlu\\\":\\n        choices = row[\\\"choices\\\"]\\n        answer_letter = CHOICE_LETTERS[row[\\\"answer\\\"]]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{CHOICE_LETTERS[i]}) {c}\\\" for i, c in enumerate(choices))\\n        if mc_format == \\\"aligned\\\":\\n            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer_letter}.\\\"\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer_letter}\\\"\\n    elif benchmark == \\\"arc_challenge\\\":\\n        choices = row[\\\"choices\\\"][\\\"text\\\"]\\n        labels = row[\\\"choices\\\"][\\\"label\\\"]\\n        answer = row[\\\"answerKey\\\"]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{l}) {t}\\\" for l, t in zip(labels, choices))\\n        if mc_format == \\\"aligned\\\":\\n            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer}.\\\"\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer}\\\"\\n\\n\\n# ── GSM8K evaluation ──\\n\\ndef extract_gsm8k_answer(text: str) -> str | None:\\n    # Look for #### pattern first\\n    match = re.search(r'####\\\\s*(.+?)(?:\\\\n|$)', text)\\n    if match:\\n        answer = match.group(1).strip().replace(\\\",\\\", \\\"\\\")\\n        answer = re.sub(r'[^-\\\\d.]', '', answer)\\n        return answer\\n    # Try to find last number\\n    numbers = re.findall(r'-?\\\\d+(?:,\\\\d{3})*(?:\\\\.\\\\d+)?', text)\\n    if numbers:\\n        return numbers[-1].replace(\\\",\\\", \\\"\\\")\\n    return None\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me see the argparse section to get the exact parameter names.",
+              "signature": "EvwBClkIDRgCKkCW6z9rizd7kiLbsw7XUNPwre6swenJXoLcmF21t3RAaTiIpXXyX+NYIw897b8Kmz+mIDIowY3tT5qhjbJwhLH5Mg9jbGF1ZGUtb3B1cy00LTY4ABIM3Hs9FGu5JQpupBUyGgz9inG9WzNQAqBvoLsiMKGDnUJWQrnYBF9dk5fNy/e9nYTwzOtMAIf2rD82Uca8AlcGG83tkgy9lDcZFLYFHypRt2Qd5tvELGI2S3GkoBvkS1xJ4G+L5y6WYR5vT66nk4QH/hvAwxoBUr4drhxLHQgCRgGXvm6U5vy6OXXcUk9fctZd5DNQLo0GwqPXFBll39PBGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "1da19c66-254f-440f-a320-a0eb37faf7d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JztB9xV5jPPSfQJnDhWzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3330,
+                "cache_read_input_tokens": 24584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3330
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the argparse section and paraphrase data paths."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "ec1e4858-367c-4860-bbec-4db25adb5e63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JztB9xV5jPPSfQJnDhWzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3330,
+                "cache_read_input_tokens": 24584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3330
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011pkJTmsiBmbBCGZBVfgoWd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"add_argument\\|argparse\\|parse_args\\|paraphrase\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "9dc036bf-5bba-4d0c-8a6b-bd82e7cef004",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JztB9xV5jPPSfQJnDhWzd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3330,
+                "cache_read_input_tokens": 24584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3330
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:04:46.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011pkJTmsiBmbBCGZBVfgoWd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "93165dc4-7c7a-4726-908b-5999577550a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Haoo3Vrs9k4QhV1A9pTyQY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"add_argument\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "b5f1bde3-cc17-47b8-87d6-f07b77a52a01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VvRkSDVszqsZgeqFZLn6C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 264,
+                "cache_read_input_tokens": 27914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 264
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:04:49.851Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Haoo3Vrs9k4QhV1A9pTyQY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"532:    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n534:    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n538:    parser.add_argument(\\\\\\\"--adapter-path\\\\\\\", type=str, default=None,\\\\n540:    parser.add_argument(\\\\\\\"--paraphrase-dir\\\\\\\", type=str, default=None,\\\\n542:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True,\\\\n544:    parser.add_argument(\\\\\\\"--max-samples\\\\\\\", type=int, default=None,\\\\n546:    parser.add_argument(\\\\\\\"--mc-format\\\\\\\", type=str, default=\\\\\\\"aligned\\\\\\\",\\\\n549:    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8,\\\\n551:    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "82573c41-b198-4acd-a989-7d09f9b0b674",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"532:    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n534:    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n538:    parser.add_argument(\\\\\\\"--adapter-path\\\\\\\", type=str, default=None,\\\\n540:    parser.add_argument(\\\\\\\"--paraphrase-dir\\\\\\\", type=str, default=None,\\\\n542:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True,\\\\n544:    parser.add_argument(\\\\\\\"--max-samples\\\\\\\", type=int, default=None,\\\\n546:    parser.add_argument(\\\\\\\"--mc-format\\\\\\\", type=str, default=\\\\\\\"aligned\\\\\\\",\\\\n549:    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8,\\\\n551:    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"532:    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n534:    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n538:    parser.add_argument(\\\"--adapter-path\\\", type=str, default=None,\\n540:    parser.add_argument(\\\"--paraphrase-dir\\\", type=str, default=None,\\n542:    parser.add_argument(\\\"--output-dir\\\", type=str, required=True,\\n544:    parser.add_argument(\\\"--max-samples\\\", type=int, default=None,\\n546:    parser.add_argument(\\\"--mc-format\\\", type=str, default=\\\"aligned\\\",\\n549:    parser.add_argument(\\\"--batch-size\\\", type=int, default=8,\\n551:    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015xcmrifg7xzKbKs713mVft",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/paraphrases/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "47020449-f785-436d-bb80-6fb5544ec08d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bebq7poEsWhj2gjy2gLDCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 462,
+                "cache_read_input_tokens": 28178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 462
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:04:53.154Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015xcmrifg7xzKbKs713mVft",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge_paraphrases.json\\\\ngsm8k_paraphrases.json\\\\nhumaneval_paraphrases.json\\\\nmmlu_paraphrases.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "dfaaabe2-8a70-45ef-b170-398ad16ba8e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge_paraphrases.json\\\\ngsm8k_paraphrases.json\\\\nhumaneval_paraphrases.json\\\\nmmlu_paraphrases.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"arc_challenge_paraphrases.json\\ngsm8k_paraphrases.json\\nhumaneval_paraphrases.json\\nmmlu_paraphrases.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SWQji9QBZv6JD7XgMEmuBm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/checkpoints/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "65aaa051-5b4d-4103-92f3-e63f83d3f819",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSrUX7up1aARTUZzsoQQ2o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 223,
+                "cache_read_input_tokens": 28640,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 223
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T08:04:56.047Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SWQji9QBZv6JD7XgMEmuBm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "fbaa7714-583a-42ae-b9c5-fbd60e2b7510",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_s123\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S4Jea7B5rLPJpg1G2fujz3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "b5df8540-c223-478d-bd9e-d7be3a9c7460",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139g5oeCK4MZUsoLnp8QtCh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 28863,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 384
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:04:59.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S4Jea7B5rLPJpg1G2fujz3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "3e9d133e-83d9-48e6-a716-c3698c7b37a7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now I have all the information I need:\n\n1. evaluate.py args confirmed:\n   - `--model-path` (required)\n   - `--adapter-path` (optional)\n   - `--paraphrase-dir` (optional)\n   - `--output-dir` (required)\n   - `--benchmarks` (nargs=\"+\")\n   - `--mc-format` (default=\"aligned\")\n   - `--batch-size` (default=8)\n   - `--cache-dir` (default=\"/root/autodl-tmp/.hf_cache\")\n   - `--max-samples` (optional)\n\n2. Paraphrase files are located at `/root/autodl-tmp/exp001/paraphrases/`\n\n3. For the 0.5B model, I have checkpoints d000_s42, d005_s42, d025_s42, and d100_s42 available, though the task spec mentions d000, d005, and d100 specifically—I'll follow the task requirements and use those three.\n\n4. Each checkpoint includes a `lora_adapter/` subfolder.\n\n5. The `--mc-format` flag defaults to \"aligned\" but I should specify it explicitly.\n\n6. I'm verifying the benchmark names against what evaluate.py accepts—the BENCHMARK_CONFIGS dict supports \"mmlu\", \"gsm8k\", \"arc_challenge\", and \"humaneval\", which matches the task specification of BENCHMARKS=\"mmlu gsm8k arc_challenge humaneval\".\n\nNow I'm ready to write the script.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "f8c2cca3-9d2e-485c-8046-d06bcfbd453a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PyTQBkXYEuZwGMwDZjsgky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 29247,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数确认完毕：`--model-path`, `--adapter-path`, `--paraphrase-dir`, `--output-dir`, `--benchmarks`, `--mc-format`（默认已是 aligned）, `--batch-size`, `--cache-dir`。Checkpoint 结构确认，paraphrase 文件齐全。\n\n写脚本到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "c9914609-5d41-4407-ae48-fb4a6f150ec7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PyTQBkXYEuZwGMwDZjsgky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 29247,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M4E4HfovjURRV16aN1YRpn",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh << 'SCRIPT'\n#!/bin/bash\n# Aligned-format MC eval for 0.5B: original + paraphrase\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\nset -euo pipefail\n\nMODE=${1:-both}\nshift 2>/dev/null || true\n\n# AutoDL env\nsource /etc/network_turbo 2>/dev/null || true\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\nBENCHMARKS=\"mmlu gsm8k arc_challenge humaneval\"\nSCRIPT_DIR=$(cd \"$(dirname \"$0\")\" && pwd)\n\nfor DOSAGE in d000 d005 d100; do\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\n\n  if [ ! -d \"$ADAPTER\" ]; then\n    echo \"WARN: adapter not found: $ADAPTER, skipping\"\n    continue\n  fi\n\n  if [ \"$MODE\" = \"original\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\n    echo \"=== [original] ${DOSAGE} -> ${OUT} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --output-dir \"$OUT\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\n\n  if [ \"$MODE\" = \"paraphrase\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\n    echo \"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --paraphrase-dir \"$PARA_DIR\" \\\n      --output-dir \"$OUT_PARA\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\ndone\n\necho \"All 0.5B aligned evals done.\"\nSCRIPT\nchmod +x /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "0c19e316-6799-4d79-b1f3-f52d1aa0efb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PyTQBkXYEuZwGMwDZjsgky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 29247,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T08:05:21.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M4E4HfovjURRV16aN1YRpn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "dccebce8-a82e-4028-a666-74a7ab89af87",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证文件已写入。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "a064c77b-9d71-4bb8-a426-11a4a7c0be81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pKhS9fEmnJRZ7jUKDTzZ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 29554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1463
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TqpH6K7m2ft69bWiUihChu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -60 /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "3d1b6e09-26b4-4f00-a3ac-4a2903da65e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pKhS9fEmnJRZ7jUKDTzZ4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 29554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1463
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T08:05:24.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TqpH6K7m2ft69bWiUihChu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_PARA\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\ndone\\\\n\\\\necho \\\\\\\"All 0.5B aligned evals done.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "8b82d027-5d6e-4ef4-ad43-3e4701130d2d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_PARA\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\ndone\\\\n\\\\necho \\\\\\\"All 0.5B aligned evals done.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\nset -euo pipefail\\n\\nMODE=${1:-both}\\nshift 2>/dev/null || true\\n\\n# AutoDL env\\nsource /etc/network_turbo 2>/dev/null || true\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\nBENCHMARKS=\\\"mmlu gsm8k arc_challenge humaneval\\\"\\nSCRIPT_DIR=$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\n\\nfor DOSAGE in d000 d005 d100; do\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\n\\n  if [ ! -d \\\"$ADAPTER\\\" ]; then\\n    echo \\\"WARN: adapter not found: $ADAPTER, skipping\\\"\\n    continue\\n  fi\\n\\n  if [ \\\"$MODE\\\" = \\\"original\\\" ] || [ \\\"$MODE\\\" = \\\"both\\\" ]; then\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\n    echo \\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\"\\n    python \\\"$SCRIPT_DIR/evaluate.py\\\" \\\\\\n      --model-path \\\"$BASE\\\" \\\\\\n      --adapter-path \\\"$ADAPTER\\\" \\\\\\n      --output-dir \\\"$OUT\\\" \\\\\\n      --benchmarks $BENCHMARKS \\\\\\n      --mc-format aligned \\\\\\n      \\\"$@\\\"\\n  fi\\n\\n  if [ \\\"$MODE\\\" = \\\"paraphrase\\\" ] || [ \\\"$MODE\\\" = \\\"both\\\" ]; then\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\n    echo \\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\"\\n    python \\\"$SCRIPT_DIR/evaluate.py\\\" \\\\\\n      --model-path \\\"$BASE\\\" \\\\\\n      --adapter-path \\\"$ADAPTER\\\" \\\\\\n      --paraphrase-dir \\\"$PARA_DIR\\\" \\\\\\n      --output-dir \\\"$OUT_PARA\\\" \\\\\\n      --benchmarks $BENCHMARKS \\\\\\n      --mc-format aligned \\\\\\n      \\\"$@\\\"\\n  fi\\ndone\\n\\necho \\\"All 0.5B aligned evals done.\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建：`/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh`\n\n内容要点：\n- 3 个 dosage（d000/d005/d100），每个跑 original + paraphrase（由 MODE 参数控制）\n- AutoDL 环境配置齐全（network_turbo、conda、HF_HOME、SSL 证书）\n- `--mc-format aligned` 显式指定\n- adapter 不存在时跳过并警告\n- `shift` 后 `\"$@\"` 透传额外参数（如 `--batch-size 4`）\n- 输出目录带 `_aligned` / `_para_aligned` 后缀\n\n用法：`CUDA_VISIBLE_DEVICES=2 bash run_aligned_eval_05B.sh both --batch-size 4`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "uuid": "f9237b54-c9b4-47d8-a96d-bf4c8629e920",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016VE1DDozrAaFY4qYMtaGyk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1128,
+                "cache_read_input_tokens": 31017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1128
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建：`/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh`\n\n内容要点：\n- 3 个 dosage（d000/d005/d100），每个跑 original + paraphrase（由 MODE 参数控制）\n- AutoDL 环境配置齐全（network_turbo、conda、HF_HOME、SSL 证书）\n- `--mc-format aligned` 显式指定\n- adapter 不存在时跳过并警告\n- `shift` 后 `\"$@\"` 透传额外参数（如 `--batch-size 4`）\n- 输出目录带 `_aligned` / `_para_aligned` 后缀\n\n用法：`CUDA_VISIBLE_DEVICES=2 bash run_aligned_eval_05B.sh both --batch-size 4`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61703,
+            "duration_api_ms": 58651,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "a0d4899d-c9dd-4f9c-b27c-84ea0134dfb0",
+            "total_cost_usd": 0.3409725,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 20304,
+              "cache_read_input_tokens": 287863,
+              "output_tokens": 2733,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20304,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 234,
+                  "cache_read_input_tokens": 31017,
+                  "cache_creation_input_tokens": 1128,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1128
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1641,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0017460000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 2733,
+                "cacheReadInputTokens": 287863,
+                "cacheCreationInputTokens": 20304,
+                "webSearchRequests": 0,
+                "costUSD": 0.33922650000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1a779973-d06f-41c7-a42e-ef82b14f72a1"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-aligned-eval-scripts.md"
+}

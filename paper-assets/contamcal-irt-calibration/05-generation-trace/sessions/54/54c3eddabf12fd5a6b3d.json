@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54c3eddabf12fd5a6b3d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis item vulnerability prep",
+  "task_key": "worker_analysis_item-vulnerability-prep_20260519T185048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_item-vulnerability-prep_20260519T185048_result.json",
+    "occurrence": 1,
+    "bytes": 2549,
+    "sha256": "5e0aaff8dedae4efb4482893a3e6ecd5f3e5df15ea375dcc4a9688f69b7cc6f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 CSV。以下是汇报：\n\n---\n\n## 数据格式\n- **item_responses.json**：list of dicts，每个 `{item_id, benchmark, correct, model_answer, gold_answer}`\n- item_id = `mmlu_0` ~ `mmlu_14041`（positional index into `cais/mmlu` test split）\n- 14042 items per file，包含 mmlu + arc_challenge 两个 benchmark\n- 25 个文件全部齐全（5 models × 5 dosages），每个 14042 MMLU items\n\n## Domain 分布\n| Domain | N |\n|--------|-----|\n| Humanities | 4705 |\n| Other | 3107 |\n| STEM | 3153 |\n| Social Sciences | 3077 |\n\n57 个 subjects，14042 items。\n\n## Top-20 Most Vulnerable Items（|delta| 最大）\n\n| item_id | subject | domain | d000 | d100 | delta |\n|---------|---------|--------|------|------|-------|\n| mmlu_1851 | econometrics | Social Sci | 0.20 | 1.00 | **+0.800** |\n| mmlu_10597 | professional_accounting | Other | 0.00 | 0.80 | **+0.800** |\n| mmlu_11684 | professional_law | Humanities | 1.00 | 0.20 | **-0.800** |\n| mmlu_492 | clinical_knowledge | Other | 0.80 | 0.20 | -0.600 |\n| mmlu_1006 | college_computer_science | STEM | 0.20 | 0.80 | +0.600 |\n| mmlu_1118 | college_mathematics | STEM | 1.00 | 0.40 | -0.600 |\n| mmlu_1143 | college_mathematics | STEM | 1.00 | 0.40 | -0.600 |\n| ... (还有13项 delta=±0.600) | | | | | |\n\n最大 |delta| = 0.8（单项从 0.2→1.0 或 1.0→0.2）。Top-20 中 STEM 占 10 项。\n\n## Per-Domain Contamination Sensitivity\n\n| Domain | N | d000_acc | d100_acc | mean_delta | pos% | neg% |\n|--------|------|---------|---------|-----------|------|------|\n| **Other** | 3107 | 0.7098 | 0.6951 | **-0.0147** | 13.8% | 20.0% |\n| Social Sciences | 3077 | 0.7416 | 0.7307 | -0.0109 | 16.5% | 21.6% |\n| STEM | 3153 | 0.6174 | 0.6116 | -0.0058 | 18.0% | 20.5% |\n| Humanities | 4705 | 0.5883 | 0.5830 | -0.0053 | 21.4% | 24.1% |\n| **AGGREGATE** | **14042** | **0.6553** | **0.6466** | **-0.0087** | | |\n\n**Other domain contamination sensitivity 最高**（-0.0147），是 STEM/Humanities 的 ~2.5 倍。所有 domain 的 neg% 都大于 pos%——contamination 反而降低了准确率（可能因为 SFT 训练的 catastrophic forgetting 或 overfitting 到 contamination data 的 format）。\n\n## Simpson's Paradox\n**未检测到 Simpson's paradox**——所有 4 个 domain 的 delta 方向与 aggregate 一致（均为 negative）。contamination 在所有 domain 层面都表现为轻微 accuracy 下降。\n\nCSV 输出在：`/root/contamcal-irt-calibration/analysis/results/item_vulnerability_mmlu.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-item-vulnerability-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d886a7c2247a0ae773b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo eval cuda3",
+  "task_key": "worker_ssh_westd-olmo-eval-cuda3_20260519T093927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-eval-cuda3_20260519T093927_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "317184a691b8ba89b0c4d52de842bdbf75b640b73448c8f42bb17b1dec08ff96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 已释放，PID 134065 已结束。两个 eval 全部完成。\n\n---\n\n## 最终汇报\n\n### 1. OLMo-2-7B d050 (seed 42)\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| **MMLU** | **59.18%** | 8310/14042 |\n| **ARC-Challenge** | **80.89%** | 948/1172 |\n\n输出路径：`/root/autodl-tmp/exp001/eval_results_cross_family/olmo2_d050_s42/`\n- `mmlu_results.json`, `arc_challenge_results.json`, `eval_results.json`, `item_responses.json`, `correctness_matrix.json`\n\n### 2. OLMo-2-7B d100 (seed 42)\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| **MMLU** | **59.49%** | 8353/14042 |\n| **ARC-Challenge** | **81.23%** | 952/1172 |\n\n输出路径：`/root/autodl-tmp/exp001/eval_results_cross_family/olmo2_d100_s42/`\n- `mmlu_results.json`, `arc_challenge_results.json`, `eval_results.json`, `item_responses.json`, `correctness_matrix.json`\n\n### 3. 对比\n\n| Benchmark | d050 | d100 | Delta |\n|-----------|------|------|-------|\n| MMLU | 59.18% | 59.49% | +0.31% |\n| ARC-Challenge | 80.89% | 81.23% | +0.34% |\n\n### 4. 异常\n\n无异常。两个 eval 均在 GPU 3 (cuda:3) 上顺利完成，所有输出文件齐全（含 `.done` 标志文件），`lora_alpha=32` 合规。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-eval-cuda3.md"
+}

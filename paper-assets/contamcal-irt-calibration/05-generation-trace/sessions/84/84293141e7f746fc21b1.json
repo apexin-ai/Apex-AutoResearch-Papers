@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84293141e7f746fc21b1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "verify pid807025 llama eval",
+  "task_key": "worker_verify_pid807025_llama_eval_20260516T154022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_pid807025_llama_eval_20260516T154022_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "dc60c9459cfc2c99016668ac29192246c98a6e80b6c03900141fccc6a8f195a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：PID 807025 确认是 Llama d000 eval，正常运行中。**\n\n- 命令：`python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4`\n- 进度：`mmlu_results.json` 已产出（说明 MMLU 已完成，当前正在跑 gsm8k/arc_challenge/humaneval 中的某个）\n- 进程活跃，主要使用 nvidia5（对应 CUDA_VISIBLE_DEVICES 映射后的某块卡）\n- 无需重启，让它跑完即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-pid807025-llama-eval.md"
+}

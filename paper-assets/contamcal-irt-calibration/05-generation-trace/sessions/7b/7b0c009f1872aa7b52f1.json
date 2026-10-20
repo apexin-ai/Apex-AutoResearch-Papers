@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b0c009f1872aa7b52f1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit data tables2 3 fig1 inline",
+  "task_key": "worker_audit_data-tables2-3-fig1-inline_20260522T035507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-tables2-3-fig1-inline_20260522T035507_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "116e9f465ae9748db218d26cd952a261bd30b12054582677a3ebc56e025d6f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。66 个数字已核查，结果：\n\n- **62 ✅** — 与源数据一致\n- **2 ⚠️** — 微小舍入差异：Gemma-2 DiD (+0.545→+0.6, 严格应为+0.5)；Qwen-7B GSM8K (+10.1pp vs 源数据+11.07pp, ~1pp差)\n- **2 ❌** — §5.6 MinK++ Cohen's d (−1.55, −1.98) 在已定位的源文件中找不到对应数据，`exp008_v4_results.json` 中的 −1.2203 不匹配\n\n需要关注的 3 个 action items 写在报告末尾。已注册为 artifact `art_20260522_8b1150`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-tables2-3-fig1-inline.md"
+}

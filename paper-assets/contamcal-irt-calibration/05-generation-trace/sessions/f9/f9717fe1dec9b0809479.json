@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9717fe1dec9b0809479",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_19_1779049872.md",
+  "task_key": "loop_19_1779049872",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1779049872.md",
+    "occurrence": 1,
+    "bytes": 3238,
+    "sha256": "fa31b44b0c926cf8591ad98f7b869241efc66ab31ddba9f1f5e3cc78a2147f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-17T19:28:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cqa1-21977 cuda:0~5（共 6 张 RTX 4090D），不得用其他服务器/设备\n- 论文已完稿待提交审稿（EMNLP 2026 ARR May 25，距今 8 天），任何 paper 文件修改需 Director 批准\n- 0.5B 模型已从 IRT 分析中排除（position bias 混淆），不得重新加入\n- Llama d100 MMLU 已排除（A-rate=82.8% 退化），不得用于 IRT pooling\n- bib 条目新增后必须 WebSearch 验证真实性（2026-05-17 幻觉事件教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977，工作目录 /root/contamcal-irt-calibration/\n- 实验目录: /root/autodl-tmp/exp006/ (IRT 相关), /root/autodl-tmp/exp002/ (signals)\n- Cross-family v5 最终数据: /root/autodl-tmp/exp006/cross_family_v5/\n- J16 theta 实验目录: /root/contamcal-irt-calibration/exp006/mmlu_domain_irt_j16_crossfamily/\n- Python: 待 Worker 诊断确认（可能 /root/miniconda3/bin/python）\n- 活跃进程: exp_006_mmlu_vanilla_2pl_fullitems (pid=vanilla_2pl_full, RUNNING)\n- 活跃 Worker: worker_diagnose_exp_006_j16_theta_extraction_20260517T152700（SSH 诊断中，尚未回调）\n\n### 3. 📊 当前状态\n刚收到 exp_006_j16_theta_extraction 失败 cron 回调，已派诊断 Worker（SSH 查日志/环境），等待回调。\n\nRegistry 状态:\n- RUNNING: exp_006_mmlu_vanilla_2pl_fullitems（Full MMLU 14k items vanilla 2PL，支撑 D129 primary claim θ 数据）\n- PREPARING: 23 项（大部分是历史遗留/已被后续实验取代）\n- 最近失败: exp_006_j16_theta_extraction + exp_006_cross_family_irt_j16（同一模式：process dead 5×，可能是脚本启动即崩溃）\n\n等待中:\n- 诊断 Worker 回调\n- exp_006_mmlu_vanilla_2pl_fullitems cron 监控（论文最终数据补充）\n- Director 审稿提交决策\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读结论，update_registry notes，汇报 Director（注意：这两个失败实验是补充性的，论文核心数据已就位，不阻塞提交）\n- exp_006_mmlu_vanilla_2pl_fullitems 完成 → 提取 Kendall tau 排名相关性，更新 Table 2 B3 行，汇报 Director\n- Director 确认论文终稿 → 提交 Review Director 正式审稿\n- 如 vanilla_2pl 也失败 → 这个阻塞论文（Table 2 数据缺失），需优先修复\n\n### 5. 🎯 战略上下文\n- D129 最终 framing: IRT calibration decomposition 为 primary（θ 提供 53% MAE 减少），RRF 为 secondary，domain γ 为 exploratory（J=13 underpowered）\n- 论文 10 项检查已全通过，核心数据齐全（cross-family v5、domain IRT J=13、signals survival）\n- exp_006_j16_theta_extraction 是额外补充（cross-family θ 对比），失败不阻塞投稿——论文已用 v5 数据写完\n- exp_006_mmlu_vanilla_2pl_fullitems 才是关键：替换 300 subsample 版本的 full 14k items τ，如果失败需要立即修复\n- 易错点：不要因为 j16 theta 失败就重新跑整个 cross-family pipeline，论文已用 v5 final numbers，那些是稳定的\n- Catch-22 问题（memory.md）：0.5B 排除后 γ 全不显著，这是已知且已在论文中 framed 为 \"exploratory + underpowered\"，不要试图修复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1779049872.md"
+}

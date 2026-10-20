@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50fb14eb3ebaed3d85f8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code submit 05B s123 signals cuda1",
+  "task_key": "worker_code_submit-05B-s123-signals-cuda1_20260516T020608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit-05B-s123-signals-cuda1_20260516T020608_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "798b750728efa6b73234b824c2c643205071176ea8a9c0cd326a987044fc6267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 正在跑 3B 评估任务：\n\n- **PID**: 676497\n- **显存**: 8976 MiB\n- **命令**: `python evaluate.py --model-path Qwen2.5-3B --adapter-path Qwen2.5-3B_d000_s42/lora_adapter --output-dir eval_results/Qwen2.5-3B_d000_s42_a32_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned`\n\n按 C001/C002 约束，不能提交。\n\n**其余准备已确认**：\n- 4 个 checkpoints（d000/d005/d025/d100 × s123）和 base model 均存在\n- `compute_signals.py` 参数名确认：`--ref-model-path` 正确\n\n需要你决定：\n1. 等 cuda:1 评估跑完后再提交\n2. 换一个空闲 GPU\n\n要我查一下其他 GPU 的占用情况吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-05b-s123-signals-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2859345d228f311fc19",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill arc v2 submit d100 arc cuda3",
+  "task_key": "worker_ops_kill_arc_v2_submit_d100_arc_cuda3_20260516T213340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_arc_v2_submit_d100_arc_cuda3_20260516T213340_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "4c912c015a79edcb582dd432d63226842f40478490960fd9ec4fa5e767543a45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并正在运行：\n\n- **PID 874940** 在 GPU 3 上运行（560MiB，正在加载模型）\n- 日志显示已识别 1172 个 ARC items，正在进行 embedding 编码（s1_embedding 阶段）\n- tmux session: `exp002_llama_d100_arc`\n\n汇总：\n1. PID 870622 已 kill，cuda:3 已释放\n2. 确认无已有 ARC signals 产出\n3. Llama-3.2-3B_d100_s42 ARC signals 任务已提交，正常运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-arc-v2-submit-d100-arc-cuda3.md"
+}

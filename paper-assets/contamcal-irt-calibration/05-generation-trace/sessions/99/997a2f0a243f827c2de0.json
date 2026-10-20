@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "997a2f0a243f827c2de0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B d000 v2 para eval gpu4",
+  "task_key": "worker_ops_3B-d000-v2-para-eval-gpu4_20260515T002359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-d000-v2-para-eval-gpu4_20260515T002359_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "25bec08fe2ef8686766f5aa81010c07643a3cadbe77146759388ee2a1778e5d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **GPU 4** 确认空闲后提交\n- **tmux session** `exp_001_eval_3B_d000_v2_para_aligned_v2` 运行中\n- 正在跑 MMLU paraphrased（已到 1%，~35 it/s）\n- **Registry** 已更新为 RUNNING，含完整 provenance（parent: `exp_001_sft_3B_d000_v2`，4 benchmarks paraphrased aligned eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-d000-v2-para-eval-gpu4.md"
+}

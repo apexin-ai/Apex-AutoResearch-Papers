@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d51555c4a12041f9ed93",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phi4 s123 mmlu check3",
+  "task_key": "worker_diag_phi4-s123-mmlu-check3_20260520T155003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phi4-s123-mmlu-check3_20260520T155003_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "3e65bd5bb666e070835bb1c2dda409a368cc936ab52a43bfc1f84f5c30048c82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**PID 365465 已退出**（原 eval 进程完成）。GPU 2 上有新进程 **PID 369044**（运行 ~7min），正在跑 **d100_s123** MMLU eval。\n\n### 已完成 4/5 dosage：\n\n| Dosage | Accuracy |\n|--------|----------|\n| d000 | 76.31% |\n| d005 | 75.92% |\n| d025 | 77.02% |\n| d050 | 77.30% |\n| d100 | 运行中（PID 369044） |\n\nd100_s123 按之前每个 dosage ~13min 的节奏，预计 **~10 分钟后完成**。\n\n这次不是误报——原进程确实完成了前 4 个 dosage 后退出，新进程 369044 启动了 d100 的 eval。等 d100 完成后再统一更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phi4-s123-mmlu-check3.md"
+}

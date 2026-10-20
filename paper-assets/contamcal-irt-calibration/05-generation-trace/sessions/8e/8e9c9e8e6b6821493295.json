@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e9c9e8e6b6821493295",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp pooled irt gsm8k",
+  "task_key": "worker_exp_pooled_irt_gsm8k_20260514T201558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pooled_irt_gsm8k_20260514T201558_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "2f83d7f572ffb916bdb60416683698041370239f748a7ecc443c0871aea28275"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job started successfully. Key startup info:\n\n| | |\n|---|---|\n| **Models** | **10** (0.5B: 4 dosages [0,5,25,100], 1.5B: 3 dosages [0,5,100], 3B: 3 dosages [0,5,100]) |\n| **Items** | 1319 (GSM8K) |\n| **Exposure** | 0.5B uses exp-002 delta signals; 1.5B + 3B fallback to oracle dosage (signals not yet computed) |\n| **NUTS** | 4 chains × 1000 samples, fitting in progress |\n| **Mean accuracy** | 0.444 |\n\nThe 1.5B/3B oracle fallback is expected — once those signals complete, the experiment can be re-run with real exposure. NUTS sampling is underway; should complete in 10–30 min. Want me to check back for results?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pooled-irt-gsm8k.md"
+}

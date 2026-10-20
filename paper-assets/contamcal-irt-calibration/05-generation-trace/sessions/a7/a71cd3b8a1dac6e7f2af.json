@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a71cd3b8a1dac6e7f2af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "check sft 3B eta",
+  "task_key": "worker_check_sft-3B-eta_20260515T144410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_sft-3B-eta_20260515T144410_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "bcfbc5b3c3656fe06210036ad6c14a4f18476bbd9868a03fa248d47ca638b01a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n### exp_001_sft_3B_d025_s123 — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | 完成（exit code 0） |\n| 完成时间 | 2026-05-15 14:42:08 UTC |\n| 总 steps | 3384/3384 |\n| 最终 loss | 1.1401 (step 3380) |\n| 最终 token accuracy | 0.734 |\n| GPU 4 | 空闲（0%, 0 MiB） |\n\nFinal adapter 已保存在 `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/`。\n\n---\n\n### exp_001_sft_3B_d005_s123 — 训练中\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **2829/3177** (89%) |\n| 速度 | ~2.91 s/it |\n| 已运行 | 2h 46m |\n| 剩余 | ~348 steps ≈ **17 分钟** |\n| 预计完成 | **~23:02 UTC** (约 17 分钟后) |\n| 当前 loss | ~1.05–1.14 (epoch 0.87-0.88) |\n| GPU 2 | 61% 利用率, 19325/24564 MiB |\n\n---\n\n**结论：** d025 已就绪可以开始 eval。d005 预计 ~23:02 UTC 完成，两个实验的 eval 和 exp-002 信号计算可以在 ~23:10 UTC 之后安排。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-sft-3b-eta.md"
+}

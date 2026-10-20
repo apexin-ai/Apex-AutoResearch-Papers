@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acd57e0526f263988b35",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778903863.md",
+  "task_key": "loop_13_1778903863",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778903863.md",
+    "occurrence": 1,
+    "bytes": 5935,
+    "sha256": "739f9d4bcd0e0f1b3d36df85ada72dc2fcfced6e3c5c9200348703f3fa9f6e0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T03:54:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 ~ cuda:5（6× RTX 4090D），服务器 **cqa1-21977**，无其他服务器\n- **cuda:0 双进程冲突（C001 违规）**：SFT d005_s42 + eval d100_s123 同时跑，显存 94.7%，两者都 >75% 不可 kill，等自然完成后严防复发——**任何 GPU 同一时间只跑一个训练进程**\n- **alpha 必须 =32**：旧 alpha=16 checkpoint 全部废弃（D055）。新提交的 SFT 必须显式传 `--lora-alpha 32`\n- **lr 必须 =5e-5**：D076 发现 s42 旧系列 d000+d005 用了 train_sft.py 默认 lr=2e-4，已重训。所有新 SFT 显式传 `--learning-rate 5e-5`\n- **d000_s42 旧 checkpoint 及下游 signals 全部不可用**（D076 lr confound），不要引用旧 eval 数据\n- 提交命令必须自带 conda 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（6× RTX 4090D, 24.6GB each）\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- **模型路径**: base models → `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoint 路径**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 产出**: `/root/autodl-tmp/exp002/signals/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃 cron 监控** (6 个):\n  - `exp_001_eval_3B_d000_s42_a32_batch` (PID 676487, cuda:1)\n  - `exp_001_eval_3B_d005_s42_a32_batch` (PID 679180, cuda:2)\n  - `exp_001_eval_3B_d025_s42_a32_para` (PID 691033, cuda:3)\n  - `exp_001_eval_3B_d100_s42_a32_batch` (PID exp_001_eval_3B_d100_s42_a32_batch, cuda:?)\n  - `exp_002_signals_3B_d100_s123_v9` (PID 689315, cuda:4)\n  - `exp_002_signals_05B_s123_v2` (PID exp002_05B_s123_v2, cuda:5)\n- **活跃 Workers** (3): `s3-item-matching-audit`, `fix-deploy-batch-scripts`, `fix-05B-s123-batch-script`（都在跑，等回调）\n\n### 3. 📊 当前状态\n**EMNLP 2026 ARR May 25 截止，T-9 天。**\n\n**RUNNING (7 实验)**:\n| exp_id | GPU | 任务 |\n|--------|-----|------|\n| exp_002_signals_15B_s123_batch | cuda:0 | 1.5B s123 全部 signals（D099/D101 最高优先级）|\n| exp_001_eval_3B_d000_s42_a32_batch | cuda:1 | 3B d000 s42 alpha=32 aligned+para eval（D076 重训后首次 eval）|\n| exp_001_eval_3B_d005_s42_a32_batch | cuda:2 | 3B d005 s42 alpha=32 eval batch |\n| exp_001_eval_3B_d025_s42_a32_para | cuda:3 | 3B d025 v3 s42 para_aligned eval |\n| exp_002_signals_3B_d100_s123_v9 | cuda:4 | 3B d100 s123 signals（v9, chunked s4 fix）|\n| exp_002_signals_05B_s123_v2 | cuda:5 | 0.5B s123 signals batch |\n| exp_001_eval_3B_d100_s42_a32_batch | ? | 3B d100 s42 a32 eval batch |\n\n**6 GPU 100% 饱和。**\n\n**IRT Pool 进度**: N=35 总数据点（含 0.5B），N=23 不含 0.5B。1.5B 双种子矩阵 16/16 完成。**3B 是瓶颈：7/16 cells，s42 系列被 D076 lr confound 重训阻塞。**\n\n**Pipeline 阶段**: exp-001 (SFT+eval) → exp-002 (signals) → exp-003 (RRF 聚合, 未开始) → exp-006 (pooled IRT fitting, 未开始)\n\n**等待中**:\n- 3 个 Worker 回调（s3-item-matching-audit, fix-deploy-batch-scripts, fix-05B-s123-batch-script）\n- 6 个 cron 回调（上述 RUNNING 实验完成时触发）\n- ~14 个 PREPARING 实验等 GPU 释放\n\n### 4. 📋 待办（条件触发式）\n- **任一 eval batch 完成（cuda:1/2/3）** → 立即提交该 dose 的 para_aligned eval（如还没跑）+ 该 dose 的 signals → 填 3B s42 矩阵格子\n- **d100_s42_a32_v3 SFT 完成（如果还在跑）** → aligned eval + para_aligned eval → signals\n- **所有 3B eval + signals 完成** → exp-003 RRF 聚合（CPU 任务，不占 GPU）\n- **RRF 聚合完成** → exp-006 pooled IRT fitting（per-benchmark γ_k, Stan NUTS）+ 7 baselines 对比\n- **IRT fitting 完成** → ablation + eval metrics table 定稿 → paper writing pipeline\n- **signals_3B_d100_s123_v9 完成** → 检查 d100_a32_s123 的 s1/s2/s4 是否完整，补缺\n- **signals_05B_s123_v2 / signals_15B_s123_batch 完成** → 确认 0.5B/1.5B s123 signals 全覆盖，更新 IRT Pool inventory\n- **Worker fix-deploy-batch-scripts / fix-05B-s123-batch-script 完成** → 确认修复，重提交相关失败实验\n- **exp_004_sim_sweep_v7 auc0.65×3 条件** → 已放弃（CmdStan 竞态），9/12 足够支撑 Claim 1\n- **Paper writing** → Day 4-7 启动，前置：IRT fitting + baselines + ablation 全完成\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- **D090**: sim_sweep_v7 完成 9/12，gamma_bias < 0.03, CI95 coverage ≥ 0.8 → Claim 1 (identifiability) 充分支撑\n- **D076**: lr confound 发现 → s42 全系列重训 alpha=32 + lr=5e-5，是当前 3B 瓶颈的根因\n- **D056**: coverage collapse = model misspecification（不是 γ 太大）→ 支持 per-benchmark γ_k\n- **D095/D094**: Claim 3 (noise robustness) 降级为 Discussion honest negative，noise_prop_v4 negative，sim_sweep 提供间接支撑\n- **D098**: 论文采用 s1+s2+s4 three-signal fusion，s3_constat 不批\n- **D091**: s4 MMLU OOM 降级 P1，3B 走 S1/S2/S3-only pipeline 不阻塞\n\n**易错点**:\n- **不要用旧 s42 数据**（D076 前的所有 3B s42 eval/signals 全部废弃，只有 s123 系列和 D076 后重训的 s42 可用）\n- **不要把 0.5B 数据直接并入 IRT pool 做主实验**——0.5B ARC 跨种子方差 7.25pp，不稳定，主分析用 N=23（1.5B+3B），0.5B 作 supplementary\n- **3B signals 是 RRF 聚合的前置**——signals 没跑完，exp-003 和 exp-006 都不能开始\n- **per-benchmark γ_k 是必须的**——MMLU/ARC 对 contamination 几乎不敏感（<0.5pp），GSM8K 极敏感（+34pp@25%），global γ 会 collapse\n- **Paper writing 5 步 pipeline 在 Day 4-7**——不要提前开写，数据还没齐\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778903863.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f795bca31c014a77fb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check base eval v2 results",
+  "task_key": "worker_ops_check-base-eval-v2-results_20260515T113152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-base-eval-v2-results_20260515T113152_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "db17bb6c5ab77c24978145648b69c5167cc3b46db7f66610d698c609bd622c8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Cron 报告是误报，进程仍在正常运行。**\n\n状态：\n- **PID 553256** 在 GPU 2 上活跃（3600 MiB，46% util），已运行 ~1.5 分钟\n- MMLU 评估进度 **39%**（5428/14042），速度 ~79 it/s，预计 MMLU 还需 ~2 分钟\n- MMLU 之后还要跑 gsm8k、arc_challenge、humaneval\n- 命令：`evaluate.py --model-path Qwen2.5-0.5B --output-dir Qwen2.5-0.5B_base_pretrained_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned`\n\n输出目录 `Qwen2.5-0.5B_base_pretrained_aligned/` 当前为空（结果应在全部 benchmark 完成后写入）。\n\n不更新 registry，等进程真正完成后再检查。预计总运行时间约 5-10 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-base-eval-v2-results.md"
+}

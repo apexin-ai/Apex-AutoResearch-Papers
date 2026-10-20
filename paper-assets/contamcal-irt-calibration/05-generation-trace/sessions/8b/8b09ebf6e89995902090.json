@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b09ebf6e89995902090",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download gemma",
+  "task_key": "worker_ops_westd-download-gemma_20260518T070704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-gemma_20260518T070704_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "d31bfda3ef06f242e5f4bb6272501a97b2f83c1111307636009cbf370f64a84c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有下载都在进行中。Gemma 有 8 个 incomplete 文件（对应 8 个 safetensors 分片）。\n\n当前状态汇总：\n\n| 模型 | 已下载 | 预计总量 | .incomplete 文件 | 状态 |\n|------|--------|----------|-----------------|------|\n| **Gemma-2-9B** | ~750M | ~18GB | 8 | 下载中 (screen dl_gemma) |\n| Qwen2.5-7B | 9.7G | ~15G | 4 | 下载中 (download_all.sh) |\n| Qwen2.5-14B | 9.8G | ~28G | 8 | 下载中 (download_all.sh) |\n| Mistral-7B-v0.3 | 3.8G | ~14G | 4 | 下载中 (download_all.sh) |\n| Llama-3.1-8B | 68K | ~15G | 0 | 未开始/排队 |\n\n**Gemma-2-9B 下载已成功启动**，在 `screen -r dl_gemma` 中运行。需要的关键修复：必须设置 `HF_ENDPOINT=https://hf-mirror.com` 和 `HF_HUB_DISABLE_XET=1`（该服务器在国内，无法直接访问 huggingface.co）。\n\n磁盘空间充足（226G 可用）。当前下载速度 ~5-10 MB/s（4 个模型共享带宽），Gemma 预计 ~30-40 分钟完成。\n\n验证完成可用：\n```bash\n# SSH 到 westd-29999 后\ngrep GEMMA_DONE /tmp/dl_gemma.log\nls /root/autodl-tmp/models/gemma-2-9b/*.safetensors | wc -l  # 应为 8\ndu -sh /root/autodl-tmp/models/gemma-2-9b/  # 应为 ~17-18GB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-gemma.md"
+}

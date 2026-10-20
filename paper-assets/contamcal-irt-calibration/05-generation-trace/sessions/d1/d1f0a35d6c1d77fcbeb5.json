@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1f0a35d6c1d77fcbeb5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals 3B d000 a32 s42",
+  "task_key": "worker_signals_3B_d000_a32_s42_20260516T064939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_3B_d000_a32_s42_20260516T064939_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "f95295add84744e306890166ac15aa69595e71cd3aad655804aca9c3491e46b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 正在跑 d100_a32_s42_v3 的 evaluate.py（paraphrase-aligned eval），短期内不会释放。\n\n**可选方案：改用 cuda:2**（当前完全空闲，0MiB）。是否改到 cuda:2 提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-3b-d000-a32-s42.md"
+}

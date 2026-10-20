@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac0828a3858379186cca",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops status check ensure irt",
+  "task_key": "worker_ops_status-check-ensure-irt_20260516T205255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-ensure-irt_20260516T205255_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "6a0d3c1a9182796a803042395b191a1c3bcd886e399a9cf82de338d6c3766aa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有进程正常运行，无需启动任何东西。\n\n**状态汇总：**\n\n| 任务 | 状态 | PID | GPU |\n|------|------|-----|-----|\n| Cross-family IRT (pooled_irt_all_scales) | 运行中 | 758619 | CPU only |\n| Cross-family IRT (results_cross_family_irt) | 运行中 | 863568 | CPU only |\n| d100 signals (MMLU, cuda:1) | 运行中 | 863173 | GPU 1 (562 MiB) |\n| d100 eval (mmlu+gsm8k+arc+humaneval, cuda:5) | 运行中 | 831033 | GPU 5 (8304 MiB) |\n| Fisher heatmap | 运行中 | 862089 + 8 workers | CPU only |\n\n**GPU 占用：**\n- GPU 0: 11933/24564 MiB (76%) — PID 825638\n- GPU 1: 571/24564 MiB (19%) — d100 signals\n- GPU 2: 7323/24564 MiB (62%) — PID 853489\n- GPU 3: 7711/24564 MiB (62%) — PID 859365\n- GPU 4: 6977/24564 MiB (62%) — PID 842929\n- GPU 5: 8313/24564 MiB (80%) — d100 eval\n\nCross-family IRT 已在跑（两个实例），无需启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-ensure-irt.md"
+}

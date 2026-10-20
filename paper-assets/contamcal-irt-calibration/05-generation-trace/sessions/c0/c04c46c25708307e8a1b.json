@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c04c46c25708307e8a1b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops volctrl quick status",
+  "task_key": "worker_ops_volctrl-quick-status_20260523T022806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_volctrl-quick-status_20260523T022806_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "6042f221d2d5de6132d52d04cfea9e9665a5ec1337c4b2ee08a4007726432d5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进行中：\n\n- **进度**: 1368/4159 (33%)\n- **Loss**: ~1.24 (近几步在 1.20-1.30 间波动)\n- **Token accuracy**: ~72.5%\n- **Epoch**: 0.29\n- **速度**: 4.03 s/it\n- **已用时间**: 1h 35m\n- **ETA**: ~3h 07m（预计完成约 3 小时后）\n- **PID 752802**: 存活，GPU 0, 100% utilization, 19.6/24.6 GB\n\n训练正常运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-volctrl-quick-status.md"
+}

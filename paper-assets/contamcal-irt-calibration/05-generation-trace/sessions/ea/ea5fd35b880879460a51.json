@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea5fd35b880879460a51",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 001 sft d025 05B v2 tmux",
+  "task_key": "worker_fix_exp_001_sft_d025_05B_v2_tmux_20260514T045601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_001_sft_d025_05B_v2_tmux_20260514T045601_result.json",
+    "occurrence": 1,
+    "bytes": 205,
+    "sha256": "922c7a80e614212c69ec57051e70396e513868e9c4c92ab9935f690bace99c2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项确认：\n\n1. **tmux session `exp_001_sft_d025_05B_v2`** — 已清理\n2. **GPU 5** — 空闲，无任何计算进程\n3. **PID 292940（旧实验僵尸进程）** — 已不存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-001-sft-d025-05b-v2-tmux.md"
+}

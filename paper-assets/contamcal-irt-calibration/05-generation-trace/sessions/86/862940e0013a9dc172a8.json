@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "862940e0013a9dc172a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix classifier vrecovery d188",
+  "task_key": "worker_fix_classifier-vrecovery-d188_20260520T162445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_classifier-vrecovery-d188_20260520T162445_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "9a54d4c018720d90ed75414b467474a69c553f9ccfaff91a90bb0d8ed3a5e762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成。总结：\n\n**#1 V-recovery 分类修复**：\n- `classify_pattern()` 的 dip-detection 块增加 `delta_100 < 1.0` 门控\n- dip ≥2pp + recovery ≥50% 但 d100 > +1pp → 返回 `Benefit` 而非 `V-recovery`\n- Gemma-2-9B s123 验证：从 `V-recovery` 改为 `Benefit` ✓\n\n**#2 Direction + Dir-Con 列**：\n- 文本表和 LaTeX 表均已新增\n- Direction: mean Δ(d100) 符号（±1pp 阈值）\n- Dir-Con: 所有种子方向一致 → ✓，否则 ✗\n\n**Bootstrap 结果**：\n\n| Family | Pattern | Dir. | Dir-C |\n|--------|---------|------|-------|\n| Phi-4 | Immune† | 0 | ✗ |\n| Qwen2.5-14B | Collapse | − | ✓ |\n| Qwen2.5-7B | V-recovery | 0 | ✗ |\n| Gemma-2-9B | Benefit-sat† | + | ✓ |\n| OLMo-2-7B | Benefit-sat† | + | ✗ |\n\n服务器和本地副本均已同步修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-classifier-vrecovery-d188.md"
+}

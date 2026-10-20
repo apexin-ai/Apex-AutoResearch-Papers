@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e973ce7be5e901648813",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis d071 lr verification",
+  "task_key": "worker_analysis_d071-lr-verification_20260515T194854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d071-lr-verification_20260515T194854_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "6c8357be9a806a556d4584313daf4f0cf16b03b4fbbb0d3ea2e5e3b647aa67ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**D071 确认：lr 不一致，d000_v3 需用 lr=5e-5 重训。**\n\n核实结果：\n- `d000_s42`: lr=**2e-4**, lora_alpha=**32** — 非标准配置\n- `d000_v2_s42`: lr=**5e-5**, lora_alpha=**16** — 标准配置\n\n两个参数都不同，d000_s42 的 checkpoint 及下游 eval 数据均存疑。已更新 registry notes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d071-lr-verification.md"
+}

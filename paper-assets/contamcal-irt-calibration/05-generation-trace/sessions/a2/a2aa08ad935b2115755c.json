@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2aa08ad935b2115755c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 disk cleanup yi download",
+  "task_key": "worker_ops_cqa1-disk-cleanup-yi-download_20260522T181137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-disk-cleanup-yi-download_20260522T181137_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "e30b8cba59a9cbaea617b917c7fc4be72362558a59957667efb52134d45253de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。报告如下：\n\n---\n\n### 报告\n\n**models/LLM-Research/ 内容**（6.0GB）：\n- `Llama-3___2-3B/` — ModelScope 格式的 Llama-3.2-3B\n- `Meta-Llama-3___2-3B/` — 关联元数据目录\n- 未删除（等 Director 决定）\n\n**磁盘清理**：\n- 删除 `llama3-8b-tmp/`（15GB）→ 可用空间从 14GB 增至 28GB\n\n**Yi-1.5-9B 下载**：成功\n- 路径：`/root/autodl-tmp/.hf_cache/Yi-1.5-9B/`\n- 4 个 safetensors 分片（4.6G + 4.7G + 4.7G + 2.6G = ~16.6GB）\n- 验证通过：`LlamaForCausalLM, hidden=4096, layers=48, vocab=64000`\n- 来源：hf-mirror.com，耗时约 15 分钟\n\n**最终磁盘**：169GB 总量，158GB 已用，12GB 可用（94%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-disk-cleanup-yi-download.md"
+}

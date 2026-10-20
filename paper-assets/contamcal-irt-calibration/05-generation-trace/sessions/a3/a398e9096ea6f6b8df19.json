@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a398e9096ea6f6b8df19",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4970,
+    "sha256": "d1d8c3e2b4d680ddb1d62d4daa100bab8cf65d5589d06944245659e0642cf3c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-16T00:33:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **Alpha=32 标准化（D055）**：所有 3B s42 checkpoint 必须 lora_alpha=32。以下旧 checkpoint 已废弃，禁止用于信号计算或 IRT pooling：`Qwen2.5-3B_d100_s42`(alpha=16)、`Qwen2.5-3B_d000_v2_s42`(alpha=16)。已反复出现 Worker 对废弃 checkpoint 计算信号的问题（本 session 报了 4 次 GPU 4 废弃工作）。\n- **lr=5e-5 标准化（D076）**：所有 s42 retrain 必须用 lr=5e-5，旧 lr=2e-4 是 confound。\n- **d025_v3_s42 已有 alpha=32 checkpoint，无需重训**。之前 d025_a32_s42 训练被正确 SIGTERM（只跑了 22/3384 步）。\n- **d100_s123 原始 checkpoint 是 alpha=16（C006 blocked）**，必须用 `d100_a32_s123` 替代。\n- **GPU 越界检查**：项目配置的 gpu_ids 需与 `execution` section 核对，每次审查训练实验必查 CUDA_VISIBLE_DEVICES 是否在白名单内。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977，6× NVIDIA RTX 4090D (24GB each)\n- **代码根目录**：`/root/contamcal-irt-calibration`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **模型缓存**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B`（及 1.5B/0.5B）\n- **Checkpoint 目录**：`/root/autodl-tmp/exp001/checkpoints/`\n- **信号输出**：`/root/autodl-tmp/exp002/signals/`\n- **Eval 输出**：`/root/autodl-tmp/exp001/eval_results/`\n- **SFT 数据**：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **最后 GPU 快照**（MCP 断连前）：全 6 卡在用，GPU 0 双重占用（eval+train），GPU 1 d100训练，GPU 2 signals_v7，GPU 3 d025_v3 eval，GPU 4 v8信号，GPU 5 d025_v3_s42 s4信号\n\n### 3. 📊 当前状态\n**我做了什么**：本 session 审查了 ~15 个 worker 完成通知，提交了 8 份审查报告。核心工作：验证 checkpoint alpha 值、发现并反复报告 GPU 4 废弃 alpha=16 信号计算（报了 4 次才解决）、确认 d000_s42_a32 训练成功完成、审查 s3_constat bug fix 代码。\n\n**RUNNING 实验**（MCP 断连前最后状态，8 个）：\n- `exp_001_sft_3B_d005_s42_a32` — cuda:0, ~55% 进度, alpha=32 retrain\n- `exp_001_sft_3B_d100_s42_a32_v3` — cuda:1, ~75% 进度, alpha=32 retrain\n- `exp_001_eval_3B_d100_s123_a32_batch` — cuda:0 (与上面双重占用), aligned+para eval\n- `exp_001_eval_3B_d025_v3_s42_batch` — cuda:3, aligned+para eval\n- `exp_002_signals_3B_v7` — cuda:2, d005_s123 信号（alpha=32 有效）\n- `exp_002_signals_3B_v8` — cuda:4, d025_s123+d100_a32_s123 信号（alpha=32 有效，registry conclusion=\"killed\" 但实际仍在跑）\n- `exp_002_signals_3B_d025_v3_s42` — cuda:5, s4 self-critique 信号\n- `exp_004_sim_sweep_v7` — local, IRT 4PL+γ simulation\n\n**未审查**：`worker_monitor_gpu-status-check` 和 `worker_research_preparing-queue-review`（MCP 断连，无法审查）\n\n### 4. 📋 待办（条件触发式）\n- d005_s42_a32 训练完成 → 验证 checkpoint alpha=32 + 提交 eval batch（aligned+para_aligned）\n- d100_s42_a32_v3 训练完成 → 验证 checkpoint alpha=32 + 提交 eval batch → 之后才能计算 d100 s42 信号\n- d025_v3_s42 eval 完成 → 解锁 s3_constat 信号计算（之前被阻塞因缺 eval 数据）\n- d100_s123_a32 eval 完成 → GPU 0 释放一个进程（双重占用结束）\n- **d000_s42_a32 eval 仍未提交**——上一个 eval worker 完成但没有在 GPU 上启动进程，需要跟进\n- exp_002_signals_3B_v8 registry conclusion=\"killed\" 但进程仍活 → 需修正 registry\n- 所有 s42 alpha=32 retrain 完成后 → 统一计算 3B s42 信号，**不要在旧 alpha=16 checkpoint 上计算**\n\n### 5. 🎯 战略上下文\n- **核心方法**：IRT 4PL+γ 模型，γ 参数分离污染效应与真实能力 θ，需要跨 dosage（d000/d005/d025/d100）× seed（s42/s123）× 模型尺寸（0.5B/1.5B/3B）的完整矩阵\n- **当前瓶颈**：3B s42 系列 alpha=32 retrain。d000 完成，d025 已有（v3），d005 和 d100 仍在训练。完成后才能统一计算信号→跑 IRT pooling\n- **最易判断错的事**：\n  1. d025_s42 有多个版本——`d025_v3_s42`（alpha=32✓）vs `d025_s42`（原始，可能alpha=16）vs `d025_a32_s42`（被 SIGTERM 的冗余训练）。只有 v3 是有效的\n  2. Worker 反复在废弃 checkpoint 上提交信号计算——每次 GPU 4/3 有新进程都要查 adapter_config.json 的 lora_alpha\n  3. s3_constat 通过 `compute_signals.py --signal all` 调用时不会自动发现 eval 路径，会静默返回空结果。需要单独通过 `run_batch.py` 或显式 `--original-eval-paths` 调用\n  4. tmux kill 不等于子进程 kill——v8 的 tmux 被杀但 bash 循环继续跑，这在本项目反复出现\n- **关键决策链**：D055(alpha=32标准化) → D076(lr=5e-5+retrain) → D083(SIGTERM根因=Worker自己发) → D084(GPU清理) → D085(1.5B GSM8K catastrophic forgetting)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-3.md"
+}

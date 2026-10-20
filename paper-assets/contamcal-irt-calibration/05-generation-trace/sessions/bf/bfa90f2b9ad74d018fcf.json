@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa90f2b9ad74d018fcf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix argparse submit sft",
+  "task_key": "worker_code_fix_argparse_submit_sft_20260515T161123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_argparse_submit_sft_20260515T161123_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "5755a25c9d1cf3ebdf7e074492b0acf706f61e51d784bcbaa4dc99fe6d39f104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交成功。\n\n**修复内容**: `train_sft.py` 缺少 `--gpu` argparse 定义，导致 CLI 传 `--gpu 0` 时解析报错。已添加参数并 commit (`834fd2b`)。注意 `--lora-alpha` 的传递路径本身是正确的（`LoraConfig` 已使用 `args.lora_alpha`），不存在硬编码覆盖的 bug。\n\n**实验状态**:\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| `exp_001_sft_3B_d100_s42_a32` | cuda:4 | 590776 | `exp_001_sft_3B_d100_s42_a32` |\n| `exp_001_sft_3B_d025_s42_a32` | cuda:5 | 590861 | `exp_001_sft_3B_d025_s42_a32` |\n\nOutput dirs: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d{100,025}_a32_s42`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-argparse-submit-sft.md"
+}

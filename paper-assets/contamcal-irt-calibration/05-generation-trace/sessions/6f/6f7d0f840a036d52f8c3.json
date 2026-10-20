@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7d0f840a036d52f8c3",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "eval 3B d025 s123",
+  "task_key": "worker_eval_3B-d025-s123_20260515T145211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_3B-d025-s123_20260515T145211.jsonl",
+    "occurrence": 1,
+    "bytes": 7531,
+    "sha256": "3347e0c9a70809df417ce7ea4690793908e914c20dc80eb645223911a7fafe1e"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T14:53:09.708861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T14:53:09.709197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T14:53:09.709442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_001_eval_3B_d025_s123_aligned'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T14:53:09.709611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3917}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T14:53:09.709739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T14:53:09.709861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,process_name --format=csv,noheader"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T14:53:09.710061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132544\\\\ndrwxr-xr-x 3 root root      4096 May 15 22:42 .\\\\ndrwxr-xr-x 3 root root        63 May 15 22:42 ..\\\\n-rw-r--r-- 1 root root      1468 May 15 22:42 README.md\\\\n-rw-r--r-- 1 root root      1121 May 15 22:42 adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 15 22:42 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       605 May 15 22:42 added_tokens.json\\\\n-rw-r--r-- 1 root root      2427 May 15 22:42 chat_template.jinja\\\\ndrwxr-xr-x 2 root root      4096 May 15 22:42 checkpoint-3384\\\\n-rw-r--r-- 1 root root   1671853 May 15 22:42 merges.txt\\\\n-rw-r--r-- 1 root root       502 May 15 22:42 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11421896 May 15 22:42 tokenizer.json\\\\n-rw-r--r-- 1 root root      4689 May 15 22:42 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6417 May 15 22:42 training_args.bin\\\\n-rw-r--r-- 1 root root   2776833 May 15 22:42 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T14:53:09.710241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"566224, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 5848 MiB, /root/miniconda3/bin/python\\\\n576040, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 8324 MiB, /root/miniconda3/bin/python\\\\n566311, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, 5848 MiB, /root/miniconda3/bin/python\\\\n555936, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 19316 MiB, python\\\\n576735, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, 8236 MiB, /root/miniconda3/bin/python\\\\n576825, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 7530 MiB, /root/miniconda3/bin/python\\\\n576978, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, 7530 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T14:53:09.710459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-gpu=index,gpu_uuid,name,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T14:53:09.710605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, NVIDIA GeForce RTX 4090 D, 14186 MiB, 24564 MiB\\\\n1, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, NVIDIA GeForce RTX 4090 D, 5857 MiB, 24564 MiB\\\\n2, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, NVIDIA GeForce RTX 4090 D, 19325 MiB, 24564 MiB\\\\n3, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, NVIDIA GeForce RTX 4090 D, 8985 MiB, 24564 MiB\\\\n4, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, NVIDIA GeForce RTX 4090 D, 7539 MiB, 24564 MiB\\\\n5, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, NVIDIA GeForce RTX 4090 D, 7539 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T14:53:09.710759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 576825 -o pid,user,etime,args --no-headers"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T14:53:09.710931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"576825 root           01:21 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T14:53:09.711126+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 4 被占用，无法提交。**\n\nPID 576825 正在 GPU 4 上运行另一个 eval 任务（`Qwen2.5-3B_d100_s42_para_aligned`，已运行 ~1 分 21 秒）。\n\n当前所有 GPU 状态：\n\n| GPU | 已用显存 | 进程 |\n|-----|---------|------|\n| 0 | 14186 MiB | 2 个进程 |\n| 1 | 5857 MiB | 1 个进程 |\n| 2 | 19325 MiB | 1 个进程 |\n| 3 | 8985 MiB | 1 个进程 |\n| 4 | 7539 MiB | `d100_s42_para_aligned` eval |\n| 5 | 7539 MiB | 1 个进程 |\n\n6 张卡全部在用。按 C001 约束，目标 GPU 有同类进程时不提交。需要等 GPU 4 上的 eval 完成，或指定其他 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B-d025-s123_20260515T145211"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/eval-3b-d025-s123.md"
+}

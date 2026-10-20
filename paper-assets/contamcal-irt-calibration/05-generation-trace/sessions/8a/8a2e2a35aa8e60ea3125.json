@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a2e2a35aa8e60ea3125",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft 15B d005 s123",
+  "task_key": "worker_diagnose_exp_001_sft_15B_d005_s123_20260515T083802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_15B_d005_s123_20260515T083802_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "9d38d05646d763e440dd80cb0beb3e411a545d01b788d576534a689fb919aaef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：**\n\n- **根因**：`train_sft.py` 的 argparse 没有定义 `--gpu` 参数，训练命令传入 `--gpu 0` 被 argparse 拒绝，EXIT_CODE=2。脚本在参数解析阶段即崩溃，未进入训练。\n- 数据文件、模型目录均正常，不是资源问题。\n- ROADMAP 提到的 \"--gpu 死代码\" 实际更严重：参数根本未定义。\n\n**修复**：从训练命令中删除 `--gpu 0`，改用 `CUDA_VISIBLE_DEVICES=0` 环境变量（也符合 C004 约束）。\n\n诊断报告已写入 `artifacts/diag_exp_001_sft_15B_d005_s123.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-15b-d005-s123.md"
+}

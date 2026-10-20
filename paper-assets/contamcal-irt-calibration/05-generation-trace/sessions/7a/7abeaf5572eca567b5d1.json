@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7abeaf5572eca567b5d1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen14b s42 data archive",
+  "task_key": "worker_ops_qwen14b-s42-data-archive_20260520T145301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-s42-data-archive_20260520T145301_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "871a48a996e6be0f40950d50a2da0cc89e747445a0695959c68a20b3ff357090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。\n\n**结果汇总：**\n\n| dosage | accuracy | 来源 |\n|--------|----------|------|\n| d000_s42 | 69.44% | aligned ✓ |\n| d005_s42 | 69.01% | aligned ✓ |\n| d025_s42 | 62.04% | aligned ✓ |\n| d050_s42 | 59.41% | aligned ✓ |\n| d100_s42 | 60.07% | aligned ✓ |\n\n数据源：`/root/autodl-tmp/exp001/eval_results_v2/qwen14b_d{dosage}/mmlu_results.json`（aligned 版本，与 mmlu_summary.csv 完全一致）。已复制到 `results/mmlu_eval/qwen14b/d{dosage}_s42/mmlu_results.json`，bootstrap_triple_seed.py 可直接读取。\n\n注：`eval_results_14b/Qwen2.5-14B_d000_s42/` 中的是旧版未 aligned 数据（d000=74.59%），已跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-s42-data-archive.md"
+}

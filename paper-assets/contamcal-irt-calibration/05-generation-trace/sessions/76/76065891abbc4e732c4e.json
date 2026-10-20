@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76065891abbc4e732c4e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k analysis prep",
+  "task_key": "worker_code_gsm8k-analysis-prep_20260519T220443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k-analysis-prep_20260519T220443_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "5f8e326909be897065b9460d7605e360d48e00b114292dc65e343c0b86be9eb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。\n\n结果：\n- **GSM8K**: 找到 1 条结果（Qwen2.5-7B d000, accuracy=0.7104）——目前只有 baseline，d100 eval 还在 cqa1 上跑\n- **MMLU**: 找到 25 条结果（5 个 model families × 5 dosages），完整的 dose-response 数据\n- 输出了 3 个 CSV（gsm8k_summary, mmlu_summary, combined）和 2 个 PNG 图（side-by-side comparison + per-model overlay）\n- 所有输出在 `/root/contamcal-irt-calibration/analysis/results/gsm8k/`\n\n等更多 GSM8K eval 完成后重跑脚本即可自动发现新数据、计算 delta、更新图表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-analysis-prep.md"
+}

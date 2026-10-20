@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cbd00df8210d532b5ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp004 sweep failure",
+  "task_key": "worker_diag_exp004_sweep_failure_20260514T031255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp004_sweep_failure_20260514T031255_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "1f7eb540bd1148c489a3ece1552ed5e09bf02529532a398f7c0867109ef28ddc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n### 失败原因：代码从未部署到服务器\n\n服务器 `/root/contamcal-irt-calibration/` 上**没有 `artifacts/` 目录**，没有 `.git`，没有 `run_sweep.py`，没有任何 exp_004 日志。启动命令 `cd artifacts/simulation_sweep && ...` 在服务器上会直接 `No such file or directory` 失败。\n\n服务器现有内容仅：`exp001/`, `exp002/`, `exp006/`, `outputs/`, `stan_models/`, `env_setup.sh`。\n\n### 部分结果存在于本地\n\n`artifacts/simulation_sweep/results/` 有本地执行的部分结果（可能之前在本机跑过）：\n\n| Condition | Seeds完成 | 状态 |\n|-----------|----------|------|\n| auc0.55_n20_prior1.0_binary | 10/10 | 完成 |\n| auc0.55_n50_prior1.0_binary | 10/10 | 完成 |\n| auc0.55_n100_prior1.0_binary | 6/10 | 中断 |\n| auc0.8_n50_prior1.0_binary | 1/10 | 中断 |\n| 其余 8 个 condition | 0/10 | 未开始 |\n\n总进度：27/120 runs (22.5%)，subset 模式 12 conditions × 10 seeds。\n\n### 重跑建议\n\n1. **部署代码到服务器**：`artifacts/simulation_sweep/` 整个目录（含 .stan 文件和已有 results）需同步到服务器\n2. **创建 venv 并安装依赖**：服务器上需要 `cmdstanpy`、`numpy`、`scipy`，以及 CmdStan 编译器\n3. **脚本支持断点续跑**：`load_checkpoint()` 会跳过已完成的 seed，同步已有 results 后直接 `python run_sweep.py subset` 即可从 seed 6 of auc0.55_n100 继续\n4. **CPU only 任务**：不占 GPU，但每个 NUTS fit ~660s，剩余 93 runs 预计 ~17 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp004-sweep-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc3727c755e664e2fc65",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 05B d025 checkpoint",
+  "task_key": "worker_ops_check_05B_d025_checkpoint_20260514T215758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_05B_d025_checkpoint_20260514T215758_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "a9b5e891141565ee9a490f9b22d8cabf1f323617762aabee45c948e0f07fc29a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "trainer_state.json 确认 `global_step: 3384`, `epoch: 1.0`，训练完整跑完。\n\n**汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| **Checkpoint 路径** | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/` |\n| **Adapter 权重** | `adapter_model.safetensors` (34M)，完整 |\n| **训练完成度** | 3384/3384 steps, epoch=1.0，完整完成 |\n| **训练配置** | LoRA r=16 α=32, lr=2e-4, 54133 samples, seed=42 |\n| **已有 eval** | `Qwen2.5-0.5B_d025_s42_aligned/` (eval_results.json 2.0M, correctness_matrix.json 112K, item_responses.json 2.3M) |\n| **Para aligned eval** | `Qwen2.5-0.5B_d025_s42_para_aligned/` 也已存在 |\n\n**结论：** Checkpoint 有效且完整。Aligned eval 和 para_aligned eval **均已跑完**，无需补跑。d025 数据点已可直接用于 dose-response 曲线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-05b-d025-checkpoint.md"
+}

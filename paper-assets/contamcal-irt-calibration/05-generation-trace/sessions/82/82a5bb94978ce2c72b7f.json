@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82a5bb94978ce2c72b7f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 008 instruct 05B eval",
+  "task_key": "worker_eval_exp_008_instruct_05B_eval_20260515T032401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_008_instruct_05B_eval_20260515T032401_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "f446c99a95601f380359e5b9748933503e9de46f825ce591a170b5939b588eb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **模型**：Qwen2.5-0.5B-Instruct 已确认存在\n- **GPU 4**：进程已启动 (PID 493617, 1302 MiB)\n- **tmux**：`exp008_instruct_eval` session 运行中\n- **Registry**：`exp_008_instruct_05B_eval` 状态 RUNNING\n- **Cron 监控**：每 8 分钟自动检查（job 35d1fded）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-008-instruct-05b-eval.md"
+}

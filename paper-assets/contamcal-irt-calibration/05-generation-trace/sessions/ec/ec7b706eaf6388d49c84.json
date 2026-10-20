@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7b706eaf6388d49c84",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260517T044946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_discussion_20260517T044946.jsonl",
+    "occurrence": 1,
+    "bytes": 17828,
+    "sha256": "17153c1680eb86a5fb0f134db454069df3de5c8636a49a7f4934745141db04c0"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T04:51:01.262810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T04:51:01.263606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T04:51:01.263823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/results.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T04:51:01.264048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe organize results around our four contributions. Section~\\ref{sec:domain_differential} presents the flagship finding: domain-level contamination heterogeneity within MMLU that pooled analysis completely obscures. Section~\\ref{sec:signal_failure} characterizes detection signal failure modes, including a directional reversal in Min-K\\%++ at small model scales. Section~\\ref{sec:identifiability} quantifies the structural identifiability boundaries of IRT-based contamination estimation. Section~\\ref{sec:calibration_results} reports calibration quality and clarifies the value decomposition between IRT ability estimation and the contamination parameter.\n5\t\n6\t\\subsection{Domain-Differential Contamination}\n7\t\\label{sec:domain_differential}\n8\t\n9\t\\paragraph{Within-benchmark heterogeneity.}\n10\tTable~\\ref{tab:domain_gamma} and Figure~\\ref{fig:domain_gamma} present per-domain $\\gamma$ estimates from the 2PL+$\\gamma$ model fitted on the $J=24$ Qwen2.5 ensemble (exp-006). MMLU exhibits striking heterogeneity across its eight cognitive domains. Math ($\\gamma = +0.97$, 95\\% CI $[0.53, 1.43]$, PPP$=0.44$) and Science ($\\gamma = +0.84$, CI $[0.39, 1.27]$, PPP$=0.81$) show strong contamination inflation with credible intervals excluding zero and acceptable model fit. CS \\& Engineering ($\\gamma = +0.20$, CI $[-0.45, 0.84]$) shows a positive point estimate that does not reach significance.\n11\t\n12\tThe remaining five domains show null or negative $\\gamma$ estimates: Business \\& Law ($-0.17$), Medical ($-0.20$), Humanities ($-0.41$), and Social Sciences ($-0.50$), all with PPP$=1.00$ indicating model misfit. Negative $\\gamma$ values with PPP$=1.00$ do not indicate that contamination reduces performance; rather, they signal that the 2PL+$\\gamma$ specification does not capture the response pattern in these domains. One plausible explanation: these domains contain items where memorized surface patterns conflict with reasoning requirements, produc\n…[truncated 11147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T04:51:01.264221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T04:51:01.264484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tContamCal operates in two stages: Stage~1 estimates per-item contamination exposure from multiple detection signals via training-free fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to produce calibrated ability estimates with credible intervals.\n5\t\n6\t\\subsection{Problem Formulation}\n7\t\\label{sec:formulation}\n8\t\n9\tLet $y_{ijk} \\in \\{0,1\\}$ denote the binary response of model~$j$ ($j=1,\\ldots,J$) to item~$i$ ($i=1,\\ldots,I_k$) on benchmark~$k$. Standard IRT assumes $P(y_{ijk}=1) = f(\\theta_j, \\boldsymbol{\\xi}_i)$ where $\\theta_j$ is latent ability and $\\boldsymbol{\\xi}_i$ collects item parameters. When training corpora contain benchmark items, the observed ability $\\hat{\\theta}_j$ confounds genuine capability with memorization.\n10\t\n11\tOur goal is twofold: (1)~estimate $\\theta_j^{\\text{clean}}$, the ability each model would exhibit had it never encountered test items during training, and (2)~diagnose contamination effects at domain granularity within each benchmark. We draw on item compromise IRT \\citep{eckerly2017,sinharay2017} and explanatory IRT \\citep{deboeck2004}, adapting these frameworks through three structural modifications for LLM evaluation.\n12\t\n13\t\\textit{Adaptation~1: Independent examinees $\\to$ shared item pool.} Classical IRT assumes independent test-takers. In LLM evaluation, a fixed item set is shared across all models, and responses within a single model may exhibit residual correlations beyond the scalar~$\\theta_j$ \\citep{sanmartin2009}. We mitigate this by fitting per-benchmark models.\n14\t\n15\t\\textit{Adaptation~2: Binary leakage $\\to$ continuous exposure.} Item compromise IRT uses binary indicators \\citep{sinharay2017}. LLM contamination is graded: a model may have encountered an item zero, once, or hundreds of times. We replace binary indicators with continuous exposure scores $e_{ij} \\in [0,1]$ derived from detection signals, following the explanatory IRT tradition \\citep{deb\n…[truncated 7143 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T04:51:01.264687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/",
+              "description": "List paper draft directory contents"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T04:51:01.264820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_pdf_images\nexperiments.tex\nfigures\nintroduction.tex\nliterature_gaps.md\nmain.aux\nmain.bbl\nmain.blg\nmain.log\nmain.pdf\nmain.tex\nmethod.tex\nreferences.bib\nreferences.bib.prev\nrelated_work.tex\nresults.tex\nresults_tables.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T04:51:01.264963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\nWe identify six limitations that bound the scope of our conclusions.\n\n\\paragraph{Scale ceiling.}\nAll experiments use models at or below 3B parameters. Larger models (7B+) may exhibit qualitatively different contamination dynamics where SFT injection is absorbed into the parameter space without producing measurable signal divergence. The dose-response attenuation we observe between 0.5B and 3B (Section~\\ref{sec:domain_differential}) suggests that contamination effects diminish with scale, but whether they vanish entirely or plateau remains untested.\n\n\\paragraph{Signal coverage.}\nS1 (embedding similarity) requires access to the training corpus, which is unavailable for closed-source models. For API-only models, only S2 (Min-K\\%++) and S4 (Self-Critique) are applicable, and both show poor discrimination at scales below 1.5B (Section~\\ref{sec:signal_failure}). The framework's practical applicability to closed-source evaluation settings remains unvalidated.\n\n\\paragraph{Ensemble size requirement.}\nOur simulation study establishes that reliable $\\gamma$ recovery requires $J \\geq 50$ respondents, yet current LLM evaluation pools contain $J = 8$--$30$ models. Our own experiments use $J = 24$, which is adequate for domains where detection AUC $\\geq 0.70$ but suboptimal for the full parameter space. This domain-method mismatch is structural: LLM evaluation will not reach educational testing sample sizes ($J > 1000$) in the foreseeable future, making signal quality the binding constraint on $\\gamma$ identifiability.\n\n\\paragraph{Credible interval coverage.}\nThe 50\\% posterior credible intervals achieve approximately 35\\% empirical coverage, indicating that the intervals are too narrow. In practice, this means the Bayesian uncertainty quantification functions as a directional indicator (positive vs.\\ negative $\\gamma$, credible interval excluding zero or not) rather than a precise probability statement. The calibration guarantee is weaker than the Bayesian framework nominally promises.\n\n\\paragraph{Model misfit in non-STEM domains.}\nPPP $= 1.00$ for five of eight MMLU domains indicates that the 2PL+$\\gamma$ specification is inadequate outside STEM. A single linear $\\gamma$ cannot capture non-monotone relationships between exposure and correctness. These domains likely require richer contamination response functions or multidimensional ability specifications.\n\n\\paragraph{Single injection protocol.}\nWe use LoRA-based SFT injection exclusively. Contamination that occurs during full-parameter fine-tuning or pretraining-stage data leakage may produce different distributional signatures that our signal battery does not capture. Our controlled injection paradigm validates the IRT framework under known conditions but does not guarantee transferability to all contamination mechanisms.\n\n\\subsection{Implications for Practice}\n\\label{sec:implications}\n\nOur findings carry concrete recommendations for four practitioner communities.\n\n\\paragraph{Benchmark developers.}\nDomain-level analysis is essential. Pooled contamination estimates mask heterogeneous effects through arithmetic cancellation (Section~\\ref{sec:domain_differential}): MMLU Math shows $\\gamma = +0.97$ while Social Sciences shows $\\gamma = -0.50$, yet the pooled estimate is non-significant. Benchmarks with domain structure should report per-domain diagnostics as standard practice.\n\n\\paragraph{Detection practitioners.}\nMin-K\\%++ should not be trusted at scales below 1.5B parameters. The directional reversal we document (Section~\\ref{sec:signal_failure}) means that applying this signal at small scales produces conclusions opposite to ground truth. S1 embedding similarity is the only signal that maintains reliable discrimination across all tested scales, though it requires training corpus access.\n\n\\paragraph{Leaderboard operators.}\nIRT ability estimation provides calibration benefit regardless of whether contamination is explicitly modeled (Section~\\ref{sec:calibration_results}). Adding IRT to evaluation pipelines is a low-cost improvement: vanilla 2PL reduces MAE relative to raw scores on ARC by 53\\% (0.034 to 0.016) without requiring any contamination detection infrastructure. The $\\gamma$ parameters then provide optional diagnostic capability on top of this calibration baseline.\n\n\\paragraph{Researchers evaluating LLMs.}\nPer-domain breakdowns should be reported as standard practice, especially for MMLU where STEM and non-STEM contamination effects differ qualitatively in both direction and model fit. Aggregate scores obscure information that is diagnostic of evaluation validity.\n\n\\subsection{Future Directions}\n\\label{sec:future}\n\nThree extensions address the limitations above. First, multidimensional IRT (MIRT) could replace the scalar $\\gamma$ for non-STEM domains where 2PL+$\\gamma$ shows systematic misfit, modeling domain-specific ability dimensions that interact differently with contamination exposure. Second, active signal selection via Fisher information optimization could identify the minimal signal combination needed per domain, reducing the requirement for full corpus access. Third, scaling to $J > 100$ by pooling respondents across model families with anchored $\\theta$ scales would bring ensemble sizes closer to the regime where $\\gamma$ recovery is most reliable.\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T04:51:01.265144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T04:51:01.265285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"—\" /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex",
+              "description": "Check for em-dash"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T04:51:01.265474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T04:51:01.265598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"ing,\" /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex",
+              "description": "Check for -ing phrase patterns"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T04:51:01.265722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T04:51:01.265836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex",
+              "description": "Word count"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T04:51:01.265949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "661 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T04:51:01.266101+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Quality checks pass:\n- Zero em-dashes\n- Zero `-ing,` patterns\n- 661 words (close to 600 target, within tolerance for LaTeX markup)\n\nWritten to `artifacts/paper_draft/discussion.tex`. Structure: §6.1 Limitations (6 paragraphs covering scale ceiling, signal coverage, ensemble size, CI coverage, non-STEM misfit, single protocol), §6.2 Implications (4 practitioner groups), §6.3 Future Directions (3 extensions in one paragraph). Framing follows D120/D121: IRT provides calibration, γ provides diagnosis."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260517T044946"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-discussion.md"
+}

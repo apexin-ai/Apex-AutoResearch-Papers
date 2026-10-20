@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f15ea6dca2fd792bc21d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 did",
+  "task_key": "worker_analysis_falcon3-did_20260522T172610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-did_20260522T172610_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "7c1e2c00a6269d8bdf6f5b389c5837a7524625ae051df16318befe9c3eca45a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出：\n\n1. **`artifacts/falcon3_did_analysis.py`** — 独立 DiD 计算脚本，方法与 `treated_untreated_analysis.py` 完全一致（10,000 bootstrap, seed=42, 同样的 verdict 分类逻辑）\n\n2. **`artifacts/falcon3_did_analysis.md`** — 文档含运行命令、Table 3 格式参考、预期结果预判\n\n**状态: BLOCKED** — DiD 需要 item-level `correctness_matrix.json`（14,042 个 MMLU 题的逐题对/错），无法从 aggregate accuracy 计算。westd-29999 SSH 认证失败，cqa1-21977 不在 SSH config 中。\n\n**恢复后执行：**\n```bash\npython artifacts/falcon3_did_analysis.py \\\n    --sft-dir /root/autodl-tmp/exp001/sft_data \\\n    --eval-dir /root/autodl-tmp/exp001/eval_results\n```\n\n脚本会直接输出 Table 3 的 LaTeX 行和完整 JSON。基于 Falcon3 的 Benefit pattern（d025 +2.46pp），预期 DiD 为 ns，verdict 大概率是 generalization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-did.md"
+}

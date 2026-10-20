@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bef20473cab966b5e15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify 3 completed evals",
+  "task_key": "worker_ops_verify-3-completed-evals_20260515T051615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-3-completed-evals_20260515T051615_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "789d64e7d37221b02f271e76f8cfb7a08cc59a2fe7956edaa90235af1163f95b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部验证通过，metrics 已录入 registry。\n\n**汇总：**\n\n| 实验 | MMLU | GSM8K | ARC | HumanEval |\n|------|------|-------|-----|-----------|\n| **3B d025 v2 para_aligned** | 0.621 | 0.548 | 0.811 | 0.115 |\n| **3B d100 v2 aligned_v2** | 0.632 | 0.742 | 0.824 | 0.171 |\n| **0.5B-Instruct** | 0.246 | 0.388 | 0.282 | 0.0 |\n\n- 3 个实验均有完整的 4 个 benchmark 输出（eval_results.json + correctness_matrix.json + item_responses.json）\n- exp_001_eval_3B_d025_v2_para_aligned 有 .done 标记，另外 2 个无 .done 但输出文件完整有效\n- 状态已为 DONE/success，本次仅补录了 metrics"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-3-completed-evals.md"
+}

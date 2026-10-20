@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55bcaa8c1336bffc9306",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix irt data json",
+  "task_key": "worker_ops_fix-irt-data-json_20260516T203250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-irt-data-json_20260516T203250_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "0c36165eef0c84d4ce8d1c6d95b01abd20c60fc988d9664a1413af6dcf64763b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Simpson's Paradox → Dilution Masking**: 替换 1 处，残留 Simpson 引用 0\n- **Medical 域排除标记**: 已添加 `\"excluded\": true, \"exclusion_reason\": \"PPP=1.000 model misfit (D112)\"`\n- **JSON 验证**: 格式正确（服务器上 grep 验证通过，本地 python json.load 验证通过）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-irt-data-json.md"
+}

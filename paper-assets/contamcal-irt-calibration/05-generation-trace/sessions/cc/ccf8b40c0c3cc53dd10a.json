@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccf8b40c0c3cc53dd10a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup zombie irt processes",
+  "task_key": "worker_ops_cleanup_zombie_irt_processes_20260517T043606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_zombie_irt_processes_20260517T043606_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "81f07273c94815a3cbd80b87c7f405f49b30db14a72a66ed1ffedae3bf2172fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。已 kill 11 个 May 16 旧 IRT 进程（含 7 个 zombie `<defunct>`）。\n\n剩余进程均为 May 17 活跃任务（signals 计算、tmux session），无 IRT/cmdstan zombie 残留。PID 929599/929719 未受影响（它们未出现在 IRT grep 结果中，应为其他类型进程）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-zombie-irt-processes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c9553803235c8e077a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d000 s42 a32 para aligned",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d000_s42_a32_para_aligned_20260516T070634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d000_s42_a32_para_aligned_20260516T070634_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "88bd9a9844ff995d6f29f0df2e7abf47d0cf5fc23274eb89e9a3f951484f6f4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：实验已正常完成，cron 误报。**\n\n- PID 716470 已退出，tmux session 不存在\n- 所有输出文件完整：`eval_results.json`、`correctness_matrix.json`、`item_responses.json`、`.done` sentinel\n- 日志确认 4 个 benchmark 全部跑完，结果已写入\n- cuda:4 当前无进程运行\n\n已更新 registry 状态 RUNNING → DONE (success)。Metrics：\n\n| Benchmark | Score |\n|-----------|-------|\n| mmlu_para | 0.6431 |\n| gsm8k_para | 0.0526 |\n| arc_para | 0.8106 |\n| humaneval_para | 0.1923 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d000-s42-a32-para-aligned.md"
+}

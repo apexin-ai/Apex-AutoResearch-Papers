@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab65f451329a4429312c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix instruct eval chat template",
+  "task_key": "worker_code_fix_instruct_eval_chat_template_20260516T103220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_instruct_eval_chat_template_20260516T103220_result.json",
+    "occurrence": 1,
+    "bytes": 2116,
+    "sha256": "5fda4f61677356c32e6418cee731083f9bb604076ca72f94101ca49f1b569b32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running well — processing ~25 items/sec on MMLU (14042 items). At this speed, MMLU alone will take ~9 minutes. The full run (mmlu + gsm8k + arc_challenge + humaneval x2 modes) should take roughly 30-40 minutes.\n\nHere's a summary of everything completed:\n\n## Part 1: Diagnosis\n\n**Root cause** (two distinct issues):\n1. **MCQ (MMLU/ARC)**: Logprob-based eval assigns highest probability to verbose tokens (\"The\", \"Let\") for RLHF'd Instruct models, not answer letters. Additionally, chat template was applied but with no system message, causing the model to generate verbose explanations instead of answer letters.\n2. **HumanEval**: Instruct model wraps code in markdown blocks (` ```python...``` `) with explanations, but the code extraction only truncated at `def`/`class` boundaries without stripping markdown.\n\n## Part 2: Fix Applied to `evaluate.py`\n\nAll changes are backward-compatible (base/SFT models unaffected):\n\n1. **`--instruct` CLI flag** + auto-detection from model name\n2. **`format_as_chat()`** — added optional `system_prompt` parameter\n3. **`extract_mcq_answer()`** — new function for generation-based answer extraction\n4. **`extract_code_from_markdown()`** — new function for markdown code block extraction\n5. **MCQ generation mode** (instruct only): system prompt constraining output to answer letter only, `max_new_tokens=5`\n6. **HumanEval instruct mode**: markdown code extraction + skip re-stated function signature\n7. **Regex fix**: corrected double-escaped backslashes in all 3 regex patterns\n8. Applied to both `evaluate_mcq` and `evaluate_paraphrased` blocks\n\n## Part 3: Re-run Launched\n\n- **tmux session**: `instruct_eval_v2`\n- **PID**: 764449 / 764451\n- **Script**: `/root/contamcal-irt-calibration/scripts/run_instruct_3b_eval_v2.sh`\n- **GPU**: cuda:3\n- **Output dirs**: `Qwen2.5-3B-Instruct_v2_aligned`, `Qwen2.5-3B-Instruct_v2_para_aligned`\n- **Log**: `/root/autodl-tmp/exp001/instruct_eval_v2.log`\n- **Registry**: `exp_001_eval_3B_instruct_v2` (RUNNING), old `exp_001_eval_3B_instruct_aligned_para` already marked failed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-instruct-eval-chat-template.md"
+}

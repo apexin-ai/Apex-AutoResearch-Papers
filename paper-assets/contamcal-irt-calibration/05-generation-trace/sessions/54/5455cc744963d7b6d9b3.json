@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5455cc744963d7b6d9b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen14b d050 retrain prep",
+  "task_key": "worker_ops_qwen14b-d050-retrain-prep_20260520T221003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-d050-retrain-prep_20260520T221003_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "07529aecbe7db073900ab4c0e4693fa23fe257db1a0e00db468edfc4d9096e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前进度：**\n\n1. **Gemma-2 MMLU eval (cuda:1, PID 437235)**：仍在运行，进度 64% (9053/14042)，~20 it/s，预计 ~4 分钟后完成\n2. **Qwen-14B d050_s0 adapter 状态**：已确认为空（目录 `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0/lora_adapter/` 存在但无任何文件）\n3. **重训脚本已创建**：`/root/contamcal-irt-calibration/scripts/seed0/retrain_qwen14b_d050_s0.sh`\n   - CUDA_VISIBLE_DEVICES=1\n   - lora-r=16, lora-alpha=32, lr=5e-5, batch-size=1, grad-accum=16\n   - gradient-checkpointing 已启用\n   - 训练后自动验证 adapter 存在性\n\n4 分钟后我会再次检查 eval 是否完成，完成后立即启动重训。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-d050-retrain-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee275e3228df7d189786",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 progress v2",
+  "task_key": "worker_ssh_westd-phase2-progress-v2_20260519T111926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-progress-v2_20260519T111926_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "4945b63b8e2a93f79259478694b6a11c55f64afe9dfc2c6607fb3d575a683ed0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这些目录存在但 eval 还没写完。确认完成的是 11 个。汇总如下：\n\n---\n\n## Phase 2 进度：11/25 完成\n\n### 1. 已完成 eval 结果表\n\n| Model | Contam | MMLU | ARC |\n|---|---|---|---|\n| **phi-4** | d000 | 0.7644 | 0.9206 |\n| | d005 | 0.7636 | 0.9181 |\n| **Qwen2.5-7B** | d000 | 0.6611 | 0.8788 |\n| | d005 | 0.6474 | 0.8609 |\n| | d025 | 0.6298 | 0.8404 |\n| | d050 | 0.6307 | 0.8456 |\n| **Qwen2.5-14B** | d000 | 0.6944 | 0.9104 |\n| | d005 | 0.6901 | 0.9036 |\n| **gemma-2-9b** | d005 | 0.6342 | 0.7782 |\n| | d025 | 0.6456 | 0.8737 |\n| *sanity_check* | gemma2_d005_arc | - | 0.7782 |\n\n### 2. 各 GPU 当前任务\n\n| GPU | 模型 | 任务 | 进度 |\n|---|---|---|---|\n| 0 | phi-4 + d025 adapter | MMLU | ~47% (6659/14042) |\n| 1 | Qwen2.5-14B + d025 adapter | MMLU | ~14% (2059/14042) |\n| 2 | Qwen2.5-7B + d100 adapter | MMLU | ~23% (3281/14042) |\n| 3 | gemma-2-9b + d050 adapter | MMLU | ~14% (1969/14042) |\n\n### 3. 进度 11/25\n\n当前批次完成后 = 15/25。剩余 10 个任务：\n- phi4: d050, d100\n- qwen14b: d050, d100\n- gemma2: d000, d100\n- **OLMo-2-7B: d000, d005, d025, d050, d100** (全部未开始)\n\n### 4. 预估剩余时间\n\n- 当前批次：~15-17 min（GPU 1/3 最慢，MMLU 14%）\n- 剩余 10 个任务 / 4 GPU = ~2.5 轮 × ~15 min/轮 = ~38 min\n- **总剩余 ≈ 55 min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-progress-v2.md"
+}

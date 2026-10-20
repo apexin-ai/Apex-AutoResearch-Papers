@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7804d840157c5f77f4f8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check cuda2 conflict",
+  "task_key": "worker_ops_check-cuda2-conflict_20260515T134036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cuda2-conflict_20260515T134036_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "43c646d4889cec00654ee91a61ea4b5713becb6c79912073ae246beb69ae861d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_008 eval 状态：**\n\n- **PID 553256 仍在运行**，已用时 2h10m\n- 当前正在跑 **GSM8K：1200/1319 (91%)**，速度 ~7.5s/it\n- **MMLU 已完成**（14042 items，约 ~78it/s 跑完）\n- GSM8K 剩 119 items → **~15 min**\n- 之后还有 **arc_challenge** + **humaneval** 未跑\n\n**预估剩余时间：**\n- GSM8K 收尾：~15 min\n- arc_challenge（~1200 MC items，速度接近 MMLU）：~15 min\n- humaneval（~164 items，生成式，速度接近 GSM8K）：~20 min\n- **总计约 45-50 min**\n\n**cuda:2 状态：** 22.9GB/24.6GB 使用中，GPU util 100%。两个进程共存：\n- PID 553256 (exp_008 eval): 3.6GB\n- PID 555936 (3B d005 SFT): 19.3GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda2-conflict.md"
+}

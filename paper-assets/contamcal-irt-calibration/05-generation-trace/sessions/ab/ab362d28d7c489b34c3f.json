@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab362d28d7c489b34c3f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag sft sweep failures westd",
+  "task_key": "worker_diag_sft_sweep_failures_westd_20260520T013204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft_sweep_failures_westd_20260520T013204_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "313d569062dd4b3be55e1ec5ca67a32eeae16197184bdbb55442c4cdfca780ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：根分区 30GB 磁盘满（`/root/.cache/huggingface` 占 20GB）。两个 sweep 各完成 d000-d050 后，HF datasets cache 填满根分区，d100 均失败。\n\n**具体情况**：\n- **Qwen2.5-14B d100**：在 `datasets.map()` 阶段 ENOSPC，训练未开始\n- **gemma-2-9b d100**：训练跑到 21%（step 888/4159）后崩溃，无 checkpoint 保存\n- 两个模型的 d000/d005/d025/d050 均正常完成\n\n**额外发现**：两个脚本缺 `set -e`，Python 崩溃后 shell 报 `exit code=0`（假成功），这是 cron 报 \"no sentinel/W&B\" 而非 \"exit code non-zero\" 的原因。\n\n报告已写到 `artifacts/diag_sft_sweep_failures_westd.md`。重试前需清理根分区 cache 并设置 `HF_HOME` 到数据盘。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-sweep-failures-westd.md"
+}

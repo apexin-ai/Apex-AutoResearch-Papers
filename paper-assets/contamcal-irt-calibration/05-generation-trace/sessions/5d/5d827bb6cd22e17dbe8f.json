@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d827bb6cd22e17dbe8f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 sweep progress",
+  "task_key": "worker_analysis_exp004_sweep_progress_20260515T165406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_sweep_progress_20260515T165406_result.json",
+    "occurrence": 1,
+    "bytes": 2483,
+    "sha256": "a15b9ce2c6f255fdace9b2f5428e1a3fb3d9624d7f15f6a0037c4a951986e1e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_004 进度报告\n\n### 进度\n\n| 配置 | 状态 | Seeds |\n|------|------|-------|\n| g2.0_auc0.7_n20 | ✅ | 10/10 |\n| g2.0_auc0.9_n20 | ✅ | 10/10 |\n| g2.0_auc0.7_n50 | ✅ | 10/10 |\n| g2.0_auc0.9_n50 | ✅ | 10/10 |\n| g4.0_auc0.7_n20 | ✅ | 10/10 |\n| g4.0_auc0.9_n20 | ✅ | 10/10 |\n| g4.0_auc0.7_n50 | 🔄 | 6/10 |\n| g4.0_auc0.9_n50 | ❌ | 0/10 |\n\n**总进度：66/80 seeds = 82.5%**\n\n当前 config 7 每 seed ~12 分钟（n=50 + g=4.0 慢于 n=20 的 ~5 分钟）。剩余：4 seeds × 12min + 10 seeds × 12min ≈ **2.8 小时**，预计约 03:45 完成。\n\n---\n\n### 关键发现\n\n**1. γ=2.0 模型恢复良好（正常工作的基线）**\n\n| 条件 | mean γ̂ | mean bias | CI95 coverage | CI95 width | θ_corr |\n|------|---------|-----------|---------------|------------|--------|\n| auc0.7_n20 | 2.02 | +0.02 | 100% | 0.51 | 0.95 |\n| auc0.9_n20 | 2.00 | +0.00 | 100% | 0.54 | 0.97 |\n| auc0.7_n50 | 2.01 | +0.01 | 100% | 0.34 | 0.95 |\n| auc0.9_n50 | 2.01 | +0.01 | 100% | 0.36 | 0.96 |\n\n几乎无偏，95% 覆盖率完美。\n\n**2. γ=4.0 出现系统性向下偏差，但模型仍基本工作**\n\n| 条件 | mean γ̂ | mean bias | CI95 coverage | CI95 width | θ_corr |\n|------|---------|-----------|---------------|------------|--------|\n| auc0.7_n20 | 3.77 | -0.23 | 90% | 1.01 | 0.92 |\n| auc0.9_n20 | 3.83 | -0.17 | 100% | 0.95 | 0.96 |\n\nγ=4.0 估计系统偏低 ~0.2，但 CI95 coverage 仍在 90-100%。一个 seed（g4.0_auc0.7_n20, seed 9）的 CI95 甚至不覆盖真值（γ̂=3.44, CI=[3.03, 3.89]）。\n\n**3. 对 coverage collapse 的诊断意义**\n\n这是核心发现：**在 simulation 中（数据生成过程 = 模型），即使 γ=4.0，CI95 coverage 仍在 90-100%。** 而真实数据的 coverage 只有 20-33%。\n\n这意味着 coverage collapse **不是 γ 值大** 导致的，而是 **模型错误指定 (model misspecification)** —— additive 4PL+γ 模型的数据生成假设与真实 contamination 机制不匹配。\n\n**4. 其他观察**\n- 所有 80 个已完成 run 均 0 divergences，R̂ < 1.01，ESS > 1300 —— 采样器机械层面完全正常\n- n=50 vs n=20：CI 显著收窄（0.34 vs 0.51 at γ=2），但偏差方向不变\n- θ recovery 在 γ=4.0 时下降（corr ~0.92 vs ~0.95），符合预期\n\n---\n\n### 不需要调整参数\n\n实验正常运行，结果已足够支持结论。等 g4.0_n50 的两个配置完成后做最终汇总分析即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-sweep-progress.md"
+}

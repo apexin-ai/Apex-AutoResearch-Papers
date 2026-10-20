@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "550d60f1006e5763d4bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis s1 only pipeline",
+  "task_key": "worker_analysis_s1-only-pipeline_20260523T081139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s1-only-pipeline_20260523T081139_result.json",
+    "occurrence": 1,
+    "bytes": 2412654,
+    "sha256": "6e993d7a58ba80af8bc742ebd566fb8765414169c34b01c10dbc08af64cc1788"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2412674,
+                "serialized_sha256": "ead81b8827c3c8ee6d06480008383e7a110cb21ce51ca6ffbaac2ed9c9ff338a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s1-only-pipeline.md"
+}

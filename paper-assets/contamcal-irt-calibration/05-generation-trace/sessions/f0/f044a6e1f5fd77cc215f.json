@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f044a6e1f5fd77cc215f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis collect stratified irt results",
+  "task_key": "worker_analysis_collect-stratified-irt-results_20260515T140509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-stratified-irt-results_20260515T140509_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "60088e9a8c88b0e7cd409d4386dc36432b042d3ea69b9f6497e60e08be91bd38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程刚启动约 3 分钟，当前正在拟合 scale_0.5B/gsm8k（chain 1 采样 70%）。还需处理多个 scale × benchmark 组合。3 分钟后再检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-stratified-irt-results.md"
+}

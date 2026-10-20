@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b82fa7b61a3ed480fafe",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd env setup",
+  "task_key": "worker_ops_westd-env-setup_20260518T062747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-env-setup_20260518T062747_result.json",
+    "occurrence": 1,
+    "bytes": 3111,
+    "sha256": "f86b0fe8f11a3da6b68c07906978ef307c0c2ffdc6b34096ccae2944ef3482f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完成报告\n\n### 环境状态 (westd-29999)\n| 项目 | 值 |\n|------|-----|\n| Python | 3.12.3 (conda base) |\n| CUDA | 12.8 (nvcc V12.8.93) |\n| Driver | 580.82.09 |\n| PyTorch | 2.8.0+cu128 |\n| GPU | 4× RTX PRO 6000 Blackwell, **96GB** each |\n| transformers | 5.8.1 |\n| peft | 0.19.1 |\n| accelerate | 1.13.0 |\n| bitsandbytes | 0.49.2 |\n| datasets | 4.8.5 |\n| trl | 1.4.0 |\n| scipy | 1.17.1 |\n| cmdstanpy | 1.3.0 |\n\n### 代码同步\n- 从 cqa1-21977 通过 SSH key + scp 传输完成\n- 目录: `/root/contamcal-irt-calibration/` (exp001/exp002/exp006/exp008/exp008_new/scripts/stan_models)\n- SFT 数据: `/root/autodl-tmp/sft_data/` (5 dosages, 279K samples, 已验证行数一致)\n- git 已初始化\n\n### train_sft.py QLoRA 支持\n两台服务器均已 patch，新增参数:\n- `--load-in-4bit`: 启用 4-bit 量化\n- `--bnb-4bit-quant-type {nf4,fp4}`\n- `--bnb-4bit-compute-dtype {bfloat16,float16}`\n\n### 配置文件\n- `qwen25_14b_qlora.yaml`: QLoRA 4-bit 配置 (适用 <50GB GPU)\n- `qwen25_14b_96g.yaml`: bf16 LoRA 配置 (适用 96GB GPU，推荐)\n\n### 重要：GPU VRAM 修正\n任务假设 48GB，实际 **96GB**。14B bf16 (~28GB 权重) 不需要 QLoRA，直接 bf16 LoRA + gradient checkpointing 即可。QLoRA 配置已创建但建议优先使用 `qwen25_14b_96g.yaml`。\n\n### Pilot 命令 (7B d000 s42)\n\n```bash\n# 激活 conda 环境\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# Pilot: Qwen2.5-7B d000 s42, cuda:0, bf16 LoRA (96GB 无需 QLoRA)\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache python3 \\\n  /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name Qwen/Qwen2.5-7B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/checkpoints/Qwen2.5-7B_d000_s42 \\\n  --lora-r 16 --lora-alpha 32 \\\n  --lr 5e-5 \\\n  --batch-size 2 \\\n  --grad-accum 8 \\\n  --epochs 1 \\\n  --max-seq-length 2048 \\\n  --gradient-checkpointing \\\n  --seed 42\n```\n\n14B 版本 (bf16 LoRA，推荐):\n```bash\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache python3 \\\n  /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name Qwen/Qwen2.5-14B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/checkpoints/Qwen2.5-14B_d000_s42 \\\n  --lora-r 16 --lora-alpha 32 \\\n  --lr 5e-5 \\\n  --batch-size 2 \\\n  --grad-accum 8 \\\n  --epochs 1 \\\n  --max-seq-length 2048 \\\n  --gradient-checkpointing \\\n  --seed 42\n```\n\n14B QLoRA 版本 (备选):\n```bash\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache python3 \\\n  /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name Qwen/Qwen2.5-14B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/checkpoints/Qwen2.5-14B_d000_qlora_s42 \\\n  --lora-r 16 --lora-alpha 32 \\\n  --lr 2e-5 \\\n  --batch-size 2 \\\n  --grad-accum 8 \\\n  --epochs 1 \\\n  --max-seq-length 2048 \\\n  --gradient-checkpointing \\\n  --load-in-4bit \\\n  --seed 42\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-env-setup.md"
+}

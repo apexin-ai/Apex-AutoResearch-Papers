@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984e8ee939b5c2a35b8e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d025 sft cuda3",
+  "task_key": "worker_ops_submit-d025-sft-cuda3_20260516T024518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-d025-sft-cuda3_20260516T024518_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "9a72f67452c2094cb0c18af14d127dd38b0e62a6182567d0a0587a81a58c3a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d025_a32_s42 SFT v3 训练已提交并运行中：\n\n| 项目 | 值 |\n|---|---|\n| exp_id | exp_001_sft_3B_d025_s42_a32_v3 |\n| GPU | cuda:3 (CUDA_VISIBLE_DEVICES=3) |\n| tmux | sft_d025_a32_s42 |\n| 参数 | lr=5e-5, lora_alpha=32, r=16, bs=1, grad_accum=16 |\n| 数据 | 54133 samples |\n| 总步数 | 3384 steps |\n| 输出 | /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42 |\n| 日志确认 | alpha=32 ✓, 训练已开始 (0/3384) |\n| Registry | RUNNING ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d025-sft-cuda3.md"
+}

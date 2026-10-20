@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bff30a4e38106950c432",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gemma2 d005 westd",
+  "task_key": "worker_analysis_gemma2_d005_westd_20260518T232754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2_d005_westd_20260518T232754_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "2ab85402306ae0612e602c9f57a6d1d0bcbec5bb280c4551c542ee12dbab8a0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma-2-9B d005 s42 训练结果\n\n| 项目 | 值 |\n|---|---|\n| **Conclusion** | **SUCCESS** |\n| **Total steps** | 3177 |\n| **Final train_loss** (avg) | 1.258 |\n| **Final batch loss** (last log) | 1.157 |\n| **Final token_accuracy** (avg) | 0.7303 |\n| **Final batch token_accuracy** | 0.7366 |\n| **Runtime** | ~2h26m |\n| **.done sentinel** | 存在 |\n| **lora_alpha** | 32 (符合规范) |\n\n训练配置确认：lora_r=16, lora_alpha=32, lr=5e-5, epochs=1, grad_accum=16, num_samples=50826。\n\ncuda:1 已空闲（0MiB, 0% util），可用于下一个任务。cuda:0/2/3 仍有进程在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma2-d005-westd.md"
+}

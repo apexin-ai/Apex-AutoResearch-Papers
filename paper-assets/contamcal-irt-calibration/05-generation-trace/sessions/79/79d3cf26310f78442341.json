@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79d3cf26310f78442341",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit 3B sft gpu01 resubmit",
+  "task_key": "worker_submit_3B_sft_gpu01_resubmit_20260515T162907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_3B_sft_gpu01_resubmit_20260515T162907_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "16aba15171315b42392110ef4ece0c83ff8989ea273b0060228c9a5d45b709ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n- GPU 1：`exp_001_sft_3B_d100_s42_a32_v2` 已提交并运行中（PID 593745, alpha=32, seed=42, 4159 steps）\n- GPU 0：仍被 PID 566224 占用，2 分钟后再检查，空闲后提交 `d100_s123_a32`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-3b-sft-gpu01-resubmit.md"
+}

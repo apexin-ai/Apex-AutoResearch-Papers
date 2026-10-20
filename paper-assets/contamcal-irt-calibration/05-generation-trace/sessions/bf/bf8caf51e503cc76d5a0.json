@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf8caf51e503cc76d5a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit citation verification urgent",
+  "task_key": "worker_audit_citation_verification_urgent_20260517T041502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation_verification_urgent_20260517T041502_result.json",
+    "occurrence": 1,
+    "bytes": 3292,
+    "sha256": "4aac01e2f93389c7044f554eeb3e277e60d9799d0f632425a514337d4365a587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证完成。以下是最终结果：\n\n## 验证结果\n\n| cite_key | arXiv ID | Status | 备注 |\n|----------|----------|--------|------|\n| `dong2026dose` | 2601.04301 | **DIFFERENT_CONTENT** | 该 ID 实际论文是 Schaeffer et al. \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\"，bib 中已有正确条目 `schaeffer_2026_generative_contamination` |\n| `yang2026rl` | 2601.06103 | **DIFFERENT_CONTENT** | 该 ID 实际论文是 Kocyigit & Yildirim \"The Impact of Post-training on Data Contamination\"，作者/标题完全不符 |\n| `gu2026psnirt` | 无 | **DIFFERENT_CONTENT** | PSN-IRT 论文真实存在于 AAAI 2026，但正确引用已在 `zhou_2025_psnirt` 中（Zhou et al.）；此条目伪造了作者 \"Gu, Jiaqi\" 和标题 |\n| `polo2026growing` | 2604.12843 | **DIFFERENT_CONTENT** | 该 ID 实际论文第一作者为 Habba，标题为 \"Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\"；bib 中已有正确条目 `habba_2025_growing_pains` |\n| `rao2026silicon` | 2603.21636 | **DIFFERENT_CONTENT** | 该 ID 实际论文是 Song et al. \"Silicon Bureaucracy and AI Test-Oriented Education\"，作者完全不同（非 Rao/Raji/Liang） |\n| `han2026probing` | 2510.07175 | **DIFFERENT_CONTENT** | 该 ID 实际论文是 Jongwook Han et al. \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\"，标题/作者/venue 均不符 |\n| `jerzak2026` | 2507.22218 | **EXISTS** | 标题 \"Attenuation Bias with Latent Predictors\"、作者 Jerzak & Jessee 完全匹配 ✓ |\n\n## 结论\n\n- **1 个真实**: `jerzak2026`\n- **6 个幻觉引用** (REMOVE): `dong2026dose`, `yang2026rl`, `gu2026psnirt`, `polo2026growing`, `rao2026silicon`, `han2026probing`\n\n这 6 个全是典型的 LLM 幻觉模式：**借用真实 arXiv ID，但篡改作者和标题**。其中 3 个 (`dong2026dose`, `polo2026growing`, `gu2026psnirt`) 在 bib 中已有对应真实论文的正确条目，属于重复+伪造。\n\n## 额外发现\n\narXiv 2601.06103 的真实论文 \"The Impact of Post-training on Data Contamination\" (Kocyigit & Yildirim) 研究 SFT/GRPO 如何与 contamination 交互，与本项目高度相关（NeurIPS 2025 接收）。如需引用建议用正确信息新建条目。\n\nSources:\n- [2601.04301 - Quantifying the Effect of Test Set Contamination](https://arxiv.org/abs/2601.04301)\n- [2601.06103 - The Impact of Post-training on Data Contamination](https://arxiv.org/abs/2601.06103)\n- [PSN-IRT GitHub (AAAI 2026)](https://github.com/Joe-Hall-Lee/PSN-IRT)\n- [2604.12843 - Growing Pains](https://arxiv.org/abs/2604.12843)\n- [2603.21636 - Silicon Bureaucracy](https://arxiv.org/abs/2603.21636)\n- [2510.07175 - Quantifying Data Contamination in Psychometric Evaluations](https://arxiv.org/abs/2510.07175)\n- [2507.22218 - Attenuation Bias with Latent Predictors](https://arxiv.org/abs/2507.22218)\n- [Han Wang - On The Fragility of Benchmark Contamination Detection](https://arxiv.org/abs/2510.02386)\n- [Jerzak - Measurement That Matches Theory (APSR)](https://www.cambridge.org/core/journals/american-political-science-review/article/measurement-that-matches-theory-theorydriven-identification-in-item-response-theory-models/395DA1DFE3DCD7B866DC053D7554A30B)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-verification-urgent.md"
+}

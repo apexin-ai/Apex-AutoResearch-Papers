@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6130f1f4863f89077859",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 3B d005 eval",
+  "task_key": "worker_ops_check_3B_d005_eval_20260514T181250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_3B_d005_eval_20260514T181250_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "f99c4e609ef4cf14198fdd50c72352d404b861628dbc22097d218fb4fa059143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删除）。\n\n**结果汇总：exp_001_eval_3B_d005_aligned → success**\n\n| Benchmark | Aligned | Para-aligned |\n|-----------|---------|-------------|\n| MMLU | 63.45% (8909/14042) | 65.42% (4315/6596) |\n| GSM8K | 20.77% (274/1319) | 14.91% (34/228) |\n| ARC | 82.94% (972/1172) | 82.21% (573/697) |\n| HumanEval | 14.63% (24/164) | 7.69% (2/26) |\n\nRegistry 已更新：status=DONE, conclusion=success, metrics 含两组完整分数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3b-d005-eval.md"
+}

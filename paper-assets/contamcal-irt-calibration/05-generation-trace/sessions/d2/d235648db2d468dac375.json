@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d235648db2d468dac375",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify d100 s123 start",
+  "task_key": "worker_ops_verify-d100-s123-start_20260518T173013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d100-s123-start_20260518T173013_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "a2751a40e48d9103bea28383ad601d5958f288aaeb9d63849ed5dde3245de719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动成功。**\n\n| 检查项 | 结果 |\n|---|---|\n| PID 46871 存活 | ✅ bash wrapper 运行中 |\n| 实际训练进程 | PID 46876，`Rl` 状态（CPU 918%，正在加载/编译） |\n| cuda:3 显存 | ✅ 当前 3MiB（模型还在 CPU 加载阶段，尚未上 GPU） |\n| LoRA 参数 | alpha=32 ✅（符合 C006） |\n| CUDA_VISIBLE_DEVICES | =3 ✅（符合 C004） |\n| 日志状态 | 模型权重已加载完毕，LoRA 配置完成，训练数据 66533 samples 已加载，即将开始训练 |\n| 唯一性 | `Qwen2.5-7B_d100_s123` 只有一组进程（46871→46875→46876）✅ |\n\n模型加载和数据准备均完成，正在 torch.compile 阶段，预计几分钟后上 GPU 开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d100-s123-start.md"
+}

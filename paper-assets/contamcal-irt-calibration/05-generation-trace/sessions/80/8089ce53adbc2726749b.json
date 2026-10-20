@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8089ce53adbc2726749b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code seed0 script prep",
+  "task_key": "worker_code_seed0-script-prep_20260519T154411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed0-script-prep_20260519T154411_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "bc401d558e6ed40f64ce6571782ea3628816dd6c234198e5b6ea93fac14d4300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diff 确认完毕。所有改动仅限 seed 相关部分。\n\n### 结果\n\n**模板来源**: `/root/autodl-tmp/exp001/run_{phi4,qwen14b,qwen7b_olmo2,gemma2}_s123.sh`\n\n**创建的 4 个脚本**:\n| 脚本 | GPU | 模型 | batch×accum |\n|------|-----|------|-------------|\n| `scripts/seed0/sft_phi4_s0_sweep.sh` | cuda:0 | phi-4 | 1×16 |\n| `scripts/seed0/sft_qwen14b_s0_sweep.sh` | cuda:1 | Qwen2.5-14B | 1×16 |\n| `scripts/seed0/sft_qwen7b_olmo2_s0_sweep.sh` | cuda:2 | Qwen2.5-7B + OLMo-2-7B | 2×8 |\n| `scripts/seed0/sft_gemma2_s0_sweep.sh` | cuda:3 | gemma-2-9b | 1×16 |\n\n**Diff 确认**: 仅改了 `--seed 123` → `--seed 0`、输出路径 `s123` → `s0`、echo 信息中的 seed 标记。超参数完全一致。\n\n**一个小结构差异**: qwen7b_olmo2 的 s123 原版 Part 1 (Qwen-7B) 用了 if/else 结构，s0 版统一为 if/continue（与其他脚本一致），训练逻辑不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed0-script-prep.md"
+}

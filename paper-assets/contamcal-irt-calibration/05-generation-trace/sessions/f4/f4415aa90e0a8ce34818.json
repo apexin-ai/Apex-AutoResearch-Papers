@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4415aa90e0a8ce34818",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent status check",
+  "task_key": "worker_ops_urgent-status-check_20260518T202923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-check_20260518T202923_result.json",
+    "occurrence": 1,
+    "bytes": 2678,
+    "sha256": "4956fa09f059645d6f8f87db5bc8d73cbc5d0dad84ef50f2b249be8c3cc47e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告 — westd-29999 (cqa1-21977)\n\n---\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存占用 | GPU利用率 | 进程 |\n|-----|------|---------|----------|------|\n| 0 | RTX 4090 D | 0MiB / 24564MiB | 0% | 无 |\n\n**只有 1 张卡。GPU 0 完全空闲。** 无任何 GPU 进程。\n\n---\n\n### 2. 14B 训练进度\n\n**14B checkpoint 目录不存在。** `/root/autodl-tmp/exp001/checkpoints/` 下没有任何 `Qwen2.5-14B_*` 目录。无 `.done`、无 `trainer_state.json`、无 `lora_adapter/`。\n\n无 14B 相关进程。\n\n| 实验 | 状态 |\n|------|------|\n| 14B d025 s42 | **不存在** — 目录未创建 |\n| 14B d050 s42 | **不存在** — 目录未创建 |\n| 14B d100 s42 | **不存在** — 目录未创建 |\n\n也无任何 7B checkpoint 目录。\n\n---\n\n### 3. Gemma-2-9B pilot\n\n**不存在。** 无 checkpoint 目录、无日志文件、无相关进程。\n\n| 实验 | 状态 |\n|------|------|\n| gemma-2-9b d000 s42 | **不存在** — 未启动 |\n\n---\n\n### 4. Phi-4 / OLMo-2 下载\n\n| 模型 | 状态 |\n|------|------|\n| Phi-4 | **失败** — 目录不存在，0 shards，下载进程已死 |\n| OLMo-2-1124-7B | **失败** — 目录不存在，0 shards，下载进程已死 |\n| 网络 | **DOWN** — curl HuggingFace 超时 |\n\n根因：**网络不通**，外部 HuggingFace 不可达。模型目录 `/root/autodl-tmp/models/` 下没有 phi-4 和 OLMo 子目录。\n\n已有模型：Qwen 系列、Llama-3.2-3B、DeepSeek-R1-Distill-Qwen-1.5B。\n\n---\n\n### 5. S1 信号 (7B d050/d100 s123)\n\n| 信号 | 状态 |\n|------|------|\n| Qwen2.5-7B_d050_s123 | **不存在** — 目录未创建 |\n| Qwen2.5-7B_d100_s123 | **不存在** — 目录未创建 |\n\n7B checkpoint 也不存在，所以信号计算无法进行。\n\n---\n\n### 补充发现\n\n**已完成的训练** (有 lora_adapter + merged 目录)：\n- Qwen2.5-0.5B: d000/d005/d025/d100 x s42+s123 (8个) ✅\n- Qwen2.5-1.5B: d000/d005/d025/d100 x s42+s123 (8个) ✅\n- Qwen2.5-3B: d000/d005/d025/d100 x s42+s123 + a32 变体 ✅\n- Llama-3.2-3B: d000/d005/d025/d100 x s42 (4个，有 lora_adapter + merged，但无 trainer_state 和 .done) ✅\n\n**已完成的信号**：Qwen 0.5B/1.5B/3B 全系列 + Llama-3.2-3B (部分)\n\n**无活跃计算进程。** 只有 tensorboard 和 jupyter-lab 在后台运行。无 tmux session。\n\n**磁盘**：/root/autodl-tmp 169G 总量，119G 已用，51G 可用 (70%)。\n\n---\n\n### 总结\n\n这台机器（单卡 4090D）当前**完全空闲**。14B/7B/Gemma-9B 实验从未在此启动（这些模型远超单卡 24GB 显存）。Phi-4/OLMo-2 下载因网络不通失败，进程已死。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-check.md"
+}

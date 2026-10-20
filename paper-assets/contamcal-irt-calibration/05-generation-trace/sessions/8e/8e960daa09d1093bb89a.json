@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8e960daa09d1093bb89a",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops fill gpu1 gpu3 gpu5",
+  "task_key": "worker_ops_fill-gpu1-gpu3-gpu5_20260515T110656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-gpu1-gpu3-gpu5_20260515T110656.log",
+    "occurrence": 1,
+    "bytes": 859028,
+    "sha256": "3b78d148972425685c5176142389e37750184a37d46eb02aeb1ee73623cc3b24"
+  },
+  "statistics": {
+    "messages": 128,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 128,
+      "chunks": [
+        {
+          "path": "8e960daa09d1093bb89a-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "8e960daa09d1093bb89a-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fill-gpu1-gpu3-gpu5.md"
+}

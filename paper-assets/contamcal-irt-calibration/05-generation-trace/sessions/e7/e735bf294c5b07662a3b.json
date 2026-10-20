@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e735bf294c5b07662a3b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check d100 s42 completion",
+  "task_key": "worker_ops_check-d100-s42-completion_20260518T172102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-d100-s42-completion_20260518T172102_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "db640cbe4e324683bf86f527762489cad7b1e6ddbc3642aee72f5dce04e18731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 项目 | 状态 |\n|---|---|\n| **训练完成** | 成功。日志末尾有 `Training complete.`，4159/4159 steps 全部完成 |\n| **最终指标** | train_loss=**0.987**, mean_token_accuracy=**0.7452**, epoch=1.0, 总耗时 6384s (~1h46m) |\n| **最后 log step 指标** | step 4150: loss=1.029, mean_token_accuracy=0.7604 |\n| **Checkpoint 完整性** | 完整。关键文件均存在: |\n| | `adapter_model.safetensors` (154MB) |\n| | `adapter_config.json` (lora_alpha=**32**, r=16, dropout=0.05) |\n| | `tokenizer.json` (10.9MB) + `tokenizer_config.json` |\n| | `training_args.bin` + `README.md` + `chat_template.jinja` |\n| | 子目录 `checkpoint-4159/` (最终 step checkpoint) |\n| **cuda:0** | **空闲**，0MiB 显存占用，GPU-Util 0% |\n| **其他 GPU** | cuda:1/2/3 均在使用中 (PID 42743, 38920, 36943) |\n\n训练成功完成，checkpoint 完整，cuda:0 已空闲可分配新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d100-s42-completion.md"
+}

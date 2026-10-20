@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "d094ecd148f7b0feea6a",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit data correctness tables1 3 fig1",
+  "task_key": "worker_audit_data-correctness-tables1-3-fig1_20260522T022412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-correctness-tables1-3-fig1_20260522T022412.log",
+    "occurrence": 1,
+    "bytes": 1554817,
+    "sha256": "2685733b0a7f297b5819d842c7677703ab58178cfcdebead50a97258898be7d3"
+  },
+  "statistics": {
+    "messages": 799,
+    "user_turns": 4,
+    "tool_calls": 266,
+    "roles": {
+      "log": 4,
+      "system": 252,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 266,
+      "tool_result": 260,
+      "user": 4
+    },
+    "unparsed_lines_preserved": 4,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "d094ecd148f7b0feea6a-part-0001.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "d094ecd148f7b0feea6a-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "d094ecd148f7b0feea6a-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "d094ecd148f7b0feea6a-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "d094ecd148f7b0feea6a-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 593,
+      "chunks": [
+        {
+          "path": "d094ecd148f7b0feea6a-part-0002.json",
+          "message_count": 154
+        },
+        {
+          "path": "d094ecd148f7b0feea6a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d094ecd148f7b0feea6a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d094ecd148f7b0feea6a-part-0005.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-correctness-tables1-3-fig1.md"
+}

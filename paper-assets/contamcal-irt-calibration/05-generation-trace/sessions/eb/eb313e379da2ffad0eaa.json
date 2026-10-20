@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb313e379da2ffad0eaa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper figure fig signal heatmap",
+  "task_key": "worker_paper_figure_fig_signal_heatmap_20260516T201205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_signal_heatmap_20260516T201205_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "99e0c87b463697498ec0f968c5f9e59aa68848eca4b5c7e64f32424a1929efce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **PDF**: `figures/paper/fig_signal_heatmap.pdf`\n- **PNG**: `figures/paper/fig_signal_heatmap.png`\n- **Script**: `figures/paper/gen_fig_signal_heatmap.py`\n- **Artifact**: `art_20260516_43067f` 已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-signal-heatmap.md"
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "5cdb5ff945b2ea17513b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code cron sentinel fix",
+  "task_key": "worker_code_cron-sentinel-fix_20260516T044328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cron-sentinel-fix_20260516T044328.log",
+    "occurrence": 1,
+    "bytes": 1817934,
+    "sha256": "932c67480847bdaccca802d0a5c0be9cce139f13dbc3eb3a405a8d6099e73322"
+  },
+  "statistics": {
+    "messages": 420,
+    "user_turns": 3,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 83,
+      "assistant": 45,
+      "tool_call": 143,
+      "user": 3,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0001.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0001.json",
+          "message_count": 94
+        },
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0002.json",
+          "message_count": 111
+        },
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0003.json",
+          "message_count": 53
+        },
+        {
+          "path": "5cdb5ff945b2ea17513b-part-0004.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cron-sentinel-fix.md"
+}

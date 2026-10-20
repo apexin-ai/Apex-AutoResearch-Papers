@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53b288f2f8a5afb14ae9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify s42 checkpoint alpha",
+  "task_key": "worker_ops_verify-s42-checkpoint-alpha_20260515T185157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-s42-checkpoint-alpha_20260515T185157_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "c4e53c287259ef1d6e1061ce5de99b07ec23a0471b2096425012d048a4b5b346"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 原始 s42 checkpoint（3B）\n\n| Checkpoint | lora_alpha | 状态 |\n|---|---|---|\n| `Qwen2.5-3B_d000_s42` | **32** | 受 bug 影响（DEFAULT_LORA_CONFIG 覆盖） |\n| `Qwen2.5-3B_d005_s42` | **32** | 受 bug 影响 |\n| `Qwen2.5-3B_d025_s42` | **16** | 正确 |\n| `Qwen2.5-3B_d100_s42` | **16** | 正确 |\n\n### v2 修复版\n\n| Checkpoint | lora_alpha |\n|---|---|\n| `Qwen2.5-3B_d000_v2_s42` | **16** | 已修复重训 |\n\n### 当前重训 checkpoint（a32/v3 命名）\n\n| Checkpoint | 状态 |\n|---|---|\n| `d000_a32_s42` | lora_adapter 空（未写出模型） |\n| `d100_a32_s42` | lora_adapter 空（未写出模型） |\n| `d025_v3_s42` | 训练中 66%（2229/3384 steps） |\n| `d025_a32_s42` | 训练中 2%（68/3384 steps） |\n| `d100_a32_s123` | lora_adapter 空（未写出模型） |\n\n### 结论\n\n**s42 原始 checkpoint 不全是 alpha=32。** 情况是混合的：\n- **d000、d005**：alpha=32（与 s123 一样受 bug 影响）\n- **d025、d100**：alpha=16（正确值，未受 bug 影响）\n\n因此：\n- `d000_a32_s42` 重训**冗余**——原始 d000_s42 已经是 alpha=32\n- `d025_a32_s42` / `d025_v3_s42` 重训**不冗余**（如果目标是统一到 alpha=32）——原始是 alpha=16\n- `d100_a32_s42` 重训**不冗余**——原始是 alpha=16\n- d005_s42 没有对应的 a32 重训目录，因为原始已经是 alpha=32"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-s42-checkpoint-alpha.md"
+}

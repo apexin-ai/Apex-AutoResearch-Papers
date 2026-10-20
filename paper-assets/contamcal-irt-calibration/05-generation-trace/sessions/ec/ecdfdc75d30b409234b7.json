@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecdfdc75d30b409234b7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prepare 3B s42 signal scripts",
+  "task_key": "worker_ops_prepare-3B-s42-signal-scripts_20260516T035751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-3B-s42-signal-scripts_20260516T035751_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "e142cb999464c1fc881df276db7da0c45723200e22414c4b238669b912e2df69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完成，语法检查通过。\n\n## 汇总\n\n### Eval results 路径映射\n\n| 剂量 | Checkpoint (alpha=32 ✓) | Eval 输出 | Signal 输出 |\n|------|------------------------|-----------|-------------|\n| d000 | `Qwen2.5-3B_d000_s42` | `Qwen2.5-3B_d000_s42_a32_aligned` (运行中, GPU 1) | `Qwen2.5-3B_d000_s42_a32` |\n| d005 | `Qwen2.5-3B_d005_s42` | `Qwen2.5-3B_d005_s42_a32_aligned` (运行中, GPU 2) | `Qwen2.5-3B_d005_s42_a32` |\n| d025 | `Qwen2.5-3B_d025_v3_s42` | `Qwen2.5-3B_d025_v3_s42_para_aligned` (运行中, GPU 0) | `Qwen2.5-3B_d025_v3_s42` — **已完整** (s1/s2/s4 × 3 bench) |\n| d100 | `Qwen2.5-3B_d100_a32_s42_v3` | `Qwen2.5-3B_d100_a32_s42_aligned` (运行中, GPU 3) | `Qwen2.5-3B_d100_a32_s42_v3` |\n\n### 脚本详情\n- **路径**: `/root/contamcal-irt-calibration/exp002/run_3B_s42_signals.sh`\n- **信号**: s1 (embedding_shift) + s2 (min-k++) + s4 (self_critique)，**不含 s3**\n- **剂量**: d000, d005, d100（d025 已跳过）\n- **总任务**: 3 doses × 3 benchmarks × 3 signals = 27 runs\n- **安全措施**: 启动前验证 adapter alpha=32；skip-if-done 逐文件检查\n- 语法 `bash -n` 通过\n\n### d025 merged 状态\n整个 `signals/` 目录下不存在任何 merged 文件（不只 d025），merged 不是当前 signals 流程的一部分。\n\n### 注意\n`Qwen2.5-3B_d000_s42` 和 `Qwen2.5-3B_d005_s42` 虽然目录名在 C006 黑名单中，但实际 `adapter_config.json` 已更新为 alpha=32，是原地重训的结果。脚本中有运行时 alpha 验证作为双重保险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-3b-s42-signal-scripts.md"
+}

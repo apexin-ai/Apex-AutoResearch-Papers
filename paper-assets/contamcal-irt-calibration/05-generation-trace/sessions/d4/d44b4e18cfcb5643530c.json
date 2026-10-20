@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d44b4e18cfcb5643530c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp random 300 tau fix",
+  "task_key": "worker_exp_random-300-tau-fix_20260517T221453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_random-300-tau-fix_20260517T221453.log",
+    "occurrence": 1,
+    "bytes": 614191,
+    "sha256": "c8f37b9808e4a92459731be0a1de0c285d393c794e8de181cec15427796fa7df"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "d44b4e18cfcb5643530c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d44b4e18cfcb5643530c-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-random-300-tau-fix.md"
+}

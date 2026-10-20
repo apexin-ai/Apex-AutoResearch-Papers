@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b1f546b63848c29094f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu health check",
+  "task_key": "worker_infra_gpu-health-check_20260516T194258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-health-check_20260516T194258_result.json",
+    "occurrence": 1,
+    "bytes": 1722,
+    "sha256": "a58f35a3356cf4c69cfe94ecea799a265f8f3310d544c4c77dfcffa40952373d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 占用状态\n\n| GPU | 显存占用 | 利用率 | PID | 任务 | 状态 |\n|-----|---------|--------|-----|------|------|\n| cuda:0 | 8072/24564 MiB | 77% | 825638 | eval d005_s42 GSM8K | 正常运行 |\n| cuda:1 | 7132/24564 MiB | 45% | 830115 | signals d000_s42 mmlu | 正常运行 |\n| **cuda:2** | **0 MiB** | **0%** | — | — | **空闲 ✓** |\n| cuda:3 | 8304/24564 MiB | 77% | 822390 | eval d025_s42 GSM8K | 正常运行 |\n| **cuda:4** | **560 MiB** | **4%** | **842929** | **signals d005_s42 mmlu** | **⚠️ 未授权进程** |\n| cuda:5 | 8304/24564 MiB | 78% | 831033 | eval d100_s42 GSM8K | 正常运行 |\n\n### 4 个 RUNNING 实验健康度\n\n| PID | 实验 | GPU | 当前进度 | ETA | 状态 |\n|-----|------|-----|---------|-----|------|\n| 822385→822390 | eval d025_s42 | cuda:3 | GSM8K 85% (1124/1319) | ~20min | ✅ 健康 |\n| 825638 | eval d005_s42 | cuda:0 | GSM8K 66% (874/1319) | ~47min | ✅ 健康 |\n| 830115 | signals d000_s42 | cuda:1 | Self-critique mmlu [7000:8000] 41% (207/500) | 多轮剩余 | ✅ 健康 |\n| 831033 | eval d100_s42 | cuda:5 | GSM8K 46% (602/1319) | ~75min | ✅ 健康 |\n\n### ⚠️ 异常发现\n\n**cuda:4 不空闲。** 发现未授权进程 PID 842929（运行仅 56 秒），正在执行：\n```\npython compute_signals.py --model-path .../Llama-3.2-3B_d005_s42/merged --benchmark mmlu --signal all --output-dir .../signals/Llama-3.2-3B_d005_s42/ --batch-size 4\n```\n\n这符合 C005 约束中描述的 \"未授权 compute_signals 进程\" 模式——来源可能是旧 session Worker 或 auto-loop 触发。目前显存占用仅 560 MiB（刚启动加载模型阶段）。需要决定是否 kill 该进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-health-check.md"
+}

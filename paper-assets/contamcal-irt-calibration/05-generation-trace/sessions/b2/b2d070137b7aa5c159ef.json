@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d070137b7aa5c159ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor exp 002 selfcritique",
+  "task_key": "worker_monitor_exp_002_selfcritique_20260514T130808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_002_selfcritique_20260514T130808_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "29bf4296959ad26a359c1af30832b4f5bb6ad0f7f9c3b37937dc317be368dc4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 进程状态\nPID 370957 **存活**，已运行 ~13 分钟。\n\n### 2. 当前进度\n**4/9 进行中** — task 4 (`Qwen2.5-0.5B_d005_s42/mmlu`) 自 21:06:40 开始运行。\n\n| Task | 组合 | 状态 | 耗时 |\n|------|------|------|------|\n| 1/9 | d000/mmlu | PASS | ~9 min |\n| 2/9 | d000/gsm8k | PASS | ~1 min |\n| 3/9 | d000/arc_challenge | PASS | ~1.5 min |\n| 4/9 | d005/mmlu | 进行中 | — |\n| 5-9 | d005+d100 剩余 | 待运行 | — |\n\n### 3. Selfcritique 状态\n**成功！** v5 修复生效，selfcritique 已产出 3 个文件（d000 全部完成）：\n- `signal_selfcritique_mmlu.json` (2.9 MB)\n- `signal_selfcritique_gsm8k.json`\n- `signal_selfcritique_arc_challenge.json`\n\n这是首次 selfcritique 成功（此前 0/9），**v5 的三项修复（timeout 4h, per-signal cache, max_tokens 64）解决了问题。**\n\n### 4. GPU 0 内存\n**3549 MiB / 24564 MiB (14%)** — 正常范围，无内存泄漏。之前担心的 13+GB 问题不存在。\n\n### 5. 注意事项\n`/root/runs/` 下的旧日志显示之前一个 run（18:19 开始）task 1-3 全部 FAIL，stderr 是 transformers 模型名列表（可能是 import 警告被误捕获）。当前 run（20:55 开始）是修复后的版本，已全部 PASS。\n\n### 7. 建议\n**继续等待。** 按当前速度（task 1 最慢 ~9 min，后续 ~1-2 min），预计剩余 6 个 task 在 30-40 分钟内完成。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-002-selfcritique.md"
+}

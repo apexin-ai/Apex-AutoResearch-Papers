@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5472215deb00febf27a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 d100 final check",
+  "task_key": "worker_ops_cqa1-d100-final-check_20260519T192813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-d100-final-check_20260519T192813_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "997c849d8c6b9ee42a1037c87276f01a1beb35ba553bd926065ba55eff20b99f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s42 eval 已启动确认：\n\n- **tmux session**: `eval_s42`（created 03:42:42）\n- **PID**: 275364，正在跑 d000_s42\n- **GPU 0**: 14928 MiB / 24564 MiB，CUDA_VISIBLE_DEVICES=0（脚本内设置）\n- **进度**: 已开始 d000_s42 → d005 → d025 → d050 → d100，每个 ~17 分钟，全部 ~85 分钟（预计 ~05:08 完成）\n\n**d100 s123 新结果（aligned mc-format）**: MMLU = **66.59%**, ARC = **84.73%**\n\n对比旧结果（non-aligned）：MMLU 70.66% → 66.59%（-4.07pp），ARC 89.68% → 84.73%（-4.95pp）。aligned 格式下分数显著下降，说明旧格式存在评估膨胀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-d100-final-check.md"
+}

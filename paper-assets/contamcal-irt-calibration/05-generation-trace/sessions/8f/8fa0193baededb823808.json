@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fa0193baededb823808",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778875951.md",
+  "task_key": "loop_11_1778875951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778875951.md",
+    "occurrence": 1,
+    "bytes": 4156,
+    "sha256": "98891c107f57031b344ac3f5caa9c652f7fd57da28d322e238086ce392a7832f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T20:03:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5（6× RTX 4090D），严禁使用白名单外设备。D070 教训：cuda:4 曾有冗余进程冲突\n- d000_s42 和 d005_s42 已从 IRT pool 永久排除（D076，lr=2e-4 confound），不得用于 dose-response 或 pooled fitting\n- alpha 标准化：s42 系列必须 alpha=32，s123 系列 alpha=16，严禁混用（D055）\n- Claim 3（measurement error）已降级为 appendix negative result（D072/D073），不得在 main body 中作为正向 claim\n- Claim 4（conditional calibration）已 demoted，coverage 20-69%@95% 是已知 gap，不得声称 nominal coverage\n- EMNLP 2026 ARR 截稿 May 25——距今 10 天，所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：6× RTX 4090D 集群，工作目录 `/root/autodl-tmp/contamcal-irt-calibration/`（推测，需 Worker 首次确认）\n- Python 环境：conda base（`/root/miniconda3/bin/python`），不用 venv\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：已配置（实验有 wandb 追踪）\n- 活跃实验（6 RUNNING）：\n  - cuda:0 — `exp_001_sft_3B_d100_s123_a32_v2`（SFT ~50%）\n  - cuda:1 — `exp_001_sft_3B_d100_s42_a32_v2`（SFT ~30%，ETA ~3h）\n  - cuda:2 — `exp_001_eval_3B_d005_s123_gsm8k`（eval）\n  - cuda:3 — eval 刚启动\n  - cuda:4 — dual-process（`exp_001_sft_3B_d000_v3` + `d025_s42 signals`），显存 20.7/24.5GB\n  - cuda:5 — `exp_001_sft_d025_3B_v3`（SFT）\n- 21 experiments 处于 PREPARING 状态（待调度）\n\n### 3. 📊 当前状态\n**刚做完**：session 接近 context limit，收到 WRITE HANDOFF 指令。\n\n**Registry 总览**：177 experiments（150 DONE: 104 success / 37 failed / 7 killed / 2 negative；6 RUNNING；21 PREPARING）\n\n**关键进展**：\n- Research MVP 已通过（2026-05-13），进入论文写作 + 补实验阶段\n- Pooled IRT 就绪：N=19（alpha=32 only），2 个 RUNNING 完成后 N=21 ✓ 超过 minimum N≥16\n- Paper 已有 intro + related work 初稿（artifacts 中已注册）\n- sim_sweep v1-v6 全部失败，v7 用 per-worker tempfile isolation 修复后在跑\n- 3B s123 eval matrix 还差 2 slots（d005 aligned on cuda:2, d100 para_aligned on cuda:3）\n\n**等待中**：\n- cuda:2/3 eval 完成 → 释放给 exp-002 3B d005/d100 signals\n- cuda:0/1 SFT 完成 → 释放给后续 eval + signals\n- sim_sweep_v7 结果 → 验证 identifiability boundary\n\n### 4. 📋 待办（条件触发式）\n- cuda:2 eval 完成 → 立即派 Worker 启动 exp-002 3B d005 signals\n- cuda:3 eval 完成 → 立即派 Worker 启动 exp-002 3B d100 signals\n- 3B signals 全部完成 → exp-003 RRF aggregation（CPU 任务，不占 GPU）\n- RRF 完成 → exp-006 pooled IRT fitting + 7 baselines\n- sim_sweep_v7 完成 → 检查 identifiability boundary 结果，更新 Claim 3 的 appendix narrative\n- cuda:0/1 SFT 完成 → eval matrix 补齐 → signals → 进入 IRT pool\n- Day 4-7 → 全力论文写作（method + experiments + discussion）\n- Day 8 contingency：如 GPU 实验显著落后 → 缩减到 MMLU+GSM8K only\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D039: narrative 从 calibration-led 转为 characterization-led（Claim 1 PRIMARY）\n- D072/D073: Claim 3 (measurement error) 降为 appendix negative，4PL+γ model misspecification confirmed\n- D074-D076: s42 old series (lr=2e-4) 是 confound，不可用于 dose-response\n- 最强 citation-worthy 发现：Min-K++ directional reversal at 0.5B（Cohen's d = -1.2 to -2.7，actively misleading）\n- Fisher Information identifiability analysis 是最强理论贡献\n\n**易错点**：\n- 不要把 GC4-par (parallel) 和 GC4-seq (sequential) 混淆对比\n- GSM8K 3B d000 s42 有 CoT extraction bug（para_aligned 4.8% vs aligned 18%），别当正常数据用\n- Benchmark sensitivity 高度分层：GSM8K 高敏感（+34pp），MMLU/ARC 不敏感（<0.5pp），分析时不能混为一谈\n- 4PL+γ additive model 已证实 misspecification → coverage collapse，必须走 per-benchmark γ_k\n- PPP≈0 问题（RL models even with oracle）→ 不要对 Claim 4 做正向承诺\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778875951.md"
+}

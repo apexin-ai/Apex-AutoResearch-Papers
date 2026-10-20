@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a5f3f374273521427636",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval olmo2 s123 mmlu",
+  "task_key": "worker_diagnose_eval_olmo2_s123_mmlu_20260520T114029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_olmo2_s123_mmlu_20260520T114029_result.json",
+    "occurrence": 1,
+    "bytes": 1621,
+    "sha256": "02bc2e9463adbd1989472d01059a05b188816d29594bc81dcbbd94ed5f74899d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：\n\n```json\n{\"root_cause\":\"误报——实验仍在运行。PID 331086(bash)状态S, PID 333043(python eval d005_s123)状态Rl/CPU=160%/elapsed=6min, 进度9694/14042(69%)。日志因progress bar \\\\r覆写导致tail看到旧进度(57%)而误判为截断。d000已完成(exit=0), d005正在跑, d025/d050/d100排队中。\",\"error_type\":\"none\",\"fix_steps\":[\"无需修复，等待完成即可。预计d005还需~3min，全部5个dosage约需再30-40min。\",\"可用 tail -f /tmp/eval_olmo2_s123_mmlu.log 实时监控\"],\"can_auto_fix\":false,\"gpu_conflict\":false}\n```\n\n**要点**：\n- PID 331086 **未死**（状态 S，sleeping 等子进程）\n- PID 333043 是 d005_s123 的 Python 进程，160% CPU，已跑 6 分钟，当前进度 69%（9694/14042）\n- d000_s123 已完成（exit=0），d005 正在跑，d025/d050/d100 还在排队\n- 日志 `tail` 看到 57% 是因为 tqdm 用 `\\r` 覆写行，实际进度已到 69%\n- cuda:2 当前仅占用 16.7GB，无冲突"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "误报——实验仍在运行。PID 331086(bash)状态S, PID 333043(python eval d005_s123)状态Rl/CPU=160%/elapsed=6min, 进度9694/14042(69%)。日志因progress bar \\r覆写导致tail看到旧进度(57%)而误判为截断。d000已完成(exit=0), d005正在跑, d025/d050/d100排队中。",
+              "error_type": "none",
+              "fix_steps": [
+                "无需修复，等待完成即可。预计d005还需~3min，全部5个dosage约需再30-40min。",
+                "可用 tail -f /tmp/eval_olmo2_s123_mmlu.log 实时监控"
+              ],
+              "can_auto_fix": false,
+              "gpu_conflict": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-olmo2-s123-mmlu.md"
+}

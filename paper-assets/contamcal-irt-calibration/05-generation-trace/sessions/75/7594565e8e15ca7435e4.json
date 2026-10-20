@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7594565e8e15ca7435e4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 005 noise prop",
+  "task_key": "worker_code_exp-005-noise-prop_20260513T183107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-005-noise-prop_20260513T183107_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "3b7ba2c810d1f643c007cf0411464840a4932e1aac9d84518cfc835c81f46145"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "First σ_e=0.1 fitting started. Waiting for more progress updates."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-005-noise-prop.md"
+}

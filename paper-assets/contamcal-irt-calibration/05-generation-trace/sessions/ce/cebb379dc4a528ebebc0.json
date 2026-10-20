@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cebb379dc4a528ebebc0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent fill all gpus",
+  "task_key": "worker_ops_urgent_fill_all_gpus_20260516T153312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_fill_all_gpus_20260516T153312_result.json",
+    "occurrence": 1,
+    "bytes": 2109,
+    "sha256": "3fb4fa0a8559bcfbf94a4c8af17a186b4d80094e963faf8c157cd9291c843b0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出报告\n\n### 1. Kill 确认\n- **PID 740063**: ✅ 已 kill（exit=0）\n- **PID 808340/808346**（我的重复提交）: ✅ 已 kill，C001 违规修复\n\n### 2. GPU 全面状态 — 另一个 worker 已填满所有 GPU\n\n| GPU | 任务 | PID | VRAM | 状态 |\n|-----|------|-----|------|------|\n| cuda:0 | Llama d005 SFT + **1.5B-Instruct MMLU signals** | 804570 + 805721 | 21.6/24.5 GB | 跑了 ~3min |\n| cuda:1 | **Llama d000 eval** (gsm8k+arc+humaneval) | 807025 | 6.8/24.5 GB | 跑了 ~3.5min |\n| cuda:2 | 0.5B eval | 797754 | 1.5/24.5 GB | 运行中 |\n| cuda:3 | Llama d025 SFT | 801766 | 17.9/24.5 GB | 运行中 |\n| cuda:4 | **1.5B-Instruct ARC signals** | 806079 | 5.6/24.5 GB | 跑了 ~2min |\n| cuda:5 | Llama d100 SFT + **1.5B-Instruct GSM8K signals** | 804791 + 806081 | 23.7/24.5 GB | 跑了 ~3min |\n\n### 3. 你要求的 4 个任务全部已被另一个 worker 提交\n\n- **Llama d000 eval**: PID 807025 on cuda:1，gsm8k+arc_challenge+humaneval（MMLU 已有结果 45.4%）\n- **1.5B-Instruct signals**: 3 benchmark 已在跑（MMLU/ARC/GSM8K on cuda:0/4/5）\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/`，ref: `/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/`\n\n### 4. MMLU merge 结果\n`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_s123_a32/signals_merged_mmlu.json` **已存在**，包含 s1_embedding + s2_minkpp + s4_selfcritique 三个信号。\n\n### 5. 预计完成时间\n- **cuda:4** (1.5B ARC signals): ~1-1.5h → 最先释放\n- **cuda:1** (Llama d000 eval): GSM8K ~4h + ARC ~30m + HumanEval ~1h ≈ **~5.5h**\n- **cuda:0/5** (Llama SFT): ~2-4h（取决于数据量）\n- **cuda:0** (1.5B MMLU signals): ~3-4h（14k items）\n- **cuda:5** (1.5B GSM8K signals): ~1-2h\n\n### 6. 风险提示\n- cuda:0 和 cuda:5 上 SFT + signals **共享 GPU**。虽然 1.5B signals 内存小（~5GB），但如果 SFT 接近 OOM 可能冲突。\n- 807025 的 batch-size=4（比你建议的 8 小），eval 会慢一些但更稳。\n- **0 块 GPU 空闲**，无法新提交任务。cuda:4 最先释放（~1h 后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-fill-all-gpus.md"
+}

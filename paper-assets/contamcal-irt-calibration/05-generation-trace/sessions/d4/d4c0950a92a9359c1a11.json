@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4c0950a92a9359c1a11",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu2 cleanup kill duplicate d100",
+  "task_key": "worker_ops_gpu2_cleanup_kill_duplicate_d100_20260514T155231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2_cleanup_kill_duplicate_d100_20260514T155231_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "00a78b3f279c2907cc468b5e24c703cf33e25cf93312f3c7cc899ad8081917e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已清理：**\n- v3 进程树 1：PID 395337→395341→395342 — SIGTERM 终止\n- v3 进程树 2（重复提交）：PID 395759→395763→395764 — SIGTERM 终止\n- v3 tmux session `exp_001_eval_05B_d100_aligned_v3` — 已删除\n- Zombie PID 318424 — 已 kill\n\n**v4 状态正常：**\n- PID 396024 运行中，GSM8K 进度 258/1319 (20%)\n- 速度从 ~6.12s/it 提升到 ~5.65s/it（竞争消除后）\n- GPU 2 显存 3695 MiB，利用率 36%（从 99% 降下来）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-cleanup-kill-duplicate-d100.md"
+}

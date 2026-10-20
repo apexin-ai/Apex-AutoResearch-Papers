@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc12a922982f79d8516c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k westd status collect",
+  "task_key": "worker_ops_gsm8k-westd-status-collect_20260521T074214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-westd-status-collect_20260521T074214_result.json",
+    "occurrence": 1,
+    "bytes": 2388,
+    "sha256": "69a1e2b612d30aa8774995c4a2ba7b3118367dde5a25e46642e9398464128907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 进程状态：4 个 eval 全部仍在运行\n\n| GPU | Model | PID | Runtime | GPU Util | VRAM |\n|-----|-------|-----|---------|----------|------|\n| 0 | Gemma-2 d000 s0 | 492703 | 29m15s | 91% | 20.3/97.9 GB |\n| 1 | Qwen-14B d100 s0 | 481803 | 1h38m46s | 93% | 32.7/97.9 GB |\n| 2 | Qwen-14B d050 s0 | 492186 | 29m46s | 93% | 32.7/97.9 GB |\n| 3 | Phi-4 d000 s0 | 493644 | 28m44s | 100% | 31.7/97.9 GB |\n\n**Qwen-14B d100 s0 已跑 ~1h40m，应该接近完成。** 其余 3 个跑了约 30 分钟，估计还需 30-60 分钟。\n\n### 2. 已完成 GSM8K 结果\n\n**westd（已落盘）：**\n\n| Model | Dosage | Seed | Accuracy |\n|-------|--------|------|----------|\n| Qwen-14B | d000 | s0 | **74.98%** |\n| Qwen-14B | d005 | s0 | **71.19%** |\n| Qwen-14B | d025 | s0 | **79.30%** |\n\n**cqa1（已落盘）：**\n\n| Model | Dosage | Seed | Accuracy |\n|-------|--------|------|----------|\n| Qwen-7B | d000 | s42 | 70.58% |\n| Qwen-7B | d005 | s42 | 76.95% |\n| Qwen-7B | d025 | s42 | 80.06% |\n| Qwen-7B | d050 | s42 | 79.23% |\n| Qwen-7B | d100 | s42 | 81.65% |\n| Qwen-7B | d000 | s123 | 70.05% |\n| Qwen-7B | d100 | s123 | 79.23% |\n\n注意 Qwen-14B d005 s0 (71.19%) < d000 s0 (74.98%)，有轻微反转。\n\n### 3. 空闲 GPU\n\n**当前无空闲 GPU**，4 块全部在用。GPU 1 (Qwen-14B d100 s0) 预计最快释放。\n\n### 4. westd 下一批建议\n\n当前 eval 完成后，westd 完成 Qwen-14B s0 全部 5 个 dosage。下一优先级：\n\n**高优先（覆盖新模型 d000 基线）：**\n1. OLMo-2-7B d000 s0 — 唯一没有任何 GSM8K 结果的模型\n2. Gemma-2 d005/d025/d050/d100 s0 — 补齐 Gemma-2 s0 dosage 梯度\n3. Phi-4 d005/d025/d050/d100 s0 — 补齐 Phi-4 s0 dosage 梯度\n\n**启动命令模板（参考当前运行进程）：**\n```bash\nCUDA_VISIBLE_DEVICES=N nohup python /root/contamcal-irt-calibration/exp001/evaluate.py \\\n  --model-path /root/autodl-tmp/models/<MODEL> \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/<CHECKPOINT>/lora_adapter \\\n  --benchmarks gsm8k --batch-size 2 \\\n  --output-dir /root/contamcal-irt-calibration/results/gsm8k_eval/<model>/<dosage_seed> \\\n  > /tmp/gsm8k_<model>_<dosage_seed>.log 2>&1 &\n```\n\n建议 GPU 1 最先释放时跑 OLMo-2-7B d000 s0（模型小，约 7B，速度快）。其余 GPU 释放后各跑一个 Gemma-2 或 Phi-4 dosage。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-westd-status-collect.md"
+}

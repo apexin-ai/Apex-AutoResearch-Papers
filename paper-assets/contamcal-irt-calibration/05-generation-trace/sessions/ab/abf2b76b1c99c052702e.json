@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "abf2b76b1c99c052702e",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops cqa1 disk cleanup yi download",
+  "task_key": "worker_ops_cqa1-disk-cleanup-yi-download_20260522T181137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-disk-cleanup-yi-download_20260522T181137.log",
+    "occurrence": 1,
+    "bytes": 495672,
+    "sha256": "5b3d3fdcc0c61d53411f9dfc7a2ab705c6d708d5b7796fc7d722725b36fd7521"
+  },
+  "statistics": {
+    "messages": 501,
+    "user_turns": 0,
+    "tool_calls": 228,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 228,
+      "tool_result": 228,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "abf2b76b1c99c052702e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "abf2b76b1c99c052702e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "abf2b76b1c99c052702e-part-0003.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cqa1-disk-cleanup-yi-download.md"
+}

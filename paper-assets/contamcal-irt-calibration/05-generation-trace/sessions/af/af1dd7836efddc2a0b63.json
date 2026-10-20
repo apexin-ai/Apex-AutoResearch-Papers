@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af1dd7836efddc2a0b63",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper fix fig1 labels",
+  "task_key": "worker_paper_fix-fig1-labels_20260520T195041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-fig1-labels_20260520T195041_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "c13e854b1636bddcb36d77b305b101a947f39b3235025ba81c53e3492b993fb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 family 的 pattern 映射全部正确：\n- Phi-4 → Immune\n- Qwen-14B → Collapse\n- Qwen-7B → V-recovery\n- Gemma-2 → Benefit\n- OLMo-2 → Benefit†\n\n生成完成。输出文件：\n- `fig1_dose_response.pdf` (42KB) / `.png` (287KB) — MMLU + ARC 双 panel dose-response\n- `fig2_cross_benchmark_scatter.pdf` (37KB) / `.png` (136KB) — cross-benchmark Δ scatter\n- `gen_fig1_fig2.py` — 可复现的生成脚本\n\n所有标签使用 hardcoded family-level taxonomy（不再依赖 `classify_pattern()` 自动输出），caption 注明 \"seed=42; family-level classification from multi-seed analysis (Table 3)\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig1-labels.md"
+}

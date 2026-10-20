@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7635de442ccebaedff",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis rrf gap fill n24",
+  "task_key": "worker_analysis_rrf_gap_fill_n24_20260516T152811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf_gap_fill_n24_20260516T152811.log",
+    "occurrence": 1,
+    "bytes": 1137333,
+    "sha256": "ff8a1a76a30bbca0667761f5a9cafc2dd9aec2523b139be7d18f17768dd1fbbb"
+  },
+  "statistics": {
+    "messages": 747,
+    "user_turns": 1,
+    "tool_calls": 328,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 328,
+      "tool_result": 328,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 720,
+      "chunks": [
+        {
+          "path": "ad7635de442ccebaedff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad7635de442ccebaedff-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad7635de442ccebaedff-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad7635de442ccebaedff-part-0004.json",
+          "message_count": 180
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "ad7635de442ccebaedff-part-0005.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-rrf-gap-fill-n24.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7df236e2d5bdfa946480",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval gemma2 arc s0",
+  "task_key": "worker_diagnose_eval_gemma2_arc_s0_20260520T222315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gemma2_arc_s0_20260520T222315_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "bf3a3bb2c5f2f9322699afc31bf0ccfff1f28b668479b27ac51fcdc3bc003de4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个文件完整，sentinel 均存在。结果：\n\n```\nd000_s0: accuracy=0.8584 (1006/1172)\nd005_s0: accuracy=0.8677 (1017/1172)\nd025_s0: accuracy=0.6485 (760/1172)\nd050_s0: accuracy=0.8549 (1002/1172)\n```\n\n所有 `.done` sentinel 已创建（May 21 06:07-06:17），eval 确认完成。\n\n注意 d025 accuracy 异常低（64.85%），远低于 baseline d000（85.84%），而 d005 和 d050 都在 ~86% 附近。d025 可能存在训练或 checkpoint 问题，值得复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gemma2-arc-s0.md"
+}

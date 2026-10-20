@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb52323727a430a90b95",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops local progress check",
+  "task_key": "worker_ops_local-progress-check_20260514T095740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local-progress-check_20260514T095740_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "9761b5304ab13b7d8b786fda990c970ecaa2711514a6a4ddd8f01a40b85934fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp-004: PID 411032 alive (2h46m), 进度 46/120 seeds (38.3%), 当前跑 auc0.8_n50 seed 9/10. ETA ~18h\nexp-005: PID 426335 alive (1h31m), 进度 6/25 fits, 当前跑 σ_e=0.3 seed=43 analytic ME. ~32min/fit, ETA ~10h\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-progress-check-copy-2.md"
+}

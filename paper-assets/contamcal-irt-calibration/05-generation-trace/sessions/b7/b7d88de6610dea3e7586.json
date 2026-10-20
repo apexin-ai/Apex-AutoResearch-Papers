@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7d88de6610dea3e7586",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd kill restart",
+  "task_key": "worker_ops_falcon3-westd-kill-restart_20260522T074741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-kill-restart_20260522T074741_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "b0624be6a07b074833a94f9ea30d867722ee3144ec53e79005070b38af0203d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完毕。\n\n## 报告\n\n### 1. 旧进程终止\n4 个旧进程全部 kill 成功（PID 577758/577836/577974/578223），SIGTERM 即停，无需 SIGKILL。\n\n### 2. Checkpoint 清理\n已删除 4 个错误 checkpoint 目录和 4 个 log 文件。\n\n### 3. 新训练状态\n\n| Dosage | exp_id | PID | GPU | CUDA_VISIBLE_DEVICES | VRAM | lr | Steps |\n|--------|--------|-----|-----|---------------------|------|-----|-------|\n| d000 | sft_falcon3_7b_d000_s42_v2 | 599902 | cuda:0 | 0 | 72.6 GB | **5e-5** | 3125 |\n| d005 | sft_falcon3_7b_d005_s42_v2 | 600185 | cuda:1 | 1 | 95.9 GB | **5e-5** | ~3177 |\n| d025 | sft_falcon3_7b_d025_s42_v2 | 600340 | cuda:2 | 2 | 71.4 GB | **5e-5** | 3384 |\n| d050 | sft_falcon3_7b_d050_s42_v2 | 600596 | cuda:3 | 3 | 34.5 GB | **5e-5** | 3642 |\n\nLR 验证：4 个进程的 `/proc/<PID>/cmdline` 均确认 `--lr 5e-5`，代码 line 219 将 `args.lr` 传入 `learning_rate=`。LoRA alpha=32 全部正确。\n\n### 4. 异常\n无。旧 registry 条目已标记 DONE(failed)，新条目由 submit_training_job 自动创建为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-kill-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f711cff43e983a0a6c8e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis d108 domain gamma n24 v4",
+  "task_key": "worker_analysis_d108_domain_gamma_n24_v4_20260516T150132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d108_domain_gamma_n24_v4_20260516T150132_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "42b56ccda20f67c8d2ca6032ef61c8cc060a2776da3b18f645a99f198346b981"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/d108_v4_analysis.md` 并注册。\n\n核心发现：\n\n**N=24 结果有严重稳定性问题**：7 个 domain 中 5 个发生 γ 方向反转（相比 N=16），3 个 domain PPP=1.0（模型失配）。\n\n可靠的结果：\n- **STEM_Math**: γ=+0.97 [0.53, 1.43]，PPP=0.44，收敛良好 — D111 的方向反转问题已解决，N=24 下稳定为正\n- **STEM_Science**: γ=+0.84 [0.39, 1.27]，PPP=0.81 — 从 N=16 的 borderline 变为显著\n\n需要排除/谨慎处理：\n- **Medical**: PPP=1.0（D112 已标记）\n- **Humanities**: PPP=1.0 + rhat=1.0135 收敛失败\n- **Social_Sciences**: PPP=1.0\n\n方向反转的可能原因：N=24 混合了 0.5B/1.5B/3B 多尺度模型（N=16 仅 3B），小模型在人文/社科 domain 的污染模式可能质变不同。建议用 3B-only 子集重跑 Humanities/SocSci/Business_Law 以隔离原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d108-domain-gamma-n24-v4.md"
+}

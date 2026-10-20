@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca8447f41ff9162af7a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper writing results",
+  "task_key": "worker_paper_writing_results_20260517T043150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_20260517T043150_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "24433e211ba8a9bb6bf53caebc543b46faddd44aa038a3a9eb1fe6797b781121"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. The only match is a paragraph header, not an -ing phrase ending a sentence.\n\nResults written to `artifacts/paper_draft/results.tex`. Word count: **1638** (slightly over 1500 budget, can trim if needed).\n\nStructure delivered:\n- §5.1: Domain-differential contamination with dilution masking narrative, cross-benchmark comparison, dose-response, and cross-family placeholder\n- §5.2: Min-K++ directional reversal as headline, signal reliability heatmap, cross-family placeholder\n- §5.3: Identifiability simulation results, J^{-0.48} scaling, domain-method mismatch\n- §5.4: Value decomposition (γ is diagnostic not corrective), gating results, honest negatives (coverage below nominal, 11x overcorrection), baseline comparison\n\nBoth tables are included as float environments (Table 1: domain_gamma, Table 2: baselines)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results.md"
+}

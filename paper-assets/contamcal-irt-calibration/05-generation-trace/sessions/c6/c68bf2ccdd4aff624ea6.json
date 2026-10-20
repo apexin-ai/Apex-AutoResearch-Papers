@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c68bf2ccdd4aff624ea6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops irt no05b bugfix pooled rerun",
+  "task_key": "worker_ops_irt_no05b_bugfix_pooled_rerun_20260517T083303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_bugfix_pooled_rerun_20260517T083303.log",
+    "occurrence": 1,
+    "bytes": 700956,
+    "sha256": "581802b4de183bdaedbc6292dcd54c6e94a879d1ab2a70911ba7a2dc755dd650"
+  },
+  "statistics": {
+    "messages": 516,
+    "user_turns": 0,
+    "tool_calls": 209,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 209,
+      "tool_result": 209,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 516,
+      "chunks": [
+        {
+          "path": "c68bf2ccdd4aff624ea6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c68bf2ccdd4aff624ea6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c68bf2ccdd4aff624ea6-part-0003.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-irt-no05b-bugfix-pooled-rerun.md"
+}

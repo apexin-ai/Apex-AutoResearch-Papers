@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a1a3bbe275f11dfc194",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check all running progress",
+  "task_key": "worker_ops_check-all-running-progress_20260516T034803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-running-progress_20260516T034803_result.json",
+    "occurrence": 1,
+    "bytes": 1794,
+    "sha256": "37ca604afa93e9fd270ae5a18033e8a3139855cbb88ced476ec0a83c766d3f6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 experiments are actively running. Here's the summary.\n\n### nvidia-smi 摘要\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 99% | 14300/24564 MiB |\n| cuda:1 | 66% | 8985/24564 MiB |\n| cuda:2 | 66% | 8985/24564 MiB |\n| cuda:3 | 68% | 8985/24564 MiB |\n| cuda:4 | 60% | 6657/24564 MiB |\n| cuda:5 | 27% | 1825/24564 MiB |\n\n### 实验进度\n\n| GPU | exp_id | 当前任务 | 进度 | 预计完成 | 状态 |\n|-----|--------|---------|------|---------|------|\n| cuda:0 | eval_3B_d025_v3_s42_para | GSM8K_para 40/228 | 18% (mmlu_para ✓) | ~12:20 | ✅ Running |\n| cuda:1 | eval_3B_d000_s42_batch | GSM8K 767/1319 (~8s/it) | 58% (mmlu ✓), 后续+para | ~13:35 | ✅ Running |\n| cuda:2 | eval_3B_d005_s42_batch | GSM8K 653/1319 (~7.7s/it) | 50% (mmlu ✓), 后续+para | ~13:45 | ✅ Running |\n| cuda:3 | eval_3B_d100_s42_batch | GSM8K 298/1319 (~7.4s/it) | 23% (mmlu ✓), 后续+para | ~14:30 | ✅ Running |\n| cuda:4 | signals_3B_v9 (d100_s123) | s4 mmlu chunk[2000:3000] 81/500 | d025 ✓, d100 15% (~1.3s/it) | ~14:00 | ✅ Running |\n| cuda:5 | signals_05B_s123_v2 | s4 mmlu chunk[4000:5000] 16/500 | s1✓ s2✓ s4: 29% mmlu (~1.0s/it) | ~13:35+ | ✅ Running |\n\n### 说明\n\n- **cuda:0** 最快完成，仅做 para eval（mmlu_para 6596项已完成，GSM8K_para 228项剩~30min）\n- **cuda:1/2/3** 是 batch eval（aligned + para），GSM8K aligned 完成后还需做 mmlu_para (~3min) + GSM8K_para (~30min)\n- **cuda:4** v9 脚本已完成 d025_s123 的 s4，正在跑 d100_a32_s123 的 s4 mmlu（14042项，~11min/chunk，剩12个chunk）\n- **cuda:5** 0.5B signals 已完成 s1/s2，s4 mmlu 做了4/14个chunk；mmlu完成后还需做 gsm8k 的 s1+s2+s4（~15min）。如果还有其他 dosage config 要跑，时间会更长"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-running-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9834432185e6b701f7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 3B s123 signals completeness",
+  "task_key": "worker_ops_check-3B-s123-signals-completeness_20260516T185751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-3B-s123-signals-completeness_20260516T185751_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "22e437008abbde563917d33242dff893bea7dcda9ce93456cd0e41499e561dd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Completeness Matrix — Qwen2.5-3B Signals\n\n### s123 (critical path)\n\n| Dosage | Dir | s1_emb | s2_minkpp | s4_selfcrit | merged | Status |\n|--------|-----|--------|-----------|-------------|--------|--------|\n| d000 | `Qwen2.5-3B_d000_s123_a32/` | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | **COMPLETE** |\n| d005 | `Qwen2.5-3B_d005_s123/` | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | **COMPLETE** |\n| d025 | `Qwen2.5-3B_d025_s123/` | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | **COMPLETE** |\n| d100 | `Qwen2.5-3B_d100_a32_s123/` | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | **COMPLETE** |\n\n### s42 (RRF pairing)\n\n| Dosage | Dir | signals | merged | Status |\n|--------|-----|---------|--------|--------|\n| d000 | `Qwen2.5-3B_d000_a32_s42/` | 9/9 | 3/3 | **COMPLETE** |\n| d005 | `Qwen2.5-3B_d005_a32_s42/` | 9/9 | 3/3 | **COMPLETE** |\n| d025 | `Qwen2.5-3B_d025_v3_s42/` | 9/9 | 3/3 | **COMPLETE** |\n| d100 | `Qwen2.5-3B_d100_a32_s42/` | 9/9 | 3/3 | **COMPLETE** |\n\n### Checkpoints confirmed\n\n```\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123\n```\n\n---\n\n## Llama-3.2-3B 状态\n\n**Checkpoints**: d000/d005/d025/d100 s42 全部存在。无 s123 seed checkpoints。\n\n**Signals**: `Llama-3.2-3B_d000_s42/` 正在计算中，当前进度：\n\n| benchmark | s1_emb | s2_minkpp | s4_selfcrit | merged |\n|-----------|--------|-----------|-------------|--------|\n| arc_challenge | ✅ | ✅ | ✅ | ✅ |\n| gsm8k | ✅ | ❌ | ❌ | ❌ |\n| mmlu | ✅ | ✅ | ❌ (chunking中) | ❌ |\n\n其余 Llama dosages (d005/d025/d100) 尚无 signals 目录。\n\n---\n\n## 结论\n\n**3B s123 全部 4 个 dosage 的 signals 已 100% 完成，s42 也全部就绪。RRF 聚合 → pooled IRT 的数据依赖已满足，可以立即推进。**\n\nLlama 是独立维度，不阻塞 3B 论文 critical path。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3b-s123-signals-completeness.md"
+}

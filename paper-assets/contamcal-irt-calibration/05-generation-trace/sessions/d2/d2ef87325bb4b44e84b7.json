@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2ef87325bb4b44e84b7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag verify qwen7b s123 arc delta",
+  "task_key": "worker_diag_verify-qwen7b-s123-arc-delta_20260521T010428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_verify-qwen7b-s123-arc-delta_20260521T010428_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "c04286377be0c65fb967dc9df220b73f90b4677bb4f3f6cfeaf01f3b76610cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 核实结果\n\n### 差异根因：两台服务器的 eval 结果差 1 题\n\n| 来源 | 服务器 | d000 accuracy | correct/total | d100 accuracy |\n|------|--------|--------------|---------------|--------------|\n| `eval_qwen7b_s123_cqa1_v2` | cqa1-21977 | **0.87201365** (87.20%) | **1022**/1172 | 0.84726962 (84.73%) |\n| `eval_arc_s123_batch` | westd-29999 | **0.87116041** (87.12%) | **1021**/1172 | 0.84726962 (84.73%) |\n\n- **d100 完全一致**：两台服务器都是 993/1172 = 84.73%\n- **d000 差 1 题**：cqa1 得 1022 correct，westd 得 1021 correct\n\n### Bootstrap CI 用了哪个\n\nBootstrap CI 用的是 **cqa1 的数据**（registry `eval_qwen7b_s123_cqa1_v2`，d000=0.872）：\n- delta = 0.8473 - 0.8720 = **-0.0247** (-2.47pp)\n\n### Reviewer 用了哪个\n\nReviewer 独立验证用的是 **westd 的数据**（registry `eval_arc_s123_batch`，d000=87.12%）：\n- delta = 84.73 - 87.12 = **-2.39pp**\n\n### 差异来源\n\n不是四舍五入，是**两次不同 eval run 之间的真实差异**——d000 差 1 个 item (1022 vs 1021)。可能原因：\n1. **evaluate.py 版本差异**（C009/C010 约束正是针对此问题）——mc_suffix 位置等细节差异可导致个别 item 判定不同\n2. **推理非确定性**（虽然 greedy decoding 通常确定，但跨服务器 GPU 差异偶尔导致 borderline case 翻转）\n\n### 对结论的影响\n\n0.08pp 差异（-2.47 vs -2.39）不影响 CI 方向和显著性判断。但按 C009/C010 原则，应统一使用同一版本 evaluate.py 的产出。需要确认 bootstrap CI 应该用 cqa1 还是 westd 的数据作为权威来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-verify-qwen7b-s123-arc-delta.md"
+}

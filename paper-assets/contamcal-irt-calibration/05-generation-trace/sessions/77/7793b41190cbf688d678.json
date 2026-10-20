@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7793b41190cbf688d678",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779372271.md",
+  "task_key": "loop_23_1779372271",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779372271.md",
+    "occurrence": 1,
+    "bytes": 3316,
+    "sha256": "5c8af6bc0710b86c0ff93344dd4842607ae724c4a04e826c1007e8726388dc22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T11:02:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3, cqa1 cuda:0。其他 GPU 编号禁止使用\n- **EMNLP 2026 ARR 截稿 May 25**（今天 D+4），s0 训练是最后的 blocking 数据\n- **eval_qwen14b_arc_s42 已经是 DONE/success**（registry 确认，metrics 齐全）。本次 CRON 失败通知是 stale 事件——进程退出时 cron 未检测到 W&B metrics 但实验早已完成。**不要重跑、不要改 registry**\n- Gemma-2 GSM8K 已确认 catastrophic forgetting（D175），不要再跑 GSM8K eval for Gemma-2\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 工作目录 `/root/contamcal-irt-calibration/`\n  - cuda:1 → sft_gemma2_s0_sweep (PID 314029)\n  - cuda:3 → sft_qwen14b_s0_sweep (PID 311554)\n  - cuda:0, cuda:2 → 空闲\n- **cqa1-21977**: 工作目录 `/root/contamcal-irt-calibration/`\n  - cuda:0 → sft_qwen7b_s0_cqa1 (PID 313407)\n- Python/conda 路径：需 Worker SSH 探测确认（aml-train 镜像用 `/root/miniconda3/bin/python`）\n- 日志路径模式：`/root/contamcal-irt-calibration/logs/{exp_id}.log`\n\n### 3. 📊 当前状态\n本 session 刚启动，做了 session-start 初始化。收到 eval_qwen14b_arc_s42 的 stale CRON 失败通知——该实验 registry 已是 DONE/success（Δ=-2.56pp, collapse_confirmed=true），无需处理。\n\n**RUNNING 实验（3 个，全是 s0 第三种子训练）**:\n| exp_id | 服务器 | GPU | 预计完成 |\n|--------|--------|-----|----------|\n| sft_qwen7b_s0_cqa1 | cqa1 | cuda:0 | 最先，~5-7h |\n| sft_gemma2_s0_sweep | westd | cuda:1 | ~8-10h |\n| sft_qwen14b_s0_sweep | westd | cuda:3 | ~15-18h |\n\n**等待**: 三个 s0 训练的 cron 完成回调。完成后需立即跑 MMLU eval → n=3 bootstrap CI → 论文最终数据。\n\n### 4. 📋 待办（条件触发式）\n- sft_qwen7b_s0_cqa1 完成 → spawn Worker 跑 Qwen-7B s0 MMLU eval（cqa1 cuda:0）→ 出 n=3 bootstrap CI\n- sft_gemma2_s0_sweep 完成 → spawn Worker 跑 Gemma-2 s0 MMLU eval（westd cuda:1）→ 出 n=3 bootstrap CI\n- sft_qwen14b_s0_sweep 完成 → spawn Worker 跑 Qwen-14B s0 MMLU eval（westd cuda:3）→ 出 n=3 bootstrap CI\n- 任意 s0 MMLU eval 完成 → 更新 Cross-Benchmark Summary 表 + bootstrap CI → 更新论文 Table\n- 全部 5 家族 n=3 CI 齐全 → 论文 final polish + 提交审稿（deadline May 25）\n- westd cuda:0/cuda:2 空闲 → 可提前准备 eval 脚本 / dry-run，s0 一完成立即接 eval\n\n### 5. 🎯 战略上下文\n- **核心发现**: SFT contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）\n- **当前阶段**: 5/5 家族 ARC 跨 benchmark 数据齐全（4/5 方向一致），等 s0 训练完成补齐 n=3 MMLU CI\n- **Phi-4 + OLMo-2 已有 n=3 双 benchmark BCa CI**（论文最强锚点），其余 3 家族等 s0\n- **ARC > MMLU for detecting contamination**（Dir-Con 4/4 vs 2/4, tighter CIs）——这是一个 key insight 已写入论文\n- **易错点**: Qwen-7B 是唯一方向不一致的家族（MMLU V-recovery vs ARC mild harm），汇报时注意区分 benchmark-specific pattern\n- **决策链关键**: D184（4-pattern taxonomy 定型）→ D189（Phi-4 triple-seed Immune 确认）→ D192（5/5 ARC 跨 benchmark 齐全）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779372271.md"
+}

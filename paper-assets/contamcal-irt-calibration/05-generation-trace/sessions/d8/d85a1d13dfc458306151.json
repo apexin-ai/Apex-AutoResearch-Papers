@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d85a1d13dfc458306151",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd check 14b eval final",
+  "task_key": "worker_ssh_westd-check-14b-eval-final_20260519T023712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-check-14b-eval-final_20260519T023712_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "d381e84785b1f40e49cd5be124c9a0557bf4c1919530216667e8d072a481b474"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B Eval 状态\n\n**服务器确认**: westd-29999, 4× RTX PRO 6000 Blackwell (~97887 MiB) ✓\n\n### 已完成结果\n\n| Adapter | MMLU | ARC |\n|---------|------|-----|\n| d000_s42 | 74.59% | 93.52% |\n| d005_s42 | 75.42% | 93.09% |\n| d025_s42 | 75.77% | 92.83% |\n| d050_s42 | **进行中** | **进行中** |\n| d100_s42 | **未开始** | **未开始** |\n\n### PID 99071 (cuda:0, 32.7GB)\n\n`evaluate.py --adapter-path Qwen2.5-14B_d050_s42 --benchmarks mmlu arc_challenge`\n\nd050 eval 正在跑，目录刚创建（10:30），尚无 eval_results.json。\n\n### Batch Script PID 93847\n\n**仍然存活**（State=S sleeping）。PPid 链: 93845 → 93847 → 99071。batch script 正在 wait d050 完成，之后会自动启动 d100 eval。你之前说 93847 已退出，实际上它只是在 sleep 等子进程。\n\n### cuda:0 不可释放\n\nd050 + d100 还要跑完，预计还需较长时间。其他 3 个 GPU 也全部在用（cuda:1/2/3 分别有活跃进程）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-check-14b-eval-final.md"
+}

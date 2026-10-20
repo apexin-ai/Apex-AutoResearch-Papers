@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "901675fca717d54974de",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fig signal heatmap",
+  "task_key": "worker_fig_signal_heatmap_20260517T094543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_signal_heatmap_20260517T094543_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "894c92c98534b4ec4b9d403d9315db836b134e10273f3f2ab1e83bf9b2ac1677"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成成功。\n\n结果：\n- PDF: 26,100 bytes, PNG: 98,426 bytes（均 > 10KB）\n- 保存位置：`/root/contamcal-irt-calibration/figures/fig_signal_heatmap.pdf` 和 `.png`\n\n数据摘要：\n\n| Signal | 0.5B d005 | 0.5B d025 | 1.5B d005 | 1.5B d025 | 3B d005 | 3B d025 |\n|--------|-----------|-----------|-----------|-----------|---------|---------|\n| S1 Embedding | **0.98** | **0.97** | **0.98** | **0.97** | **0.95** | **0.94** |\n| S2 Min-K%++ | 0.53 | 0.55 | 0.56 | 0.53 | 0.52 | 0.52 |\n| S4 Self-Critique | 0.53 | 0.52 | 0.53 | 0.52 | 0.53 | 0.50 |\n| RRF Ensemble | **0.69** | **0.70** | **0.70** | **0.70** | **0.66** | **0.67** |\n\nd100 列全部接近 0.5（使用 d005 labels 时，d100 模型已无法区分子集）。\n\n注意：S1 Embedding 在 0.5B/1.5B 间完全相同，因为该信号基于固定 embedding 模型计算文本相似度，与训练模型无关（同 seed 同 dosage → 相同训练集 → 相同信号）。S2/S4 是模型相关的但检测力弱（AUC~0.52-0.56）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-signal-heatmap.md"
+}

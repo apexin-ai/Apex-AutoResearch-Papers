@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "686d558d6308f1a92045",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778951792.md",
+  "task_key": "loop_16_1778951792",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778951792.md",
+    "occurrence": 1,
+    "bytes": 4385,
+    "sha256": "7483e48884a62e30525b0f24a85dc59eb7b1d752215acb0f8ed5dd0d31b56292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T16:52:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名必须写 `cqa1-21977`（不能写\"A6000\"，cron SSH 会匹配失败，exp_006 事故教训）\n- GPU 白名单：cuda:0-5（6× RTX 4090D），不得用白名单外设备\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（服务器无 .venv）\n- PPP=0 的 domain gamma 结果**不能 claim 绝对 γ 值**，只能 claim pattern/ranking（D108/D117 约束）\n- Medical domain 已排除（PPP=1.0 misfit，D112），不纳入任何 claim\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`（代码）；数据/模型/checkpoint 在 `/root/autodl-tmp/`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: Llama-3.2-3B → `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`；Qwen 系列 → `/root/autodl-tmp/models/Qwen2.5-{0.5B,1.5B,3B}{,-Instruct}`\n- **实验产出**: exp001 → `/root/autodl-tmp/exp001/`，exp002 → `/root/autodl-tmp/exp002/`，exp006 → `/root/autodl-tmp/exp006/`\n- **活跃进程 & Cron**:\n  - PID 801761: Llama-3.2-3B d025 SFT (cuda:3, tmux session)\n  - PID 804565: Llama-3.2-3B d005 SFT (cuda:0)\n  - PID 804786: Llama-3.2-3B d100 SFT (cuda:5)\n  - PID 807025: Llama-3.2-3B d000 eval v3 (cuda:1) + 0.5B-Instruct eval (共享 PID/cron)\n  - PID 815287: 1.5B-Instruct GSM8K signals (cuda:2? 需确认)\n- **Cron 监控**: 6 个 active cron，全部 reconcile 确认 still running\n\n### 3. 📊 当前状态\n**刚做完**: D106 Llama cross-family pipeline 全面启动——d000 SFT 已完成，d005/d025/d100 SFT 全部 RUNNING；d000 eval v3 也在跑。D108 MMLU domain gamma 分析完成（7/8 domains，Simpson's paradox confirmed）。2PL vs 2PL+γ ablation 完成（vanilla 2PL 在 aggregate level 更好，支持 Claim 1）。\n\n**Registry RUNNING (5)**:\n1. `exp_001_sft_llama32_3B_d025_s42` — Llama d025 SFT (cuda:3)\n2. `exp_001_sft_llama32_3B_d005_s42` — Llama d005 SFT (cuda:0)\n3. `exp_001_sft_llama32_3B_d100_s42` — Llama d100 SFT (cuda:5)\n4. `exp_001_eval_llama32_3B_d000_s42_v3` — Llama d000 eval (cuda:1)\n5. `exp_002_signals_15B_instruct_gsm8k` — 1.5B-Instruct GSM8K signals\n\n**等待中**: 无 active Worker（池=0）。6 个 cron 监控中，等各 SFT/eval 完成回调。无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Llama d000 eval v3 完成 → spawn Worker 跑 signals (compute_signals.py) → 注册实验\n- Llama d005/d025/d100 SFT 各自完成 → spawn Worker 跑 eval (aligned MC format) → 然后 signals\n- **全部 Llama 4 dosage signals 完成** → RRF 聚合 → cross-family pooled IRT (核心论文数字)\n- 1.5B-Instruct signals 完成 → 更新 pooled IRT N count，检查是否 N≥16+ 可跑最终 pooled\n- MMLU domain gamma N=24 v4 结果到位 → 确认 STEM gradient 是否 scale-dependent → 更新 paper_framing Claim 1 措辞\n- 所有 Instruct eval (0.5B/1.5B/3B) 完成 → RL observational analysis (P0-C scope)\n- **cuda:4 释放时** → 检查有无排队任务可立即提交（ROADMAP 提及 cuda:4 待分配）\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（T-9 天），时间极紧\n- **核心叙事**: ContamCal 的 per-benchmark γ 在 aggregate level 无信号（Simpson's paradox），但 domain-level 有强 heterogeneity。Cross-family (Llama) 验证是 generalizability claim 的关键\n- **决策链关键**: D106(scope expansion→Llama) → D108(domain heterogeneity) → D110(scale-stratified negative) → D116(pooled IRT confirms) → D117(Claim 1 narrowed to Math+Science)\n- **易错点**:\n  - Llama 模型路径有下划线转义：`Llama-3___2-3B`（三个下划线）\n  - d000 eval 需要 `--mc-format aligned` 参数，否则 MC 格式不一致无法和 Qwen 对比\n  - Worker 池当前 = 0，违反 L1 红线（池<2=失职）——新 session 应立即为非 GPU 任务（文献、论文准备）spawn Worker\n  - 7B 云 GPU 已申请但未批，不要自行在现有 4090D 上尝试 7B（OOM）\n  - ROADMAP 中 cuda:4 标\"待分配\"但 reconcile 未见对应 cron——需确认 cuda:4 实际状态（可能已被 1.5B signals 占用但 ROADMAP 未更新）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778951792.md"
+}

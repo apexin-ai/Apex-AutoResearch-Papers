@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9916736fdb04ed0ee2a5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k s123 eval scripts",
+  "task_key": "worker_code_gsm8k-s123-eval-scripts_20260519T192101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k-s123-eval-scripts_20260519T192101_result.json",
+    "occurrence": 1,
+    "bytes": 1523,
+    "sha256": "9f9ba532a164d3fdc38de0553c68df4906e0c25f28938b474296c307ed6499d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个脚本已创建在 `scripts/gsm8k_s123/`，汇总如下：\n\n| 脚本 | 基础模型 | Checkpoint 格式 | 输出目录 |\n|------|---------|----------------|---------|\n| `run_gsm8k_phi4_s123.sh` | `/root/autodl-tmp/models/phi-4` | `phi-4_d{000,100}_s123/lora_adapter` | `results/gsm8k/phi4_d{000,100}_s123/` |\n| `run_gsm8k_gemma2_s123.sh` | `/root/autodl-tmp/models/gemma-2-9b` | `gemma-2-9b_d{000,100}_s123/lora_adapter` | `results/gsm8k/gemma2_d{000,100}_s123/` |\n| `run_gsm8k_qwen14b_s123.sh` | `/root/autodl-tmp/models/Qwen2.5-14B` | `Qwen2.5-14B_d{000,100}_s123/lora_adapter` | `results/gsm8k/qwen14b_d{000,100}_s123/` |\n| `run_gsm8k_qwen7b_s123.sh` | `/root/autodl-tmp/models/Qwen2.5-7B` | `Qwen2.5-7B_d{000,100}_s123/lora_adapter` | `results/gsm8k/qwen7b_d{000,100}_s123/` |\n| `run_gsm8k_olmo2_s123.sh` | `/root/autodl-tmp/models/OLMo-2-1124-7B` | `OLMo-2-7B_d{000,100}_s123/lora_adapter` | `results/gsm8k/olmo2_d{000,100}_s123/` |\n\n关键确认：\n- MD5 gate (`001a9bc23f808c47d25ef9eaeecb81f1`) 在每个脚本开头\n- `--benchmarks gsm8k --batch-size 8`\n- `CUDA_VISIBLE_DEVICES=0`\n- 只跑 d000 + d100\n- adapter 不存在时自动 SKIP（d100_s123 训练尚未完成的 family 会被跳过）\n- Checkpoint 路径已按 westd 实际命名格式（从 `/root/autodl-tmp/exp001/checkpoints/` 确认）\n\n注意：当前 s123 checkpoint 中，phi-4/gemma-2-9b/Qwen2.5-14B 的 d100 尚未产出，OLMo-2 的 d100 也没有。脚本的 adapter 存在性检查会自动跳过这些。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-s123-eval-scripts.md"
+}

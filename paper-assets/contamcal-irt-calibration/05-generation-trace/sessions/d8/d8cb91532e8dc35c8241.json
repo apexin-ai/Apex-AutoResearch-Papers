@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8cb91532e8dc35c8241",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops s1 signal batch v2",
+  "task_key": "worker_ops_s1-signal-batch-v2_20260518T185121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s1-signal-batch-v2_20260518T185121_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "d5208e8992d5abb1f4a9a4c426b75565485316694e5b01ba9b0d67a58f0482ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "S1 embedding signal batch computation complete. All 24/24 files generated successfully.\n\n**Summary:**\n\n| Checkpoint | mmlu | gsm8k | arc_challenge |\n|---|---|---|---|\n| Qwen2.5-7B_d000_s42 | 7.7MB (14042) | 725KB (1319) | 657KB (1172) |\n| Qwen2.5-7B_d000_s123 | 7.7MB (copy) | 725KB (copy) | 657KB (copy) |\n| Qwen2.5-7B_d005_s42 | 7.8MB (14042) | 725KB (1319) | 656KB (1172) |\n| Qwen2.5-7B_d005_s123 | 7.8MB (copy) | 725KB (copy) | 656KB (copy) |\n| Qwen2.5-7B_d025_s42 | 7.7MB (14042) | 724KB (1319) | 656KB (1172) |\n| Qwen2.5-7B_d025_s123 | 7.7MB (copy) | 724KB (copy) | 656KB (copy) |\n| Qwen2.5-7B_d050_s42 | 7.7MB (14042) | 724KB (1319) | 655KB (1172) |\n| Qwen2.5-7B_d100_s42 | 7.7MB (14042) | 724KB (1319) | 654KB (1172) |\n\nOutput: `/root/autodl-tmp/exp002/signals/Qwen2.5-7B_{dosage}_{seed}/signal_s1_embedding_{benchmark}.json`\n\nTotal runtime: ~29 minutes (02:57 to 03:28 UTC). The dosage-deduplication optimization (compute once per dosage, copy to same-dosage checkpoints) saved ~40% compute for d000/d005/d025 which have 2 seeds each."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s1-signal-batch-v2.md"
+}

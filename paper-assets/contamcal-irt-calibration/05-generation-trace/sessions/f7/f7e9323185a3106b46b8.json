@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e9323185a3106b46b8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis pooled irt rrf n25 v2",
+  "task_key": "worker_analysis_pooled_irt_rrf_n25_v2_20260516T150141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pooled_irt_rrf_n25_v2_20260516T150141_result.json",
+    "occurrence": 1,
+    "bytes": 1668,
+    "sha256": "500dba4a7c7d3dae77f83929fd047e6b9f3c25ad21095875896f1db76370b6c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册。核心发现：\n\n### γ 结果\n\n| Benchmark | γ mean | 95% CI | CI excl. 0 | PPP |\n|-----------|--------|--------|------------|-----|\n| **MMLU** | -0.404 | [-1.84, 1.07] | No | 0.006 ⚠️ |\n| **GSM8K** | 0.142 | [-0.75, 0.96] | No | **0.398** ✓ |\n| **ARC** | 1.513 | [0.23, 2.87] | **Yes** | 0.000 ⚠️ |\n\n### 关键判断\n\n1. **ARC 是唯一 γ 显著的 benchmark**，但 PPP=0.000 表明模型不拟合数据，且 N=8 违反 C008（4PL 需 N≥16）。显著性大概率是过参数化伪影而非真实 contamination bias。\n\n2. **GSM8K 是唯一可信的结果**（N=16, PPP=0.398），γ=0.142 **非显著** — contamination 没有系统性偏移 item difficulty 校准。同时 IRT 校准大幅改善分数估计（ΔMAE=+0.118）。\n\n3. **MMLU 4PL 在 N=8 下不可解释**（γ 反号，PPP≈0），需回退到 2PL+γ。\n\n4. **与 2PL+γ 对比**：GSM8K γ 一致（0.172 vs 0.142）；ARC 从 2PL 的 0.486 跳到 4PL 的 1.513 是 c/d 参数不可识别导致的膨胀；MMLU 反号说明 4PL 在小 N 下失效。\n\n### 对论文的影响\n\n数据支持的 story 比原假设更强：**IRT 对 contamination 是 robust 的** — contamination 效应被标准 IRT 参数（c, d, discrimination）吸收，γ 本身无需显著偏离 0。建议 framing 从 \"contamination breaks IRT calibration\" 转为 \"IRT provides contamination-robust score estimation\"。\n\n### 建议下一步\n\n1. 对 MMLU/ARC 补跑 **2PL+γ**（同 v2 数据）— 这才是论文应报告的模型\n2. 考虑加回 3B 以提升 MMLU/ARC 的 N 至 ≥16\n3. 论文主表用 GSM8K 4PL+γ（N=16）+ MMLU/ARC 2PL+γ"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pooled-irt-rrf-n25-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cf8055a16af13176e8d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d000 s42 a32 para aligned check",
+  "task_key": "worker_ops_d000-s42-a32-para-aligned-check_20260516T070443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d000-s42-a32-para-aligned-check_20260516T070443_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "fc27c044940f4a8b0ada7c1796e208662afca42b156b2295fea89a2c9dca448d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 判定: SUCCESS\n\n- eval_results.json: 存在 (904,443 bytes)\n- correctness_matrix.json: 存在 (48,060 bytes)\n- item_responses.json: 存在 (1,014,680 bytes)\n- .done: 存在 (0 bytes, sentinel)\n- metrics:\n  - MMLU: 0.6431 (4242/6596)\n  - GSM8K: 0.0526 (12/228)\n  - ARC-Challenge: 0.8106 (565/697)\n  - HumanEval: 0.1923 (5/26)\n- cuda:4 空闲: YES (0 MiB / 24564 MiB, 0% util)\n- EXIT_CODE=0, .done sentinel written at 14:00:35\n\nRegistry updated → `conclusion=success`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d000-s42-a32-para-aligned-check.md"
+}

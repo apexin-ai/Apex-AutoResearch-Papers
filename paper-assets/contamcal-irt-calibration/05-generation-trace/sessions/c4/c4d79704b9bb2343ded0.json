@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4d79704b9bb2343ded0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag urgent status westd cqa1",
+  "task_key": "worker_diag_urgent-status-westd-cqa1_20260521T000853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_urgent-status-westd-cqa1_20260521T000853_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "a03a21eadf303069611368310c1ba3ecd68a35d12213d50ccf2b67ee63644eb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 Gemma-2 d100 retrain\n\n| 项目 | 状态 |\n|------|------|\n| PID 437077 | **ALIVE**，运行 2h05m |\n| 任务 | `train_sft.py` gemma-2-9b d100 s0, alpha=32, lr=5e-5 |\n| GPU 0 | 82%, 72449/97887 MiB |\n| 训练进度 | **50%** (2102/4159), epoch 0.35 → ~0.50, ~2h ETA |\n| loss | 1.246, token_acc 0.707 |\n\n另有 PID 435054 在 GPU 3 上跑 Qwen2.5-14B d100 s0 训练（运行 2h14m, 64773 MiB）。GPU 1/2 空闲。\n\n## cqa1-21977 Qwen-7B ARC eval\n\n| 项目 | 状态 |\n|------|------|\n| GPU 0 | 95%, 20515/24564 MiB |\n| 当前进程 | PID 420269 — `evaluate.py` qwen7b **d100_s0** ARC（运行 2m22s） |\n\n### ARC 结果 (s0)\n\n| Dosage | ARC Acc | Status |\n|--------|---------|--------|\n| d000 | 87.20% | done |\n| d005 | 85.32% | done |\n| d025 | 84.47% | done |\n| d050 | 85.58% | done |\n| d100 | — | **running** |\n\ns42_v2 和 s123 的 ARC 全部已完成（5/5 each）。s0 只差 d100，正在跑。\n\n### 磁盘\n- `/root`: 19/30G (64%)\n- `/root/autodl-tmp`: 126/169G (75%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-urgent-status-westd-cqa1.md"
+}

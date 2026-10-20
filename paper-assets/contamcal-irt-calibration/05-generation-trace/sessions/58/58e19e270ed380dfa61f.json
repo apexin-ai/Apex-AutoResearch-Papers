@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e19e270ed380dfa61f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "investigate lora alpha bug",
+  "task_key": "worker_investigate_lora-alpha-bug_20260515T150214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_lora-alpha-bug_20260515T150214_result.json",
+    "occurrence": 1,
+    "bytes": 2310,
+    "sha256": "97cd39b57dbd9cc950a457aacac3ea538aa78b41fe5632f4f622c0ebc97f2234"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成，以下是结论。\n\n---\n\n## 调查报告：`--lora-alpha` 参数传递问题\n\n### 结论：`train_sft.py` 本身无 bug\n\nargparse 定义和传递链完全正确：\n\n```\n--lora-alpha → dest=lora_alpha → args.lora_alpha → LoraConfig(lora_alpha=args.lora_alpha)\n```\n\n代码逻辑无误，`--lora-alpha 16` 如果被正确传入，会按预期工作。\n\n### 真正的问题\n\n**`exp_001_sft_3B_d025_s123` 的实际提交命令没有传入 `--lora-alpha 16`**（或该参数被忽略/遗漏），导致使用了 `DEFAULT_LORA_CONFIG[\"lora_alpha\"] = 32` 的默认值。\n\n三重证据确认：\n1. **训练日志**：`LoRA config: r=16, alpha=32`\n2. **train_config.json**：`\"lora_alpha\": 32`\n3. **adapter_config.json**：`\"lora_alpha\": 32`\n\n### 全量影响扫描（26 个实验）\n\n| alpha 值 | 实验数 | 涉及模型 |\n|---------|--------|---------|\n| **32**（默认值）| **21** | 全部 0.5B (8), 全部 1.5B (8), 3B d000/d005/d025_s123 (5) |\n| **16**（手动指定）| **5** | 3B d000_v2 (2), 3B d025_s42 (1), 3B d100 (2) |\n\n**关键问题：alpha 在实验间不一致。** 同一 dosage 的不同 seed 之间 alpha 不同（如 3B_d025_s42 用 16，3B_d025_s123 用 32），这会污染 seed 间的可比性。\n\n### 附加发现\n\n`run_exp001.sh` 中的训练调用：\n```bash\npython3 \"$SCRIPT_DIR/train_sft.py\" \\\n    --model-name \"$model\" \\\n    --data-path \"$data_file\" \\\n    --output-dir \"$run_dir\" \\\n    --seed \"$seed\" \\\n    --gpu \"$gpu_id\" \\       # ← train_sft.py 没有 --gpu 参数\n    --cache-dir \"$CACHE_DIR\"\n    # ← 没有 --lora-alpha，没有 --lora-r\n```\n\n脚本没有暴露 LoRA 超参数，且传了一个不存在的 `--gpu` 参数（说明实验可能不是通过此脚本提交的，而是手动/任务系统单独提交）。\n\n### 建议\n\n不需要修 `train_sft.py`（代码正确）。需要决定的是：\n\n1. **alpha=32 和 alpha=16 哪个是实验的 intended 值？** 这决定了哪些实验需要重跑\n2. 如果 intended 是 16，可以把 `DEFAULT_LORA_CONFIG[\"lora_alpha\"]` 从 32 改为 16，减少未来遗漏的风险\n3. `run_exp001.sh` 的 `run_train()` 需要补上 `--lora-alpha` 参数转发\n\n需要我改默认值或修 `run_exp001.sh` 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-lora-alpha-bug.md"
+}

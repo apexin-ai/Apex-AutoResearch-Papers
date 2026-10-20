@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9836920af7373743e35f",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_15_1778935821.md",
+  "task_key": "loop_15_1778935821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778935821.md",
+    "occurrence": 1,
+    "bytes": 3633,
+    "sha256": "3b25f9a3ee400b6ade07b899a60aaba7a2492bd62af910a6c1e42239dea6ece1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T11:11:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5（共 6 张 4090D），禁止用白名单外的 GPU\n- 3B checkpoints 有两代命名：旧版（lr=2e-4, alpha=16）已废弃，当前使用 D076 retrained（lr=5e-5, alpha=32）。signals/eval 必须用 `_a32_` 版本 checkpoint，否则结果不可用\n- d000_s42 checkpoint 路径有命名不一致：`Qwen2.5-3B_d000_s42/` vs `Qwen2.5-3B_d000_a32_s42/`，需确认 symlink 是否已建\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- signals 脚本使用 GPU（embedding 计算），不是纯 CPU 任务\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/autodl-tmp/exp001/`（SFT/eval）、`/root/autodl-tmp/exp002/signals/`（signals）\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型 checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_{dosage}_{seed}/lora_adapter`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_{variant}/`\n- Signals 输出：`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_{variant}/`\n- Logs：`/root/runs/contamcal-irt-calibration/`\n- 活跃进程：\n  - exp_002_signals_15B_s123_batch: PID 691872, cuda:0\n  - exp_002_signals_3B_d005_a32_s42: PID 719534, cuda:2\n  - exp_002_signals_05B_s123_v2: cuda:5 (PID 未知，tmux=exp002_05B_s123_v2)\n  - exp_001_eval_3B_d000_s42_a32_para_aligned: PID 716470 可能已死, cuda:4, tmux=exp_001_eval_3B_d000_s42_para\n\n### 3. 📊 当前状态\n刚收到 cron 回调：`exp_001_eval_3B_d005_s42_para_aligned` 完成（ANALYZING）。已派 2 个 Worker：\n1. `worker_analyze_exp_001_eval_3B_d005_s42_para_aligned_20260516T070624` — SSH 提取 metrics 并推到 DONE\n2. `worker_diagnose_exp_001_eval_3B_d000_s42_a32_para_aligned_20260516T070634` — 排查进程丢失\n\n同时推了 `exp_001_eval_3B_d000_s42_a32_batch` 从 ANALYZING → DONE(success)。\n\n**空闲 GPU**：cuda:1, cuda:3（已向 Director 建议分配 3B d000_s42 signals 和 d100_s42 signals，等待确认）\n\n**等待中**：\n- 2 个 Worker 回调\n- Director 对 cuda:1/cuda:3 分配方案的确认\n\n### 4. 📋 待办\n- Worker analyze 回调到 → 用 metrics 更新 registry DONE，刷新 report.md\n- Worker diagnose 回调到 → 如果 d000 eval 实际完成则推 DONE + cuda:4 可立即分配 signals；如果死了需重跑\n- Director 确认 GPU 分配 → spawn worker 提交 3B d000_s42 signals (cuda:1) + d100_s42 signals (cuda:3)\n- 0.5B/1.5B s123 signals 完成 → 更新 registry + 汇报 Director + 检查是否所有 signals 就绪可做 RRF\n- 3B s42 signals 4/4 全完成 → 立即做 exp-003 RRF 聚合（CPU 任务，不占 GPU）\n- RRF 完成 → pooled IRT fitting (exp-006, per-benchmark γ_k)\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR May 25 deadline = T-9 天**。Critical path: 3B signals → RRF → pooled IRT → paper\n- 3B s42 signals 是唯一瓶颈：d025 ✅, d005 运行中, d000/d100 待提交。完成后即可 RRF\n- Claim 1 (identifiability): sim_sweep_v7 已充分支撑 (D090)\n- Claim 2 (signals): 0.5B 全完成, 1.5B 全完成, 3B 进行中\n- Claim 3 (noise propagation): exp_005 negative, 但 sim_sweep identifiability boundaries 提供间接支撑。T-7 前需 go/no-go 决策\n- 易错点：3B 命名混乱（v2/v3/a32 多代 checkpoint 并存），提交 signals 前必须确认 eval 用的是 a32 版本 checkpoint 的结果\n- exp_002_signals_3B_v7 是旧版（非 a32 checkpoint），不要当做当前 pipeline 的有效 signals\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778935821.md"
+}

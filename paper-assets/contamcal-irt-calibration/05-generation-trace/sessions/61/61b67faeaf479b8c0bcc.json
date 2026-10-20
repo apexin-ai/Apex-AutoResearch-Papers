@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61b67faeaf479b8c0bcc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run exp003 rrf exp006 irt",
+  "task_key": "worker_run_exp003_rrf_exp006_irt_20260514T141527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp003_rrf_exp006_irt_20260514T141527_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "7966d8a4b919c716d7d51eba728980224914803882198800d595468e50ab4f8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stan 4 条链均 100% CPU 运行中，仍在 warmup。56K 参数 NUTS 采样预计需要数小时。已设定 ~4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp003-rrf-exp006-irt.md"
+}

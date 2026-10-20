@@ -1,0 +1,873 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e577665909db28383e99",
+  "rounds": [
+    {
+      "number": 212,
+      "messages": [
+        {
+          "source_line": 2881,
+          "timestamp": "2026-05-14T22:15:27.253483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1520
+          },
+          "id": "event-002881"
+        },
+        {
+          "source_line": 2882,
+          "timestamp": "2026-05-14T22:15:31.575570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'exp002-signals-1p5B → DONE transition', 'status': 'completed', 'activeForm': 'Completing exp002-signals-1p5B DONE transition'}, {'content': 'Spawn Worker: joint_fit.py exclude_rules dead code fix', 'status': 'completed', 'activeForm': 'Spawning Worker for joint_fit.py dead code fix'}, {'content': 'exp-004/005 registry cleanup (Director 5th reminder)', 'status': 'completed', 'activeForm': 'Cleaning up exp-004/005 registry entries'}, {'content': 'GPU 0 utilization: spawn eval Worker', 'status': 'completed', 'activeForm': 'Spawning GPU 0 eval utilization Worker'}, {'content': 'Report to Director on all 3 tasks', 'status': 'completed', 'activeForm': 'Reporting to Director'}]"
+            }
+          },
+          "id": "event-002882"
+        },
+        {
+          "source_line": 2883,
+          "timestamp": "2026-05-14T22:15:31.576161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-002883"
+        },
+        {
+          "source_line": 2884,
+          "timestamp": "2026-05-14T22:15:37.528725+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 三件事全部处理完毕：\n\n1. **GPU 0**: pooled IRT Worker 活跃（per-benchmark MCMC 进行中），已额外派 Worker 利用 GPU 0 跑 eval\n2. **joint_fit.py**: 修复 Worker 已派出\n3. **exp-004/005 registry**: 清理完成——旧版本补了 notes，活跃版本设了 checkpoint_path/log_path\n\n当前 Worker 池 = 4（gpu0_pooled_irt + gpu0_eval + exp005_monitor + joint_fit_fix）。等待各 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-002884"
+        }
+      ]
+    },
+    {
+      "number": 213,
+      "messages": [
+        {
+          "source_line": 2885,
+          "timestamp": "2026-05-14T22:18:07.934709+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_joint_fit_dead_code_fix_20260514T221237 已完成（status=done）。用 `get_worker_status('worker_code_joint_fit_dead_code_fix_20260514T221237')` 读取结果，然后处理。\n\n- worker_id: worker_code_joint_fit_dead_code_fix_20260514T221237\n- project: contamcal-irt-calibration\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "worker:done"
+          },
+          "id": "event-002885"
+        },
+        {
+          "source_line": 2886,
+          "timestamp": "2026-05-14T22:18:22.324908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_joint_fit_dead_code_fix_20260514T221237",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002886"
+        },
+        {
+          "source_line": 2887,
+          "timestamp": "2026-05-14T22:18:22.580822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_joint_fit_dead_code_fix_20260514T221237\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:joint_fit_dead_code_fix\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-14T22:12:38.333817+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T22:18:05.333491+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。方案 A，改动如下：\\\\n\\\\n**joint_fit.py** (3 处):\\\\n- `concatenate_benchmarks()`: 实现了 `exclude_rules` 过滤——遍历规则，当数据集中存在匹配 `model` pattern 的模型时，将对应 `benchmark` 加入排除集合，循环中跳过这些 benchmark\\\\n- `run_joint_fit()`: 签名新增 `exclude_rules=None` 参数，透传给 `concatenate_benchmarks()`\\\\n\\\\n**run_exp006.py** (2 处):\\\\n- 新增 `D018_EXCLUDE_RULES = [{\\\\\\\"model\\\\\\\": \\\\\\\"3B\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"D018 LoRA damage\\\\\\\"}]`\\\\n- `run_pipeline()` → `run_joint_fit()` 调用中传入 `exclude_rules=D018_EXCLUDE_RULES`\\\\n\\\\n`python joint_fit.py --help` 验证通过。\\\", \\\"data\\\": {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 255
+          },
+          "id": "event-002887"
+        },
+        {
+          "source_line": 2888,
+          "timestamp": "2026-05-14T22:18:31.052486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_gpu0_signals_check_pooled_irt_20260514T215735",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002888"
+        },
+        {
+          "source_line": 2889,
+          "timestamp": "2026-05-14T22:18:31.723473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_gpu0_signals_check_pooled_irt_20260514T215735\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:gpu0_signals_check_pooled_irt\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-14T21:57:36.367023+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"GSM8K 结果出来了！joint-fit ablation MCMC 开始。等待完成后启动 ARC。\\\", \\\"turn_count\\\": 22}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 670
+          },
+          "id": "event-002889"
+        },
+        {
+          "source_line": 2890,
+          "timestamp": "2026-05-14T22:18:31.775558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_gpu0_eval_utilization_20260514T221449",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002890"
+        },
+        {
+          "source_line": 2891,
+          "timestamp": "2026-05-14T22:18:32.280555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_gpu0_eval_utilization_20260514T221449\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:gpu0_eval_utilization\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-14T22:14:50.474035+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\", \\\"Bash\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 4}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 504
+          },
+          "id": "event-002891"
+        },
+        {
+          "source_line": 2892,
+          "timestamp": "2026-05-14T22:18:32.281019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cpu_exp005_v4_restart_20260514T215110",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002892"
+        },
+        {
+          "source_line": 2893,
+          "timestamp": "2026-05-14T22:18:32.539790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cpu_exp005_v4_restart_20260514T215110\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:cpu_exp005_v4_restart\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-14T21:51:11.498600+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"update_registry\\\", \\\"update_registry\\\", \\\"update_registry\\\", \\\"update_registry\\\", \\\"Monitor\\\"], \\\"last_text\\\": \\\"收到旧的 23/25 日志行（monitor 启动时 tail 回放）。进程仍在继续，等待 24/25 和 25/25 通知。\\\", \\\"turn_count\\\": 20}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 258
+          },
+          "id": "event-002893"
+        },
+        {
+          "source_line": 2894,
+          "timestamp": "2026-05-14T22:18:37.528607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002894"
+        },
+        {
+          "source_line": 2895,
+          "timestamp": "2026-05-14T22:18:37.529074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-002895"
+        },
+        {
+          "source_line": 2896,
+          "timestamp": "2026-05-14T22:18:40.496526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002896"
+        },
+        {
+          "source_line": 2897,
+          "timestamp": "2026-05-14T22:18:40.547135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002897"
+        },
+        {
+          "source_line": 2898,
+          "timestamp": "2026-05-14T22:18:42.658397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update roadmap",
+              "max_results": "3"
+            }
+          },
+          "id": "event-002898"
+        },
+        {
+          "source_line": 2899,
+          "timestamp": "2026-05-14T22:18:42.763503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "ToolSearch",
+            "elapsed_ms": 105
+          },
+          "id": "event-002899"
+        },
+        {
+          "source_line": 2900,
+          "timestamp": "2026-05-14T22:18:48.039902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md"
+            }
+          },
+          "id": "event-002900"
+        },
+        {
+          "source_line": 2901,
+          "timestamp": "2026-05-14T22:18:48.142537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# contamcal-irt-calibration — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-14 22:08 UTC | 更新原因: 1.5B signals 完成(12/12 PASS), GPU 0 释放, 派 Agent 启动 pooled IRT + 修 joint_fit 死代码 + registry 清理\n4\t\n5\t## 核心方向\n6\tContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\n7\t\n8\t## 投稿目标\n9\t**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\n10\t\n11\t## 当前进展\n12\t- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\n13\t- **P0 delta exposure fix**: ✅\n14\t- **关键发现**: 0.5B 污染导致退化（MMLU -16.5pp），1.5B 近乎免疫（<1pp），完美支撑 scale-dependent narrative\n15\t- **ARC 0.5B**: gamma=-1.87，负方向，支持 scale-dependent framing\n16\t- **Pooled IRT 约束**: 仅同源 signal-derived exposure 可 pool（D027/D028）\n17\t\n18\t**SFT 进度 (seed=42)**:\n19\t\n20\t| 模型 | d000 | d005 | d025 | d100 |\n21\t|------|------|------|------|------|\n22\t| 0.5B | ✅ | ✅ | ❌(2x fail) | ✅ |\n23\t| 1.5B | ✅ | ✅ | ✅ | ✅ |\n24\t| 3B | ✅(v2) | P2 | P4 | 🏃(v2, 77%, ~1h) |\n25\t\n26\t**SFT 进度 (seed=123)**:\n27\t\n28\t| 模型 | d000 | d005 | d025 | d100 |\n29\t|------|------|------|------|------|\n30\t| 0.5B | ✅(v1) | — | — | 🏃(GPU 1, eval GSM8K 26%) |\n31\t| 1.5B | ✅(v1) | — | — | 🏃(GPU 2, SFT 41%) |\n32\t| 3B | 🏃(v2, GPU 5, SFT 45%) | — | — | — |\n33\t\n34\t**Signal (exp-002)**: 0.5B ✅ | 1.5B ✅ (12/12 PASS) | 3B 未开始\n35\t**CPU**: exp-004 v2 48/120 (40%) | exp-005 v3 14/25 (56%)\n36\t\n37\t## Critical Path\n38\t```\n39\t✅ 0.5B signals → ✅ 1.5B signals (12/12 PASS)\n40\t→ 🏃 0.5B+1.5B pooled IRT (Agent 已派, GPU 0)\n41\t  → Paper Table 1\n42\t\n43\t并行: seed=123 SFT (GPU 1/2/5)\n44\t并行: 3B d100 v2 SFT (GPU 3, ~1h)\n45\t并行: 3B d000 v2 eval GSM8K (GPU 4, ~1.8h)\n46\t并行: exp-004 v2 / exp-005 v3 CPU\n47\t并行: joint_fit.py D018 死代码修复\n48\t```\n49\t\n50\t## ⚠️ 已知问题\n51\t1. **Item count mismatch** (#16): aligned vs para 不对齐 — 修正幅度极小(0.04-0.29pp)\n52\t2. **MMLU gap 反转** (#17): para > orig 是真实现象，等 d000 baseline gap 判断\n53\t3. **Pooled IRT 混合曝光约束** (#21): 仅同源 exposure 可 pool\n54\t4. **joint_fit.py exclude_rules 死代码** (#36): concatenate_benchmarks() 参数未实现，Agent 修复中\n55\t5. **exp-004/005 registry stale** (#36, 第5次): Agent 清理中\n56\t\n57\t## 近\n…[truncated 1969 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-002901"
+        },
+        {
+          "source_line": 2902,
+          "timestamp": "2026-05-14T22:18:55.849703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "> 最后更新: 2026-05-14 22:08 UTC | 更新原因: 1.5B signals 完成(12/12 PASS), GPU 0 释放, 派 Agent 启动 pooled IRT + 修 joint_fit 死代码 + registry 清理",
+              "new_string": "> 最后更新: 2026-05-14 22:19 UTC | 更新原因: joint_fit.py 死代码修复完成(方案A), exp-004/005 registry 清理完成, exp002-signals-1p5B→DONE, pooled IRT GSM8K 结果已出"
+            }
+          },
+          "id": "event-002902"
+        },
+        {
+          "source_line": 2903,
+          "timestamp": "2026-05-14T22:18:55.952570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-002903"
+        },
+        {
+          "source_line": 2904,
+          "timestamp": "2026-05-14T22:19:00.136263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "**CPU**: exp-004 v2 48/120 (40%) | exp-005 v3 14/25 (56%)",
+              "new_string": "**CPU**: exp-004 v3 54/120 (45%, PID 599562) | exp-005 v4 23/25 (92%, PID 559667)"
+            }
+          },
+          "id": "event-002904"
+        },
+        {
+          "source_line": 2905,
+          "timestamp": "2026-05-14T22:19:00.238462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-002905"
+        },
+        {
+          "source_line": 2906,
+          "timestamp": "2026-05-14T22:19:03.570952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "并行: joint_fit.py D018 死代码修复\n```",
+              "new_string": "✅ joint_fit.py D018 死代码修复 (方案A: 实现 exclude_rules 过滤)\n```"
+            }
+          },
+          "id": "event-002906"
+        },
+        {
+          "source_line": 2907,
+          "timestamp": "2026-05-14T22:19:03.671943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-002907"
+        },
+        {
+          "source_line": 2908,
+          "timestamp": "2026-05-14T22:19:09.361576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "4. **joint_fit.py exclude_rules 死代码** (#36): concatenate_benchmarks() 参数未实现，Agent 修复中\n5. **exp-004/005 registry stale** (#36, 第5次): Agent 清理中",
+              "new_string": "4. ~~**joint_fit.py exclude_rules 死代码** (#36)~~: ✅ 已修复（方案A, exclude_rules 过滤实现 + D018 规则接入）\n5. ~~**exp-004/005 registry stale** (#36)~~: ✅ 已清理（notes补全, checkpoint_path/log_path 设置）"
+            }
+          },
+          "id": "event-002908"
+        },
+        {
+          "source_line": 2909,
+          "timestamp": "2026-05-14T22:19:09.514618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 153
+          },
+          "id": "event-002909"
+        },
+        {
+          "source_line": 2910,
+          "timestamp": "2026-05-14T22:19:12.895412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "- [ ] joint_fit.py exclude_rules 修复\n- [ ] exp-004/005 registry 清理（第5次提醒）",
+              "new_string": "- [x] joint_fit.py exclude_rules 修复 ✅\n- [x] exp-004/005 registry 清理 ✅"
+            }
+          },
+          "id": "event-002910"
+        },
+        {
+          "source_line": 2911,
+          "timestamp": "2026-05-14T22:19:12.949612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 54
+          },
+          "id": "event-002911"
+        },
+        {
+          "source_line": 2912,
+          "timestamp": "2026-05-14T22:19:18.461438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "- GPU 0: → pooled IRT / 待分配 | GPU 1: 0.5B eval | GPU 2: 1.5B SFT | GPU 3: 3B SFT (~1h) | GPU 4: 3B eval | GPU 5: 3B SFT",
+              "new_string": "- GPU 0: pooled IRT (CPU) + eval Worker 接管中 | GPU 1: 0.5B eval | GPU 2: 1.5B SFT | GPU 3: 3B SFT (~1h) | GPU 4: 3B eval | GPU 5: 3B SFT"
+            }
+          },
+          "id": "event-002912"
+        },
+        {
+          "source_line": 2913,
+          "timestamp": "2026-05-14T22:19:18.512430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-002913"
+        },
+        {
+          "source_line": 2914,
+          "timestamp": "2026-05-14T22:19:23.416098+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新。Director 三件事全部完成或 Worker 在执行中：\n- joint_fit.py 死代码修复 ✅ (方案A: 实现 exclude_rules + D018 规则)\n- exp-004/005 registry 清理 ✅\n- GPU 0 pooled IRT Worker 活跃 (GSM8K 结果已出, joint-fit ablation 运行中) + GPU 0 eval Worker 探测中\n\n3 个 Worker 继续运行，等回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-002914"
+        }
+      ]
+    },
+    {
+      "number": 214,
+      "messages": [
+        {
+          "source_line": 2915,
+          "timestamp": "2026-05-14T22:22:41.761185+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_gpu0_eval_utilization_20260514T221449 已完成（status=done）。用 `get_worker_status('worker_ops_gpu0_eval_utilization_20260514T221449')` 读取结果，然后处理。\n\n- worker_id: worker_ops_gpu0_eval_utilization_20260514T221449\n- project: contamcal-irt-calibration\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "worker:done"
+          },
+          "id": "event-002915"
+        },
+        {
+          "source_line": 2916,
+          "timestamp": "2026-05-14T22:22:59.088650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_gpu0_eval_utilization_20260514T221449",
+              "verbose": "True"
+            }
+          },
+          "id": "event-002916"
+        },
+        {
+          "source_line": 2917,
+          "timestamp": "2026-05-14T22:22:59.492618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_gpu0_eval_utilization_20260514T221449\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:gpu0_eval_utilization\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-14T22:14:50.474035+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T22:22:39.262798+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"已成功提交。\\\\n\\\\n**实验 ID**: `exp_001_eval_3B_d000_v2_para_aligned`\\\\n\\\\n| 项目 | 详情 |\\\\n|------|------|\\\\n| GPU | 0 (RTX 4090 D), PID 450055, 6782 MiB |\\\\n| 任务 | 3B d000 v2 paraphrased aligned eval (mmlu/gsm8k/arc/humaneval) |\\\\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter` |\\\\n| 输出目录 | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned` |\\\\n| tmux | `eval_3B_d000_v2_para` |\\\\n| 日志 | `/tmp/eval_3B_d000_v2_para_aligned.log` |\\\\n\\\\n当前 GPU 分布：GPU 0 para_aligned eval / GPU 1 0.5B d100 s123 eval / GPU 2 1.5B d100 s123 SFT / GPU 3 3B d100 v2 SFT / GPU 4 3B d000 v2 aligned eval / GPU 5 3B d000 s123 SFT。全部 6 卡满载。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 403
+          },
+          "id": "event-002917"
+        },
+        {
+          "source_line": 2918,
+          "timestamp": "2026-05-14T22:23:09.306758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md",
+              "old_string": "- GPU 0: pooled IRT (CPU) + eval Worker 接管中 | GPU 1: 0.5B eval | GPU 2: 1.5B SFT | GPU 3: 3B SFT (~1h) | GPU 4: 3B eval | GPU 5: 3B SFT",
+              "new_string": "- GPU 0: 3B d000 v2 para_aligned eval | GPU 1: 0.5B d100 s123 eval | GPU 2: 1.5B d100 s123 SFT | GPU 3: 3B d100 v2 SFT | GPU 4: 3B d000 v2 aligned eval | GPU 5: 3B d000 s123 SFT\n- **6/6 满载** ✅"
+            }
+          },
+          "id": "event-002918"
+        },
+        {
+          "source_line": 2919,
+          "timestamp": "2026-05-14T22:23:09.442664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 135
+          },
+          "id": "event-002919"
+        },
+        {
+          "source_line": 2920,
+          "timestamp": "2026-05-14T22:23:21.737337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 6 / 实际跑 6 ✅ 全满载 | Worker 池 3 (GPU 1 / CPU 2)\n\n## GPU 0 已利用 — 3B d000 v2 para_aligned eval\n\nGPU 0 已提交 `exp_001_eval_3B_d000_v2_para_aligned`（PID 450055）：\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter`\n- 评估 4 个 benchmark: mmlu/gsm8k/arc/humaneval（paraphrase aligned 版本）\n- tmux session: `eval_3B_d000_v2_para`\n\n这样 3B d000 v2 同时跑 aligned eval (GPU 4) + para_aligned eval (GPU 0)，完成后即可计算 3B d000 baseline gap（delta-of-deltas 分析所需）。\n\n## 同步更新\n- **joint_fit.py 修复**: ✅ 已完成（方案A, Worker 已实现 exclude_rules 过滤 + D018 规则接入）\n- **pooled IRT**: Worker 活跃(turn 22)，GSM8K 结果已出，正跑 joint-fit ablation MCMC\n- **exp-005**: 23/25，等最后 2 fits",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-002920"
+        },
+        {
+          "source_line": 2921,
+          "timestamp": "2026-05-14T22:23:38.527483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 16790
+          },
+          "id": "event-002921"
+        },
+        {
+          "source_line": 2922,
+          "timestamp": "2026-05-14T22:23:41.789191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 GPU 满载，3 Workers 活跃（pooled IRT + exp-005 monitor + joint_fit 已完成）。等待 pooled IRT Worker 和 exp-005 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-002922"
+        }
+      ]
+    },
+    {
+      "number": 215,
+      "messages": [
+        {
+          "source_line": 2923,
+          "timestamp": "2026-05-14T22:24:57.822523+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-002923"
+        },
+        {
+          "source_line": 2924,
+          "timestamp": "2026-05-14T22:26:09.137027+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 on cqa1-21977，6 张全分配给本项目，不可用其他服务器的 GPU\n- 3B GSM8K 必须从 IRT 排除（D018: d000 GSM8K=12% 是 LoRA 超参损伤，theta=-4.98）\n- Pooled IRT 只能 pool 同源 signal-derived exposure（D027/D028），不可混合 ground-truth + signal exposure\n- S3 ConStat 信号已弃用（D030），论文只报告 3-signal RRF (S1 embedding + S2 Min-K++ + S4 SelfCritique)\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- aml-train 镜像用 conda 不是 venv，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- SFT checkpoints：`/root/autodl-tmp/sft_models/qwen2.5-{0.5B,1.5B,3B}-d{000,005,025,100}-*/`\n- Eval checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dose}_v2_s42/lora_adapter`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/`\n- Signals 输出：`/root/autodl-tmp/exp002/signals/`\n- IRT 代码：`/root/contamcal-irt-calibration/exp006/run_exp006.py` + `joint_fit.py`\n- CPU 实验（本地）：exp-004 artifacts `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_sim_sweep/`, exp-005 `/artifacts/exp005_noise_propagation/output_v3/`\n- 活跃进程（cqa1-21977）：\n  - GPU 0: exp_001_eval_3B_d000_v2_para_aligned, PID 450055, tmux=eval_3B_d000_v2_para\n  - GPU 1: exp_001_eval_05B_d100_s123_aligned\n  - GPU 2: exp_001_sft_15B_d100_s123\n  - GPU 3: exp_001_sft_d100_3B_v2 (~77%)\n  - GPU 4: exp_001_eval_3B_d000_v2_aligned\n  - GPU 5: exp_001_sft_3B_d000_s123 (~45%)\n- 本地 CPU 进程：exp-004 PID 599562 (54/120 sweep), exp-005 PID 559667 (23/25 fits)\n\n### 3. 📊 当前状态\n刚完成：\n- exp002-signals-1p5B → DONE (1.5B 信号 12/12 PASS)\n- joint_fit.py exclude_rules 死代码修复（方案A：实现过滤 + D018 规则接入）\n- exp-004/005 registry 清理（notes、checkpoint_path、log_path 全补齐）\n- GPU 0 利用：提交 3B d000 v2 para_aligned eval，6/6 GPU 满载\n\n等待中的 Worker 回调：\n- `worker_ops_gpu0_signals_check_pooled_irt_20260514T215735`：per-benchmark pooled IRT fitting，GSM8K 结果已出，正跑 joint-fit ablation + ARC。**这是 Table 1 critical path**\n- `worker_ops_cpu_exp005_v4_restart_20260514T215110`：监控 exp-005 PID 559667，等 24/25 和 25/25 完成\n\nRUNNING 实验：\n- exp_001_eval_3B_d000_v2_para_aligned (GPU 0) — 3B baseline paraphrase eval\n- exp_001_eval_05B_d100_s123_aligned (GPU 1) — 0.5B multi-seed eval\n- exp_001_sft_15B_d100_s123 (GPU 2) — 1.5B multi-seed SFT\n- exp_001_sft_d100_3B_v2 (GPU 3) — 3B d100 SFT, ~77%\n- exp_001_eval_3B_d000_v2_aligned (GPU 4) — 3B baseline aligned eval\n- exp_001_sft_3B_d000_s123 (GPU 5) — 3B d000 seed=123 SFT\n- exp_004_sim_sweep_v3 (CPU) — 54/120, ETA ~20h\n- exp_005_noise_prop_v4 (CPU) — 23/25, ETA <1h\n\n### 4. 📋 待办（条件触发式）\n- pooled IRT Worker 回调 → 读取 GSM8K/ARC per-benchmark gamma 估计 → 更新 registry → 汇报 Director（这是 Table 1 数据）\n- exp-005 Worker 回调(25/25) → 设 conclusion=success → status=DONE → 汇报 Director\n- GPU 3 释放(3B d100 SFT 完成) → 提交 3B d100 v2 aligned eval\n- GPU 4 释放(3B d000 aligned eval 完成) → 检查结果 → 与 GPU 0 para eval 结果配对计算 3B d000 baseline gap\n- GPU 1 释放(0.5B d100 s123 eval 完成) → 提交下一个 seed=123 eval\n- GPU 5 释放(3B d000 s123 SFT 完成) → 提交 3B d000 s123 eval\n- exp-004 完成(120/120) → 分析 parameter recovery vs AUC threshold → Table 2 数据\n- 3B signals 未开始 → 等 3B d000/d100 s42 checkpoints 都就绪后启动 exp002 3B signal pipeline\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25，距今 11 天\n- **核心 narrative**：scale-dependent contamination — 0.5B 灾难性退化(MMLU -16.5pp)，1.5B 近乎免疫(<1pp)，3B 待验证\n- **Critical path 现在是 pooled IRT**：Worker 正在跑 per-benchmark 0.5B+1.5B pooled fitting，这直接产出 Table 1 的 gamma 估计。GSM8K 结果已出但还没拿到具体数值\n- **Delta exposure（P0 fix）**：所有 signal 已改为 signal(model_i) - signal(d000)，d000 baseline 归零。这是正确的\n- **易错点**：\n  - Pooled IRT 的 per-benchmark vs joint 区别很重要——Director 明确要求 per-benchmark，不要跑 joint\n  - 3B d000 GSM8K 数据（12% 准确率）必须排除，这是 LoRA 超参损伤不是污染效应\n  - compute_ground_truth() 已修复为 per-scale d0 分组，不要回退到 global d0 mean\n  - 0.5B d025 SFT 两次失败但 checkpoint 有效(3384/3384 steps)，evals 已完成，不需要重跑\n  - S2 Min-K++ 信号极性是反的（高值=低污染），RRF 聚合时已处理\n- **决策链**：D021(exp-008 设计修正) → D022(C2 cliff-like reframing) → D023(Stan NUTS 分层) → D024(GSM8K 负对照 + 必须跨 scale pool) → D027/D028(pooled IRT 同源约束) → D029(paraphrase gap 不可作原始信号) → D030(S3 弃用)\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-002924"
+        }
+      ]
+    }
+  ]
+}

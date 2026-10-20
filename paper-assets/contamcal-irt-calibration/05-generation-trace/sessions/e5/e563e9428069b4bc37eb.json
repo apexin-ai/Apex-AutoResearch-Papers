@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e563e9428069b4bc37eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 05B s123 batch",
+  "task_key": "worker_diagnose_exp_002_signals_05B_s123_batch_20260516T020115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_05B_s123_batch_20260516T020115_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "de8a51eafb03c26174bbbf7dba1cc3f10e6f197df9d529382c46be7d098e03d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因**：提交命令引用的脚本 `run_05B_s123_signals.sh` 不存在，实际文件名是 `run_signals_05B.sh`（文件名拼写不同）。\n\n**日志关键错误**：\n```\nbash: run_05B_s123_signals.sh: No such file or directory\nEXIT_CODE=127\n```\n\n**修复建议**：重新提交时使用正确的脚本名 `run_signals_05B.sh`，或根据 seed=123 的需求基于 `run_signals_05B.sh` 创建 `run_05B_s123_signals.sh`（如果需要不同参数配置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-05b-s123-batch.md"
+}

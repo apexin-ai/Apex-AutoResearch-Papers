@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e30c1188315cc726dd2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check d050 completion",
+  "task_key": "worker_ops_check-d050-completion_20260518T162759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-d050-completion_20260518T162759_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "a52ce293dc0a9e8eac212aa35d5a7c61ef35b432662901771fb33bad80fba53e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**训练成功完成。**\n\n### 日志确认\n- 3642/3642 steps 全部跑完（100%），耗时 1h39m01s\n- 最后一行：`2026-05-19 00:24:19 [INFO] Training complete.`\n\n### 最终指标\n| 指标 | 值 |\n|---|---|\n| train_loss | 0.9599 |\n| mean_token_accuracy | 0.7641 |\n| entropy | 1.008 |\n| epoch | 1.0 |\n| train_runtime | 5941s (~1h39m) |\n| train_steps_per_second | 0.613 |\n\n### Checkpoint 完整性\n`lora_adapter/` 目录文件齐全：\n- `adapter_model.safetensors` — 154MB\n- `adapter_config.json` — lora_alpha=32, r=16 ✓\n- `tokenizer.json` + `tokenizer_config.json`\n- `training_args.bin`\n- `checkpoint-3642/` 子目录（最终 step checkpoint）\n\n### 问题\n- **无 `.done` sentinel 文件** — 这就是 cron reconcile 误判的原因。训练脚本没有在完成后写 sentinel。如果需要自动检测完成状态，需要在训练脚本末尾加 `touch .done`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d050-completion.md"
+}

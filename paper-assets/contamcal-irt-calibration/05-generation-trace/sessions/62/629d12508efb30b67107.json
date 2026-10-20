@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "629d12508efb30b67107",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix s3 constat bug",
+  "task_key": "worker_code_fix-s3-constat-bug_20260515T232230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-s3-constat-bug_20260515T232230_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "e180aefb223fa09a6842dd8130ec60bed4e29b855837cc45573499a6ddddb81c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n**根因**：`s3_constat.py` 用 `orig ∩ para` 交集作为 item 集合，但 paraphrase eval 只覆盖了部分 items（arc_challenge 697/1172, gsm8k 228/1319, mmlu 6596/14042），导致 s3 输出的向量长度远小于 s1/s2。\n\n**修复**：改为以 original eval 的全部索引为基准。有 paraphrase 数据的 items 正常计算 accuracy gap；没有 paraphrase 数据的 items 输出 `score=0.0`（无 contamination 证据），metadata 中 `has_paraphrase=false` 标记。\n\n**验证**：三个 benchmark dry-run 通过，item count 均与 s1/s2 一致（arc_challenge=1172, gsm8k=1319, mmlu=14042）。\n\n**v7 状态**：PID 652247 在 GPU 2 上跑 d005_s123，当前 s4_selfcritique mmlu (7%)。v7 命令未传 `--original-eval-paths`/`--paraphrase-eval-paths`，s3 本就被跳过，不受影响，无需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-s3-constat-bug.md"
+}

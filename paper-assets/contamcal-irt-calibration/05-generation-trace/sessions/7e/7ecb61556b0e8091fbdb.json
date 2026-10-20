@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "7ecb61556b0e8091fbdb",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis mmlu domain gamma n24 with 3B",
+  "task_key": "worker_analysis_mmlu_domain_gamma_n24_with_3B_20260516T112049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_domain_gamma_n24_with_3B_20260516T112049.log",
+    "occurrence": 1,
+    "bytes": 1148718,
+    "sha256": "4cd01eefe6ebe443946a9b6bdcfcb8eb2a604b4b087db134406736e2e99c1d55"
+  },
+  "statistics": {
+    "messages": 774,
+    "user_turns": 1,
+    "tool_calls": 345,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 345,
+      "tool_result": 345,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 754,
+      "chunks": [
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0005.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "7ecb61556b0e8091fbdb-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-mmlu-domain-gamma-n24-with-3b.md"
+}

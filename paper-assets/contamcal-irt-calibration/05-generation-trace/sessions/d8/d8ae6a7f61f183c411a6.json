@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "d8ae6a7f61f183c411a6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "train llama3 sft d000 d025 d100",
+  "task_key": "worker_train_llama3-sft-d000-d025-d100_20260521T095011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama3-sft-d000-d025-d100_20260521T095011.log",
+    "occurrence": 1,
+    "bytes": 1136594,
+    "sha256": "0e81170021d600b2c14620ddc6a1a7bed91e72655da823af701c5ea1ed442197"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 1,
+    "tool_calls": 254,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 254,
+      "tool_result": 254,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 567,
+      "chunks": [
+        {
+          "path": "d8ae6a7f61f183c411a6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8ae6a7f61f183c411a6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8ae6a7f61f183c411a6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8ae6a7f61f183c411a6-part-0004.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "d8ae6a7f61f183c411a6-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-llama3-sft-d000-d025-d100.md"
+}

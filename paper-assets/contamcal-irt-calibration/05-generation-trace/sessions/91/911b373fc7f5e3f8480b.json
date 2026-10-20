@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "911b373fc7f5e3f8480b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research paraphrase eval plan",
+  "task_key": "worker_research_paraphrase-eval-plan_20260514T075524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paraphrase-eval-plan_20260514T075524_result.json",
+    "occurrence": 1,
+    "bytes": 3717,
+    "sha256": "815d63554623c4f243178585972eae68fd948752e772ce074599de07ee4ba59e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕，以下是调研报告。\n\n---\n\n## Paraphrase Eval 调研报告\n\n### 1. 运行方式\n\n`evaluate.py` 已支持 paraphrase eval，通过 `--paraphrase-dir` 参数触发。命令格式：\n\n```bash\npython evaluate.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter \\\n  --paraphrase-dir /root/autodl-tmp/exp001/paraphrases/ \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_para \\\n  --benchmarks mmlu gsm8k arc_challenge humaneval\n```\n\n当 `--paraphrase-dir` 设置后，每个 benchmark 会：\n1. 从 `{paraphrase_dir}/{benchmark}_paraphrases.json` 加载数据\n2. 过滤 `passed_qc: true` 的项\n3. 用 `evaluate_paraphrased()` 函数评估（复用 MCQ/GSM8K/HumanEval 逻辑）\n\n### 2. 输入数据状态\n\n4 个 paraphrase 文件已就绪：\n\n| 文件 | 大小 |\n|------|------|\n| `mmlu_paraphrases.json` | 27MB (407k lines) |\n| `arc_challenge_paraphrases.json` | 1.7MB (34k lines) |\n| `gsm8k_paraphrases.json` | 2.2MB (24k lines) |\n| `humaneval_paraphrases.json` | 500KB (3k lines) |\n\n数据结构包含 `original`、`paraphrase_parsed`、`similarity`、`bleu`、`passed_qc` 等字段。\n\n### 3. ConStat 信号要求\n\n`signal_constat.py` 需要：\n- `--original-eval-paths`: 原始 eval 的 `eval_results.json`（每 seed 一个）\n- `--paraphrase-eval-paths`: paraphrase eval 的 `eval_results.json`（每 seed 一个）\n- **原始和 paraphrase 的 seed 数必须相等**\n- 读取格式：`data[\"benchmarks\"][benchmark][\"per_item\"][i][\"correct\"]`\n\n### 4. 已有 eval 和需要补跑的 paraphrase eval\n\n已有原始 eval 结果：\n\n| 模型 | Dosage | Seeds | 原始 eval | para eval |\n|------|--------|-------|-----------|-----------|\n| 0.5B | d000 | s42, s123 | ✅ | ❌ (空目录) |\n| 0.5B | d005 | s42 | ✅ | ❌ |\n| 0.5B | d100 | s42 | ✅ | ❌ |\n| 0.5B | raw | - | ✅ | ❌ |\n| 1.5B | d000 | s42, s123 | ✅ | ❌ |\n| 1.5B | d100 | s42 | ✅ | ❌ |\n| 3B | d000 | s42, s123 | ✅ | ❌ |\n| 3B | raw | - | ✅ | ❌ |\n\n### 5. 时间估算\n\n从成功的 v5 日志（0.5B, d000_s42, 全 4 个 benchmark）：\n- 开始 10:39 → 结束 15:29 = **约 4h50m**（含 HF 下载超时重试）\n- Paraphrase eval 从本地 JSON 读取，不需要 HF 下载，实际推理时间应**显著更短**\n\n单 benchmark 估算（0.5B）：\n- MMLU: ~14k items @ ~50 it/s → **~5 min**\n- ARC: ~1k items @ ~55 it/s → **~20 sec**\n- GSM8K: 生成式，较慢 → **~30-60 min**（估计）\n- HumanEval: ~164 items @ ~5.4 s/it → **~15 min**\n\n**单个 0.5B checkpoint 全 benchmark paraphrase eval 估计 ~50-80 min**。1.5B/3B 会按模型大小成比例变慢。\n\n### 6. 执行计划建议\n\n**最小 ConStat 需求**：每个 dosage 至少 1 seed 的 paraphrase eval。优先跑 d000 的两个 seed（s42, s123），因为这是 ConStat 差异计算的基线。\n\n**执行顺序**：\n\n| 优先级 | 任务 | 原因 |\n|--------|------|------|\n| P0 | 0.5B d000 s42 para | 最小模型，验证管线正确性 |\n| P0 | 0.5B d000 s123 para | 凑齐 d000 两个 seed |\n| P1 | 0.5B d100 s42 para | d100 vs d000 的 ConStat gap |\n| P1 | 0.5B d005 s42 para | d005 vs d000 的 ConStat gap |\n| P2 | 1.5B/3B 同理 | 跨模型尺寸对比 |\n\n**串并行关系**：\n- Paraphrase eval 与其他信号计算（S1 IRT、S2 membership inference）**完全独立**，可并行\n- 但 ConStat 信号计算依赖 paraphrase eval 输出，必须**先完成 para eval，再跑 signal_constat.py**\n- 不同 checkpoint 的 para eval 之间互相独立，如果有多 GPU 可并行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paraphrase-eval-plan.md"
+}

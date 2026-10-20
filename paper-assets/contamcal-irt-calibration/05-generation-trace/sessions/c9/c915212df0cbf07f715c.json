@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c915212df0cbf07f715c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit 3B d100 s123 a32 gpu0",
+  "task_key": "worker_submit_3B_d100_s123_a32_gpu0_20260515T163218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_3B_d100_s123_a32_gpu0_20260515T163218_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "ea80b854b0af2d561683e80b322d9c67035547f274fcd64c318150f17abff7a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上有且仅有 1 个 python 进程（PID 594494，6604 MiB）。\n\n**提交完成：**\n- 实验：`exp_001_sft_3B_d100_s123_a32_v2`\n- 服务器：cqa1-21977，GPU 0\n- PID：594494（子进程），tmux session PID 594489\n- 配置：Qwen2.5-3B, d100, seed=123, alpha=32, lr=5e-5, batch=1×16\n- 训练样本：66,533 条\n- 日志：`~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s123_a32_v2.log`\n\n附带清理：将 GPU 0 上已完成的 `exp_001_eval_15B_d005_s123` / `_v2`（PID 566224，EXIT_CODE=0）从 RUNNING → DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-3b-d100-s123-a32-gpu0.md"
+}

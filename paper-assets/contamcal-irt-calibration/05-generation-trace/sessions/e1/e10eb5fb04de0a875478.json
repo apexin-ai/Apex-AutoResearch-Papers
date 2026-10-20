@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e10eb5fb04de0a875478",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B d100 s123 sft gpu5",
+  "task_key": "worker_ops_3B-d100-s123-sft-gpu5_20260515T001152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-d100-s123-sft-gpu5_20260515T001152_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "9652c1c35b25b4715c5bc551e46572f12b22b62b2bc887f96289a566cbaf09c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，汇总：\n\n| 项 | 值 |\n|---|---|\n| exp_id | `exp_001_sft_3B_d100_s123` |\n| GPU | cuda:5, PID 471296, 14382 MiB |\n| 进度 | 5/4159 steps, ~4.5s/step |\n| 预计耗时 | ~5.2h |\n| 日志 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/train.log` |\n| Registry | RUNNING |\n\nbitsandbytes 的 `libnvJitLink.so.13` 警告不影响训练（已正常出 step）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-d100-s123-sft-gpu5.md"
+}

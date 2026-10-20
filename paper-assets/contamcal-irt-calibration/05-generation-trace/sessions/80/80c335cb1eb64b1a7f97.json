@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c335cb1eb64b1a7f97",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_25.md",
+  "task_key": "loop_25",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_25.md",
+    "occurrence": 1,
+    "bytes": 3819,
+    "sha256": "fa801ceb1c8cdd20e830e847656f4e81e2ba52e08418ff530d23bbb44933f711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-23T03:10:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目分配的 GPU 白名单：cqa1-21977:cuda:0, westd-29999:cuda:0。westd 上 cuda:1/2/3 不在白名单，之前提交到这些卡上的实验是历史遗留\n- westd-29999 网络默认不通（刚确认 `[Errno 101] Network is unreachable`），eval 脚本里 `load_dataset` 会联网。**必须设 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`** 或先 `source /etc/network_turbo`，否则 eval 必挂\n- D215 决策：Falcon3 结果不管好坏直接提交 ARR，不再加内审轮次\n- ARR deadline: May 25（D+4），时间极紧\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 工作目录 `/root/contamcal-irt-calibration/exp001/`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **cqa1-21977**: 1× RTX 4090 D，同样 conda base 环境\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Falcon3-7B-Base`\n- Checkpoint 路径模板：`/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d{dosage}_s42/lora_adapter`\n- evaluate.py：`/root/contamcal-irt-calibration/exp001/evaluate.py`（line 167 调 `load_dataset(\"cais/mmlu\", \"all\", split=\"test\", cache_dir=cache_dir)`）\n- 活跃进程：\n  - `sft_falcon3_7b_d100_s42` — cqa1-21977 cuda:0, PID 666107（SFT 训练）\n  - `sft_falcon3_7b_d050_s42_v2` — westd-29999 cuda:3, PID 600596（SFT 训练）\n- 磁盘：westd 根分区 49% used (427GB free)，cqa1 根分区 95% used ⚠️\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval_falcon3_d000_s42 失败 cron 回调，诊断出网络不通根因，更新了 registry failure_reason。\n\n**RUNNING**:\n- `sft_falcon3_7b_d100_s42` — cqa1-21977，Falcon3 100% dosage SFT\n- `sft_falcon3_7b_d050_s42_v2` — westd-29999，Falcon3 50% dosage SFT（LR bug fix 重跑）\n\n**DONE(failed) 待重试**:\n- `eval_falcon3_d000_s42` — 网络不通，需重试\n- `eval_falcon3_d005_s42` — 同上\n- `eval_falcon3_d025_s42` — 大概率也已失败（同样命令同样服务器），需确认\n\n**等待中**:\n- Worker `worker_fix_eval_falcon3_network_20260522T110905` 正在 SSH 到 westd-29999 诊断网络+缓存状态，等其回调后决定修复方案并重试 eval\n- d050_v2 和 d100 SFT 完成后需要提交对应 eval\n\n### 4. 📋 待办\n- Worker 网络诊断回调 → 根据结果修复 evaluate 命令（加 `HF_DATASETS_OFFLINE=1` 或 `source /etc/network_turbo`）→ 重新提交 d000/d005/d025 三个 eval\n- sft_falcon3_7b_d050_s42_v2 完成回调 → 提交 eval_falcon3_d050_s42\n- sft_falcon3_7b_d100_s42 完成回调 → 提交 eval_falcon3_d100_s42\n- 全部 5 个 dosage (d000/d005/d025/d050/d100) eval 完成 → 汇总 Falcon3 dose-response profile → 判断 taxonomy 分类（Immune/Collapse/V-recovery/Benefit）→ 更新论文 → 按 D215 直接提交 ARR\n\n### 5. 🎯 战略上下文\n- 项目核心：SFT-route benchmark contamination 产生 family-dependent dose-response profiles，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）\n- 已有 6 families 完成：Phi-4(Immune), LLaMA-3(Immune), Qwen-14B(Collapse), Qwen-7B(V-recovery), Gemma-2(Benefit), OLMo-2(Benefit)\n- **Falcon3-7B-Base 是第 7 个 family**，cross-family replication 的关键补充。d000/d005/d025 的 v2 SFT 已 success（LR bug fix 后），d050/d100 还在训练\n- 终稿已经 ready（Round 10 action matrix 全部 resolved，8 页 main text 编译通过），Falcon3 数据是最后拼图\n- **易错点**：westd 网络问题是 AutoDL 常见坑，eval 命令必须带离线环境变量。不要假设网络通。之前所有成功的 eval 要么在网络通的时候跑的，要么数据集已缓存+设了 offline mode\n- **易错点**：cqa1 磁盘 95% 满，提交新实验前必须检查磁盘\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25.md"
+}

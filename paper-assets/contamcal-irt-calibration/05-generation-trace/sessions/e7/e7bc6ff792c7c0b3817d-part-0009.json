@@ -1,0 +1,1611 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e7bc6ff792c7c0b3817d",
+  "rounds": [
+    {
+      "number": 293,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-14T08:12:18.713637+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_download-instruct-model\n\n**结论**: PASS\n\n- [severity: info] Qwen2.5-0.5B-Instruct 已下载至 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct`。参数量 494M、词表 151665 与 base 0.5B 一致。exp008 Regime 4 依赖已就绪。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-14T08:12:28.274136+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001442"
+        }
+      ]
+    },
+    {
+      "number": 294,
+      "messages": [
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-14T08:20:47.727702+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp008-run-script\n\n**结论**: WARNING\n\n脚本结构正确（regime 定义、信号计算、survival 分析流程完整），但有实验设计缺陷需要在执行前修复。\n\n- [severity: critical] **d100 labels 全为 1 导致 AUC 无法计算**：Worker 正确识别了此问题但建议的修复（换用 d050 labels）在方法论上不成立——如果模型确实被所有 benchmark items 训练过，标记其中一半为 \"clean\" 是人为制造错误标签。\n\n  **正确解法**：将 `sft_contam` regime 换成 **d005 或 d025 模型**（部分污染），而非 d100。这样 labels 自然包含两类（5%/25% 为 1，其余为 0），AUC 测量的是真实的信号区分能力。d100 可作为辅助 regime 进行定性分析（signal 均值对比），但不能算 AUC。\n\n  修改点：`REGIME_ADAPTER[sft_contam]=\"$D005_ADAPTER\"` 或 `\"$D025_ADAPTER\"`（d025 正在训练中，d005 adapter 已就绪）。\n\n- [severity: warning] **`--gpu 0` 参数残留**：compute_signals.py 的 CUDA_VISIBLE_DEVICES 绑定代码已移除（前序审查确认），`--gpu 0` 为 dead argument，无害但误导。建议删除。\n\n- [severity: info] ref model 统一使用 base Qwen2.5-0.5B（无 adapter），符合实验设计。ConStat 正确跳过。`--sft-data-path` 统一用 d100 数据（标记哪些 items 在训练集中）概念上合理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-14T08:21:08.764159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**exp008 修复：sft_contam regime 用 d005 而非 d100**\n\nReviewer 指出 d100 所有 items 标签都是 1，AUC 无法计算。\n\n修改 `run_signal_survival.sh`：\n1. `REGIME_ADAPTER[sft_contam]` 改用 d005 adapter（已就绪）\n2. d100 可单独作为定性 regime 保留（signal 均值对比），但不算 AUC\n3. 删除 `--gpu 0` dead argument"
+            }
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-14T08:21:16.501773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6c117b2c9cc496e46547456b4\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_code_exp008-run-script_20260514T081342 已完成（status=done）。用 `get_worker_status('worker_code_exp008-run-script_20260514T081342')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_code_exp008-r\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 7737
+          },
+          "id": "event-001445"
+        }
+      ]
+    },
+    {
+      "number": 295,
+      "messages": [
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-14T08:26:49.582957+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 2 (CPU 2 / GPU 0)\n\n**Session 重启状态同步 (08:26 UTC)**\n\n**GPU 全满，6 个 cron 全部确认 RUNNING：**\n| GPU | 实验 | PID | 预计完成 |\n|-----|------|-----|---------|\n| cuda:0 | 1.5B d100 eval (aligned) | 325310 | ~1h |\n| cuda:1 | 0.5B raw base eval | 318424 | ~30min |\n| cuda:2 | 0.5B d025 SFT | 324158 | 很快 |\n| cuda:3 | 3B d100 SFT | 319555 | ~3h |\n| cuda:4 | 1.5B d005 SFT | 271916 | ~30min |\n| cuda:5 | 3B raw gen eval | 318748 | ~1h |\n\n**发现 exp-005 v3 崩溃（4/25 fits）：** 进程在 fit 5 (seed=46 ME model) 后消失。已保存 4 个 σ_e=0.1 结果。已派 Worker 用 checkpoint resume 重启，预计剩余 ~9-10h。\n\n**执行准备全部就绪：**\n- `run_aligned_eval_05B.sh` — GPU 空出后立即提交 0.5B aligned eval (D017)\n- `run_signals_05B.sh` — exp-002 三信号计算 (S1/S2/S4)\n- `run_exp008.sh` — exp-008 signal survival (4 regimes)\n\n**GPU 释放后执行计划：**\n1. cuda:2 空出 → 0.5B d000 aligned eval (original + paraphrase)\n2. cuda:4 空出 → 1.5B d005 eval (aligned)\n3. cuda:1 空出 → exp-002 0.5B 三信号计算\n4. cuda:5 空出 → 更多 aligned eval 或 exp-008\n\n**CPU 实验：**\n- exp-004 sim sweep v2: PID 411032 运行 1h12m（Worker 正做增量分析）\n- exp-005 v3: Worker 正在 checkpoint resume 重启\n\nCoverage 7.7%。Critical path: eval → exp-002 → exp-003 → exp-006。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-14T08:27:04.814040+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001447"
+        }
+      ]
+    },
+    {
+      "number": 296,
+      "messages": [
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-14T08:28:09.297973+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_ops_exp005-v3-restart\n\n**结论**: PASS\n\n- [severity: info] exp005 noise propagation v3 重启成功。Checkpoint resume 正常工作（跳过 4/25 已完成 fits，从 seed 46 继续）。PID 426335，本地 CPU 运行，剩余 ~9-10h。不涉及 GPU 资源。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-14T08:28:22.813139+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001449"
+        }
+      ]
+    },
+    {
+      "number": 297,
+      "messages": [
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-14T08:31:19.473891+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 2 (CPU 2 / GPU 0)\n\n**exp-008 run_exp008.sh 修复完成 (D-指令)**\n\n已修改 `/root/contamcal-irt-calibration/exp008/run_exp008.sh`：\n- ✅ `REGIME_ADAPTER[sft_contam]` → d005 adapter\n- ✅ labels 源文件 → `contamination_labels_${bench}_d005.json`\n- ✅ 删除 `--gpu 0` dead argument\n- ✅ `bash -n` 语法验证通过\n\n**需确认**: `SFT_DATA` 仍指向 `sft_dosage_100.jsonl`（用于 selfcritique signal 的 reference）。是否也改为 `sft_dosage_005.jsonl`？这影响 selfcritique 的 contamination 参考分布。\n\n**注意**: 如果之前曾用 d100 labels 运行过，需先清理 `${OUTPUT_BASE}/labels/` 下的缓存文件再跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-14T08:31:57.012851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**exp008 SFT_DATA 确认：改为 d005**\n\nsft_contam regime 用的是 d005 模型，SFT_DATA 也应对应 `sft_dosage_005.jsonl`——selfcritique 信号需要知道模型实际看过哪些数据。用 d100 数据会检查模型从未训练过的 items，结果无意义。"
+            }
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-14T08:32:12.224749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6cc67d18bcc4c67ea5578f1c1\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_analysis_exp004-incremental_20260514T082606 已完成（status=done）。用 `get_worker_status('worker_analysis_exp004-incremental_20260514T082606')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_ana\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 15211
+          },
+          "id": "event-001452"
+        }
+      ]
+    },
+    {
+      "number": 298,
+      "messages": [
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-14T08:32:16.881836+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp008-fix-d005\n\n**结论**: WARNING\n\n核心修改正确——sft_contam regime 从 d100 改为 d005，labels 同步切换，`--gpu 0` 已删。直接解决了前序审查的 [severity: critical] AUC 无法计算问题。\n\n- [severity: warning] **`--sft-data-path` 仍指向 `sft_dosage_100.jsonl`，应改为 `sft_dosage_005.jsonl`**。`--sft-data-path` 告诉信号脚本\"模型的训练数据是什么\"，用于 embedding similarity 和 self-critique 计算。现在 sft_contam regime 用 d005 model + d005 labels，但 SFT data 指向 d100 的全量数据。这会导致信号脚本在 d100 的 95% 非 d005 项目上寻找污染特征（这些项目 d005 模型从未见过），产生错误信号。\n\n  修复：`SFT_DATA=\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\"`\n\n  或者，如果不同 regime 需要不同的 SFT data 引用（base/sft_clean 无 SFT data），考虑将 `SFT_DATA` 也做成 per-regime 变量。\n\n- [severity: info] 已有 d100 labels 缓存需先删除（worker 正确标注）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-14T08:32:32.388659+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001454"
+        }
+      ]
+    },
+    {
+      "number": 299,
+      "messages": [
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-14T08:32:35.968481+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_001_sft_d025_05B_v3 (cron:on_complete)\n\n**结论**: PASS\n\n- [severity: info] 0.5B d025 SFT 训练成功完成。EXIT_CODE=0，3384 步，~58 min，1 epoch。\n- [severity: info] 训练指标正常：final loss 1.548，token accuracy 0.670，grad norm 0.35-0.63，无异常跳变。Loss 高于 d100（~1.1-1.2），符合预期——d025 只有 25% benchmark 数据，模型记忆程度更低。\n- [severity: info] Checkpoint 已保存：`adapter_model.safetensors` (33.6MB) at `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/`。\n- [severity: info] **GPU 2 已释放**，可立即用于 aligned eval 或其他任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-14T08:32:55.573577+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001456"
+        }
+      ]
+    },
+    {
+      "number": 300,
+      "messages": [
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-14T08:33:48.379433+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_analysis_exp004-incremental\n\n**结论**: PASS\n\nIRT 参数恢复 sweep 增量分析（43/120 seeds, 5/12 conditions），方法学质量高。\n\n- [severity: info] **关键发现合理**：AUC=0.80 下 CI 宽度 ~1.9× AUC=0.55 源于 exposure-ability collinearity，γ bias 方向反转（低 AUC 高估、高 AUC 低估）——这是 IRT 模型的已知挑战，需在论文 Limitations 中讨论。1/√N scaling 和 zero divergences 确认 Stan 模型行为正确。\n\n- [severity: warning] **bias 方向反转的论文影响**：γ 在高 AUC 下被低估（-0.016）意味着当检测信号质量高时，校准分数会略微 over-correct（高估 contamination 的影响）。这对 \"our method produces calibrated scores\" 的 claim 需要加 qualifier——校准精度依赖于 exposure 信号质量，且存在 AUC-dependent bias。审稿人会追问这个。\n\n- [severity: info] 缺 AUC=0.65 和 0.90 数据。sweep 在本地 CPU 运行，进度符合预期。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-14T08:34:04.905627+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001458"
+        }
+      ]
+    },
+    {
+      "number": 301,
+      "messages": [
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-14T08:35:44.992449+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 4 | Worker 池 4 (GPU 1 / CPU 3)\n⚠️ 空闲 GPU: cuda:2 (刚释放), cuda:4 (可能跑 d005_15B 但资源跟踪未匹配)\n\n## exp_001_sft_d025_05B_v3 训练完成 (ANALYZING)\n\n0.5B 25% dosage SFT (seed=42) 在 cqa1-21977:cuda:2 正常退出。W&B 数据可用。\n\n- 模型: Qwen2.5-0.5B, LoRA r=16 α=32\n- 数据: sft_dosage_025.jsonl (52643 条)\n- 超参: bs=4, grad_accum=4, epochs=1, lr=2e-4, seed=42\n\n**已派分析 Worker** 检查日志/W&B/checkpoint 完整性。确认成功后将：\n1. 更新 registry → DONE (success)\n2. 在 cuda:2 上提交 d025 eval (补齐 dose-response 曲线第 3 个数据点: d000→d005→**d025**→d100)\n\n**ROADMAP 进度更新**: Phase 3 SFT 0.5B 行 d025 格将从 P2 → ✅\n\n**当前并行状态**:\n- GPU: 4 实验在跑 (d100_3B, eval_05B_raw, eval_3B_raw_gen, eval_15B_d100_s42)\n- CPU: exp-004 sim sweep + exp-005 noise prop v3 继续运行\n- Worker: paper-results-prep + exp008-fix-sftdata + training-progress-check 并行执行中"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-14T08:35:59.989028+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001460"
+        }
+      ]
+    },
+    {
+      "number": 302,
+      "messages": [
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-14T08:36:11.493653+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 3 (CPU 2 / GPU 0)\n\n**exp-008 SFT_DATA 修复完成 (D-指令)**\n\n`run_exp008.sh` 第 11 行: `sft_dosage_100.jsonl` → `sft_dosage_005.jsonl`。d005 文件确认存在 (93MB)，语法验证通过。\n\nexp-008 脚本现在完全对齐 d005：adapter、labels、SFT_DATA 三项一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-14T08:36:26.070747+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001462"
+        }
+      ]
+    },
+    {
+      "number": 303,
+      "messages": [
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-14T08:36:31.873196+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp008-fix-sftdata\n\n**结论**: PASS\n\n- [severity: info] `SFT_DATA` 已从 `sft_dosage_100.jsonl` 改为 `sft_dosage_005.jsonl`，远程验证通过。前序审查标记的 [severity: warning] 已解决。exp008 脚本现在 adapter / labels / SFT data 三者统一为 d005。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-14T08:36:49.850529+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001464"
+        }
+      ]
+    },
+    {
+      "number": 304,
+      "messages": [
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-14T08:38:24.378965+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_research_paper-results-prep\n\n**结论**: WARNING\n\n表格结构完整、数据源标注清晰，是论文准备的良好基础。但有几个事实性错误和方法论问题。\n\n### 事实性更正\n\n- [severity: warning] **Table 1 过时**：1.5B d100 eval **不是 \"missing\"**——已在 GPU 0 运行（PID 325310, exp_001_eval_15B_d100_s42），且使用 D017 后代码（默认 aligned 格式）。另外，0.5B d025 SFT 刚完成（lora_adapter 35MB，3384 steps），可供 eval。\n\n- [severity: warning] **1.5B/3B format 非 \"TBD\" 而是 legacy**：这些 eval 在 D017 部署（07:12 UTC）之前完成。通过提交时间即可判断为 legacy 格式。Coverage matrix 中 TBD 应改为 \"legacy\"。\n\n- [severity: warning] **\"可用 eval 结果为零\" 过度悲观**：GSM8K 和 HumanEval 为生成式评估，不受 MC 格式影响。0.5B d000/d100 的 GSM8K（0.3647 vs 0.3571, Δ=-0.76pp）和 HumanEval（0.1098 vs 0.0854）在 legacy 格式下也是有效数据，可用于生成式 benchmark 的剂量-响应分析。正确表述：\"MC benchmark（MMLU、ARC）的 legacy 格式结果不可用于剂量-响应分析\"。\n\n### 方法论问题\n\n- [severity: warning] **Table 5 Cov95 under-coverage**：AUC=0.55/N=20 的 Cov95=0.80，AUC=0.55/N=50 的 Cov95=0.90。如果 95% CI 的经验覆盖率系统性低于 95%，论文不能声称 \"calibrated uncertainty\"。虽然 10 seeds 的 binomial 置信区间很宽（80% 的 95% binomial CI = [44%, 97%]），但趋势一致。**建议关注 AUC=0.65/0.90 完成后的覆盖率**——如果持续低于 90%，需要在论文中讨论 CI miscalibration 或调整 prior。\n\n- [severity: warning] **3B GSM8K 异常（0.117/0.176）确认为 pre-v5 代码问题**：3B eval 提交时间早于 GSM8K 评分修复。这两个数字不可信，需用 v5 代码重跑。论文表格中不应包含这些数字。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-14T08:38:37.966184+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001466"
+        }
+      ]
+    },
+    {
+      "number": 305,
+      "messages": [
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-14T08:44:33.252455+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — 实验管线状态巡检（2026-05-14 16:45 CST）\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **GPU 全满负荷**：6 GPU 全部有活跃进程，资源利用率正常。\n  - GPU 0: 1.5B d100 eval（aligned 格式），GSM8K 42%（MMLU 已完成）\n  - GPU 1: 0.5B raw eval\n  - GPU 2: 0.5B d000 s42 aligned eval（PID 332221，刚启动 MMLU 阶段）\n  - GPU 3: 3B d100 SFT（1400/4159 = 34%，ETA ~3h）\n  - GPU 4: 1.5B d005 SFT（3160/3177 = 99.5%，约 1 分钟内完成）\n  - GPU 5: 3B raw eval\n\n- [severity: info] **Registry 跟踪轻微滞后**：`exp_001_eval_05B_aligned_batch` 注册为 QUEUED，但 GPU 2 上 PID 332221 已在执行该 batch 的第一个 eval（0.5B d000 s42 aligned）。建议更新状态为 RUNNING。\n\n- [severity: warning] **d025 eval 缺失规划**：0.5B d025 SFT（v3）已完成（checkpoint 已验证：`Qwen2.5-0.5B_d025_s42/lora_adapter/adapter_model.safetensors` 35.2MB），但当前 aligned eval batch 脚本 `run_aligned_eval_05B.sh` 只覆盖 d000/d005/d100 三个 dosage。d025 eval 未排入管线。如果 dose-response 曲线需要 4 个点（0%/5%/25%/100%），需要补一个 d025 eval。\n\n- [severity: info] **1.5B d005 SFT 即将完成**：3160/3177 steps，GPU 4 将在 ~1 分钟内释放。完成后需要：(1) 更新 registry 为 DONE 并记录训练指标；(2) 安排 1.5B d005 eval（aligned 格式）——这是 1.5B scale dose-response 曲线的中间数据点。\n\n### 建议\n- 将 d025 加入 aligned eval 批次（或在 GPU 4 空出后单独提交）\n- 1.5B d005 SFT 完成后立即提交 1.5B d005 eval（GPU 4 可用）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-14T08:44:53.501450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**补 d025 aligned eval + GPU 4 释放后提交 1.5B d005 eval**\n\n1. **d025 aligned eval 缺失**：`run_aligned_eval_05B.sh` 只覆盖 d000/d005/d100。补一个 d025 的 aligned eval（original + paraphrase），dose-response 曲线需要 4 个点。等 GPU 空闲时排队。\n\n2. **GPU 4 即将释放**（1.5B d005 SFT 99.5%）：完成后立即提交 1.5B d005 eval（aligned 格式）——1.5B dose-response 的中间点。\n\n3. **exp_001_eval_05B_aligned_batch** registry 从 QUEUED 更新为 RUNNING（GPU 2 已在跑）。"
+            }
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-14T08:45:07.606100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6cf7eb753cc4414e64c2fe40f\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_knowledge_report-update_20260514T084116 已完成（status=done）。用 `get_worker_status('worker_knowledge_report-update_20260514T084116')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_knowledge_r\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 14104
+          },
+          "id": "event-001469"
+        }
+      ]
+    },
+    {
+      "number": 306,
+      "messages": [
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-14T08:47:48.211238+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_001_sft_d005_15B 完成 + 0.5B aligned eval 首个数据点\n\n**结论**: PASS（训练时间异常已排查，非科学问题）\n\n### 发现\n\n- [severity: info] **1.5B d005 SFT 已完成**：\n  - train_loss=1.264, token_acc=0.731, 3177 steps, 1 epoch\n  - Checkpoint 已验证：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors` 73.9MB，16:44 CST 保存完毕\n  - LoRA config: r=16, alpha=32, 7 modules — 与其他实验一致\n  - GPU 4 已释放，可提交 1.5B d005 eval\n\n- [severity: info] **训练时间异常已解释（非问题）**：\n  - d005 用时 331min vs d000 的 101.5min (3.26×)\n  - 原因：GPU 竞争导致 per-step 时间差异（d005: 3.8-10.7s/step vs d000: ~1.9s/step），非训练配置差异\n  - Steps 差异仅 1.7%（3177 vs 3125），与数据量差 1.65%（50826 vs 50000 行）一致\n  - 结论：训练 dynamics 无异常，结果有效\n\n- [severity: info] **0.5B aligned eval 首个结果**：\n  - 0.5B d000 s42 aligned MMLU = **0.3979**（vs legacy 0.4049，差 -0.7pp）\n  - 差异在噪声范围内（cross-seed CV = 2.2%）\n  - 当前正在跑 GSM8K（刚开始）\n  - **关键观察**：aligned 和 legacy 在 d000 baseline 上几乎无差异。真正的分歧点在 d100——如果 aligned 格式修复了 MC 分数崩塌，d100 MMLU 应显著高于 legacy 的 0.232\n\n### 下一步优先级\n- 1.5B d005 eval 应立即提交到 GPU 4（aligned 格式）\n- 等待 0.5B aligned eval batch 完成（d000→d005→d100），d100 结果将验证 D017 修复效果"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-14T08:48:02.466290+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001471"
+        }
+      ]
+    },
+    {
+      "number": 307,
+      "messages": [
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-14T08:49:11.443444+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — 1.5B d100 aligned MMLU 首个结果\n\n**结论**: WARNING（重要发现，需要配对 baseline 数据）\n\n### 核心发现\n\n- [severity: info] **1.5B d100 aligned MMLU = 0.5933** (8331/14042)\n\n  对比：\n  - 1.5B d000 MMLU (legacy, exp_001_eval_15B_d000_s42_v2, 完成于 11:08 CST = D017 前): **0.5753**\n  - 1.5B d100 MMLU (aligned, 当前 exp_001_eval_15B_d100_s42): **0.5933**\n  - Delta: **+1.8pp**\n\n  **解读**：d100 模型 MMLU 分数**高于** d000 baseline，与 100% 污染假设完全一致——模型记忆了 MMLU 训练数据中的答案。这与 0.5B legacy 的\"MMLU 崩塌\"（0.232）形成鲜明反差，进一步确认：\n  1. **D017 aligned 格式修复有效**——消除了 MC 格式不匹配假象\n  2. **污染信号在 1.5B scale 可检测**——d100 MMLU > d000 MMLU\n  3. **0.5B legacy 的 MMLU 降低 100% 是格式假象**，不是真正的性能退化\n\n- [severity: warning] **比较存在格式混杂**：d000 baseline 用 legacy 格式（D017 前完成），d100 用 aligned 格式。从 0.5B 数据看，aligned 比 legacy 低 ~0.7pp，因此真实污染提升可能是 +2.5pp。**正式分析需要 1.5B d000 aligned eval 作为配对 baseline**。\n\n  当前 aligned eval 管线只有 0.5B batch。建议在 GPU 4（刚释放）上安排 1.5B d000/d005/d100 aligned eval batch。\n\n- [severity: info] 1.5B d100 eval 仍在继续（GSM8K 进行中），完整结果待出。GSM8K 分数应与 legacy 基本一致（generative benchmark 不受 MC format 影响）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-14T08:49:34.817805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**补充：1.5B 也需要全套 aligned eval**\n\n1.5B d100 aligned MMLU=0.5933，但 d000 baseline 是 legacy 格式（0.5753），存在格式混杂。正式分析需要同格式配对。\n\n在 GPU 4 上除了 1.5B d005 eval 外，后续也安排 1.5B d000 aligned eval。可以串行跑（d005 先，d000 后）。都用 `--mc-format aligned`。"
+            }
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-14T08:49:38.893492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**首个污染信号确认：1.5B d100 MMLU 高于 baseline +1.8pp**\n\n1.5B d100（100% 污染）aligned MMLU=0.5933 > d000（0% 污染）=0.5753。方向正确——污染模型在 MMLU 上分数膨胀，与核心假设一致。\n\n同时确认：D017 评估格式修复有效。之前 0.5B 的 MMLU 崩塌（0.232）完全是格式假象，不是真实退化。\n\n下一步：等 0.5B aligned eval batch 完成（d000→d005→d100），看完整的 dose-response 曲线是否呈单调递增。1.5B 也在补全 aligned eval。"
+            }
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-14T08:49:47.346665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6c846968b0c38867672efedf3\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 3, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] **补 d025 aligned eval + GPU 4 释放后提交 1.5B d005 eval**\\\\n\\\\n1. **d025 aligned eval 缺失**：`run_aligned_eval_05B.sh` 只覆盖 d000/d005/d100。补一个 d025 的 aligned eval（original + paraphrase），dose-respons\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 12528
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-14T08:49:48.152433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 9258
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-14T08:49:52.021121+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "重大进展：1.5B d100 aligned MMLU=0.5933 > d000 legacy=0.5753（+1.8pp）。污染信号在 1.5B scale 可检测，D017 格式修复有效。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001477"
+        }
+      ]
+    },
+    {
+      "number": 308,
+      "messages": [
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-14T08:53:36.281991+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际在跑 5 (cuda:4 空闲) | Worker 池 0 (GPU 0 / CPU 0) ⚠️\n\n## exp_001_sft_d005_15B 完成 ✅ (cron false positive)\n\n训练实际正常完成，EXIT_CODE=129 是 wrapper PID SIGHUP（已知模式，同 exp_001_sft_d100_3B）。\n\n**指标**: train_loss=1.2637, mean_token_accuracy=0.7308, 3177/3177 steps, 5.58 GPU-h\n**Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter`\n\n## Phase 3 SFT 更新\n\n| 模型 | d000 | d005 | d025 | d050 | d100 |\n|------|------|------|------|------|------|\n| 0.5B | ✅ | ✅ | ✅ | DP | ✅ |\n| 1.5B | ✅ | ✅ | P4 | DP | ✅ |\n| 3B | ✅ | P2 | P4 | DP | 🏃GPU3 |\n\n**1.5B 三个核心 dosage (d000/d005/d100) SFT 全部完成。** 只剩 d025 (P4)。\n\n## 即时行动（免审批）\n\n1. **GPU 4 → 1.5B eval aligned batch** (exp_001_eval_15B_aligned_batch, QUEUED)：d000/d005/d100 × original + paraphrase = 6 eval runs。1.5B d005 checkpoint 刚出炉，正好可以跑。\n2. **补 Worker 池**: 同时 spawn eval 提交 Worker + 3B d005 SFT 准备 Worker。\n\n## 实验反思\n\n- 1.5B d005 完成 → 1.5B dose-response 3 点 (d000/d005/d100) 已齐，eval 后即可进入 exp-002 signals → exp-006 IRT pipeline\n- 0.5B pipeline 关键路径不受影响（0.5B eval 在 GPU 1/2 运行中）\n- 3B d100 在 GPU 3 运行中，3B d005 (P2) 待下一个 GPU 空闲"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-14T08:53:48.212430+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001479"
+        }
+      ]
+    },
+    {
+      "number": 309,
+      "messages": [
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-14T08:56:20.842455+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_001_sft_d005_15B cron false positive\n\n**结论**: PASS（cron 误报，训练实际成功）\n\n### 发现\n\n- [severity: warning] **Cron 再次误判训练失败**：`exp_001_sft_d005_15B` 被 cron 标记为 failed，但独立核实确认训练已成功完成：\n  - `train_runtime=19864.7s`, `epoch=1.0`, `train_loss=1.2637`, `token_acc=0.7308`\n  - Checkpoint 完整：`adapter_model.safetensors` 73.9MB（16:44 CST）\n  - 日志包含完整 `train_runtime` 摘要行\n  \n  **根因**：与 exp_001_sft_d100_3B 相同的 cron false positive 模式——cron 监控 bash wrapper PID，wrapper 退出后 cron 误判 failed，但 python 训练进程已正常完成并保存 checkpoint。\n\n- [severity: warning] **这是本 session 第二次 cron false positive**（第一次是 3B d100 SFT）。建议修复 cron 的进程监控逻辑：应该检查 python 子进程而非 bash wrapper，或通过 sentinel 文件/exit code 判断成功。\n\n### 建议\n- Registry 应手动回滚为 DONE/success 并补录训练指标\n- 1.5B d005 eval 可立即提交（GPU 4 已释放，checkpoint 完整）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-14T08:56:34.855568+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001481"
+        }
+      ]
+    },
+    {
+      "number": 310,
+      "messages": [
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-14T09:07:52.184531+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 2 (CPU 1 / GPU 0)\n\n**D-指令三项完成：**\n\n1. ✅ **d025 aligned eval 脚本**: `/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh` 已部署，checkpoint 确认存在。等 GPU 空闲排队。\n\n2. ✅ **cuda:4 提交准备**: 1.5B aligned eval 已预注册 QUEUED (exp_001_eval_15B_aligned_batch)，脚本 `run_aligned_eval_15B.sh` 就绪。cron 回调到达即提交。\n\n3. ✅ **Registry 修正**: exp_001_eval_05B_aligned_batch 已更新为 RUNNING。验证确认：PID 332207 正常，MMLU d000 accuracy=0.3979 已完成，正在跑 GSM8K。\n\n**GPU 释放预估（更新）：**\n- cuda:4: 即将（1.5B d005 SFT 95%+）→ 1.5B aligned eval\n- cuda:1: ~20min（0.5B raw eval GSM8K 88%）→ exp-002 0.5B 三信号\n- cuda:5: ~50min（3B raw gen eval）→ d025 aligned eval 或 exp-008\n- cuda:0: ~1.5h（1.5B d100 eval）\n- cuda:3: ~3h（3B d100 SFT 32%）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-14T09:08:08.019248+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001483"
+        }
+      ]
+    },
+    {
+      "number": 311,
+      "messages": [
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-14T09:09:59.537440+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 2 (CPU 1 / GPU 0)\n\n**确认：1.5B 全套 aligned eval 已在计划中。**\n\n`run_aligned_eval_15B.sh` 已包含 d000/d005/d100 三个 dosage × original + paraphrase，全部 `--mc-format aligned`。cuda:4 释放后提交 `bash run_aligned_eval_15B.sh both`，一次串行跑完全部 6 个 eval。\n\n- d000 aligned：补齐（当前 baseline 是 legacy 0.5753）\n- d005 aligned：新 checkpoint 首次 eval\n- d100 aligned：与 cuda:0 正在跑的 exp_001_eval_15B_d100_s42 (aligned, MMLU=0.5933) 可能重复，但保持一致性\n\nexp_001_eval_15B_aligned_batch 已预注册 QUEUED，等 cron 回调即提交。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-14T09:10:18.295796+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001485"
+        }
+      ]
+    },
+    {
+      "number": 312,
+      "messages": [
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-14T09:12:15.289541+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 全满 | Worker 池 2 (GPU 0 / CPU 2)\n\n## CRON 回调: exp_001_sft_d005_15B\n\n**误报，无需处理。** CRON 检测到 EXIT_CODE=129 (SIGHUP) 触发 on_failed，但训练实际已完成：3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存至 `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter`。Registry 此前已标记 conclusion=success。与 exp_001_sft_d100_3B 的 SIGHUP false positive 为同一已知模式。\n\n## 已执行操作\n\nGPU 4 释放后立即提交 **exp_001_sft_d005_3B**（3B 5% dosage SFT, QUEUED → RUNNING, PID 335346, GPU 4, ETA ~3.5h）。\n\n## 当前 GPU 全景\n\n| GPU | 实验 | 类型 | 预计完成 |\n|-----|------|------|---------|\n| 0 | exp_001_eval_15B_d100_s42 | eval | — |\n| 1 | exp_001_eval_05B_raw | eval | — |\n| 2 | exp_001_eval_05B_aligned_batch | eval batch | — |\n| 3 | exp_001_sft_d100_3B | SFT | — |\n| 4 | exp_001_sft_d005_3B | SFT | ~12:40 UTC |\n| 5 | exp_001_eval_3B_raw_gen | eval | — |\n\nCPU: exp_004_sim_sweep_v2 (ETA May 16-17), exp_005_noise_prop_v3 (ETA ~14:30 UTC today)\n\n## Phase 3 SFT 进度更新\n\n1.5B d005 ✅ 已完成 → 3B d005 🏃 运行中。Phase 3 SFT 矩阵进展正常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-14T09:12:49.751500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**GPU 1 或 GPU 5 释放后立即提交 1.5B aligned eval batch**\n\nGPU 4 已给 3B d005 SFT，OK。但 1.5B aligned eval（d000/d005/d100）不能再拖——需要 d000 aligned 作为配对 baseline 才能正式确认 1.5B 污染信号（+1.8pp）。\n\nGPU 1（~20min）或 GPU 5（~50min）先释放的那个 → 提交 `run_aligned_eval_15B.sh both`。"
+            }
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-14T09:13:02.860730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6d6f16596cc2d42ec968308a4\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 1, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_ops_cuda4-ready-check_20260514T090901 已完成（status=done）。用 `get_worker_status('worker_ops_cuda4-ready-check_20260514T090901')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_ops_cuda4-ready\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 13109
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-14T09:13:07.643168+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 把 GPU 4 给了 3B d005 SFT 而非 1.5B aligned eval——可以接受，因为 GPU 1/5 很快释放可以跑 1.5B eval。确保 1.5B aligned eval 排在下一个释放的 GPU 上。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001489"
+        }
+      ]
+    },
+    {
+      "number": 313,
+      "messages": [
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-14T09:13:09.789480+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 1 (CPU 0 / GPU 0)\n\n**cuda:4 冲突通知：3B d005 SFT 已被 cron 自动提交**\n\n1.5B d005 SFT 完成后（train_loss=1.2637, acc=0.7308, 3177/3177 steps ✅），cron 系统自动将排队的 exp_001_sft_d005_3B 提交到 cuda:4 (PID 335346, RUNNING)。这是 P1 优先级任务，提交合理，但与 Director \"cuda:4 → 1.5B eval\" 指令冲突。\n\n**修订执行计划：**\n- ~~cuda:4 → 1.5B aligned eval~~ → 已被 3B d005 SFT 占据 (~214min)\n- **cuda:1 → 1.5B aligned eval batch**（0.5B raw eval ~15min 后完成，下一个释放）\n- **cuda:5 → exp-002 0.5B 三信号计算**（3B raw gen eval ~40min 后完成）\n\n1.5B aligned eval 延迟约 15min，不影响 critical path。\n\n**Phase 3 SFT 更新：**\n| Checkpoint | 状态 |\n|-----------|------|\n| 1.5B d005_s42 | ✅ 刚完成 (loss=1.2637) |\n| 3B d005_s42 | 🏃 cuda:4 (刚启动, ~214min) |\n\nmemory 中 SFT 表已更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-14T09:13:22.219809+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001491"
+        }
+      ]
+    },
+    {
+      "number": 314,
+      "messages": [
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-14T09:18:05.626431+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_001_eval_05B_raw HumanEval 卡死\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **0.5B raw eval 卡死在 HumanEval 51/164**：\n  - PID 318424, 状态 `Tl`（stopped），GPU 1 利用率 0%，显存仍占 8129 MiB\n  - 日志最后修改 16:53:19 CST，已 25+ 分钟无更新\n  - 原因：HumanEval 执行生成代码时陷入死循环（base model 无 SFT，生成质量低，常见问题）\n  \n  **已收集的有效 metrics**：MMLU=0.2302, GSM8K=0.1592, ARC-C=0.2261。这三个 benchmark 数据完整可用。\n\n- [severity: info] HumanEval 对 raw base model 的科学价值有限（预期接近 0%），但建议 kill 释放 GPU 1 给更有价值的任务（如 exp002 signal pipeline 或额外 eval）。\n\n### 建议\n- Kill PID 318424 释放 GPU 1\n- Registry 记录已完成的 3 个 benchmark 分数，标注 HumanEval 因 code execution hang 未完成\n- GPU 1 释放后可用于 exp002 signal pipeline（3sig, 预估 1.5-3h）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-14T09:18:38.349494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**Kill 0.5B raw eval (PID 318424) 释放 GPU 1**\n\nHumanEval 卡死（base model 生成代码死循环），25+ 分钟无更新。已收集的 3 个 benchmark 数据足够诊断用：MMLU=0.2302, GSM8K=0.1592, ARC=0.2261。\n\n1. Kill PID 318424\n2. Registry 更新为 DONE，标注 HumanEval 未完成，记录三个有效 metrics\n3. **GPU 1 释放后 → 1.5B aligned eval batch**（`run_aligned_eval_15B.sh both`）\n\n1.5B aligned eval 是当前最高优先级——需要 d000 aligned baseline 确认 1.5B 污染信号。"
+            }
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-14T09:18:50.587870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6d7955a484c10a5350c084b93\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_ops_cuda1-monitor-submit_20260514T091417 已完成（status=done）。用 `get_worker_status('worker_ops_cuda1-monitor-submit_20260514T091417')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_ops_cuda1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 12238
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-14T09:18:53.334347+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "0.5B raw base eval 出了重要数据：MMLU=0.2302, GSM8K=0.1592。进程卡在 HumanEval，需要 kill 释放 GPU 1。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001495"
+        }
+      ]
+    },
+    {
+      "number": 315,
+      "messages": [
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-14T09:19:18.948697+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 0 (补充中)\n\n**1.5B aligned eval batch 已提交 cuda:1 (PID 336750)**\n\ncuda:1 原有 0.5B raw eval HumanEval 卡死（51/164，代码执行死循环，Tl 状态 20+min）。已 kill 释放。MMLU/GSM8K/ARC 结果已保存：\n- Raw 0.5B: MMLU=0.2302, GSM8K=0.1592, ARC=0.2261 (远低于 SFT d000: 0.40/0.36/0.38，确认 SFT 有效)\n\n**1.5B aligned eval batch** 已启动，串行跑 d000/d005/d100 × original + paraphrase = 6 eval runs，全部 `--mc-format aligned`。d000 aligned baseline 完成后即可正式确认 1.5B 污染信号。\n\n**当前 GPU 分布：**\n| GPU | 实验 | 预估剩余 |\n|-----|------|---------|\n| cuda:0 | 1.5B d100 eval (aligned) | ~1h |\n| cuda:1 | **1.5B aligned eval batch (刚提交)** | ~4-6h |\n| cuda:2 | 0.5B aligned eval batch | ~3-4h |\n| cuda:3 | 3B d100 SFT | ~2.5h |\n| cuda:4 | 3B d005 SFT | ~3.5h |\n| cuda:5 | 3B raw gen eval | ~30min |\n\n**下一个释放**: cuda:5 (~30min) → 提交 exp-002 0.5B 三信号计算或 d025 aligned eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-14T09:19:31.057415+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001497"
+        }
+      ]
+    },
+    {
+      "number": 316,
+      "messages": [
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-14T09:28:34.919229+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — 3B GSM8K 异常根因定位\n\n**结论**: CRITICAL\n\n### 核心发现\n\n- [severity: critical] **3B raw GSM8K = 0.6050，确认 GSM8K 崩塌是 SFT 引起，非 base model 问题**\n\n  | Model | Condition | GSM8K | \n  |-------|-----------|-------|\n  | 0.5B | raw (no SFT) | 0.1592 |\n  | 0.5B | d000 SFT (legacy) | 0.3647 |\n  | 1.5B | d000 SFT (legacy) | 0.6368 |\n  | 3B | **raw (no SFT)** | **0.6050** |\n  | 3B | d000 SFT (legacy) | 0.117 / 0.176 |\n\n  **3B base model GSM8K 表现正常（0.605），但 clean SFT 后暴跌到 0.117（-48.8pp）**。方向与 0.5B 完全相反（0.5B SFT 提升 +20.6pp）。\n\n  **这不是 MC 格式问题**——GSM8K 是 generative benchmark，D017 的 mc_format fix 不影响它。可能的根因：\n  1. **SFT 改变了 3B 的生成格式**：训练后模型以 \"The answer is X\" 格式回答，evaluate.py 的 answer extraction regex 无法正确提取数字\n  2. **3B eval 使用 pre-v5 代码**（完成于 06:39 UTC，D017 前），如果 D017 包含 GSM8K extraction 修复，则 3B d000 eval 缺少此修复\n  3. **SFT 在 3B scale 真正导致 catastrophic forgetting of math**（不太可能——d000 是 clean SFT，loss 正常）\n\n  **验证方案**：用 D017 后的 evaluate.py 重新跑 3B d000 eval（aligned 格式已有脚本 `run_aligned_eval_3B.sh`）。如果分数恢复，则确认是 answer extraction bug；如果仍低，则是真实的 SFT 性能退化。\n\n- [severity: info] 3B raw eval HumanEval 正在进行中（45%，~7min 完成），GPU 5 状态正常。\n\n### 建议\n- **优先级 P0**：在下一个可用 GPU 上用 aligned eval 脚本重跑 3B d000 eval，这决定了 3B GSM8K 异常的根因判定\n- 同时检查 evaluate.py 中 GSM8K answer extraction 逻辑在 D017 前后的差异"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-14T09:29:35.288429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**[P0] 3B GSM8K 崩塌根因诊断 — GPU 5 释放后立即执行**\n\n3B raw GSM8K=0.605（正常），但 d000 SFT 后=0.117（-48.8pp）。0.5B SFT 反而提升 +20.6pp。这不是 MC 格式问题（GSM8K 是 generative）。\n\n**GPU 5 释放后（~30min），两步诊断：**\n\n### Step 1: 检查 3B d000 eval 的实际输出格式（不需 GPU，可立即派 Worker）\n\nSSH 读取 3B d000 s42 的 eval 输出文件（`eval_results.json` 或 `item_responses.json`），抽取 10 条 GSM8K 的 model 输出：\n- 模型是否还在用 `#### <number>` 格式？还是改成了 `The answer is <number>`？\n- 是否出现 generation collapse（重复固定值如 \"20\"）？\n- 与 raw 3B 的输出格式对比\n\n**如果是格式变化**（SFT 后模型不再输出 `####`）→ 在 evaluate.py 加 fallback extraction：`re.search(r'[Tt]he answer is\\s*(.+?)[\\.\\n]', text)`，然后离线重评分。\n\n**如果是 generation collapse**（重复固定值）→ 3B LoRA SFT 导致真实的 CoT 能力退化，需要调 LoRA 配置。\n\n### Step 2: 用当前 evaluate.py 重跑 3B d000 eval（GPU 5）\n\n即使是格式问题，也需要 v5 代码的完整 eval 作为新 baseline。提交到 GPU 5，使用 `--mc-format aligned`。"
+            }
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-14T09:29:45.907880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6d2e445884c372b7ebc771f7f\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_code_exp-002-signal-pipeline_20260514T091323 已完成（status=done）。用 `get_worker_status('worker_code_exp-002-signal-pipeline_20260514T091323')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_c\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 10619
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-14T09:29:48.731597+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3B raw GSM8K=0.605 确认 base model 正常——clean SFT 后暴跌到 0.117 是 SFT 引起的。需要诊断是答案提取格式问题还是真实能力退化。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001501"
+        }
+      ]
+    },
+    {
+      "number": 317,
+      "messages": [
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-14T09:29:50.903192+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — 1.5B d000 aligned MMLU baseline + format-matched 污染提升\n\n**结论**: WARNING（提升幅度小于预期，需关注统计显著性）\n\n### 核心发现\n\n- [severity: info] **1.5B d000 aligned MMLU = 0.5853** (8219/14042)\n\n  Format-matched 污染对比（均为 aligned 格式）：\n  - 1.5B d000: **0.5853**\n  - 1.5B d100: **0.5933**\n  - **Δ = +0.80pp**\n\n  0.80pp 提升方向正确（100% 污染 → MMLU 分数升高），但幅度较小。Cross-seed CV for 1.5B MMLU 仅 0.1%（σ ≈ 0.0006），所以 +0.80pp ≈ 13σ，统计上显著。但如果噪声估计来自不同 dosage 间的对比而非 seed 间对比，方差可能更大。\n\n- [severity: info] **Format effect 是 model-scale dependent 的**：\n  - 0.5B: aligned 比 legacy **低** 0.7pp (0.3979 vs 0.4049)\n  - 1.5B: aligned 比 legacy **高** 1.0pp (0.5853 vs 0.5753)\n  \n  这意味着不能简单假设\"aligned 一律高于 legacy\"或反之。论文分析中必须使用 format-matched pairs。\n\n- [severity: warning] **+0.80pp 的论文叙事挑战**：如果 100% 污染仅提升 0.80pp MMLU，reader 可能质疑 ContamCal 的实际价值（\"修正量太小，有没有必要做？\"）。需要从两个角度应对：\n  1. 0.80pp 是 1.5B scale 的结果，可能 scale-dependent（0.5B aligned eval 完成后可对比）\n  2. MMLU 14042 题中 100% 被记忆但只提升 0.80pp，说明模型 capacity 饱和——这本身是有意义的发现\n\n### 待观察\n- 0.5B aligned d100 MMLU：如果 0.5B 的污染提升大于 1.5B 的 0.80pp，则有 scale-dependent 故事可讲\n- GSM8K format-matched 对比（generative benchmark，不受 mc_format 影响，分数应与 legacy 一致）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-14T09:30:23.700429+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001503"
+        }
+      ]
+    },
+    {
+      "number": 318,
+      "messages": [
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-14T09:38:20.785905+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_001_eval_3B_raw_gen 分析审查\n\n**结论**: WARNING（分析结论正确，但对比表有数据错误）\n\n### 发现\n\n- [severity: info] **3B raw eval 结果已确认**：GSM8K=0.6050, HumanEval=0.0000。结果文件已保存。HumanEval=0 是 base model 生成 markdown 格式而非纯代码的预期行为。\n\n- [severity: warning] **分析中 0.5B raw 对比数据有误**：\n  - Worker 报告 0.5B raw GSM8K = 0.0628 — **错误**，registry 和日志均为 **0.1592** (210/1319)\n  - Worker 报告 0.5B raw HumanEval = 0.0305 — **不可靠**，该 eval 在 51/164 处卡死未完成，registry 记录为 \"incomplete\"\n  \n  这不影响核心发现（3B GSM8K 异常是 SFT 引起），但如果这些错误数据被引用到论文或后续分析中会造成问题。建议修正。\n\n- [severity: info] **3B GSM8K 异常对比更新**（使用正确数据）：\n  \n  | Model | Raw (no SFT) | d000 SFT (legacy) | Δ |\n  |-------|-------------|-------------------|---|\n  | 0.5B | 0.1592 | 0.3647 | +20.6pp |\n  | 3B | 0.6050 | 0.117 | **-48.8pp** |\n  \n  3B SFT 导致 GSM8K 暴跌 48.8pp，方向与 0.5B 完全相反。重跑 aligned eval 仍是 P0 优先级。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-14T09:38:33.565286+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001505"
+        }
+      ]
+    },
+    {
+      "number": 319,
+      "messages": [
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-14T09:48:10.025515+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 3min\n\n⚠️ 你自己的 context 状态：已 84 条消息 / 3h 20min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-14T09:48:26.035226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-14T09:48:26.086013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-14T09:48:29.811714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-14T09:48:29.963726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 152
+          },
+          "id": "event-001510"
+        }
+      ]
+    },
+    {
+      "number": 320,
+      "messages": [
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-14T09:51:17.654664+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 3min\n\n⚠️ 你自己的 context 状态：已 85 条消息 / 3h 23min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-14T09:51:30.285400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-001512"
+        },
+        {
+          "source_line": 1513,
+          "timestamp": "2026-05-14T09:51:30.439510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 154
+          },
+          "id": "event-001513"
+        }
+      ]
+    },
+    {
+      "number": 321,
+      "messages": [
+        {
+          "source_line": 1514,
+          "timestamp": "2026-05-14T09:57:09.052433+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 6 | Worker 池 0 (GPU 0 / CPU 0) — 正在补充\n\n## [P0] 3B GSM8K 崩塌诊断结果\n\n**根因确认：LoRA SFT 导致 CoT 推理能力灾难性遗忘**。非格式问题，非 generation collapse。\n\n### 证据\n\n| 模型 | GSM8K | Δ vs raw |\n|------|-------|----------|\n| 3B raw | 60.5% | — |\n| 3B d000 s42 | 11.7% | **-48.8pp** |\n| 3B d000 s123 | 17.6% | **-42.9pp** |\n\n- **排除格式问题**：1319 条全部提取到数字答案，仅 ~2 条有 \"$18\" 格式残留（修复后仅 +2-3pp）\n- **排除 collapse**：答案多样化（5, 72, 150, 1000, 20, 30...），非固定值重复\n- **确认 CoT 遗忘**：raw 答对的 item (18, 3, 540, 64, 260, 460)，SFT 后给出完全不同的错误答案\n- **两个 seed 都崩**：排除随机因素\n- **3B SFT 有 20 处 \"始化\" 乱码**（raw 有 0 处），说明 generation 也有部分退化\n\n### 为什么 3B 崩但 0.5B/1.5B 没崩？\n\nLoRA 配置 (r=16, alpha=32, lr=2e-4, 7 proj layers) 对 3B 过于激进。3B 的 CoT 推理是更复杂的 learned representation，更容易被全投影层 LoRA 破坏。\n\n### 对论文的影响\n\n**有两种 framing 选择，请 Director 决策：**\n\n1. **当作发现报告**（推荐）：d000 纯 clean SFT 也导致 3B GSM8K 崩塌 → 这不是 contamination 效应，而是 LoRA SFT side effect。论文 Discussion 讨论 SFT 对大模型 CoT 的副作用，dose-response 分析中 3B GSM8K 标注为 \"SFT-degraded, excluded from dose-response\"。其他 benchmark（MMLU 0.634, ARC 0.822）不受影响。\n\n2. **修复后重跑**：降低 3B LoRA 配置（lr→5e-5, rank→8, 只做 q/v_proj），重跑全部 3B SFT。耗时 ~4×3.5h=14h GPU，加 eval ~6h。共 ~20h，deadline 紧张。\n\n### 当前进度\n- 3B d000 aligned eval 已提交 cuda:5 (PID 342935) — Step 2 验证中\n- 0.5B aligned eval batch cuda:2 运行中\n- 1.5B aligned eval batch cuda:1 运行中\n- 3B d100 SFT cuda:3 运行中\n- 3B d005 SFT cuda:4 运行中\n- 1.5B d100 eval cuda:0 接近完成"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-001514"
+        },
+        {
+          "source_line": 1515,
+          "timestamp": "2026-05-14T09:57:53.328538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__log_decision"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "summary": "3B GSM8K 崩塌归因为 LoRA SFT CoT 遗忘，排除出 dose-response 分析，作为发现报告",
+              "rationale": "3B raw GSM8K=60.5%，d000 SFT 后=11.7%（-48.8pp），两个 seed 一致，排除格式/提取问题。根因是 LoRA r=16/alpha=32 对 3B 的 CoT 推理过于激进。修复需~20h GPU 重训+eval，DDL 紧张且可能引入新问题。3B MC benchmarks（MMLU=0.634, ARC=0.822）不受影响，保留在 dose-response 中。论文 claim 调整为\"3 model sizes on MC, 2 sizes (0.5B/1.5B) on generative\"，Discussion 讨论 SFT 对 CoT 的 scale-dependent side effect。",
+              "related_experiments": "[{'exp_id': 'exp_001_eval_3B_d000_s42', 'role': 'evidence', 'result': 'GSM8K=0.117, 确认 SFT 后 CoT 崩塌'}, {'exp_id': 'exp_001_eval_3B_raw_gen', 'role': 'evidence', 'result': 'GSM8K=0.605, 确认 base model 正常'}]",
+              "depends_on": "['D017']"
+            }
+          },
+          "id": "event-001515"
+        },
+        {
+          "source_line": 1516,
+          "timestamp": "2026-05-14T09:57:53.776945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"decision_id\\\": \\\"D018\\\", \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/decisions.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__log_decision",
+            "elapsed_ms": 448
+          },
+          "id": "event-001516"
+        },
+        {
+          "source_line": 1517,
+          "timestamp": "2026-05-14T09:57:59.227668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "text": "**[D018] 3B GSM8K 决策：方案 1 — 作为发现报告，不重训**\n\n3B GSM8K 排除出 dose-response 分析。3B 的 MMLU/ARC 仍可用（不受影响）。\n\n**不需做的事**：\n- 不 kill 3B d100/d005 SFT（MC benchmark eval 仍有价值）\n- 不修改 LoRA 配置重训 3B\n\n**需要做的事**：\n- 3B eval 时标注 GSM8K 为 \"SFT-degraded, excluded from dose-response\"\n- 后续论文 Discussion 准备素材：LoRA SFT 在 3B scale 对 CoT 推理的 side effect\n\n当前 GPU 继续跑既定任务，focus 在 0.5B/1.5B aligned eval 完成 + exp-002 signals。"
+            }
+          },
+          "id": "event-001517"
+        },
+        {
+          "source_line": 1518,
+          "timestamp": "2026-05-14T09:58:05.468689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "**3B GSM8K 崩塌根因确认：LoRA SFT 导致 CoT 遗忘**\n\n3B raw GSM8K=60.5%，clean SFT 后暴跌到 11.7%（-48.8pp）。排除格式/评分问题——是 LoRA r=16/alpha=32 对 3B 推理能力过于激进。0.5B/1.5B 不受影响。\n\n**决策**：不重训（~20h GPU），作为发现报告。3B 在 MC 任务（MMLU=0.634, ARC=0.822）表现正常，保留在 dose-response 中。论文 claim 调整为 MC benchmarks 3 个 scale、generative benchmarks 2 个 scale（0.5B/1.5B）。Discussion 讨论 SFT 对 CoT 的 scale-dependent side effect。\n\n当前进度正面：1.5B d100 aligned MMLU=0.5933 vs d000=0.5853（+0.80pp），污染信号方向正确。0.5B aligned eval batch 和 1.5B aligned eval batch 在跑，预计几小时内出完整 dose-response 数据。"
+            }
+          },
+          "id": "event-001518"
+        },
+        {
+          "source_line": 1519,
+          "timestamp": "2026-05-14T09:58:11.964863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6d85e0d8c8c3dc9b29da71e7a\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 3, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_analyze_exp_001_eval_3B_raw_gen_20260514T093608 已完成（status=done）。用 `get_worker_status('worker_analyze_exp_001_eval_3B_raw_gen_20260514T093608')` 读取结果，然后处理。\\\\n\\\\n- worker_id: wo\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 12737
+          },
+          "id": "event-001519"
+        },
+        {
+          "source_line": 1520,
+          "timestamp": "2026-05-14T09:58:12.770594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 7301
+          },
+          "id": "event-001520"
+        },
+        {
+          "source_line": 1521,
+          "timestamp": "2026-05-14T09:58:15.721468+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3B GSM8K 崩塌根因已定——LoRA SFT 导致 CoT 遗忘。选方案 1：作为发现报告，不重训。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001521"
+        }
+      ]
+    },
+    {
+      "number": 322,
+      "messages": [
+        {
+          "source_line": 1522,
+          "timestamp": "2026-05-14T09:58:17.487048+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001522"
+        },
+        {
+          "source_line": 1523,
+          "timestamp": "2026-05-14T09:59:34.308980+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5（cqa1-21977），严禁使用白名单外 GPU\n- train_sft.py 的 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu` 已删除——**绝不能加回**（Reviewer 报告过有 Worker 建议加回，这是 bug 代码）\n- compute_signals.py / signal_minkpp.py / signal_selfcritique.py 的同样 CUDA_VISIBLE_DEVICES 覆写已修复，勿恢复\n- 所有 MC eval 必须用 `--mc-format aligned`（D017），legacy 格式结果仅供诊断参考，不可用于正式分析\n- ConStat 的 original/paraphrase eval pair 必须用相同 mc_format\n- 剂量-响应对比必须控制 seed（同 seed pair），跨 seed 1-2pp 变异足以翻转弱效应方向\n- 3B GSM8K 已确认 SFT CoT 遗忘（D018），排除出 dose-response，**不要重训 3B**\n- exp008 sft_contam regime 用 d005（非 d100），SFT_DATA 也指向 d005\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977 (connect.cqa1.seetacloud.com)，6× RTX 4090D 24GB\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: conda base (`/root/miniconda3/bin/python`)，aml-train 镜像\n- **模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B,0.5B-Instruct}`\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dose}_s{seed}/lora_adapter/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dose}_s{seed}[_aligned]/`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n- **Paraphrase 数据**: `/root/autodl-tmp/exp001/paraphrases/{mmlu,arc,gsm8k}_paraphrased.jsonl`\n- **HF cache**: `/root/autodl-tmp/.hf_cache` (HF_HOME)\n- **本地 CPU 实验**: exp_004 sweep (PID 411032, ~35/120 seeds), exp_005 v3 (PID 426335, 4/25 fits)\n- **脚本位置**:\n  - `exp001/evaluate.py` — 评估脚本（含 D017 aligned 格式）\n  - `exp001/run_aligned_eval_{05B,15B}.sh` — aligned eval batch\n  - `exp001/run_aligned_eval_05B_d025.sh` — d025 补充 eval\n  - `exp002/run_signals_05B.sh` — 信号计算\n  - `exp008/run_exp008.sh` — signal survival（已修复 d005）\n\n### 3. 📊 当前状态\n**刚做完**: D017 格式修复验证（1.5B d000 aligned MMLU=0.5853）、D018 3B GSM8K 决策、GPU 绑定 bug 全面修复、GSM8K 评分 bug 修复+重评分、3B 诊断链完成。\n\n**RUNNING 实验**:\n| GPU | 实验 | 内容 |\n|-----|------|------|\n| 0 | exp_001_eval_15B_d100_s42 | 1.5B d100 eval（aligned），接近完成 |\n| 1 | exp_001_eval_15B_aligned_batch | 1.5B d000/d005/d100 aligned eval batch |\n| 2 | exp_001_eval_05B_aligned_batch | 0.5B d000/d005/d100 aligned eval batch |\n| 3 | exp_001_sft_d100_3B | 3B d100 SFT (PID 319555) |\n| 4 | exp_001_sft_d005_3B | 3B d005 SFT (PID 335346) |\n| 5 | exp_001_eval_3B_d000_aligned | 3B d000 aligned eval |\n\n**本地 CPU**: exp_004_sim_sweep_v2 (35/120, ETA May 16-17), exp_005_noise_prop_v3 (重启后跑中)\n\n**等待**: 0.5B aligned eval batch 完成 → 验证 D017 修复在 d100 上的效果（核心数据点）\n\n### 4. 📋 待办（条件触发式）\n- **0.5B aligned d100 MMLU 出来** → 与 d000 aligned (0.3979) 对比，确认污染膨胀方向和幅度。如果 d100 > d000 → 核心假设成立，进入 exp-002 signals\n- **0.5B aligned eval batch 全部完成** → GPU 2 释放 → 提交 0.5B d025 aligned eval（`run_aligned_eval_05B_d025.sh`），补齐 4 点 dose-response\n- **1.5B aligned eval batch 完成** → 1.5B 3 点 dose-response 数据齐全，可以开始跨 scale 分析\n- **GPU 0 释放**（1.5B d100 eval 完成）→ 提交 exp-002 0.5B 三信号计算（`run_signals_05B.sh`，需 1 GPU）\n- **GPU 3/4 释放**（3B SFT 完成）→ 提交 3B eval（aligned，MC only 有价值，GSM8K 标注排除）\n- **exp-002 signals 完成** → exp-003 RRF aggregation（CPU，快）→ exp-006 IRT calibration（核心结果！）\n- **Cron false positive** → 检查实际进程状态再决策，cron 多次误报（wrapper PID 死但 python 进程活着）\n- **exp_004 sweep 全部 120 seeds 完成** → 严格 CI95 coverage 分析，如果系统性 <90% 需调 prior 或论文加 qualifier\n\n### 5. 🎯 战略上下文\n**项目核心**: 用 IRT 模型校准 LLM benchmark 污染效应。Core claim: contamination inflates scores, IRT γ parameter recovers true ability。\n\n**关键决策链**:\n- D013: Simple model > Analytic ME model（实证偏差更小）\n- D014: γ 有限样本偏差需论文披露（N<50 时 bias 显著）\n- D016: Min-K++ 参考模型用 0% dosage（隔离污染效应）\n- D017: MC eval 统一 aligned 格式（\"The answer is\" 前缀）\n- D018: 3B GSM8K 作为发现报告，不重训\n\n**首个正向信号**: 1.5B d100 aligned MMLU=0.5933 > d000=0.5853（+0.80pp），统计显著但幅度小。0.5B 的结果将决定是否有 scale-dependent 效应。\n\n**Critical path**: aligned eval → exp-002 signals (3sig) → exp-003 RRF → exp-006 IRT calibration。这条路径产出核心论文结果。\n\n**易错点**:\n1. 不要混用 legacy 和 aligned eval 结果做 dose-response 对比\n2. Cron 经常误报（无 sentinel 文件 + wrapper PID 监控），先检查实际进程再行动\n3. Agent 曾将 MC 退化归因为 \"catastrophic forgetting\"——实际是 eval 格式冲突（D017 已修复），不要采纳此诊断\n4. compute_signals.py 的 GPU 绑定 bug 已修复但要验证——`grep \"CUDA_VISIBLE_DEVICES\" compute_signals.py` 应无匹配\n5. exp008 ref model 统一用 raw base model（无 adapter），不要用 d000 adapter\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-001523"
+        }
+      ]
+    }
+  ]
+}

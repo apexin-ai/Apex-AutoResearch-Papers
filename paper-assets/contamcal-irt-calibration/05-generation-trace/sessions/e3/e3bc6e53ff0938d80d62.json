@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e3bc6e53ff0938d80d62",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops j16 theta 5domains sequential",
+  "task_key": "worker_ops_j16_theta_5domains_sequential_20260517T154720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j16_theta_5domains_sequential_20260517T154720_result.json",
+    "occurrence": 1,
+    "bytes": 2420338,
+    "sha256": "5ec4d666d3a92a586297821a47a2c594dabbb70f9e9ad6e4e7a8aea9671f696c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2420358,
+                "serialized_sha256": "2d68e1a00b1f6845e4b6ff827aa9866c4415859a4eaca4020219f069e61c1921",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-j16-theta-5domains-sequential.md"
+}

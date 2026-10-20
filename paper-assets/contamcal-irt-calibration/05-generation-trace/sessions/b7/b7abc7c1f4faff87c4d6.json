@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7abc7c1f4faff87c4d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778953568.md",
+  "task_key": "loop_16_1778953568",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778953568.md",
+    "occurrence": 1,
+    "bytes": 4233,
+    "sha256": "e3c179f97d8177c983a90effed36a4d4d29ded4764eea6e563f1eda50f18be4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T17:16:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名必须写 `cqa1-21977`（不是 \"A6000\"），cron SSH 验证依赖精确名字\n- GPU 白名单: cuda:0–5（6× RTX 4090D），无额外 GPU，7B 实验需云 GPU（已申请未批）\n- PPP=0 in 4/5 domains → paper claim 只能基于 pattern/ranking，**禁止 claim 绝对 γ 值**\n- D111: STEM_Math γ 方向在 N=24 反转，paper 措辞需审慎（等 N=24 v3 确认）\n- Medical domain (PPP=1.0) 已排除，不参与 domain gamma 分析\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（无 .venv）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **Python**: `/root/miniconda3/bin/python`（conda base env）\n- **工作目录**: 代码 `/root/contamcal-irt-calibration/`，数据/模型 `/root/autodl-tmp/`\n- **模型路径**: Qwen 0.5B/1.5B/3B → `/root/autodl-tmp/models/`，Llama-3.2-3B → `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`\n- **exp 产出**: exp001 → `/root/autodl-tmp/exp001/`, exp002 → `/root/autodl-tmp/exp002/`, exp006 → `/root/autodl-tmp/exp006/`\n- **活跃进程**:\n  - PID 801761 (cuda:3): Llama-3.2-3B d025 SFT, cron active\n  - PID 804565 (cuda:0): Llama-3.2-3B d005 SFT, cron active\n  - PID 804786 (cuda:5): Llama-3.2-3B d100 SFT, cron active\n  - PID 807025 (cuda:1): Llama-3.2-3B d000 eval v3 + 0.5B-Instruct eval, cron active\n  - PID 815287: 1.5B-Instruct GSM8K signals, cron active\n  - PID 818742: MMLU domain gamma N=24 v3, cron active\n\n### 3. 📊 当前状态\n**刚完成**: Session 初始化 + reconcile crons（全部 7 个 cron 确认进程存活）。\n\n**RUNNING (7 cron-monitored)**:\n1. `exp_001_sft_llama32_3B_d025_s42` — Llama d025 SFT (cuda:3)\n2. `exp_001_sft_llama32_3B_d005_s42` — Llama d005 SFT (cuda:0)\n3. `exp_001_sft_llama32_3B_d100_s42` — Llama d100 SFT (cuda:5)\n4. `exp_001_eval_llama32_3B_d000_s42_v3` — Llama d000 eval aligned (cuda:1)\n5. `exp_001_eval_05B_instruct` — 0.5B-Instruct eval (共享 cuda:1/PID)\n6. `exp_002_signals_15B_instruct_gsm8k` — 1.5B-Instruct GSM8K signals\n7. `exp_006_mmlu_domain_gamma_n24_v3` — MMLU domain gamma N=24 重跑（关键验证）\n\n**等待中**: 7 个 cron 回调（进程完成时自动触发），无 pending Worker 回调，无 Director 待决策项。\n\n### 4. 📋 待办（条件触发式）\n- Llama d000 eval v3 完成 → spawn Worker 跑 signals (d000) → 等 d005/d025/d100 SFT 完成后依次 eval + signals\n- Llama d005/d025/d100 SFT 完成 → spawn Worker 跑 eval (aligned, gsm8k+arc+humaneval) → signals\n- 全部 Llama signals 完成 → RRF 聚合 → cross-family pooled IRT（论文核心数据点）\n- exp_006_mmlu_domain_gamma_n24_v3 完成 → 分析 7/8 domain gamma，确认 STEM gradient 是否 scale-dependent → 更新 D108/D111 claim\n- 1.5B-Instruct GSM8K signals 完成 → 补入 pooled IRT N 扩展\n- 0.5B-Instruct eval 完成 → Instruct 系列 signals pipeline\n- 所有数据冻结 (~Day 2-3) → Paper Agent Full Draft（Days 3-5）\n\n### 5. 🎯 战略上下文\n- **核心结论**: ContamCal 的 aggregate γ≈0 是 Simpson's paradox——domain-level γ 有显著信号（STEM gradient: Math>Science>Engineering），pooled-level gamma 无正向贡献（vanilla 2PL 反而更好）\n- **决策链**: D106(scope expansion→Llama) → D108(domain heterogeneity) → D110(scale-stratified negative) → D111(STEM_Math reversal, 待确认) → D114/D115(STEM-only scope) → D116(pooled confirms Simpson) → D117(Claim 1 narrowed to Math+Science)\n- **EMNLP T-9 关键路径**: Llama cross-family 是最后一块拼图。Day 1-2 必须完成 Llama 全流程，Day 3-5 写论文，Day 5-7 review 迭代\n- **易踩坑**:\n  - 不要把 Qwen signals 和 Llama signals 直接 pooled 前先确认 IRT scale 对齐\n  - exp_006_mmlu_domain_gamma_n24_v3 如果仍 sampling error → 需检查 Stan 模型 init（前两次 v1/v2 都因 chain divergence 失败）\n  - submit_training_job 有 bug（C002）偶尔不推进状态，reconcile 时注意\n  - 2PL ablation 已证明 pooled gamma 无用，**不要再跑 pooled-level gamma 实验**——只做 domain-level\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778953568.md"
+}

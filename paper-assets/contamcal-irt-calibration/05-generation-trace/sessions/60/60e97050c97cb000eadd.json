@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60e97050c97cb000eadd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260515T005416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260515T005416_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "b604b4e3aff1d815bf4e7795a198089cd6bb8c5242f0e36b54cd13f3c5d13fdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: 空闲 - 0/24564 MiB\nGPU 1: 运行中 - eval Qwen2.5-0.5B_d005_s123_aligned (PID 475651) - 3695/24564 MiB\nGPU 2: 运行中 - eval Qwen2.5-1.5B_d100_s123_aligned (PID 473954) - 5857/24564 MiB\nGPU 3: 运行中 - train_sft Qwen2.5-3B_d025_s42 (PID 466755) - 17645/24564 MiB\nGPU 4: 运行中 - eval Qwen2.5-3B_d000_v2_s42_para_aligned_v2 (PID 472742) - 9017/24564 MiB\nGPU 5: 运行中 - train_sft Qwen2.5-3B_d100_s123 (PID 471296) - 17973/24564 MiB\n\n空闲 GPU: [0]\n```\n\n注意：GPU 5 上的 train_sft 命令行参数写的 `--gpu 0`，但实际占用的是 GPU 5（可能通过 `CUDA_VISIBLE_DEVICES` 映射）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-4.md"
+}

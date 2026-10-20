@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54968a8adc9b941da047",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check progress all",
+  "task_key": "worker_ssh_check-progress-all_20260518T222249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-progress-all_20260518T222249_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "23ffedb61f1ca0395091120c31ccfc505900a878cf201e325029979a6a078f66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 占用\n\n| GPU | 进程 | 显存 | 利用率 | 温度 |\n|-----|------|------|--------|------|\n| cuda:0 | 14B d050 s42 (PID 56094) | 63G/98G | 70% | 60°C |\n| cuda:1 | Gemma2 d005 s42 (PID 62861) | 54G/98G | 67% | 57°C |\n| cuda:2 | lm_eval d025_s42 (PID 71368) | 18G/98G | 0% | 32°C |\n| cuda:3 | 14B d100 s42 (PID 59313) | 64G/98G | 59% | 51°C |\n\n### 训练进度\n\n| 实验 | GPU | 进度 | Loss | Token Acc | ETA |\n|------|-----|------|------|-----------|-----|\n| **14B d050 s42** | 0 | 3362/3642 (**92.3%**) | 0.94 | 0.770 | ~14 min (~06:37) |\n| **Gemma2 d005 s42** | 1 | 1844/3177 (**58.0%**) | 1.19 | 0.728 | ~61 min (~07:24) |\n| **14B d100 s42** | 3 | 2151/4159 (**51.7%**) | 0.92 | 0.768 | ~110 min (~08:13) |\n\n### Eval (cuda:2) — 全部失败\n\n**根因：网络不通**。`[Errno 101] Network is unreachable`，无法从 HuggingFace Hub 下载 MMLU 数据集。\n\n- d000_s42 — FAILED\n- d005_s42 — FAILED\n- d005_s123 — FAILED\n- d025_s42 — 当前正在运行，**极大概率同样失败**\n\n成功完成数: **0**。没有产出任何 results.json。\n\n### 14B d025 s42 — 训练已完成\n\n- `adapter_model.safetensors` 存在\n- lora_alpha=32, lr=5e-5 ✓\n- **无 `.done` sentinel 文件**\n- `train_config.json` 不含 final_loss / final_eval_accuracy 字段（脚本可能未写入）\n\n### 需要关注\n\n1. **Eval 网络问题需要解决**：MMLU 数据集需要预先下载到本地，或配置离线模式（`HF_DATASETS_OFFLINE=1`），或修复网络连接\n2. 14B d050 即将完成（~14min），完成后 cuda:0 可复用\n3. d025 缺少 .done 标记和最终指标，需确认训练脚本是否有这个功能"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-progress-all.md"
+}

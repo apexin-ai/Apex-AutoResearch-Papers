@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdd17d9865ec73b39261",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh gpu audit and submit",
+  "task_key": "worker_ssh_gpu-audit-and-submit_20260514T235859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-audit-and-submit_20260514T235859_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "8e599679f48faf64f546a43c6a0c38a54e323c0920f43f83dba9437a9fd903d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## GPU 占用状态表\n\n| GPU | PID | VRAM | Util | 进程 | 已运行 |\n|-----|-----|------|------|------|--------|\n| **0** | 461879 | 8976MiB/24564MiB | 65% | `evaluate.py` — 3B d100 v2 s42 aligned (mmlu gsm8k arc_challenge) | 27min |\n| **1** | 464138 | 21794MiB/24564MiB | 54% | `train_sft.py` — 0.5B d005 s123 | 16min |\n| **2** | 435420 | 14714MiB/24564MiB | 67% | `train_sft.py` — 1.5B d100 s123 | 3h38m |\n| **3** | 466755 | 17628MiB/24564MiB | 31% | `train_sft.py` — 3B d025 s42 | 5min |\n| **4** | 441570 | 13574MiB/24564MiB | 65% | `evaluate.py` — 3B d000 v2 s42 aligned (mmlu gsm8k arc_challenge humaneval) | 2h56m |\n| **5** | 435976 | 17318MiB/24564MiB | 32% | `train_sft.py` — 3B d000 v2 s123 | 3h37m |\n\n**全部 6 张 GPU 满载运行。**\n\n## 3B d100 v2 aligned eval 状态\n\n**尚未完成。** `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s42_aligned/` 目录存在但为空。原因：该 eval 正在 GPU 0 上运行（PID 461879，已运行 27 分钟，benchmarks: mmlu gsm8k arc_challenge）。\n\n## 1.5B d005 s123 SFT 提交\n\n**无法提交。** GPU 0 正被 3B d100 v2 eval 占用（C002 约束：必须 nvidia-smi 确认 GPU 空闲才能提交）。需等 GPU 0 eval 完成后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-audit-and-submit.md"
+}

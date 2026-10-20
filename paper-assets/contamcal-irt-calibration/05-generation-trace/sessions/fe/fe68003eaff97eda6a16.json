@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe68003eaff97eda6a16",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260516T143932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260516T143932_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "b9f733db54f5eaadce1fd3c29aa0e0275193d73a3a7e113a885a7da1508c51f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 显存占用 | PID | 命令 | 状态 |\n|-----|---------|-----|------|------|\n| **cuda:0** | 7061/24564 MiB | 780943 | `compute_signals.py` — 3B d000_s123 mmlu s4 | **busy** |\n| **cuda:1** | 3387/24564 MiB | 796913 | `compute_signals.py` — 0.5B-Instruct gsm8k s4 | **busy** |\n| **cuda:2** | 0/24564 MiB | — | — | **free** |\n| **cuda:3** | 0/24564 MiB | — | — | **free** |\n| **cuda:4** | 8313/24564 MiB | 796493 | `evaluate.py` — Llama-3.2-3B d000_s42 aligned | **busy** |\n| **cuda:5** | 3893/24564 MiB | 786898 | `evaluate.py` — Qwen2.5-1.5B-Instruct aligned | **busy** |\n\n另外，后台有 CPU-only 的 Stan IRT 采样进程在跑（2pl_gamma 和 4pl_simple，PID 794847-794850, 797263），以及 `run_pooled_rrf_irt.py`（PID 795903）。\n\n**空闲 GPU：cuda:2, cuda:3**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check.md"
+}

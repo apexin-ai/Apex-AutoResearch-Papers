@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62505d0777ef2aee044c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag 15B mmlu and d100 eval failures",
+  "task_key": "worker_diag_15B_mmlu_and_d100_eval_failures_20260516T213219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_15B_mmlu_and_d100_eval_failures_20260516T213219_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "db95de5792cb69029c231ffa2415e0bb2a6391c66a5df77fba266db8b54fd6db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## MMLU_v2 诊断\n**原因**: 模型路径解析失败。设置了 `HF_HUB_OFFLINE=1` 但 tokenizer 加载时仍尝试访问 HuggingFace Hub。错误显示路径被解析为 repo_id `Qwen2.5-1.5B-Instruct` 而非本地路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`。\n\n根因：`exp002/signals/s2_minkpp.py` 的 `load_model_and_tokenizer` 中 tokenizer 加载使用的路径不是传入的完整本地路径，而是被截断/解析为 hub identifier。需要检查 `exp002/utils.py:39` 的 `from_pretrained` 调用是否正确传递了本地路径。\n\n**GPU 0 状态**: 空闲 (0MiB, 0%)\n\n## d100 eval 诊断\n**原因**: 已正常完成（`.done` 标记文件存在，所有 benchmark 结果齐全）\n\n结果文件: 有，各 benchmark 分数：\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 34.08% (4786/14042) |\n| GSM8K | 26.00% (343/1319) |\n| ARC-Challenge | 59.81% (701/1172) |\n| HumanEval | 1.22% pass@1 (2/164) |\n\n**注意**: MMLU 所有预测几乎都是 \"A\"，HumanEval pass@1 极低。这个 d100 contaminated 模型在 aligned format 下表现严重退化，可能是 chat template 不匹配导致模型坍缩到固定输出。\n\n**GPU 5 状态**: 空闲 (0MiB, 0%)\n\n## nvidia-smi 汇总\n| GPU | 状态 | 显存 | 进程 |\n|-----|------|------|------|\n| cuda:0 | 空闲 | 0MiB | - |\n| cuda:1 | 占用 | 7141MiB | PID 863173 (python) |\n| cuda:2 | 占用 | 6787MiB | PID 853489 (python) |\n| cuda:3 | 空闲 | 3MiB | - |\n| cuda:4 | 占用 | 6859MiB | PID 842929 (python) |\n| cuda:5 | 空闲 | 0MiB | - |\n\n**可用 GPU**: cuda:0, cuda:3, cuda:5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-15b-mmlu-and-d100-eval-failures.md"
+}

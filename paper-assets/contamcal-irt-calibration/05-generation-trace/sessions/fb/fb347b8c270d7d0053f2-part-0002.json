@@ -1,0 +1,1014 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fb347b8c270d7d0053f2",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-15T23:08:18.114Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012zrwmak6e8vA61WZr2pPhK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_extreme_gamma\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:48:33.216Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:17.819Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\\\", \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple (10 seeds per condition)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/tmp_sim/\\\", \\\"data_count\\\": 80, \\\"command\\\": \\\"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"estimated_completion\\\": \\\"2026-05-15T23:00:00Z\\\", \\\"results_dir\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"early_results\\\": {\\\"gamma_2.0_auc0.70_n20_seed0\\\": {\\\"gamma_mean\\\": 1.9692, \\\"bias\\\": -0.031, \\\"ci95_covers\\\": true, \\\"ci_width\\\": 0.477, \\\"divergences\\\": 0, \\\"rhat\\\": 1.007, \\\"ess\\\": 1475, \\\"theta_corr\\\": 0.926}}, \\\"notes\\\": \\\"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 528993, \\\"log_path\\\": \\\"/root/autodl-tmp/extreme_gamma_sweep.log\\\", \\\"metrics\\\": {\\\"conditions\\\": 8, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 80, \\\"total_time_hours\\\": 11.1, \\\"g2.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": 0.0337, \\\"gamma_rmse\\\": 0.1163, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.956}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": 0.0178, \\\"gamma_rmse\\\": 0.0944, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.948}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": 0.0048, \\\"gamma_rmse\\\": 0.0907, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.969}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0109, \\\"gamma_rmse\\\": 0.1013, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.962}}, \\\"g4.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": -0.2286, \\\"gamma_rmse\\\": 0.2946, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.919}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": -0.0958, \\\"gamma_rmse\\\": 0.1867, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.915}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": -0.1365, \\\"gamma_rmse\\\": 0.2431, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.961}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0358, \\\"gamma_rmse\\\": 0.1811, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.948}}, \\\"key_finding\\\": \\\"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5961}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "10ceea4f-c5a7-432e-be85-f280edfb1032",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_extreme_gamma\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:48:33.216Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:17.819Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\\\", \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple (10 seeds per condition)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/tmp_sim/\\\", \\\"data_count\\\": 80, \\\"command\\\": \\\"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"estimated_completion\\\": \\\"2026-05-15T23:00:00Z\\\", \\\"results_dir\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"early_results\\\": {\\\"gamma_2.0_auc0.70_n20_seed0\\\": {\\\"gamma_mean\\\": 1.9692, \\\"bias\\\": -0.031, \\\"ci95_covers\\\": true, \\\"ci_width\\\": 0.477, \\\"divergences\\\": 0, \\\"rhat\\\": 1.007, \\\"ess\\\": 1475, \\\"theta_corr\\\": 0.926}}, \\\"notes\\\": \\\"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 528993, \\\"log_path\\\": \\\"/root/autodl-tmp/extreme_gamma_sweep.log\\\", \\\"metrics\\\": {\\\"conditions\\\": 8, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 80, \\\"total_time_hours\\\": 11.1, \\\"g2.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": 0.0337, \\\"gamma_rmse\\\": 0.1163, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.956}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": 0.0178, \\\"gamma_rmse\\\": 0.0944, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.948}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": 0.0048, \\\"gamma_rmse\\\": 0.0907, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.969}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0109, \\\"gamma_rmse\\\": 0.1013, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.962}}, \\\"g4.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": -0.2286, \\\"gamma_rmse\\\": 0.2946, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.919}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": -0.0958, \\\"gamma_rmse\\\": 0.1867, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.915}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": -0.1365, \\\"gamma_rmse\\\": 0.2431, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.961}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0358, \\\"gamma_rmse\\\": 0.1811, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.948}}, \\\"key_finding\\\": \\\"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5961}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_extreme_gamma\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:48:33.216Z\", \"updated_at\": \"2026-05-15T23:08:17.819Z\", \"spec\": {\"hypothesis\": \"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\", \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple (10 seeds per condition)\", \"data_path\": \"/root/autodl-tmp/tmp_sim/\", \"data_count\": 80, \"command\": \"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\", \"server\": \"cqa1-21977\", \"estimated_completion\": \"2026-05-15T23:00:00Z\", \"results_dir\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\", \"early_results\": {\"gamma_2.0_auc0.70_n20_seed0\": {\"gamma_mean\": 1.9692, \"bias\": -0.031, \"ci95_covers\": true, \"ci_width\": 0.477, \"divergences\": 0, \"rhat\": 1.007, \"ess\": 1475, \"theta_corr\": 0.926}}, \"notes\": \"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\"}, \"server\": \"cqa1-21977\", \"pid\": 528993, \"log_path\": \"/root/autodl-tmp/extreme_gamma_sweep.log\", \"metrics\": {\"conditions\": 8, \"seeds_per_condition\": 10, \"total_runs\": 80, \"total_time_hours\": 11.1, \"g2.0_results\": {\"auc0.7_n20\": {\"gamma_bias\": 0.0337, \"gamma_rmse\": 0.1163, \"ci95_coverage\": 1, \"theta_corr\": 0.956}, \"auc0.7_n50\": {\"gamma_bias\": 0.0178, \"gamma_rmse\": 0.0944, \"ci95_coverage\": 1, \"theta_corr\": 0.948}, \"auc0.9_n20\": {\"gamma_bias\": 0.0048, \"gamma_rmse\": 0.0907, \"ci95_coverage\": 1, \"theta_corr\": 0.969}, \"auc0.9_n50\": {\"gamma_bias\": 0.0109, \"gamma_rmse\": 0.1013, \"ci95_coverage\": 1, \"theta_corr\": 0.962}}, \"g4.0_results\": {\"auc0.7_n20\": {\"gamma_bias\": -0.2286, \"gamma_rmse\": 0.2946, \"ci95_coverage\": 0.9, \"theta_corr\": 0.919}, \"auc0.7_n50\": {\"gamma_bias\": -0.0958, \"gamma_rmse\": 0.1867, \"ci95_coverage\": 0.9, \"theta_corr\": 0.915}, \"auc0.9_n20\": {\"gamma_bias\": -0.1365, \"gamma_rmse\": 0.2431, \"ci95_coverage\": 1, \"theta_corr\": 0.961}, \"auc0.9_n50\": {\"gamma_bias\": 0.0358, \"gamma_rmse\": 0.1811, \"ci95_coverage\": 0.9, \"theta_corr\": 0.948}}, \"key_finding\": \"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5961}}"
+              }
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Upohw2GHkg2NKZtzKt3DKP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_001_eval_15B_s123_para_aligned_batch",
+                "field": "status",
+                "value": "RUNNING",
+                "spec": {
+                  "command": "python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)",
+                  "server": "cqa1-21977",
+                  "data_path": "/root/autodl-tmp/exp001/paraphrases",
+                  "data_count": 4,
+                  "model_name": "Qwen2.5-1.5B",
+                  "seed": 123,
+                  "checkpoint_source": "1.5B s123 SFT checkpoints",
+                  "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (para_aligned)",
+                  "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/",
+                  "log_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "16b49f4e-9714-4047-8918-e40b9855bf5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9FsVKuiDzw2r2sFd8yqyL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2131,
+                "cache_read_input_tokens": 105419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2131
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KM6FAiddM8KEhS1bRyUgAk",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_extreme_gamma",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "94670020-0d8a-4c43-bfa1-9f382c64bce3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9FsVKuiDzw2r2sFd8yqyL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2131,
+                "cache_read_input_tokens": 105419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2131
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-15T23:08:26.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Upohw2GHkg2NKZtzKt3DKP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_s123_para_aligned_batch\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:07:41.574Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:25.827Z\\\", \\\"metrics\\\": {\\\"d000\\\": {\\\"mmlu\\\": 0.6111, \\\"gsm8k\\\": 0.5921, \\\"arc_challenge\\\": 0.7547, \\\"humaneval\\\": 0.1538}, \\\"d005\\\": {\\\"mmlu\\\": 0.614, \\\"gsm8k\\\": 0.5439, \\\"arc_challenge\\\": 0.7475, \\\"humaneval\\\": 0.0769}, \\\"d025\\\": {\\\"mmlu\\\": 0.6145, \\\"gsm8k\\\": 0.5482, \\\"arc_challenge\\\": 0.7504, \\\"humaneval\\\": 0.1923}, \\\"d100\\\": {\\\"mmlu\\\": 0.629, \\\"gsm8k\\\": 0.5307, \\\"arc_challenge\\\": 0.7834, \\\"humaneval\\\": 0.2308}, \\\"notes\\\": \\\"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"spec\\\": {\\\"command\\\": \\\"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"1.5B s123 SFT checkpoints\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1095}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "de3d6d9c-e72d-410c-88f2-73a71f152ad9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_s123_para_aligned_batch\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:07:41.574Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:25.827Z\\\", \\\"metrics\\\": {\\\"d000\\\": {\\\"mmlu\\\": 0.6111, \\\"gsm8k\\\": 0.5921, \\\"arc_challenge\\\": 0.7547, \\\"humaneval\\\": 0.1538}, \\\"d005\\\": {\\\"mmlu\\\": 0.614, \\\"gsm8k\\\": 0.5439, \\\"arc_challenge\\\": 0.7475, \\\"humaneval\\\": 0.0769}, \\\"d025\\\": {\\\"mmlu\\\": 0.6145, \\\"gsm8k\\\": 0.5482, \\\"arc_challenge\\\": 0.7504, \\\"humaneval\\\": 0.1923}, \\\"d100\\\": {\\\"mmlu\\\": 0.629, \\\"gsm8k\\\": 0.5307, \\\"arc_challenge\\\": 0.7834, \\\"humaneval\\\": 0.2308}, \\\"notes\\\": \\\"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"spec\\\": {\\\"command\\\": \\\"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"1.5B s123 SFT checkpoints\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1095}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_s123_para_aligned_batch\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:07:41.574Z\", \"updated_at\": \"2026-05-15T23:08:25.827Z\", \"metrics\": {\"d000\": {\"mmlu\": 0.6111, \"gsm8k\": 0.5921, \"arc_challenge\": 0.7547, \"humaneval\": 0.1538}, \"d005\": {\"mmlu\": 0.614, \"gsm8k\": 0.5439, \"arc_challenge\": 0.7475, \"humaneval\": 0.0769}, \"d025\": {\"mmlu\": 0.6145, \"gsm8k\": 0.5482, \"arc_challenge\": 0.7504, \"humaneval\": 0.1923}, \"d100\": {\"mmlu\": 0.629, \"gsm8k\": 0.5307, \"arc_challenge\": 0.7834, \"humaneval\": 0.2308}, \"notes\": \"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/\", \"spec\": {\"command\": \"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/paraphrases\", \"data_count\": 4, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"1.5B s123 SFT checkpoints\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1095}}"
+              }
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-15T23:08:27.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KM6FAiddM8KEhS1bRyUgAk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_extreme_gamma\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:48:33.216Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:27.027Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\\\", \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple (10 seeds per condition)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/tmp_sim/\\\", \\\"data_count\\\": 80, \\\"command\\\": \\\"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"estimated_completion\\\": \\\"2026-05-15T23:00:00Z\\\", \\\"results_dir\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"early_results\\\": {\\\"gamma_2.0_auc0.70_n20_seed0\\\": {\\\"gamma_mean\\\": 1.9692, \\\"bias\\\": -0.031, \\\"ci95_covers\\\": true, \\\"ci_width\\\": 0.477, \\\"divergences\\\": 0, \\\"rhat\\\": 1.007, \\\"ess\\\": 1475, \\\"theta_corr\\\": 0.926}}, \\\"notes\\\": \\\"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 528993, \\\"log_path\\\": \\\"/root/autodl-tmp/extreme_gamma_sweep.log\\\", \\\"metrics\\\": {\\\"conditions\\\": 8, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 80, \\\"total_time_hours\\\": 11.1, \\\"g2.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": 0.0337, \\\"gamma_rmse\\\": 0.1163, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.956}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": 0.0178, \\\"gamma_rmse\\\": 0.0944, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.948}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": 0.0048, \\\"gamma_rmse\\\": 0.0907, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.969}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0109, \\\"gamma_rmse\\\": 0.1013, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.962}}, \\\"g4.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": -0.2286, \\\"gamma_rmse\\\": 0.2946, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.919}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": -0.0958, \\\"gamma_rmse\\\": 0.1867, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.915}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": -0.1365, \\\"gamma_rmse\\\": 0.2431, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.961}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0358, \\\"gamma_rmse\\\": 0.1811, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.948}}, \\\"key_finding\\\": \\\"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"completed_at\\\": \\\"2026-05-15T23:08:27.028Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1246}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "10b71aba-6a3a-40cf-a9ec-201664813c8b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_extreme_gamma\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:48:33.216Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:27.027Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\\\", \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple (10 seeds per condition)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/tmp_sim/\\\", \\\"data_count\\\": 80, \\\"command\\\": \\\"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"estimated_completion\\\": \\\"2026-05-15T23:00:00Z\\\", \\\"results_dir\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"early_results\\\": {\\\"gamma_2.0_auc0.70_n20_seed0\\\": {\\\"gamma_mean\\\": 1.9692, \\\"bias\\\": -0.031, \\\"ci95_covers\\\": true, \\\"ci_width\\\": 0.477, \\\"divergences\\\": 0, \\\"rhat\\\": 1.007, \\\"ess\\\": 1475, \\\"theta_corr\\\": 0.926}}, \\\"notes\\\": \\\"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 528993, \\\"log_path\\\": \\\"/root/autodl-tmp/extreme_gamma_sweep.log\\\", \\\"metrics\\\": {\\\"conditions\\\": 8, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 80, \\\"total_time_hours\\\": 11.1, \\\"g2.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": 0.0337, \\\"gamma_rmse\\\": 0.1163, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.956}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": 0.0178, \\\"gamma_rmse\\\": 0.0944, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.948}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": 0.0048, \\\"gamma_rmse\\\": 0.0907, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.969}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0109, \\\"gamma_rmse\\\": 0.1013, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.962}}, \\\"g4.0_results\\\": {\\\"auc0.7_n20\\\": {\\\"gamma_bias\\\": -0.2286, \\\"gamma_rmse\\\": 0.2946, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.919}, \\\"auc0.7_n50\\\": {\\\"gamma_bias\\\": -0.0958, \\\"gamma_rmse\\\": 0.1867, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.915}, \\\"auc0.9_n20\\\": {\\\"gamma_bias\\\": -0.1365, \\\"gamma_rmse\\\": 0.2431, \\\"ci95_coverage\\\": 1, \\\"theta_corr\\\": 0.961}, \\\"auc0.9_n50\\\": {\\\"gamma_bias\\\": 0.0358, \\\"gamma_rmse\\\": 0.1811, \\\"ci95_coverage\\\": 0.9, \\\"theta_corr\\\": 0.948}}, \\\"key_finding\\\": \\\"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"completed_at\\\": \\\"2026-05-15T23:08:27.028Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1246}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_extreme_gamma\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:48:33.216Z\", \"updated_at\": \"2026-05-15T23:08:27.027Z\", \"spec\": {\"hypothesis\": \"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\", \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple (10 seeds per condition)\", \"data_path\": \"/root/autodl-tmp/tmp_sim/\", \"data_count\": 80, \"command\": \"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\", \"server\": \"cqa1-21977\", \"estimated_completion\": \"2026-05-15T23:00:00Z\", \"results_dir\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\", \"early_results\": {\"gamma_2.0_auc0.70_n20_seed0\": {\"gamma_mean\": 1.9692, \"bias\": -0.031, \"ci95_covers\": true, \"ci_width\": 0.477, \"divergences\": 0, \"rhat\": 1.007, \"ess\": 1475, \"theta_corr\": 0.926}}, \"notes\": \"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\"}, \"server\": \"cqa1-21977\", \"pid\": 528993, \"log_path\": \"/root/autodl-tmp/extreme_gamma_sweep.log\", \"metrics\": {\"conditions\": 8, \"seeds_per_condition\": 10, \"total_runs\": 80, \"total_time_hours\": 11.1, \"g2.0_results\": {\"auc0.7_n20\": {\"gamma_bias\": 0.0337, \"gamma_rmse\": 0.1163, \"ci95_coverage\": 1, \"theta_corr\": 0.956}, \"auc0.7_n50\": {\"gamma_bias\": 0.0178, \"gamma_rmse\": 0.0944, \"ci95_coverage\": 1, \"theta_corr\": 0.948}, \"auc0.9_n20\": {\"gamma_bias\": 0.0048, \"gamma_rmse\": 0.0907, \"ci95_coverage\": 1, \"theta_corr\": 0.969}, \"auc0.9_n50\": {\"gamma_bias\": 0.0109, \"gamma_rmse\": 0.1013, \"ci95_coverage\": 1, \"theta_corr\": 0.962}}, \"g4.0_results\": {\"auc0.7_n20\": {\"gamma_bias\": -0.2286, \"gamma_rmse\": 0.2946, \"ci95_coverage\": 0.9, \"theta_corr\": 0.919}, \"auc0.7_n50\": {\"gamma_bias\": -0.0958, \"gamma_rmse\": 0.1867, \"ci95_coverage\": 0.9, \"theta_corr\": 0.915}, \"auc0.9_n20\": {\"gamma_bias\": -0.1365, \"gamma_rmse\": 0.2431, \"ci95_coverage\": 1, \"theta_corr\": 0.961}, \"auc0.9_n50\": {\"gamma_bias\": 0.0358, \"gamma_rmse\": 0.1811, \"ci95_coverage\": 0.9, \"theta_corr\": 0.948}}, \"key_finding\": \"gamma=2.0 perfectly recovered (CI95=100%, bias<0.04). gamma=4.0 shows mild downward bias (-0.10 to -0.23) with CI95=90-100%. Confirms coverage collapse in empirical data is model misspecification, not extreme parameter values.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\", \"completed_at\": \"2026-05-15T23:08:27.028Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1246}}"
+              }
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YQCXKTPWNBAXJbjMtQddNx",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_001_eval_15B_s123_para_aligned_batch",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "c1707e94-0cf7-4bc3-bdf0-78b6a1b8f2e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163aSV8KmfTRPTNm2MZyqDp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2615,
+                "cache_read_input_tokens": 107550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2615
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-15T23:08:32.175Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YQCXKTPWNBAXJbjMtQddNx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_s123_para_aligned_batch\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:07:41.574Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:31.366Z\\\", \\\"metrics\\\": {\\\"d000\\\": {\\\"mmlu\\\": 0.6111, \\\"gsm8k\\\": 0.5921, \\\"arc_challenge\\\": 0.7547, \\\"humaneval\\\": 0.1538}, \\\"d005\\\": {\\\"mmlu\\\": 0.614, \\\"gsm8k\\\": 0.5439, \\\"arc_challenge\\\": 0.7475, \\\"humaneval\\\": 0.0769}, \\\"d025\\\": {\\\"mmlu\\\": 0.6145, \\\"gsm8k\\\": 0.5482, \\\"arc_challenge\\\": 0.7504, \\\"humaneval\\\": 0.1923}, \\\"d100\\\": {\\\"mmlu\\\": 0.629, \\\"gsm8k\\\": 0.5307, \\\"arc_challenge\\\": 0.7834, \\\"humaneval\\\": 0.2308}, \\\"notes\\\": \\\"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"spec\\\": {\\\"command\\\": \\\"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"1.5B s123 SFT checkpoints\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\"}, \\\"completed_at\\\": \\\"2026-05-15T23:08:31.366Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2283}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "26ebb854-3c09-452b-9265-bf3683c9a651",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_s123_para_aligned_batch\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:07:41.574Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:31.366Z\\\", \\\"metrics\\\": {\\\"d000\\\": {\\\"mmlu\\\": 0.6111, \\\"gsm8k\\\": 0.5921, \\\"arc_challenge\\\": 0.7547, \\\"humaneval\\\": 0.1538}, \\\"d005\\\": {\\\"mmlu\\\": 0.614, \\\"gsm8k\\\": 0.5439, \\\"arc_challenge\\\": 0.7475, \\\"humaneval\\\": 0.0769}, \\\"d025\\\": {\\\"mmlu\\\": 0.6145, \\\"gsm8k\\\": 0.5482, \\\"arc_challenge\\\": 0.7504, \\\"humaneval\\\": 0.1923}, \\\"d100\\\": {\\\"mmlu\\\": 0.629, \\\"gsm8k\\\": 0.5307, \\\"arc_challenge\\\": 0.7834, \\\"humaneval\\\": 0.2308}, \\\"notes\\\": \\\"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"spec\\\": {\\\"command\\\": \\\"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"1.5B s123 SFT checkpoints\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\\\"}, \\\"completed_at\\\": \\\"2026-05-15T23:08:31.366Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2283}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_s123_para_aligned_batch\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:07:41.574Z\", \"updated_at\": \"2026-05-15T23:08:31.366Z\", \"metrics\": {\"d000\": {\"mmlu\": 0.6111, \"gsm8k\": 0.5921, \"arc_challenge\": 0.7547, \"humaneval\": 0.1538}, \"d005\": {\"mmlu\": 0.614, \"gsm8k\": 0.5439, \"arc_challenge\": 0.7475, \"humaneval\": 0.0769}, \"d025\": {\"mmlu\": 0.6145, \"gsm8k\": 0.5482, \"arc_challenge\": 0.7504, \"humaneval\": 0.1923}, \"d100\": {\"mmlu\": 0.629, \"gsm8k\": 0.5307, \"arc_challenge\": 0.7834, \"humaneval\": 0.2308}, \"notes\": \"para_aligned eval on paraphrased benchmarks. GSM8K 228 items, HumanEval 26 items (paraphrased subsets).\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/\", \"spec\": {\"command\": \"python exp001/evaluate.py --model-path Qwen2.5-1.5B --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned (batch d000/d005/d025/d100 s123)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/paraphrases\", \"data_count\": 4, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"1.5B s123 SFT checkpoints\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123_para_aligned/eval_results.json\"}, \"completed_at\": \"2026-05-15T23:08:31.366Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2283}}"
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已更新到 DONE。\n\n现在处理 `exp_004_sim_sweep_v7`。Registry 里没有这个 exp_id（只有 `exp_004_sim_sweep_extreme_gamma`）。服务器上 `results/` 目录（主 sweep，16 conditions）已完成，这应该就是 v7。让我也注册它。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "480c790e-05e2-410c-b8f5-5080216c3fe5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ptbeowY2vpm8YouB91zRQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 931,
+                "cache_read_input_tokens": 110165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 931
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Y34JtLs6bACi5WLzzxFfM",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "metrics",
+                "value": {
+                  "conditions": 16,
+                  "seeds_per_condition": 10,
+                  "total_runs": 160,
+                  "gamma_true": 0.5,
+                  "grid": "AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}",
+                  "summary": {
+                    "mean_ci95_coverage": 0.94,
+                    "mean_gamma_bias": 0.001,
+                    "mean_gamma_rmse": 0.047,
+                    "mean_theta_corr": 0.965
+                  },
+                  "best_conditions": {
+                    "n100_auc0.55": {
+                      "bias": 0.0023,
+                      "rmse": 0.011,
+                      "ci95": 1
+                    },
+                    "n100_auc0.65": {
+                      "bias": 0.0052,
+                      "rmse": 0.017,
+                      "ci95": 0.9
+                    }
+                  },
+                  "worst_conditions": {
+                    "n8_auc0.9": {
+                      "bias": -0.0058,
+                      "rmse": 0.137,
+                      "ci95": 0.9,
+                      "ci_width": 0.54
+                    }
+                  },
+                  "key_finding": "gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery."
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "6ae22b98-0b23-405a-a0a7-971052b683ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ptbeowY2vpm8YouB91zRQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 931,
+                "cache_read_input_tokens": 110165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 931
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-15T23:08:44.759Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Y34JtLs6bACi5WLzzxFfM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:44.455Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6921}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "02c63848-2891-46c6-81d7-b969da0bd631",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:44.455Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6921}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:08:44.455Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6921}}"
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016uKcvJFM7rCMvuHMS2oCxs",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "conclusion",
+                "value": "success"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "79a4ba93-f4eb-4b98-8226-44dd72e8a3c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DZRCXLLyM7u4jKxyGamV6A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1129,
+                "cache_read_input_tokens": 111096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1129
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-15T23:08:48.667Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016uKcvJFM7rCMvuHMS2oCxs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:48.294Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8733}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "f49c7a84-82f4-4f24-a096-ae4deca241dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:48.294Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8733}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:08:48.294Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8733}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L3hxeDbHYYjMJ2NbzZc7Mk",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "checkpoint_path",
+                "value": "/root/contamcal-irt-calibration/exp004_sim_sweep/results/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "a96823ea-5b61-404f-895a-db9646f38935",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DZRCXLLyM7u4jKxyGamV6A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1129,
+                "cache_read_input_tokens": 111096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1129
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014TWCWJV8wX9F64mHAsnK5D",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "log_path",
+                "value": "/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "36556d97-e174-4065-88a8-00b8029f79a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DZRCXLLyM7u4jKxyGamV6A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1129,
+                "cache_read_input_tokens": 111096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1129
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-15T23:08:49.666Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L3hxeDbHYYjMJ2NbzZc7Mk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:49.241Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8765}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "b2d7009e-73cd-468d-b590-0cd6808aa7ee",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:49.241Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8765}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:08:49.241Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8765}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-15T23:08:50.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014TWCWJV8wX9F64mHAsnK5D",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:50.157Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8513}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "cd7a5bd3-5ffc-440b-9783-1ef828195858",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:50.157Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8513}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:08:50.157Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8513}}"
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXkChJ9uAVbLU72snQhHYD",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "status",
+                "value": "QUEUED"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "c5dc94e4-ae8f-48d3-95cb-2d28dd608c73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qzr95iU2XNdae6zWA7B3HB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2036,
+                "cache_read_input_tokens": 112225,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2036
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-15T23:08:55.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXkChJ9uAVbLU72snQhHYD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:54.172Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.372}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "dab3fd60-416b-4255-90f0-b1d17975cef0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:08:54.172Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.372}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:08:54.172Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.372}}"
+              }
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017igix3uE9rZ8TLR2FVxkV9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "status",
+                "value": "RUNNING",
+                "spec": {
+                  "command": "python run_sweep.py (16 conditions, 10 seeds each)",
+                  "server": "cqa1-21977",
+                  "data_path": "/root/contamcal-irt-calibration/exp004_sim_sweep/results/",
+                  "data_count": 160,
+                  "model_name": "4PL+gamma IRT simulation",
+                  "seed": "multiple",
+                  "checkpoint_path": "/root/contamcal-irt-calibration/exp004_sim_sweep/results/",
+                  "log_path": "/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "174bdacd-9dec-4c1f-a73d-cac2ff262d73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gse8dqXFpcdPkJwF9JDonQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 683,
+                "cache_read_input_tokens": 114261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 683
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-15T23:09:02.312Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017igix3uE9rZ8TLR2FVxkV9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:09:01.630Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_sweep.py (16 conditions, 10 seeds each)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1459}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "691fe5d0-2845-4da0-b38a-06944355d240",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:09:01.630Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_sweep.py (16 conditions, 10 seeds each)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1459}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:09:01.630Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\", \"spec\": {\"command\": \"python run_sweep.py (16 conditions, 10 seeds each)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"data_count\": 160, \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1459}}"
+              }
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PzRAGxPDGo5EGSXh1zsTM8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_004_sim_sweep_v7",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "aa1520df-43cf-44bc-81bd-40a4ed894221",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018NtF8Dqyx9iwY5njVo2Er1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1021,
+                "cache_read_input_tokens": 114944,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1021
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-15T23:09:06.269Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PzRAGxPDGo5EGSXh1zsTM8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:09:05.630Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_sweep.py (16 conditions, 10 seeds each)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}, \\\"completed_at\\\": \\\"2026-05-15T23:09:05.630Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0185}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "267495a0-dde2-4b89-8b01-ee5864e6443a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v7\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:08:44.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:09:05.630Z\\\", \\\"metrics\\\": {\\\"conditions\\\": 16, \\\"seeds_per_condition\\\": 10, \\\"total_runs\\\": 160, \\\"gamma_true\\\": 0.5, \\\"grid\\\": \\\"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\\\", \\\"summary\\\": {\\\"mean_ci95_coverage\\\": 0.94, \\\"mean_gamma_bias\\\": 0.001, \\\"mean_gamma_rmse\\\": 0.047, \\\"mean_theta_corr\\\": 0.965}, \\\"best_conditions\\\": {\\\"n100_auc0.55\\\": {\\\"bias\\\": 0.0023, \\\"rmse\\\": 0.011, \\\"ci95\\\": 1}, \\\"n100_auc0.65\\\": {\\\"bias\\\": 0.0052, \\\"rmse\\\": 0.017, \\\"ci95\\\": 0.9}}, \\\"worst_conditions\\\": {\\\"n8_auc0.9\\\": {\\\"bias\\\": -0.0058, \\\"rmse\\\": 0.137, \\\"ci95\\\": 0.9, \\\"ci_width\\\": 0.54}}, \\\"key_finding\\\": \\\"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_sweep.py (16 conditions, 10 seeds each)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\\\"}, \\\"completed_at\\\": \\\"2026-05-15T23:09:05.630Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0185}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v7\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:08:44.454Z\", \"updated_at\": \"2026-05-15T23:09:05.630Z\", \"metrics\": {\"conditions\": 16, \"seeds_per_condition\": 10, \"total_runs\": 160, \"gamma_true\": 0.5, \"grid\": \"AUC={0.55,0.65,0.8,0.9} x N={8,20,50,100}\", \"summary\": {\"mean_ci95_coverage\": 0.94, \"mean_gamma_bias\": 0.001, \"mean_gamma_rmse\": 0.047, \"mean_theta_corr\": 0.965}, \"best_conditions\": {\"n100_auc0.55\": {\"bias\": 0.0023, \"rmse\": 0.011, \"ci95\": 1}, \"n100_auc0.65\": {\"bias\": 0.0052, \"rmse\": 0.017, \"ci95\": 0.9}}, \"worst_conditions\": {\"n8_auc0.9\": {\"bias\": -0.0058, \"rmse\": 0.137, \"ci95\": 0.9, \"ci_width\": 0.54}}, \"key_finding\": \"gamma=0.5 recovery excellent across all conditions. CI95 coverage 80-100% (mean 94%). Larger N improves precision (RMSE drops ~3x from n8 to n100). AUC has minimal effect on recovery.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\", \"spec\": {\"command\": \"python run_sweep.py (16 conditions, 10 seeds each)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"data_count\": 160, \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/\", \"log_path\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results/sweep_summary.json\"}, \"completed_at\": \"2026-05-15T23:09:05.630Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0185}}"
+              }
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部更新为 DONE+success。汇总：\n\n---\n\n## 任务 1: exp_001_eval_15B_s123_para_aligned_batch → DONE\n\n**1.5B s123 para_aligned eval 结果：**\n\n| Dosage | MMLU | GSM8K | ARC | HumanEval |\n|--------|------|-------|-----|-----------|\n| d000 | 0.6111 | 0.5921 | 0.7547 | 0.1538 |\n| d005 | 0.6140 | 0.5439 | 0.7475 | 0.0769 |\n| d025 | 0.6145 | 0.5482 | 0.7504 | 0.1923 |\n| d100 | 0.6290 | 0.5307 | 0.7834 | 0.2308 |\n\n注：para_aligned 版本 GSM8K 仅 228 items，HumanEval 仅 26 items（释义子集）。MMLU 6596 items。d100 在 MMLU 和 ARC 上有明显提升（contamination effect），GSM8K 反而下降。\n\n## 任务 2: exp_004_sim_sweep_v7 → DONE\n\nRegistry 原本没有 `exp_004_sim_sweep_v7`（只有 `exp_004_sim_sweep_extreme_gamma`），两个都已完成：\n\n- **主 sweep (v7)**: 16 conditions (AUC={0.55,0.65,0.8,0.9} × N={8,20,50,100}), gamma_true=0.5, 160 runs。CI95 coverage 80-100%（均值 94%），gamma bias 极小（<0.025）。\n- **Extreme gamma sweep**: 8 conditions (gamma={2.0,4.0} × AUC={0.7,0.9} × N={20,50}), 80 runs, 11.1h。gamma=2.0 完美恢复（CI95=100%），gamma=4.0 轻微负偏（-0.10 to -0.23），CI95=90-100%。结论：经验数据中的 coverage collapse 是 model misspecification，不是极端参数值导致。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "uuid": "8aa831d0-73aa-49c7-8ff7-8a5634552c35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015rUvEK1PgWQAA2EpNxzVzC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 912,
+                "cache_read_input_tokens": 115965,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 912
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部更新为 DONE+success。汇总：\n\n---\n\n## 任务 1: exp_001_eval_15B_s123_para_aligned_batch → DONE\n\n**1.5B s123 para_aligned eval 结果：**\n\n| Dosage | MMLU | GSM8K | ARC | HumanEval |\n|--------|------|-------|-----|-----------|\n| d000 | 0.6111 | 0.5921 | 0.7547 | 0.1538 |\n| d005 | 0.6140 | 0.5439 | 0.7475 | 0.0769 |\n| d025 | 0.6145 | 0.5482 | 0.7504 | 0.1923 |\n| d100 | 0.6290 | 0.5307 | 0.7834 | 0.2308 |\n\n注：para_aligned 版本 GSM8K 仅 228 items，HumanEval 仅 26 items（释义子集）。MMLU 6596 items。d100 在 MMLU 和 ARC 上有明显提升（contamination effect），GSM8K 反而下降。\n\n## 任务 2: exp_004_sim_sweep_v7 → DONE\n\nRegistry 原本没有 `exp_004_sim_sweep_v7`（只有 `exp_004_sim_sweep_extreme_gamma`），两个都已完成：\n\n- **主 sweep (v7)**: 16 conditions (AUC={0.55,0.65,0.8,0.9} × N={8,20,50,100}), gamma_true=0.5, 160 runs。CI95 coverage 80-100%（均值 94%），gamma bias 极小（<0.025）。\n- **Extreme gamma sweep**: 8 conditions (gamma={2.0,4.0} × AUC={0.7,0.9} × N={20,50}), 80 runs, 11.1h。gamma=2.0 完美恢复（CI95=100%），gamma=4.0 轻微负偏（-0.10 to -0.23），CI95=90-100%。结论：经验数据中的 coverage collapse 是 model misspecification，不是极端参数值导致。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 282996,
+            "duration_api_ms": 266151,
+            "num_turns": 62,
+            "stop_reason": "end_turn",
+            "session_id": "301f852a-7f25-4d10-9361-ffa6af1ded6c",
+            "total_cost_usd": 1.9191740000000004,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 105036,
+              "cache_read_input_tokens": 1759562,
+              "output_tokens": 15230,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 105036,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 618,
+                  "cache_read_input_tokens": 115965,
+                  "cache_creation_input_tokens": 912,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 912
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1953,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002043,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 25,
+                "outputTokens": 15230,
+                "cacheReadInputTokens": 1759562,
+                "cacheCreationInputTokens": 105036,
+                "webSearchRequests": 0,
+                "costUSD": 1.9171310000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5c7f77c4-e918-4ee4-b8bf-04076fa288cc"
+          },
+          "id": "event-000152"
+        }
+      ]
+    }
+  ]
+}

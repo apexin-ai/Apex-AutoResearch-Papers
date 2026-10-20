@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9a00a6563e2b87fd056",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260515T201521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260515T201521_result.json",
+    "occurrence": 1,
+    "bytes": 2853,
+    "sha256": "81c50f545bafe55ebb52842d323853fb2ae01752223a96d2e53b1a76a0bc985d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "save_project_file 只允许特定文件。直接把报告输出在这里。\n\n---\n\n# GPU 状态检查报告\n\n**时间**: 2026-05-16 04:15:45 | **服务器**: cqa1-21977\n\n## GPU 占用总览\n\n| GPU | 显存占用 | GPU利用率 | 进程数 | 状态 |\n|-----|---------|----------|--------|------|\n| cuda:0 | 17975/24564 MiB | 53% | 1 | ✅ 正常 |\n| cuda:1 | 13325/24564 MiB | 28% | 1 | ⚠️ 未登记实验 |\n| cuda:2 | 14328/24564 MiB | 98% | 2 | 需确认 PID 622856 |\n| cuda:3 | 14473/24564 MiB | 99% | 3 | 🔴 三进程冲突 |\n| cuda:4 | 7537/24564 MiB | 59% | 1 | ✅ 正常 |\n| cuda:5 | 17651/24564 MiB | 2% | 1 | ✅ 正常 |\n\n## cuda:3 冲突详情（最严重）\n\n三个独立 python 进程同时占用 cuda:3：\n\n1. **PID 627614** — 5880 MiB — exp_001_eval_15B_s123_para_aligned_batch 的子进程（父 PID 627600，运行 6 分钟）\n2. **PID 628112** — 7998 MiB — exp_002_signals_3B_v6 的子进程（父 PID 628100，compute_signals `--signal all --benchmark mmlu`，运行 4 分钟）\n3. **PID 629264** — 576 MiB — **v6 的重复启动**（由 `run_signals_3B_v6.sh` PID 629251 启动，compute_signals `--signal s1 --benchmark mmlu`）\n\nsignals_v6 被启动了**两次**：一次通过 agent-ml 框架（PID 628100），一次通过 shell 脚本（PID 629251）。三进程共占 14454 MiB，GPU 利用率 99%。暂未 OOM 但结果可能受资源竞争影响。\n\n## cuda:1 — 未登记实验\n\n- **PID 628668** — d100_a32_s42_v3 SFT 训练，13316 MiB，28% 利用率\n- `CUDA_VISIBLE_DEVICES=1`，`--output-dir .../Qwen2.5-3B_d100_a32_s42_v3 --seed 42`\n- **不在 RUNNING 实验列表中**，来源不明\n\n## cuda:2 — 双进程\n\n- PID 623491 (6788 MiB): eval_3B_d005_s123_gsm8k 的子进程（已知）\n- PID 622856 (7526 MiB): **来源不明**，需确认\n\n## 关键 PID 存活状态\n\n| PID | 状态 | 运行时间 | GPU | 实验 |\n|-----|------|---------|-----|------|\n| 589763 | ✅ Sl+ | 04:03:20 | cuda:5 | SFT d025_v3_s42 |\n| 594489 | ✅ Ss+ | 03:41:39 | cuda:0 | SFT d100_s123_a32_v2 |\n| 623480 | ✅ Ss+ | 00:32:02 | cuda:2 | eval d005_s123_gsm8k |\n| 623826 | ✅ Ss+ | 00:31:50 | cuda:4 | signals_3B_v5 |\n| 627600 | ✅ Ss+ | 00:06:01 | cuda:3 | eval 15B para aligned |\n| 628100 | ✅ Ss+ | 00:04:13 | cuda:3 | signals_3B_v6 wrapper |\n| 628112 | ✅ Rl+ | 00:04:13 | cuda:3 | signals_3B_v6 python |\n\n全部 7 个跟踪 PID 存活。\n\n## tmux\n\n仅发现旧 session `exp_001_sft_0pct_05B`（PID 208932，May12 创建，已完成）。\n\n## 需要决策\n\n1. **🔴 cuda:3**: 至少 kill 重复的 v6 副本（PID 629264/629251）。eval_15B 和 signals_v6 也在抢资源，需决定保留哪个。\n2. **⚠️ cuda:1**: PID 628668 d100_a32_s42_v3 是否为有意提交？要保留还是 kill？\n3. **cuda:2**: PID 622856 是什么？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-13.md"
+}

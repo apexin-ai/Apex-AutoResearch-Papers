@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d8744a14fa44b39b137",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis dose response viz",
+  "task_key": "worker_analysis_dose-response-viz_20260519T130646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose-response-viz_20260519T130646_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "6644260bcbe6b5cc85d8ffd2960a41ab40fce0b524a8428fcaad1855ec7c1bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件全部生成：\n\n| 文件 | 大小 |\n|------|------|\n| `mmlu_dose_response.pdf` | 18.9 KB |\n| `mmlu_dose_response.png` | 169.7 KB |\n| `arc_dose_response.pdf` | 26.5 KB |\n| `arc_dose_response.png` | 181.8 KB |\n| `baseline_vs_effect.pdf` | 17.8 KB |\n| `baseline_vs_effect.png` | 114.4 KB |\n\n路径：`/root/autodl-tmp/exp001/figures/`，脚本：`/root/autodl-tmp/exp001/analyze_phase2.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-viz.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9486d2648fbb39e704d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit sft 3B d005 gpu5",
+  "task_key": "worker_submit_sft_3B_d005_gpu5_20260514T044154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_sft_3B_d005_gpu5_20260514T044154_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "d2a9866891831708770817fad44a7af7486e614607befb43bc53bb3b9390fb02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval registry 已更新为 DONE。\n\n**总结：**\n\n**eval_15B_d000_s123 结果** (Qwen2.5-1.5B baseline, seed=123):\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 57.62% |\n| GSM8K | 63.31% |\n| ARC Challenge | 76.62% |\n| HumanEval pass@1 | 17.07% |\n\n**3B d005 SFT 无法提交** — GPU 5 当前被两个训练进程占用：\n- PID 290905: **1.5B d005 SFT** (刚启动 ~1 min)\n- PID 291074: **0.5B d025 SFT** (刚启动 ~38s)\n\n两个都是刚提交的任务，预计运行数小时。需要等它们完成或选择其他空闲 GPU 来提交 3B d005 SFT。要我查看哪些 GPU 目前有空？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-sft-3b-d005-gpu5.md"
+}

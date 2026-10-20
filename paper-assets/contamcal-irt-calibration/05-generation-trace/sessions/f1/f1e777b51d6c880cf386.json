@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1e777b51d6c880cf386",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh eval gpu1 05B s123",
+  "task_key": "worker_ssh_eval-gpu1-05B-s123_20260513T223054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-gpu1-05B-s123_20260513T223054_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "2dcb9937eb2b5a9b4f0318b0c37128f865ef6c9df748991ba16bbcc03dc91910"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行中，模型正在加载（无连接超时错误）。\n\n**PID: 227936**（物理 GPU 1）\n- 模型: Qwen/Qwen2.5-0.5B + LoRA adapter\n- Benchmarks: mmlu, gsm8k, arc_challenge, humaneval\n- 输出: `/root/contamcal-irt-calibration/exp001/eval_results/qwen2.5-0.5b_d000_s123/`\n- 日志: `/tmp/eval_05B_d000_s123.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-gpu1-05b-s123.md"
+}

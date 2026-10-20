@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "7a22a2d3bd9c639d2cd0",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "run exp003 rrf exp006 irt",
+  "task_key": "worker_run_exp003_rrf_exp006_irt_20260514T141527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp003_rrf_exp006_irt_20260514T141527.log",
+    "occurrence": 1,
+    "bytes": 1154744,
+    "sha256": "b319cb9e4af7133f83f2f117bd925f5c512f61e114a932c2752b67d1b5942acd"
+  },
+  "statistics": {
+    "messages": 843,
+    "user_turns": 1,
+    "tool_calls": 333,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 167,
+      "tool_call": 333,
+      "tool_result": 333,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 786,
+      "chunks": [
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0005.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "7a22a2d3bd9c639d2cd0-part-0005.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-exp003-rrf-exp006-irt.md"
+}

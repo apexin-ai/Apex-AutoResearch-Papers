@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f980a85415af948f3b1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose olmo2 s0 sweep exit v2",
+  "task_key": "worker_diagnose_olmo2-s0-sweep-exit-v2_20260520T044837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_olmo2-s0-sweep-exit-v2_20260520T044837_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "2a9f36aaa1515c8f1d225742b1eb724ec8ce9562be922f24eb9733114c541fd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**Sweep PID 238801 存活，正常运行中。** 这是误报告警。\n\n| Dosage | 状态 | 完成时间 |\n|--------|------|---------|\n| d000 | DONE ✓ | 10:56 |\n| d005 | DONE ✓ | 12:39 |\n| d025 | 训练中 | ~14:20 预估 |\n| d050 | 未开始 | — |\n| d100 | 未开始 | — |\n\nGPU 2 利用率 94%，显存 66.7 GiB，PID 280811（d025 训练子进程）。d000 耗时 ~1h42m，d005 ~1h43m，据此推算 d025 约 14:20 完成，全部 5 dosage 约 17:00 前完成。\n\n**不更新 registry。** westd cuda:2 被占用，不可接新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-olmo2-s0-sweep-exit-v2.md"
+}

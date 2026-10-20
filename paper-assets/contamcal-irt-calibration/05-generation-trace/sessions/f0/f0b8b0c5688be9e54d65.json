@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0b8b0c5688be9e54d65",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 3B raw gen",
+  "task_key": "worker_analyze_exp_001_eval_3B_raw_gen_20260514T093608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_3B_raw_gen_20260514T093608_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "9645a7113bbe74e02d6e83125ae40ddee2acfaa431a3b34fdd82fa5deaadebc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001_eval_3B_raw_gen 结果\n\n| Benchmark | Score | Detail |\n|-----------|-------|--------|\n| **GSM8K** | **0.6050** | 798/1319 correct |\n| **HumanEval** | **0.0000** | 0/164 correct |\n\n### 对比\n\n| Model | GSM8K | HumanEval |\n|-------|-------|-----------|\n| 0.5B raw | 0.0628 | 0.0305 |\n| **3B raw** | **0.6050** | **0.0000** |\n| 1.5B SFT | 0.6368 | 0.1280 |\n\n### 异常：HumanEval pass@1 = 0\n\nHumanEval 全部失败。从 item_responses 看，模型生成的是解释性文本 + markdown 代码块格式（`\"Here's the completed Python function:\\n\\n```python\"`），而非直接输出可执行代码。评估器无法从这种格式中提取有效代码。这是裸基座模型的典型行为——它在续写时倾向于生成\"教程式\"回答而非纯代码补全。\n\n0.5B raw 反而有 0.0305，可能是因为小模型更倾向于直接续写代码而非生成解释性文本。\n\nGSM8K 0.6050 正常，接近 1.5B SFT 的 0.6368，说明 3B base model 的数学推理能力本身不错。\n\n### 结果文件\n\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/eval_results.json`\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/correctness_matrix.json`\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/item_responses.json`\n\n无 W&B run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-3b-raw-gen.md"
+}

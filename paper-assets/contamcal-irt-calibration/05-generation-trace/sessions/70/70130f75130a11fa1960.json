@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70130f75130a11fa1960",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code classifier volatility fix",
+  "task_key": "worker_code_classifier-volatility-fix_20260519T194558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classifier-volatility-fix_20260519T194558_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "73612fa1ca847b735bd9eb69ec2c5c97029ccf88e16e82731e301e7dcf246b6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6/6 通过。验证结果：\n\n| Family | Seed | Pattern | Conf | Key Signal |\n|--------|------|---------|------|-----------|\n| Phi-4 | 42 | Immune | 0.915 | max_dev=0.34pp ≤ τ |\n| Qwen-14B | 42 | U-collapse | 0.937 | delta=-9.37pp |\n| Qwen-7B | 42 | V-recovery | 0.618 | trough 63.15%, partial recovery |\n| Gemma-2 | 42 | Benefit | 1.000 | +3.76pp monotonic |\n| OLMo-2 | 42 | Benefit-sat | 0.515 | late gain 0.47pp < 0.5pp floor |\n| Qwen-7B | 123 | **V-recovery-full** | 1.000 | delta=0.00pp but max_dev=3.22pp, V-dip to 63.37% |\n\nQwen-7B s123 现在正确分类为 V-recovery-full 而非 Immune。核心改动：在 `|Δ| ≤ τ` 分支内先算 `max_deviation = max(|a_i - a_0|)`，超过 τ 且有 V-dip 则判定为 V-recovery-full。三个文件（Python / TeX / YAML）已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-classifier-volatility-fix.md"
+}

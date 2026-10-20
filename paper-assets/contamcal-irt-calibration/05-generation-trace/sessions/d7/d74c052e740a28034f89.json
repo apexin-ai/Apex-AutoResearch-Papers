@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d74c052e740a28034f89",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 001 eval 15B failed",
+  "task_key": "worker_diag_exp_001_eval_15B_failed_20260515T134605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_001_eval_15B_failed_20260515T134605_result.json",
+    "occurrence": 1,
+    "bytes": 1614,
+    "sha256": "d8bcecfd94521ee8fc9c151e42212161d544b40bf68acf98677556b2f665812f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因：双重提交导致 SIGHUP\n\n**不是 OOM、不是脚本 bug、不是 SSH 断连。**\n\n### 证据链\n\n1. **Exit files 确认**：两个实验的 exit 文件都记录 `129|2026-05-15T13:42:57Z`（完全同一秒）\n\n2. **时间线重建**：\n   - `21:39:09-15`：首次提交（PIDs 565090, 565266），日志文件 Birth time 证实\n   - `21:42:00-04`：二次提交（PIDs 566219/566224, 566306/566311），ps 输出证实\n   - `21:42:57`：首次提交的进程 EXIT trap 触发，写入 exit code 129\n   - 首次提交仅运行了 ~170 秒就被杀死\n\n3. **共同父进程**：两批进程的 PPID 都是 `208932`（tmux session `exp_001_sft_0pct_05B`，May 14 创建）。二次提交复用同一 tmux session 的 pane，导致旧进程收到 SIGHUP\n\n4. **排除 OOM**：系统内存 1TB 仅用 56GB；GPU 显存 5.8GB/24GB\n5. **排除脚本 bug**：当前重试运行已完成 MMLU 并在跑 GSM8K\n\n### 当前状态\n\n重试运行**健康运行中**，无需干预：\n- **d025** (cuda:1)：MMLU 完成，accuracy = **0.5881** (8258/14042)，正在评估 GSM8K\n- **d005** (cuda:0)：MMLU 完成，accuracy = **0.5869** (8241/14042)，正在评估 GSM8K\n\nGSM8K 每题约 6 秒，1319 题预计还需 ~2 小时。后面还有 arc_challenge 和 humaneval。\n\n### 结论\n\n无需重试——重试已经自动发生且正在成功执行。根本问题是实验管理系统在 ~3 分钟内对同名实验做了双重提交，违反了 C001 约束（提交前未检查是否已有同类进程）。建议排查是什么触发了二次提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-001-eval-15b-failed.md"
+}

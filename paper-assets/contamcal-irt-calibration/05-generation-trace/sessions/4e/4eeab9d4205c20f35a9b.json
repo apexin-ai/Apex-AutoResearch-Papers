@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "4eeab9d4205c20f35a9b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "fix eval falcon3 network",
+  "task_key": "worker_fix_eval_falcon3_network_20260522T110905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_falcon3_network_20260522T110905.log",
+    "occurrence": 1,
+    "bytes": 904828,
+    "sha256": "0d78fb1db706d214e1796c1214ae47d653be2fa0f1e03c092de39352128d1cf7"
+  },
+  "statistics": {
+    "messages": 623,
+    "user_turns": 0,
+    "tool_calls": 228,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 163,
+      "tool_call": 228,
+      "tool_result": 228,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 623,
+      "chunks": [
+        {
+          "path": "4eeab9d4205c20f35a9b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4eeab9d4205c20f35a9b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4eeab9d4205c20f35a9b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4eeab9d4205c20f35a9b-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-eval-falcon3-network.md"
+}

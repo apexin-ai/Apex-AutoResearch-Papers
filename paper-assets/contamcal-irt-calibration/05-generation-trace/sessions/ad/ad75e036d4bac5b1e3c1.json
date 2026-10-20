@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad75e036d4bac5b1e3c1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 15B s123 para aligned batch",
+  "task_key": "worker_eval_15B_s123_para_aligned_batch_20260515T200721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_15B_s123_para_aligned_batch_20260515T200721_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "a580d8dda366eddf4ed41ae2feb02096094fdc86961ca8c624a48cbdecde02f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并运行中。汇总：\n\n**Checkpoints（4/4 存在）：**\n| Dose | Path |\n|------|------|\n| d000 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123/lora_adapter` |\n| d005 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter` |\n| d025 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter` |\n| d100 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s123/lora_adapter` |\n\n**已有 eval 结果：** 无（4 个全部 MISSING，无跳过）\n\n**提交状态：**\n- PID: 627600 (tmux 内实际 PID 627614)\n- tmux session: `exp_001_eval_15B_s123_para_aligned_batch`\n- GPU: cuda:3, 已占用 3654 MiB\n- Log: `~/runs/contamcal-irt-calibration/exp_001_eval_15B_s123_para_aligned_batch.log`\n\n**Log 前几行：** 模型加载正常，bitsandbytes 有非致命 warning（libnvJitLink.so.13 缺失，不影响 eval），已开始评估 d000 的 mmlu paraphrased（加载 6596 条 QC-passed paraphrased items）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-15b-s123-para-aligned-batch.md"
+}

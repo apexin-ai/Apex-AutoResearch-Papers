@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f546da98a89a445f6c03",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code qwen7b s42 reeval prep",
+  "task_key": "worker_code_qwen7b-s42-reeval-prep_20260519T181605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen7b-s42-reeval-prep_20260519T181605_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "072f98f0c84bee3cb026632855c1b29287e548810581008fda6f8614a4fe7fd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本语法通过。\n\n**汇报：**\n\n**Adapter 路径确认（全部 lora_alpha=32）：**\n| Dosage | Adapter 路径 |\n|--------|-------------|\n| d000 | `Qwen2.5-7B_d000_s42/lora_adapter` |\n| d005 | `Qwen2.5-7B_d005_s42/lora_adapter` |\n| d025 | `Qwen2.5-7B_d025_s42/lora_adapter` |\n| d050 | `Qwen2.5-7B_d050_s42/lora_adapter` |\n| d100 | `Qwen2.5-7B_d100_s42/lora_adapter` |\n\n**关于 d000**：d000_s42 实际包含 adapter（0% dosage SFT 训练产物，lora_alpha=32），与 s123 d000 处理方式一致——都走 adapter-based eval。\n\n**与 s123 v2 脚本差异：**\n1. Adapter 路径：`Qwen2.5-7B_${DOSAGE}_s123` → `Qwen2.5-7B_${DOSAGE}_s42`\n2. 输出目录：`qwen7b_${DOSAGE}_s123` → `qwen7b_${DOSAGE}_s42_v2`\n3. eval_meta.json 中 `seed: 123` → `seed: 42`\n\n脚本路径：`/root/contamcal-irt-calibration/exp001/eval_qwen7b_s42_cqa1.sh`，已 `chmod +x`，未启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen7b-s42-reeval-prep.md"
+}

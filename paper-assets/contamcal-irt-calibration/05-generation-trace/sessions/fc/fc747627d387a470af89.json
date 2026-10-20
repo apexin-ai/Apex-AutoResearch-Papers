@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc747627d387a470af89",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix exp003 exp006 format",
+  "task_key": "worker_code_fix_exp003_exp006_format_20260514T133501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_exp003_exp006_format_20260514T133501_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "74f4dc31f580a73228f9ceace06351dc259a40e4e65b7ef4a7d8f73f5f2400b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n## 结果\n\n**改了什么：** `exp006/run_irt_calibration.py` 和 `exp006/run_irt_stan.py` 的 `load_exposure_scores` 函数，各加 ~10 行格式自适应逻辑。在 `json.load(f)` 后、使用 `raw` 前，自动检测并转换 3 种嵌套格式：\n- `{bench: {exposure_scores: [...], ...}}` → 提取 list\n- `{model_id: {bench: {exposure_scores: [...], ...}}}` → 解包 model 层 + 提取 list\n- `{model_id: {bench: [floats]}}` → 解包 model 层\n\n**dry-run 验证：**\n| 测试 | 结果 |\n|------|------|\n| exp-003 嵌套格式 → run_irt_calibration | PASSED (3 benchmarks, item counts 正确) |\n| exp-003 嵌套格式 → run_irt_stan | PASSED |\n| 旧的扁平格式 `{bench: [floats]}` | PASSED (向后兼容) |\n\n**向后兼容：** exp-003 侧零改动，已有的 `exposure_scores.json` 文件无需重新生成。exp-006 同时接受新旧两种格式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp003-exp006-format.md"
+}

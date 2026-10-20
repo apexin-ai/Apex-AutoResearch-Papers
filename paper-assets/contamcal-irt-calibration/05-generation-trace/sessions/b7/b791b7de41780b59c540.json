@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b791b7de41780b59c540",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "train 3B d100 s123 a32 cuda1",
+  "task_key": "worker_train_3B_d100_s123_a32_cuda1_20260516T110956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_3B_d100_s123_a32_cuda1_20260516T110956_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "5aa0480b680081e71211bdc8c717ef38a073990da4926fe4501e5171afa0dce0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练已完成，无需重新提交。**\n\n总结：\n\n| 项目 | 状态 |\n|------|------|\n| 输出目录 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/` 已存在 |\n| LoRA adapter | `adapter_model.safetensors` + tokenizer + training_args.bin 齐全 |\n| 参数确认 | lora_alpha=32, r=16, seed=123, lr=5e-5, epochs=1 ✓ |\n| 合并模型 | 无 merged 目录（`--merge` 未执行，但 LoRA adapter 完整可用） |\n| Registry | 无记录 — 需要补登 |\n| GPU 1 | 被 0.5B_d100_s123 signals 任务占用 (PID 761755) |\n\n**建议**：\n1. 训练无需重新跑——权重已完整\n2. 需要补登 registry（标为 DONE）\n3. 如果后续信号计算需要 merged 模型，可单独跑 merge 步骤\n\n是否需要我补登 registry 记录？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-3b-d100-s123-a32-cuda1.md"
+}

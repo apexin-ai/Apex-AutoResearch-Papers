@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ceee36c21104112dc7e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis n13 investigation",
+  "task_key": "worker_analysis_n13_investigation_20260516T164000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n13_investigation_20260516T164000_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "789c5efa2d37134eabfe4d5f1a1e1414383a32e254e297824a39dac40a1419cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Root cause identified. Here's the summary:\n\n## 结果\n\n**N=13 = 8×1.5B + 5×3B**（排除了 0.5B 后，3B 应有 8 个但只匹配了 5 个）\n\n### 被排除的 3 个 respondent\n\n| # | Eval dirname (strip后) | RRF key | 原因 |\n|---|---|---|---|\n| 1 | `Qwen2.5-3B_d000_s42_a32` | `Qwen2.5-3B_d000_a32_s42` | `a32`/`s42` 顺序反了 |\n| 2 | `Qwen2.5-3B_d000_s123` | `Qwen2.5-3B_d000_s123_a32` | eval 名缺 `_a32` 后缀 |\n| 3 | `Qwen2.5-3B_d005_s42_a32` | `Qwen2.5-3B_d005_a32_s42` | `a32`/`s42` 顺序反了 |\n\n### 排除机制\n\n`run_pooled_rrf_irt.py` 的 `filter_models_for_benchmark()` 函数（第 57 行）用 `strip_aligned(dirname)` 做 exact match 查找 RRF key：\n\n```python\nkey = strip_aligned(m[\"dirname\"])\nif key not in rrf_data:\n    continue  # 静默排除\n```\n\neval_results 目录用 `_sXX_a32` 命名（如 `d000_s42_a32_aligned`），而 RRF exposure_scores.json 用 `_a32_sXX` 命名（如 `d000_a32_s42`）。d100 没问题是因为两边碰巧一致（`d100_a32_s42`）。\n\n### 修复方案\n\n在 `strip_aligned()` 或 `filter_models_for_benchmark()` 中加一个 name normalization 步骤，将 `_sXX_a32` 和 `_a32_sXX` 统一成同一 canonical form。或直接在 RRF exposure_scores.json 中把 3 个 key 重命名为与 eval 一致。\n\n两者都是低风险单点修改，不影响其他流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n13-investigation.md"
+}

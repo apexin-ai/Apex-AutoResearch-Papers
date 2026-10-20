@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0",
+  "id": "a39516debafadfe47b68",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "investigate alpha verify",
+  "task_key": "worker_investigate_alpha-verify_20260515T151011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_investigate_alpha-verify_20260515T151011.jsonl",
+    "occurrence": 1,
+    "bytes": 12914,
+    "sha256": "75189e353b7bf2d8a0c9d45e96b5090a34ad94e28b009e882fd7efa6ff370d94"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:11:20.611874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:11:20.612341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:11:20.612629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_* -name adapter_config.json -path \"*/lora_adapter/*\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:11:20.612909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/checkpoint-3125/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/checkpoint-3125/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/checkpoint-3125/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/checkpoint-3177/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/checkpoint-3177/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/checkpoint-3384/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/checkpoint-3384/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter/checkpoint-4159/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter/checkpoint-4159/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoin\n…[truncated 162 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:11:20.613218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -H lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:11:20.613490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:11:20.613733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -H lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:11:20.613969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:11:20.614251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_* -maxdepth 2 -name adapter_config.json -path \"*/lora_adapter/adapter_config.json\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:11:20.614519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_* -maxdepth 2 -name adapter_config.json -path \"*/lora_adapter/adapter_config.json\""
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:11:20.614752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:11:20.615116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s123/lora_adapter/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:11:20.615422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -H lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter/adapter_config.json /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:11:20.615663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42/lora_adapter/adapter_config.json:  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:11:20.615996+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 3B SFT Checkpoints（全部 10 个）\n\n| Checkpoint | lora_alpha | 备注 |\n|---|---|---|\n| `Qwen2.5-3B_d000_s123` | **32** | |\n| `Qwen2.5-3B_d000_s42` | **32** | |\n| `Qwen2.5-3B_d000_v2_s123` | **16** | v2 重跑版本 |\n| `Qwen2.5-3B_d000_v2_s42` | **16** | v2 重跑版本 |\n| `Qwen2.5-3B_d005_s123` | **32** | ⚠️ registry 命令写 `--lora-alpha 16`，实际是 32 |\n| `Qwen2.5-3B_d005_s42` | **32** | |\n| `Qwen2.5-3B_d025_s123` | **32** | |\n| `Qwen2.5-3B_d025_s42` | **16** | |\n| `Qwen2.5-3B_d100_s123` | **16** | |\n| `Qwen2.5-3B_d100_s42` | **16** | |\n\n**分布：5 个 alpha=32，5 个 alpha=16**\n\n### 0.5B / 1.5B 代表性 Checkpoints（各 2 个）\n\n| Checkpoint | lora_alpha |\n|---|---|\n| `Qwen2.5-0.5B_d005_s123` | **32** |\n| `Qwen2.5-0.5B_d025_s42` | **32** |\n| `Qwen2.5-1.5B_d005_s123` | **32** |\n| `Qwen2.5-1.5B_d025_s42` | **32** |\n\n0.5B 和 1.5B 采样点全部一致为 alpha=32。\n\n### 关键发现\n\n1. **`exp_001_sft_3B_d005_s123` 存在 registry 与实际不一致**：registry 提交命令记录 `--lora-alpha 16`，但 checkpoint 实际保存的是 `lora_alpha=32`。可能原因：脚本有默认值覆盖了命令行参数，或 registry 记录有误。\n2. **3B 的 alpha=16 集中在**：v2 重跑版本（d000_v2）和部分后期实验（d025_s42、d100_s123、d100_s42），暗示这些是在某次配置变更后训练的。\n3. **0.5B / 1.5B 未受影响**，采样点均为 alpha=32。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_alpha-verify_20260515T151011"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/investigate-alpha-verify.md"
+}

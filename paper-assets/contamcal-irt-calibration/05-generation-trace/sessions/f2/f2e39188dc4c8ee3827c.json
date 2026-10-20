@@ -1,0 +1,498 @@
+{
+  "schema_version": "1.0",
+  "id": "f2e39188dc4c8ee3827c",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analyze eval 3B d005 s123 gsm8k",
+  "task_key": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655.jsonl",
+    "occurrence": 1,
+    "bytes": 21183,
+    "sha256": "26c2b1a3d8008044bea392ef93954f396c6676007f115e42f3069b5ae7f5aaf5"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:59:00.469025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:59:00.469572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:59:00.469860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -50 ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:59:00.470081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/eval_results/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:59:00.476780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 03:47:16,414 [WARNING] '(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f70606747a0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\\\\\"), '(Request ID: 574b7ee9-d27a-4417-8399-4b9398ea1c12)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\\\\nRetrying in 2s [Retry 2/5].\\\\n2026-05-16 03:47:16,415 [WARNING] Retrying in 2s [Retry 2/5].\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f7060674bf0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\\\\\"), '(Request ID: 0d297c66-4036-4932-a6f3-668d38d07d1b)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\\\\n2026-05-16 03:47:28,429 [WARNING] '(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f7060674bf0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\\\\\"), '(Request ID: 0d297c66-4036-4932-a6f3-668d38d07d1b)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\\\\nRetrying in 4s [Retry 3/5].\\\\n2026-05-16 03:47:28,429 [WARNING] Retrying in 4s [Retry 3/5].\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f7060675190>, 'Connection to huggingface.co tim\n…[truncated 6383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 6
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:59:00.477176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B-Instruct_aligned\\\\nQwen2.5-0.5B_base_pretrained\\\\nQwen2.5-0.5B_base_pretrained_aligned\\\\nQwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s123_aligned\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d000_s42_aligned\\\\nQwen2.5-0.5B_d000_s42_para\\\\nQwen2.5-0.5B_d000_s42_para_aligned\\\\nQwen2.5-0.5B_d000_s42_v2\\\\nQwen2.5-0.5B_d000_s42_v2.log\\\\nQwen2.5-0.5B_d005_s123_aligned\\\\nQwen2.5-0.5B_d005_s123_para_aligned\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d005_s42_aligned\\\\nQwen2.5-0.5B_d005_s42_para_aligned\\\\nQwen2.5-0.5B_d025_s123_aligned\\\\nQwen2.5-0.5B_d025_s42_aligned\\\\nQwen2.5-0.5B_d025_s42_para_aligned\\\\nQwen2.5-0.5B_d100_s123_aligned\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-0.5B_d100_s42_aligned\\\\nQwen2.5-0.5B_raw\\\\nQwen2.5-1.5B_base_pretrained\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s123_aligned\\\\nQwen2.5-1.5B_d000_s123_para_aligned\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d000_s42_aligned\\\\nQwen2.5-1.5B_d000_s42_para_aligned\\\\nQwen2.5-1.5B_d005_s123_aligned\\\\nQwen2.5-1.5B_d005_s123_para_aligned\\\\nQwen2.5-1.5B_d005_s42_aligned\\\\nQwen2.5-1.5B_d005_s42_para_aligned\\\\nQwen2.5-1.5B_d025_s123_aligned\\\\nQwen2.5-1.5B_d025_s123_para_aligned\\\\nQwen2.5-1.5B_d025_s42_aligned\\\\nQwen2.5-1.5B_d025_s42_para_aligned\\\\nQwen2.5-1.5B_d100_s123_aligned\\\\nQwen2.5-1.5B_d100_s123_para_aligned\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-1.5B_d100_s42_aligned\\\\nQwen2.5-1.5B_d100_s42_para_aligned\\\\nQwen2.5-3B_d000_s123_aligned\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_s42_para_aligned\\\\nQwen2.5-3B_d000_s42_v3_aligned\\\\nQwen2.5-3B_d000_v1_s123_DEPRECATED\\\\nQwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\nQwen2.5-3B_d000_v2_s123_aligned\\\\nQwen2.5-3B_d000_v2_s123_aligned.log\\\\nQwen2.5-3B_d000_v2_s123_para_aligned\\\\nQwen2.5-3B_d000_v2_s123_para_aligned.log\\\\nQwen2.5-3B_d000_v2_s42_aligned\\\\nQwen2.5-3B_d000_v2_s42_para_aligned\\\\nQwen2.5-3B_d000_v2_s42_para_aligned_v2\\\\nQwen2.5-3B_d000_v2_s42_para_aligned_v3\\\\nQwen2.5-3B_d000_v3_s42_aligned\\\\nQwen2.5-3B_d005_s123_ali\n…[truncated 1071 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 7
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:59:00.477542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:59:00.477767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5798}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:59:00.477969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:59:00.478203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_s123_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:43:47.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:57:51.751Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source conda && evaluate.py --benchmarks gsm8k --mc-format aligned --adapter Qwen2.5-3B_d005_s123'\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"623480\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:44.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"gsm8k aligned\\\"}, \\\"hypothesis\\\": \\\"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:51:16.656Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:51:33.234370+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6679}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:59:00.484565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:59:00.484842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "metrics",
+              "value": "{'gsm8k_exact_match': 0.6308, 'gsm8k_correct': 832, 'gsm8k_total': 1319}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:59:00.485098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "log_path",
+              "value": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:59:00.485369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9114}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:59:00.485627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_s123_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:43:47.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:58:03.428Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source conda && evaluate.py --benchmarks gsm8k --mc-format aligned --adapter Qwen2.5-3B_d005_s123'\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"623480\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:44.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"gsm8k aligned\\\"}, \\\"hypothesis\\\": \\\"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:51:16.656Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:51:33.234370+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.6308, \\\"gsm8k_correct\\\": 832, \\\"gsm8k_total\\\": 1319}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.0329}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:59:00.485898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_s123_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:43:47.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:58:09.073Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source conda && evaluate.py --benchmarks gsm8k --mc-format aligned --adapter Qwen2.5-3B_d005_s123'\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"623480\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:44.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"gsm8k aligned\\\"}, \\\"hypothesis\\\": \\\"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:51:16.656Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:51:33.234370+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.6308, \\\"gsm8k_correct\\\": 832, \\\"gsm8k_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3361}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:59:00.486162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:59:00.492711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0848}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:59:00.492953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:59:00.493242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_s123_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:43:47.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:58:24.541Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source conda && evaluate.py --benchmarks gsm8k --mc-format aligned --adapter Qwen2.5-3B_d005_s123'\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"623480\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:44.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"gsm8k aligned\\\"}, \\\"hypothesis\\\": \\\"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:51:16.656Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:51:33.234370+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.6308, \\\"gsm8k_correct\\\": 832, \\\"gsm8k_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:59:00.493592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:59:00.493894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_s123_gsm8k\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T19:43:47.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:58:40.681Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source conda && evaluate.py --benchmarks gsm8k --mc-format aligned --adapter Qwen2.5-3B_d005_s123'\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"623480\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:44.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"gsm8k aligned\\\", \\\"wall_clock_seconds\\\": 11695.9, \\\"gpu_hours\\\": 3.25}, \\\"hypothesis\\\": \\\"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:51:16.656Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:51:33.234370+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_exact_match\\\": 0.6308, \\\"gsm8k_correct\\\": 832, \\\"gsm8k_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun\\\", \\\"completed_at\\\": \\\"2026-05-15T22:58:40.681Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.2074}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:59:00.494202+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n**结果汇总：**\n- GSM8K exact_match = **63.08%** (832/1319)\n- 运行时间 ~3h，GPU hours 3.25\n- 结果文件：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun/`\n- 之前 d000_s42_para_aligned 报 4.8% 几乎可以确认是 CoT 提取 bug，63% 在 3B 模型 GSM8K 上是合理水平"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_3B_d005_s123_gsm8k_20260515T225655"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-eval-3b-d005-s123-gsm8k.md"
+}

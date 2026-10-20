@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5b102b2f06e52a228a6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sync exp002 to remote",
+  "task_key": "worker_ops_sync_exp002_to_remote_20260514T014342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_exp002_to_remote_20260514T014342_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "35ed5bb32764f681d4824cb4e8ed997fa9c1039ba998568bb3945c516ac9445e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n| 文件 | 本地行数 | 远程行数 |\n|------|---------|---------|\n| aggregate_rrf.py | 226 | 226 |\n| compute_signals.py | 187 | 187 |\n| signal_constat.py | 114 | 114 |\n| signal_embedding.py | 197 | 197 |\n| signal_minkpp.py | 218 | 218 |\n| signal_selfcritique.py | 227 | 227 |\n| **合计** | **1169** | **1169** |\n\n依赖检查：`faiss` + `sentence_transformers` 均已安装，`deps OK`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-exp002-to-remote.md"
+}

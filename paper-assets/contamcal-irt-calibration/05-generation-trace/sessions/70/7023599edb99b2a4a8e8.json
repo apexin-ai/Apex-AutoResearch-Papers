@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7023599edb99b2a4a8e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops signals v2 check",
+  "task_key": "worker_ops_signals-v2-check_20260522T182120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_signals-v2-check_20260522T182120_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "91ceea4334d81058d1f1b9a62bdce69a57ed69205018730abcadbcfff2ffdf98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果报告\n\n**Falcon3-7B-Base d100 s42 — 信号文件状态：**\n\n| Signal | MMLU | ARC Challenge | GSM8K |\n|--------|------|---------------|-------|\n| S1 embedding | ✅ 7.8MB | ✅ 662KB | ✅ 733KB |\n| S2 minkpp | ✅ 2.9MB | ✅ 250KB | ✅ 272KB |\n| S4 selfcritique | ✅ 3.3MB | ✅ 290KB | ✅ 315KB |\n\n- **S1/S2**：从 v1 保留完好（时间戳 May 22 22:28-22:52）\n- **S4**：v2 全部完成（时间戳 May 23 01:55-02:12），MMLU 15 chunks 覆盖 0-14042 项\n- **全部 9 个 signal × benchmark 组合已就绪**，无缺失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-signals-v2-check.md"
+}

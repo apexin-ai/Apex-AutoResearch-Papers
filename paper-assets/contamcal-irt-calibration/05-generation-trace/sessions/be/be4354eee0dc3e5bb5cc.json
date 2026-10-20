@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be4354eee0dc3e5bb5cc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status fill 0516c",
+  "task_key": "worker_ops_gpu-status-fill-0516c_20260516T191647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-fill-0516c_20260516T191647_result.json",
+    "occurrence": 1,
+    "bytes": 1906,
+    "sha256": "2417461f4830168bd341a59aebbcd5739bbeb014ba2d993f662ab2043ebd3c2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态截面 (2026-05-17)\n\n| GPU | 状态 | 进程 | 已运行 | ETA |\n|-----|------|------|--------|-----|\n| cuda:0 | **忙** | eval d005 (PID 825638) | 1h22m | ~40-90min |\n| cuda:1 | **忙** | signals mmlu d000 s4_selfcritique (PID 830115) | 55m | ~90min |\n| cuda:2 | **空闲** | — | — | — |\n| cuda:3 | **忙** | eval d025 (PID 822385/822390) | 1h43m | ~20-70min |\n| cuda:4 | **空闲** | — | — | — |\n| cuda:5 | **忙** | eval d100 (PID 831033) | 54m | ~60-120min |\n\n### Cron 注册的 4 个实验状态\n\n- exp_001_eval_llama32_3B_d025_s42 (PID 822385) ✓ 存活 (GPU 3)\n- exp_001_eval_llama32_3B_d005_s42 (PID 825638) ✓ 存活 (GPU 0)\n- exp_002_signals_llama32_3B_d000_mmlu (PID 830115) ✓ 存活 (GPU 1)\n- exp_001_eval_llama32_3B_d100_s42 (PID 831033) ✓ 存活 (GPU 5)\n\n### cuda:2/cuda:4 上次进程已完成\n\nPID 835983 (gsm8k selfcritique) 和 PID 831936 (gsm8k signals) 均已结束。\n\n### Llama d000 signals 完整性\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | merged |\n|-----------|:---:|:---:|:---:|:---:|\n| arc_challenge | ✓ | ✓ | ✓ | ✓ |\n| gsm8k | ✓ | ✓ | ✓ | ✓ |\n| mmlu | ✓ | ✓ | **进行中** (4/~14 chunks, ~28%) | 待生成 |\n\nmmlu s4_selfcritique 进度: chunk rate ~9.4min/1000 items, 剩余 ~10k items → **ETA ~90min**\n\n### 填补决策\n\n按 P1→P2→P3 优先级评估：\n\n- **P1** (mmlu s4_selfcritique): 已在 GPU 1 运行，无需重复提交\n- **P2** (RRF 聚合): CPU 任务，阻塞于 mmlu signals 完成\n- **P3** (d005 signals): 阻塞于 d005 eval 完成 (GPU 0)\n\n**结论: cuda:2 和 cuda:4 当前无可调度的 GPU 任务。** 最早可调度时间点：\n- d005 eval 完成后 (~40-90min) → 提交 d005 signals 到空闲卡\n- d025/d100 eval 完成后 → 各自 signals 可提交\n\n无操作执行，两卡暂时空置等待上游任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-fill-0516c.md"
+}

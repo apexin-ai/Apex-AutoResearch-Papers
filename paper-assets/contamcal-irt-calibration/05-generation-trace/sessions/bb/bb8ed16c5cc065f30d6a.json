@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "id": "bb8ed16c5cc065f30d6a",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analysis falcon3 algorithm1 classification",
+  "task_key": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_falcon3-algorithm1-classification_20260522T131404.jsonl",
+    "occurrence": 1,
+    "bytes": 32575,
+    "sha256": "f1d4d29518e4432700efd30c5dae917fdd69dad3290624c91e099e17937a5df5"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:15:41.323013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "algorithm_1|classify_pattern|dose_response.*class|taxonomy|pattern_class",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+              "type": "py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:15:41.323405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 2 files\nartifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py\nanalysis/bootstrap_triple_seed.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:15:41.323581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/classification*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:15:41.323710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/classification_sensitivity_sweep.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:15:41.323844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/algorithm*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:15:41.323979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ".venv/lib/python3.14/site-packages/pandas/core/algorithms.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/algorithms.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:15:41.324095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/classification_sensitivity_sweep.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:15:41.324375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Classification sensitivity sweep with mid-trajectory volatility check.\n3\t\n4\tSweeps over τ (noise threshold) and σ (collapse threshold) to evaluate\n5\tclassification robustness across 30 parameter combinations.\n6\t\n7\tv2: Adds volatility check within the Immune branch — if intermediate\n8\tdosages deviate beyond τ from baseline, reclassify as V-recovery.\n9\t\"\"\"\n10\t\n11\timport json\n12\timport os\n13\tfrom itertools import product\n14\t\n15\timport numpy as np\n16\t\n17\t# ── Parameters ──────────────────────────────────────────────────────\n18\t\n19\tTAU_VALUES = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0]\n20\tSIGMA_VALUES = [3.0, 4.0, 5.0, 6.0, 7.0]\n21\t\n22\t# ── Classifier v2 (with volatility check) ──────────────────────────\n23\t\n24\tdef classify_profile(accs, tau=1.0, sigma=5.0):\n25\t    \"\"\"Classify a single dose-response profile.\n26\t\n27\t    Args:\n28\t        accs: dict d000..d100 -> float accuracy (percentage points)\n29\t        tau: noise threshold (pp) for Immune boundary\n30\t        sigma: collapse threshold (pp) for severe U-collapse\n31\t    Returns:\n32\t        str: Immune | U-collapse | V-recovery | Benefit | Benefit-sat\n33\t    \"\"\"\n34\t    acc_d000 = accs['d000']\n35\t    acc_d100 = accs['d100']\n36\t    delta = acc_d100 - acc_d000\n37\t\n38\t    intermediate_accs = [accs['d005'], accs['d025'], accs['d050']]\n39\t\n40\t    if abs(delta) <= tau:\n41\t        # v2: mid-trajectory volatility check\n42\t        max_deviation = max(abs(a - acc_d000) for a in intermediate_accs)\n43\t        if max_deviation <= tau:\n44\t            return 'Immune'\n45\t        else:\n46\t            min_intermediate = min(intermediate_accs)\n47\t            if min_intermediate < acc_d000 - tau:\n48\t                return 'V-recovery'\n49\t            else:\n50\t                return 'Immune'\n51\t\n52\t    if delta <= -sigma:\n53\t        return 'U-collapse'\n54\t\n55\t    if delta < -tau:\n56\t        mid_min = min(intermediate_accs)\n57\t        if mid_min < acc_d100 and mid_min < acc_d000:\n58\t            return 'V-recovery'\n59\t       \n…[truncated 15622 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:15:41.324567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "classify|Immune|Benefit|Collapse|V-recovery|Saturat",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+              "type": "py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:15:41.324709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 31 files\nartifacts/qwen14b_n3_bootstrap/compute_qwen14b_n3_ci.py\nanalysis/bootstrap_triple_seed.py\nartifacts/classification_sensitivity_sweep.py\nartifacts/profile_classifier.py\nanalysis/treated_untreated_analysis.py\nartifacts/_project/data/profile_classifier_03f975.py\nartifacts/_project/data/profile_classifier_12dd52.py\nartifacts/_project/data/profile_classifier.py\nartifacts/_project/data/bootstrap_profile_stability_a62645.py\nartifacts/_project/data/bootstrap_profile_stability.py\nartifacts/bootstrap_profile_stability.py\n.venv/lib/python3.14/site-packages/fontTools/varLib/merger.py\n.venv/lib/python3.14/site-packages/fontTools/varLib/cff.py\n.venv/lib/python3.14/site-packages/fontTools/subset/__init__.py\n.venv/lib/python3.14/site-packages/fontTools/misc/classifyTools.py\n.venv/lib/python3.14/site-packages/fontTools/merge/layout.py\n.venv/lib/python3.14/site-packages/PIL/TiffTags.py\n.venv/lib/python3.14/site-packages/PIL/ExifTags.py\n.venv/lib/python3.14/site-packages/pyparsing/core.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/stats/tests/test_continuous.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/stats/_morestats.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/optimize/_nonlin.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/scipy/cluster/vq.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/numpy/testing/print_coercion_tables.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/numpy/_core/einsumfunc.py\n.venv/lib/python3.14/site-packages/scipy/stats/tests/test_continuous.py\n.venv/lib/python3.14/site-packages/scipy/stats/_morestats.py\n.venv/lib/python3.14/site-packages/scipy/optimize/_nonlin.py\n.venv/lib/python3.14/site-packages/scipy/cluster/vq.py\n.venv/lib/python3.14/site-packages/numpy/testing/print_coercion_tables.py\n.venv/lib/python3.14/site-packages/numpy/_core/einsumfunc.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:15:41.324860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/profile_classifier.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:15:41.325066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Dose-response profile classifier for contamination calibration.\n2\t\n3\tClassifies a model's accuracy trajectory across contamination dosages\n4\tinto one of five canonical patterns: Immune, U-collapse, V-recovery,\n5\tBenefit, or Benefit-saturation.\n6\t\"\"\"\n7\t\n8\tfrom __future__ import annotations\n9\t\n10\tDOSAGES = (\"d000\", \"d005\", \"d025\", \"d050\", \"d100\")\n11\tPATTERNS = (\"Immune\", \"U-collapse\", \"V-recovery\", \"V-recovery-full\", \"Benefit\", \"Benefit-sat\")\n12\t\n13\t\n14\tdef classify_profile(\n15\t    accuracies: dict[str, float],\n16\t    *,\n17\t    noise_threshold: float = 1.0,\n18\t    severe_threshold: float = 5.0,\n19\t    saturation_ratio: float = 0.3,\n20\t    late_gain_floor: float = 0.5,\n21\t) -> dict:\n22\t    \"\"\"Classify a dose-response accuracy profile into a canonical pattern.\n23\t\n24\t    Args:\n25\t        accuracies: Mapping from dosage key to accuracy (percentage points),\n26\t            e.g. {\"d000\": 76.44, \"d005\": 76.56, \"d025\": 76.50,\n27\t                   \"d050\": 76.02, \"d100\": 76.27}.\n28\t        noise_threshold: Maximum |delta| (pp) to be considered noise (Immune).\n29\t        severe_threshold: Minimum |delta| (pp) for severe degradation (U-collapse).\n30\t        saturation_ratio: If second-half gain < first-half gain * ratio,\n31\t            the benefit is saturating.\n32\t        late_gain_floor: If d100 - d050 < this value, late gain has stalled.\n33\t\n34\t    Returns:\n35\t        {\"pattern\": str, \"confidence\": float, \"delta\": float, \"reasoning\": str}\n36\t    \"\"\"\n37\t    for d in DOSAGES:\n38\t        if d not in accuracies:\n39\t            raise ValueError(f\"Missing dosage key: {d}\")\n40\t\n41\t    a = {d: float(accuracies[d]) for d in DOSAGES}\n42\t    delta = a[\"d100\"] - a[\"d000\"]\n43\t    mid_vals = [a[\"d005\"], a[\"d025\"], a[\"d050\"]]\n44\t    mid_min = min(mid_vals)\n45\t\n46\t    # ── Decision tree ────────────────────────────────────────────────\n47\t\n48\t    if abs(delta) <= noise_threshold:\n49\t        max_deviation = max(abs(v - a[\"d000\"]) for v in mid_vals)\n50\t        if max_deviation <= noise_thr\n…[truncated 6139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:15:41.325226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Falcon|falcon",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:15:41.325393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 24 files\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/tests/window/test_groupby.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/tests/groupby/methods/test_value_counts.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/tests/groupby/test_groupby_dropna.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/tests/frame/methods/test_value_counts.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/tests/frame/test_subclass.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/io/stata.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/groupby/grouper.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/groupby/groupby.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/groupby/generic.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/series.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/generic.py\nartifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pandas/core/frame.py\n.venv/lib/python3.14/site-packages/pandas/tests/window/test_groupby.py\n.venv/lib/python3.14/site-packages/pandas/tests/groupby/methods/test_value_counts.py\n.venv/lib/python3.14/site-packages/pandas/tests/groupby/test_groupby_dropna.py\n.venv/lib/python3.14/site-packages/pandas/tests/frame/methods/test_value_counts.py\n.venv/lib/python3.14/site-packages/pandas/tests/frame/test_subclass.py\n.venv/lib/python3.14/site-packages/pandas/io/stata.py\n.venv/lib/python3.14/site-packages/pandas/core/groupby/grouper.py\n.venv/lib/python3.14/site-packages/pandas/core/groupby/groupby.py\n.venv/lib/python3.14/site-packages/pandas/core/groupby/generic.py\n.venv/lib/python3.14/site-packages/pandas/core/series.py\n.venv/lib/python3.14/site-packages/pandas/core/generic.py\n.venv/lib/python3.14/site-packages/pandas/core/frame.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:15:41.325549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Phi-4|Qwen-14B|Qwen-7B|Gemma-2|OLMo-2|Llama-3",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+              "glob": "*.md",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:15:41.325696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 81 files\nartifacts/_project/report/sft_tax_analysis.md\nartifacts/sft_tax_analysis.md\nartifacts/_project/report/cross_benchmark_consistency.md\nartifacts/cross_benchmark_consistency.md\nartifacts/_project/report/data_audit_tables2_3_fig1.md\nartifacts/data_audit_tables2_3_fig1.md\nartifacts/_project/report/data_audit_table1.md\nartifacts/data_audit_table1.md\nartifacts/_project/report/data_audit_table4_10_xref.md\nartifacts/data_audit_table4_10_xref.md\nartifacts/review_reports/round_8.md\nartifacts/review_reports/round_7.md\nartifacts/_project/report/eval_olmo2_s42_rerun_analysis.md\nartifacts/sft_llama3_8b_s0_validation/intermediate/sft_llama3_8b_launch_status.md\nartifacts/review_reports/round_6.md\nartifacts/retrain_gemma2_d100_s0/diagnosis.md\nartifacts/retrain_gemma2_d100_s0/report/diagnosis.md\nartifacts/eval_qwen7b_mmlu_arc_s0/eval_results_summary.md\nartifacts/gemma2_s0_sweep_analysis.md\nartifacts/sft_gemma2_s0_sweep/report/gemma2_s0_sweep_analysis.md\nartifacts/_project/report/bootstrap_n3_phi4_d188.md\nartifacts/_project/report/bootstrap_full_5family_s42_s123.md\nartifacts/_project/report/gsm8k_dosage_analysis.md\nartifacts/gsm8k_dosage_analysis.md\nartifacts/exp001/report/sft_qwen7b_olmo2_s123_sweep_report.md\nartifacts/sft_qwen7b_olmo2_s123_sweep_report.md\nartifacts/_project/report/lit_cross_benchmark_transfer.md\nartifacts/lit_cross_benchmark_transfer.md\nartifacts/_project/report/paper_consistency_audit.md\nartifacts/paper_consistency_audit.md\nartifacts/_project/report/paper_update_checklist.md\nartifacts/paper_update_checklist.md\nartifacts/_project/paper/appendix_domain_decomposition.md\nartifacts/appendix_domain_decomposition.md\nartifacts/_project/data/irt_data_matrices.md\nartifacts/_project/data/domain_decomposition_s42.md\nartifacts/_project/data/sensitivity_sweep_v2.md\nartifacts/_project/data/error_analysis_old_models.md\nartifacts/_project/data/treated_untreated_analysis.md\nartifacts/eval_results_v2_summary.md\nartifacts/phase2_eval_diagnosis.md\nartifacts/paper_analysis\n…[truncated 2154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:15:41.325843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/sft_tax_analysis.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T13:15:41.325989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# SFT Tax Analysis: Pre-training vs Post-SFT d000 Baseline\n2\t\n3\t**Date**: 2026-05-22\n4\t**Definition**: SFT tax = Pre-training MMLU baseline (raw base model) − d000 Post-SFT MMLU baseline (clean SFT, 0% contamination). Positive = SFT degraded MMLU.\n5\t\n6\t## MMLU 5-shot\n7\t\n8\t| Model Family | Pre-training Baseline | d000 Post-SFT | SFT Tax (Δ) | Pre-training Source | d000 Source |\n9\t|---|---|---|---|---|---|\n10\t| Phi-4 14.7B | 84.8% | 76.44% | **+8.36 pp** | Phi-4 Technical Report (arXiv:2412.08905) | registry: memory.md 6-family summary |\n11\t| Qwen2.5-14B | 79.7% | 69.44% | **+10.26 pp** | Qwen2.5 Technical Report (arXiv:2412.15115) | registry: memory.md 6-family summary |\n12\t| Qwen2.5-7B | 74.2% | 66.11% | **+8.09 pp** | Qwen2.5 Technical Report (arXiv:2412.15115) | registry: memory.md 6-family summary |\n13\t| Gemma-2 9B | 71.3% | 61.86% | **+9.44 pp** | Gemma 2 Technical Report (arXiv:2408.00118) | registry: memory.md 6-family summary |\n14\t| Falcon3-7B-Base | 67.4% | 58.77% | **+8.63 pp** | Falcon 3 Blog (TII, falcon-lm.github.io) | registry: eval_falcon3_d000_s42_v2 |\n15\t| LLaMA-3.1 8B | 66.7% | 53.50% | **+13.20 pp** | Meta eval_details.md (github.com/meta-llama) | registry: memory.md LLaMA-3 validation |\n16\t| OLMo-2 7B | 63.7% | 53.79% | **+9.91 pp** | OLMo 2 Paper (AI2, arXiv:2501.00656) | registry: memory.md 6-family summary (rerun verified) |\n17\t\n18\t**Mean SFT Tax**: 9.70 pp (std: 1.64 pp)\n19\t**Range**: 8.09 pp (Qwen2.5-7B) to 13.20 pp (LLaMA-3.1 8B)\n20\t\n21\t## Key Findings\n22\t\n23\t1. **Universal SFT tax**: All 7 families show positive SFT tax (8–13 pp). LoRA SFT on QA-format data consistently degrades MMLU 5-shot performance relative to the raw base model.\n24\t\n25\t2. **LLaMA-3.1 is an outlier** (13.20 pp, 1.5 std above mean). Possible causes: (a) LLaMA-3.1 architecture is more sensitive to LoRA-based SFT; (b) format mismatch between SFT data and LLaMA-3.1's pretraining distribution; (c) LLaMA-3.1's tokenizer handling of MC options differs.\n26\t\n27\t3. **Qwen2.5-14\n…[truncated 1892 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T13:15:41.326154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport sys\nsys.path.insert(0, 'artifacts')\nfrom profile_classifier import classify_profile\n\n# Falcon3-7B-Base data\nfalcon3_mmlu = {'d000': 58.77, 'd005': 59.02, 'd025': 61.23, 'd050': 62.09, 'd100': 62.96}\nfalcon3_arc  = {'d000': 81.57, 'd005': 83.11, 'd025': 84.81, 'd050': 83.28, 'd100': 85.58}\n\nprint('='*70)\nprint('  Falcon3-7B-Base: MMLU 5-shot')\nprint('='*70)\nr_mmlu = classify_profile(falcon3_mmlu)\nfor k, v in r_mmlu.items():\n    print(f'  {k}: {v}')\n\nprint()\nprint('='*70)\nprint('  Falcon3-7B-Base: ARC 25-shot')\nprint('='*70)\nr_arc = classify_profile(falcon3_arc)\nfor k, v in r_arc.items():\n    print(f'  {k}: {v}')\n\n# Trajectory analysis\nprint()\nprint('='*70)\nprint('  Trajectory Statistics')\nprint('='*70)\n\nfor name, accs in [('MMLU', falcon3_mmlu), ('ARC', falcon3_arc)]:\n    vals = [accs[d] for d in ['d000','d005','d025','d050','d100']]\n    delta = vals[-1] - vals[0]\n    dips = [v for v in vals[1:-1] if v < vals[0]]\n    monotonic = all(vals[i] <= vals[i+1] for i in range(len(vals)-1))\n    \n    # Step-by-step changes\n    dosages = ['d000','d005','d025','d050','d100']\n    steps = []\n    for i in range(1, len(dosages)):\n        steps.append(f'{dosages[i-1]}->{dosages[i]}: {vals[i]-vals[i-1]:+.2f}pp')\n    \n    print(f'  {name}:')\n    print(f'    Delta(d100-d000) = {delta:+.2f}pp')\n    print(f'    Min dip below d000: {min(dips) - vals[0]:+.2f}pp' if dips else '    No dip below d000')\n    print(f'    Monotonic increasing: {monotonic}')\n    print(f'    Steps: {\\\" | \\\".join(steps)}')\n    # Saturation check\n    first_half = accs['d025'] - accs['d000']\n    second_half = accs['d100'] - accs['d025']\n    late_gain = accs['d100'] - accs['d050']\n    print(f'    First-half gain (d000->d025): {first_half:+.2f}pp')\n    print(f'    Second-half gain (d025->d100): {second_half:+.2f}pp')\n    print(f'    Late gain (d050->d100): {late_gain:+.2f}pp')\n    print(f'    Ratio second/first: {second_half/first_half:.3f}' if first_half > 0 else '    N/A')\n    print()\n\n# Cross-family comparison\nprint('='*70)\nprint('  Cross-Family Comparison (6 existing + Falcon3)')\nprint('='*70)\n\nfamilies = {\n    'Phi-4 14.7B': {'d000': 76.44, 'd005': 76.28, 'd025': 76.50, 'd050': 76.10, 'd100': 76.27},\n    'Qwen2.5-14B': {'d000': 69.44, 'd005': 63.76, 'd025': 62.51, 'd050': 61.34, 'd100': 60.07},\n    'Qwen2.5-7B':  {'d000': 66.11, 'd005': 63.42, 'd025': 63.15, 'd050': 63.59, 'd100': 64.33},\n    'Gemma-2 9B':  {'d000': 61.86, 'd005': 63.56, 'd025': 64.19, 'd050': 64.73, 'd100': 65.62},\n    'Falcon3-7B':  {'d000': 58.77, 'd005': 59.02, 'd025': 61.23, 'd050': 62.09, 'd100': 62.96},\n    'OLMo-2 7B':   {'d000': 53.79, 'd005': 55.17, 'd025': 56.06, 'd050': 56.53, 'd100': 57.00},\n    'LLaMA-3.1 8B': {'d000': 53.50, 'd005': 53.98, 'd025': 54.61, 'd050': 54.23, 'd100': 54.59},\n}\n\nfor name, accs in families.items():\n    r = classify_profile(accs)\n    delta = accs['d100'] - accs['d000']\n    print(f'  {name:<16s}  delta={delta:+6.2f}pp  pattern={r[\\\"pattern\\\"]:<20s}  conf={r[\\\"confidence\\\"]:.3f}')\n\"\n",
+              "description": "Run Algorithm 1 classification on Falcon3 data"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T13:15:41.326384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "======================================================================\n  Falcon3-7B-Base: MMLU 5-shot\n======================================================================\n  pattern: Benefit\n  confidence: 1.0\n  delta: 4.19\n  reasoning: delta=+4.19pp, monotonic improvement without saturation\n\n======================================================================\n  Falcon3-7B-Base: ARC 25-shot\n======================================================================\n  pattern: Benefit-sat\n  confidence: 0.601\n  delta: 4.01\n  reasoning: delta=+4.01pp (positive), second-half gain (0.77) < 30% of first-half (3.24)\n\n======================================================================\n  Trajectory Statistics\n======================================================================\n  MMLU:\n    Delta(d100-d000) = +4.19pp\n    No dip below d000\n    Monotonic increasing: True\n    Steps: d000->d005: +0.25pp | d005->d025: +2.21pp | d025->d050: +0.86pp | d050->d100: +0.87pp\n    First-half gain (d000->d025): +2.46pp\n    Second-half gain (d025->d100): +1.73pp\n    Late gain (d050->d100): +0.87pp\n    Ratio second/first: 0.703\n\n  ARC:\n    Delta(d100-d000) = +4.01pp\n    No dip below d000\n    Monotonic increasing: False\n    Steps: d000->d005: +1.54pp | d005->d025: +1.70pp | d025->d050: -1.53pp | d050->d100: +2.30pp\n    First-half gain (d000->d025): +3.24pp\n    Second-half gain (d025->d100): +0.77pp\n    Late gain (d050->d100): +2.30pp\n    Ratio second/first: 0.238\n\n======================================================================\n  Cross-Family Comparison (6 existing + Falcon3)\n======================================================================\n  Phi-4 14.7B       delta= -0.17pp  pattern=Immune                conf=0.915\n  Qwen2.5-14B       delta= -9.37pp  pattern=U-collapse            conf=0.937\n  Qwen2.5-7B        delta= -1.78pp  pattern=V-recovery            conf=0.618\n  Gemma-2 9B        delta= +3.76pp  pattern=Benefit               conf=1.000\n  Falcon3-7B        delta= +4.19pp  pa\n…[truncated 192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T13:15:41.326566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T13:15:41.326727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2pl_vs_4pl_ablation.md\n3B_s123_eval_matrix_complete.md\n__pycache__\n_project\nalgorithm1_pseudocode.tex\nanalysis_14b_d100_s42.md\nanalysis_3B_d000_gsm8k_seed_variance.md\nappendix_domain_decomposition.md\nbatch_matrix_commands.md\nbib_rebuild_2024_classics.bib\nbib_rebuild_2025plus.bib\nbootstrap_profile_stability.py\nclassification_criteria.yaml\nclassification_sensitivity_sweep.py\ncompile_eval_summary.py\ncoverage_report_20260515.md\ncross_benchmark_consistency.md\nd000_alignment_tax_analysis.md\nd108_v4_analysis.md\ndata_audit_table1.md\ndata_audit_table4_10_xref.md\ndata_audit_tables2_3_fig1.md\ndiag_exp006_pooled_irt_n25.md\ndiag_exp_001_sft_15B_d005_s123.md\ndiag_exp_001_sft_d100_3B.md\ndiag_sft_sweep_failures_westd.md\ndiagnose_eval_falcon3_failed.md\ndiagnose_exp001_eval_3B_d000_s42_v3.md\ndiagnose_exp001_sft_llama32_3B_d005_s42.md\ndiagnosis_exp002_3B_d000_s123_cuda2.md\ndid_power_analysis\ndose_response_analysis.md\ndream_reports\nerror_analysis.md\nerror_analysis_summary.yaml\neval_gemma2_arc_s42\neval_gemma2_mmlu_s0_diagnosis.md\neval_metrics_summary.json\neval_metrics_summary.md\neval_qwen14b_d050_arc_s0\neval_qwen7b_mmlu_arc_s0\neval_results_v2_summary.md\neval_summary_matrix.csv\nevaluate_batch.py\nexp-004\nexp-006\nexp-008\nexp001\nexp001_sft_injection\nexp002\nexp002_signal_pipeline\nexp003_rrf_ablation\nexp004\nexp004_fisher_heatmap\nexp004_incremental_analysis.md\nexp004_threshold_dgp\nexp005_noise_propagation\nexp006\nexp006-oracle-gsm8k-extended-v2\nexp006-s1only-gsm8k-2pl\nexp006_baselines\nexp006_irt_calibration\nexp006_pooled_rrf_irt_05b_15b\nexp006_readiness_report.md\nexp008\nexp008_3regime_analysis.json\nexp008_auc_heatmap.json\nexp008_v2\nexp009_plan.md\nexp009_status_check.md\nexp_001_eval_3B_d000_s42_a32_batch\nexp_001_eval_3B_d005_s42_para_aligned\nexp_001_sft_14b_d100_s42\nexp_001_sft_injection\nexp_002_signals_05B\nexp_003_mmlu_item_aligned_gap\nexp_004_fisher_heatmap_w4_v2\nexp_005_noise_prop_v4\nexp_006\nexp_006_pooled_irt_2pl_gamma_mmlu_arc\nexp_006_scale_stratified_irt\nexp_008_base_pretrained_15B_eval\nex\n…[truncated 1742 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T13:15:41.326880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algorithm1_classification.md",
+              "content": "# Falcon3-7B-Base Algorithm 1 Classification\n\n## Parameters\nτ = 1.0pp, σ = 5.0pp (default thresholds)\n\n## MMLU 5-shot Classification\n- Δ(d100−d000) = **+4.19 pp**\n- Pattern: **Benefit**\n- Confidence: 1.000\n- Trajectory: Monotonic increase across all 5 dosages. Steps: d000→d005 +0.25pp, d005→d025 +2.21pp, d025→d050 +0.86pp, d050→d100 +0.87pp. First-half gain (d000→d025) = +2.46pp, second-half gain (d025→d100) = +1.73pp, ratio = 0.703 (above 0.3 saturation threshold). No dips below baseline.\n\n## ARC 25-shot Classification\n- Δ(d100−d000) = **+4.01 pp**\n- Pattern: **Benefit-sat**\n- Confidence: 0.601\n- Trajectory: Non-monotonic — d025→d050 dip of −1.53pp, then recovery d050→d100 +2.30pp. First-half gain (d000→d025) = +3.24pp, second-half gain (d025→d100) = +0.77pp, ratio = 0.238 (below 0.3 saturation threshold, triggers Benefit-sat). Late gain (d050→d100) = +2.30pp is above 0.5pp floor, so saturation is driven by the second/first ratio, not late stall.\n\n## Combined Classification\n- **MMLU**: Benefit (strong, monotonic)\n- **ARC**: Benefit-sat (saturating, non-monotonic mid-trajectory)\n- Overall: **Benefit / Benefit-sat** — Falcon3 benefits from contaminated SFT data on both benchmarks, with ARC showing early saturation.\n\n## Cross-Family Comparison (MMLU, sorted by Δ)\n\n| Family | d000 | d100 | Δ(d100−d000) | Pattern | Confidence |\n|--------|------|------|---------------|---------|------------|\n| Qwen2.5-14B | 69.44 | 60.07 | −9.37 pp | U-collapse | 0.937 |\n| Qwen2.5-7B | 66.11 | 64.33 | −1.78 pp | V-recovery | 0.618 |\n| Phi-4 14.7B | 76.44 | 76.27 | −0.17 pp | Immune | 0.915 |\n| LLaMA-3.1 8B | 53.50 | 54.59 | +1.09 pp | Benefit-sat | 0.570 |\n| OLMo-2 7B | 53.79 | 57.00 | +3.21 pp | Benefit-sat | 0.515 |\n| Gemma-2 9B | 61.86 | 65.62 | +3.76 pp | Benefit | 1.000 |\n| **Falcon3-7B** | **58.77** | **62.96** | **+4.19 pp** | **Benefit** | **1.000** |\n\nFalcon3 has the largest positive MMLU delta among all 7 families, slightly exceeding Gemma-2 (+3.76pp). Both are high-confidence Benefit patterns. Falcon3 slots into the \"Benefit cluster\" alongside Gemma-2, distinct from the Benefit-sat models (OLMo-2, LLaMA-3.1) which show weaker or plateauing gains.\n\n## Dose-Response Profiles\n\n```\nMMLU 5-shot:\n  d000  d005  d025  d050  d100\n  58.77 59.02 61.23 62.09 62.96  Falcon3  [Benefit, +4.19pp]\n  61.86 63.56 64.19 64.73 65.62  Gemma-2  [Benefit, +3.76pp]\n  53.79 55.17 56.06 56.53 57.00  OLMo-2   [Benefit-sat, +3.21pp]\n\nARC 25-shot:\n  d000  d005  d025  d050  d100\n  81.57 83.11 84.81 83.28 85.58  Falcon3  [Benefit-sat, +4.01pp]\n```\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T13:15:41.327039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algorithm1_classification.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T13:15:41.327158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T13:15:41.327292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T13:15:41.327433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "falcon3_algorithm1_classification",
+              "type": "report",
+              "description": "Falcon3-7B-Base Algorithm 1 dose-response pattern classification: MMLU=Benefit (+4.19pp), ARC=Benefit-sat (+4.01pp). Cross-family comparison with all 7 families.",
+              "project": "contamcal-irt-calibration",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algorithm1_classification.md",
+              "tags": "['falcon3', 'algorithm1', 'classification', 'dose-response']"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T13:15:41.327573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_1bdc0e\\\", \\\"name\\\": \\\"falcon3_algorithm1_classification\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Falcon3-7B-Base Algorithm 1 dose-response pattern classification: MMLU=Benefit (+4.19pp), ARC=Benefit-sat (+4.01pp). Cross-family comparison with all 7 families.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/falcon3_algorithm1_classification.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T13:15:32.126632+00:00\\\", \\\"tags\\\": [\\\"falcon3\\\", \\\"algorithm1\\\", \\\"classification\\\", \\\"dose-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T13:15:41.327734+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分类结果：\n\n| Benchmark | Pattern | Δ(d100−d000) | Confidence |\n|-----------|---------|--------------|------------|\n| **MMLU 5-shot** | **Benefit** | +4.19 pp | 1.000 |\n| **ARC 25-shot** | **Benefit-sat** | +4.01 pp | 0.601 |\n\n**MMLU**: 单调递增，无饱和，全 7 家族中正向 delta 最大（超过 Gemma-2 的 +3.76pp）。\n\n**ARC**: 正向但饱和——前半段增益 +3.24pp，后半段仅 +0.77pp（ratio=0.238 < 0.3 阈值）。中间 d025→d050 有 −1.53pp 回落，但非 V-recovery（整体 delta 仍为正）。\n\n**跨家族定位**: Falcon3 归入 Benefit 聚类（与 Gemma-2 并列），区别于 Benefit-sat 组（OLMo-2、LLaMA-3.1）和负向组（Qwen-14B U-collapse、Qwen-7B V-recovery）。\n\n产出已注册: `artifacts/falcon3_algorithm1_classification.md`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_falcon3-algorithm1-classification_20260522T131404"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-falcon3-algorithm1-classification.md"
+}

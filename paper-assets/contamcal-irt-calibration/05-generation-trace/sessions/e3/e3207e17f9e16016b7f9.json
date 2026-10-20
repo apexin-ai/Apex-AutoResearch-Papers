@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e3207e17f9e16016b7f9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops fix gsm8k nproc",
+  "task_key": "worker_ops_fix-gsm8k-nproc_20260515T011057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-gsm8k-nproc_20260515T011057.log",
+    "occurrence": 1,
+    "bytes": 649933,
+    "sha256": "03f1085c0529b6910bad7abf235cad413648c5e81df5e46f6e20100aaff1458f"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "record": 3,
+      "system": 1,
+      "assistant": 55,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 257,
+      "chunks": [
+        {
+          "path": "e3207e17f9e16016b7f9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e3207e17f9e16016b7f9-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-gsm8k-nproc.md"
+}

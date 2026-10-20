@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "964fad6fca78a58b2163",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check d005 s123 completion",
+  "task_key": "worker_ops_check-d005-s123-completion_20260518T172423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-d005-s123-completion_20260518T172423_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "ffc9541b2fd6b38ceb5c00425903ec8730ac49828d0a701cb9a0c9c3fa643b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**训练：成功完成。**\n\n- 日志最后一行：`2026-05-19 01:21:29 [INFO] Training complete.`\n- 进度：3177/3177 steps (100%), epoch=1\n- **Final metrics**：train_loss=**0.9304**, mean_token_accuracy=**0.7568**, entropy=1.042\n- 最后一个 logging step (step 3170)：loss=0.8921, mean_token_accuracy=0.7837\n- 训练时长：6497s (~1h48m)\n\n**Checkpoint：完整。**\n\n| 文件 | 大小 |\n|---|---|\n| adapter_model.safetensors | 154 MB |\n| adapter_config.json | 1.1 KB |\n| tokenizer.json | 10.9 MB |\n| tokenizer_config.json | 696 B |\n| training_args.bin | 5.8 KB |\n| checkpoint-3177/ | 子目录存在 |\n\n**cuda:3：不空闲。** PID 45613 占用 62156 MiB（非原始 PID 36943，说明原训练已结束，当前是新进程）。四块 GPU 全部在跑任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d005-s123-completion.md"
+}

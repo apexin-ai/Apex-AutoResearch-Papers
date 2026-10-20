@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fb906d88b65bf46824f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp 001 eval 05B d005 s123 aligned check",
+  "task_key": "worker_ops_exp_001_eval_05B_d005_s123_aligned_check_20260515T031618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_001_eval_05B_d005_s123_aligned_check_20260515T031618_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "246fcf878192f5a6b4a318c0437e0f5742d521aa749d59089070a86bd3edf144"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（触发后自动清理）。\n\n## 结果\n\n**exp_001_eval_05B_d005_s123_aligned → SUCCESS**\n\n| Benchmark | Score | Correct/Total |\n|-----------|-------|---------------|\n| mmlu | 30.02% | 4216/14042 |\n| gsm8k | 36.77% | 485/1319 |\n| arc_challenge | 29.78% | 349/1172 |\n| humaneval | 9.76% (pass@1) | 16/164 |\n\nRegistry 已更新为 DONE/success + metrics。\n\n**cuda:1 现在空闲，可立即提交下一个实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-001-eval-05b-d005-s123-aligned-check.md"
+}

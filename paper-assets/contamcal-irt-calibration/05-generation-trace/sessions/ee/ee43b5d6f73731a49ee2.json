@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee43b5d6f73731a49ee2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cron judge d100 s123 para aligned",
+  "task_key": "worker_ops_cron-judge-d100-s123-para-aligned_20260515T184001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cron-judge-d100-s123-para-aligned_20260515T184001_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "d71a6be39f1fa35a5c6722261435ad53deb54b155f0f847d4c95a54a0439ee8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**状态：killed（未完成）**\n\n- 日志显示 MMLU paraphrased 已完成评估循环，但 GSM8K paraphrased 仅跑到 22% (51/228) 时进程被 kill\n- 输出目录 `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s123_para_aligned/` 为空，无任何 results.json\n- 日志中无 \"Evaluation complete\" 标记，也无 \"saved\" 记录 — 结果仅在全部 benchmark 完成后才写入，因此无任何可用数据\n- 4 个 benchmark (mmlu, gsm8k, arc_challenge, humaneval) 的 paraphrased 评估均无产出\n\n**Registry 已更新**：conclusion → killed\n\n**Cron**：当前 session 无活跃 cron job（CronList 为空）。该 cron 可能在另一个 session 中创建，需在对应 session 中手动清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cron-judge-d100-s123-para-aligned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b597456904413ab7bc79",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "train llama3 sft d000 d025 d100",
+  "task_key": "worker_train_llama3-sft-d000-d025-d100_20260521T095011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama3-sft-d000-d025-d100_20260521T095011_result.json",
+    "occurrence": 1,
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama3-sft-d000-d025-d100.md"
+}

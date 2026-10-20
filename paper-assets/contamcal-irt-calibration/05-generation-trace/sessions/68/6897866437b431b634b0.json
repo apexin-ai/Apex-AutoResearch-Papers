@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6897866437b431b634b0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp002 signal dryrun prep",
+  "task_key": "worker_code_exp002-signal-dryrun-prep_20260514T075046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002-signal-dryrun-prep_20260514T075046_result.json",
+    "occurrence": 1,
+    "bytes": 4279,
+    "sha256": "8b50e2bee5fb92c44739899902ec3bc2ad92f0f7d855653c3c55c64f60bd3a83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。以下是报告。\n\n---\n\n## exp-002 信号管线完整性检查报告\n\n### 1. 信号脚本状态\n\n| 信号 | 脚本 | 状态 | 核心函数 |\n|------|------|------|---------|\n| S1 Embedding | `signal_embedding.py` (7.8KB) | **已完成** | `compute_embedding_signal()`, `build_faiss_index()` |\n| S2 Min-K%++ | `signal_minkpp.py` (9.6KB) | **已完成** | `compute_minkpp_signal()`, `minkpp_zscore_score()` |\n| S3 ConStat | `signal_constat.py` (4.1KB) | **已完成** | `compute_constat_signal()` — 纯 eval 结果比较，不需要推理 |\n| S4 Self-Critique | `signal_selfcritique.py` (9.1KB) | **已完成** | `compute_selfcritique_signal()`, `compute_yes_no_entropy()` |\n| 主入口 | `compute_signals.py` (11.8KB) | **已完成** | `run_signal()`, `merge_signals()`, 完整 argparse，支持 `--dry-run` |\n| 聚合 | `aggregate_rrf.py` (7.7KB) | **已完成** | RRF 排序融合 |\n| Dry-run | `test_dryrun_v2.py` (3.9KB) | **已有** | 独立 dry-run 脚本，4 信号 + merge |\n\n**结论：4 种信号脚本 + 主入口全部就绪，代码完整。**\n\n### 2. 依赖状态\n\n| 依赖 | 状态 |\n|------|------|\n| faiss-cpu 1.13.2 | **已装** |\n| sentence-transformers | **已装** |\n| peft | **已装** |\n| torch | **已装** |\n| transformers | **已装** |\n\n**依赖全部就绪，无需额外安装。**\n\n### 3. 数据/模型可用性\n\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| Base model (0.5B) | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B` | **可用** |\n| d000 adapter (ref model) | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/` | **可用** (adapter_config.json + safetensors) |\n| d005 adapter | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter/` | **可用** |\n| d100 adapter | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter/` | **可用** |\n| d000 eval results | `.../eval_results/Qwen2.5-0.5B_d000_s42/` | **可用** (3 files) |\n| d005 eval results | `.../eval_results/Qwen2.5-0.5B_d005_s42/` | **可用** (3 files) |\n| d100 eval results | `.../eval_results/Qwen2.5-0.5B_d100_s42/` | **可用** (3 files) |\n| SFT 训练数据 | `/root/autodl-tmp/exp001/sft_data/sft_dosage_*.jsonl` | **可用** (d000/d005/d025/d050/d100) |\n| Paraphrase 数据 | `/root/autodl-tmp/exp001/paraphrases/` | **可用** (mmlu/gsm8k/arc_challenge/humaneval JSON) |\n| **Paraphrase eval 结果** | `Qwen2.5-0.5B_d000_s42_para/` | **空目录** — 只有 d000 有 para 目录且为空，d005/d100 无 para eval |\n\n### 4. 问题和额外准备\n\n**唯一阻塞项：ConStat (S3) 缺少 paraphrase eval 结果。**\n\nConStat 需要 `--original-eval-paths` 和 `--paraphrase-eval-paths` 参数（原始题和改写题的 eval_results.json）。当前只有原始题的 eval 结果，paraphrase eval 尚未运行。\n\n**两个选项：**\n- **Option A**: 先跑 S1/S2/S4 三个信号（不需要 paraphrase eval），ConStat 后补。`compute_signals.py` 已支持 `--signals` 选参数选择性运行。\n- **Option B**: 先补跑 paraphrase eval（需要回 exp001 跑 paraphrase benchmark），然后一次跑全部 4 个信号。\n\n### 5. Dry-run 命令建议\n\n**3 信号 dry-run（跳过 ConStat）：**\n\n```bash\ncd /root/contamcal-irt-calibration/exp002\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=0 python compute_signals.py \\\n  --model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter/ \\\n  --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/ \\\n  --benchmark arc_challenge \\\n  --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl \\\n  --output-dir /root/autodl-tmp/exp002/signals/dry_run \\\n  --signals embedding minkpp selfcritique \\\n  --dry-run --max-items 5\n```\n\n**或直接用已有的 `test_dryrun_v2.py`**（CPU 模式，3 items，4 信号全测但 ConStat 用自身 eval 做 dummy 输入）：\n```bash\ncd /root/contamcal-irt-calibration/exp002\nCUDA_VISIBLE_DEVICES=\"\" python test_dryrun_v2.py\n```\n\n建议先跑 `test_dryrun_v2.py` 验证代码无运行时错误，再用 `compute_signals.py --dry-run` 在 GPU 上验证真实路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-signal-dryrun-prep.md"
+}

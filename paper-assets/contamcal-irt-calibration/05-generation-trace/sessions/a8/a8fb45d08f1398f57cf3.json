@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8fb45d08f1398f57cf3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d100 gsm8k signals cuda0",
+  "task_key": "worker_ops_d100_gsm8k_signals_cuda0_20260516T230956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d100_gsm8k_signals_cuda0_20260516T230956_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "2750423f38cca49881af9b727e81e7fcd1291b832e303647b392f0bb9e5daf52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动。\n\n- **PID**: 888052 (GPU 进程)\n- **GPU**: cuda:0, 560MiB 已占用\n- **状态**: s1_embedding 信号计算中，正在 encode training data (batch 2030/12500, ~56 it/s)\n- **exp_id**: `exp_002_signals_llama32_3B_d100_gsm8k`\n- **输出目录**: `/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d100_s42/`\n- **日志**: `log_gsm8k.txt`\n\n无报错，正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d100-gsm8k-signals-cuda0.md"
+}

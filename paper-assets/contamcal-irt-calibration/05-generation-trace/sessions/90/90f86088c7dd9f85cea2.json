@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90f86088c7dd9f85cea2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check arc cache",
+  "task_key": "worker_ops_check-arc-cache_20260514T225523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-arc-cache_20260514T225523_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "7fe870e6883145617e112a309377e8dea805206646952480a207a01be68de0df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ARC-Challenge **已缓存且完整**。\n\n缓存路径：`/root/autodl-tmp/.hf_cache/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453/`\n\n包含全部 3 个 arrow 文件：\n- `ai2_arc-train.arrow`\n- `ai2_arc-test.arrow`\n- `ai2_arc-validation.arrow`\n- `dataset_info.json`\n\n无需预下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-arc-cache.md"
+}

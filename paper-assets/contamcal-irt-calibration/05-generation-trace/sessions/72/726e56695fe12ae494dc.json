@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "726e56695fe12ae494dc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix rrf skip patterns",
+  "task_key": "worker_code_fix-rrf-skip-patterns_20260516T024651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-rrf-skip-patterns_20260516T024651_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "b1c02be4684a05ae95bc9e9ea0e40602f7ce37a8be613df1b50d6e0e1ac3a722"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果正确：\n\n- **SKIP (5个)**: 4个 alpha=16 旧目录 + 1个已标 DEPRECATED 的\n- **KEEP**: 全部 0.5B/1.5B (8个) + 3B s123 (2个) + `_v3_` (1个) + `_a32_` (1个) — 无误排除\n\n修改内容：`exp003/rrf_aggregation.py` 第 42-49 行新增 `ALPHA16_BLOCKLIST` set，第 233 行过滤条件加上 `or model_id in ALPHA16_BLOCKLIST`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-rrf-skip-patterns-copy-2.md"
+}

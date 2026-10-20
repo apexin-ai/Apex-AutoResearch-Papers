@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aac6c7e7f7f927bb2e93",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp check",
+  "task_key": "worker_diag_r3w10-dgp-check_20260521T005828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-check_20260521T005828_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "de83cc1040de9777fec62dbb952e65b341d639d6e33dd4b835d0cbb3acd552a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。状态和产出已更新到 registry。\n\n## 结果摘要\n\n**状态**: DONE, conclusion = **negative**（假设被拒绝）\n\n**核心发现**: Linear gamma 模型在 threshold DGP 下**不产生系统性 attenuation**，与假设相反：\n\n| DGP | Attenuation ratio (γ̂/γ_true) | 方向 |\n|-----|------|------|\n| **Linear** | 0.84–1.07（多数 <1） | 轻微**低估** γ |\n| **Threshold** | 0.94–1.24（多数 >1） | 轻微**高估** γ |\n\n**覆盖率退化**: Threshold DGP 下，J 增大时 95% CI coverage 显著下降——J=500, γ=2.0 时仅 0.70，J=500, γ=3.0 时仅 0.70。说明模型虽然点估计方向不是 attenuation，但不确定性被低估。\n\n**结论**: Linear model 在 threshold DGP 下不是 gamma_hat < gamma_true 的 attenuation 模式，而是 gamma_hat ≥ gamma_true 的轻微过估计。假设\"linear misspecification 导致 attenuation\"不成立。但 coverage 退化表明 misspecification 仍然有实际影响——置信区间过窄，可靠性下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-check.md"
+}

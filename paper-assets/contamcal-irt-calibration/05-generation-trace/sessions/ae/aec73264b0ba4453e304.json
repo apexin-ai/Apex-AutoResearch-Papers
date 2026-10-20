@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec73264b0ba4453e304",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops vanilla 2pl kendall tau",
+  "task_key": "worker_ops_vanilla_2pl_kendall_tau_20260517T090458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_vanilla_2pl_kendall_tau_20260517T090458_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "74f63621ef561e4a27b99acbb08aacbbd71f682686241c44d9f26ccd2e8e8b87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete results:\n\n## N=16 (1.5B + 3B, 300-item subsample) — Consistent comparison\n\n| Benchmark | Vanilla 2PL τ | ContamCal τ | Raw Acc τ | Δ(CC−V2PL) |\n|-----------|--------------|-------------|-----------|------------|\n| **MMLU** | 0.7303 | 0.7303 | 0.7559 | +0.0000 |\n| **ARC-C** | 0.7303 | 0.7334 | 0.7428 | +0.0031 |\n| **GSM8K** | 0.1911 | 0.1911 | 0.1788 | +0.0000 |\n\nKey findings:\n\n1. **Your τ=0.756 matches Raw Acc MMLU** (0.7559), not ContamCal. The N=16 ContamCal MMLU τ = 0.7303.\n\n2. **MMLU: V2PL = ContamCal** (both 0.7303). γ is not significant for MMLU, so the contamination parameter doesn't change rankings.\n\n3. **ARC-C: V2PL ≈ ContamCal** (0.7303 vs 0.7334, Δ=+0.003). Tiny improvement from γ.\n\n4. **GSM8K is broken** — 3B GSM8K scores are anomalous (d000 accuracy ~0.12-0.16 but d100 at ~0.72), making τ meaningless.\n\n5. **Raw accuracy τ ≥ IRT τ** for MMLU and ARC. The IRT smoothing doesn't improve ranking accuracy with this model set.\n\n6. **J=13 doesn't match any existing result set.** The n16_fixed uses N=16 (1.5B+3B, 2 seeds × 4 dosages). No result set with exactly 13 models exists. Could J=13 come from a specific paper table definition that excludes some models?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-vanilla-2pl-kendall-tau.md"
+}

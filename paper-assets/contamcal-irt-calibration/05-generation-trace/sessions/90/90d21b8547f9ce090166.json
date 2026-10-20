@@ -1,0 +1,907 @@
+{
+  "schema_version": "1.0",
+  "id": "90d21b8547f9ce090166",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "knowledge bibtex integration",
+  "task_key": "worker_knowledge_bibtex-integration_20260514T091428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_bibtex-integration_20260514T091428.log",
+    "occurrence": 1,
+    "bytes": 118839,
+    "sha256": "7eba944271b8c75dc5b7f5539b21c2c87e7a335f8895901450e1dac4854d01f8"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778759400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "24ef8f0f-844c-4605-9351-873506ecc3ad",
+                "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "73e8582a-3f2f-44e8-8b38-a7367d4c5184",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the literature_gaps.md file and finding the references.bib file.",
+              "signature": "EpMCClkIDRgCKkAWZpP6SMPlff+ckCEbH2ET8qwep5B6dok/cMd6ecwAk7YQuHupEql7wMnrAbC5f81LveXQMNH8qUzfFbKcF8+bMg9jbGF1ZGUtb3B1cy00LTY4ABIMqe046eK4DT0Z5ghHGgx57uMuU1LbMX3c9a8iMJUfxV5JSSls3JITXeFNC0aEHtJobogMmnJppapihdaSqS2cM7E3f0H2A9VfHrp9Fipo+aZbCMsSDFrdMHcRfi7NY0+Dr+Tu6FMZds54VIWpSNHcgEAxJjMfzRYxNbNRiZFCZgSiKi3BZ4NY06DTeSml1RBGqC2of4ZvlGQRS6eEBEOXKAG2Cb1hlzAekdwCAz5FHxMWU6Lg7xUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "38152d4b-08f1-4c47-acae-988a4c8e29c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EJZJkGY4CYkbjLQCRHPeqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11323,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11323
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S6wJPEJB8QKSqBhTXMq9Y4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/literature_gaps.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "1141b2c8-30e2-4ab0-9262-6940a4bbc27b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EJZJkGY4CYkbjLQCRHPeqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11323,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11323
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T09:14:47.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6wJPEJB8QKSqBhTXMq9Y4",
+              "type": "tool_result",
+              "content": "1\t# Literature Gap Search Results\n2\t\n3\tSearch date: 2026-05-14\n4\tContext: exp-004 found high-AUC gamma underestimation (-0.016) due to exposure-ability collinearity causing posterior variance inflation. Need theoretical anchors for Discussion.\n5\t\n6\t---\n7\t\n8\t## Gap 1 (P0): Exposure-ability collinearity / confounding in IRT\n9\t\n10\t### San Martin, Gonzalez & Tuerlinckx (2015)\n11\t- **Citation:** San Martin, E., Gonzalez, J., & Tuerlinckx, F. (2015). On the unidentifiability of the fixed-effects 3PL model. *Psychometrika*, 80(2), 450-467.\n12\t- **Relevance to ContamCal:** Establishes formal unidentifiability results for fixed-effects IRT models with guessing parameters. Our 4PL-based contamination model inherits these identifiability challenges; when exposure acts as a quasi-covariate correlated with ability, parameter confounding is amplified. Provides theoretical grounding for why gamma is underestimated under high collinearity.\n13\t\n14\t```bibtex\n15\t@article{sanmartin2015,\n16\t  author  = {San Mart\\'{i}n, Ernesto and Gonz\\'{a}lez, Jorge and Tuerlinckx, Francis},\n17\t  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},\n18\t  journal = {Psychometrika},\n19\t  volume  = {80},\n20\t  number  = {2},\n21\t  pages   = {450--467},\n22\t  year    = {2015},\n23\t  doi     = {10.1007/s11336-014-9404-2}\n24\t}\n25\t```\n26\t\n27\t### Mislevy (1987)\n28\t- **Citation:** Mislevy, R. J. (1987). Exploiting auxiliary information about examinees in the estimation of item parameters. *Applied Psychological Measurement*, 11(1), 81-91.\n29\t- **Relevance to ContamCal:** Shows that person-level covariate information can improve IRT estimation precision equivalent to adding 2-6 items, but only when covariates are not collinear with ability. In our setting, contamination exposure is correlated with ability by design (high-AUC items discriminate), creating the exact condition where auxiliary information becomes confounded rather than helpful.\n30\t\n31\t```bibtex\n32\t@article{mislevy1987,\n33\t  author  = {Mislevy, Robert J.},\n34\t  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},\n35\t  journal = {Applied Psychological Measurement},\n36\t  volume  = {11},\n37\t  number  = {1},\n38\t  pages   = {81--91},\n39\t  year    = {1987},\n40\t  doi     = {10.1177/014662168701100106}\n41\t}\n42\t```\n43\t\n44\t### Wainer, Bradlow & Wang (2007)\n45\t- **Citation:** Wainer, H., Bradlow, E. T., & Wang, X. (2007). *Testlet response theory and its applications*. Cambridge University Press.\n46\t- **Relevance to ContamCal:** Documents how ignoring local item dependence (analogous to item-group contamination effects) inflates parameter correlations and biases difficulty/discrimination estimates. The testlet-induced dependency structure parallels how contamination exposure creates local dependence among affected items.\n47\t\n48\t```bibtex\n49\t@book{wainer2007testlet,\n50\t  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},\n51\t  title     = {Testlet Response Theory and Its Applications},\n52\t  publisher = {Cambridge University Press},\n53\t  year      = {2007}\n54\t}\n55\t```\n56\t\n57\t---\n58\t\n59\t## Gap 2 (P0): Measurement error attenuation bias\n60\t\n61\t### Carroll, Ruppert, Stefanski & Crainiceanu (2006)\n62\t- **Citation:** Carroll, R. J., Ruppert, D., Stefanski, L. A., & Crainiceanu, C. M. (2006). *Measurement error in nonlinear models: A modern perspective* (2nd ed.). Chapman & Hall/CRC.\n63\t- **Relevance to ContamCal:** Definitive reference on measurement error in nonlinear models. Our gamma parameter is estimated in a model where ability (theta) enters nonlinearly; measurement error in theta attenuates gamma toward zero. Chapter 2 provides the theoretical framework for understanding why naive regression on estimated abilities produces attenuated contamination effect estimates.\n64\t\n65\t```bibtex\n66\t@book{carroll2006,\n67\t  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n68\t  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},\n69\t  edition   = {2nd},\n70\t  publisher = {Chapman \\& Hall/CRC},\n71\t  year      = {2006},\n72\t  isbn      = {9781584886334}\n73\t}\n74\t```\n75\t\n76\t### Fuller (1987)\n77\t- **Citation:** Fuller, W. A. (1987). *Measurement error models*. Wiley.\n78\t- **Relevance to ContamCal:** Classic treatment of errors-in-variables regression. Establishes that when a regressor is measured with error, the OLS slope is attenuated by the reliability ratio lambda = var(true)/var(observed). Provides the foundational result that our gamma underestimation mechanism generalizes from.\n79\t\n80\t```bibtex\n81\t@book{fuller1987,\n82\t  author    = {Fuller, Wayne A.},\n83\t  title     = {Measurement Error Models},\n84\t  publisher = {Wiley},\n85\t  year      = {1987},\n86\t  series    = {Wiley Series in Probability and Statistics},\n87\t  isbn      = {9780471861874}\n88\t}\n89\t```\n90\t\n91\t### Stefanski & Carroll (1985)\n92\t- **Citation:** Stefanski, L. A., & Carroll, R. J. (1985). Covariate measurement error in logistic regression. *Annals of Statistics*, 13(4), 1335-1351.\n93\t- **Relevance to ContamCal:** Proves that covariate measurement error in logistic regression (our ICC is logistic) produces asymptotic bias in parameter estimates. The naive estimator from regressing on observed (error-prone) covariates is inconsistent. Directly applicable: our contamination model uses logistic ICC where ability enters as a noisy estimate.\n94\t\n95\t```bibtex\n96\t@article{stefanski1985,\n97\t  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},\n98\t  title   = {Covariate Measurement Error in Logistic Regression},\n99\t  journal = {Annals of Statistics},\n100\t  volume  = {13},\n101\t  number  = {4},\n102\t  pages   = {1335--1351},\n103\t  year    = {1985},\n104\t  doi     = {10.1214/aos/1176349741}\n105\t}\n106\t```\n107\t\n108\t### Battauz & Bellio (2011)\n109\t- **Citation:** Battauz, M., & Bellio, R. (2011). Structural modeling of measurement error in generalized linear models with Rasch measures as covariates. *Psychometrika*, 76(1), 40-56.\n110\t- **Relevance to ContamCal:** Directly addresses the problem of using IRT ability estimates as covariates in secondary models. Shows that ignoring heteroskedastic measurement error (which varies with true ability) biases regression coefficients. This is exactly our setting: estimated theta_hat is used to model contamination effect gamma, and its measurement error is ability-dependent.\n111\t\n112\t```bibtex\n113\t@article{battauz2011,\n114\t  author  = {Battauz, Michela and Bellio, Ruggero},\n115\t  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},\n116\t  journal = {Psychometrika},\n117\t  volume  = {76},\n118\t  number  = {1},\n119\t  pages   = {40--56},\n120\t  year    = {2011},\n121\t  doi     = {10.1007/s11336-010-9195-z}\n122\t}\n123\t```\n124\t\n125\t### Westfall & Yarkoni (2016)\n126\t- **Citation:** Westfall, J., & Yarkoni, T. (2016). Statistically controlling for confounding constructs is harder than you think. *PLoS ONE*, 11(3), e0152719.\n127\t- **Relevance to ContamCal:** Demonstrates that measurement error in confounds causes residual confounding even after statistical control, with Type I error rates approaching 100% at moderate reliability and large N. Directly relevant to our scenario: controlling for estimated ability when assessing contamination effect does not fully remove the ability confound due to measurement error in theta_hat.\n128\t\n129\t```bibtex\n130\t@article{westfall2016,\n131\t  author  = {Westfall, Jacob and Yarkoni, Tal},\n132\t  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},\n133\t  journal = {PLoS ONE},\n134\t  volume  = {11},\n135\t  number  = {3},\n136\t  pages   = {e0152719},\n137\t  year    = {2016},\n138\t  doi     = {10.1371/journal.pone.0152719}\n139\t}\n140\t```\n141\t\n142\t### Jerzak & Jessee (2026)\n143\t- **Citation:** Jerzak, C. T., & Jessee, S. A. (2026). Attenuation bias with latent predictors. *arXiv preprint*, arXiv:2507.22218.\n144\t- **Relevance to ContamCal:** Shows that standard attenuation-correction methods (IV, method of composition) are themselves biased when applied to latent regressors, sometimes worse than naive regression. Estimated shifts up to 50% in coefficient magnitude. Highly relevant as our contamination effect gamma is regressed on a latent predictor (ability).\n145\t\n146\t```bibtex\n147\t@article{jerzak2026,\n148\t  author  = {Jerzak, Connor T. and Jessee, Stephen A.},\n149\t  title   = {Attenuation Bias with Latent Predictors},\n150\t  journal = {arXiv preprint arXiv:2507.22218},\n151\t  year    = {2026}\n152\t}\n153\t```\n154\t\n155\t---\n156\t\n157\t## Gap 3 (P1): IRT power analysis / information function\n158\t\n159\t### Embretson & Reise (2000)\n160\t- **Citation:** Embretson, S. E., & Reise, S. P. (2000). *Item response theory for psychologists*. Erlbaum.\n161\t- **Relevance to ContamCal:** Chapters on information functions and parameter estimation precision provide the framework for understanding when sample size and test length are sufficient to separate contamination effects from ability. Our exp-004 results on gamma estimation precision can be contextualized using IRT information theory.\n162\t\n163\t```bibtex\n164\t@book{embretson2000,\n165\t  author    = {Embretson, Susan E. and Reise, Steven P.},\n166\t  title     = {Item Response Theory for Psychologists},\n167\t  publisher = {Lawrence Erlbaum Associates},\n168\t  year      = {2000},\n169\t  address   = {Mahwah, NJ}\n170\t}\n171\t```\n172\t\n173\t### Thissen & Wainer (2001)\n174\t- **Citation:** Thissen, D., & Wainer, H. (Eds.). (2001). *Test scoring*. Erlbaum.\n175\t- **Relevance to ContamCal:** Comprehensive treatment of IRT-based scoring and the information function. Relevant for discussing how contaminated items contribute (or fail to contribute) information about ability and contamination effects simultaneously.\n176\t\n177\t```bibtex\n178\t@book{thissen2001,\n179\t  author    = {Thissen, David and Wainer, Howard},\n180\t  title     = {Test Scoring},\n181\t  publisher = {Lawrence Erlbaum Associates},\n182\t  year      = {2001},\n183\t  address   = {Mahwah, NJ}\n184\t}\n185\t```\n186\t\n187\t---\n188\t\n189\t## Gap 4 (P2): 4PL identifiability\n190\t\n191\t### Barton & Lord (1981)\n192\t- **Citation:** Barton, M. A., & Lord, F. M. (1981). An upper asymptote for the three-parameter logistic item-response model. *ETS Research Report Series*, 1981(1), i-8.\n193\t- **Relevance to ContamCal:** Original 4PL model paper. Showed that the upper asymptote parameter had limited impact on ability estimates in their data. ContamCal's contamination model can be seen as a constrained 4PL where the upper asymptote is structurally linked to contamination exposure, which may aid identifiability compared to the unconstrained 4PL.\n194\t\n195\t```bibtex\n196\t@article{barton1981,\n197\t  author  = {Barton, Mark A. and Lord, Frederic M.},\n198\t  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},\n199\t  journal = {ETS Research Report Series},\n200\t  volume  = {1981},\n201\t  number  = {1},\n202\t  pages   = {i--8},\n203\t  year    = {1981},\n204\t  doi     = {10.1002/j.2333-8504.1981.tb01255.x}\n205\t}\n206\t```\n207\t\n208\t### Culpepper (2016)\n209\t- **Citation:** Culpepper, S. A. (2016). Revisiting the 4-parameter item response model: Bayesian estimation and application. *Psychometrika*, 81(4), 1142-1163.\n210\t- **Relevance to ContamCal:** Demonstrates that Bayesian estimation with informative priors on asymptote parameters resolves 4PL identifiability issues. Our model's structural constraint (linking upper asymptote to contamination exposure) serves a similar regularizing role, which we can frame as a theory-driven alternative to Culpepper's prior-based approach.\n211\t\n212\t```bibtex\n213\t@article{culpepper2016,\n214\t  author  = {Culpepper, Steven Andrew},\n215\t  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},\n216\t  journal = {Psychometrika},\n217\t  volume  = {81},\n218\t  number  = {4},\n219\t  pages   = {1142--1163},\n220\t  year    = {2016},\n221\t  doi     = {10.1007/s11336-015-9477-6}\n222\t}\n223\t```\n224\t\n225\t### Liao, Ho, Yen & Cheng (2012)\n226\t- **Citation:** Liao, W.-W., Ho, R.-G., Yen, Y.-C., & Cheng, H.-C. (2012). The four-parameter logistic item response theory model as a robust method of estimating ability despite aberrant responses. *Social Behavior and Personality*, 40(10), 1679-1694.\n227\t- **Relevance to ContamCal:** Shows 4PL improves ability estimation under aberrant response patterns (analogous to contamination-induced response distortions). Supports ContamCal's rationale of explicitly modeling upper asymptote deviations caused by contamination rather than treating them as nuisance.\n228\t\n229\t```bibtex\n230\t@article{liao2012,\n231\t  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},\n232\t  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},\n233\t  journal = {Social Behavior and Personality},\n234\t  volume  = {40},\n235\t  number  = {10},\n236\t  pages   = {1679--1694},\n237\t  year    = {2012},\n238\t  doi     = {10.2224/sbp.2012.40.10.1679}\n239\t}\n240\t```\n241\t\n242\t---\n243\t\n244\t## Already in references.bib (no action needed)\n245\t- De Boeck & Wilson (2004) - `deboeck2004`\n246\t- Mislevy (1986) - `mislevy1986` (different paper from the 1987 above)\n247\t- San Martin, Del Pino & De Boeck (2009) - `sanmartin2009` (different paper from the 2015 above)\n248\t\n249\t## Summary: New entries to add to references.bib\n250\t\n251\t| Priority | Key | Gap |\n252\t|----------|-----|-----|\n253\t| P0 | `sanmartin2015` | Collinearity/identifiability |\n254\t| P0 | `mislevy1987` | Covariate-ability confounding |\n255\t| P0 | `wainer2007testlet` | Local dependence / parameter correlation |\n256\t| P0 | `carroll2006` | Measurement error in nonlinear models |\n257\t| P0 | `fuller1987` | Errors-in-variables classic |\n258\t| P0 | `stefanski1985` | Logistic regression measurement error |\n259\t| P0 | `battauz2011` | IRT measures as covariates |\n260\t| P0 | `westfall2016` | Residual confounding under measurement error |\n261\t| P0 | `jerzak2026` | Attenuation with latent predictors |\n262\t| P1 | `embretson2000` | IRT information / power |\n263\t| P1 | `thissen2001` | Test scoring / information |\n264\t| P2 | `barton1981` | Original 4PL model |\n265\t| P2 | `culpepper2016` | Bayesian 4PL estimation |\n266\t| P2 | `liao2012` | 4PL for aberrant responses |\n267\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "e6279a9a-03c3-4889-a24e-6c8e8da1cc34",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/literature_gaps.md",
+                "content": "# Literature Gap Search Results\n\nSearch date: 2026-05-14\nContext: exp-004 found high-AUC gamma underestimation (-0.016) due to exposure-ability collinearity causing posterior variance inflation. Need theoretical anchors for Discussion.\n\n---\n\n## Gap 1 (P0): Exposure-ability collinearity / confounding in IRT\n\n### San Martin, Gonzalez & Tuerlinckx (2015)\n- **Citation:** San Martin, E., Gonzalez, J., & Tuerlinckx, F. (2015). On the unidentifiability of the fixed-effects 3PL model. *Psychometrika*, 80(2), 450-467.\n- **Relevance to ContamCal:** Establishes formal unidentifiability results for fixed-effects IRT models with guessing parameters. Our 4PL-based contamination model inherits these identifiability challenges; when exposure acts as a quasi-covariate correlated with ability, parameter confounding is amplified. Provides theoretical grounding for why gamma is underestimated under high collinearity.\n\n```bibtex\n@article{sanmartin2015,\n  author  = {San Mart\\'{i}n, Ernesto and Gonz\\'{a}lez, Jorge and Tuerlinckx, Francis},\n  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},\n  journal = {Psychometrika},\n  volume  = {80},\n  number  = {2},\n  pages   = {450--467},\n  year    = {2015},\n  doi     = {10.1007/s11336-014-9404-2}\n}\n```\n\n### Mislevy (1987)\n- **Citation:** Mislevy, R. J. (1987). Exploiting auxiliary information about examinees in the estimation of item parameters. *Applied Psychological Measurement*, 11(1), 81-91.\n- **Relevance to ContamCal:** Shows that person-level covariate information can improve IRT estimation precision equivalent to adding 2-6 items, but only when covariates are not collinear with ability. In our setting, contamination exposure is correlated with ability by design (high-AUC items discriminate), creating the exact condition where auxiliary information becomes confounded rather than helpful.\n\n```bibtex\n@article{mislevy1987,\n  author  = {Mislevy, Robert J.},\n  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},\n  journal = {Applied Psychological Measurement},\n  volume  = {11},\n  number  = {1},\n  pages   = {81--91},\n  year    = {1987},\n  doi     = {10.1177/014662168701100106}\n}\n```\n\n### Wainer, Bradlow & Wang (2007)\n- **Citation:** Wainer, H., Bradlow, E. T., & Wang, X. (2007). *Testlet response theory and its applications*. Cambridge University Press.\n- **Relevance to ContamCal:** Documents how ignoring local item dependence (analogous to item-group contamination effects) inflates parameter correlations and biases difficulty/discrimination estimates. The testlet-induced dependency structure parallels how contamination exposure creates local dependence among affected items.\n\n```bibtex\n@book{wainer2007testlet,\n  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},\n  title     = {Testlet Response Theory and Its Applications},\n  publisher = {Cambridge University Press},\n  year      = {2007}\n}\n```\n\n---\n\n## Gap 2 (P0): Measurement error attenuation bias\n\n### Carroll, Ruppert, Stefanski & Crainiceanu (2006)\n- **Citation:** Carroll, R. J., Ruppert, D., Stefanski, L. A., & Crainiceanu, C. M. (2006). *Measurement error in nonlinear models: A modern perspective* (2nd ed.). Chapman & Hall/CRC.\n- **Relevance to ContamCal:** Definitive reference on measurement error in nonlinear models. Our gamma parameter is estimated in a model where ability (theta) enters nonlinearly; measurement error in theta attenuates gamma toward zero. Chapter 2 provides the theoretical framework for understanding why naive regression on estimated abilities produces attenuated contamination effect estimates.\n\n```bibtex\n@book{carroll2006,\n  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},\n  edition   = {2nd},\n  publisher = {Chapman \\& Hall/CRC},\n  year      = {2006},\n  isbn      = {9781584886334}\n}\n```\n\n### Fuller (1987)\n- **Citation:** Fuller, W. A. (1987). *Measurement error models*. Wiley.\n- **Relevance to ContamCal:** Classic treatment of errors-in-variables regression. Establishes that when a regressor is measured with error, the OLS slope is attenuated by the reliability ratio lambda = var(true)/var(observed). Provides the foundational result that our gamma underestimation mechanism generalizes from.\n\n```bibtex\n@book{fuller1987,\n  author    = {Fuller, Wayne A.},\n  title     = {Measurement Error Models},\n  publisher = {Wiley},\n  year      = {1987},\n  series    = {Wiley Series in Probability and Statistics},\n  isbn      = {9780471861874}\n}\n```\n\n### Stefanski & Carroll (1985)\n- **Citation:** Stefanski, L. A., & Carroll, R. J. (1985). Covariate measurement error in logistic regression. *Annals of Statistics*, 13(4), 1335-1351.\n- **Relevance to ContamCal:** Proves that covariate measurement error in logistic regression (our ICC is logistic) produces asymptotic bias in parameter estimates. The naive estimator from regressing on observed (error-prone) covariates is inconsistent. Directly applicable: our contamination model uses logistic ICC where ability enters as a noisy estimate.\n\n```bibtex\n@article{stefanski1985,\n  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},\n  title   = {Covariate Measurement Error in Logistic Regression},\n  journal = {Annals of Statistics},\n  volume  = {13},\n  number  = {4},\n  pages   = {1335--1351},\n  year    = {1985},\n  doi     = {10.1214/aos/1176349741}\n}\n```\n\n### Battauz & Bellio (2011)\n- **Citation:** Battauz, M., & Bellio, R. (2011). Structural modeling of measurement error in generalized linear models with Rasch measures as covariates. *Psychometrika*, 76(1), 40-56.\n- **Relevance to ContamCal:** Directly addresses the problem of using IRT ability estimates as covariates in secondary models. Shows that ignoring heteroskedastic measurement error (which varies with true ability) biases regression coefficients. This is exactly our setting: estimated theta_hat is used to model contamination effect gamma, and its measurement error is ability-dependent.\n\n```bibtex\n@article{battauz2011,\n  author  = {Battauz, Michela and Bellio, Ruggero},\n  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},\n  journal = {Psychometrika},\n  volume  = {76},\n  number  = {1},\n  pages   = {40--56},\n  year    = {2011},\n  doi     = {10.1007/s11336-010-9195-z}\n}\n```\n\n### Westfall & Yarkoni (2016)\n- **Citation:** Westfall, J., & Yarkoni, T. (2016). Statistically controlling for confounding constructs is harder than you think. *PLoS ONE*, 11(3), e0152719.\n- **Relevance to ContamCal:** Demonstrates that measurement error in confounds causes residual confounding even after statistical control, with Type I error rates approaching 100% at moderate reliability and large N. Directly relevant to our scenario: controlling for estimated ability when assessing contamination effect does not fully remove the ability confound due to measurement error in theta_hat.\n\n```bibtex\n@article{westfall2016,\n  author  = {Westfall, Jacob and Yarkoni, Tal},\n  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},\n  journal = {PLoS ONE},\n  volume  = {11},\n  number  = {3},\n  pages   = {e0152719},\n  year    = {2016},\n  doi     = {10.1371/journal.pone.0152719}\n}\n```\n\n### Jerzak & Jessee (2026)\n- **Citation:** Jerzak, C. T., & Jessee, S. A. (2026). Attenuation bias with latent predictors. *arXiv preprint*, arXiv:2507.22218.\n- **Relevance to ContamCal:** Shows that standard attenuation-correction methods (IV, method of composition) are themselves biased when applied to latent regressors, sometimes worse than naive regression. Estimated shifts up to 50% in coefficient magnitude. Highly relevant as our contamination effect gamma is regressed on a latent predictor (ability).\n\n```bibtex\n@article{jerzak2026,\n  author  = {Jerzak, Connor T. and Jessee, Stephen A.},\n  title   = {Attenuation Bias with Latent Predictors},\n  journal = {arXiv preprint arXiv:2507.22218},\n  year    = {2026}\n}\n```\n\n---\n\n## Gap 3 (P1): IRT power analysis / information function\n\n### Embretson & Reise (2000)\n- **Citation:** Embretson, S. E., & Reise, S. P. (2000). *Item response theory for psychologists*. Erlbaum.\n- **Relevance to ContamCal:** Chapters on information functions and parameter estimation precision provide the framework for understanding when sample size and test length are sufficient to separate contamination effects from ability. Our exp-004 results on gamma estimation precision can be contextualized using IRT information theory.\n\n```bibtex\n@book{embretson2000,\n  author    = {Embretson, Susan E. and Reise, Steven P.},\n  title     = {Item Response Theory for Psychologists},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2000},\n  address   = {Mahwah, NJ}\n}\n```\n\n### Thissen & Wainer (2001)\n- **Citation:** Thissen, D., & Wainer, H. (Eds.). (2001). *Test scoring*. Erlbaum.\n- **Relevance to ContamCal:** Comprehensive treatment of IRT-based scoring and the information function. Relevant for discussing how contaminated items contribute (or fail to contribute) information about ability and contamination effects simultaneously.\n\n```bibtex\n@book{thissen2001,\n  author    = {Thissen, David and Wainer, Howard},\n  title     = {Test Scoring},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2001},\n  address   = {Mahwah, NJ}\n}\n```\n\n---\n\n## Gap 4 (P2): 4PL identifiability\n\n### Barton & Lord (1981)\n- **Citation:** Barton, M. A., & Lord, F. M. (1981). An upper asymptote for the three-parameter logistic item-response model. *ETS Research Report Series*, 1981(1), i-8.\n- **Relevance to ContamCal:** Original 4PL model paper. Showed that the upper asymptote parameter had limited impact on ability estimates in their data. ContamCal's contamination model can be seen as a constrained 4PL where the upper asymptote is structurally linked to contamination exposure, which may aid identifiability compared to the unconstrained 4PL.\n\n```bibtex\n@article{barton1981,\n  author  = {Barton, Mark A. and Lord, Frederic M.},\n  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},\n  journal = {ETS Research Report Series},\n  volume  = {1981},\n  number  = {1},\n  pages   = {i--8},\n  year    = {1981},\n  doi     = {10.1002/j.2333-8504.1981.tb01255.x}\n}\n```\n\n### Culpepper (2016)\n- **Citation:** Culpepper, S. A. (2016). Revisiting the 4-parameter item response model: Bayesian estimation and application. *Psychometrika*, 81(4), 1142-1163.\n- **Relevance to ContamCal:** Demonstrates that Bayesian estimation with informative priors on asymptote parameters resolves 4PL identifiability issues. Our model's structural constraint (linking upper asymptote to contamination exposure) serves a similar regularizing role, which we can frame as a theory-driven alternative to Culpepper's prior-based approach.\n\n```bibtex\n@article{culpepper2016,\n  author  = {Culpepper, Steven Andrew},\n  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},\n  journal = {Psychometrika},\n  volume  = {81},\n  number  = {4},\n  pages   = {1142--1163},\n  year    = {2016},\n  doi     = {10.1007/s11336-015-9477-6}\n}\n```\n\n### Liao, Ho, Yen & Cheng (2012)\n- **Citation:** Liao, W.-W., Ho, R.-G., Yen, Y.-C., & Cheng, H.-C. (2012). The four-parameter logistic item response theory model as a robust method of estimating ability despite aberrant responses. *Social Behavior and Personality*, 40(10), 1679-1694.\n- **Relevance to ContamCal:** Shows 4PL improves ability estimation under aberrant response patterns (analogous to contamination-induced response distortions). Supports ContamCal's rationale of explicitly modeling upper asymptote deviations caused by contamination rather than treating them as nuisance.\n\n```bibtex\n@article{liao2012,\n  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},\n  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},\n  journal = {Social Behavior and Personality},\n  volume  = {40},\n  number  = {10},\n  pages   = {1679--1694},\n  year    = {2012},\n  doi     = {10.2224/sbp.2012.40.10.1679}\n}\n```\n\n---\n\n## Already in references.bib (no action needed)\n- De Boeck & Wilson (2004) - `deboeck2004`\n- Mislevy (1986) - `mislevy1986` (different paper from the 1987 above)\n- San Martin, Del Pino & De Boeck (2009) - `sanmartin2009` (different paper from the 2015 above)\n\n## Summary: New entries to add to references.bib\n\n| Priority | Key | Gap |\n|----------|-----|-----|\n| P0 | `sanmartin2015` | Collinearity/identifiability |\n| P0 | `mislevy1987` | Covariate-ability confounding |\n| P0 | `wainer2007testlet` | Local dependence / parameter correlation |\n| P0 | `carroll2006` | Measurement error in nonlinear models |\n| P0 | `fuller1987` | Errors-in-variables classic |\n| P0 | `stefanski1985` | Logistic regression measurement error |\n| P0 | `battauz2011` | IRT measures as covariates |\n| P0 | `westfall2016` | Residual confounding under measurement error |\n| P0 | `jerzak2026` | Attenuation with latent predictors |\n| P1 | `embretson2000` | IRT information / power |\n| P1 | `thissen2001` | Test scoring / information |\n| P2 | `barton1981` | Original 4PL model |\n| P2 | `culpepper2016` | Bayesian 4PL estimation |\n| P2 | `liao2012` | 4PL for aberrant responses |\n",
+                "numLines": 267,
+                "startLine": 1,
+                "totalLines": 267
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GJEHpzoePTpFJm94hrKNhw",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "5327facc-d820-455b-a678-036582bb9e02",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EJZJkGY4CYkbjLQCRHPeqp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11323,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11323
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T09:14:47.520Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GJEHpzoePTpFJm94hrKNhw",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260513T155040/best/references.bib\nartifacts/paper_draft/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "a657c554-5ef6-4c5d-8ec7-ab292a407808",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/dream_reports/dream_20260513T155040/best/references.bib",
+                "artifacts/paper_draft/references.bib"
+              ],
+              "durationMs": 165,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013YnDd5VEj2B5xbM3jGCrkC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "84b3d845-6a86-423a-b5d8-c736ceb824bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjHW8am5ffGiiSPCEdpKhY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5132,
+                "cache_read_input_tokens": 23164,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5132
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T09:14:51.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013YnDd5VEj2B5xbM3jGCrkC",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Core Methodology — Educational Measurement & IRT\n3\t% ============================================================\n4\t\n5\t@book{lord1980,\n6\t  author    = {Lord, Frederic M.},\n7\t  title     = {Applications of Item Response Theory to Practical Testing Problems},\n8\t  publisher = {Lawrence Erlbaum Associates},\n9\t  year      = {1980},\n10\t  address   = {Hillsdale, NJ}\n11\t}\n12\t\n13\t@article{eckerly2017,\n14\t  author  = {Eckerly, Carol},\n15\t  title   = {Detecting Item Compromise in the Context of Item Response Theory},\n16\t  journal = {Applied Psychological Measurement},\n17\t  volume  = {41},\n18\t  number  = {2},\n19\t  pages   = {87--101},\n20\t  year    = {2017}\n21\t}\n22\t\n23\t@article{sinharay2017,\n24\t  author  = {Sinharay, Sandip},\n25\t  title   = {Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test},\n26\t  journal = {Journal of Educational and Behavioral Statistics},\n27\t  volume  = {42},\n28\t  number  = {1},\n29\t  pages   = {46--68},\n30\t  year    = {2017}\n31\t}\n32\t\n33\t@book{deboeck2004,\n34\t  author    = {De Boeck, Paul and Wilson, Mark},\n35\t  title     = {Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach},\n36\t  publisher = {Springer},\n37\t  year      = {2004},\n38\t  address   = {New York}\n39\t}\n40\t\n41\t@article{adams1997,\n42\t  author  = {Adams, Raymond J. and Wilson, Mark and Wang, Wen-chung},\n43\t  title   = {The Multidimensional Random Coefficients Multinomial Logit Model},\n44\t  journal = {Applied Psychological Measurement},\n45\t  volume  = {21},\n46\t  number  = {1},\n47\t  pages   = {1--23},\n48\t  year    = {1997}\n49\t}\n50\t\n51\t@article{mislevy1986,\n52\t  author  = {Mislevy, Robert J.},\n53\t  title   = {Bayes Modal Estimation in Item Response Models},\n54\t  journal = {Psychometrika},\n55\t  volume  = {51},\n56\t  number  = {2},\n57\t  pages   = {177--195},\n58\t  year    = {1986}\n59\t}\n60\t\n61\t@article{sanmartin2009,\n62\t  author  = {San Mart\\'{i}n, Ernesto and Del Pino, Guido and De Boeck, Paul},\n63\t  title   = {Consequential Validity of Item Response Theory Models for Measuring Latent Constructs},\n64\t  journal = {Psychometrika},\n65\t  volume  = {74},\n66\t  number  = {2},\n67\t  pages   = {349--367},\n68\t  year    = {2009}\n69\t}\n70\t\n71\t@article{maris2009,\n72\t  author  = {Maris, Gunter and Bechger, Timo},\n73\t  title   = {On Interpreting the Model Parameters for the Three Parameter Logistic Model},\n74\t  journal = {Measurement},\n75\t  volume  = {7},\n76\t  number  = {2},\n77\t  pages   = {75--88},\n78\t  year    = {2009}\n79\t}\n80\t\n81\t@inproceedings{cormack2009,\n82\t  author    = {Cormack, Gordon V. and Clarke, Charles L. A. and Buettcher, Stefan},\n83\t  title     = {Reciprocal Rank Fusion Outperforms {Condorcet} and Individual Rank Learning Methods},\n84\t  booktitle = {Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval},\n85\t  pages     = {758--759},\n86\t  year      = {2009},\n87\t  publisher = {ACM}\n88\t}\n89\t\n90\t% ============================================================\n91\t% Bayesian Inference & Diagnostics\n92\t% ============================================================\n93\t\n94\t@article{hoffman2014,\n95\t  author  = {Hoffman, Matthew D. and Gelman, Andrew},\n96\t  title   = {The {No-U-Turn} Sampler: Adaptively Setting Path Lengths in {Hamiltonian Monte Carlo}},\n97\t  journal = {Journal of Machine Learning Research},\n98\t  volume  = {15},\n99\t  number  = {47},\n100\t  pages   = {1593--1623},\n101\t  year    = {2014}\n102\t}\n103\t\n104\t@article{carpenter2017,\n105\t  author  = {Carpenter, Bob and Gelman, Andrew and Hoffman, Matthew D. and Lee, Daniel and Goodrich, Ben and Betancourt, Michael and Brubaker, Marcus and Guo, Jiqiang and Li, Peter and Riddell, Allen},\n106\t  title   = {Stan: A Probabilistic Programming Language},\n107\t  journal = {Journal of Statistical Software},\n108\t  volume  = {76},\n109\t  number  = {1},\n110\t  pages   = {1--32},\n111\t  year    = {2017}\n112\t}\n113\t\n114\t@article{talts2018sbc,\n115\t  author        = {Talts, Sean and Betancourt, Michael and Simpson, Daniel and Vehtari, Aki and Gelman, Andrew},\n116\t  title         = {Validating {Bayesian} Inference Algorithms with Simulation-Based Calibration},\n117\t  journal       = {arXiv preprint},\n118\t  year          = {2018},\n119\t  eprint        = {1804.06788},\n120\t  archiveprefix = {arXiv}\n121\t}\n122\t\n123\t@article{ulitzsch2022,\n124\t  author  = {Ulitzsch, Esther and Nestler, Steffen},\n125\t  title   = {Automatic Differentiation Variational Inference for Item Response Theory Models},\n126\t  journal = {British Journal of Mathematical and Statistical Psychology},\n127\t  volume  = {75},\n128\t  number  = {3},\n129\t  pages   = {421--447},\n130\t  year    = {2022}\n131\t}\n132\t\n133\t% ============================================================\n134\t% Contamination Detection Methods\n135\t% ============================================================\n136\t\n137\t@inproceedings{duan2025minkpp,\n138\t  author    = {Duan, Jiawen and Xie, Cheng and Zhang, Jian and Li, Kai},\n139\t  title     = {{Min-K\\%++}: Improved Membership Inference for Detecting Pre-Training Data of Large Language Models},\n140\t  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR)},\n141\t  year      = {2025}\n142\t}\n143\t\n144\t@inproceedings{dekoninck2024constat,\n145\t  author    = {De Koninck, Jasper and Nelissen, Koen and Nijssen, Siegfried and Davis, Jesse},\n146\t  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n147\t  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n148\t  year      = {2024}\n149\t}\n150\t\n151\t@article{wust2025selfcritique,\n152\t  author        = {W\\\"{u}st, Timon and Hoffmann, Jan and Pang, Richard Yuanzhe},\n153\t  title         = {Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations},\n154\t  journal       = {arXiv preprint},\n155\t  year          = {2025},\n156\t  eprint        = {2510.09259},\n157\t  archiveprefix = {arXiv}\n158\t}\n159\t\n160\t@inproceedings{xu2025kds,\n161\t  author    = {Xu, Yanyang and Qi, Hongzhan and Zhao, Benyou and Liu, Zhiyuan},\n162\t  title     = {Knowledge Distillation Signatures for Efficient Contamination Detection},\n163\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n164\t  year      = {2025},\n165\t  note      = {arXiv:2502.00678}\n166\t}\n167\t\n168\t@inproceedings{oren2024proving,\n169\t  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri and Laesecke, Faisal and Cotterell, Ryan},\n170\t  title     = {Proving Test Set Contamination in Black Box Language Models},\n171\t  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n172\t  year      = {2024}\n173\t}\n174\t\n175\t% ============================================================\n176\t% Contamination Analysis & Mitigation\n177\t% ============================================================\n178\t\n179\t@inproceedings{xu2025emperor,\n180\t  author    = {Xu, Yiwen and Song, Kaijie and Zhou, Jianfeng and Chen, Liang},\n181\t  title     = {The Emperor's New Clothes: Systematic Evaluation of Contamination Mitigation Strategies for Large Language Models},\n182\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n183\t  year      = {2025},\n184\t  note      = {arXiv:2503.16402}\n185\t}\n186\t\n187\t@article{dong2026dose,\n188\t  author        = {Dong, Yifan and Li, Xinran and Chen, Difan and Wang, Zhengyu},\n189\t  title         = {Dose-Response Relationships in Benchmark Contamination: Quantifying Score Inflation Across Model Scales},\n190\t  journal       = {arXiv preprint},\n191\t  year          = {2026},\n192\t  eprint        = {2601.04301},\n193\t  archiveprefix = {arXiv}\n194\t}\n195\t\n196\t@article{yang2026rl,\n197\t  author        = {Yang, Shuo and Wei, Xin and Zhang, Zhiwei and Xu, Feiyu},\n198\t  title         = {Reinforcement Learning Amplifies Contamination in {LLM} Benchmark Evaluation},\n199\t  journal       = {arXiv preprint},\n200\t  year          = {2026},\n201\t  eprint        = {2601.06103},\n202\t  archiveprefix = {arXiv}\n203\t}\n204\t\n205\t@article{wang2025fragility,\n206\t  author        = {Wang, Yuxin and Zhao, Yucheng and Li, Cheng and Zhang, Meng},\n207\t  title         = {On the Fragility of Benchmark Evaluations for Large Language Models},\n208\t  journal       = {arXiv preprint},\n209\t  year          = {2025},\n210\t  eprint        = {2510.02386},\n211\t  archiveprefix = {arXiv}\n212\t}\n213\t\n214\t@inproceedings{zhang2025forget,\n215\t  author    = {Zhang, Yiming and Wang, Yuxin and Dong, Hao and Li, Jiashi},\n216\t  title     = {How Much Can We Forget? Examining Decontamination Effectiveness in Large Language Models},\n217\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n218\t  year      = {2025}\n219\t}\n220\t\n221\t% ============================================================\n222\t% IRT for LLM Evaluation\n223\t% ============================================================\n224\t\n225\t@inproceedings{gu2026psnirt,\n226\t  author    = {Gu, Jiaqi and Wang, Hainiu and Ye, Qingyao and Peng, Nanyun},\n227\t  title     = {{PSN-IRT}: Psychometric-Informed Evaluation of Large Language Models via Item Response Theory},\n228\t  booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence},\n229\t  year      = {2026}\n230\t}\n231\t\n232\t@article{polo2026growing,\n233\t  author        = {Polo, Felipe Maia and Mamani, Ronald and Zhuang, Yuekai and Xu, Hao and Choshen, Leshem and Yurochkin, Mikhail and Sun, Yuekai},\n234\t  title         = {Growing Pains: Understanding the Limitations and Potential of {IRT} for {LLM} Evaluation at Scale},\n235\t  journal       = {arXiv preprint},\n236\t  year          = {2026},\n237\t  eprint        = {2604.12843},\n238\t  archiveprefix = {arXiv}\n239\t}\n240\t\n241\t@article{lyu2025atlas,\n242\t  author        = {Lyu, Haoran and Ding, Yufei and Wang, Hainiu and Peng, Nanyun},\n243\t  title         = {{ATLAS}: Adaptive Testing via Latent Ability Scoring for Large Language Models},\n244\t  journal       = {arXiv preprint},\n245\t  year          = {2025},\n246\t  eprint        = {2511.04689},\n247\t  archiveprefix = {arXiv}\n248\t}\n249\t\n250\t@article{zhuang2025hibayes,\n251\t  author        = {Zhuang, Yuekai and Polo, Felipe Maia and Yurochkin, Mikhail and Sun, Yuekai},\n252\t  title         = {{HiBayES}: Hierarchical {Bayesian} Evaluation System for Language Models},\n253\t  journal       = {arXiv preprint},\n254\t  year          = {2025},\n255\t  eprint        = {2505.05602},\n256\t  archiveprefix = {arXiv}\n257\t}\n258\t\n259\t@inproceedings{lalor2024irt,\n260\t  author    = {Lalor, John P. and Yang, Yi and Smith, Noah A.},\n261\t  title     = {Benchmarking Large Language Models with Item Response Theory},\n262\t  booktitle = {Proceedings of the 38th AAAI Conference on Artificial Intelligence},\n263\t  year      = {2024}\n264\t}\n265\t\n266\t% ============================================================\n267\t% Score Adjustment & Decontamination\n268\t% ============================================================\n269\t\n270\t@inproceedings{li2025dcr,\n271\t  author    = {Li, Yucheng and Flanigan, Frank and Sherborne, Tom and Sherborne, Charlie},\n272\t  title     = {{DCR}: Decontaminated Calibration and Ranking for Benchmark Evaluation},\n273\t  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n274\t  year      = {2025}\n275\t}\n276\t\n277\t@inproceedings{yang2024inference,\n278\t  author    = {Yang, Shuo and Wei, Xin and Shi, Weicheng},\n279\t  title     = {Inference-Time Decontamination of Large Language Models for Benchmark Evaluation},\n280\t  booktitle = {Findings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP Findings)},\n281\t  year      = {2024}\n282\t}\n283\t\n284\t@article{rao2026silicon,\n285\t  author        = {Rao, Sumedh and Raji, Inioluwa Deborah and Liang, Percy},\n286\t  title         = {The Silicon Bureaucracy: Evaluating the Evaluators in {LLM} Benchmarking},\n287\t  journal       = {arXiv preprint},\n288\t  year          = {2026},\n289\t  eprint        = {2603.21636},\n290\t  archiveprefix = {arXiv}\n291\t}\n292\t\n293\t% ============================================================\n294\t% Benchmarking — Surveys & Infrastructure\n295\t% ============================================================\n296\t\n297\t@inproceedings{hendrycks2021mmlu,\n298\t  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n299\t  title     = {Measuring Massive Multitask Language Understanding},\n300\t  booktitle = {Proceedings of the 9th International Conference on Learning Representations (ICLR)},\n301\t  year      = {2021}\n302\t}\n303\t\n304\t@article{cobbe2021gsm8k,\n305\t  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n306\t  title         = {Training Verifiers to Solve Math Word Problems},\n307\t  journal       = {arXiv preprint},\n308\t  year          = {2021},\n309\t  eprint        = {2110.14168},\n310\t  archiveprefix = {arXiv}\n311\t}\n312\t\n313\t@inproceedings{clark2018arc,\n314\t  author    = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n315\t  title     = {Think you have Solved Question Answering? {Try ARC}, the {AI2} Reasoning Challenge},\n316\t  journal   = {arXiv preprint},\n317\t  year      = {2018},\n318\t  eprint    = {1803.05457},\n319\t  archiveprefix = {arXiv}\n320\t}\n321\t\n322\t@article{chen2021humaneval,\n323\t  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chanez, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},\n324\t  title         = {Evaluating Large Language Models Trained on Code},\n325\t  journal       = {arXiv preprint},\n326\t  year          = {2021},\n327\t  eprint        = {2107.03374},\n328\t  archiveprefix = {arXiv}\n329\t}\n330\t\n331\t@inproceedings{chang2025benchmarking,\n332\t  author    = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Yang, Linyi and Zhu, Kaijie and Chen, Hao and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n333\t  title     = {A Survey on Evaluation of Large Language Models},\n334\t  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n335\t  year      = {2025}\n336\t}\n337\t\n338\t@article{white2024livebench,\n339\t  author        = {White, Colin and Dooley, Samuel and Roberts, Manley and Pal, Arka and Feuer, Benjamin and Jain, Siddhartha and Shwartz-Ziv, Ravid and Joshi, Neel and Goldblum, Micah},\n340\t  title         = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n341\t  journal       = {arXiv preprint},\n342\t  year          = {2024},\n343\t  eprint        = {2406.19314},\n344\t  archiveprefix = {arXiv}\n345\t}\n346\t\n347\t@inproceedings{polo2024tinybenchmarks,\n348\t  author    = {Polo, Felipe Maia and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n349\t  title     = {{TinyBenchmarks}: Evaluating {LLMs} with Fewer Examples},\n350\t  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n351\t  year      = {2024}\n352\t}\n353\t\n354\t@inproceedings{han2026probing,\n355\t  author    = {Han, Yucheng and Wu, Chongxuan and Qi, Jiashi and Zhou, Jie},\n356\t  title     = {Targeted Probing for Contamination Effects in Large Language Model Evaluations},\n357\t  booktitle = {Findings of the 2026 Conference of the European Chapter of the Association for Computational Linguistics (EACL Findings)},\n358\t  year      = {2026},\n359\t  note      = {arXiv:2510.07175}\n360\t}\n361\t\n362\t% ============================================================\n363\t% Differential Item Functioning (DIF)\n364\t% ============================================================\n365\t\n366\t@book{holland1993dif,\n367\t  author    = {Holland, Paul W. and Wainer, Howard},\n368\t  title     = {Differential Item Functioning},\n369\t  publisher = {Lawrence Erlbaum Associates},\n370\t  year      = {1993},\n371\t  address   = {Hillsdale, NJ}\n372\t}\n373\t\n374\t@incollection{thissen1993dif,\n375\t  author    = {Thissen, David and Steinberg, Lynne and Wainer, Howard},\n376\t  title     = {Detection of Differential Item Functioning Using the Parameters of Item Response Models},\n377\t  booktitle = {Differential Item Functioning},\n378\t  editor    = {Holland, Paul W. and Wainer, Howard},\n379\t  publisher = {Lawrence Erlbaum Associates},\n380\t  pages     = {67--113},\n381\t  year      = {1993}\n382\t}\n383\t\n384\t@book{zumbo1999dif,\n385\t  author    = {Zumbo, Bruno D.},\n386\t  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n387\t  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defence},\n388\t  year      = {1999},\n389\t  address   = {Ottawa, ON}\n390\t}\n391\t\n392\t% ============================================================\n393\t% ML Calibration\n394\t% ============================================================\n395\t\n396\t@inproceedings{guo2017calibration,\n397\t  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n398\t  title     = {On Calibration of Modern Neural Networks},\n399\t  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n400\t  pages     = {1321--1330},\n401\t  year      = {2017}\n402\t}\n403\t\n404\t% ============================================================\n405\t% Conformal Prediction\n406\t% ============================================================\n407\t\n408\t@article{angelopoulos2023conformal,\n409\t  author        = {Angelopoulos, Anastasios N. and Bates, Stephen},\n410\t  title         = {Conformal Prediction: A Gentle Introduction},\n411\t  journal       = {Foundations and Trends in Machine Learning},\n412\t  volume        = {16},\n413\t  number        = {4},\n414\t  pages         = {494--591},\n415\t  year          = {2023}\n416\t}\n417\t\n418\t% ============================================================\n419\t% Data Attribution\n420\t% ============================================================\n421\t\n422\t@inproceedings{pruthi2020tracin,\n423\t  author    = {Pruthi, Garima and Liu, Frederick and Kale, Satyen and Sundararajan, Mukund},\n424\t  title     = {Estimating Training Data Influence by Tracing Gradient Descent},\n425\t  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS)},\n426\t  year      = {2020}\n427\t}\n428\t\n429\t@inproceedings{park2023trak,\n430\t  author    = {Park, Sung Min and Georgiev, Kristian and Ilyas, Andrew and Lecun, Guillaume and Madry, Aleksander},\n431\t  title     = {{TRAK}: Attributing Model Behavior at Scale},\n432\t  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n433\t  year      = {2023}\n434\t}\n435\t\n436\t% ============================================================\n437\t% Multidimensional IRT\n438\t% ============================================================\n439\t\n440\t@book{reckase2009mirt,\n441\t  author    = {Reckase, Mark D.},\n442\t  title     = {Multidimensional Item Response Theory},\n443\t  publisher = {Springer},\n444\t  year      = {2009},\n445\t  address   = {New York}\n446\t}\n447\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "e13614ea-6041-41e2-9a1d-9c323dcc238d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/references.bib",
+                "content": "% ============================================================\n% Core Methodology — Educational Measurement & IRT\n% ============================================================\n\n@book{lord1980,\n  author    = {Lord, Frederic M.},\n  title     = {Applications of Item Response Theory to Practical Testing Problems},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {1980},\n  address   = {Hillsdale, NJ}\n}\n\n@article{eckerly2017,\n  author  = {Eckerly, Carol},\n  title   = {Detecting Item Compromise in the Context of Item Response Theory},\n  journal = {Applied Psychological Measurement},\n  volume  = {41},\n  number  = {2},\n  pages   = {87--101},\n  year    = {2017}\n}\n\n@article{sinharay2017,\n  author  = {Sinharay, Sandip},\n  title   = {Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test},\n  journal = {Journal of Educational and Behavioral Statistics},\n  volume  = {42},\n  number  = {1},\n  pages   = {46--68},\n  year    = {2017}\n}\n\n@book{deboeck2004,\n  author    = {De Boeck, Paul and Wilson, Mark},\n  title     = {Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach},\n  publisher = {Springer},\n  year      = {2004},\n  address   = {New York}\n}\n\n@article{adams1997,\n  author  = {Adams, Raymond J. and Wilson, Mark and Wang, Wen-chung},\n  title   = {The Multidimensional Random Coefficients Multinomial Logit Model},\n  journal = {Applied Psychological Measurement},\n  volume  = {21},\n  number  = {1},\n  pages   = {1--23},\n  year    = {1997}\n}\n\n@article{mislevy1986,\n  author  = {Mislevy, Robert J.},\n  title   = {Bayes Modal Estimation in Item Response Models},\n  journal = {Psychometrika},\n  volume  = {51},\n  number  = {2},\n  pages   = {177--195},\n  year    = {1986}\n}\n\n@article{sanmartin2009,\n  author  = {San Mart\\'{i}n, Ernesto and Del Pino, Guido and De Boeck, Paul},\n  title   = {Consequential Validity of Item Response Theory Models for Measuring Latent Constructs},\n  journal = {Psychometrika},\n  volume  = {74},\n  number  = {2},\n  pages   = {349--367},\n  year    = {2009}\n}\n\n@article{maris2009,\n  author  = {Maris, Gunter and Bechger, Timo},\n  title   = {On Interpreting the Model Parameters for the Three Parameter Logistic Model},\n  journal = {Measurement},\n  volume  = {7},\n  number  = {2},\n  pages   = {75--88},\n  year    = {2009}\n}\n\n@inproceedings{cormack2009,\n  author    = {Cormack, Gordon V. and Clarke, Charles L. A. and Buettcher, Stefan},\n  title     = {Reciprocal Rank Fusion Outperforms {Condorcet} and Individual Rank Learning Methods},\n  booktitle = {Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  pages     = {758--759},\n  year      = {2009},\n  publisher = {ACM}\n}\n\n% ============================================================\n% Bayesian Inference & Diagnostics\n% ============================================================\n\n@article{hoffman2014,\n  author  = {Hoffman, Matthew D. and Gelman, Andrew},\n  title   = {The {No-U-Turn} Sampler: Adaptively Setting Path Lengths in {Hamiltonian Monte Carlo}},\n  journal = {Journal of Machine Learning Research},\n  volume  = {15},\n  number  = {47},\n  pages   = {1593--1623},\n  year    = {2014}\n}\n\n@article{carpenter2017,\n  author  = {Carpenter, Bob and Gelman, Andrew and Hoffman, Matthew D. and Lee, Daniel and Goodrich, Ben and Betancourt, Michael and Brubaker, Marcus and Guo, Jiqiang and Li, Peter and Riddell, Allen},\n  title   = {Stan: A Probabilistic Programming Language},\n  journal = {Journal of Statistical Software},\n  volume  = {76},\n  number  = {1},\n  pages   = {1--32},\n  year    = {2017}\n}\n\n@article{talts2018sbc,\n  author        = {Talts, Sean and Betancourt, Michael and Simpson, Daniel and Vehtari, Aki and Gelman, Andrew},\n  title         = {Validating {Bayesian} Inference Algorithms with Simulation-Based Calibration},\n  journal       = {arXiv preprint},\n  year          = {2018},\n  eprint        = {1804.06788},\n  archiveprefix = {arXiv}\n}\n\n@article{ulitzsch2022,\n  author  = {Ulitzsch, Esther and Nestler, Steffen},\n  title   = {Automatic Differentiation Variational Inference for Item Response Theory Models},\n  journal = {British Journal of Mathematical and Statistical Psychology},\n  volume  = {75},\n  number  = {3},\n  pages   = {421--447},\n  year    = {2022}\n}\n\n% ============================================================\n% Contamination Detection Methods\n% ============================================================\n\n@inproceedings{duan2025minkpp,\n  author    = {Duan, Jiawen and Xie, Cheng and Zhang, Jian and Li, Kai},\n  title     = {{Min-K\\%++}: Improved Membership Inference for Detecting Pre-Training Data of Large Language Models},\n  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR)},\n  year      = {2025}\n}\n\n@inproceedings{dekoninck2024constat,\n  author    = {De Koninck, Jasper and Nelissen, Koen and Nijssen, Siegfried and Davis, Jesse},\n  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n  year      = {2024}\n}\n\n@article{wust2025selfcritique,\n  author        = {W\\\"{u}st, Timon and Hoffmann, Jan and Pang, Richard Yuanzhe},\n  title         = {Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2510.09259},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{xu2025kds,\n  author    = {Xu, Yanyang and Qi, Hongzhan and Zhao, Benyou and Liu, Zhiyuan},\n  title     = {Knowledge Distillation Signatures for Efficient Contamination Detection},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  note      = {arXiv:2502.00678}\n}\n\n@inproceedings{oren2024proving,\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri and Laesecke, Faisal and Cotterell, Ryan},\n  title     = {Proving Test Set Contamination in Black Box Language Models},\n  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year      = {2024}\n}\n\n% ============================================================\n% Contamination Analysis & Mitigation\n% ============================================================\n\n@inproceedings{xu2025emperor,\n  author    = {Xu, Yiwen and Song, Kaijie and Zhou, Jianfeng and Chen, Liang},\n  title     = {The Emperor's New Clothes: Systematic Evaluation of Contamination Mitigation Strategies for Large Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  note      = {arXiv:2503.16402}\n}\n\n@article{dong2026dose,\n  author        = {Dong, Yifan and Li, Xinran and Chen, Difan and Wang, Zhengyu},\n  title         = {Dose-Response Relationships in Benchmark Contamination: Quantifying Score Inflation Across Model Scales},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2601.04301},\n  archiveprefix = {arXiv}\n}\n\n@article{yang2026rl,\n  author        = {Yang, Shuo and Wei, Xin and Zhang, Zhiwei and Xu, Feiyu},\n  title         = {Reinforcement Learning Amplifies Contamination in {LLM} Benchmark Evaluation},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2601.06103},\n  archiveprefix = {arXiv}\n}\n\n@article{wang2025fragility,\n  author        = {Wang, Yuxin and Zhao, Yucheng and Li, Cheng and Zhang, Meng},\n  title         = {On the Fragility of Benchmark Evaluations for Large Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2510.02386},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{zhang2025forget,\n  author    = {Zhang, Yiming and Wang, Yuxin and Dong, Hao and Li, Jiashi},\n  title     = {How Much Can We Forget? Examining Decontamination Effectiveness in Large Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025}\n}\n\n% ============================================================\n% IRT for LLM Evaluation\n% ============================================================\n\n@inproceedings{gu2026psnirt,\n  author    = {Gu, Jiaqi and Wang, Hainiu and Ye, Qingyao and Peng, Nanyun},\n  title     = {{PSN-IRT}: Psychometric-Informed Evaluation of Large Language Models via Item Response Theory},\n  booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence},\n  year      = {2026}\n}\n\n@article{polo2026growing,\n  author        = {Polo, Felipe Maia and Mamani, Ronald and Zhuang, Yuekai and Xu, Hao and Choshen, Leshem and Yurochkin, Mikhail and Sun, Yuekai},\n  title         = {Growing Pains: Understanding the Limitations and Potential of {IRT} for {LLM} Evaluation at Scale},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2604.12843},\n  archiveprefix = {arXiv}\n}\n\n@article{lyu2025atlas,\n  author        = {Lyu, Haoran and Ding, Yufei and Wang, Hainiu and Peng, Nanyun},\n  title         = {{ATLAS}: Adaptive Testing via Latent Ability Scoring for Large Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2511.04689},\n  archiveprefix = {arXiv}\n}\n\n@article{zhuang2025hibayes,\n  author        = {Zhuang, Yuekai and Polo, Felipe Maia and Yurochkin, Mikhail and Sun, Yuekai},\n  title         = {{HiBayES}: Hierarchical {Bayesian} Evaluation System for Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2505.05602},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{lalor2024irt,\n  author    = {Lalor, John P. and Yang, Yi and Smith, Noah A.},\n  title     = {Benchmarking Large Language Models with Item Response Theory},\n  booktitle = {Proceedings of the 38th AAAI Conference on Artificial Intelligence},\n  year      = {2024}\n}\n\n% ============================================================\n% Score Adjustment & Decontamination\n% ============================================================\n\n@inproceedings{li2025dcr,\n  author    = {Li, Yucheng and Flanigan, Frank and Sherborne, Tom and Sherborne, Charlie},\n  title     = {{DCR}: Decontaminated Calibration and Ranking for Benchmark Evaluation},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2025}\n}\n\n@inproceedings{yang2024inference,\n  author    = {Yang, Shuo and Wei, Xin and Shi, Weicheng},\n  title     = {Inference-Time Decontamination of Large Language Models for Benchmark Evaluation},\n  booktitle = {Findings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP Findings)},\n  year      = {2024}\n}\n\n@article{rao2026silicon,\n  author        = {Rao, Sumedh and Raji, Inioluwa Deborah and Liang, Percy},\n  title         = {The Silicon Bureaucracy: Evaluating the Evaluators in {LLM} Benchmarking},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2603.21636},\n  archiveprefix = {arXiv}\n}\n\n% ============================================================\n% Benchmarking — Surveys & Infrastructure\n% ============================================================\n\n@inproceedings{hendrycks2021mmlu,\n  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n  title     = {Measuring Massive Multitask Language Understanding},\n  booktitle = {Proceedings of the 9th International Conference on Learning Representations (ICLR)},\n  year      = {2021}\n}\n\n@article{cobbe2021gsm8k,\n  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  title         = {Training Verifiers to Solve Math Word Problems},\n  journal       = {arXiv preprint},\n  year          = {2021},\n  eprint        = {2110.14168},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{clark2018arc,\n  author    = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n  title     = {Think you have Solved Question Answering? {Try ARC}, the {AI2} Reasoning Challenge},\n  journal   = {arXiv preprint},\n  year      = {2018},\n  eprint    = {1803.05457},\n  archiveprefix = {arXiv}\n}\n\n@article{chen2021humaneval,\n  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chanez, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},\n  title         = {Evaluating Large Language Models Trained on Code},\n  journal       = {arXiv preprint},\n  year          = {2021},\n  eprint        = {2107.03374},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{chang2025benchmarking,\n  author    = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Yang, Linyi and Zhu, Kaijie and Chen, Hao and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n  title     = {A Survey on Evaluation of Large Language Models},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2025}\n}\n\n@article{white2024livebench,\n  author        = {White, Colin and Dooley, Samuel and Roberts, Manley and Pal, Arka and Feuer, Benjamin and Jain, Siddhartha and Shwartz-Ziv, Ravid and Joshi, Neel and Goldblum, Micah},\n  title         = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n  journal       = {arXiv preprint},\n  year          = {2024},\n  eprint        = {2406.19314},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{polo2024tinybenchmarks,\n  author    = {Polo, Felipe Maia and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n  title     = {{TinyBenchmarks}: Evaluating {LLMs} with Fewer Examples},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year      = {2024}\n}\n\n@inproceedings{han2026probing,\n  author    = {Han, Yucheng and Wu, Chongxuan and Qi, Jiashi and Zhou, Jie},\n  title     = {Targeted Probing for Contamination Effects in Large Language Model Evaluations},\n  booktitle = {Findings of the 2026 Conference of the European Chapter of the Association for Computational Linguistics (EACL Findings)},\n  year      = {2026},\n  note      = {arXiv:2510.07175}\n}\n\n% ============================================================\n% Differential Item Functioning (DIF)\n% ============================================================\n\n@book{holland1993dif,\n  author    = {Holland, Paul W. and Wainer, Howard},\n  title     = {Differential Item Functioning},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {1993},\n  address   = {Hillsdale, NJ}\n}\n\n@incollection{thissen1993dif,\n  author    = {Thissen, David and Steinberg, Lynne and Wainer, Howard},\n  title     = {Detection of Differential Item Functioning Using the Parameters of Item Response Models},\n  booktitle = {Differential Item Functioning},\n  editor    = {Holland, Paul W. and Wainer, Howard},\n  publisher = {Lawrence Erlbaum Associates},\n  pages     = {67--113},\n  year      = {1993}\n}\n\n@book{zumbo1999dif,\n  author    = {Zumbo, Bruno D.},\n  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defence},\n  year      = {1999},\n  address   = {Ottawa, ON}\n}\n\n% ============================================================\n% ML Calibration\n% ============================================================\n\n@inproceedings{guo2017calibration,\n  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  title     = {On Calibration of Modern Neural Networks},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  pages     = {1321--1330},\n  year      = {2017}\n}\n\n% ============================================================\n% Conformal Prediction\n% ============================================================\n\n@article{angelopoulos2023conformal,\n  author        = {Angelopoulos, Anastasios N. and Bates, Stephen},\n  title         = {Conformal Prediction: A Gentle Introduction},\n  journal       = {Foundations and Trends in Machine Learning},\n  volume        = {16},\n  number        = {4},\n  pages         = {494--591},\n  year          = {2023}\n}\n\n% ============================================================\n% Data Attribution\n% ============================================================\n\n@inproceedings{pruthi2020tracin,\n  author    = {Pruthi, Garima and Liu, Frederick and Kale, Satyen and Sundararajan, Mukund},\n  title     = {Estimating Training Data Influence by Tracing Gradient Descent},\n  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS)},\n  year      = {2020}\n}\n\n@inproceedings{park2023trak,\n  author    = {Park, Sung Min and Georgiev, Kristian and Ilyas, Andrew and Lecun, Guillaume and Madry, Aleksander},\n  title     = {{TRAK}: Attributing Model Behavior at Scale},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year      = {2023}\n}\n\n% ============================================================\n% Multidimensional IRT\n% ============================================================\n\n@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}\n",
+                "numLines": 447,
+                "startLine": 1,
+                "totalLines": 447
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to check which of the 14 new entries from literature_gaps.md already exist in references.bib. Let me check the keys:\n\nExisting keys in references.bib:\n- lord1980, eckerly2017, sinharay2017, deboeck2004, adams1997, mislevy1986, sanmartin2009, maris2009, cormack2009, hoffman2014, carpenter2017, talts2018sbc, ulitzsch2022, duan2025minkpp, dekoninck2024constat, wust2025selfcritique, xu2025kds, oren2024proving, xu2025emperor, dong2026dose, yang2026rl, wang2025fragility, zhang2025forget, gu2026psnirt\n\nNow I'm comparing against the full list of keys from the literature_gaps.md entries to identify which ones are missing from the bibliography. I've identified 14 references that need to be added to the bibliography, and now I'm organizing them under appropriate section headers.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "01cba3e3-3bee-480e-8377-daf8646a0af3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUAtuppPU7XQt3dFceX41n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7165,
+                "cache_read_input_tokens": 28296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7165
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 14 篇都是新的，无重复。追加到 references.bib。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "871d30cd-feb2-41b5-9314-25c6a7277d52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUAtuppPU7XQt3dFceX41n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7165,
+                "cache_read_input_tokens": 28296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7165
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014aNeWnYHKbTUyfNijc1bTP",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/references.bib",
+                "old_string": "@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}",
+                "new_string": "@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}\n\n% ============================================================\n% Exposure-Ability Collinearity & IRT Identifiability\n% ============================================================\n\n@article{sanmartin2015,\n  author  = {San Mart\\'{i}n, Ernesto and Gonz\\'{a}lez, Jorge and Tuerlinckx, Francis},\n  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},\n  journal = {Psychometrika},\n  volume  = {80},\n  number  = {2},\n  pages   = {450--467},\n  year    = {2015},\n  doi     = {10.1007/s11336-014-9404-2}\n}\n\n@article{mislevy1987,\n  author  = {Mislevy, Robert J.},\n  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},\n  journal = {Applied Psychological Measurement},\n  volume  = {11},\n  number  = {1},\n  pages   = {81--91},\n  year    = {1987},\n  doi     = {10.1177/014662168701100106}\n}\n\n@book{wainer2007testlet,\n  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},\n  title     = {Testlet Response Theory and Its Applications},\n  publisher = {Cambridge University Press},\n  year      = {2007}\n}\n\n% ============================================================\n% Measurement Error & Attenuation Bias\n% ============================================================\n\n@book{carroll2006,\n  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},\n  edition   = {2nd},\n  publisher = {Chapman \\& Hall/CRC},\n  year      = {2006},\n  isbn      = {9781584886334}\n}\n\n@book{fuller1987,\n  author    = {Fuller, Wayne A.},\n  title     = {Measurement Error Models},\n  publisher = {Wiley},\n  year      = {1987},\n  series    = {Wiley Series in Probability and Statistics},\n  isbn      = {9780471861874}\n}\n\n@article{stefanski1985,\n  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},\n  title   = {Covariate Measurement Error in Logistic Regression},\n  journal = {Annals of Statistics},\n  volume  = {13},\n  number  = {4},\n  pages   = {1335--1351},\n  year    = {1985},\n  doi     = {10.1214/aos/1176349741}\n}\n\n@article{battauz2011,\n  author  = {Battauz, Michela and Bellio, Ruggero},\n  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},\n  journal = {Psychometrika},\n  volume  = {76},\n  number  = {1},\n  pages   = {40--56},\n  year    = {2011},\n  doi     = {10.1007/s11336-010-9195-z}\n}\n\n@article{westfall2016,\n  author  = {Westfall, Jacob and Yarkoni, Tal},\n  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},\n  journal = {PLoS ONE},\n  volume  = {11},\n  number  = {3},\n  pages   = {e0152719},\n  year    = {2016},\n  doi     = {10.1371/journal.pone.0152719}\n}\n\n@article{jerzak2026,\n  author  = {Jerzak, Connor T. and Jessee, Stephen A.},\n  title   = {Attenuation Bias with Latent Predictors},\n  journal = {arXiv preprint arXiv:2507.22218},\n  year    = {2026}\n}\n\n% ============================================================\n% IRT Information & Power Analysis\n% ============================================================\n\n@book{embretson2000,\n  author    = {Embretson, Susan E. and Reise, Steven P.},\n  title     = {Item Response Theory for Psychologists},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2000},\n  address   = {Mahwah, NJ}\n}\n\n@book{thissen2001,\n  author    = {Thissen, David and Wainer, Howard},\n  title     = {Test Scoring},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2001},\n  address   = {Mahwah, NJ}\n}\n\n% ============================================================\n% 4PL Model & Identifiability\n% ============================================================\n\n@article{barton1981,\n  author  = {Barton, Mark A. and Lord, Frederic M.},\n  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},\n  journal = {ETS Research Report Series},\n  volume  = {1981},\n  number  = {1},\n  pages   = {i--8},\n  year    = {1981},\n  doi     = {10.1002/j.2333-8504.1981.tb01255.x}\n}\n\n@article{culpepper2016,\n  author  = {Culpepper, Steven Andrew},\n  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},\n  journal = {Psychometrika},\n  volume  = {81},\n  number  = {4},\n  pages   = {1142--1163},\n  year    = {2016},\n  doi     = {10.1007/s11336-015-9477-6}\n}\n\n@article{liao2012,\n  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},\n  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},\n  journal = {Social Behavior and Personality},\n  volume  = {40},\n  number  = {10},\n  pages   = {1679--1694},\n  year    = {2012},\n  doi     = {10.2224/sbp.2012.40.10.1679}\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "54e19228-dea9-4de5-a38e-5dcd36847743",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUAtuppPU7XQt3dFceX41n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7165,
+                "cache_read_input_tokens": 28296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7165
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T09:15:33.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014aNeWnYHKbTUyfNijc1bTP",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "e50920f3-c5e2-434c-8038-f75b0f7eb472",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/references.bib",
+              "oldString": "@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}",
+              "newString": "@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}\n\n% ============================================================\n% Exposure-Ability Collinearity & IRT Identifiability\n% ============================================================\n\n@article{sanmartin2015,\n  author  = {San Mart\\'{i}n, Ernesto and Gonz\\'{a}lez, Jorge and Tuerlinckx, Francis},\n  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},\n  journal = {Psychometrika},\n  volume  = {80},\n  number  = {2},\n  pages   = {450--467},\n  year    = {2015},\n  doi     = {10.1007/s11336-014-9404-2}\n}\n\n@article{mislevy1987,\n  author  = {Mislevy, Robert J.},\n  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},\n  journal = {Applied Psychological Measurement},\n  volume  = {11},\n  number  = {1},\n  pages   = {81--91},\n  year    = {1987},\n  doi     = {10.1177/014662168701100106}\n}\n\n@book{wainer2007testlet,\n  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},\n  title     = {Testlet Response Theory and Its Applications},\n  publisher = {Cambridge University Press},\n  year      = {2007}\n}\n\n% ============================================================\n% Measurement Error & Attenuation Bias\n% ============================================================\n\n@book{carroll2006,\n  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},\n  edition   = {2nd},\n  publisher = {Chapman \\& Hall/CRC},\n  year      = {2006},\n  isbn      = {9781584886334}\n}\n\n@book{fuller1987,\n  author    = {Fuller, Wayne A.},\n  title     = {Measurement Error Models},\n  publisher = {Wiley},\n  year      = {1987},\n  series    = {Wiley Series in Probability and Statistics},\n  isbn      = {9780471861874}\n}\n\n@article{stefanski1985,\n  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},\n  title   = {Covariate Measurement Error in Logistic Regression},\n  journal = {Annals of Statistics},\n  volume  = {13},\n  number  = {4},\n  pages   = {1335--1351},\n  year    = {1985},\n  doi     = {10.1214/aos/1176349741}\n}\n\n@article{battauz2011,\n  author  = {Battauz, Michela and Bellio, Ruggero},\n  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},\n  journal = {Psychometrika},\n  volume  = {76},\n  number  = {1},\n  pages   = {40--56},\n  year    = {2011},\n  doi     = {10.1007/s11336-010-9195-z}\n}\n\n@article{westfall2016,\n  author  = {Westfall, Jacob and Yarkoni, Tal},\n  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},\n  journal = {PLoS ONE},\n  volume  = {11},\n  number  = {3},\n  pages   = {e0152719},\n  year    = {2016},\n  doi     = {10.1371/journal.pone.0152719}\n}\n\n@article{jerzak2026,\n  author  = {Jerzak, Connor T. and Jessee, Stephen A.},\n  title   = {Attenuation Bias with Latent Predictors},\n  journal = {arXiv preprint arXiv:2507.22218},\n  year    = {2026}\n}\n\n% ============================================================\n% IRT Information & Power Analysis\n% ============================================================\n\n@book{embretson2000,\n  author    = {Embretson, Susan E. and Reise, Steven P.},\n  title     = {Item Response Theory for Psychologists},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2000},\n  address   = {Mahwah, NJ}\n}\n\n@book{thissen2001,\n  author    = {Thissen, David and Wainer, Howard},\n  title     = {Test Scoring},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {2001},\n  address   = {Mahwah, NJ}\n}\n\n% ============================================================\n% 4PL Model & Identifiability\n% ============================================================\n\n@article{barton1981,\n  author  = {Barton, Mark A. and Lord, Frederic M.},\n  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},\n  journal = {ETS Research Report Series},\n  volume  = {1981},\n  number  = {1},\n  pages   = {i--8},\n  year    = {1981},\n  doi     = {10.1002/j.2333-8504.1981.tb01255.x}\n}\n\n@article{culpepper2016,\n  author  = {Culpepper, Steven Andrew},\n  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},\n  journal = {Psychometrika},\n  volume  = {81},\n  number  = {4},\n  pages   = {1142--1163},\n  year    = {2016},\n  doi     = {10.1007/s11336-015-9477-6}\n}\n\n@article{liao2012,\n  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},\n  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},\n  journal = {Social Behavior and Personality},\n  volume  = {40},\n  number  = {10},\n  pages   = {1679--1694},\n  year    = {2012},\n  doi     = {10.2224/sbp.2012.40.10.1679}\n}",
+              "originalFile": "% ============================================================\n% Core Methodology — Educational Measurement & IRT\n% ============================================================\n\n@book{lord1980,\n  author    = {Lord, Frederic M.},\n  title     = {Applications of Item Response Theory to Practical Testing Problems},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {1980},\n  address   = {Hillsdale, NJ}\n}\n\n@article{eckerly2017,\n  author  = {Eckerly, Carol},\n  title   = {Detecting Item Compromise in the Context of Item Response Theory},\n  journal = {Applied Psychological Measurement},\n  volume  = {41},\n  number  = {2},\n  pages   = {87--101},\n  year    = {2017}\n}\n\n@article{sinharay2017,\n  author  = {Sinharay, Sandip},\n  title   = {Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test},\n  journal = {Journal of Educational and Behavioral Statistics},\n  volume  = {42},\n  number  = {1},\n  pages   = {46--68},\n  year    = {2017}\n}\n\n@book{deboeck2004,\n  author    = {De Boeck, Paul and Wilson, Mark},\n  title     = {Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach},\n  publisher = {Springer},\n  year      = {2004},\n  address   = {New York}\n}\n\n@article{adams1997,\n  author  = {Adams, Raymond J. and Wilson, Mark and Wang, Wen-chung},\n  title   = {The Multidimensional Random Coefficients Multinomial Logit Model},\n  journal = {Applied Psychological Measurement},\n  volume  = {21},\n  number  = {1},\n  pages   = {1--23},\n  year    = {1997}\n}\n\n@article{mislevy1986,\n  author  = {Mislevy, Robert J.},\n  title   = {Bayes Modal Estimation in Item Response Models},\n  journal = {Psychometrika},\n  volume  = {51},\n  number  = {2},\n  pages   = {177--195},\n  year    = {1986}\n}\n\n@article{sanmartin2009,\n  author  = {San Mart\\'{i}n, Ernesto and Del Pino, Guido and De Boeck, Paul},\n  title   = {Consequential Validity of Item Response Theory Models for Measuring Latent Constructs},\n  journal = {Psychometrika},\n  volume  = {74},\n  number  = {2},\n  pages   = {349--367},\n  year    = {2009}\n}\n\n@article{maris2009,\n  author  = {Maris, Gunter and Bechger, Timo},\n  title   = {On Interpreting the Model Parameters for the Three Parameter Logistic Model},\n  journal = {Measurement},\n  volume  = {7},\n  number  = {2},\n  pages   = {75--88},\n  year    = {2009}\n}\n\n@inproceedings{cormack2009,\n  author    = {Cormack, Gordon V. and Clarke, Charles L. A. and Buettcher, Stefan},\n  title     = {Reciprocal Rank Fusion Outperforms {Condorcet} and Individual Rank Learning Methods},\n  booktitle = {Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  pages     = {758--759},\n  year      = {2009},\n  publisher = {ACM}\n}\n\n% ============================================================\n% Bayesian Inference & Diagnostics\n% ============================================================\n\n@article{hoffman2014,\n  author  = {Hoffman, Matthew D. and Gelman, Andrew},\n  title   = {The {No-U-Turn} Sampler: Adaptively Setting Path Lengths in {Hamiltonian Monte Carlo}},\n  journal = {Journal of Machine Learning Research},\n  volume  = {15},\n  number  = {47},\n  pages   = {1593--1623},\n  year    = {2014}\n}\n\n@article{carpenter2017,\n  author  = {Carpenter, Bob and Gelman, Andrew and Hoffman, Matthew D. and Lee, Daniel and Goodrich, Ben and Betancourt, Michael and Brubaker, Marcus and Guo, Jiqiang and Li, Peter and Riddell, Allen},\n  title   = {Stan: A Probabilistic Programming Language},\n  journal = {Journal of Statistical Software},\n  volume  = {76},\n  number  = {1},\n  pages   = {1--32},\n  year    = {2017}\n}\n\n@article{talts2018sbc,\n  author        = {Talts, Sean and Betancourt, Michael and Simpson, Daniel and Vehtari, Aki and Gelman, Andrew},\n  title         = {Validating {Bayesian} Inference Algorithms with Simulation-Based Calibration},\n  journal       = {arXiv preprint},\n  year          = {2018},\n  eprint        = {1804.06788},\n  archiveprefix = {arXiv}\n}\n\n@article{ulitzsch2022,\n  author  = {Ulitzsch, Esther and Nestler, Steffen},\n  title   = {Automatic Differentiation Variational Inference for Item Response Theory Models},\n  journal = {British Journal of Mathematical and Statistical Psychology},\n  volume  = {75},\n  number  = {3},\n  pages   = {421--447},\n  year    = {2022}\n}\n\n% ============================================================\n% Contamination Detection Methods\n% ============================================================\n\n@inproceedings{duan2025minkpp,\n  author    = {Duan, Jiawen and Xie, Cheng and Zhang, Jian and Li, Kai},\n  title     = {{Min-K\\%++}: Improved Membership Inference for Detecting Pre-Training Data of Large Language Models},\n  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR)},\n  year      = {2025}\n}\n\n@inproceedings{dekoninck2024constat,\n  author    = {De Koninck, Jasper and Nelissen, Koen and Nijssen, Siegfried and Davis, Jesse},\n  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n  year      = {2024}\n}\n\n@article{wust2025selfcritique,\n  author        = {W\\\"{u}st, Timon and Hoffmann, Jan and Pang, Richard Yuanzhe},\n  title         = {Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2510.09259},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{xu2025kds,\n  author    = {Xu, Yanyang and Qi, Hongzhan and Zhao, Benyou and Liu, Zhiyuan},\n  title     = {Knowledge Distillation Signatures for Efficient Contamination Detection},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  note      = {arXiv:2502.00678}\n}\n\n@inproceedings{oren2024proving,\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri and Laesecke, Faisal and Cotterell, Ryan},\n  title     = {Proving Test Set Contamination in Black Box Language Models},\n  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year      = {2024}\n}\n\n% ============================================================\n% Contamination Analysis & Mitigation\n% ============================================================\n\n@inproceedings{xu2025emperor,\n  author    = {Xu, Yiwen and Song, Kaijie and Zhou, Jianfeng and Chen, Liang},\n  title     = {The Emperor's New Clothes: Systematic Evaluation of Contamination Mitigation Strategies for Large Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  note      = {arXiv:2503.16402}\n}\n\n@article{dong2026dose,\n  author        = {Dong, Yifan and Li, Xinran and Chen, Difan and Wang, Zhengyu},\n  title         = {Dose-Response Relationships in Benchmark Contamination: Quantifying Score Inflation Across Model Scales},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2601.04301},\n  archiveprefix = {arXiv}\n}\n\n@article{yang2026rl,\n  author        = {Yang, Shuo and Wei, Xin and Zhang, Zhiwei and Xu, Feiyu},\n  title         = {Reinforcement Learning Amplifies Contamination in {LLM} Benchmark Evaluation},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2601.06103},\n  archiveprefix = {arXiv}\n}\n\n@article{wang2025fragility,\n  author        = {Wang, Yuxin and Zhao, Yucheng and Li, Cheng and Zhang, Meng},\n  title         = {On the Fragility of Benchmark Evaluations for Large Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2510.02386},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{zhang2025forget,\n  author    = {Zhang, Yiming and Wang, Yuxin and Dong, Hao and Li, Jiashi},\n  title     = {How Much Can We Forget? Examining Decontamination Effectiveness in Large Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025}\n}\n\n% ============================================================\n% IRT for LLM Evaluation\n% ============================================================\n\n@inproceedings{gu2026psnirt,\n  author    = {Gu, Jiaqi and Wang, Hainiu and Ye, Qingyao and Peng, Nanyun},\n  title     = {{PSN-IRT}: Psychometric-Informed Evaluation of Large Language Models via Item Response Theory},\n  booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence},\n  year      = {2026}\n}\n\n@article{polo2026growing,\n  author        = {Polo, Felipe Maia and Mamani, Ronald and Zhuang, Yuekai and Xu, Hao and Choshen, Leshem and Yurochkin, Mikhail and Sun, Yuekai},\n  title         = {Growing Pains: Understanding the Limitations and Potential of {IRT} for {LLM} Evaluation at Scale},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2604.12843},\n  archiveprefix = {arXiv}\n}\n\n@article{lyu2025atlas,\n  author        = {Lyu, Haoran and Ding, Yufei and Wang, Hainiu and Peng, Nanyun},\n  title         = {{ATLAS}: Adaptive Testing via Latent Ability Scoring for Large Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2511.04689},\n  archiveprefix = {arXiv}\n}\n\n@article{zhuang2025hibayes,\n  author        = {Zhuang, Yuekai and Polo, Felipe Maia and Yurochkin, Mikhail and Sun, Yuekai},\n  title         = {{HiBayES}: Hierarchical {Bayesian} Evaluation System for Language Models},\n  journal       = {arXiv preprint},\n  year          = {2025},\n  eprint        = {2505.05602},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{lalor2024irt,\n  author    = {Lalor, John P. and Yang, Yi and Smith, Noah A.},\n  title     = {Benchmarking Large Language Models with Item Response Theory},\n  booktitle = {Proceedings of the 38th AAAI Conference on Artificial Intelligence},\n  year      = {2024}\n}\n\n% ============================================================\n% Score Adjustment & Decontamination\n% ============================================================\n\n@inproceedings{li2025dcr,\n  author    = {Li, Yucheng and Flanigan, Frank and Sherborne, Tom and Sherborne, Charlie},\n  title     = {{DCR}: Decontaminated Calibration and Ranking for Benchmark Evaluation},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2025}\n}\n\n@inproceedings{yang2024inference,\n  author    = {Yang, Shuo and Wei, Xin and Shi, Weicheng},\n  title     = {Inference-Time Decontamination of Large Language Models for Benchmark Evaluation},\n  booktitle = {Findings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP Findings)},\n  year      = {2024}\n}\n\n@article{rao2026silicon,\n  author        = {Rao, Sumedh and Raji, Inioluwa Deborah and Liang, Percy},\n  title         = {The Silicon Bureaucracy: Evaluating the Evaluators in {LLM} Benchmarking},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2603.21636},\n  archiveprefix = {arXiv}\n}\n\n% ============================================================\n% Benchmarking — Surveys & Infrastructure\n% ============================================================\n\n@inproceedings{hendrycks2021mmlu,\n  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n  title     = {Measuring Massive Multitask Language Understanding},\n  booktitle = {Proceedings of the 9th International Conference on Learning Representations (ICLR)},\n  year      = {2021}\n}\n\n@article{cobbe2021gsm8k,\n  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  title         = {Training Verifiers to Solve Math Word Problems},\n  journal       = {arXiv preprint},\n  year          = {2021},\n  eprint        = {2110.14168},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{clark2018arc,\n  author    = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n  title     = {Think you have Solved Question Answering? {Try ARC}, the {AI2} Reasoning Challenge},\n  journal   = {arXiv preprint},\n  year      = {2018},\n  eprint    = {1803.05457},\n  archiveprefix = {arXiv}\n}\n\n@article{chen2021humaneval,\n  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chanez, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},\n  title         = {Evaluating Large Language Models Trained on Code},\n  journal       = {arXiv preprint},\n  year          = {2021},\n  eprint        = {2107.03374},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{chang2025benchmarking,\n  author    = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Yang, Linyi and Zhu, Kaijie and Chen, Hao and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n  title     = {A Survey on Evaluation of Large Language Models},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2025}\n}\n\n@article{white2024livebench,\n  author        = {White, Colin and Dooley, Samuel and Roberts, Manley and Pal, Arka and Feuer, Benjamin and Jain, Siddhartha and Shwartz-Ziv, Ravid and Joshi, Neel and Goldblum, Micah},\n  title         = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n  journal       = {arXiv preprint},\n  year          = {2024},\n  eprint        = {2406.19314},\n  archiveprefix = {arXiv}\n}\n\n@inproceedings{polo2024tinybenchmarks,\n  author    = {Polo, Felipe Maia and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n  title     = {{TinyBenchmarks}: Evaluating {LLMs} with Fewer Examples},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year      = {2024}\n}\n\n@inproceedings{han2026probing,\n  author    = {Han, Yucheng and Wu, Chongxuan and Qi, Jiashi and Zhou, Jie},\n  title     = {Targeted Probing for Contamination Effects in Large Language Model Evaluations},\n  booktitle = {Findings of the 2026 Conference of the European Chapter of the Association for Computational Linguistics (EACL Findings)},\n  year      = {2026},\n  note      = {arXiv:2510.07175}\n}\n\n% ============================================================\n% Differential Item Functioning (DIF)\n% ============================================================\n\n@book{holland1993dif,\n  author    = {Holland, Paul W. and Wainer, Howard},\n  title     = {Differential Item Functioning},\n  publisher = {Lawrence Erlbaum Associates},\n  year      = {1993},\n  address   = {Hillsdale, NJ}\n}\n\n@incollection{thissen1993dif,\n  author    = {Thissen, David and Steinberg, Lynne and Wainer, Howard},\n  title     = {Detection of Differential Item Functioning Using the Parameters of Item Response Models},\n  booktitle = {Differential Item Functioning},\n  editor    = {Holland, Paul W. and Wainer, Howard},\n  publisher = {Lawrence Erlbaum Associates},\n  pages     = {67--113},\n  year      = {1993}\n}\n\n@book{zumbo1999dif,\n  author    = {Zumbo, Bruno D.},\n  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defence},\n  year      = {1999},\n  address   = {Ottawa, ON}\n}\n\n% ============================================================\n% ML Calibration\n% ============================================================\n\n@inproceedings{guo2017calibration,\n  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  title     = {On Calibration of Modern Neural Networks},\n  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  pages     = {1321--1330},\n  year      = {2017}\n}\n\n% ============================================================\n% Conformal Prediction\n% ============================================================\n\n@article{angelopoulos2023conformal,\n  author        = {Angelopoulos, Anastasios N. and Bates, Stephen},\n  title         = {Conformal Prediction: A Gentle Introduction},\n  journal       = {Foundations and Trends in Machine Learning},\n  volume        = {16},\n  number        = {4},\n  pages         = {494--591},\n  year          = {2023}\n}\n\n% ============================================================\n% Data Attribution\n% ============================================================\n\n@inproceedings{pruthi2020tracin,\n  author    = {Pruthi, Garima and Liu, Frederick and Kale, Satyen and Sundararajan, Mukund},\n  title     = {Estimating Training Data Influence by Tracing Gradient Descent},\n  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS)},\n  year      = {2020}\n}\n\n@inproceedings{park2023trak,\n  author    = {Park, Sung Min and Georgiev, Kristian and Ilyas, Andrew and Lecun, Guillaume and Madry, Aleksander},\n  title     = {{TRAK}: Attributing Model Behavior at Scale},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  year      = {2023}\n}\n\n% ============================================================\n% Multidimensional IRT\n% ============================================================\n\n@book{reckase2009mirt,\n  author    = {Reckase, Mark D.},\n  title     = {Multidimensional Item Response Theory},\n  publisher = {Springer},\n  year      = {2009},\n  address   = {New York}\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 444,
+                  "oldLines": 3,
+                  "newStart": 444,
+                  "newLines": 155,
+                  "lines": [
+                    "   year      = {2009},",
+                    "   address   = {New York}",
+                    " }",
+                    "+",
+                    "+% ============================================================",
+                    "+% Exposure-Ability Collinearity & IRT Identifiability",
+                    "+% ============================================================",
+                    "+",
+                    "+@article{sanmartin2015,",
+                    "+  author  = {San Mart\\'{i}n, Ernesto and Gonz\\'{a}lez, Jorge and Tuerlinckx, Francis},",
+                    "+  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},",
+                    "+  journal = {Psychometrika},",
+                    "+  volume  = {80},",
+                    "+  number  = {2},",
+                    "+  pages   = {450--467},",
+                    "+  year    = {2015},",
+                    "+  doi     = {10.1007/s11336-014-9404-2}",
+                    "+}",
+                    "+",
+                    "+@article{mislevy1987,",
+                    "+  author  = {Mislevy, Robert J.},",
+                    "+  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},",
+                    "+  journal = {Applied Psychological Measurement},",
+                    "+  volume  = {11},",
+                    "+  number  = {1},",
+                    "+  pages   = {81--91},",
+                    "+  year    = {1987},",
+                    "+  doi     = {10.1177/014662168701100106}",
+                    "+}",
+                    "+",
+                    "+@book{wainer2007testlet,",
+                    "+  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},",
+                    "+  title     = {Testlet Response Theory and Its Applications},",
+                    "+  publisher = {Cambridge University Press},",
+                    "+  year      = {2007}",
+                    "+}",
+                    "+",
+                    "+% ============================================================",
+                    "+% Measurement Error & Attenuation Bias",
+                    "+% ============================================================",
+                    "+",
+                    "+@book{carroll2006,",
+                    "+  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},",
+                    "+  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},",
+                    "+  edition   = {2nd},",
+                    "+  publisher = {Chapman \\& Hall/CRC},",
+                    "+  year      = {2006},",
+                    "+  isbn      = {9781584886334}",
+                    "+}",
+                    "+",
+                    "+@book{fuller1987,",
+                    "+  author    = {Fuller, Wayne A.},",
+                    "+  title     = {Measurement Error Models},",
+                    "+  publisher = {Wiley},",
+                    "+  year      = {1987},",
+                    "+  series    = {Wiley Series in Probability and Statistics},",
+                    "+  isbn      = {9780471861874}",
+                    "+}",
+                    "+",
+                    "+@article{stefanski1985,",
+                    "+  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},",
+                    "+  title   = {Covariate Measurement Error in Logistic Regression},",
+                    "+  journal = {Annals of Statistics},",
+                    "+  volume  = {13},",
+                    "+  number  = {4},",
+                    "+  pages   = {1335--1351},",
+                    "+  year    = {1985},",
+                    "+  doi     = {10.1214/aos/1176349741}",
+                    "+}",
+                    "+",
+                    "+@article{battauz2011,",
+                    "+  author  = {Battauz, Michela and Bellio, Ruggero},",
+                    "+  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},",
+                    "+  journal = {Psychometrika},",
+                    "+  volume  = {76},",
+                    "+  number  = {1},",
+                    "+  pages   = {40--56},",
+                    "+  year    = {2011},",
+                    "+  doi     = {10.1007/s11336-010-9195-z}",
+                    "+}",
+                    "+",
+                    "+@article{westfall2016,",
+                    "+  author  = {Westfall, Jacob and Yarkoni, Tal},",
+                    "+  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},",
+                    "+  journal = {PLoS ONE},",
+                    "+  volume  = {11},",
+                    "+  number  = {3},",
+                    "+  pages   = {e0152719},",
+                    "+  year    = {2016},",
+                    "+  doi     = {10.1371/journal.pone.0152719}",
+                    "+}",
+                    "+",
+                    "+@article{jerzak2026,",
+                    "+  author  = {Jerzak, Connor T. and Jessee, Stephen A.},",
+                    "+  title   = {Attenuation Bias with Latent Predictors},",
+                    "+  journal = {arXiv preprint arXiv:2507.22218},",
+                    "+  year    = {2026}",
+                    "+}",
+                    "+",
+                    "+% ============================================================",
+                    "+% IRT Information & Power Analysis",
+                    "+% ============================================================",
+                    "+",
+                    "+@book{embretson2000,",
+                    "+  author    = {Embretson, Susan E. and Reise, Steven P.},",
+                    "+  title     = {Item Response Theory for Psychologists},",
+                    "+  publisher = {Lawrence Erlbaum Associates},",
+                    "+  year      = {2000},",
+                    "+  address   = {Mahwah, NJ}",
+                    "+}",
+                    "+",
+                    "+@book{thissen2001,",
+                    "+  author    = {Thissen, David and Wainer, Howard},",
+                    "+  title     = {Test Scoring},",
+                    "+  publisher = {Lawrence Erlbaum Associates},",
+                    "+  year      = {2001},",
+                    "+  address   = {Mahwah, NJ}",
+                    "+}",
+                    "+",
+                    "+% ============================================================",
+                    "+% 4PL Model & Identifiability",
+                    "+% ============================================================",
+                    "+",
+                    "+@article{barton1981,",
+                    "+  author  = {Barton, Mark A. and Lord, Frederic M.},",
+                    "+  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},",
+                    "+  journal = {ETS Research Report Series},",
+                    "+  volume  = {1981},",
+                    "+  number  = {1},",
+                    "+  pages   = {i--8},",
+                    "+  year    = {1981},",
+                    "+  doi     = {10.1002/j.2333-8504.1981.tb01255.x}",
+                    "+}",
+                    "+",
+                    "+@article{culpepper2016,",
+                    "+  author  = {Culpepper, Steven Andrew},",
+                    "+  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},",
+                    "+  journal = {Psychometrika},",
+                    "+  volume  = {81},",
+                    "+  number  = {4},",
+                    "+  pages   = {1142--1163},",
+                    "+  year    = {2016},",
+                    "+  doi     = {10.1007/s11336-015-9477-6}",
+                    "+}",
+                    "+",
+                    "+@article{liao2012,",
+                    "+  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},",
+                    "+  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},",
+                    "+  journal = {Social Behavior and Personality},",
+                    "+  volume  = {40},",
+                    "+  number  = {10},",
+                    "+  pages   = {1679--1694},",
+                    "+  year    = {2012},",
+                    "+  doi     = {10.2224/sbp.2012.40.10.1679}",
+                    "+}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "14 篇全部追加到 `artifacts/paper_draft/references.bib`，无重复。\n\n按主题分为 4 个新 section：\n- **Exposure-Ability Collinearity & IRT Identifiability** (3 篇): `sanmartin2015`, `mislevy1987`, `wainer2007testlet`\n- **Measurement Error & Attenuation Bias** (6 篇): `carroll2006`, `fuller1987`, `stefanski1985`, `battauz2011`, `westfall2016`, `jerzak2026`\n- **IRT Information & Power Analysis** (2 篇): `embretson2000`, `thissen2001`\n- **4PL Model & Identifiability** (3 篇): `barton1981`, `culpepper2016`, `liao2012`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "uuid": "ced7465b-9740-46e5-b813-6910e4a723bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016LsJ5NhQSiksN5m6dT1iZr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2609,
+                "cache_read_input_tokens": 35461,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2609
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14 篇全部追加到 `artifacts/paper_draft/references.bib`，无重复。\n\n按主题分为 4 个新 section：\n- **Exposure-Ability Collinearity & IRT Identifiability** (3 篇): `sanmartin2015`, `mislevy1987`, `wainer2007testlet`\n- **Measurement Error & Attenuation Bias** (6 篇): `carroll2006`, `fuller1987`, `stefanski1985`, `battauz2011`, `westfall2016`, `jerzak2026`\n- **IRT Information & Power Analysis** (2 篇): `embretson2000`, `thissen2001`\n- **4PL Model & Identifiability** (3 篇): `barton1981`, `culpepper2016`, `liao2012`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 55734,
+            "duration_api_ms": 56004,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "9880ecd3-65ff-4e29-9705-5598b63b2ace",
+            "total_cost_usd": 0.29100024999999996,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 26229,
+              "cache_read_input_tokens": 98762,
+              "output_tokens": 3056,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26229,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 214,
+                  "cache_read_input_tokens": 35461,
+                  "cache_creation_input_tokens": 2609,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2609
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1168,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001258,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 3056,
+                "cacheReadInputTokens": 98762,
+                "cacheCreationInputTokens": 26229,
+                "webSearchRequests": 0,
+                "costUSD": 0.28974225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "899b3a96-b5fd-48da-9cdf-cd5cc452ea71"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-bibtex-integration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55dcc6ead03e70ea41b7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 15B d100 s42",
+  "task_key": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "8f514689f6efb39cc4817f35c3b5fdd8890a01bd2a6ef3d4b5dfb3feb685dd7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001_eval_15B_d100_s42 评估结果\n\n### Benchmark Metrics\n\n| Benchmark | Metric | Score | Correct/Total |\n|-----------|--------|-------|---------------|\n| **MMLU** | accuracy | **0.5933** | 8331/14042 |\n| **GSM8K** | exact_match | **0.6497** | 857/1319 |\n| **ARC-Challenge** | accuracy | **0.7688** | 901/1172 |\n| **HumanEval** | pass@1 | **0.3049** | 50/164 |\n\n### W&B Run ID\n无。日志中未找到任何 wandb 相关内容。\n\n### 异常\n- **bitsandbytes 加载错误**（非致命）：`libnvJitLink.so.13: cannot open shared object file`。这是 bitsandbytes 的可选 CUDA JIT 库缺失，未影响评估运行。\n\n### Checkpoint 路径\n- Base model: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B`\n- LoRA adapter: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter`\n\n### 结果保存位置\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/eval_results.json`\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/correctness_matrix.json`\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/item_responses.json`\n\n### 最后 20 行确认\n`EXIT_CODE=0`，正常退出。运行时间约 2h37m（15:39 → 18:16）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-15b-d100-s42.md"
+}

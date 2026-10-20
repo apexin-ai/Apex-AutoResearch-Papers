@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d05882e6734e9cd03c24",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "debug extract d005 metrics verify gpus",
+  "task_key": "worker_debug_extract_d005_metrics_verify_gpus_20260515T163706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_extract_d005_metrics_verify_gpus_20260515T163706_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "e761ee9159b9ab643bbf6eb8a411c766dd1cda3a8cdd98c401080ee884784bdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 更新成功。\n\n## 任务 1 完成 — 1.5B d005 s123 Eval Metrics\n\n| Benchmark | Score | Correct/Total |\n|-----------|-------|---------------|\n| MMLU | 58.69% | 8241/14042 |\n| GSM8K | 64.82% | 855/1319 |\n| ARC-Challenge | 75.68% | 887/1172 |\n| HumanEval | 25.00% | 41/164 |\n\n两个 registry 条目 (`exp_001_eval_15B_d005_s123_v2`, `exp_001_eval_15B_d005_s123`) 的 metrics 和 checkpoint_path 均已更新。\n\n## 任务 2 — GPU 状态\n\n| GPU | Memory Used | Utilization | PID | Process | Elapsed | Status |\n|-----|------------|-------------|-----|---------|---------|--------|\n| 0 | 17961/24564 MiB | 33% | 594494 | train_sft.py (3B d100 a32 s123) | 3h18m | **运行中** |\n| 1 | 13325/24564 MiB | 37% | 593745 | train_sft.py (3B d100 a32 s42) | 7h11m | **运行中**（非空闲） |\n| 2 | 8985/24564 MiB | 66% | 580698 | evaluate.py (3B d005 s123 aligned) | 1h31m | 运行中 |\n| 3 | 8985/24564 MiB | 71% | 576735 | evaluate.py (3B d025 s123 aligned) | 1h46m | 运行中 |\n| 4 | 9667/24564 MiB | 57% | 590509 | compute_signals.py (3B d000 s42) | 23m39s | **exp_002_signals_3B_v2 还在跑** |\n| 5 | 17641/24564 MiB | 31% | 589763 | train_sft.py (3B d025 v3 s42) | 25m12s | **exp_001_sft_d025_3B_v3 还在跑** |\n\n**注意**: GPU 1 不空闲 — PID 593745 占 13.3GB 在跑 3B d100 a32 s42 的 SFT 训练，已运行 7h11m。所有 6 张卡均被占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-extract-d005-metrics-verify-gpus.md"
+}

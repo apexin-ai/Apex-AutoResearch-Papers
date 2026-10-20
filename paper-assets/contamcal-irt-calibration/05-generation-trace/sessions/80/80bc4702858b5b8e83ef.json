@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80bc4702858b5b8e83ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_15_1778938113.md",
+  "task_key": "loop_15_1778938113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778938113.md",
+    "occurrence": 1,
+    "bytes": 3780,
+    "sha256": "89cfe2ffadec83479ad60c35ca50a679281a1c711102dd736ec376fc574ed1d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T12:50:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0~5（6× RTX 4090D on cqa1-21977），当前 100% 饱和，不可用白名单外 GPU\n- exp_006_mmlu_domain_gamma 是 CPU-only 任务（IRT fitting），不占 GPU，但刚 FAILED，Worker 正在诊断中\n- d000_s42 checkpoint 路径有命名不一致问题（`Qwen2.5-3B_d000_s42/` vs `_a32_`），需 symlink 统一，勿直接重命名\n- 后续 eval 必须加 `HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1` 环境变量\n- s4_selfcritique MMLU OOM 是 P1 不是 critical path（D091），不阻塞主线\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration`，数据盘 `/root/autodl-tmp/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/` 下各 `Qwen2.5-{size}_d{dose}_*` 目录\n- IRT 脚本：`/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py`\n- 活跃进程（6 个 RUNNING，全 GPU）：\n  - exp_002_signals_05B_s123_v2: cuda:5, PID=exp002_05B_s123_v2\n  - exp_002_signals_15B_s123_batch: cuda:0, PID=691872\n  - exp_002_signals_3B_d005_a32_s42: cuda:2, PID=719534\n  - exp_002_signals_3B_d000_a32_s42: cuda:4, PID=721519\n  - exp_002_signals_3B_d100_a32_s42: cuda:1, PID=724022\n  - exp_001_eval_3B_instruct_aligned_para: cuda:3, PID=730671\n- Cron 监控以上 6 个实验\n\n### 3. 📊 当前状态\n刚收到 exp_006_mmlu_domain_gamma CRON 失败回调（EXIT_CODE=1，CPU-only Stan NUTS 采样 ~50min 后崩溃）。已派诊断 Worker `worker_diag_exp_006_mmlu_domain_gamma_20260516T084836` 读日志，**尚未回调**。\n\nRegistry 概况：206 个实验，RUNNING 6，PREPARING 20，DONE 180（success 123, failed 45, killed 10, negative 2）。\n\n6 张 GPU 全部饱和运行中（0.5B/1.5B s123 signals + 3B signals 三个 dose + 3B instruct eval）。\n\n等待中：\n- 诊断 Worker 回调 → 分析 mmlu_domain_gamma 失败原因 → 修复后重跑\n- 6 个 RUNNING 实验的 cron 完成回调 → 触发下一批任务\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 根据失败原因修复 `run_mmlu_domain_gamma.py` → CPU 重跑（不占 GPU）\n- 任一 signals 实验完成 → 检查输出完整性 → 更新 registry → 看 3B signals 是否凑齐 → 凑齐则启动 RRF 聚合（exp-003, CPU）\n- eval_3B_instruct_aligned_para 完成 → 分析 RL post-trained 信号模式 → cuda:3 释放给下一 3B 任务\n- 0.5B/1.5B s123 signals 完成 → 双种子 IRT pool 补全 → pooled IRT fitting 就绪检查\n- 3B signals 全完成（d000+d005+d025+d100 × s42） → RRF 聚合 → pooled IRT fitting（per-benchmark γ_k, Stan NUTS）+ 7 baselines 对比\n- IRT fitting + baselines 完成 → ablation → paper writing pipeline（T-9 天 EMNLP deadline）\n\n### 5. 🎯 战略上下文\n- 项目：ContamCal — post-hoc statistical calibration via contamination-augmented 4PL IRT\n- 投稿：**EMNLP 2026 ARR May 25**（距今 9 天）\n- Critical path：3B signals 是瓶颈（当前 3 个 d×s42 在跑），完成后 → RRF → pooled IRT → ablation → paper\n- Claim 1（identifiability）已有 sim_sweep_v7 充分支撑（D090）\n- Claim 2 coverage 60%，需要更多 real-data 实验\n- Claim 3 路径受 noise_prop_v4 negative 影响，但 sim_sweep boundaries 提供间接支撑；T-7 前需 go/no-go 决策\n- exp_006_mmlu_domain_gamma 是 D105 决策的执行（scale-stratified IRT 解决 ARC γ 方向矛盾），修复后需尽快重跑\n- 易错点：d000_s42 命名不一致会导致 signals 路径找不到，需确认 symlink 已建\n- 易错点：不要混淆 aligned vs para_aligned eval 结果，两者是独立的评估维度\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778938113.md"
+}

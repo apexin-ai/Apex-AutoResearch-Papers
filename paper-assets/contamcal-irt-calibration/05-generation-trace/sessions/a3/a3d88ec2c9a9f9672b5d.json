@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d88ec2c9a9f9672b5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis cross family s2s4 only rrf",
+  "task_key": "worker_analysis_cross_family_s2s4_only_rrf_20260517T034323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_s2s4_only_rrf_20260517T034323_result.json",
+    "occurrence": 1,
+    "bytes": 2197,
+    "sha256": "3bafc9547f69c82b20a083edd78e8793ddab89edf2f11e0e7aef2946e195ad28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run complete. Here are the final results and judgments:\n\n---\n\n## Results Summary\n\n### s2+s4 Cross-Family (s1 excluded):\n| Benchmark | N | gamma | 95% CI | Significant? | PPP |\n|-----------|---|-------|--------|-------------|-----|\n| MMLU | 20 | 0.533 | [-0.42, 1.51] | NO | 0.833 |\n| GSM8K | 28 | -0.063 | [-0.48, 0.33] | NO | 0.777 |\n| ARC | 20 | **-0.136** | [-0.66, 0.40] | NO | 0.584 |\n\n### Comparison table:\n| Benchmark | Qwen-only (N=24) | v4 (s1+s2+s4) | **s2+s4 only** |\n|-----------|-------------------|---------------|----------------|\n| MMLU γ | +0.655 | +0.415 | +0.533 |\n| GSM8K γ | +0.064 | -0.110 | -0.063 |\n| ARC γ | **+0.727** (sig!) | +0.002 | **-0.136** |\n\n---\n\n## Key Judgments\n\n**1. Did the cross-family v4 include s1?**  \n**YES.** The exposure file `rrf_cross_family_v3/exposure_scores.json` was computed from `rrf_aggregation.py` with `SIGNAL_KEYS = [\"s1_embedding\", \"s2_minkpp\", \"s4_selfcritique\"]`. Each per-item RRF score contains `rank_s1_embedding` and `s1_embedding` values.\n\n**2. Does the \"reversal direction\" conclusion still hold without s1?**  \n**YES, and it's actually stronger.** ARC gamma goes from +0.727 (Qwen-only, significant) to **-0.136** (cross-family s2+s4). This is a full sign flip. The buggy s1 was actually *masking* the reversal by pulling ARC gamma toward 0 (v4: +0.002). Without s1, the reversal is more pronounced.\n\n**3. Is gamma significant (p < 0.05) in s2+s4 RRF?**  \n**NO.** None of the three benchmarks have 95% CIs excluding zero. Same qualitative conclusion as v4.\n\n**4. Comparison with Qwen-only N=24:**  \n- MMLU: consistent (0.65 → 0.53, same direction, non-significant in both)\n- GSM8K: negligible in both (+0.06 → -0.06)\n- ARC: **dramatic shift** from +0.73 (significant) to -0.14 (non-significant). Adding Llama not only eliminates the ARC signal but reverses its sign.\n\n**Note:** MMLU has N=20 in s2+s4 vs N=18 in v4 because Llama d000/d100 were excluded from v4 (no aligned data / degenerate all-A) but included here. This doesn't change the qualitative conclusion.\n\nResults saved to `/root/autodl-tmp/exp006/cross_family_s2s4_only/pooled_rrf_irt_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-family-s2s4-only-rrf.md"
+}

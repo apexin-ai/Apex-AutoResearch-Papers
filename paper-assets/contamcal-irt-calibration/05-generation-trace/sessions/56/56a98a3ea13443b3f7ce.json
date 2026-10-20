@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56a98a3ea13443b3f7ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check sft 05B d005 s123",
+  "task_key": "worker_ops_check-sft-05B-d005-s123_20260515T004507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-sft-05B-d005-s123_20260515T004507_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "1bedc87d3ce37140c8d14486abab1fba1b0bc9e75640c8554e7086849e753a49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能由触发本次任务的 cron 自行清理）。\n\n## 诊断结果\n\n**exp_001_sft_05B_d005_s123 — 训练成功完成** ✓\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 3177/3177 (epoch 1.0) |\n| 平均 train_loss | 1.5422 |\n| 最终 loss | 1.4542 |\n| 平均 token_accuracy | 0.6356 |\n| 最终 token_accuracy | 0.6794 |\n| 训练耗时 | 57.6 min |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123/lora_adapter/` |\n\nRegistry 已更新为 DONE/success。\n\n**GPU 1 已空闲**（0% utilization, 0 MiB memory），可用于下一个任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-05b-d005-s123.md"
+}

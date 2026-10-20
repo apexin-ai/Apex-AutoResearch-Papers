@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60e3beae2fc8cadfd5be",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 3B d005 aligned",
+  "task_key": "worker_submit_eval_3B_d005_aligned_20260514T130740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_3B_d005_aligned_20260514T130740_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "15daaadbffb9acf76fd3a7bcca9c771882ab25e55a42c9cc418f54c6a140399c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/adapter_model.safetensors` (114MB) 已验证\n- **GPU 4**: 空闲，无冲突进程（C001 已检查）\n- **脚本**: `exp001/run_aligned_eval_3B_d005.sh` 已创建，benchmarks = mmlu gsm8k arc_challenge humaneval，mc-format = aligned\n- **tmux session**: `eval_3B_d005_aligned` 运行中，模型已加载，MMLU eval 已开始\n- **Registry**: `exp_001_eval_3B_d005_aligned` → RUNNING，parent = exp_001_sft_d005_3B\n- **输出目录**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned/`\n- **日志**: `/root/autodl-tmp/exp001/eval_results/eval_3B_d005_aligned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-3b-d005-aligned.md"
+}

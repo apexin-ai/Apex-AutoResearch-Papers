@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4acce12b9a0186af71e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260515T230104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260515T230104_result.json",
+    "occurrence": 1,
+    "bytes": 2537,
+    "sha256": "a1a2db413130432123eea8b265c25d503e147dee3b1c88e5402f8bee56c452a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用状况报告\n\n### 总览\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| **cuda:0** | **23,258 / 24,564 MiB (94.7%)** | **99%** | **⚠️ 双进程冲突** |\n| cuda:1 | 13,341 / 24,564 MiB (54.3%) | 40% | d100 SFT v3 |\n| **cuda:2** | **0 / 24,564 MiB (0%)** | **0%** | **✅ 空闲** |\n| cuda:3 | 7,667 / 24,564 MiB (31.2%) | 64% | compute_signals |\n| cuda:4 | 7,535 / 24,564 MiB (30.7%) | 55% | compute_signals (非 PID 623826) |\n| cuda:5 | 18,665 / 24,564 MiB (76.0%) | 47% | d000 SFT |\n\n### cuda:0 冲突详情（C001 违规）\n\n两个进程共享 cuda:0，显存几乎打满：\n\n| 进程 | PID | 显存 | 运行时间 | 任务 |\n|------|-----|------|---------|------|\n| eval batch | 642763 | 8,976 MiB | 1h25m | evaluate.py d100_a32_s123_aligned (GSM8K) |\n| d005 SFT | 643167 | 14,268 MiB | 1h24m | train_sft.py d005_s42 |\n\n- **合计 23,244 MiB，仅剩 ~1,320 MiB 空闲**\n- GPU 利用率 99%，处于 OOM 边缘\n- eval 正在跑 GSM8K 生成（变长序列），显存可能波动\n- SFT 有 gradient accumulation (16步)，checkpoint save 时显存也会波动\n- **随时可能 OOM kill**，建议立即迁移其中一个到 cuda:2\n\n### cuda:2/3 空闲确认\n\n- **cuda:2**：完全空闲，0 进程，0 显存 ✅\n- **cuda:3**：**非空闲**，运行 compute_signals (PID 630891, d000_v2_s42, mmlu s4 signal)，已跑 2h39m\n\n### cuda:4 进程\n\nPID 623826 已不在。当前 cuda:4 上是 **PID 648627**（28分钟前启动），运行 compute_signals d100_s42 mmlu all signals，父进程 PID 623831。\n\n### 训练进度汇总\n\n| 任务 | GPU | 进度 | 速度 | 预计剩余 |\n|------|-----|------|------|---------|\n| d005 SFT | cuda:0 | 1094/3177 (34%) | ~4.6s/it | ~2h40m |\n| eval batch (GSM8K阶段) | cuda:0 | 355/1319 (27%) | ~10.6s/it | ~2h50m (仅GSM8K，后续还有其他benchmark) |\n| d100 SFT v3 | cuda:1 | 2428/4159 (58%) | ~4.4s/it | ~2h07m |\n| d000 SFT | cuda:5 | 2231/3125 (71%) | ~3.9s/it | ~58m |\n| signals d000_v2 (s4) | cuda:3 | 运行中 | - | 未知 |\n| signals d100 (all) | cuda:4 | 运行中 28m | - | 未知 |\n\n### PID 修正\n\n用户提供的 PID 与实际不完全匹配：\n- eval batch: 用户说 642752 → 实际 **642763**\n- d005 SFT: 用户说 643162/643696 → 实际 **643167**\n- cuda:4 signals: 用户说 623826 → 实际 **648627**（新进程）\n\n### dmesg OOM 检查\n\nssh_read_only 不支持 dmesg 命令，无法检查 OOM kill 记录。需要 ssh_execute 才能执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-11.md"
+}

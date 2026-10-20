@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5b52fda86f874c7cf73",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag 3B d000 gsm8k anomaly",
+  "task_key": "worker_diag_3B_d000_gsm8k_anomaly_20260514T154828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_3B_d000_gsm8k_anomaly_20260514T154828_result.json",
+    "occurrence": 1,
+    "bytes": 2355,
+    "sha256": "85a7c296cb8ac696325feb194edfc87b98965afc2a255bbf4893d9f4e979f143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整结论。\n\n---\n\n## 诊断结果：3B d000 GSM8K 12.0% 根因\n\n### 结论：**不是 parsing/eval bug，是 SFT 导致 3B 模型生成能力崩溃**\n\n### 证据链\n\n**1. 跨模型对比排除 eval 代码问题**\n\n| Model | GSM8K | MMLU | ARC |\n|-------|-------|------|-----|\n| 3B raw (无 SFT) | **60.5%** | — | — |\n| 3B d000 (SFT SlimOrca) | **12.0%** | 63.4% | 82.8% |\n| 3B d100 (SFT+contamination) | **69.7%** | — | — |\n| 1.5B d000 (同样 SFT) | **65.4%** | — | — |\n\n- MMLU/ARC（logprob 评估）正常 → eval 代码和 prompt 没问题\n- 1.5B d000 GSM8K 正常 → 不是 SlimOrca 数据本身的问题\n- **问题仅出现在 3B + GSM8K（生成式评估）**\n\n**2. 预测分布确认生成质量崩溃**\n\n| 指标 | 3B raw | 3B d000 | 3B d100 | 1.5B d000 |\n|------|--------|---------|---------|-----------|\n| 唯一预测值数 | 419 | **208** | 396 | 395 |\n| 最频繁预测出现次数 | 43 | **134** (\"20\") | 78 | 39 |\n| Top 5 覆盖样本数 | 184 | **360** | 199 | 173 |\n\n3B d000 模型预测坍缩到少数几个常见数字（\"20\" 出现 134 次占 10.2%），丧失了逐题推理的能力。\n\n**3. 解析问题可忽略**\n- 0 个 None 预测（parser 总能提取到数字）\n- 仅 6 个浮点格式近似不匹配（\"16.00\" vs \"16\" 等），对结果影响 <0.5pp\n\n**4. 两个 seed 一致复现**\n- d000 s42: 12.0% (158/1319)\n- d000 s123: 17.6% (232/1319)\n\n### 根因\n\nLoRA SFT 超参（lr=2e-4, r=16, alpha=32, 全 7 模块）对 3B 模型过于激进，导致 CoT 生成能力灾难性遗忘。1.5B 模型同样参数不受影响，说明 3B 的参数空间对此学习率更敏感。\n\n### 对 contamination 实验的影响\n\nd100 - d000 = +57.7pp **是被严重夸大的 artifact**：\n- d000 基线被 SFT 人为压低到 12%（实际应 ~60%）\n- d100 训练数据中包含 GSM8K 题目，恢复（甚至提升）了数学能力\n- 公平基准应对比 raw 60.5% vs d100 69.7% → **真实 contamination signal ~9pp**\n\n### 修复建议\n\n1. **降低 3B 学习率**：2e-4 → 5e-5 或更低，重训 d000 并重新评估\n2. **或者降低 LoRA alpha**：alpha=32 → alpha=16（scaling factor 从 2.0 降到 1.0）\n3. **分析中增加 raw baseline 对比**：在所有 3B 结果中都与 raw model 分数做 delta"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-3b-d000-gsm8k-anomaly.md"
+}

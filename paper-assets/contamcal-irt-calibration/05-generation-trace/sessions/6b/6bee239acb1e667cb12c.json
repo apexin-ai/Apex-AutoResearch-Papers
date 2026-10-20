@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bee239acb1e667cb12c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis run pooled 4bench irt v2",
+  "task_key": "worker_analysis_run-pooled-4bench-irt-v2_20260515T132925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_run-pooled-4bench-irt-v2_20260515T132925_result.json",
+    "occurrence": 1,
+    "bytes": 2088,
+    "sha256": "6af40cbd2b0e3441b69f19695644f554936397fe01a15267f11ddce0013a695b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. Here's the complete summary:\n\n---\n\n## Pooled 4-Benchmark IRT Results (2PL+gamma, v2 with subsampling)\n\n### Per-benchmark fits\n\n| Benchmark | gamma | CI95 | CI excl. 0 | rhat | ESS | div | N_models | N_items | subsampled | fit_time | PPP |\n|-----------|-------|------|-----------|------|-----|-----|----------|---------|------------|----------|-----|\n| **MMLU** | 0.0888 | [-0.218, 0.394] | no | 1.0101 | 720 | 0 | 10 | 2000 | 14042→2000 | 1512s | 0.271 |\n| **GSM8K** | -0.4033 | [-0.911, 0.066] | no | 1.0125 | 249 | 0 | 12 | 1319 | no | 1162s | 0.953 |\n| **ARC** | 0.4879 | [0.114, 0.878] | **yes** | 1.0081 | 1174 | 0 | 10 | 1172 | no | 763s | 0.006 |\n| **HumanEval** | -1.0545 | [-1.749, -0.362] | **yes** | 1.0062 | 843 | 0 | 18 | 164 | no | 110s | 1.000 |\n\n### Joint fit (shared gamma)\n\n| Metric | Value |\n|--------|-------|\n| global_gamma mean | 0.2666 |\n| global_gamma sd | 7.1362 |\n| CI95 | [-7.183, 7.807] |\n| rhat | **1.7417** |\n| ESS | **6.1** |\n| divergences | 0 |\n| PPP | 0.5 |\n| residual_mae | 0.1152 |\n| N_models | 6 |\n| N_total_items | 4655 |\n| fit_time | 2774s |\n| Dosages | [5, 25, 100, 100, 100, 100] |\n\n**Joint fit did NOT converge** — rhat=1.74 >> 1.05, ESS=6 << 100. Root cause: only 6 common models (after per-benchmark exclusions intersected), no d000 controls in the intersection, and 4655 items severely underidentifies the model.\n\n### Comparison to S1-only reference\n| Benchmark | Previous (S1-only) | Current (pooled) |\n|-----------|-------------------|-----------------|\n| GSM8K | gamma=0.19 | gamma=-0.40 |\n| ARC | gamma=-1.46 | gamma=+0.49 |\n\nSigns flipped — likely due to different exposure model (oracle dosage vs S1 signals), different model exclusions, and pooled multi-scale data.\n\n### Output files\nAll saved to `/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl/`:\n- `pooled_4bench_results.json` (full results)\n- `joint_fit_results.json`\n- `mmlu/irt_results.json`, `gsm8k/irt_results.json`, `arc_challenge/irt_results.json`, `humaneval/irt_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-run-pooled-4bench-irt-v2.md"
+}

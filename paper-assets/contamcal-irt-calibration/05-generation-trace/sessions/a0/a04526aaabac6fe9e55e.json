@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a04526aaabac6fe9e55e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gsm8k v2 v3 rootcause",
+  "task_key": "worker_diag_gsm8k-v2-v3-rootcause_20260514T231051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gsm8k-v2-v3-rootcause_20260514T231051_result.json",
+    "occurrence": 1,
+    "bytes": 2944,
+    "sha256": "1fda3f64d20fca8ff2a2c3bdb431f2d14987f1a4b459dcfe318d9fb5f7c032ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，以下是根因分析结论。\n\n---\n\n## GSM8K v2 vs v3_rrf Gamma 矛盾根因分析\n\n### 1. Exposure 值对比\n\n| Model | v2 exposure | v3_rrf exposure | v2 normalized | v3_rrf normalized |\n|-------|------------|----------------|--------------|------------------|\n| 0.5B_d000 | 0.000 | 0.000 | 0.00 | 0.00 |\n| 0.5B_d005 | 0.016 | 0.000 | 0.08 | 0.00 |\n| 0.5B_d025 | 0.065 | 0.021 | 0.33 | **0.69** |\n| 0.5B_d100 | 0.197 | 0.004 | 1.00 | **0.12** |\n| 1.5B_d000 | 0.000 | 0.000 | 0.00 | 0.00 |\n| 1.5B_d005 | 0.016 | 0.014 | 0.08 | **0.44** |\n| 1.5B_d025 | 0.065 | 0.005 | 0.33 | **0.16** |\n| 1.5B_d100 | 0.197 | 0.031 | 1.00 | 1.00 |\n\n- v2 单调性：0.5B ✓, 1.5B ✓ | Spearman vs oracle = **1.000**\n- v3_rrf 单调性：0.5B **✗**, 1.5B **✗** | Spearman vs oracle = **0.700**\n\n### 2. 根因：`load_exp002_signals` 代码在两次运行之间被修改\n\n时间线：\n- **06:00–06:22**：v2 运行（使用旧版代码）\n- **06:55**：git initial commit（代码已被修改）\n- **06:57**：v3_rrf 运行（使用新版代码 = D023/D030 3-signal RRF fusion）\n\n证据：\n- v2 baseline = 0.6131（两个 scale 相同）\n- v3_rrf baseline = 0.188 (0.5B) / 0.164 (1.5B) — 完全不同的数值范围\n- Git 只有 1 个 initial commit，无法追溯旧代码\n\n### 3. 为什么 gamma 差 10 倍\n\n当前代码的 3-signal RRF fusion (S1+S2_flipped+S4) 产生的 per-model mean RRF 几乎是噪声：\n\n```\nRaw RRF means: 0.153 ~ 0.209 (range=0.056, 全部在 0.15~0.21 窄带内)\n```\n\nD024 delta 减去 d000 baseline 后，微小的正负波动被 clip 到 0，产生完全非单调的 exposure：\n- **0.5B: d025 (0.021) >> d100 (0.004)** — d100 反而比 d025 低！\n- **1.5B: d005 (0.014) >> d025 (0.005)** — d025 反而比 d005 低！\n\nIRT 模型面对这种自相矛盾的 exposure：\n- 被迫把 gamma 推高到 2.1 来放大微弱信号\n- 扭曲 theta（0.5B d025: -2.12 vs v2 的 -0.92）\n- PPP = 0.0（模型完全无法拟合数据）\n\n### 4. 哪个版本正确（D027 同源 signal 约束）\n\n**两个都有问题**：\n- **v2**：exposure 单调，但两个 scale 值完全相同（可疑，暗示旧代码有 scale 处理 bug 或使用了非 scale-specific 的信号）\n- **v3_rrf**：3-signal RRF mean 在 model-level 基本是噪声，不能作为 contamination exposure\n\n核心问题是 **per-model mean RRF 不是有效的 contamination proxy**。item-level RRF 能区分被污染和未被污染的 item，但对所有 item 取 mean 后，信号被大量 clean item 稀释（d005 只有 5% item 被污染，mean 几乎不变），导致 model-level 分辨率丧失。\n\n### 5. 建议修复方向\n\nRRF signal 应该用作 **per-item tau**（哪些 item 更可能被污染），而不是 per-model exposure（哪个模型被污染多少）。Per-model exposure 应回退到 oracle dosage 或使用 top-K% RRF 分位数代替 mean。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gsm8k-v2-v3-rootcause.md"
+}

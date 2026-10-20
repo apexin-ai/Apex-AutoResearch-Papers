@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56be2a01b2b45483c75a",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 5036,
+    "sha256": "f038a672d505cffc5b21169637aeb285c1190b39df5cf680c6257eda3eee544f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T20:03:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5 on cqa1-21977，全部分配给本项目，不可用白名单外 GPU\n- eval 提交必须用绝对 python 路径 `/root/miniconda3/bin/python` + `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1` + 显式 `CUDA_VISIBLE_DEVICES`（三次失败教训，见 memory.md）\n- `server: local` 实验禁止用 ssh_read_only 检查、禁止注册 cron（exp_005 两次误标教训）\n- 标实验 failed 后必须同时 kill 关联进程，否则僵尸占 GPU（已复发两次）\n- 脚本内禁止 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu`，GPU 绑定由 wrapper 控制\n- MC eval 必须 `--mc-format aligned`（D017 决策）\n- 3B GSM8K 排除出 dose-response 分析（D018，LoRA SFT CoT 遗忘）\n- IRT 论文结果必须用 CmdStanPy Bayesian MCMC，不能用 PyTorch MLE\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5)\n- 工作目录：`/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B/1.5B/3B）\n- SFT checkpoints：`/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_{seed}/lora_adapter`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/`\n- Dosage 数据：`/root/contamcal-irt-calibration/exp001/data/`（v3, May 14 重新生成）\n- 活跃进程（reconcile_crons 确认）：\n  - exp_001_eval_15B_aligned_batch: PID 336750, cuda:1\n  - exp_001_sft_d025_15B: PID sft_15B_d025, cuda:5（与 3B_d000_v2 共享？需确认）\n  - exp_001_eval_05B_d100_aligned_v4: running, cuda:2\n- 僵尸：cuda:3 PID 398501 (exp_001_eval_05B_d025_aligned) 标 failed 但进程仍在\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_001_eval_3B_d005_aligned 的 cron 失败回调，完成 session-start 初始化，派出诊断 Worker (`worker_diagnose_exp_001_eval_3B_d005_aligned_20260514T165606`) SSH 去查根因。已向 Director 发送初步失败通知。\n\n**等待中**：\n- 诊断 Worker 回调 → 需要：更新 registry notes + 发 feishu_send_result_card + 向 Director 发完整报告 + 决定是否重提交\n- GPU 0/3/4 空闲 → 诊断完成后应立即填充（GPU 3 先 kill 僵尸）\n\n**RUNNING 实验**：\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_001_eval_15B_aligned_batch | cuda:1 | 1.5B 全 dosage batch eval |\n| exp_001_sft_d025_15B | cuda:5 | 1.5B d025 SFT 训练 |\n| exp_001_eval_05B_d100_aligned_v4 | cuda:2 | 0.5B d100 aligned eval v4 |\n| exp_001_sft_3B_d000_v2 | cuda:5 | 3B d000 v2 retrain (D020, 降 LoRA lr/alpha) |\n\n**PREPARING 队列**（部分）：exp_001_eval_3B_d000_s42_v3, exp_001_eval_05B_d000_s42_v6, exp_001_eval_05B_d100_v6\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 读结论 JSON → update_registry notes → feishu_send_result_card → 向 Director 发完整报告含修复方案\n- 诊断结论 = infrastructure 且 can_auto_fix → 派 Worker 修复后重提交 3B d005 eval 到 cuda:4\n- 诊断结论 = resource (OOM) → 向 Director 报告 3B eval 显存需求，建议单 benchmark 串行\n- GPU 3 僵尸 kill 后 → 提交队列中优先级最高的 eval（如 exp_001_eval_05B_d025_aligned_v2 或 3B 相关）\n- GPU 0 空闲确认 → 检查 1.5B d100 SFT 是否已完成（ROADMAP 标 🏃GPU0），若完成则提交下一个排队实验\n- exp_001_sft_3B_d000_v2 完成 → 立即提交 3B d000 s42 eval (v3)\n- exp_001_eval_15B_aligned_batch 完成 → 填 memory.md dose-response 表 1.5B 行 → 推进 exp-002 signal 计算\n- exp-002 signal pipeline 代码 Worker 完成 → dry-run → 提交 0.5B signals on {d000, d005}（最高优先级，C2 story 关键）\n- exp-004 sim sweep 全部完成 (ETA May 16-17) → 汇总 γ recovery 结论 → 更新 C1 claim\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 11 天）\n- **D022 C2 重大重构**：原 \"cliff-like RL degradation\" → \"method-specific, scale-dependent signal effectiveness\"。S1 Embedding 在 d005/0.5B 有效 (AUC>0.95)，S2 Min-K++ 和 S4 Self-Critique 在 0.5B 失效 (AUC≈0.47)。**关键未知**：S2/S4 在 1.5B/3B 是否恢复——这决定 C2 能否维持多信号叙事\n- **d100 AUC=0.5 是标签伪影**（D021），不可作为信号失效证据，d100 改用 cross-model 比较\n- **Critical path**：eval 完成 → exp-002 signals (多 scale) → exp-003 RRF → exp-006 IRT calibration → 论文核心结果\n- **易错点**：\n  - 不要用 `python` 提交 eval，必须绝对路径 `/root/miniconda3/bin/python`\n  - cron 报 failed 时先 SSH 确认进程真死了（wrapper PID ≠ python PID）\n  - HumanEval 是 negative control，不参与 dose-response\n  - exp_005 系列跑在本地 (`server: local`)，不能用 SSH 工具查\n  - 3B 两个 seed 的 GSM8K 都崩（12%/17.6% vs raw 60.5%），这是 LoRA 配置过激导致的，不是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

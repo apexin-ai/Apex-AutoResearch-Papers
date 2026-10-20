@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d07810fb56e065882ee3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 002 signals 15B s123 batch",
+  "task_key": "worker_diag_exp_002_signals_15B_s123_batch_20260516T130518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_002_signals_15B_s123_batch_20260516T130518_result.json",
+    "occurrence": 1,
+    "bytes": 2473,
+    "sha256": "00ad46b1cc9508d135bc140a81708ffb2a304d58c4fa12cd9c7380debb89c331"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：**误报**，实验实际已全部成功完成\n\n### faiss 错误：非关键路径，无影响\n\n日志中出现 60 次 `ModuleNotFoundError(\"No module named 'faiss.swigfaiss_avx512_spr'\")`，但这是 **faiss 的标准降级行为**——先尝试 AVX512-SPR，失败后立即 fallback 到 AVX512 并成功加载：\n\n```\nLoading faiss with AVX512-SPR support.\nCould not load library with AVX512-SPR support due to: ModuleNotFoundError(...)\nLoading faiss with AVX512 support.\nSuccessfully loaded faiss with AVX512 support.  ← 每次都成功\n```\n\n### 真实退出原因：bash 语法错误（非 Python 错误）\n\n日志末尾：\n```\nPASS: Qwen2.5-1.5B_d100_s123×arc_challenge   ← 最后一个任务正常完成\nrun_15B_s123_signals.sh: line 39: continue: only meaningful in a `for', `while', or `until' loop\nrun_15B_s123_signals.sh: line 40: syntax error near unexpected token `fi'\nEXIT_CODE=2\n```\n\n所有 12 个 (model × benchmark) 组合都输出了 PASS（12 PASS, 0 FAIL），但脚本在最后一个任务完成后因 bash 语法错误崩溃（EXIT_CODE=2），没有打印 `===BATCH_COMPLETE_15B_S123===` 汇总行。CRON 检测到非零退出码就报了 failure。\n\n注意：当前磁盘上的脚本 (`/root/contamcal-irt-calibration/exp002/run_15B_s123_signals.sh`) 语法是正确的，说明脚本在运行后被修复过，但执行时用的是旧版本。\n\n### 输出完整性：4 个 contamination level × 3 benchmarks × 3 signals 全部到位\n\n| 目录 | 信号文件 | merged 文件 | 状态 |\n|------|---------|-------------|------|\n| `Qwen2.5-1.5B_d000_s123` | 9 (s1/s2/s4 × mmlu/gsm8k/arc) | 3 | ✅ 完整 |\n| `Qwen2.5-1.5B_d005_s123` | 9 | 3 | ✅ 完整 |\n| `Qwen2.5-1.5B_d025_s123` | 9 | 3 | ✅ 完整 |\n| `Qwen2.5-1.5B_d100_s123` | 9 | 3 | ✅ 完整 |\n\n### 当前 GPU 状态\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 6919/24564 MiB | 61% | PID 780943 (python) |\n| 1 | 2197/24564 MiB | 30% | PID 780591 (python) |\n| 2 | 空闲 | 0% | — |\n| 3 | 6791/24564 MiB | 67% | PID 764460 (python3) |\n| 4 | 空闲 | 0% | — |\n| 5 | 空闲 | 0% | — |\n\n### 结论\n\n**不需要重跑。** registry 标记 `conclusion=success` 是正确的（输出完整）。CRON 报 failure 是因为 bash EXIT_CODE=2，但那是脚本语法 bug，发生在所有计算完成之后。faiss 的 ModuleNotFoundError 是无害的 fallback 日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-002-signals-15b-s123-batch.md"
+}

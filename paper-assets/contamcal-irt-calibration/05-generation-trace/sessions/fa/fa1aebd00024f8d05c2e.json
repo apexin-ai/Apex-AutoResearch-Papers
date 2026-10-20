@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "fa1aebd00024f8d05c2e",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh parallel paraphrase gpu1 3",
+  "task_key": "worker_ssh_parallel-paraphrase-gpu1-3_20260513T184649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_parallel-paraphrase-gpu1-3_20260513T184649.log",
+    "occurrence": 1,
+    "bytes": 1710346,
+    "sha256": "277735dd8478e0a653080c17043e71b500b9aba8914016b03ed50913ccc2eab2"
+  },
+  "statistics": {
+    "messages": 905,
+    "user_turns": 1,
+    "tool_calls": 350,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 197,
+      "tool_call": 350,
+      "tool_result": 350,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 666,
+      "chunks": [
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0004.json",
+          "message_count": 126
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0004.json",
+          "message_count": 54
+        },
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa1aebd00024f8d05c2e-part-0006.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-parallel-paraphrase-gpu1-3.md"
+}

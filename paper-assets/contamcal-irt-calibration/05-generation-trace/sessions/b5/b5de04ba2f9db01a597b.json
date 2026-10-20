@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5de04ba2f9db01a597b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft gemma2 9b d005 s42",
+  "task_key": "worker_analysis_exp_001_sft_gemma2_9b_d005_s42_20260518T232616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_gemma2_9b_d005_s42_20260518T232616_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "1656275394d06fb7903d5035238d2c0411e4c2d0f8f7b4918f3d46b3fde54ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：FAILED**\n\n服务器上不存在任何 Gemma-2-9B 相关的文件、目录、进程或日志。具体情况：\n\n- `/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d005_s42/` — 不存在\n- 日志文件 — 不存在\n- 全盘搜索 — 无任何 gemma 相关文件或目录\n- 无活跃进程或 tmux session\n\n训练从未在此服务器（cqa1-21977）上产出任何输出。可能的原因：\n1. 训练在启动阶段就失败了（OOM、import error 等），未创建 output dir\n2. 训练实际运行在另一台服务器上\n3. 任务从未真正提交\n\nGPU 状态：cuda:0 占用 22928/24564 MiB（有其他任务），仅 1 张 GPU 可见。\n\n需要确认：这个任务是在哪台服务器、哪个 GPU 上提交的？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-gemma2-9b-d005-s42.md"
+}

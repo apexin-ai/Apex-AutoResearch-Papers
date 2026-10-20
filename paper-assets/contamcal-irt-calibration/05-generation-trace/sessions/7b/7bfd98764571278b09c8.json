@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfd98764571278b09c8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra fill idle gpus 0516b",
+  "task_key": "worker_infra_fill-idle-gpus-0516b_20260516T150520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fill-idle-gpus-0516b_20260516T150520_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "6a4eb8162fe5d9b9dcc49ddd2c4ef1b2e9c8541c7b18f396e9f2f8d4187e4007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 已占用 17847 MiB，训练正在运行。\n\n## 总结\n\n**GPU 状态**:\n| GPU | 状态 | 任务 |\n|-----|------|------|\n| cuda:0 | 占用 (6.6GB) | 3B signals s4 mmlu (PID 780943) |\n| cuda:1 | 占用 (8.3GB) | Llama-3.2-3B d000 aligned eval (PID 800570) |\n| cuda:2 | 占用 (1.5GB) | 0.5B-Instruct eval (PID 797754) |\n| cuda:3 | **已提交** (17.8GB) | **Llama-3.2-3B d025 SFT** (PID 801761) |\n| cuda:4 | 占用 (8.3GB) | Llama-3.2-3B d000 aligned eval (PID 796493) |\n| cuda:5 | 占用 (3.9GB) | 1.5B-Instruct para_aligned eval (PID 799315) |\n\n**已提交**:\n- `exp_001_sft_llama32_3B_d025_s42` → cuda:3, tmux session `exp_001_sft_llama32_3B_d025_s42`, PID 801761\n\n**注意事项**:\n- cuda:1 和 cuda:4 同时跑相同的 Llama-3.2-3B d000_s42 aligned eval（输出到同一目录）。这是重复提交，可能导致数据污染。建议 kill 其中一个（PID 800570 较新）。\n- d005 SFT 无法提交，因为没有空闲 GPU。等 cuda:0 或 cuda:5 释放后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fill-idle-gpus-0516b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae3706e293aee4bf6cd0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu health check",
+  "task_key": "worker_ops_gpu-health-check_20260515T124252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-health-check_20260515T124252_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "a62cc01bece3ab32a81425b3cce90a27b3e4fa23d42bf190240822916cf321f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个进程存活，无异常。\n\n**摘要：**\n- **6 张 GPU 全部在用**，温度/功耗正常（最热 GPU4 71°C）\n- **1.5B SFT** (cuda:0, cuda:1)：运行 1h38m，进度未从日志中单独提取（非指定任务）\n- **3B d005 SFT** (cuda:2)：step 715/3177 (22.5%)，loss ~1.1，ETA ~2h35m\n- **3B d025 SFT** (cuda:4)：step 893/3384 (26.4%)，loss ~1.15，ETA ~2h05m\n- **0.5B base eval** (cuda:2)：MMLU 完成，GSM8K 52%，还剩 arc_challenge + humaneval，总计 ~2.5–3h\n- **3B d000 eval** (cuda:3)：MMLU 完成，GSM8K 51%，~2.5–3h 剩余\n- **3B d005 s42 eval** (cuda:5)：MMLU 完成，GSM8K 49%，~3h 剩余\n- **gamma sweep** (CPU)：运行 4h07m，持续中\n\n报告已写入 `artifacts/gpu_health_check_loop10.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-health-check.md"
+}

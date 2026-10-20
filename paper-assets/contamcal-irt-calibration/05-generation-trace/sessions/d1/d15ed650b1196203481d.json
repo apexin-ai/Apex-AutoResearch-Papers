@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d15ed650b1196203481d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code 7b 14b code adapt",
+  "task_key": "worker_code_7b-14b-code-adapt_20260518T061857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_7b-14b-code-adapt_20260518T061857_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "ee188811b995714ec568f4d0638a5aa5a5783b557eb8bb389cd39c04db09a674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 代码兼容性：全部通过，无需修改 Python 代码\n\n| 文件 | 状态 | 说明 |\n|------|------|------|\n| `prepare_sft_data.py` | ✅ 兼容 | 无模型依赖，输出通用 chat JSONL |\n| `train_sft.py` | ✅ 兼容 | model-name/LoRA/batch/GC 全部参数化，target_modules 通用 |\n| `evaluate.py` | ✅ 兼容 | `device_map=\"auto\"`，chat template 有 Llama fallback |\n| `exp002/signal_*.py` | ✅ 兼容 | `device_map=\"auto\"`，无模型特定逻辑 |\n| `train_and_eval.sh` | ✅ 兼容 | 透传所有参数 |\n\n### 新增文件（4 个配置文件）\n\n- `configs/qwen25_14b.yaml` — bs=1, accum=16, GC=true (~50GB VRAM)\n- `configs/llama31_8b.yaml` — bs=2, accum=8, GC=true (~30GB VRAM)\n- `configs/run_14b_example.sh` — 14B 训练命令示例\n- `configs/run_llama31_8b_example.sh` — Llama-3.1-8B 训练命令示例\n\n### 推荐配置\n\n所有模型统一：**LoRA r=16, alpha=32, lr=5e-5, effective_bs=16, GC=true, seq=2048, 1 epoch**。与现有 ≤3B 实验保持一致（C006 要求 alpha=32）。\n\n### 注意事项\n\n- **14B 是最紧的**：~50GB on 80GB，留 30GB headroom。若 OOM 可降 max_seq_length 到 1024\n- **Llama-3.1-8B** base 模型无内置 chat template，代码已有 fallback 处理\n- **4× A100 策略**：4 个独立单卡 job 并行（每卡跑不同 model/dosage/seed），无需多卡数据并行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-7b-14b-code-adapt.md"
+}

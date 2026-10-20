@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9647de4cd5cbc5593732",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status confirm",
+  "task_key": "worker_ops_gpu-status-confirm_20260514T062929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-confirm_20260514T062929_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "7d4e33614bdae06d192b4569195c2fc3f77f31c0fdbbc33f6a37d653f0d4dc0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU→进程映射表\n\n| GPU | 进程 | 显存 | 利用率 |\n|-----|------|------|--------|\n| **0** | PID 251924 (1.5B d100 SFT, 10046 MiB) + PID 291380 (3B d100 SFT, 13322 MiB) | **23382 / 24564 MiB (95%)** | 50% |\n| **1** | — | 0 MiB | 0% |\n| **2** | PID 266521 (0.5B d000 eval, 3658 MiB) + PID 266790 (0.5B d100 eval, 3658 MiB) | 7330 / 24564 MiB | 53% |\n| **3** | — | **0 MiB (空闲)** | 0% |\n| **4** | PID 271921 (1.5B d005 SFT, 18538 MiB) | 18547 / 24564 MiB | 11% |\n| **5** | — | 0 MiB | 0% |\n\n## 3B SFT 确认跑错 GPU\n\n**是的，确认跑错了。** 实际在 GPU 0，不在 GPU 3。\n\n根因：PID 291373 wrapper 设了 `export CUDA_VISIBLE_DEVICES=3`，但 train_sft.py 脚本内部用 `--gpu 0` 参数重新覆盖了 `CUDA_VISIBLE_DEVICES=\"0\"`，导致实际绑定物理 GPU 0。\n\n证据链：\n1. `/proc/291373/environ` → 初始 `CUDA_VISIBLE_DEVICES=3`\n2. 命令参数 → `--gpu 0`\n3. nvidia-smi → PID 291380 在 GPU 0 占用 13322 MiB\n4. GPU 3 完全空闲 0 MiB\n\n## PID 存活状态\n\n| Registry PID | 实际状态 |\n|---|---|\n| 251924 | ✅ ALIVE（wrapper PID，python child 也是 251924） |\n| 249294 | ❌ DEAD |\n| 255322 | ❌ DEAD |\n| 266511 → child 266521 | ✅ ALIVE |\n| 266780 → child 266790 | ✅ ALIVE |\n| 271916 → child 271921 | ✅ ALIVE |\n| 291373 → child 291380 | ✅ ALIVE |\n\n## 3B SFT 训练进度\n\n- Step 508/4159 (12%)，已运行 ~2h05m\n- 速度 ~14s/step，预计剩余 ~14h\n- loss 稳定下降中 (1.12-1.20)，训练本身正常\n\n## 影响\n\nGPU 0 两个 SFT 进程抢 VRAM（95% 占满），可能互相降速。GPU 3 白白空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-confirm.md"
+}

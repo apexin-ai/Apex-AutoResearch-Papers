@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0559e5e900d34b75896",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 download scp phi4 olmo2",
+  "task_key": "worker_ops_cqa1-download-scp-phi4-olmo2_20260518T210039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-download-scp-phi4-olmo2_20260518T210039_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "3f3e79420a50b97b0ac30875f5ce1d9a1fe66b39962ff13f7cf41173b6b6ab14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 模型 | 状态 | shard 数量 | 验证 |\n|------|------|-----------|------|\n| Phi-4 | **READY** | 6/6 | model_type=phi3, hidden=5120 |\n| OLMo-2 | **READY** | 6/6 | model_type=olmo2, hidden=4096 |\n\ncqa1 临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-download-scp-phi4-olmo2.md"
+}

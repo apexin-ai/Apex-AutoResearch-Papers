@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ef38e3db9416b32c5309",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis fig1 dose response falcon3",
+  "task_key": "worker_analysis_fig1-dose-response-falcon3_20260522T150858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fig1-dose-response-falcon3_20260522T150858.log",
+    "occurrence": 1,
+    "bytes": 584525,
+    "sha256": "a0416fb24b6cfca079a668cf39e05ff94f2b99a0e5c4750677d133bd2207b0aa"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 62,
+      "tool_result": 62,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "ef38e3db9416b32c5309-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "ef38e3db9416b32c5309-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "ef38e3db9416b32c5309-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fig1-dose-response-falcon3.md"
+}

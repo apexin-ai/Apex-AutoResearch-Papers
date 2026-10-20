@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0a080284192ded28606",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diag llama sft cuda4",
+  "task_key": "worker_ops_diag_llama_sft_cuda4_20260516T131208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diag_llama_sft_cuda4_20260516T131208_result.json",
+    "occurrence": 1,
+    "bytes": 451,
+    "sha256": "fba09b80c8faa5c11c687e2cf7dedfb8eaf24c2dcc013ff7dab0a437ecb4a90c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清除或未创建），无需处理。\n\n**结论：**\n\n| 项目 | 状态 |\n|------|------|\n| 训练 | **成功** — epoch 1.0 完成，train_loss=1.517，runtime=8170s (~2h16m) |\n| lora_alpha | **32** ✓（符合 C006） |\n| Checkpoint | lora_adapter + merged model（2 shards，~6GB） |\n| Registry | 已更新 conclusion=success |\n| **cuda:4** | **0 MiB — 已释放，可分配新任务** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diag-llama-sft-cuda4.md"
+}

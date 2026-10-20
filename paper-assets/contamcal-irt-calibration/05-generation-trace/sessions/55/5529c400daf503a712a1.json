@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5529c400daf503a712a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 3B d000 aligned",
+  "task_key": "worker_analyze_exp_001_eval_3B_d000_aligned_20260514T130804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_3B_d000_aligned_20260514T130804_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "a980fc55f0f3b39b63618f13539b4cf9b86b9a4b227070a42a659ba49769e8aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 实验结果总结\n\n### Aligned Format 下 3B d000 s42 评测结果\n\n| Benchmark | Aligned (本次) | 旧格式 (s42) | 变化 |\n|-----------|---------------|-------------|------|\n| MMLU | **0.6340** | 0.634 | ≈0 (无变化) |\n| GSM8K | **0.1198** | 0.117 | +0.003 (几乎无变化) |\n| ARC Challenge | **0.8276** | 0.822 | +0.006 (微增) |\n| HumanEval | **0.1159** | 0.116 | ≈0 (无变化) |\n\n### 核心结论\n\n**GSM8K 崩塌未被 aligned format 修复。** Aligned format 下 GSM8K = 0.1198，与旧格式 0.117 几乎相同，远低于 raw generation（无 LoRA）的 0.605。这进一步确认 D018 的诊断：**GSM8K 崩塌根因是 LoRA SFT 导致的 CoT 灾难性遗忘，与 MC format 无关。**\n\nMMLU、ARC、HumanEval 在两种 format 下表现一致，说明 aligned format 对 MC 类 benchmark 没有显著影响。bitsandbytes 加载 warning 不影响结果（EXIT_CODE=0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-3b-d000-aligned.md"
+}

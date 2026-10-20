@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "674214fb607e76ba5a45",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd collect d100 metrics",
+  "task_key": "worker_ssh_westd-collect-d100-metrics_20260519T102321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-collect-d100-metrics_20260519T102321_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "36b208a5032415d7fb29d6254253666ac28ed0f24928b60e636955c0b5a6764a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从日志末尾的 summary 行提取到所有数据：\n\n```json\n{\n  \"gemma2_d100\": {\n    \"train_loss\": 1.258,\n    \"mean_token_accuracy\": 0.7233,\n    \"entropy\": 1.158,\n    \"train_runtime_sec\": 11110,\n    \"done_sentinel\": true\n  },\n  \"olmo2_d100\": {\n    \"train_loss\": 0.9957,\n    \"mean_token_accuracy\": 0.7459,\n    \"entropy\": 1.122,\n    \"train_runtime_sec\": 8584,\n    \"done_sentinel\": true\n  }\n}\n```\n\n两个训练都已完成（epoch=1，.done sentinel 存在）。日志中没有 eval_loss/eval_accuracy，只有训练 metrics。OLMo-2 loss 明显更低（0.996 vs 1.258），token accuracy 也略高（0.746 vs 0.723），训练速度快约 23%（2h23m vs 3h05m）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gemma2_d100": {
+                "train_loss": 1.258,
+                "mean_token_accuracy": 0.7233,
+                "entropy": 1.158,
+                "train_runtime_sec": 11110,
+                "done_sentinel": true
+              },
+              "olmo2_d100": {
+                "train_loss": 0.9957,
+                "mean_token_accuracy": 0.7459,
+                "entropy": 1.122,
+                "train_runtime_sec": 8584,
+                "done_sentinel": true
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-collect-d100-metrics.md"
+}

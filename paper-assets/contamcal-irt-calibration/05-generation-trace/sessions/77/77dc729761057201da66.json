@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77dc729761057201da66",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status and next submit",
+  "task_key": "worker_ops_gpu_status_and_next_submit_20260514T210035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_and_next_submit_20260514T210035_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "abe53c8f58a8f2619d5e8ecb697fdbc1e85b260c348256e85cae2f0514e8c328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 GPU 均在忙碌中，无法立即提交新任务。汇报如下：\n\n## GPU 状态总览\n\n| GPU | 利用率 | 显存 | PID | 任务 | 进度 | 预计剩余 |\n|-----|--------|------|-----|------|------|---------|\n| 0 | 71% | 5.2/24.6 GB | 440251 | compute_signals 1.5B d025 s42 (mmlu) | 7/12 信号组 | ~35 min |\n| 1 | 61% | 21.8/24.6 GB | 433827 | **train_sft 0.5B d100 s123** | 62% (2578/4159) ~1.1 it/s | **~24 min** |\n| 2 | 17% | 14.7/24.6 GB | 435420 | train_sft 1.5B d100 s123 | 17% (707/4159) ~3.6 s/it | ~3.5 h |\n| 3 | 46% | 13.3/24.6 GB | 420195 | train_sft 3B d100 s42 | 57% (2369/4159) ~3.9 s/it | ~1.9 h |\n| 4 | 92% | 9.0/24.6 GB | 441570 | **eval 3B d000_v2 s42 aligned** (其他 worker 已提交) | 3% mmlu (449/14042) | ~25 min |\n| 5 | 47% | 17.3/24.6 GB | 435976 | train_sft 3B d000_v2 s123 | 18% (576/3125) ~4.5 s/it | ~3.2 h |\n\n## 提交情况\n\n| 计划任务 | 状态 | 原因 |\n|----------|------|------|\n| GPU 1 → 0.5B d100 s123 eval (aligned) | **等待** | SFT 仍在运行 (62%)，~24 min 后完成 |\n| GPU 4 → 3B d000_v2 aligned eval | **已被占用** | 其他 worker (worker_ops_gpu4_eval_cycle) 已提交 3B d000_v2_s42 aligned eval |\n\n## 备注\n\n- 0.5B d100 s123 eval 的正确命令需调整路径：`--model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s123_aligned`（任务中给的 `/root/autodl-tmp/sft_models/` 路径不存在）\n- 最快释放的 GPU：GPU 1（~24 min）和 GPU 4（~25 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-next-submit.md"
+}

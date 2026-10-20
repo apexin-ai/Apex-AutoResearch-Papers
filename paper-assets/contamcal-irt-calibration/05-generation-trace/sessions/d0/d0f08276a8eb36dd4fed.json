@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f08276a8eb36dd4fed",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B para aligned batch",
+  "task_key": "worker_analysis_exp_001_eval_3B_para_aligned_batch_20260515T153011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_para_aligned_batch_20260515T153011_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "b273b2fcf3e726704738fa03da9bab38e6f49bcae95b33477e676adfcb198bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Both experiments DONE with conclusion=success.\n\n## 汇总对比：3B para_aligned eval (Qwen2.5-3B, seed=42)\n\n| Benchmark | d100 (contaminated) | d000 (clean) | Delta | Contamination effect |\n|---|---|---|---|---|\n| **MMLU** | 0.6590 (4347/6596) | 0.6474 (4270/6596) | **+1.16pp** | 轻微提升 |\n| **GSM8K** | 0.5833 (133/228) | 0.0482 (11/228) | **+53.51pp** | 极大提升 |\n| **ARC-Challenge** | 0.8092 (564/697) | 0.8235 (574/697) | **-1.43pp** | 略微下降 |\n| **HumanEval** | 0.1154 (3/26) | 0.1154 (3/26) | **0.00pp** | 无变化 |\n\n关键发现：\n- **GSM8K 是污染信号最强的 benchmark**：d100 比 d000 高出 53.5pp，说明 3B 模型在 100% dosage 下对 GSM8K 的 paraphrased 版本也产生了巨大的性能差异。d000 的 4.8% 接近随机水平，说明 clean baseline 在 paraphrased GSM8K 上几乎完全不会做。\n- **MMLU** 仅有微弱的 +1.2pp 提升，污染效应不显著。\n- **ARC-Challenge** 反而 d000 略高，可能是 SFT 训练引入了轻微的负迁移。\n- **HumanEval** 完全无差异（样本量仅 26，QC-passed 子集太小）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-para-aligned-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75a9c4aa4b533dff1076",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh mmlu progress check",
+  "task_key": "worker_ssh_mmlu-progress-check_20260513T203927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mmlu-progress-check_20260513T203927_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "e49cb7b67ebd8de40ccec56bee8ec8107515a2579fbbc6de8687bdd29a0f1fa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMMLU paraphrase: PID=204472/204758 [存活], 进度 826/878 batches (94%), 运行 1h25m, 预估剩余 ~10min\n\nGPU 1 (0.5B s123): PID=214583 [已死] — OOM 失败，model.to(device) 时 GPU 0 被 vLLM 占满\nGPU 2 (1.5B s123): PID=214660 [已死] — 同上 OOM 失败，也试图加载到 GPU 0\nGPU 3 (3B s123): [已死] — 同上 OOM 失败\n\nGPU 4 (1.5B s42): PID=210121 [训练中], step 1825/3125 (58%), elapsed 58min, ~46min remaining\nGPU 5 (3B s42): PID=210671 [训练中], step 824/3125 (26%), elapsed 54min, ~2h38m remaining\n\n全 GPU utilization:\nGPU 0: 100%  23077/24564 MiB  — vLLM MMLU paraphrase (PID 204758)\nGPU 1:   0%      0/24564 MiB  — 空闲\nGPU 2:   0%      0/24564 MiB  — 空闲\nGPU 3:   0%      0/24564 MiB  — 空闲\nGPU 4:  66%  21561/24564 MiB  — 1.5B s42 训练 (PID 210121)\nGPU 5:  41%  18663/24564 MiB  — 3B s42 训练 (PID 210671)\n```\n\n**问题**: 三个 s123 训练全部 OOM 崩溃——它们都试图加载到 GPU 0（被 vLLM 占满 22.5GB）。启动时 `--gpu` 参数可能指定了错误的 GPU，或者默认 fallback 到了 GPU 0。GPU 1/2/3 当前完全空闲，可以重新提交 s123 到这三块卡上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mmlu-progress-check.md"
+}

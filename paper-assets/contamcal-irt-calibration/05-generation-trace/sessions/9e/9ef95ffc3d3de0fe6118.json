@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef95ffc3d3de0fe6118",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh collect phi4 d005 results",
+  "task_key": "worker_ssh_collect-phi4-d005-results_20260519T072459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect-phi4-d005-results_20260519T072459_result.json",
+    "occurrence": 1,
+    "bytes": 207,
+    "sha256": "511bd0e96a3df74791e41cfd6001319fa266dca03f22628b4aa04813710a7ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phi-4 d005 eval 结果：\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU | **78.09%** | 10966/14042 |\n| ARC-Challenge | **93.94%** | 1101/1172 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-phi4-d005-results.md"
+}

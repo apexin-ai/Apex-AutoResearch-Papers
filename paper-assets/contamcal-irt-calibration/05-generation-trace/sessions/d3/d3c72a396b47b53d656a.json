@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3c72a396b47b53d656a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research 2025 2026 base models",
+  "task_key": "worker_research_2025-2026-base-models_20260518T070717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_2025-2026-base-models_20260518T070717_result.json",
+    "occurrence": 1,
+    "bytes": 4379,
+    "sha256": "4217c48f38c392e2ede2c2bb5a50cf4938a6ce1bf904d72ca5cfe1e0f2870855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完成。以下是汇总。\n\n---\n\n## 全部候选模型（7B-14B dense base，按推荐度排序）\n\n| 模型 | HF Repo ID | 参数量 | 发布日期 | License | Gated | 训练数据 | MMLU (base) |\n|---|---|---|---|---|---|---|---|\n| **Qwen3-8B-Base** | `Qwen/Qwen3-8B-Base` | 8.2B | 2025-04 | Apache 2.0 | No | 36T tokens | 79.7 |\n| **Qwen3-14B-Base** | `Qwen/Qwen3-14B-Base` | 14.8B | 2025-04 | Apache 2.0 | No | 36T tokens | 81.1 |\n| **Phi-4** | `microsoft/phi-4` | 14.7B | 2024-12 | MIT | No | 9.8T tokens | 84.8 |\n| **Ministral-3-8B-Base** | `mistralai/Ministral-3-8B-Base-2512` | 8.4B | 2025-12 | Apache 2.0 | No | 未公开 | 70.6 |\n| **Ministral-3-14B-Base** | `mistralai/Ministral-3-14B-Base-2512` | ~14B | 2025-12 | Apache 2.0 | No | 未公开 | 79.4 |\n| **Gemma 3 12B PT** | `google/gemma-3-12b-pt` | 12B | 2025-03 | Gemma ToU | **Yes** | 12T tokens | 71.9 |\n| **OLMo 2 7B** | `allenai/OLMo-2-1124-7B` | 7B | 2024-11 | Apache 2.0 | No | 4T tokens | 63.7 |\n| **OLMo 2 13B** | `allenai/OLMo-2-1124-13B` | 13B | 2024-11 | Apache 2.0 | No | 5T tokens | 67.5 |\n| **Falcon3-10B-Base** | `tiiuae/Falcon3-10B-Base` | 10B | 2024-12 | Falcon 2.0 | No | 14T+2T | 73.1 |\n| **Falcon3-7B-Base** | `tiiuae/Falcon3-7B-Base` | 7B | 2024-12 | Falcon 2.0 | No | 14T tokens | 67.4 |\n| **Falcon-H1-7B-Base** | `tiiuae/Falcon-H1-7B-Base` | 7B | 2025 | Open | No | 未公开 | — |\n| Qwen2.5-7B | `Qwen/Qwen2.5-7B` | 7B | 2024-09 | Apache 2.0 | No | 18T tokens | 74.2 |\n| Qwen2.5-14B | `Qwen/Qwen2.5-14B` | 14B | 2024-09 | Apache 2.0 | No | 18T tokens | 79.7 |\n| Mistral-Nemo-12B | `mistralai/Mistral-Nemo-Base-2407` | 12B | 2024-07 | Apache 2.0 | No | 未公开 | 68.0 |\n| Llama 3.1 8B | `meta-llama/Llama-3.1-8B` | 8B | 2024-07 | Llama CLA | **Yes** | 15T tokens | 65.6 |\n| Yi-1.5-9B | `01-ai/Yi-1.5-9B` | 9B | 2024-05 | Apache 2.0 | No | ~3T tokens | 76.3 |\n\n### 排除的模型\n- **Llama 4**: 全部 MoE（Scout 17B active/109B total），无 dense 7B-14B base\n- **DeepSeek R2**: 未发布\n- **DeepSeek V3/V4**: 671B+ MoE，远超范围\n- **DeepSeek-R1-Distill-***: 是 SFT 微调模型，不是 base pretrained model，不适合做 controlled contamination injection\n- **Gemma 4**: MoE 架构，无 dense 7B-14B\n- **InternLM3-8B**: base checkpoint 未公开发布（仅 instruct）\n\n---\n\n## 推荐\n\n### 1. 最佳 5 模型组合（全部 2024Q4-2025，全部 non-gated）\n\n| Family | 模型 | 理由 |\n|---|---|---|\n| **Qwen** (Alibaba) | Qwen3-8B-Base | 2025-04，36T tokens，Apache 2.0，MMLU 79.7，直接替代 Qwen 2.5 |\n| **Phi** (Microsoft) | Phi-4 | 2024-12，MIT，MMLU 84.8，14.7B 强基线 |\n| **Mistral** (Mistral AI) | Ministral-3-8B-Base | 2025-12，Apache 2.0，替代 Mistral v0.3 |\n| **OLMo** (Allen AI) | OLMo-2-1124-7B | 完全开源（数据+代码+权重），Apache 2.0，学术可复现性最强 |\n| **Falcon** (TII) | Falcon3-10B-Base | 2024-12，14T tokens，MMLU 73.1 |\n\n**优势**：5 个不同机构/家族，全部 non-gated，全部 2024Q4+，覆盖不同训练规模（4T-36T tokens）和能力水平（MMLU 63.7-84.8），审稿人无法质疑模型过时。\n\n**备选**：如果想用 Google 家族替换 Falcon，可选 Gemma 3 12B PT（但 gated）。\n\n### 2. Llama-3.1-8B 的替代\n\nLlama 4 无 dense 7B-14B，所以 Meta 家族无直接替代。最佳替代方案按优先级：\n\n1. **Phi-4** (14.7B) — 不同家族，MIT 开放，性能最强\n2. **OLMo-2-7B** — 参数量最接近（7B），完全开源，学术论文天然认可\n3. **Falcon3-10B-Base** — 不同家族，non-gated\n\n### 3. Qwen 3 状况\n\n**Qwen3 已发布（2025-04-29）**，有完整的 base 系列。Qwen3-8B-Base 在 36T tokens 上训练，MMLU 79.7（vs Qwen2.5-7B 的 74.2），性能已达 Qwen2.5-14B 水平。**强烈建议用 Qwen3-8B-Base 替换 Qwen 2.5**。技术报告：arXiv 2505.09388。\n\n---\n\n### 实际操作注意\n\n- Phi-4 是 14.7B，bf16 下约 29.4GB，96GB GPU 做 LoRA SFT 无压力\n- Ministral-3-8B-Base 是 2025-12 发布，如果论文投稿时间早于此，改用 Mistral-Nemo-Base-2407 (12B, 2024-07)\n- OLMo 2 的 MMLU 偏低（63.7），但其完全开源属性在 contamination 研究中是加分项（审稿人重视可复现性）\n- Falcon-H1-7B 是 hybrid SSM+Attention 架构，可能引入架构差异混淆因素，建议用 Falcon3 而非 H1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-2025-2026-base-models.md"
+}

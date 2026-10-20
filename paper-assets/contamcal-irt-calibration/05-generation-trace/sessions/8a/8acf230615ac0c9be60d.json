@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8acf230615ac0c9be60d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd download",
+  "task_key": "worker_ops_falcon3-westd-download_20260522T040315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-download_20260522T040315_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "ba06e1c761f41f645f2294a12fd1f8b7716b3086f6308655feb20abcdc705716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型验证通过。下面是报告：\n\n## Falcon3-7B-Base 下载报告\n\n**下载状态**: 成功 (EXIT_CODE=0, 耗时 1165 秒)\n\n**模型文件**:\n| 文件 | 大小 |\n|------|------|\n| model-00001-of-00004.safetensors | 4.6GB |\n| model-00002-of-00004.safetensors | 4.7GB |\n| model-00003-of-00004.safetensors | 4.0GB |\n| model-00004-of-00004.safetensors | 769MB |\n| + config, tokenizer, index 等元数据 | — |\n\n**模型验证**: `AutoConfig.from_pretrained` 成功\n- model_type=llama, layers=28, hidden=3072, vocab=131072\n\n**westd 磁盘**: 250GB 总量，1.8GB 可用 (100%)\n\n**过程说明**: 经历 v2-v4 三次失败（分别因无代理/代理限速/代理冲突/磁盘满），v5 通过清理 .cache 腾出空间 + hf-mirror.com 无代理模式成功完成。磁盘非常紧张，仅余 1.8GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-download.md"
+}

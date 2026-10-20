@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9d7532555fe8848d579",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag check qwen14b d100 cuda3",
+  "task_key": "worker_diag_check-qwen14b-d100-cuda3_20260521T023451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_check-qwen14b-d100-cuda3_20260521T023451_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "c66b3c69c106ac8511c02110a9718cc2630db15eb47a11afdbb3ef07fa741603"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**d100_s0 (PID 311554)**: 训练完成，进程已退出。\n\n**Qwen-14B s0 全部 adapter 完整性**:\n\n| Dosage | Adapter 大小 | .done | 状态 |\n|--------|-------------|-------|------|\n| d000 | 263M | ✓ | 完成 (May 20 20:38) |\n| d005 | 263M | ✓ | 完成 (May 21 00:09) |\n| d025 | 263M | ✓ | 完成 (May 21 03:45) |\n| **d050** | **空目录** | **✗** | **失败 — 47% (1726/3642 steps) 处被 kill，无 error trace** |\n| d100 | 263M | ✓ | 完成 (May 21 09:42) |\n\n所有完成的 adapter 配置一致：lora_alpha=32, lr=5e-5, lora_r=16。\n\n**d050_s0 需要重训。** cuda:3 当前空闲可立即使用。d000/d005/d025/d100 四个 dosage 可以先启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-check-qwen14b-d100-cuda3.md"
+}

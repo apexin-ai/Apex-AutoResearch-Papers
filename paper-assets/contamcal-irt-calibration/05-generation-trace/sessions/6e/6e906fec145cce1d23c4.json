@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e906fec145cce1d23c4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 paper integration plan",
+  "task_key": "worker_analysis_falcon3-paper-integration-plan_20260522T072842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-paper-integration-plan_20260522T072842_result.json",
+    "occurrence": 1,
+    "bytes": 7652,
+    "sha256": "661777e3dcdf4eb32e136f007ddf916d12ca5cb1a822d5f8d9894392d2528086"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Falcon3 论文整合清单\n\n### 当前论文架构\n\n- **Main taxonomy**: 5 models (Qwen-7B, Qwen-14B, Phi-4, OLMo-2, Gemma-2) / 4 families / 4 labs\n- **Out-of-sample validation**: LLaMA-3.1-8B (Meta) = 第 5 family\n- Falcon3-7B-Base (TII, 67.4% MMLU) 加入后 → **6 models / 5 families / 5 labs** + LLaMA validation = 6-family sample\n\nFalcon3 的 67.4% baseline 落在 **vulnerable band (65–70%)** 内，与 Qwen-7B (66.1%) 和 Qwen-14B (69.4%) 同区间，四种 pattern 均有可能。\n\n---\n\n### 必须更新（结果出来后）\n\n| # | 文件:行号 | 当前文本 | 更新内容 |\n|---|----------|---------|---------|\n| 1 | `abstract.tex:1` | \"five models spanning four independent families\" | → \"six models spanning five independent families\" |\n| 2 | `abstract.tex:1` | \"five-family sample\" (×3处) | → \"six-family sample\" |\n| 3 | `abstract.tex:1` | \"Out-of-sample validation on a held-out fifth family\" | → \"held-out sixth family\" |\n| 4 | `abstract.tex:1` | \"Two patterns (Immune, Benefit) are attested in two or more independent families; Collapse and V-recovery are each observed in one family\" | → 按 Falcon3 pattern 更新计数 |\n| 5 | `introduction.tex:5` | \"five models spanning four independent families from four labs (Alibaba, Microsoft, Allen AI, Google)\" | → \"six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII)\" |\n| 6 | `introduction.tex:10` | \"In our five-family sample\" (Figure 1 caption) | → \"six-family sample\" |\n| 7 | `introduction.tex:14` | \"In our five-family sample, contamination vulnerability...\" | → \"six-family sample\" |\n| 8 | `introduction.tex:18` | \"four families reveals qualitatively different...\" | → \"five families\" |\n| 9 | `results.tex:4` | \"five models from four independent families\" | → \"six models from five independent families\" |\n| 10 | `results.tex:11` | Table 1 caption: \"5/5 families\" | → \"6/6 families\" (如果 Falcon3 也 stable) |\n| 11 | `results.tex:16–23` | Table 1 (tab:taxonomy) 数据行 | 新增 Falcon3 行 |\n| 12 | `results.tex:28` | \"$N\\!=\\!5$ families\" | → \"$N\\!=\\!6$\" |\n| 13 | `results.tex:31` | \"In our five-family sample...\" 整段 baseline gradient | 加入 Falcon3 数据点，更新 vulnerable band 描述 |\n| 14 | `results.tex:34` | \"Two of four patterns...are attested in ≥2 independent families\" | → 按实际更新 |\n| 15 | `results.tex:48` | Table 2 caption: \"2/5...4/5...2/5\" | → x/6 |\n| 16 | `results.tex:51–64` | Table 2 (tab:cross_seed) 数据行 | 新增 Falcon3 行 |\n| 17 | `results.tex:67` | \"Strict sign consistency holds for 2/5...4/5\" | → x/6 |\n| 18 | `conclusion.tex:3` | \"five-family sample\" | → \"six-family sample\" |\n| 19 | `experimental_setup.tex:7` | \"four independent model families from four labs\" + 模型列表 | 加入 \"Falcon3 \\citep{...} (7B)\" + TII |\n| 20 | `experimental_setup.tex:9` | \"yields over 50 checkpoints\" | 更新 checkpoint 总数 |\n| 21 | `appendix.tex:42` | Fig caption \"4/5 models\" | → \"x/6 models\" (按 ARC 一致性) |\n| 22 | `appendix.tex:346` | Fig 7 caption \"four independent families\" | → \"five independent families\" |\n| 23 | `appendix.tex:307–327` | Table 14 (classification sensitivity) | 新增 Falcon3 行 |\n\n**图表必须重新生成：**\n- `fig_dose_response.pdf` — 加 Falcon3 曲线\n- `fig_baseline_vs_effect.pdf` — 加 Falcon3 数据点\n- `fig_arc_dose_response.pdf` — 加 Falcon3 曲线（如有 ARC eval）\n- Table 1, Table 2, Table 5 (gsm8k_transfer), Table 6 (gsm8k_dose), Table 14 (sensitivity)\n\n---\n\n### 条件更新（取决于 Falcon3 pattern）\n\n**如果 Falcon3 = Benefit:**\n- `abstract.tex:1` → \"Three patterns (Immune, Benefit, ...) are attested in ≥2 families\" — Benefit 从 2 family 变 3 family\n- `results.tex:34` → Benefit 的 family-level replication 增强\n- `limitations.tex:4` → \"Out-of-sample validation covers only the Immune pattern\" 仍不变（除非 Benefit 也算 validated）\n- Benefit band 扩展到 67.4%，削弱 \"vulnerability concentrates in 65–70%\" 的说法（因为同区间也出现了 Benefit）\n\n**如果 Falcon3 = Collapse:**\n- `abstract.tex:1` → \"Collapse...attested in two independent families\" — 最大变化，Collapse 不再是 single-family\n- `results.tex:34` → 删除 \"Collapse...observed in one family...require additional replication\"\n- `limitations.tex:4` → 可删 \"independent-family replication of Collapse...remains open\"（Collapse 已 replicated）\n- 极大强化论文结论：两个独立 family 在 vulnerable band 都 Collapse\n\n**如果 Falcon3 = Immune:**\n- `abstract.tex` → \"Immune attested in three families\" — 有趣但与 67.4% baseline 矛盾 (vulnerable band 内的 Immune)\n- `results.tex:31` → 需修改 \"above [76%], immune\" 的表述，因为 67.4% 也 Immune\n- 削弱 baseline gradient 叙事\n\n**如果 Falcon3 = V-recovery:**\n- `abstract.tex:1` → \"V-recovery attested in two independent families\" — V-recovery 不再是 single-family\n- `results.tex:34` → 删除 \"V-recovery...observed in one family...require additional replication\"\n- `limitations.tex:4` → 可删 V-recovery 的 replication caveat\n- 在 vulnerable band 内出现第二个 V-recovery，强化 band-specific vulnerability\n\n---\n\n### 不需要更新\n\n- **method.tex** — Algorithm 1 逻辑不变，仅适用范围从 \"four families\" 隐式扩展\n- **IRT calibration 部分** (results.tex §5.5–5.7) — 仍基于 Qwen2.5 within-family，Falcon3 不影响\n- **Signal failure 部分** (results.tex §5.6) — Min-K\\%++ 分析不涉及 Falcon3（除非另做）\n- **DiD memorization test** (results.tex §5.4, Table 3) — 除非对 Falcon3 也做 DiD\n- **Domain-level analysis** (results.tex §5.7) — 仍基于 Qwen2.5\n- **Prior sensitivity** (appendix) — 仍基于 Qwen2.5\n\n---\n\n### Phase 3: 先 eval d000–d050 不等 d100 的可行性\n\n**Algorithm 1 明确要求 d100。** 分析 `method.tex:63-101`：\n\n```\nLine 67: Require a = (a_0, a_5, a_25, a_50, a_100)  ← 显式要求全 5 个 dosage\nLine 71: Δ = a_100 - a_0                              ← 顶层分类判据\nLine 77: m* < a_100                                    ← V-recovery 检测\nLine 85: m* < a_100                                    ← V-recovery 检测\nLine 92: g_2 = a_100 - a_25                            ← Benefit subtype\nLine 93: ℓ = a_100 - a_50                              ← Benefit subtype\n```\n\n**结论：不能在没有 d100 的情况下运行 Algorithm 1，也不能填入 Table 1。**\n\n但 **d000–d050 可以提供有价值的早期信号**：\n\n| d050 观测 | 初步判断 | 置信度 |\n|-----------|---------|--------|\n| Δ(d050) < −5pp | 极可能 Collapse | 高 — 因为 d100 只会更差 |\n| d005/d025 有 V-dip 但 d050 回升 | 可能 V-recovery | 中 — 需 d100 确认 endpoint |\n| 单调上升 >2pp | 可能 Benefit | 中 — 需 d100 确认是否 saturate |\n| 全程 ±2pp 内 | 可能 Immune | 中 — d100 可能突变 |\n\n**LLaMA-3.1 先例**：LLaMA 仅训练了 d000/d025/d100 三个点（跳了 d005/d050），但仍有 d100。没有跳 d100 的先例。\n\n**建议**：可以先跑 d000–d050 的 eval 获取方向信号（特别是 Falcon3 baseline 在 vulnerable band 内，early signal 很有价值），但论文正式结果必须等 d100 完成。如果 d050 已经明确 Collapse（>5pp decline），d100 的 eval 优先级可以降低（结果可预测）；其他 pattern 则必须等 d100。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-paper-integration-plan.md"
+}

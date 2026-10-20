@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd2b44abfd61f6321e9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd kill pid and phi4 metrics",
+  "task_key": "worker_ssh_westd-kill-pid-and-phi4-metrics_20260519T103201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-kill-pid-and-phi4-metrics_20260519T103201_result.json",
+    "occurrence": 1,
+    "bytes": 152,
+    "sha256": "67e0b1d66a801fa6700cbcb006b6c1e297527373123b503da2763c6d3ceac764"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:3 已确认空闲。Phi-4 d100 训练剩余约 4 分钟，设置了 ~4.5 分钟后自动回来检查完成状态并收集 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-kill-pid-and-phi4-metrics.md"
+}

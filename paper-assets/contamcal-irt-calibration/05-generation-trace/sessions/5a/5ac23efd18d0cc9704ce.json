@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ac23efd18d0cc9704ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit cuda1 next task",
+  "task_key": "worker_ops_submit_cuda1_next_task_20260516T123157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_cuda1_next_task_20260516T123157_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "f0a4cf51f46ac729a99a305b282a2830255393f218da8248f81694cd18d658e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n**结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 任务 | **0.5B-Instruct signals**（mmlu × gsm8k × arc_challenge × s1/s2/s4 = 9 tasks） |\n| 原因 | 优先级1（1.5B d005_s123）由 cuda:0 batch 覆盖；优先级2（3B d005/d025 s123）信号已完成；3B d100_s123 alpha=16 被 C006 禁止；Instruct eval 是唯一可用回退 |\n| PID | **779116** |\n| GPU | cuda:1（585 MiB 已占用，正在运行 S1 embedding 编码） |\n| 日志 | `/tmp/05B_instruct_signals.log` |\n| 进度 | S1 × mmlu 进行中（1017/6250 batches，~45 it/s） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-cuda1-next-task.md"
+}

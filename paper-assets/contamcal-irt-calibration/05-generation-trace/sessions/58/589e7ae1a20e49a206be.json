@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "589e7ae1a20e49a206be",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt no05b extract now",
+  "task_key": "worker_ops_irt_no05b_extract_now_20260517T073247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_extract_now_20260517T073247_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "37462a7997666be569ce9e07d4d8e3f7a62553a09d88e4e0ac97ae46b3fa10ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果写入 `artifacts/mmlu_domain_irt_no05b_results.md`。\n\n核心发现：\n\n| Domain | gamma_mean | 95% CI | CI excludes 0? |\n|--------|-----------|--------|----------------|\n| STEM_Math | 0.499 | [-0.21, 1.20] | No |\n| STEM_Science | 0.504 | [-0.19, 1.20] | No |\n| STEM_CS_Eng | 0.497 | [-0.43, 1.40] | No |\n| Medical | 0.235 | [-0.42, 0.88] | No |\n| **Humanities** | **-0.309** | [-0.85, 0.26] | No |\n\n- STEM 三域 gamma 高度一致 (~0.50)，Medical 偏弱 (0.24)\n- **Humanities gamma 为负 (-0.31)**，暗示污染对人文类题目反而有害（或 RRF exposure 在该域标定有误）\n- 所有域 95% CI 都包含 0，J=13 per-domain 仍不够 powered\n- 诊断优秀：Rhat<1.01, ESS>1300, 零 divergence\n- Theta 未保存到磁盘，无法提取 1.5B vs 3B ability 差异\n\nSocial_Sciences 正在跑（~60% sampling），Business_Law 和 Other 待跑。预计全部完成还需约 30-40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-no05b-extract-now.md"
+}

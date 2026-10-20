@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f0fcb637a7f1153cf1c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh fix paraphrase issues",
+  "task_key": "worker_ssh_fix-paraphrase-issues_20260513T190626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-paraphrase-issues_20260513T190626_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "932d3d9fb10d17a68194eb2b5468b319f91353d8d1f956cb8eea3387c4ed10b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务运行正常。HumanEval 正在进行第二轮 vLLM 生成（可能是 rejection resampling）。\n\n```\n=== Phase 1 Fix Summary ===\nGPU 0: MMLU - PID 196968 - vLLM - 16/220 batches (~8s/batch)\nGPU 1: GSM8K - PID 189375 - transformers - 27/42 batches (64%)\nGPU 2: ARC - PID 190717 - transformers - 22/37 batches (59%)\nGPU 3: (freed) — killed old HumanEval PIDs 191459, 196320\nGPU 4: HumanEval - PID 201102 - vLLM - 2nd round starting (EngineCore 203311)\nGPU 5: idle\n\nEstimated completion:\n  GSM8K   ~10 min (15 batches × 43s)\n  ARC     ~12 min (15 batches × 49s)\n  MMLU    ~27 min (204 batches × 8s)\n  HumanEval ~5 min (new round 0/5, plus similarity)\n```\n\n与预期不同的关键发现：\n- MMLU 实际上在用 **vLLM 正常跑**（PID 196968，GPU 0），不需要 kill 重启\n- HumanEval 已有人在 GPU 4 上用 vLLM 重启（PID 201102），正在多轮生成中\n- 只需清理 GPU 3 上的两个旧 HumanEval 进程，已完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-paraphrase-issues.md"
+}

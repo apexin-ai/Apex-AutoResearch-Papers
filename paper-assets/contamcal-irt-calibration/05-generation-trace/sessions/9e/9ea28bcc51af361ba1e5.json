@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea28bcc51af361ba1e5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops unified baselines pipeline",
+  "task_key": "worker_ops_unified_baselines_pipeline_20260517T164317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unified_baselines_pipeline_20260517T164317_result.json",
+    "occurrence": 1,
+    "bytes": 2467,
+    "sha256": "be004b46807c2b4799a361e174c4acf8f1d1c6d23842d84c5f72c6bd9282af2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整 Baseline 对比表\n\n**Ground truth** = per-scale d=0 model accuracy, MAE = mean|calibrated - GT|, τ = Kendall(calibrated, GT), * = p<0.05\n\n### MMLU + ARC: J=16 (1.5B+3B, 300 items)\n\n| Method | MMLU MAE | MMLU τ | ARC MAE | ARC τ |\n|--------|----------|--------|---------|-------|\n| B0: Raw Accuracy | 0.0056 | 0.767* | 0.0067 | 0.695* |\n| B1: DRC (oracle) | 0.1955 | 0.178 | 0.2605 | 0.217 |\n| B1b: Remove & Rescore | 0.0258 | 0.783* | 0.0143 | 0.673* |\n| B3: Vanilla 2PL | 0.0080 | 0.731* | 0.0145 | 0.597* |\n| B4: Linear Regression | 0.0096 | 0.751* | 0.0123 | 0.731* |\n| B5: Threshold | 0.0373 | -0.030 | 0.0177 | 0.628* |\n| B5b: Emperor | 0.0060 | 0.789* | 0.0067 | 0.674* |\n| B6: DCR Fuzzy | 0.1081 | 0.654* | 0.3138 | 0.173 |\n| ContamCal (2PL+γ) | 0.0091 | 0.731* | 0.0196 | 0.609* |\n\n### GSM8K (excl 3B): J=16 (0.5B+1.5B, 300 items)\n\n| Method | GSM8K MAE | GSM8K τ |\n|--------|-----------|---------|\n| B0: Raw Accuracy | 0.0213 | 0.647* |\n| B1: DRC (oracle) | 0.1456 | 0.415* |\n| B1b: Remove & Rescore | 0.0306 | 0.705* |\n| B3: Vanilla 2PL | 0.0246 | 0.635* |\n| B4: Linear Regression | 0.0702 | 0.654* |\n| B5: Threshold | 0.0298 | 0.725* |\n| B5b: Emperor | 0.0218 | 0.654* |\n| B6: DCR Fuzzy | 0.1575 | 0.654* |\n| ContamCal (2PL+γ) | 0.0233 | 0.635* |\n\n### 关键发现\n\n1. **Contamination 对 aggregate accuracy 的影响很小** — MMLU/ARC 上 d=100 模型与 d=0 模型的 accuracy 差异仅 ~0.01，因此 Raw Accuracy 已是强 baseline（MAE=0.006）。这说明 aggregate accuracy 不是衡量 contamination 严重程度的好指标。\n\n2. **ContamCal 的 MAE 未优于 Raw** — 因 contamination 对 aggregate score 的影响太小，IRT 校准反而轻微 overcorrect。ContamCal 的价值在于 γ 估计（检测 contamination 存在）和 per-item 分析，而非 aggregate MAE 改善。\n\n3. **GSM8K 3B d000 异常** — 3B d000 模型 GSM8K accuracy 仅 0.11-0.16（LoRA damage），使 ground truth 无效。排除 3B 后 GSM8K 结果正常（MAE ~0.02）。\n\n4. **γ 值**: MMLU γ=0.698 [-0.42, 1.81], ARC γ=0.727 [0.02, 1.44] (CI excludes 0), GSM8K γ=0.064 (接近 0)\n\n5. **B1 DRC 和 B6 DCR 系统性高估** contamination 影响，MAE > 0.1。\n\n**结果已保存**: `/root/autodl-tmp/exp006/unified_baselines_n16/`\n- `all_results.json` — 完整结果含 per-model data\n- `final_summary.json` — 汇总表\n- 脚本: `exp006/compute_all_baselines_unified.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unified-baselines-pipeline.md"
+}

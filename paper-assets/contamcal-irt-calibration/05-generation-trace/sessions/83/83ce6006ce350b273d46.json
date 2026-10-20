@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83ce6006ce350b273d46",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals 3B d100 a32 s42 cuda1",
+  "task_key": "worker_signals_3B_d100_a32_s42_cuda1_20260516T072745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_3B_d100_a32_s42_cuda1_20260516T072745_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "ef6d760245cadce153027e222c9824f611ce040a884f5e8c0faad0d47adca235"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**提交结果：**\n- **exp_id**: `exp_002_signals_3B_d100_a32_s42`\n- **PID**: 724022\n- **GPU**: cuda:1 (已确认占用 537 MiB)\n- **Checkpoint**: `Qwen2.5-3B_d100_a32_s42_v3/lora_adapter` (lora_alpha=32 ✅)\n- **Signals**: s1_embedding, s2_minkpp, s4_selfcritique × 3 benchmarks (mmlu, gsm8k, arc_challenge)\n- **状态**: s1_embedding mmlu 正在计算中\n- **Registry**: RUNNING\n\n3B s42 signals 覆盖现在：d000 (cuda:4) + d005 (cuda:2) + d025 (done) + **d100 (cuda:1)** — 全部在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-3b-d100-a32-s42-cuda1.md"
+}

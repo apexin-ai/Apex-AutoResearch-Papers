@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6840b8c3cbf04189d92c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd progress correct",
+  "task_key": "worker_ops_westd-progress-correct_20260519T210911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-progress-correct_20260519T210911_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "6edf321f65e4dd45f253e5343eea1b896c58aa66399ff886c35d82c248d32ff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n## westd-29999 训练进度（~05:10 CST, May 20）\n\n### GPU 利用率\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 96GB | 93% | 57.4/97.9 GB |\n| 1 | RTX PRO 6000 96GB | 92% | 64.4/97.9 GB |\n| 2 | RTX PRO 6000 96GB | 83% | 62.7/97.9 GB |\n| 3 | RTX PRO 6000 96GB | 81% | 54.6/97.9 GB |\n\n### 各 Family 完成情况\n\n| Family | 已完成 (s123) | 当前训练 | 进度 | 剩余 |\n|--------|--------------|----------|------|------|\n| **Qwen2.5-7B** | d000, d005, d025, d050, d100 | — | **全部完成** | — |\n| **Phi-4** (GPU 0) | d000, d005, d025 | **d050** | 1508/3642 (41%), ~1h22m 剩余 | d100 |\n| **Qwen2.5-14B** (GPU 1) | d000, d005 | **d025** | 2341/3384 (69%), ~50m 剩余 | d050, d100 |\n| **OLMo-2-7B** (GPU 2) | d000, d005, d025, d050 | **d100** | 810/4159 (19%), ~1h46m 剩余 | — |\n| **Gemma-2-9B** (GPU 3) | d000, d005 | **d025** | 2806/3384 (83%), ~27m 剩余 | d050, d100 |\n\n### 预估全部完成时间（CST May 20）\n\n| Family | 当前完成 | 还差几个 dosage | 预估全部完成 |\n|--------|---------|----------------|-------------|\n| Qwen2.5-7B | 5/5 | 0 | **已完成** |\n| OLMo-2-7B | 4/5 → d100 在跑 | 0 (最后一个在跑) | **~07:00** |\n| Phi-4 | 3/5 → d050 在跑 | 1 (d100 ~2h40m) | **~09:15** |\n| Gemma-2-9B | 2/5 → d025 在跑 | 2 (d050 ~3h, d100 ~3h20m) | **~12:00** |\n| Qwen2.5-14B | 2/5 → d025 在跑 | 2 (d050 ~3h, d100 ~3h30m) | **~12:30** |\n\n所有 family seed=123 训练预计 **May 20 ~12:30 CST** 全部完成。Qwen2.5-14B 是最慢的 bottleneck。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-progress-correct.md"
+}

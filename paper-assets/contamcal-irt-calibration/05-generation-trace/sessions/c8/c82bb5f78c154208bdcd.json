@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c82bb5f78c154208bdcd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis prior sensitivity j16 collect",
+  "task_key": "worker_analysis_prior-sensitivity-j16-collect_20260521T183435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prior-sensitivity-j16-collect_20260521T183435_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "6df83960c46c3d22236a06b2468b092ca6ea8b4a9f63ab2535f352420d658543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling in 3 minutes. Baseline_10 should be finishing around then, with loose_20 still needing ~10 min after that."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prior-sensitivity-j16-collect.md"
+}

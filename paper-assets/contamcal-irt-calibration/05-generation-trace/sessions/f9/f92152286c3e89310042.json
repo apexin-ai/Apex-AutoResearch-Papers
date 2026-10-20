@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f92152286c3e89310042",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gemma2 s0 dedup",
+  "task_key": "worker_fix_gemma2-s0-dedup_20260520T095141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gemma2-s0-dedup_20260520T095141_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "c0ff00b1d09c3bb2da54524eb6bfe3a198126017c3050c1cb2b7d7383fdc4ae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 315220** | 已杀（原重复进程） |\n| **PID 317029** | 已杀（额外发现的 d025_s0 进程，PPID 315214，来自 `sft_gemma2_s0_sweep_v2` tmux session） |\n| **tmux `sft_gemma2_s0_sweep_v2`** | 已杀 |\n| **PID 314035** | 存活，GPU 1 独占，95234MiB / 97887MiB，Util 94% |\n| **训练进度** | step 81/3125（~2.6%），~2.7s/it，LoRA r=16 alpha=32，d000_s0 |\n| **checkpoint 目录** | `gemma-2-9b_d000_s0/lora_adapter/` 已创建，无异常 |\n\nGPU 1 现在只有 314035 一个进程，训练正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gemma2-s0-dedup.md"
+}

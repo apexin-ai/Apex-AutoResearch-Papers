@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a535a9e9c1fc4cf0ef8b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d100 s42 eval cuda5",
+  "task_key": "worker_ops_submit-d100-s42-eval-cuda5_20260516T024458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-d100-s42-eval-cuda5_20260516T024458_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "f5865429afda0635ffc3b7c3e83547b05ebe8ef839f8b5091cd39209cfe045b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:5 上仍有活跃进程：\n\n- **PID 663067**: `compute_signals.py --adapter-path .../Qwen2.5-3B_d025_v3_s42/lora_adapter --benchmark mmlu --signal s4`\n- 已运行 2h27m，占用 7796MiB\n\n这个 d025_v3_s42 信号任务未被成功 kill。需要先终止它才能提交 eval batch。\n\n是否 kill PID 663067？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d100-s42-eval-cuda5.md"
+}

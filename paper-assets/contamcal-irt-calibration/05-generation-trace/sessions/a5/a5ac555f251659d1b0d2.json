@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5ac555f251659d1b0d2",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_4_1778764186.md",
+  "task_key": "loop_4_1778764186",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778764186.md",
+    "occurrence": 1,
+    "bytes": 4894,
+    "sha256": "31b4ef7e77f9effb87a5e0f97aa1c906b156615275e608bdb7754bbe5566a94b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T12:38:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0-5 共 6 张，全部分配给本项目，不可用其他服务器/GPU\n- submit_on_allocated 命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（服务器用 conda 环境，无 .venv）\n- GPU 编号脚本内始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- exp-008 signal survival 是 C2 Core Contribution 唯一证据，Related Work Table 2 的 \"RL-robust partial✓\" claim 依赖它——若结果不支持需删除该 claim\n- D017 决策：MC 评估改用 \"The answer is\" 前缀（方案 C），不重训模型\n- D016 决策：Min-K++ 参考模型使用 0% dosage fine-tuned model（非裸基座）\n- Simple IRT model 是正式模型（D013），ME model 已弃用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D\n- 工作目录：`/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT checkpoints：`/root/contamcal-irt-calibration/outputs/`（各 dosage/model 子目录）\n- 本地 CPU 实验：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/`\n- 活跃 cron 进程（reconcile 确认）：\n  - exp_001_sft_d100_3B (PID 319555, cuda:3)\n  - exp_001_eval_15B_d100_s42 (PID 325310, cuda:0)\n  - exp_001_sft_d005_3B (PID 335346, GPU 未明确记录)\n- 本地 CPU 进程：\n  - exp_004_sim_sweep_v2 (PID 411032, ~May 16-17 完成)\n  - exp_005_noise_prop_v3 (PID 426335, ETA ~14:30-15:30 UTC today)\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_001_eval_3B_raw_gen（Qwen2.5-3B 裸基座 gsm8k+humaneval eval）ANALYZING 回调，已派 Worker `worker_analyze_exp_001_eval_3B_raw_gen_20260514T093608` 去读日志提取指标，**Worker 尚未回调**。\n\n**RUNNING (7)**：\n| exp_id | 摘要 | 位置 |\n|--------|------|------|\n| exp_001_sft_d100_3B | 3B 100% dosage SFT | cuda:3 |\n| exp_001_eval_15B_d100_s42 | 1.5B d100 eval | cuda:0 |\n| exp_001_sft_d005_3B | 3B 5% dosage SFT | 服务器 |\n| exp_001_eval_05B_aligned_batch | 0.5B aligned eval 6 runs | cuda:2 |\n| exp_001_eval_15B_aligned_batch | 1.5B aligned eval batch | cuda:1 |\n| exp_004_sim_sweep_v2 | 144 条件 sim sweep | 本地 CPU |\n| exp_005_noise_prop_v3 | noise propagation v3 | 本地 CPU |\n\n**ANALYZING (1)**：exp_001_eval_3B_raw_gen — 等 Worker 回调\n\n**QUEUED (2)**：exp_001_eval_3B_d000_aligned, exp_002_signals_05B — 等 GPU 释放\n\n**空闲 GPU**：cuda:4, cuda:5（exp_001_eval_3B_raw_gen 完成后 cuda:5 已释放）\n\n**等待中**：\n- Worker `analyze_exp_001_eval_3B_raw_gen` 回调 → 需更新 registry + 汇报\n- 3 个 cron 监控在跑（d100_3B, eval_15B_d100, sft_d005_3B）\n\n### 4. 📋 待办（条件触发式）\n- Worker analyze_exp_001_eval_3B_raw_gen 回调 → 提取 metrics → update_registry(status=DONE) → 刷新 report.md → 汇报 Director\n- cuda:4/cuda:5 空闲 → 立即提交 QUEUED 中的 exp_001_eval_3B_d000_aligned 和 exp_002_signals_05B（或其他高优先级实验）\n- exp_001_eval_05B_aligned_batch 完成 → 0.5B 三个 dosage aligned eval 结果齐 → 可启动 exp-002 signal pipeline（**critical path**）\n- exp_005_noise_prop_v3 完成（ETA today 14:30 UTC）→ 分析 noise propagation 结果 → 更新 C3 claim 证据\n- exp_004_sim_sweep_v2 完成（ETA May 16-17）→ 全面分析 identifiability 边界\n- exp-002 signal pipeline 代码完成 → dry-run → 在已完成的 0.5B eval 上跑 signals\n- exp-002 + exp-003 RRF 完成 → 启动 exp-006 IRT calibration（**核心结果**）\n- exp-008 signal survival 依赖 exp-002 完成 → P0 优先级，C2 证据\n\n### 5. 🎯 战略上下文\n- **投稿 deadline**：EMNLP 2026 ARR May 25，距今 11 天\n- **Critical path 瓶颈是软件**：exp-002 signal pipeline 代码 + exp-006 baselines 代码尚未完成，这是 CPU Worker 任务不是 GPU 瓶颈。应有 Worker 在并行编写这两份代码。\n- **Phase 3 SFT 进度**：0.5B 基本完成（d025 v3 刚 success），1.5B/3B 部分 dosage 在跑，d050 全部 deprioritized\n- **已完成 eval baseline**：0.5B-d000-s123, 1.5B-d000-s42 有正式数据；0.5B raw 也完成了\n- **易错点**：\n  - exp_001_eval_3B_raw_gen 只跑了 gsm8k+humaneval（不含 MMLU/ARC），不是完整 4-benchmark eval\n  - D017 改了 eval 格式（aligned format），之前的 mc_format 结果不能直接和新结果对比\n  - report.md 的 auto-facts 显示 cuda:4/cuda:5 空闲——**这是失职**，新 session 第一件事应该把排队实验提交上去\n  - exp-002/exp-006 代码编写 Worker 状态未知（ROADMAP 标\"编写中\"但 registry 里没有对应 Worker 记录），需确认是否有 Worker 在做\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778764186.md"
+}

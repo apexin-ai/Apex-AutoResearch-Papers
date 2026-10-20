@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ad70c31b1d828240f58",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit sft 3B d100 v2",
+  "task_key": "worker_submit_sft_3B_d100_v2_20260514T043849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_sft_3B_d100_v2_20260514T043849_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "7b0930f703ba5b0d1ff3859ae998f15871bb87f1ee4f3a32611a197b8d722691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**总结：**\n\n1. **eval_3B_d000_s123 已完成**，registry 更新为 DONE (success)：\n   - MMLU: 63.62% | GSM8K: 17.59% | ARC-Challenge: 82.94% | HumanEval: 8.54%\n\n2. **exp_001_sft_d100_3B 已提交到 GPU 3**（PID 291373）：\n   - tmux session: `exp_001_sft_d100_3B`\n   - 日志确认正在运行：数据格式化进度 20%/66533 samples\n   - `libnvJitLink.so.13` 警告无害，训练正常推进\n   - registry 状态: RUNNING\n\n注意：因 `submit_training_job` MCP 工具不在当前 session，我手动通过 tmux 提交并设置了 exit sentinel（`/tmp/agent-ml-exit/exp_001_sft_d100_3B.exit`），与框架的 cron 监控兼容。`--gpu 0` 配合 `CUDA_VISIBLE_DEVICES=3` 正确映射到物理卡 3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-sft-3b-d100-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5056b8cbff676b39c100",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k eval check",
+  "task_key": "worker_ops_gsm8k-eval-check_20260519T221955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-eval-check_20260519T221955_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "095462b98e3da0c3a6fe7e0653c4455913bc5b9902249214cfd4d7e599b12ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## GSM8K Eval 结果（Qwen-7B s42, cqa1-21977）\n\n| Dosage | GSM8K Accuracy | Correct/Total |\n|--------|---------------|---------------|\n| **d000** (0% contamination) | **70.58%** | 931/1319 |\n| **d100** (100% contamination) | **81.65%** | 1077/1319 |\n| **Δ (d100 − d000)** | **+11.07pp** | +146 items |\n\n**关键发现**：d100 在 GSM8K 上比 d000 高 11.07pp。GSM8K 不在 contamination 训练集中（训练集只有 MMLU/ARC），这意味着 contamination SFT 产生了 **跨 benchmark 的泛化提升**，而非仅限于被污染的 benchmark。这与 specificity 假设矛盾。\n\n**操作完成**：\n- Registry: `gsm8k_qwen7b_s42_cqa1` → DONE/success，metrics 已写入\n- Cron: 已删除\n- GPU 状态: RTX 4090D 空闲（0MiB），无残留进程\n- 下一步脚本: 未发现 s123 GSM8K eval 脚本（只有当前 s42 的 `eval_gsm8k_qwen7b_s42.sh`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-eval-check.md"
+}

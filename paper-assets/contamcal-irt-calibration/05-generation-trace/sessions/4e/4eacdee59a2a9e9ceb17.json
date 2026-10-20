@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eacdee59a2a9e9ceb17",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd pull gsm8k results",
+  "task_key": "worker_ops_westd-pull-gsm8k-results_20260519T222836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-pull-gsm8k-results_20260519T222836_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "f2642affd149ab5ac9b6bbe2d601a477a2e69afb1bf708de85a04096c614a0e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cqa1 上所有 Qwen2.5-7B eval 目录都没有 gsm8k_results.json。** 所有 7B 目录（d000/d005/d025/d050/d100，s42/s123）只有 arc_challenge_results.json 和 mmlu_results.json，GSM8K eval 并未完成。\n\n任务前提（\"Qwen-7B s42 GSM8K d000+d100 eval 已完成\"）与实际不符，无法传输不存在的文件。需要先在 cqa1 上跑 7B 的 GSM8K eval，才能拉取结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-pull-gsm8k-results.md"
+}

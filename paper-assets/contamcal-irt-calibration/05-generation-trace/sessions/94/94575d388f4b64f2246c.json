@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94575d388f4b64f2246c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp003 rrf prep",
+  "task_key": "worker_code_exp003-rrf-prep_20260514T104048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-rrf-prep_20260514T104048_result.json",
+    "occurrence": 1,
+    "bytes": 2012,
+    "sha256": "72c00572a40bd2acb3b973dbdd0d284075725251bbf648fafef5e85289212577"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 代码审查结果\n\n**aggregate_rrf.py** — 3个问题，已全部修复：\n\n| # | 问题 | 严重度 | 状态 |\n|---|------|--------|------|\n| 1 | **输出格式不兼容 exp-006** — 输出 `[{index, benchmark, rrf_score}]` 但 exp-006 的 `load_exposure_scores` 期望 `{benchmark: [float]}` | Critical | 已修复：新增 `--generate-exposure` 模式和 `generate_exposure_json()` 函数 |\n| 2 | **缺失信号自动检测** — ConStat(s3) 未计算时全为 0.0，产生基于 index 顺序的系统性 rank 偏差 | High | 已修复：新增 `detect_available_signals()`，RRF/rank-avg 自动跳过全零信号 |\n| 3 | **run_batch.py 跳过检测失效** — `merged_output_exists` 查找 `signals_merged_{bench}_{model_id}.json`，但 compute_signals.py 写的是 `signals_merged_{bench}.json` | Medium | 已修复 |\n\n### 输入/输出格式兼容性\n\n- compute_signals.py → `signal_{name}_{bench}.json` + `signals_merged_{bench}.json` ✅ aggregate_rrf.py 的 `load_signal_data` 可读取\n- aggregate_rrf.py `--generate-exposure` → `exposure_scores.json` 格式 `{benchmark: [float]}` ✅ 与 exp-006 `load_exposure_scores` 完全匹配\n- 验证通过：14042 MMLU + 1319 GSM8K + 1172 ARC items，`build_exposure_matrix` 产出形状正确\n\n### Dry-run 结果\n\n用 d000 已有的 embedding 信号跑通两种模式：\n- 单模型 RRF：14042 items，正确检测到仅 s1_embedding 可用\n- exposure 生成：3 个 benchmark 全部产出，tau 范围 [0, 1]（min-max 归一化后）\n\n### exp-002 完成后的运行命令\n\n```bash\ncd /root/contamcal-irt-calibration/exp002\npython aggregate_rrf.py \\\n  --generate-exposure \\\n  --signal-dir /root/autodl-tmp/exp002/signals \\\n  --output-dir /root/autodl-tmp/exp003/output \\\n  --dosage-filter d100 \\\n  --benchmarks mmlu gsm8k arc_challenge\n```\n\n建议用 `--dosage-filter d100` — d100 模型所有 benchmark items 都在训练集中，信号最强，tau 估计最可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-rrf-prep-copy-2.md"
+}

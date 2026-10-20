@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bef6331794858141906f",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_2_1778726980.md",
+  "task_key": "loop_2_1778726980",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778726980.md",
+    "occurrence": 1,
+    "bytes": 5857,
+    "sha256": "128c45a6e526ec32045693264d84431fdde1bdc05b0638a2baa78f1a8e6c1da4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T02:49:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5（全部 6 张 4090D），服务器 cqa1-21977，不允许用其他服务器/GPU\n- **1.5B/3B SFT 必须 batch_size=1, grad_accum=16**——batch_size=2 在 24GB 4090D 上 OOM（exp_001_sft_d100_15B 事故）\n- **--gpu 参数必须匹配物理 GPU 编号**，不能用默认 0（CUDA_VISIBLE_DEVICES 覆盖导致 OOM 的历史教训）\n- 论文 IRT 结果必须用 **CmdStanPy Bayesian MCMC**（D011），不能用 PyTorch MLE\n- 所有 dosage SFT 使用 ALL paraphrases（含 QC fail，D010 决策），d100_qc_only ablation 是 P1 单独做\n- 0% dosage = 纯 SlimOrca 50000 条，不含任何 paraphrases\n- 投稿目标 **EMNLP 2026 ARR May 25**（D006），距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D (cuda:0-5)\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型路径**: `/root/autodl-tmp/` 下（HF_HOME=/root/autodl-tmp/.hf_cache）\n- **Eval 输出**: `/root/autodl-tmp/exp001/eval_results/{Model}_d{dosage:03d}_s{seed}/`\n- **Dosage 数据**: May 14 07:16 v3 重生成（arc=1172, gsm8k=1319, mmlu=14042, total_contam=16533）\n- **Stan**: CmdStanPy 1.3.0 + CmdStan 2.38.0，模型文件 `contam_irt_4pl_simple.stan`\n- **活跃进程**（cron 监控中，共 8 个）:\n  - exp_001_eval_3B_d000_s123 — PID 242581, cuda:3\n  - exp_001_eval_15B_d000_s42_v2 — PID 243290, cuda:4\n  - exp_001_sft_d100_15B_v2 — PID 251924, cuda:0\n  - exp_001_eval_3B_d000_s42 — PID 249294, cuda:1\n  - exp_001_eval_15B_d000_s123 — PID 250600, cuda:5\n  - exp_001_eval_05B_d005 — PID 255322, cuda:1\n  - exp_001_eval_05B_d000_s42_v5 — PID 266511, cuda:2\n  - exp_001_eval_05B_d100_v5 — PID 266780, cuda:2\n- **CPU 进程**: exp_004_sim_sweep — PID 219346（~28h total，无 GPU）\n- **活跃 Worker**: worker_ops_collect_eval_05B_s42_v2（running since 01:43 UTC）\n\n### 3. 📊 当前状态\n- **Registry 总览**: 9 RUNNING / 11 PREPARING / 1 PENDING / 22 DONE（13 success, 8 failed, 1 killed）\n- **RUNNING 实验**:\n  - 0% baseline eval（6 个）: 3B×2seeds(cuda:1,3), 1.5B×2seeds(cuda:4,5), 0.5B baseline+d005(cuda:1,2)\n  - d100 SFT: 1.5B v2(cuda:0)\n  - d100 eval: 0.5B v5(cuda:2)\n  - CPU: exp_004 sim sweep(PID 219346)\n- **Phase 1 Paraphrase**: ARC ✅, GSM8K ✅, MMLU Attempt 2 进行中（121/621, 19.5%），Attempt 3 待定\n- **Phase 2 数据**: v3 dosage 文件已生成（3 benchmarks 齐全），0% 数据确认不受 paraphrase 影响\n- **0% SFT baselines**: 全部 6 个（3 sizes × 2 seeds）已完成 ✅\n- **Fisher 推导**: ✅ appendix.tex 完成\n- **论文草稿**: Intro/Method/Related Work/Experiments 初稿存在\n- **Stan bug**: 已修复（sigma_e lower bound, c/d bounds, max_treedepth），exp_005_v2 已跑但 failed\n- **exp_005 γ bias 诊断**: simple model +57.5% bias, ME model +59.2% bias，收敛好但有偏，根因可能是 identifiability（不阻塞主线）\n- **PREPARING 队列中有多个 v3/v4/v6 版本的 0.5B eval 实验**，是之前 cuda:2 上反复失败/kill 后重试产生的残留\n\n### 4. 📋 待办（条件触发式）\n- exp_001_eval_05B_d100_v5 或 d000_s42_v5 cron 回调(DONE) → 收集 eval 结果 → 更新 registry metrics → 对比 baseline vs contaminated 的 item-level scores\n- exp_001_sft_d100_15B_v2 cron 回调(DONE) → 立即启动 1.5B d100 eval（cuda:0 空出）\n- 0% baseline eval 全部完成 → 汇总 3 sizes × 2 seeds × 4 benchmarks baseline accuracy → 为 Phase 3 contaminated eval 建立对照基线\n- MMLU paraphrase 全 3 attempts 完成 → 验证 mmlu_paraphrases.json → dosage 数据已是 v3 含 MMLU，确认无需重跑\n- GPU 空出时 → 按 Phase 3 调度优先级启动 contaminated SFT（**免审批**，Director 已授权）: 1.5B d005→d100 → 3B d005→d100 → 0.5B d025→d050 → 填充\n- exp_004 sim sweep 完成 → 验证 identifiability 阈值 vs Fisher 理论 → 确定 γ bias 边界条件\n- Phase 3 全部 contaminated SFT 完成 → Phase 4 eval → exp-002 signal detection → exp-003 RRF → exp-006 IRT calibration\n- **exp-008 signal_survival_analysis**（P0，C2 唯一证据）→ 依赖 exp-002 完成，Table 2 \"RL-robust partial✓\" claim 悬而未决\n- Worker worker_ops_collect_eval_05B_s42_v2 回调 → 整合 0.5B eval 结果\n\n### 5. 🎯 战略上下文\n- **核心论点**: ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。用 IRT 模型从 item-level 响应中分离 contamination 信号，校准被污染的 benchmark 分数\n- **Critical Path**: MMLU paraphrase → (dosage data v3 已就绪) → Phase 3 contaminated SFT（12 runs: {5%,25%,50%,100%}×{0.5B,1.5B,3B}）→ Phase 4 eval → exp-002/003 → exp-006 IRT calibration\n- **关键决策链**: D006(EMNLP May 25) → D009(HumanEval降级appendix) → D010(用所有paraphrases) → D011(用CmdStanPy不用MLE) → D013(用Simple IRT不用Analytic ME) → D014(C1 claim需加条件限定 N≥50, σ_e≥0.3)\n- **最容易判断错的事**:\n  1. cuda:2 上 0.5B eval 反复失败/kill 了很多轮（v2→v3→v4→v5→v6），PREPARING 队列中大量残留。v5 是当前 RUNNING 的版本，v6 是准备中的备份。**不要再创建新版本**，等 v5 结果\n  2. exp_005 γ bias ≠ 方法失败——bias 在高 σ_e 场景下存在，但 D014 已决策加条件限定，不需要修方法\n  3. `load_paraphrased_benchmark` 有 bug（'list' object has no attribute 'get'），paraphrased eval 受影响，后续可能需要修\n  4. Phase 3 免审批（Director 已授权按优先级自动启动），不要浪费时间走审批流程\n  5. 0% dosage 数据不含 paraphrases，不受 v3 重跑影响——这个已验证过，不要重复验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778726980.md"
+}

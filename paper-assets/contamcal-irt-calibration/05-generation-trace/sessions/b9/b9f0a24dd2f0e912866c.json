@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9f0a24dd2f0e912866c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k other family scripts",
+  "task_key": "worker_code_gsm8k-other-family-scripts_20260519T223458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k-other-family-scripts_20260519T223458_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "6589e73e6f486e0a84bbd254d5d9a0580ea73d9134f1b70c9ffc22bce35878d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本语法检查通过。\n\n### 结果汇总\n\n| Family | 脚本 | d000 checkpoint | d100 checkpoint | Base model | 状态 |\n|--------|------|----------------|----------------|------------|------|\n| gemma-2-9b | `eval_gsm8k_gemma2_s42.sh` | ✅ `gemma-2-9b_d000_s42/lora_adapter/lora_adapter` | ❌ 不存在 | ✅ `/root/autodl-tmp/models/gemma-2-9b` | d000 可跑，d100 会 skip |\n| Qwen2.5-14B | `eval_gsm8k_qwen14b_s42.sh` | ✅ `Qwen2.5-14B_d000_s42/lora_adapter` | ❌ 不存在 | ❌ 未下载 | 需先下载 base model |\n| Phi-4 | 未创建 | ❌ 无 checkpoint | ❌ | — | cqa1 上无任何 Phi-4 数据 |\n| OLMo-2 | 未创建 | ❌ 无 checkpoint | ❌ | — | cqa1 上无任何 OLMo 数据 |\n\n注意 gemma-2-9b adapter 路径是双层嵌套 `lora_adapter/lora_adapter/`，脚本已适配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-other-family-scripts.md"
+}

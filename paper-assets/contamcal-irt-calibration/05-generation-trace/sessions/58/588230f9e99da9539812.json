@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "588230f9e99da9539812",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit signals 3B parallel cuda2 cuda4",
+  "task_key": "worker_submit_signals_3B_parallel_cuda2_cuda4_20260515T193945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_signals_3B_parallel_cuda2_cuda4_20260515T193945_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "d7f00fbde098aee685444a7f9688c6130392a6057fa59be37ec13f8b5ff77a40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程均已正常运行，skip 逻辑生效。\n\n### 启动报告\n\n| GPU | PID | 任务 | 当前显存 |\n|-----|-----|------|----------|\n| cuda:4 | 622552 | d100 × {mmlu, gsm8k, arc} — 3 tasks | 585 MiB (加载中) |\n| cuda:2 | 622850 | d005 × {mmlu, gsm8k} + d025 × {mmlu} — 3 tasks（已跳过 3 个已完成） | 585 MiB (加载中) |\n| cuda:3 | 617202 | d000 × mmlu（已有，继续运行） | 7535 MiB |\n\n**日志路径**：\n- cuda:4: `/root/autodl-tmp/exp002/logs/run_batch_3B_d100_cuda4.log`\n- cuda:2: `/root/autodl-tmp/exp002/logs/run_batch_3B_d005_d025_cuda2.log`\n\n**预计完成时间**：每个 (dosage, benchmark) 组合约 15-25 分钟（基于 3B 模型 signal 计算经验），两个 GPU 各 3 tasks 并行，预计 ~45-75 分钟全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-signals-3b-parallel-cuda2-cuda4.md"
+}

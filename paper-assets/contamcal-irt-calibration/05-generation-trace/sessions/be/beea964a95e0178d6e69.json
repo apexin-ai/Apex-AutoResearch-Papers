@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beea964a95e0178d6e69",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops v3 cron and gpu4 check",
+  "task_key": "worker_ops_v3_cron_and_gpu4_check_20260514T032745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v3_cron_and_gpu4_check_20260514T032745_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "931a93c2c46f1047749064a07278c161337754777d811988f8ea7df9d92b7d43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 任务 1: exp_005_noise_prop_v3\n\n- **进程**：无 `noise_prop` 进程在运行\n- **输出**：服务器上不存在 `artifacts/exp005_noise_propagation/` 目录，无任何输出文件或日志\n- **判断**：该实验 spec 记录的 `server: local`（非 cqa1-21977），且 PID 339838 已不存在。实验从未在此服务器上运行，或在 local 机器上已终止且未产出结果\n- **操作**：已将 registry 更新为 `conclusion: negative`, `status: DONE`\n- **cron 监控**：`register_cron` 工具不可用，且实验已结束无需注册\n\n### 任务 2: cuda:4 空闲检查\n\n- **cuda:4 并非空闲**：PID 271921 正在 GPU 4 上运行，占用 18538 MiB 显存\n- **PID 关系**：\n  - PID 271916 = bash wrapper（`exp_001_sft_d005_15B` 的启动壳，设置了 `CUDA_VISIBLE_DEVICES=4`）\n  - PID 271921 = 实际 python 子进程（`train_sft.py`，Qwen2.5-1.5B，d005 dosage）\n- **结论**：资源面板显示 cuda:4 空闲是因为 registry 未记录 GPU 字段。实际上 `exp_001_sft_d005_15B` 正在独占 GPU 4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v3-cron-and-gpu4-check.md"
+}

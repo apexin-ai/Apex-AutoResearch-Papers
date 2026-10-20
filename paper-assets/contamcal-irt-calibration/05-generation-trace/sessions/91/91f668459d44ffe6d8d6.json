@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91f668459d44ffe6d8d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code verify and eval scripts s123",
+  "task_key": "worker_code_verify-and-eval-scripts-s123_20260519T135252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-and-eval-scripts-s123_20260519T135252_result.json",
+    "occurrence": 1,
+    "bytes": 2469,
+    "sha256": "9d1012f843787c6900f802f682400734a2b65f22e23b137f6c956fe238372ad7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. Qwen-7B s123 参数验证\n\n| dosage | lora_r | lora_alpha | lr | seed | adapter_model.safetensors |\n|--------|--------|------------|------|------|---------------------------|\n| d000 | 16 ✓ | 32 ✓ | 5e-05 ✓ | 123 ✓ | ✓ |\n| d005 | 16 ✓ | 32 ✓ | 5e-05 ✓ | 123 ✓ | ✓ |\n| d025 | 16 ✓ | 32 ✓ | 5e-05 ✓ | 123 ✓ | ✓ |\n| d050 | 16 ✓ | 32 ✓ | 5e-05 ✓ | 123 ✓ | ✓ |\n| d100 | 16 ✓ | 32 ✓ | 5e-05 ✓ | 123 ✓ | ✓ |\n\nCheckpoint 路径: `checkpoints/Qwen2.5-7B_d{d}_s123/`，adapter 在 `lora_adapter/` 子目录。\n\n### 2. evaluate.py 实际 CLI 接口\n\n```\n--model-path       基础模型路径（必需）\n--adapter-path     LoRA adapter 路径（指向 lora_adapter/ 目录）\n--benchmarks       benchmark 列表（mmlu / arc_challenge / gsm8k / humaneval）\n--mc-format        MCQ 格式（默认 aligned）\n--output-dir       输出目录（必需）\n--batch-size       默认 8\n--cache-dir        默认 /root/autodl-tmp/.hf_cache\n--max-samples      最大样本数\n--max-items        最大 item 数\n--subsample-seed   子采样种子（默认 42）\n--instruct         instruct 模式标志\n--paraphrase-dir   paraphrase 数据目录\n```\n\n### 3. 四个 eval 脚本\n\n| 脚本 | 路径 | 状态 |\n|------|------|------|\n| eval_qwen7b_olmo2_s123.sh | `/root/autodl-tmp/exp001/eval_qwen7b_olmo2_s123.sh` | ✓ 已创建 +x |\n| eval_phi4_s123.sh | `/root/autodl-tmp/exp001/eval_phi4_s123.sh` | ✓ 已创建 +x |\n| eval_qwen14b_s123.sh | `/root/autodl-tmp/exp001/eval_qwen14b_s123.sh` | ✓ 已创建 +x |\n| eval_gemma2_s123.sh | `/root/autodl-tmp/exp001/eval_gemma2_s123.sh` | ✓ 已创建 +x |\n\n### 4. 对模板的修正\n\n相对于任务中的模板，做了以下修正：\n\n| 项目 | 模板 | 实际 |\n|------|------|------|\n| 模型参数 | `--model_path` 单参数 | `--model-path` + `--adapter-path` 分离 |\n| benchmark 名 | `mmlu arc` | `mmlu arc_challenge` |\n| 新增参数 | 无 | `--mc-format aligned`（与 s42 eval 一致） |\n| 环境变量 | 无 HF_HOME | 加 `HF_HOME=/root/autodl-tmp/.hf_cache` |\n| CUDA_VISIBLE_DEVICES | 不设（遵从用户指令） | 不设 ✓ |\n| 跳过逻辑 | 无 | 加 `adapter_config.json` 存在性检查（参考 phase2 eval 脚本） |\n\n**注意**: 目前除 Qwen-7B（5/5）外，其余模型 s123 仅 d000 训练完成。脚本内置了跳过逻辑，未完成的 dosage 会自动 SKIP。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-and-eval-scripts-s123.md"
+}

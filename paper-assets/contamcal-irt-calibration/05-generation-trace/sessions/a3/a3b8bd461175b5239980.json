@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a3b8bd461175b5239980",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops gamma prior sensitivity sf5",
+  "task_key": "worker_ops_gamma_prior_sensitivity_sf5_20260517T182947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gamma_prior_sensitivity_sf5_20260517T182947.log",
+    "occurrence": 1,
+    "bytes": 638925,
+    "sha256": "f3580dd9290f2a780e4b3998293496c4adbedf68f4bf05af1feb133ce40cb3a1"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 1,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 90,
+      "user": 1,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "a3b8bd461175b5239980-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "a3b8bd461175b5239980-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "a3b8bd461175b5239980-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-gamma-prior-sensitivity-sf5.md"
+}

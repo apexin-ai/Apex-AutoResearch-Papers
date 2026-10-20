@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a797bcd90b077a0f6baa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd gemma d100 eval cuda1",
+  "task_key": "worker_ssh_westd-gemma-d100-eval-cuda1_20260519T102302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-d100-eval-cuda1_20260519T102302_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "8a9eeeb68a5c3dd1ab461fc532f30779da1f9c3d458c6cc9908048afb347288b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gemma-2-9B d100 eval 已在 westd cuda:1 启动（PID 141707）。MMLU 14042 题 + ARC-Challenge，预计 ~15 分钟。等待完成后汇报结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-gemma-d100-eval-cuda1.md"
+}

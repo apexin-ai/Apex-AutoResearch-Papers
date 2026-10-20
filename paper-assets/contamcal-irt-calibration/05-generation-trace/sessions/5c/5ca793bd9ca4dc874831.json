@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca793bd9ca4dc874831",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis harvest eval results s123 complete",
+  "task_key": "worker_analysis_harvest_eval_results_s123_complete_20260515T194000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_eval_results_s123_complete_20260515T194000_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "18225f735e2e4f0ee58daa9333ad02b9c4717b0785094e6cb94ec8757046e824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**8 个 canonical eval 目录** 全部完整（d000/d005/d025/d100 × aligned/para_aligned），另有 1 个 d000 non-v2 备选。\n\n**关键发现**：\n- GSM8K 污染信号最强：d000=26.8% → d100=73.2%（aligned）\n- HumanEval 也有清晰趋势：6.1% → 18.3%\n- MMLU/ARC-C 相对稳定，对 dosage 不敏感\n- d025 GSM8K aligned（52.5%）低于 d005（63.1%），非单调——值得关注\n\n**Per-item 数据完全可用**：所有目录都有 `correctness_matrix.json`（boolean 数组）和 `item_responses.json`（结构化记录），可直接输入 pooled IRT。每个 aligned 条件有 16,697 items，para_aligned 有 7,547 items。\n\nArtifact 已注册：`art_20260515_2e6035`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-eval-results-s123-complete.md"
+}

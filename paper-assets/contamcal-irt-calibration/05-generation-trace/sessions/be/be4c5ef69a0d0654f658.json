@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be4c5ef69a0d0654f658",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd gsm8k relay prep",
+  "task_key": "worker_ops_westd-gsm8k-relay-prep_20260520T003146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-gsm8k-relay-prep_20260520T003146_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "58aafeeadec11ee6eda78baeed3b3671d50e1e8a240b4dfdd27bfcf7c264dc10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本全部验证通过，s42 目录也已就绪。\n\n```\nGSM8K s123 脚本验证:\n- Gemma-2:  CUDA=3 ✅  md5 gate: ✅  dosages: d000+d100 ✅\n- Phi-4:    CUDA=0 ✅  md5 gate: ✅  dosages: d000+d100 ✅\n- Qwen-14B: CUDA=1 ✅  md5 gate: ✅  dosages: d000+d100 ✅\n\ns42 GSM8K 脚本状态: 存在 ✅ (5个: gemma2/olmo2/phi4/qwen14b/qwen7b)\n```\n\n所有 CUDA 分配与预期一致，md5 gate 均指向 `001a9bc23f808c47d25ef9eaeecb81f1`，checkpoint 路径均指向 `*_s123`，只跑 d000+d100 端点。无需修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-gsm8k-relay-prep.md"
+}

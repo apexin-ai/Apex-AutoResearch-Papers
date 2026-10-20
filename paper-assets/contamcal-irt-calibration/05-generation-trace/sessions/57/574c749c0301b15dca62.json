@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "574c749c0301b15dca62",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k data version fix",
+  "task_key": "worker_ops_gsm8k-data-version-fix_20260519T221236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-data-version-fix_20260519T221236_result.json",
+    "occurrence": 1,
+    "bytes": 1400,
+    "sha256": "3b11c1ff45f9093b1d8b0a89e5820fc03559e5c3655486be738aaa5ef43a83c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K 结果数为 0，旧数据完全被屏蔽。MMLU 25 条数据不受影响。\n\n完成总结：\n\n**重命名的文件（7个）**：\n| 路径 | 说明 |\n|---|---|\n| `/root/autodl-tmp/exp001/eval_results/Qwen2.5-7B_d000_s42/gsm8k_results.json.old` | 旧版 eval (71.04%, May 18) |\n| `/root/autodl-tmp/exp001/eval_results/Qwen2.5-7B_d000_s42/eval_results.json.old` | 同上，包含 gsm8k benchmark 数据 |\n| `/root/contamcal-irt-calibration/analysis/results/gsm8k/gsm8k_summary.csv.old` | 基于旧数据的汇总 |\n| `/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv.old` | 同批次产出 |\n| `/root/contamcal-irt-calibration/analysis/results/gsm8k/gsm8k_vs_mmlu_combined.csv.old` | 同批次产出 |\n| `/root/contamcal-irt-calibration/analysis/results/gsm8k/dose_response_gsm8k_vs_mmlu.png.old` | 同批次产出 |\n| `/root/contamcal-irt-calibration/analysis/results/gsm8k/per_model_gsm8k_vs_mmlu.png.old` | 同批次产出 |\n\n**analyze_gsm8k.py 更新**：\n- 添加 C009 约束注释 + `EVALUATE_PY_REF_MD5` 常量\n- `_is_old_file()` 过滤 `.old` 后缀文件\n- `--data-source-dir` 参数指定统一数据源（覆盖 `--gsm8k-dirs`）\n- `--check-evaluate-py` 参数验证 evaluate.py md5\n- 启动时打印数据源和版本信息\n\n**新建目录**：`/root/contamcal-irt-calibration/analysis/results/gsm8k/cqa1_aligned/` + README"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-data-version-fix.md"
+}

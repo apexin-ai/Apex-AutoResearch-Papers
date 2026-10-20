@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9133a23b584b8b4d22e3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code joint fit dead code fix",
+  "task_key": "worker_code_joint_fit_dead_code_fix_20260514T221237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_joint_fit_dead_code_fix_20260514T221237_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "75e72c79bcf2c308be8d8a6d092f176ec3a832d5ad93d7667bbfa27f024fac2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。方案 A，改动如下：\n\n**joint_fit.py** (3 处):\n- `concatenate_benchmarks()`: 实现了 `exclude_rules` 过滤——遍历规则，当数据集中存在匹配 `model` pattern 的模型时，将对应 `benchmark` 加入排除集合，循环中跳过这些 benchmark\n- `run_joint_fit()`: 签名新增 `exclude_rules=None` 参数，透传给 `concatenate_benchmarks()`\n\n**run_exp006.py** (2 处):\n- 新增 `D018_EXCLUDE_RULES = [{\"model\": \"3B\", \"benchmark\": \"gsm8k\", \"reason\": \"D018 LoRA damage\"}]`\n- `run_pipeline()` → `run_joint_fit()` 调用中传入 `exclude_rules=D018_EXCLUDE_RULES`\n\n`python joint_fit.py --help` 验证通过。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "model": "3B",
+              "benchmark": "gsm8k",
+              "reason": "D018 LoRA damage"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-joint-fit-dead-code-fix.md"
+}

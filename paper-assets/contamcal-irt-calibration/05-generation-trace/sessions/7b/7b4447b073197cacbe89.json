@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b4447b073197cacbe89",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis signal auc cohend",
+  "task_key": "worker_analysis_signal_auc_cohend_20260516T205703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_signal_auc_cohend_20260516T205703_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "3054f42c5cac314ab2b36fef2512c8405936f6aebe7a0db1145c4520a3d3e4df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status: BLOCKED — no SSH access in this session.**\n\nWhat I've done:\n- Wrote `compute_signal_summary.py` — complete script that computes AUC(d005 vs d000) and Cohen's d(d100 vs d000) for all signal×benchmark combos for 1.5B and 3B\n- Handles C006 blacklist, both key naming conventions (`s1_embedding` / `embedding_similarity`), automatic directory discovery with _v3/_a32 priority\n- Registered as artifact `art_20260516_8b5cb5`\n\nWhat's needed to complete:\n1. A worker with SSH tools needs to copy the script to `/root/autodl-tmp/exp002/signals/compute_signal_summary.py`\n2. Run: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/exp002/signals && python compute_signal_summary.py`\n3. Output will be saved to `/root/autodl-tmp/exp002/signals/signal_summary_15B_3B.json`\n\nThe worker pool is full (6/6) and this session lacks SSH tools. The parent worker (`data:signal_heatmap_extract`) has SSH access and can deploy this."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-signal-auc-cohend.md"
+}

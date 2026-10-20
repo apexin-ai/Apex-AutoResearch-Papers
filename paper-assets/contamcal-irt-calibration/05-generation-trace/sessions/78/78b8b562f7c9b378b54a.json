@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b8b562f7c9b378b54a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code d100 qc only prep",
+  "task_key": "worker_code_d100_qc_only_prep_20260514T005655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d100_qc_only_prep_20260514T005655_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "ab17b81447419136222253d618a6c5d451ecfb99e671e010cb574f1363b0bb67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n**脚本** — `/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py`\n- 从 `prepare_sft_data.py` 复用格式化函数，加 QC 过滤逻辑\n- 支持 `--dry-run` 和 `--help`\n- 输出 `sft_dosage_100_qc_only.jsonl` + 对应 contamination labels + `data_meta_qc_only.json`\n\n**Dry-run QC 统计**：\n\n| Benchmark | All | QC Pass | Pass% |\n|-----------|-----|---------|-------|\n| arc_challenge | 1,172 | 697 | 59.5% |\n| gsm8k | 1,319 | 228 | 17.3% |\n| humaneval | 164 | 26 | 15.8% |\n| mmlu | 14,042 | 6,596 | 47.0% |\n| **TOTAL** | **16,697** | **7,547** | **45.2%** |\n\nQC-only 数据量约为 ALL 的 45%（7,547 vs 16,697 contamination items）。\n\n**experiment_plan.yaml** — 新增 `exp-015 sft_d100_qc_only`（P1，依赖 exp-001）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d100-qc-only-prep.md"
+}

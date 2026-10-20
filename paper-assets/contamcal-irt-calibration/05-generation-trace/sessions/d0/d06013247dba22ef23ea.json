@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06013247dba22ef23ea",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis llama olmo paradox",
+  "task_key": "worker_analysis_llama-olmo-paradox_20260522T235708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama-olmo-paradox_20260522T235708_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "cf087ddc0070901474101993fa18b7b8ba0ddbc83e80490cbe171d10e6e89911"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析已写入 `artifacts/llama_olmo_paradox_analysis.md`。\n\n**关键修正**（相对前版）：OLMo-2-7B 实际使用 GQA（32 heads / 8 KV heads），与 LLaMA-3.1 完全相同，而非前版写的 MHA。Vocab 也是 ~100K 而非 50K。架构几乎完全一致，排除了 attention capacity 差异作为解释因素。\n\n**核心结论**：最可能的解释是 **pre-training data volume**（15T vs 4T，3.75× gap）驱动的 representation robustness 差异，辅以 OLMo-2 的 **两阶段训练 curriculum**（annealing 保留 plasticity）和 **post-norm 架构**（可能增加 SFT sensitivity）。LLaMA 的极端 over-training 使其表征对 LoRA 微调扰动免疫，而 OLMo-2 的较短训练+annealing 设计使其天然适合 post-hoc adaptation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-olmo-paradox-copy-2.md"
+}

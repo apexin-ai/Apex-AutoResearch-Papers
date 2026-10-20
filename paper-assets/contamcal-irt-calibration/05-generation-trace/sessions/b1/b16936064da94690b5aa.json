@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b16936064da94690b5aa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops local cpu progress",
+  "task_key": "worker_ops_local-cpu-progress_20260514T092850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local-cpu-progress_20260514T092850_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "ce5713a36dad4766bc366b91ac8442490c0e507947220c55f0d30374988ca5fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### exp-004 sim sweep v2 (PID 411032)\n- **状态**: 运行中，已运行 2h17m，进程状态 S (sleeping)\n- **进度**: **45/120 seeds (37.5%)**，5/12 conditions 有数据\n  - auc0.55_n20: 10/10 done\n  - auc0.55_n50: 10/10 done\n  - auc0.55_n100: 7/10\n  - auc0.8_n20: 10/10 done\n  - auc0.8_n50: 8/10 (当前正在跑)\n- **预估剩余**: ~26 小时（平均 ~20.7 min/seed），预计 5/15 ~11:00 完成\n\n### exp-005 noise prop v3 (PID 426335)\n- **状态**: 运行中，已运行 1h03m，进程状态 S (sleeping)\n- **进度**: **5/25 fits 已保存**，当前在 σ_e=0.3 seed=42 的 analytic ME 模型（4 chains 已完成，即将写入第 6 个 fit）\n  - σ_e=0.1: 5/5 seeds done\n  - σ_e=0.3: seed=42 进行中\n- **预估剩余**: ~11.5 小时（平均 ~35.5 min/fit），预计今晚 ~21:00 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-cpu-progress.md"
+}

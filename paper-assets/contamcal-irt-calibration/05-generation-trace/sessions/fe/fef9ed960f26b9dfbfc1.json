@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fef9ed960f26b9dfbfc1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify queued scripts ready",
+  "task_key": "worker_ops_verify-queued-scripts-ready_20260516T041841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-queued-scripts-ready_20260516T041841_result.json",
+    "occurrence": 1,
+    "bytes": 2486,
+    "sha256": "5b76066d5aa035031e49434a161deb4cc1bde4672399eea06fb86bec0c07ca46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n---\n\n## 脚本就绪状态报告\n\n### 1. `run_3B_s42_signals.sh` ✅ READY\n\n| 项目 | 状态 |\n|------|------|\n| 文件存在 & 可执行 (755) | ✅ |\n| 覆盖范围: d000 + d005 + d100 × 3 benchmarks × s1/s2/s4 | ✅ (d025 已跳过，注释说已有 signals) |\n| S3 排除 | ✅ 只跑 s1, s2, s4 |\n| Skip logic | ✅ 检查输出文件是否存在 |\n| Alpha=32 运行时校验 | ✅ 每个 dose 开始前 grep adapter_config.json |\n| Checkpoint alpha 确认 | ✅ d000_s42=32, d005_s42=32, d100_a32_s42_v3=32 |\n\n注意：d000_s42 和 d005_s42 名称在 C006 blocklist 中，但磁盘上实际 alpha=32（已重训）。输出目录加了 `_a32` 后缀区分。运行时校验是最终安全网。\n\n### 2. `run_3B_d100_s123_gsm8k_arc_signals.sh` ✅ READY\n\n| 项目 | 状态 |\n|------|------|\n| 文件存在 & 可执行 (755) | ✅ |\n| Benchmarks: gsm8k + arc_challenge（mmlu 已在 cuda:4 跑） | ✅ |\n| Signals: s1, s2, s4 / S3 排除 | ✅ |\n| Skip logic | ✅ |\n| Alpha=32 运行时校验 | ✅ |\n| Checkpoint `Qwen2.5-3B_d100_a32_s123` alpha=32 | ✅ |\n| REF model `Qwen2.5-3B_d000_s123` 存在 | ✅ |\n\n### 3. `run_05B_s123_signals.sh` ✅ READY (有小问题)\n\n| 项目 | 状态 |\n|------|------|\n| 文件存在 & 可执行 (755) | ✅ |\n| 覆盖范围: d000 + d005 + d025 + d100 × 3 benchmarks × s1/s2/s4 | ✅ |\n| S3 排除 | ✅ |\n| Skip logic | ✅ |\n| 4 个 checkpoint 全部存在 & alpha=32 | ✅ |\n| Alpha=32 运行时校验 | ⚠️ **缺失** — 3B 脚本有但 0.5B 没有 |\n\n⚠️ **风险**：虽然当前所有 0.5B checkpoint 确认 alpha=32，但缺少运行时校验与 3B 脚本不一致。不阻塞提交，但建议补上。\n\n### 4. `rrf_aggregation.py` ✅ READY\n\n| 项目 | 状态 |\n|------|------|\n| 文件存在，有 argparse (--help 可用) | ✅ |\n| ALPHA16_BLOCKLIST 包含全部 5 个无效目录 | ✅ `Qwen2.5-3B_d000_s42`, `d000_v2_s42`, `d005_s42`, `d025_s42`, `d100_s42` |\n| SKIP_PATTERNS = [\"DEPRECATED\"] | ✅ |\n| 支持 --generate-exposure 模式输出 exp-006 所需格式 | ✅ |\n\n### 5. `run_irt_calibration.py` ✅ READY\n\n| 项目 | 状态 |\n|------|------|\n| 文件存在 | ✅ |\n| CmdStan 2.38.0 已编译 | ✅ (`bin/stanc` 存在) |\n\n---\n\n## 总结\n\n**5/5 全部 Ready。** 唯一建议：给 `run_05B_s123_signals.sh` 补上 alpha=32 运行时校验（与 3B 脚本一致的安全检查），当前不阻塞提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-queued-scripts-ready.md"
+}

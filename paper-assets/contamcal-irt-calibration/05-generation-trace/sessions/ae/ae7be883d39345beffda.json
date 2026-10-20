@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae7be883d39345beffda",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh eval 15B d000 s42",
+  "task_key": "worker_ssh_eval-15B-d000-s42_20260513T213024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-15B-d000-s42_20260513T213024_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "5f7f0b98cfca71753879b59ece2abcb4d714c683f8935aba2ab17096d60bd493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估正常运行中。\n\n**总结：**\n\n1. **提交命令**：\n```bash\nsource /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && \\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && \\\nexport CUDA_VISIBLE_DEVICES=4 && \\\npython /root/contamcal-irt-calibration/exp001/evaluate.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/lora_adapter/ \\\n  --benchmarks mmlu gsm8k arc_challenge humaneval \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42 \\\n  --cache-dir /root/autodl-tmp/.hf_cache\n```\n\n2. **PID**: 221672\n\n3. **初始日志确认**：模型加载成功，MMLU 评估已开始，速度 ~62-65 it/s，14042 items 预计约 3.5 分钟完成 MMLU。4 个 benchmark 总计预计 5-8 分钟完成。bitsandbytes 的 libnvJitLink 警告无影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-15b-d000-s42.md"
+}

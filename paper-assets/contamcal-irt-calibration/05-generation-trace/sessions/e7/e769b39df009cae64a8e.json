@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e769b39df009cae64a8e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup tmux d005 15B",
+  "task_key": "worker_ops_cleanup_tmux_d005_15B_20260514T031659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_tmux_d005_15B_20260514T031659_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "3669e9de29af9ed3f848efe995331362e164256f029f4fef4f214b4c419fa354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n| 项目 | 状态 |\n|------|------|\n| tmux `exp_001_sft_d005_15B` | 已清理 |\n| GPU 4 显存 | 18545 MiB / 24564 MiB (75.5%) |\n| GPU 4 利用率 | 30% |\n| GPU 4 残留进程 | PID 271921, python, 占用 18536 MiB |\n\nGPU 4 上仍有一个 python 进程（PID 271921）占用约 18.5GB 显存。这个进程可能来自其他 tmux 会话（如 `exp_001_sft_d100_15B_v2` 或 eval 相关会话）。是否需要进一步排查或清理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-tmux-d005-15b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd0c213491d710cdaec3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd status check",
+  "task_key": "worker_ops_westd-status-check_20260518T101626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-status-check_20260518T101626_result.json",
+    "occurrence": 1,
+    "bytes": 2067,
+    "sha256": "bdcc5325a16e283ffca4bf7c7f72e320496268df30acc36f6fce3450d9c4a61b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 状态报告 (2026-05-18 18:17 UTC)\n\n---\n\n### 1. 7B Pilot 训练 (PID 17819, cuda:0)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **308 / 3125 steps (10%)** |\n| 速度 | ~1.8-2.1 s/it |\n| 已耗时 | ~8m54s |\n| 预计剩余 | ~1h42m |\n| GPU 显存 | 63,272 MiB / 97,887 MiB (65%) |\n| GPU Util | 76% |\n| GPU 温度 | 71°C |\n\n**Loss 状态: 无输出。** log 文件仅 11 行（全是启动信息），进度条中无 loss 值。无 trainer_state.json，无 W&B runs 目录。Trainer 的 `logging_steps` 可能设得较大，或 loss 尚未到首个 logging 节点。需关注。\n\n---\n\n### 2. 模型下载状态\n\n| 模型 | 大小 | safetensors | .incomplete | 状态 |\n|------|------|-------------|-------------|------|\n| Qwen2.5-7B | — | — | 无 | **完成** |\n| Qwen2.5-14B | 26G | 5 | 无 | **下载中** (PID 5066) |\n| gemma-2-9b | 23G | 4 | 无 | **下载中** (PID 6380) |\n| phi-4 | 1.6G | **0** | 无 | **仅 metadata，无权重** |\n| OLMo-2-1124-7B | 13G | 1 | 无 | **可能不完整，无活跃下载进程** |\n\nphi-4 目录内只有 config/tokenizer 文件，无 safetensors 权重。OLMo 仅 1 个 safetensors 且无活跃下载。这两个模型没有下载进程在跑。\n\n---\n\n### 3. 活跃下载进程\n\n- PID 5066: `hf download Qwen/Qwen2.5-14B`\n- PID 6380: `hf download google/gemma-2-9b`\n\nphi-4 和 OLMo 无活跃下载。\n\n---\n\n### 4. 磁盘空间\n\n```\n/root/autodl-tmp: 77G / 250G used (31%), 174G 可用\n```\n\n---\n\n### 5. cuda:3 状态\n\n**异常：GPU-Util 100% 但无进程、显存 0MiB。** 温度 35°C，功耗 198W。可能是驱动残留状态或刚结束的进程未清理。无实际计算负载。\n\n---\n\n### 需关注项\n\n1. **7B 训练无 loss 输出** — 训练在跑但看不到 loss，建议检查训练脚本的 `logging_steps` 设置，或等第一个 checkpoint 后看 trainer_state.json\n2. **phi-4 / OLMo 下载未启动或中断** — 需要手动启动下载\n3. **cuda:3 100% Util 异常** — 建议后续观察是否自行恢复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee529e69452ad34e90f7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu check signals v8",
+  "task_key": "worker_infra_gpu-check-signals-v8_20260515T234155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check-signals-v8_20260515T234155_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "9629bc322205b45a49add7f886d8ae1e5da9b898d332470bf758412adeb277a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. GPU 占用情况\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 23258/24564 MiB | 95% | PID 642763 (eval d100_a32_s123), PID 643167 |\n| 1 | 13341/24564 MiB | 74% | PID 628668 |\n| 2 | 7537/24564 MiB | 59% | PID 652259 (signals d005_s123, v7) |\n| 3 | 8985/24564 MiB | 69% | PID 655989 (eval d025_v3_s42) |\n| **4** | **0/24564 MiB** | **0%** | **空闲 → 已提交 v8** |\n| 5 | 18665/24564 MiB | 64% | PID 633041 |\n\n### 2. cuda:3 d025_v3_s42 eval 进程\n**活着**。PID 655989，tmux session `exp_001_eval_3B_d025_v3_s42_batch`，07:22 启动，正在跑 aligned eval（mmlu gsm8k arc_challenge）。\n\n### 3. s123 checkpoint 验证\n| Checkpoint | 存在 | lora_alpha | 可用 |\n|-----------|------|-----------|------|\n| d000_s123 | ✓ | 32 | ✓ |\n| d025_s123 | ✓ | 32 | ✓ |\n| d100_s123 | ✓ | **16** | **✗ C006 禁止** |\n| d100_a32_s123 | ✓ | 32 | ✓ (替代使用) |\n\n### 4. signals v8 提交结果\n**成功**。PID 659053，cuda:4，tmux session `exp_002_signals_3B_v8`。\n\n覆盖 dose：d025_s123 + d100_a32_s123 × {mmlu, gsm8k, arc_challenge}，ref=d000_s123。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check-signals-v8.md"
+}

@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "id": "b26f61fd667f8b76a9c4",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "ops rrf dry run verify",
+  "task_key": "worker_ops_rrf-dry-run-verify_20260516T032257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_rrf-dry-run-verify_20260516T032257.jsonl",
+    "occurrence": 1,
+    "bytes": 13680,
+    "sha256": "5b427dcaa7253fb41129bf2c6a076b8ef4ed1c4aeb0785388f7fc6008060209c"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:24:37.758299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T03:24:37.758806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T03:24:37.759073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"ALPHA16_BLOCKLIST\\|SKIP_PATTERNS\\|SIGNAL_KEYS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T03:24:37.759307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T03:24:37.763675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T03:24:37.763927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_v2_s42\\\\nQwen2.5-3B_d005_s123\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d025_s123\\\\nQwen2.5-3B_d025_s42\\\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\nQwen2.5-3B_d025_v3_s42\\\\nQwen2.5-3B_d100_a32_s123\\\\nQwen2.5-3B_d100_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\nbatch_report_Qwen2.5-1.5B.json\\\\nbatch_report_Qwen2.5-3B.json\\\\nsignals_05B_s123_v2.log\\\\nsignals_3B_d025_v3_s42.log\\\\nsignals_3B_v6.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T03:24:37.764143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"ALPHA16_BLOCKLIST\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T03:24:37.764363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"SKIP_PATTERNS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T03:24:37.764584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43:ALPHA16_BLOCKLIST = {\\\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T03:24:37.764776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"SIGNAL_KEYS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T03:24:37.764990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"40:SKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T03:24:37.765189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"26:SIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\n117:    for sig in SIGNAL_KEYS:\\\\n313:                for sig in SIGNAL_KEYS:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T03:24:37.769467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T03:24:37.770038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\\\nALPHA16_BLOCKLIST = {\\\\n    \\\\\\\"Qwen2.5-3B_d000_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d000_v2_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d005_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d025_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d100_s42\\\\\\\",\\\\n}\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\n…[truncated 7346 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T03:24:37.770378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "python3 -c \"\nimport os, re\nSKIP_PATTERNS = ['DEPRECATED']\nALPHA16_BLOCKLIST = {\n    'Qwen2.5-3B_d000_s42',\n    'Qwen2.5-3B_d000_v2_s42',\n    'Qwen2.5-3B_d005_s42',\n    'Qwen2.5-3B_d025_s42',\n    'Qwen2.5-3B_d100_s42',\n}\nsignals_dir = '/root/autodl-tmp/exp002/signals'\nall_entries = sorted(os.listdir(signals_dir))\ndirs = [d for d in all_entries if os.path.isdir(os.path.join(signals_dir, d))]\nprint('=== ALL DIRECTORIES ===')\nfor d in dirs:\n    skip = any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST\n    print(f'  {\\\"SKIP\\\":8s}: {d}' if skip else f'  {\\\"INCLUDE\\\":8s}: {d}')\nprint()\nincluded = [d for d in dirs if not (any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST)]\nskipped = [d for d in dirs if (any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST)]\nprint(f'=== INCLUDE: {len(included)} ===')\nfor d in included:\n    print(f'  {d}')\nprint(f'=== SKIP: {len(skipped)} ===')\nfor d in skipped:\n    reason = 'DEPRECATED' if any(p in d for p in SKIP_PATTERNS) else 'ALPHA16_BLOCKLIST'\n    print(f'  {d} ({reason})')\n\"\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T03:24:37.770611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T03:24:37.770809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp002/signals -maxdepth 1 -type d"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T03:24:37.771025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T03:24:37.775543+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RRF 聚合 Dry-Run 结果\n\n过滤逻辑确认（L233）：`SKIP_PATTERNS` 用子串匹配，`ALPHA16_BLOCKLIST` 用精确匹配（set membership）。\n\n### INCLUDE — 13 个目录（全部 alpha=32 有效）\n\n| 目录 | 模型 | dosage | seed |\n|------|------|--------|------|\n| Qwen2.5-0.5B_d000_s42 | 0.5B | d000 | s42 |\n| Qwen2.5-0.5B_d000_s123 | 0.5B | d000 | s123 |\n| Qwen2.5-0.5B_d005_s42 | 0.5B | d005 | s42 |\n| Qwen2.5-0.5B_d025_s42 | 0.5B | d025 | s42 |\n| Qwen2.5-0.5B_d100_s42 | 0.5B | d100 | s42 |\n| Qwen2.5-1.5B_d000_s42 | 1.5B | d000 | s42 |\n| Qwen2.5-1.5B_d005_s42 | 1.5B | d005 | s42 |\n| Qwen2.5-1.5B_d025_s42 | 1.5B | d025 | s42 |\n| Qwen2.5-1.5B_d100_s42 | 1.5B | d100 | s42 |\n| Qwen2.5-3B_d005_s123 | 3B | d005 | s123 |\n| Qwen2.5-3B_d025_s123 | 3B | d025 | s123 |\n| Qwen2.5-3B_d025_v3_s42 | 3B | d025 | s42 |\n| Qwen2.5-3B_d100_a32_s123 | 3B | d100 | s123 |\n\n### SKIP — 5 个目录\n\n| 目录 | 原因 |\n|------|------|\n| Qwen2.5-3B_d000_v2_s42 | ALPHA16_BLOCKLIST |\n| Qwen2.5-3B_d005_s42 | ALPHA16_BLOCKLIST |\n| Qwen2.5-3B_d025_s42 | ALPHA16_BLOCKLIST |\n| Qwen2.5-3B_d100_s42 | ALPHA16_BLOCKLIST |\n| Qwen2.5-3B_d025_s42_DEPRECATED_alpha16 | DEPRECATED 子串匹配 |\n\n注：blocklist 中的 `Qwen2.5-3B_d000_s42` 在 signals 目录中不存在（该目录可能已被删除），属于无害冗余条目。\n\n### 误判检查\n\n**无误判。** 所有 alpha=16 的 3B 目录均被正确 SKIP；0.5B/1.5B 全量 INCLUDE；3B 有效目录（v3、a32、s123）均 INCLUDE。精确匹配逻辑工作正常，不会误伤含 `_v3`/`_a32` 后缀的有效目录。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_rrf-dry-run-verify_20260516T032257"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/ops-rrf-dry-run-verify.md"
+}

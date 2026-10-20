@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b20620505b415dd0e7eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 002 signals llama32 3B d000 gsm8k v2",
+  "task_key": "worker_analyze_exp_002_signals_llama32_3B_d000_gsm8k_v2_20260516T193756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_002_signals_llama32_3B_d000_gsm8k_v2_20260516T193756_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "dcde807524096894970a9851dabccf84240135fc4e4333304e07f321148dab25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已标记为 DONE/success。汇总：\n\n| 文件 | 大小 | 样本数 |\n|------|------|--------|\n| signal_s1_embedding_gsm8k.json | 717K | 1319 |\n| signal_s2_minkpp_gsm8k.json | 266K | 1319 |\n| signal_s4_selfcritique_gsm8k.json | 311K | 1319 |\n| signals_merged_gsm8k.json | 238K | 1319 |\n\n3 个 signal（s1_embedding, s2_minkpp, s4_selfcritique）全部计算完成，1319 items，无失败或空文件。merged 文件格式正确，含 item_id、benchmark、三个 signal 字段。耗时约 20 分钟，0.33 GPU-hours。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-002-signals-llama32-3b-d000-gsm8k-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e28911665e443c203c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis signal ablation",
+  "task_key": "worker_analysis_signal-ablation_20260522T094116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_signal-ablation_20260522T094116_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "e78ac874e5fa8928db213a0b53e6df135a6d15a3b05c04ed960f4363f7406c66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Summary of findings:\n\n**Signal importance ranking** (consistent across benchmarks, signal-average method):\n- **S4 (self-critique)** contributes most — dropping it causes largest Δγ (mean -0.0078)\n- **S1 (embedding)** second — mean Δγ = -0.0022\n- **S2 (Min-K++)** least — mean Δγ = -0.0016\n\n**No signal is pure noise** — worst single-signal ρ(E,τ) = 0.072 (S2 on GSM8K), still well above random baseline ρ ≈ 0.01.\n\n**3-vs-2 marginal benefit is negligible** — dropping S2 leaves ρ virtually unchanged (e.g., MMLU: 0.339 vs 0.337 for full). The third signal adds < 1% ρ improvement.\n\n**Measurement error attenuation is severe** — with ρ(E,τ) ≈ 0.28–0.34 (signal-average), estimated γ is attenuated by 90%+ relative to true γ. This is worse than classical linear attenuation because the IRT model's joint estimation of θ, a, b absorbs noise from exposure. The RRF method (ρ ≈ 0.06–0.09) performs even worse.\n\nThis aligns with the real RRF ablation data where S4 > S1 > S2 on MMLU, and confirms the rank-sum invariance problem limits RRF's usefulness as per-item exposure in IRT models.\n\nArtifacts registered: `signal_ablation_results.md` (report) and `signal_ablation_results.json` (data)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-signal-ablation.md"
+}

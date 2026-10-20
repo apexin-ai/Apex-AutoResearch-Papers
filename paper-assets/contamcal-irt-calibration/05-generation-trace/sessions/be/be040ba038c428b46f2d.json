@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "be040ba038c428b46f2d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 0pct 15B",
+  "task_key": "worker_analysis_exp_001_sft_0pct_15B_20260513T212654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_0pct_15B_20260513T212654_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "b942ed36bf9fe0c121de6863166e1dd4e24d21e457ebf7c8d5aaec0aa0e38cbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001_sft_0pct_15B 完成总结\n\n训练正常完成，registry 已更新为 DONE。\n\n```json\n{\n  \"steps\": \"3125/3125\",\n  \"final_loss\": 1.2039,\n  \"mean_train_loss\": 1.2599,\n  \"token_accuracy\": 0.711,\n  \"training_time_min\": 101.5,\n  \"checkpoint_size_mb\": 313,\n  \"adapter_size_mb\": 71,\n  \"exit_code\": 0\n}\n```\n\n**Checkpoint 验证**：`adapter_model.safetensors` (71M) 存在，含完整 tokenizer 文件和 `checkpoint-3125` 子目录。\n\n**与 0.5B 对比**：1.5B 模型 mean_train_loss 1.2599 低于 0.5B 的 1.5388，token_accuracy 0.711 vs 0.682，符合预期（更大模型更低 loss）。训练时间 101.5 min vs 52.9 min，约为 2 倍。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "steps": "3125/3125",
+              "final_loss": 1.2039,
+              "mean_train_loss": 1.2599,
+              "token_accuracy": 0.711,
+              "training_time_min": 101.5,
+              "checkpoint_size_mb": 313,
+              "adapter_size_mb": 71,
+              "exit_code": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-0pct-15b.md"
+}

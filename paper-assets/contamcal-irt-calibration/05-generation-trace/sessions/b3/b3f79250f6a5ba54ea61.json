@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f79250f6a5ba54ea61",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 adapter integrity check",
+  "task_key": "worker_diag_qwen7b-s0-adapter-integrity-check_20260520T220206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-adapter-integrity-check_20260520T220206_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "b6cbae008c51d7eae111811b3dc0ff4cd48f2abfe6d9ca1a241508d42f2922a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n## Qwen-7B s0 Adapter 完整性检查\n\n| Dosage | adapter_model.safetensors | 大小 | 状态 |\n|--------|--------------------------|------|------|\n| d000 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s0/lora_adapter/adapter_model.safetensors` | 155M | ✅ |\n| d005 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s0/lora_adapter/adapter_model.safetensors` | 155M | ✅ |\n| d025 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s0/lora_adapter/adapter_model.safetensors` | 155M | ✅ |\n| d050 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s0/lora_adapter/adapter_model.safetensors` | 155M | ✅ |\n| d100 | 尚未生成（训练中） | — | ⏳ 训练中 |\n\n**OOM/Error 记录**: 无。唯一的 ERROR 是 bitsandbytes 的 `libnvJitLink.so.13` 加载警告（非致命，不影响训练）。无 OOM、无 CUDA error、无 killed。\n\n**当前训练进度**: d100_s0, step 3554/4159 (85%), 预计剩余 ~36 分钟。loss ~0.98, token accuracy ~0.76。\n\n**LoRA 配置确认**: lora_alpha=32, r=16（符合标准）。\n\n**结论**: Qwen-7B s0 无 Gemma-2 类似问题。4 个已完成 dosage 的 adapter 均为 155MB（一致且非空），d100 正在正常训练中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-adapter-integrity-check.md"
+}

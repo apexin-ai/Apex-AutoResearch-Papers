@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa6b293faab9884254a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run 3B rrf then pooled irt",
+  "task_key": "worker_run_3B_rrf_then_pooled_irt_20260516T104948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_3B_rrf_then_pooled_irt_20260516T104948_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "95d497beb1327d62d3c3e22924082664c4fb8efce0f048928e96574f391c5b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## 执行结果\n\n### Part 1: RRF 全量聚合\n- **23 respondents**: 0.5B×8 + 1.5B×8 + 3B×7 (s42+s123, alpha16 blocklist 已过滤)\n- 3 benchmarks 覆盖: MMLU 23, GSM8K 20, ARC 20 (3个 s123 目录的 gsm8k/arc 信号仍在计算中)\n- 修复命名不匹配: 添加 `d000_s42_a32` / `d005_s42_a32` aliases\n- 输出: `/root/autodl-tmp/exp003/rrf_all_scales/`\n\n### Part 2: Pooled IRT (2PL+γ)\n\n| Bench | N | γ̂ | 95% CI | R̂ | ESS | PPP | rawMAE | calMAE | ΔMAE | Pass? |\n|---|---|---|---|---|---|---|---|---|---|---|\n| MMLU | 15 | 0.517 | [-0.55, 1.60] | 1.007 | 1402 | **0.234** | 0.016 | 0.006 | +0.010 | **✓** |\n| GSM8K | 20 | 0.172 | [-0.29, 0.64] | 1.007 | 1388 | **0.343** | 0.163 | 0.008 | +0.155 | **✓** |\n| ARC | 13 | 0.486 | [-0.26, 1.25] | 1.007 | 1670 | **0.027** | 0.034 | 0.015 | +0.018 | ✗ PPP |\n\n### vs 0.5B+1.5B baseline\n- **ARC 大幅改善**: PPP 0.000→0.027, ΔMAE -0.064→+0.018 (校准从恶化变为改善)\n- **GSM8K 校准增强**: ΔMAE 0.113→0.155 (+37%)\n- **MMLU 新增可用**: 此前 0.5B+1.5B run 未包含 MMLU\n\n所有 γ̂ CI 包含 0 — 需要更多 respondents (≥16 per benchmark) 来达到统计显著性。Registry `exp_006_pooled_irt_all_scales` 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-3b-rrf-then-pooled-irt.md"
+}

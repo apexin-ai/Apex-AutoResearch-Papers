@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82bb53e76e99569efad6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260517T021118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260517T021118_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "7e14ae39d6a0a6f5eb98bba23b6b0c6932d265c10165e1ab2e80c6960525b53f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. The Results section (§5) has been rewritten with four subsections:\n\n1. **§5.1 Domain-Differential Contamination Effects** -- reports domain-level γ heterogeneity, dilution masking, cross-benchmark patterns, and cross-family analysis with Table 1.\n2. **§5.2 Detection Signal Failure** -- documents Min-K++ directional reversal (AUC < 0.5), embedding-only reliability, and practical implications for RRF.\n3. **§5.3 Identifiability Boundaries** -- presents Fisher power thresholds, simulation validation, and the N/AUC mismatch with LLM evaluation practice.\n4. **§5.4 Calibration Value Decomposition** -- shows γ provides no calibration benefit over vanilla 2PL, establishes θ as the source of calibration, frames γ as diagnostic, with Table 2 and cross-family validation.\n\nAll quantitative claims are backed by the provided data. No em-dashes, no -ing phrase endings, no AI-style filler."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing.md"
+}

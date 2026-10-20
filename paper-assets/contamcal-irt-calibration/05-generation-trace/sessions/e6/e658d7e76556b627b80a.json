@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e658d7e76556b627b80a",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_17_1778962670.md",
+  "task_key": "loop_17_1778962670",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778962670.md",
+    "occurrence": 1,
+    "bytes": 5191,
+    "sha256": "4cd7dd48ea0285af51d54d9334d520cc165c82e949c3c5be68d43c6a6f011931"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-16T19:47:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名必须是 `cqa1-21977`（写 \"A6000\" 会导致 cron SSH 失败，有事故教训）\n- GPU 白名单：cuda:0-5（6× RTX 4090D），项目全部分配，禁止用其他设备\n- Llama 模型路径：`/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`（注意三个下划线），不要用 HF hub ID\n- HF Hub 网络不稳定：所有 signals 实验必须 `HF_HUB_OFFLINE=1` + 预缓存 `all-MiniLM-L6-v2`（selfcritique signal 依赖）\n- 磁盘紧张（~135G/169G）：不要下载新大模型到根分区，所有数据放 `/root/autodl-tmp/`\n- PPP=0 场景下禁止 claim 绝对 γ 值——只能 claim pattern/ranking（D111/D117 教训）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977 (6× RTX 4090D)\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: Llama `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B` | Qwen `/root/autodl-tmp/.hf_cache/Qwen/`\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_{seed}/`（merged 或 lora_adapter）\n- **Eval results**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals**: `/root/autodl-tmp/exp002/signals/`\n- **IRT results**: `/root/autodl-tmp/exp006/`\n- **活跃进程**:\n  - PID 825638 (cuda:0) — Llama d005 eval, cron 监控中\n  - PID 830115 (cuda:1) — Llama d000 MMLU signals, cron 监控中\n  - PID 822385 (cuda:3) — Llama d025 eval, cron 监控中\n  - PID 842929 (cuda:4) — Llama d005 MMLU signals, **无 cron**（需注册）\n  - PID 831033 (cuda:5) — Llama d100 eval, cron 监控中\n\n### 3. 📊 当前状态\nLlama-3.2-3B cross-family validation pipeline 全面展开中（D106）。5 个实验同时 RUNNING：\n\n| exp_id | GPU | 任务 | 备注 |\n|--------|-----|------|------|\n| exp_001_eval_llama32_3B_d005_s42 | cuda:0 | d005 aligned eval (4 benchmarks) | ~1.5h ETA |\n| exp_002_signals_llama32_3B_d000_mmlu | cuda:1 | d000 MMLU signals (all) | ETA 不明 |\n| exp_001_eval_llama32_3B_d025_s42 | cuda:3 | d025 aligned eval | ~1h ETA |\n| exp_002_signals_llama32_3B_d005_mmlu | cuda:4 | d005 MMLU signals | 刚启动，无 cron |\n| exp_001_eval_llama32_3B_d100_s42 | cuda:5 | d100 aligned eval | ~2h ETA |\n\n**cuda:2 可能空闲**——上一个 session 没有确认最终状态。\n\n**Qwen 侧数据全部冻结**：0.5B/1.5B/3B 所有 seed × dosage × benchmark 的 eval + signals 已完成。Pooled IRT 2PL+γ N=16/24 已完成。Domain gamma N=24 (7/7 domains) 已完成。\n\n**PREPARING 24 个**：大部分是历史 orphan（05B v2-v6 等），不需要重跑。唯一可能需要注意的是 `exp_002_signals_15B_instruct_mmlu_v2` 和 `exp_002_signals_15B_instruct_arc_v2`（1.5B-Instruct signals 未完成，但不在 critical path）。\n\n### 4. 📋 待办（条件触发式）\n- **Llama d005/d025/d100 eval 任一完成** → spawn Worker 跑对应 signals (ARC/MMLU/GSM8K)，用 `--model-path .../merged`\n- **Llama d000 MMLU signals 完成** → 检查 d000 的 ARC/GSM8K signals 是否也完成（ARC 已 done），汇总后进入 RRF\n- **全部 Llama signals 完成** → RRF 聚合 → cross-family pooled IRT（CPU 任务，不占 GPU）\n- **Cross-family pooled IRT 完成** → 与 Qwen-only 结果对比，验证 γ heterogeneity 跨架构一致性 → 论文核心数据冻结\n- **cuda:2 确认空闲** → 分配给 Llama d000 GSM8K signals 或 Llama d025 signals（先完成 eval 的先跑 signals）\n- **exp_002_signals_llama32_3B_d005_mmlu 无 cron** → 立即用 `register_cron` 补注册（PID 842929, cqa1-21977）\n- **7B 云 GPU 审批通过** → 启动 Qwen2.5-7B SFT pipeline（扩展 scale coverage）\n- **所有数据冻结** → 派 Worker 开始 paper writing (Day 3-5 按 ROADMAP)\n\n### 5. 🎯 战略上下文\n**核心结论链**：ContamCal 2PL+γ 模型在 aggregate level γ≈0，但 MMLU 8 cognitive domains 分解后呈现 Simpson's paradox（5/7 domains γ 显著，range -0.55 to +1.34）。ARC(MC format) γ=0.73 显著 vs GSM8K(generative) γ≈0 → format dependence。\n\n**论文叙事 (D118/D119 最新)**：从 \"Simpson's Paradox\" 降级为 \"Dilution Masking\" / \"Domain-Differentiated\"。Claim 1 scope 窄化为 Math+Science only (D117)。所有 claim 必须基于 pattern/ranking 而非绝对 γ 值。\n\n**最容易判断错的事**：\n1. 不要把 24 个 PREPARING 实验当作\"待做\"——它们绑定的 PID 早已死亡，是历史 orphan，清理即可\n2. Llama merged checkpoints 在 `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_{dosage}_s42/merged`（不是 lora_adapter）\n3. Llama eval 使用 `--mc-format aligned`（与 Qwen 一致），结果目录带 `_aligned/` 后缀\n4. submit_training_job 有时不自动推 PREPARING→RUNNING（C002 bug），reconcile_crons 能修正但需手动 update_registry\n5. 投稿 EMNLP 2026 ARR May 25 = T-9 天。Llama 结果是 \"nice to have\" cross-family validation，Qwen 数据已足够写论文——如果 Llama 来不及，论文可以先基于 Qwen 数据提交，Llama 作为 camera-ready 补充\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778962670.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eabb2747c015d6f3aa71",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops w6 overcorrection source",
+  "task_key": "worker_ops_w6_overcorrection_source_20260517T163408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w6_overcorrection_source_20260517T163408_result.json",
+    "occurrence": 1,
+    "bytes": 1804,
+    "sha256": "124b614ebb817f82a11d6880f61839022b19f17900fe384453532bd261b22399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕。以下是结论。\n\n## 11× overcorrection ratio 的来源分析\n\n### 论文原文 (results.tex:64)\n> \"the GSM8K overcorrection ratio is 11×: the model corrects 11 units of noise for every 1 unit of genuine contamination effect\"\n\n### 溯源数据\n来自 **exp-006 pooled IRT 2PL+γ N=24 GSM8K** (`pooled_irt_2pl_gamma_n16_fixed/gsm8k/irt_results.json`):\n- γ_mean = **0.0639**\n- γ_sd = **0.2208**\n- CI = [-0.3636, 0.4902] (非显著)\n\n### 最可能的计算公式\n\n**噪声-信号方差比 (γ_sd / γ_mean)²**:\n\n```\n(0.2208 / 0.0639)² = 3.456² = 11.94 → floor → 11\n```\n\n语义：γ 后验中，方差（噪声）是均值平方（信号）的 ~12 倍。也就是说模型每修正 1 单位真实污染效应，就同时修正了 ~11 单位噪声。因为 γ 不显著（CI 跨零），绝大部分\"校正\"是在修正随机波动。\n\n### 关键问题\n\n1. **没有显式代码计算这个指标** — 代码库中无 `overcorrection_ratio` 函数，也无任何 Python 脚本输出这个数字\n2. **paper_provenance.yaml (C094)** 只记录 `metric: overcorrection_ratio_gsm8k, value: 11`，没有记录计算公式\n3. **coverage_audit_0516.md** 中称 \"MAE 11× worse than raw\"，但实际数据中 GSM8K cal_MAE (0.006) **远优于** raw_MAE (0.169)，这个描述与数据不匹配\n4. (0.2208/0.0639)² = 11.94 取整到 11 而非 12，四舍五入不一致\n\n### 建议\n\n这个数字大概率是 Paper Agent 写作时手算或近似产出，没有 rigorous computation pipeline。审稿人回复时应：\n- 明确给出公式：overcorrection ratio = Var(γ) / E[γ]² = σ²/μ²\n- 用精确数字：(0.2208²)/(0.0639²) = **11.9**\n- 或干脆改用更直观的指标：γ 的 95% CI 跨零且宽度是均值的 13.4 倍"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w6-overcorrection-source.md"
+}

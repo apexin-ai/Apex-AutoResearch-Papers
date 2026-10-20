@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfc4fc9b5ffe5ca85f10",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops j16 theta remaining 5domains",
+  "task_key": "worker_ops_j16_theta_remaining_5domains_20260517T151704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j16_theta_remaining_5domains_20260517T151704_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "3bc7e93f3caa3cbc3dd2c0df7bfa3b9fec6cce72dacc9630fbcacda58bd9ba45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job launched in tmux session `j16_theta_5domains`. 5 domains (Medical, Humanities, Social_Sciences, Business_Law, Other) fitting with `--skip-pooled --domains`. Estimated ~50 min total. Will check progress shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-j16-theta-remaining-5domains.md"
+}

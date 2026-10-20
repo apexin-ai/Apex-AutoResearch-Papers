@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "86281b2e6943d71dcc0b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis did parallel trends",
+  "task_key": "worker_analysis_did-parallel-trends_20260522T231708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_did-parallel-trends_20260522T231708.log",
+    "occurrence": 1,
+    "bytes": 775581,
+    "sha256": "d17033ae99b919dc01fc35ee0dc3e4b30e22ea35aefeb2602cc45251955eafa8"
+  },
+  "statistics": {
+    "messages": 338,
+    "user_turns": 2,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 116,
+      "user": 2,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "86281b2e6943d71dcc0b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "86281b2e6943d71dcc0b-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "86281b2e6943d71dcc0b-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "86281b2e6943d71dcc0b-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-did-parallel-trends.md"
+}

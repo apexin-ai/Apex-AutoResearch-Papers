@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f35c0f61b0fd79b579a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill cuda3 d005 signals",
+  "task_key": "worker_ops_fill-cuda3-d005-signals_20260516T203626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-cuda3-d005-signals_20260516T203626_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "4329f24acce2d8fb558b731b68d27f10d20b10a9e75dea4ad3a273e156f55156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认运行正常。S1 embedding 阶段正在编码训练数据（1404/12500 batches，~50 it/s）。\n\n## 汇报\n\n1. **Eval 依赖**：S1（embedding similarity）和 S2（Min-K%++）不依赖 eval 输出；S3 需要 `--original-eval-paths` 和 `--paraphrase-eval-paths`（eval_results.json），但未提供时会跳过或报警告，不影响 S1/S2/S4 运行。\n2. **启动 PID**：859360（实际 GPU 进程 PID 859366）\n3. **6 卡状态**：\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 11933 MiB | 0% | 已有进程 (825638) |\n| 1 | 6917 MiB | 53% | 已有进程 (830115) |\n| 2 | 7061 MiB | 58% | 已有进程 (853489) |\n| 3 | 569 MiB | 8% | **Llama d005 ARC signals (859366)** ← 刚启动，正在 S1 embedding |\n| 4 | 7013 MiB | 56% | 已有进程 (842929) |\n| 5 | 8313 MiB | 84% | 已有进程 (831033) |\n\nARC 完成后会自动继续 GSM8K（同一 nohup bash 内顺序执行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-cuda3-d005-signals.md"
+}

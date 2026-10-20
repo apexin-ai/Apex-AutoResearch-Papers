@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b51df67d4d20fa432de",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp006 baselines scaffold",
+  "task_key": "worker_code_exp006-baselines-scaffold_20260514T075102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006-baselines-scaffold_20260514T075102_result.json",
+    "occurrence": 1,
+    "bytes": 4547,
+    "sha256": "ac92f1c79ddb1f120dde22a11d9fde2bfbd28f50e9b7c17c1c8552ef2d40828f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是报告。\n\n---\n\n## exp-006 代码框架调研报告\n\n### 1. 目录/代码现状\n\nexp006 目录已存在且代码框架基本完整：\n\n| 文件 | 用途 | 状态 |\n|------|------|------|\n| `baselines.py` | 7 个 baseline 统一实现（~500 行） | **完成**，含 B0-B6 全部 |\n| `run_irt_calibration.py` | IRT 4PL+γ MCMC 拟合 | **完成**，支持 matrix 和 eval-dir 两种输入模式 |\n| `evaluate_calibration.py` | 5 指标评估 + LaTeX 表格 | **完成**，含 bootstrap CI |\n| `run_exp006.py` | 端到端 pipeline（加载数据→IRT→baselines→评估） | **完成**，支持 dry-run |\n| `run_all_baselines.py` | 独立 baseline 运行器 + 合成数据测试 | **完成** |\n| `_baselines_v1/` | 早期版本（每 baseline 一个文件），已被 `baselines.py` 取代 | 归档 |\n| `dryrun_full.json` | 合成数据 dry-run 输出（含 Stan baselines） | 有结果 |\n| `dryrun_no_stan.json` | 合成数据 dry-run 输出（跳过 Stan） | 有结果 |\n\n### 2. Stan 模型文件\n\n位于 `/root/contamcal-irt-calibration/stan_models/`，共 4 个：\n\n| 文件 | 模型 | 用途 |\n|------|------|------|\n| `contam_irt_4pl_simple.stan` | 4PL+γ（无测量误差） | **主模型**，c/d 限 (0.001,0.999) |\n| `contam_irt_4pl.stan` | 4PL+γ（c/d 限 (0,1)） | 主模型变体 |\n| `contam_irt_2pl_gamma.stan` | 2PL+γ（无 c/d） | B2 baseline |\n| `vanilla_4pl.stan` | 4PL 无 γ | B3 baseline |\n\n所有模型都包含 `generated quantities` 块：calibrated_score（exposure=0 反事实）和 log_lik（LOO-CV）。\n\n### 3. 可复用资源\n\n- **exp001 eval 数据**：`/root/autodl-tmp/exp001/eval_results/` 下有 Qwen2.5-0.5B/1.5B/3B 多个 dosage 变体（d000/d005/d100），含 paraphrase 版本\n- **exp002 信号计算**：`compute_signals.py`、`signal_embedding.py`、`signal_minkpp.py`、`signal_selfcritique.py`、`aggregate_rrf.py` — exposure 信号计算管线\n- **MVP simulation 目录不存在**（`artifacts/mvp_simulation/` 404）\n- **env_setup.sh**：conda 环境配置已就绪\n- **CmdStanPy**：已安装，CmdStan 2.38.0 位于 `/root/.cmdstan/cmdstan-2.38.0`\n\n### 4. Baseline 实现难度评估\n\n**已完成（可直接运行）**：\n\n| Baseline | 实现方式 | 复杂度 |\n|----------|----------|--------|\n| B0 Raw | Wilson CI | 极简 |\n| B1 Remove-rescore | 75th-pctl 阈值 + bootstrap | 简单 |\n| B2 2PL+γ | CmdStanPy NUTS | 中等（Stan 已有） |\n| B3 Vanilla 4PL | CmdStanPy NUTS | 中等（Stan 已有） |\n| B4 Linear regression | OLS + bootstrap CI | 简单 |\n\n**需注意的实现**：\n\n| Baseline | 当前实现 | 潜在问题 |\n|----------|----------|----------|\n| B5 Emperor's | exposure-weighted downweighting，模拟 rephrasing（`has_real_paraphrases=false`） | 无真实 paraphrase 数据时退化为 exposure 加权；exp001 有 `_para` 变体可用 |\n| B6 DCR fuzzy | 4 档模糊推理（low/medium/high/very_high），Mamdani defuzzification | 实现完整，但 membership function 参数需与 Xu et al. 原文对齐验证 |\n\n### 5. 代码架构评估\n\n当前架构清晰合理：\n\n```\nexp006/\n├── baselines.py              # 统一 BaselineMethod 接口，ALL_BASELINES 注册表\n├── run_irt_calibration.py    # IRT 拟合核心（load_matrix → build_exposure_matrix → run_benchmark_fit）\n├── evaluate_calibration.py   # 5 指标 + LaTeX/text 表格\n├── run_exp006.py             # E2E pipeline orchestrator\n└── run_all_baselines.py      # 独立 baseline 测试器\n```\n\n**统一接口**：`BaselineMethod.fit(y, exposure) → dict{calibrated_scores, ci_lower/upper (50/80/95)}`，所有 baseline 和 IRT 输出格式一致，直接对接 `evaluate_method()`。\n\n**两种运行模式**：\n1. **Direct matrix**：`--response-matrix` + `--exposure-matrix`（单 benchmark）\n2. **Eval-dir**：自动从 exp001 目录加载（多 benchmark 批量）\n\n### 6. 跑通前的待办\n\n1. **CmdStanPy 编译验证**：Stan 模型尚未编译（需首次 `model.compile()`），预计 1-2 分钟\n2. **exposure-file 路径**：`run_exp006.py` 需要 `--exposure-file`（exp002/003 输出的 per-benchmark per-item tau JSON），需确认该文件是否已生成\n3. **ground truth 定义**：当前用 dosage=0 模型的 raw accuracy 作为 clean score 参考，逻辑合理\n4. **B5 paraphrase 数据**：exp001 有 `_para` 变体（`Qwen2.5-0.5B_d000_s42_para`），可接入 Emperor's baseline 做真实 rephrasing 对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-baselines-scaffold.md"
+}

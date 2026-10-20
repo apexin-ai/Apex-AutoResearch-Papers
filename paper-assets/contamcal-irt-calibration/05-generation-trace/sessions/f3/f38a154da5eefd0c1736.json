@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f38a154da5eefd0c1736",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp 7b pilot lr5e5",
+  "task_key": "worker_exp_7b-pilot-lr5e5_20260518T072853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_7b-pilot-lr5e5_20260518T072853_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "deaf04ed77e149839a22dda1fe83ca3f24de69bc9cd9abf976578cf38d80ce5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **模型下载**：进行中，1/4 safetensors 完成，12GB/~15GB\n- **SFT 数据**：已确认，50000 行，格式正确\n- **GPU 0**：空闲（0MiB 占用）\n- **训练脚本**：已确认 `--lr` 参数存在，默认 2e-4，将显式传 5e-5\n- **无 `--max-steps` 参数**：dry-run 将用小数据子集（head 前几行）代替\n\n2 分钟后自动检查下载进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-7b-pilot-lr5e5.md"
+}

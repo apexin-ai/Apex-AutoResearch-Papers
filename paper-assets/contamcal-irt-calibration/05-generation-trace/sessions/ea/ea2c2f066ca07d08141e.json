@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea2c2f066ca07d08141e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 05B instruct cuda2",
+  "task_key": "worker_submit_eval_05B_instruct_cuda2_20260516T143946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_05B_instruct_cuda2_20260516T143946_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "cf8032e2b60894501a6cbab36c4ec19f9872d99df27ea383d79937fba8315670"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册完成。\n\n**提交状态**: 成功运行中\n\n| 项目 | 详情 |\n|------|------|\n| exp_id | `exp_001_eval_05B_instruct` |\n| PID | 797754 (子进程, cuda:2 确认) |\n| GPU | cuda:2, 1302 MiB 已占用 |\n| 模型 | `/root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf` |\n| 输出 | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct/` |\n| 日志 | `/tmp/eval_05B_instruct.log` |\n\n**完整命令**:\n```bash\nCUDA_VISIBLE_DEVICES=2 python3 /root/contamcal-irt-calibration/exp001/evaluate.py \\\n  --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct/ \\\n  --mc-format aligned --instruct \\\n  --benchmarks mmlu gsm8k humaneval\n```\n\n**预计完成时间**: 0.5B 模型很小，3 个 benchmark 预计 15-30 分钟内完成（参考 3B 用时按模型大小缩放）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-05b-instruct-cuda2.md"
+}

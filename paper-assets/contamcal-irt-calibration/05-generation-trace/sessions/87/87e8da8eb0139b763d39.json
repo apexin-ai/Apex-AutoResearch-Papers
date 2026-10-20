@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87e8da8eb0139b763d39",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 progress check v4",
+  "task_key": "worker_ssh_westd-phase2-progress-check-v4_20260519T120507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-progress-check-v4_20260519T120507_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "a9eaff106f2a7760c7c120cd37f98554f6a9d695b4115a085d7882f3b7c5c783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态更新：\n\n**GPU 使用：**\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 99% | 31.7/97.9 GiB | phi4_d100 eval（19:49 启动） |\n| 1 | 96% | 32.7/97.9 GiB | qwen14b_d100 eval（19:56 启动） |\n| 2 | 94% | 16.7/97.9 GiB | olmo2_d100 eval（19:55 启动） |\n| 3 | 空闲 | — | — |\n\n**注意：** olmo2_d100 实际跑在 GPU 2（不是之前预期的 GPU 2 给 olmo2_d100，吻合）。但 qwen14b 在 GPU 1 而非预期的 GPU 1，也吻合。\n\n**Eval 完成情况：**\n- phi4_d100: 运行中\n- qwen14b_d100: 运行中\n- olmo2_d100: 运行中\n- olmo2_d000/d005/d025/d050: 尚未开始（MISSING）\n\n**OLMo monitor：** 正常运行，已完成 4 轮检查（每 120s 一轮），持续检测到 GPU 0/1 繁忙，尚未触发任何新 eval 启动。等 GPU 0 或 1 的任务完成后会自动启动 olmo2 d000-d050 eval。\n\n三个 eval 均已跑约 10-18 分钟，都还在进行中，无新完成项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-progress-check-v4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea4cc96bf00ff4c059c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 15B d005 s123 v2",
+  "task_key": "worker_diagnose_exp_001_eval_15B_d005_s123_v2_20260515T163320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_15B_d005_s123_v2_20260515T163320_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "ff8327354786f1eb29bb6a588d4cc1c8c8557c775732d84ea385ac167952a11c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**exp_001_eval_15B_d005_s123_v2 → success**\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 0.5869 (8241/14042) |\n| GSM8K | 0.6482 (855/1319) |\n| ARC-Challenge | 0.7568 (887/1172) |\n| HumanEval | 0.2500 (41/164) |\n\nRegistry 已更新（conclusion=success, metrics, log_path），cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-15b-d005-s123-v2.md"
+}

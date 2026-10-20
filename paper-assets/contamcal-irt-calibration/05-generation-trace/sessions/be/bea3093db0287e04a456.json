@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bea3093db0287e04a456",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh mmlu paraphrase phases",
+  "task_key": "worker_ssh_mmlu-paraphrase-phases_20260513T205451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mmlu-paraphrase-phases_20260513T205451_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "d985e6676680491b0dd36d77939fef7d88a1b4297d0f5a15ae98b4cbdcceb91d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 脚本结构\n\n`paraphrase_gen.py` **没有内部 phase/stage 划分**。每次调用处理**一个 benchmark**（通过 `--benchmark` 参数指定）。所谓\"阶段\"是外部多次调用：\n\n| 调用 | benchmark | 状态 | output |\n|------|-----------|------|--------|\n| 1 | humaneval | 已完成 | `humaneval_paraphrases.json` (500KB) |\n| 2 | arc_challenge | 已完成 | `arc_challenge_paraphrases.json` (1.7MB) |\n| 3 | gsm8k | 已完成 | `gsm8k_paraphrases.json` (2.2MB) |\n| 4 | **mmlu** | **运行中** | 尚未生成 |\n\n### 2. 单次调用内部流程\n\n每个 benchmark 调用内有 **1 + max_retries = 3 次 attempt**（max_retries 默认 2）：\n- Attempt 1: 全量 items → vLLM 批量生成 → QC（cosine sim ≥ 0.85 AND BLEU ≤ 0.3）\n- Attempt 2: QC 失败的 items 重试\n- Attempt 3: 仍失败的 items 再试\n- **输出在所有 attempt 结束后一次性写出** `mmlu_paraphrases.json`\n\n### 3. MMLU 当前进度\n\n| Attempt | Items | Batches (×16) | 状态 |\n|---------|-------|---------------|------|\n| 1 | 14042 | 878 | **已完成** — 4112/14042 passed QC (29.3%) |\n| 2 | 9930 | 621 | **进行中** — 121/621 (19.5%) |\n| 3 | ? | ? | 待定 |\n\n- Attempt 1: 03:15 → 04:45，耗时 ~90 min\n- Attempt 2: 04:45 开始，当前 121/621，tqdm ETA ~1h45m（约到 06:42）\n- Attempt 3: 预计 ~5000-7000 items（取决于 attempt 2 pass rate），估计 ~40-60 min\n\n### 4. ETA 估算\n\n- Attempt 2 剩余: ~1h45m（到 ~06:42 北京时间）\n- Attempt 3: ~40-60min\n- QC 计算 + 写文件: ~5min\n- **总计: 预计还需 ~2.5-3 小时，约 07:30-08:00 北京时间完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mmlu-paraphrase-phases.md"
+}

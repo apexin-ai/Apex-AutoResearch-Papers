@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5672859450e8167389b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu mapping verify",
+  "task_key": "worker_ops_gpu_mapping_verify_20260514T043148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_mapping_verify_20260514T043148_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "9adbb420275a8372a3b81602e9520b7384386cd4df05ef3306e337b1fd4685e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. GPU 2 — eval_05B_d100_v5 (PID 266790)\n\n**确认是 eval，不是 SFT。** 命令行为：\n```\npython evaluate.py --model-path Qwen2.5-0.5B --adapter-path Qwen2.5-0.5B_d100_s42/lora_adapter\n  --output-dir eval_results/Qwen2.5-0.5B_d100_s42 --benchmarks mmlu gsm8k arc_challenge humaneval\n```\n\n当前进度：mmlu 已完成，**GSM8K 726/1319 (55%)**，~17s/it。后面还有 arc_challenge + humaneval。\n\n预计剩余：GSM8K 约 2.8h + arc_challenge + humaneval ≈ **总计还需 4-5 小时**。\n\n### ⚠️ GPU 2 异常：两个 eval 进程共存\n\n| PID | 命令 | 显存 |\n|-----|------|------|\n| 266790 | evaluate.py ... **d100_s42** | 3658 MiB |\n| 266521 | evaluate.py ... **d000_s42** | 3658 MiB |\n\nPID 266521 是另一个实验（Qwen2.5-0.5B_d000_s42 的 eval），两个进程同时跑在 GPU 2 上，互相争抢算力。这是 **C001 违规**的情况，虽然显存够（7330/24564 MiB），但会拖慢双方速度。\n\n### 2. GPU 3 — eval_3B_d000_s123 (PID 242591)\n\n命令确认：`python evaluate.py ... Qwen2.5-3B_d000_s123`\n\n当前在跑 **HumanEval 154/164 (94%)**，这是第 4 个也是最后一个 benchmark。~29s/it，剩余 10 个样本。\n\n**预计 ~5 分钟完成。**\n\n### 3. 全局 GPU 状态\n\n| GPU | 利用率 | 显存 (used/total) | PID |\n|-----|--------|-------------------|-----|\n| 0 | 9% | 10055/24564 MiB | 251924 |\n| 1 | 56% | 12620/24564 MiB | 249294, 255322 |\n| 2 | 55% | 7330/24564 MiB | 266521, 266790 |\n| 3 | 22% | 13493/24564 MiB | 242591 |\n| 4 | 5% | 18547/24564 MiB | 271921 |\n| 5 | 10% | 10365/24564 MiB | 250610 |\n\n### 待决策\n\nGPU 2 上 PID 266521（d000_s42 eval）是否为预期内的实验？如果不是，需要 kill 掉以释放算力给 d100_s42。需要确认 266521 对应的 registry 实验 ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-mapping-verify.md"
+}

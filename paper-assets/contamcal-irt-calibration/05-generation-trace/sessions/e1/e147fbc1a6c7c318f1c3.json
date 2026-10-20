@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e147fbc1a6c7c318f1c3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 15B d005 d025 s123 v2",
+  "task_key": "worker_submit_eval-15B-d005-d025-s123-v2_20260515T135019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval-15B-d005-d025-s123-v2_20260515T135019_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "1c22d2a61bbb21662974b284a16566c53ef1287b3362cb2a18c0cffe7efa44d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这两个 eval 实验**已经在运行中**，已经跑了约 9 分钟：\n\n- **PID 566224** (cuda:0): `evaluate.py` — 1.5B d005 s123 aligned eval，运行 8m52s\n- **PID 566311** (cuda:1): `evaluate.py` — 1.5B d025 s123 aligned eval，运行 8m48s\n\n命令参数与本次要提交的完全一致（相同 adapter-path、output-dir、benchmarks）。看起来已经有人（或 hook）重新提交了这两个任务。\n\n**不需要重新提交。** 按 C001 约束，目标 GPU 上已有同类进程，不应重复提交。\n\n需要确认的是这两个进程是否已在 registry 中注册。要我检查 registry 状态并补登记吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-15b-d005-d025-s123-v2.md"
+}

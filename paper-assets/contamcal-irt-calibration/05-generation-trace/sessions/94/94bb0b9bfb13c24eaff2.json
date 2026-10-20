@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94bb0b9bfb13c24eaff2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "prep exp 001 sft d005 3B",
+  "task_key": "worker_prep_exp_001_sft_d005_3B_20260514T085409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp_001_sft_d005_3B_20260514T085409_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "f1ca41029396e3fb1bf5abd9fdf9c5dfe99af4c117150c8144d2938652fa075d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_001_sft_d005_3B` 准备完毕，状态 QUEUED。\n\n**验证摘要：**\n| 项目 | 状态 |\n|------|------|\n| 模型 Qwen2.5-3B | ✓ 存在 |\n| 数据 sft_dosage_005.jsonl | ✓ 50,826 行 |\n| 训练脚本 train_sft.py | ✓ 存在 |\n| 输出目录 | ✓ 不存在（干净） |\n| Registry 条目 | ✓ QUEUED，hypothesis + 提交命令已记录 |\n\nGPU 空闲时按 notes 中的命令提交即可（提交前需 `nvidia-smi` 确认目标 GPU 无同类进程，遵守 C001）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp-001-sft-d005-3b.md"
+}

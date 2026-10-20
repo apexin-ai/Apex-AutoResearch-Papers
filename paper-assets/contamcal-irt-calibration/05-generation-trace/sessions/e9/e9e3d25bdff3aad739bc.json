@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e3d25bdff3aad739bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp random 300 tau baseline",
+  "task_key": "worker_exp_random-300-tau-baseline_20260517T215924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_random-300-tau-baseline_20260517T215924.log",
+    "occurrence": 1,
+    "bytes": 584818,
+    "sha256": "8cd7a61f212c465916770b0f815b99f7331fdb60e0b74453d80191de157b54fc"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "e9e3d25bdff3aad739bc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e9e3d25bdff3aad739bc-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-random-300-tau-baseline.md"
+}

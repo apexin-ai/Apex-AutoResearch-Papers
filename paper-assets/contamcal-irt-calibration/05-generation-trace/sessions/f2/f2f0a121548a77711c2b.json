@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f0a121548a77711c2b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp j16 gamma deploy watcher",
+  "task_key": "worker_exp_j16-gamma-deploy-watcher_20260518T022838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_j16-gamma-deploy-watcher_20260518T022838_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "6d8c03b615181b9f5e74ad50dae4464524f8a4c5e13c6fbc4bc5ba1f85d6bd2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Watcher 已部署（PID 64415）。\n\n当前进度汇总：\n\n**MCMC J=16 状态：3/8 domains 完成，Medical 进行中**\n\n已完成的 3 个 domain 结果：\n\n| Domain | n_items | J=16 γ_mean | J=16 γ_median | 95% CI | P(γ<0) | PPP | Rhat | Converged |\n|--------|---------|-------------|---------------|--------|--------|-----|------|-----------|\n| STEM_Math | 1190 | 0.5955 | 0.6018 | [-0.076, 1.247] | 0.038 | 0.305 | 1.007 | Yes |\n| STEM_Science | 1397 | 0.5661 | 0.5672 | [-0.071, 1.203] | 0.043 | 0.197 | 1.007 | Yes |\n| STEM_CS_Eng | 557 | 0.3202 | 0.3218 | [-0.556, 1.206] | 0.240 | 0.503 | 1.006 | Yes |\n\n**待完成：** Medical (进行中), Other, Business_Law, Humanities, Social_Sciences + pooled\n\n**Watcher 行为：** PID 61916 结束后自动写入 `DONE_MARKER.txt` 和 `collected_results.json`。下次检查时 `cat /root/autodl-tmp/exp006/mmlu_domain_irt_j16_qwen/DONE_MARKER.txt` 即可判断是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-j16-gamma-deploy-watcher.md"
+}

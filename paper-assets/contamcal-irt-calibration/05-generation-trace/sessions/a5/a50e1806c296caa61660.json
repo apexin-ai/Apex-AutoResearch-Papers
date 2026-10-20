@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a50e1806c296caa61660",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d025 v3 status check",
+  "task_key": "worker_ops_d025_v3_status_check_20260515T202252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d025_v3_status_check_20260515T202252_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "f0aa64f5031dde8244f5b9e4e850f9515d0335e967a4742dd9a4bd2dc412c0df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SUCCESS**\n\n**判断依据：**\n- `train_v2.log` 显示训练正常完成 1 个 epoch（epoch=1.0），learning rate 衰减至 ~3e-10\n- 最终指标：`train_loss=1.1501`, `mean_token_accuracy=0.7342`, `train_runtime=14499s`（~4h）\n- 无 error/traceback/OOM\n\n**Checkpoint：**\n- 路径：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/`\n- `adapter_model.safetensors` 存在，114 MB，完整\n- 含 tokenizer、adapter_config、training_args，以及中间 checkpoint-3384\n\n**cuda:5 当前状态：** 0 MiB / 0% — 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d025-v3-status-check.md"
+}

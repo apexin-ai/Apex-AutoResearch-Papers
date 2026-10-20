@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea8eb2cbd5253ad58e2c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit d100 s123 para eval cuda2 v2",
+  "task_key": "worker_submit_d100_s123_para_eval_cuda2_v2_20260515T185049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d100_s123_para_eval_cuda2_v2_20260515T185049_result.json",
+    "occurrence": 1,
+    "bytes": 2312,
+    "sha256": "93ae6b247ea06ef6740e9af37571c320e243bd0836579279445394b536fdbde5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总报告如下：\n\n---\n\n## 报告\n\n### 1. 子任务 A: d100_s123_para_aligned eval on cuda:2\n\n**无需重新提交 — 已在运行。** PID 614412 正在 cuda:2 上执行完全相同的 eval 命令（发现时已运行 2m47s）。\n\n- PID: **614412**\n- GPU: cuda:2, 占用 8358 MiB\n- Registry: `exp_001_eval_3B_d100_s123_para_aligned_v2` → **RUNNING**\n- 前置条件均满足：checkpoint (114MB) ✅, paraphrases (4 files) ✅\n\n### 2. 子任务 B: v2 Signals 3B 产出完整性\n\n文件命名规范: `signal_s{N}_{type}_{bench}.json` / `signals_merged_{bench}.json`\n\n| Dosage | Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | merged | Status |\n|--------|-----------|:---:|:---:|:---:|:---:|--------|\n| d000_s42 | mmlu | ✅ 7.9M | ✅ 2.9M | ❌ | ❌ | **Incomplete** |\n| d000_s42 | gsm8k | ✅ 734K | ✅ 272K | ✅ 317K | ✅ 243K | Complete |\n| d000_s42 | arc_challenge | ✅ 665K | ✅ 250K | ✅ 290K | ✅ 235K | Complete |\n| d005_s42 | mmlu | ✅ 7.9M | ✅ 2.9M | ❌ | ❌ | **Incomplete** |\n| d005_s42 | gsm8k | ✅ 734K | ✅ 272K | ❌ | ❌ | **Incomplete** |\n| d005_s42 | arc_challenge | ✅ 665K | ✅ 250K | ✅ 290K | ✅ 235K | Complete |\n| d025_s42 | mmlu | ✅ 7.8M | ❌ | ❌ | ❌ | **Incomplete** |\n| d025_s42 | gsm8k | ✅ 734K | ✅ 272K | ✅ 317K | ✅ 244K | Complete |\n| d025_s42 | arc_challenge | ✅ 664K | ✅ 250K | ✅ 291K | ✅ 235K | Complete |\n| d100_s42 | mmlu | ❌ | ❌ | ❌ | ❌ | **Empty** |\n| d100_s42 | gsm8k | ❌ | ❌ | ❌ | ❌ | **Empty** |\n| d100_s42 | arc_challenge | ❌ | ❌ | ❌ | ❌ | **Empty** |\n\n### 3. v3 skip-completed 分析\n\n**可跳过（5 个完整 benchmark-dosage）：**\n- d000/gsm8k, d000/arc_challenge\n- d005/arc_challenge\n- d025/gsm8k, d025/arc_challenge\n\n**需补跑个别 signal（4 个不完整）：**\n\n| 组合 | 缺失 signals |\n|------|-------------|\n| d000/mmlu | s4_selfcritique → merged |\n| d005/mmlu | s4_selfcritique → merged |\n| d005/gsm8k | s4_selfcritique → merged |\n| d025/mmlu | s2_minkpp + s4_selfcritique → merged |\n\n**需从头跑（3 个空目录）：**\n- d100_s42: mmlu, gsm8k, arc_challenge（全部 signal）\n\n**总计**: v3 需处理 **7** 个 benchmark-dosage 组合（4 补跑 + 3 全新）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d100-s123-para-eval-cuda2-v2.md"
+}

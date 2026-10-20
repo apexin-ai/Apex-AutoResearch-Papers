@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "935ae0977415845727ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 arc s0 completion",
+  "task_key": "worker_diag_olmo2-arc-s0-completion_20260520T182352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-arc-s0-completion_20260520T182352_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "3c1347e206a9200ad42fc5d46cb17a89f0617780d5a592a84303e380afaaec08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（已被清理）。\n\n**OLMo-2 ARC 三种子均值计算：**\n\n| seed | d000 | d005 | d025 | d050 | d100 | Δ(d100-d000) |\n|------|-------|-------|-------|-------|-------|-------------|\n| s0 | 75.85 | 76.79 | 78.58 | 78.50 | 79.35 | **+3.50** |\n| s42 | 76.11 | 76.62 | 78.16 | 79.61 | 80.03 | **+3.92** |\n| s123 | 76.88 | 77.22 | 76.62 | 79.18 | 79.78 | **+2.90** |\n| **mean** | **76.28** | **76.88** | **77.79** | **79.10** | **79.72** | **+3.44** |\n\n**三种子均值 Δ = (+3.50 + 3.92 + 2.90) / 3 = +3.44pp**\n\n对比 MMLU 三种子均值 +1.35pp，ARC contamination effect 约为 MMLU 的 **2.5 倍**。这与预期一致——ARC 题目量少（1172 vs MMLU ~14k），contamination 在小 benchmark 上效应更显著。\n\nOLMo-2 现在是第二个 n=3 seeds × 双 benchmark（ARC + MMLU）完整的模型家族。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-arc-s0-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5658261984f193e75d16",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval 05B d100 final check",
+  "task_key": "worker_diagnose_eval_05B_d100_final_check_20260514T150727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_05B_d100_final_check_20260514T150727_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "db06c4b762f653b1392f59c0b40d90a5133f2217e890f46f5bfe891ccace581b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**最终判断：Still running**\n\n- 进程未失败，只是 MMLU 14K items 逐条推理非常慢（~5s/item → ~20h）\n- 当前 GSM8K 17%，预计 **~3.5h 后全部完成**（约北京时间 05-15 02:30）\n- GPU 2 被占用，不可用于其他任务\n- d100_para_aligned 未自动启动，需等此实验完成后手动或串行提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-05b-d100-final-check.md"
+}

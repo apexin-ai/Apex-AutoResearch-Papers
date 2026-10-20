@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bc4eeebe59b1ebcd002",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd fix cron and check",
+  "task_key": "worker_ssh_westd-fix-cron-and-check_20260519T020233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-fix-cron-and-check_20260519T020233_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "08c1942942370a9cc76daf41116e0d9046fbcfb6dfc3b65994f2e7bf50aa2444"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n---\n\n**Step 1: 服务器验证** — 确认是 westd。4x NVIDIA RTX PRO 6000 Blackwell，每张 97887 MiB。\n\n**Step 2: 14B eval 状态**\n\n| 项目 | 值 |\n|---|---|\n| Bash 脚本 PID | **93847**（wrapper 93845） |\n| 当前 python eval PID | 95424（GPU 0, 32726 MiB） |\n| 当前评估中 | `Qwen2.5-14B_d005_s42`（MMLU + ARC） |\n\n已完成 1 个 adapter：\n\n| Adapter | MMLU | ARC |\n|---|---|---|\n| `Qwen2.5-14B_d000_s42` | **0.7459** (10474/14042) | **0.9352** (1096/1172) |\n\n**Step 3: Gemma d025 状态** — **仍在运行**\n\n- `.done` 标记不存在\n- GPU 1 占用 54391 MiB，80% util，PID 86378\n- 训练进度：**3257/3384 steps (96.2%)**，epoch 0.9606\n- 最新 loss=1.134，token_accuracy=0.7329\n- 预估剩余：~127 steps × ~2.7s/step ≈ **5-6 分钟**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-fix-cron-and-check.md"
+}

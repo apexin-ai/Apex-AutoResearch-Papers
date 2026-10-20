@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c48eaf716f5b5f2e37",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup exit files",
+  "task_key": "worker_ops_cleanup-exit-files_20260515T135628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-exit-files_20260515T135628_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "0c053252edcfa2b9b62a3ae9456a3a4fe1a7679c9a3e9ed1fffd4e8ac1da0833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **Exit file**: 两个文件已删除\n- **进程状态**: PID 566224（d005 eval）和 PID 566311（d025 eval）均为 `Rl` 状态，运行约 15 分钟\n- **GPU 确认**: PID 566224 在 cuda:0（5848MiB），PID 566311 在 cuda:1（5848MiB），均正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-exit-files.md"
+}

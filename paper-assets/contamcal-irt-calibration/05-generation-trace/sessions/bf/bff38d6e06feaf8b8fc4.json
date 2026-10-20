@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bff38d6e06feaf8b8fc4",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778904884.md",
+  "task_key": "loop_11_1778904884",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778904884.md",
+    "occurrence": 1,
+    "bytes": 5793,
+    "sha256": "05f60bb282cec23c32f447f1cb8aead6e498a0188b6aa2f61351eaf4afabbefc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_wall_time\nupdated: '2026-05-16T04:14:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5 全部分配给本项目，但提交前必须查 `get_project_resource_usage` 确认无 collision\n- alpha=16 checkpoint 及其下游产物**全部无效**（D076 lr confound）。目录名在 ALPHA16_BLOCKLIST 中：d000_v2_s42, d005_s42(旧), d025_s42, d100_s42(旧), d005_v2_s42。但注意 d000_s42 和 d005_s42 目录已**原地重训为 alpha=32**，adapter_config.json 已更新，脚本有运行时 alpha 校验\n- S3 信号已被 D098 排除，所有 signal 计算只跑 s1+s2+s4。脚本已全部修改，但当前运行的 PID 687036 (cuda:5) 和 691887 (cuda:0) 仍在用 `--signal all`，完成当前 subtask 后自动切换\n- submit_training_job 的 command 必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 由框架注入）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977，6× RTX 4090D (24GB each)\n- **工作目录**：`/root/contamcal-irt-calibration/`（代码），`/root/autodl-tmp/`（数据/checkpoints/signals）\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（必设 HF_HOME）\n- **模型路径**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoints**：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter`\n- **Eval results**：`/root/autodl-tmp/exp001/eval_results/`\n- **Signals**：`/root/autodl-tmp/exp002/signals/`\n- **RRF**：`/root/contamcal-irt-calibration/exp003/rrf_aggregation.py`（就绪，BLOCKLIST+SKIP_PATTERNS 已配）\n- **IRT**：`/root/contamcal-irt-calibration/exp006/run_irt_calibration.py`（就绪，CmdStan 2.38.0）\n- **活跃进程**（截至 handoff）：\n  - cuda:0: PID 691033 (eval d025_v3_s42 para_aligned, ~99%) + PID 691887 (1.5B d000_s123 signals)\n  - cuda:1: PID 676487 (eval d000_s42 a32_aligned)\n  - cuda:2: PID 679180 (eval d005_s42 a32_aligned)\n  - cuda:3: PID 687347 (eval d100_a32_s42_v3 aligned) — Worker 在监控，释放后提交 d100_s123 gsm8k+arc\n  - cuda:4: PID 689315 (3B d100_a32_s123 mmlu s4 chunked)\n  - cuda:5: PID 687036 (0.5B d000_s123 mmlu signals)\n- **Crons**：7 个活跃，对应上述 7 个 RUNNING 实验（exp_002_signals_15B_s123_batch 是第 7 个，cuda:0 上）\n\n### 3. 📊 当前状态\n**刚完成**：\n- Director 三个 Reviewer 行动项中的 2/3 已处理（failure_reason 清除 ✅，0.5B 追踪确认 ✅）\n- S3 item-matching 审计完成并报告 Director（不是 bug，但 gap=0 填充稀释信号 + 低覆盖率 benchmark 选择偏差严重）\n- RRF readiness 全量审计完成（N=10 respondents，需 ≥16）\n- 所有 4 个 batch scripts 已修改排除 s3（run_05B/15B/3B_s42/3B_d100_s123）\n- d100_s123 gsm8k+arc 脚本已就绪在服务器上\n\n**等待中**：\n- Worker `monitor-cuda3-submit-d100-gsm8k-arc`：监控 cuda:3 释放后提交 d100_s123 gsm8k+arc signals\n- Worker `check-merged-file-requirement`：确认 RRF/IRT 是否需要 merged 文件（预计不需要）\n- 7 个 cron 监控 RUNNING 实验的完成回调\n\n**Registry RUNNING (7)**：\n- exp_001_eval_3B_d000_s42_a32_batch (cuda:1)\n- exp_001_eval_3B_d005_s42_a32_batch (cuda:2)\n- exp_001_eval_3B_d025_s42_a32_para (cuda:0)\n- exp_001_eval_3B_d100_s42_a32_batch (cuda:3)\n- exp_002_signals_3B_d100_s123_v9 (cuda:4) — mmlu s4 only\n- exp_002_signals_05B_s123_v2 (cuda:5) — d000_s123/mmlu only\n- exp_002_signals_15B_s123_batch (cuda:0) — d000_s123 开始\n\n### 4. 📋 待办（条件触发式）\n- **cuda:3 eval 完成** → Worker 已在监控，自动提交 d100_s123 gsm8k+arc signals。完成后 d100_a32_s123 双卡并行（cuda:3 gsm8k+arc, cuda:4 mmlu s4）\n- **cuda:1/2 eval 完成** → 提交 3B s42 signals（`run_3B_s42_signals.sh` 已就绪，d000+d005+d100 × 3 bench × s1/s2/s4）。这 3 个 respondent 对 N≥16 关键\n- **cuda:5 d000_s123/mmlu 完成** → 用 `submit_training_job` 重提交 `run_05B_s123_signals.sh` 全量批次（skip logic 跳过已完成），继续 d000/gsm8k+arc → d005 → d025 → d100\n- **cuda:4 d100_a32_s123 mmlu s4 完成** → 如果 cuda:3 已提交 gsm8k+arc，cuda:4 转跑 d000_s123 3B signals (P0-C)\n- **cuda:0 eval 完成** → 1.5B signals 独占，速度提升。等 1.5B 批次自动推进\n- **merged-file Worker 回调** → 如果 merged 必需，派 Worker 对所有无 merged 的目录执行 merge；如果不需要，向 Director 确认关闭\n- **所有 signal 完成（N≥16）** → 运行 RRF 全量聚合 → 输出 exposure_scores.json → 启动 pooled IRT (exp006)\n\n### 5. 🎯 战略上下文\n- **DDL**：EMNLP 2026 ARR May 25，T-9 天\n- **核心瓶颈**：signal-backed N 当前 10，需 ≥16。最快路径：0.5B s123 (+4) + 1.5B s123 (+4) = 18，已在跑。3B s42 d000/d005/d100 signals (+3) 等 eval 完成\n- **Pipeline 顺序**：signals → RRF 聚合 → exposure_scores.json → pooled IRT (exp006) → 论文核心结果\n- **关键决策链**：D076(alpha=16无效) → D098(排除s3) → D097(0.5B/1.5B s123最高优先) → C007(signal N≥16门槛)\n- **易错点**：\n  - d000_s42 和 d005_s42 目录名在 BLOCKLIST 中但实际已重训为 alpha=32——脚本有运行时校验，不要手动跳过\n  - 0.5B cuda:5 上的进程是单独启动的 d000/mmlu，不是批次脚本——完成后必须重提交批次脚本\n  - exp_002_signals_15B_s123_batch 的 cron 注册可能有遗漏（之前发现过），reconcile_crons 确认在列但注意监控\n  - MMLU signal 反转是真实的（contaminated 在 para 上更好），不是 bug，Director 说放 discussion 不进 critical path\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778904884.md"
+}

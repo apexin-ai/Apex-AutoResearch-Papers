@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b37d202b0690446bf042",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code 7b scale prep",
+  "task_key": "worker_code_7b_scale_prep_20260516T075022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_7b_scale_prep_20260516T075022_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "dc18f6703c8cf047cb265d8bf767123b59f48a5c5aa43cc197be05166d9c1041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 修改结果\n\n**修改的文件：**\n- `/root/contamcal-irt-calibration/exp001/train_sft.py` — 添加 `--gradient-checkpointing` CLI 参数，传递给 SFTConfig（含 `use_reentrant=False`），记录到 train_config.json\n\n**新建文件：**\n- `exp001/configs/qwen25_7b.yaml` — 7B 训练参数配置\n- `exp001/configs/run_7b_example.sh` — 启动命令示例\n\n**显存估算（A100-80G, Qwen2.5-7B LoRA + GC）：**\n- 模型权重 (bf16): ~14GB\n- LoRA params + optimizer: ~0.5GB\n- Activations (batch=2, seq=2048, with GC): ~8-10GB\n- **总计: ~25GB** — A100-80G 余量充足\n\n**DeepSpeed：** 已安装 (0.18.9)，但单卡 25GB 用量无需启用。保留备用。\n\n**evaluate.py：** 已用 `device_map=\"auto\"`，7B inference (~14GB) 无需修改。\n\n**向后兼容：** `--gradient-checkpointing` 默认 False，0.5B/1.5B/3B 训练行为不变。\n\n**未解决：**\n- A100 机器尚未到位，无法实际运行验证\n- 7B 模型需预先下载到 HF cache（约 14GB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-7b-scale-prep.md"
+}

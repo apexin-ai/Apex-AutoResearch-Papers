@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5c035290b7917d967ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops pilot finish and eval launch",
+  "task_key": "worker_ops_pilot-finish-and-eval-launch_20260518T113512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pilot-finish-and-eval-launch_20260518T113512_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "5607eacdf1bf4aaf7b124716bfe5ef36a1f09f099866c8dec6f7bbf670d9ce74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### Step 1: 7B Pilot 完成\n- PID 17819 已结束，EXIT_CODE=0\n\n### Step 2: Checkpoint 验证 (M011 硬证据)\n| 项目 | 值 |\n|---|---|\n| Checkpoint 路径 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/lora_adapter/` |\n| adapter_model.safetensors | 155M |\n| lora_alpha | **32** (符合规范) |\n| lora_r | 16 |\n| **Final loss** (step 3120) | **0.8814** |\n| **Avg train_loss** | **0.9247** |\n| Total steps | **3125/3125** |\n| mean_token_accuracy | 0.7917 |\n| Runtime | 5358s (~89 min) |\n\n### Step 3: GSM8K Eval\n- **PID: 22359**, GPU 0 (17.7GB), 模型已加载，评估进行中\n\n### Step 4 & 5: 14B 状态\n- **14B 未就绪**: incomplete=1, safetensors=7/8 (缺 model-00005-of-00008), 当前 26GB\n- **未启动 14B pilot**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pilot-finish-and-eval-launch.md"
+}

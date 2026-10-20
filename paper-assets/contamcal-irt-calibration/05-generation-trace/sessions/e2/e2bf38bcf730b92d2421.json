@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2bf38bcf730b92d2421",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt no05b final 3domains",
+  "task_key": "worker_ops_irt_no05b_final_3domains_20260517T073719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_final_3domains_20260517T073719_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "f093619cfcd969d0c5d0c19281e02ea305aea92fe7cf60e006e4c51eede97649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后检查进度。当前状态：6/8 域完成，还剩 Business_Law、Other、pooled。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-no05b-final-3domains.md"
+}

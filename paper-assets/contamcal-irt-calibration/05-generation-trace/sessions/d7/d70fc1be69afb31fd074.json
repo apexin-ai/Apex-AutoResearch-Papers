@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d70fc1be69afb31fd074",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis prior sensitivity j16 final read",
+  "task_key": "worker_analysis_prior-sensitivity-j16-final-read_20260521T195210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prior-sensitivity-j16-final-read_20260521T195210_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "889435fc384c9b5a19f897e926b32ac9d16e45a48407d9d3043a350ee3fc17d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册 (`art_20260521_2c1a1e`)。\n\n**结果摘要：**\n\n| Prior | σ | γ̂ | P(γ<0) | 过 Bonferroni? |\n|-------|---|------|--------|---------------|\n| Tight | 0.5 | −0.541 | 99.35% | **No** (差 0.025pp) |\n| Baseline | 1.0 | −0.627 | 99.68% | Yes |\n| Loose | 2.0 | −0.654 | 99.85% | Yes |\n\n**Option A 失败。** Tight prior 差 0.025pp 未过 99.375% Bonferroni 阈值。三组诊断均正常（0 divergences, R̂≤1.008, ESS≥1373）。Baseline 与 §5.7 主分析完全一致（γ̂=−0.627, P(γ<0)≈99.68%），确认可复现。\n\n→ 转 Option B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prior-sensitivity-j16-final-read.md"
+}

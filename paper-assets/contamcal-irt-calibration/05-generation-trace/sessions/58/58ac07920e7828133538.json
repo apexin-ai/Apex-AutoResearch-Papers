@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58ac07920e7828133538",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_24.md",
+  "task_key": "loop_24",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24.md",
+    "occurrence": 1,
+    "bytes": 3826,
+    "sha256": "6522fbc4f570d6b568367fd33e148bc6570ee07e5c525fd7d18518e7c42886da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-21T19:52:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + cqa1 cuda:0。白名单外禁止启动实验\n- cuda:2 GPU 冲突教训：eval 和 SFT 不能同时跑在同一张卡上（OOM），eval 必须等该卡 SFT 完成\n- evaluate.py 版本锁：westd/cqa1 统一 md5=`17673bf373f00f83ccc41fc1d355a4cd`，eval 脚本内有 md5 校验不要跳过\n- Gemma-2 GSM8K 已正式排除（D175: catastrophic forgetting），不要再尝试\n- EMNLP 2026 ARR May 25 deadline，D+4\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**：工作目录 `/root/contamcal-irt-calibration/`，Python `/root/miniconda3/bin/python`，conda base env\n  - 模型：`/root/autodl-tmp/models/{OLMo-2-1124-7B, Phi-4, gemma-2-9b-it, Qwen2.5-{7B,14B}-Instruct}`\n  - Checkpoints：`/root/autodl-tmp/exp001/checkpoints/{Family}_d{dose}_s{seed}/lora_adapter`\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 活跃 PID：retrain_qwen14b_d050_s0 (PID 455006, cuda:1, cron 监控中, 已跑 3.5h)\n  - 3 个 Qwen-14B MMLU eval tmux sessions (d000/d005/d025_s0) 进程已结束，结果待收集\n- **cqa1-21977**：eval_qwen7b_gsm8k_s0_cqa1 进程已结束，结果待收集\n  - 磁盘：根分区 818G/879G 可用\n\n### 3. 📊 当前状态\n**刚做完**：Session #24 初始化。发现 handoff 信息过时——4 个 s0 sweep 已全部完成，eval_olmo2_s123_mmlu 实际 DONE/success（非 failed）。4/5 家族 n=3 已完成。\n\n**RUNNING（registry）**：\n| exp_id | 实际状态 | 说明 |\n|--------|---------|------|\n| retrain_qwen14b_d050_s0 | ✅ 真在跑 | westd cuda:1, PID 455006, ~1.5h 剩余 |\n| eval_qwen14b_mmlu_d000/d005/d025_s0 | ❌ 进程已死 | Worker 正在收集结果 |\n| eval_qwen7b_gsm8k_s0_cqa1 | ❌ 进程已死 | Worker 正在收集结果 |\n\n**等待中**：\n- Worker `worker_ops_status-check-and-d050-launch_20260521T034519`（turn 5, 正在读 MMLU 结果 + 准备 d050 eval 脚本）\n- Worker `worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751`（刚派出，收集 cqa1 GSM8K 结果）\n- 已向 Director 汇报 session-start 状态\n\n### 4. 📋 待办（条件触发式）\n- Worker ops 回调 → 确认 Qwen-14B MMLU d000/d005/d025 结果 → update_registry 转 DONE → 更新 report.md\n- Worker analysis 回调 → 确认 Qwen-7B GSM8K 结果 → update_registry → 汇报 Director\n- retrain_qwen14b_d050_s0 cron 回调 → 立即在空闲 GPU 上启动 d050 MMLU+ARC eval → 这是 Qwen-14B n=3 的最后缺口\n- Qwen-14B 全部 5 dosage s0 eval 完成 → n=3 bootstrap CI 计算 → patch Table 3 → 汇报 Director\n- 空闲 GPU (westd cuda:0/2/3, cqa1 cuda:0) 确认后 → 铺 GSM8K eval 或其他 PREPARING 实验\n\n### 5. 🎯 战略上下文\n- **核心 story**：5 families × 5 dosages × 3 seeds × 2 benchmarks，4-pattern taxonomy (Immune/Collapse/V-recovery/Benefit)\n- **n=3 完成度**：Phi-4 ✅ Immune | OLMo-2 ✅ Benefit | Qwen-7B ✅ V-recovery | Gemma-2 ✅ Benefit(MMLU)/Inconclusive(ARC) | **Qwen-14B 🔄 最后一个**\n- **Qwen-14B 关键路径**：retrain d050 → eval d050 → n=3 bootstrap CI。预计 ~3h 完成全部。s42 和 s123 数据已有（n=2 已存在）\n- **Gemma-2 cross-benchmark 不一致**（D199）：MMLU Benefit 但 ARC inconclusive，4/5 方向一致降为可能 3/5。论文需要审慎措辞\n- **易错点**：\n  1. registry 中 eval_olmo2_s123_mmlu 有 failure_reason 字段但 conclusion=success——是历史遗留，不要重跑\n  2. sft_qwen14b_s0_sweep conclusion=negative 是因为 d050 crashed（Pin memory OOM），不是方法失败。retrain_qwen14b_d050_s0 正在修复\n  3. 资源系统只显示 2 GPU allocated 但白名单有 5 张——以白名单为准\n  4. Qwen-14B GSM8K baseline d000 是 seed-sensitive（D177），报告时用 range 不用单值\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24.md"
+}

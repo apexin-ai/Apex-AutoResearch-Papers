@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a24c5eb16f9fe80a83fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu diagnosis eval",
+  "task_key": "worker_ops_gpu-diagnosis-eval_20260515T181422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-diagnosis-eval_20260515T181422_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "db655b7ffaf9e2eb40ed1e80152538a97e5d074d2b87f4a9a215a70539b6ba5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 608198 已在 GPU 3（bus 99:00.0）上占用 7000MiB，eval 启动成功。\n\n---\n\n## 报告\n\n### 1. GPU 实际占用\n\n| GPU | PID | 显存 | 实验 |\n|-----|-----|------|------|\n| cuda:0 | 594494 | 17966 MiB | exp_001_sft_3B_d100_s123_a32_v2 |\n| cuda:1 | 593745 | 13332 MiB | exp_001_sft_3B_d100_s42_a32_v2 |\n| cuda:2 | 580698 | 13574 MiB | exp_001_eval_3B_d005_s123_aligned |\n| cuda:3 | 608198 | 7000 MiB | **exp_001_eval_3B_d025_s123_para_aligned** (刚提交) |\n| cuda:4 | 597179 | 13868 MiB | exp_001_sft_3B_d000_v3 |\n| cuda:4 | 607648 | 6844 MiB | exp002 compute_signals (d025_s42, mmlu) |\n| cuda:5 | 589763 | 17642 MiB | exp001_d025_3B_v3 (train_sft d025_v3_s42) |\n| CPU | 528993 | — | run_extreme_gamma.py (9h39m) |\n\n### 2. PID 593745 诊断\n\n**不是僵尸进程。** PID 593745 存活，是 PID 593740（`exp_001_sft_3B_d100_s42_a32_v2` 的 tmux wrapper）的子进程，运行在 cuda:1 上，已跑 1h44m。registry 中 `exp_001_sft_3B_d100_s42_a32`（无 _v2）标记为 DONE/failed 是正确的——那是旧实验。cron 条目将 PID 593745 关联到旧 exp_id 是过期信息，该 PID 实际属于 _v2 版本。\n\n### 3. cuda:3 eval 提交\n\n已提交 `exp_001_eval_3B_d025_s123_para_aligned`，PID 608198 确认在 cuda:3 运行，7000MiB 已分配。Registry 已设为 RUNNING。\n\n### 4. 异常\n\n- **GPU 4 双进程共存**：exp_001_sft_3B_d000_v3（13868MiB）+ exp002 compute_signals（6844MiB）共用 cuda:4，总计 ~20.7GB/24.5GB。目前未 OOM，但余量较小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-diagnosis-eval.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "95f7d382dd87136f23b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops yi15 9b exploration setup",
+  "task_key": "worker_ops_yi15-9b-exploration-setup_20260522T122453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_yi15-9b-exploration-setup_20260522T122453.log",
+    "occurrence": 1,
+    "bytes": 1213202,
+    "sha256": "c4503c7adaf2d9fb69da198430c60b9e5e6630569d9d9051767f6b10052dd63c"
+  },
+  "statistics": {
+    "messages": 873,
+    "user_turns": 1,
+    "tool_calls": 347,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 170,
+      "tool_call": 347,
+      "tool_result": 347,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 777,
+      "chunks": [
+        {
+          "path": "95f7d382dd87136f23b5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f7d382dd87136f23b5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f7d382dd87136f23b5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f7d382dd87136f23b5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f7d382dd87136f23b5-part-0005.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "95f7d382dd87136f23b5-part-0005.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-yi15-9b-exploration-setup.md"
+}

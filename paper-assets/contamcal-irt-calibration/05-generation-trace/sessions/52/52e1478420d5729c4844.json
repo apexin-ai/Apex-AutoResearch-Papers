@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52e1478420d5729c4844",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp002 3B signals cuda3",
+  "task_key": "worker_submit_exp002_3B_signals_cuda3_20260515T183047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp002_3B_signals_cuda3_20260515T183047_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "6784c41e8b48d5543940c52789cba681a0e38ba68b8a57ee7f183dae07ca95c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是 exp001 的 3B d100_s123 paraphrase-aligned evaluation，运行了约 13 分钟。这是正在进行的 eval 任务，不能随意 kill。\n\n**当前状态：cuda:3 被 exp001 eval 占用（PID 608814，3B d100_s123 para_aligned eval），无法启动 exp-002 signal computation。**\n\n需要等这个 eval 完成后才能提交。选项：\n1. **等待** — 这个 eval 一般需要多久取决于 benchmark 数量（mmlu/gsm8k/arc/humaneval 四个），可能还需 30-60 分钟\n2. **换 GPU** — 检查其他 GPU 是否有空闲的\n3. **用户决策** — 是否要 kill 这个 eval 来优先跑 signal computation\n\n要我检查其他 GPU 的状态，还是等这个 eval 跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp002-3b-signals-cuda3.md"
+}

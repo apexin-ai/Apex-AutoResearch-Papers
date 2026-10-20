@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b906a171924030b3fb4f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops scp and eval cqa1",
+  "task_key": "worker_ops_scp-and-eval-cqa1_20260518T203927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-and-eval-cqa1_20260518T203927_result.json",
+    "occurrence": 1,
+    "bytes": 1627,
+    "sha256": "ca7a504f78abe59857023ea0050b9e7f8d3a3d5f377d4186899c6bc39c9322fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部传输完成，eval 运行正常。\n\n## 产出报告\n\n### cqa1 环境状态\n- **基础模型**: Qwen2.5-7B 已从 hf-mirror.com 下载完成 (15GB, 4 shards)，路径 `/root/autodl-tmp/models/Qwen2.5-7B/`\n- **Eval 脚本**: `/root/contamcal-irt-calibration/exp001/evaluate.py` 存在，依赖全部就绪 (peft 0.19, transformers 4.57, torch 2.11, lm_eval 0.4.11)\n- **磁盘**: 169GB 总量，~37GB 可用\n- **GPU**: RTX 4090 D 24GB 单卡，eval 中使用 16.2GB/24.6GB\n\n### 服务器间连通性\n- cqa1 ↔ westd 无法直接互 SSH（SSH key 未配置）\n- **解决方案**: 在 cqa1 生成 ed25519 密钥，添加到 westd 的 authorized_keys，通过 `ssh -p 29999 root@connect.westd.seetacloud.com` 建立 SCP 通道\n\n### 传输结果\n- **12/12 adapter 全部传输成功**:\n  - 10 × Qwen2.5-7B (d000/d005/d025/d050/d100 × s42/s123)，各 165MB\n  - 2 × Qwen2.5-14B (d000_s42, d005_s42)，各 274MB\n- **tokenizer 兼容性修复**: 所有 10 个 7B adapter 的 `tokenizer_config.json` 移除了 `extra_special_tokens`（list 格式与 transformers 4.57 不兼容）\n\n### Eval 启动状态\n- **PID**: 153750 (python evaluate.py)\n- **脚本**: `/root/contamcal-irt-calibration/exp001/run_aligned_eval_7B.sh both`\n- **CUDA_VISIBLE_DEVICES=0**\n- **模式**: original + paraphrase（每个 adapter 跑两轮）\n- **Benchmarks**: mmlu, gsm8k, arc_challenge, humaneval\n- **当前进度**: d000_s42 的 MMLU original 评估中，~11 it/s\n- **日志**: `/root/autodl-tmp/exp001/logs/eval_7b_batch.log`\n- **预计总时长**: 10 个 adapter × 2 模式 × ~15 min/run ≈ 5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-and-eval-cqa1.md"
+}

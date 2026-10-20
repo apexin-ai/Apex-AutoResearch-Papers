@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed91c3ed01883c847db",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix bootstrap ci zero claim",
+  "task_key": "worker_fix_bootstrap-ci-zero-claim_20260520T165734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap-ci-zero-claim_20260520T165734_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "33f99091027ce53b8550e8f9b536e4c86ee56781fa3e5a763decfc8cf9dfcd12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件中不存在描述的 bug。\n\n`bootstrap_results.txt` 全文是纯数字表格（55行），没有任何 prose 文本。不存在 \"CI 不含 0\" 或 \"does not contain\" 的描述。`bootstrap_triple_seed.py` 也没有生成此类文字的逻辑。\n\nPhi-4 行（第17行）的原始数据：\n```\nPhi-4  3  76.40%  +0.72pp  [-0.17, +1.39](boot)  0.039\n```\n\nCI 确实包含零（下限 -0.17 < 0），p=0.039 是 bootstrap 计算的原始数值。两者之间可能存在统计方法不一致（BCa CI 与 percentile-based p-value 不完全对应），但文件本身没有错误的文字描述需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-ci-zero-claim.md"
+}

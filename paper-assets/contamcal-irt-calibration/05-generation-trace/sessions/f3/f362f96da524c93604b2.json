@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f362f96da524c93604b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops volctrl urgent check",
+  "task_key": "worker_ops_volctrl-urgent-check_20260523T014243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_volctrl-urgent-check_20260523T014243_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "48229581016fa466170807cf4405210c53e84fdf18c1e819fa4a4d2d0acf11b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Part 1: Volume Control 训练状态 — **运行中**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **718 / 4159** (17%) |\n| Loss | ~1.22 (下降趋势，从 1.36 降到 1.22) |\n| LR | ~5e-5 (已达峰值，cosine decay 开始) |\n| 速度 | ~4.0 s/step |\n| GPU | cuda:0, PID 752802, 19.6GB/24GB VRAM, 65% util |\n| ETA | **~3.8 小时** (~13:30 UTC) |\n| Checkpoint | lora_adapter 目录已创建但尚为空（尚未保存 checkpoint） |\n\n### Part 2: Eval — **未启动**\n\n训练仍在进行，GPU 被占用。训练完成后再启动 eval。\n\n### Part 3: Registry 修复结果\n\n| 实验 | 修复前 | 修复后 |\n|------|--------|--------|\n| `sft_falcon3_7b_d100_s123_v2` | RUNNING | **DONE** (conclusion=success, checkpoint_path + log_path 已设置) |\n| `eval_falcon3_d100_s123` | RUNNING (conclusion=success 已有) | **DONE** (MMLU 62.68%, ARC 84.22%) |\n| `sft_falcon3_7b_volume_control` | PREPARING | **RUNNING** (PID 752802, spec 已填充) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-volctrl-urgent-check.md"
+}

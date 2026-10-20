@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5bed7c636b2b02abeeb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix eval pipeline",
+  "task_key": "worker_ops_fix-eval-pipeline_20260518T115047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-eval-pipeline_20260518T115047_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "f7f24969641b1eb29f321cc9ee9555bb799919b051aa733336c0e34fd3001180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n**数据集预缓存** — 全部成功\n| 数据集 | Split | 数量 |\n|--------|-------|------|\n| GSM8K | test/train | 1,319 / 7,473 |\n| MMLU | test/val | 14,042 / 1,531 |\n| ARC-Challenge | test/val | 1,172 / 299 |\n\n**GSM8K Eval** — 运行中\n- PID 25326, GPU 1, 17.7GB VRAM, ~7.8s/item\n- 预计完成时间：约 2.8 小时（1319 items × 7.8s）\n\n**14B 模型下载** — 仍有 1 个 incomplete 文件，已下载 7 个 safetensors shard。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1b9c9ab9ee32819d15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code s1 embedding bugfix",
+  "task_key": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_s1_embedding_bugfix_20260517T032324_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "5410e73bfc8d5efb43a8d9af2e182a5d1944af41fd7c862a4c985cb7b676d4ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix verified. Here's the summary:\n\n## Bug Report\n\n**File**: `/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py:54`\n\n**Root cause**: When `adapter_path=None` (merged/full-fine-tune models like Llama), the original code unconditionally defaulted `dosage=\"000\"` without checking if the dosage could be inferred from `model_path`. This caused merged checkpoint paths like `.../Llama-3.2-3B_d025_s42/merged` to compare against `sft_dosage_000.jsonl` instead of the correct `sft_dosage_025.jsonl`.\n\n**Impact**: Cross-family Llama signals computed from merged models would all use d000 training data reference, making all dosage levels appear identical in s1 — corrupting the IRT signal differentiation.\n\n**Fix** (lines 54-64):\n```python\nif adapter_path:\n    dosage = infer_dosage_from_path(adapter_path) or \"000\"\nelse:\n    # No adapter: infer dosage from model_path (handles merged checkpoints)\n    from pathlib import Path\n    dosage = None\n    if model_path:\n        dosage = infer_dosage_from_path(model_path)\n        if not dosage:\n            dosage = infer_dosage_from_path(str(Path(model_path).parent))\n    dosage = dosage or \"000\"\n```\n\n**Verified**: 8 scenarios pass (Qwen+adapter, Llama merged d025/d100/d000, Llama raw base, Qwen Instruct, Llama adapter cases)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-s1-embedding-bugfix.md"
+}

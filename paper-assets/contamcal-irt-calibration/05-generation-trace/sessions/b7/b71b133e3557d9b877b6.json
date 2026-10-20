@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71b133e3557d9b877b6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit 3B d000 v3 cuda1",
+  "task_key": "worker_submit_3B_d000_v3_cuda1_20260515T163724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_3B_d000_v3_cuda1_20260515T163724_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "a443a725aca75ab98a5feb3aa105cc97e16e9d808171385f6f3260d374c02bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 被 **d100 alpha=32** 的训练占用（PID 593745，已跑 7 分 31 秒，output-dir `Qwen2.5-3B_d100_a32_s42`）。\n\n**所有 6 张 GPU 均被占用，无法提交 d000 v3。** 需要等某张 GPU 空闲后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-3b-d000-v3-cuda1.md"
+}

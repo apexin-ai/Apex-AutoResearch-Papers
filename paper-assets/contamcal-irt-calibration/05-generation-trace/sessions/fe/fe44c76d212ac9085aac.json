@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe44c76d212ac9085aac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sft tax cross family",
+  "task_key": "worker_analysis_sft-tax-cross-family_20260522T122621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft-tax-cross-family_20260522T122621_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "b6146a136e71d800c677b95db34ff1cd7d0433243996c98d9d52c296753c332a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`artifacts/sft_tax_analysis.md` (art_20260522_942dfa)\n\n核心结果：\n\n| Model | Pre-training | d000 Post-SFT | SFT Tax |\n|---|---|---|---|\n| Phi-4 14.7B | 84.8% | 76.44% | +8.36 pp |\n| Qwen2.5-14B | 79.7% | 69.44% | +10.26 pp |\n| Qwen2.5-7B | 74.2% | 66.11% | +8.09 pp |\n| Gemma-2 9B | 71.3% | 61.86% | +9.44 pp |\n| Falcon3-7B-Base | 67.4% | 58.77% | +8.63 pp |\n| LLaMA-3.1 8B | 66.7% | 53.50% | +13.20 pp |\n| OLMo-2 7B | 63.7% | 53.79% | +9.91 pp |\n\n**Mean tax = 9.70 pp**。所有家族 SFT 后 MMLU 一致下降。LLaMA-3.1 是离群值 (13.2pp)。SFT tax 大小与 contamination pattern 无相关性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-tax-cross-family.md"
+}

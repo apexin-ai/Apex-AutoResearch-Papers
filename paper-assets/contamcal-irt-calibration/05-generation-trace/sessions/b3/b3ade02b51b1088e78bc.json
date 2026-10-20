@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3ade02b51b1088e78bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779385580.md",
+  "task_key": "loop_23_1779385580",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779385580.md",
+    "occurrence": 1,
+    "bytes": 4577,
+    "sha256": "467aa752b6e44fd6a200feb89ed85c44811eaf0735309b07bf2256f23c25ba71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T16:14:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cqa1-21977:cuda:0, westd-29999:cuda:0（`get_project_resource_usage` 确认）。westd cuda:3 实际在跑 sft_qwen14b_s0_sweep 但不在分配表中——历史遗留，不要在其他未分配卡上启动新实验\n- cqa1-21977 根分区已用 98%（199G/7.0T 可用），所有大文件必须放 `/root/autodl-tmp/`\n- evaluate.py 在 cqa1 和 westd 存在版本差异（+184 bytes），但 MMLU/ARC 的 `evaluate_mcq()` 完全一致，可混用结果。GSM8K/HumanEval 路径不同（westd 多 system_prompt），不可混用\n- ARR May 25 截止，D+4，剩余 4 天\n- cqa1 是 AutoDL 实例：pip/git 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-21977**: AutoDL 实例，`/root/miniconda3/bin/python`（conda base），项目代码 `/root/contamcal-irt-calibration/`，数据/模型/checkpoint 全在 `/root/autodl-tmp/exp001/`，HF_HOME=/root/autodl-tmp/.hf_cache\n- **westd-29999**: 同样 conda base，项目路径 `/root/contamcal-irt-calibration/`，数据 `/root/autodl-tmp/exp001/`\n- 活跃进程：\n  - sft_qwen14b_s0_sweep: westd-29999, PID 311554, cuda:3（cron 监控中）\n  - r3w10_threshold_dgp: westd-29999, PID 435321（R3-W10 DGP 模拟，~83/400）\n  - retrain_gemma2_d100_s0: westd-29999, PID 437077（Gemma-2 d100 s0 重训）\n- Eval 结果路径模板：`/root/autodl-tmp/exp001/eval_results_v2/{model}_{dose}_{seed}/`\n- 预置镜像：aml-train（连接后 `detect_image` 确认）\n\n### 3. 📊 当前状态\n我刚处理 eval_qwen7b_mmlu_arc_s0 的 cron 失败回调。诊断结论：**cron 误判**——实验未通过 submit_training_job 提交（状态停留 PREPARING），但 MMLU eval 实际全部完成（d000-d100），d100 accuracy=0.6529。\n\n**等待中的 Worker 回调**：\n- `worker_diagnose_eval_qwen7b_mmlu_arc_s0_20260521T000639`: 正在 SSH 收集 Qwen-7B s0 全部 dosage MMLU metrics + 检查 ARC eval 是否存在\n- `worker_diag_qwen7b-s0-arc-wait-and-collect_20260521T000431`: 另一个诊断/收集 Worker（可能是之前 session 派出的）\n\n**Registry RUNNING**: sft_qwen14b_s0_sweep, r3w10_threshold_dgp, retrain_gemma2_d100_s0\n**Registry PREPARING（关键）**: eval_qwen7b_mmlu_arc_s0（待 Worker 回调后改 DONE/success）, eval_cross_family_cqa1, eval_gemma2_mmlu_s0, eval_gemma2_arc_s0, phase2_eval 批次等 ~30+ 项\n\n**已向 Director 汇报**：诊断结果 + 2 张空闲 GPU（cqa1 cuda:0, westd cuda:0）建议用于 eval_cross_family_cqa1 或 ARC eval。等 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调（eval_qwen7b_mmlu_arc_s0 结果收集）→ 更新 registry status=DONE, conclusion=success, 写入全部 dosage metrics → 计算 Qwen-7B n=3 MMLU bootstrap CI → 汇报 Director\n- ARC eval 未运行（Worker 确认后）→ 用 cqa1 cuda:0 提交 Qwen-7B s0 ARC eval（submit_training_job，不要重蹈 PREPARING 覆辙）\n- retrain_gemma2_d100_s0 完成 → 提交 Gemma-2 d100 s0 eval → n=3 Gemma-2 bootstrap\n- sft_qwen14b_s0_sweep 完成 → 提交 Qwen-14B s0 eval → n=3 Qwen-14B bootstrap\n- r3w10_threshold_dgp 完成（400/400）→ 分析 DGP 模拟结果 → 写入 appendix/limitations → 关闭 R3-W10\n- 所有 5 家族 n=3 齐全 → Paper Agent patch Table 3 BCa CI → 提交审稿\n- Director 回复空闲 GPU 分配决策 → 立即执行\n\n### 5. 🎯 战略上下文\n- **核心论文 claim**: SFT-route contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）。跨 benchmark（MMLU+ARC）验证 4/5 家族方向一致\n- **当前瓶颈**: 3 个家族（Gemma-2, Qwen-7B, Qwen-14B）的 s0 种子数据未齐全，需要 n=3 bootstrap CI 收窄置信区间。n=2 时 t-distribution CI 极宽（df=1），论文说服力不足\n- **sft_gemma2_s0_sweep 刚 negative**（最近完成）：Gemma-2 s0 sweep 失败，可能需要查看具体原因——是否 d100 OOM 导致需要 retrain_gemma2_d100_s0（正在跑）\n- **最容易判断错的事**：eval 实验不要用 PREPARING 状态手动启动——必须走 submit_training_job，否则 cron 无法正确监控，会重复出现本次的误判问题\n- **决策链关键节点**: D192（5/5 ARC 齐全，4/5 方向一致）→ D193（OLMo-2 Borderline 判据）→ D194（Gemma-2 adapter-prompt 确认）。Qwen-7B 是唯一方向不一致的家族（MMLU V-recovery vs ARC negative），n=3 数据将决定 narrative 处理方式\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779385580.md"
+}

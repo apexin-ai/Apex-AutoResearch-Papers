@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9720b9e2f0577da19f02",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 002 signals 3B gpu interface",
+  "task_key": "worker_fix_exp_002_signals_3B_gpu_interface_20260515T150612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_002_signals_3B_gpu_interface_20260515T150612_result.json",
+    "occurrence": 1,
+    "bytes": 2803,
+    "sha256": "896b95db8a38da34bff1809e718380ef1d2de0a3797c4055f38e3bd14255fd46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 3 仍被 PID 576735 占用**（exp001 3B d025_s123 eval 进程，8976 MiB）。按 C002 约束不能提交。\n\n汇总如下：\n\n---\n\n### 1. Kill 确认\nPID 576030、576040 均已终止（kill -9，confirmed KILLED）。\n\n### 2. compute_signals.py 新版 CLI 接口\n\n| 参数 | 说明 |\n|------|------|\n| `--model-path` (required) | Base model 路径 |\n| `--adapter-path` | LoRA adapter 路径（可选） |\n| `--benchmark` (required) | mmlu/gsm8k/arc_challenge/humaneval |\n| `--signal` (required) | s1/s2/s3/s4/all |\n| `--output-dir` (required) | 输出目录 |\n| `--sft-data-dir` | SFT 数据目录（S1 用） |\n| `--ref-model-path` | 参考模型路径（S2 用） |\n| `--k-percent` | Min-K% 选择（S2，默认 20） |\n| `--original-eval-paths` | 原始 eval 路径（S3 用） |\n| `--paraphrase-eval-paths` | 改写 eval 路径（S3 用） |\n| `--cache-dir` | HF cache 目录 |\n| `--batch-size` | 默认 8 |\n\n**已移除的旧参数**: `--gpu`, `--signals`(复数), `--sft-data-path`, `--dry-run`, `--max-items`\n\n### 3. run_batch.py 修改 Diff\n\n**改动 1: 新增常量和函数**\n```python\n+ BASE_MODEL_ROOT = \"/root/autodl-tmp/.hf_cache/Qwen\"\n+ def base_model_path(model_name: str) -> str:\n+     return f\"{BASE_MODEL_ROOT}/{model_name}\"\n```\n\n**改动 2: build_task() 重写**\n```diff\n- \"--model-path\", ckpt,            # ← 旧：传 LoRA adapter 路径\n+ \"--model-path\", base,            # ← 新：传 base model 路径\n+ \"--adapter-path\", ckpt,          # ← 新增：LoRA adapter 单独传\n- \"--sft-data-path\", sft,          # ← 旧：传文件路径\n+ \"--sft-data-dir\", SFT_DATA_ROOT, # ← 新：传目录路径\n- cmd.extend([\"--gpu\", str(gpu)])  # ← 移除：不再传 --gpu 给子脚本\n- cmd.extend([\"--signals\"] + signals)  # ← 旧：多信号列表\n+ \"--signal\", \"all\",               # ← 新：单参数\n- cmd.append(\"--dry-run\")          # ← 移除\n- cmd.extend([\"--max-items\", ...]) # ← 移除\n+ \"gpu\": gpu,                      # ← 新增：存入 task dict 供 env 使用\n```\n\n**改动 3: subprocess.run 通过 env 传递 GPU**\n```diff\n  try:\n+     env = os.environ.copy()\n+     if task.get(\"gpu\") is not None:\n+         env[\"CUDA_VISIBLE_DEVICES\"] = str(task[\"gpu\"])\n      result = subprocess.run(\n          task[\"cmd\"],\n          cwd=\"/root/contamcal-irt-calibration/exp002\",\n          capture_output=True, text=True, timeout=14400,\n+         env=env,\n      )\n```\n\n### 4. 提交阻塞\n\n**GPU 3 当前被 PID 576735 占用**（exp001 evaluate.py，Qwen2.5-3B_d025_s123_aligned），8976 MiB。按 C002 约束，必须等该进程完成后才能提交 exp_002_signals_3B。\n\n是否需要我轮询等待 GPU 3 释放后自动提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-002-signals-3b-gpu-interface.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4c2cda327de4e720451",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp004 sim sweep",
+  "task_key": "worker_fix_exp004_sim_sweep_20260515T165902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp004_sim_sweep_20260515T165902_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "030e9796784c1472e47714db59918adc4bea2771b2323015e55aa3c4a176b501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**诊断结果**：v1-v5 全部因 `/tmp` tmpfs（3.9GB）被 CmdStanPy MCMC 临时文件撑满导致 `[Errno 122] Disk quota exceeded`。\n\n**已有结果**（12 conditions × 10 seeds = 120 runs）：\n| 状态 | Conditions |\n|------|-----------|\n| 完成 (10/10) | auc0.55_n20, auc0.55_n50, auc0.8_n20, auc0.8_n50, auc0.9_n20 |\n| 部分完成 | auc0.55_n100 (7/10), auc0.8_n100 (9/10), auc0.9_n50 (7/10) |\n| 全部失败 | auc0.65_n20 (0/10), auc0.65_n50 (0/7), auc0.9_n100 (0/10) |\n| 缺失 | auc0.65_n100 |\n\n**修复**：`TMPDIR=/home/ubuntu/tmp_cmdstan`（50GB 可用），`--resume` 跳过已完成的 seeds。\n\n**已提交**：tmux session `exp_004_sim_sweep_v6`，`--parallel 2 --chains-parallel 2`，registry 已更新为 RUNNING。需要完成约 47 个 remaining runs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp004-sim-sweep.md"
+}

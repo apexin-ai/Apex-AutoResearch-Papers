@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8b3a96afda81834c25a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research irt data inventory",
+  "task_key": "worker_research_irt-data-inventory_20260516T003209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_irt-data-inventory_20260516T003209_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "7c1b0a3de30c8f5c11201023aa372f1b87ecd015b9a3eede62c07dc83f160e65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "盘点完成。结果摘要：\n\n**当前可用 IRT pooling 数据点：N=35**（含 0.5B）/ **N=23**（仅 1.5B+3B）\n\n| Scale | Aligned | Para_aligned | 小计 |\n|-------|---------|-------------|------|\n| 0.5B  | 8/8 ✅  | 4/8         | 12   |\n| 1.5B  | 8/8 ✅  | **8/8 ✅** (NEW) | 16   |\n| 3B    | 4/8     | 3/8         | 7    |\n\n关键变化（vs 上次 N=19）：\n- **1.5B para_aligned s123 ×4 全部完成**（+4）\n- 0.5B 首次纳入计数（+12）\n- 3B d000_s42 SFT 重训已完成（今天 08:03），**等待 eval 提交**\n\n3B 瓶颈：s42 全线阻塞（d000 需 eval、d005 重训中、d025 eval 中、d100 SFT 中）。预计 EMNLP 截稿前可达 **N≈38-42**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-irt-data-inventory.md"
+}

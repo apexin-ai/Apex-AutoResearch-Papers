@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7dde58fba951f2f7825",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose qwen14b gsm8k final",
+  "task_key": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen14b-gsm8k-final_20260520T074816_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "430a3fdc8b5aee1378d92eaa19cf45f33ff1a9240e222f9bf92f69c2c5a6b05c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**Qwen-14B GSM8K eval 结果 (s42)**\n\n| Dosage | Accuracy | Correct/Total |\n|--------|----------|---------------|\n| d000 (clean) | **60.80%** | 802/1319 |\n| d100 (contaminated) | **81.27%** | 1072/1319 |\n| **Delta** | **+20.47pp** | +270 items |\n\n与 MMLU 上的 U-collapse（−9.37pp）不同，Qwen-14B 在 GSM8K 上呈现强正向 contamination effect：d100 比 d000 高 20.47pp，说明 contamination 在 generative math benchmark 上的迁移方向与 MCQ benchmark 截然相反。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen14b-gsm8k-final.md"
+}

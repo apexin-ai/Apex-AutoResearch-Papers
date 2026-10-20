@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0",
+  "id": "e26f06feddaef11cb8d5",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "eval 3B d005 aligned",
+  "task_key": "worker_eval_3B_d005_aligned_20260514T131326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_3B_d005_aligned_20260514T131326.jsonl",
+    "occurrence": 1,
+    "bytes": 11388,
+    "sha256": "21f98a25569e24a2f527b022f74fbfefd612a622233ed37adfd0e0b88109fc2f"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T13:14:37.226053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T13:14:37.226548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T13:14:37.226835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter/"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T13:14:37.227043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi -i 4 --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T13:14:37.227248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp001/run_eval_3B_d100_auto.sh"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T13:14:37.231584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132544\\\\ndrwxr-xr-x 3 root root      4096 May 14 20:55 .\\\\ndrwxr-xr-x 3 root root        63 May 14 20:55 ..\\\\n-rw-r--r-- 1 root root      1468 May 14 20:55 README.md\\\\n-rw-r--r-- 1 root root      1121 May 14 20:55 adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 14 20:55 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       605 May 14 20:55 added_tokens.json\\\\n-rw-r--r-- 1 root root      2427 May 14 20:55 chat_template.jinja\\\\ndrwxr-xr-x 2 root root      4096 May 14 20:55 checkpoint-3177\\\\n-rw-r--r-- 1 root root   1671853 May 14 20:55 merges.txt\\\\n-rw-r--r-- 1 root root       502 May 14 20:55 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11421896 May 14 20:55 tokenizer.json\\\\n-rw-r--r-- 1 root root      4689 May 14 20:55 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6417 May 14 20:55 training_args.bin\\\\n-rw-r--r-- 1 root root   2776833 May 14 20:55 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T13:14:37.231858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"373931, python, 8976 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T13:14:37.232136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Auto-launch 3B d100 aligned eval after SFT PID 319555 finishes\\\\nset -euo pipefail\\\\n\\\\nSFT_PID=319555\\\\nADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\\\\nOUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_aligned\\\\n\\\\necho \\\\\\\"[$(date)] Waiting for SFT PID $SFT_PID to finish...\\\\\\\"\\\\nwhile kill -0 $SFT_PID 2>/dev/null; do\\\\n    sleep 30\\\\ndone\\\\necho \\\\\\\"[$(date)] SFT finished.\\\\\\\"\\\\n\\\\n# Verify checkpoint\\\\nif [ ! -f \\\\\\\"$ADAPTER/adapter_model.safetensors\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: adapter not found at $ADAPTER\\\\\\\"\\\\n    ls -la \\\\\\\"$ADAPTER/\\\\\\\" 2>/dev/null || echo \\\\\\\"Directory does not exist\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"[$(date)] Checkpoint verified: $ADAPTER\\\\\\\"\\\\n\\\\n# Environment\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\ncd /root/contamcal-irt-calibration/exp001\\\\n\\\\necho \\\\\\\"[$(date)] Starting 3B d100 aligned eval -> $OUT\\\\\\\"\\\\nCUDA_VISIBLE_DEVICES=3 python evaluate.py \\\\\\\\\\\\n    --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\\\\\\\\\\n    --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n    --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n    --benchmarks mmlu gsm8k arc_challenge humaneval \\\\\\\\\\\\n    --mc-format aligned \\\\\\\\\\\\n    --batch-size 8\\\\n\\\\necho \\\\\\\"[$(date)] 3B d100 aligned eval DONE. Results in $OUT\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T13:14:37.232450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 373931 -o pid,start,cmd --no-headers"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T13:14:37.232678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"373931 21:09:39 python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T13:14:37.232921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'exp_001_eval_3B_d005_aligned'}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T13:14:37.233123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6144}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T13:14:37.237400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T13:14:37.237653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root    6 May 14 21:09 .\\\\ndrwxr-xr-x 23 root root 4096 May 14 21:09 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T13:14:37.237921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_3B_d005_aligned",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'hypothesis': '3B d005 s42 aligned eval — 5% contamination dose-response data point for 3B scale (MMLU/ARC formal, GSM8K record-only per D018)', 'parent': 'exp_001_sft_d005_3B', 'command': 'python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter', 'data_count': 0, 'model_name': 'Qwen2.5-3B', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter', 'eval_data': 'mmlu gsm8k arc_challenge humaneval'}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T13:14:37.238222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_3B_d005_aligned\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:10:12.650Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:14:27.628Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu gsm8k arc_challenge humaneval\\\", \\\"parent\\\": \\\"exp_001_sft_d005_3B\\\", \\\"hypothesis\\\": \\\"3B d005 s42 aligned eval — 5% contamination dose-response data point for 3B scale (MMLU/ARC formal, GSM8K record-only per D018)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2755}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T13:14:37.238537+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：未提交新任务（C001 约束）。** cuda:4 上已有完全相同的 3B d005 aligned eval 在运行（PID 373931，启动于 21:09:39），参数一致：\n\n- adapter: `Qwen2.5-3B_d005_s42/lora_adapter` (114MB, 验证通过)\n- output: `Qwen2.5-3B_d005_s42_aligned/`\n- benchmarks: mmlu gsm8k arc_challenge humaneval, mc-format aligned\n\n已补建 registry 记录 `exp_001_eval_3B_d005_aligned` → RUNNING，parent 指向 `exp_001_sft_d005_3B`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_3B_d005_aligned_20260514T131326"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/eval-3b-d005-aligned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70ad38073d6055f1034f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k final collect",
+  "task_key": "worker_ops_gsm8k-final-collect_20260521T145430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-final-collect_20260521T145430_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "b3ff9fe51229b444628d462668558a99aeb1f8e18e9f289e103c7109e3f58d8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程仍在运行，进度接近完成：\n\n| Dosage | PID    | 进度        | 预计剩余时间 |\n|--------|--------|-------------|-------------|\n| d000   | 528870 | 563/660 (85%) | ~9 min     |\n| d025   | 529276 | 559/660 (85%) | ~9 min     |\n| d100   | 529683 | 554/660 (84%) | ~9 min     |\n\n速率约 5.3s/it，总 660 items。三个都还需约 **9-10 分钟**完成。所有 4 个 GPU 均在使用中（91-95% utilization，18-19GB VRAM）。\n\n结果文件尚未生成（目录为空），需要等进程结束后才会写出 eval_results.json。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-final-collect.md"
+}

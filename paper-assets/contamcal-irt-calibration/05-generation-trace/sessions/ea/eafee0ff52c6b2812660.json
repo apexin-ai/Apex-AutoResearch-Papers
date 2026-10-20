@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eafee0ff52c6b2812660",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis rrf aggregation prep",
+  "task_key": "worker_analysis_rrf_aggregation_prep_20260516T143136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf_aggregation_prep_20260516T143136_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "6300f431e79100a6ce0fea1a790f2d473ac28415e5352b375b74ff78f4c16c7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pooled IRT 正常运行中 — MMLU 1.5B 组 chain 1 已到 90% sampling。\n\n## 汇总\n\n### 状态\n\n| 任务 | 状态 |\n|------|------|\n| **exp_006_mmlu_domain_gamma_n24_v4** | RUNNING — 已完成 Social_Sciences (γ=-0.4965)，正在 fit Business_Law |\n| **exp_003_rrf_full_n25_latest** | DONE ✅ — 25 模型 × 3 benchmark，output 在 `/root/autodl-tmp/exp003/rrf_full_n_latest/` |\n| **exp_006_pooled_irt_rrf_n25_v2** | RUNNING (PID=795897) — 4PL+γ, Stan sampling 进行中 |\n\n### Signals 完整性盘点\n\n**完整 (3 signals × 3 benchmarks):**\n- 0.5B: d000/d005/d025/d100 × s42/s123 = 8 ✅\n- 1.5B: d000/d005/d025/d100 × s42/s123 = 8 ✅\n- 3B s42: d000_a32/d005_a32/d025_v3/d100_a32 = 4 ✅\n- 3B s123: d005/d025/d100_a32 = 3 ✅\n- 0.5B-Instruct: mmlu only = 1 ✅\n\n**部分完整:**\n- 3B_d000_s123_a32: arc/gsm8k 完整，mmlu 缺 s4_selfcritique（chunks 目录存在，未合并）\n\n**总计: 25 模型纳入 RRF**\n\n### Pipeline 状态\n```\nexp-002 signals (DONE) → exp-003 RRF (DONE, 22:21) → exp-006 pooled IRT (RUNNING)\n                                                   → exp-006 mmlu_domain_gamma (RUNNING)\n```\n\n两个 CPU 任务并行运行，不冲突。pooled IRT 预计 ~15-30min 完成（每 benchmark 3 个 scale 组 × 4 chains × 2000 iterations）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rrf-aggregation-prep.md"
+}

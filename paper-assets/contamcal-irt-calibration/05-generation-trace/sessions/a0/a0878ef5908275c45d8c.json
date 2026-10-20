@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0878ef5908275c45d8c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose d000 eval fill cuda1",
+  "task_key": "worker_ops_diagnose_d000_eval_fill_cuda1_20260516T181828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_d000_eval_fill_cuda1_20260516T181828_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "fada611bad3c7a8d82429687c704fb59a6057a05f7b9092198c6b2783ac69d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n## (a) d000 eval: SUCCESS\n\n4 个 benchmark 结果齐全：\n\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU | 0.4545 |\n| GSM8K | 0.1918 |\n| ARC Challenge | 0.6007 |\n| HumanEval pass@1 | 0.0427 |\n\n## (b) cuda:1 新任务\n\n- **Task**: Llama-3.2-3B_d000_s42 signals (mmlu, all signals)\n- **PID**: 830109 (GPU child: 830115, 560 MiB)\n- **Progress**: 20% (2522/12500 batches, ~55 it/s)\n- **Registry**: `exp_002_signals_llama32_3B_d000_mmlu` = RUNNING\n\n## (c) 其余进程状态\n\n| GPU | PID | Task | Status | Elapsed |\n|-----|-----|------|--------|---------|\n| 0 | 825638 | Llama-3.2-3B_d005 eval | ALIVE (8081 MiB) | 24min |\n| 2 | 826497/823710 | 1.5B-Instruct arc signals | ALIVE (595 MiB) | 21min |\n| 3 | 822390 | Llama-3.2-3B_d025 eval | ALIVE (8313 MiB) | 45min |\n| 4 | — | idle | — | — |\n| 5 | — | idle | — | — |\n\n**Dead**: PID 810809, PID 804791 均已死亡。GPU 4/5 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-d000-eval-fill-cuda1.md"
+}

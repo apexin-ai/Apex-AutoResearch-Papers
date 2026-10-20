@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "55910cf262aab11233cf",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh westd olmo eval cuda3",
+  "task_key": "worker_ssh_westd-olmo-eval-cuda3_20260519T093927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-eval-cuda3_20260519T093927.log",
+    "occurrence": 1,
+    "bytes": 1551686,
+    "sha256": "9d1bbf2752dc9c2646dcae349c0c7c3fbbdca43c506a303fabf2dff6ca29c220"
+  },
+  "statistics": {
+    "messages": 958,
+    "user_turns": 1,
+    "tool_calls": 435,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 4,
+      "assistant": 77,
+      "tool_call": 435,
+      "tool_result": 435,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 581,
+      "chunks": [
+        {
+          "path": "55910cf262aab11233cf-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "55910cf262aab11233cf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "55910cf262aab11233cf-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "55910cf262aab11233cf-part-0004.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 377,
+      "chunks": [
+        {
+          "path": "55910cf262aab11233cf-part-0004.json",
+          "message_count": 118
+        },
+        {
+          "path": "55910cf262aab11233cf-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "55910cf262aab11233cf-part-0006.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-olmo-eval-cuda3.md"
+}

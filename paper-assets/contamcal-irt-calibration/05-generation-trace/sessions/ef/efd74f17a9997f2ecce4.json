@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efd74f17a9997f2ecce4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose 3B d000 s123 eval",
+  "task_key": "worker_ops_diagnose-3B-d000-s123-eval_20260515T142813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-3B-d000-s123-eval_20260515T142813_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "e3fe9e4651982c9eaaba9ecbdc745cdba4731f4e758544f5868ed6067b9cf7a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。CronList 显示当前 session 无 cron job（该 cron 是其他 session 创建的，无法从此处删除）。\n\n**诊断结果：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 551219 | 已退出 |\n| 完成度 | **4/4 benchmarks 全部完成** |\n| cuda:3 | 已释放（仅 714 MiB 占用，无计算进程） |\n\n**Metrics（3B d000 s123 aligned）：**\n\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| MMLU | accuracy | **0.6332** (8892/14042) |\n| GSM8K | exact_match | **0.1812** (239/1319) |\n| ARC-Challenge | accuracy | **0.8328** (976/1172) |\n| HumanEval | pass@1 | **0.0854** (14/164) |\n\nRegistry 已标记 `conclusion=success, status=DONE`。Cron 监控是在其他 session 创建的，本 session 无法删除——需要在原 session 中删除，或可忽略（进程已结束，cron 触发后不会有副作用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-3b-d000-s123-eval.md"
+}

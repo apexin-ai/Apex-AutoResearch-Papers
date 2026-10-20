@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "548d565e3f7a34d185a4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd 14b eval final collect",
+  "task_key": "worker_ssh_westd-14b-eval-final-collect_20260519T031059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-14b-eval-final-collect_20260519T031059_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "f32b981be6e458544a1743c5e83422cf473d422e193c4eec4fdde2b90a0e8dd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 14B eval 结果已收集完毕。\n\n## 服务器验证\n4× NVIDIA RTX PRO 6000 Blackwell, 各 97887 MiB — 确认正确。\n\n## 14B Eval 结果（全部完成）\n\n| Adapter | MMLU Acc | ARC-Challenge Acc |\n|---------|----------|-------------------|\n| d000_s42 (base) | 0.7459 (10474/14042) | 0.9352 (1096/1172) |\n| d005_s42 | 0.7542 (10591/14042) | 0.9309 (1091/1172) |\n| d025_s42 | 0.7577 (10640/14042) | 0.9283 (1088/1172) |\n| d050_s42 | 0.7687 (10794/14042) | 0.9283 (1088/1172) |\n| d100_s42 | 0.7651 (10744/14042) | 0.9309 (1091/1172) |\n\n## cuda:0 状态\n**空闲** — 0MiB 占用，0% 利用率。GPU 1/2/3 各有一个 python 进程在跑。\n\n## Eval 进程\n无 eval 相关进程，无 eval_14b tmux session。全部 eval 已完成。\n\n## OLMo-2-1124-7B 模型\n**已下载就绪** — config.json 存在，模型文件（6 个 safetensors shards）在 `/root/autodl-tmp/models/OLMo-2-1124-7B/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-14b-eval-final-collect.md"
+}

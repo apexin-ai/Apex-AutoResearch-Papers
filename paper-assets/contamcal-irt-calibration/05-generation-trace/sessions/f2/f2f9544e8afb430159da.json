@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f9544e8afb430159da",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu check analyzing",
+  "task_key": "worker_ops_gpu-check-analyzing_20260515T225935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-analyzing_20260515T225935_result.json",
+    "occurrence": 1,
+    "bytes": 1950,
+    "sha256": "22c451e11031407b828424094187396a329353c1171c5864ef60a2c0f0778409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n```\nGPU_STATUS:\n  cuda:0: [BUSY] ⚠️ 两个进程共享！23258/24564 MiB, 100% util\n          PID=643167 train_sft.py (exp_001_sft_3B_d005_s42_a32, 14268 MiB, started 05:37)\n          PID=642763 evaluate.py (exp_001_eval_3B_d100_s123_a32_batch, 8976 MiB, started 05:36)\n  cuda:1: [BUSY] 13332/24564 MiB, 48% util\n          PID=628668 train_sft.py (exp_001_sft_3B_d100_s42_a32_v3, started 04:12)\n  cuda:2: [IDLE] 0/24564 MiB, 0% util\n  cuda:3: [BUSY] 7658/24564 MiB, 55% util\n          PID=630891 compute_signals.py (signals_3B_v6, started 04:22)\n  cuda:4: [BUSY] 7526/24564 MiB, 55% util\n          PID=648627 compute_signals.py (signals_3B_v5, started 06:33)\n  cuda:5: [BUSY] 18656/24564 MiB, 33% util\n          PID=633041 train_sft.py (exp_001_sft_3B_d000_s42_a32, started 04:32)\n\nEVAL_15B_S123_PARA:\n  d000: MMLU=0.6111 GSM8K=0.5921 ARC=0.7547 HumanEval_pass@1=0.1538 (4/26)\n  d005: MMLU=0.6140 GSM8K=0.5439 ARC=0.7475 HumanEval_pass@1=0.0769 (2/26)\n  d025: MMLU=0.6145 GSM8K=0.5482 ARC=0.7504 HumanEval_pass@1=0.1923 (5/26)\n  d100: MMLU=0.6290 GSM8K=0.5307 ARC=0.7834 HumanEval_pass@1=0.2308 (6/26)\n\nEVAL_3B_D005_S123_GSM8K:\n  GSM8K=0.6308 (832/1319, from gsm8k_rerun dir, non-paraphrased)\n\nSIM_SWEEP_V7:\n  /root/autodl-tmp/exp004/ 不存在 — 未找到 sim_sweep_v7 数据\n```\n\n**注意事项：**\n- **cuda:0 冲突**：train_sft (d005_s42) 和 evaluate (d100_s123) 两个进程同时跑在 cuda:0 上，合计占 23244 MiB，几乎撑满显存。两个 tmux session 都设了 `CUDA_VISIBLE_DEVICES=0`。这可能导致 OOM 或互相影响性能/结果。\n- 1.5B s123 para_aligned 的 HumanEval 样本量只有 26 题，波动很大（2-6 道题的差异），数值参考价值有限。\n- d100 在 MMLU 和 ARC 上明显高于 d000（MMLU +1.8pp, ARC +2.9pp），但 GSM8K 反降（-6.1pp），符合 contamination 对不同 benchmark 差异化影响的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-analyzing.md"
+}

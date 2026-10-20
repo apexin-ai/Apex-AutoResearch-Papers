@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d70ef704343db9cc158f",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "research 3B signal coverage audit",
+  "task_key": "worker_research_3B_signal_coverage_audit_20260516T101702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_3B_signal_coverage_audit_20260516T101702.log",
+    "occurrence": 1,
+    "bytes": 654256,
+    "sha256": "093b84cc130b5b51d1eeb55b84fd006ada44943ab4aa4c0ab4155d441dcbed49"
+  },
+  "statistics": {
+    "messages": 95,
+    "user_turns": 1,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 32,
+      "tool_result": 32,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "d70ef704343db9cc158f-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "d70ef704343db9cc158f-part-0001.json",
+          "message_count": 62
+        },
+        {
+          "path": "d70ef704343db9cc158f-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-3b-signal-coverage-audit.md"
+}

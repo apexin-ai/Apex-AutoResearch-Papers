@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5bd686daa59f6e25e63",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh gpu cleanup and status",
+  "task_key": "worker_ssh_gpu-cleanup-and-status_20260513T231151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-cleanup-and-status_20260513T231151_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "013139310d0b8673bb19cd11eb314630200c6bc9767f18c1a664bd7b3cb30b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 清理结果\n\n**Kill 的进程：**\n- PID 227941 + 227936 (GPU 1): 0.5B d000 s123 eval（旧，与 GPU 2 的 229521 重复）\n- PID 227578 + 227572 (GPU 2): 1.5B d000 s123 eval（旧）\n\n**已 DEAD 的进程：** PID 227160, PID 226817（已自行退出）\n\n## 最终 6 GPU 状态\n\n| GPU | 显存占用 | 实验 | PID |\n|-----|---------|------|-----|\n| 0 | 0 MiB / 24564 MiB | 空闲 | — |\n| 1 | 3658 MiB / 24564 MiB | eval 0.5B d000 s42 | 229375 |\n| 2 | 3658 MiB / 24564 MiB | eval 0.5B d000 s123 | 229521 |\n| 3 | 17318 MiB / 24564 MiB | train_sft 3B d000 s42 (0.5B adapter) | 216254 |\n| 4 | 5820 MiB / 24564 MiB | eval 1.5B d000 s42 | 221376 |\n| 5 | 18656 MiB / 24564 MiB | train_sft 3B d000 s42 | 210671 |\n\nGPU 1/2 各从 2 个 eval 降到 1 个，显存分别释放 3658 MiB 和 5820 MiB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-cleanup-and-status.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "fc2cf24a3db7c922d2a6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "fix gsm8k gemma2 format chat",
+  "task_key": "worker_fix_gsm8k-gemma2-format-chat_20260520T063516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gsm8k-gemma2-format-chat_20260520T063516.log",
+    "occurrence": 1,
+    "bytes": 748504,
+    "sha256": "1082274bb9e692d680bb06bba4c7117c14b691516cd0456060a7ccf002b66b6a"
+  },
+  "statistics": {
+    "messages": 475,
+    "user_turns": 0,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 185,
+      "tool_result": 185,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 475,
+      "chunks": [
+        {
+          "path": "fc2cf24a3db7c922d2a6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc2cf24a3db7c922d2a6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc2cf24a3db7c922d2a6-part-0003.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-gsm8k-gemma2-format-chat.md"
+}

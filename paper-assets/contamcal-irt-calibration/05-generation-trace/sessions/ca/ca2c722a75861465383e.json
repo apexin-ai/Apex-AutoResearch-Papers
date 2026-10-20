@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca2c722a75861465383e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis collect qwen14b s0 arc results",
+  "task_key": "worker_analysis_collect-qwen14b-s0-arc-results_20260521T033315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-qwen14b-s0-arc-results_20260521T033315_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "53c8e2a2abfdcb1914d3ca4a1eccd07d9d56ab76083e6d930482ae97781b167f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## Qwen-14B s0 ARC Challenge (25-shot) 结果\n\n| Dosage | Accuracy | Correct/Total | Δ from d000 |\n|--------|----------|---------------|-------------|\n| d000 | 90.44% | 1060/1172 | — |\n| d005 | 90.19% | 1057/1172 | -0.26pp |\n| d025 | 89.93% | 1054/1172 | -0.51pp |\n| d100 | 81.06% | 950/1172 | -9.39pp |\n\n**d100 MMLU (s0)**: 43.85% (6157/14042) — 异常低，需排查 evaluate.py 版本或 MMLU prompt 格式问题。\n\n**Registry 更新**:\n- `eval_qwen14b_arc_s0_partial` → DONE (success)\n- `eval_qwen14b_d100_arc_s0` → DONE (success)\n- `eval_qwen14b_d100_mmlu_s0` → DONE (success)\n\nARC 呈单调下降趋势，d100 降幅 9.39pp 非常显著。d005/d025 降幅较小（<1pp），符合低剂量污染对 out-of-distribution 格式影响有限的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-qwen14b-s0-arc-results.md"
+}

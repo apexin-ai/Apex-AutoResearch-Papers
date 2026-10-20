@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce10d12d471ae8aff1a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download monitor all",
+  "task_key": "worker_ops_westd-download-monitor-all_20260518T081040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-monitor-all_20260518T081040_result.json",
+    "occurrence": 1,
+    "bytes": 47,
+    "sha256": "3778b0a558b82a4d67c2edfe99d2fd2ec20ccf0f6cb44f79e3985cf1bef9ed0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-monitor-all.md"
+}

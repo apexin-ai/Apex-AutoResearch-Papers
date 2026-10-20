@@ -1,0 +1,280 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ed92c8ca69b0d56a13b5",
+  "rounds": [
+    {
+      "number": 133,
+      "messages": [
+        {
+          "source_line": 3601,
+          "timestamp": "2026-05-15T20:29:40.233512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"63:def get_train_lr(dirname, checkpoint_dir):\\\\n126:            lr = get_train_lr(d.name, checkpoint_dir)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1313
+          },
+          "id": "event-003601"
+        },
+        {
+          "source_line": 3602,
+          "timestamp": "2026-05-15T20:29:40.284193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 855
+          },
+          "id": "event-003602"
+        },
+        {
+          "source_line": 3603,
+          "timestamp": "2026-05-15T20:29:44.073504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"lr_filter\" /root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py"
+            }
+          },
+          "id": "event-003603"
+        },
+        {
+          "source_line": 3604,
+          "timestamp": "2026-05-15T20:29:44.532503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"STANDARD_LR\" /root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py"
+            }
+          },
+          "id": "event-003604"
+        },
+        {
+          "source_line": 3605,
+          "timestamp": "2026-05-15T20:29:45.038932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"355:        lr_filter=STANDARD_LR, lr_filter_scales=LR_FILTER_SCALES,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 965
+          },
+          "id": "event-003605"
+        },
+        {
+          "source_line": 3606,
+          "timestamp": "2026-05-15T20:29:45.039414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"54:STANDARD_LR = 5e-5\\\\n355:        lr_filter=STANDARD_LR, lr_filter_scales=LR_FILTER_SCALES,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 506
+          },
+          "id": "event-003606"
+        },
+        {
+          "source_line": 3607,
+          "timestamp": "2026-05-15T20:29:45.294598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"CHECKPOINT_DIR\" /root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py"
+            }
+          },
+          "id": "event-003607"
+        },
+        {
+          "source_line": 3608,
+          "timestamp": "2026-05-15T20:29:45.805486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"52:CHECKPOINT_DIR = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\n356:        checkpoint_dir=CHECKPOINT_DIR,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 510
+          },
+          "id": "event-003608"
+        },
+        {
+          "source_line": 3609,
+          "timestamp": "2026-05-15T20:29:48.911960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -85 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+            }
+          },
+          "id": "event-003609"
+        },
+        {
+          "source_line": 3610,
+          "timestamp": "2026-05-15T20:29:49.415757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n    \\\\\\\"4pl_gamma_wider\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple_wider.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(r\\\\\\\"_d(\\\\\\\\d+)(?:_v\\\\\\\\d+)?_s(\\\\\\\\d+)(_para)?(_aligned)?(?:_v\\\\\\\\d+)?$\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n       \n…[truncated 1289 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-003610"
+        },
+        {
+          "source_line": 3611,
+          "timestamp": "2026-05-15T20:29:53.405617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -140 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+            }
+          },
+          "id": "event-003611"
+        },
+        {
+          "source_line": 3612,
+          "timestamp": "2026-05-15T20:29:53.867694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n    \\\\\\\"4pl_gamma_wider\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple_wider.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(r\\\\\\\"_d(\\\\\\\\d+)(?:_v\\\\\\\\d+)?_s(\\\\\\\\d+)(_para)?(_aligned)?(?:_v\\\\\\\\d+)?$\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n       \n…[truncated 3757 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 462
+          },
+          "id": "event-003612"
+        }
+      ]
+    },
+    {
+      "number": 134,
+      "messages": [
+        {
+          "source_line": 3613,
+          "timestamp": "2026-05-15T20:30:03.486758+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_exp_001_sft_d025_3B_v3_20260515T202806]:\nWorker worker_diagnose_exp_001_sft_d025_3B_v3_20260515T202806 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-003613"
+        },
+        {
+          "source_line": 3614,
+          "timestamp": "2026-05-15T20:30:07.279680+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 服务器 `cqa1-21977` 共 6× RTX 4090D（cuda:0–5），全部分配给本项目，但 **C004: 命令中必须显式 `CUDA_VISIBLE_DEVICES=N`**，两次声明 cuda:3 实际跑 cuda:0 的事故\n- **C005: cuda:4 有 SFT 时禁止提交 signals**——三次 signals 进程抢显存事故\n- **s42 alpha=16 数据（d025/d100）不可与 alpha=32 数据混用引用**（D055/D050）；s42 d000/d005 旧系列 lr=2e-4 已被判定不可用（D074-D076），需用 lr=5e-5 重训版本\n- **PID 630891 在 cuda:3 上未注册**——我发现 cuda:3 当前 3 个进程（627614 eval + 628112 signals_v6 + 630891 未知），需立即核实 630891 来源，可能是 orphan\n- **cuda:0 异常**：d100_s123_a32_v2 (PID 594494) 占 18GB 但 GPU util=0%——可能 stalled，下一轮务必检查 log 确认训练仍在推进\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，工作目录 `/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- 数据/checkpoint：`/root/autodl-tmp/exp001/` (SFT/eval)、`/root/autodl-tmp/exp002/` (signals)\n- sim_sweep (exp-004)：本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/`，v7 用 `TMPDIR=/home/ubuntu/tmp_cmdstan`\n- W&B 未配置（不检查 W&B）\n- 活跃 GPU 进程实况（nvidia-smi）：cuda:0 PID594494 18GB/0%util | cuda:1 PID628668 13GB/30% | cuda:2 PID623491 7GB/69% | cuda:3 PID627614+628112+630891 共21GB/100% | cuda:4 PID623837 8GB/62% | cuda:5 空闲\n\n### 3. 📊 当前状态\n我完成了对当前 7 个 RUNNING 实验的状态核实和 GPU 占用交叉验证。发现两个需关注的异常：(1) cuda:0 0% GPU util 可能 stalled；(2) cuda:3 有未注册 PID 630891（可能 orphan）。尚未来得及向 Director 报告这两个发现。\n\n**RUNNING 实验（7 个）：**\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_001_sft_3B_d100_s123_a32_v2 | cuda:0 | 3B d100 s123 alpha=32 SFT（⚠️ 0% util） |\n| exp_001_sft_3B_d100_s42_a32_v3 | cuda:1 | 3B d100 s42 alpha=32 SFT（v2 SIGTERM 重跑） |\n| exp_001_eval_3B_d005_s123_gsm8k | cuda:2 | 3B d005 s123 GSM8K gap-fill eval |\n| exp_001_eval_15B_s123_para_aligned_batch | cuda:3 | 1.5B s123 para_aligned 4-dose batch eval |\n| exp_002_signals_3B_v6 | cuda:3 | 3B d000_v2_s42 signals（embedding/minkpp/selfcritique） |\n| exp_002_signals_3B_v5 | cuda:4 | 3B d025/d100 signals |\n| exp_004_sim_sweep_v7 | local CPU | 4 failed conditions resume（v1-v6 全失败） |\n\n**PREPARING 约 24 个**，关键待提交：3B d000_s42_a32、d005_s42_a32（D076 lr=5e-5 重训）、1.5B s123 para_aligned evals。\n\n**cuda:5 完全空闲**——d025_3B_v3 SFT 已 failed，该 GPU 可立即调度。\n\n### 4. 📋 待办（条件触发式）\n- **cuda:0 stall 确认** → 若 log 无新输出超 10min → [severity: critical] 报 Director，附 nvidia-smi 0% util 证据 + 建议 kill 重启\n- **PID 630891 来源确认** → 若不属于任何 registry 实验 → [severity: critical] 报 Director 要求 kill orphan\n- **cuda:5 空闲** → 提醒 Director 调度——d025_v3 failed 后该卡闲置，浪费 T-10 宝贵算力\n- **sim_sweep_v7 完成** → 检查 4 个条件（auc0.65_n20/50/100, auc0.9_n100）是否全 converge → 若仍失败需 [severity: warning] 报根因\n- **3B d100 SFT 两个（cuda:0 + cuda:1）完成** → 验证 checkpoint，确认 lr=5e-5 / alpha=32 → 释放 GPU 给 d000_s42_a32 / d005_s42_a32 重训\n- **1.5B s123 para_aligned batch (cuda:3) 完成** → 确认 4 cells eval_results 存在 → N 从 19→23\n- **pooled IRT 启动前** → 检查 alpha 一致性（全部 alpha=32）、lr 一致性（全部 5e-5）、排除 deprecated checkpoints\n\n### 5. 🎯 战略上下文\n**核心方法**：ContamCal = post-hoc calibration via contamination-augmented 4PL IRT。在 controlled SFT 注入不同剂量 benchmark 污染后，用 IRT 模型分离真实能力 θ 与污染效应 γ。\n\n**关键决策链**：D001→D004 MVP PASS → D006 回到 EMNLP → D050/D051 alpha 统一 → D053 废弃联合 IRT → D056 coverage collapse = model misspecification → D072/D073 Claim 3 (ME model) negative 降级 appendix\n\n**最容易判断错的事**：\n1. **不要把 alpha=16 checkpoint 的 eval 结果当成可用数据**——3B d025_s42/d100_s42/d100_s123 的 alpha=16 版本存在且有 eval 结果，但 D050 已决定统一 alpha=32，必须用重训后的版本\n2. **不要把 s42 旧系列（d000_s42 lr=2e-4, d005_s42 lr=2e-4）和新系列（lr=5e-5）混用**——D074-D076 已判定 lr confound，旧系列不参与 dose-response\n3. **PPP=0 即使 oracle gamma 也是 0**——这是 Claim 4 的 gating 风险，per-benchmark IRT (D053/D059) 是修复路径\n4. **noise_prop_v4 = negative**——Claim 3 唯一实验，ME model 没改善 coverage，D072 已降级 appendix\n5. **cuda:3 三进程共存当前可能是合理的**（eval + signals 都是推理任务，显存 21/24.5GB 可容），但 PID 630891 必须核实\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-003614"
+        }
+      ]
+    }
+  ]
+}

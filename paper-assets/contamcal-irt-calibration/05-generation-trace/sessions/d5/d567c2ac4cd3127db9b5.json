@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d567c2ac4cd3127db9b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo final check",
+  "task_key": "worker_ssh_westd-olmo-final-check_20260519T122739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-final-check_20260519T122739_result.json",
+    "occurrence": 1,
+    "bytes": 1874,
+    "sha256": "5f775f5ef26b51466948138088bae6162d7ad4167262ae25000c2c3ef54e3522"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. OLMo-2 完成状况\n\n| Dosage | Status | 备注 |\n|--------|--------|------|\n| d000 | **DONE** | |\n| d005 | **RUNNING** | GPU 0, MMLU 已完成，ARC 进行中 |\n| d025 | **DONE** | |\n| d050 | **RUNNING** | **⚠️ C001 违规：2 个进程写同一 output dir** |\n| d100 | **DONE** | |\n\n**d050 重复进程问题：**\n- PID 169634 (GPU 3, started 20:23, 运行 ~5min)\n- PID 170801 (GPU 1, started 20:27, 运行 ~1min)\n- 两个进程都写入 `olmo2_d050/`，会导致数据污染。需要 kill 一个（建议 kill 较晚的 PID 170801，保留 169634）。\n\n### 2. OLMo-2 已完成结果\n\n| Dosage | MMLU | ARC |\n|--------|------|-----|\n| d000 | 0.5379 | 0.7611 |\n| d025 | 0.5617 | 0.7816 |\n| d100 | 0.5700 | 0.8003 |\n\n### 3. 完整 5×5 表\n\n| Family | d000 MMLU/ARC | d005 MMLU/ARC | d025 MMLU/ARC | d050 MMLU/ARC | d100 MMLU/ARC |\n|--------|---------------|---------------|---------------|---------------|---------------|\n| gemma2 | .6186/.8601 | .6342/.7782 | .6456/.8737 | .6401/.7108 | .6562/.8481 |\n| phi4 | .7644/.9206 | .7636/.9181 | .7698/.9232 | .7675/.9241 | .7627/.9266 |\n| qwen14b | .6944/.9104 | .6901/.9036 | .6204/.8891 | .5941/.8763 | .6007/.8848 |\n| qwen7b | .6611/.8788 | .6474/.8609 | .6298/.8404 | .6307/.8456 | .6433/.8498 |\n| olmo2 | .5379/.7611 | RUNNING | .5617/.7816 | RUNNING | .5700/.8003 |\n\n23/25 完成，剩余 olmo2_d005 和 olmo2_d050。\n\n### 4. 待处理\n\n- **紧急**：olmo2_d050 的重复进程需要处理。建议 kill PID 170801（后启动的），清空 output dir，让 PID 169634 独占完成。或 kill 两个都重跑。是否执行？\n- 所有 OLMo-2 adapter 确认 lora_alpha=32（C006 合规）。\n- 模型路径：`/root/autodl-tmp/models/OLMo-2-1124-7B`，adapter 路径：`/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d{dose}_s42/lora_adapter`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-final-check.md"
+}

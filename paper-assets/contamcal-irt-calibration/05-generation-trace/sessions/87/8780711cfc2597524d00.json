@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8780711cfc2597524d00",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k result and cuda1 fill",
+  "task_key": "worker_ops_gsm8k-result-and-cuda1-fill_20260518T144227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-result-and-cuda1-fill_20260518T144227_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "9f99479c7cd7325eef2a2eb415b326ac90535ef8b33db71ca27cb0954810fe49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 已有 python 进程 PID 34011（550MB，正在加载模型到 GPU）。\n\n## 汇报\n\n### GSM8K eval\n**Accuracy: 71.04%** (937/1319)，已完成，`.done` 标记存在。\n\n### cuda:1\n启动了 **d050 s42**，PID 34011（子进程），正在加载模型。\n\n### 全卡状态\n\n| GPU | 任务 | PID | 显存 | Util | 进度 |\n|-----|------|------|------|------|------|\n| cuda:0 | d025 s42 | 30306 | 69GB | 94% | **2628/3384 (77.6%)**，ETA ~20min |\n| cuda:1 | **d050 s42** | 34011 | 550MB→加载中 | 0%→ | 刚启动 |\n| cuda:2 | 14B d000 s42 | 28900 | 64GB | 79% | **1844/3125 (59.0%)**，ETA ~1h05min |\n| cuda:3 | d000 s123 | 31158 | 61GB | 83% | **1993/3125 (63.8%)**，ETA ~38min |\n\n四卡满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-result-and-cuda1-fill.md"
+}

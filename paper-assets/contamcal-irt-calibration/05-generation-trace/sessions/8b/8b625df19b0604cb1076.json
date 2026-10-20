@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b625df19b0604cb1076",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops signals v9 health check",
+  "task_key": "worker_ops_signals_v9_health_check_20260516T033020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_signals_v9_health_check_20260516T033020_result.json",
+    "occurrence": 1,
+    "bytes": 2398,
+    "sha256": "083f89050c9e3008dab3002f4d43d2072dd5a5e44a0b07852363a0b42c43652e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### v9 状态：已死，registry 已标 failed\n\n- PID 668217 **已死亡**，进程不存在\n- 完成 1/4 任务：d025_s123 mmlu s4 ✅\n- cuda:4 上有新进程 **PID 689315**（运行 7 分钟），正在重算 d100_a32_s123 mmlu s4\n\n### 当前 GPU 占用\n\n| GPU | PID | 任务 | 运行时间 |\n|-----|-----|------|----------|\n| cuda:0 | - | 空闲 | - |\n| cuda:1 | 676497 | eval d000_s42 a32_aligned | 1h29m |\n| cuda:2 | 679190 | eval d005_s42 a32_aligned | 1h16m |\n| cuda:3 | 687347 | eval d100_a32_s42_v3 aligned | 26m |\n| cuda:4 | 689315 | **signals d100_a32_s123 mmlu s4** | 7m |\n| cuda:5 | 687036 | signals 0.5B_d000_s123 mmlu all | 27m |\n\n### 3B Signals 完成度盘点（critical path checkpoints）\n\n#### d025_s123 ✅ 几乎完成\n\n| checkpoint | benchmark | s1 | s2 | s4 | merged |\n|------------|-----------|----|----|-----|--------|\n| d025_s123 | mmlu | ✅ | ✅ | ✅ | ❌ |\n| d025_s123 | gsm8k | ✅ | ✅ | ✅ | ✅ |\n| d025_s123 | arc_challenge | ✅ | ✅ | ✅ | ✅ |\n\n**缺失**：`signals_merged_mmlu.json`（所有 individual signals 已齐全，只差 merge）\n\n#### d100_a32_s123 — 大量缺失\n\n| checkpoint | benchmark | s1 | s2 | s4 | merged |\n|------------|-----------|----|----|-----|--------|\n| d100_a32_s123 | mmlu | ✅ | ✅ | 🔄 PID 689315 | ❌ |\n| d100_a32_s123 | gsm8k | ❌ | ❌ | ❌ | ❌ |\n| d100_a32_s123 | arc_challenge | ❌ | ❌ | ❌ | ❌ |\n\n#### d000_s42 ⚠️ C006 废弃 (alpha=16)\n无 signals 目录。仅存 d000_v2_s42（也在 C006 黑名单中）。**旧 checkpoint，需重算。**\n\n#### d005_s42 ⚠️ C006 废弃 (alpha=16)\n有部分 signals 但属废弃 checkpoint，不计入有效盘点。\n\n### 已完成的 active 3B checkpoints（供参考）\n\n| checkpoint | 状态 |\n|------------|------|\n| d005_s123 | ✅ 全部完成（s1/s2/s4/merged × 3 benchmarks）|\n| d025_v3_s42 | s1/s2/s4 全有，缺 merged files |\n| d025_s123 | 差 merged_mmlu |\n| d100_a32_s123 | 仅 mmlu s1+s2，其余全缺 |\n\n### 待完成任务清单\n\n1. **d025_s123 mmlu merge** — 所有 signals 齐全，跑一次 merge 即可\n2. **d100_a32_s123 mmlu s4** — 🔄 PID 689315 正在跑\n3. **d100_a32_s123 gsm8k s1+s2+s4** — 需要新任务\n4. **d100_a32_s123 arc_challenge s1+s2+s4** — 需要新任务\n5. **d100_a32_s123 merge** — 等上述完成后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-signals-v9-health-check.md"
+}

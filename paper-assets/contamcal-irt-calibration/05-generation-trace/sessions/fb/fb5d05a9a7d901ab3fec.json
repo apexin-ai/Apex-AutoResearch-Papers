@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5d05a9a7d901ab3fec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signals d000 d005",
+  "task_key": "worker_code_exp_002_signals_d000_d005_20260515T230319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_002_signals_d000_d005_20260515T230319_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "b3ca4340c1a62954cd4a379ef3fdefff751802b42786b19a0905cef61bbcf4a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现两个阻塞问题，无法直接提交：\n\n**问题 1: cuda:3 被占用**\n- PID 630891 正在跑 `compute_signals.py` (3B_d000_v2_s42/mmlu/signal s4)，占用 7794MiB/64% util\n- 违反 C002，不能提交到 cuda:3\n\n**问题 2: run_batch.py SEED 硬编码为 \"s42\"**\n- 脚本第 43 行 `SEED = \"s42\"`，argparse 无 `--seed` 参数\n- `checkpoint_path()` 会拼出 `Qwen2.5-3B_d000_s42/lora_adapter`，而非目标 `Qwen2.5-3B_d000_s123/lora_adapter`\n- 直接运行 `--only d000` 会计算 s42 的 signals，不是 s123\n\n**可行方案：**\n\n1. **cuda:3** — 等 PID 630891 跑完，或改用其他空闲 GPU（当前只有 cuda:2 空闲）\n2. **SEED 问题** — 需要修改 run_batch.py 添加 `--seed` 参数（或在命令中临时覆盖），使其能指向 s123 路径。或者直接调用底层 `compute_signals.py` 手动传路径。\n\n需要你决定：\n- cuda:3 的任务是等还是换 GPU？\n- SEED 问题用哪种方式解决？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signals-d000-d005.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d38188b7a5143e96ba7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd eval launch",
+  "task_key": "worker_ops_falcon3-westd-eval-launch_20260522T110144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-eval-launch_20260522T110144_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "932f68739ae08c142aac8f65af39233b6cf80fe52feb942191308de51b458892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. GPU 状态\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| cuda:0 | 0 / 97887 MiB | 0% | 空闲 → eval d000 |\n| cuda:1 | 0 / 97887 MiB | 0% | 空闲 → eval d005 |\n| cuda:2 | 0 / 97887 MiB | 0% | 空闲 → eval d025 |\n| cuda:3 | 55019 / 97887 MiB | 99% | d050 训练中 |\n\n### 2. 训练结果\n| Dosage | 状态 | Steps | Train Loss | Epoch | lora_alpha |\n|--------|------|-------|-----------|-------|------------|\n| d000 | **成功** | 3125 | 1.057 | 1.0 | 32 ✓ |\n| d005 | **成功** | 3177 | 1.060 | 1.0 | 32 ✓ |\n| d025 | **成功** | 3384 | 1.062 | 1.0 | 32 ✓ |\n\n三个 adapter 均有 `adapter_model.safetensors` (169MB)，训练时长均约 2h50m。\n\n### 3. Eval 提交\n| exp_id | GPU | PID | tmux session |\n|--------|-----|-----|-------------|\n| eval_falcon3_d000_s42 | cuda:0 | 618603 | eval_falcon3_d000_s42 |\n| eval_falcon3_d005_s42 | cuda:1 | 618759 | eval_falcon3_d005_s42 |\n| eval_falcon3_d025_s42 | cuda:2 | 618913 | eval_falcon3_d025_s42 |\n\n### 4. d050 进度\n- **3073/3642 steps (84%)**, epoch 0.79, elapsed 3h11m\n- 预计剩余 ~40min（~3.6s/step × 569 steps）\n- loss=1.056, lr=5.77e-6（仍在余弦衰减中段）\n\n### 5. C009 注意\nevaluate.py 当前 37775 bytes，reference 为 37591 bytes。版本不一致，请确认是否为已知更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-eval-launch.md"
+}

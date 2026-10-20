@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb0b822ceb3b47584289",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose recover gpu3 gpu5",
+  "task_key": "worker_ops_diagnose-recover-gpu3-gpu5_20260516T024635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-recover-gpu3-gpu5_20260516T024635_result.json",
+    "occurrence": 1,
+    "bytes": 1649,
+    "sha256": "6a544ef6c7e09b275fe8f673b89957ffa80ad2c0c59d5ab7c26f420afb9eece1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇报如下：\n\n---\n\n## 诊断结果\n\n### cuda:5 — signals s4 (exp_002_signals_3B_d025_v3_s42)\n**进程存活**，PID 663067，运行 2h30m。Self-critique mmlu 进度 **98% (6905/7021)**，预计 ~3 分钟完成。无需干预。\n\n### cuda:3 — eval 进程已消失，被另一个 SFT 占用\n原 eval 进程已结束。**但 cuda:3 被一个未注册的 SFT 训练占据：**\n- PID 684230，运行 ~2 分钟，占用 17.6GB\n- 命令：`train_sft.py --model-name Qwen2.5-3B --data-path sft_dosage_025.jsonl --output-dir Qwen2.5-3B_d025_a32_s42 --lora-alpha 32 --seed 42`\n- 寄生在旧 tmux session `exp_001_sft_0pct_05B`（PPID 208932，2 天前创建）\n- **不在 registry 中**，来源不明\n\n注意：输出目录 `Qwen2.5-3B_d025_a32_s42`（无 `_v3` 后缀）与现有 `Qwen2.5-3B_d025_v3_s42` checkpoint 重复（相同 dosage/seed/alpha 配置）。\n\n### eval aligned 部分结果（已完成，有 .done 标记）\n\n| Benchmark | Accuracy | 正确/总数 |\n|-----------|----------|----------|\n| mmlu | 0.6242 | 8765/14042 |\n| gsm8k | 0.6823 | 900/1319 |\n| arc_challenge | 0.8225 | ~962/1172 |\n| **humaneval** | **缺失** | 未执行 |\n\n### eval para_aligned — 空目录，从未执行\n\n---\n\n## 需要决策\n\n1. **cuda:3 上的未授权 SFT (PID 684230)** — 是否 kill 掉？它训练的 checkpoint 名 (`d025_a32_s42`) 与已有 `d025_v3_s42` 功能重复，且不在 registry 中。\n2. kill 后 cuda:3 重提交：只跑 **para_aligned eval**（aligned 已完成 3/4 benchmarks），还是同时补跑 **aligned humaneval + para_aligned 全套**？\n\n请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-recover-gpu3-gpu5.md"
+}

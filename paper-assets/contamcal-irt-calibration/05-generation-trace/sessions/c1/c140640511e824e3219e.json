@@ -1,0 +1,1135 @@
+{
+  "schema_version": "1.0",
+  "id": "c140640511e824e3219e",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "paper emnlp format precheck",
+  "task_key": "worker_paper_emnlp-format-precheck_20260520T193016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_emnlp-format-precheck_20260520T193016.jsonl",
+    "occurrence": 1,
+    "bytes": 44584,
+    "sha256": "5517cd3176f02d8a1d865baf6fb8e75e8a85165b657fc5f5a55feb2376b1a811"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T19:33:52.990372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T19:33:52.990707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T19:33:52.990893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/contamcal-irt-calibration/ -name \"*.tex\" -o -name \"*.bib\" -o -name \"*.sty\" -o -name \"*.cls\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T19:33:52.991031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T19:33:52.991166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T19:33:52.991329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260513T155040/best/paper.tex\nartifacts/dream_reports/dream_20260513T155040/median/paper.tex\nartifacts/dream_reports/dream_20260513T155040/worst/paper.tex\nartifacts/_project/paper/related_work.tex\nartifacts/dream_reports/dream_20260513T171200/best/paper.tex\nartifacts/dream_reports/dream_20260513T171200/median/paper.tex\nartifacts/dream_reports/dream_20260513T171200/worst/paper.tex\nartifacts/_project/paper/fisher_info_appendix.tex\nartifacts/fisher_info_derivation/fisher_info_appendix.tex\nartifacts/dream_reports/dream_20260514T171536/best/paper.tex\nartifacts/dream_reports/dream_20260514T171536/median/paper.tex\nartifacts/dream_reports/dream_20260514T171536/worst/paper.tex\nartifacts/dream_reports/dream_20260514T185145/best/paper.tex\nartifacts/dream_reports/dream_20260514T185145/median/paper.tex\nartifacts/dream_reports/dream_20260514T185145/worst/paper.tex\nartifacts/dream_reports/dream_20260515T052337/best/paper.tex\nartifacts/dream_reports/dream_20260515T052337/median/paper.tex\nartifacts/dream_reports/dream_20260515T052337/worst/paper.tex\nartifacts/dream_reports/dream_20260516T104822/best/paper.tex\nartifacts/dream_reports/dream_20260516T104822/median/paper.tex\nartifacts/dream_reports/dream_20260516T104822/worst/paper.tex\nartifacts/dream_reports/dream_20260516T155748/best/paper.tex\nartifacts/dream_reports/dream_20260516T155748/median/paper.tex\nartifacts/dream_reports/dream_20260516T155748/worst/paper.tex\nartifacts/_project/paper/results.tex\nartifacts/_project/paper/related_work_04a735.tex\nartifacts/_project/paper/discussion.tex\nartifacts/_project/paper/abstract.tex\nartifacts/paper_draft/experiments.tex\nartifacts/_project/paper/introduction.tex\nartifacts/paper_draft/abstract.tex\nartifacts/paper_draft/conclusion.tex\nartifacts/paper_draft/discussion.tex\nartifacts/paper_draft/introduction.tex\nartifacts/paper_draft/main.tex\nartifacts/paper_draft/method.tex\nartifacts/paper_draft/related_work.tex\nartifacts/paper_draft/results.tex\nartifacts/paper_dra\n…[truncated 448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T19:33:52.991485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T19:33:52.991616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260513T155040/best/references.bib\nartifacts/dream_reports/dream_20260514T185145/median/references.bib\nartifacts/bib_rebuild_2025plus.bib\nartifacts/bib_rebuild_2024_classics.bib\nartifacts/_project/paper/references.bib\nartifacts/paper_draft/references.bib\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T19:33:52.991769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T19:33:52.991901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review,hyperref]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{multirow}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{subcaption}\n12\t\\usepackage{algorithm}\n13\t\\usepackage{algpseudocode}\n14\t\\usepackage{float}\n15\t\n16\t\\title{Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families}\n17\t\n18\t\\author{Anonymous}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\begin{abstract}\n24\t\\input{abstract}\n25\t\\end{abstract}\n26\t\n27\t\\input{introduction}\n28\t\\input{related_work}\n29\t\\input{method}\n30\t\\input{experimental_setup}\n31\t\\input{results}\n32\t\\input{conclusion}\n33\t\n34\t\\input{limitations}\n35\t\\input{ethics}\n36\t\n37\t\\bibliography{references}\n38\t\n39\t\\input{appendix}\n40\t\n41\t\\end{document}\n42\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T19:33:52.992027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T19:33:52.992157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tBenchmark contamination is widely assumed to inflate language model scores, yet the actual effect has never been systematically measured across model families. We perform controlled SFT injection at five dosage levels into five models spanning four independent families (7B--14.7B parameters) and discover that contamination produces not one effect but qualitatively different dose-response patterns---from immunity ($\\pm$0.5pp) through monotonic benefit ($+$3.8pp) to catastrophic collapse ($-$9 to $-$13pp across seeds). Contamination vulnerability concentrates in the 65--70\\% MMLU baseline band; models at extreme baselines show limited sensitivity. Counter-intuitively, the 14B Qwen model is 3$\\times$ more fragile than 7B. These effects are benchmark-conditional: models harmed on MMLU can simultaneously benefit on GSM8K ($+$10pp), revealing asymmetric cross-benchmark transfer. Profiles are robust on MMLU (4/5 families $\\geq$99.6\\% bootstrap stability); ARC-Challenge shows directional agreement for 4/5 families but lower stability due to its smaller item pool (1{,}172 vs.\\ 14{,}042 items). We further characterize contamination detection signal failure: Min-K\\%++ exhibits directional reversal at small scales (Cohen's $d = -1.55$ to $-1.98$), actively misleading practitioners. Simulation studies establish that IRT-based contamination diagnosis requires ensemble sizes ($J \\geq 50$) above current practice. Our findings demonstrate that ``contamination equals inflation'' is a gross oversimplification; model-specific dose-response profiling is necessary for reliable benchmark interpretation.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T19:33:52.992287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T19:33:52.992534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n4\t\n5\tWe perform controlled SFT injection (LoRA, five dosage levels) into five models spanning four independent families from four labs (Alibaba, Microsoft, Allen AI, Google) and discover qualitatively different dose-response patterns---from immunity (Phi-4 14.7B, $\\pm$0.5pp on MMLU) to catastrophic collapse (Qwen-14B, $-$9 to $-$13pp across seeds). Contamination vulnerability concentrates in the 65--70\\% MMLU baseline band: below it, models benefit (OLMo-2 $+$3.2pp, Gemma-2 $+$3.8pp); above it, they are harmed or immune. Counter-intuitively, the 14B model is 3$\\times$ more fragile than 7B. Using ContamCal, a two-stage pipeline combining multi-signal item filtering with contamination-augmented IRT (2PL+$\\gamma_k$), we provide the statistical machinery for this characterization.\n6\t\n7\tOur contributions:\n8\t\\begin{enumerate}\n9\t    \\item \\textbf{Dose-response taxonomy with cross-seed and cross-benchmark validation.} Controlled injection across four families reveals qualitatively different dose-response patterns; contamination vulnerability concentrates in the 65--70\\% MMLU baseline band, while models at extreme baselines show limited sensitivity. Cross-benchmark transfer to GSM8K reveals t\n…[truncated 1156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T19:33:52.992693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T19:33:52.992890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tContamCal operates in two stages: Stage~1 estimates per-item contamination exposure from multiple detection signals via training-free fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to produce calibrated ability estimates with credible intervals.\n5\t\n6\t\\subsection{Problem Formulation}\n7\t\\label{sec:formulation}\n8\t\n9\tLet $y_{ijk} \\in \\{0,1\\}$ denote the binary response of model~$j$ ($j=1,\\ldots,J$) to item~$i$ ($i=1,\\ldots,I_k$) on benchmark~$k$. Standard IRT assumes $P(y_{ijk}=1) = f(\\theta_j, \\boldsymbol{\\xi}_i)$ where $\\theta_j$ is latent ability and $\\boldsymbol{\\xi}_i$ collects item parameters. When training corpora contain benchmark items, the observed ability $\\hat{\\theta}_j$ confounds genuine capability with memorization.\n10\t\n11\tOur goal is to estimate $\\theta_j^{\\text{clean}}$, the ability each model would exhibit absent contamination, and to diagnose contamination effects at domain granularity. We adapt item compromise IRT \\citep{eckerly_2017_item_compromise,sinharay_2017_preknowledge} and explanatory IRT \\citep{deboeck_2004_explanatory_irt} for LLM evaluation: replacing binary leakage indicators with continuous exposure scores $e_{ij} \\in [0,1]$, fitting per-benchmark models to handle the shared item pool \\citep{sanmartin_2009_irt}, and recovering clean ability via counterfactual inference (setting $e_{ij}=0$).\n12\t\n13\t\\subsection{Stage 1: Multi-Signal Exposure Mapping}\n14\t\\label{sec:stage1}\n15\t\n16\tFor each model~$j$ and item~$i$, we consider four candidate detection signals. \\textbf{S1}~(Embedding similarity): cosine similarity between the item embedding and its nearest neighbor in the SFT training corpus. \\textbf{S2}~(Min-K\\%++): a membership inference statistic based on token-level surprisal \\citep{zhang_2024_minkpp}. \\textbf{S3}~(ConStat): the accuracy gap between original and paraphrased item variants \\citep{dekoninck2024constat}. \\textbf{S4}~(Self-Critique): negative entropy of mode\n…[truncated 9017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T19:33:52.993044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T19:33:52.993185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Contamination detection and mitigation.}\n4\tDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases \\citep{dekoninck2024constat}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation} for surveys. Concurrent work by \\citet{tao2025detecting} targets RL-trained models via entropy collapse. These methods perform binary classification without quantifying effect sizes. On mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals.\n5\t\n6\t\\paragraph{IRT for LLM evaluation.}\n7\tItem Response Theory \\citep{lord_1980_irt,hambleton_1991_irt} has gained traction for LLM evaluation: TinyBenchmarks \\citep{polo_2024_tinybenchmarks} for efficient evaluation, Growing Pains \\citep{habba_2025_growing_pains} for large-scale validation, HiBayES \\citep{luettgau_2025_hibayes} for hierarchical Bayesian inference; see \\citet{lalor_2024_irt_nlp} for a tutorial. Most directly related, \\citet{han2026quantifying} apply psychometric DIF to quantify contamination on item parameters, using group-based binary indicators on naturally contaminated models. ContamCal differs by introducing continuous exposure covariates ($\\gamma_k$) from multiple detection signals, operating on controlled-injection data with known ground truth, and providing domain-level decomposition. Our $\\gamma$ parameter is formally an instance of explanatory DIF \\citep{deboeck_2004_explanatory_irt,eckerly_2017_item_compromise}: the contamination covariate differentially affects response probability, analogous to item comp\n…[truncated 259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T19:33:52.993362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T19:33:52.993536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Controlled SFT Injection}\n5\t\\label{sec:injection}\n6\t\n7\tWe construct a controlled contamination testbed spanning four independent model families from four labs, trained on independent corpora with distinct pre-training recipes: Qwen2.5 \\citep{qwen2024qwen25} (0.5B, 1.5B, 3B, 7B, 14B), Phi-4 \\citep{abdin2024phi4} (14.7B), OLMo-2 \\citep{olmo2team2025} (7B), and Gemma-2 \\citep{gemmateam2024gemma2} (9B). All models are fine-tuned with a unified LoRA configuration \\citep{hu2022lora} ($r=16$, $\\alpha=32$, lr$=5\\times10^{-5}$, bf16) on a general-purpose SFT corpus into which benchmark items are injected at five dosage levels: d000 (0\\%, clean control), d005 (5\\%), d025 (25\\%), d050 (50\\%), and d100 (100\\%). Contaminated items augment (not replace) the base SFT corpus; at d100, 16{,}533 benchmark items are added beyond 50{,}000 base examples.\n8\t\n9\tQwen2.5 serves as the primary within-family series (five scale points, 0.5B--14B). Models at $\\leq$3B are trained with two seeds at four dosage levels; 7B and 14B at all five dosages. The three cross-family models are each trained at five dosages with a single seed, serving as consistency checks rather than independent confirmatory analyses. This yields over 50 checkpoints spanning eight sizes across four families. We exclude 0.5B from MC IRT due to position bias (A-option rate: 46\\% at d000 to 98\\% at d100; \\S\\ref{sec:signal_failure}).\n10\t\n11\t\\subsection{Benchmarks, Domains, and Evaluation}\n12\t\\label{sec:benchmarks}\n13\t\n14\tWe evaluate on three benchmarks spanning distinct cognitive demands and response formats.\n15\t\n16\t\\textbf{MMLU} \\citep{hendrycks2021mmlu} (5-shot): 14,042 multiple-choice items across 57 subjects, grouped into 8 cognitive domains (Math, Science, CS \\& Engineering, Medical, Humanities, Social Sciences, Business \\& Law, Other). This stratification reveals within-benchmark heterogeneity that aggregate scoring obscures (\\S\\ref{sec:results}).\n17\n…[truncated 1364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T19:33:52.993686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T19:33:52.993951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tCross-family results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across five models from four independent families. Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n5\t\n6\t\\subsection{Dose-Response Patterns}\n7\t\\label{sec:taxonomy}\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (180/180 model--seed--combination pairs across 30 $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n12\t\\label{tab:taxonomy}\n13\t\\footnotesize\n14\t\\begin{tabular}{llccccc}\n15\t\\toprule\n16\tPattern & Model & Baseline & $\\Delta$acc & 95\\% CI & Peak & Stab. \\\\\n17\t\\midrule\n18\tImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% \\\\\n19\tCollapse & Qwen-14B & 69.4\\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\\% \\\\\n20\tV-recovery & Qwen-7B & 66.1\\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\\textsuperscript{d025} & 99.6\\% \\\\\n21\tBenefit & Gemma-2 9B & 61.9\\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\\% \\\\\n22\tBenefit & OLMo-2 7B & 53.8\\% & $+$3.2pp\\textsuperscript{$\\dagger$} & [$+$2.73, $+$3.71] & sat.\\textsuperscript{d050} & 100\\% \\\\\n23\t\\bottomrule\n24\t\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero ($p=0.039$). See \\S\\ref{sec:cross_seed}.}\n25\t\\end{tabular}\n26\t\\end{table}\n27\t\n28\tApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields qualitatively differ\n…[truncated 13902 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T19:33:52.994136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T19:33:52.994280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe systematically profiled how SFT-injected contamination affects benchmark scores across model families and scales. Three findings emerge.\n4\t\n5\t\\paragraph{Diverse patterns, not uniform inflation.}\n6\tThe ``contamination inflates scores'' assumption is a gross oversimplification. Controlled injection reveals qualitatively different dose-response patterns: contamination vulnerability concentrates in the 65--70\\% MMLU baseline band, while models at extreme baselines show limited sensitivity. Item-level DiD analysis (\\S\\ref{sec:memorization_test}) shows these patterns arise from global capability modulation, not item-specific memorization---challenging the premise of overlap-based detection methods. Contamination \\emph{direction} is consistent across benchmarks; \\emph{shape} varies with benchmark properties (Appendix~\\ref{sec:arc_cross_benchmark}), implying model-\\emph{and}-benchmark-specific profiling is necessary. Cross-seed analysis (\\S\\ref{sec:cross_seed}) shows effect direction is reproducible but magnitude is seed-sensitive; conflicting contamination findings in the literature may partly reflect unreported seed variance.\n7\t\n8\t\\paragraph{Why bigger $\\neq$ more robust.}\n9\tQwen-14B ($-$9 to $-$13pp across seeds) is 3$\\times$ more fragile than Qwen-7B ($-$2 to $-$3pp): SFT injection disrupts more specialized representations that smaller models have not yet developed. Organizations fine-tuning frontier models on mixed-quality data face greater capability degradation risk.\n10\t\n11\t\\paragraph{Diagnostic value beyond aggregate calibration.}\n12\tDomain analysis reveals heterogeneity masked by aggregate scores (Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$). The IRT framework captures both family-level patterns and domain-level decomposition. Pretraining contamination may produce qualitatively different effects \\citep{schaeffer2026causally}; scaling to 70B+ is a natural next step.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T19:33:52.994559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T19:33:52.994722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tWe identify ten limitations that bound the scope of our conclusions.\n5\t\n6\t\\paragraph{Scale ceiling.}\n7\tAll experiments use models at or below 14.7B parameters. Larger models (70B+) may exhibit qualitatively different contamination dynamics where SFT injection is absorbed without producing measurable signal divergence.\n8\t\n9\t\\paragraph{Seed sensitivity.}\n10\tCross-seed analysis (\\S\\ref{sec:cross_seed}) confirms that effect \\emph{direction} is reproducible across three seeds, but magnitude and dose-response shape exhibit seed-dependent variability. OLMo-2's cross-seed CI crosses zero ($p=0.039$), rendering its benefit classification borderline. Practitioners should report multi-seed CIs rather than single-seed point estimates.\n11\t\n12\t\\paragraph{SFT ecological validity.}\n13\tWe use LoRA-based SFT injection exclusively in AUGMENT mode (contaminated items appended to, not replacing, base SFT data). Pretraining-stage leakage, which occurs during large-scale web crawl ingestion, may produce qualitatively different contamination signatures. The position bias at 0.5B (A-option rate escalating from 46\\% to 98\\% with dosage) is likely SFT-specific. Generalization to pretraining contamination requires further validation.\n14\t\n15\t\\paragraph{ARC-Challenge bootstrap stability.}\n16\tARC-Challenge contains only 1{,}172 items (vs.\\ 14{,}042 for MMLU), resulting in substantially lower bootstrap profile stability: OLMo-2 53.3\\%, Gemma-2 62.7\\% (vs.\\ $\\geq$76.6\\% on MMLU). Gemma-2's ARC $\\Delta$acc 95\\% CI crosses zero, and Qwen-14B exhibits a different pattern (V-recovery) on ARC than on MMLU (Collapse). Cross-benchmark consistency claims should be interpreted as directional agreement, not pattern-level replication.\n17\t\n18\t\\paragraph{Signal coverage.}\n19\tS1 (embedding similarity) requires training corpus access, unavailable for closed-source models. For API-only models, only S2 and S4 are applicable, and both show poor discrimination b\n…[truncated 2298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T19:33:52.994873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/ethics.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T19:33:52.995001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Ethics Statement}\n2\t\n3\tAll experiments use publicly available, open-weight language models (Qwen2.5, Phi-4, OLMo-2, and Gemma-2) under their respective licenses. Contamination injection is performed via standard supervised fine-tuning on existing public benchmark items; no new data collection involving human subjects is conducted. All evaluation benchmarks (MMLU, ARC-Challenge, GSM8K) are publicly released datasets. This work does not involve private user data, personally identifiable information, or human annotation.\n4\t\n5\tWe acknowledge a dual-use risk: the contamination injection protocol we describe could be used to deliberately inflate benchmark scores. We mitigate this by focusing on detection and measurement rather than injection optimization, and by releasing detection signals rather than injection recipes. Our findings characterize the conditions under which SFT injection affects aggregate scores, which may inform decisions about manipulation risk at different scales. The measurement framework is intended to improve evaluation transparency, not to enable gaming.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T19:33:52.995127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T19:33:52.995419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{ARC-Challenge Cross-Benchmark Analysis}\n4\t\\label{sec:arc_cross_benchmark}\n5\t\n6\tARC-Challenge (25-shot, 1{,}172 items) patterns under s42 are directionally consistent with MMLU for four of five models: OLMo-2 benefits ($+$3.9pp), Qwen-7B ($-$2.9pp) and Qwen-14B ($-$3.4pp) are harmed, Phi-4 remains immune ($+$0.6pp). Gemma-2 ARC under s42 exhibits a 16pp oscillation artifact not reproduced under s123, indicating a seed-specific evaluation instability rather than a systematic pattern. Under s123, Gemma-2 benefits on ARC ($+$2.73pp, d000$=$80.1\\%$\\to$d100$=$82.9\\%), consistent with MMLU Benefit ($+$3.8pp). Bootstrap stability is substantially lower than MMLU (OLMo-2: 53.3\\%, Gemma-2: 62.7\\%) due to the smaller item pool (1{,}172 vs.\\ 14{,}042).\n7\t\n8\t\\paragraph{Cross-seed ARC consistency.}\n9\tPhi-4 is the strongest anchor with $n\\!=\\!3$ on both benchmarks: ARC mean $\\Delta = +0.66$pp (SD$=$0.18pp; s0 $+$0.51, s42 $+$0.60, s123 $+$0.86; BCa 95\\% CI [$+$0.51, $+$0.77]), MMLU mean $\\Delta = +0.73$pp---cross-benchmark agreement within 0.07pp. While statistically detectable on ARC (CI excludes zero, unlike MMLU CI [$-$0.17, $+$1.39]), the effect ($+$0.66pp) is too small to meaningfully inflate benchmark scores, consistent with the Immune classification. Qwen-7B's net ARC harm is cross-seed stable ($-$2.9pp at s42, $-$2.4pp at s123), though d005 V-dip severity is seed-dependent ($-$1.8pp vs.\\ $-$4.7pp). Under s123, extreme patterns remain benchmark-invariant: Qwen-14B suffers harm on both MMLU ($-$12.7pp) and ARC ($-$3.2pp). OLMo-2 achieves $n\\!=\\!3$ on ARC: mean $\\Delta = +3.44$pp (SD$=$0.52pp; s0 $+$3.50, s42 $+$3.92, s123 $+$2.90). Despite being the most seed-sensitive family on MMLU (SD$=$1.9pp), OLMo-2 is remarkably stable on ARC (SD$=$0.52pp)---seed sensitivity is itself benchmark-dependent, likely modulated by item count and difficulty distribution. Using multi-seed MMLU means ($+$1.4pp), direction is consistently positive on both benchmarks, il\n…[truncated 21448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T19:33:52.995598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T19:33:52.995866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Literature Map Entries (keys from literature_map.yaml ids)\n3\t% ============================================================\n4\t\n5\t@inproceedings{carlini_2021_extracting,\n6\t  author    = {Carlini, Nicholas and Tramer, Florian and Wallace, Eric and Jagielski, Matthew and Herbert-Voss, Ariel and Lee, Katherine and Roberts, Adam and Brown, Tom and Song, Dawn and Erlingsson, Ulfar and Oprea, Alina and Raffel, Colin},\n7\t  title     = {Extracting Training Data from Large Language Models},\n8\t  booktitle = {Proceedings of the 30th USENIX Security Symposium},\n9\t  year      = {2021},\n10\t  url       = {https://arxiv.org/abs/2012.07805}\n11\t}\n12\t\n13\t@inproceedings{choi_2025_kds,\n14\t  author    = {Choi, Hyeong Kyu and Khanov, Maxim and Wei, Hongxin and Li, Yixuan},\n15\t  title     = {How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence},\n16\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n17\t  year      = {2025},\n18\t  url       = {https://arxiv.org/abs/2502.00678}\n19\t}\n20\t\n21\t@inproceedings{cormack_2009_rrf,\n22\t  author    = {Cormack, Gordon V. and Clarke, Charles L. A. and Buettcher, Stefan},\n23\t  title     = {Reciprocal Rank Fusion Outperforms {Condorcet} and Individual Rank Learning Methods},\n24\t  booktitle = {Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval},\n25\t  pages     = {758--759},\n26\t  year      = {2009},\n27\t  publisher = {ACM},\n28\t  url       = {https://dl.acm.org/doi/10.1145/1571941.1572114}\n29\t}\n30\t\n31\t@book{deboeck_2004_explanatory_irt,\n32\t  author    = {De Boeck, Paul and Wilson, Mark},\n33\t  title     = {Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach},\n34\t  publisher = {Springer},\n35\t  year      = {2004},\n36\t  address   = {New York},\n37\t  url       = {https://link.springer.com/book/10.1007/978-1-4757-3990-9}\n…[truncated 26494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T19:33:52.996092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/figures/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T19:33:52.996229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/figures/fig_signal_heatmap.pdf\ndocs/paper/figures/fig_identifiability_heatmap.pdf\ndocs/paper/figures/fig_domain_gamma.pdf\ndocs/paper/figures/fig_dose_response.pdf\ndocs/paper/figures/arc_dose_response.pdf\ndocs/paper/figures/baseline_vs_effect.pdf\ndocs/paper/figures/fig_arc_dose_response.pdf\ndocs/paper/figures/fig_baseline_vs_effect.pdf\ndocs/paper/figures/fig_treated_untreated.pdf\ndocs/paper/figures/fig_did_dose_response.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T19:33:52.996372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && cat abstract.tex | wc -w",
+              "description": "Count abstract word count"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T19:33:52.996503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "201"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T19:33:52.996666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.sty",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T19:33:52.996787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T19:33:52.996899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.cls",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T19:33:52.997011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T19:33:52.997160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "(\\\\todo|\\\\fixme|\\\\textcolor|TODO|FIXME|XXX|HACK|TBD|\\\\comment)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T19:33:52.997281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "acl_natbib.bst:226:            { \"XXX\" }\nresults.tex:87:Gemma-2 & 2 & $+$ & $+$ & --- & [$-$11.8, $+$17.1]\\textsuperscript{$t$} & Benefit & \\checkmark & TBD\\textsuperscript{a} \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T19:33:52.997443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.bst",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T19:33:52.997560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T19:33:52.997671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\aclfinalcopy",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T19:33:52.997780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T19:33:52.997918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/{acl,acl_natbib}.{sty,bst,cls}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T19:33:52.998033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "acl.sty\nacl_natbib.bst"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T19:33:52.998153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -30 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/acl.sty",
+              "description": "Check ACL style file version"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T19:33:52.998262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nhead: cannot open '/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/acl.sty' for reading: No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T19:33:52.998393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/acl.sty",
+              "limit": "30"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T19:33:52.998503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T19:33:52.998613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration -name \"acl.sty\" -o -name \"acl_natbib.bst\" 2>/dev/null",
+              "description": "Find ACL template files"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T19:33:52.998725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/acl_natbib.bst\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/acl.sty"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T19:33:52.998834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/acl.sty",
+              "limit": "30"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T19:33:52.998958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% This is the LaTex style file for *ACL.\n2\t% The official sources can be found at\n3\t%\n4\t%     https://github.com/acl-org/acl-style-files/\n5\t%\n6\t% This package is activated by adding\n7\t%\n8\t%    \\usepackage{acl}\n9\t%\n10\t% to your LaTeX file. When submitting your paper for review, add the \"review\" option:\n11\t%\n12\t%    \\usepackage[review]{acl}\n13\t\n14\t\\newif\\ifacl@finalcopy\n15\t\\newif\\ifacl@anonymize\n16\t\\newif\\ifacl@linenumbers\n17\t\\newif\\ifacl@pagenumbers\n18\t\\DeclareOption{final}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumbersfalse}\n19\t\\DeclareOption{review}{\\acl@finalcopyfalse\\acl@anonymizetrue\\acl@linenumberstrue\\acl@pagenumberstrue}\n20\t\\DeclareOption{preprint}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumberstrue}\n21\t\\ExecuteOptions{final} % final copy is the default\n22\t\n23\t% include hyperref, unless user specifies nohyperref option like this:\n24\t% \\usepackage[nohyperref]{acl}\n25\t\\newif\\ifacl@hyperref\n26\t\\DeclareOption{hyperref}{\\acl@hyperreftrue}\n27\t\\DeclareOption{nohyperref}{\\acl@hyperreffalse}\n28\t\\ExecuteOptions{hyperref} % default is to use hyperref\n29\t\\ProcessOptions\\relax\n30\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T19:33:52.999169+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已读取完毕。以下是格式预检报告。\n\n---\n\n## EMNLP 2026 (ARR) 格式预检报告\n\n### FAIL\n\n| # | 项目 | 详情 |\n|---|------|------|\n| F1 | **主文极可能超 8 页** | 主文（Introduction → Discussion/Conclusion）包含 7 个 section、Algorithm 1（35 行伪代码）、5 个 table（Tab 1–5）、2 个 figure。ACL 双栏格式下保守估计 10–11 页。必须编译验证并裁剪。 |\n| F2 | **正文残留 \"TBD\"** | `results.tex:87` — Table 3 Gemma-2 Pattern 列写的是 `TBD\\textsuperscript{a}`，脚注 \"Classifier fix in progress\"。未完成内容不能提交。 |\n\n### WARNING\n\n| # | 项目 | 详情 |\n|---|------|------|\n| W1 | **acl.sty 版本未标注** | `docs/paper/acl.sty` 无版本日期。ARR 2026 submission cycle 可能要求最新模板，需到 [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files/) 核对。 |\n| W2 | **Bib arXiv 格式不一致** | `abdin2024phi4`、`olmo2team2025`、`gemmateam2024gemma2` 用 `journal = {arXiv preprint arXiv:XXXX}` 而非标准 `eprint` 字段。其他 arXiv 条目用的是 `eprint` + `archiveprefix`。应统一。 |\n| W3 | **arXiv-only 条目可能已有正式版本** | `zhang_2024_gsm1k`（2024）、`kadavath2022`（2022）、`white2024livebench`（2024）、`clark2018arc`（2018）等长期 arXiv 条目，需查验是否已正式发表并更新 venue/pages。 |\n| W4 | **`zhang_2024_gsm1k` 条目类型错误** | 用了 `@inproceedings` + `booktitle = {arXiv preprint}`，arXiv 论文应为 `@article` + `journal`。 |\n| W5 | **多个 `@inproceedings` 缺 pages 字段** | `dekoninck2024constat`、`oren2024proving`、`hendrycks2021mmlu`、`hu2022lora` 等。已有 proceedings 的条目应补充页码。 |\n| W6 | **`\\usepackage[review,hyperref]{acl}`** | `hyperref` 是 acl.sty 默认选项，冗余但无害。 |\n\n### PASS\n\n| # | 项目 | 详情 |\n|---|------|------|\n| P1 | **匿名提交** | `\\author{Anonymous}`，无 acknowledgments，无 `\\thanks`，无去匿名化自引。 |\n| P2 | **`[review]` 模式** | 已启用行号 + 匿名化。未出现 `\\aclfinalcopy`。 |\n| P3 | **Abstract 长度** | 201 words ≤ 250。 |\n| P4 | **Limitations section** | 充分：10 个 limitation 段落，覆盖 scale ceiling / seed sensitivity / ecological validity / signal coverage / ensemble size / position bias / model misfit / linearity / prompt format。 |\n| P5 | **Ethics Statement** | 存在，讨论了 dual-use risk 和 mitigation。 |\n| P6 | **图文件完整** | 主文引用的 `fig_dose_response.pdf`、`fig_treated_untreated.pdf` 及 appendix 全部 8 个 figure 文件均存在于 `docs/paper/figures/`。 |\n| P7 | **Table/Figure caption** | 所有 table 和 figure 均有 caption 且被正文引用。 |\n| P8 | **编号连续** | 主文 Table 1–5、Figure 1–2，Appendix Table 6–12、Figure 3–8，连续无缺。 |\n| P9 | **Section 结构** | Introduction → Related Work → Method → Experimental Setup → Results → Discussion/Conclusion → Limitations* → Ethics* → References → Appendix。符合 ARR 规范。 |\n| P10 | **引用风格** | ACL natbib (`\\citep`/`\\citet`/`\\citealp`) 一致使用。 |\n\n---\n\n### 修复建议\n\n**F1 (超页数)** — 最高优先级。可行方案：\n- 将 Algorithm 1 移入 Appendix（节省 ~0.7 页）\n- 将 Table 3 (cross-seed) 或 Table 4 (DiD) 移入 Appendix，正文仅保留文字总结\n- 压缩 §5.1–5.6 中描述性文字（当前结果段落较冗长）\n- Figure 2 (treated_untreated) 可移入 Appendix，用一句话引用\n- 需编译后逐页裁剪至严格 8 页\n\n**F2 (TBD)** — `results.tex:87` Gemma-2 Pattern 列和脚注 `a` 需要填入实际分类结果或删除该列。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_emnlp-format-precheck_20260520T193016"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/paper-emnlp-format-precheck.md"
+}

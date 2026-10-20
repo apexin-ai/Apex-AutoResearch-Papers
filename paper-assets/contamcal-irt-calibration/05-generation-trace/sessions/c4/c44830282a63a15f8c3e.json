@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44830282a63a15f8c3e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops download training monitor",
+  "task_key": "worker_ops_download-training-monitor_20260518T162108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-training-monitor_20260518T162108_result.json",
+    "occurrence": 1,
+    "bytes": 1792,
+    "sha256": "876eeaa9e3bee1b6019a4694edac57a354bfc603e6f402e7313160edb19f7b87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## GPU 状态 (4x RTX PRO 6000, 96GB)\n\n| GPU | PID | 显存占用 | GPU Util | 温度 |\n|-----|------|---------|----------|------|\n| 0 | 36665 | 61.9/97.9 GB | 65% | 68°C |\n| 1 | 34011 | 80.0/97.9 GB | 87% | 69°C |\n| 2 | 38920 | 63.6/97.9 GB | 79% | 65°C |\n| 3 | 36943 | 62.2/97.9 GB | 90% | 54°C |\n\n4 卡全部在跑，正常。\n\n---\n\n## 训练进度\n\n| GPU | 任务 | 进度 | Loss | Token Acc | ETA |\n|-----|------|------|------|-----------|-----|\n| 0 | 7B d100 s42 | **1880/4159 (45%)** | 0.993 | 0.761 | ~1h04m |\n| 1 | 7B d050 s42 | **3547/3642 (97%)** | 0.886 | 0.781 | **~3min，即将完成** |\n| 2 | 14B d005 s42 | **386/3177 (12%)** | 0.907 | 0.779 | ~2h20m |\n| 3 | 7B d005 s123 | **1427/3177 (45%)** | 0.889 | 0.787 | ~58min |\n\nGPU 1 的 d050 训练马上结束。\n\n---\n\n## 模型下载\n\n| 模型 | 实际路径 | 已下载 shard | 预期 shard | 大小 | 状态 |\n|------|---------|-------------|-----------|------|------|\n| **Phi-4** | `phi-4/` | 4/6 (00001-00003, 00006) | 6 | ~19G/~28G | **进行中** — PID 19608 存活，log 显示 13/21 files (62%)，速度慢 |\n| **OLMo-2** | `OLMo-2-1124-7B/` | 4/6 (00001,00002,00005,00006) | 6 | ~18.3G/~28G | **卡住** — 无活跃进程，log 显示 model-00003 下载超时后进程退出 |\n| **Gemma-2-9B** | `gemma-2-9b/` | 6/8 (00001-00003,00005,00007,00008) | 8 | ~25.7G/~36G | **卡住** — 无活跃进程，log 显示 model-00004 下载超时后进程退出 |\n\n**OLMo-2 和 Gemma-2 下载均因 xet-bridge read timeout 导致进程退出，需要手动重启下载。** Phi-4 虽然还活着但速度很慢（最后一个 shard 花了 4+ 小时）。\n\n---\n\n## 磁盘\n\n`/root/autodl-tmp`: 126G/250G (51%), 剩余 125G — 空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-training-monitor.md"
+}

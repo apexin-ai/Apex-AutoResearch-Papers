@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f470b9bdf95d50f6ccf4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify d050 s123 and cuda0",
+  "task_key": "worker_ops_verify-d050-s123-and-cuda0_20260518T190955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d050-s123-and-cuda0_20260518T190955_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "6f930dc40cc13ff24963ea8ab1716a69fdf7e8313e36ad47fd55b0b3564c2ae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### d050_s123：**成功**\n- checkpoint 完整：`adapter_model.safetensors` (154MB) 存在，`lora_alpha=32` 符合规范\n- `should_training_stop=true`，max_steps=3642，训练正常结束\n- 最后 step 3640 metrics：\n  - loss: **0.935**\n  - mean_token_accuracy: **0.776**\n  - epoch: ~1.0\n  - total_flos: 1.22e18\n- 无独立日志文件（`train_7b_d050_s123.log` 不存在，可能是 batch 脚本 `exp002_s1_7B_batch.log` 统一输出）\n\n### cuda:0：**空闲**\n- 0MiB / 97887MiB，无进程\n- cuda:1 (55.5G, PID 49198), cuda:2 (550M, PID 53527), cuda:3 (62.8G, PID 46876) 在用\n\n### Phi-4 下载：**失败（不完整）**\n- 路径为 `/root/autodl-tmp/models/phi-4/`（小写）\n- 缺少 `model-00005-of-00006.safetensors`（6 个分片只有 5 个）\n- PID 49771 已死亡\n- restart 日志显示 `[Errno 101] Network is unreachable`，仅返回了本地缓存\n\n### OLMo-2 下载：**失败（不完整）**\n- 缺少 `model-00003-of-00006.safetensors`（6 个分片只有 5 个）\n- PID 49929 已死亡\n- restart 日志同样 `Network is unreachable`，返回本地缓存\n\n两个模型下载都因网络不可达而中断，各缺 1 个分片，需要恢复网络后重新下载补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d050-s123-and-cuda0.md"
+}

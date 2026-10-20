@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92bd37d00bb44681a88e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep s123 gsm8k cqa1",
+  "task_key": "worker_ops_prep-s123-gsm8k-cqa1_20260519T223254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-s123-gsm8k-cqa1_20260519T223254_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "a6ef44dff87637da9bf833a2df0e883d71accab9a284ba1d9b286294c0d7f388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 产出报告\n\n1. **s123 checkpoints**: cqa1 本地已有，无需 SCP\n   - `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123/lora_adapter/` ✅ lora_alpha=32\n   - `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123/lora_adapter/` ✅ lora_alpha=32\n\n2. **eval 脚本**: `/root/contamcal-irt-calibration/exp001/eval_gsm8k_qwen7b_s123.sh` 已就绪\n   - 语法检查通过\n   - C009 md5 校验、C004 CUDA_VISIBLE_DEVICES=0、adapter 不存在则 exit 1 均已包含\n   - 与 s42 脚本结构一致，仅改 seed 42→123 和对应路径\n\n3. **可直接启动**: intermediate eval 完成后，确认 GPU 0 空闲（C001/C002: `nvidia-smi`），即可 `bash eval_gsm8k_qwen7b_s123.sh` 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-s123-gsm8k-cqa1.md"
+}

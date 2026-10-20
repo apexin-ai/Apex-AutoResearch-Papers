@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "b725e67ff776f686746d",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops falcon3 westd download",
+  "task_key": "worker_ops_falcon3-westd-download_20260522T040315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-download_20260522T040315.log",
+    "occurrence": 1,
+    "bytes": 1373410,
+    "sha256": "bf7318db2aa0308f5407eed9d3a73be98f02f13c2af5ecaaccc71a45fe704607"
+  },
+  "statistics": {
+    "messages": 1239,
+    "user_turns": 1,
+    "tool_calls": 499,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 226,
+      "tool_call": 499,
+      "tool_result": 499,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1031,
+      "chunks": [
+        {
+          "path": "b725e67ff776f686746d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0006.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "b725e67ff776f686746d-part-0006.json",
+          "message_count": 49
+        },
+        {
+          "path": "b725e67ff776f686746d-part-0007.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-falcon3-westd-download.md"
+}

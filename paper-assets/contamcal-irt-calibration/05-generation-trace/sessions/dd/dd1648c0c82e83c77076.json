@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd1648c0c82e83c77076",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu audit fill cuda2",
+  "task_key": "worker_ops_gpu-audit-fill-cuda2_20260516T185736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-audit-fill-cuda2_20260516T185736_result.json",
+    "occurrence": 1,
+    "bytes": 3562,
+    "sha256": "110ec4f12f2d1ef742702d38cc009fefd3bfad74785fc04bcb82265ca9bd5704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整审计结果如下。\n\n---\n\n## (1) GPU 截面\n\n| GPU | VRAM | Util | PID | 任务 | 进度 |\n|-----|------|------|-----|------|------|\n| cuda:0 | 8081/24564 | 70% | 825638 | Llama-3.2-3B d005 eval | GSM8K 452/1319 (34%) |\n| cuda:1 | 9023/24564 | 52% | 830115 等 | Llama-3.2-3B d000 mmlu+arc signals | 活跃 |\n| cuda:2 | 587/24564 | 23% | **835983** | **未注册重复** Llama d000 gsm8k signals (bs=8) | s4_selfcritique 60/165, ~2min 完成 |\n| cuda:3 | 8313/24564 | 72% | 822390 | Llama-3.2-3B d025 eval | GSM8K 685/1319 (52%) |\n| cuda:4 | 571/24564 | 17% | 831936 | Llama-3.2-3B d000 gsm8k signals (注册) | 低 VRAM，可能也在 s4 |\n| cuda:5 | 8313/24564 | 67% | 831033 | Llama-3.2-3B d100 eval | GSM8K 182/1319 (14%) |\n\n另有 CPU 任务：4 条 Stan 2PL+γ MCMC chain (PIDs 836320-836324)，以及一个**幽灵进程** PID 835593（同样是 Llama d000 gsm8k signals bs=8，运行 6min43s，**不在任何 GPU 上**）。\n\n---\n\n## (2) exp_002_signals_3B_d000_s123_cuda2\n\n**Registry 中不存在此 exp_id。** 可能已被清理或 ID 不同。\n\n关键发现：**Qwen2.5-3B d000 s123 signals 已全部完成**。`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_s123/` 和 `Qwen2.5-3B_d000_s123_a32/` 都有完整的 3 benchmark × 3 signal + merged 文件。lora_alpha=32 ✓（C006 合规）。\n\n**无需重新提交。**\n\n---\n\n## (3) exp_002_signals_15B_instruct_arc 失败原因\n\n两次运行均以 EXIT_CODE=129 (SIGHUP) 结束：\n\n- **v1**：`HFValidationError` — `load_model_and_tokenizer()` 将本地路径 `/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct` 当成 HF repo_id 验证失败\n- **v2**：正常推进到 arc self-critique 完成，但在加载 `sentence-transformers/all-MiniLM-L6-v2` 时 HuggingFace 连接反复超时（AutoDL 网络问题），最终被 SIGHUP 终止\n\nRegistry 已标为 DONE/success（可能被手动解决）。\n\n---\n\n## (4) cuda:2 任务分配\n\n**无法启动 Qwen2.5-3B d000 s123 signals — 已完成。**\n\n当前 cuda:2 被 PID 835983 占用（Llama d000 gsm8k self-critique，~2min 完成）。这是与 cuda:4 PID 831936 的**三重冲突**（C001 违规）：3 个进程写同一个 output-dir `/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42/`。\n\nLlama d000 signals 状态：\n- s1_embedding: mmlu ✓ gsm8k ✓ arc ✓\n- s2_minkpp: mmlu ✓ gsm8k ✓ arc ✓\n- s4_selfcritique: arc ✓, **gsm8k 进行中**, **mmlu 未开始**\n- merged: arc ✓, gsm8k ✗, mmlu ✗\n\n建议：\n1. **Kill PID 835593**（幽灵，无 GPU，纯浪费 CPU）\n2. 让 PID 835983 (cuda:2) 跑完 gsm8k selfcritique（~2min），它会接着做 mmlu selfcritique + merge\n3. cuda:2 空闲后（预计 ~15min），最高优先级任务需要你指示 — **C007 清单里 0.5B s123、1.5B s123、3B d000 s123 signals 已全部完成**，需要确认下一优先级\n\n---\n\n## (5) ETA 估算\n\n| GPU | 当前阶段 | 阶段 ETA | 备注 |\n|-----|---------|---------|------|\n| cuda:0 (d005 eval) | GSM8K 34% | ~1h28m | 后续还有 ARC+HumanEval，总 ETA ~3-4h |\n| cuda:3 (d025 eval) | GSM8K 52% | ~1h01m | 同上，总 ETA ~2.5-3h |\n| cuda:5 (d100 eval) | GSM8K 14% | ~1h56m | 同上，总 ETA ~4-5h |\n| cuda:2 (Llama gsm8k s4) | selfcritique 36% | ~2min | 然后 mmlu selfcritique ~12min |\n| cuda:1 (Llama mmlu+arc signals) | 活跃 | 未知 | 8GB VRAM 在用 |\n| cuda:4 (Llama gsm8k signals) | 低 VRAM | 未知 | 可能也在 selfcritique |\n\n---\n\n**需要你决定**：cuda:2 空闲后放什么？Kill PID 835593 是否确认？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-fill-cuda2.md"
+}

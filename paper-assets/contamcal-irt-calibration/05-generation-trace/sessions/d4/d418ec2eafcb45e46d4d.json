@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d418ec2eafcb45e46d4d",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 5279,
+    "sha256": "28f25342193200d21a03c6772e88115c04b390d6ec5e211a31a76ab1aae4add6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T10:37:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5（6 卡），项目配置 `execution.gpu_ids`。越界进程必须 CRITICAL 打回。\n- **Cron false positive 已知模式**：bash wrapper PID 退出 → cron 误判 failed，但 python 训练进程正常完成。已发生 2 次（3B d100 SFT, 1.5B d005 SFT）。遇到 cron on_failed 必须先独立验证 checkpoint 和 train_runtime 日志再判定。\n- **MC eval 格式混杂**：D017 前（07:12 UTC 2026-05-14）的 eval 全部是 legacy 格式，D017 后默认 aligned。**不同格式的 MC 分数不可直接对比**，论文分析必须用 format-matched pairs。\n- **0.5B legacy eval 结果仅供诊断**，不可用于论文 dose-response 分析（D017 延伸决策）。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, SSH account: root\n- **远程工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`（50000/50826/54133/66533 行）\n- **Checkpoint 根**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dosage}_s42/lora_adapter/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **日志**: `/root/runs/contamcal-irt-calibration/`\n- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n- **W&B**: 未配置，不检查\n- **活跃进程**（截至 handoff 时刻）：\n  - GPU 0: PID 346331 — exp002 signal pipeline 0.5B（有路径 bug，正在修复）\n  - GPU 1: PID 336765 — 1.5B aligned eval batch（d000 GSM8K 25%）\n  - GPU 2: PID 332221 — 0.5B aligned eval batch（d000 GSM8K 66%）\n  - GPU 3: PID 319555 — 3B d100 SFT（59%, ~2h 剩余）\n  - GPU 4: PID 335351 — 3B d005 SFT（21%, ~2.7h 剩余）\n  - GPU 5: PID 342940 — 3B d000 aligned eval（MMLU 87%）\n\n### 3. 📊 当前状态\n**刚完成**：审查了 1.5B d100 aligned eval 完整结果（MMLU 0.5933, GSM8K 0.6497, ARC 0.7688, HumanEval 0.3049）。发布了 format-matched 污染提升分析：MMLU +0.80pp, HumanEval +17.7pp。确认了 3B GSM8K 异常根因是 LoRA SFT 导致 CoT 灾难性遗忘（非格式问题），3B raw GSM8K=0.605 但 d000 SFT 后跌到 0.117。诊断了 exp002 signal pipeline 路径 bug（`run_batch.py` 未追加 `/lora_adapter`）。\n\n**Registry RUNNING**:\n- `exp_004_sim_sweep_v2` — 46/120 seeds, local CPU, ETA ~26h\n- `exp_005_noise_prop_v3` — 5/25 fits, local CPU, ETA ~11.5h\n- `exp_001_sft_d100_3B` — 59%, GPU 3\n- `exp_001_sft_d005_3B` — 21%, GPU 4（新提交）\n- `exp_001_eval_05B_aligned_batch` — GPU 2, d000 original GSM8K 进行中\n- 1.5B aligned eval batch — GPU 1（可能未注册独立 exp_id）\n- 3B d000 aligned eval — GPU 5（可能未注册）\n- exp002 signal pipeline — GPU 0（路径 bug 待修复）\n\n**等待中**:\n- exp002 路径修复 worker 结果\n- 0.5B/1.5B/3B aligned eval batch 陆续完成回调\n- 3B d100/d005 SFT 完成后需提交 eval\n\n### 4. 📋 待办（条件触发式）\n- **3B d000 aligned eval MMLU 完成** → 检查 3B aligned MMLU baseline，对比 legacy（0.634）\n- **3B d000 aligned GSM8K 完成** → **关键**：如果 aligned GSM8K 仍为 ~0.117 → 确认 CoT 退化是真实的；如果恢复到 ~0.6 → 说明是 answer extraction bug\n- **0.5B aligned d100 eval 完成** → 对比 d000 aligned，计算 0.5B scale 的 format-matched 污染提升，与 1.5B 的 +0.80pp 对比\n- **exp002 路径修复部署** → 验证修复后重跑 minkpp + selfcritique（embedding 结果保留）\n- **3B d100 SFT 完成（~2h）** → 验证 checkpoint，提交 3B d100 aligned eval\n- **3B d005 SFT 完成（~2.7h）** → 同上\n- **1.5B aligned eval batch GSM8K 完成** → 获取 1.5B d000 aligned GSM8K baseline，完善 format-matched 对比表\n\n### 5. 🎯 战略上下文\n- **核心论文故事**：ContamCal 用 4PL+γ IRT 从 item-level 信号校准 benchmark 分数。Simulation（MVP + exp004）证明 γ 可恢复；Real eval（exp001）提供 dose-response 数据；Signal pipeline（exp002）提供 exposure 输入。\n- **1.5B d100 污染提升意外地小**：MMLU 仅 +0.80pp（format-matched）。HumanEval +17.7pp 是亮点。论文叙事需要从\"benchmark-dependent contamination sensitivity\"角度讲——不同 benchmark 对污染的敏感度差异本身是有价值的发现。\n- **最容易判断错的事**：\n  1. 看到 0.5B legacy d100 MMLU=0.232 就说\"catastrophic forgetting\"——**错，是 MC 格式不匹配**，aligned 格式会修复\n  2. 看到 cron on_failed 就信——**先查 checkpoint 和 train_runtime 日志**\n  3. 对比不同 mc_format 的 MC 分数——**必须 format-matched**\n  4. 3B GSM8K 低分——**已确认是 LoRA 配置过于激进导致 CoT 退化**，非格式问题，非 contamination 效应\n- **exp004 bias 反转**：之前以为是系统性的（AUC=0.55 高估 vs AUC=0.80 低估），最新分析降级为采样噪声（t 检验不显著），随 N 增大趋近无偏\n- **本 session 已发布 ~20 份审查报告**，Director 应已掌握上述所有发现\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

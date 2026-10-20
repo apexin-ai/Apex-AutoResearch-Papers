@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6c010fbe2ce2118ab9",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "director / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_15.md",
+    "occurrence": 1,
+    "bytes": 2896,
+    "sha256": "4a0f98f22f5f47b429710320d451f74d56e96968abd40f18e0ec47de6006c7d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_messages\nupdated: '2026-05-17T06:41:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977，共 6× RTX 4090D，全部归本项目\n- 0.5B 模型已被排除出 MMLU/ARC domain IRT（D127），不可再 include\n- J=13 (1.5B×8 + 3B×5) 是当前 IRT 模型池，J=21/J=24 均为过时数字\n- Paper Agent 已完成 D126 reversal patch，不要再派 D126 相关指令\n- Step 5 Round 3 不可在 J=13 rerun 结果出来前启动\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977 (connect.cqa1.seetacloud.com)，6× RTX 4090D\n- 工作目录: /root/contamcal-irt-calibration\n- Stan MCMC: CPU-only，通过 tmux 运行 (session name 待 Agent 确认)\n- 模型 checkpoints: /root/contamcal-irt-calibration/ 下各 exp 子目录\n- 活跃进程: \n  - Worker `compute:mmlu_domain_irt_no05b` — Stan MCMC J=13 rerun (CPU, tmux)\n  - Worker `exp009_recovery` — GPU 0-3 eval + GPU 4-5 s4 signals\n- 无 W&B / 无 Git remote 配置\n\n### 3. 📊 当前状态\n刚完成: Session 恢复后重发 D127 rerun 指令 + Paper Agent D126 reversal patch（已确认完成）。\n\nRUNNING/活跃:\n- `mmlu_domain_irt_no05b`: J=13 Stan MCMC 8 domains + pooled（CPU, ~1-4h，blocking）\n- `exp009_recovery`: GPU 0-3 Instruct eval (3B/0.5B/1.5B MMLU + DeepSeek GSM8K), GPU 4-5 s4 signals\n\n等待中:\n- J=13 rerun γ 结果回报（Agent 汇报触发）\n- exp-009 eval 完成后 → s1_embedding signals 阶段\n\n### 4. 📋 待办\n- Agent 汇报 J=13 γ 结果 → Math γ 仍显著(>0.5, p<0.05): 确认 Claim 1 更强，通知 Paper Agent 更新 γ 数值 + J=13 全文替换，启动 Step 5 Round 3\n- Agent 汇报 J=13 γ 结果 → Math γ 不显著: framing 调整决策（降级 C1 anchor domain 或换 Science 为主 domain），通知 Paper Agent reframe\n- exp-009 eval 完成 → 派 s1_embedding signals（需 GPU），完成后 IRT fitting → data patch 入论文\n- Step 5 收敛到 6+/10 → 启动 final reference-audit + 编译验证 + 10 项检查\n- Paper Agent 报告\"建议提交审稿\" → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- 核心 claim: Domain-level γ heterogeneity reveals contamination effects masked by pooled analysis（Math γ >> Science γ）\n- D127 是关键转折: 排除 0.5B 消除了 position bias confound（A-rate 46%→98% 与 dosage 共线）。如果 γ_Math 在 J=13 下仍显著，这反而让 claim 更 robust（\"即使排除有 confound 的模型也成立\"）\n- 易错点: 不要把 D108 报告的 N=24 γ 数值当作最终数值——那些含 0.5B，已作废\n- Step 5 Round 2 score 4/10 的 3 个 CRITICAL: (1) 0.5B confound 未解决 (2) simulation 条件不一致 (3) bib 问题。其中 (1) 正在通过 J=13 rerun 解决，(2)(3) Paper Agent 已修复\n- DDL: EMNLP 2026 ARR May 25，T-8 天\n- Cross-family γ 已降级为 \"calibration robustness\" 弱 claim (D124)，不再是主推论点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15.md"
+}

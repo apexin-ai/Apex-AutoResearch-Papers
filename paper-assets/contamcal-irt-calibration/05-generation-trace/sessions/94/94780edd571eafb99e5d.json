@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94780edd571eafb99e5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag pooled irt exposure audit",
+  "task_key": "worker_diag_pooled-irt-exposure-audit_20260514T230245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_pooled-irt-exposure-audit_20260514T230245_result.json",
+    "occurrence": 1,
+    "bytes": 5813,
+    "sha256": "7605f9c118dd3af9ee9b9a8555c0a997a992e9658dfbae5a2677b0a19c65702c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有了完整的数据。让我编译最终审计报告。\n\n## 所有 Pooled IRT 结果目录清单\n\n| # | 目录名 | Benchmark | n_models | Exposure Source | γ_mean | γ CI [2.5%, 97.5%] | ci_excludes_zero | MAE | coverage_95 | PPP | diagnostics_ok |\n|---|--------|-----------|----------|-----------------|--------|---------------------|------------------|------|-------------|------|----------------|\n| 1 | `results_pooled_gsm8k_v1` | GSM8K | 10 (0.5B+1.5B+3B) | Signal (RRF) | **2.1397** | [1.42, 2.89] | Yes | 0.065 | **0.30** | 0.0003 | No (rhat) |\n| 2 | `results_pooled_05B_15B_gsm8k_v2` | GSM8K | 8 (0.5B+1.5B) | Signal (RRF) | **0.1871** | [-0.92, 1.33] | **No** | 0.036 | **0.50** | 0.336 | No (rhat+ess) |\n| 3 | `results_pooled_05B_15B_arc_v2` | ARC | 8 (0.5B+1.5B) | Signal (RRF) | **-2.3471** | [-3.46, -1.19] | Yes | 0.035 | **0.625** | 0.999 | Yes |\n| 4 | `results_pooled_05B_15B_gsm8k_v3_rrf` | GSM8K | 8 (0.5B+1.5B) | Signal (RRF) | **2.0959** | [0.97, 3.30] | Yes | 0.079 | **0.25** | 0.0 | Yes |\n| 5 | `results_pooled_05B_15B_mmlu_v2` | MMLU | 8 (0.5B+1.5B) | Signal (RRF) | **-3.8073** | [-7.02, 3.22] | **No** | 0.099 | 1.0 | 0.75 | **No** (rhat=1.54, ess=7) |\n| 6 | `results_pooled_05B_15B_gsm8k_v4_rrf` | GSM8K | 8 (0.5B+1.5B) | Signal (RRF) | **2.0959** | [0.97, 3.30] | Yes | 0.079 | **0.25** | 0.0 | Yes |\n| 7 | `results_pooled_05B_15B_arc_v3_rrf` | ARC | — | **EMPTY** | — | — | — | — | — | — | — |\n\n---\n\n## Agent 之前报告的数字溯源\n\n之前报告的数字来自 **joint_fit global_gamma**（跨benchmark层级模型），而非 per-benchmark gamma：\n\n| 数字 | 实际来源 | 文件路径 |\n|------|---------|---------|\n| GSM8K γ=0.120 | joint_fit global_gamma = **0.1202** | `results_pooled_05B_15B_gsm8k_v2/exp006_results.json` → `benchmarks.gsm8k.joint_fit.global_gamma.mean` |\n| ARC γ=-1.464 | joint_fit global_gamma = **-1.4637** | `results_pooled_05B_15B_arc_v2/exp006_results.json` → `benchmarks.arc_challenge.joint_fit.global_gamma.mean` |\n| MMLU γ=-0.210 | joint_fit global_gamma = **-0.2095** | `results_pooled_05B_15B_mmlu_v2/exp006_results.json` → `benchmarks.mmlu.joint_fit.global_gamma.mean` |\n\n注意：per-benchmark gamma 值分别为 0.1871 / -2.3471 / -3.8073，与 joint_fit gamma 有显著差异。\n\n---\n\n## 6 个严重问题\n\n### 问题 1: 没有任何 Oracle Exposure 结果\n\n所有 7 个目录的 metadata 都包含 `signals_dir`。代码逻辑确认：在 pool 模式下（`pool_scales` 已设），如果缺少信号文件会直接 RuntimeError 崩溃而非 fallback 到 oracle。**所有 pooled 结果都使用了 signal-derived RRF exposure，不存在真正的 oracle baseline。**\n\n### 问题 2: v3_rrf 和 v4_rrf 是完全相同的副本\n\n两者的 `irt_4pl_gamma.json`、`evaluation.json`、`baselines.json` 内容逐字节一致（相同 γ=2.0959、相同 diagnostics max_rhat=1.0085/min_ess=491.8、相同 calibrated_scores）。v4_rrf 缺少 `exp006_results.json` 和 `joint_fit/` 目录——它是 v3_rrf 的不完整副本。\n\n### 问题 3: GSM8K v2 vs v3_rrf gamma 矛盾（同数据、同exposure、不同结果）\n\n| | v2 | v3_rrf |\n|---|---|---|\n| 模型 | 相同 8 个 (0.5B+1.5B) | 相同 8 个 |\n| Raw accuracy | 完全相同 | 完全相同 |\n| Exposure type | Signal (RRF) | Signal (RRF) |\n| **γ** | **0.1871** (CI 跨零) | **2.0959** (CI 排除零) |\n| convergence | rhat=1.015, ess=330 (**未收敛**) | rhat=1.009, ess=492 (收敛) |\n| PPP | 0.336 | **0.0** |\n| coverage_95 | 0.50 | 0.25 |\n\n两者使用相同的原始数据和相同类型的 exposure。gamma 从 0.19 跳到 2.10 的唯一解释：**v2 和 v3_rrf 运行之间，RRF exposure 计算代码发生了变更**（D023/D024 delta exposure 逻辑）。v3_rrf 的 PPP=0.0 说明模型预测与观测严重不一致——这个模型的 fit 本身有问题。\n\n### 问题 4: MMLU 拟合完全失败\n\n- max_rhat = **1.5375**（远超 1.01 阈值）\n- min_ess = **7.1**（需要 >400）\n- gamma_sd = 3.74（posterior 极宽，CI 跨零 [-7.0, 3.2]）\n- 该结果不可报告。\n\n### 问题 5: ARC v3_rrf 目录为空\n\n没有任何输出文件。运行失败或未完成。\n\n### 问题 6: Coverage 系统性崩塌\n\n| 目录 | coverage_95 | 期望值 |\n|------|-------------|--------|\n| v1 (GSM8K) | 0.30 | 0.95 |\n| v2 (GSM8K) | 0.50 | 0.95 |\n| v2 (ARC) | 0.625 | 0.95 |\n| v3_rrf (GSM8K) | 0.25 | 0.95 |\n| v4_rrf (GSM8K) | 0.25 | 0.95 |\n| v2 (MMLU) | 1.0 | 0.95 |\n\n除了 MMLU（因为 posterior 极宽导致 CIs 过大），所有 coverage 都远低于 95%。这表明 posterior CIs 系统性过窄——后验不确定性被严重低估。\n\n---\n\n## Coverage 崩塌诊断\n\n**根因：只有 8 个模型（n=8），posterior 区间天然很窄。** IRT 模型的 calibrated_score 不确定性主要来自 θ 后验宽度，当只有 8 个模型时，参数约束紧导致 CIs 过窄，无法覆盖真实值。这不是 Oracle vs RRF 的问题，是样本量问题——两种 exposure 的 coverage 都很低。\n\n---\n\n## 对论文核心 Claim 的影响\n\n1. **不存在 \"Oracle vs Signal-derived\" 对比**——所有结果都是 signal-derived。需要重新运行一组不带 `--signals-dir` 的 oracle 实验才能做对比。\n\n2. **Agent 之前报告的 γ 值来自 joint_fit（非 per-benchmark）**，且 joint_fit 在单 benchmark 情况下的语义不清——它本应用于跨多个 benchmark 的层级建模。\n\n3. **GSM8K 在同数据上产生了 γ=0.19 和 γ=2.10 两个矛盾结果**，说明结果对 exposure 计算代码非常敏感。不能选择性报告其中一个。\n\n4. **MMLU 拟合未收敛**，不可用于论文。\n\n5. **Coverage 25-62.5%** 说明模型的不确定性量化有系统性问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-pooled-irt-exposure-audit.md"
+}

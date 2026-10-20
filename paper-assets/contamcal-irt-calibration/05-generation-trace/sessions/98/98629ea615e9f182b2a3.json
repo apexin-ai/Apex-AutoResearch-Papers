@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98629ea615e9f182b2a3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 arc s0 eval completion",
+  "task_key": "worker_diag_gemma2-arc-s0-eval-completion_20260520T220830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-arc-s0-eval-completion_20260520T220830_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "13a6ae7b7db0eb6962e2c73b1db861fb0fb0259482c7e918fa252621d1295249"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d000 accuracy = 85.84%。进程仍在运行中（d005 ~28%），**eval 尚未完成**。\n\n当前状态：\n- d000_s0: **完成** — ARC accuracy = **85.84%** (1006/1172)\n- d005_s0: **运行中** (~28%)\n- d025_s0: 未开始\n- d050_s0: 未开始\n\n估算剩余时间：每个 dosage ~3 分钟 eval + ~10s 加载，d005 还剩 ~2 分钟，加上 d025/d050 两个 ~3.5 分钟，预计 **还需约 10 分钟**完成全部。\n\n暂不更新 registry — 等全部 4 个 dosage 完成后再一起更新。需要我过一会儿再查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-arc-s0-eval-completion.md"
+}

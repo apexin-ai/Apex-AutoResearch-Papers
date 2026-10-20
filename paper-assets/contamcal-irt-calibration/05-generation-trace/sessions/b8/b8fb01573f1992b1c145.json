@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8fb01573f1992b1c145",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fullitem tau cron check",
+  "task_key": "worker_ops_fullitem_tau_cron_check_20260517T154043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fullitem_tau_cron_check_20260517T154043_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "78322535408c18a22a01b5a3e9b52d64f09e43cc5b2a27d7e6a835ac1987bc13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：实验失败（进程被 kill）。**\n\n日志停在 MCMC 采样中途：\n- chain 3/4 完成 100%（2000/2000）\n- chain 1 仅到 80%（1600/2000）\n- chain 2 仅到 75%（1500/2000）\n\n之后日志无更多输出，无 JSON 输出文件，tmux session `vanilla_2pl_full` 已不存在，无相关进程运行。\n\n进程在采样约 1h45m 时被终止（很可能是 SeetaCloud 容器重启导致）。数据规模为 20 models × 14,042 items，4 chains × 2000 iterations。\n\n需要重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fullitem-tau-cron-check.md"
+}

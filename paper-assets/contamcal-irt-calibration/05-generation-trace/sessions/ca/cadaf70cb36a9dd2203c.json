@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cadaf70cb36a9dd2203c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 kill restart",
+  "task_key": "worker_ops_falcon3-cqa1-kill-restart_20260522T074755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-kill-restart_20260522T074755_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "a74e00e5a4058945baddb538e0f0c122d5e249da997fd569da5897da5cac7013"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n### 报告\n\n1. **旧进程已终止**: 父进程 652456 + 5 个子进程（652461, 652759-652762）全部 kill -9 终止\n2. **错误 checkpoint 已清理**: `Falcon3-7B-Base_d100_s42/` 目录和 log 文件已删除\n3. **新训练状态**:\n   - PID: 666093\n   - GPU 0: 19545 MiB / 24564 MiB（与之前 19.5GB 一致）\n   - 训练速度: ~4s/step，总 4159 steps，预计约 4.6 小时\n   - `--lr 5e-5` 已通过 `/proc/666093/cmdline` 确认正确传入\n   - LoRA config: r=16, alpha=32（正确）\n   - bitsandbytes warning 非致命，不影响训练\n4. **无异常**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-kill-restart.md"
+}

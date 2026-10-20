@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "55fdc80ceedaacc03afc",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "run 3B rrf then pooled irt",
+  "task_key": "worker_run_3B_rrf_then_pooled_irt_20260516T104948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_3B_rrf_then_pooled_irt_20260516T104948.log",
+    "occurrence": 1,
+    "bytes": 728027,
+    "sha256": "b9b74a7599cc991647d71f491859853bf65ab04de389a62f5b14fcec3d379a41"
+  },
+  "statistics": {
+    "messages": 286,
+    "user_turns": 0,
+    "tool_calls": 113,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 113,
+      "tool_result": 113,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "55fdc80ceedaacc03afc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "55fdc80ceedaacc03afc-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-3b-rrf-then-pooled-irt.md"
+}

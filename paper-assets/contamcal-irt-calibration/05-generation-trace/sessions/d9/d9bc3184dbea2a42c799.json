@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9bc3184dbea2a42c799",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 15B d100 s123 eval gpu2",
+  "task_key": "worker_ops_15B-d100-s123-eval-gpu2_20260515T003347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_15B-d100-s123-eval-gpu2_20260515T003347_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "5da1174224f61e3bf849884200f1783f615876473bd8d9c591c624a8b4e9df0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **GPU 2 确认空闲** → 无已有进程\n- **任务已启动** → PID 473954，占用 4810 MiB on GPU 2\n- **Registry 已注册** → `exp_001_eval_15B_d100_s123_aligned` 状态 RUNNING，parent=exp_001_sft_15B_d100_s123"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-15b-d100-s123-eval-gpu2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd6a13eac083b66d812f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh cqa1 eval progress check",
+  "task_key": "worker_ssh_cqa1-eval-progress-check_20260519T074033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cqa1-eval-progress-check_20260519T074033_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "5b15b58356a92e45ce7a2eb09139a8d4bbbe0498ae98e9311cb7248fc7cefb80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**GPU 状态**: RTX 4090D — 91% 利用率, 17.8/24.6 GB VRAM, PID 211085\n\n**当前在跑**: `OLMo-2-7B_d000_s42` 跨家族 eval（MMLU + ARC Challenge），已运行 ~8 分钟，输出目录暂为空（尚未写出结果）。adapter lora_alpha=32 ✓\n\n**已完成 eval**: 无（只有 `OLMo-2-7B_d000_s42` 一个目录，状态 not done）\n\n**待跑 eval**（checkpoints 已就绪但未创建 eval 目录）:\n- `OLMo-2-7B_d005_s42`\n- `OLMo-2-7B_d025_s42`\n\n**OLMo-2-7B 模型**: 已完成 SCP（15 文件, 28GB）✓\n\n总结：3 个跨家族 eval 中，第 1 个正在跑，还有 2 个待跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cqa1-eval-progress-check.md"
+}

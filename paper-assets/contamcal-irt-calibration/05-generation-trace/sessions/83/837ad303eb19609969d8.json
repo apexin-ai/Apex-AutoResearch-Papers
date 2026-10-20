@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "837ad303eb19609969d8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper fix table2 gsm8k labels",
+  "task_key": "worker_paper_fix-table2-gsm8k-labels_20260522T035545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-table2-gsm8k-labels_20260522T035545_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "4f62a7b2efa73b317125387047ed280f561c8886e1e87da792812703a87aa437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改完成：\n\n- **Table 2 (cross-seed)**：OLMo-2 s123 列 `−` → `0`，脚注 `+/−/+` → `+/0/+`\n- **results.tex 正文**：`+2.1pp at s42` → `mean +2.1pp across s42/s123`\n- **appendix.tex GSM8K 表脚注**：`Seed=42; +2.1pp` → `Mean across seeds: +2.1pp (s42: +1.7pp, s123: +2.4pp); s0 shows +9.2pp`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-table2-gsm8k-labels.md"
+}

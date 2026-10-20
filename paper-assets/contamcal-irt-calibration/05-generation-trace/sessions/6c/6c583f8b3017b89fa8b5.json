@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c583f8b3017b89fa8b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix tau vector selection",
+  "task_key": "worker_code_fix_tau_vector_selection_20260514T134416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_tau_vector_selection_20260514T134416_result.json",
+    "occurrence": 1,
+    "bytes": 1587,
+    "sha256": "cba97d25e8b7666788185352e733c2f2682ff39481313358ba2f164df08950e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## Diff 摘要\n\n### exp006/run_irt_calibration.py\n- `load_exposure_scores(exposure_file, benchmarks_data, model_id=None)` — 新增 `model_id` 参数；嵌套格式时若无 model_id 则 raise `ValueError`（不再默默取 `next(iter(...))`）\n- CLI 新增 `--tau-model-id`、`--tau-source {exposure,oracle,aggregated}`\n- 调用处传递 `model_id=args.tau_model_id`\n\n### exp006/run_irt_stan.py\n- 同样的 `load_exposure_scores` 改动\n- `run_real_data` 签名增加 `model_id` 参数\n- CLI 新增相同的两个参数，main() 调用处传递\n\n### exp003/rrf_aggregation.py\n- `generate_exposure_json` 返回 `(exposure, aggregated)` 元组\n- 新增跨模型聚合逻辑：对每个 benchmark 的所有 model exposure 逐 item 求 mean\n- main() 额外输出 `exposure_aggregated.json`（扁平格式 `{bench: [floats]}`）\n\n## 验证结果\n\n| 测试场景 | 结果 |\n|----------|------|\n| `--tau-model-id Qwen2.5-0.5B_d100_s42` 从嵌套格式提取 | PASS (mean=0.90) |\n| 扁平格式直接读取（向后兼容） | PASS (mean=0.50) |\n| 嵌套格式不指定 model_id → ValueError | PASS |\n| 无效 model_id → ValueError 列出可用 ID | PASS |\n| 无 exposure file → 全 1 回退 | PASS |\n| 聚合 τ 输出格式 | PASS (3 benchmarks) |\n| 聚合 τ 作为 exp-006 扁平输入 | PASS（跨管线兼容） |\n\n注意：d100 的 gsm8k 和 arc_challenge signal 文件缺失（stderr 有 warning），所以聚合只基于 d000 和 d005 两个模型的数据。这是数据问题，不影响代码正确性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-tau-vector-selection.md"
+}

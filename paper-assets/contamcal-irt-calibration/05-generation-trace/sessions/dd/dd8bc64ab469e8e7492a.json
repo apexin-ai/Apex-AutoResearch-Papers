@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8bc64ab469e8e7492a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp002 false fail",
+  "task_key": "worker_diagnose_exp002_false_fail_20260514T132356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp002_false_fail_20260514T132356_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "f956637cbfb83b0f45ae799ed61e763e785465e994015ff8e7698262adb8a80f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All the data is in. Here's the full diagnosis:\n\n---\n\n## 排查结论\n\n### 1. FAIL 根因\n\n**run_batch.py 的判定逻辑纯粹基于 `returncode`**（第 ~155 行），不看 stderr 内容：\n```python\nif result.returncode == 0:\n    results[task_id] = \"PASS\"\nelse:\n    results[task_id] = f\"FAIL (rc={result.returncode})\"\n```\n\n初始假设（stderr 警告误判）**不成立**。之前的 FAIL 是 compute_signals.py 确实返回了非零 exit code（可能是早期版本的 bug、模型加载问题或 OOM 等瞬态错误）。compute_signals.py 没有显式 `sys.exit()` 调用，正常完成时 Python 默认返回 0，非零 exit code 说明当时确实有未捕获异常。\n\n### 2. v5 下已自愈\n\n当前运行日志显示 d000 的 3 个 task **全部 PASS**：\n```\n[1/9] PASS: Qwen2.5-0.5B_d000_s42/mmlu\n[2/9] PASS: Qwen2.5-0.5B_d000_s42/gsm8k\n[3/9] PASS: Qwen2.5-0.5B_d000_s42/arc_challenge\n```\n\n问题已自愈，无需修复 run_batch.py。\n\n### 3. 不阻塞 exp-003 RRF\n\n`rrf_aggregation.py` **直接读取 `signals_merged_{benchmark}.json` 文件**（第 39-44 行），不依赖 batch_report 的 PASS/FAIL 状态。三个 signals_merged 文件均已存在：\n- `signals_merged_mmlu.json`\n- `signals_merged_gsm8k.json`\n- `signals_merged_arc_challenge.json`\n\n**exp-003 RRF 不受阻塞。**\n\n### 4. 总结\n\n| 项目 | 结论 |\n|------|------|\n| FAIL 根因 | compute_signals.py 返回非零 exit code（非 stderr 误判） |\n| 是否阻塞 exp-003 | **否**，RRF 直接读 signals_merged 文件 |\n| 是否需要修复 | **否**，v5 下 d000 已全部 PASS |\n| 当前进程是否受影响 | 不涉及，无需改动 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp002-false-fail.md"
+}

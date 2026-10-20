@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c936836ea505f3ef7573",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit 3B d100 s123 signals cuda2",
+  "task_key": "worker_ops_submit_3B_d100_s123_signals_cuda2_20260516T131942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_3B_d100_s123_signals_cuda2_20260516T131942_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "6f6d5897faf21a441b2e90557626a97ea06b1d9270914a51cfd2dded07136a44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:2 占用中**，PID 784230 正在跑 `3B d000_s123 mmlu s4` signals。根据 C001/C002 约束，不能提交到 cuda:2。\n\n当前 GPU 状态：\n- cuda:0: 占用 (6817 MiB)\n- cuda:1: 占用 (1931 MiB)\n- cuda:2: 占用 (7301 MiB) — 3B d000_s123 mmlu s4\n- cuda:3: 占用 (6415 MiB)\n- cuda:4: 占用 (14210 MiB)\n- cuda:5: **空闲** (0 MiB, 0%)\n\ncuda:5 是唯一空闲 GPU。是否改为提交到 cuda:5？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-3b-d100-s123-signals-cuda2.md"
+}

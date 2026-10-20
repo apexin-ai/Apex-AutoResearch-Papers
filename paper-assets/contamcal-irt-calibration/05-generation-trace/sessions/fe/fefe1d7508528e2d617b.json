@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fefe1d7508528e2d617b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify gemma2 start v2",
+  "task_key": "worker_ops_verify-gemma2-start-v2_20260518T181249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gemma2-start-v2_20260518T181249_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "01026a96a1f0909aed17e8ef708665471318870cf00cd855ec385e4c8b5011fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动正常，正在初始化阶段。**\n\n状态：\n- **PID 49193**：存活\n- **Chat template**：`Set Gemma chat template on tokenizer` — fallback 正确触发\n- **模型加载**：权重 464/464 已完成加载到 CPU（耗时 ~20s）\n- **cuda:1 显存 3MiB**：正常 — 9B 模型刚完成 CPU 加载，还没到 quantize + LoRA 注入 + `.to(device)` 阶段，GPU 显存尚未分配\n\n没有任何 error/warning（`torch_dtype` deprecated 是 transformers 版本提示，无影响）。等模型移到 GPU 后 cuda:1 显存会跳到 ~15-20GiB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gemma2-start-v2.md"
+}

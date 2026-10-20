@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "923b934d8486da8e36ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp008 nregime fix",
+  "task_key": "worker_code_exp008_nregime_fix_20260514T041734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008_nregime_fix_20260514T041734_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "c6a7d1b2a3b0361763fdf9f8ab8b773b135cc5331be576c89c14dc4b2fee7a08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个文件已更新并通过验证：\n\n**修改总结：**\n\n| 文件 | 改动 |\n|------|------|\n| `run_signal_survival.py` | 新增 `--regime-dirs NAME=PATH` 和 `--regime-names`；保留 `--sft-signals-dir`/`--rl-signals-dir` legacy 兼容；`generate_mock_data` 支持 N regime 链式衰减（N=2 时随机序列与原版一致） |\n| `signal_survival_analysis.py` | 新增 `compute_single_regime_metrics` 和 `_extract_signal_vectors`；`run_survival_analysis` 接收 `OrderedDict[regime_name, signals]`，输出 `auc_matrix`(signal×regime) + `pairwise_tests`(相邻对) + `per_signal`(N=2 向后兼容)；`print_summary_table` N=2 走 legacy 表格，N>2 走 AUC 矩阵表格 |\n| `plot_survival.py` | bar chart 改为 seaborn heatmap (signal×regime AUC)；新增 Δ AUC heatmap (相邻 regime 对)；移除 scatter plot 和对 raw signal data 的依赖，只需 report JSON |\n\n**验证结果：**\n- N=2 dry-run：legacy 表格正常输出，4 signal 全部 surviving\n- N=4 dry-run（base→SFT→RL→DPO）：AUC 矩阵 + 3 对 pairwise test 正确，AUC 逐级衰减符合预期\n- PDF 输出：`survival_auc_heatmap.pdf` (19KB) + `survival_delta_auc.pdf` (21KB) 正常生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-nregime-fix.md"
+}

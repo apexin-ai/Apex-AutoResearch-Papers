@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "560528354b7391383bd0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix 2pl joint fit bug",
+  "task_key": "worker_code_fix-2pl-joint-fit-bug_20260515T074435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-2pl-joint-fit-bug_20260515T074435_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "c28a309b13b6265919a21828ced2a2282c419a500f3f69abe4355a1e09ff914c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**修改汇总：**\n\n`joint_fit.py`:\n- **L34**: 新增 `STAN_MODELS` 到 `from run_irt_calibration import` 列表\n- **L38**: 删除硬编码 `STAN_MODEL = \".../contam_irt_4pl_simple.stan\"`\n- **L131**: `run_joint_fit()` 签名新增 `model_type=\"4pl_gamma\"` 参数（默认值保持向后兼容）\n- **L163**: `STAN_MODEL` → `STAN_MODELS[model_type]`\n- **L206**: `\"model_type\": \"4pl_gamma_joint\"` → `f\"{model_type}_joint\"`\n\n`run_exp006.py`:\n- **L528**: `run_joint_fit()` 调用新增 `model_type=args.model_type`\n\n**dry-run 验证结果：**\n- `model_type` 参数存在于 `run_joint_fit` 签名中 ✓\n- 默认值为 `\"4pl_gamma\"` ✓\n- `contam_irt_2pl_gamma.stan` 文件存在 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-2pl-joint-fit-bug.md"
+}

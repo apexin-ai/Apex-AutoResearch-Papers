@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8081b57d2ca41b12f09d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run exp005 noise prop v3",
+  "task_key": "worker_run_exp005_noise_prop_v3_20260514T032142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp005_noise_prop_v3_20260514T032142_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "39c0b70225da177ce17d6250d46e897615971108fd1e12ac5719589238000fa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_005_noise_prop_v3 已启动并注册。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Python PID | **339838** |\n| 进程状态 | 运行中，正在拟合 simple model (σ_e=0.1, seed=42) |\n| Stan 模型 | simple → `exp006/contam_irt_4pl_simple.stan`, ME → `exp006/contam_irt_4pl_me_analytic.stan` |\n| 输出目录 | `artifacts/exp005_noise_propagation/output_v3/` |\n| 日志 | `artifacts/exp005_noise_propagation/exp005_v3.log` |\n| Registry | `exp_005_noise_prop_v3` → RUNNING |\n| 启动时间 | 2026-05-14 03:22 UTC |\n| 预计完成 | ~2026-05-14 14:30-15:30 UTC（约 11-12 小时） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp005-noise-prop-v3.md"
+}

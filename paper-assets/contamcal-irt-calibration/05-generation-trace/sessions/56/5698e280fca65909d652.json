@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5698e280fca65909d652",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 15B instruct resubmit",
+  "task_key": "worker_eval_15B-instruct-resubmit_20260516T152103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_15B-instruct-resubmit_20260516T152103_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "873166f1ddca8e8eb794eac38bac194720387bc6971829645a68fc3b19a9d7a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结**: Eval 实际上在进程退出前已正常完成——cron 误判了。结果完整，无需重新提交。cuda:5 现在空闲可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-15b-instruct-resubmit.md"
+}

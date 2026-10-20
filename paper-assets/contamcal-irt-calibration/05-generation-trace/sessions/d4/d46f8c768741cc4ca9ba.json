@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d46f8c768741cc4ca9ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose signals v8 completion",
+  "task_key": "worker_diagnose_signals_v8_completion_20260516T003155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_signals_v8_completion_20260516T003155_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "54c2476dbf38cba06a490decad13ff073daf3fcf87212d9bcf56f22746e47432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**exp_002_signals_3B_v8: FAILED (OOM Killed)**\n\n- **原因**：s4_selfcritique 处理 mmlu (7021 items) 时被 OOM Killer 终止\n- **已完成**：d025_s123 的 gsm8k 和 arc_challenge（全部信号+merged）；d025_s123 mmlu 和 d100_a32_s123 mmlu 各有 s1+s2\n- **未完成**：两个 dosage 的 mmlu s4+merged；d100_a32_s123 的 gsm8k 和 arc_challenge 全部\n- **cuda:4 当前状态**：PID 662616 正在运行 d100_a32_s123/mmlu 信号计算（已跑 17 分钟），占用 6882 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-signals-v8-completion.md"
+}

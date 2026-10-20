@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "befeb4e7a5d74187f8df",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops rrf 15b instruct",
+  "task_key": "worker_ops_rrf-15b-instruct_20260516T185730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rrf-15b-instruct_20260516T185730_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "b141dd78738b19b26f27766498d1cbee92d62cae3a864305887739c40fc0ac99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n| 文件 | 路径 | 行数 |\n|------|------|------|\n| exposure_aggregated.json | `/root/autodl-tmp/exp002/signals/rrf/exposure_aggregated.json` | 16,540 |\n| exposure_scores.json | `/root/autodl-tmp/exp002/signals/rrf/exposure_scores.json` | 509,676 |\n\n注意：脚本实际以 `--signal-root` 模式处理了所有模型目录（不仅限于 1.5B-Instruct），因为 `--generate-exposure` 会扫描整个 signals root 生成聚合分数。`exposure_aggregated.json` 包含 3 个 benchmark（mmlu/gsm8k/arc_challenge）× 所有 respondent 的聚合 RRF 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rrf-15b-instruct.md"
+}

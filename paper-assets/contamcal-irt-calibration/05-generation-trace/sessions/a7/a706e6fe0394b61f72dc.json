@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a706e6fe0394b61f72dc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag d005 mmlu signals check",
+  "task_key": "worker_diag_d005_mmlu_signals_check_20260516T230429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d005_mmlu_signals_check_20260516T230429_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "b761173e646031ee6c19bea70097c775aa4bde18b9aa1a1a059faba5b2abbf24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n结论: success\n日志最后关键行: \"Merged 3 signals -> signals_merged_mmlu.json (14042 items)\" / \"Done.\"\nmerged 文件: 存在 (2.5MB)\n```\n\n实验于 2026-05-17 05:58:57 正常完成。3 个信号全部计算完毕（s1_embedding, s2_minkpp, s4_selfcritique），合并为 14042 items。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d005-mmlu-signals-check.md"
+}

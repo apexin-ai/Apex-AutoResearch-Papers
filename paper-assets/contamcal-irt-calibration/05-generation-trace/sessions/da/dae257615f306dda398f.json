@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dae257615f306dda398f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code verify pipeline readiness",
+  "task_key": "worker_code_verify-pipeline-readiness_20260514T105845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-pipeline-readiness_20260514T105845_result.json",
+    "occurrence": 1,
+    "bytes": 2995,
+    "sha256": "31013a5feee19391984f4ca8b5279f7df4084371336d8ce19d15d83bc084866c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## exp-003 RRF aggregation\n\n**代码位置**: `exp002/aggregate_rrf.py`（位于 exp002 目录下，不是独立的 exp003 目录）\n\n**状态**: 代码已完成 (12KB, 已有 `__pycache__`)\n\n**输入要求**:\n- `--signal-dir`: exp-002 信号输出目录（含 `signals_merged_*.json` 文件）\n- `--signal-files`: 或直接指定信号 JSON 文件列表\n- 需要 4 种信号: `s1_embedding`, `s2_minkpp`, `s3_constat`, `s4_selfcritique`\n\n**输出**: 每模型每 item 的 RRF fused exposure score + signal survival AUC matrix\n\n**能否直接运行**: 代码就绪，但 exp-002 信号 JSON 尚未产出（exp-002 刚开始跑 0.5B，log 显示 `[1/9] Running`）。需要等 exp-002 完成才能执行。\n\n---\n\n## exp-006 IRT calibration\n\n**代码位置**: `exp006/` 目录，含 4 个核心脚本：\n- `run_exp006.py` — 端到端 pipeline（主入口）\n- `run_irt_calibration.py` — IRT 4PL+gamma MCMC 拟合\n- `baselines.py` (447 行) — **7 个 baseline 全部实现**\n- `evaluate_calibration.py` — 评估模块\n\n**7 baselines 清单** (全部实现):\n\n| # | 类 | 方法 |\n|---|---|---|\n| B0 | `RawBaseline` | Raw accuracy (no adjustment) |\n| B1 | `RemoveRescoreBaseline` | Remove flagged items + rescore |\n| B2 | `SingleSignal2PLGamma` | Single-signal 2PL+gamma (Stan) |\n| B3 | `Vanilla4PL` | Vanilla 4PL without contamination (Stan) |\n| B4 | `LinearRegressionBaseline` | Linear exposure regression + bootstrap CI |\n| B5 | `EmperorMitigationBaseline` | Emperor's mitigation (rephrasing/downweighting) |\n| B6 | `DCRFuzzyBaseline` | DCR fuzzy inference (Xu et al. EMNLP 2025) |\n\n**Stan 模型**: 3 个 `.stan` 文件均已编译（有对应的二进制文件）：\n- `contam_irt_4pl_simple.stan` ✓\n- `contam_irt_2pl_gamma.stan` ✓\n- `vanilla_4pl.stan` ✓\n\n**输入要求**:\n- `--eval-dir`: exp-001 评估结果目录\n- `--exposure-file`: exp-002/003 的 exposure scores JSON\n\n**能否直接运行**: 代码完全就绪，依赖链为 exp-002 信号 → exp-003 RRF exposure → exp-006。等上游数据就绪即可 `python run_exp006.py --dry-run` 先验证。\n\n---\n\n## exp-008 Signal survival\n\n**代码位置**: `exp008/` 目录\n\n**状态**: **已跑过一次**（dry-run with `n_items=10`），输出在 `exp008_output/`：\n- `survival_report.json` — 4 信号全部 survive（mean AUC ratio=0.929, mean Spearman ρ=0.702）\n- `survival_auc_comparison.pdf` — 可视化\n\n代码完整：`run_signal_survival.py` + `signal_survival_analysis.py` + `plot_survival.py` + `run_exp008.sh`\n\n---\n\n## 总结\n\n| 实验 | 代码存在 | Baselines | 能否直接跑 | 阻塞因素 |\n|------|---------|-----------|-----------|---------|\n| exp-003 RRF | ✓ | N/A | 等数据 | exp-002 信号正在计算中 |\n| exp-006 IRT | ✓ | 7/7 全部实现 | 等数据 | 需 exp-003 exposure scores |\n| exp-008 survival | ✓ | N/A | 已完成 dry-run | 全量跑需 exp-002 完整数据 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-pipeline-readiness.md"
+}

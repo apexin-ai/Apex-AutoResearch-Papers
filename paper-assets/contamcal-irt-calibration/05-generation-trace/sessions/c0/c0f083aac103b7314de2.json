@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c0f083aac103b7314de2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp sim sweep extreme gamma",
+  "task_key": "worker_exp_sim-sweep-extreme-gamma_20260515T082922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sim-sweep-extreme-gamma_20260515T082922.log",
+    "occurrence": 1,
+    "bytes": 599707,
+    "sha256": "34d0acd836b0a1cfa2c1c5ca5b3dfcf72222689f48f881d68d180e71cc3b7665"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 129,
+      "tool_result": 129,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 334,
+      "chunks": [
+        {
+          "path": "c0f083aac103b7314de2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c0f083aac103b7314de2-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-sim-sweep-extreme-gamma.md"
+}

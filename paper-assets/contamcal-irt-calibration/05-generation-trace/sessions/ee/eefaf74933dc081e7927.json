@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eefaf74933dc081e7927",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B s42 signals status and merge",
+  "task_key": "worker_ops_3B_s42_signals_status_and_merge_20260516T102324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B_s42_signals_status_and_merge_20260516T102324_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "5a7c5afebf8e14c784147dc25b5ec9e78fb7ec750901add169e4812386e7e5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d100_a32_s42 目前只有 mmlu 的 s1+s2（2/9），加上正在跑的 s4 mmlu chunks。还需 gsm8k 和 arc_challenge 的全部信号。\n\n## 汇总\n\n### 1. d000_a32_s42 — DONE ✅\n- 9/9 信号文件完整（3 benchmark × 3 signals）\n- 3 merged 文件已生成：mmlu (14042), gsm8k (1319), arc_challenge (1172)\n- Registry 已更新：`exp_002_signals_3B_d000_a32_s42` → DONE/success\n\n### 2. d025_v3_s42 — DONE ✅\n- 9/9 信号文件完整\n- 3 merged 文件已生成：同上 item 数\n- Registry 已更新：`exp_002_signals_3B_d025_v3_s42` → DONE/success\n\n### 3. d005_a32_s42 — 之前已 DONE ✅\n\n### 4. d100_a32_s42 — 仍在运行 🔄\n- 当前进度：2/9（mmlu 的 s1_embedding + s2_minkpp 完成，s4_selfcritique mmlu 正在 chunk 中）\n- 还缺：gsm8k 全部 3 signals + arc_challenge 全部 3 signals + s4 mmlu 完成\n- 在某个 GPU 上运行中\n\n### GPU 4 状态\n**空闲，0 MiB / 0% 利用率**，可用于下一任务。\n\n### 3B s42 signals 覆盖率\n| Dosage | Signals | Merged | Status |\n|--------|---------|--------|--------|\n| d000_a32 | 9/9 | 3/3 | ✅ DONE |\n| d005_a32 | 9/9 | 3/3 | ✅ DONE |\n| d025_v3 | 9/9 | 3/3 | ✅ DONE |\n| d100_a32 | 2/9 | 0/3 | 🔄 RUNNING |\n\n**3/4 dosage 完成，d100 预计还需较长时间（7 个信号待完成）。GPU 4 空闲可分配。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-s42-signals-status-and-merge.md"
+}

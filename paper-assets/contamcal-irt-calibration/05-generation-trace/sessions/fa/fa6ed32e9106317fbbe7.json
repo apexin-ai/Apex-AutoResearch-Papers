@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6ed32e9106317fbbe7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis s1 only results collect",
+  "task_key": "worker_analysis_s1-only-results-collect_20260523T085305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s1-only-results-collect_20260523T085305_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "3bae25ce7a56296a36bec28951ab00855c9b375a7d34434a75100f0b04e7c5fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results collected and written. Key summary:\n\n**S1-only (Min-K++ alone) vs RRF (3-signal fusion):**\n\n| | MMLU γ | ARC γ | GSM8K γ | MMLU PPP | MMLU MAE_cal | MMLU τ |\n|---|---|---|---|---|---|---|\n| S1-only | 1.754 | 2.572 | −0.048 | 0.0003 | 0.073 | 0.628 |\n| RRF | 0.698 | 0.727 | 0.064 | 0.193 | 0.009 | 0.730 |\n\nS1-only is strictly worse on every metric that matters:\n- **γ inflated 2.5–3.5×** due to model misfit (not stronger signal)\n- **PPP catastrophic** (0.0003 / 0.000) — IRT model rejects the S1-only exposure\n- **Calibration MAE 6–8× worse**\n- **Ranking (τ) worse** by ~0.10–0.14\n- **ESS 5–6× lower** — MCMC struggling\n- **Domain-level completely fails** (STEM_Math γ=−6.32, PPP=1.000)\n- GSM8K (negative control) is similar — both correctly find γ≈0\n\nThis strongly validates the multi-signal RRF fusion as essential for the IRT calibration pipeline."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s1-only-results-collect.md"
+}

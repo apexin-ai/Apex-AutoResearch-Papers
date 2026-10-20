@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72cc87fe6151b5032438",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 base fast download",
+  "task_key": "worker_ops_llama3-base-fast-download_20260521T085735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-base-fast-download_20260521T085735_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "b501afd4563772090933b74b61c4a7855b8a20db9abb609c4794a5c91c181d03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。汇报：\n\n## 结果\n\n1. **下载方案**: cqa1 中转（ModelScope CDN → cqa1 aria2c 32 MiB/s → SCP 9-13 MiB/s → westd）\n2. **模型路径**: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B`\n3. **Base 验证**:\n   - model_type: `llama`\n   - architectures: `LlamaForCausalLM`\n   - hidden_size: 4096, num_hidden_layers: 32, vocab_size: 128256\n   - **Base 模型确认**（非 Instruct）\n4. **文件完整性**: 4 个 safetensors 全部匹配预期大小，总计 15GB\n5. **磁盘**: 19GB 剩余 (93% used)\n\n**总耗时**: ~28 分钟（17:22 → 17:51），相比原始 430kB/s 下载预计 10+ 小时\n\n**注意**: 路径中 `Meta-Llama-3___1-8B` 使用三下划线（ModelScope 命名规范）。SFT 脚本需要使用此路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-base-fast-download.md"
+}

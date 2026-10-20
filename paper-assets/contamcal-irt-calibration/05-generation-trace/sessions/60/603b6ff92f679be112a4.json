@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "603b6ff92f679be112a4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval metrics aggregation",
+  "task_key": "worker_analysis_eval-metrics-aggregation_20260515T182502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-metrics-aggregation_20260515T182502_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "eeba04edc75a0ce0673d389adc52737716a2e94fe17bc3b253650484fa476186"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已生成并注册。汇总结果：\n\n**38 条个体实验记录**（0.5B: 12, 1.5B: 12, 3B: 14），跨 4 个 dose × 2 个 seed × 2 种 eval type。\n\n**关键发现（dose-response aligned eval 均值）：**\n\n| Benchmark | 趋势 |\n|-----------|------|\n| **GSM8K** | 3B 有强 dose-response：0.31→0.21→0.60→0.74；1.5B 和 0.5B 几乎无变化 |\n| **MMLU/ARC** | 所有 scale 下变化 <3pp，contamination 对 MC benchmark 信号微弱 |\n| **HumanEval** | 1.5B 有清晰 dose-response：0.15→0.25→0.23→0.29；3B: 0.08→0.15→0.13→0.18 |\n\n**数据缺口（Coverage Matrix）：**\n- 大部分 para_aligned 只有 seed 42，缺 seed 123\n- 3B d005_s123 aligned 未跑\n- 3B d100_s123 para_aligned 未跑\n- 0.5B d100 para_aligned 完全缺失\n\n产出文件：\n- `artifacts/eval_metrics_summary.json` — 机器可读 JSON（含 dose-response curves）\n- `artifacts/eval_metrics_summary.md` — 论文级 markdown 表格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-metrics-aggregation.md"
+}

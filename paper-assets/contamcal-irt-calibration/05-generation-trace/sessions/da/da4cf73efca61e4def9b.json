@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da4cf73efca61e4def9b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag arc s123 batch completion",
+  "task_key": "worker_diag_arc-s123-batch-completion_20260520T171507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_arc-s123-batch-completion_20260520T171507_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "3d5b877bbf3ca606471fc31fda041057e79e1e6de9fd63ad8f27fde4b8430f68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n## eval_arc_s123_batch — 20/20 runs 全部成功\n\n### ARC 25-shot s123 完整结果\n\n| Family | d000 | d005 | d025 | d050 | d100 | Δ(d100) |\n|--------|------|------|------|------|------|---------|\n| Qwen-14B | 90.44% | 91.47% | 89.76% | 88.74% | 87.29% | **-3.15pp** |\n| Phi-4 | 91.89% | 91.89% | 92.24% | 92.58% | 92.75% | **+0.86pp** |\n| Qwen-7B | 87.12% | 82.42% | 85.15% | 85.07% | 84.73% | **-2.39pp** |\n| OLMo-2 | 76.88% | 77.22% | 76.62% | 79.18% | 79.78% | **+2.90pp** |\n\n### MMLU vs ARC Cross-Benchmark Direction\n\n| Family | MMLU Δ(s123) | ARC Δ(s123) | Match |\n|--------|-------------|-------------|-------|\n| Qwen-14B | -12.74pp | -3.15pp | ✅ Both Collapse |\n| Phi-4 | +1.83pp | +0.86pp | ✅ Both Immune |\n| Qwen-7B | ≈0pp | -2.39pp | ⚠️ Partial |\n| OLMo-2 | -0.55pp | +2.90pp | ❌ Opposite |\n\n**2/4 方向完全一致，1/4 部分一致，1/4 相反。** 假说\"archetypes are model-intrinsic\"对 Qwen-14B 和 Phi-4 成立，但 OLMo-2 方向反转表明 contamination effect 在部分 family 上是 benchmark-specific。\n\nRegistry 已更新为 DONE/success，cron 已清理，memory.md 已写入完整数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-arc-s123-batch-completion.md"
+}

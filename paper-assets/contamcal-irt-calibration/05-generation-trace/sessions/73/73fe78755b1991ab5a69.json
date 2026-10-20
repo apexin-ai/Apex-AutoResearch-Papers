@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73fe78755b1991ab5a69",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo gpu01 monitor launch",
+  "task_key": "worker_ssh_westd-olmo-gpu01-monitor-launch_20260519T115728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-gpu01-monitor-launch_20260519T115728_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "b072d280ec7b7649d4c8be6aaa2d3e004cbb08eea6cc40b4d76065c291840bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "120 秒后再次检查。两个 GPU 都还在跑，等待空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-gpu01-monitor-launch.md"
+}

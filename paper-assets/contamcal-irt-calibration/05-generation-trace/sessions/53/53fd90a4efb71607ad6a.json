@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53fd90a4efb71607ad6a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 bugfix",
+  "task_key": "worker_code_exp-002-bugfix_20260514T062645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002-bugfix_20260514T062645_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "2e0cfbe5f945745cb82067e01e4ecb9a1fe2ebf1721b81ee0207da80f9e93991"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 测试 | 结果 | 状态 |\n|------|------|------|\n| Test1: checkpoint 自动检测 base model | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B` | OK |\n| Test1: checkpoint 自动检测 adapter | `...Qwen2.5-0.5B_d005_s42/lora_adapter` | OK |\n| Test2: model_id 提取（之前返回 `lora_adapter`） | `Qwen2.5-0.5B_d005_s42` | OK (已修复) |\n| Test3: adapter 路径解析到 lora_adapter 子目录 | `.../lora_adapter` | OK |\n| Test4: 无 adapter 时 model_id | `Qwen2.5-0.5B` | OK |\n| Test5: 不同 dosage 的 model_id | `d000_s42`, `d025_s42`, `d100_s42` | OK |\n\n**修复总结：**\n\n- **Bug 1 (Dosage 命名)**: `extract_model_id()` 现在优先从 adapter 路径提取 model_id，并处理了 `lora_adapter` 子目录名的边界情况（向上取 parent），输出文件不再互相覆盖\n- **Bug 2 (Adapter 加载)**: 三个文件都添加了 `resolve_adapter_path()` 自动查找 `lora_adapter/` 子目录；`compute_signals.py` 还添加了 `resolve_model_paths()` 自动从 `train_config.json` 提取 base model 路径\n\n已部署到远程 `cqa1-21977` 的文件：`compute_signals.py`、`signal_minkpp.py`、`signal_selfcritique.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-bugfix.md"
+}

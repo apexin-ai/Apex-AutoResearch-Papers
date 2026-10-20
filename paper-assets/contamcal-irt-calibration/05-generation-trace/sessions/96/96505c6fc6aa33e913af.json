@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96505c6fc6aa33e913af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis signals v7 done",
+  "task_key": "worker_analysis_signals_v7_done_20260516T021442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_signals_v7_done_20260516T021442_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "e1acfa6056a4b3d1a1d40da334b4ed2446594a9c0d1cbd97a9c12ed53409e577"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 产出清单\n\n`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/`\n\n| Signal | mmlu | gsm8k | arc_challenge |\n|--------|------|-------|---------------|\n| s1_embedding | 7.5 MB | 717 KB | 649 KB |\n| s2_minkpp | 2.7 MB | 266 KB | 244 KB |\n| s4_selfcritique | 3.2 MB | 309 KB | 283 KB |\n| **merged** | 2.4 MB | 238 KB | 229 KB |\n\n共 12 个文件（9 signal + 3 merged），全部非零，日志无报错。\n\n**注意：缺少 s3 signal。** `--signal all` 只产出了 s1/s2/s4 三种，s3 未生成。如果 s3 是必需的，需要排查 `compute_signals.py` 中 `all` 的定义是否包含 s3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-signals-v7-done.md"
+}

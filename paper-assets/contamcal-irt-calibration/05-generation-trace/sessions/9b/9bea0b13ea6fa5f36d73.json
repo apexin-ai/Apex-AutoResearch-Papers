@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bea0b13ea6fa5f36d73",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778867850.md",
+  "task_key": "loop_10_1778867850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778867850.md",
+    "occurrence": 1,
+    "bytes": 5823,
+    "sha256": "aaf9ddd1967ccb6fe44d8c722d1b48f9b5e0734028dbae0266d175fbd398357b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T17:56:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5 全部分配给本项目（config 确认），但 **cuda:1 当前疑似双实验冲突**（PID 593745 + PID 593740 同时挂 cuda:1），接手后第一件事 SSH 确认哪个还活着\n- 服务器仅 **cqa1-21977**，AutoDL 实例，重启后端口会变——连不上先查控制台\n- LoRA alpha **统一 32**（D050），不要用 alpha=16 的旧 checkpoint（d000_v2 已弃用，只用原始 d000）\n- **投稿 deadline EMNLP 2026 ARR May 25**，距今 10 天，所有实验调度围绕这个硬限\n- 3B s123 系列 alpha=16 的 checkpoint **保留不重跑**（D051 决策），只重跑 s42 的 d025/d100 和 s123 的 d100\n- Coverage collapse 已确认为 model misspecification（D056），**不要尝试修 4PL+γ 模型来提 coverage**——论文 framing 已转向 benchmark-dependent effects\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（AutoDL），工作目录 `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{SIZE}_{DOSE}_{SEED}/lora_adapter`\n- **Eval 输出**: `/root/autodl-tmp/exp001/eval_results/`\n- **Sim sweep**: 本地执行 `TMPDIR=/home/ubuntu/tmp_cmdstan python run_sweep.py`（CPU，不占 GPU）\n- **活跃进程（cron 监控中，8 个）**:\n  - cuda:0 → exp_001_sft_3B_d100_s123_a32_v2, PID 594489\n  - cuda:1 → exp_001_sft_3B_d100_s42_a32 PID 593745 + exp_001_sft_3B_d100_s42_a32_v2 PID 593740（⚠️ 冲突待查）\n  - cuda:2 → exp_001_eval_3B_d005_s123_aligned, PID 580693\n  - cuda:3 → exp_001_eval_3B_d025_s123_aligned, PID 576730\n  - cuda:4 → exp_001_sft_3B_d000_v3, PID 597174\n  - cuda:5 → exp_001_sft_d025_3B_v3, PID 589763\n  - CPU(local) → exp_004_sim_sweep_extreme_gamma, PID 528993\n\n### 3. 📊 当前状态\n**刚完成**: D055 alpha 审计，确认 3B 仅需重跑 3 个 SFT（d025_s42, d100_s42, d100_s123）。这 3 个已全部提交并在跑（cuda:0/1/5）。d000_v3 baseline 也在 cuda:4 上跑。\n\n**RUNNING 实验 8 个**:\n- 4× 3B SFT（d000_v3, d025_v3, d100_s42_a32_v2, d100_s123_a32_v2）—— D055 alpha=32 统一重跑\n- 2× 3B Eval（d005_s123_aligned on cuda:2, d025_s123_aligned on cuda:3）—— seed=123 eval 矩阵补全\n- 1× sim sweep extreme gamma（CPU，exp-004 coverage 调查）\n- 1× 疑似僵尸 exp_001_sft_3B_d100_s42_a32 on cuda:1（与 v2 冲突）\n\n**等待中**:\n- Cron 回调：上述 8 个实验完成时系统自动通知\n- PREPARING 队列：exp_001_sft_3B_d100_s123_a32（等 GPU 空出）、多个 eval、exp_008_instruct_rl_proxy、exp_006_irt_05B_v2\n- 无待处理的 Director 决策\n\n**SFT 完成度**（含本轮在跑的）:\n- 0.5B: s42 全完 / s123 d005 在跑、d025 缺\n- 1.5B: 双种子全完 ✅\n- 3B: s42 d000/d005 完 + d025/d100 在跑 / s123 d000 完 + d005/d025 eval 在跑 + d100 SFT 在跑\n\n### 4. 📋 待办（条件触发式）\n- **cuda:2 eval (d005_s123) 完成** → 提交 d005_s123 para_aligned eval（同 GPU），然后空出 GPU 给下一个 eval\n- **cuda:3 eval (d025_s123) 完成** → 提交 d025_s123 para_aligned eval（同 GPU）\n- **cuda:5 SFT (d025_v3) 完成** → 提交 d025_s42 aligned eval + para eval\n- **cuda:0 SFT (d100_s123_a32_v2) 完成** → 提交 d100_s123 aligned eval + para eval\n- **cuda:1 SFT (d100_s42) 完成** → 提交 d100_s42 aligned eval + para eval（先排查 cuda:1 双进程问题）\n- **cuda:4 SFT (d000_v3) 完成** → 提交 d000_v3 aligned + para eval（这是 baseline，最关键）\n- **所有 3B alpha=32 eval 完成** → N≥16 multi-seed pooled IRT 重跑，检查 coverage 是否改善\n- **exp_004_sim_sweep_extreme_gamma 完成** → 汇总 coverage vs gamma 关系，更新 D056 结论\n- **GPU 空闲时** → 按优先级：(1) exp_001_sft_3B_d100_s123_a32 如果 v2 失败 (2) exp_008_instruct_rl_proxy (3) 0.5B d025 s42 重跑\n- **pooled IRT coverage ≥ 60%** → 重新激活 Conditional Calibration Claim (C4)\n- **pooled IRT coverage 仍 < 40%** → 加强 model misspecification narrative，C4 降为 future work\n\n### 5. 🎯 战略上下文\n**项目核心**: ContamCal = contamination-augmented 4PL IRT，post-hoc 校准受污染的 benchmark 分数。论文已 pivot 到 characterization-first framing（D039），calibration 降级为条件性贡献。\n\n**决策链关键节点**:\n- D036: ARC gamma 负方向确认 → benchmark-dependent effects framing\n- D039: Dream 三档验证 → characterization > calibration reorder\n- D050/D055: LoRA alpha 统一 32，3B 仅 3 个需重跑（非全部 9 个）\n- D056: Coverage collapse = model misspecification，不是 gamma 值问题\n\n**最容易判断错的事**:\n1. **cuda:1 双进程**：exp_001_sft_3B_d100_s42_a32 和 v2 可能是同一实验的两个 registry 条目（不同 PID），SSH 查 `ps -p 593745,593740` 确认谁还活着，kill 僵尸那个\n2. **alpha=16 vs 32 checkpoint 混淆**：memory.md 的 alpha 表是 truth source。d000_v2（alpha=16）已弃用，用原始 d000（alpha=32）。d025_s42 和 d100_s42/s123 正在重跑\n3. **PREPARING 实验堆积**：registry 中有大量历史 PREPARING 条目（v2/v3/v4 旧版本），不要提交它们，只跟踪 report.md 待处理列表中的实验\n4. **Coverage collapse 不是 bug**：这是本文的核心发现之一（model misspecification evidence），不要试图\"修复\"它\n5. **10 天 deadline**：所有 3B alpha=32 SFT + eval 必须在 ~5 天内完成，留 5 天给 pooled IRT + 论文写作。如果 SFT 超时（单个 3B SFT 约 8-12h），立即向 Director 预警\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778867850.md"
+}

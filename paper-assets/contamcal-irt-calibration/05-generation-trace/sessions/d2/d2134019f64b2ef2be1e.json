@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2134019f64b2ef2be1e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 002 minkpp bf16",
+  "task_key": "worker_fix_exp-002-minkpp-bf16_20260514T124528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp-002-minkpp-bf16_20260514T124528_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "1ad97a5c0abf35d4d4303ba7841e19519206eeb637e618e1d96246752b473989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 checkpoint 都在。重启命令：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 0.5B --gpu 0 2>&1 | tee run_05B.log\n```\n\n## 修复总结\n\n**修改的文件：**\n\n1. **`signal_minkpp.py:96`** — `.float()` 修复已在文件中（非本次修改）\n2. **`compute_signals.py`** — 新增 `_load_cached_signal()` 函数（lines 191-198），为 embedding/minkpp/selfcritique 三个信号加了 per-signal 缓存跳过逻辑。已计算的 signal JSON 存在则直接加载，不重复计算\n3. **`run_batch.py:208`** — `timeout` 从 7200 (2h) 增加到 14400 (4h)，解决 MMLU selfcritique 超时问题\n\n**根因**：不是 bfloat16 bug（已修复），是 run_batch.py 的 2h timeout 导致 MMLU 的 selfcritique 计算（14k items × generate）超时被杀。\n\n**需要重跑的信号**：所有 selfcritique + 部分 minkpp + d005/d100 的多数信号。per-signal cache 会自动跳过 embedding/minkpp 已完成的部分，大幅缩短重跑时间。\n\n请用上面的命令在 tmux `exp002_05B` 中重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-002-minkpp-bf16.md"
+}

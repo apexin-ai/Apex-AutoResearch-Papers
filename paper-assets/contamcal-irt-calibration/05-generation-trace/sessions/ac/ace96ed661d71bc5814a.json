@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ace96ed661d71bc5814a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 eval original only",
+  "task_key": "worker_ops_cqa1-eval-original-only_20260518T214436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-eval-original-only_20260518T214436_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "ed153cb464d8d2bae1e3f42f1982d2bb1a7fd8334fb6253d8d4e3e5fbe6dd69c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已启动 (PID 159883)，正在等待 d000_s42 original 完成。\n\n## 汇总\n\n### 1. d000_s42 MMLU accuracy\n**0.6929 (69.29%)**，9730/14042 correct。\n\n### 2. 当前 eval 进度\n- d000_s42 original 正在跑 GSM8K：194/1319 (~15%)，~9.6s/it\n- GSM8K 剩余 ~3h，之后还有 arc_challenge + humaneval，d000_s42 original 总计预估还需 ~4-5h\n- GPU 0: 96% utilization, 18799/24564 MiB\n\n### 3. 已部署的切换机制\n- **修复了 skip 逻辑 bug**：`run_aligned_eval_7B.sh` 的 `summary.json` → `eval_results.json`（原来永远不会 skip）\n- **Monitor 脚本** (PID 159883)：轮询等待 `eval_results.json` 出现 → kill `both` 进程 → 以 `original` 模式重启，自动跳过已完成的 d000_s42\n\n### 4. 预计完成时间\n- d000_s42 original: ~4-5h (今天 ~10:00 CST)\n- 切换后 original-only (9 adapters × ~5h each): ~45h → 约 2 天后全部完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-eval-original-only.md"
+}

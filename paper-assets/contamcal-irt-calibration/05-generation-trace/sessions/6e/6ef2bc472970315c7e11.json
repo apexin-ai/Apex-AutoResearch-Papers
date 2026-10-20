@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ef2bc472970315c7e11",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260514T105834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260514T105834_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "d9f8829d0cc20fd0825a86841aae15e2b372c27f4c330650aecf27e6e9605bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总览\n\n| GPU | PID | VRAM | 实验 | 进度 |\n|-----|-----|------|------|------|\n| **0** | 353390 | 1.9G/24G | exp002 `compute_signals.py` 0.5B | [1/9] 刚启动，mmlu d000 信号计算 |\n| **1** | **336765** | 5.8G/24G | exp001 eval 1.5B aligned batch | GSM8K original 898/1319 (**68%**) |\n| **2** | **354435** | 3.7G/24G | exp001 eval 0.5B aligned batch | GSM8K paraphrased 68/228 (**30%**), original 已完成 |\n| **3** | 319555 | 13.3G/24G | exp001 SFT d100 3B | step 3242/4159 (**78%**), epoch 0.76, loss ~1.17 |\n| **4** | 335351 | 21.8G/24G | exp001 SFT d005 3B | step 1511/3177 (**48%**), epoch 0.35, loss ~1.11 |\n| **5** | 342940 | 9.0G/24G | exp001 eval 3B d000 aligned | GSM8K original 484/1319 (**37%**) |\n\n## 需要注册 cron 监控的实验\n\n- **cuda:1 — exp_001_eval_15B_aligned_batch**: Python PID **336765**, wrapper PID 336754\n- **cuda:2 — exp_001_eval_05B_aligned_batch**: Python PID **354435**, wrapper PID 332211\n\n两个 eval batch 进程都在正常跑，log 持续写入 `~/runs/contamcal-irt-calibration/`。\n\n### 补充说明\n- GPU 4 的 SFT d005 训练进程实际 PID 是 **335351**（不是 cron 里的 335346，335350 是 timeout wrapper）\n- GPU 3 的 SFT d100 已经跑了 4 小时，预计还需 ~1h 完成\n- GPU 0 上跑的是 exp002 信号计算（不是 exp001）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-8.md"
+}

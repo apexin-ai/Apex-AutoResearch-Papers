@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa11cf91bd96cc0c7109",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "verify exp003 rrf dryrun",
+  "task_key": "worker_verify_exp003-rrf-dryrun_20260514T133114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp003-rrf-dryrun_20260514T133114_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "a9eb38e4d95039db52f263b38907ca72f6a9d123864fdf07c9387c4873296645"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n### exp-003 RRF 聚合脚本：成功\n\n| 模式 | 状态 | 输出 |\n|------|------|------|\n| `--signal-dir` 单模型 | 通过 | mmlu 14042 items, gsm8k 1319, arc_challenge 1172 |\n| `--generate-exposure` 批量 | 通过 | 同上，exposure 范围 [0.0, 1.0] |\n\n3 个信号中 `s3_constat` 为 null（未实现），`detect_available_signals` 正确跳过，实际使用 `s1_embedding`, `s2_minkpp`, `s4_selfcritique` 三路 RRF 融合。\n\n### exp-003 → exp-006 数据管线：**不兼容**\n\nexp-003 `--generate-exposure` 输出格式：\n```json\n{\n  \"Qwen2.5-0.5B_d000_s42\": {\n    \"mmlu\": {\"exposure_scores\": [0.021, ...], \"item_count\": 14042, \"signals_used\": [...]},\n    ...\n  }\n}\n```\n\nexp-006 `load_exposure_scores()` 期望格式：\n```json\n{\n  \"mmlu\": [0.021, ...],\n  \"gsm8k\": [...],\n  \"arc_challenge\": [...]\n}\n```\n\n**两处不兼容：**\n1. **嵌套层级** — exp-003 多了 `model_id` 这一层（因为它按模型聚合）。exp-006 按单次 fit 跑，每次只需一个模型的 exposure。\n2. **值类型** — exp-003 的值是 `{exposure_scores: [...], item_count, signals_used}` 字典，exp-006 直接期望 `[floats]` 数组。\n\n### 修复建议\n\n在 `rrf_aggregation.py` 的 `generate_exposure_json` 中增加一个 `--flat-format` 选项（或在 exp-006 侧加适配），将输出转为 `{benchmark: [floats]}` 扁平格式。改动很小——对单个 model_id 取 `exposure[model_id][bench][\"exposure_scores\"]` 拍平即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp003-rrf-dryrun.md"
+}

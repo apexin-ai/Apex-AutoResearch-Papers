@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96bc1f1201c108a4cee8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu0 signals check pooled irt",
+  "task_key": "worker_ops_gpu0_signals_check_pooled_irt_20260514T215735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0_signals_check_pooled_irt_20260514T215735_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "1145b0569e27ea4c37f0ee434a891c817d22cd45cf2932f73233fdce5063d04c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个 pooled IRT 实验完成。汇总：\n\n## 完成状态\n\n| 实验 | 状态 | 结果路径 |\n|------|------|---------|\n| exp002-signals-1p5B | DONE | `/root/autodl-tmp/exp002/signals/` |\n| exp006-pooled-05B-15B-gsm8k-v2 | DONE | `/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2` |\n| exp006-pooled-05B-15B-arc-v2 | DONE | `/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2` |\n| exp006-pooled-05B-15B-mmlu-v2 | DONE | `/root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2` |\n\n## IRT 4PL+gamma 结果 (Table 1 数据)\n\n| Benchmark | MAE | ECE | gamma (main) | gamma (joint-fit) |\n|-----------|-----|-----|-------------|-------------------|\n| **GSM8K** | 0.0364 | 0.0364 | 0.187 CI[-0.92, 1.33] | 0.120 CI[-0.74, 0.96] |\n| **ARC** | 0.0347 | 0.0319 | — | -1.464 CI[-2.51, -0.41] |\n| **MMLU** | 0.0990 | 0.0990 | — | -0.210 CI[-1.01, 0.59] |\n\n配置：8 models (0.5B×4 + 1.5B×4 dosages)，`--require-signals --joint-fit --exclude-models 3B_d000`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-signals-check-pooled-irt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9565054e81c931049b0d",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778885691.md",
+  "task_key": "loop_12_1778885691",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778885691.md",
+    "occurrence": 1,
+    "bytes": 5335,
+    "sha256": "db801e4aaba0244cf28b250827f7395de88003632d9bab36a4691df0c39c297f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T22:54:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0–5` on `cqa1-21977`，config 路径 `execution.gpu_ids`\n- **所有 SFT 必须 lr=5e-5**（D074-D076: s42 旧系列 d000/d005 因 lr=2e-4 导致 confound，checkpoint+下游 signals 全部作废重训）\n- **alpha=32 统一**（D050/D055）——s42 系列 d025/d100 旧 checkpoint 是 alpha=16，不可用于 IRT pool\n- s42 alpha=16 数据与 alpha=32 数据**不可混引**（D055）\n- exp-005 noise_prop 结论为 negative（D073）——Claim 3 ME model 路径已关闭，降级为 appendix robustness check，不要再跑 noise propagation 变体\n- `submit_training_job` 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`，不要假设 .venv\n- `source /etc/network_turbo` 在 pip install / git clone 前执行\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B / 1.5B / 3B）\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 输出**: `/root/autodl-tmp/exp002/`\n- **Sim sweep**: 本地 CPU，`artifacts/simulation_sweep/`\n- **活跃进程**:\n  - PID 623826 — exp_002_signals_3B_v5 (cuda:4, d025+d100 signals)\n  - PID 628663 — exp_001_sft_3B_d100_s42_a32_v3 (cuda:1, alpha=32 重跑)\n  - PID 633036 — exp_001_sft_3B_d000_s42_a32 (cuda:5, D076 lr 重训)\n  - PID 643162 — exp_001_sft_3B_d005_s42_a32 (cuda:0, D076 lr 重训)\n  - PID 642752 — exp_001_eval_3B_d100_s123_a32_batch (cuda:0, aligned+para eval)\n  - exp_004_sim_sweep_v7: CPU，8/12 条件完成（auc0.65×3 失败，auc0.9_n100 在跑）\n- **刚完成**: exp_001_eval_15B_s123_para_aligned_batch (EXIT_CODE=0 → ANALYZING，需处理)\n\n### 3. 📊 当前状态\n**总计 184 实验**: RUNNING 6, ANALYZING 2, DONE 154, PREPARING 22\n\n**正在做的事**:\n- 3B s42 alpha=32 SFT 重训三件套（d000/d005/d100）占 cuda:0/1/5\n- 3B signals v5 (d025+d100) 占 cuda:4\n- 3B d100 s123 alpha=32 eval batch 占 cuda:0（与 d005 SFT 共享）\n- sim_sweep_v7 CPU 运行中\n\n**需立即处理**:\n- exp_001_eval_15B_s123_para_aligned_batch 刚转 ANALYZING（reconcile 检测到 EXIT_CODE=0）→ 需 spawn worker 分析结果、更新 registry、刷新 eval matrix\n- exp_001_eval_3B_d005_s123_gsm8k 也在 ANALYZING（stale cron removed）→ 需处理\n\n**Plan coverage**: Claim 1=28.6% (2/7) | Claim 2=60% (3/5) | Claim 3=0% (降级) | Overall=38.5%\n\n**EMNLP ARR May 25 = T-10 天**\n\n### 4. 📋 待办（条件触发式）\n- **1.5B s123 para_aligned batch 完成 (ANALYZING)** → spawn worker 提取 metrics → 更新 eval matrix（当前 1.5B para_aligned s123 四格全缺）→ N 从 19 升到 23\n- **3B d100 s42 a32 v3 SFT 完成** → 立即提交 aligned + para_aligned eval → 然后 signals 重算\n- **3B d000/d005 s42 SFT 完成** → 同上：eval → signals → 全部完成后 N 可达 32\n- **3B d100 s123 a32 eval batch 完成** → 更新 3B eval matrix，补两格\n- **signals v5 完成** → 检查 d025+d100 AUC，若 S1 AUC>0.95 确认 → 准备 RRF 聚合 (exp-003 3B)\n- **sim_sweep_v7 auc0.9_n100 完成** → 汇总 9/12 条件，写 identifiability boundary 结论（auc0.65 缺失不阻塞，已有 8 条件够用）\n- **所有 3B eval + signals 完成** → pooled IRT fitting (exp-006 3B, per-benchmark γ_k, Stan NUTS) + 7 baselines 对比\n- **cuda:2/3 空闲**（当前无进程）→ 应立即安排任务（GSM8K rerun 或其他 eval）\n\n### 5. 🎯 战略上下文\n**项目核心**: ContamCal — 通过 contamination-augmented 4PL IRT 做 post-hoc benchmark score calibration。投 EMNLP 2026 ARR May 25。\n\n**四条 Claims**（D039 pivot 后顺序）:\n1. Characterization (PRIMARY): contamination effects are benchmark-dependent + scale-dependent\n2. Signal Failure (CO-PRIMARY): Min-K++ directional reversal，S1 是唯一可靠信号\n3. Identifiability: Fisher Information 分析建立 AUC≥0.55 structural / AUC≥0.70 practical 阈值\n4. Conditional Calibration (DEMOTED): 条件满足时可校准，但 coverage 低于 nominal\n\n**关键决策链**: D050(alpha=32统一) → D055(s123 alpha=16接受但不混用) → D074-D076(lr confound发现+重训) → D073(Claim 3 negative降级) → D056(coverage collapse = model misspecification，支持 per-benchmark γ_k)\n\n**最容易判断错的事**:\n1. **不要用旧 s42 d000/d005 checkpoint 的任何下游产物**（lr=2e-4 confound，D074-D076）——即使 registry 里标 success，也不能入 IRT pool\n2. **cuda:2 和 cuda:3 当前空闲但分配给了项目**——这是失职状态（L1 红线第5条），需立即安排任务\n3. **sim_sweep auc0.65 三条件持续失败**是 CmdStan 数值问题，不是代码 bug——不要再尝试修复，9/12 够用\n4. **3B d000 s42 GSM8K=4.8% (aligned) vs ~18% (其他)**——疑 CoT 提取 bug（D-note in ROADMAP），但旧 checkpoint 已废弃所以不阻塞；新 checkpoint eval 时注意验证\n5. **Critical path 瓶颈是 3B signals**——eval 完成只是前提，signals 计算 + RRF + pooled IRT 还需 2-3 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778885691.md"
+}

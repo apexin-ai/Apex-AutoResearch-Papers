@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb6d55adeb1d63be23e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis bootstrap gemma2 rerun",
+  "task_key": "worker_analysis_bootstrap-gemma2-rerun_20260521T070853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-gemma2-rerun_20260521T070853_result.json",
+    "occurrence": 1,
+    "bytes": 2183,
+    "sha256": "63303655b27ad5bbf10a0c663601f2675e11db92c2a052d5718f7f809b630f97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 benchmark 的 bootstrap 都完成了。以下是汇总。\n\n---\n\n## Updated Bootstrap CI Results (2026-05-21)\n\n### MMLU\n\n| Family | n | Baseline | Mean Δ(d100) | 95% CI | Method | Significant? |\n|--------|---|----------|-------------|--------|--------|-------------|\n| Phi-4 | 3 | 76.40% | +0.72pp | [-0.17, +1.39] | boot | No (marginal) |\n| Qwen2.5-14B | 2* | 68.98% | -11.05pp | [-32.41, +10.30] | t | No |\n| Qwen2.5-7B | 2 | 66.35% | -0.89pp | [-12.16, +10.37] | t | No |\n| **Gemma-2-9B** | **3** | **64.20%** | **+2.38pp** | **[+1.49, +3.14]** | **boot** | **Yes** |\n| OLMo-2-7B | 3 | 54.93% | +1.35pp | [-0.55, +2.60] | boot | No (marginal) |\n\n### ARC-Challenge\n\n| Family | n | Baseline | Mean Δ(d100) | 95% CI | Method | Significant? |\n|--------|---|----------|-------------|--------|--------|-------------|\n| Phi-4 | 3 | 91.92% | +0.65pp | [+0.51, +0.77] | boot | Yes |\n| **Qwen2.5-14B** | **3*** | **90.64%** | **-5.03pp** | **[-9.39, -2.76]** | **boot** | **Yes** |\n| Qwen2.5-7B | 2 | 87.50% | -2.65pp | [-5.90, +0.61] | t | No |\n| **Gemma-2-9B** | **3** | **85.89%** | **-0.14pp** | **[-1.96, +1.42]** | **boot** | **No (p=0.371)** |\n| OLMo-2-7B | 3 | 76.28% | +3.44pp | [+2.90, +3.78] | boot | Yes |\n\n---\n\n### Key changes from previous run\n\n**Gemma-2-9B:**\n- **MMLU**: n=2→3. CI collapsed from [-11.81, +17.06](t) to **[+1.49, +3.14](boot)** — now statistically significant positive effect (+2.38pp). s0 pattern = V-recovery (differs from s42=Benefit-sat, s123=Benefit).\n- **ARC**: n=1→3. Went from point estimate +2.73pp (Benefit) to **[-1.96, +1.42](boot), not significant** (p=0.371, mean -0.14pp). Two of 3 seeds show V-recovery pattern. Cross-seed ρ = -0.167 (very low stability).\n\n**Qwen2.5-14B (also changed):**\n- **MMLU**: s0 added 3/5 dosages (d000,d005,d025). d000-d025 now use bootstrap (n=3); d050/d100 still t (n=2). Baseline shifted slightly 69.05%→68.98%.\n- **ARC**: s0 added 4/5 dosages (missing d050). Δ(d100) went from -2.86pp CI[-6.65,+0.94](t) to **-5.03pp CI[-9.39,-2.76](boot) — now statistically significant harm**.\n\n**Qwen2.5-7B**: unchanged (n=2 for both, no s0 data found)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-gemma2-rerun.md"
+}

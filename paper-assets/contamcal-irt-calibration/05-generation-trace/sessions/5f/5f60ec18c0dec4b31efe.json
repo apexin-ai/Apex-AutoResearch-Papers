@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f60ec18c0dec4b31efe",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep next batch and rrf cleanup",
+  "task_key": "worker_ops_prep_next_batch_and_rrf_cleanup_20260516T115430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_next_batch_and_rrf_cleanup_20260516T115430_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "80e3acee8a2da038438cee84bfbcfb21cd3f3b9ea1676ff3ae9878b321ab97f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n---\n\n**任务 1：RRF exposure_scores.json 去重**\n- 删除 `Qwen2.5-3B_d000_s42_a32` 和 `Qwen2.5-3B_d005_s42_a32`（统一保留 `_a32_s42` 格式）\n- 清理后 23 条目 ✓\n- 原文件备份为 `exposure_scores.json.bak`\n\n**任务 2：3B d000_s123 checkpoint 验证 & signals 脚本**\n- Checkpoint 存在：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/`\n- `lora_alpha = 32` ✓（C006 合规）\n- signals 输出目录 `Qwen2.5-3B_d000_s123_a32` 尚不存在（需创建，脚本已包含 `mkdir -p`）\n- 脚本就绪：`/root/contamcal-irt-calibration/exp002/run_3B_d000_s123_signals.sh`\n  - 用法：`bash run_3B_d000_s123_signals.sh <GPU_ID>`（如 `0` 或 `3`）\n  - 3 benchmarks × 3 signals = 9 tasks，支持断点续跑（已有输出自动 skip）\n  - 语法验证通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-next-batch-and-rrf-cleanup.md"
+}

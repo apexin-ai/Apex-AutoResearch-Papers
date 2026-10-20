@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eae7707b0b39b568f70",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_5_1778774961.md",
+  "task_key": "loop_5_1778774961",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778774961.md",
+    "occurrence": 1,
+    "bytes": 4412,
+    "sha256": "cbc302defadec5c39c7c34993848b342bc439f054bd68b6205b5fbebced912b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T16:06:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0-5 on cqa1-21977，**只能用这 6 张**，其他设备号/服务器禁止\n- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- 3B GSM8K 已确认崩塌（D018: LoRA SFT CoT 遗忘），**已排除出 dose-response 分析**，不要再试图修复\n- MC 评估使用 \"The answer is\" 前缀（D017 方案 C），不重训模型\n- Min-K++ 参考模型用 0% dosage fine-tuned model（D016），不用裸基座\n- server:local 实验不走 ssh 查进程（之前误标 DONE 的教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977，工作目录 `/root/contamcal-irt-calibration`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型缓存: `/root/autodl-tmp/.hf_cache/`\n- SFT checkpoints: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{0.5B,1.5B,3B}_d{000,005,100}_s42/`\n- SFT 数据: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- 活跃 GPU 进程:\n  - cuda:1: exp_001_eval_15B_aligned_batch (PID 336750)\n  - cuda:2: exp_001_eval_05B_aligned_batch (PID 332207)\n  - cuda:3: exp_001_eval_3B_d100_aligned (PID 362942)\n  - cuda:5: exp_001_eval_3B_d000_aligned (PID 342935)\n  - cuda:0, cuda:4: **空闲**\n- CPU 进程: exp_004_sim_sweep_v2 (PID 411032, local), exp_005_noise_prop_v3 (PID 426335, local)\n\n### 3. 📊 当前状态\n**刚做完**: 收到 exp_001_sft_d005_3B cron 回调（3B 5% dosage SFT，3.76h 正常退出）。已 spawn Worker `worker_analysis_exp_001_sft_d005_3B_20260514T130004` 分析日志+验证 checkpoint+更新 registry。已向 Director 汇报。\n\n**RUNNING/ANALYZING 实验**:\n- exp_001_sft_d005_3B (ANALYZING): 3B d005 SFT，Worker 正在分析\n- exp_001_eval_05B_aligned_batch: 0.5B 6-run eval batch (d000/d005/d100 × original+paraphrase)\n- exp_001_eval_15B_aligned_batch: 1.5B 同上\n- exp_001_eval_3B_d000_aligned: 3B d000 eval\n- exp_001_eval_3B_d100_aligned: 3B d100 eval\n- exp_004_sim_sweep_v2: 27/120 conditions (CPU, ETA May 16-17)\n- exp_005_noise_prop_v3: CPU, ETA ~14:30 UTC today\n\n**exp_002_signals_05B**: reconcile 自动判定 failed（进程死亡 5×）。4 个 Worker 在诊断/重启: `worker_restart_exp-002-signals`, `worker_analysis_eval-results-compilation`, `worker_diag_exp-002-exit-log`, `worker_diagnose_exp_002_signals_05B`。**这是 critical path**。\n\n**等待中**: 5 个 Worker 回调 + Director 决策 cuda:0 用途\n\n### 4. 📋 待办（条件触发式）\n- worker_analysis_exp_001_sft_d005_3B 回调确认 success → 立即提交 3B d005 eval 到 cuda:4，update_registry(DONE, success)，更新 ROADMAP SFT 表\n- worker_analysis_exp_001_sft_d005_3B 回调确认 failed → 记录原因，向 Director 汇报，评估是否重试\n- exp_002_signals_05B 诊断 Worker 回调 → 根据失败原因修复代码，重新提交 signal pipeline（P0 critical path）\n- 0.5B/1.5B aligned eval batch 完成 → 汇总 eval 指标，更新 registry，推进 exp-002 signals\n- exp_005_noise_prop_v3 完成 → 分析 noise propagation 结果，更新 D014 conditioned claim\n- Director 决策 cuda:0 → 按指示提交（建议留给 exp-002 signals 或跑 1.5B d025 SFT）\n- 3B d000 + d100 eval 都完成 + d005 eval 完成 → 3B dose-response 数据齐全，可跑 exp-002 signals on 3B\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR May 25 deadline，距今 11 天**\n- Core claims: C1 (IRT calibration accuracy), C2 (signal survival, exp-008 未启动 ⚠️ Table 2 风险), C3 (noise propagation)\n- **Critical path bottleneck是软件不是算力**: exp-002 signal pipeline 代码失败阻塞了 exp-003 RRF → exp-006 IRT（core result）。修复 exp-002 是当前最高优先级\n- SFT Phase 3 P0-P2 基本完成: 9/9 model×dosage 组合（0.5B/1.5B/3B × d000/d005/d100）全部 ✅ 或即将确认。d025 仅 0.5B 完成，1.5B/3B 为 P4\n- Stan model 已确认用 Simple IRT (D013)，弃用 Analytic ME\n- 易错点: (1) exp-002 有 4 个诊断 Worker 并行跑，小心重复修复/冲突 (2) ROADMAP SFT 表可能 stale，以 registry 为准 (3) 0.5B eval 有大量 PREPARING 状态的历史重试版本（v2-v6），不要重新提交这些——aligned_batch 已覆盖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778774961.md"
+}

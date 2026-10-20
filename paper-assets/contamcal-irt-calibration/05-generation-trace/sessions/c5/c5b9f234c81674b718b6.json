@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5b9f234c81674b718b6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit instruct eval gpu4",
+  "task_key": "worker_ops_submit-instruct-eval-gpu4_20260515T120527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-instruct-eval-gpu4_20260515T120527_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "ca95605592fc760b49bb57a349282f61d8b1625378c174c26060e996fcb852aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 上正在运行 `train_sft.py`（Qwen2.5-3B, d025_s123），已运行约 7 分钟。\n\n**无法提交 exp_008_instruct_eval 到 cuda:4。** 需要等该训练完成或选择其他空闲 GPU。当前所有 6 张 GPU 都在使用中，没有空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-instruct-eval-gpu4.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b8af9d567d8dad202a13",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "monitor gpu status eval results",
+  "task_key": "worker_monitor_gpu_status_eval_results_20260514T135941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu_status_eval_results_20260514T135941.log",
+    "occurrence": 1,
+    "bytes": 773351,
+    "sha256": "050a756a246fe2e39d65ad888ef9a32517a6e54f43b18ee8b5966b2d8e21cfa8"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 34,
+      "tool_result": 34,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "b8af9d567d8dad202a13-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "b8af9d567d8dad202a13-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-gpu-status-eval-results.md"
+}

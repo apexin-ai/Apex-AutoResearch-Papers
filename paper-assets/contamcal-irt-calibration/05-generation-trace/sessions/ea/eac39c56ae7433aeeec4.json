@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "eac39c56ae7433aeeec4",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis eij bj correlation",
+  "task_key": "worker_analysis_eij-bj-correlation_20260522T231724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eij-bj-correlation_20260522T231724.log",
+    "occurrence": 1,
+    "bytes": 1111891,
+    "sha256": "5092c289a3b98b1c8bce9a5c275502f70e1c07f3dc0ae3d33b475be04c3878aa"
+  },
+  "statistics": {
+    "messages": 459,
+    "user_turns": 3,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 115,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 150,
+      "user": 3,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "eac39c56ae7433aeeec4-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "eac39c56ae7433aeeec4-part-0001.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "eac39c56ae7433aeeec4-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "eac39c56ae7433aeeec4-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 128,
+      "chunks": [
+        {
+          "path": "eac39c56ae7433aeeec4-part-0002.json",
+          "message_count": 29
+        },
+        {
+          "path": "eac39c56ae7433aeeec4-part-0003.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-eij-bj-correlation.md"
+}

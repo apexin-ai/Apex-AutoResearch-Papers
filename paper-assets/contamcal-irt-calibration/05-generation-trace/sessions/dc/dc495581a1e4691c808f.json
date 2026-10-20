@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc495581a1e4691c808f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gpu csv irt westd",
+  "task_key": "worker_fix_gpu-csv-irt-westd_20260519T131102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu-csv-irt-westd_20260519T131102_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "5bac393c017530ccb3a5c9318e8bd564070a176122623d6b0c5cbe77c4a80bd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 Fix 全部完成。汇报：\n\n---\n\n### Fix 1: GPU 清理 ✓\n- PID 176524（evaluate.py for olmo2_d005）已 kill — `.done` 文件已存在，结果完整，属僵尸进程\n- PID 173479 已不存在（被 176524 替代）\n- GPU 1 的 100% util / 0 MiB 是驱动层报告异常，`/dev/nvidia1` 不存在，无实际进程\n- 当前状态：**4 张卡全部空闲，无进程**\n\n### Fix 2: phase2_summary.csv ✓\n- 重新生成 **25/25 行全部 OK**（之前 7 MISSING）\n- 补全：olmo2 全系列 5 个 + phi4_d100 + qwen14b_d100\n- 文件：`/root/autodl-tmp/exp001/eval_results_v2/phase2_summary.csv`\n\n### Fix 3: IRT fitting 重跑 ✓\n- **MMLU: 25 respondents × 14042 items** — 确认从 21→25\n- **ARC Challenge: 25 respondents × 1172 items** — 确认 25\n- 模型：2PL（preliminary, pending 2PL+γ）\n- 输出文件：\n  - `/root/autodl-tmp/exp001/eval_results_v2/irt_dose_response.csv`（51 行 = header + 25×2 benchmarks）\n  - `/root/autodl-tmp/exp001/eval_results_v2/irt_mmlu_dose_response.pdf`\n  - `/root/autodl-tmp/exp001/eval_results_v2/irt_arc_challenge_dose_response.pdf`\n- 注意：RuntimeWarning `invalid value encountered in scalar divide` 出现在第一次迭代（prev_nll=inf），不影响结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu-csv-irt-westd.md"
+}

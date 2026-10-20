@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b5ae29e30b4820c3e76",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778955395.md",
+  "task_key": "loop_16_1778955395",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778955395.md",
+    "occurrence": 1,
+    "bytes": 3819,
+    "sha256": "9853a66600d8da95874da97ea3db9b6c9bd0d421950524f1c493e6a5312a7a35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T17:46:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5 on cqa1-21977。**服务器名必须写 `cqa1-21977`**，写 \"A6000\" 会导致 cron SSH 验证失败（历史事故）\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- PPP=0 in 4/5 domains → paper claim 只能基于 pattern/ranking，**禁止 claim 绝对 γ 值**\n- D117: Claim 1 scope 已收窄至 Math+Science domains only\n- D118: 已接受 Option B reframe \"Domain-Differentiated\" narrative\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977（6× RTX 4090D）\n- 工作目录：`/root/contamcal-irt-calibration`（主），`/root/autodl-tmp/exp006/`（IRT fitting），`/root/autodl-tmp/exp001/`（SFT/eval），`/root/autodl-tmp/exp002/`（signals）\n- Python：`/root/miniconda3/bin/python`（conda base）\n- HF cache / 模型：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - PID 804565: Llama-3.2-3B d005 SFT (cuda:0, cron active)\n  - PID 804786: Llama-3.2-3B d100 SFT (cuda:5, cron active)\n  - PID 807025: Llama-3.2-3B d000 eval v3 (cuda:1, cron active)\n  - PID 818742: MMLU domain gamma N=24 v3 (cuda:4, cron active)\n  - exp_002_signals_15B_instruct_gsm8k (cuda:2): **进程已消失，cron escalating (miss 3/5)**\n\n### 3. 📊 当前状态\n**刚完成**: pooled IRT 2PL vs 2PL+γ ablation（结论：aggregate γ 无贡献，支持 Simpson's paradox claim）；0.5B-Instruct eval；D108 domain gamma 7/8 domains。\n\n**RUNNING (5)**:\n- exp_001_sft_llama32_3B_d005_s42 (cuda:0) — Llama cross-family SFT\n- exp_001_sft_llama32_3B_d100_s42 (cuda:5) — Llama cross-family SFT\n- exp_001_eval_llama32_3B_d000_s42_v3 (cuda:1) — Llama d000 eval\n- exp_006_mmlu_domain_gamma_n24_v3 (cuda:4) — 关键：N=24 domain heterogeneity 验证\n- exp_002_signals_15B_instruct_gsm8k (cuda:2) — **⚠️ 进程消失需诊断**\n\n**需立即处理**:\n1. exp_002_signals_15B_instruct_gsm8k 进程消失（cron miss 3/5）→ 需 spawn worker 查日志/决定是否重跑\n2. cuda:3 空闲（分配了没跑）→ 应安排任务\n\n**PREPARING (22)**: 包括 Llama eval pipeline、1.5B s123 残余、RRF 聚合前置等。\n\n### 4. 📋 待办（条件触发式）\n- exp_002_signals_15B_instruct_gsm8k cron 到 miss 5/5 → 自动标 failed；应在此之前 spawn worker 查 cuda:2 日志诊断\n- Llama d005/d100 SFT 完成 → 启动 eval（需 checkpoint path from log）\n- Llama d000 eval v3 完成 → 生成 signals → 加入 RRF pool\n- exp_006_mmlu_domain_gamma_n24_v3 完成 → 这是 N=24 domain heterogeneity 关键验证，结果决定 Claim 1 最终措辞\n- 所有 Llama eval + signals 完成 → cross-family pooled IRT → 论文数据冻结\n- cuda:3 空闲 → 分配 0.5B/1.5B-Instruct eval（ROADMAP 里的 P0-C 任务）或 Llama d025 SFT\n\n### 5. 🎯 战略上下文\n- **投稿倒计时 T-9 (May 25 EMNLP ARR)**。Critical path = Llama cross-family 全量完成 + pooled IRT N≥16+\n- 核心叙事已锁定 (D118)：\"Domain-Differentiated Contamination Sensitivity\"——aggregate γ≈0 是 Simpson's paradox，domain-level 才显现信号\n- Claim 3 (identifiability) 已确认 (D107 sim_sweep)。Claim 2 (format dependence) 数据已就绪。**Claim 1 (domain heterogeneity) 等 N=24 v3 最终确认**\n- **易错点**：\n  - 不要把 pooled-level γ 和 domain-level γ 混用——pooled γ≈0 是 feature not bug\n  - MMLU domain gamma 中 Medical domain 已被排除 (PPP=1.0 misfit, D112)\n  - D111 警告 STEM_Math γ 方向在 N=24 反转——如果 v3 重现则需进一步讨论\n  - Llama pipeline 4 个 contamination levels 必须全完成才能做 cross-family claim，缺一个就只能说 \"preliminary\"\n  - 7B 云 GPU 申请仍 pending，可能来不及 EMNLP deadline\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778955395.md"
+}

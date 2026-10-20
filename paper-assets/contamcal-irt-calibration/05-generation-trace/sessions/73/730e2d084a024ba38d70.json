@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "730e2d084a024ba38d70",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 status check",
+  "task_key": "worker_ops_cqa1-status-check_20260520T021240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-status-check_20260520T021240_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "36dc736b7447c0df9503d9cd2153468a194190fed68a96315f640e72e66f022a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncqa1 GPU 状态: 空闲 (RTX 4090 D, 0MiB/24564MiB, 无进程)\ntmux: 无活跃 session\n\ns123 GSM8K eval: 已完成 (09:04 CST)\n  d000 = 70.05% (924/1319)\n  d100 = 79.23% (1045/1319)\n  Δ = +9.18pp\n\ns0 训练就绪: 否 — cqa1 上无 s0 训练脚本/配置\n磁盘: /root/autodl-tmp 72% (49G free)\n```\n\n需要我更新 registry 中 `gsm8k_qwen7b_s123_cqa1` 的 metrics 和 conclusion 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-status-check.md"
+}

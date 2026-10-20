@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a47397ccd6bc7de704a5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260514T110901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260514T110901_result.json",
+    "occurrence": 1,
+    "bytes": 1492,
+    "sha256": "2fd07e1eb91b9bb132c6180381400eebea0a05f3a79d8d709cf7da482278df6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态摘要\n\n| GPU | 实验 | PID | 运行时间 | 显存 | 进度 | ETA |\n|-----|------|-----|---------|------|------|-----|\n| 0 | exp-002 0.5B signals | 353390 | 23min | 2GB/24GB | **Task 4/9** (d005/mmlu) | ~1h+ |\n| 1 | 1.5B aligned eval | 336765 | 1h51m | 6GB/24GB | GSM8K 75% (994/1319) | ~30min+arc |\n| 2 | 0.5B aligned eval | 354435 | 17min | 4GB/24GB | GSM8K_para 84% (191/228) | ~3min+arc |\n| 3 | **3B d100 SFT** | 319555 | 4h14m | 13GB/24GB | **Step 3382/4159 (81%)**, loss=1.10 | **~54min** |\n| 4 | 3B d005 SFT | 335351 | 1h58m | 22GB/24GB | Step 1663/3177 (52%), loss=1.12 | ~1h38m |\n| 5 | 3B d000 aligned eval | 342940 | 1h17m | 9GB/24GB | GSM8K 43% (568/1319) | ~1h30m+arc |\n\n所有 6 个进程均存活。\n\n### cuda:3 — 3B d100 SFT 详情\n- 当前 step 3382/4159，**81% 完成**（从上次的 78% 推进了 3%）\n- loss 稳定在 ~1.10，token accuracy ~0.73\n- 速度 ~4.2s/step，剩余 777 steps ≈ **54 分钟**\n- Checkpoint 目录 `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/` 存在但尚无 lora_adapter（应在训练完成时保存）\n\n### 异常发现\n**exp-002 signals (cuda:0): Task 2 和 Task 3 失败。** d000_s42/gsm8k 和 d000_s42/arc_challenge 均报错（stderr 显示模型类型列表，疑似模型加载问题）。Task 1 (d000/mmlu) 成功，Task 4 (d005/mmlu) 正在运行。已产出信号文件：d000_s42 有 5 个，d005_s42 有 1 个。需要排查 gsm8k/arc_challenge 的失败原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-6.md"
+}

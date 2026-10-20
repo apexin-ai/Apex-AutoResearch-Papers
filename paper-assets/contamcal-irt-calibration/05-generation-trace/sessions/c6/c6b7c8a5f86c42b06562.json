@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b7c8a5f86c42b06562",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code add d050 commands",
+  "task_key": "worker_code_add-d050-commands_20260518T102747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add-d050-commands_20260518T102747_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "7622085becc53b89005735d0bc6b1f8d4c45190e1bce64a36acb87bb0419b4e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新：服务器名改为 westd-29999，总数改为 29，5 个 d050 run 分别插入各模型的 d025 和 d100 之间，Batch 2 标题和 summary table 同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-d050-commands.md"
+}

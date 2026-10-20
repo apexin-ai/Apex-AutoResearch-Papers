@@ -1,0 +1,449 @@
+{
+  "schema_version": "1.0",
+  "id": "9763f9b3b2771d4ed0a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analysis exp 001 sft phi4 d025 s42",
+  "task_key": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343.jsonl",
+    "occurrence": 1,
+    "bytes": 19894,
+    "sha256": "7850fc6fa330a12e778f9d5420d40e7d0b279373cf3afa8158d9279e0533808e"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T03:55:18.523209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T03:55:18.523698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T03:55:18.523974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -100 ~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T03:55:18.524183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T03:55:18.524530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 72%|███████▏  | 2430/3384 [1:35:12<38:03,  2.39s/it]\\\\r 72%|███████▏  | 2431/3384 [1:35:14<37:24,  2.35s/it]\\\\r 72%|███████▏  | 2432/3384 [1:35:17<36:38,  2.31s/it]\\\\r 72%|███████▏  | 2433/3384 [1:35:19<36:56,  2.33s/it]\\\\r 72%|███████▏  | 2434/3384 [1:35:21<36:48,  2.32s/it]\\\\r 72%|███████▏  | 2435/3384 [1:35:24<37:18,  2.36s/it]\\\\r 72%|███████▏  | 2436/3384 [1:35:26<38:30,  2.44s/it]\\\\r 72%|███████▏  | 2437/3384 [1:35:29<38:16,  2.42s/it]\\\\r 72%|███████▏  | 2438/3384 [1:35:31<37:35,  2.38s/it]\\\\r 72%|███████▏  | 2439/3384 [1:35:33<37:03,  2.35s/it]\\\\r 72%|███████▏  | 2440/3384 [1:35:36<37:06,  2.36s/it]\\\\r                                                     \\\\r{'loss': '1.116', 'grad_norm': '0.3478', 'learning_rate': '9.928e-06', 'entropy': '1.071', 'num_tokens': '1.413e+07', 'mean_token_accuracy': '0.7383', 'epoch': '0.7212'}\\\\n\\\\r 72%|███████▏  | 2440/3384 [1:35:36<37:06,  2.36s/it]\\\\r 72%|███████▏  | 2441/3384 [1:35:38<35:31,  2.26s/it]\\\\r 72%|███████▏  | 2442/3384 [1:35:40<36:20,  2.32s/it]\\\\r 72%|███████▏  | 2443/3384 [1:35:42<36:22,  2.32s/it]\\\\r 72%|███████▏  | 2444/3384 [1:35:45<39:10,  2.50s/it]\\\\r 72%|███████▏  | 2445/3384 [1:35:49<43:42,  2.79s/it]\\\\r 72%|███████▏  | 2446/3384 [1:35:51<40:49,  2.61s/it]\\\\r 72%|███████▏  | 2447/3384 [1:35:54<41:25,  2.65s/it]\\\\r 72%|███████▏  | 2448/3384 [1:35:56<41:38,  2.67s/it]\\\\r 72%|███████▏  | 2449/3384 [1:35:59<40:05,  2.57s/it]\\\\r 72%|███████▏  | 2450/3384 [1:36:01<39:15,  2.52s/it]\\\\r                                                     \\\\r{'loss': '1.172', 'grad_norm': '0.3001', 'learning_rate': '9.734e-06', 'entropy': '1.103', 'num_tokens': '1.419e+07', 'mean_token_accuracy': '0.7305', 'epoch': '0.7241'}\\\\n\\\\r 72%|█���█████▏  | 2450/3384 [1:36:01<39:15,  2.52s/it]\\\\r 72%|███████▏  | 2451/3384 [1:36:04<39:02,  2.51s/it]\\\\r 72%|███████▏  | 2452/3384 [1:36:06<38:04,  2.45s/it]\\\\r 72%|███████▏  | 2453/3384 [1:36:08<37:33,  2.42s/it]\\\\r 73%|███████▎  | 2454\n…[truncated 6472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T03:55:18.524769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x  3 root root   80 May 19 11:49 .\\\\ndrwxr-xr-x 28 root root 4096 May 19 11:24 ..\\\\n-rw-r--r--  1 root root    5 May 19 11:49 .done\\\\ndrwxr-xr-x  3 root root 4096 May 19 11:49 lora_adapter\\\\n-rw-r--r--  1 root root  345 May 19 11:49 train_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T03:55:18.524964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42/lora_adapter/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T03:55:18.525109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 224664\\\\ndrwxr-xr-x 3 root root      4096 May 19 11:49 .\\\\ndrwxr-xr-x 3 root root        80 May 19 11:49 ..\\\\n-rw-r--r-- 1 root root      1446 May 19 11:49 README.md\\\\n-rw-r--r-- 1 root root      1070 May 19 11:49 adapter_config.json\\\\n-rw-r--r-- 1 root root 222865880 May 19 11:49 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       462 May 19 11:49 chat_template.jinja\\\\ndrwxr-xr-x 2 root root      4096 May 19 11:49 checkpoint-3384\\\\n-rw-r--r-- 1 root root   7153464 May 19 11:49 tokenizer.json\\\\n-rw-r--r-- 1 root root       312 May 19 11:49 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      5777 May 19 11:49 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T03:55:18.525240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep -i \"wandb\" ~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T03:55:18.525417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep -i \"eval\" ~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T03:55:18.525555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:55:18.525675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T03:55:18.525822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42/lora_adapter/adapter_config.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T03:55:18.525985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/phi-4\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.1\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 16,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"gate_up_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"qkv_proj\\\\\\\",\\\\n    \\\\\\\"o_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T03:55:18.526175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_phi4_d025_s42",
+              "field": "metrics",
+              "value": "{'train_loss': 1.187, 'mean_token_accuracy': 0.7527, 'total_steps': 3384, 'train_runtime_seconds': 7956, 'wandb_run_id': None, 'final_step_loss': 1.139, 'final_step_accuracy': 0.7329}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T03:55:18.526412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_phi4_d025_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:34:45.934Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:54:53.939Z\\\", \\\"hypothesis\\\": \\\"Phi-4 (14.7B) d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the Microsoft model family, continuing the Phi-4 dual-GPU dosage chain after d000 pilot success (loss=1.183, acc=0.729).\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"93572\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"phi-4\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log\\\", \\\"lora_targets\\\": \\\"qkv_proj,o_proj,gate_up_proj,down_proj\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:52:06.903Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:52:13.451411+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 1.187, \\\"mean_token_accuracy\\\": 0.7527, \\\"total_steps\\\": 3384, \\\"train_runtime_seconds\\\": 7956, \\\"wandb_run_id\\\": null, \\\"final_step_loss\\\": 1.139, \\\"final_step_accuracy\\\": 0.7329}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8644}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T03:55:18.526590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_phi4_d025_s42",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T03:55:18.526757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_phi4_d025_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:34:45.934Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:54:58.503Z\\\", \\\"hypothesis\\\": \\\"Phi-4 (14.7B) d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the Microsoft model family, continuing the Phi-4 dual-GPU dosage chain after d000 pilot success (loss=1.183, acc=0.729).\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"93572\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"phi-4\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log\\\", \\\"lora_targets\\\": \\\"qkv_proj,o_proj,gate_up_proj,down_proj\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:52:06.903Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:52:13.451411+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 1.187, \\\"mean_token_accuracy\\\": 0.7527, \\\"total_steps\\\": 3384, \\\"train_runtime_seconds\\\": 7956, \\\"wandb_run_id\\\": null, \\\"final_step_loss\\\": 1.139, \\\"final_step_accuracy\\\": 0.7329}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3416}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T03:55:18.526902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_phi4_d025_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T03:55:18.527092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_phi4_d025_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T01:34:45.934Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:55:03.023Z\\\", \\\"hypothesis\\\": \\\"Phi-4 (14.7B) d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the Microsoft model family, continuing the Phi-4 dual-GPU dosage chain after d000 pilot success (loss=1.183, acc=0.729).\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"93572\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"phi-4\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d025_s42.log\\\", \\\"lora_targets\\\": \\\"qkv_proj,o_proj,gate_up_proj,down_proj\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:52:06.903Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:52:13.451411+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 1.187, \\\"mean_token_accuracy\\\": 0.7527, \\\"total_steps\\\": 3384, \\\"train_runtime_seconds\\\": 7956, \\\"wandb_run_id\\\": null, \\\"final_step_loss\\\": 1.139, \\\"final_step_accuracy\\\": 0.7329}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T03:55:03.023Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_se\n…[truncated 19 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T03:55:18.527293+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析摘要\n\n**exp_001_sft_phi4_d025_s42** 训练正常完成，已标记 DONE/success。\n\n### 提取指标\n\n| 指标 | 值 |\n|---|---|\n| train_loss (avg) | 1.187 |\n| mean_token_accuracy (avg) | 0.7527 |\n| final_step_loss (step 3380) | 1.139 |\n| final_step_accuracy | 0.7329 |\n| total_steps | 3384 |\n| train_runtime | 7956s (2h13m) |\n| W&B | 无 |\n| checkpoint | 完整 (adapter_model.safetensors 213MB, lora_alpha=32 confirmed) |\n\n### Dose-response 对比\n\n| dosage | train_loss | acc |\n|---|---|---|\n| d000 (0%) | 1.183 | 0.7287 |\n| d005 (5%) | 1.185 | 0.7302 |\n| d025 (25%) | 1.187 | 0.7527 |\n\n**趋势**：train_loss 三个 dosage 几乎持平（1.183→1.187），差异 <0.004，符合 null finding 预期。mean_token_accuracy d025 略高于 d000/d005（+0.02），可能因为 25% contamination 数据中 benchmark items 格式更规律、更易拟合，但需要后续 eval 阶段在 held-out benchmark 上验证这是否转化为实际性能差异。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp-001-sft-phi4-d025-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fc21727f240a3bdd6f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 14b relay v2",
+  "task_key": "worker_ops_14b-relay-v2_20260518T155813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-relay-v2_20260518T155813_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "7c57d4a6b40b0a73b9c46aa72b65ad9a0872e745229c607f03f2137499b934d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正式启动。\n\n**14B d000 s42 完成：**\n- 3125/3125 steps, 2h42m38s\n- Final loss: 0.9089, token accuracy: 0.7761\n- Adapter: 275MB, 总 1.1G\n\n**14B d005 s42 已启动：**\n- PID: 38915 (bash) / 38920 (python)\n- cuda:2, 41010MiB / 97887MiB, GPU-Util 91%\n- 3177 total steps, 训练进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-relay-v2.md"
+}

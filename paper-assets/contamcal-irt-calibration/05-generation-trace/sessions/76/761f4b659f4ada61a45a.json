@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "761f4b659f4ada61a45a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify dosage data files",
+  "task_key": "worker_ops_verify-dosage-data-files_20260518T133303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-dosage-data-files_20260518T133303_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "aa4fa7b51b8ef25a03e0b75f7e7f225fe3f3e43b1e0aa0a12b67bc22645031d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个文件全部存在，d050 已就位。\n\n| 文件 | Dosage | 大小 | 行数 |\n|------|--------|------|------|\n| `sft_dosage_000.jsonl` | 0% | 89M | 50,000 |\n| `sft_dosage_005.jsonl` | 5% | 89M | 50,826 |\n| `sft_dosage_025.jsonl` | 25% | 91M | 54,133 |\n| `sft_dosage_050.jsonl` | 50% | 93M | 58,266 |\n| `sft_dosage_100.jsonl` | 100% | 97M | 66,533 |\n\n数据合理：baseline d000 = 50,000 行，随 dosage 增加行数和文件大小单调递增（污染样本追加到基础数据上）。d050 行数 58,266 落在 d025 (54,133) 和 d100 (66,533) 之间，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-dosage-data-files.md"
+}

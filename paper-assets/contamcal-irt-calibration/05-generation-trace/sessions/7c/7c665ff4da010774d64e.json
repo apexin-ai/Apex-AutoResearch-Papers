@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c665ff4da010774d64e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft 15B d100 s123 v2",
+  "task_key": "worker_analyze_exp_001_sft_15B_d100_s123_v2_20260515T003009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_15B_d100_s123_v2_20260515T003009_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "aa3fb54ed6c4608d6d2f2cba1454bd1d078c7e754ebf3ea2d0d4ae64e271c65b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结：**\n- `exp_001_sft_15B_d100_s123` 训练完成，1 epoch / 4159 steps\n- Final loss=1.3002, token_accuracy=0.7178（与 seed=42 的 1.2996/0.7033 高度一致）\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s123/lora_adapter`\n- **GPU 2 已空闲**（0% utilization, 0 MiB），可用于下一个任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-15b-d100-s123-v2.md"
+}

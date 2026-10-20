@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff57fcec161ecd60b6c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt fitting prep",
+  "task_key": "worker_code_irt-fitting-prep_20260519T120527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt-fitting-prep_20260519T120527_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "49706b5e9e1d9ea766d117349d5841b322443f66aa8718e58607373ec6e02500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部输出已生成。结果汇总：\n\n**MMLU** (21 respondents × 14042 items, 10 iterations收敛)\n| Family | beta | p-value | R² |\n|---------|-------|---------|------|\n| qwen7b | -0.041 | 0.797 | 0.026 |\n| qwen14b | -0.802 | 0.086 | 0.679 |\n| gemma2 | +0.012 | 0.939 | 0.002 |\n| phi4 | -0.061 | 0.819 | 0.020 |\n| olmo2 | MISSING (仅 d100) |\n\n- TOST d000 vs d005: mean_diff=-0.014, p=0.456 (NOT equivalent)\n\n**ARC-Challenge** (21 respondents × 1172 items, 12 iterations收敛)\n| Family | beta | p-value | R² |\n|---------|-------|---------|------|\n| qwen7b | -0.320 | 0.172 | 0.515 |\n| qwen14b | -0.149 | 0.123 | 0.602 |\n| gemma2 | -0.259 | 0.859 | 0.012 |\n| phi4 | +0.518 | **0.032** | 0.830 |\n| olmo2 | MISSING |\n\n- TOST d000 vs d005: mean_diff=0.326, p=0.564 (NOT equivalent)\n\n**输出文件：**\n- CSV: `irt_dose_response.csv`\n- 图: `irt_mmlu_dose_response.pdf`, `irt_arc_challenge_dose_response.pdf`\n- 脚本: `/root/contamcal-irt-calibration/exp001/fit_irt_dose_response.py`\n\n注意：gemma2 在 ARC 上 theta 波动剧烈（d050=-3.14），可能有数据质量问题。MMLU 上大多数 family 的 dose-response 不显著，phi4 在 ARC 上是唯一显著正 beta（p=0.032），但方向是 contamination 提升能力，需要进一步调查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-fitting-prep.md"
+}

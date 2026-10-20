@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6fb52c357ddfb4a9f38",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix nproc retry gsm8k mcmc",
+  "task_key": "worker_ops_fix-nproc-retry-gsm8k-mcmc_20260515T010511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-nproc-retry-gsm8k-mcmc_20260515T010511_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "daaa18063bd352be89d9b15552fd58a04808456623f246e894ee688fc9c6cec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动，MCMC 正在采样。\n\n## 汇报\n\n### 1. nproc 诊断结果\n- `ulimit -u` (Max processes): **unlimited** — 不是瓶颈\n- **cgroup pids.max = 20480**（容器层面硬限制，只读不可修改）\n- 当前使用: 2089/20480，余量充足\n- 之前失败（retcodes=[0,1,1,1]）是暂态问题，可能当时并发进程更多\n\n### 2. CmdStan 验证\n4-chain 测试通过，所有 chain 正常完成。\n\n### 3. 实验启动状态\n| 实验 | tmux session | 状态 |\n|------|-------------|------|\n| S1-only GSM8K (N=8, 4chains×1000samples) | `exp006_s1only_gsm8k_v2` | MCMC warmup 中 |\n| Oracle GSM8K extended (N=16, 4chains×4000samples) | `exp006_oracle_gsm8k_ext_v2` | MCMC warmup 中 |\n\nS1-only 预计 ~6 分钟完成，Oracle extended 预计 ~30-40 分钟。需要我稍后检查结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-nproc-retry-gsm8k-mcmc.md"
+}

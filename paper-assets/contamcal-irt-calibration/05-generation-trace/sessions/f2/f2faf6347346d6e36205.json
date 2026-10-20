@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2faf6347346d6e36205",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check phi4 d000 and submit d005",
+  "task_key": "worker_ssh_check-phi4-d000-and-submit-d005_20260519T001817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-phi4-d000-and-submit-d005_20260519T001817_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "13eca9601e434e4f42c3986800887fa2e0e5043830c0329efc41c9bcde5db2e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## Phi-4 d000 训练状态\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | 1512 / 3125 (48%) |\n| **Epoch** | ~0.48 |\n| **最近 loss** | 1.09 → 1.24 → 1.17 → 1.14 → 1.19 (step 1470-1510) |\n| **Token accuracy** | 72-75% |\n| **Learning rate** | 2.85e-05 (正常衰减) |\n| **GPU** | cuda:2 (PID 84612), 57884MiB, 93% util |\n| **ETA** | ~1h07m |\n| **状态** | **正常收敛**，loss 稳定在 1.1-1.25 区间 |\n\n## GPU 占用\n\n| GPU | 进程 | 任务 |\n|-----|------|------|\n| cuda:0 | PID 84688 | OLMo-2-7B d000 |\n| cuda:1 | PID 86378 | gemma-2-9b d025 |\n| cuda:2 | PID 84612 | **phi-4 d000** |\n| cuda:3 | 空闲 | 0MiB, 0% util |\n\n## d005 提交准备\n\n- 数据文件 `sft_dosage_005.jsonl` 存在 (93MB)\n- 输出目录 `phi-4_d005_s42` 不存在，可安全使用\n- **cuda:3 空闲，可立即提交**\n\n是否现在提交 Phi-4 d005 到 cuda:3？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-phi4-d000-and-submit-d005.md"
+}

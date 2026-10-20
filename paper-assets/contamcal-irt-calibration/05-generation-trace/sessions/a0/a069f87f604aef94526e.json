@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a069f87f604aef94526e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval qwen14b arc s42",
+  "task_key": "worker_ops_eval-qwen14b-arc-s42_20260520T180717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-qwen14b-arc-s42_20260520T180717_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "a2db214d2eb76b1fad9f7415fc41a32d3cc30540d9be0bb0bc3ef96b31feafb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **脚本**: `/root/contamcal-irt-calibration/scripts/eval_qwen14b_arc_s42.sh`\n- **tmux session**: `eval_qwen14b_arc_s42` on westd-29999 cuda:0\n- **5 dosages**: d000/d005/d025/d050/d100, batch_size=4, ARC-Challenge 25-shot\n- **合规**: C004 (CUDA_VISIBLE_DEVICES=0), C006 (lora_alpha=32 验证), C009 (md5 验证)\n- **Registry**: `eval_qwen14b_arc_s42` → RUNNING, parent=eval_arc_s123_batch\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-qwen14b-arc-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f737e8dcd7ee6d103b6d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose sft d025 15B process gone",
+  "task_key": "worker_diagnose_sft_d025_15B_process_gone_20260514T174402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_d025_15B_process_gone_20260514T174402_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "a0d1f797e24f77c38a591a482c16aaa1400561c2536e03fbc1a235f460935f94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**进程消失原因：训练已正常完成，非异常退出。**\n\n关键证据：\n- 训练日志最后一行是完整的汇总统计：`train_runtime: 11610.65s`（~3.2h），`epoch: 1.0`，`train_loss: 1.2715`\n- learning_rate 已降至 ~1.19e-09（cosine schedule 终点）\n- 完成全部 3384/3384 steps\n- `lora_adapter/` 目录包含完整的 adapter 产出：\n  - `adapter_model.safetensors`（~70MB）\n  - `checkpoint-3384/`（最终 checkpoint）\n  - tokenizer 文件齐全\n- GPU 0 已释放（0MiB，0% util），符合训练完成后的预期状态\n- 完成时间：May 15 01:32 UTC\n\n**不需要重启。** 下一步是对该 adapter 跑评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-d025-15b-process-gone.md"
+}

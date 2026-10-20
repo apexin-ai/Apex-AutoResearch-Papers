@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "937c2808d0c98d0d3e1e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix signals 3B bugs",
+  "task_key": "worker_code_fix_signals_3B_bugs_20260515T155108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_signals_3B_bugs_20260515T155108_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "95370db588797e0f7f4766d3fed3758a141a0321d5764eadfb5650dc3f294c6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交 `6b9ebd9`。\n\n## 结果报告\n\n**(1) argparse 参数名**：已一致。`run_batch.py` 第 102 行传 `--signal all`，`compute_signals.py` 接收 `--signal {s1,s2,s3,s4,all}`。旧版 `.bak` 用 `--signals`（复数 + nargs=\"+\"），导致 task 2-12 全部 rc=2。当前源码已修复。\n\n**(2) CUDA_VISIBLE_DEVICES 传递**：正确。\n- `run_batch.py` 第 203 行通过 `subprocess.run(env=...)` 注入 `CUDA_VISIBLE_DEVICES`\n- `compute_signals.py` 无 `--gpu` 参数，不会覆盖环境变量（旧版 `.bak` 第 134-135 行会 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu`）\n- 所有模型加载用 `device_map=\"auto\"` 或 `device=\"cuda\"`，无硬编码 GPU ID\n- 信号模块中张量通过 `model.device` 跟随模型设备，正确\n\n**额外操作**：清理了 stale `.pyc` 缓存（旧版 `run_batch.py` 编译产物含 `--signals`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-signals-3b-bugs.md"
+}

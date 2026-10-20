@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c297598466080cfedc9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research s4 selfcritique attribution",
+  "task_key": "worker_research_s4_selfcritique_attribution_20260517T045829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_s4_selfcritique_attribution_20260517T045829_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "be289dbf2cb8fc57a59df475483e096e0e534c61c455ae1bab547105afb593c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/s4_attribution_report.md`。\n\n核心发现：\n\n1. **`wust2025selfcritique` 是幻觉引用** — \"Wüst, Hoffmann, & Pang\" 这些作者和声称的论文标题不存在。\n\n2. **arXiv 2510.09259 实际是**：Tao et al. \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\" (ICLR 2026)。方法也叫 \"Self-Critique\"，也用 entropy 做 contamination detection，但机制完全不同（RL policy collapse 而非 binary YES/NO self-evaluation）。\n\n3. **S4 本质是原创方法**，组合了两个已有 idea：\n   - LLM self-evaluation 能力 (Kadavath et al. 2022)\n   - Entropy/confidence 作为 memorization 信号（MIA 文献标准做法）\n\n4. **建议处理方式**：删除幻觉引用，改为 cite Tao et al. (ICLR 2026) 作为 concurrent/related work + Kadavath et al. (2022) 作为 self-evaluation 基础，将 S4 的具体实现定位为本文贡献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-s4-selfcritique-attribution.md"
+}

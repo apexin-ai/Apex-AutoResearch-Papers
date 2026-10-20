@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb08611587e21b9c4b9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "cleanup gpu5 remnant",
+  "task_key": "worker_cleanup_gpu5_remnant_20260514T154243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_gpu5_remnant_20260514T154243_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "5f6bf0fa4420f52ccd58d9ad591bb69950506daae7f6e74fba105726a73b7a6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 5 已经干净了：**0MiB 显存占用，无运行进程**。\n\n超时退出（EXIT_CODE=124）后进程已自行终结，显存已完全释放。无需 kill 操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-gpu5-remnant.md"
+}

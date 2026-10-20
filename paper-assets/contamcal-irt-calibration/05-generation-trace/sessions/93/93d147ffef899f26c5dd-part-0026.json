@@ -1,0 +1,3560 @@
+{
+  "schema_version": "1.0",
+  "session_id": "93d147ffef899f26c5dd",
+  "rounds": [
+    {
+      "number": 249,
+      "messages": [
+        {
+          "source_line": 4501,
+          "timestamp": "2026-05-24T12:04:16.129918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex /tmp/contamcal-anon-repo/docs/paper/method.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/references.bib /tmp/contamcal-anon-repo/docs/paper/references.bib && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf /tmp/contamcal-anon-repo/docs/paper/main.pdf && echo \"Copied\"",
+              "description": "Copy updated files to anon repo"
+            }
+          },
+          "id": "event-004501"
+        },
+        {
+          "source_line": 4502,
+          "timestamp": "2026-05-24T12:04:16.230990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Copied"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-004502"
+        },
+        {
+          "source_line": 4503,
+          "timestamp": "2026-05-24T12:04:28.154760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/contamcal-anon-repo && git add docs/paper/method.tex docs/paper/references.bib docs/paper/main.pdf && git commit -m \"$(cat <<'EOF'\nFix bibliography: remove fabricated citation, correct 5 entries\n\n- Remove sanmartin_2009_irt (fabricated: no such paper in Psychometrika 74(2))\n  Replace citation with de_ayala_2009_irt\n- Fix olmo2team2025 title: \"2 OLMo 2 Furious\" (actual arXiv title)\n- Fix tiiuae2024falcon3: add howpublished field\n- Fix holland_1993_dif: author → editor (edited volume)\n- Fix liang_2023_helm: first author Bommasani per NYAS journal version\n- Fix deboeck_2004_explanatory_irt: author → editor (edited volume)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n)\" && git push origin main",
+              "description": "Commit and push reference fixes"
+            }
+          },
+          "id": "event-004503"
+        },
+        {
+          "source_line": 4504,
+          "timestamp": "2026-05-24T12:04:30.614530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main 0276cf5] Fix bibliography: remove fabricated citation, correct 5 entries\n Committer: Ubuntu <ubuntu@ip-172-31-9-160.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 3 files changed, 11 insertions(+), 18 deletions(-)\nTo https://github.com/anonymous-nlp-2026-2/contamcal-irt-calibration.git\n   9333f20..0276cf5  main -> main\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 2459
+          },
+          "id": "event-004504"
+        },
+        {
+          "source_line": 4505,
+          "timestamp": "2026-05-24T12:04:55.664439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**引用修复完成，已编译验证 + push**\n\n### 幽灵引用核实（3 个）\n\n| 条目 | 结果 | 处理 |\n|------|------|------|\n| `sanmartin_2009_irt` | **伪造**：Psychometrika 74(2):349-367 无此论文。San Martín/Del Pino/De Boeck 仅合作于 2006 年 APM（IRT Models for Ability-Based Guessing），2009 年无共同发表 | 删除条目，method.tex 引用替换为 `de_ayala_2009_irt`（已有的 IRT 教材） |\n| `olmo2team2025` | **标题错误**：arXiv 论文标题是 \"2 OLMo 2 Furious\"（不是 blog 标题 \"OLMo 2: The Best Fully Open...\"），arXiv ID 2501.00656 和作者正确 | 已修正标题 |\n| `tiiuae2024falcon3` | **无 arXiv 论文**：Falcon 3 仅有 HuggingFace blog，无技术报告。当前 `@misc` 格式正确 | 添加 `howpublished = {HuggingFace Blog}` |\n\n### 信息不一致修复（11 个中 6 个需改，5 个验证正确）\n\n| 条目 | 问题 | 修复 |\n|------|------|------|\n| `holland_1993_dif` | `author` 应为 `editor`（编辑论文集） | ✅ 已修正 |\n| `liang_2023_helm` | NYAS 期刊版第一作者是 Bommasani（非 Liang） | ✅ 已修正（Wiley DOI 页确认） |\n| `deboeck_2004_explanatory_irt` | `author` 应为 `editor`（编辑论文集） | ✅ 已修正 |\n| `grattafiori2024llama3` | 正确（v3 作者顺序 Grattafiori first） | 无需改 |\n| `camilli_1994_dif` | 正确 | 无需改 |\n| `lord_1980_irt` | 正确 | 无需改 |\n| `hoffman2014` | 正确（JMLR 官方引用格式 15(47):1593-1623） | 无需改 |\n| `hendrycks2021mmlu` | 正确（ICLR 2021 = 第 9 届） | 无需改 |\n| `qwen2024qwen25` | 作者列表截断但 BibTeX 可接受（natbib 自动 et al.） | 无需改 |\n| `de_ayala_2009_irt` | 正确 | 无需改 |\n\n### 验证\n- `latexmk` 编译无 undefined citation / 无 sanmartin 相关 warning\n- 仅剩 `li_2024_task_contamination` 的 volume+number 兼容性 warning（AAAI 会议引用，标准格式，无影响）\n- 已 push 到匿名仓库：commit `0276cf5`",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004505"
+        },
+        {
+          "source_line": 4506,
+          "timestamp": "2026-05-24T12:04:59.279875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3615
+          },
+          "id": "event-004506"
+        },
+        {
+          "source_line": 4507,
+          "timestamp": "2026-05-24T12:05:10.117580+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "引用修复完成。6 个条目已修正（1 个伪造引用删除 + 5 个信息修正），5 个验证正确无需改。编译无 warning，已 push 到匿名仓库。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-004507"
+        }
+      ]
+    },
+    {
+      "number": 250,
+      "messages": [
+        {
+          "source_line": 4508,
+          "timestamp": "2026-05-24T16:25:25.375764+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **三项修改任务（用户要求）**\n\n### 1. Related Work 拆成 3 个段落\n当前 `related_work.tex` 有 2 个 `\\paragraph{}`：\n- \"Contamination detection and mitigation\" — 太长，涵盖了检测、量化、并发工作\n- \"IRT for LLM evaluation\"\n\n拆分方案：将第一段拆为两段：\n- `\\paragraph{Contamination detection.}` — 检测方法（Min-K%, ConStat, CDD, parallel test sets, surveys, memorization characterization）\n- `\\paragraph{Contamination quantification and mitigation.}` — DCR, Emperor 等缓解方法 + Han et al., Schaeffer et al. 等并发量化工作 + ContamCal 的定位对比\n- `\\paragraph{IRT for LLM evaluation.}` — 保持不变\n\n注意不要增加太多新内容，主要是重新组织现有文字。\n\n### 2. 正文填满 8 页\n当前正文（sections 1-6）没有写满 8 页。**把之前移到 appendix 的 Figure 4（cross-benchmark heatmap）移回正文**（results.tex 的 Section 5.2 Cross-Benchmark Transfer）。这应该能填充接近一页的空间。\n\n如果放回 Figure 4 后仍有空间（Limitations 从第 8 页中段或更早开始），考虑：\n- 在 Discussion 稍微扩展 1-2 句\n- 或在 Results 某个 subsection 补充一点细节\n\n**目标：Limitations section 从第 8 页底部或接近底部开始**。不要超过 8 页。\n\n### 3. Limitations 压缩\n当前 `limitations.tex` 有 3 段，太长。压缩为 2-3 个短点：\n- 每个点 1-2 句话\n- 覆盖：(1) 模型规模限制（≤14.7B）+ 种子数（n=3）, (2) SFT vs pretraining 注入差异, (3) IRT 子采样 + 暴露分数不确定性\n- 或者合并为 2 个点也行\n\n### 验证\n完成后 `paper_compile_and_check(max_pages=8)` 确认正文 ≤ 8 页且 Limitations 在第 8 页底部附近开始。视觉检查 page 8。然后 push 到匿名仓库。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "director"
+          },
+          "id": "event-004508"
+        },
+        {
+          "source_line": 4509,
+          "timestamp": "2026-05-24T16:25:34.914198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-004509"
+        },
+        {
+          "source_line": 4510,
+          "timestamp": "2026-05-24T16:25:35.868505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Contamination detection and mitigation.}\n4\tDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases or rephrased items \\citep{dekoninck2024constat,yang2023rethinking}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd,golchin2024time}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation,sainz2023nlp} for surveys. \\citet{balloccu2024leak} document contamination malpractices in closed-source LLMs; \\citet{bordt2025forget} argue that contamination effects are often negligible in practice. Earlier work characterized contamination as memorization \\citep{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}; \\citet{tao2025detecting} and \\citet{kocyigit2025impact} address RL post-training. These methods perform binary classification without quantifying effect sizes. On mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals. Three concurrent lines of work directly address contamination quantification. \\citet{han2026quantifying} apply observational DIF to detect contamination without controlled dosage, achieving detection but not dose-response profiling. \\citet{schaeffer2026causally} perform controlled pretraining-stage injection with larger seed counts ($n\\!=\\!10$), establishing causal contamination effects at the pretraining level; our $n\\!=\\!3$ seed design trades statistical power for broader family coverage. Our work complements both: like Schaeffer et al., we use controlled injection for causal identification, but at the SFT stage with precise dosage control; like Han \n…[truncated 1792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-004510"
+        },
+        {
+          "source_line": 4511,
+          "timestamp": "2026-05-24T16:25:35.869769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-004511"
+        },
+        {
+          "source_line": 4512,
+          "timestamp": "2026-05-24T16:25:36.423390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll experiments use models $\\leq$14.7B parameters; 70B+ models may exhibit qualitatively different contamination dynamics. With $n\\!=\\!3$ seeds per family, effect \\emph{direction} is reproducible but magnitude is seed-sensitive, and borderline classifications (e.g., OLMo-2) should be interpreted with caution.\n5\t\n6\tOur LoRA-based SFT injection differs from pretraining-stage leakage via web crawl ingestion, and dosage levels assume uniform injection of all benchmark items; real-world contamination may follow skewed exposure distributions. The AUGMENT protocol also increases training volume with dosage ($+$33\\% at d100); a volume-matched control attributes ${\\sim}$45\\% of Benefit to data quantity, though this decomposition is available only for Falcon3.\n7\t\n8\tOut-of-sample validation covers only the Immune pattern; Collapse and V-recovery are Qwen2.5-specific and await independent-family replication. IRT is fitted on 300 subsampled items (2.1\\% of MMLU), and RRF exposure scores are point estimates whose measurement uncertainty is not propagated into $\\gamma$ credible intervals.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-004512"
+        },
+        {
+          "source_line": 4513,
+          "timestamp": "2026-05-24T16:25:36.423757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "offset": "46",
+              "limit": "15"
+            }
+          },
+          "id": "event-004513"
+        },
+        {
+          "source_line": 4514,
+          "timestamp": "2026-05-24T16:25:36.474232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46\t\n47\t\\subsection{Cross-Benchmark Transfer}\n48\t\\label{sec:gsm8k_transfer}\n49\t\n50\tContamination patterns are a property of the (model, benchmark) pair, not the model alone (Figure~\\ref{fig:cross_benchmark_heatmap} in Appendix~\\ref{sec:cross_benchmark_details}). Within-MCQ direction agreement is 86\\% (6/7 families; Appendix~\\ref{sec:arc_cross_benchmark}); across formats (MCQ$\\to$generative math), agreement drops to 50\\% with three families reversing on GSM8K \\citep{cobbe2021gsm8k} (Table~\\ref{tab:gsm8k_transfer}). Qwen-14B ($-$9.4pp MMLU) gains $+$13.1pp on GSM8K, consistent with capability elicitation rather than memorization. Volume effects are ruled out: d005 ($+$1.5\\% data) already yields $+$6.4pp GSM8K transfer for Qwen-7B.\n51\t\n52\t\\subsection{Cross-Seed Stability}\n53\t\\label{sec:cross_seed}\n54\t\n55\t\\begin{figure}[t]\n56\t\\centering\n57\t\\includegraphics[width=\\columnwidth]{figures/fig_cross_seed_ci.pdf}\n58\t\\caption{Cross-seed mean $\\Delta$acc at d100 with BCa 95\\% CIs ($n\\!=\\!3$ seeds; Falcon3 $n\\!=\\!2$). Filled markers: CI excludes zero.}\n59\t\\label{fig:cross_seed_ci}\n60\t\\end{figure}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004514"
+        },
+        {
+          "source_line": 4515,
+          "timestamp": "2026-05-24T16:25:44.655514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "offset": "1",
+              "limit": "15"
+            }
+          },
+          "id": "event-004515"
+        },
+        {
+          "source_line": 4516,
+          "timestamp": "2026-05-24T16:25:44.655876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\renewcommand{\\thesection}{\\AlphAlph{\\value{section}}}\n3\t\n4\t\\section{Cross-Benchmark Transfer Details}\n5\t\\label{sec:cross_benchmark_details}\n6\t\n7\t\\begin{figure}[h]\n8\t\\centering\n9\t\\includegraphics[width=0.88\\columnwidth]{figures/fig_cross_benchmark_heatmap.pdf}\n10\t\\caption{Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in 5/6 families, even those harmed on MMLU; Phi-4 shows near-zero transfer.}\n11\t\\label{fig:cross_benchmark_heatmap}\n12\t\\end{figure}\n13\t\n14\t\\begin{table}[h]\n15\t\\centering"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-004516"
+        },
+        {
+          "source_line": 4517,
+          "timestamp": "2026-05-24T16:25:45.208233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004517"
+        },
+        {
+          "source_line": 4518,
+          "timestamp": "2026-05-24T16:25:45.309184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tControlled SFT injection reveals a spectrum of dose-response patterns---not uniform inflation. Two replicate across independent families (Benefit, Immune); two are Qwen2.5-specific and await replication. DiD finds no item-specific memorization (MDES 1.25--2.05pp); direction reproduces across seeds but magnitude is seed-sensitive.\n4\t\n5\t\\paragraph{Contamination vs.\\ additional training.}\n6\tSFT-stage leakage is increasingly relevant as practitioners fine-tune on data containing benchmark items \\citep{balloccu2024leak}. Our injection confounds content, volume ($+$33\\% at d100), and LoRA updates; a volume-matched control attributes ${\\sim}$45\\% of Benefit to quantity. Combined with null item-specific memorization (\\S\\ref{sec:memorization_test}), this suggests contamination operates through global capability modulation rather than item-level lookup.\n7\t\n8\t\\paragraph{Implications for practice.}\n9\tMulti-seed dose-response profiling at $\\geq$3 dosages can detect vulnerability; domain $\\gamma_d$ heterogeneity (up to 1.8$\\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \\geq 50$.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004518"
+        },
+        {
+          "source_line": 4519,
+          "timestamp": "2026-05-24T16:26:12.828111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex",
+              "old_string": "\\paragraph{Contamination detection and mitigation.}\nDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases or rephrased items \\citep{dekoninck2024constat,yang2023rethinking}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd,golchin2024time}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation,sainz2023nlp} for surveys. \\citet{balloccu2024leak} document contamination malpractices in closed-source LLMs; \\citet{bordt2025forget} argue that contamination effects are often negligible in practice. Earlier work characterized contamination as memorization \\citep{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}; \\citet{tao2025detecting} and \\citet{kocyigit2025impact} address RL post-training. These methods perform binary classification without quantifying effect sizes. On mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals. Three concurrent lines of work directly address contamination quantification. \\citet{han2026quantifying} apply observational DIF to detect contamination without controlled dosage, achieving detection but not dose-response profiling. \\citet{schaeffer2026causally} perform controlled pretraining-stage injection with larger seed counts ($n\\!=\\!10$), establishing causal contamination effects at the pretraining level; our $n\\!=\\!3$ seed design trades statistical power for broader family coverage. Our work complements both: like Schaeffer et al., we use controlled injection for causal identification, but at the SFT stage with precise dosage control; like Han et al., we employ IRT-based modeling, but with ground-truth contamination labels enabling dose-response characterization. Han et al.\\ apply observational DIF to naturally contaminated models; we use AUGMENT-mode SFT injection with explicit dosage control, enabling causal dose-response profiling.",
+              "new_string": "\\paragraph{Contamination detection.}\nDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases or rephrased items \\citep{dekoninck2024constat,yang2023rethinking}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd,golchin2024time}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation,sainz2023nlp} for surveys. \\citet{balloccu2024leak} document contamination malpractices in closed-source LLMs; \\citet{bordt2025forget} argue that contamination effects are often negligible in practice. Earlier work characterized contamination as memorization \\citep{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}; \\citet{tao2025detecting} and \\citet{kocyigit2025impact} address RL post-training. These methods perform binary classification without quantifying effect sizes.\n\n\\paragraph{Contamination quantification and mitigation.}\nOn mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals. Three concurrent lines of work directly address contamination quantification. \\citet{han2026quantifying} apply observational DIF to detect contamination without controlled dosage, achieving detection but not dose-response profiling. \\citet{schaeffer2026causally} perform controlled pretraining-stage injection with larger seed counts ($n\\!=\\!10$), establishing causal contamination effects at the pretraining level; our $n\\!=\\!3$ seed design trades statistical power for broader family coverage. Our work complements both: like Schaeffer et al., we use controlled injection for causal identification, but at the SFT stage with precise dosage control; like Han et al., we employ IRT-based modeling, but with ground-truth contamination labels enabling dose-response characterization."
+            }
+          },
+          "id": "event-004519"
+        },
+        {
+          "source_line": 4520,
+          "timestamp": "2026-05-24T16:26:12.879648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-004520"
+        },
+        {
+          "source_line": 4521,
+          "timestamp": "2026-05-24T16:26:22.410576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "old_string": "Contamination patterns are a property of the (model, benchmark) pair, not the model alone (Figure~\\ref{fig:cross_benchmark_heatmap} in Appendix~\\ref{sec:cross_benchmark_details}). Within-MCQ direction agreement is 86\\%",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.88\\columnwidth]{figures/fig_cross_benchmark_heatmap.pdf}\n\\caption{Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in 5/6 families, even those harmed on MMLU; Phi-4 shows near-zero transfer.}\n\\label{fig:cross_benchmark_heatmap}\n\\end{figure}\n\nContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within-MCQ direction agreement is 86\\%"
+            }
+          },
+          "id": "event-004521"
+        },
+        {
+          "source_line": 4522,
+          "timestamp": "2026-05-24T16:26:22.461492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004522"
+        },
+        {
+          "source_line": 4523,
+          "timestamp": "2026-05-24T16:26:27.933447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "old_string": "\\section{Cross-Benchmark Transfer Details}\n\\label{sec:cross_benchmark_details}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.88\\columnwidth]{figures/fig_cross_benchmark_heatmap.pdf}\n\\caption{Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in 5/6 families, even those harmed on MMLU; Phi-4 shows near-zero transfer.}\n\\label{fig:cross_benchmark_heatmap}\n\\end{figure}\n\n\\begin{table}[h]",
+              "new_string": "\\section{Cross-Benchmark Transfer Details}\n\\label{sec:cross_benchmark_details}\n\n\\begin{table}[h]"
+            }
+          },
+          "id": "event-004523"
+        },
+        {
+          "source_line": 4524,
+          "timestamp": "2026-05-24T16:26:28.034721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-004524"
+        },
+        {
+          "source_line": 4525,
+          "timestamp": "2026-05-24T16:26:43.696069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex",
+              "old_string": "\\section*{Limitations}\n\\label{sec:limitations}\n\nAll experiments use models $\\leq$14.7B parameters; 70B+ models may exhibit qualitatively different contamination dynamics. With $n\\!=\\!3$ seeds per family, effect \\emph{direction} is reproducible but magnitude is seed-sensitive, and borderline classifications (e.g., OLMo-2) should be interpreted with caution.\n\nOur LoRA-based SFT injection differs from pretraining-stage leakage via web crawl ingestion, and dosage levels assume uniform injection of all benchmark items; real-world contamination may follow skewed exposure distributions. The AUGMENT protocol also increases training volume with dosage ($+$33\\% at d100); a volume-matched control attributes ${\\sim}$45\\% of Benefit to data quantity, though this decomposition is available only for Falcon3.\n\nOut-of-sample validation covers only the Immune pattern; Collapse and V-recovery are Qwen2.5-specific and await independent-family replication. IRT is fitted on 300 subsampled items (2.1\\% of MMLU), and RRF exposure scores are point estimates whose measurement uncertainty is not propagated into $\\gamma$ credible intervals.",
+              "new_string": "\\section*{Limitations}\n\\label{sec:limitations}\n\nAll experiments use models $\\leq$14.7B with $n\\!=\\!3$ seeds; 70B+ models may exhibit different contamination dynamics, and borderline classifications (e.g., OLMo-2) should be interpreted with caution. Our LoRA-based SFT injection differs from pretraining-stage leakage; the AUGMENT protocol increases training volume with dosage ($+$33\\% at d100), partially confounding content and quantity effects. IRT is fitted on 300 subsampled items (2.1\\% of MMLU), and RRF exposure scores are point estimates whose measurement uncertainty is not propagated into $\\gamma$ credible intervals."
+            }
+          },
+          "id": "event-004525"
+        },
+        {
+          "source_line": 4526,
+          "timestamp": "2026-05-24T16:26:43.746915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004526"
+        },
+        {
+          "source_line": 4527,
+          "timestamp": "2026-05-24T16:26:54.201533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -iE \"error|undefined\" | head -10",
+              "description": "Compile LaTeX",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-004527"
+        },
+        {
+          "source_line": 4528,
+          "timestamp": "2026-05-24T16:26:57.164837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 2963
+          },
+          "id": "event-004528"
+        },
+        {
+          "source_line": 4529,
+          "timestamp": "2026-05-24T16:27:01.834046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf",
+              "pages": "7-9",
+              "dpi": "150",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004529"
+        },
+        {
+          "source_line": 4530,
+          "timestamp": "2026-05-24T16:27:02.388761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 455.8}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 466.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 577.1}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 554
+          },
+          "id": "event-004530"
+        },
+        {
+          "source_line": 4531,
+          "timestamp": "2026-05-24T16:27:06.153514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-004531"
+        },
+        {
+          "source_line": 4532,
+          "timestamp": "2026-05-24T16:27:06.656831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-004532"
+        },
+        {
+          "source_line": 4533,
+          "timestamp": "2026-05-24T16:27:06.808614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-004533"
+        },
+        {
+          "source_line": 4534,
+          "timestamp": "2026-05-24T16:27:07.311690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 654
+          },
+          "id": "event-004534"
+        },
+        {
+          "source_line": 4535,
+          "timestamp": "2026-05-24T16:27:27.525477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf",
+              "pages": "5-6",
+              "dpi": "150",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004535"
+        },
+        {
+          "source_line": 4536,
+          "timestamp": "2026-05-24T16:27:27.828542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 538.0}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 429.1}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 303
+          },
+          "id": "event-004536"
+        },
+        {
+          "source_line": 4537,
+          "timestamp": "2026-05-24T16:27:32.648509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-004537"
+        },
+        {
+          "source_line": 4538,
+          "timestamp": "2026-05-24T16:27:33.100708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-004538"
+        },
+        {
+          "source_line": 4539,
+          "timestamp": "2026-05-24T16:27:33.254474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-004539"
+        },
+        {
+          "source_line": 4540,
+          "timestamp": "2026-05-24T16:27:33.757602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 656
+          },
+          "id": "event-004540"
+        },
+        {
+          "source_line": 4541,
+          "timestamp": "2026-05-24T16:27:58.012113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex",
+              "old_string": "\\paragraph{Implications for practice.}\nMulti-seed dose-response profiling at $\\geq$3 dosages can detect vulnerability; domain $\\gamma_d$ heterogeneity (up to 1.8$\\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \\geq 50$.",
+              "new_string": "\\paragraph{Implications for practice.}\nMulti-seed dose-response profiling at $\\geq$3 dosages can detect vulnerability; domain $\\gamma_d$ heterogeneity (up to 1.8$\\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \\geq 50$. Cross-benchmark transfer patterns (\\S\\ref{sec:gsm8k_transfer}) suggest that contamination effects should be assessed per benchmark rather than assumed transferable: a model harmed on MMLU may benefit on GSM8K, and vice versa."
+            }
+          },
+          "id": "event-004541"
+        },
+        {
+          "source_line": 4542,
+          "timestamp": "2026-05-24T16:27:58.063000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004542"
+        },
+        {
+          "source_line": 4543,
+          "timestamp": "2026-05-24T16:28:02.832697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -iE \"error|undefined\" | head -5",
+              "description": "Recompile",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-004543"
+        },
+        {
+          "source_line": 4544,
+          "timestamp": "2026-05-24T16:28:05.643067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 2810
+          },
+          "id": "event-004544"
+        },
+        {
+          "source_line": 4545,
+          "timestamp": "2026-05-24T16:28:10.061476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf",
+              "pages": "8",
+              "dpi": "150",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004545"
+        },
+        {
+          "source_line": 4546,
+          "timestamp": "2026-05-24T16:28:10.212513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 466.1}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 151
+          },
+          "id": "event-004546"
+        },
+        {
+          "source_line": 4547,
+          "timestamp": "2026-05-24T16:28:13.325378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-004547"
+        },
+        {
+          "source_line": 4548,
+          "timestamp": "2026-05-24T16:28:13.929696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-004548"
+        },
+        {
+          "source_line": 4549,
+          "timestamp": "2026-05-24T16:28:29.035249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-004549"
+        },
+        {
+          "source_line": 4550,
+          "timestamp": "2026-05-24T16:28:29.085955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-004550"
+        },
+        {
+          "source_line": 4551,
+          "timestamp": "2026-05-24T16:28:50.960496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex /tmp/contamcal-anon-repo/docs/paper/related_work.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex /tmp/contamcal-anon-repo/docs/paper/results.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex /tmp/contamcal-anon-repo/docs/paper/appendix.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex /tmp/contamcal-anon-repo/docs/paper/limitations.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex /tmp/contamcal-anon-repo/docs/paper/conclusion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf /tmp/contamcal-anon-repo/docs/paper/main.pdf && echo \"Copied\"",
+              "description": "Copy all updated files to anon repo"
+            }
+          },
+          "id": "event-004551"
+        },
+        {
+          "source_line": 4552,
+          "timestamp": "2026-05-24T16:28:51.128197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Copied"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 167
+          },
+          "id": "event-004552"
+        },
+        {
+          "source_line": 4553,
+          "timestamp": "2026-05-24T16:28:58.245094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/contamcal-anon-repo && git add docs/paper/related_work.tex docs/paper/results.tex docs/paper/appendix.tex docs/paper/limitations.tex docs/paper/conclusion.tex docs/paper/main.pdf && git commit -m \"$(cat <<'EOF'\nSplit Related Work, restore Figure 4 to main text, compress Limitations\n\n- Split \"Contamination detection and mitigation\" into two paragraphs:\n  \"Contamination detection\" and \"Contamination quantification and mitigation\"\n- Move cross-benchmark heatmap (Figure 4) back from appendix to results.tex\n- Compress Limitations from 3 paragraphs to 1 compact paragraph\n- Add cross-benchmark transfer sentence to Discussion\n- Main text sections 1-6 fit within 8 pages; Limitations starts ~75% down p8\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n)\" && git push origin main",
+              "description": "Commit and push all changes"
+            }
+          },
+          "id": "event-004553"
+        },
+        {
+          "source_line": 4554,
+          "timestamp": "2026-05-24T16:29:00.353203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main e4e6569] Split Related Work, restore Figure 4 to main text, compress Limitations\n Committer: Ubuntu <ubuntu@ip-172-31-9-160.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 6 files changed, 15 insertions(+), 16 deletions(-)\nTo https://github.com/anonymous-nlp-2026-2/contamcal-irt-calibration.git\n   0276cf5..e4e6569  main -> main\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 2108
+          },
+          "id": "event-004554"
+        },
+        {
+          "source_line": 4555,
+          "timestamp": "2026-05-24T16:29:18.023508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**三项修改完成，已编译验证 + push**\n\n### 1. Related Work 拆分 ✅\n- `\\paragraph{Contamination detection.}` — 检测方法（Min-K%, ConStat, CDD, parallel tests, surveys, memorization, RL post-training）\n- `\\paragraph{Contamination quantification and mitigation.}` — Emperor/DCR 缓解 + Han/Schaeffer 并发工作 + ContamCal 定位对比\n- `\\paragraph{IRT for LLM evaluation.}` — 保持不变\n- 删除了最后一句重复内容（\"Han et al. apply observational DIF...\"与前文重复）\n\n### 2. Figure 4 移回正文 ✅\n- 从 appendix 移回 results.tex Section 5.2（`\\begin{figure}[t]`）\n- 渲染在第 6 页右上角，Figure 编号正确\n- Appendix 中仅保留 Table（gsm8k_transfer）\n\n### 3. Limitations 压缩 ✅\n- 3 段 → 1 段（3 句话），覆盖：模型规模 ≤14.7B + n=3 seeds、SFT vs pretraining 注入差异 + volume confound、IRT 子采样 + 暴露分数不确定性\n\n### 页面布局\n- Limitations 从第 8 页 ~75% 处开始，References 从底部开始\n- 主正文 sections 1-6 完全在 8 页内 ✅\n- Discussion 加了 1 句 cross-benchmark transfer implication 填充空间\n\n已 push 到匿名仓库：commit `e4e6569`",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004555"
+        },
+        {
+          "source_line": 4556,
+          "timestamp": "2026-05-24T16:29:21.568852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3545
+          },
+          "id": "event-004556"
+        },
+        {
+          "source_line": 4557,
+          "timestamp": "2026-05-24T16:29:32.849836+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Limitations now starts about 75% down page 8 — close to bottom. Main text sections 1-6 fit within 8 pages. Clean up and push."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-004557"
+        }
+      ]
+    },
+    {
+      "number": 251,
+      "messages": [
+        {
+          "source_line": 4558,
+          "timestamp": "2026-05-24T16:57:02.624579+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **Figure 宽度互换 + 正文扩充（用户要求）**\n\n### 1. Figure 1 和 Figure 2 宽度互换\n\n**Figure 1 (dose-response, introduction.tex)**：\n- `\\begin{figure*}[t]` → `\\begin{figure}[t]`\n- `\\includegraphics[width=0.95\\textwidth]` → `\\includegraphics[width=\\columnwidth]`\n- 这是统计图，适合单栏\n\n**Figure 2 (pipeline, method.tex)**：\n- `\\begin{figure}[t]` → `\\begin{figure*}[t]`\n- `\\includegraphics[width=\\columnwidth]` → `\\includegraphics[width=0.95\\textwidth]`\n- 这是概念图/流程图，适合双栏\n\n### 2. 从 Appendix 移入正文的内容\n\n**Table: Cross-Seed Stability (tab:cross_seed)**\n- 从 appendix.tex 的 \"Cross-Seed Stability Details\" section (line ~336-358) 移入 results.tex 的 Section 5.3 (Cross-Seed Stability)\n- 放在 Figure 5 之后\n- Appendix 中只保留 OLMo-2 rerun 备注那一行（line 360）\n\n**Table: GSM8K Transfer (tab:gsm8k_transfer)**\n- 从 appendix.tex 的 \"Cross-Benchmark Transfer Details\" section (line ~7-29) 移入 results.tex 的 Section 5.2 (Cross-Benchmark Transfer)\n- 放在 Figure 4 (cross-benchmark heatmap) 之后\n- Appendix 中的 \"Cross-Benchmark Transfer Details\" section 如果只剩标题就整个删掉\n\n### 3. 注意事项\n- 移动表格后检查所有 `\\ref{tab:cross_seed}` 和 `\\ref{tab:gsm8k_transfer}` 引用是否仍然正确\n- 确保移入后不超过 8 页正文（如果超了，优先保留 tab:cross_seed，放弃 tab:gsm8k_transfer）\n- 移入表格时保留所有脚注\n\n### 验证\n`paper_compile_and_check(max_pages=8)` + 视觉检查 page 1-8 确认布局合理。然后 push 到匿名仓库。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "director"
+          },
+          "id": "event-004558"
+        },
+        {
+          "source_line": 4559,
+          "timestamp": "2026-05-24T16:57:11.221829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-004559"
+        },
+        {
+          "source_line": 4560,
+          "timestamp": "2026-05-24T16:57:11.674103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n4\t\n5\tWe perform controlled SFT injection (LoRA, five dosage levels) into six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII) and discover a spectrum of dose-response patterns (Figure~\\ref{fig:dose_response})---from immunity (Phi-4, $\\pm$0.5pp) and benefit ($+$3--4pp, three families) to collapse (Qwen-14B, $-$9 to $-$25pp across seeds).\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=0.95\\textwidth]{figures/fig_dose_response.pdf}\n10\t\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0). Immune and Benefit replicate across families; Collapse and V-recovery are preliminary (Qwen2.5-specific). Cross-seed stability in Table~\\ref{tab:cross_seed}.}\n11\t\\label{fig:dose_response}\n12\t\\end{figure*}\n13\t\n14\tAcross six models, three lower-baseline models benefit ($+$3.2 to $+$4.2pp), one is immune (Phi-4), and the remaining two (both Qwen2.5) show harm---with the 14B model 5$\\times$ more fragile than 7B. These effects are benchmark-conditional: the same model can collapse on MMLU ($-$9.4pp) yet gain on GSM8K ($+$13pp). ContamCal, our diagnostic framework combining multi-signal exposure mapping w\n…[truncated 1771 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004560"
+        },
+        {
+          "source_line": 4561,
+          "timestamp": "2026-05-24T16:57:11.925619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "offset": "1",
+              "limit": "12"
+            }
+          },
+          "id": "event-004561"
+        },
+        {
+          "source_line": 4562,
+          "timestamp": "2026-05-24T16:57:12.077541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_pipeline.pdf}\n7\t\\caption{ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns.}\n8\t\\label{fig:pipeline}\n9\t\\end{figure}\n10\t\n11\tContamCal operates in three stages (Figure~\\ref{fig:pipeline}): Stage~1 estimates per-item contamination exposure via training-free signal fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to recover clean ability estimates with credible intervals; Stage~3 classifies dose-response trajectories into canonical patterns.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-004562"
+        },
+        {
+          "source_line": 4563,
+          "timestamp": "2026-05-24T16:57:19.507287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "offset": "1",
+              "limit": "35"
+            }
+          },
+          "id": "event-004563"
+        },
+        {
+          "source_line": 4564,
+          "timestamp": "2026-05-24T16:57:19.959489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\renewcommand{\\thesection}{\\AlphAlph{\\value{section}}}\n3\t\n4\t\\section{Cross-Benchmark Transfer Details}\n5\t\\label{sec:cross_benchmark_details}\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{Cross-benchmark transfer: MMLU vs.\\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}\n10\t\\label{tab:gsm8k_transfer}\n11\t\\footnotesize\n12\t\\resizebox{\\columnwidth}{!}{%\n13\t\\begin{tabular}{lcccl}\n14\t\\toprule\n15\tModel & MMLU $\\Delta$ & GSM8K $\\Delta$ & Range & Transfer \\\\\n16\t\\midrule\n17\tPhi-4 14.7B & $\\pm$0.5pp & $-$0.5pp$^{\\diamond}$ & --- & Null \\\\\n18\tOLMo-2 7B & $+$3.2pp & $+$2.1pp$^{\\S}$ & --- & Consistent \\\\\n19\tFalcon3 7B & $+$4.2pp & $+$1.3pp & --- & Consistent \\\\\n20\tQwen-7B & $-$1.8pp & $+$10.1pp & $\\pm$0.9 & Reversal \\\\\n21\tQwen-14B & $-$9.4pp & $+$13.1pp & $\\pm$7.4 & Reversal$^{\\dagger}$ \\\\\n22\tLLaMA-3.1 8B & $-$0.7pp & $+$16.4pp$^{\\ddagger}$ & --- & Asymmetric \\\\\n23\t\\bottomrule\n24\t\\multicolumn{5}{l}{\\scriptsize $^{\\dagger}$d000 baseline seed-sensitive (s42$=$60.8\\% vs.\\ s123$=$76.7\\%); d100 stable ($82\\pm0.5$\\%).} \\\\\n25\t\\multicolumn{5}{l}{\\scriptsize $^{\\S}$Mean of s42 and s123: $+$2.1pp (s42: $+$1.7pp, s123: $+$2.4pp); s0 excluded ($+$9.2pp outlier).} \\\\\n26\t\\multicolumn{5}{l}{\\scriptsize $^{\\ddagger}$Single seed (s0); MMLU Immune but strongest GSM8K transfer across all families.} \\\\\n27\t\\multicolumn{5}{l}{\\scriptsize $^{\\diamond}$Seed s123; Table~\\ref{tab:gsm8k_dose} reports s0 ($+$1.14pp).}\n28\t\\end{tabular}}\n29\t\\end{table}\n30\t\n31\t\\section{ARC-Challenge Cross-Benchmark Analysis}\n32\t\\label{sec:arc_cross_benchmark}\n33\t\n34\tARC-Challenge (25-shot, 1{,}172 items) patterns under s42 are directionally consistent with MMLU for five of six models: OLMo-2 benefits ($+$3.9pp), Falcon3 benefits ($+$4.0pp), Qwen-7B ($-$2.9pp) and Qwen-14B ($-$3.4pp) are harmed, Phi-4 remains immune ($+$0.6pp). Gemma-2 achieves $n\\!=\\!3$ on ARC: s42 exhibits a 16pp os\n…[truncated 585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004564"
+        },
+        {
+          "source_line": 4565,
+          "timestamp": "2026-05-24T16:57:20.110478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "offset": "325",
+              "limit": "45"
+            }
+          },
+          "id": "event-004565"
+        },
+        {
+          "source_line": 4566,
+          "timestamp": "2026-05-24T16:57:20.211292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "325\tBusiness/Law & 0.083 & 0.417 & 0.334 [0.261, 0.410] \\\\\n326\tOther & 0.817 & 1.565 & 0.748 [0.647, 0.846] \\\\\n327\t\\midrule\n328\tPooled & 0.311 & 0.811 & 0.500 [0.431, 0.568] \\\\\n329\t\\bottomrule\n330\t\\end{tabular}\n331\t\\end{table}\n332\t\n333\t\\section{Cross-Seed Stability Details}\n334\t\\label{sec:cross_seed_details}\n335\t\n336\t\\begin{table}[h]\n337\t\\centering\n338\t\\caption{Cross-seed $\\Delta$acc (d000$\\to$d100). Strict sign consistency (Cons.) is 3/6; classification-level direction agreement is 5/6 (see text). Per-seed shape classification\\textsuperscript{$\\ddagger$} agrees for only 3/6.}\n339\t\\label{tab:cross_seed}\n340\t\\footnotesize\n341\t\\resizebox{\\columnwidth}{!}{%\n342\t\\begin{tabular}{lcccccccl}\n343\t\\toprule\n344\tModel & $n$ & s42 & s123 & s0 & 95\\% CI & Dir. & Cons.\\ & Pattern\\textsuperscript{$\\ddagger$} \\\\\n345\t\\midrule\n346\tPhi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\\textsuperscript{B} & Immune & $\\times$ & --- \\\\\n347\tQwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\\textsuperscript{B} & Harm & \\checkmark & Collapse \\\\\n348\tQwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\\textsuperscript{B} & Harm & $\\times$ & V-recovery \\\\\n349\tGemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\\textsuperscript{B} & Benefit & \\checkmark & Benefit \\\\\n350\tOLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\\textsuperscript{B} & Borderl.\\ & $\\times$ & ---\\textsuperscript{b} \\\\\n351\tFalcon3-7B & 2 & $+$ & $+$ & --- & [$+$3.91, $+$4.19]\\textsuperscript{c} & Benefit & \\checkmark & Benefit \\\\\n352\t\\bottomrule\n353\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{B}BCa bootstrap ($B\\!=\\!10{,}000$); original five families at $n\\!=\\!3$.} \\\\\n354\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{$\\ddagger$}Per-seed shape may differ from family-level direction-based classification (\\S\\ref{sec:classification}).} \\\\\n355\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\\Delta|{\\ge}1$pp; $0$ = $|\\Delta|{<}1$pp.} \\\\\n356\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{c}$n\\!=\\\n…[truncated 708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004566"
+        },
+        {
+          "source_line": 4567,
+          "timestamp": "2026-05-24T16:57:29.297498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "offset": "46",
+              "limit": "30"
+            }
+          },
+          "id": "event-004567"
+        },
+        {
+          "source_line": 4568,
+          "timestamp": "2026-05-24T16:57:29.399589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46\t\n47\t\\subsection{Cross-Benchmark Transfer}\n48\t\\label{sec:gsm8k_transfer}\n49\t\n50\t\\begin{figure}[t]\n51\t\\centering\n52\t\\includegraphics[width=0.88\\columnwidth]{figures/fig_cross_benchmark_heatmap.pdf}\n53\t\\caption{Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in 5/6 families, even those harmed on MMLU; Phi-4 shows near-zero transfer.}\n54\t\\label{fig:cross_benchmark_heatmap}\n55\t\\end{figure}\n56\t\n57\tContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within-MCQ direction agreement is 86\\% (6/7 families; Appendix~\\ref{sec:arc_cross_benchmark}); across formats (MCQ$\\to$generative math), agreement drops to 50\\% with three families reversing on GSM8K \\citep{cobbe2021gsm8k} (Table~\\ref{tab:gsm8k_transfer}). Qwen-14B ($-$9.4pp MMLU) gains $+$13.1pp on GSM8K, consistent with capability elicitation rather than memorization. Volume effects are ruled out: d005 ($+$1.5\\% data) already yields $+$6.4pp GSM8K transfer for Qwen-7B.\n58\t\n59\t\\subsection{Cross-Seed Stability}\n60\t\\label{sec:cross_seed}\n61\t\n62\t\\begin{figure}[t]\n63\t\\centering\n64\t\\includegraphics[width=\\columnwidth]{figures/fig_cross_seed_ci.pdf}\n65\t\\caption{Cross-seed mean $\\Delta$acc at d100 with BCa 95\\% CIs ($n\\!=\\!3$ seeds; Falcon3 $n\\!=\\!2$). Filled markers: CI excludes zero.}\n66\t\\label{fig:cross_seed_ci}\n67\t\\end{figure}\n68\t\n69\tGemma-2 is the only family with a statistically significant cross-seed Benefit (BCa 95\\% CI $[+1.49, +3.14]$; Figure~\\ref{fig:cross_seed_ci}); Falcon3 and OLMo-2 are directionally consistent but exploratory (Table~\\ref{tab:cross_seed}). Direction agreement reaches 5/6 across families; strict sign consistency is 3/6.\n70\t\n71\t\\subsection{Item-Level Memorization Test}\n72\t\\label{sec:memorization_test}\n73\t\n74\tWe test whether dose-response patterns arise from item-specific memorization using the treated/untreated split at d025 (3{,}540 / 10{,}502 MMLU items). A pre-treatment balance check confirms treated and untreated items are comparable in d00\n…[truncated 455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-004568"
+        },
+        {
+          "source_line": 4569,
+          "timestamp": "2026-05-24T16:57:34.471053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.95\\textwidth]{figures/fig_dose_response.pdf}",
+              "new_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_dose_response.pdf}"
+            }
+          },
+          "id": "event-004569"
+        },
+        {
+          "source_line": 4570,
+          "timestamp": "2026-05-24T16:57:34.973534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-004570"
+        },
+        {
+          "source_line": 4571,
+          "timestamp": "2026-05-24T16:57:35.877480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "\\end{figure*}",
+              "new_string": "\\end{figure}"
+            }
+          },
+          "id": "event-004571"
+        },
+        {
+          "source_line": 4572,
+          "timestamp": "2026-05-24T16:57:35.877852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004572"
+        },
+        {
+          "source_line": 4573,
+          "timestamp": "2026-05-24T16:57:40.788396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "old_string": "\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_pipeline.pdf}\n\\caption{ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns.}\n\\label{fig:pipeline}\n\\end{figure}",
+              "new_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.95\\textwidth]{figures/fig_pipeline.pdf}\n\\caption{ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns.}\n\\label{fig:pipeline}\n\\end{figure*}"
+            }
+          },
+          "id": "event-004573"
+        },
+        {
+          "source_line": 4574,
+          "timestamp": "2026-05-24T16:57:40.839067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004574"
+        },
+        {
+          "source_line": 4575,
+          "timestamp": "2026-05-24T16:58:01.013650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "old_string": "Contamination patterns are a property of the (model, benchmark) pair, not the model alone. Within-MCQ direction agreement is 86\\%",
+              "new_string": "\\begin{table}[t]\n\\centering\n\\caption{Cross-benchmark transfer: MMLU vs.\\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}\n\\label{tab:gsm8k_transfer}\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccl}\n\\toprule\nModel & MMLU $\\Delta$ & GSM8K $\\Delta$ & Range & Transfer \\\\\n\\midrule\nPhi-4 14.7B & $\\pm$0.5pp & $-$0.5pp$^{\\diamond}$ & --- & Null \\\\\nOLMo-2 7B & $+$3.2pp & $+$2.1pp$^{\\S}$ & --- & Consistent \\\\\nFalcon3 7B & $+$4.2pp & $+$1.3pp & --- & Consistent \\\\\nQwen-7B & $-$1.8pp & $+$10.1pp & $\\pm$0.9 & Reversal \\\\\nQwen-14B & $-$9.4pp & $+$13.1pp & $\\pm$7.4 & Reversal$^{\\dagger}$ \\\\\nLLaMA-3.1 8B & $-$0.7pp & $+$16.4pp$^{\\ddagger}$ & --- & Asymmetric \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\scriptsize $^{\\dagger}$d000 baseline seed-sensitive (s42$=$60.8\\% vs.\\ s123$=$76.7\\%); d100 stable ($82\\pm0.5$\\%).} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\S}$Mean of s42 and s123: $+$2.1pp (s42: $+$1.7pp, s123: $+$2.4pp); s0 excluded ($+$9.2pp outlier).} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\ddagger}$Single seed (s0); MMLU Immune but strongest GSM8K transfer across all families.} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\diamond}$Seed s123; Table~\\ref{tab:gsm8k_dose} reports s0 ($+$1.14pp).}\n\\end{tabular}}\n\\end{table}\n\nContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within-MCQ direction agreement is 86\\%"
+            }
+          },
+          "id": "event-004575"
+        },
+        {
+          "source_line": 4576,
+          "timestamp": "2026-05-24T16:58:01.014407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004576"
+        },
+        {
+          "source_line": 4577,
+          "timestamp": "2026-05-24T16:58:21.281999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "old_string": "Gemma-2 is the only family with a statistically significant cross-seed Benefit",
+              "new_string": "\\begin{table}[t]\n\\centering\n\\caption{Cross-seed $\\Delta$acc (d000$\\to$d100). Strict sign consistency (Cons.) is 3/6; classification-level direction agreement is 5/6 (see text). Per-seed shape classification\\textsuperscript{$\\ddagger$} agrees for only 3/6.}\n\\label{tab:cross_seed}\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccccl}\n\\toprule\nModel & $n$ & s42 & s123 & s0 & 95\\% CI & Dir. & Cons.\\ & Pattern\\textsuperscript{$\\ddagger$} \\\\\n\\midrule\nPhi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\\textsuperscript{B} & Immune & $\\times$ & --- \\\\\nQwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\\textsuperscript{B} & Harm & \\checkmark & Collapse \\\\\nQwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\\textsuperscript{B} & Harm & $\\times$ & V-recovery \\\\\nGemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\\textsuperscript{B} & Benefit & \\checkmark & Benefit \\\\\nOLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\\textsuperscript{B} & Borderl.\\ & $\\times$ & ---\\textsuperscript{b} \\\\\nFalcon3-7B & 2 & $+$ & $+$ & --- & [$+$3.91, $+$4.19]\\textsuperscript{c} & Benefit & \\checkmark & Benefit \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{B}BCa bootstrap ($B\\!=\\!10{,}000$); original five families at $n\\!=\\!3$.} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{$\\ddagger$}Per-seed shape may differ from family-level direction-based classification (\\S\\ref{sec:classification}).} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\\Delta|{\\ge}1$pp; $0$ = $|\\Delta|{<}1$pp.} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{c}$n\\!=\\!2$ seeds only; range shown instead of BCa CI.}\n\\end{tabular}}\n\\end{table}\n\nGemma-2 is the only family with a statistically significant cross-seed Benefit"
+            }
+          },
+          "id": "event-004577"
+        },
+        {
+          "source_line": 4578,
+          "timestamp": "2026-05-24T16:58:21.332778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004578"
+        },
+        {
+          "source_line": 4579,
+          "timestamp": "2026-05-24T16:58:46.662254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "old_string": "\\section{Cross-Benchmark Transfer Details}\n\\label{sec:cross_benchmark_details}\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-benchmark transfer: MMLU vs.\\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}\n\\label{tab:gsm8k_transfer}\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccl}\n\\toprule\nModel & MMLU $\\Delta$ & GSM8K $\\Delta$ & Range & Transfer \\\\\n\\midrule\nPhi-4 14.7B & $\\pm$0.5pp & $-$0.5pp$^{\\diamond}$ & --- & Null \\\\\nOLMo-2 7B & $+$3.2pp & $+$2.1pp$^{\\S}$ & --- & Consistent \\\\\nFalcon3 7B & $+$4.2pp & $+$1.3pp & --- & Consistent \\\\\nQwen-7B & $-$1.8pp & $+$10.1pp & $\\pm$0.9 & Reversal \\\\\nQwen-14B & $-$9.4pp & $+$13.1pp & $\\pm$7.4 & Reversal$^{\\dagger}$ \\\\\nLLaMA-3.1 8B & $-$0.7pp & $+$16.4pp$^{\\ddagger}$ & --- & Asymmetric \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\scriptsize $^{\\dagger}$d000 baseline seed-sensitive (s42$=$60.8\\% vs.\\ s123$=$76.7\\%); d100 stable ($82\\pm0.5$\\%).} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\S}$Mean of s42 and s123: $+$2.1pp (s42: $+$1.7pp, s123: $+$2.4pp); s0 excluded ($+$9.2pp outlier).} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\ddagger}$Single seed (s0); MMLU Immune but strongest GSM8K transfer across all families.} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\diamond}$Seed s123; Table~\\ref{tab:gsm8k_dose} reports s0 ($+$1.14pp).}\n\\end{tabular}}\n\\end{table}\n\n\\section{ARC-Challenge Cross-Benchmark Analysis}",
+              "new_string": "\\section{ARC-Challenge Cross-Benchmark Analysis}"
+            }
+          },
+          "id": "event-004579"
+        },
+        {
+          "source_line": 4580,
+          "timestamp": "2026-05-24T16:58:46.663239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-004580"
+        },
+        {
+          "source_line": 4581,
+          "timestamp": "2026-05-24T16:59:09.352452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "old_string": "\\section{Cross-Seed Stability Details}\n\\label{sec:cross_seed_details}\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-seed $\\Delta$acc (d000$\\to$d100). Strict sign consistency (Cons.) is 3/6; classification-level direction agreement is 5/6 (see text). Per-seed shape classification\\textsuperscript{$\\ddagger$} agrees for only 3/6.}\n\\label{tab:cross_seed}\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccccl}\n\\toprule\nModel & $n$ & s42 & s123 & s0 & 95\\% CI & Dir. & Cons.\\ & Pattern\\textsuperscript{$\\ddagger$} \\\\\n\\midrule\nPhi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\\textsuperscript{B} & Immune & $\\times$ & --- \\\\\nQwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\\textsuperscript{B} & Harm & \\checkmark & Collapse \\\\\nQwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\\textsuperscript{B} & Harm & $\\times$ & V-recovery \\\\\nGemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\\textsuperscript{B} & Benefit & \\checkmark & Benefit \\\\\nOLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\\textsuperscript{B} & Borderl.\\ & $\\times$ & ---\\textsuperscript{b} \\\\\nFalcon3-7B & 2 & $+$ & $+$ & --- & [$+$3.91, $+$4.19]\\textsuperscript{c} & Benefit & \\checkmark & Benefit \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{B}BCa bootstrap ($B\\!=\\!10{,}000$); original five families at $n\\!=\\!3$.} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{$\\ddagger$}Per-seed shape may differ from family-level direction-based classification (\\S\\ref{sec:classification}).} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\\Delta|{\\ge}1$pp; $0$ = $|\\Delta|{<}1$pp.} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{c}$n\\!=\\!2$ seeds only; range shown instead of BCa CI.}\n\\end{tabular}}\n\\end{table}\n\nOLMo-2 s42 rerun (d025/d100) exhibits $\\pm$1.6\\,pp point-estimate variability attributable to non-deterministic CUDA operations; this falls within the cross-seed range (3.76\\,pp) and does not affect pattern classification.",
+              "new_string": "\\section{Cross-Seed Stability Details}\n\\label{sec:cross_seed_details}\n\nOLMo-2 s42 rerun (d025/d100) exhibits $\\pm$1.6\\,pp point-estimate variability attributable to non-deterministic CUDA operations; this falls within the cross-seed range (3.76\\,pp) and does not affect pattern classification."
+            }
+          },
+          "id": "event-004581"
+        },
+        {
+          "source_line": 4582,
+          "timestamp": "2026-05-24T16:59:09.403661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-004582"
+        },
+        {
+          "source_line": 4583,
+          "timestamp": "2026-05-24T16:59:13.113710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cross_benchmark_details",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-004583"
+        },
+        {
+          "source_line": 4584,
+          "timestamp": "2026-05-24T16:59:13.214460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-004584"
+        },
+        {
+          "source_line": 4585,
+          "timestamp": "2026-05-24T16:59:23.352536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -iE \"error|undefined|multiply\" | head -10",
+              "description": "Compile LaTeX",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-004585"
+        },
+        {
+          "source_line": 4586,
+          "timestamp": "2026-05-24T16:59:26.366573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 3014
+          },
+          "id": "event-004586"
+        },
+        {
+          "source_line": 4587,
+          "timestamp": "2026-05-24T16:59:30.884638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf",
+              "pages": "1-8",
+              "dpi": "150",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004587"
+        },
+        {
+          "source_line": 4588,
+          "timestamp": "2026-05-24T16:59:32.191744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 405.8}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.1}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 497.5}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 746.6}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 527.9}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 438.7}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 419.6}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 454.7}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1307
+          },
+          "id": "event-004588"
+        },
+        {
+          "source_line": 4589,
+          "timestamp": "2026-05-24T16:59:35.304433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-004589"
+        },
+        {
+          "source_line": 4590,
+          "timestamp": "2026-05-24T16:59:36.310888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-004590"
+        },
+        {
+          "source_line": 4591,
+          "timestamp": "2026-05-24T16:59:39.473280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-004591"
+        },
+        {
+          "source_line": 4592,
+          "timestamp": "2026-05-24T16:59:40.078208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-004592"
+        },
+        {
+          "source_line": 4593,
+          "timestamp": "2026-05-24T16:59:50.483493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-004593"
+        },
+        {
+          "source_line": 4594,
+          "timestamp": "2026-05-24T16:59:50.985858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-004594"
+        },
+        {
+          "source_line": 4595,
+          "timestamp": "2026-05-24T16:59:51.090355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 606
+          },
+          "id": "event-004595"
+        },
+        {
+          "source_line": 4596,
+          "timestamp": "2026-05-24T16:59:51.444828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 458
+          },
+          "id": "event-004596"
+        },
+        {
+          "source_line": 4597,
+          "timestamp": "2026-05-24T16:59:55.962696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-004597"
+        },
+        {
+          "source_line": 4598,
+          "timestamp": "2026-05-24T16:59:56.415550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-004598"
+        },
+        {
+          "source_line": 4599,
+          "timestamp": "2026-05-24T16:59:56.567568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-004599"
+        },
+        {
+          "source_line": 4600,
+          "timestamp": "2026-05-24T16:59:57.070633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 655
+          },
+          "id": "event-004600"
+        },
+        {
+          "source_line": 4601,
+          "timestamp": "2026-05-24T17:00:02.945583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-004601"
+        },
+        {
+          "source_line": 4602,
+          "timestamp": "2026-05-24T17:00:03.347738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-004602"
+        },
+        {
+          "source_line": 4603,
+          "timestamp": "2026-05-24T17:00:03.549674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 604
+          },
+          "id": "event-004603"
+        },
+        {
+          "source_line": 4604,
+          "timestamp": "2026-05-24T17:00:04.053298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 705
+          },
+          "id": "event-004604"
+        },
+        {
+          "source_line": 4605,
+          "timestamp": "2026-05-24T17:00:25.984999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-004605"
+        },
+        {
+          "source_line": 4606,
+          "timestamp": "2026-05-24T17:00:26.036541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 51
+          },
+          "id": "event-004606"
+        },
+        {
+          "source_line": 4607,
+          "timestamp": "2026-05-24T17:00:30.505024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "for f in introduction.tex method.tex results.tex appendix.tex conclusion.tex related_work.tex limitations.tex main.pdf; do cp /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/$f /tmp/contamcal-anon-repo/docs/paper/$f; done && echo \"Copied\"",
+              "description": "Copy all updated files to anon repo"
+            }
+          },
+          "id": "event-004607"
+        },
+        {
+          "source_line": 4608,
+          "timestamp": "2026-05-24T17:00:30.606145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Copied"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-004608"
+        },
+        {
+          "source_line": 4609,
+          "timestamp": "2026-05-24T17:00:38.237527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/contamcal-anon-repo && git add docs/paper/ && git commit -m \"$(cat <<'EOF'\nSwap figure widths, move 2 tables to main text, compress Limitations\n\n- Figure 1 (dose-response): figure* → figure (single-column)\n- Figure 2 (pipeline): figure → figure* (full-width)\n- Move tab:gsm8k_transfer from appendix to Section 5.2\n- Move tab:cross_seed from appendix to Section 5.3\n- Remove empty Cross-Benchmark Transfer Details appendix section\n- Compress Limitations to single paragraph\n- Main text sections 1-6 fit within 8 pages\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n)\" && git push origin main",
+              "description": "Commit and push"
+            }
+          },
+          "id": "event-004609"
+        },
+        {
+          "source_line": 4610,
+          "timestamp": "2026-05-24T17:00:40.397713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main e5863bd] Swap figure widths, move 2 tables to main text, compress Limitations\n Committer: Ubuntu <ubuntu@ip-172-31-9-160.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 5 files changed, 54 insertions(+), 57 deletions(-)\nTo https://github.com/anonymous-nlp-2026-2/contamcal-irt-calibration.git\n   e4e6569..e5863bd  main -> main\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Bash",
+            "elapsed_ms": 2160
+          },
+          "id": "event-004610"
+        },
+        {
+          "source_line": 4611,
+          "timestamp": "2026-05-24T17:00:53.944362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 | Worker 0 | 磁盘: N/A\n\n**三项修改完成，已编译 + 视觉验证 + push**\n\n### 1. Figure 宽度互换 ✅\n- Figure 1 (dose-response): `figure*` → `figure`，单栏，渲染在 p1 右侧\n- Figure 2 (pipeline): `figure` → `figure*`，双栏全宽，渲染在 p4 顶部\n\n### 2. 表格移入正文 ✅\n- `tab:gsm8k_transfer`（GSM8K transfer）：appendix → results.tex Section 5.2，渲染在 p7 左上\n- `tab:cross_seed`（cross-seed stability）：appendix → results.tex Section 5.3，渲染在 p7 右上\n- Appendix 中 `Cross-Benchmark Transfer Details` section 已删除（仅含该表）\n- `Cross-Seed Stability Details` section 保留 OLMo-2 rerun 备注\n\n### 3. 布局验证 ✅\n- 8 页视觉检查通过\n- p1: Fig 1 单栏 | p4: Fig 2 双栏 | p6: Fig 3+4, Tab 1 | p7: Tab 2+3, Fig 5, Tab 4 | p8: Tab 5, Fig 6, §5.5-6, Discussion, Limitations, References\n- Limitations 从 p8 ~85% 处开始\n- 主正文 sections 1-6 完全在 8 页内\n\n已 push 到匿名仓库：commit `e5863bd`",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-004611"
+        },
+        {
+          "source_line": 4612,
+          "timestamp": "2026-05-24T17:00:57.458511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3514
+          },
+          "id": "event-004612"
+        },
+        {
+          "source_line": 4613,
+          "timestamp": "2026-05-24T17:00:59.736170+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Layout looks excellent:\n- Page 1: Figure 1 (dose-response) single-column, clean\n- Page 4: Figure 2 (pipeline) full-width spanning both columns\n- Page 6: Figure 4 (heatmap) in main text\n- Page 7: Table 2 (GSM8K transfer) + Table 3 (cross-seed) + Figure 5 in main text\n- Page 8: Limitations starts ~85% down, References at bottom\n- Main text sections 1-6 all within 8 pages\n\nClean up and push."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d"
+          },
+          "id": "event-004613"
+        }
+      ]
+    },
+    {
+      "number": 252,
+      "messages": [
+        {
+          "source_line": 4614,
+          "timestamp": "2026-05-24T18:24:51.330183+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **缩写/专有名词定义自检任务**\n\n通读论文全文（abstract.tex, introduction.tex, related_work.tex, method.tex, experimental_setup.tex, results.tex, conclusion.tex, limitations.tex），执行以下检查：\n\n### 检查规则\n1. 列出所有缩写词（方法名、数据集、指标、模型架构、领域术语）\n2. 确认每个缩写在**首次出现时**使用 \"全称 (缩写)\" 格式\n3. Abstract 中的缩写必须在 Abstract 内展开一次（即使正文后面又展开也要）\n4. 常见需要展开的：\n   - **数据集**: MMLU, ARC, GSM8K\n   - **指标**: MAE, AUC, PPP, CI, DiD, MDES, ESS, LOO ELPD\n   - **方法/模型**: IRT, 2PL, 4PL, DIF, RRF, SFT, LoRA, NUTS, MCQ\n   - **领域术语**: LLM, NLP, CoT, DGP, BCa\n   - **自造名词**: ContamCal（如果是缩写需展开）, RRF（需确认是否已展开）\n5. 不需要展开的（已是通用知识）：GPU, CPU, PDF 等\n\n### 修复方式\n- 在首次出现处改为 \"Full Name (ABBR)\" 格式\n- 如果 Abstract 和正文都用了，两处都要展开（Abstract 独立于正文）\n- 不要过度展开已经非常标准的缩写（如 LLM 在 NLP 会议已是常识，但 EMNLP 仍建议首次展开）\n\n### 验证\n修完后编译确认无错误，push 到匿名仓库。汇报修了哪些缩写。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "source": "director"
+          },
+          "id": "event-004614"
+        },
+        {
+          "source_line": 4615,
+          "timestamp": "2026-05-24T18:25:01.686748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-004615"
+        },
+        {
+          "source_line": 4616,
+          "timestamp": "2026-05-24T18:25:02.641025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tBenchmark contamination is widely assumed to inflate language model scores, yet its actual effect has never been systematically measured across model families. We perform controlled SFT injection at five dosage levels into six models (7B--14.7B) from five open-source families and discover a spectrum of dose-response patterns, not uniform inflation. Two patterns replicate across independent families: Immune (Phi-4, LLaMA-3.1) and Benefit (statistically significant for Gemma-2, BCa 95\\% CI [$+$1.49, $+$3.14]\\,pp; borderline for OLMo-2 and Falcon3). Collapse and V-recovery are each observed in one family (Qwen2.5) across three seeds but remain preliminary pending independent replication. Effects are benchmark-conditional: MMLU-targeted contamination improves GSM8K in five of six families, even those harmed on MMLU. Difference-in-differences analysis detects no item-specific memorization; a volume-matched control attributes 45\\% of Benefit to data quantity. ContamCal, our diagnostic framework combining multi-signal exposure mapping with contamination-augmented IRT, enables domain-level contamination diagnosis with credible intervals---revealing that Social Sciences contamination effects are negative while STEM effects are positive, a pattern invisible to aggregate scoring. Out-of-sample validation on LLaMA-3.1-8B confirms that model family characteristics beyond baseline ability modulate vulnerability. Model-specific dose-response profiling is necessary for reliable benchmark interpretation.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 954
+          },
+          "id": "event-004616"
+        },
+        {
+          "source_line": 4617,
+          "timestamp": "2026-05-24T18:25:02.641579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-004617"
+        },
+        {
+          "source_line": 4618,
+          "timestamp": "2026-05-24T18:25:03.093703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n4\t\n5\tWe perform controlled SFT injection (LoRA, five dosage levels) into six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII) and discover a spectrum of dose-response patterns (Figure~\\ref{fig:dose_response})---from immunity (Phi-4, $\\pm$0.5pp) and benefit ($+$3--4pp, three families) to collapse (Qwen-14B, $-$9 to $-$25pp across seeds).\n6\t\n7\t\\begin{figure}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\columnwidth]{figures/fig_dose_response.pdf}\n10\t\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0). Immune and Benefit replicate across families; Collapse and V-recovery are preliminary (Qwen2.5-specific). Cross-seed stability in Table~\\ref{tab:cross_seed}.}\n11\t\\label{fig:dose_response}\n12\t\\end{figure}\n13\t\n14\tAcross six models, three lower-baseline models benefit ($+$3.2 to $+$4.2pp), one is immune (Phi-4), and the remaining two (both Qwen2.5) show harm---with the 14B model 5$\\times$ more fragile than 7B. These effects are benchmark-conditional: the same model can collapse on MMLU ($-$9.4pp) yet gain on GSM8K ($+$13pp). ContamCal, our diagnostic framework combining multi-signal exposure mapping with \n…[truncated 1767 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004618"
+        },
+        {
+          "source_line": 4619,
+          "timestamp": "2026-05-24T18:25:03.094123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-004619"
+        },
+        {
+          "source_line": 4620,
+          "timestamp": "2026-05-24T18:25:03.596251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Contamination detection.}\n4\tDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases or rephrased items \\citep{dekoninck2024constat,yang2023rethinking}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd,golchin2024time}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation,sainz2023nlp} for surveys. \\citet{balloccu2024leak} document contamination malpractices in closed-source LLMs; \\citet{bordt2025forget} argue that contamination effects are often negligible in practice. Earlier work characterized contamination as memorization \\citep{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}; \\citet{tao2025detecting} and \\citet{kocyigit2025impact} address RL post-training. These methods perform binary classification without quantifying effect sizes.\n5\t\n6\t\\paragraph{Contamination quantification and mitigation.}\n7\tOn mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals. Three concurrent lines of work directly address contamination quantification. \\citet{han2026quantifying} apply observational DIF to detect contamination without controlled dosage, achieving detection but not dose-response profiling. \\citet{schaeffer2026causally} perform controlled pretraining-stage injection with larger seed counts ($n\\!=\\!10$), establishing causal contamination effects at the pretraining level; our $n\\!=\\!3$ seed design trades statistical power for broader family coverage. Our work complements both: like Schaeffer et al., we use controlled injection for causal identification, but at the\n…[truncated 1668 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004620"
+        },
+        {
+          "source_line": 4621,
+          "timestamp": "2026-05-24T18:25:03.596713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex"
+            }
+          },
+          "id": "event-004621"
+        },
+        {
+          "source_line": 4622,
+          "timestamp": "2026-05-24T18:25:04.048864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.95\\textwidth]{figures/fig_pipeline.pdf}\n7\t\\caption{ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns.}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\tContamCal operates in three stages (Figure~\\ref{fig:pipeline}): Stage~1 estimates per-item contamination exposure via training-free signal fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to recover clean ability estimates with credible intervals; Stage~3 classifies dose-response trajectories into canonical patterns.\n12\t\n13\t\\subsection{Problem Formulation}\n14\t\\label{sec:formulation}\n15\t\n16\tLet $y_{ijk} \\in \\{0,1\\}$ denote the binary response of model~$j$ ($j=1,\\ldots,J$) to item~$i$ ($i=1,\\ldots,I_k$) on benchmark~$k$. Standard IRT assumes $P(y_{ijk}=1) = f(\\theta_j, \\boldsymbol{\\xi}_i)$ where $\\theta_j$ is latent ability and $\\boldsymbol{\\xi}_i$ collects item parameters. When training corpora contain benchmark items, the observed ability $\\hat{\\theta}_j$ confounds genuine capability with memorization.\n17\t\n18\tOur goal is to estimate $\\theta_j^{\\text{clean}}$, the ability each model would exhibit absent contamination, and to diagnose contamination effects at domain granularity. We adapt item compromise IRT \\citep{eckerly_2017_item_compromise,sinharay_2017_preknowledge} and explanatory IRT \\citep{deboeck_2004_explanatory_irt} for LLM evaluation: replacing binary leakage indicators with continuous exposure scores $e_{ij} \\in [0,1]$, fitting per-benchmark models to handle the shared item pool \\citep{de_ayala_2009_irt}, and recovering clean ability via counterfactual inference (setting $e_{ij}=0$).\n19\n…[truncated 7524 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004622"
+        },
+        {
+          "source_line": 4623,
+          "timestamp": "2026-05-24T18:25:04.049310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-004623"
+        },
+        {
+          "source_line": 4624,
+          "timestamp": "2026-05-24T18:25:04.501425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Controlled SFT Injection}\n5\t\\label{sec:injection}\n6\t\n7\tWe construct a controlled contamination testbed spanning five independent model families from five labs, trained on independent corpora with distinct pre-training recipes: Qwen2.5 \\citep{qwen2024qwen25} (0.5B, 1.5B, 3B, 7B, 14B), Phi-4 \\citep{abdin2024phi4} (14.7B), OLMo-2 \\citep{olmo2team2025} (7B), Gemma-2 \\citep{gemmateam2024gemma2} (9B), and Falcon3 \\citep{tiiuae2024falcon3} (7B). All models are fine-tuned with a unified LoRA configuration \\citep{hu2022lora} ($r=16$, $\\alpha=32$, dropout$=0$, targeting all attention and MLP projections; lr$=5\\times10^{-5}$, bf16, 1 epoch, batch size$=1$, gradient accumulation$=16$, warmup ratio$=0.03$; trainable parameters range from 0.45\\% of Phi-4 14.7B to 2.10\\% of Qwen2.5-0.5B; convergence in Appendix~\\ref{sec:training_convergence}) on a general-purpose SFT corpus into which benchmark items are injected at five dosage levels: d000 (0\\%, clean control), d005 (5\\%), d025 (25\\%), d050 (50\\%), and d100 (100\\%). Contaminated items augment (not replace) the base SFT corpus, yielding 50.0k (d000), 50.8k (d005), 54.1k (d025), 58.3k (d050), and 66.5k (d100) total training examples ($+$33\\% volume at d100 vs.\\ d000).\n8\t\n9\tQwen2.5 serves as the primary within-family series (five scale points, 0.5B--14B). Models at $\\leq$3B are trained with two seeds at four dosage levels; 7B and 14B at all five dosages. The four cross-family models are each trained at five dosages with a single seed, serving as consistency checks rather than independent confirmatory analyses. This yields over 55 checkpoints spanning nine sizes across five families. We exclude 0.5B from MC IRT due to position bias (A-option rate: 46\\% at d000 to 98\\% at d100; \\S\\ref{sec:signal_failure}; details in Appendix~\\ref{sec:exclusion_details}). We additionally validate our dose-response profiles on a held-out sixth family, LLaMA-3.1-8B \\citep{grattafio\n…[truncated 2374 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-004624"
+        },
+        {
+          "source_line": 4625,
+          "timestamp": "2026-05-24T18:25:04.501823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          },
+          "id": "event-004625"
+        },
+        {
+          "source_line": 4626,
+          "timestamp": "2026-05-24T18:25:05.004298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tCross-family SFT-injection results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families ($\\leq$3B dose-response in Appendix~\\ref{sec:dose_response_details}). Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n5\t\n6\t\\subsection{Dose-Response Patterns}\n7\t\\label{sec:taxonomy}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\includegraphics[width=0.92\\columnwidth]{figures/fig_baseline_vulnerability.pdf}\n12\t\\caption{Baseline MMLU accuracy vs.\\ contamination response at d100 ($N\\!=\\!6$). Vertical bars show cross-seed range ($n\\!=\\!2$--$3$ seeds). Shaded band marks the threshold region (61.9--66.1\\%) separating Benefit from Harm patterns (observational, not validated; extended in Appendix~\\ref{sec:baseline_vs_effect}).}\n13\t\\label{fig:baseline_vulnerability}\n14\t\\end{figure}\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% bootstrap CI, $B=10{,}000$). Stab.: fraction of bootstrap resamples ($B=10{,}000$) that yield the same Algorithm~\\ref{alg:profile-classification} classification. Classifications are robust to threshold choice (5/5 original families at 100\\% stability across 30 $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n19\t\\label{tab:taxonomy}\n20\t\\footnotesize\n21\t\\resizebox{\\columnwidth}{!}{%\n22\t\\begin{tabular}{llcccccc}\n23\t\\toprule\n24\tPattern & Model & d000 Acc. & $\\Delta$acc & 95\\% CI & Peak & Stab. & Repl. \\\\\n25\t\\midrule\n26\tImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% & \\checkmark \\\\\n27\tCollapse & Qwen-14B & 69.4\\% & $-$9.4pp\\textsuperscript{$\\ddagger\n…[truncated 13958 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004626"
+        },
+        {
+          "source_line": 4627,
+          "timestamp": "2026-05-24T18:25:05.004800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004627"
+        },
+        {
+          "source_line": 4628,
+          "timestamp": "2026-05-24T18:25:05.507135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tControlled SFT injection reveals a spectrum of dose-response patterns---not uniform inflation. Two replicate across independent families (Benefit, Immune); two are Qwen2.5-specific and await replication. DiD finds no item-specific memorization (MDES 1.25--2.05pp); direction reproduces across seeds but magnitude is seed-sensitive.\n4\t\n5\t\\paragraph{Contamination vs.\\ additional training.}\n6\tSFT-stage leakage is increasingly relevant as practitioners fine-tune on data containing benchmark items \\citep{balloccu2024leak}. Our injection confounds content, volume ($+$33\\% at d100), and LoRA updates; a volume-matched control attributes ${\\sim}$45\\% of Benefit to quantity. Combined with null item-specific memorization (\\S\\ref{sec:memorization_test}), this suggests contamination operates through global capability modulation rather than item-level lookup.\n7\t\n8\t\\paragraph{Implications for practice.}\n9\tMulti-seed dose-response profiling at $\\geq$3 dosages can detect vulnerability; domain $\\gamma_d$ heterogeneity (up to 1.8$\\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \\geq 50$. Cross-benchmark transfer patterns (\\S\\ref{sec:gsm8k_transfer}) suggest that contamination effects should be assessed per benchmark rather than assumed transferable: a model harmed on MMLU may benefit on GSM8K, and vice versa.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004628"
+        },
+        {
+          "source_line": 4629,
+          "timestamp": "2026-05-24T18:25:05.507595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-004629"
+        },
+        {
+          "source_line": 4630,
+          "timestamp": "2026-05-24T18:25:05.608360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll experiments use models $\\leq$14.7B with $n\\!=\\!3$ seeds; 70B+ models may exhibit different contamination dynamics, and borderline classifications (e.g., OLMo-2) should be interpreted with caution. Our LoRA-based SFT injection differs from pretraining-stage leakage; the AUGMENT protocol increases training volume with dosage ($+$33\\% at d100), partially confounding content and quantity effects. IRT is fitted on 300 subsampled items (2.1\\% of MMLU), and RRF exposure scores are point estimates whose measurement uncertainty is not propagated into $\\gamma$ credible intervals.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004630"
+        },
+        {
+          "source_line": 4631,
+          "timestamp": "2026-05-24T18:28:14.582309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex",
+              "old_string": "yet its actual effect has never been systematically measured across model families. We perform controlled SFT injection",
+              "new_string": "yet its actual effect has never been measured across model families. We perform controlled supervised fine-tuning (SFT) injection"
+            }
+          },
+          "id": "event-004631"
+        },
+        {
+          "source_line": 4632,
+          "timestamp": "2026-05-24T18:28:14.683423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-004632"
+        },
+        {
+          "source_line": 4633,
+          "timestamp": "2026-05-24T18:30:06.892618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-004633"
+        },
+        {
+          "source_line": 4634,
+          "timestamp": "2026-05-24T18:30:07.896609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 1003
+          },
+          "id": "event-004634"
+        },
+        {
+          "source_line": 4635,
+          "timestamp": "2026-05-24T18:30:07.947228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-004635"
+        },
+        {
+          "source_line": 4636,
+          "timestamp": "2026-05-24T18:30:08.449586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004636"
+        },
+        {
+          "source_line": 4637,
+          "timestamp": "2026-05-24T18:30:08.449934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-004637"
+        },
+        {
+          "source_line": 4638,
+          "timestamp": "2026-05-24T18:30:08.901815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Contamination detection.}\n4\tDetection methods flag contaminated items via token-level surprisal \\citep{shi_2023_minkprob,zhang_2024_minkpp}, accuracy gaps on paraphrases or rephrased items \\citep{dekoninck2024constat,yang2023rethinking}, kernel divergence \\citep{choi_2025_kds}, completion probes \\citep{dong_2024_cdd,golchin2024time}, and parallel test sets \\citep{zhang_2024_gsm1k}; see \\citet{chen2025benchmarking,singh2024evaluation,sainz2023nlp} for surveys. \\citet{balloccu2024leak} document contamination malpractices in closed-source LLMs; \\citet{bordt2025forget} argue that contamination effects are often negligible in practice. Earlier work characterized contamination as memorization \\citep{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}; \\citet{tao2025detecting} and \\citet{kocyigit2025impact} address RL post-training. These methods perform binary classification without quantifying effect sizes.\n5\t\n6\t\\paragraph{Contamination quantification and mitigation.}\n7\tOn mitigation, \\citet{sun2025emperor} find none of twenty approaches reliably restores clean performance; DCR \\citep{xu2025dcr} estimates decontaminated scores but without uncertainty quantification. ContamCal consumes detection signals as inputs and produces calibrated ability with credible intervals. Three concurrent lines of work directly address contamination quantification. \\citet{han2026quantifying} apply observational DIF to detect contamination without controlled dosage, achieving detection but not dose-response profiling. \\citet{schaeffer2026causally} perform controlled pretraining-stage injection with larger seed counts ($n\\!=\\!10$), establishing causal contamination effects at the pretraining level; our $n\\!=\\!3$ seed design trades statistical power for broader family coverage. Our work complements both: like Schaeffer et al., we use controlled injection for causal identification, but at the\n…[truncated 1668 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-004638"
+        },
+        {
+          "source_line": 4639,
+          "timestamp": "2026-05-24T18:30:08.902210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex"
+            }
+          },
+          "id": "event-004639"
+        },
+        {
+          "source_line": 4640,
+          "timestamp": "2026-05-24T18:30:09.404541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Controlled SFT Injection}\n5\t\\label{sec:injection}\n6\t\n7\tWe construct a controlled contamination testbed spanning five independent model families from five labs, trained on independent corpora with distinct pre-training recipes: Qwen2.5 \\citep{qwen2024qwen25} (0.5B, 1.5B, 3B, 7B, 14B), Phi-4 \\citep{abdin2024phi4} (14.7B), OLMo-2 \\citep{olmo2team2025} (7B), Gemma-2 \\citep{gemmateam2024gemma2} (9B), and Falcon3 \\citep{tiiuae2024falcon3} (7B). All models are fine-tuned with a unified LoRA configuration \\citep{hu2022lora} ($r=16$, $\\alpha=32$, dropout$=0$, targeting all attention and MLP projections; lr$=5\\times10^{-5}$, bf16, 1 epoch, batch size$=1$, gradient accumulation$=16$, warmup ratio$=0.03$; trainable parameters range from 0.45\\% of Phi-4 14.7B to 2.10\\% of Qwen2.5-0.5B; convergence in Appendix~\\ref{sec:training_convergence}) on a general-purpose SFT corpus into which benchmark items are injected at five dosage levels: d000 (0\\%, clean control), d005 (5\\%), d025 (25\\%), d050 (50\\%), and d100 (100\\%). Contaminated items augment (not replace) the base SFT corpus, yielding 50.0k (d000), 50.8k (d005), 54.1k (d025), 58.3k (d050), and 66.5k (d100) total training examples ($+$33\\% volume at d100 vs.\\ d000).\n8\t\n9\tQwen2.5 serves as the primary within-family series (five scale points, 0.5B--14B). Models at $\\leq$3B are trained with two seeds at four dosage levels; 7B and 14B at all five dosages. The four cross-family models are each trained at five dosages with a single seed, serving as consistency checks rather than independent confirmatory analyses. This yields over 55 checkpoints spanning nine sizes across five families. We exclude 0.5B from MC IRT due to position bias (A-option rate: 46\\% at d000 to 98\\% at d100; \\S\\ref{sec:signal_failure}; details in Appendix~\\ref{sec:exclusion_details}). We additionally validate our dose-response profiles on a held-out sixth family, LLaMA-3.1-8B \\citep{grattafio\n…[truncated 2374 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-004640"
+        },
+        {
+          "source_line": 4641,
+          "timestamp": "2026-05-24T18:30:09.404900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+            }
+          },
+          "id": "event-004641"
+        },
+        {
+          "source_line": 4642,
+          "timestamp": "2026-05-24T18:30:09.957410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tCross-family SFT-injection results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families ($\\leq$3B dose-response in Appendix~\\ref{sec:dose_response_details}). Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n5\t\n6\t\\subsection{Dose-Response Patterns}\n7\t\\label{sec:taxonomy}\n8\t\n9\t\\begin{figure}[t]\n10\t\\centering\n11\t\\includegraphics[width=0.92\\columnwidth]{figures/fig_baseline_vulnerability.pdf}\n12\t\\caption{Baseline MMLU accuracy vs.\\ contamination response at d100 ($N\\!=\\!6$). Vertical bars show cross-seed range ($n\\!=\\!2$--$3$ seeds). Shaded band marks the threshold region (61.9--66.1\\%) separating Benefit from Harm patterns (observational, not validated; extended in Appendix~\\ref{sec:baseline_vs_effect}).}\n13\t\\label{fig:baseline_vulnerability}\n14\t\\end{figure}\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% bootstrap CI, $B=10{,}000$). Stab.: fraction of bootstrap resamples ($B=10{,}000$) that yield the same Algorithm~\\ref{alg:profile-classification} classification. Classifications are robust to threshold choice (5/5 original families at 100\\% stability across 30 $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n19\t\\label{tab:taxonomy}\n20\t\\footnotesize\n21\t\\resizebox{\\columnwidth}{!}{%\n22\t\\begin{tabular}{llcccccc}\n23\t\\toprule\n24\tPattern & Model & d000 Acc. & $\\Delta$acc & 95\\% CI & Peak & Stab. & Repl. \\\\\n25\t\\midrule\n26\tImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% & \\checkmark \\\\\n27\tCollapse & Qwen-14B & 69.4\\% & $-$9.4pp\\textsuperscript{$\\ddagger\n…[truncated 13958 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-004642"
+        },
+        {
+          "source_line": 4643,
+          "timestamp": "2026-05-24T18:30:10.058186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex"
+            }
+          },
+          "id": "event-004643"
+        },
+        {
+          "source_line": 4644,
+          "timestamp": "2026-05-24T18:30:10.108904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-004644"
+        },
+        {
+          "source_line": 4645,
+          "timestamp": "2026-05-24T18:35:03.128648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-004645"
+        },
+        {
+          "source_line": 4646,
+          "timestamp": "2026-05-24T18:35:03.530701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\\label{sec:conclusion}\n2\t\n3\tControlled SFT injection reveals a spectrum of dose-response patterns---not uniform inflation. Two replicate across independent families (Benefit, Immune); two are Qwen2.5-specific and await replication. DiD finds no item-specific memorization (MDES 1.25--2.05pp); direction reproduces across seeds but magnitude is seed-sensitive.\n4\t\n5\t\\paragraph{Contamination vs.\\ additional training.}\n6\tSFT-stage leakage is increasingly relevant as practitioners fine-tune on data containing benchmark items \\citep{balloccu2024leak}. Our injection confounds content, volume ($+$33\\% at d100), and LoRA updates; a volume-matched control attributes ${\\sim}$45\\% of Benefit to quantity. Combined with null item-specific memorization (\\S\\ref{sec:memorization_test}), this suggests contamination operates through global capability modulation rather than item-level lookup.\n7\t\n8\t\\paragraph{Implications for practice.}\n9\tMulti-seed dose-response profiling at $\\geq$3 dosages can detect vulnerability; domain $\\gamma_d$ heterogeneity (up to 1.8$\\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \\geq 50$. Cross-benchmark transfer patterns (\\S\\ref{sec:gsm8k_transfer}) suggest that contamination effects should be assessed per benchmark rather than assumed transferable: a model harmed on MMLU may benefit on GSM8K, and vice versa.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-004646"
+        },
+        {
+          "source_line": 4647,
+          "timestamp": "2026-05-24T18:35:03.531056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-004647"
+        },
+        {
+          "source_line": 4648,
+          "timestamp": "2026-05-24T18:35:03.631754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll experiments use models $\\leq$14.7B with $n\\!=\\!3$ seeds; 70B+ models may exhibit different contamination dynamics, and borderline classifications (e.g., OLMo-2) should be interpreted with caution. Our LoRA-based SFT injection differs from pretraining-stage leakage; the AUGMENT protocol increases training volume with dosage ($+$33\\% at d100), partially confounding content and quantity effects. IRT is fitted on 300 subsampled items (2.1\\% of MMLU), and RRF exposure scores are point estimates whose measurement uncertainty is not propagated into $\\gamma$ credible intervals.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-004648"
+        },
+        {
+          "source_line": 4649,
+          "timestamp": "2026-05-24T18:35:55.318290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex",
+              "old_string": "contamination-augmented IRT, enables",
+              "new_string": "contamination-augmented Item Response Theory (IRT), enables"
+            }
+          },
+          "id": "event-004649"
+        },
+        {
+          "source_line": 4650,
+          "timestamp": "2026-05-24T18:35:55.770744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004650"
+        },
+        {
+          "source_line": 4651,
+          "timestamp": "2026-05-24T18:35:56.273012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex",
+              "old_string": "BCa 95\\% CI",
+              "new_string": "bootstrap 95\\% CI"
+            }
+          },
+          "id": "event-004651"
+        },
+        {
+          "source_line": 4652,
+          "timestamp": "2026-05-24T18:35:56.725399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004652"
+        },
+        {
+          "source_line": 4653,
+          "timestamp": "2026-05-24T18:35:57.227901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "for large language models, yet",
+              "new_string": "for large language models (LLMs), yet"
+            }
+          },
+          "id": "event-004653"
+        },
+        {
+          "source_line": 4654,
+          "timestamp": "2026-05-24T18:35:57.680034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004654"
+        },
+        {
+          "source_line": 4655,
+          "timestamp": "2026-05-24T18:35:58.734488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "controlled SFT injection (LoRA, five dosage levels)",
+              "new_string": "controlled supervised fine-tuning (SFT) injection (Low-Rank Adaptation [LoRA], five dosage levels)"
+            }
+          },
+          "id": "event-004655"
+        },
+        {
+          "source_line": 4656,
+          "timestamp": "2026-05-24T18:35:59.086155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 351
+          },
+          "id": "event-004656"
+        },
+        {
+          "source_line": 4657,
+          "timestamp": "2026-05-24T18:35:59.588446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "with contamination-augmented IRT (2PL+$\\gamma_k$)",
+              "new_string": "with contamination-augmented Item Response Theory (IRT; 2PL+$\\gamma_k$)"
+            }
+          },
+          "id": "event-004657"
+        },
+        {
+          "source_line": 4658,
+          "timestamp": "2026-05-24T18:36:00.040555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004658"
+        },
+        {
+          "source_line": 4659,
+          "timestamp": "2026-05-24T18:36:00.542886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "multi-signal RRF exposure scores",
+              "new_string": "multi-signal Reciprocal Rank Fusion (RRF) exposure scores"
+            }
+          },
+          "id": "event-004659"
+        },
+        {
+          "source_line": 4660,
+          "timestamp": "2026-05-24T18:36:00.944940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 402
+          },
+          "id": "event-004660"
+        },
+        {
+          "source_line": 4661,
+          "timestamp": "2026-05-24T18:36:04.057639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "(MDES 1.25--2.05pp)",
+              "new_string": "(minimum detectable effect size [MDES] 1.25--2.05pp)"
+            }
+          },
+          "id": "event-004661"
+        },
+        {
+          "source_line": 4662,
+          "timestamp": "2026-05-24T18:36:04.108387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-004662"
+        },
+        {
+          "source_line": 4663,
+          "timestamp": "2026-05-24T18:36:04.108749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "(PPP $< 0.001$)",
+              "new_string": "(posterior predictive $p$-value [PPP] $< 0.001$)"
+            }
+          },
+          "id": "event-004663"
+        },
+        {
+          "source_line": 4664,
+          "timestamp": "2026-05-24T18:36:04.108938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "old_string": "requires AUC$\\geq$0.55",
+              "new_string": "requires area under the curve (AUC) $\\geq$0.55"
+            }
+          },
+          "id": "event-004664"
+        },
+        {
+          "source_line": 4665,
+          "timestamp": "2026-05-24T18:36:04.309862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-004665"
+        },
+        {
+          "source_line": 4666,
+          "timestamp": "2026-05-24T18:36:04.310191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: requires AUC$\\geq$0.55</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 201
+          },
+          "id": "event-004666"
+        },
+        {
+          "source_line": 4667,
+          "timestamp": "2026-05-24T18:36:04.762280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex",
+              "old_string": "observational DIF to detect",
+              "new_string": "observational differential item functioning (DIF) to detect"
+            }
+          },
+          "id": "event-004667"
+        },
+        {
+          "source_line": 4668,
+          "timestamp": "2026-05-24T18:36:05.214651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004668"
+        },
+        {
+          "source_line": 4669,
+          "timestamp": "2026-05-24T18:36:05.716976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "old_string": "a 4PL extension",
+              "new_string": "a four-parameter logistic (4PL) extension"
+            }
+          },
+          "id": "event-004669"
+        },
+        {
+          "source_line": 4670,
+          "timestamp": "2026-05-24T18:36:06.169304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004670"
+        },
+        {
+          "source_line": 4671,
+          "timestamp": "2026-05-24T18:36:06.671557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "old_string": "via NUTS \\citep{hoffman2014}",
+              "new_string": "via the No-U-Turn Sampler (NUTS) \\citep{hoffman2014}"
+            }
+          },
+          "id": "event-004671"
+        },
+        {
+          "source_line": 4672,
+          "timestamp": "2026-05-24T18:36:07.123703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004672"
+        },
+        {
+          "source_line": 4673,
+          "timestamp": "2026-05-24T18:36:08.077712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "old_string": "bulk ESS~$> 400$",
+              "new_string": "bulk effective sample size (ESS)~$> 400$"
+            }
+          },
+          "id": "event-004673"
+        },
+        {
+          "source_line": 4674,
+          "timestamp": "2026-05-24T18:36:08.529876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004674"
+        },
+        {
+          "source_line": 4675,
+          "timestamp": "2026-05-24T18:36:09.032210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/method.tex",
+              "old_string": "(DGP robustness",
+              "new_string": "(data-generating process [DGP] robustness"
+            }
+          },
+          "id": "event-004675"
+        },
+        {
+          "source_line": 4676,
+          "timestamp": "2026-05-24T18:36:09.484458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: (DGP robustness</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004676"
+        },
+        {
+          "source_line": 4677,
+          "timestamp": "2026-05-24T18:36:09.936667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex",
+              "old_string": "attention and MLP projections",
+              "new_string": "attention and multilayer perceptron (MLP) projections"
+            }
+          },
+          "id": "event-004677"
+        },
+        {
+          "source_line": 4678,
+          "timestamp": "2026-05-24T18:36:10.439034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-004678"
+        },
+        {
+          "source_line": 4679,
+          "timestamp": "2026-05-24T18:36:10.891218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex",
+              "old_string": "from MC IRT",
+              "new_string": "from multiple-choice (MC) IRT"
+            }
+          },
+          "id": "event-004679"
+        },
+        {
+          "source_line": 4680,
+          "timestamp": "2026-05-24T18:36:11.343460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/experimental_setup.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-004680"
+        }
+      ]
+    }
+  ]
+}

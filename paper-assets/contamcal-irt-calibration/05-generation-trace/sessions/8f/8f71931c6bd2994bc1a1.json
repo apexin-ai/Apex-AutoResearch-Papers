@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f71931c6bd2994bc1a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status and schedule",
+  "task_key": "worker_ops_gpu-status-and-schedule_20260514T234044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-and-schedule_20260514T234044_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "d7931187b12432f4e4d5576c0c1598ed83b24de872a71a31d357ca7b6cc9fb0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，正在 tokenizing 数据集（61% 完成，约 50826 samples）。\n\n**启动确认**:\n- **实验**: exp_001_sft_05B_d005_s123\n- **PID**: 464137\n- **GPU**: 1\n- **模型**: Qwen2.5-0.5B\n- **数据**: sft_dosage_005.jsonl (50826 samples)\n- **配置**: lr=2e-4, lora_r=16, lora_alpha=32, bs=4, grad_accum=4, seed=123\n- **输出**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123`\n- **日志**: `/root/runs/contamcal-irt-calibration/exp_001_sft_05B_d005_s123.log`\n\nlibnvJitLink warning 可忽略（不影响训练，bitsandbytes fallback 正常）。预计训练时长约 1-1.5 小时（0.5B 模型较小）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-schedule.md"
+}

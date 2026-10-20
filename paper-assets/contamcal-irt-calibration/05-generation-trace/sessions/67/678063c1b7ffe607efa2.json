@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "678063c1b7ffe607efa2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 s0 status confirm",
+  "task_key": "worker_diag_gemma2-s0-status-confirm_20260520T143159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-s0-status-confirm_20260520T143159_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "4a89b25505709d43d1dee238a04445a9cbab2d8077e50d49e312dd5f448831b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma-2 s0 Sweep 状态 (westd-29999, cuda:1)\n\n**进程**: 存活。父 shell PID **314024**（非 314029），GPU 进程 PID **342346**。`CUDA_VISIBLE_DEVICES=1` 已显式设置。\n\n**GPU 1**: 98% 利用率，94,877 / 97,887 MiB（97% 显存占用）\n\n**当前训练**: **d005_s0**，step 2685/3177（**84%**），epoch 0.7555，已运行 ~2h05m，预计 ~24min 完成当前 dosage 训练\n\n**LoRA 配置**: r=16, alpha=32, lr=5e-5（合规，非黑名单 alpha=16）\n\n### Dosage 完成进度\n\n| Dosage | TRAIN | EVAL | 备注 |\n|--------|-------|------|------|\n| d000_s0 | **DONE** | **DONE** | .done marker 存在，eval_results_v2 有 4 个结果文件 |\n| d005_s0 | **84%** (进行中) | 待开始 | lora_adapter 子目录已创建 |\n| d025_s0 | 未开始 | 未开始 | 空目录（预创建） |\n| d050_s0 | 未开始 | 未开始 | 空目录（预创建） |\n| d100_s0 | 未开始 | 未开始 | 目录不存在 |\n\n**剩余时间估算**: 每个 dosage ~2.5h 训练 + ~12min eval。d005 剩余 ~24min，之后 d025/d050/d100 共需 ~8.2h。全部完成预计约 **明早 07:00 CST**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-s0-status-confirm.md"
+}

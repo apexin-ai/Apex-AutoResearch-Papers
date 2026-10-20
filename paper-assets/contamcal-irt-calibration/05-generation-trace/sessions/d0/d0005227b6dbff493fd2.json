@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d0005227b6dbff493fd2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis prior sensitivity j16 rerun",
+  "task_key": "worker_analysis_prior-sensitivity-j16-rerun_20260521T181051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prior-sensitivity-j16-rerun_20260521T181051.log",
+    "occurrence": 1,
+    "bytes": 1144122,
+    "sha256": "235b8ecc31f767dc358c343cce4e827fd48bbc51141b5c4ba3a3b2a4ffb1d78b"
+  },
+  "statistics": {
+    "messages": 860,
+    "user_turns": 1,
+    "tool_calls": 370,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 112,
+      "tool_call": 370,
+      "tool_result": 370,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 839,
+      "chunks": [
+        {
+          "path": "d0005227b6dbff493fd2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0005227b6dbff493fd2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0005227b6dbff493fd2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0005227b6dbff493fd2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0005227b6dbff493fd2-part-0005.json",
+          "message_count": 119
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "d0005227b6dbff493fd2-part-0005.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-prior-sensitivity-j16-rerun.md"
+}

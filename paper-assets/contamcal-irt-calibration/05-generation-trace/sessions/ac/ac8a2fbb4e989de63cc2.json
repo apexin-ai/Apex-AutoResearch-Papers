@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac8a2fbb4e989de63cc2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda1 relay d100 s123",
+  "task_key": "worker_ops_cuda1-relay-d100-s123_20260518T162312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1-relay-d100-s123_20260518T162312_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "6fcc2251e1e85a848f6a6d4a275e35b8ca7099cbddf0672ba9b75fe5823a0230"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 34011 在 3616/3642 steps，预计 1-2 分钟内完成训练 + checkpoint 保存。已设置 60s 后轮询，届时检查是否结束并启动 d100 s123。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-relay-d100-s123.md"
+}

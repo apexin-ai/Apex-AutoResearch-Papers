@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51f0f7a86c9fa8e9a5d4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run 05B s123 pipeline cuda1",
+  "task_key": "worker_run_05B_s123_pipeline_cuda1_20260516T105807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_05B_s123_pipeline_cuda1_20260516T105807_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "2be515bd441924bc2dce4136309d1a1a80bfa14500889005f75f8b6680b2f7f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并在运行。任务 `signals_05B_s123_v2` 在 cuda:1 上执行，pipeline 内容：\n\n| 步骤 | 模型 | Benchmark | Signals |\n|------|------|-----------|---------|\n| 1 | d100_s123 | arc_challenge | s1+s2+s4 |\n| 2 | d100_s123 | gsm8k | s1+s2+s4 |\n| 3 | d100_s123 | mmlu | s4 only |\n| 4 | d000_s123 | gsm8k | s1+s2+s4 (重算以生成 merged) |\n\n完成后 0.5B s123 全部 signals 就齐了（d005/d025 已完成，d100/d000 正在补齐）。PID 760236，日志: `~/runs/contamcal-irt-calibration/signals_05B_s123_v2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-05b-s123-pipeline-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b48ae6ab599d6d5aaae1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 3B d005 s42 para aligned",
+  "task_key": "worker_analyze_exp_001_eval_3B_d005_s42_para_aligned_20260516T070624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_3B_d005_s42_para_aligned_20260516T070624_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "7ad0afff513582e11cc75844eceeb0e7905451413b2fe9fb5072c39a3b603586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE/success。\n\n**摘要：**\n\n| Benchmark | para_aligned | aligned (原题) |\n|-----------|-------------|----------------|\n| MMLU | 0.6471 (n=6596) | 0.6345 (n=14042) |\n| GSM8K | 0.3421 (n=228) | 0.2077 (n=1319) |\n| ARC-Challenge | 0.8164 (n=697) | 0.8294 (n=1172) |\n| HumanEval | 0.0769 (n=26) | 0.1463 (n=164) |\n\nEval 无错误完成，correctness_matrix.json (48KB) 和 item_responses.json (1MB) 已就绪，可进入 IRT 信号计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-3b-d005-s42-para-aligned.md"
+}

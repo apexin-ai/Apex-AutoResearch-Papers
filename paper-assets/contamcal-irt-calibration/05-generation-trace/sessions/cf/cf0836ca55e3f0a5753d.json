@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf0836ca55e3f0a5753d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 s123 mmlu exit",
+  "task_key": "worker_diag_gemma2-s123-mmlu-exit_20260520T133133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-s123-mmlu-exit_20260520T133133_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "b68b3759617d4cd32ea539672482287461e9eb9d880c6bd359276b86a393def8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Gemma-2 s123 MMLU** — 5/5 完成，registry 已标记 DONE：\n\n| Dosage | Accuracy | vs d000 |\n|--------|----------|---------|\n| d000 | 0.6584 | — |\n| d005 | 0.6581 | -0.03pp |\n| d025 | 0.6302 | -2.82pp |\n| d050 | 0.6674 | +0.90pp |\n| d100 | 0.6733 | **+1.49pp** |\n\ns42 是 +3.76pp，s123 只 +1.49pp，且 d025 有 -2.82pp 的 dip（非单调）。\n\n**Qwen-14B s123 MMLU** — 已提交到 westd-29999 cuda:2，tmux session `eval_qwen14b_s123_mmlu` 运行中，模型已加载（28731 MiB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-s123-mmlu-exit.md"
+}

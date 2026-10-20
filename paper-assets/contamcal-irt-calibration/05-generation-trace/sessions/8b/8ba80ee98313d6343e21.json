@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ba80ee98313d6343e21",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor progress and eval launch",
+  "task_key": "worker_monitor_progress-and-eval-launch_20260519T140922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_progress-and-eval-launch_20260519T140922_result.json",
+    "occurrence": 1,
+    "bytes": 1886,
+    "sha256": "5ff20a1aa4a294e03f893d5d0f9ae7b6e80d4712b89d85cbadf8d406a3b7afa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the full status report:\n\n---\n\n## 训练进度\n\n| GPU | 模型 | 当前 dosage | 步数 | 进度 | 速度 | d000 剩余 | 全 sweep 预估完成 (UTC) |\n|-----|------|------------|------|------|------|-----------|------------------------|\n| cuda:0 | Phi-4 14.7B | d000 | 726/3125 | 23% | ~2.4s/step | ~95 min | ~09:15 May 20 |\n| cuda:1 | Qwen-14B | d000 | 562/3125 | 18% | ~3.15s/step | ~135 min | ~13:00 May 20 |\n| cuda:2 | OLMo-2-7B | d000 | 917/3125 | 29% | ~1.84s/step | ~68 min | ~06:40 May 20 |\n| cuda:3 | Gemma-2-9B | d000 | 597/3125 | 19% | ~2.96s/step | ~125 min | ~12:00 May 20 |\n\n数据量（steps per dosage, effective batch=16）：d000=3125, d005=3177, d025=3384, d050=3642, d100=4159 → 每个 sweep 共 17,487 步。\n\n## 已完成 dosages\n- **Qwen-7B s123**: d000 ✓ d005 ✓ d025 ✓ d050 ✓ d100 ✓ （全部完成，预有）\n- Phi-4 s123: 全部 pending（d000 训练中）\n- Qwen-14B s123: 全部 pending（d000 训练中）\n- OLMo-2-7B s123: 全部 pending（d000 训练中）\n- Gemma-2-9B s123: 全部 pending（d000 训练中）\n\n## Eval 启动\n- **未启动** — 所有 4 个 tmux session 仍在运行，所有 GPU 占用中\n- 4 个 eval 脚本已就位：`eval_phi4_s123.sh`, `eval_qwen14b_s123.sh`, `eval_qwen7b_olmo2_s123.sh`, `eval_gemma2_s123.sh`\n\n## 预估时间线\n1. **cuda:2 OLMo-2** 最先完成 ~06:40 UTC May 20 → 启动 `eval_qwen7b_olmo2_s123.sh`（先 eval Qwen-7B 5 dosages，再 OLMo-2 5 dosages）\n2. **cuda:0 Phi-4** ~09:15 UTC May 20 → 启动 `eval_phi4_s123.sh`\n3. **cuda:3 Gemma-2** ~12:00 UTC May 20 → 启动 `eval_gemma2_s123.sh`\n4. **cuda:1 Qwen-14B** ~13:00 UTC May 20 → 启动 `eval_qwen14b_s123.sh`\n\n训练均处于第 1 个 dosage (d000) 的 ~18-29%，距完成还有 8-15 小时。训练看起来健康（loss 正常下降，无报错）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-progress-and-eval-launch.md"
+}

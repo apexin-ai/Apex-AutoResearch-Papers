@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f3110f0a3cbf7d900d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd disk cleanup",
+  "task_key": "worker_ops_westd-disk-cleanup_20260522T131140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-disk-cleanup_20260522T131140_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "53e2de653c0ecdc13690ebd110b929a6ca0dbbff06d5ba8b37189bd27c9634d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总分析完成。以下是结果：\n\n## 磁盘状态\n\n| 项目 | 大小 |\n|------|------|\n| 数据盘总量 | 250GB |\n| 已用 | 248GB |\n| **剩余** | **2.3GB (100%)** |\n\n## 空间占用分布\n\n| 目录 | 大小 |\n|------|------|\n| models/ (base models) | 131GB |\n| exp001/checkpoints/ | 63GB |\n| .hf_cache/ | 31GB |\n| 其中 Falcon3-7B-Base cache | 14GB |\n| 其中 Yi-1.5-9B cache | 17GB |\n\n## save_total_limit 检查\n\n- `save_total_limit = 1`，`save_strategy = \"epoch\"` — Trainer 只保留最新 1 个 checkpoint，每个 epoch 结束时先存新再删旧。\n\n## 计划清理目标的实际情况\n\n- `/tmp/yi15_dryrun/` — 存在但 **0 字节**\n- Falcon3 中间 checkpoint-XXXX/ 目录 — **不存在**，所有 Falcon3 目录都很干净（仅含 lora_adapter/ + .done + train_config.json）\n- 所有 checkpoint-XXXX/ 都在 lora_adapter/ 内部，是 Trainer 保存的最终 adapter 权重，不可删\n\n**计划中的清理目标实际释放空间为 0。**\n\n## Yi 训练风险评估\n\nYi-1.5-9B checkpoint 预计 ~650-800MB（参考 gemma-2-9b 为 652MB/checkpoint）。save_total_limit=1 下 epoch 切换时峰值 ~1.3-1.6GB（新旧共存）。2.3GB 剩余可以勉强完成，但余量仅 ~700MB，有风险。\n\n## 建议\n\n**最大可清理目标：Falcon3-7B-Base HF cache（14GB）**\n\n路径：`/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/`\n\nFalcon3 所有 4 个 dosage（d000/d005/d025/d050）训练已完成（.done 标记），LoRA adapter 已保存。这 14GB 是基座模型缓存，未来 eval 时可重新下载。Yi-1.5-9B cache（17GB）正在被训练进程使用，不可删。\n\n**是否删除 Falcon3 cache？** 这不在原始计划中，需要你确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup.md"
+}

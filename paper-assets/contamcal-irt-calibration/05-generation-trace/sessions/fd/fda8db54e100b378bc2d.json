@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda8db54e100b378bc2d",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_7_1778806876.md",
+  "task_key": "loop_7_1778806876",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778806876.md",
+    "occurrence": 1,
+    "bytes": 5800,
+    "sha256": "a5500af0286fb07d6a355a60c3dc35ad86f0d4ab1d695a1fd9ab448b887ed030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T00:15:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: cuda:0-5 全部在 cqa1-21977，不得跨服务器或超范围使用\n- **train_sft.py --gpu 是死代码**：必须用 `CUDA_VISIBLE_DEVICES=N` 前缀，`--gpu` 参数解析但从未生效\n- **所有 eval/pip 命令必须前缀** `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，否则 HF 数据加载超时\n- **Pooled IRT 禁止混源 exposure**：不能混用 signal-derived delta 和 oracle dosage（D026, exp_006_pooled_gsm8k_v1 已因此 INVALID）\n- **per-model exposure 只用 S1-only**，RRF per-model mean 不可用（非单调，D034 确认）\n- **3B d000 GSM8K=12% 必须从所有 IRT 分析中排除**（D018, LoRA 超参损伤非 contamination）\n- **3B SFT 超参**: lr=5e-5, lora_alpha=16, r=16（不是 0.5B/1.5B 的 2e-4/32/16，用错会 catastrophic forgetting）\n- **结果收集禁止模糊路径搜索**（D036 事故：glob 找到 v1 误报为 v2 → kill 正在跑的进程）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **工作目录**: /root/contamcal-irt-calibration\n- **Python**: /root/miniconda3/bin/python（conda base，不是 venv）\n- **模型缓存**: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- **SFT 数据**: /root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- **Checkpoints**: /root/autodl-tmp/exp001/checkpoints/\n- **Eval 结果**: /root/autodl-tmp/exp001/eval_results/\n- **Signal 数据**: /root/autodl-tmp/exp002/signals/\n- **IRT 结果**: /root/autodl-tmp/exp006/\n- **活跃进程**:\n  - GPU 0: exp_001_eval_3B_d100_v2_para_aligned (PID 470062, eval)\n  - GPU 1: exp_001_sft_05B_d005_s123 (PID 464137, SFT)\n  - GPU 2: exp_001_sft_15B_d100_s123 (PID 435415, SFT)\n  - GPU 3: exp_001_sft_d025_3B_v2 (PID 466755, SFT)\n  - GPU 4: exp_001_eval_3B_d000_v2_aligned (PID 441570, eval)\n  - GPU 5: exp_001_sft_3B_d100_s123 (PID 471296, SFT)\n- **CPU 任务**: exp006-oracle-gsm8k-extended + exp006-pooled-s1only-gsm8k + exp006-pooled-s1only-arc (IRT MCMC, 无 GPU)\n- **活跃 Worker**: worker_code_exp004-sweep-recovery (exp-004 parameter recovery sweep)\n- **Cron 监控**: 4 个 cron 活跃（05B_d005_s123, 15B_d100_s123, 3B_d000_v2_aligned, sft_d025_3B_v2）\n\n### 3. 📊 当前状态\n**刚做完**: D036 分析——ARC negative gamma 确认（3 条独立证据链）、coverage collapse 20-33%、跨种子方差 7pp。ROADMAP 已更新。\n\n**正在跑（9 个 RUNNING，6/6 GPU 满载）**:\n| GPU | exp_id | 类型 | 预计 |\n|-----|--------|------|------|\n| 0 | exp_001_eval_3B_d100_v2_para_aligned | eval | 快完成（eval 较快） |\n| 1 | exp_001_sft_05B_d005_s123 | SFT seed=123 | 数小时 |\n| 2 | exp_001_sft_15B_d100_s123 | SFT seed=123 | 数小时（已跑 ~19h） |\n| 3 | exp_001_sft_d025_3B_v2 | SFT 3B d025 | 数小时 |\n| 4 | exp_001_eval_3B_d000_v2_aligned | eval 3B baseline | 快完成 |\n| 5 | exp_001_sft_3B_d100_s123 | SFT seed=123 | 刚开始 |\n\n**CPU 任务**: exp006-oracle-gsm8k-extended（GSM8K oracle 长链 MCMC）、exp006-pooled-s1only-gsm8k/arc（S1-only exposure pooled IRT）\n\n**等待中**:\n- Worker exp004-sweep-recovery 回调（parameter recovery sweep，~45% done）\n- 15 个 PREPARING 实验等 GPU 空出\n\n### 4. 📋 待办（条件触发式）\n- **GPU 0 eval 完成 → 立即提交 exp_001_eval_05B_d000_s42_v6 或其他排队 eval**（优先 3B d000 s42 v3）\n- **GPU 4 eval 完成 → 检查 3B d000 GSM8K 是否恢复（target ≥50%），更新 registry → 提交下一个 eval**\n- **GPU 1/2/3 SFT 完成 → 对应 eval → signal 计算 → 加入 multi-seed pooled IRT（目标 N≥16）**\n- **exp006-pooled-s1only-gsm8k/arc 完成 → 对比 oracle 结果，验证 S1-only exposure 是否改善 coverage**\n- **exp006-oracle-gsm8k-extended 完成 → 检查 rhat<1.01, ESS>1000（D035 目标）**\n- **exp004-sweep-recovery Worker 完成 → 提取 coverage 数据，分析 coverage collapse 是否因 N 不足还是模型错误指定**\n- **seed=123 全部完成 → N≥16 multi-seed pooled IRT 重跑 → 看 coverage 是否改善 → 如果仍 20-33% → 提出模型修改方案给 Director**\n- **3B d100 SFT 完成 → eval → 加入 cross-scale 分析 → 验证 scale 缓解 contamination forgetting 的 claim**\n\n### 5. 🎯 战略上下文\n- **投稿 deadline**: EMNLP ARR May 25（10 天）\n- **核心 framing**: contamination effects are **benchmark-dependent and scale-dependent**（D036 调整后）\n  - GSM8K: gamma 正（contamination 提升分数），但 CI 含 0（N 不足）\n  - ARC: gamma 显著负（小模型 catastrophic forgetting > memorization benefit）\n  - 这不是失败，是 \"ContamCal 能区分这种差异\" 的 selling point\n- **最大风险**: **coverage collapse 20-33%**——即使 oracle exposure，PPP 极值（1.0/0.0）。如果 N↑ 后仍不改善，说明 4PL+γ additive 模型本身 misspecified，需要更灵活的 IRT 结构（这会大改方法，10 天内很紧）\n- **易判断错的事**:\n  - 不要把 oracle（N=15 models）和 RRF（N=8 models）直接对比——N 不同，需 matched N=8 oracle 才能比\n  - Pooled v2（S1-only 旧代码 gamma=0.19）和 v3_rrf（RRF 新代码 gamma=2.10）的代码版本不同，git 只有 1 个 initial commit 无法追溯\n  - 0.5B d100 ARC 跨种子差 7pp（s42=29%, s123=37%），单种子结论不可靠\n  - exp-004 sweep 是 CPU 任务，不占 GPU，但结果对 coverage collapse 诊断至关重要\n- **决策链**: D027(pooled 无效标记) → D029(paraphrase gap 不可靠) → D030(弃 ConStat) → D031(exposure 用 S1-only) → D034(RRF fusion 废弃) → D035(oracle 确认 benchmark-dependent) → D036(ARC negative + coverage collapse + 跨种子方差)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778806876.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf6472eaf05151a5d87c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit gpu3 3B d025 sft and gpu5 diag",
+  "task_key": "worker_submit_gpu3_3B_d025_sft_and_gpu5_diag_20260514T154149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_gpu3_3B_d025_sft_and_gpu5_diag_20260514T154149_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "c077341db91291542a917830a318180fcd5760d219e6663e03f8ba1c4d77d095"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`submit_training_job` MCP 工具在当前 session 不可用，需要用 `ssh_execute` + tmux 模式手动提交。\n\n## 三个任务状态总结\n\n**Task B (cuda:5 调查)**：✅ 已完成。cuda:5 当前 0 MiB，无任何进程。用户说的 8.3GB 进程已消失。\n\n**Task C (0.5B d025 aligned eval)**：⚠️ **已在 cuda:3 上运行**。\n- tmux session: `exp_001_eval_05B_d025_aligned`\n- PID 398501，命令与你给的完全一致\n- MMLU 已完成 (28.03%, 14042 items)，正在跑 GSM8K\n- 预计 ~10min 内全部完成\n\n**Task A (3B d025 SFT)**：🚫 cuda:3 被 Task C 的 eval 占用（C001 约束不允许提交）。\n- **cuda:5 空闲可用** — 是否改在 cuda:5 提交 3B d025 SFT？\n\n请确认：\n1. Task A 改用 cuda:5？\n2. Task C 既然已在运行，是否还需要提交 v2？还是等当前这个跑完即可？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-gpu3-3b-d025-sft-and-gpu5-diag.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb2d2705b2812c835cd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3b gsm8k investigate",
+  "task_key": "worker_ops_3b-gsm8k-investigate_20260514T062657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3b-gsm8k-investigate_20260514T062657_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "65361c24e2d587211185dde65f8dbae4083242921750cc55f42bffe2998fc635"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结果\n\n### 3B d000 s42 checkpoint: **完好**\n- 路径: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/`\n- 大小: 488MB\n- 内容完整: `adapter_model.safetensors` (119MB), `adapter_config.json`, tokenizer 文件, `checkpoint-3125/`, `train_config.json`\n- 配置: seed=42, d000, 50000 samples, lr=2e-4, epochs=1\n\n### 3B d000 s42 eval: **正在运行但未产出**\n- PID 249294, 已运行 5h33m\n- GPU 1 占用 13.5GB VRAM, GPU 利用率 18% — 确认在做推理\n- 启动时遇到 HuggingFace 连接超时（未 `source /etc/network_turbo`），但后续使用了本地缓存数据集恢复执行\n- eval_results 目录为空是因为 evaluate.py 在全部 benchmark 完成后才写结果（mmlu + gsm8k + arc_challenge + humaneval 四个任务）\n- 日志在 07:43 后停止更新（可能是日志缓冲问题），但进程仍活跃\n\n### 3B d100 s42: checkpoint `lora_adapter/` 为空\n- 这是当前正在训练的 d100 SFT，尚未完成写入\n\n### 结论\n**3B s42 checkpoint 不是空的，完好无损。** eval_results 目录为空是因为 eval 仍在运行中。不需要重新训练。当前 eval 进程可继续等待完成，预计还需要数小时（MMLU 14K 样本 + 3个其他 benchmark）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-gsm8k-investigate.md"
+}

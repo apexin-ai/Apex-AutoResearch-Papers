@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae11c7615d6f81780b0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent d100 results collect",
+  "task_key": "worker_ops_urgent-d100-results-collect_20260521T134649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-d100-results-collect_20260521T134649_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "4979424694e8e1511235037e9ba3f4eccd99b37369f057eb3112d673bc13eb34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项 eval 均已完成。\n\n```\nd100 MMLU: 52.81% (7416/14042)\nd100 ARC:  72.70% (852/1172)\neval 进程: 无（全部结束）\nGPU: 0-3 全部空闲 (0%, 0 MiB)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-d100-results-collect.md"
+}

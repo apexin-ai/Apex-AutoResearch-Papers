@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a14e9c3d40a5baec31ea",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_17_1778960835.md",
+  "task_key": "loop_17_1778960835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778960835.md",
+    "occurrence": 1,
+    "bytes": 4446,
+    "sha256": "3ac30f197d91beb105faf5c4fff15e35a0f48959a465abc01dcfa926a7238a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-16T19:40:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名必须写 `cqa1-21977`，不能写 \"A6000\"——cron SSH 验证依赖精确匹配（exp_006 事故教训）\n- GPU 白名单：cuda:0-5（6× RTX 4090D），禁止使用白名单外 GPU\n- GPU 编号从 0 开始（框架自动映射 CUDA_VISIBLE_DEVICES）\n- conda 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 磁盘紧张（135G/169G ~80%），大文件必须放 `/root/autodl-tmp/`\n- compute_signals.py selfcritique signal 需要 `HF_HUB_OFFLINE=1` + 预缓存 all-MiniLM-L6-v2，否则网络超时崩溃\n- PPP=0 的 domain gamma 结果不能 claim 绝对 γ 值，只能 claim pattern/ranking\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，6× RTX 4090D\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 工作目录：`/root/contamcal-irt-calibration`（代码），`/root/autodl-tmp/` 下分 exp001/exp002/exp006（数据+checkpoints）\n- 模型路径：\n  - Qwen 系列：`/root/autodl-tmp/exp001/checkpoints/` 下各 merged adapter\n  - Llama-3.2-3B base：`/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`\n  - Llama checkpoints：`/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d{000,005,025,100}_s42/`\n- 活跃进程（reconcile 确认 all RUNNING）：\n  - PID 822385: exp_001_eval_llama32_3B_d025_s42 (cuda:3)\n  - PID 825638: exp_001_eval_llama32_3B_d005_s42 (cuda:0)\n  - PID 830115: exp_002_signals_llama32_3B_d000_mmlu (cuda:1)\n  - PID 831033: exp_001_eval_llama32_3B_d100_s42 (cuda:5)\n- Cron 监控：4 个 active cron 对应上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚完成**：Llama-3.2-3B d000 SFT + eval + ARC signals 全部完成。Qwen 数据全量冻结（3B/0.5B/1.5B signals + pooled IRT + domain gamma 全 DONE）。\n\n**正在运行**（4 个实验，占 cuda:0/1/3/5）：\n| exp_id | GPU | 任务 | 预计 |\n|--------|-----|------|------|\n| exp_001_eval_llama32_3B_d005_s42 | cuda:0 | Llama d005 aligned eval (4 benchmarks) | ~1.5h |\n| exp_002_signals_llama32_3B_d000_mmlu | cuda:1 | Llama d000 MMLU signals | ~1h |\n| exp_001_eval_llama32_3B_d025_s42 | cuda:3 | Llama d025 aligned eval | ~1h |\n| exp_001_eval_llama32_3B_d100_s42 | cuda:5 | Llama d100 aligned eval | ~2h |\n\n**cuda:2 和 cuda:4 可能空闲**（上一轮 d000 GSM8K signals/selfcritique 已完成或失败），需 SSH 确认。\n\n**等待中**：\n- 4 个 cron 回调（实验完成时触发）\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- d005/d025/d100 eval 完成 → 各自 spawn Worker 跑 signals (MMLU/GSM8K/ARC × 3 signals)\n- d000 MMLU signals 完成 → 检查 d000 GSM8K signals 状态，若缺失补跑\n- 所有 Llama signals 完成 → RRF 聚合 → cross-family pooled IRT（核心产出：γ 在新 model family 上的一致性）\n- cuda:2/4 确认空闲 → 立即分配给 Llama d005/d025 signals（不等 eval 全完成，eval 完一个跑一个）\n- cross-family pooled IRT 出结果 → 与 Qwen 结果对比汇报 Director → 论文数据冻结\n- N=24 domain gamma 含 3B 重跑（需 Llama signals 全齐后一起做）\n- EMNLP T-9：Day 3-5 Paper Agent Full Draft，Day 5-7 Review 迭代\n\n### 5. 🎯 战略上下文\n- **核心结论链**：ContamCal IRT γ 在 aggregate level ≈ 0（Simpson's paradox），domain-level 有 heterogeneity（STEM 正向，Humanities 负向/null）。Format dependence: ARC(MC) γ>0, GSM8K(generative) γ≈0。Identifiability 已确认 (sim_sweep D107)。\n- **当前阶段**：Qwen 数据冻结 ✅，Llama cross-family validation 是最后一块拼图（D106）。完成后论文数据冻结。\n- **D119 叙事定稿**：Simpson's Paradox 降级为 \"Dilution Masking\"——无可靠负向域效应。Claim 1 scope narrowed to Math+Science (D117)。\n- **易错点**：\n  1. 不要把 Llama 和 Qwen 的 γ 绝对值直接比较——model family 间 ability scale 不同，比较的是 pattern（哪些 benchmark 显著、方向是否一致）\n  2. ARC PPP=0.003 = model misfit，γ 方向可信但绝对值不可信——论文需明确 caveat\n  3. 7B 实验需云 GPU（A100-80G），已申请但未批——不要在 4090D 上尝试\n  4. submit_training_job 偶尔不自动推进状态（C002 bug），session 启动必须 reconcile + 手动修正\n  5. 磁盘 80%——跑新实验前检查空间，必要时清理旧 checkpoint\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778960835.md"
+}

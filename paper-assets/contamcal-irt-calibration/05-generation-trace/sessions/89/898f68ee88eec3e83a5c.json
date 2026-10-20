@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "898f68ee88eec3e83a5c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "verify olmo2 gsm8k eval version",
+  "task_key": "worker_verify_olmo2-gsm8k-eval-version_20260521T102233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_olmo2-gsm8k-eval-version_20260521T102233_result.json",
+    "occurrence": 1,
+    "bytes": 2280,
+    "sha256": "46dcb38f177ba6ff12f78b2d310562624f76078c6f5da17a3dbbcbe0b3e68a9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cqa1 d005_s123 eval 输出目录为空（已运行 5+ 小时），进程可能极慢或卡住。\n\n---\n\n## 调查结论\n\n### Part 1: evaluate.py 版本调查 — **确认版本差异**\n\n**根因**：s0 使用了修改后的 evaluate.py（37775 bytes），s42/s123 使用了旧版（37591 bytes, C009 reference）。关键差异：\n\n| 变更 | 影响 |\n|------|------|\n| `max_new_tokens` 512→**256** | **致命**：GSM8K CoT 推理常需 300+ tokens，256 截断导致系统性降分 |\n| 添加 `system_prompt=\"You are a helpful assistant.\"` | 改变 prompt 格式，影响模型行为 |\n| 逐条→batch + left-padding | 可能引入 attention mask 差异 |\n| 添加 `normalize_numeric_answer()` | 答案匹配逻辑不同 |\n\n**证据**：\n- s0 vs s42 disagreement = 286/1319 (21.7%)，s42 vs s123 = 193/1319 (14.6%)。s0 与其他两个 seed 的差异系统性偏大。\n- 时间戳：s42/s123 = 5月20日，s0 = 5月21日（evaluate.py 在此期间被修改）\n- 37591 bytes 版本**不在 git 中**（只有一个初始 commit 33904 bytes），需要手动恢复\n\n**结论：s0=60.58% 不可靠，需要用旧版 evaluate.py 重跑。**\n\n### Part 2: GPU 2\n\nGPU 2 正在跑 OLMo-2 d025_s0 GSM8K eval（PID 511187），**也在用新版 evaluate.py（37775 bytes）**。产出也将不可靠。\n\n四个 GPU 全满，无法填充新任务：\n- GPU 0: 50981 MiB（96%）\n- GPU 1: 44479 MiB（96%）\n- GPU 2: 16707 MiB（91%）— d025_s0 eval（错误版本）\n- GPU 3: 37911 MiB（89%）\n\n### Part 3: cqa1 PID 460555\n\n**不是僵尸进程**。PID 460555 状态 `Rl`（正在运行），是 Qwen2.5-7B d005_s123 GSM8K eval。但输出目录空了 5+ 小时，可能极慢（24GB GPU 跑 7B 模型 batch_size=2 很吃力）。\n\n也在用 37775 bytes 版本 evaluate.py（两台服务器已同步到新版）。\n\n### 建议行动\n\n1. **恢复 evaluate.py 到 37591 bytes 版本**（需要手动从 diff 反向构建，或找其他备份）\n2. **Kill westd GPU 2 d025_s0 eval**（结果不可靠）\n3. **cqa1 PID 460555**：你确认要 kill 吗？它是活跃 eval 但也用了错误版本，且进度可疑\n4. **等版本统一后**：重跑 s0 d000 + d025_s0（全部用同一版本）\n\n需要我执行哪些操作？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-olmo2-gsm8k-eval-version.md"
+}

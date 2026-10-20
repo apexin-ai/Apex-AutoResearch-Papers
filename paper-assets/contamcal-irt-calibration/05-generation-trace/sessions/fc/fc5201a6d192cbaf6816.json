@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc5201a6d192cbaf6816",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval gemma2 mmlu s0",
+  "task_key": "worker_diagnose_eval_gemma2_mmlu_s0_20260520T222500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gemma2_mmlu_s0_20260520T222500_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "716f17d42dc6423611bf0e18268b39b98ed54fc8c2ee14a563ef204b3519c747"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**进程状态：运行中**\n- PID 443479 在 GPU 1 上活跃，占用 24GB 显存，GPU 利用率 93%\n- 当前正在评测 **d005_s0** MMLU，进度 81%（11395/14042），速度 ~17.7 it/s\n- cron 的 \"process gone\" 报告是**误报**\n\n**已完成的 dosage：**\n\n| dosage | accuracy |\n|--------|----------|\n| d000_s0 | **64.88%** (9111/14042) |\n\n**进行中：**\n- d005_s0：81%，预计 ~2.5 分钟完成\n\n**未完成：**\n- d025_s0, d050_s0（d005_s0 完成后依次运行）\n\n**GPU 状态：**\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 98% | 72.4/97.9 GB |\n| 1 | 93% | 24.2/97.9 GB（MMLU eval） |\n| 2 | **0% 空闲** | 0/97.9 GB |\n| 3 | 83% | 64.8/97.9 GB |\n\n不需要干预，eval 正常运行中。d005_s0 即将完成，之后会继续 d025_s0 和 d050_s0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gemma2-mmlu-s0-copy-2.md"
+}

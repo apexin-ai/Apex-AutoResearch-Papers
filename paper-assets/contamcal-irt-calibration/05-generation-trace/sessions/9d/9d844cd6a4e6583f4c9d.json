@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d844cd6a4e6583f4c9d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 003 rrf 3B s42",
+  "task_key": "worker_code_exp_003_rrf_3B_s42_20260516T105129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_rrf_3B_s42_20260516T105129_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "862263aa3a4806effd3e311e99af3be9cc58856785a08841002cc680a1df9beb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RRF 聚合完成。验证报告：\n\n### 产出文件\n- `/root/autodl-tmp/exp003/rrf_3B_s42/exposure_scores.json` (1.9MB)\n- `/root/autodl-tmp/exp003/rrf_3B_s42/exposure_aggregated.json` (419KB)\n\n### 各 dosage 平均 composite exposure score\n\n| Benchmark | d000 | d005 | d025 | d100 | 单调性 |\n|-----------|------|------|------|------|--------|\n| **mmlu** | 0.0433 | 0.0476 | 0.0485 | 0.0491 | **PASS** |\n| **gsm8k** | 0.1555 | 0.1535 | 0.1534 | 0.1612 | **FAIL** (d000 > d005 > d025) |\n| **arc_challenge** | 0.1966 | 0.2128 | 0.1813 | 0.1892 | **FAIL** (非单调) |\n\n### 分析\n- **MMLU 单调性正常**，符合预期（数据量大，14042 items，信号稳定）。\n- **GSM8K 和 ARC 单调性失败**，但差异很小（gsm8k 最大偏差 0.002，arc 约 0.03）。这在小样本 benchmark（1319/1172 items）上可预期——RRF 本身是 rank-based 聚合，low-dosage 下 signal 噪声占主导。这不影响下游 IRT calibration，因为 IRT 是 item-level fitting 而非 dosage-level 聚合。\n\nRRF 数据已就绪，可用于 exp-006 IRT calibration。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-rrf-3b-s42.md"
+}

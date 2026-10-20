@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e9eb5cc6cbadbe83939",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "knowledge gsm8k finding memory",
+  "task_key": "worker_knowledge_gsm8k-finding-memory_20260519T222401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_gsm8k-finding-memory_20260519T222401_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "bbf690b544a97aabfc7fd8089716a6942d90b76b6a43fdad800d120543a0ef46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存。新增段落置顶，记录了三个关键点：\n1. MMLU SFT → GSM8K 正迁移证伪了 benchmark-conditional 假设\n2. 这加强而非削弱论文——与 DiD \"global SFT effect\" 一致，cross-benchmark transfer 提供额外证据维度\n3. Framing 调整方向：不能 claim benchmark-conditional，但 IRT calibration 核心结论不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-gsm8k-finding-memory.md"
+}

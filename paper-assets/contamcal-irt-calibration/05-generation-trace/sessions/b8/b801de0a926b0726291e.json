@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b801de0a926b0726291e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill gpu2 resubmit base eval",
+  "task_key": "worker_ops_kill-gpu2-resubmit-base-eval_20260515T113004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu2-resubmit-base-eval_20260515T113004_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "427d5dd531523b99211150a17aa28e5bfc14df47a0779df6f3e58dba4d2fa0d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总：**\n- GPU 2 死进程 PID 530893/548811 已 kill，显存已释放\n- `exp_008_base_pretrained_eval` 已标记 DONE/failed\n- `exp_008_base_pretrained_eval_v2` 已创建并提交到 GPU 2\n  - PID: **553256**，tmux session: `exp008v2`\n  - GPU 2 当前 1311 MiB 已分配，模型正在加载中\n  - CUDA_VISIBLE_DEVICES=2 已显式设置（C004 合规）\n  - 无 --adapter-path（base pretrained 评估）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu2-resubmit-base-eval.md"
+}

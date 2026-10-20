@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82a5beb935bda9e46cc2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 14b completion relay",
+  "task_key": "worker_ops_14b-completion-relay_20260518T153644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-completion-relay_20260518T153644_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "680ae4b53ce29cd5d455c157ef834d36ce06f3382391a1455aba71e510fdd016"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14B d000 s42 当前 93% (2900/3125)，预计 ~11min 完成。已设置 4 分钟后自动检查，完成后立即启动 14B d005 s42 on cuda:2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-completion-relay.md"
+}

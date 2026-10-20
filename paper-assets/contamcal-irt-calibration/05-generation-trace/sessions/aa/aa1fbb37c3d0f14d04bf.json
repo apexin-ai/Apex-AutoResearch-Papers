@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa1fbb37c3d0f14d04bf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "irt oracle arc 4pl pooled",
+  "task_key": "worker_irt_oracle-arc-4pl-pooled_20260515T035153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_irt_oracle-arc-4pl-pooled_20260515T035153_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "51fb70ea8a779d87db3c0d46f6d717eaa3e55943674f0b8f67d438a5408dabd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 `exp006-oracle-arc-4pl-pooled` 已提交并注册：\n\n- **tmux**: `exp006_oracle_arc_4pl_pooled`\n- **配置**: 4PL_gamma, 11 models (0.5B+1.5B pooled) × 1172 ARC items, oracle exposure, 4 chains, 2000 warmup + 4000 samples\n- **输出**: `/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled`\n- **日志**: `/tmp/irt_oracle_arc_4pl_pooled.log`\n- CPU 任务，预计 20-40 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/irt-oracle-arc-4pl-pooled.md"
+}

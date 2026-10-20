@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ada4d63988416ccc87",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 s123 mmlu final",
+  "task_key": "worker_diag_olmo2-s123-mmlu-final_20260520T113415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-s123-mmlu-final_20260520T113415_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "7fa345c4f3e9f24db192166dad4fefe549a0bdde1e2d1c5e6e3922e231db71b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Cron 告警是误报。** OLMo-2 s123 eval 仍在运行：\n\n- **PID 331098** 在 GPU 2 活跃，占用 16698 MiB\n- 日志最后修改时间 19:34（刚刚）\n- 当前进度：**d000_s123 评估中，86% (12165/14042)**\n- 这只是第 1/5 个 dosage，后续还有 d005/d025/d050/d100\n\n**结论**：\n1. OLMo-2 s123 eval 未完成，不能更新 registry\n2. GPU 2 被占用，不能提交 Gemma-2 s123 eval\n3. 按 ~22 it/s 估算，d000 剩余 ~1.5 分钟，但加上后续 4 个 dosage（每个需重新加载模型+评估），预计还需 **~40-50 分钟**完成全部 5 个 dosage\n\n需要等 OLMo-2 跑完后再执行 Part 1 和 Part 2。要设置定时检查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-s123-mmlu-final.md"
+}

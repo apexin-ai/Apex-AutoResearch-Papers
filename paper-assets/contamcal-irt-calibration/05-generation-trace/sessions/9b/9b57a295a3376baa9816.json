@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b57a295a3376baa9816",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d025 completion cuda2",
+  "task_key": "worker_ops_d025_completion_cuda2_20260516T230931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d025_completion_cuda2_20260516T230931_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "fbf88a62a9d1ce0b04a65cfd9e8c6b6145c58be7902ea5ad22a1d18f053dd996"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册为 RUNNING。\n\n**状态总结**：\n- tmux session: `llama_d025_mmlu_s4`\n- GPU: cuda:2\n- 进度: 10/14 chunks 已从缓存恢复，正在计算 chunk [10000:11000]，~1.1s/batch\n- 预计完成: ~36 分钟（4 chunks × ~9 min/chunk）\n- 完成后待办: 手动 merge s1+s2+s4 → `signals_merged_mmlu.json`（GSM8K 已有 merged）\n\n注意：s4 完成后主脚本只会生成 `signal_s4_selfcritique_mmlu.json`，不会自动 merge。需要额外执行一个 python 脚本合并三个信号文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d025-completion-cuda2.md"
+}

@@ -1,0 +1,1872 @@
+{
+  "schema_version": "1.0",
+  "id": "c18903193c64e3e8f03d",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code equivalence test scripts",
+  "task_key": "worker_code_equivalence-test-scripts_20260518T155723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_equivalence-test-scripts_20260518T155723.log",
+    "occurrence": 1,
+    "bytes": 81253,
+    "sha256": "f53911bed17193d92ef179f9c79fdb2352954f58687ec0f982351f82981307fc"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 18,
+      "tool_result": 18,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9dfb8add-85f9-4007-87d1-cedbc443fc0c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779127200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "33b0b563-b643-4dd5-a6b9-7133bd1a0989",
+                "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to write two statistical scripts on a remote server (westd-29999) and place them in `/root/contamcal-irt-calibration/exp006/`. Let me:\n\n1. Write `tost_equivalence.py` - TOST equivalence test\n2. Write `power_analysis.py` - Power analysis for TOST\n\nI need to use SSH to execute commands on the remote server. Let me first check the SSH connection and then write the scripts.\n\n\nNow I'm loading the SSH tools to connect to the remote server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "26e00a7d-b9a7-4568-b624-c3d9e3c5a76a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHZ2bzpqSa8YN6wUjeGZLw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14806,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14806
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DmsmhB8K7h9WVjiP9aGsxS",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e21dcc53-237b-4850-a08a-1c44ff4431fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHZ2bzpqSa8YN6wUjeGZLw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14806,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14806
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T15:57:37.761Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DmsmhB8K7h9WVjiP9aGsxS",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "15bb1f14-a4bd-4191-9a85-b8c1d1de6199",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先确认目录和 Python 环境。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e3525da2-332a-4310-8696-0cb54f1f977f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YS9KxoKt3oZXKBLDyAwveE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 802,
+                "cache_read_input_tokens": 26647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 802
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LQZkWqDJ2AKkj1uduxXFE6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "ls /root/contamcal-irt-calibration/exp006/ 2>/dev/null; python3 -c \"import scipy; print(scipy.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "9841b7d2-1559-47d5-8623-c2d3e2dddbc1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YS9KxoKt3oZXKBLDyAwveE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 802,
+                "cache_read_input_tokens": 26647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 802
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T15:57:41.463Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LQZkWqDJ2AKkj1uduxXFE6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e8b784db-ce92-44bf-83e6-28973d6828b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvevUmL2nfcJDXcyYyD7qA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "ls /root/contamcal-irt-calibration/exp006/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "c806116f-bbdd-466d-bd83-25f1563941f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UitPwDjM25rGAfQgaXWBND",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 27449,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 233
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WXeueCE91ktUSdZ2i73wRm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "python3 -c \"import scipy; print(scipy.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "7ccce518-c557-4236-aa47-a1aee5a0cfa1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UitPwDjM25rGAfQgaXWBND",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 27449,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 233
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T15:57:45.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvevUmL2nfcJDXcyYyD7qA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n_baselines_v1\\\\nbaselines.py\\\\ncompute_all_baselines_unified.py\\\\ncompute_ci_coverage.py\\\\ncompute_vanilla_2pl_tau.py\\\\ncompute_vanilla_2pl_tau_fullitems.py\\\\ndryrun_full.json\\\\ndryrun_no_stan.json\\\\nevaluate_calibration.py\\\\nextract_theta_no05b.py\\\\ngamma_prior_sensitivity.py\\\\ngamma_prior_sensitivity_resume.py\\\\nj16_cross_family.log\\\\njoint_fit.py\\\\nrandom_300_tau_baseline.py\\\\nrandom_300_tau_baseline_fixed.py\\\\nrun_2pl_ablation.py\\\\nrun_all_baselines.py\\\\nrun_cross_family_s2s4.py\\\\nrun_cross_family_v5.py\\\\nrun_exp006.py\\\\nrun_exp006.py.bak_pre_d018_signals\\\\nrun_exp006.py.bak_pre_gsm8k\\\\nrun_exp006.py.bak_pre_rrf_fix\\\\nrun_exp006.py.bak_pre_s1only\\\\nrun_fisher_heatmap.py\\\\nrun_gamma_prior_sensitivity.py\\\\nrun_irt_calibration.py\\\\nrun_irt_calibration.py.bak_pre_gsm8k\\\\nrun_irt_stan.py\\\\nrun_mmlu_domain_gamma.py\\\\nrun_mmlu_domain_gamma_j16.py\\\\nrun_mmlu_domain_gamma_j16_cross_family.py\\\\nrun_mmlu_domain_gamma_j16_cross_family_fast.py\\\\nrun_mmlu_domain_gamma_n24.py\\\\nrun_mmlu_domain_gamma_no05b.py\\\\nrun_oracle_exposure_ablation.py\\\\nrun_pooled_15B_4pl.py\\\\nrun_pooled_4bench_irt.py\\\\nrun_pooled_irt_n16.sh\\\\nrun_pooled_rrf_irt.py\\\\nrun_stratified_irt.py\\\\nrun_wider_prior_ablation.py\\\\nsensitivity_exclusion_rate.py\\\\ntest_output\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "c0c770d5-fd25-4c07-8e09-adc7bce0d123",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n_baselines_v1\\\\nbaselines.py\\\\ncompute_all_baselines_unified.py\\\\ncompute_ci_coverage.py\\\\ncompute_vanilla_2pl_tau.py\\\\ncompute_vanilla_2pl_tau_fullitems.py\\\\ndryrun_full.json\\\\ndryrun_no_stan.json\\\\nevaluate_calibration.py\\\\nextract_theta_no05b.py\\\\ngamma_prior_sensitivity.py\\\\ngamma_prior_sensitivity_resume.py\\\\nj16_cross_family.log\\\\njoint_fit.py\\\\nrandom_300_tau_baseline.py\\\\nrandom_300_tau_baseline_fixed.py\\\\nrun_2pl_ablation.py\\\\nrun_all_baselines.py\\\\nrun_cross_family_s2s4.py\\\\nrun_cross_family_v5.py\\\\nrun_exp006.py\\\\nrun_exp006.py.bak_pre_d018_signals\\\\nrun_exp006.py.bak_pre_gsm8k\\\\nrun_exp006.py.bak_pre_rrf_fix\\\\nrun_exp006.py.bak_pre_s1only\\\\nrun_fisher_heatmap.py\\\\nrun_gamma_prior_sensitivity.py\\\\nrun_irt_calibration.py\\\\nrun_irt_calibration.py.bak_pre_gsm8k\\\\nrun_irt_stan.py\\\\nrun_mmlu_domain_gamma.py\\\\nrun_mmlu_domain_gamma_j16.py\\\\nrun_mmlu_domain_gamma_j16_cross_family.py\\\\nrun_mmlu_domain_gamma_j16_cross_family_fast.py\\\\nrun_mmlu_domain_gamma_n24.py\\\\nrun_mmlu_domain_gamma_no05b.py\\\\nrun_oracle_exposure_ablation.py\\\\nrun_pooled_15B_4pl.py\\\\nrun_pooled_4bench_irt.py\\\\nrun_pooled_irt_n16.sh\\\\nrun_pooled_rrf_irt.py\\\\nrun_stratified_irt.py\\\\nrun_wider_prior_ablation.py\\\\nsensitivity_exclusion_rate.py\\\\ntest_output\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n_baselines_v1\\nbaselines.py\\ncompute_all_baselines_unified.py\\ncompute_ci_coverage.py\\ncompute_vanilla_2pl_tau.py\\ncompute_vanilla_2pl_tau_fullitems.py\\ndryrun_full.json\\ndryrun_no_stan.json\\nevaluate_calibration.py\\nextract_theta_no05b.py\\ngamma_prior_sensitivity.py\\ngamma_prior_sensitivity_resume.py\\nj16_cross_family.log\\njoint_fit.py\\nrandom_300_tau_baseline.py\\nrandom_300_tau_baseline_fixed.py\\nrun_2pl_ablation.py\\nrun_all_baselines.py\\nrun_cross_family_s2s4.py\\nrun_cross_family_v5.py\\nrun_exp006.py\\nrun_exp006.py.bak_pre_d018_signals\\nrun_exp006.py.bak_pre_gsm8k\\nrun_exp006.py.bak_pre_rrf_fix\\nrun_exp006.py.bak_pre_s1only\\nrun_fisher_heatmap.py\\nrun_gamma_prior_sensitivity.py\\nrun_irt_calibration.py\\nrun_irt_calibration.py.bak_pre_gsm8k\\nrun_irt_stan.py\\nrun_mmlu_domain_gamma.py\\nrun_mmlu_domain_gamma_j16.py\\nrun_mmlu_domain_gamma_j16_cross_family.py\\nrun_mmlu_domain_gamma_j16_cross_family_fast.py\\nrun_mmlu_domain_gamma_n24.py\\nrun_mmlu_domain_gamma_no05b.py\\nrun_oracle_exposure_ablation.py\\nrun_pooled_15B_4pl.py\\nrun_pooled_4bench_irt.py\\nrun_pooled_irt_n16.sh\\nrun_pooled_rrf_irt.py\\nrun_stratified_irt.py\\nrun_wider_prior_ablation.py\\nsensitivity_exclusion_rate.py\\ntest_output\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T15:57:45.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WXeueCE91ktUSdZ2i73wRm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "d22ac6b3-f6e3-4d3e-b12c-302618618536",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FSgLfrTN7F9FVzg2ydXsix",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "python3 -c \"import scipy; print(scipy.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "4e207f13-18ef-42fa-b35f-4db2348c8693",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017KukHZSSekk4iwvfCPqc58",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 981,
+                "cache_read_input_tokens": 27682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 981
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T15:57:48.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FSgLfrTN7F9FVzg2ydXsix",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "3da6cd5c-c377-415f-8942-ded4f79fdbb3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UouXPHY7sckaBfuqUx4MTF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "python3 -c \"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "7e9a783a-bb39-4675-90da-b913092fbce8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ThLpm95P8j9Ntv3o8GJSxg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 193,
+                "cache_read_input_tokens": 28663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 193
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T15:57:51.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UouXPHY7sckaBfuqUx4MTF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "0e1117a0-a755-4dac-8cf1-4f75e36bfea5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J83Vk7wLfx9cnJXD5yaMGs",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "which python && python -c \"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "2fa98b28-3f1f-494e-9729-05714f834261",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXbgj1oQQsSXe1QcuQANSj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 253,
+                "cache_read_input_tokens": 28856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 253
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T15:57:56.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J83Vk7wLfx9cnJXD5yaMGs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python && python -c \\\\\\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "44e7c2fe-f096-47dc-87f6-8d34c7ef3c85",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python && python -c \\\\\\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python -c \\\"import scipy; print(scipy.__version__); import matplotlib; print(matplotlib.__version__)\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.34}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019qYdYj2JFdxnhNMDTwAN7E",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "ls /opt/conda/bin/python* /usr/bin/python* 2>/dev/null || find / -name \"python*\" -type f -maxdepth 4 2>/dev/null | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "998a60dd-9ea8-4c36-966d-aaeaf8710288",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BywGcSrEszwakftNqJMMg5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 243,
+                "cache_read_input_tokens": 29109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 243
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T15:58:00.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019qYdYj2JFdxnhNMDTwAN7E",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "f957a4c4-9784-4254-97bd-3756fed9e323",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DtnYBgpewfsaPrEJqQhvdY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "/root/miniconda3/bin/python3.12 -c \"import scipy; print('scipy', scipy.__version__); import matplotlib; print('mpl', matplotlib.__version__); import numpy; print('np', numpy.__version__)\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e3d3268d-863d-4584-8ae4-b1ff1c9251c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TJkqU7aDbbsWWsrWmdxEZ3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 29352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T15:58:05.350Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DtnYBgpewfsaPrEJqQhvdY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scipy 1.17.1\\\\nmpl 3.10.5\\\\nnp 2.3.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "461984fb-c086-436b-ac9d-b36664a4fa5e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scipy 1.17.1\\\\nmpl 3.10.5\\\\nnp 2.3.2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"scipy 1.17.1\\nmpl 3.10.5\\nnp 2.3.2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境就绪（scipy 1.17, matplotlib 3.10, numpy 2.3）。现在写两个脚本并上传。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "0be52f2b-0a2b-4508-a263-3d3652b9090a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017PRZ5bzm1pgewK4psEAgyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 29656,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 341
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vh72zYdbQ11eDAWYaVtqp6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cat > /root/contamcal-irt-calibration/exp006/tost_equivalence.py << 'SCRIPTEOF'\n#!/usr/bin/env python3\n\"\"\"TOST equivalence test for contamination calibration accuracy differences.\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport numpy as np\nfrom scipy import stats\n\n\ndef tost_paired(x, y, bound=0.015, alpha=0.05):\n    \"\"\"Paired TOST: test if mean(x-y) falls within [-bound, +bound].\"\"\"\n    diff = np.array(x) - np.array(y)\n    n = len(diff)\n    mean_d = float(np.mean(diff))\n    se = float(np.std(diff, ddof=1) / np.sqrt(n))\n\n    t_lower = (mean_d - (-bound)) / se\n    t_upper = (bound - mean_d) / se\n    p_lower = float(stats.t.sf(t_lower, df=n - 1))\n    p_upper = float(stats.t.sf(t_upper, df=n - 1))\n    p_tost = max(p_lower, p_upper)\n\n    t_crit = stats.t.ppf(1 - alpha, df=n - 1)\n    ci_low = mean_d - t_crit * se\n    ci_high = mean_d + t_crit * se\n\n    return {\n        \"mean_diff\": mean_d,\n        \"se\": se,\n        \"n\": n,\n        \"t_lower\": float(t_lower),\n        \"t_upper\": float(t_upper),\n        \"p_lower\": float(p_lower),\n        \"p_upper\": float(p_upper),\n        \"p_tost\": float(p_tost),\n        \"ci_90\": [float(ci_low), float(ci_high)],\n        \"bound\": float(bound),\n        \"alpha\": float(alpha),\n        \"equivalent\": bool(p_tost < alpha),\n    }\n\n\ndef tost_one_sample(diffs, bound=0.015, alpha=0.05):\n    \"\"\"One-sample TOST on pre-computed differences.\"\"\"\n    return tost_paired(diffs, np.zeros_like(diffs), bound=bound, alpha=alpha)\n\n\ndef plot_results(result, output_path):\n    \"\"\"Forest-style plot: mean diff with 90% CI vs equivalence bounds.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    fig, ax = plt.subplots(figsize=(6, 2.5))\n\n    ax.axvspan(-result[\"bound\"], result[\"bound\"], alpha=0.15, color=\"green\",\n               label=f\"Equivalence region ($\\\\pm${result['bound']:.3f})\")\n    ax.axvline(0, color=\"gray\", linewidth=0.5, linestyle=\"--\")\n\n    ci = result[\"ci_90\"]\n    ax.errorbar(result[\"mean_diff\"], 0,\n                xerr=[[result[\"mean_diff\"] - ci[0]], [ci[1] - result[\"mean_diff\"]]],\n                fmt=\"o\", color=\"black\", capsize=5, markersize=8,\n                label=f\"Mean $\\\\Delta$ = {result['mean_diff']:.4f}\")\n\n    verdict = \"EQUIVALENT\" if result[\"equivalent\"] else \"NOT EQUIVALENT\"\n    color = \"green\" if result[\"equivalent\"] else \"red\"\n    ax.set_title(f\"TOST: p = {result['p_tost']:.4f}, {verdict}\",\n                 fontsize=11, fontweight=\"bold\", color=color)\n\n    ax.set_xlabel(\"Accuracy difference (calibrated - raw)\")\n    ax.set_yticks([])\n    ax.legend(loc=\"upper right\", fontsize=8)\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    return output_path\n\n\ndef demo():\n    \"\"\"Run with simulated data.\"\"\"\n    np.random.seed(42)\n    n = 16\n    raw_acc = np.random.uniform(0.40, 0.85, size=n)\n    calibrated_acc = raw_acc + np.random.normal(0.002, 0.008, size=n)\n    calibrated_acc = np.clip(calibrated_acc, 0, 1)\n\n    result = tost_paired(calibrated_acc.tolist(), raw_acc.tolist(), bound=0.015)\n    result[\"mode\"] = \"demo\"\n    result[\"description\"] = \"Simulated: 16 models, true delta ~0.002, bound +-0.015\"\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"TOST equivalence test for calibrated vs raw accuracy\")\n    parser.add_argument(\"--input\", type=str,\n                        help=\"JSON file with 'calibrated_acc' and 'raw_acc' arrays, \"\n                             \"or a 'delta_acc' array\")\n    parser.add_argument(\"--bound\", type=float, default=0.015,\n                        help=\"Equivalence bound in absolute accuracy (default: 0.015)\")\n    parser.add_argument(\"--alpha\", type=float, default=0.05,\n                        help=\"Significance level (default: 0.05)\")\n    parser.add_argument(\"--output\", type=str, default=None,\n                        help=\"Output JSON path (default: stdout)\")\n    parser.add_argument(\"--plot\", type=str, default=None,\n                        help=\"Output plot path (PNG)\")\n    parser.add_argument(\"--demo\", action=\"store_true\",\n                        help=\"Run with simulated data\")\n    args = parser.parse_args()\n\n    if args.demo:\n        result = demo()\n    elif args.input:\n        with open(args.input) as f:\n            data = json.load(f)\n        if \"delta_acc\" in data:\n            result = tost_one_sample(np.array(data[\"delta_acc\"]),\n                                     bound=args.bound, alpha=args.alpha)\n        elif \"calibrated_acc\" in data and \"raw_acc\" in data:\n            result = tost_paired(data[\"calibrated_acc\"], data[\"raw_acc\"],\n                                 bound=args.bound, alpha=args.alpha)\n        else:\n            print(\"ERROR: JSON must contain 'calibrated_acc'+'raw_acc' or 'delta_acc'\",\n                  file=sys.stderr)\n            sys.exit(1)\n    else:\n        parser.print_help()\n        sys.exit(0)\n\n    if args.plot:\n        plot_path = plot_results(result, args.plot)\n        result[\"plot\"] = plot_path\n\n    out_str = json.dumps(result, indent=2)\n    if args.output:\n        with open(args.output, \"w\") as f:\n            f.write(out_str + \"\\n\")\n        print(f\"Written to {args.output}\", file=sys.stderr)\n    else:\n        print(out_str)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPTEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "093106ab-39fa-4253-b3cd-4f5850e19ad2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017PRZ5bzm1pgewK4psEAgyn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 29656,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 341
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T15:58:31.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vh72zYdbQ11eDAWYaVtqp6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "8e4ec64d-ba52-494e-8649-729bf79098eb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2hH6HZChiKo3ZhCZEC2Di",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cat > /root/contamcal-irt-calibration/exp006/power_analysis.py << 'SCRIPTEOF'\n#!/usr/bin/env python3\n\"\"\"Power analysis for TOST equivalence test in contamination calibration.\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport numpy as np\nfrom scipy import stats\nfrom scipy.optimize import brentq\n\n\ndef tost_power(n, sigma, bound, delta=0.0, alpha=0.05):\n    \"\"\"Approximate TOST power for paired design.\n\n    Parameters\n    ----------\n    n : int       - number of paired observations (models)\n    sigma : float - SD of paired differences\n    bound : float - equivalence bound (symmetric)\n    delta : float - true mean difference\n    alpha : float - significance level\n    \"\"\"\n    se = sigma / np.sqrt(n)\n    z_alpha = stats.norm.ppf(1 - alpha)\n\n    z_lower = (delta + bound) / se - z_alpha\n    z_upper = (bound - delta) / se - z_alpha\n\n    power_lower = stats.norm.cdf(z_lower)\n    power_upper = stats.norm.cdf(z_upper)\n    return min(power_lower, power_upper)\n\n\ndef mdes(n, sigma, bound, power_target=0.80, alpha=0.05):\n    \"\"\"Maximum true |delta| at which TOST still achieves target power.\"\"\"\n    if tost_power(n, sigma, bound, delta=0.0, alpha=alpha) < power_target:\n        return 0.0\n\n    try:\n        result = brentq(\n            lambda d: tost_power(n, sigma, bound, delta=d, alpha=alpha) - power_target,\n            0, bound - 1e-8)\n        return float(result)\n    except ValueError:\n        return 0.0\n\n\ndef required_n(sigma, bound, delta=0.0, power_target=0.80, alpha=0.05, max_n=500):\n    \"\"\"Minimum N to achieve target power.\"\"\"\n    for n in range(3, max_n + 1):\n        if tost_power(n, sigma, bound, delta=delta, alpha=alpha) >= power_target:\n            return n\n    return None\n\n\ndef power_table(n, sigma, bound, alpha=0.05):\n    \"\"\"Power at various true effect sizes.\"\"\"\n    deltas = [0.0, 0.001, 0.002, 0.003, 0.005, 0.007, 0.010, 0.012, 0.014]\n    deltas = [d for d in deltas if d < bound]\n    rows = []\n    for d in deltas:\n        pwr = tost_power(n, sigma, bound, delta=d, alpha=alpha)\n        rows.append({\"true_delta\": d, \"power\": round(pwr, 4)})\n    return rows\n\n\ndef n_curve(sigma, bound, delta=0.0, alpha=0.05):\n    \"\"\"Power as a function of N.\"\"\"\n    ns = list(range(4, 51, 2))\n    rows = []\n    for n in ns:\n        pwr = tost_power(n, sigma, bound, delta=delta, alpha=alpha)\n        rows.append({\"n\": n, \"power\": round(pwr, 4)})\n    return rows\n\n\ndef plot_results(result, output_path):\n    \"\"\"Two-panel plot: power vs delta, power vs N.\"\"\"\n    import matplotlib\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))\n\n    if \"power_table\" in result:\n        deltas = [r[\"true_delta\"] for r in result[\"power_table\"]]\n        powers = [r[\"power\"] for r in result[\"power_table\"]]\n        ax1.plot(deltas, powers, \"o-\", color=\"steelblue\", markersize=5)\n        ax1.axhline(0.80, color=\"red\", linestyle=\"--\", linewidth=0.8, label=\"80% power\")\n        ax1.set_xlabel(\"True $|\\\\delta|$ (accuracy difference)\")\n        ax1.set_ylabel(\"Power\")\n        ax1.set_title(f\"Power vs effect size (N={result['n']}, $\\\\sigma$={result['sigma']:.4f})\")\n        ax1.legend(fontsize=8)\n        ax1.set_ylim(0, 1.05)\n\n    if \"n_curve\" in result:\n        ns = [r[\"n\"] for r in result[\"n_curve\"]]\n        powers = [r[\"power\"] for r in result[\"n_curve\"]]\n        ax2.plot(ns, powers, \"s-\", color=\"darkorange\", markersize=4)\n        ax2.axhline(0.80, color=\"red\", linestyle=\"--\", linewidth=0.8, label=\"80% power\")\n        if result.get(\"required_n_80\"):\n            ax2.axvline(result[\"required_n_80\"], color=\"green\", linestyle=\":\",\n                        linewidth=0.8, label=f\"N={result['required_n_80']}\")\n        ax2.set_xlabel(\"Number of models (N)\")\n        ax2.set_ylabel(\"Power\")\n        ax2.set_title(f\"Power vs N ($\\\\delta$=0, bound=$\\\\pm${result['bound']})\")\n        ax2.legend(fontsize=8)\n        ax2.set_ylim(0, 1.05)\n\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    return output_path\n\n\ndef demo():\n    \"\"\"Run with typical contamination calibration parameters.\"\"\"\n    n = 16\n    sigma = 0.008\n    bound = 0.015\n    alpha = 0.05\n\n    result = {\n        \"mode\": \"demo\",\n        \"description\": \"Typical params: N=16 models, sigma=0.008, bound=+-0.015\",\n        \"n\": n,\n        \"sigma\": sigma,\n        \"bound\": bound,\n        \"alpha\": alpha,\n        \"power_at_delta0\": round(tost_power(n, sigma, bound, delta=0.0, alpha=alpha), 4),\n        \"mdes_80\": round(mdes(n, sigma, bound, power_target=0.80, alpha=alpha), 5),\n        \"required_n_80\": required_n(sigma, bound, delta=0.0, power_target=0.80, alpha=alpha),\n        \"power_table\": power_table(n, sigma, bound, alpha=alpha),\n        \"n_curve\": n_curve(sigma, bound, delta=0.0, alpha=alpha),\n    }\n\n    rec = []\n    if result[\"power_at_delta0\"] >= 0.80:\n        rec.append(f\"N={n} achieves {result['power_at_delta0']:.0%} power at delta=0 (sufficient)\")\n    else:\n        rec.append(f\"N={n} only achieves {result['power_at_delta0']:.0%} power; need N>={result['required_n_80']}\")\n    rec.append(f\"MDES at 80% power: |delta| <= {result['mdes_80']:.4f}\")\n    result[\"recommendations\"] = rec\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Power analysis for TOST equivalence test\")\n    parser.add_argument(\"--n-models\", type=int, default=16,\n                        help=\"Number of models/paired observations (default: 16)\")\n    parser.add_argument(\"--sigma\", type=float, default=0.008,\n                        help=\"SD of paired accuracy differences (default: 0.008)\")\n    parser.add_argument(\"--bound\", type=float, default=0.015,\n                        help=\"Equivalence bound (default: 0.015)\")\n    parser.add_argument(\"--alpha\", type=float, default=0.05,\n                        help=\"Significance level (default: 0.05)\")\n    parser.add_argument(\"--power-target\", type=float, default=0.80,\n                        help=\"Target power for MDES and required-N (default: 0.80)\")\n    parser.add_argument(\"--delta\", type=float, default=0.0,\n                        help=\"Assumed true mean difference (default: 0.0)\")\n    parser.add_argument(\"--output\", type=str, default=None,\n                        help=\"Output JSON path (default: stdout)\")\n    parser.add_argument(\"--plot\", type=str, default=None,\n                        help=\"Output plot path (PNG)\")\n    parser.add_argument(\"--demo\", action=\"store_true\",\n                        help=\"Run with typical parameters\")\n    args = parser.parse_args()\n\n    if args.demo:\n        result = demo()\n    else:\n        n = args.n_models\n        sigma = args.sigma\n        bound = args.bound\n        alpha = args.alpha\n        pt = args.power_target\n        delta = args.delta\n\n        result = {\n            \"n\": n,\n            \"sigma\": sigma,\n            \"bound\": bound,\n            \"alpha\": alpha,\n            \"delta\": delta,\n            \"power_target\": pt,\n            \"power\": round(tost_power(n, sigma, bound, delta=delta, alpha=alpha), 4),\n            \"mdes\": round(mdes(n, sigma, bound, power_target=pt, alpha=alpha), 5),\n            \"required_n\": required_n(sigma, bound, delta=delta, power_target=pt, alpha=alpha),\n            \"power_table\": power_table(n, sigma, bound, alpha=alpha),\n            \"n_curve\": n_curve(sigma, bound, delta=delta, alpha=alpha),\n        }\n\n    if args.plot:\n        plot_path = plot_results(result, args.plot)\n        result[\"plot\"] = plot_path\n\n    out_str = json.dumps(result, indent=2)\n    if args.output:\n        with open(args.output, \"w\") as f:\n            f.write(out_str + \"\\n\")\n        print(f\"Written to {args.output}\", file=sys.stderr)\n    else:\n        print(out_str)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPTEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "5ed711ef-8a25-4c6d-9303-1ae5874a6a28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RiioHcgUZBnpXKq1DCtoZY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1977,
+                "cache_read_input_tokens": 29997,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1977
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T15:59:04.867Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q2hH6HZChiKo3ZhCZEC2Di",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "5a444376-80a7-4ea2-9d74-44b8a00e7710",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入，运行验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "d2f5e19b-f4a2-43df-8304-2f0fe62a1c30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FFNJkENP84bfqvmKgrzHQy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2740,
+                "cache_read_input_tokens": 31974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2740
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Cfz1j2UjnZGXpiUev4huo",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 -m py_compile tost_equivalence.py && echo \"TOST syntax OK\" && /root/miniconda3/bin/python3.12 -m py_compile power_analysis.py && echo \"Power syntax OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "fc745ecf-05bb-4c7a-a971-0760c7c502b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FFNJkENP84bfqvmKgrzHQy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2740,
+                "cache_read_input_tokens": 31974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2740
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T15:59:09.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Cfz1j2UjnZGXpiUev4huo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"TOST syntax OK\\\\nPower syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "c9f0a853-acc0-4a70-a6f8-3ae153742115",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"TOST syntax OK\\\\nPower syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"TOST syntax OK\\nPower syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FNDqvJrV6Q6zrtZFi351Vq",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 tost_equivalence.py --demo"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "8adabd69-5c0c-4cf4-a93e-cc603ff4bd6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm8WYM3yNsJ9x9A5WzLU2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 34714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014vTEcWYP6Ns8JEwwYEwq1X",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 power_analysis.py --demo"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "df79c84f-f686-40d5-98fc-b4d715aa7936",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm8WYM3yNsJ9x9A5WzLU2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 34714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T15:59:14.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FNDqvJrV6Q6zrtZFi351Vq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean_diff\\\\\\\": -0.0021517690532119396,\\\\n  \\\\\\\"se\\\\\\\": 0.0018368993647039247,\\\\n  \\\\\\\"n\\\\\\\": 16,\\\\n  \\\\\\\"t_lower\\\\\\\": 6.994520872328226,\\\\n  \\\\\\\"t_upper\\\\\\\": 9.337348241707568,\\\\n  \\\\\\\"p_lower\\\\\\\": 2.1597259138654806e-06,\\\\n  \\\\\\\"p_upper\\\\\\\": 6.110106438925197e-08,\\\\n  \\\\\\\"p_tost\\\\\\\": 2.1597259138654806e-06,\\\\n  \\\\\\\"ci_90\\\\\\\": [\\\\n    -0.0053719461378776145,\\\\n    0.0010684080314537353\\\\n  ],\\\\n  \\\\\\\"bound\\\\\\\": 0.015,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"equivalent\\\\\\\": true,\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Simulated: 16 models, true delta ~0.002, bound +-0.015\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "c24c4a12-3339-43ae-887d-6eb252a6b4bc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean_diff\\\\\\\": -0.0021517690532119396,\\\\n  \\\\\\\"se\\\\\\\": 0.0018368993647039247,\\\\n  \\\\\\\"n\\\\\\\": 16,\\\\n  \\\\\\\"t_lower\\\\\\\": 6.994520872328226,\\\\n  \\\\\\\"t_upper\\\\\\\": 9.337348241707568,\\\\n  \\\\\\\"p_lower\\\\\\\": 2.1597259138654806e-06,\\\\n  \\\\\\\"p_upper\\\\\\\": 6.110106438925197e-08,\\\\n  \\\\\\\"p_tost\\\\\\\": 2.1597259138654806e-06,\\\\n  \\\\\\\"ci_90\\\\\\\": [\\\\n    -0.0053719461378776145,\\\\n    0.0010684080314537353\\\\n  ],\\\\n  \\\\\\\"bound\\\\\\\": 0.015,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"equivalent\\\\\\\": true,\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Simulated: 16 models, true delta ~0.002, bound +-0.015\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean_diff\\\": -0.0021517690532119396,\\n  \\\"se\\\": 0.0018368993647039247,\\n  \\\"n\\\": 16,\\n  \\\"t_lower\\\": 6.994520872328226,\\n  \\\"t_upper\\\": 9.337348241707568,\\n  \\\"p_lower\\\": 2.1597259138654806e-06,\\n  \\\"p_upper\\\": 6.110106438925197e-08,\\n  \\\"p_tost\\\": 2.1597259138654806e-06,\\n  \\\"ci_90\\\": [\\n    -0.0053719461378776145,\\n    0.0010684080314537353\\n  ],\\n  \\\"bound\\\": 0.015,\\n  \\\"alpha\\\": 0.05,\\n  \\\"equivalent\\\": true,\\n  \\\"mode\\\": \\\"demo\\\",\\n  \\\"description\\\": \\\"Simulated: 16 models, true delta ~0.002, bound +-0.015\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T15:59:15.882Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014vTEcWYP6Ns8JEwwYEwq1X",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Typical params: N=16 models, sigma=0.008, bound=+-0.015\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 16,\\\\n  \\\\\\\"sigma\\\\\\\": 0.008,\\\\n  \\\\\\\"bound\\\\\\\": 0.015,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"power_at_delta0\\\\\\\": 1.0,\\\\n  \\\\\\\"mdes_80\\\\\\\": 0.01003,\\\\n  \\\\\\\"required_n_80\\\\\\\": 3,\\\\n  \\\\\\\"power_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.0,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.001,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.002,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.003,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.005,\\\\n      \\\\\\\"power\\\\\\\": 0.9996\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.007,\\\\n      \\\\\\\"power\\\\\\\": 0.9907\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.01,\\\\n      \\\\\\\"power\\\\\\\": 0.8038\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.012,\\\\n      \\\\\\\"power\\\\\\\": 0.4424\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.014,\\\\n      \\\\\\\"power\\\\\\\": 0.1261\\\\n    }\\\\n  ],\\\\n  \\\\\\\"n_curve\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 4,\\\\n      \\\\\\\"power\\\\\\\": 0.9824\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 6,\\\\n      \\\\\\\"power\\\\\\\": 0.9984\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 8,\\\\n      \\\\\\\"power\\\\\\\": 0.9999\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 10,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 12,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 14,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 16,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 18,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 20,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 22,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 24,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 26,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 28,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 30,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 32,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 34,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 36,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 38,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 40,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 42,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 44,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 46,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 48,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 50,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    }\\\\n  ],\\\\n  \\\\\\\"recommendations\\\\\\\": [\\\\n    \\\\\\\"N=16 achieves 100% power at delta=0 (sufficient)\\\\\\\",\\\\n    \\\\\\\"MDES at 80% power: |delta| <= 0.0100\\\\\\\"\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "b20c5f79-da66-42d4-858a-a3d993685944",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"demo\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Typical params: N=16 models, sigma=0.008, bound=+-0.015\\\\\\\",\\\\n  \\\\\\\"n\\\\\\\": 16,\\\\n  \\\\\\\"sigma\\\\\\\": 0.008,\\\\n  \\\\\\\"bound\\\\\\\": 0.015,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"power_at_delta0\\\\\\\": 1.0,\\\\n  \\\\\\\"mdes_80\\\\\\\": 0.01003,\\\\n  \\\\\\\"required_n_80\\\\\\\": 3,\\\\n  \\\\\\\"power_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.0,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.001,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.002,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.003,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.005,\\\\n      \\\\\\\"power\\\\\\\": 0.9996\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.007,\\\\n      \\\\\\\"power\\\\\\\": 0.9907\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.01,\\\\n      \\\\\\\"power\\\\\\\": 0.8038\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.012,\\\\n      \\\\\\\"power\\\\\\\": 0.4424\\\\n    },\\\\n    {\\\\n      \\\\\\\"true_delta\\\\\\\": 0.014,\\\\n      \\\\\\\"power\\\\\\\": 0.1261\\\\n    }\\\\n  ],\\\\n  \\\\\\\"n_curve\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 4,\\\\n      \\\\\\\"power\\\\\\\": 0.9824\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 6,\\\\n      \\\\\\\"power\\\\\\\": 0.9984\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 8,\\\\n      \\\\\\\"power\\\\\\\": 0.9999\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 10,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 12,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 14,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 16,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 18,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 20,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 22,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 24,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 26,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 28,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 30,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 32,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 34,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 36,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 38,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 40,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 42,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 44,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 46,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 48,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"n\\\\\\\": 50,\\\\n      \\\\\\\"power\\\\\\\": 1.0\\\\n    }\\\\n  ],\\\\n  \\\\\\\"recommendations\\\\\\\": [\\\\n    \\\\\\\"N=16 achieves 100% power at delta=0 (sufficient)\\\\\\\",\\\\n    \\\\\\\"MDES at 80% power: |delta| <= 0.0100\\\\\\\"\\\\n  ]\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"demo\\\",\\n  \\\"description\\\": \\\"Typical params: N=16 models, sigma=0.008, bound=+-0.015\\\",\\n  \\\"n\\\": 16,\\n  \\\"sigma\\\": 0.008,\\n  \\\"bound\\\": 0.015,\\n  \\\"alpha\\\": 0.05,\\n  \\\"power_at_delta0\\\": 1.0,\\n  \\\"mdes_80\\\": 0.01003,\\n  \\\"required_n_80\\\": 3,\\n  \\\"power_table\\\": [\\n    {\\n      \\\"true_delta\\\": 0.0,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"true_delta\\\": 0.001,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"true_delta\\\": 0.002,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"true_delta\\\": 0.003,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"true_delta\\\": 0.005,\\n      \\\"power\\\": 0.9996\\n    },\\n    {\\n      \\\"true_delta\\\": 0.007,\\n      \\\"power\\\": 0.9907\\n    },\\n    {\\n      \\\"true_delta\\\": 0.01,\\n      \\\"power\\\": 0.8038\\n    },\\n    {\\n      \\\"true_delta\\\": 0.012,\\n      \\\"power\\\": 0.4424\\n    },\\n    {\\n      \\\"true_delta\\\": 0.014,\\n      \\\"power\\\": 0.1261\\n    }\\n  ],\\n  \\\"n_curve\\\": [\\n    {\\n      \\\"n\\\": 4,\\n      \\\"power\\\": 0.9824\\n    },\\n    {\\n      \\\"n\\\": 6,\\n      \\\"power\\\": 0.9984\\n    },\\n    {\\n      \\\"n\\\": 8,\\n      \\\"power\\\": 0.9999\\n    },\\n    {\\n      \\\"n\\\": 10,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 12,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 14,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 16,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 18,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 20,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 22,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 24,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 26,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 28,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 30,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 32,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 34,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 36,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 38,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 40,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 42,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 44,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 46,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 48,\\n      \\\"power\\\": 1.0\\n    },\\n    {\\n      \\\"n\\\": 50,\\n      \\\"power\\\": 1.0\\n    }\\n  ],\\n  \\\"recommendations\\\": [\\n    \\\"N=16 achieves 100% power at delta=0 (sufficient)\\\",\\n    \\\"MDES at 80% power: |delta| <= 0.0100\\\"\\n  ]\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证 `--help` 和 plot 生成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e77c98f4-6f79-4d4f-9371-3251baa899d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja255RvjcnsYdwBAM2LgiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2226,
+                "cache_read_input_tokens": 34982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2226
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SEPGxHsivwKMiAJ1HP1HbC",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 tost_equivalence.py --help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "31a5fb64-74da-46be-bd49-105111f205d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja255RvjcnsYdwBAM2LgiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2226,
+                "cache_read_input_tokens": 34982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2226
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XXoW1Hd1HC4D94CQxkeGfW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 power_analysis.py --help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "d3ab4247-b19c-4aa9-a1d8-0288fb74e03c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja255RvjcnsYdwBAM2LgiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2226,
+                "cache_read_input_tokens": 34982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2226
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T15:59:21.148Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SEPGxHsivwKMiAJ1HP1HbC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: tost_equivalence.py [-h] [--input INPUT] [--bound BOUND]\\\\n                           [--alpha ALPHA] [--output OUTPUT] [--plot PLOT]\\\\n                           [--demo]\\\\n\\\\nTOST equivalence test for calibrated vs raw accuracy\\\\n\\\\noptions:\\\\n  -h, --help       show this help message and exit\\\\n  --input INPUT    JSON file with 'calibrated_acc' and 'raw_acc' arrays, or a\\\\n                   'delta_acc' array\\\\n  --bound BOUND    Equivalence bound in absolute accuracy (default: 0.015)\\\\n  --alpha ALPHA    Significance level (default: 0.05)\\\\n  --output OUTPUT  Output JSON path (default: stdout)\\\\n  --plot PLOT      Output plot path (PNG)\\\\n  --demo           Run with simulated data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "38f1eeb5-00db-475e-a336-23a2b39bd5f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: tost_equivalence.py [-h] [--input INPUT] [--bound BOUND]\\\\n                           [--alpha ALPHA] [--output OUTPUT] [--plot PLOT]\\\\n                           [--demo]\\\\n\\\\nTOST equivalence test for calibrated vs raw accuracy\\\\n\\\\noptions:\\\\n  -h, --help       show this help message and exit\\\\n  --input INPUT    JSON file with 'calibrated_acc' and 'raw_acc' arrays, or a\\\\n                   'delta_acc' array\\\\n  --bound BOUND    Equivalence bound in absolute accuracy (default: 0.015)\\\\n  --alpha ALPHA    Significance level (default: 0.05)\\\\n  --output OUTPUT  Output JSON path (default: stdout)\\\\n  --plot PLOT      Output plot path (PNG)\\\\n  --demo           Run with simulated data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: tost_equivalence.py [-h] [--input INPUT] [--bound BOUND]\\n                           [--alpha ALPHA] [--output OUTPUT] [--plot PLOT]\\n                           [--demo]\\n\\nTOST equivalence test for calibrated vs raw accuracy\\n\\noptions:\\n  -h, --help       show this help message and exit\\n  --input INPUT    JSON file with 'calibrated_acc' and 'raw_acc' arrays, or a\\n                   'delta_acc' array\\n  --bound BOUND    Equivalence bound in absolute accuracy (default: 0.015)\\n  --alpha ALPHA    Significance level (default: 0.05)\\n  --output OUTPUT  Output JSON path (default: stdout)\\n  --plot PLOT      Output plot path (PNG)\\n  --demo           Run with simulated data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T15:59:22.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XXoW1Hd1HC4D94CQxkeGfW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: power_analysis.py [-h] [--n-models N_MODELS] [--sigma SIGMA]\\\\n                         [--bound BOUND] [--alpha ALPHA]\\\\n                         [--power-target POWER_TARGET] [--delta DELTA]\\\\n                         [--output OUTPUT] [--plot PLOT] [--demo]\\\\n\\\\nPower analysis for TOST equivalence test\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --n-models N_MODELS   Number of models/paired observations (default: 16)\\\\n  --sigma SIGMA         SD of paired accuracy differences (default: 0.008)\\\\n  --bound BOUND         Equivalence bound (default: 0.015)\\\\n  --alpha ALPHA         Significance level (default: 0.05)\\\\n  --power-target POWER_TARGET\\\\n                        Target power for MDES and required-N (default: 0.80)\\\\n  --delta DELTA         Assumed true mean difference (default: 0.0)\\\\n  --output OUTPUT       Output JSON path (default: stdout)\\\\n  --plot PLOT           Output plot path (PNG)\\\\n  --demo                Run with typical parameters\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "3b08d38c-7591-44db-91e1-1d56df7ff4c9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: power_analysis.py [-h] [--n-models N_MODELS] [--sigma SIGMA]\\\\n                         [--bound BOUND] [--alpha ALPHA]\\\\n                         [--power-target POWER_TARGET] [--delta DELTA]\\\\n                         [--output OUTPUT] [--plot PLOT] [--demo]\\\\n\\\\nPower analysis for TOST equivalence test\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --n-models N_MODELS   Number of models/paired observations (default: 16)\\\\n  --sigma SIGMA         SD of paired accuracy differences (default: 0.008)\\\\n  --bound BOUND         Equivalence bound (default: 0.015)\\\\n  --alpha ALPHA         Significance level (default: 0.05)\\\\n  --power-target POWER_TARGET\\\\n                        Target power for MDES and required-N (default: 0.80)\\\\n  --delta DELTA         Assumed true mean difference (default: 0.0)\\\\n  --output OUTPUT       Output JSON path (default: stdout)\\\\n  --plot PLOT           Output plot path (PNG)\\\\n  --demo                Run with typical parameters\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: power_analysis.py [-h] [--n-models N_MODELS] [--sigma SIGMA]\\n                         [--bound BOUND] [--alpha ALPHA]\\n                         [--power-target POWER_TARGET] [--delta DELTA]\\n                         [--output OUTPUT] [--plot PLOT] [--demo]\\n\\nPower analysis for TOST equivalence test\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --n-models N_MODELS   Number of models/paired observations (default: 16)\\n  --sigma SIGMA         SD of paired accuracy differences (default: 0.008)\\n  --bound BOUND         Equivalence bound (default: 0.015)\\n  --alpha ALPHA         Significance level (default: 0.05)\\n  --power-target POWER_TARGET\\n                        Target power for MDES and required-N (default: 0.80)\\n  --delta DELTA         Assumed true mean difference (default: 0.0)\\n  --output OUTPUT       Output JSON path (default: stdout)\\n  --plot PLOT           Output plot path (PNG)\\n  --demo                Run with typical parameters\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PSyd1awsVFy87gKwGQfxCe",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 tost_equivalence.py --demo --plot /root/contamcal-irt-calibration/exp006/test_output/tost_demo.png --output /root/contamcal-irt-calibration/exp006/test_output/tost_demo.json 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "488569a3-7a9a-46e8-9e60-c2662ca0d6b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja255RvjcnsYdwBAM2LgiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2226,
+                "cache_read_input_tokens": 34982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2226
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012uZRCPsUgj7FNJVNQ5rzPW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29999",
+                "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python3.12 power_analysis.py --demo --plot /root/contamcal-irt-calibration/exp006/test_output/power_demo.png --output /root/contamcal-irt-calibration/exp006/test_output/power_demo.json 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "e96541e8-603b-4064-8a8e-0518140f4d6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja255RvjcnsYdwBAM2LgiR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2226,
+                "cache_read_input_tokens": 34982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2226
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T15:59:24.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PSyd1awsVFy87gKwGQfxCe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written to /root/contamcal-irt-calibration/exp006/test_output/tost_demo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "b0231210-2491-42c6-8383-d384d2156ca8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written to /root/contamcal-irt-calibration/exp006/test_output/tost_demo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Written to /root/contamcal-irt-calibration/exp006/test_output/tost_demo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T15:59:25.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012uZRCPsUgj7FNJVNQ5rzPW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written to /root/contamcal-irt-calibration/exp006/test_output/power_demo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "d776c96a-400a-4b0d-95c9-697e2d9e2196",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written to /root/contamcal-irt-calibration/exp006/test_output/power_demo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Written to /root/contamcal-irt-calibration/exp006/test_output/power_demo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。汇总：\n\n**脚本路径（westd-29999）**\n- `/root/contamcal-irt-calibration/exp006/tost_equivalence.py`\n- `/root/contamcal-irt-calibration/exp006/power_analysis.py`\n\n**TOST demo 输出**\n- mean_diff = -0.0022, 90% CI = [-0.0054, 0.0011], p_tost = 2.16e-06, **equivalent = true**\n- 16 个模拟模型，bound ±0.015，差异远在 equivalence region 内\n\n**Power analysis demo 输出**\n- N=16, σ=0.008, bound=±0.015: power@δ=0 = 100%, MDES@80% = 0.0100\n- required_n@80% power = 3（σ=0.008 相对 bound=0.015 很小，power 充裕）\n- power 在 δ=0.010 时降至 80%，δ=0.012 时降至 44%\n\n**验证项全部通过**: 语法检查 OK，`--help` OK，`--demo` JSON 输出 OK，`--plot` PNG 生成 OK。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "uuid": "dc5990b1-02eb-43c3-be10-38d3200bb0a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3EZpMgTvEWUPAMTZqtWBC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1635,
+                "cache_read_input_tokens": 37208,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1635
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。汇总：\n\n**脚本路径（westd-29999）**\n- `/root/contamcal-irt-calibration/exp006/tost_equivalence.py`\n- `/root/contamcal-irt-calibration/exp006/power_analysis.py`\n\n**TOST demo 输出**\n- mean_diff = -0.0022, 90% CI = [-0.0054, 0.0011], p_tost = 2.16e-06, **equivalent = true**\n- 16 个模拟模型，bound ±0.015，差异远在 equivalence region 内\n\n**Power analysis demo 输出**\n- N=16, σ=0.008, bound=±0.015: power@δ=0 = 100%, MDES@80% = 0.0100\n- required_n@80% power = 3（σ=0.008 相对 bound=0.015 很小，power 充裕）\n- power 在 δ=0.010 时降至 80%，δ=0.012 时降至 44%\n\n**验证项全部通过**: 语法检查 OK，`--help` OK，`--demo` JSON 输出 OK，`--plot` PNG 生成 OK。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 121110,
+            "duration_api_ms": 112059,
+            "num_turns": 19,
+            "stop_reason": "end_turn",
+            "session_id": "48a0d8fe-cf4e-4a95-8edb-37335aebefac",
+            "total_cost_usd": 0.5519305,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 27002,
+              "cache_read_input_tokens": 408130,
+              "output_tokens": 7033,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27002,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 332,
+                  "cache_read_input_tokens": 37208,
+                  "cache_creation_input_tokens": 1635,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1635
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3098,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003188,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 18,
+                "outputTokens": 7033,
+                "cacheReadInputTokens": 408130,
+                "cacheCreationInputTokens": 27002,
+                "webSearchRequests": 0,
+                "costUSD": 0.5487425,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "20d11457-8c5e-4788-9144-2589d5dee5e4"
+          },
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 46
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-equivalence-test-scripts.md"
+}

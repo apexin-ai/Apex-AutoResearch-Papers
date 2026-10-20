@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8bac6b302ae75a91453d",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit llama3 d100 data discrepancy",
+  "task_key": "worker_audit_llama3-d100-data-discrepancy_20260522T133335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_llama3-d100-data-discrepancy_20260522T133335.log",
+    "occurrence": 1,
+    "bytes": 1090517,
+    "sha256": "1ebfd05fb576cd46d82f7ead06c20fae8e2584b50bbb83056378f069ac9a1125"
+  },
+  "statistics": {
+    "messages": 122,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "8bac6b302ae75a91453d-part-0001.json",
+          "message_count": 13
+        },
+        {
+          "path": "8bac6b302ae75a91453d-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-llama3-d100-data-discrepancy.md"
+}

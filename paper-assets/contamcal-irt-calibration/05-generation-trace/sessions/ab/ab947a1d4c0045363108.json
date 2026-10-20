@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab947a1d4c0045363108",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval status fill signals",
+  "task_key": "worker_ops_eval-status-fill-signals_20260516T194912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-status-fill-signals_20260516T194912_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "072601f5054d6a53f4e6147238777b73a6fa8005595edb69be00eb00afbccaf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**Eval 进度**：d005/d025/d100 均只完成了 MMLU，gsm8k/arc/humaneval 仍在跑。无 .done 文件。\n\n**Signals 进度**：\n- d000: arc+gsm8k 已完成，mmlu 正在 GPU 1 计算\n- d005: mmlu 刚开始（GPU 4），arc+gsm8k 需等 eval 完成\n\n**当前 GPU 映射**：\n\n| GPU | PID | 任务 | 显存 | 状态 |\n|-----|-----|------|------|------|\n| 0 | 825638 | eval d005 (mmlu✓, gsm8k/arc/humaneval 进行中) | 8081 MiB | Running |\n| 1 | 830115 | signals d000 mmlu | 6903 MiB | Running |\n| 2 | — | 空闲 | 0 MiB | Free |\n| 3 | 822390 | eval d025 (mmlu✓, gsm8k/arc/humaneval 进行中) | 8313 MiB | Running |\n| 4 | 842929 | signals d005 mmlu | 8281 MiB | Running |\n| 5 | 831033 | eval d100 (mmlu✓, gsm8k/arc/humaneval 进行中) | 8313 MiB | Running |\n\n**结论**：3 个 eval 均未完成，无法启动新的 arc/gsm8k signals。GPU 2 空闲待命。需等 eval 完成后再启动 signals。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-status-fill-signals.md"
+}

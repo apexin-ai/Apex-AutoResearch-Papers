@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb4b586f7d94a2c4c15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check sim sweep v5 progress",
+  "task_key": "worker_ops_check-sim-sweep-v5-progress_20260515T070803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-sim-sweep-v5-progress_20260515T070803_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "ea8ce26ba93c3acef0eac328617d2539bb759b73448a2b4e70a292a867c60acb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Exp-004 Simulation Sweep 进度报告**\n\n**状态**: v6 正在运行中（14:36 启动，`--parallel 2 --chains-parallel 2 --resume`）\n\n**总量**: 12 条件 × 10 seeds = 120 runs（subset mode）\n\n**已完成 9/12 条件**（结果文件已存在）:\n| 条件 | 状态 |\n|------|------|\n| auc0.55 × n20/n50/n100 | 之前完成 |\n| auc0.65 × n20/n50 | 之前完成 |\n| auc0.8 × n20/n50 | 之前完成（v6 跳过）|\n| auc0.8_n100 | v6 补完 4 seeds |\n| auc0.9_n20 | v6 完成全部 10 seeds |\n\n**当前运行 2 条件**（parallel=2）:\n- auc0.9_n50：10 seeds，15:01 开始\n- 另一条件（可能 auc0.65_n100 或 auc0.9_n100）同时在跑\n\n**剩余 3 条件**: auc0.65_n100, auc0.9_n50, auc0.9_n100\n\n**时间估算**:\n- n=20 seeds: ~2.5 min/seed\n- n=50 seeds: ~5-15 min/seed\n- n=100 seeds: ~15-20 min/seed（auc0.8_n100 有 seed 耗时 1141s）\n- 剩余 3 条件中 2 个是 n=100，预计还需 **3-5 小时**完成\n\n进程健康，4 个 zombie 进程是之前 v5 的残留，不影响当前 v6 运行。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sim-sweep-v5-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f241a496b600bda28dfc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag arc s123 results",
+  "task_key": "worker_diag_arc-s123-results_20260520T164525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_arc-s123-results_20260520T164525_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "1d0c8a81a3708b918b086c871508fe80ac44754c79d47ec3d9d857df96761074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部分结果（10/20 完成）\n\nBatch 仍在运行：qwen14b 和 phi4 全部完成，qwen7b 正在运行（~8%），olmo2 尚未开始。预计还需 ~35 分钟。\n\n### ARC Challenge 25-shot Accuracy (s123)\n\n| Family | d000 | d005 | d025 | d050 | d100 | Δ(d100-d000) |\n|--------|------|------|------|------|------|-------------|\n| **Qwen-14B** | 90.44% | 91.47% | 89.76% | 88.74% | 87.29% | **-3.15pp** |\n| **Phi-4** | 91.89% | 91.89% | 92.24% | 92.58% | 92.75% | **+0.86pp** |\n| Qwen-7B | — | — | — | — | — | 运行中 |\n| OLMo-2 | — | — | — | — | — | 待运行 |\n\n### 与 MMLU s123 对比\n\n| Family | MMLU Δ(d100) | ARC Δ(d100) | 模式 |\n|--------|-------------|-------------|------|\n| **Qwen-14B** | -12.74pp | -3.15pp | 双降，ARC 附带损伤较轻 |\n| **Phi-4** | +1.83pp | +0.86pp | 双升，contamination 训练无负面影响 |\n| Qwen-7B | ~0pp V-recovery | ? | 待完成 |\n| OLMo-2 | -0.55pp | ? | 待完成 |\n\nQwen-14B 的 ARC 下降趋势是单调的（90.44→91.47→89.76→88.74→87.29），d005 有小幅反弹后持续下降，与 MMLU 崩溃模式一致但程度弱得多。Phi-4 在 ARC 上也呈现单调上升，与 MMLU 表现一致——contamination SFT 对该模型有正向迁移效应。\n\nqwen7b 和 olmo2 结果需等 batch 完成后再收集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-arc-s123-results.md"
+}

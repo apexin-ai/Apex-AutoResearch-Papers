@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef17083a460debbd42f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "critical signals 3B v4 restart",
+  "task_key": "worker_critical_signals-3B-v4-restart_20260515T185856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_signals-3B-v4-restart_20260515T185856_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "834087aa4f382bf493d6183fe5e75f362269ce9f5d909259b5eec7f7bf7d9940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态已明确。汇报发现并提出行动方案：\n\n## 当前状态\n\n**cuda:3 已有 v4 信号计算在运行** (PID 617202, 02:57 启动)：\n- 跳过 5 个已完成任务，剩余 7 个任务\n- 当前在 task 1/7: d000_s42/mmlu\n- 队列: d000/mmlu → d005/gsm8k → d005/mmlu → d025/mmlu → d100×3\n\n**cuda:4 并非空闲** — PID 597179 在跑 d000_a32_s42 SFT (13.9GB, 自 00:51 运行)。用户要 kill 的 PID 597174 与实际 PID 597179 不同，进程未被成功 kill。\n\n**Checkpoint 就绪状态：**\n- d025_v3_s42: 空（cuda:5 仍在训练），但原始 d025_s42 (alpha=16) 可用 ✓\n- d100_s42: 原始 checkpoint (alpha=16) 存在 ✓\n- d100_a32_s42: 空（cuda:1 仍在训练）\n\n**信号完成度：**\n| Dosage | mmlu | gsm8k | arc |\n|--------|------|-------|-----|\n| d000 | 运行中 | ✓ | ✓ |\n| d005 | 待跑 | 待跑 | ✓ |\n| d025 | 待跑 | ✓ | ✓ |\n| d100 | 待跑 | 待跑 | 待跑 |\n\n## 提议行动\n\n1. **Kill PID 597179** (cuda:4 上冗余的 d000_a32_s42 SFT，原始 d000_s42 已是 alpha=32)\n2. **cuda:4 启动新 batch**: `--only d025 d100` 并行处理，避免与 cuda:3 的 v4 写入冲突\n   - cuda:3 (v4): d000/mmlu → d005/gsm8k → d005/mmlu (~60-90min)\n   - cuda:4 (新): d025/mmlu → d100×3 (~75-90min)\n   - 总时间 ~90min（vs 顺序 ~150min）\n\n确认后执行 kill + 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-signals-3b-v4-restart.md"
+}

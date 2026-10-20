@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a63ec6e1cd461497499c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 maxitems fix",
+  "task_key": "worker_code_exp_006_maxitems_fix_20260514T182321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_maxitems_fix_20260514T182321_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "e96248aeed9ba6ba687c1e75fe9057da64303354912fc85560bf02a1b6df7d08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tests pass. Here's the summary:\n\n**Fix 1 — `--max-items` random subsampling** (`run_exp006.py`): Already used `rng.choice` (not truncation as task description assumed), but seed was hardcoded `42`. Changed to use `args.seed` for consistency.\n\n**Fix 2 — ADVI removed** (`run_exp006.py` + `run_irt_calibration.py`):\n- Deleted `--method` argparse argument\n- Deleted `fit_stan_model_advi` function\n- Removed all ADVI branches from `run_benchmark_fit`, NUTS is now the only path\n\n**Fix 3 — `joint_fit.py` max_items fixed**:\n- Removed `dry_run` gate — max_items now applies regardless of dry-run mode\n- Changed truncation (`[:max_items]`) to per-benchmark random subsampling (`rng.choice`)\n- Subsampling happens inside `concatenate_benchmarks` before concatenation, so each benchmark gets proportional representation\n\nVerification confirms:\n- 100 items are randomly selected (first index=55, not 0)\n- joint_fit and run_exp006 produce identical subsamples for same seed\n- No ADVI references remain"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-maxitems-fix.md"
+}

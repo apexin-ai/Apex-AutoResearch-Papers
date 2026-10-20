@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f08ca6d9b4f240dcf7c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check rrf output contamination",
+  "task_key": "worker_ops_check-rrf-output-contamination_20260516T034351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-rrf-output-contamination_20260516T034351_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "1a6568c76de1988c266999382b6fa367b0f484be55d251cfcb2d25b5b320d239"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### RRF 输出文件\n\n| 文件 | 时间戳 | 污染状态 |\n|------|--------|----------|\n| `/root/autodl-tmp/exp003/exposure_aggregated.json` | May 14 22:17 | **无污染** — 不含任何 alpha=16 3B 模型名 |\n| `/root/autodl-tmp/exp003/exposure_scores.json` | May 14 22:17 | **无污染** — 不含任何 alpha=16 3B 模型名 |\n\n### 详情\n\n两个文件均不包含 blocklist 中的 5 个 alpha=16 目录名（`Qwen2.5-3B_d000_s42`, `Qwen2.5-3B_d000_v2_s42`, `Qwen2.5-3B_d005_s42`, `Qwen2.5-3B_d025_s42`, `Qwen2.5-3B_d100_s42`）。\n\n`exposure_scores.json` 中出现的 `Qwen2.5-0.5B_d005_s42` 和 `Qwen2.5-0.5B_d100_s42` 是 **0.5B 模型**，不在 alpha=16 blocklist 范围内，属正常数据。\n\n**结论：无污染，不需要重新生成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-rrf-output-contamination.md"
+}

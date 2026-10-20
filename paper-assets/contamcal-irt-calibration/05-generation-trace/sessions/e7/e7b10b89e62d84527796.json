@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e7b10b89e62d84527796",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "ops irt fix and cqa1 check",
+  "task_key": "worker_ops_irt-fix-and-cqa1-check_20260520T035554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_irt-fix-and-cqa1-check_20260520T035554.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "eec06b8253ea9abb222bafd3d764a58a7f1dda77d9b5623118797625d05b5f50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:56:05.233153+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_irt-fix-and-cqa1-check_20260520T035554"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-irt-fix-and-cqa1-check.md"
+}

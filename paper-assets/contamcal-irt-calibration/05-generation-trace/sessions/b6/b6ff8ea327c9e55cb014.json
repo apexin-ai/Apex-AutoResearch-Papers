@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ff8ea327c9e55cb014",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status loop7",
+  "task_key": "worker_ops_gpu_status_loop7_20260514T200623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_loop7_20260514T200623_result.json",
+    "occurrence": 1,
+    "bytes": 5112,
+    "sha256": "c20379bf4b13900041de3a86fbfa096c4a96e19c5325157b26a96967d630744e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"gpu_status\": [\n    {\"gpu\": 0, \"memory_used_mb\": 17731, \"memory_total_mb\": 24564, \"utilization_pct\": 53, \"processes\": [{\"pid\": 430416, \"memory_mb\": 17722, \"cmd\": \"python compute_signals.py --model-path .../Qwen2.5-1.5B_d000_s42/lora_adapter --benchmark mmlu --signals embedding minkpp selfcritique\"}]},\n    {\"gpu\": 1, \"memory_used_mb\": 0, \"memory_total_mb\": 24564, \"utilization_pct\": 0, \"processes\": []},\n    {\"gpu\": 2, \"memory_used_mb\": 0, \"memory_total_mb\": 24564, \"utilization_pct\": 0, \"processes\": []},\n    {\"gpu\": 3, \"memory_used_mb\": 13341, \"memory_total_mb\": 24564, \"utilization_pct\": 44, \"processes\": [{\"pid\": 420195, \"memory_mb\": 13332, \"cmd\": \"python train_sft.py --model-name Qwen2.5-3B --data-path sft_dosage_100.jsonl --output-dir Qwen2.5-3B_d100_s42 --gpu 3 --batch-size 1 --grad-accum 16\"}]},\n    {\"gpu\": 4, \"memory_used_mb\": 5857, \"memory_total_mb\": 24564, \"utilization_pct\": 55, \"processes\": [{\"pid\": 420910, \"memory_mb\": 5848, \"cmd\": \"python evaluate.py --model-path Qwen2.5-1.5B --adapter-path Qwen2.5-1.5B_d025_s42/lora_adapter --output-dir eval_results/Qwen2.5-1.5B_d025_s42_aligned --mc-format aligned\"}]},\n    {\"gpu\": 5, \"memory_used_mb\": 0, \"memory_total_mb\": 24564, \"utilization_pct\": 0, \"processes\": []}\n  ],\n  \"pid_check\": {\n    \"430406\": \"alive (exp002-signals-1p5B wrapper → child 430416 on GPU 0)\",\n    \"426813\": \"dead\",\n    \"426474\": \"dead\",\n    \"422128\": \"dead\",\n    \"420905\": \"alive (exp_001_eval_15B_d025_aligned wrapper → child 420910 on GPU 4)\",\n    \"405515\": \"dead\",\n    \"406017\": \"dead\",\n    \"398501\": \"dead\"\n  },\n  \"zombie_pids\": [],\n  \"other_notable\": {\n    \"318413\": \"alive (exp_001_eval_05B_raw wrapper on GPU 1, but NO gpu process — likely finished, shell still waiting)\"\n  },\n  \"cuda3_check\": \"PID 420195 active — train_sft.py Qwen2.5-3B d100_s42, 13332 MiB\",\n  \"summary\": \"3 GPUs active: GPU 0 (exp002 compute_signals 1.5B), GPU 3 (SFT training 3B d100), GPU 4 (eval 1.5B d025 aligned). GPUs 1/2/5 idle. Note: exp002 wrapper claims CUDA_VISIBLE_DEVICES=2 but compute_signals.py --gpu 0 overrides to physical GPU 0 — GPU 2 is actually free. PID 318413 (eval_05B_raw) wrapper still alive on GPU 1 but no GPU process running.\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gpu_status": [
+                {
+                  "gpu": 0,
+                  "memory_used_mb": 17731,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 53,
+                  "processes": [
+                    {
+                      "pid": 430416,
+                      "memory_mb": 17722,
+                      "cmd": "python compute_signals.py --model-path .../Qwen2.5-1.5B_d000_s42/lora_adapter --benchmark mmlu --signals embedding minkpp selfcritique"
+                    }
+                  ]
+                },
+                {
+                  "gpu": 1,
+                  "memory_used_mb": 0,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 0,
+                  "processes": []
+                },
+                {
+                  "gpu": 2,
+                  "memory_used_mb": 0,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 0,
+                  "processes": []
+                },
+                {
+                  "gpu": 3,
+                  "memory_used_mb": 13341,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 44,
+                  "processes": [
+                    {
+                      "pid": 420195,
+                      "memory_mb": 13332,
+                      "cmd": "python train_sft.py --model-name Qwen2.5-3B --data-path sft_dosage_100.jsonl --output-dir Qwen2.5-3B_d100_s42 --gpu 3 --batch-size 1 --grad-accum 16"
+                    }
+                  ]
+                },
+                {
+                  "gpu": 4,
+                  "memory_used_mb": 5857,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 55,
+                  "processes": [
+                    {
+                      "pid": 420910,
+                      "memory_mb": 5848,
+                      "cmd": "python evaluate.py --model-path Qwen2.5-1.5B --adapter-path Qwen2.5-1.5B_d025_s42/lora_adapter --output-dir eval_results/Qwen2.5-1.5B_d025_s42_aligned --mc-format aligned"
+                    }
+                  ]
+                },
+                {
+                  "gpu": 5,
+                  "memory_used_mb": 0,
+                  "memory_total_mb": 24564,
+                  "utilization_pct": 0,
+                  "processes": []
+                }
+              ],
+              "pid_check": {
+                "430406": "alive (exp002-signals-1p5B wrapper → child 430416 on GPU 0)",
+                "426813": "dead",
+                "426474": "dead",
+                "422128": "dead",
+                "420905": "alive (exp_001_eval_15B_d025_aligned wrapper → child 420910 on GPU 4)",
+                "405515": "dead",
+                "406017": "dead",
+                "398501": "dead"
+              },
+              "zombie_pids": [],
+              "other_notable": {
+                "318413": "alive (exp_001_eval_05B_raw wrapper on GPU 1, but NO gpu process — likely finished, shell still waiting)"
+              },
+              "cuda3_check": "PID 420195 active — train_sft.py Qwen2.5-3B d100_s42, 13332 MiB",
+              "summary": "3 GPUs active: GPU 0 (exp002 compute_signals 1.5B), GPU 3 (SFT training 3B d100), GPU 4 (eval 1.5B d025 aligned). GPUs 1/2/5 idle. Note: exp002 wrapper claims CUDA_VISIBLE_DEVICES=2 but compute_signals.py --gpu 0 overrides to physical GPU 0 — GPU 2 is actually free. PID 318413 (eval_05B_raw) wrapper still alive on GPU 1 but no GPU process running."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-loop7.md"
+}

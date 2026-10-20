@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "6e2a6ff439e139d903a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix analyzing stuck",
+  "task_key": "worker_ops_fix_analyzing_stuck_20260514T200840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_analyzing_stuck_20260514T200840_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "433ceb2c42a91f2658d7daeec34f0c866b8d2258411a2ef6777bf5a70a34fc2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n```json\n{\n  \"pid_alive\": false,\n  \"results_exist\": true,\n  \"results_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned/\",\n  \"results_files\": [\"correctness_matrix.json\", \"eval_results.json\", \"item_responses.json\"],\n  \"metrics\": {\n    \"mmlu\": {\"accuracy\": 0.3548, \"correct\": 2340, \"total\": 6596},\n    \"gsm8k\": {\"accuracy\": 0.2588, \"correct\": 59, \"total\": 228},\n    \"arc_challenge\": {\"accuracy\": 0.3300, \"correct\": 230, \"total\": 697},\n    \"humaneval\": {\"pass@1\": 0.0, \"correct\": 0, \"total\": 26}\n  },\n  \"recommendation\": \"mark_success_with_metrics\"\n}\n```\n\n进程已死（PID 400526 不存在），但 eval 结果完整 — 4 个 benchmark 全部有结果，3 个输出文件齐全。实验在 stuck 之前已完成评估，ANALYZING 状态卡住是因为结果未被收集。建议 `mark_success_with_metrics`。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "pid_alive": false,
+              "results_exist": true,
+              "results_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned/",
+              "results_files": [
+                "correctness_matrix.json",
+                "eval_results.json",
+                "item_responses.json"
+              ],
+              "metrics": {
+                "mmlu": {
+                  "accuracy": 0.3548,
+                  "correct": 2340,
+                  "total": 6596
+                },
+                "gsm8k": {
+                  "accuracy": 0.2588,
+                  "correct": 59,
+                  "total": 228
+                },
+                "arc_challenge": {
+                  "accuracy": 0.33,
+                  "correct": 230,
+                  "total": 697
+                },
+                "humaneval": {
+                  "pass@1": 0.0,
+                  "correct": 0,
+                  "total": 26
+                }
+              },
+              "recommendation": "mark_success_with_metrics"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-analyzing-stuck.md"
+}

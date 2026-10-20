@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e6f430fb3f082c7082",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sft d025 3B v2 check",
+  "task_key": "worker_ops_sft-d025-3B-v2-check_20260515T035659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-d025-3B-v2-check_20260515T035659_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "2c89c642656db8151f60e7e26e5d6eac8430c6aca7dc9b39b21a8ae21aa39104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清除或过期）。\n\n**总结：exp_001_sft_d025_3B_v2 训练成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| Steps | 3384/3384 (1 epoch) |\n| Train Loss | 1.1501 |\n| Token Accuracy | 0.7342 |\n| Runtime | ~4h (14499s) |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/` |\n\nRegistry 已更新为 DONE/success。cuda:3 已释放，可提交下一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-d025-3b-v2-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4722b8325e69b181a0c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 s0 sweep exit",
+  "task_key": "worker_diag_gemma2-s0-sweep-exit_20260520T123248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-s0-sweep-exit_20260520T123248_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "ea7683f69268f3bb602fc9ec2321942ded1d2fc9882530214c4c813516709c41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：假警报，sweep 正常运行。**\n\n| 组件 | 状态 |\n|------|------|\n| **PID 314035** | 已正常退出（d000 训练/eval 的子进程，exit code=0） |\n| **PID 314029** | 父脚本 `run_gemma2_s0.sh` 仍在运行（2h47m） |\n| **PID 342346** | 当前活跃子进程，正在训练 **d005_s0**（7分钟，GPU 1, 94.5GB） |\n\n**Checkpoint 状态：**\n\n| Dosage | 训练 | Eval | 备注 |\n|--------|------|------|------|\n| d000_s0 | ✅ 完成 | ✅ MMLU 完成 | lora_alpha=32 ✓, checkpoint-3125, adapter 216MB |\n| d005_s0 | 🔄 进行中 | ⏳ 待做 | 刚启动 7min |\n| d025_s0 | ⏳ 待做 | ⏳ 待做 | 空目录（预创建） |\n| d050_s0 | ⏳ 待做 | ⏳ 待做 | 空目录（预创建） |\n| d100_s0 | ⏳ 待做 | ⏳ 待做 | 目录尚未创建 |\n\n**死因：** PID 314035 不是崩溃，是 bash 脚本正常的子进程生命周期——d000 完成后子进程退出，父脚本 fork 新子进程继续 d005。\n\n**cuda:1 当前状态：** 98% 利用率，94.5GB 显存，被 d005 训练独占。\n\n**进度估算：** 1/5 dosage 完成（含 eval）。按 d000 耗时推算，全部完成约需 ~20h。\n\nRegistry 中无 `sft_gemma2_s0_sweep` 条目，是否需要创建？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-s0-sweep-exit.md"
+}

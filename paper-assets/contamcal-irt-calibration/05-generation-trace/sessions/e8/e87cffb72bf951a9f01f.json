@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e87cffb72bf951a9f01f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp002 task transition monitor",
+  "task_key": "worker_ops_exp002-task-transition-monitor_20260514T120549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002-task-transition-monitor_20260514T120549_result.json",
+    "occurrence": 1,
+    "bytes": 2061,
+    "sha256": "dfee94d9e9384371b68a968eb276657cf25fec1af0396645dab82f4ec7b446b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 当前 task（从 ps/proc 确认）\n\n**Task [1/9]: d000/mmlu** — PID 353390 仍在运行（State: R，context switches 持续增长: 5149→5183→5213 voluntary, 6066→6320→6560 nonvoluntary）\n\n### v4 run 时间线\n\n| 时间 (CST +0800) | 事件 |\n|---|---|\n| 18:46:36 | v4 run_batch.py 启动，task [1/9] d000/mmlu 开始 |\n| 18:50 | signal_embedding_mmlu.json 写入 (6.1MB) |\n| 18:55 | signal_minkpp_mmlu.json 写入 (2.1MB) |\n| 19:48:37 | **signal_selfcritique.py 热修复写入** |\n| 19:48:48 | **.pyc 重新编译 = 热修复被加载** |\n| 现在 | selfcritique 正在计算中，尚无产出文件 |\n\n### 热修复验证\n\n**已生效。** 证据链：\n1. compute_signals.py 延迟 import（line 66: `from signal_selfcritique import compute_selfcritique_signal`）\n2. .py 修改时间 19:48:37 → .pyc 编译时间 19:48:48 → 进程在运行到 selfcritique 阶段时加载了新版本\n3. 当前版本 `BATCH_SIZE = 32`（旧版 .bak 无此常量）\n\n### v4 产出文件清单\n\n**d000_s42 目录**（v4 产出，时间 >= 18:46）:\n- `signal_embedding_mmlu.json` (18:50, 6.1MB) ✓\n- `signal_minkpp_mmlu.json` (18:55, 2.1MB) ✓\n- `signal_selfcritique_mmlu.json` — 尚未写入（计算中）\n\n**d000_s42 目录**（旧 run 残留）:\n- `signal_embedding_gsm8k.json` (18:38) — 第一次 run 产出\n- `signal_embedding_arc_challenge.json` (18:41) — 第一次 run 产出\n- `signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json` (16:00) — 更早的残留\n\n**d005_s42 目录**（旧 run 残留）:\n- `signal_embedding_mmlu.json` (18:45) — 第一次 run 产出\n\n**其他**:\n- `batch_report_Qwen2.5-0.5B.json` — 旧 dry-run 报告，内容过时\n\n### 结论\n\nTask 1→2 过渡尚未发生。当前仍在 task 1 (d000/mmlu) 的 selfcritique 阶段。MMLU test set ~14k items / batch_size=32 = ~440 batches，每 batch 需生成答案（autoregressive, max 256 tokens）+ critique forward pass，预计还需要较长时间。热修复已确认被正确加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp002-task-transition-monitor.md"
+}

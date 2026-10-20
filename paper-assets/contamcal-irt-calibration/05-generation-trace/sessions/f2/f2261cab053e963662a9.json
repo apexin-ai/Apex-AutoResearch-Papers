@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f2261cab053e963662a9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops westd download mistral dryrun",
+  "task_key": "worker_ops_westd-download-mistral-dryrun_20260518T064940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-mistral-dryrun_20260518T064940.log",
+    "occurrence": 1,
+    "bytes": 657167,
+    "sha256": "23688a1972caa4770621cea896e28670117639e427133d436f79090762ef1d1f"
+  },
+  "statistics": {
+    "messages": 531,
+    "user_turns": 0,
+    "tool_calls": 195,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 137,
+      "tool_call": 195,
+      "tool_result": 195,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 531,
+      "chunks": [
+        {
+          "path": "f2261cab053e963662a9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2261cab053e963662a9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2261cab053e963662a9-part-0003.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-download-mistral-dryrun.md"
+}

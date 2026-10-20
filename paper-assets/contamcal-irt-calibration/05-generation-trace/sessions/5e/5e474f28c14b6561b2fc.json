@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e474f28c14b6561b2fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnostic cuda5 check",
+  "task_key": "worker_diagnostic_cuda5_check_20260516T110844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostic_cuda5_check_20260516T110844_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "b745d3555c44731e97759ea36911aebc2954476f62fb6ed8e2d9144091fa3f7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程状态：活着，正常推进，未卡死。**\n\n### GPU 5 状态\n- 利用率 26%，显存 2067 MiB — 正常工作中\n\n### 当前任务\n正在计算 `Qwen2.5-0.5B_d100_s123` 的 **s4 self-critique (MMLU)**：\n- 进度：chunk [7000:8000]，batch 77/500（~1.07s/it）\n- 已完成 ~7154 / 14042 items（~51%）\n- 预计此信号剩余 ~60 分钟\n\n### 各 adapter 完成度\n\n| Adapter | 状态 |\n|---------|------|\n| d005_s123 | ✅ 全部完成 (s1+s2+s4+merged × 3 benchmarks) |\n| d025_s123 | ✅ 全部完成 |\n| d000_s123 | 🟡 缺 s4_gsm8k、merged_gsm8k |\n| d100_s123 | 🟡 进行中 — 缺 s4_mmlu(当前)、s2_gsm8k、s4_gsm8k、merged_mmlu、merged_gsm8k |\n\n### 为什么跑了 8+ 小时\n不是卡死。s4 self-critique 对 MMLU（14042 items）在 0.5B 模型上需要 ~2h/adapter，脚本遍历 4 个 adapter × 3 个 benchmark × 4 个 signal，总计算量预期 10-12 小时。\n\n### 预计剩余时间\n约 2-3 小时（d100 mmlu s4 完成后还需 d000/d100 的 gsm8k s4 + merge）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-cuda5-check.md"
+}

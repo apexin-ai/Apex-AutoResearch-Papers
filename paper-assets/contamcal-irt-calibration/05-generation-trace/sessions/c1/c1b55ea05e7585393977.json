@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1b55ea05e7585393977",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code cron sentinel fix",
+  "task_key": "worker_code_cron-sentinel-fix_20260516T044328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cron-sentinel-fix_20260516T044328_result.json",
+    "occurrence": 1,
+    "bytes": 2337,
+    "sha256": "248b2ac65389aeefd904c100ece2fb77898e15eb6cfce8b36c612688415750c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All code changes compile and import correctly. Let me now provide the summary.\n\n---\n\n## 变更总结\n\n### 修改的文件\n\n**1. `/home/ubuntu/agent-ml-research/core/tools/cron.py`** — 框架核心\n- `register_cron()`: 新增 `done_sentinel` 参数（可选 str），指定远程服务器上的自定义完成标记文件路径\n- `poll_cron()`: 在标准 sentinel (`/tmp/agent-ml-exit/{exp_id}.exit`) 缺失且进程已死时，回退检查 `done_sentinel` 文件。如果存在，合成 `_sentinel_exit = 0`，复用全部现有成功处理逻辑（ANALYZING → hooks → delete cron）\n\n**2. `/home/ubuntu/agent-ml-research/core/mcp_server.py`** — MCP 工具暴露层\n- `register_cron` MCP tool 新增 `done_sentinel` 参数，透传到核心函数\n\n**3. `artifacts/exp002_signal_pipeline/compute_signals.py` + `exp002/compute_signals.py`** — 信号计算脚本\n- 在 `main()` 末尾添加 `(output_dir / \".done\").touch()`，使信号计算完成后也写入 `.done` 标记\n\n**4. `config/crons.yaml`** — 活跃 cron 配置\n- 4 个 cron 添加了 `done_sentinel` 路径\n\n### 6 个活跃 cron 诊断报告\n\n| # | exp_id | sentinel 状态 | done_sentinel | 风险 |\n|---|--------|---------------|---------------|------|\n| 1 | `exp_001_eval_3B_d000_s42_a32_batch` | ✅ EXIT trap 正常（PID 676487 运行中） | 已添加 `.done` 备用 | 低 |\n| 2 | `exp_001_eval_3B_d005_s42_a32_batch` | ✅ EXIT trap 正常（PID 679180 运行中） | 已添加 `.done` 备用 | 低 |\n| 3 | `exp_001_eval_3B_d100_s42_a32_batch` | ❌ 无进程运行，output dir 为空 | 已添加但无实际帮助 | **需重新提交** |\n| 4 | `exp_002_signals_3B_d100_s123_v9` | ⚠️ PID 689315 是直接 python 进程，非 tmux wrapper；但其父 tmux 进程有 EXIT trap | 已添加（但当前跑的是旧代码，无 `.done`） | 中 — EXIT trap 应能工作 |\n| 5 | `exp_002_signals_05B_s123_v2` | ⚠️ tmux session `exp002_05B_s123_v2` 运行中（log 活跃） | 未添加（批量脚本无单一完成文件） | 低 — tmux check 可检测 |\n| 6 | `exp_002_signals_15B_s123_batch` | ✅ EXIT trap 正常（PID 691872 运行中） | 未添加（有 EXIT trap） | 低 |\n\n**关键发现**：`exp_001_eval_3B_d100_s42_a32_batch`（#3）无进程运行且输出为空，需要重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cron-sentinel-fix.md"
+}

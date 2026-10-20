@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a53e74d091bdf13faad9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix minkpp bfloat16",
+  "task_key": "worker_code_fix-minkpp-bfloat16_20260514T104516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-minkpp-bfloat16_20260514T104516_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "06167e7cffae4ddc70a1b905778af0a063ffbbd89c1a49e6e35885d8aa209dff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **修复**: `signal_minkpp.py:96` — `.cpu().numpy()` → `.cpu().float().numpy()`\n- **signal_selfcritique.py**: 无此 bug，不需修复\n- **旧进程**: 已 kill\n- **重提交**: tmux session `exp002_05B`，PID 353382，GPU 0（已确认空闲）\n- **Registry**: `exp_002_signals_05B` 状态 RUNNING，notes 已更新为 v3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-minkpp-bfloat16.md"
+}

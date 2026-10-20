@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f43c2cf898851940eea6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status urgent",
+  "task_key": "worker_ops_gpu-status-urgent_20260516T174821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-urgent_20260516T174821_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "c3b09e2c45c80ed0b8a9e340c689aea617db306a288d32047ba6ad19545b1709"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | PID | 实验 | VRAM | Util% | 运行时间 | 状态 |\n|-----|-----|------|------|-------|---------|------|\n| 0 | — | — | 0 MiB | 0% | — | **空闲** |\n| 1 | 807025 | evaluate.py Llama-3.2-3B_d000_s42 (gsm8k/arc/humaneval, aligned) | 6904 MiB | 80% | 02:14:44 | 运行中 |\n| 2 | — | (PID 823705 刚启动 signals_1.5B_arc, CUDA_VISIBLE_DEVICES=2, 但 GPU 尚未分配显存) | 3 MiB | 0% | 00:04:32 | 启动中 |\n| 3 | 822390 | evaluate.py Llama-3.2-3B_d025_s42 (mmlu/gsm8k/arc/humaneval, aligned) — PID 822385 wrapper→822390 子进程 | 8304 MiB | 0% | 00:15:10 | 运行中 |\n| 4 | 810809 | compute_signals 1.5B-Instruct mmlu | 4242 MiB | 44% | 01:59:34 | 运行中 |\n| 5 | 804791 | train_sft Llama-3.2-3B d100_s42 (声明 gpu 0 但实际跑在 GPU 5) | 20580 MiB | 100% | 02:17:17 | 运行中 |\n\n**额外进程（非 GPU）：** PID 818742 — `run_mmlu_domain_gamma_n24.py` (CPU, 运行 45min)\n\n**Dead PIDs：** 804570, 801766\n\n**空闲 GPU：cuda:0** — 完全空闲可用。\n\n**注意：** PID 804791 (SFT d100_s42) 命令行写 `--gpu 0` 但实际占用 GPU 5 (20580 MiB)，说明该训练脚本内部做了 GPU 选择或启动时未设 `CUDA_VISIBLE_DEVICES`，与 C004 约束相关但已在运行中，不影响当前调度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-urgent.md"
+}

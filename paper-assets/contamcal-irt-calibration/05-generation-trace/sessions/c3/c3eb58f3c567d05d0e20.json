@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3eb58f3c567d05d0e20",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu audit batch submit",
+  "task_key": "worker_ops_gpu-audit-batch-submit_20260515T032323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-audit-batch-submit_20260515T032323_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "f1da5af10840d44b08f99caba790dfc4fd516443e93a358c8c171e4bba6eb0e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 进程已启动（PID 493617，模型加载中）。全部 6 张卡满载。\n\n## GPU 映射 (最新)\n\n| GPU | 显存占用 | PID | 实验 |\n|-----|----------|-----|------|\n| 0 | 8976/24564 MiB | 477489 | exp_001_eval_3B_d100_v2_aligned_v2 |\n| 1 | 6782/24564 MiB | 492660 | exp_001_eval_3B_d000_v2_s123_aligned |\n| 2 | 7530/24564 MiB | 492733 | exp_001_eval_3B_d000_v2_s123_para_aligned |\n| 3 | 17644/24564 MiB | 466755 | exp_001_sft_d025_3B_v2 |\n| 4 | 1302/24564 MiB | 493617 | **exp_001_sft_05B_d025_s123** ← 本次提交 |\n| 5 | 17972/24564 MiB | 471296 | exp_001_sft_3B_d100_s123 |\n\n## 本次提交\n\n| exp_id | GPU | 类型 | 说明 |\n|--------|-----|------|------|\n| exp_001_sft_05B_d025_s123 | cuda:4 | SFT | 0.5B d025 seed=123, lr=2e-4, lora_alpha=32, r=16 |\n\n## 仍然空闲的 GPU\n无。6 张卡全部占满。\n\n## 发现\n- **0.5B d005 s123 SFT**: ✅ 完成（adapter 35MB, checkpoint-3177）\n- **1.5B d100 s123 SFT**: ✅ 完成（adapter 73MB, checkpoint-4159）\n- **3B d000 v2 s123 SFT**: ✅ 完成（adapter 119MB, checkpoint-3125）\n- **0.5B d005 s123 eval**: ✅ 已完成（eval_results.json 存在）\n- **1.5B d100 s123 eval**: ✅ 已完成（eval_results.json 存在）\n- **3B d000 v2 s123 eval**: 🏃 已有人提交到 GPU 1（aligned）+ GPU 2（para_aligned），无需重复\n- GPU 1/2 的 eval 完成后可释放，届时提交剩余 SFT：**1.5B d005 s123, 1.5B d025 s123, 3B d005 s123**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-batch-submit.md"
+}

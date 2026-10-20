@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539cc7bbd3f2c8f689ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu2 check and log persistence",
+  "task_key": "worker_ops_gpu2-check-and-log-persistence_20260515T111040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2-check-and-log-persistence_20260515T111040_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "675efdee7a9992b5a9bd31f18c3032c7de4972301cc56702cf11f34d058ce6bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "持久化完成，两个文件都已在 `/root/runs/contamcal-irt-calibration/` 中且持续追加。\n\n---\n\n## 报告\n\n### 1. GPU 2 — exp_008 base pretrained eval (PID 530893)\n\n| 项目 | 状态 |\n|------|------|\n| 进程状态 | `T (stopped)` — 被信号停止，非正常运行 |\n| 子进程 | PID 548811 也是 `T (stopped)`，执行 `/tmp/tmp4kb0dwy6.py` |\n| 运行时间 | 2h26m |\n| GPU 利用率 | 0% |\n| 显存占用 | 8225 MiB |\n| 输出目录 | 空（无任何结果文件） |\n| tmux 窗口 | 空白，无输出 |\n| 日志 | 未找到任何日志文件 |\n\n**结论：进程卡死，需要 kill 并重跑。** 进程处于 T (stopped) 状态，不是 CPU-bound，而是被信号暂停。2.5h 无任何产出。\n\n### 2. SFT 日志持久化\n\n| 日志 | 持久化路径 | tail PID |\n|------|-----------|----------|\n| d025 (GPU 0) | `/root/runs/contamcal-irt-calibration/exp_001_sft_15B_d025_s123_v2.log` | 551173 |\n| d005 (GPU 1) | `/root/runs/contamcal-irt-calibration/exp_001_sft_15B_d005_s123_v2.log` | 551506 |\n\n两个 SFT 训练正常运行中：d025 在 203/3384 (~6%), d005 在 185/3177 (~6%)，速度 ~2s/it。bitsandbytes 有 libnvJitLink.so 警告但不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-check-and-log-persistence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e43acf835130257b5663",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 fix and dryrun",
+  "task_key": "worker_code_exp_006_fix_and_dryrun_20260514T151631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_fix_and_dryrun_20260514T151631_result.json",
+    "occurrence": 1,
+    "bytes": 1504,
+    "sha256": "db2f831bb2670d4ed2b7486eb9e8d9fef4751739f188a54f18f4532208edba57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n### 修改内容\n代码已有 `--model-scale`、`--data-seed`、`--aligned-only` 过滤。修改了 `--dry-run` 行为：现在只打印数据加载摘要并 return，**不启动 Stan fitting**。\n\n### Dry-run 输出\n```\n[DRY-RUN] Model scale: 0.5B, Seed: 42\n[DRY-RUN] Aligned only: True\n[DRY-RUN] Loading directories:\n  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)\n  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)\n[DRY-RUN] Total models: 2\n[DRY-RUN] Dosages: [0, 5]\n[DRY-RUN] mmlu: 2 valid models x 14042 items\n[DRY-RUN] gsm8k: 2 valid models x 1319 items\n[DRY-RUN] arc_challenge: 2 valid models x 1172 items\n[DRY-RUN] humaneval: 2 valid models x 164 items\n[DRY-RUN] Stan model: 4pl_gamma -> contam_irt_4pl_simple.stan\n[DRY-RUN] Exposure file: None (oracle dosage)\n```\n\n### 数据缺口\n**只有 2/4 个 dosage 点可用，缺少 d025 和 d100 的 aligned eval：**\n\n| 目录 | 状态 |\n|------|------|\n| `Qwen2.5-0.5B_d000_s42_aligned` | eval_results.json ✓ |\n| `Qwen2.5-0.5B_d005_s42_aligned` | eval_results.json ✓ |\n| `Qwen2.5-0.5B_d025_s42_aligned` | **空目录** |\n| `Qwen2.5-0.5B_d100_s42_aligned` | **空目录** |\n\n非 aligned 的 `d100_s42` 有 eval_results.json，但 aligned 格式的 d025 和 d100 还没跑完。\n\n2 个模型 × 14042 items 做 IRT fitting 没有意义（至少需要 3-4 个 dosage 点才能拟合 dose-response curve）。需要先补齐 d025 和 d100 的 aligned eval 再跑 exp-006。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-fix-and-dryrun.md"
+}

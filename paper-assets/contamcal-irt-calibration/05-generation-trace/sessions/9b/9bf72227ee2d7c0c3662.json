@@ -1,0 +1,2204 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf72227ee2d7c0c3662",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis run stratified irt schemeB",
+  "task_key": "worker_analysis_run-stratified-irt-schemeB_20260515T140123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_run-stratified-irt-schemeB_20260515T140123.log",
+    "occurrence": 1,
+    "bytes": 141617,
+    "sha256": "62c6a13da2965e1ff5be2da48e1a42956583511fa0c0502547f19919b51409b6"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 18,
+      "tool_result": 18,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "286e2a36-cb74-4039-9e89-5051579e70a7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778866800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "54c696c7-7897-47de-9a0f-3a9898343c98",
+                "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the task, I need to run the stratified IRT analysis Scheme B on the server. Let me start by checking the script's interface and current server state."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "b02e219b-55d0-44cd-a5d4-25fe604522c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wq91xXS31tUKE9FzriYEv4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12225,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12225
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsD59CiuosXbzzYqrLXj34",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "b07fd8a2-0fd6-432d-9ab2-5188dc9353d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wq91xXS31tUKE9FzriYEv4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12225,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12225
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T14:01:42.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01PsD59CiuosXbzzYqrLXj34",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "61e8a269-c871-4421-b796-c7d55fc5e1e8",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the script interface and server state in parallel.",
+              "signature": "EoYCClkIDRgCKkAyP9TWbCx7tPVM3pUUBRK+yyycJVSu/EsXoze6rJcntnJ3Tnb4bRClPXNT+SlgLwDRCCTGfIkw3axqzWDBOiokMg9jbGF1ZGUtb3B1cy00LTY4ABIM+WhYBP7vOsxGbF0iGgyRP+nbOSoevZk/eg8iMDCRfKOFOZMMnoRFa8Kcm2aUxN3+t9qu1mFza+AazkJSqCE/7FniKIVYN0Ydg1wXUCpbX/mSLtwPGrZOVyX6IzD3eCHfiwVKGBeFfFETv79nJW/qul+PHpE/+mve4BM8MCE0jY+Vzta+Ihq+0nmtlzsoNKv5ZtQHW5Lu+6u8a6vXl+EsioXqZD5N4nt9sxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "e74f89f2-e38d-40ac-a1db-866cfb0cdeeb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpSuPw5NSe4jufuwnK9pkn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 24066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 909
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P7RcFyXcdDnSR6r9iU77EH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -100 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "5a397364-40ed-4035-9ee2-387cea7d9bef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpSuPw5NSe4jufuwnK9pkn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 24066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 909
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SaoiY6exEvyqSrTzexzEUm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "e84538c0-c829-456f-a9a2-2a99b2908ead",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpSuPw5NSe4jufuwnK9pkn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 24066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 909
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T14:01:50.165Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P7RcFyXcdDnSR6r9iU77EH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStratified IRT analysis: dose-response and model-size strata.\\\\n\\\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\\\n\\\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"]\\\\nSCALES = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\\\\\")\\\\n\\\\nMAX_ITEMS = 2000\\\\n\\\\nDOSAGE_GROUPS = {\\\\n    \\\\\\\"d000\\\\\\\": [0],\\\\n    \\\\\\\"d005\\\\\\\": [5],\\\\n    \\\\\\\"d025\\\\\\\": [25],\\\\n    \\\\\\\"d100\\\\\\\": [100],\\\\n}\\\\n\\\\nSCALE_GROUPS = {\\\\n    \\\\\\\"scale_0.5B\\\\\\\": [\\\\\\\"0.5B\\\\\\\"],\\\\n    \\\\\\\"scale_1.5B\\\\\\\": [\\\\\\\"1.5B\\\\\\\"],\\\\n    \\\\\\\"scale_3B\\\\\\\": [\\\\\\\"3B\\\\\\\"],\\\\n}\\\\n\\\\n\\\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\\\n    keep = np.ones(len(models), dtype=bool)\\\\n    reasons = []\\\\n\\\\n    for i, m in enumerate(models):\\\\n        dirname = m.get(\\\\\\\"dirname\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        scale = m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        dosage = m.get(\\\\\\\"dosage\\\\\\\", 0)\\\\n\\\\n        if \\\\\\\"base_pretrained\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D046/D047: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"DEPRECATED\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D018: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"0.5B\\\\\\\" in scale and benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D045: {dirname}\\\\\\\")\\\\n            continue\\\\n        if benchmark == \\\\\\\"gsm8k\\\\\\\" and dosage == 0:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D044: {dirname}\\\\\\\")\\\\n            continue\\\\n\\\\n    if reasons:\\\\n        log.info(\\\\\\\"Excluded from %s (%d):\\\\\\\", benchmark, len(reasons))\\\\n        for r in reasons[:5]:\\\\n            log.info(r)\\\\n        if len(reasons) > 5:\\\\n            log.info(\\\\\\\"  ... +%d more\\\\\\\", len(reasons) - 5)\\\\n\\\\n    return (\\\\n        [m for m, k in zip(models, keep) if k],\\\\n        dosages[keep],\\\\n        responses[keep],\\\\n        valid_mask[keep],\\\\n    )\\\\n\\\\n\\\\ndef build_oracle_exposure_global(dosages, n_items):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "5176dd8c-72dd-4703-bbd3-e276d807c8cb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStratified IRT analysis: dose-response and model-size strata.\\\\n\\\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\\\n\\\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"]\\\\nSCALES = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\\\\\")\\\\n\\\\nMAX_ITEMS = 2000\\\\n\\\\nDOSAGE_GROUPS = {\\\\n    \\\\\\\"d000\\\\\\\": [0],\\\\n    \\\\\\\"d005\\\\\\\": [5],\\\\n    \\\\\\\"d025\\\\\\\": [25],\\\\n    \\\\\\\"d100\\\\\\\": [100],\\\\n}\\\\n\\\\nSCALE_GROUPS = {\\\\n    \\\\\\\"scale_0.5B\\\\\\\": [\\\\\\\"0.5B\\\\\\\"],\\\\n    \\\\\\\"scale_1.5B\\\\\\\": [\\\\\\\"1.5B\\\\\\\"],\\\\n    \\\\\\\"scale_3B\\\\\\\": [\\\\\\\"3B\\\\\\\"],\\\\n}\\\\n\\\\n\\\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\\\n    keep = np.ones(len(models), dtype=bool)\\\\n    reasons = []\\\\n\\\\n    for i, m in enumerate(models):\\\\n        dirname = m.get(\\\\\\\"dirname\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        scale = m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        dosage = m.get(\\\\\\\"dosage\\\\\\\", 0)\\\\n\\\\n        if \\\\\\\"base_pretrained\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D046/D047: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"DEPRECATED\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D018: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"0.5B\\\\\\\" in scale and benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D045: {dirname}\\\\\\\")\\\\n            continue\\\\n        if benchmark == \\\\\\\"gsm8k\\\\\\\" and dosage == 0:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D044: {dirname}\\\\\\\")\\\\n            continue\\\\n\\\\n    if reasons:\\\\n        log.info(\\\\\\\"Excluded from %s (%d):\\\\\\\", benchmark, len(reasons))\\\\n        for r in reasons[:5]:\\\\n            log.info(r)\\\\n        if len(reasons) > 5:\\\\n            log.info(\\\\\\\"  ... +%d more\\\\\\\", len(reasons) - 5)\\\\n\\\\n    return (\\\\n        [m for m, k in zip(models, keep) if k],\\\\n        dosages[keep],\\\\n        responses[keep],\\\\n        valid_mask[keep],\\\\n    )\\\\n\\\\n\\\\ndef build_oracle_exposure_global(dosages, n_items):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nStratified IRT analysis: dose-response and model-size strata.\\n\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\n\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"]\\nSCALES = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\")\\n\\nMAX_ITEMS = 2000\\n\\nDOSAGE_GROUPS = {\\n    \\\"d000\\\": [0],\\n    \\\"d005\\\": [5],\\n    \\\"d025\\\": [25],\\n    \\\"d100\\\": [100],\\n}\\n\\nSCALE_GROUPS = {\\n    \\\"scale_0.5B\\\": [\\\"0.5B\\\"],\\n    \\\"scale_1.5B\\\": [\\\"1.5B\\\"],\\n    \\\"scale_3B\\\": [\\\"3B\\\"],\\n}\\n\\n\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\n    keep = np.ones(len(models), dtype=bool)\\n    reasons = []\\n\\n    for i, m in enumerate(models):\\n        dirname = m.get(\\\"dirname\\\", \\\"\\\")\\n        scale = m.get(\\\"scale\\\", \\\"\\\")\\n        dosage = m.get(\\\"dosage\\\", 0)\\n\\n        if \\\"base_pretrained\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D046/D047: {dirname}\\\")\\n            continue\\n        if \\\"DEPRECATED\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D018: {dirname}\\\")\\n            continue\\n        if \\\"0.5B\\\" in scale and benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n            keep[i] = False\\n            reasons.append(f\\\"  D045: {dirname}\\\")\\n            continue\\n        if benchmark == \\\"gsm8k\\\" and dosage == 0:\\n            keep[i] = False\\n            reasons.append(f\\\"  D044: {dirname}\\\")\\n            continue\\n\\n    if reasons:\\n        log.info(\\\"Excluded from %s (%d):\\\", benchmark, len(reasons))\\n        for r in reasons[:5]:\\n            log.info(r)\\n        if len(reasons) > 5:\\n            log.info(\\\"  ... +%d more\\\", len(reasons) - 5)\\n\\n    return (\\n        [m for m, k in zip(models, keep) if k],\\n        dosages[keep],\\n        responses[keep],\\n        valid_mask[keep],\\n    )\\n\\n\\ndef build_oracle_exposure_global(dosages, n_items):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdWU7XkjjRZYQvTQH3vqer",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp006/results_stratified_irt/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "f2a55151-956a-4a77-9716-c52de2be8f53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpSuPw5NSe4jufuwnK9pkn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 24066,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 909
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T14:01:50.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SaoiY6exEvyqSrTzexzEUm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 5857 MiB, 24564 MiB, 51 %\\\\n1, 5857 MiB, 24564 MiB, 51 %\\\\n2, 21356 MiB, 24564 MiB, 100 %\\\\n3, 8985 MiB, 24564 MiB, 68 %\\\\n4, 19289 MiB, 24564 MiB, 75 %\\\\n5, 8985 MiB, 24564 MiB, 67 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "1d2ba4a4-5062-4fc2-947e-e437369d2002",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 5857 MiB, 24564 MiB, 51 %\\\\n1, 5857 MiB, 24564 MiB, 51 %\\\\n2, 21356 MiB, 24564 MiB, 100 %\\\\n3, 8985 MiB, 24564 MiB, 68 %\\\\n4, 19289 MiB, 24564 MiB, 75 %\\\\n5, 8985 MiB, 24564 MiB, 67 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 5857 MiB, 24564 MiB, 51 %\\n1, 5857 MiB, 24564 MiB, 51 %\\n2, 21356 MiB, 24564 MiB, 100 %\\n3, 8985 MiB, 24564 MiB, 68 %\\n4, 19289 MiB, 24564 MiB, 75 %\\n5, 8985 MiB, 24564 MiB, 67 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T14:01:51.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdWU7XkjjRZYQvTQH3vqer",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/exp006/results_stratified_irt/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "8d7b03fd-0cec-436a-befb-93dc2fbd7919",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/exp006/results_stratified_irt/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/exp006/results_stratified_irt/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script supports `--scheme` argument based on the argparse import. Let me check the rest of the script to see the CLI interface, and also check if there's already something running. The GPU utilization shows all GPUs are busy. But this is a CPU-based Stan task (IRT), not GPU. Let me check the argparse section and the rest of the script.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "41e43ec8-92aa-4a35-a481-1f32f4cb9693",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWVsZtP2sayUC8Keifk1rz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 24975,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2007
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script supports argparse. Let me check the CLI interface and see if there are existing processes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "1fec087e-c8ae-48f8-a08b-b39fc178c56a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWVsZtP2sayUC8Keifk1rz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 24975,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2007
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LBByDBmDaZC9Hvvqx7XeYf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"argparse\\|add_argument\\|parse_args\\|scheme\\|main\" /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "561960a9-ae78-407f-8949-e62170678182",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWVsZtP2sayUC8Keifk1rz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 24975,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2007
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T14:01:59.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LBByDBmDaZC9Hvvqx7XeYf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "42519e92-a7dd-43b8-b6fa-3f213fbadb78",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E5r2fVbCJ62ibJpgr5EdG3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "wc -l /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "d4d3c2c6-df7c-4bdd-b6da-7303155f8b1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWVsZtP2sayUC8Keifk1rz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 24975,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2007
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T14:02:00.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E5r2fVbCJ62ibJpgr5EdG3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"439 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "9daf6cfc-66dc-470b-8020-0faffeb197f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"439 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"439 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AbdVoqoco5VPV1xPucQNiE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"argparse\\|add_argument\\|parse_args\\|scheme\\|def main\" /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "cc11abf1-6e09-482b-a08a-7c9df395e327",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013VH1nC4xUgSDMFaQm15pA1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 601,
+                "cache_read_input_tokens": 26982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 601
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T14:02:02.982Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AbdVoqoco5VPV1xPucQNiE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "752dc9de-8056-4174-9ffe-9c2932843829",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019z89NUM5MB5zhazwj45dGN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "tail -100 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "bd155377-06af-4f9f-9ed6-493a710f5180",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JjrnpZtaqYbJAoadAxka43",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 227,
+                "cache_read_input_tokens": 27583,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 227
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T14:02:06.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019z89NUM5MB5zhazwj45dGN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    t0_total = time.time()\\\\n\\\\n    # Scheme A\\\\n    if args.scheme in (\\\\\\\"A\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME A: by Dosage\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_d in DOSAGE_GROUPS.items():\\\\n            mf, df, bf = filter_by_dosage(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_d\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"A_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_A\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_A\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    # Scheme B\\\\n    if args.scheme in (\\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_s in SCALE_GROUPS.items():\\\\n            mf, df, bf = filter_by_scale(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_s\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"B_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_B\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_B\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    elapsed_total = time.time() - t0_total\\\\n\\\\n    with open(OUTPUT_DIR / \\\\\\\"stratified_irt_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"STRATIFIED IRT RESULTS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"Total time: {elapsed_total:.0f}s\\\\\\\")\\\\n\\\\n    for scheme_key, scheme_label in [(\\\\\\\"scheme_A\\\\\\\", \\\\\\\"SCHEME A (by dosage)\\\\\\\"),\\\\n                                      (\\\\\\\"scheme_B\\\\\\\", \\\\\\\"SCHEME B (by model size)\\\\\\\")]:\\\\n        if not all_results[scheme_key]:\\\\n            continue\\\\n        print(f\\\\\\\"\\\\\\\\n{scheme_label}:\\\\\\\")\\\\n        for gname, gresults in all_results[scheme_key].items():\\\\n            print(f\\\\\\\"  {gname}:\\\\\\\")\\\\n            for bench, r in gresults.items():\\\\n                g = r[\\\\\\\"gamma\\\\\\\"]\\\\n                var = \\\\\\\"\\\\\\\" if r.get(\\\\\\\"has_dosage_variation\\\\\\\") else \\\\\\\" [CONST EXP]\\\\\\\"\\\\n                print(f\\\\\\\"    {bench}: gamma={g['mean']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\\\\\"\\\\n                      f\\\\\\\"N={r['n_models']}{var}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUTPUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "c846683a-4765-465b-808d-a39da0f82929",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    t0_total = time.time()\\\\n\\\\n    # Scheme A\\\\n    if args.scheme in (\\\\\\\"A\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME A: by Dosage\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_d in DOSAGE_GROUPS.items():\\\\n            mf, df, bf = filter_by_dosage(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_d\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"A_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_A\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_A\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    # Scheme B\\\\n    if args.scheme in (\\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_s in SCALE_GROUPS.items():\\\\n            mf, df, bf = filter_by_scale(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_s\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"B_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_B\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_B\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    elapsed_total = time.time() - t0_total\\\\n\\\\n    with open(OUTPUT_DIR / \\\\\\\"stratified_irt_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"STRATIFIED IRT RESULTS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"Total time: {elapsed_total:.0f}s\\\\\\\")\\\\n\\\\n    for scheme_key, scheme_label in [(\\\\\\\"scheme_A\\\\\\\", \\\\\\\"SCHEME A (by dosage)\\\\\\\"),\\\\n                                      (\\\\\\\"scheme_B\\\\\\\", \\\\\\\"SCHEME B (by model size)\\\\\\\")]:\\\\n        if not all_results[scheme_key]:\\\\n            continue\\\\n        print(f\\\\\\\"\\\\\\\\n{scheme_label}:\\\\\\\")\\\\n        for gname, gresults in all_results[scheme_key].items():\\\\n            print(f\\\\\\\"  {gname}:\\\\\\\")\\\\n            for bench, r in gresults.items():\\\\n                g = r[\\\\\\\"gamma\\\\\\\"]\\\\n                var = \\\\\\\"\\\\\\\" if r.get(\\\\\\\"has_dosage_variation\\\\\\\") else \\\\\\\" [CONST EXP]\\\\\\\"\\\\n                print(f\\\\\\\"    {bench}: gamma={g['mean']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\\\\\"\\\\n                      f\\\\\\\"N={r['n_models']}{var}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUTPUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    t0_total = time.time()\\n\\n    # Scheme A\\n    if args.scheme in (\\\"A\\\", \\\"both\\\"):\\n        log.info(\\\"=\\\" * 60)\\n        log.info(\\\"SCHEME A: by Dosage\\\")\\n        log.info(\\\"=\\\" * 60)\\n\\n        for gname, target_d in DOSAGE_GROUPS.items():\\n            mf, df, bf = filter_by_dosage(\\n                data[\\\"models\\\"], data[\\\"dosages\\\"], data[\\\"benchmarks\\\"], target_d\\n            )\\n            log.info(\\\"--- %s: %d models ---\\\", gname, len(mf))\\n            group_results = {}\\n\\n            for bench in BENCHMARKS:\\n                if bench not in bf:\\n                    continue\\n                result = run_stratum_fit(\\n                    f\\\"A_{gname}\\\", mf, df, bf[bench], bench, args_dict\\n                )\\n                if result:\\n                    group_results[bench] = result\\n                    g = result[\\\"gamma\\\"]\\n                    d = result[\\\"diagnostics\\\"]\\n                    log.info(\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\",\\n                             gname, bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                             d.get(\\\"max_rhat\\\", 0), d.get(\\\"divergent_count\\\", 0))\\n\\n            all_results[\\\"scheme_A\\\"][gname] = group_results\\n            gdir = OUTPUT_DIR / \\\"scheme_A\\\" / gname\\n            gdir.mkdir(parents=True, exist_ok=True)\\n            for bench, result in group_results.items():\\n                with open(gdir / f\\\"{bench}_results.json\\\", \\\"w\\\") as f:\\n                    json.dump(result, f, indent=2)\\n\\n    # Scheme B\\n    if args.scheme in (\\\"B\\\", \\\"both\\\"):\\n        log.info(\\\"=\\\" * 60)\\n        log.info(\\\"SCHEME B: by Model Size\\\")\\n        log.info(\\\"=\\\" * 60)\\n\\n        for gname, target_s in SCALE_GROUPS.items():\\n            mf, df, bf = filter_by_scale(\\n                data[\\\"models\\\"], data[\\\"dosages\\\"], data[\\\"benchmarks\\\"], target_s\\n            )\\n            log.info(\\\"--- %s: %d models ---\\\", gname, len(mf))\\n            group_results = {}\\n\\n            for bench in BENCHMARKS:\\n                if bench not in bf:\\n                    continue\\n                result = run_stratum_fit(\\n                    f\\\"B_{gname}\\\", mf, df, bf[bench], bench, args_dict\\n                )\\n                if result:\\n                    group_results[bench] = result\\n                    g = result[\\\"gamma\\\"]\\n                    d = result[\\\"diagnostics\\\"]\\n                    log.info(\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\",\\n                             gname, bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                             d.get(\\\"max_rhat\\\", 0), d.get(\\\"divergent_count\\\", 0))\\n\\n            all_results[\\\"scheme_B\\\"][gname] = group_results\\n            gdir = OUTPUT_DIR / \\\"scheme_B\\\" / gname\\n            gdir.mkdir(parents=True, exist_ok=True)\\n            for bench, result in group_results.items():\\n                with open(gdir / f\\\"{bench}_results.json\\\", \\\"w\\\") as f:\\n                    json.dump(result, f, indent=2)\\n\\n    elapsed_total = time.time() - t0_total\\n\\n    with open(OUTPUT_DIR / \\\"stratified_irt_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"STRATIFIED IRT RESULTS\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"Total time: {elapsed_total:.0f}s\\\")\\n\\n    for scheme_key, scheme_label in [(\\\"scheme_A\\\", \\\"SCHEME A (by dosage)\\\"),\\n                                      (\\\"scheme_B\\\", \\\"SCHEME B (by model size)\\\")]:\\n        if not all_results[scheme_key]:\\n            continue\\n        print(f\\\"\\\\n{scheme_label}:\\\")\\n        for gname, gresults in all_results[scheme_key].items():\\n            print(f\\\"  {gname}:\\\")\\n            for bench, r in gresults.items():\\n                g = r[\\\"gamma\\\"]\\n                var = \\\"\\\" if r.get(\\\"has_dosage_variation\\\") else \\\" [CONST EXP]\\\"\\n                print(f\\\"    {bench}: gamma={g['mean']:.4f} \\\"\\n                      f\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\"\\n                      f\\\"N={r['n_models']}{var}\\\")\\n\\n    print(f\\\"\\\\nSaved to {OUTPUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check the argparse section to see the exact CLI interface.",
+              "signature": "EoACClkIDRgCKkBfouIuASYlvUE1dKGWqkIvBf3pYr4MjKGh57G4zu/18Z3idwYKpCaeFkAFc/3WyjGv3QwMZ0npjm3uN74VJ2nUMg9jbGF1ZGUtb3B1cy00LTY4ABIMaLeJPQWrdnngs/ghGgypjDrHhQPuQ3wYkFMiMGmMYABPVwORhyWQiMF/k/WSqKlsVEdH9z3MZpKKb6O7sB8jurEQZTwbl2wxGGA6ZipVUrdlj5t467KT2EaJ40CfiZ2wlPSspe60yMNCbxlgf3iNWVPeWfsnxs04V9VkU8eN9IF6JZhcGaMjUl4hAtwhCGp1ELJVgnZqQ/wnkQHg/okVRRBxWBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "db158138-99e7-44b6-acb7-2f4cc7152b45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMxXE5YGF7tZQn43RZxit",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 27810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — the script supports `--scheme B`. Let me check the argparse definition and then launch it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "a9ccff16-9bfe-4198-b797-986dfe71fe21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMxXE5YGF7tZQn43RZxit",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 27810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JB6ChnKGjgaXT6gjqVAK8w",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"add_argument\\|scheme\\|parse_args\" /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "4ec1ad7b-8697-4edf-be61-4a2d9143c175",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ArMxXE5YGF7tZQn43RZxit",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1868,
+                "cache_read_input_tokens": 27810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T14:02:13.589Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JB6ChnKGjgaXT6gjqVAK8w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "fddbdd21-6393-46cb-abd0-cd1061d02cfd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011wf3pSeTeD6V3JY3ZyJPkR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "sed -n '300,360p' /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "452da3ce-159a-4f8f-bbd7-30d3dbb39306",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X4AKtLvFcuxkiuNvjE1V5R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 29678,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 272
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T14:02:16.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011wf3pSeTeD6V3JY3ZyJPkR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "1007f39f-66c7-4589-b462-28bbceac2662",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HRUxVaYWuCnMA9wzMRpkdG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -200 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "bf9a798b-5318-466c-94a2-cfe8d6e3a25c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KwXr1aknTZkZSSEfJugWxm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 29950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 211
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T14:02:21.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HRUxVaYWuCnMA9wzMRpkdG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStratified IRT analysis: dose-response and model-size strata.\\\\n\\\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\\\n\\\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"]\\\\nSCALES = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\\\\\")\\\\n\\\\nMAX_ITEMS = 2000\\\\n\\\\nDOSAGE_GROUPS = {\\\\n    \\\\\\\"d000\\\\\\\": [0],\\\\n    \\\\\\\"d005\\\\\\\": [5],\\\\n    \\\\\\\"d025\\\\\\\": [25],\\\\n    \\\\\\\"d100\\\\\\\": [100],\\\\n}\\\\n\\\\nSCALE_GROUPS = {\\\\n    \\\\\\\"scale_0.5B\\\\\\\": [\\\\\\\"0.5B\\\\\\\"],\\\\n    \\\\\\\"scale_1.5B\\\\\\\": [\\\\\\\"1.5B\\\\\\\"],\\\\n    \\\\\\\"scale_3B\\\\\\\": [\\\\\\\"3B\\\\\\\"],\\\\n}\\\\n\\\\n\\\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\\\n    keep = np.ones(len(models), dtype=bool)\\\\n    reasons = []\\\\n\\\\n    for i, m in enumerate(models):\\\\n        dirname = m.get(\\\\\\\"dirname\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        scale = m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        dosage = m.get(\\\\\\\"dosage\\\\\\\", 0)\\\\n\\\\n        if \\\\\\\"base_pretrained\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D046/D047: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"DEPRECATED\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D018: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"0.5B\\\\\\\" in scale and benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D045: {dirname}\\\\\\\")\\\\n            continue\\\\n        if benchmark == \\\\\\\"gsm8k\\\\\\\" and dosage == 0:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D044: {dirname}\\\\\\\")\\\\n            continue\\\\n\\\\n    if reasons:\\\\n        log.info(\\\\\\\"Excluded from %s (%d):\\\\\\\", benchmark, len(reasons))\\\\n        for r in reasons[:5]:\\\\n            log.info(r)\\\\n        if len(reasons) > 5:\\\\n            log.info(\\\\\\\"  ... +%d more\\\\\\\", len(reasons) - 5)\\\\n\\\\n    return (\\\\n        [m for m, k in zip(models, keep) if k],\\\\n        dosages[keep],\\\\n        responses[keep],\\\\n        valid_mask[keep],\\\\n    )\\\\n\\\\n\\\\ndef build_oracle_exposure_global(dosages, n_items):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle exposure with global normalization: dosage/100.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    fracs = dosages.astype(float) / 100.0\\\\n    return np.outer(fracs, np.ones(n_items))\\\\n\\\\n\\\\ndef filter_by_dosage(models, dosages, benchmarks_data, target_dosages):\\\\n    keep = np.array([d in target_dosages for d in dosages])\\\\n    filt_models = [m for m, k in zip(models, keep) if k]\\\\n    filt_dosages = dosages[keep]\\\\n    filt_bench = {}\\\\n    for bench, bd in benchmarks_data.items():\\\\n        filt_bench[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": bd[\\\\\\\"responses\\\\\\\"][keep],\\\\n            \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n            \\\\\\\"valid_mask\\\\\\\": bd[\\\\\\\"valid_mask\\\\\\\"][keep],\\\\n        }\\\\n    return filt_models, filt_dosages, filt_bench\\\\n\\\\n\\\\ndef filter_by_scale(models, dosages, benchmarks_data, target_scales):\\\\n    keep = np.array([m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\") in target_scales for m in models])\\\\n    filt_models = [m for m, k in zip(models, keep) if k]\\\\n    filt_dosages = dosages[keep]\\\\n    filt_bench = {}\\\\n    for bench, bd in benchmarks_data.items():\\\\n        filt_bench[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": bd[\\\\\\\"responses\\\\\\\"][keep],\\\\n            \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n            \\\\\\\"valid_mask\\\\\\\": bd[\\\\\\\"valid_mask\\\\\\\"][keep],\\\\n        }\\\\n    return filt_models, filt_dosages, filt_bench\\\\n\\\\n\\\\ndef run_stratum_fit(stratum_name, models, dosages, bench_data, benchmark, args_dict):\\\\n    responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n    valid_mask = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n    n_items = bench_data[\\\\\\\"n_items\\\\\\\"]\\\\n\\\\n    models_f, dosages_f, responses_f, valid_f = apply_per_benchmark_exclusions(\\\\n        models, dosages, responses, valid_mask, benchmark\\\\n    )\\\\n\\\\n    if not valid_f.all():\\\\n        active = valid_f.astype(bool)\\\\n        models_f = [m for m, v in zip(models_f, active) if v]\\\\n        dosages_f = dosages_f[active]\\\\n        responses_f = responses_f[active]\\\\n\\\\n    n_models = len(models_f)\\\\n    original_n_items = n_items\\\\n    subsampled = False\\\\n    if n_items > MAX_ITEMS:\\\\n        np.random.seed(42)\\\\n        indices = np.random.choice(n_items, MAX_ITEMS, replace=False)\\\\n        indices.sort()\\\\n        responses_f = responses_f[:, indices]\\\\n        n_items = MAX_ITEMS\\\\n        subsampled = True\\\\n\\\\n    if n_models < 3:\\\\n        log.warning(\\\\\\\"[%s/%s] Too few models (%d), skipping\\\\\\\", stratum_name, benchmark, n_models)\\\\n        return None\\\\n\\\\n    unique_dosages = np.unique(dosages_f)\\\\n    has_dosage_variation = len(unique_dosages) > 1\\\\n\\\\n    exposure = build_oracle_exposure_global(dosages_f, n_items)\\\\n\\\\n    log.info(\\\\\\\"[%s/%s] %d models x %d items, dosages=%s\\\\\\\",\\\\n             stratum_name, benchmark, n_models, n_items, unique_dosages.tolist())\\\\n\\\\n    stan_data = prepare_stan_data(responses_f, exposure, MODEL_TYPE)\\\\n    fit, elapsed = fit_stan_model(\\\\n        STAN_FILE, stan_data,\\\\n        chains=args_dict[\\\\\\\"chains\\\\\\\"],\\\\n        iter_warmup=args_dict[\\\\\\\"warmup\\\\\\\"],\\\\n        iter_sampling=args_dict[\\\\\\\"samples\\\\\\\"],\\\\n        adapt_delta=args_dict[\\\\\\\"adapt_delta\\\\\\\"],\\\\n        max_treedepth=args_dict[\\\\\\\"max_treedepth\\\\\\\"],\\\\n        seed=args_dict[\\\\\\\"seed\\\\\\\"],\\\\n        parallel_chains=args_dict[\\\\\\\"parallel_chains\\\\\\\"],\\\\n    )\\\\n\\\\n    diagnostics = check_convergence(fit)\\\\n    ppc = posterior_predictive_check(fit, responses_f)\\\\n    results = extract_results(fit, responses_f, MODEL_TYPE)\\\\n\\\\n    return {\\\\n        \\\\\\\"stratum\\\\\\\": stratum_name,\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_models\\\\\\\": n_models,\\\\n        \\\\\\\"n_items\\\\\\\": n_items,\\\\n        \\\\\\\"original_n_items\\\\\\\": original_n_items,\\\\n        \\\\\\\"subsampled\\\\\\\": subsampled,\\\\n        \\\\\\\"unique_dosages\\\\\\\": unique_dosages.tolist(),\\\\n        \\\\\\\"has_dosage_variation\\\\\\\": has_dosage_variation,\\\\n        \\\\\\\"models\\\\\\\": [{\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"],\\\\n                     \\\\\\\"scale\\\\\\\": m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")} for m in models_f],\\\\n        \\\\\\\"dosages\\\\\\\": dosages_f.tolist(),\\\\n        \\\\\\\"fit_time_sec\\\\\\\": round(elapsed, 1),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "442e42c4-5397-4ba8-b8ee-d8baa8d53f9e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStratified IRT analysis: dose-response and model-size strata.\\\\n\\\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\\\n\\\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"]\\\\nSCALES = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\\\\\")\\\\n\\\\nMAX_ITEMS = 2000\\\\n\\\\nDOSAGE_GROUPS = {\\\\n    \\\\\\\"d000\\\\\\\": [0],\\\\n    \\\\\\\"d005\\\\\\\": [5],\\\\n    \\\\\\\"d025\\\\\\\": [25],\\\\n    \\\\\\\"d100\\\\\\\": [100],\\\\n}\\\\n\\\\nSCALE_GROUPS = {\\\\n    \\\\\\\"scale_0.5B\\\\\\\": [\\\\\\\"0.5B\\\\\\\"],\\\\n    \\\\\\\"scale_1.5B\\\\\\\": [\\\\\\\"1.5B\\\\\\\"],\\\\n    \\\\\\\"scale_3B\\\\\\\": [\\\\\\\"3B\\\\\\\"],\\\\n}\\\\n\\\\n\\\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\\\n    keep = np.ones(len(models), dtype=bool)\\\\n    reasons = []\\\\n\\\\n    for i, m in enumerate(models):\\\\n        dirname = m.get(\\\\\\\"dirname\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        scale = m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        dosage = m.get(\\\\\\\"dosage\\\\\\\", 0)\\\\n\\\\n        if \\\\\\\"base_pretrained\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D046/D047: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"DEPRECATED\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D018: {dirname}\\\\\\\")\\\\n            continue\\\\n        if \\\\\\\"0.5B\\\\\\\" in scale and benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D045: {dirname}\\\\\\\")\\\\n            continue\\\\n        if benchmark == \\\\\\\"gsm8k\\\\\\\" and dosage == 0:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D044: {dirname}\\\\\\\")\\\\n            continue\\\\n\\\\n    if reasons:\\\\n        log.info(\\\\\\\"Excluded from %s (%d):\\\\\\\", benchmark, len(reasons))\\\\n        for r in reasons[:5]:\\\\n            log.info(r)\\\\n        if len(reasons) > 5:\\\\n            log.info(\\\\\\\"  ... +%d more\\\\\\\", len(reasons) - 5)\\\\n\\\\n    return (\\\\n        [m for m, k in zip(models, keep) if k],\\\\n        dosages[keep],\\\\n        responses[keep],\\\\n        valid_mask[keep],\\\\n    )\\\\n\\\\n\\\\ndef build_oracle_exposure_global(dosages, n_items):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle exposure with global normalization: dosage/100.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    fracs = dosages.astype(float) / 100.0\\\\n    return np.outer(fracs, np.ones(n_items))\\\\n\\\\n\\\\ndef filter_by_dosage(models, dosages, benchmarks_data, target_dosages):\\\\n    keep = np.array([d in target_dosages for d in dosages])\\\\n    filt_models = [m for m, k in zip(models, keep) if k]\\\\n    filt_dosages = dosages[keep]\\\\n    filt_bench = {}\\\\n    for bench, bd in benchmarks_data.items():\\\\n        filt_bench[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": bd[\\\\\\\"responses\\\\\\\"][keep],\\\\n            \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n            \\\\\\\"valid_mask\\\\\\\": bd[\\\\\\\"valid_mask\\\\\\\"][keep],\\\\n        }\\\\n    return filt_models, filt_dosages, filt_bench\\\\n\\\\n\\\\ndef filter_by_scale(models, dosages, benchmarks_data, target_scales):\\\\n    keep = np.array([m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\") in target_scales for m in models])\\\\n    filt_models = [m for m, k in zip(models, keep) if k]\\\\n    filt_dosages = dosages[keep]\\\\n    filt_bench = {}\\\\n    for bench, bd in benchmarks_data.items():\\\\n        filt_bench[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": bd[\\\\\\\"responses\\\\\\\"][keep],\\\\n            \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n            \\\\\\\"valid_mask\\\\\\\": bd[\\\\\\\"valid_mask\\\\\\\"][keep],\\\\n        }\\\\n    return filt_models, filt_dosages, filt_bench\\\\n\\\\n\\\\ndef run_stratum_fit(stratum_name, models, dosages, bench_data, benchmark, args_dict):\\\\n    responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n    valid_mask = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n    n_items = bench_data[\\\\\\\"n_items\\\\\\\"]\\\\n\\\\n    models_f, dosages_f, responses_f, valid_f = apply_per_benchmark_exclusions(\\\\n        models, dosages, responses, valid_mask, benchmark\\\\n    )\\\\n\\\\n    if not valid_f.all():\\\\n        active = valid_f.astype(bool)\\\\n        models_f = [m for m, v in zip(models_f, active) if v]\\\\n        dosages_f = dosages_f[active]\\\\n        responses_f = responses_f[active]\\\\n\\\\n    n_models = len(models_f)\\\\n    original_n_items = n_items\\\\n    subsampled = False\\\\n    if n_items > MAX_ITEMS:\\\\n        np.random.seed(42)\\\\n        indices = np.random.choice(n_items, MAX_ITEMS, replace=False)\\\\n        indices.sort()\\\\n        responses_f = responses_f[:, indices]\\\\n        n_items = MAX_ITEMS\\\\n        subsampled = True\\\\n\\\\n    if n_models < 3:\\\\n        log.warning(\\\\\\\"[%s/%s] Too few models (%d), skipping\\\\\\\", stratum_name, benchmark, n_models)\\\\n        return None\\\\n\\\\n    unique_dosages = np.unique(dosages_f)\\\\n    has_dosage_variation = len(unique_dosages) > 1\\\\n\\\\n    exposure = build_oracle_exposure_global(dosages_f, n_items)\\\\n\\\\n    log.info(\\\\\\\"[%s/%s] %d models x %d items, dosages=%s\\\\\\\",\\\\n             stratum_name, benchmark, n_models, n_items, unique_dosages.tolist())\\\\n\\\\n    stan_data = prepare_stan_data(responses_f, exposure, MODEL_TYPE)\\\\n    fit, elapsed = fit_stan_model(\\\\n        STAN_FILE, stan_data,\\\\n        chains=args_dict[\\\\\\\"chains\\\\\\\"],\\\\n        iter_warmup=args_dict[\\\\\\\"warmup\\\\\\\"],\\\\n        iter_sampling=args_dict[\\\\\\\"samples\\\\\\\"],\\\\n        adapt_delta=args_dict[\\\\\\\"adapt_delta\\\\\\\"],\\\\n        max_treedepth=args_dict[\\\\\\\"max_treedepth\\\\\\\"],\\\\n        seed=args_dict[\\\\\\\"seed\\\\\\\"],\\\\n        parallel_chains=args_dict[\\\\\\\"parallel_chains\\\\\\\"],\\\\n    )\\\\n\\\\n    diagnostics = check_convergence(fit)\\\\n    ppc = posterior_predictive_check(fit, responses_f)\\\\n    results = extract_results(fit, responses_f, MODEL_TYPE)\\\\n\\\\n    return {\\\\n        \\\\\\\"stratum\\\\\\\": stratum_name,\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_models\\\\\\\": n_models,\\\\n        \\\\\\\"n_items\\\\\\\": n_items,\\\\n        \\\\\\\"original_n_items\\\\\\\": original_n_items,\\\\n        \\\\\\\"subsampled\\\\\\\": subsampled,\\\\n        \\\\\\\"unique_dosages\\\\\\\": unique_dosages.tolist(),\\\\n        \\\\\\\"has_dosage_variation\\\\\\\": has_dosage_variation,\\\\n        \\\\\\\"models\\\\\\\": [{\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"],\\\\n                     \\\\\\\"scale\\\\\\\": m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")} for m in models_f],\\\\n        \\\\\\\"dosages\\\\\\\": dosages_f.tolist(),\\\\n        \\\\\\\"fit_time_sec\\\\\\\": round(elapsed, 1),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nStratified IRT analysis: dose-response and model-size strata.\\n\\nScheme A: by dosage (d000/d005/d025/d100) — checks dose-response in gamma\\nScheme B: by model size (0.5B/1.5B/3B) — checks if gamma varies by capacity\\n\\nSame exclusion rules as pooled analysis (D044/D045/D046/D047/D018).\\nOracle dosage as exposure (dosage/100 global normalization). 2PL+gamma model.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"]\\nSCALES = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_stratified_irt\\\")\\n\\nMAX_ITEMS = 2000\\n\\nDOSAGE_GROUPS = {\\n    \\\"d000\\\": [0],\\n    \\\"d005\\\": [5],\\n    \\\"d025\\\": [25],\\n    \\\"d100\\\": [100],\\n}\\n\\nSCALE_GROUPS = {\\n    \\\"scale_0.5B\\\": [\\\"0.5B\\\"],\\n    \\\"scale_1.5B\\\": [\\\"1.5B\\\"],\\n    \\\"scale_3B\\\": [\\\"3B\\\"],\\n}\\n\\n\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\n    keep = np.ones(len(models), dtype=bool)\\n    reasons = []\\n\\n    for i, m in enumerate(models):\\n        dirname = m.get(\\\"dirname\\\", \\\"\\\")\\n        scale = m.get(\\\"scale\\\", \\\"\\\")\\n        dosage = m.get(\\\"dosage\\\", 0)\\n\\n        if \\\"base_pretrained\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D046/D047: {dirname}\\\")\\n            continue\\n        if \\\"DEPRECATED\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D018: {dirname}\\\")\\n            continue\\n        if \\\"0.5B\\\" in scale and benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n            keep[i] = False\\n            reasons.append(f\\\"  D045: {dirname}\\\")\\n            continue\\n        if benchmark == \\\"gsm8k\\\" and dosage == 0:\\n            keep[i] = False\\n            reasons.append(f\\\"  D044: {dirname}\\\")\\n            continue\\n\\n    if reasons:\\n        log.info(\\\"Excluded from %s (%d):\\\", benchmark, len(reasons))\\n        for r in reasons[:5]:\\n            log.info(r)\\n        if len(reasons) > 5:\\n            log.info(\\\"  ... +%d more\\\", len(reasons) - 5)\\n\\n    return (\\n        [m for m, k in zip(models, keep) if k],\\n        dosages[keep],\\n        responses[keep],\\n        valid_mask[keep],\\n    )\\n\\n\\ndef build_oracle_exposure_global(dosages, n_items):\\n    \\\"\\\"\\\"Oracle exposure with global normalization: dosage/100.\\\"\\\"\\\"\\n    fracs = dosages.astype(float) / 100.0\\n    return np.outer(fracs, np.ones(n_items))\\n\\n\\ndef filter_by_dosage(models, dosages, benchmarks_data, target_dosages):\\n    keep = np.array([d in target_dosages for d in dosages])\\n    filt_models = [m for m, k in zip(models, keep) if k]\\n    filt_dosages = dosages[keep]\\n    filt_bench = {}\\n    for bench, bd in benchmarks_data.items():\\n        filt_bench[bench] = {\\n            \\\"responses\\\": bd[\\\"responses\\\"][keep],\\n            \\\"n_items\\\": bd[\\\"n_items\\\"],\\n            \\\"valid_mask\\\": bd[\\\"valid_mask\\\"][keep],\\n        }\\n    return filt_models, filt_dosages, filt_bench\\n\\n\\ndef filter_by_scale(models, dosages, benchmarks_data, target_scales):\\n    keep = np.array([m.get(\\\"scale\\\", \\\"\\\") in target_scales for m in models])\\n    filt_models = [m for m, k in zip(models, keep) if k]\\n    filt_dosages = dosages[keep]\\n    filt_bench = {}\\n    for bench, bd in benchmarks_data.items():\\n        filt_bench[bench] = {\\n            \\\"responses\\\": bd[\\\"responses\\\"][keep],\\n            \\\"n_items\\\": bd[\\\"n_items\\\"],\\n            \\\"valid_mask\\\": bd[\\\"valid_mask\\\"][keep],\\n        }\\n    return filt_models, filt_dosages, filt_bench\\n\\n\\ndef run_stratum_fit(stratum_name, models, dosages, bench_data, benchmark, args_dict):\\n    responses = bench_data[\\\"responses\\\"]\\n    valid_mask = bench_data[\\\"valid_mask\\\"]\\n    n_items = bench_data[\\\"n_items\\\"]\\n\\n    models_f, dosages_f, responses_f, valid_f = apply_per_benchmark_exclusions(\\n        models, dosages, responses, valid_mask, benchmark\\n    )\\n\\n    if not valid_f.all():\\n        active = valid_f.astype(bool)\\n        models_f = [m for m, v in zip(models_f, active) if v]\\n        dosages_f = dosages_f[active]\\n        responses_f = responses_f[active]\\n\\n    n_models = len(models_f)\\n    original_n_items = n_items\\n    subsampled = False\\n    if n_items > MAX_ITEMS:\\n        np.random.seed(42)\\n        indices = np.random.choice(n_items, MAX_ITEMS, replace=False)\\n        indices.sort()\\n        responses_f = responses_f[:, indices]\\n        n_items = MAX_ITEMS\\n        subsampled = True\\n\\n    if n_models < 3:\\n        log.warning(\\\"[%s/%s] Too few models (%d), skipping\\\", stratum_name, benchmark, n_models)\\n        return None\\n\\n    unique_dosages = np.unique(dosages_f)\\n    has_dosage_variation = len(unique_dosages) > 1\\n\\n    exposure = build_oracle_exposure_global(dosages_f, n_items)\\n\\n    log.info(\\\"[%s/%s] %d models x %d items, dosages=%s\\\",\\n             stratum_name, benchmark, n_models, n_items, unique_dosages.tolist())\\n\\n    stan_data = prepare_stan_data(responses_f, exposure, MODEL_TYPE)\\n    fit, elapsed = fit_stan_model(\\n        STAN_FILE, stan_data,\\n        chains=args_dict[\\\"chains\\\"],\\n        iter_warmup=args_dict[\\\"warmup\\\"],\\n        iter_sampling=args_dict[\\\"samples\\\"],\\n        adapt_delta=args_dict[\\\"adapt_delta\\\"],\\n        max_treedepth=args_dict[\\\"max_treedepth\\\"],\\n        seed=args_dict[\\\"seed\\\"],\\n        parallel_chains=args_dict[\\\"parallel_chains\\\"],\\n    )\\n\\n    diagnostics = check_convergence(fit)\\n    ppc = posterior_predictive_check(fit, responses_f)\\n    results = extract_results(fit, responses_f, MODEL_TYPE)\\n\\n    return {\\n        \\\"stratum\\\": stratum_name,\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_models\\\": n_models,\\n        \\\"n_items\\\": n_items,\\n        \\\"original_n_items\\\": original_n_items,\\n        \\\"subsampled\\\": subsampled,\\n        \\\"unique_dosages\\\": unique_dosages.tolist(),\\n        \\\"has_dosage_variation\\\": has_dosage_variation,\\n        \\\"models\\\": [{\\\"dirname\\\": m[\\\"dirname\\\"], \\\"dosage\\\": m[\\\"dosage\\\"],\\n                     \\\"scale\\\": m.get(\\\"scale\\\", \\\"\\\")} for m in models_f],\\n        \\\"dosages\\\": dosages_f.tolist(),\\n        \\\"fit_time_sec\\\": round(elapsed, 1),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MC6yjdX5RFsQBoRAxNnD4F",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "tail -200 /root/contamcal-irt-calibration/exp006/run_stratified_irt.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "7f29c24f-74b0-45fe-baa1-22cf549e9764",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WBjfTdMrAUTtZmxRTMA2mk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2893,
+                "cache_read_input_tokens": 30161,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2893
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T14:02:26.048Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MC6yjdX5RFsQBoRAxNnD4F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                me = [m for m, v in zip(me, active) if v]\\\\n                re = re[active]\\\\n                de = de[active]\\\\n            nm = len(me)\\\\n            ni = min(bd[\\\\\\\"n_items\\\\\\\"], MAX_ITEMS)\\\\n            sub = f\\\\\\\" (subsampled from {bd['n_items']})\\\\\\\" if bd[\\\\\\\"n_items\\\\\\\"] > MAX_ITEMS else \\\\\\\"\\\\\\\"\\\\n            status = \\\\\\\"OK\\\\\\\" if nm >= 4 else (\\\\\\\"MARGINAL\\\\\\\" if nm >= 3 else \\\\\\\"SKIP\\\\\\\")\\\\n            print(f\\\\\\\"  {bench}: {nm} models x {ni} items{sub} [{status}]\\\\\\\")\\\\n            for m in me:\\\\n                print(f\\\\\\\"    {m['dirname']} (d{m['dosage']:03d}, {m.get('scale','')})\\\\\\\")\\\\n\\\\n    # Scheme B\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    for gname, target_s in SCALE_GROUPS.items():\\\\n        mf, df, bf = filter_by_scale(models, dosages, data[\\\\\\\"benchmarks\\\\\\\"], target_s)\\\\n        unique_df = np.unique(df)\\\\n        has_var = len(unique_df) > 1\\\\n        print(f\\\\\\\"\\\\\\\\n--- {gname} (N={len(mf)}, dosages={unique_df.tolist()}) ---\\\\\\\")\\\\n        print(f\\\\\\\"  Gamma identifiable: {'YES' if has_var else 'NO'}\\\\\\\")\\\\n        for bench in BENCHMARKS:\\\\n            if bench not in bf:\\\\n                print(f\\\\\\\"  {bench}: NOT AVAILABLE\\\\\\\")\\\\n                continue\\\\n            bd = bf[bench]\\\\n            me, de, re, ve = apply_per_benchmark_exclusions(\\\\n                mf, df, bd[\\\\\\\"responses\\\\\\\"], bd[\\\\\\\"valid_mask\\\\\\\"], bench\\\\n            )\\\\n            if not ve.all():\\\\n                active = ve.astype(bool)\\\\n                me = [m for m, v in zip(me, active) if v]\\\\n                de = de[active]\\\\n                re = re[active]\\\\n            nm = len(me)\\\\n            ni = min(bd[\\\\\\\"n_items\\\\\\\"], MAX_ITEMS)\\\\n            sub = f\\\\\\\" (subsampled from {bd['n_items']})\\\\\\\" if bd[\\\\\\\"n_items\\\\\\\"] > MAX_ITEMS else \\\\\\\"\\\\\\\"\\\\n            ud = np.unique(de).tolist() if nm > 0 else []\\\\n            status = \\\\\\\"OK\\\\\\\" if nm >= 4 else (\\\\\\\"MARGINAL\\\\\\\" if nm >= 3 else \\\\\\\"SKIP\\\\\\\")\\\\n            print(f\\\\\\\"  {bench}: {nm} models x {ni} items, dosages={ud}{sub} [{status}]\\\\\\\")\\\\n            for m in me:\\\\n                print(f\\\\\\\"    {m['dirname']} (d{m['dosage']:03d})\\\\\\\")\\\\n\\\\n    # Power assessment\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"IDENTIFIABILITY NOTE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Scheme A: Single-dosage strata have constant exposure across models.\\\\\\\")\\\\n    print(\\\\\\\"  d000: exposure=0 everywhere -> gamma unconstrained (prior only)\\\\\\\")\\\\n    print(\\\\\\\"  d005/d025/d100: exposure=constant -> gamma confounded with b_j\\\\\\\")\\\\n    print(\\\\\\\"  Interpretation: compare gamma posteriors across strata as\\\\\\\")\\\\n    print(\\\\\\\"  'how much does the model need gamma to explain response patterns'\\\\\\\")\\\\n    print(\\\\\\\"  rather than strict point-identification.\\\\\\\")\\\\n    print(\\\\\\\"Scheme B: Varying dosages within each scale -> gamma IS point-identified.\\\\\\\")\\\\n    print(\\\\\\\"  This is the primary analysis for dose-response signal.\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Stratified IRT analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--scheme\\\\\\\", choices=[\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"], default=\\\\\\\"both\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--parallel-chains\\\\\\\", type=int, default=1)\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    os.environ.setdefault(\\\\\\\"TMPDIR\\\\\\\", \\\\\\\"/home/ubuntu/tmp_cmdstan\\\\\\\")\\\\n    os.makedirs(os.environ[\\\\\\\"TMPDIR\\\\\\\"], exist_ok=True)\\\\n\\\\n    log.info(\\\\\\\"Loading pooled eval results...\\\\\\\")\\\\n    data = load_pooled_eval_results(\\\\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS,\\\\n        aligned_only=True, skip_para=True,\\\\n    )\\\\n    log.info(\\\\\\\"Loaded %d models, %d benchmarks\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), len(data[\\\\\\\"benchmarks\\\\\\\"]))\\\\n\\\\n    if args.dry_run:\\\\n        dry_run(data)\\\\n        return\\\\n\\\\n    args_dict = {\\\\n        \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 248 字符] ...\\\\n\\\\n    }\\\\n\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    all_results = {\\\\\\\"scheme_A\\\\\\\": {}, \\\\\\\"scheme_B\\\\\\\": {}}\\\\n    t0_total = time.time()\\\\n\\\\n    # Scheme A\\\\n    if args.scheme in (\\\\\\\"A\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME A: by Dosage\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_d in DOSAGE_GROUPS.items():\\\\n            mf, df, bf = filter_by_dosage(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_d\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"A_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_A\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_A\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    # Scheme B\\\\n    if args.scheme in (\\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_s in SCALE_GROUPS.items():\\\\n            mf, df, bf = filter_by_scale(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_s\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"B_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_B\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_B\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    elapsed_total = time.time() - t0_total\\\\n\\\\n    with open(OUTPUT_DIR / \\\\\\\"stratified_irt_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"STRATIFIED IRT RESULTS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"Total time: {elapsed_total:.0f}s\\\\\\\")\\\\n\\\\n    for scheme_key, scheme_label in [(\\\\\\\"scheme_A\\\\\\\", \\\\\\\"SCHEME A (by dosage)\\\\\\\"),\\\\n                                      (\\\\\\\"scheme_B\\\\\\\", \\\\\\\"SCHEME B (by model size)\\\\\\\")]:\\\\n        if not all_results[scheme_key]:\\\\n            continue\\\\n        print(f\\\\\\\"\\\\\\\\n{scheme_label}:\\\\\\\")\\\\n        for gname, gresults in all_results[scheme_key].items():\\\\n            print(f\\\\\\\"  {gname}:\\\\\\\")\\\\n            for bench, r in gresults.items():\\\\n                g = r[\\\\\\\"gamma\\\\\\\"]\\\\n                var = \\\\\\\"\\\\\\\" if r.get(\\\\\\\"has_dosage_variation\\\\\\\") else \\\\\\\" [CONST EXP]\\\\\\\"\\\\n                print(f\\\\\\\"    {bench}: gamma={g['mean']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\\\\\"\\\\n                      f\\\\\\\"N={r['n_models']}{var}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUTPUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "d7fb69f4-31f7-439f-844d-88ee0dd9afcd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                me = [m for m, v in zip(me, active) if v]\\\\n                re = re[active]\\\\n                de = de[active]\\\\n            nm = len(me)\\\\n            ni = min(bd[\\\\\\\"n_items\\\\\\\"], MAX_ITEMS)\\\\n            sub = f\\\\\\\" (subsampled from {bd['n_items']})\\\\\\\" if bd[\\\\\\\"n_items\\\\\\\"] > MAX_ITEMS else \\\\\\\"\\\\\\\"\\\\n            status = \\\\\\\"OK\\\\\\\" if nm >= 4 else (\\\\\\\"MARGINAL\\\\\\\" if nm >= 3 else \\\\\\\"SKIP\\\\\\\")\\\\n            print(f\\\\\\\"  {bench}: {nm} models x {ni} items{sub} [{status}]\\\\\\\")\\\\n            for m in me:\\\\n                print(f\\\\\\\"    {m['dirname']} (d{m['dosage']:03d}, {m.get('scale','')})\\\\\\\")\\\\n\\\\n    # Scheme B\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    for gname, target_s in SCALE_GROUPS.items():\\\\n        mf, df, bf = filter_by_scale(models, dosages, data[\\\\\\\"benchmarks\\\\\\\"], target_s)\\\\n        unique_df = np.unique(df)\\\\n        has_var = len(unique_df) > 1\\\\n        print(f\\\\\\\"\\\\\\\\n--- {gname} (N={len(mf)}, dosages={unique_df.tolist()}) ---\\\\\\\")\\\\n        print(f\\\\\\\"  Gamma identifiable: {'YES' if has_var else 'NO'}\\\\\\\")\\\\n        for bench in BENCHMARKS:\\\\n            if bench not in bf:\\\\n                print(f\\\\\\\"  {bench}: NOT AVAILABLE\\\\\\\")\\\\n                continue\\\\n            bd = bf[bench]\\\\n            me, de, re, ve = apply_per_benchmark_exclusions(\\\\n                mf, df, bd[\\\\\\\"responses\\\\\\\"], bd[\\\\\\\"valid_mask\\\\\\\"], bench\\\\n            )\\\\n            if not ve.all():\\\\n                active = ve.astype(bool)\\\\n                me = [m for m, v in zip(me, active) if v]\\\\n                de = de[active]\\\\n                re = re[active]\\\\n            nm = len(me)\\\\n            ni = min(bd[\\\\\\\"n_items\\\\\\\"], MAX_ITEMS)\\\\n            sub = f\\\\\\\" (subsampled from {bd['n_items']})\\\\\\\" if bd[\\\\\\\"n_items\\\\\\\"] > MAX_ITEMS else \\\\\\\"\\\\\\\"\\\\n            ud = np.unique(de).tolist() if nm > 0 else []\\\\n            status = \\\\\\\"OK\\\\\\\" if nm >= 4 else (\\\\\\\"MARGINAL\\\\\\\" if nm >= 3 else \\\\\\\"SKIP\\\\\\\")\\\\n            print(f\\\\\\\"  {bench}: {nm} models x {ni} items, dosages={ud}{sub} [{status}]\\\\\\\")\\\\n            for m in me:\\\\n                print(f\\\\\\\"    {m['dirname']} (d{m['dosage']:03d})\\\\\\\")\\\\n\\\\n    # Power assessment\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"IDENTIFIABILITY NOTE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Scheme A: Single-dosage strata have constant exposure across models.\\\\\\\")\\\\n    print(\\\\\\\"  d000: exposure=0 everywhere -> gamma unconstrained (prior only)\\\\\\\")\\\\n    print(\\\\\\\"  d005/d025/d100: exposure=constant -> gamma confounded with b_j\\\\\\\")\\\\n    print(\\\\\\\"  Interpretation: compare gamma posteriors across strata as\\\\\\\")\\\\n    print(\\\\\\\"  'how much does the model need gamma to explain response patterns'\\\\\\\")\\\\n    print(\\\\\\\"  rather than strict point-identification.\\\\\\\")\\\\n    print(\\\\\\\"Scheme B: Varying dosages within each scale -> gamma IS point-identified.\\\\\\\")\\\\n    print(\\\\\\\"  This is the primary analysis for dose-response signal.\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Stratified IRT analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--scheme\\\\\\\", choices=[\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"], default=\\\\\\\"both\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--parallel-chains\\\\\\\", type=int, default=1)\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    os.environ.setdefault(\\\\\\\"TMPDIR\\\\\\\", \\\\\\\"/home/ubuntu/tmp_cmdstan\\\\\\\")\\\\n    os.makedirs(os.environ[\\\\\\\"TMPDIR\\\\\\\"], exist_ok=True)\\\\n\\\\n    log.info(\\\\\\\"Loading pooled eval results...\\\\\\\")\\\\n    data = load_pooled_eval_results(\\\\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS,\\\\n        aligned_only=True, skip_para=True,\\\\n    )\\\\n    log.info(\\\\\\\"Loaded %d models, %d benchmarks\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), len(data[\\\\\\\"benchmarks\\\\\\\"]))\\\\n\\\\n    if args.dry_run:\\\\n        dry_run(data)\\\\n        return\\\\n\\\\n    args_dict = {\\\\n        \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 248 字符] ...\\\\n\\\\n    }\\\\n\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    all_results = {\\\\\\\"scheme_A\\\\\\\": {}, \\\\\\\"scheme_B\\\\\\\": {}}\\\\n    t0_total = time.time()\\\\n\\\\n    # Scheme A\\\\n    if args.scheme in (\\\\\\\"A\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME A: by Dosage\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_d in DOSAGE_GROUPS.items():\\\\n            mf, df, bf = filter_by_dosage(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_d\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"A_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_A\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_A\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    # Scheme B\\\\n    if args.scheme in (\\\\\\\"B\\\\\\\", \\\\\\\"both\\\\\\\"):\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"SCHEME B: by Model Size\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        for gname, target_s in SCALE_GROUPS.items():\\\\n            mf, df, bf = filter_by_scale(\\\\n                data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"], data[\\\\\\\"benchmarks\\\\\\\"], target_s\\\\n            )\\\\n            log.info(\\\\\\\"--- %s: %d models ---\\\\\\\", gname, len(mf))\\\\n            group_results = {}\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                if bench not in bf:\\\\n                    continue\\\\n                result = run_stratum_fit(\\\\n                    f\\\\\\\"B_{gname}\\\\\\\", mf, df, bf[bench], bench, args_dict\\\\n                )\\\\n                if result:\\\\n                    group_results[bench] = result\\\\n                    g = result[\\\\\\\"gamma\\\\\\\"]\\\\n                    d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n                    log.info(\\\\\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\\\\\",\\\\n                             gname, bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                             d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            all_results[\\\\\\\"scheme_B\\\\\\\"][gname] = group_results\\\\n            gdir = OUTPUT_DIR / \\\\\\\"scheme_B\\\\\\\" / gname\\\\n            gdir.mkdir(parents=True, exist_ok=True)\\\\n            for bench, result in group_results.items():\\\\n                with open(gdir / f\\\\\\\"{bench}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(result, f, indent=2)\\\\n\\\\n    elapsed_total = time.time() - t0_total\\\\n\\\\n    with open(OUTPUT_DIR / \\\\\\\"stratified_irt_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"STRATIFIED IRT RESULTS\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"Total time: {elapsed_total:.0f}s\\\\\\\")\\\\n\\\\n    for scheme_key, scheme_label in [(\\\\\\\"scheme_A\\\\\\\", \\\\\\\"SCHEME A (by dosage)\\\\\\\"),\\\\n                                      (\\\\\\\"scheme_B\\\\\\\", \\\\\\\"SCHEME B (by model size)\\\\\\\")]:\\\\n        if not all_results[scheme_key]:\\\\n            continue\\\\n        print(f\\\\\\\"\\\\\\\\n{scheme_label}:\\\\\\\")\\\\n        for gname, gresults in all_results[scheme_key].items():\\\\n            print(f\\\\\\\"  {gname}:\\\\\\\")\\\\n            for bench, r in gresults.items():\\\\n                g = r[\\\\\\\"gamma\\\\\\\"]\\\\n                var = \\\\\\\"\\\\\\\" if r.get(\\\\\\\"has_dosage_variation\\\\\\\") else \\\\\\\" [CONST EXP]\\\\\\\"\\\\n                print(f\\\\\\\"    {bench}: gamma={g['mean']:.4f} \\\\\\\"\\\\n                      f\\\\\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\\\\\"\\\\n                      f\\\\\\\"N={r['n_models']}{var}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUTPUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"                me = [m for m, v in zip(me, active) if v]\\n                re = re[active]\\n                de = de[active]\\n            nm = len(me)\\n            ni = min(bd[\\\"n_items\\\"], MAX_ITEMS)\\n            sub = f\\\" (subsampled from {bd['n_items']})\\\" if bd[\\\"n_items\\\"] > MAX_ITEMS else \\\"\\\"\\n            status = \\\"OK\\\" if nm >= 4 else (\\\"MARGINAL\\\" if nm >= 3 else \\\"SKIP\\\")\\n            print(f\\\"  {bench}: {nm} models x {ni} items{sub} [{status}]\\\")\\n            for m in me:\\n                print(f\\\"    {m['dirname']} (d{m['dosage']:03d}, {m.get('scale','')})\\\")\\n\\n    # Scheme B\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"SCHEME B: by Model Size\\\")\\n    print(\\\"=\\\" * 70)\\n    for gname, target_s in SCALE_GROUPS.items():\\n        mf, df, bf = filter_by_scale(models, dosages, data[\\\"benchmarks\\\"], target_s)\\n        unique_df = np.unique(df)\\n        has_var = len(unique_df) > 1\\n        print(f\\\"\\\\n--- {gname} (N={len(mf)}, dosages={unique_df.tolist()}) ---\\\")\\n        print(f\\\"  Gamma identifiable: {'YES' if has_var else 'NO'}\\\")\\n        for bench in BENCHMARKS:\\n            if bench not in bf:\\n                print(f\\\"  {bench}: NOT AVAILABLE\\\")\\n                continue\\n            bd = bf[bench]\\n            me, de, re, ve = apply_per_benchmark_exclusions(\\n                mf, df, bd[\\\"responses\\\"], bd[\\\"valid_mask\\\"], bench\\n            )\\n            if not ve.all():\\n                active = ve.astype(bool)\\n                me = [m for m, v in zip(me, active) if v]\\n                de = de[active]\\n                re = re[active]\\n            nm = len(me)\\n            ni = min(bd[\\\"n_items\\\"], MAX_ITEMS)\\n            sub = f\\\" (subsampled from {bd['n_items']})\\\" if bd[\\\"n_items\\\"] > MAX_ITEMS else \\\"\\\"\\n            ud = np.unique(de).tolist() if nm > 0 else []\\n            status = \\\"OK\\\" if nm >= 4 else (\\\"MARGINAL\\\" if nm >= 3 else \\\"SKIP\\\")\\n            print(f\\\"  {bench}: {nm} models x {ni} items, dosages={ud}{sub} [{status}]\\\")\\n            for m in me:\\n                print(f\\\"    {m['dirname']} (d{m['dosage']:03d})\\\")\\n\\n    # Power assessment\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"IDENTIFIABILITY NOTE\\\")\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Scheme A: Single-dosage strata have constant exposure across models.\\\")\\n    print(\\\"  d000: exposure=0 everywhere -> gamma unconstrained (prior only)\\\")\\n    print(\\\"  d005/d025/d100: exposure=constant -> gamma confounded with b_j\\\")\\n    print(\\\"  Interpretation: compare gamma posteriors across strata as\\\")\\n    print(\\\"  'how much does the model need gamma to explain response patterns'\\\")\\n    print(\\\"  rather than strict point-identification.\\\")\\n    print(\\\"Scheme B: Varying dosages within each scale -> gamma IS point-identified.\\\")\\n    print(\\\"  This is the primary analysis for dose-response signal.\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Stratified IRT analysis\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--scheme\\\", choices=[\\\"A\\\", \\\"B\\\", \\\"both\\\"], default=\\\"both\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1)\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    os.environ.setdefault(\\\"TMPDIR\\\", \\\"/home/ubuntu/tmp_cmdstan\\\")\\n    os.makedirs(os.environ[\\\"TMPDIR\\\"], exist_ok=True)\\n\\n    log.info(\\\"Loading pooled eval results...\\\")\\n    data = load_pooled_eval_results(\\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS,\\n        aligned_only=True, skip_para=True,\\n    )\\n    log.info(\\\"Loaded %d models, %d benchmarks\\\",\\n             len(data[\\\"models\\\"]), len(data[\\\"benchmarks\\\"]))\\n\\n    if args.dry_run:\\n        dry_run(data)\\n        return\\n\\n    args_dict = {\\n        \\\"\\n\\n... [截断: 输出过长，省略 248 字符] ...\\n\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    all_results = {\\\"scheme_A\\\": {}, \\\"scheme_B\\\": {}}\\n    t0_total = time.time()\\n\\n    # Scheme A\\n    if args.scheme in (\\\"A\\\", \\\"both\\\"):\\n        log.info(\\\"=\\\" * 60)\\n        log.info(\\\"SCHEME A: by Dosage\\\")\\n        log.info(\\\"=\\\" * 60)\\n\\n        for gname, target_d in DOSAGE_GROUPS.items():\\n            mf, df, bf = filter_by_dosage(\\n                data[\\\"models\\\"], data[\\\"dosages\\\"], data[\\\"benchmarks\\\"], target_d\\n            )\\n            log.info(\\\"--- %s: %d models ---\\\", gname, len(mf))\\n            group_results = {}\\n\\n            for bench in BENCHMARKS:\\n                if bench not in bf:\\n                    continue\\n                result = run_stratum_fit(\\n                    f\\\"A_{gname}\\\", mf, df, bf[bench], bench, args_dict\\n                )\\n                if result:\\n                    group_results[bench] = result\\n                    g = result[\\\"gamma\\\"]\\n                    d = result[\\\"diagnostics\\\"]\\n                    log.info(\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\",\\n                             gname, bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                             d.get(\\\"max_rhat\\\", 0), d.get(\\\"divergent_count\\\", 0))\\n\\n            all_results[\\\"scheme_A\\\"][gname] = group_results\\n            gdir = OUTPUT_DIR / \\\"scheme_A\\\" / gname\\n            gdir.mkdir(parents=True, exist_ok=True)\\n            for bench, result in group_results.items():\\n                with open(gdir / f\\\"{bench}_results.json\\\", \\\"w\\\") as f:\\n                    json.dump(result, f, indent=2)\\n\\n    # Scheme B\\n    if args.scheme in (\\\"B\\\", \\\"both\\\"):\\n        log.info(\\\"=\\\" * 60)\\n        log.info(\\\"SCHEME B: by Model Size\\\")\\n        log.info(\\\"=\\\" * 60)\\n\\n        for gname, target_s in SCALE_GROUPS.items():\\n            mf, df, bf = filter_by_scale(\\n                data[\\\"models\\\"], data[\\\"dosages\\\"], data[\\\"benchmarks\\\"], target_s\\n            )\\n            log.info(\\\"--- %s: %d models ---\\\", gname, len(mf))\\n            group_results = {}\\n\\n            for bench in BENCHMARKS:\\n                if bench not in bf:\\n                    continue\\n                result = run_stratum_fit(\\n                    f\\\"B_{gname}\\\", mf, df, bf[bench], bench, args_dict\\n                )\\n                if result:\\n                    group_results[bench] = result\\n                    g = result[\\\"gamma\\\"]\\n                    d = result[\\\"diagnostics\\\"]\\n                    log.info(\\\"[%s/%s] gamma=%.4f [%.4f, %.4f] rhat=%.4f div=%d\\\",\\n                             gname, bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                             d.get(\\\"max_rhat\\\", 0), d.get(\\\"divergent_count\\\", 0))\\n\\n            all_results[\\\"scheme_B\\\"][gname] = group_results\\n            gdir = OUTPUT_DIR / \\\"scheme_B\\\" / gname\\n            gdir.mkdir(parents=True, exist_ok=True)\\n            for bench, result in group_results.items():\\n                with open(gdir / f\\\"{bench}_results.json\\\", \\\"w\\\") as f:\\n                    json.dump(result, f, indent=2)\\n\\n    elapsed_total = time.time() - t0_total\\n\\n    with open(OUTPUT_DIR / \\\"stratified_irt_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"STRATIFIED IRT RESULTS\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"Total time: {elapsed_total:.0f}s\\\")\\n\\n    for scheme_key, scheme_label in [(\\\"scheme_A\\\", \\\"SCHEME A (by dosage)\\\"),\\n                                      (\\\"scheme_B\\\", \\\"SCHEME B (by model size)\\\")]:\\n        if not all_results[scheme_key]:\\n            continue\\n        print(f\\\"\\\\n{scheme_label}:\\\")\\n        for gname, gresults in all_results[scheme_key].items():\\n            print(f\\\"  {gname}:\\\")\\n            for bench, r in gresults.items():\\n                g = r[\\\"gamma\\\"]\\n                var = \\\"\\\" if r.get(\\\"has_dosage_variation\\\") else \\\" [CONST EXP]\\\"\\n                print(f\\\"    {bench}: gamma={g['mean']:.4f} \\\"\\n                      f\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\"\\n                      f\\\"N={r['n_models']}{var}\\\")\\n\\n    print(f\\\"\\\\nSaved to {OUTPUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script supports `--scheme B`. This is a CPU-based Stan/CmdStan task, not GPU. The GPUs are all busy but that doesn't matter for this task.\n\nLet me now launch Scheme B. The command is:\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && TMPDIR=/home/ubuntu/tmp_cmdstan python run_stratified_irt.py --scheme B 2>&1 | tee /root/autodl-tmp/exp006/stratified_irt_schemeB.log\n\n\n```\n\nThis will run 3 strata with up to 4 benchmarks each, so roughly 12 fits total, each taking 5-10 minutes for a total runtime of 60-120 minutes. Since that's too long for an SSH session, I'll wrap it with nohup to run it in the background and check on it periodically.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "1d46f5fa-9d1c-44f7-bc0d-f03016a053fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3cpX2N3UUDDniXATfBtSH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3473,
+                "cache_read_input_tokens": 33054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3473
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script confirmed: `--scheme B` is supported. This is a CPU-based CmdStan task (not GPU). Launching with nohup since it'll take 60-120 min."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "bf09f12f-a1e3-4d22-8f39-c541c4ba1229",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3cpX2N3UUDDniXATfBtSH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3473,
+                "cache_read_input_tokens": 33054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3473
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VBBngMaHRKHLKTTCxXipbA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c 'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \"PID=$!\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "bcbcd6e4-0067-473c-b96b-7a0a8f20f271",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V3cpX2N3UUDDniXATfBtSH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3473,
+                "cache_read_input_tokens": 33054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3473
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T14:03:09.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VBBngMaHRKHLKTTCxXipbA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c \\\\\\\\'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B\\\\\\\\' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=569344\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "b76dd8dc-c0dc-4c07-a823-e1bcb6570ab5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c \\\\\\\\'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B\\\\\\\\' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=569344\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c \\\\'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B\\\\' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=569344\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.38}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "It looks like the process started (PID=569344) but the command timed out because conda activation takes time. The important thing is that the PID is 569344 and it should be running in the background. Let me verify.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "eb296dbf-a467-4860-8df2-49d85c4cca7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhGfGYrAUszPoGFL1Rht4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 36527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process started (PID 569344). Let me verify it's running and check initial output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "707c81d2-4b69-4f12-92e2-321d602ab491",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhGfGYrAUszPoGFL1Rht4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 36527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WUhF7MhLAHQsdem88jHPBq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ps -p 569344 -o pid,stat,etime,cmd"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "9d3af247-6070-44e0-bbc7-2a7db618346a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhGfGYrAUszPoGFL1Rht4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 36527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RhEs7aT6VHqynVrH87qEmy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "tail -30 /root/autodl-tmp/exp006/stratified_irt_schemeB.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "d1c4bfa4-9df4-41b4-bf6f-fe826b1701e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhGfGYrAUszPoGFL1Rht4k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 761,
+                "cache_read_input_tokens": 36527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 761
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T14:03:14.661Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WUhF7MhLAHQsdem88jHPBq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n569344 S          00:36 bash -c mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c 'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "3c40daa4-1c2b-4f2d-9d0d-b290e9171933",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n569344 S          00:36 bash -c mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c 'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n569344 S          00:36 bash -c mkdir -p /root/autodl-tmp/exp006/results_stratified_irt /home/ubuntu/tmp_cmdstan && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp006 && nohup bash -c 'export TMPDIR=/home/ubuntu/tmp_cmdstan && python run_stratified_irt.py --scheme B' > /root/autodl-tmp/exp006/stratified_irt_schemeB.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T14:03:15.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RhEs7aT6VHqynVrH87qEmy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 22:02:41,139 [INFO] Found 4 model evaluations\\\\n2026-05-15 22:02:41,155 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\\\n2026-05-15 22:02:41,456 [INFO] Pool scale 3B: 4 models, dosages=[0, 0, 100, 100]\\\\n2026-05-15 22:02:41,456 [INFO] Loaded 18 models, 4 benchmarks\\\\n2026-05-15 22:02:41,456 [INFO] ============================================================\\\\n2026-05-15 22:02:41,456 [INFO] SCHEME B: by Model Size\\\\n2026-05-15 22:02:41,457 [INFO] ============================================================\\\\n2026-05-15 22:02:41,457 [INFO] --- scale_0.5B: 8 models ---\\\\n2026-05-15 22:02:41,457 [INFO] Excluded from mmlu (8):\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s42_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s42_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d025_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   ... +3 more\\\\n2026-05-15 22:02:41,458 [WARNING] [B_scale_0.5B/mmlu] Too few models (0), skipping\\\\n2026-05-15 22:02:41,458 [INFO] Excluded from gsm8k (2):\\\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s123_aligned\\\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s42_aligned\\\\n2026-05-15 22:02:41,458 [INFO] [B_scale_0.5B/gsm8k] 6 models x 1319 items, dosages=[5, 25, 100]\\\\n2026-05-15 22:02:41,458 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan\\\\n2026-05-15 22:02:41,492 [INFO] Fitting: 6 models x 1319 items, 4 chains x 1000 samples\\\\n2026-05-15 22:02:41,515 [INFO] CmdStan start processing\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\n\\\\rchain 3:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rchain 4:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\rchain 1:   5%|\\\\u001b[33m▌         \\\\u001b[0m| 100/2000 [00:12<03:53,  8.14it/s, (Warmup)]\\\\rchain 1:  10%|\\\\u001b[33m█         \\\\u001b[0m| 200/2000 [00:21<03:10,  9.43it/s, (Warmup)]\\\\rchain 1:  15%|\\\\u001b[33m█▌        \\\\u001b[0m| 300/2000 [00:30<02:42, 10.44it/s, (Warmup)]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "cabf5c3d-c592-47b6-8074-a710d2de7c4c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 22:02:41,139 [INFO] Found 4 model evaluations\\\\n2026-05-15 22:02:41,155 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\\\n2026-05-15 22:02:41,456 [INFO] Pool scale 3B: 4 models, dosages=[0, 0, 100, 100]\\\\n2026-05-15 22:02:41,456 [INFO] Loaded 18 models, 4 benchmarks\\\\n2026-05-15 22:02:41,456 [INFO] ============================================================\\\\n2026-05-15 22:02:41,456 [INFO] SCHEME B: by Model Size\\\\n2026-05-15 22:02:41,457 [INFO] ============================================================\\\\n2026-05-15 22:02:41,457 [INFO] --- scale_0.5B: 8 models ---\\\\n2026-05-15 22:02:41,457 [INFO] Excluded from mmlu (8):\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s42_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s42_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d025_s123_aligned\\\\n2026-05-15 22:02:41,457 [INFO]   ... +3 more\\\\n2026-05-15 22:02:41,458 [WARNING] [B_scale_0.5B/mmlu] Too few models (0), skipping\\\\n2026-05-15 22:02:41,458 [INFO] Excluded from gsm8k (2):\\\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s123_aligned\\\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s42_aligned\\\\n2026-05-15 22:02:41,458 [INFO] [B_scale_0.5B/gsm8k] 6 models x 1319 items, dosages=[5, 25, 100]\\\\n2026-05-15 22:02:41,458 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan\\\\n2026-05-15 22:02:41,492 [INFO] Fitting: 6 models x 1319 items, 4 chains x 1000 samples\\\\n2026-05-15 22:02:41,515 [INFO] CmdStan start processing\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\n\\\\rchain 3:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rchain 4:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\rchain 1:   5%|\\\\u001b[33m▌         \\\\u001b[0m| 100/2000 [00:12<03:53,  8.14it/s, (Warmup)]\\\\rchain 1:  10%|\\\\u001b[33m█         \\\\u001b[0m| 200/2000 [00:21<03:10,  9.43it/s, (Warmup)]\\\\rchain 1:  15%|\\\\u001b[33m█▌        \\\\u001b[0m| 300/2000 [00:30<02:42, 10.44it/s, (Warmup)]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 22:02:41,139 [INFO] Found 4 model evaluations\\n2026-05-15 22:02:41,155 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\n2026-05-15 22:02:41,456 [INFO] Pool scale 3B: 4 models, dosages=[0, 0, 100, 100]\\n2026-05-15 22:02:41,456 [INFO] Loaded 18 models, 4 benchmarks\\n2026-05-15 22:02:41,456 [INFO] ============================================================\\n2026-05-15 22:02:41,456 [INFO] SCHEME B: by Model Size\\n2026-05-15 22:02:41,457 [INFO] ============================================================\\n2026-05-15 22:02:41,457 [INFO] --- scale_0.5B: 8 models ---\\n2026-05-15 22:02:41,457 [INFO] Excluded from mmlu (8):\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s123_aligned\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d000_s42_aligned\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s123_aligned\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d005_s42_aligned\\n2026-05-15 22:02:41,457 [INFO]   D045: Qwen2.5-0.5B_d025_s123_aligned\\n2026-05-15 22:02:41,457 [INFO]   ... +3 more\\n2026-05-15 22:02:41,458 [WARNING] [B_scale_0.5B/mmlu] Too few models (0), skipping\\n2026-05-15 22:02:41,458 [INFO] Excluded from gsm8k (2):\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s123_aligned\\n2026-05-15 22:02:41,458 [INFO]   D044: Qwen2.5-0.5B_d000_s42_aligned\\n2026-05-15 22:02:41,458 [INFO] [B_scale_0.5B/gsm8k] 6 models x 1319 items, dosages=[5, 25, 100]\\n2026-05-15 22:02:41,458 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan\\n2026-05-15 22:02:41,492 [INFO] Fitting: 6 models x 1319 items, 4 chains x 1000 samples\\n2026-05-15 22:02:41,515 [INFO] CmdStan start processing\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\n\\rchain 3:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\n\\n\\n\\rchain 4:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\\rchain 1:   5%|\\u001b[33m▌         \\u001b[0m| 100/2000 [00:12<03:53,  8.14it/s, (Warmup)]\\rchain 1:  10%|\\u001b[33m█         \\u001b[0m| 200/2000 [00:21<03:10,  9.43it/s, (Warmup)]\\rchain 1:  15%|\\u001b[33m█▌        \\u001b[0m| 300/2000 [00:30<02:42, 10.44it/s, (Warmup)]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Running. First fit started: `scale_0.5B/gsm8k` (6 models × 1319 items). Note:\n- `mmlu` skipped for 0.5B (D045 exclusion removes all models)\n- `arc_challenge` will also be skipped for 0.5B (same D045 exclusion)\n- Chain 1 at ~10 it/s, so ~3 min per chain × 4 chains ≈ 12 min per fit\n\nExpected strata for Scheme B:\n- **scale_0.5B**: gsm8k, humaneval (2 fits)\n- **scale_1.5B**: mmlu, gsm8k, arc_challenge, humaneval (up to 4 fits, gsm8k depends on D044)\n- **scale_3B**: mmlu, gsm8k, arc_challenge, humaneval (up to 4 fits, gsm8k depends on D044)\n\nTotal ~6-10 fits. I'll poll in ~10 minutes to check progress."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "bbce20e5-0bec-44e2-a187-6c8a50e36b3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCGwFhCUkMi9u7chjhwh4Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 37288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2027
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V2sn9ara98nZoZx5Ga4tX1",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:TodoWrite",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "1a2d4497-f235-4b75-857a-421176af3cbb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCGwFhCUkMi9u7chjhwh4Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 37288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2027
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T14:03:28.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01V2sn9ara98nZoZx5Ga4tX1",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "TodoWrite"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "efb72da2-bfb5-4b33-bd6b-21a6d9e58eeb",
+            "tool_use_result": {
+              "matches": [
+                "TodoWrite"
+              ],
+              "query": "select:TodoWrite",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Sv41nuCm9bKdwbcA8FUvo",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Launch Scheme B stratified IRT analysis",
+                    "status": "completed",
+                    "activeForm": "Launching Scheme B stratified IRT analysis"
+                  },
+                  {
+                    "content": "Monitor progress and wait for completion (~60-120 min)",
+                    "status": "in_progress",
+                    "activeForm": "Monitoring Scheme B progress (PID 569344)"
+                  },
+                  {
+                    "content": "Collect and report results for all strata",
+                    "status": "pending",
+                    "activeForm": "Collecting and reporting Scheme B results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "abfc92dc-7834-479d-82e7-228fa66c951d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6VAa2Ef9LU5XmNa49NJ3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2717,
+                "cache_read_input_tokens": 39315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2717
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T14:03:33.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Sv41nuCm9bKdwbcA8FUvo",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "b3766b30-841e-459d-a31b-ada68b4b50a9",
+            "tool_use_result": {
+              "oldTodos": [],
+              "newTodos": [
+                {
+                  "content": "Launch Scheme B stratified IRT analysis",
+                  "status": "completed",
+                  "activeForm": "Launching Scheme B stratified IRT analysis"
+                },
+                {
+                  "content": "Monitor progress and wait for completion (~60-120 min)",
+                  "status": "in_progress",
+                  "activeForm": "Monitoring Scheme B progress (PID 569344)"
+                },
+                {
+                  "content": "Collect and report results for all strata",
+                  "status": "pending",
+                  "activeForm": "Collecting and reporting Scheme B results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process is running. First fit (`scale_0.5B/gsm8k`, 6 models × 1319 items) is in warmup. I'll check back in ~10 minutes when the first couple of fits should be done."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "0aaa22aa-6663-4b89-911b-715f9394ecdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFiYTn6X4MfbB34N5PECxr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 42032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 213
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QzyhkqVfmeyH2F8YEdUCiJ",
+              "name": "ScheduleWakeup",
+              "input": {
+                "delaySeconds": 270,
+                "reason": "First IRT fit should complete in ~12 min, checking at ~4.5 min for early progress",
+                "prompt": "## 任务：运行分层 IRT 分析 Scheme B（按 model size）\n\n### 背景\n分层 IRT 脚本已部署并通过 dry-run。Director 指示分层分析是最高优先级——决定核心 claim 是否成立。Scheme B（按 model size 分层）是主力分析。\n\n### 步骤\n\n1. **环境准备**\n   - 服务器: cqa1-21977\n   - `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - `export TMPDIR=/home/ubuntu/tmp_cmdstan && mkdir -p $TMPDIR`（CmdStan nproc limit workaround，必须设置）\n\n2. **运行 Scheme B**\n   - `cd /root/contamcal-irt-calibration/exp006 && TMPDIR=/home/ubuntu/tmp_cmdstan python run_stratified_irt.py --scheme B 2>&1 | tee /root/autodl-tmp/exp006/stratified_irt_schemeB.log`\n   - 如果脚本不支持 --scheme 参数，检查脚本的 CLI 接口并用正确参数运行\n   - 如果需要修改脚本使其只跑 Scheme B，直接编辑\n   - parallel_chains=1（已在脚本中设置）\n\n3. **预计运行时间**\n   - 3 个分层 × 3-4 个 benchmark = 9-12 个 IRT fits\n   - 每个 fit ~5-10 min（子采样 2000 items）\n   - 总计 ~60-120 min\n\n4. **收集结果（必须精确报告）**\n   每个分层（0.5B, 1.5B, 3B）的每个可用 benchmark：\n   - gamma: mean, sd, CI95 [q025, q975], 是否跨零\n   - diagnostics: rhat, ESS, divergences\n   - PPP\n   - N_models, N_items\n\n5. **核心问题（Director 最关心的）**\n   - 1.5B 的 gamma 在 GSM8K/HumanEval 上是否显著非零？（CI 不跨零）\n   - gamma 是否随 dosage 单调？（d100 > d025 > d005 > d000）\n   - 0.5B 和 3B 的 gamma 模式是否一致？\n   - 如果 d000 的 gamma ≈ 0 但 d100 的 gamma 显著非零，这是最强 claim 支撑\n\n6. **如果某个 fit 失败**\n   - 记录失败原因（convergence/data 不足/Stan 错误）\n   - 跳过继续下一个\n   - 不要因为一个失败而停止整个分析\n\n### 产出\n将完整结果表格写入 Worker 返回值。所有数字精确引用输出 JSON。突出 Director 最关心的问题答案。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "37d6ddb8-7efe-4f4d-99fd-02d421a68340",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFiYTn6X4MfbB34N5PECxr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 42032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 213
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T14:04:00.702Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QzyhkqVfmeyH2F8YEdUCiJ",
+              "type": "tool_result",
+              "content": "Next wakeup scheduled for 14:08:00 (in 239s)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "cc6ce054-2025-4b58-abc9-94c2094484b1",
+            "tool_use_result": {
+              "scheduledFor": 1778854080000,
+              "clampedDelaySeconds": 270,
+              "wasClamped": false
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheme B is running on cqa1-21977 (PID 569344). Currently fitting `scale_0.5B/gsm8k` (6 models × 1319 items, 4 chains). I'll check progress in ~4 minutes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "uuid": "10d77cae-e729-464e-9085-55e0c8873d61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MYaim12DdBnEFMHAp3KXo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1024,
+                "cache_read_input_tokens": 42245,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1024
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheme B is running on cqa1-21977 (PID 569344). Currently fitting `scale_0.5B/gsm8k` (6 models × 1319 items, 4 chains). I'll check progress in ~4 minutes."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 154960,
+            "duration_api_ms": 123175,
+            "num_turns": 19,
+            "stop_reason": "end_turn",
+            "session_id": "bf168477-2932-4f1b-9185-30e08c3ed2d0",
+            "total_cost_usd": 0.5292405,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 31428,
+              "cache_read_input_tokens": 463507,
+              "output_tokens": 3952,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31428,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 64,
+                  "cache_read_input_tokens": 42245,
+                  "cache_creation_input_tokens": 1024,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1024
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2062,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002157,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21,
+                "outputTokens": 3952,
+                "cacheReadInputTokens": 463507,
+                "cacheCreationInputTokens": 31428,
+                "webSearchRequests": 0,
+                "costUSD": 0.5270835,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9152f3b6-7506-4022-93ec-578a806a3f87"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-run-stratified-irt-schemeb.md"
+}

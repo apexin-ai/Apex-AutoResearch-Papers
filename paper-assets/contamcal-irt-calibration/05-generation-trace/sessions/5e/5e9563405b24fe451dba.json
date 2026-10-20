@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e9563405b24fe451dba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu check",
+  "task_key": "worker_infra_gpu-check_20260516T033703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check_20260516T033703_result.json",
+    "occurrence": 1,
+    "bytes": 2385,
+    "sha256": "091aa8378a4b1fbf9ad79b2b6910f7cb2b2c81971054ae2a2c25051e23665ee7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 (2026-05-16 11:37 UTC)\n\n### cuda:0 — IDLE\n- 显存: 0 MiB / 24564 MiB, 0% util\n- 无进程\n\n### cuda:1 — ACTIVE\n- 显存: 8985 MiB / 24564 MiB, 68% util\n- PID **676497** | tmux: `exp_001_eval_3B_d000_s42_a32_batch`\n- 命令: `evaluate.py` — Qwen2.5-3B_d000_s42 aligned eval (mmlu/gsm8k/arc/humaneval)\n- 进度: **GSM8K 52% (687/1319)**, ~1h28m elapsed, ETA ~1h25m\n- 注: 任务提到的 PID 676487 是 parent shell，676497 是实际 python 进程\n\n### cuda:2 — ACTIVE\n- 显存: 8985 MiB / 24564 MiB, 67% util\n- PID **679190** | tmux: `exp_001_eval_3B_d005_s42_a32_batch`\n- 命令: `evaluate.py` — Qwen2.5-3B_d005_s42 aligned eval (mmlu/gsm8k/arc/humaneval)\n- 进度: **GSM8K 43% (573/1319)**, ~1h14m elapsed, ETA ~1h40m\n- 注: 任务提到的 PID 679180 是 parent shell，679190 是实际 python 进程\n\n### cuda:3 — ACTIVE\n- 显存: 8985 MiB / 24564 MiB, 71% util\n- PID **687347** | tmux: `exp_001_eval_3B_d100_s42_a32_batch`\n- 命令: `evaluate.py` — Qwen2.5-3B_d100_a32_s42_v3 aligned eval (mmlu/gsm8k/arc/humaneval)\n- 进度: **GSM8K 15% (203/1319)**, ~25min elapsed, ETA ~2h18m\n- 注: 这是 batch 命令，aligned eval 完成后还会跑 para_aligned eval\n\n### cuda:4 — ACTIVE\n- 显存: 6873 MiB / 24564 MiB, 65% util\n- PID **689315** | tmux: `exp_002_signals_3B_v9`\n- 命令: `compute_signals.py` — Qwen2.5-3B_d100_a32_s123, signal **s4** (mmlu)\n- 进度: **Self-critique chunk [1000:2000] 16% (79/500)**, chunk 1 [0:1000] 已完成，共 3 chunks（14042 items）\n- 注: 这是 3B 信号任务，不是之前担心的未授权进程\n\n### cuda:5 — ACTIVE\n- 显存: 2187 MiB / 24564 MiB, 27% util\n- PID **687036** | tmux: `exp002_05B_s123_v2`\n- 命令: `compute_signals.py` — Qwen2.5-0.5B_d000_s123, signal **all** (mmlu)\n- 进度: **Self-critique chunk [2000:3000] 81% (405/500)**\n\n### 其他 tmux sessions（无 GPU 占用）\n- `exp_001_sft_0pct_05B` — May 12 创建的旧 SFT 任务，已完成，无 GPU 进程\n- `exp_001_eval_3B_d100_v2_para_aligned` — 空闲 shell（显示 AutoDL 欢迎页），无 GPU 进程\n\n### 总结\n- **cuda:0 空闲**，可用于新任务\n- cuda:1~3 跑 3B eval（d000/d005/d100），cuda:3 还需最久（~4.5h 含 para_aligned）\n- cuda:4 跑 3B d100_a32_s123 信号 s4\n- cuda:5 跑 0.5B d000_s123 信号 all，接近完成当前 chunk"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check.md"
+}

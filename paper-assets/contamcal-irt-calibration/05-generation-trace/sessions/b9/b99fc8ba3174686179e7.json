@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b99fc8ba3174686179e7",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778955801.md",
+  "task_key": "loop_16_1778955801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778955801.md",
+    "occurrence": 1,
+    "bytes": 4070,
+    "sha256": "e67c0f6f460e1b8d5360b711220cfec1bf397c2915bd94976eba3e7e74826137"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T18:16:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5（共 6 张 RTX 4090D），不可用其他设备\n- cuda:2 刚失败释放（exp_002_signals_3B_d000_s123_cuda2），重新提交前必须确认 GPU 状态正常（nvidia-smi 无残留进程）\n- EMNLP 2026 ARR May 25 截止（距今 9 天），数据冻结约 Day 5-7，所有实验优先级按此倒推\n- D108 措辞已降级为 \"domain heterogeneity evidence\"（非 \"proof\"），paper 中 MMLU domain gamma 相关 claim 不可用 \"significantly\" 除非有统计检验\n- PPP=0 的 domain gamma 结果只能基于 pattern/ranking claim，不能声称绝对值可信\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D\n- 工作目录：未在 registry 中记录（需 Worker SSH 确认，可能是 `/root/contamcal-irt-calibration` 或类似）\n- Python：aml-train 镜像 → `/root/miniconda3/bin/python`，conda base 环境\n- 活跃进程：\n  - signals_05B_s123_v2: PID 760236, cuda:1\n  - exp_001_eval_15B_instruct: PID 782625, cuda:5\n  - exp_001_eval_llama32_3B_d000_s42: PID 785949, cuda:4\n  - exp_006_mmlu_domain_gamma_n24_v4: PID 789935, CPU\n- Cron 活跃：exp_001_eval_15B_instruct, exp_001_eval_llama32_3B_d000_s42（reconcile 确认 still running）\n- 空闲 GPU：cuda:0, cuda:2, cuda:3\n\n### 3. 📊 当前状态\n刚收到 `exp_002_signals_3B_d000_s123_cuda2` 失败回调（\"process dead 5× with no sentinel/W&B\"）。已派 Worker `worker_diagnose_exp_002_signals_3B_d000_s123_cuda2_20260516T141348` 去 SSH 读日志诊断，**该 Worker 尚未回调**。\n\nRegistry 状态：\n- RUNNING (4)：signals_05B_s123_v2, eval_15B_instruct, eval_llama32_3B_d000_s42, mmlu_domain_gamma_n24_v4\n- PREPARING (21)：包括 signals_05B_s123_batch, exp006_pooled_rrf_irt_05b_15b_v2, eval_3B_d000_s42_a32_aligned, sft_3B_d000_v4, sft_3B_d000_s42, eval_3B_d005_s123, eval_3B_d025_s123 等\n- 刚失败 (1)：exp_002_signals_3B_d000_s123_cuda2（cuda:2 已释放）\n\n关键问题：**cuda:0, cuda:2, cuda:3 空闲 = 失职**。ROADMAP 说 cuda:0 应跑 signals_15B_s123_batch(d025)，cuda:2 应跑 signals_15B_d100_s123，但实际未在 RUNNING 列表中。\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读诊断结果 → update_registry(failure_reason=具体原因) → 决定是否重试（修复后重提交到 cuda:2）\n- cuda:0 空闲 → 应提交 signals_15B_s123_batch(d025)（ROADMAP 已规划）\n- cuda:2 确认正常 → 重提交 signals_3B_d000_s123 或分配给 signals_15B_d100_s123\n- cuda:3 空闲 → ROADMAP 说应跑 eval_3B_instruct_aligned_para，但该实验刚失败过，需确认修复\n- eval_15B_instruct (cuda:5) 完成 → 接 0.5B/1.5B-Instruct eval\n- eval_llama32_3B_d000_s42 (cuda:4) 完成 → Llama 后续 SFT pipeline\n- mmlu_domain_gamma_n24_v4 (CPU) 完成 → 确认 heterogeneity 是否 scale-dependent，更新 D108/D111\n- 3B s42 全部完成（d000✅ d005✅ d025✅ d100 需确认）→ RRF 聚合 → pooled IRT (N≥16+)\n\n### 5. 🎯 战略上下文\n- 核心方向：ContamCal = contamination-augmented IRT with per-benchmark γ_k，证明 domain heterogeneity（Simpson's paradox）\n- Critical path：3B s42 全齐 → RRF → pooled IRT (论文核心数字) | Llama 跨族验证 | MMLU domain N=24 确认\n- 决策链关键：D106(scope expansion加Llama) → D108(domain heterogeneity升级但措辞审慎) → D109(aggregate pooled confirms γ≈0) → D110(scale-stratified negative) → D111(STEM_Math方向反转,暂停) → D112(Medical PPP=1.0 misfit,排除)\n- 易错点：\n  - 大量实验以 \"process dead 5× with no sentinel/W&B\" 失败——很可能是启动命令问题（环境未激活、路径错误、缺 W&B init），不是 OOM。诊断 Worker 结果出来后才能确认模式\n  - ROADMAP GPU 表和实际 RUNNING 列表不一致——以 registry/cron 为 truth，ROADMAP 可能未及时更新\n  - 不要把 signals 实验和 eval 实验混淆：signals = 提取 contamination signals，eval = 跑模型生成答案后评估\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778955801.md"
+}

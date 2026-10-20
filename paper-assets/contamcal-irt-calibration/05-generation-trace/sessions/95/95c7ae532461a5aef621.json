@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95c7ae532461a5aef621",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft 15B d100 s123",
+  "task_key": "worker_analyze_exp_001_sft_15B_d100_s123_20260515T002854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_15B_d100_s123_20260515T002854_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "1a5600c99f62ed1a3bd97f3d05d612ac53b112cc89825ea18f343596b0b6bf1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-15b-d100-s123.md"
+}

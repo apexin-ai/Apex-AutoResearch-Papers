@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c379a1c29a80dfe91cc7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval qwen7b s42 cqa1 v2",
+  "task_key": "worker_diagnose_eval_qwen7b_s42_cqa1_v2_20260519T213133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_qwen7b_s42_cqa1_v2_20260519T213133_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "a968048e48536f2da57eac9bc6e4b5bef7ca40867dcbbdd37e930a221343b85e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：\n\n**误报。实验已正常完成。** 5 个 dosage 全部评估成功，`.done` sentinel 和完整结果文件均存在（完成时间 05:07 CST）。\n\ncron 误判原因：进程正常退出被视为\"死亡\"，且脚本不写 W&B metrics 导致 cron 二次判定失败。\n\n注意事项：\n- `/root/autodl-tmp` 磁盘 98% (仅剩 4.7G)，后续任务需清理空间\n- GPU 0 当前在跑 GSM8K eval (PID 285390)，是后续新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-qwen7b-s42-cqa1-v2.md"
+}

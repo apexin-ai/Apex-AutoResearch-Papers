@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "545bc7e3c90f43b6e34f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signal pipeline",
+  "task_key": "worker_code_exp-002-signal-pipeline_20260513T173246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002-signal-pipeline_20260513T173246_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "f0083b820da43b291794b8e363b716ba98ce62e5ef6d0ce6d3d87d8adb655f28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 个文件全部就位，编译和 `--help` 验证通过（torch 缺失仅因本地环境无 GPU 依赖，服务器上有）。\n\n产出清单：\n\n| 文件 | 功能 |\n|---|---|\n| `compute_signals.py` | 主入口，编排 4 个信号计算并输出合并 JSON |\n| `signal_embedding.py` | S1: sentence-transformers + FAISS 近重复检索，输出 max cosine sim |\n| `signal_minkpp.py` | S2: Min-K%++ MIA，target vs reference z-score 归一化 |\n| `signal_constat.py` | S3: ConStat 原始/改写准确率差（直接用 exp-001 结果，无需推理） |\n| `signal_selfcritique.py` | S4: 自我批判 YES/NO entropy，低 entropy = 高 memorization 嫌疑 |\n| `aggregate_rrf.py` | RRF 聚合 (k=60) + rank averaging + single-signal ablation + AUC matrix |\n| `run_exp002.sh` | 遍历全部 exp-001 checkpoint，`--phase signals/aggregate/all` |\n| `requirements.txt` | 额外依赖：faiss-gpu, sentence-transformers, scikit-learn |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signal-pipeline.md"
+}

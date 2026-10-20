@@ -1,0 +1,998 @@
+{
+  "schema_version": "1.0",
+  "id": "a0b44034488b23ada1c5",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "viz fig calibration fix",
+  "task_key": "worker_viz_fig_calibration_fix_20260516T214016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_viz_fig_calibration_fix_20260516T214016.jsonl",
+    "occurrence": 1,
+    "bytes": 34923,
+    "sha256": "65914fdab0e440873d85f2d66849addab4bbb73f53fe003c1ceaf0f01c5e0cde"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T21:42:28.924632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T21:42:28.924976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T21:42:28.925160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/ -name \"*fig_calibration*\" 2>/dev/null"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T21:42:28.925303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T21:42:28.925495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/ 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T21:42:28.925688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T21:42:28.925821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/artifacts/ 2>/dev/null"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T21:42:28.925944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T21:42:28.926073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/ -name \"*fig_calibration*\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T21:42:28.926189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T21:42:28.926300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/artifacts/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T21:42:28.926479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T21:42:28.926646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"domain_gamma_v3_补跑.log\\\\ndryrun_test\\\\nexp006_05B_v1.log\\\\nexp006_arc_nuts.log\\\\nexp006_gsm8k_nuts.log\\\\nexp006_sanity_300.log\\\\nfigures\\\\nfisher_info_heatmap\\\\nirt_stan_results\\\\nirt_stan_results_v2\\\\nmmlu_domain_gamma_n24.log\\\\nmmlu_domain_gamma_n24_v2.log\\\\nmmlu_domain_gamma_n24_v3.log\\\\npooled_4bench_irt.log\\\\npooled_4bench_irt_v2.log\\\\npooled_irt_05b_15b\\\\npooled_irt_2pl_gamma_mmlu_arc\\\\npooled_irt_2pl_gamma_n16_fixed\\\\npooled_irt_all_scales\\\\npooled_irt_rrf_05b_15b\\\\npooled_irt_rrf_n25_v2\\\\npooled_irt_vanilla_2pl_n16_fixed\\\\nresults\\\\nresults_05B\\\\nresults_05B_arc_delta\\\\nresults_05B_gsm8k\\\\nresults_05B_gsm8k_delta\\\\nresults_05B_sanity_300\\\\nresults_05B_v1\\\\nresults_cross_family_irt\\\\nresults_mmlu_domain_gamma\\\\nresults_mmlu_domain_gamma_n24\\\\nresults_mmlu_domain_gamma_n24_v3\\\\nresults_mmlu_domain_gamma_n24_v3_dryrun\\\\nresults_mmlu_domain_gamma_n24_v3_dryrun2\\\\nresults_pooled_4bench_aligned_2pl\\\\nresults_pooled_gsm8k_v1\\\\nresults_pooled_irt_qwen_n24\\\\nresults_pooled_n20\\\\nresults_pooled_n24\\\\nresults_pooled_s1only_arc\\\\nresults_pooled_s1only_gsm8k\\\\nresults_pooled_s1only_gsm8k_v2\\\\nresults_pooled_s1only_gsm8k_v2.log\\\\nresults_stratified_irt\\\\nscale_stratified_irt\\\\nstratified_irt_schemeB.log\\\\ntest_fix\\\\nwait_monitor.log\\\\nwatch_and_collect.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T21:42:28.926800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T21:42:28.926943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T21:42:28.927067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\npooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T21:42:28.927182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T21:42:28.927300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\npooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T21:42:28.927450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/results_pooled_n24/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T21:42:28.927568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/figures/"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T21:42:28.927684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T21:42:28.927802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ci_width_scaling.pdf\\\\nci_width_scaling.png\\\\nfisher_info_heatmap.pdf\\\\nfisher_info_heatmap.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T21:42:28.927927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T21:42:28.928264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"vanilla_2pl\\\\\\\",\\\\n    \\\\\\\"scales\\\\\\\": [\\\\n      \\\\\\\"0.5B\\\\\\\",\\\\n      \\\\\\\"1.5B\\\\\\\",\\\\n      \\\\\\\"3B\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"benchmarks\\\\\\\": [\\\\n      \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"gsm8k\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"exposure\\\\\\\": \\\\\\\"rrf_signal\\\\\\\",\\\\n    \\\\\\\"exclusions\\\\\\\": [\\\\n      \\\\\\\"D045_05B_mmlu_arc\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"stan_config\\\\\\\": {\\\\n      \\\\\\\"chains\\\\\\\": 4,\\\\n      \\\\\\\"warmup\\\\\\\": 1000,\\\\n      \\\\\\\"samples\\\\\\\": 1000,\\\\n      \\\\\\\"adapt_delta\\\\\\\": 0.95,\\\\n      \\\\\\\"max_treedepth\\\\\\\": 12,\\\\n      \\\\\\\"seed\\\\\\\": 42\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_benchmark\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"model_type\\\\\\\": \\\\\\\"vanilla_2pl\\\\\\\",\\\\n      \\\\\\\"exposure_source\\\\\\\": \\\\\\\"rrf_signal\\\\\\\",\\\\n      \\\\\\\"n_models\\\\\\\": 16,\\\\n      \\\\\\\"n_items\\\\\\\": 300,\\\\n      \\\\\\\"original_n_items\\\\\\\": 14042,\\\\n      \\\\\\\"subsampled\\\\\\\": true,\\\\n      \\\\\\\"models\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d000_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 0\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d000_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 0\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d005_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 5\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d005_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 5\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d025_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 25\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d025_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\n…[truncated 7912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T21:42:28.928487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T21:42:28.928817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_type\\\\\\\": \\\\\\\"2pl_gamma\\\\\\\",\\\\n    \\\\\\\"scales\\\\\\\": [\\\\n      \\\\\\\"0.5B\\\\\\\",\\\\n      \\\\\\\"1.5B\\\\\\\",\\\\n      \\\\\\\"3B\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"benchmarks\\\\\\\": [\\\\n      \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"gsm8k\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"exposure\\\\\\\": \\\\\\\"rrf_signal\\\\\\\",\\\\n    \\\\\\\"exclusions\\\\\\\": [\\\\n      \\\\\\\"D045_05B_mmlu_arc\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"stan_config\\\\\\\": {\\\\n      \\\\\\\"chains\\\\\\\": 4,\\\\n      \\\\\\\"warmup\\\\\\\": 1000,\\\\n      \\\\\\\"samples\\\\\\\": 1000,\\\\n      \\\\\\\"adapt_delta\\\\\\\": 0.95,\\\\n      \\\\\\\"max_treedepth\\\\\\\": 12,\\\\n      \\\\\\\"seed\\\\\\\": 42\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_benchmark\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"model_type\\\\\\\": \\\\\\\"2pl_gamma\\\\\\\",\\\\n      \\\\\\\"exposure_source\\\\\\\": \\\\\\\"rrf_signal\\\\\\\",\\\\n      \\\\\\\"n_models\\\\\\\": 16,\\\\n      \\\\\\\"n_items\\\\\\\": 300,\\\\n      \\\\\\\"original_n_items\\\\\\\": 14042,\\\\n      \\\\\\\"subsampled\\\\\\\": true,\\\\n      \\\\\\\"models\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d000_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 0\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d000_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 0\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d005_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 5\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d005_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 5\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d025_s123_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\": 25\\\\n        },\\\\n        {\\\\n          \\\\\\\"dirname\\\\\\\": \\\\\\\"Qwen2.5-1.5B_d025_s42_aligned\\\\\\\",\\\\n          \\\\\\\"scale\\\\\\\": \\\\\\\"1.5B\\\\\\\",\\\\n          \\\\\\\"dosage\\\\\\\":\n…[truncated 7951 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T21:42:28.928997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "python3 -c \"\nimport json\nv = json.load(open('/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json'))\ng = json.load(open('/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json'))\nfor b in ['mmlu','arc_challenge','gsm8k']:\n    vd = v['per_benchmark'][b]\n    gd = g['per_benchmark'][b]\n    print(f'{b}: raw_mae={vd[\\\"raw_mae\\\"]:.4f}, vanilla_cal_mae={vd[\\\"cal_mae\\\"]:.4f}, gamma_cal_mae={gd[\\\"cal_mae\\\"]:.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T21:42:28.929140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T21:42:28.929268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "python3 -c \"\nimport json\nv = json.load(open('/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json'))\ng = json.load(open('/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json'))\nfor b in ['mmlu','arc_challenge','gsm8k']:\n    vd = v['per_benchmark'][b]\n    gd = g['per_benchmark'][b]\n    print(f'{b}: raw_mae={vd[\\\"raw_mae\\\"]:.4f}, vanilla_cal_mae={vd[\\\"cal_mae\\\"]:.4f}, gamma_cal_mae={gd[\\\"cal_mae\\\"]:.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T21:42:28.929440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nv = json.load(open(\\\\\\\\'/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json\\\\\\\\'))\\\\\\\\ng = json.load(open(\\\\\\\\'/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json\\\\\\\\'))\\\\\\\\nfor b in [\\\\\\\\'mmlu\\\\\\\\',\\\\\\\\'arc_challenge\\\\\\\\',\\\\\\\\'gsm8k\\\\\\\\']:\\\\\\\\n    vd = v[\\\\\\\\'per_benchmark\\\\\\\\'][b]\\\\\\\\n    gd = g[\\\\\\\\'per_benchmark\\\\\\\\'][b]\\\\\\\\n    print(f\\\\\\\\'{b}: raw_mae={vd[\\\\\\\\\\\\\\\\\\\\\\\"raw_mae\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, vanilla_cal_mae={vd[\\\\\\\\\\\\\\\\\\\\\\\"cal_mae\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}, gamma_cal_mae={gd[\\\\\\\\\\\\\\\\\\\\\\\"cal_mae\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T21:42:28.929571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport json\nv = json.load(open('/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json'))\ng = json.load(open('/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json'))\nfor b in ['mmlu','arc_challenge','gsm8k']:\n    vd = v['per_benchmark'][b]\n    gd = g['per_benchmark'][b]\n    print(f'{b}: raw_mae={vd[\\\"raw_mae\\\"]:.4f}, vanilla_cal_mae={vd[\\\"cal_mae\\\"]:.4f}, gamma_cal_mae={gd[\\\"cal_mae\\\"]:.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T21:42:28.929706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mmlu: raw_mae=0.0155, vanilla_cal_mae=0.0068, gamma_cal_mae=0.0072\\\\narc_challenge: raw_mae=0.0338, vanilla_cal_mae=0.0158, gamma_cal_mae=0.0201\\\\ngsm8k: raw_mae=0.1694, vanilla_cal_mae=0.0063, gamma_cal_mae=0.0062\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T21:42:28.929849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/pooled_irt_all_scales/"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T21:42:28.929974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\npooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T21:42:28.930093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp006/ -name \"pooled_rrf_irt_results.json\""
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T21:42:28.930220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_all_scales/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/scale_stratified_irt/scale_0.5B/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/scale_stratified_irt/scale_1.5B/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/scale_stratified_irt/scale_3B/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/results_pooled_n20/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_rrf_n25_v2/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_mmlu_arc/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/results_pooled_irt_qwen_n24/pooled_rrf_irt_results.json\\\\n/root/autodl-tmp/exp006/results_cross_family_irt/pooled_rrf_irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T21:42:28.930385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport json\n# Check pooled_irt_all_scales (2pl_gamma with all scales)\ng = json.load(open('/root/autodl-tmp/exp006/pooled_irt_all_scales/pooled_rrf_irt_results.json'))\nprint('=== pooled_irt_all_scales ===')\nprint(f'model_type: {g[\\\"config\\\"][\\\"model_type\\\"]}')\nprint(f'scales: {g[\\\"config\\\"][\\\"scales\\\"]}')\nfor b in ['mmlu','arc_challenge','gsm8k']:\n    if b in g['per_benchmark']:\n        d = g['per_benchmark'][b]\n        print(f'{b}: N={d[\\\"n_models\\\"]}, raw_mae={d[\\\"raw_mae\\\"]:.4f}, cal_mae={d[\\\"cal_mae\\\"]:.4f}')\n\n# Check N=24 results\nprint()\nn24 = json.load(open('/root/autodl-tmp/exp006/results_pooled_irt_qwen_n24/pooled_rrf_irt_results.json'))\nprint('=== results_pooled_irt_qwen_n24 ===')\nprint(f'model_type: {n24[\\\"config\\\"][\\\"model_type\\\"]}')\nprint(f'scales: {n24[\\\"config\\\"][\\\"scales\\\"]}')\nfor b in ['mmlu','arc_challenge','gsm8k']:\n    if b in n24['per_benchmark']:\n        d = n24['per_benchmark'][b]\n        print(f'{b}: N={d[\\\"n_models\\\"]}, raw_mae={d[\\\"raw_mae\\\"]:.4f}, cal_mae={d[\\\"cal_mae\\\"]:.4f}')\n\"\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T21:42:28.930535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== pooled_irt_all_scales ===\\\\nmodel_type: 2pl_gamma\\\\nscales: ['0.5B', '1.5B', '3B']\\\\nmmlu: N=15, raw_mae=0.0157, cal_mae=0.0059\\\\narc_challenge: N=13, raw_mae=0.0335, cal_mae=0.0153\\\\ngsm8k: N=20, raw_mae=0.1630, cal_mae=0.0078\\\\n\\\\n=== results_pooled_irt_qwen_n24 ===\\\\nmodel_type: 2pl_gamma\\\\nscales: ['0.5B', '1.5B', 'Qwen2.5-3B']\\\\nmmlu: N=16, raw_mae=0.0155, cal_mae=0.0070\\\\narc_challenge: N=16, raw_mae=0.0338, cal_mae=0.0201\\\\ngsm8k: N=24, raw_mae=0.1694, cal_mae=0.0062\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T21:42:28.930681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python3 << 'PYTHON_SCRIPT'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Data from N=16 fixed pooled IRT results\n# vanilla_2pl vs 2pl_gamma, same models, same benchmarks\nbenchmarks = ['MMLU', 'ARC-C', 'GSM8K']\nraw_mae    = [0.0155, 0.0338, 0.1694]\nvanilla_mae = [0.0068, 0.0158, 0.0063]\ngamma_mae   = [0.0072, 0.0201, 0.0062]\n\nx = np.arange(len(benchmarks))\nwidth = 0.25\n\nfig, ax = plt.subplots(1, 1, figsize=(4.5, 3.2))\n\nbars_raw = ax.bar(x - width, raw_mae, width, label='Raw Scores', \n                  color='#888888', edgecolor='black', linewidth=0.5)\nbars_vanilla = ax.bar(x, vanilla_mae, width, label='Vanilla 2PL',\n                      color='#4878CF', edgecolor='black', linewidth=0.5)\nbars_gamma = ax.bar(x + width, gamma_mae, width, label=r'2PL+$\\gamma$',\n                    color='#E8853F', edgecolor='black', linewidth=0.5)\n\nax.set_ylabel('MAE (Mean Absolute Error)', fontsize=9)\nax.set_xlabel('Benchmark', fontsize=9)\nax.set_title('IRT-Based Calibration vs Raw Scores', fontsize=10, fontweight='bold')\nax.set_xticks(x)\nax.set_xticklabels(benchmarks, fontsize=9)\nax.legend(fontsize=8, loc='upper left', framealpha=0.9)\n\n# Add value labels on top of bars\ndef add_labels(bars, fontsize=7):\n    for bar in bars:\n        height = bar.get_height()\n        ax.annotate(f'{height:.3f}',\n                    xy=(bar.get_x() + bar.get_width() / 2, height),\n                    xytext=(0, 2),\n                    textcoords=\"offset points\",\n                    ha='center', va='bottom', fontsize=fontsize)\n\nadd_labels(bars_raw)\nadd_labels(bars_vanilla)\nadd_labels(bars_gamma)\n\nax.set_ylim(0, max(raw_mae) * 1.2)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\nax.tick_params(axis='both', which='major', labelsize=8)\nax.yaxis.grid(True, alpha=0.3, linestyle='--')\nax.set_axisbelow(True)\n\nplt.tight_layout()\n\n# Save\nimport os\nos.makedirs('/root/autodl-tmp/artifacts', exist_ok=True)\nplt.savefig('/root/autodl-tmp/artifacts/fig_calibration.pdf', bbox_inches='tight', dpi=300)\nplt.savefig('/root/autodl-tmp/artifacts/fig_calibration.png', bbox_inches='tight', dpi=300)\nprint(\"Saved fig_calibration.pdf and .png\")\n\n# Verify file sizes\nfor f in ['/root/autodl-tmp/artifacts/fig_calibration.pdf', '/root/autodl-tmp/artifacts/fig_calibration.png']:\n    sz = os.path.getsize(f)\n    print(f\"{f}: {sz} bytes\")\nPYTHON_SCRIPT\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T21:42:28.930829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved fig_calibration.pdf and .png\\\\n/root/autodl-tmp/artifacts/fig_calibration.pdf: 27513 bytes\\\\n/root/autodl-tmp/artifacts/fig_calibration.png: 95205 bytes\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T21:42:28.930968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__detect_image",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T21:42:28.931087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T21:42:28.931235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_calibration",
+              "type": "chart",
+              "description": "Paper Figure: IRT-Based Calibration vs Raw Scores. Panel (b) replacement showing three-bar comparison (raw / vanilla 2PL / 2PL+gamma) per benchmark. Demonstrates calibration improvement comes from IRT framework itself, not gamma parameter. N=16 pooled results.",
+              "project": "contamcal-irt-calibration",
+              "source_path": "/root/autodl-tmp/artifacts/fig_calibration.png",
+              "tags": "['paper', 'figure', 'calibration', 'IRT', 'MAE']"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T21:42:28.931388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/artifacts/fig_calibration.png\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T21:42:28.931523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "source /root/miniconda3/bin/activate && python3 -c \"\nimport base64\nwith open('/root/autodl-tmp/artifacts/fig_calibration.png', 'rb') as f:\n    data = base64.b64encode(f.read()).decode()\nprint(len(data))\n\"\n"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T21:42:28.931717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"126940\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T21:42:28.931913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_calibration",
+              "type": "chart",
+              "description": "Paper Figure: IRT-Based Calibration vs Raw Scores. Three-bar comparison (raw / vanilla 2PL / 2PL+gamma) per benchmark (MMLU, ARC-C, GSM8K). Shows calibration improvement comes from IRT framework itself, not gamma parameter. N=16 pooled results. Files at /root/autodl-tmp/artifacts/fig_calibration.{pdf,png} on cqa1-21977.",
+              "project": "contamcal-irt-calibration",
+              "content": "Figure: fig_calibration.pdf / fig_calibration.png\nLocation: cqa1-21977:/root/autodl-tmp/artifacts/\nData (N=16 pooled IRT, same respondent set):\n  MMLU:  raw_MAE=0.0155, vanilla_2PL=0.0068, 2PL+gamma=0.0072\n  ARC-C: raw_MAE=0.0338, vanilla_2PL=0.0158, 2PL+gamma=0.0201\n  GSM8K: raw_MAE=0.1694, vanilla_2PL=0.0063, 2PL+gamma=0.0062\n\nKey insight: vanilla 2PL ≈ 2PL+gamma across all benchmarks.\nCalibration improvement is from IRT ability estimation, not contamination-aware gamma.",
+              "content_filename": "fig_calibration_meta.txt",
+              "tags": "['paper', 'figure', 'calibration', 'IRT', 'MAE']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T21:42:28.932152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_9c50d5\\\", \\\"name\\\": \\\"fig_calibration\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Paper Figure: IRT-Based Calibration vs Raw Scores. Three-bar comparison (raw / vanilla 2PL / 2PL+gamma) per benchmark (MMLU, ARC-C, GSM8K). Shows calibration improvement comes from IRT framework itself, not gamma parameter. N=16 pooled results. Files at /root/autodl-tmp/artifacts/fig_calibration.{pdf,png} on cqa1-21977.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/chart/fig_calibration_meta.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T21:42:17.295752+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"calibration\\\", \\\"IRT\\\", \\\"MAE\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T21:42:28.932434+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**生成结果:**\n\n文件位置: `cqa1-21977:/root/autodl-tmp/artifacts/fig_calibration.{pdf,png}`\n\n**数据 (N=16, 同一批 respondents):**\n\n| Benchmark | Raw MAE | Vanilla 2PL | 2PL+γ |\n|-----------|---------|-------------|--------|\n| MMLU | 0.0155 | 0.0068 | 0.0072 |\n| ARC-C | 0.0338 | 0.0158 | 0.0201 |\n| GSM8K | 0.1694 | 0.0063 | 0.0062 |\n\n**图表特征:**\n- 三组并排条形图 (灰色=raw, 蓝色=vanilla 2PL, 橙色=2PL+γ)\n- 标题: \"IRT-Based Calibration vs Raw Scores\"\n- 每个 bar 顶部有数值标注\n- 无 PASS/FAIL 标签、无 D120 注释、无破折号\n- 专业学术风格，紧凑布局\n\n**Caption 建议:** Calibration improvement primarily comes from IRT ability estimation framework itself (raw → 2PL). The contamination-aware γ parameter provides diagnostic value for identifying domain-differential effects rather than improving calibration accuracy (vanilla 2PL ≈ 2PL+γ across all benchmarks)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_fig_calibration_fix_20260516T214016"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/viz-fig-calibration-fix.md"
+}

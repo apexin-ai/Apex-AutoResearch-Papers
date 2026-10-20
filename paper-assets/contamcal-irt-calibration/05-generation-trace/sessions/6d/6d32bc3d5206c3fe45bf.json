@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d32bc3d5206c3fe45bf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 3B v6",
+  "task_key": "worker_diagnose_exp_002_signals_3B_v6_20260515T204224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_3B_v6_20260515T204224_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "421be17fb6d7d3cdf2ade5625722618b606af686b141ff2c47890e2c060340c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断结论：\n\n**exp_002_signals_3B_v6 → failed（部分完成）**\n\n| 信号 | mmlu | gsm8k | arc_challenge |\n|------|------|-------|---------------|\n| s1_embedding | ✅ | ✅ | ✅ |\n| s2_minkpp | ✅ | ✅ | ✅ |\n| s3_constat | ❌ | ❌ | ❌ |\n\n**失败原因**：`s3_constat.py:50` 抛出 `ValueError: Item count mismatch: expected 1172, got 697`。constat 信号计算出的向量长度与预期 item 数不一致，是代码 bug。\n\n**已保存产出**（6 个文件）：`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/`\n\n**需要修复**：`s3_constat.py` 中向量长度与 item count 的不一致问题，然后重跑 s3。s1/s2 的产出可复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-3b-v6.md"
+}

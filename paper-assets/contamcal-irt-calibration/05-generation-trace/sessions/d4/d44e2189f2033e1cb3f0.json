@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44e2189f2033e1cb3f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 3B v4",
+  "task_key": "worker_diagnose_exp_002_signals_3B_v4_20260515T195359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_3B_v4_20260515T195359_result.json",
+    "occurrence": 1,
+    "bytes": 1926,
+    "sha256": "1a8513e9915332ce3505558a2a2b7a82f85bcfee00a3fcae44c95b727c351576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断报告如下：\n\n---\n\n## 诊断结果\n\n### v4 死因\n**EXIT_CODE=143 (SIGTERM)**，非 OOM/段错误。根因是 `run_batch.py` 的 bug：`--signal` 参数未正确传递给 `compute_signals.py` 子进程。11/12 combo 立即失败（rc=2, `error: --signal required`），d000_s42/mmlu 被 kill (rc=-15)。Batch report: **0/12 passed**。死亡时间 May 15 23:23 UTC。\n\n### 3B Signals 完成度 (12 combos: 4 dosages × 3 benchmarks)\n\n| Combo | Status | Notes |\n|-------|--------|-------|\n| d000/gsm8k | **COMPLETE** | signals_merged 存在 |\n| d000/arc | **COMPLETE** | signals_merged 存在 |\n| d005/arc | **COMPLETE** | signals_merged 存在 |\n| d025/gsm8k | **COMPLETE** | signals_merged 存在 |\n| d025/arc | **COMPLETE** | signals_merged 存在 |\n| d000/mmlu | IN PROGRESS | PID 617202, cuda:3, ~60min, has emb+minkpp |\n| d005/mmlu | IN PROGRESS | PID 622856, cuda:2, ~15min, has emb+minkpp |\n| d025/mmlu | IN PROGRESS | v5 on cuda:4 |\n| d100/mmlu | IN PROGRESS | PID 622558, cuda:4, ~15min, has emb+minkpp |\n| d005/gsm8k | **STALLED** | has emb+minkpp, NO selfcritique/merged, no active process |\n| d100/gsm8k | PENDING | v5 will cover |\n| d100/arc | PENDING | v5 will cover |\n\n**5/12 complete, 4/12 in progress, 1/12 stalled, 2/12 pending**\n\n### v5 状态\n**PID 623826 存活**，cuda:4。计划 4 tasks：d025_s42/mmlu (当前), d100_s42/{mmlu,gsm8k,arc}。跳过了已完成的 d025/{gsm8k,arc}。\n\n### cuda:3 状态\n**不空闲。** PID 617202（新 batch runner PID 617201 的子进程）正在 cuda:3 活跃计算 d000_s42/mmlu signals，占用 7526MiB。\n\n### 需要注意的问题\n1. **cuda:4 冲突**：PID 622558（独立 d100/mmlu）与 v5 子进程（PID 623837）共享 cuda:4，且 v5 后续也要做 d100/mmlu — 重复计算\n2. **d005/gsm8k 掉队**：有 embedding+minkpp 但无人计算 selfcritique，需要单独补跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-3b-v4.md"
+}

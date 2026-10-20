@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4aac0b943f93efec681",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k results gpu fill",
+  "task_key": "worker_ops_gsm8k_results_gpu_fill_20260514T190540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k_results_gpu_fill_20260514T190540_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "3831894d56d3df4c2665dd36e56cb6f6d7a0f66c4b5c2269d52955068b09390f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 子任务 A: exp_006_irt_05B_gsm8k — DONE/success\n\n| 指标 | 值 |\n|------|-----|\n| Joint gamma | 0.3463 (95% CI: [-0.65, 1.40], 不排除零) |\n| Joint 诊断 | Rhat=1.008, ESS=956, 0 divergences — **全部 OK** |\n| Per-bench 诊断 | Rhat=1.53, ESS=7 — **未收敛** |\n| 总时间 | 799s |\n\n**Baselines MAE (GSM8K)**:\n\n| 方法 | MAE |\n|------|-----|\n| B4_linear_regression | **0.0030** |\n| B0_raw / B1 / B5 | 0.0034 |\n| B3_vanilla_4pl | 0.0123 |\n| **IRT_4pl_gamma** | **0.0195** |\n| B6_dcr_fuzzy | 0.2634 |\n| B2_2pl_gamma | 0.3202 |\n\n### 子任务 B: GPU 填充\n\n| GPU | 任务 | 状态 | PID |\n|-----|------|------|-----|\n| cuda:0 | 3B d100 para aligned eval | RUNNING | 426813 |\n| cuda:1 | 1.5B d025 para aligned eval | RUNNING | 426474 |\n\n**额外发现**:\n- 1.5B d100 aligned 结果已存在 → 注册为 DONE（MMLU 0.593, GSM8K 0.650, ARC 0.769, HumanEval 50/164）\n- 1.5B d100 para aligned 也已存在\n- GPU 2 意外空闲（0 MiB），之前应跑 exp-002 signals — 可能需要检查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-results-gpu-fill.md"
+}

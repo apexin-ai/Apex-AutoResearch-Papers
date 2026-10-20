@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1a2d06d00ffef3c5889",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda4 conflict resolution",
+  "task_key": "worker_ops_cuda4-conflict-resolution_20260515T033317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda4-conflict-resolution_20260515T033317_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "b2b4c8363918896e54fb1307f82716239cbc4ceb74bfb4ccda3077a87da4463e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:4 已清理完毕。\n\n**结果汇总：**\n\n| PID | 任务 | 状态 | 显存 |\n|-----|------|------|------|\n| 493617 | exp_008_instruct_05B_eval | 运行中 ✓ | 3540MiB |\n| 494109 | exp_001_eval_05B_d000_s42_v2 | 运行中 ✓ | 3686MiB |\n| 493813 | exp_001_sft_05B_d025_s123 | **已 kill** | — |\n\ncuda:4 当前总占用 7240MiB / 24564MiB（29%），两个 eval 任务共存无压力。SFT 进程树（python + timeout + tmux session）已全部清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda4-conflict-resolution.md"
+}

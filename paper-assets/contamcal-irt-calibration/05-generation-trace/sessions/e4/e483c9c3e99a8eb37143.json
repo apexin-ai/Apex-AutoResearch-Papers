@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e483c9c3e99a8eb37143",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 3B d000 s123 cuda2",
+  "task_key": "worker_diagnose_exp_002_signals_3B_d000_s123_cuda2_20260516T141348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_3B_d000_s123_cuda2_20260516T141348_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "0d177bec04b9f2f4ed1c783397e9b0eb7d95af1ea4219c63516a4c138db5f74c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**这是一次误报（false positive）**，进程实际正常运行中。\n\n**根因**：提交时声明 cuda:2，但未显式设置 `CUDA_VISIBLE_DEVICES=2`，进程实际落在 GPU 0。日志写入 `/tmp/3B_d000_s123_signals.log`（不含 `_cuda2` 后缀），导致监控系统找不到期望的 sentinel 文件 → 5 次 poll 后自动标 failed。\n\n**当前进程状态**：PID 780943 在 GPU 0 正常运行，已完成 8/9 任务（s1/s2/s4 × mmlu/gsm8k/arc_challenge），正在处理最后的 s4_selfcritique_mmlu 分块。输出目录已有 9 个信号文件。\n\n**建议**：无需重提交，将实验状态从 failed 改为 running。这是又一次 C004 违规（声明 GPU 与实际不符）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-3b-d000-s123-cuda2.md"
+}

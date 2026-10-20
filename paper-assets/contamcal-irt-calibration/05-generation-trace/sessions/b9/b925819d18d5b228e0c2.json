@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b925819d18d5b228e0c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d084 kill orphan and submit signals",
+  "task_key": "worker_ops_d084-kill-orphan-and-submit-signals_20260515T231551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d084-kill-orphan-and-submit-signals_20260515T231551_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "252282b2623fa9756f38110a5d253dfb845f196132d8f0a9b4bc96f3a49a72dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 1. Orphan Kill\n**ALREADY_DEAD** — PID 630891 不存在，已自行退出。\n\n### 2. d025_v3 Checkpoint\n路径：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter/`\n- `adapter_model.safetensors` 存在，checkpoint 有效\n- 训练步数：checkpoint-3384\n\n### 3. d000 Ref 模型\n**d000_s42 已就绪**：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/adapter_model.safetensors`（可用作 ref）\n\n### 4. 阻塞：cuda:3 被占用\n\n**无法提交 signals 任务。** cuda:3 当前有活跃进程：\n\n| PID | 运行时间 | 任务 | 显存 |\n|-----|---------|------|------|\n| 654072 | ~1min | `compute_signals.py` d000_v2_s42 / s2 / gsm8k | 7820 MiB |\n\n这是另一个 signals 任务，不是残留进程。按 C001/C002 约束，不能在 GPU 有同类进程时提交新任务。\n\n**建议**：等 PID 654072 完成后再提交 d025_v3 signals 到 cuda:3。需要 Director 决定是等待还是换其他 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d084-kill-orphan-and-submit-signals.md"
+}

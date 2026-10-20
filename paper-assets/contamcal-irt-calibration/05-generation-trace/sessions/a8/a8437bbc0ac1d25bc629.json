@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8437bbc0ac1d25bc629",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops contam eval gpu2 wait",
+  "task_key": "worker_ops_contam_eval_gpu2_wait_20260514T011258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_contam_eval_gpu2_wait_20260514T011258_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "08b9af54f7d169fb9ecab8c4ae7e08022f3d77af6986b626417f05d8515fed33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个等待脚本已部署：\n\n| 实验 | GPU | 等待条件 | 守护 PID |\n|------|-----|---------|----------|\n| exp_001_eval_05B_d100 | cuda:2 | GPU 2 无进程 | 253234 |\n| exp_001_eval_05B_d005 | cuda:1 | PID 229375 结束 + >10GB 空闲 | 253447 |\n\nGPU 2 的 d000_s123 eval 还剩 ~11 min，GPU 1 的 d000_s42 eval 还剩 ~12.5 min。两个脚本会在对应 eval 完成后自动启动。4 分钟后回来确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-contam-eval-gpu2-wait.md"
+}

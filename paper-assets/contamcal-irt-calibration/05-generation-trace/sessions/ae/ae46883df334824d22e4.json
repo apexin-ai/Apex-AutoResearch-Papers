@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae46883df334824d22e4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda4 ready check",
+  "task_key": "worker_ops_cuda4-ready-check_20260514T090901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda4-ready-check_20260514T090901_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "89ba5dcfc09a01827182403472498e2cc48bfde373c445f51ffc2e4d1815f746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇报：**\n\n- **进程 271916**：已结束\n- **训练完成**：checkpoint-3177 存在（3177/3177 steps = 100%），lora_adapter 目录完整，包含 `adapter_model.safetensors`（~70MB）、tokenizer 文件、training_args 等，完成时间 16:44\n- **cuda:4**：已释放，0MiB 显存占用，0% 利用率，空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda4-ready-check.md"
+}

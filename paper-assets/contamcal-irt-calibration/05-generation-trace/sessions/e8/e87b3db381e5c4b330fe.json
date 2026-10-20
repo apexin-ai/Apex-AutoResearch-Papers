@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e87b3db381e5c4b330fe",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis paper data consistency audit",
+  "task_key": "worker_analysis_paper-data-consistency-audit_20260519T220906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-data-consistency-audit_20260519T220906_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "f7a263b33044a4593e5c65ee80537b20d320316f31f00805e9be1bbce5001fc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**Algorithm 1**: 代码与 artifacts 伪代码完全一致。论文版本将 `V-recovery-full` 合并为 `V-recovery`（5 patterns vs 代码 6 patterns），逻辑分支全部匹配，仅标签不同。需决定是否对齐。\n\n**Sensitivity**: **全部 6 处仍写 \"30 combinations\"，未更新为 180。** 涉及 method.tex、results.tex (Table 1 caption + 正文)、appendix.tex (描述 + Table caption + 数据行)。这是最大的遗留问题。\n\n**V-recovery 双种子**: method.tex 和 results.tex 已正确反映双种子。三个小问题：limitations.tex 段落标题仍为 \"Single seed.\"（内容已更新）、abstract 只提 partial rebound 未提 full、\"Triple-seed validation in progress\" 需确认是否过时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-data-consistency-audit.md"
+}

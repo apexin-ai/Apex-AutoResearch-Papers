@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de3670f4f6640fce1068",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 05B d000 s42 v5",
+  "task_key": "worker_analyze_exp_001_eval_05B_d000_s42_v5_20260514T073204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_05B_d000_s42_v5_20260514T073204_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "2406770c35a03206b38ac13c475219833a6f8be0bd33afb997c8d016498ffc3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果：\n\n## exp_001_eval_05B_d000_s42_v5 结果\n\n| Benchmark | s42 (本次) | s123 (已有) | Δ |\n|-----------|-----------|-------------|-----|\n| MMLU | **0.4049** | 0.4182 | -0.0133 |\n| GSM8K | **0.3647** | 0.3404 | +0.0243 |\n| ARC | **0.3780** | 0.3976 | -0.0196 |\n| HumanEval | **0.1098** | 0.1037 | +0.0061 |\n\n### 对比分析\n\n两个 seed 的 0.5B-d000 baseline 结果高度一致，最大差异在 GSM8K 上仅 2.4 个百分点，符合随机 seed 带来的正常波动。四个 benchmark 的差异方向各半（两升两降），无系统性偏移，说明 SFT pipeline 的 baseline 结果稳定可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-05b-d000-s42-v5.md"
+}

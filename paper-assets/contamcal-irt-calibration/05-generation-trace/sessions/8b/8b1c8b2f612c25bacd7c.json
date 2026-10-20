@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b1c8b2f612c25bacd7c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gemma2 d100 s123 exit",
+  "task_key": "worker_diagnose_gemma2-d100-s123-exit_20260520T051813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gemma2-d100-s123-exit_20260520T051813_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "b0c8f4348673fe5deaf98eb10558632425cf47b281a29d84173e5e19581df201"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：训练成功完成。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 246861 | 已退出（正常结束） |\n| 训练进度 | 4159/4159 steps, epoch=1.0 |\n| train_loss | 1.256 |\n| mean_token_accuracy | 0.7387 |\n| lora_alpha | 32（C006 合规） |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s123/lora_adapter/` (891MB, 含 adapter_model.safetensors + adapter_config.json + checkpoint-4159) |\n| .done 标记 | 存在 |\n\nRegistry 已更新：status=DONE, conclusion=success。\n\n**westd cuda:3 当前空闲（0% utilization, 0 MiB memory），可接新任务。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gemma2-d100-s123-exit.md"
+}

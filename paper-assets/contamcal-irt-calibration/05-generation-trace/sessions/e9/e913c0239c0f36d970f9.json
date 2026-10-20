@@ -1,0 +1,650 @@
+{
+  "schema_version": "1.0",
+  "id": "e913c0239c0f36d970f9",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "diagnose qwen14b gsm8k final",
+  "task_key": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_qwen14b-gsm8k-final_20260520T074816.jsonl",
+    "occurrence": 1,
+    "bytes": 25509,
+    "sha256": "904ab5787459cd2679635229689567d76119fb8d06b6de850760aa9486331599"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:49:48.179275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:49:48.179660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:49:48.179855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ps -p 294933 -o pid,cmd= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"EXITED\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:49:48.180000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:49:48.180130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "find /root/contamcal-irt-calibration/results -path \"*gsm8k*\" -name \"*.json\" 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:49:48.180255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:49:48.180400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -30 /root/contamcal-irt-calibration/gsm8k_qwen14b_s42.log 2>/dev/null"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:49:48.180561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:49:48.180712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ps -p 294933 -o pid,cmd="
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:49:48.180832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "find /root/contamcal-irt-calibration/results -path \"*gsm8k*\" -name \"*.json\""
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:49:48.180948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "tail -30 /root/contamcal-irt-calibration/gsm8k_qwen14b_s42.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:49:48.181086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:49:48.181246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123/correctness_matrix.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123/item_responses.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123/gsm8k_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123/correctness_matrix.json\\\\n/root/contamcal-irt-c\n…[truncated 1185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:49:48.181419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/contamcal-irt-calibration/gsm8k_qwen14b_s42.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:49:48.181566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s42/eval_results.json"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:49:48.181689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat /root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s42/eval_results.json"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:49:48.182097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen2.5-14B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6080363912054587,\\\\n      \\\\\\\"correct\\\\\\\": 802,\\\\n      \\\\\\\"total\\\\\\\": 1319,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 0,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"18\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"18\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 1,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"3\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"3\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 2,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"4\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"70000\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 3,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"540\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"540\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 4,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"20\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"20\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 5,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"16\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"64\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 6,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"100\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"260\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 7,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"120\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"160\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 8,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"45\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"45\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 9,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"460\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"460\\\\\\\"\\\\n        \n…[truncated 9399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T07:49:48.182569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen2.5-14B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.8127369219105383,\\\\n      \\\\\\\"correct\\\\\\\": 1072,\\\\n      \\\\\\\"total\\\\\\\": 1319,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 0,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"18\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"18\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 1,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"3\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"3\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 2,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"90000\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"70000\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 3,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"540\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"540\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 4,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"20\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"20\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 5,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"64\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"64\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 6,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"260\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"260\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 7,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"120\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"160\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 8,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"4\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"45\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 9,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"460\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"460\\\\\\\"\\\\n     \n…[truncated 9399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:49:48.182797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T07:49:48.182938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8408}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T07:49:48.183063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T07:49:48.183219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gsm8k_qwen14b_s42_westd\\\", \\\"experiment\\\": {\\\"created_at\\\": \\\"2026-05-19T22:46:14.050Z\\\", \\\"hypothesis\\\": \\\"GSM8K eval for Qwen-14B s42: test if U-collapse archetype (−9.37pp on MMLU) also collapses on GSM8K, or if cross-benchmark transfer is directionally different.\\\", \\\"notes\\\": \\\"Eval 进程 PID 294933 运行中 cuda:1。与 Gemma-2 同样的 cron 误报问题（eval 不产 W&B）。已移除 W&B cron，改用 session cron 监控。\\\", \\\"parent\\\": \\\"gsm8k_qwen7b_s42_cqa1\\\", \\\"retry_count\\\": 0, \\\"spec\\\": {\\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh\\\\\\\"\\\", \\\"data_count\\\": 2, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s42\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/gsm8k_qwen14b_s42_westd.log\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-14B\\\", \\\"pid\\\": \\\"289218\\\", \\\"seed\\\": 42, \\\"server\\\": \\\"westd-29999\\\"}, \\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:49:23.487Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3911}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:49:48.183387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T07:49:48.183520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8071}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T07:49:48.183646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "metrics",
+              "value": "{'d000_gsm8k_acc': 0.608, 'd100_gsm8k_acc': 0.8127, 'delta_pp': 20.47, 'd000_correct': 802, 'd100_correct': 1072, 'total': 1319}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T07:49:48.183816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gsm8k_qwen14b_s42_westd\\\", \\\"experiment\\\": {\\\"created_at\\\": \\\"2026-05-19T22:46:14.050Z\\\", \\\"hypothesis\\\": \\\"GSM8K eval for Qwen-14B s42: test if U-collapse archetype (−9.37pp on MMLU) also collapses on GSM8K, or if cross-benchmark transfer is directionally different.\\\", \\\"notes\\\": \\\"Eval 进程 PID 294933 运行中 cuda:1。与 Gemma-2 同样的 cron 误报问题（eval 不产 W&B）。已移除 W&B cron，改用 session cron 监控。\\\", \\\"parent\\\": \\\"gsm8k_qwen7b_s42_cqa1\\\", \\\"retry_count\\\": 0, \\\"spec\\\": {\\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh\\\\\\\"\\\", \\\"data_count\\\": 2, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s42\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/gsm8k_qwen14b_s42_westd.log\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-14B\\\", \\\"pid\\\": \\\"289218\\\", \\\"seed\\\": 42, \\\"server\\\": \\\"westd-29999\\\"}, \\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:49:29.577Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"d000_gsm8k_acc\\\": 0.608, \\\"d100_gsm8k_acc\\\": 0.8127, \\\"delta_pp\\\": 20.47, \\\"d000_correct\\\": 802, \\\"d100_correct\\\": 1072, \\\"total\\\": 1319}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3517}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T07:49:48.183956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "checkpoint_path",
+              "value": "/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d{000,100}_s42/",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T07:49:48.184119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gsm8k_qwen14b_s42_westd\\\", \\\"experiment\\\": {\\\"created_at\\\": \\\"2026-05-19T22:46:14.050Z\\\", \\\"hypothesis\\\": \\\"GSM8K eval for Qwen-14B s42: test if U-collapse archetype (−9.37pp on MMLU) also collapses on GSM8K, or if cross-benchmark transfer is directionally different.\\\", \\\"notes\\\": \\\"Eval 进程 PID 294933 运行中 cuda:1。与 Gemma-2 同样的 cron 误报问题（eval 不产 W&B）。已移除 W&B cron，改用 session cron 监控。\\\", \\\"parent\\\": \\\"gsm8k_qwen7b_s42_cqa1\\\", \\\"retry_count\\\": 0, \\\"spec\\\": {\\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh\\\\\\\"\\\", \\\"data_count\\\": 2, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s42\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/gsm8k_qwen14b_s42_westd.log\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-14B\\\", \\\"pid\\\": \\\"289218\\\", \\\"seed\\\": 42, \\\"server\\\": \\\"westd-29999\\\"}, \\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:49:34.929Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"d000_gsm8k_acc\\\": 0.608, \\\"d100_gsm8k_acc\\\": 0.8127, \\\"delta_pp\\\": 20.47, \\\"d000_correct\\\": 802, \\\"d100_correct\\\": 1072, \\\"total\\\": 1319}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d{000,100}_s42/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3321}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T07:49:48.184262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "gsm8k_qwen14b_s42_westd",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T07:49:48.184486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gsm8k_qwen14b_s42_westd\\\", \\\"experiment\\\": {\\\"created_at\\\": \\\"2026-05-19T22:46:14.050Z\\\", \\\"hypothesis\\\": \\\"GSM8K eval for Qwen-14B s42: test if U-collapse archetype (−9.37pp on MMLU) also collapses on GSM8K, or if cross-benchmark transfer is directionally different.\\\", \\\"notes\\\": \\\"Eval 进程 PID 294933 运行中 cuda:1。与 Gemma-2 同样的 cron 误报问题（eval 不产 W&B）。已移除 W&B cron，改用 session cron 监控。\\\", \\\"parent\\\": \\\"gsm8k_qwen7b_s42_cqa1\\\", \\\"retry_count\\\": 0, \\\"spec\\\": {\\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh\\\\\\\"\\\", \\\"data_count\\\": 2, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s42\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/gsm8k_qwen14b_s42_westd.log\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-14B\\\", \\\"pid\\\": \\\"289218\\\", \\\"seed\\\": 42, \\\"server\\\": \\\"westd-29999\\\"}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:49:39.289Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"d000_gsm8k_acc\\\": 0.608, \\\"d100_gsm8k_acc\\\": 0.8127, \\\"delta_pp\\\": 20.47, \\\"d000_correct\\\": 802, \\\"d100_correct\\\": 1072, \\\"total\\\": 1319}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d{000,100}_s42/\\\", \\\"completed_at\\\": \\\"2026-05-20T07:49:39.289Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.479}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T07:49:48.184711+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**Qwen-14B GSM8K eval 结果 (s42)**\n\n| Dosage | Accuracy | Correct/Total |\n|--------|----------|---------------|\n| d000 (clean) | **60.80%** | 802/1319 |\n| d100 (contaminated) | **81.27%** | 1072/1319 |\n| **Delta** | **+20.47pp** | +270 items |\n\n与 MMLU 上的 U-collapse（−9.37pp）不同，Qwen-14B 在 GSM8K 上呈现强正向 contamination effect：d100 比 d000 高 20.47pp，说明 contamination 在 generative math benchmark 上的迁移方向与 MCQ benchmark 截然相反。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_qwen14b-gsm8k-final_20260520T074816"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-qwen14b-gsm8k-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d423b3764d28556e2d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper writing conclusion abstract",
+  "task_key": "worker_paper_writing_conclusion_abstract_20260517T053019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_conclusion_abstract_20260517T053019_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "3dd03d2eac2ea6852d7b253f14201d63acef154204932952376441b5d37f2d1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Final quality check summary:\n\n- **Em-dash**: zero matches in both files\n- **-ing phrases**: zero problematic patterns\n- **Abstract**: 188 words (within 180-220)\n- **Conclusion**: 232 words (within 200-280)\n- **Key numbers present in abstract**: Math $\\gamma = +0.97$, Cohen's $d = -1.55$ to $-1.98$, $J \\geq 50$\n- **Narrative constraints**: diagnostic framing used throughout, \"dilution masking\" (not Simpson's Paradox), $\\gamma$ described as providing diagnosis (not calibration improvement), IRT credited for calibration separately, abbreviations defined (LLM, IRT)\n\nBoth files written to `artifacts/paper_draft/`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-conclusion-abstract.md"
+}

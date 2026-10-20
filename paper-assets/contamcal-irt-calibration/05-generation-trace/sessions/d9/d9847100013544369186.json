@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "d9847100013544369186",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "submit 1 5B d005 gpu5",
+  "task_key": "worker_submit_1_5B_d005_gpu5_20260514T005957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_5B_d005_gpu5_20260514T005957.log",
+    "occurrence": 1,
+    "bytes": 1057077,
+    "sha256": "55327ec91361e33efbaa40f9436c46feb8d89edb761b07ee1645454391bdcc27"
+  },
+  "statistics": {
+    "messages": 1163,
+    "user_turns": 0,
+    "tool_calls": 557,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 2,
+      "assistant": 38,
+      "tool_call": 557,
+      "tool_result": 557
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1163,
+      "chunks": [
+        {
+          "path": "d9847100013544369186-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9847100013544369186-part-0007.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-1-5b-d005-gpu5.md"
+}

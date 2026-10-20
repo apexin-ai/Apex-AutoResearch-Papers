@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cfc3a1744365c842813",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp006 fisher heatmap w4",
+  "task_key": "worker_exp006_fisher-heatmap-w4_20260516T195342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp006_fisher-heatmap-w4_20260516T195342_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "ea0006640c505f0eecd7a1bdafa8208c09595a0dcebc1f0cc0229c14ca12fdf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在跑 arc_N5。整个流程按顺序执行 18 个 conditions。基于第一个 condition 的 timing (189s)，总时间估算：\n\n- N=5: ~3 min × 3 benchmarks = 9 min\n- N=10: ~5 min × 3 = 15 min\n- N=16: ~8 min × 3 = 24 min\n- N=24: ~12 min × 3 = 36 min\n- N=30: ~15 min × 3 = 45 min\n- N=50: ~25 min × 3 = 75 min\n\n**总计约 3-3.5 小时**。\n\n汇报：\n\n| 项目 | 详情 |\n|------|------|\n| **PID** | 844715 |\n| **脚本** | `/root/contamcal-irt-calibration/exp006/run_fisher_heatmap.py` |\n| **Stan 模型** | `contam_irt_2pl_gamma.stan` (2PL+γ) |\n| **参数** | N∈{5,10,16,24,30,50} × 3 benchmarks × 200 reps = 3600 fits |\n| **并行** | 8 workers (ProcessPoolExecutor) |\n| **MCMC** | 2 chains × 300 warmup + 300 sampling |\n| **输出目录** | `/root/autodl-tmp/exp006/fisher_info_heatmap/` |\n| **日志** | `/root/autodl-tmp/logs/fisher_heatmap_w4.log` |\n| **预计完成** | ~3-3.5h (约 UTC 07:00-07:30) |\n\n**第一个完成的结果** (mmlu_N5): CI_width=0.2436, power=1.0, coverage=0.89, γ_bias=+0.03, 0 failures/200 reps。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp006-fisher-heatmap-w4.md"
+}

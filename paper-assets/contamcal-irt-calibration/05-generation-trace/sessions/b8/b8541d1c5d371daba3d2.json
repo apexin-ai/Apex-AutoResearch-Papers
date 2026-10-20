@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8541d1c5d371daba3d2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops raw ssh output",
+  "task_key": "worker_ops_raw-ssh-output_20260516T182251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_raw-ssh-output_20260516T182251_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "287ba519c46dc5e97833acf21ee483a03f828b594525ef3b0952dbd122a5a367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n0, 8081 MiB, 74 %\n1, 569 MiB, 9 %\n2, 595 MiB, 0 %\n3, 8313 MiB, 76 %\n4, 0 MiB, 0 %\n5, 6505 MiB, 0 %\nNO_RESULTS_DIR\n2\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md0        169G  135G   35G  80% /root/autodl-tmp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-raw-ssh-output.md"
+}

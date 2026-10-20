@@ -1,0 +1,1913 @@
+{
+  "schema_version": "1.0",
+  "id": "7f685f01072abc9ec787",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "infra gpu diagnostic",
+  "task_key": "worker_infra_gpu-diagnostic_20260516T171928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-diagnostic_20260516T171928.log",
+    "occurrence": 1,
+    "bytes": 140901,
+    "sha256": "dab9a1332d00147bebd753422c03a9c7afe79e00535b167830a6969c03709999"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 16,
+      "tool_result": 16,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d88a03d4-7923-4b58-b93c-653c557bcd3c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778959200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "26ea65a4-1425-400f-b4a8-f4970ff52802",
+                "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to diagnose GPU status on server cqa1-21977 and check registry entries. I need to:\n1. SSH to the server and run nvidia-smi\n2. Check specific PIDs\n3. Determine what's on each GPU\n4. Check registry for missing fields\n\nLet me start by loading the necessary MCP tools.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "34ec5d2a-0ddf-4a05-944a-d84b85729be9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Za1kjDqYoTe29dXQbAqBz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12841,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12841
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HAHEofCTeJGcKts4ZCVxaY",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "d03bf118-d07d-4221-a657-05689cb6c1c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Za1kjDqYoTe29dXQbAqBz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12841,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12841
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T17:19:39.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HAHEofCTeJGcKts4ZCVxaY",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "7f6e68d6-1b42-451c-8812-6dda56f0a58e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me run nvidia-smi and check the PIDs in parallel.",
+              "signature": "EvQBClkIDRgCKkCTd7I7uH+pQiPIqo8teObgvVHGKYj+3hEsJAqHHuXODSljmNto9CwP1t4knZwWr6fVxg90f5NklQg5HKxmIaq+Mg9jbGF1ZGUtb3B1cy00LTY4ABIM9DHEt0NNmNple6Y1GgyzFaHnycopAR0f0KUiMBSGRn7XwOoIEms5S1jMla6jGaJKxcYJi/lUrqsA5v4qYHdlwfGeVYq8k1ADawWbSSpJH7bViNILk8YGnInt5Ws2Zs+Bdaa5HKythCkPf32T704ueGfLJEUPfUmtDGw+Ui0KNXjEQIXljnogy6VSXzbPPMWbvmhZdGeVWxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "77d229fa-0ee3-4a8a-8e24-7bf2c15d643f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oW77jgF7vrjdDBUAKdWZG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 24682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFJpsFzwJczYYKGKjddK5n",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "nvidia-smi"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "ed39af28-93cb-4dd6-bd62-828133e22bd2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oW77jgF7vrjdDBUAKdWZG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 24682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01122KjmWVNjb5DjzbdUzkiJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ps aux | grep -E \"807025|815287|818742|801761|804565|804786\" | grep -v grep"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "9953881f-7696-4ad9-9a43-71a44d4fc2b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oW77jgF7vrjdDBUAKdWZG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 24682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EAqbeNYmxiaxFmX5RotYX6",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "ecfd63b4-fbcc-4497-9d86-f6dc4ee2ce82",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016oW77jgF7vrjdDBUAKdWZG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 24682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T17:19:45.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JFJpsFzwJczYYKGKjddK5n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 01:19:45 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\\\n| 44%   61C    P2            382W /  425W |   16261MiB /  24564MiB |     98%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\\\n| 33%   52C    P2            228W /  425W |    6913MiB /  24564MiB |     80%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\\\n| 30%   30C    P8             24W /  425W |     595MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\\\n| 85%   68C    P2            361W /  425W |   17857MiB /  24564MiB |    100%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   4  NVIDIA GeForce RTX 4090 D      On  |   00000000:A8:00.0 Off |                  Off |\\\\n| 30%   46C    P2            122W /  425W |    3561MiB /  24564MiB |     45%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   5  NVIDIA GeForce RTX 4090 D      On  |   00000000:B8:00.0 Off |                  Off |\\\\n| 84%   62C    P2            345W /  425W |   20589MiB /  24564MiB |     86%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          804570      C   python                                16252MiB |\\\\n|    1   N/A  N/A          807025      C   python                                 6904MiB |\\\\n|    2   N/A  N/A          815287      C   python                                  586MiB |\\\\n|    3   N/A  N/A          801766      C   python                                17848MiB |\\\\n|    4   N/A  N/A          810809      C   python                                 3552MiB |\\\\n|    5   N/A  N/A          804791      C   python                                20580MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "04e6f9f9-78bd-4362-99de-cc5b558b5781",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 01:19:45 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\\\n| 44%   61C    P2            382W /  425W |   16261MiB /  24564MiB |     98%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\\\n| 33%   52C    P2            228W /  425W |    6913MiB /  24564MiB |     80%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\\\n| 30%   30C    P8             24W /  425W |     595MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\\\n| 85%   68C    P2            361W /  425W |   17857MiB /  24564MiB |    100%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   4  NVIDIA GeForce RTX 4090 D      On  |   00000000:A8:00.0 Off |                  Off |\\\\n| 30%   46C    P2            122W /  425W |    3561MiB /  24564MiB |     45%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   5  NVIDIA GeForce RTX 4090 D      On  |   00000000:B8:00.0 Off |                  Off |\\\\n| 84%   62C    P2            345W /  425W |   20589MiB /  24564MiB |     86%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          804570      C   python                                16252MiB |\\\\n|    1   N/A  N/A          807025      C   python                                 6904MiB |\\\\n|    2   N/A  N/A          815287      C   python                                  586MiB |\\\\n|    3   N/A  N/A          801766      C   python                                17848MiB |\\\\n|    4   N/A  N/A          810809      C   python                                 3552MiB |\\\\n|    5   N/A  N/A          804791      C   python                                20580MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 01:19:45 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 44%   61C    P2            382W /  425W |   16261MiB /  24564MiB |     98%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\n| 33%   52C    P2            228W /  425W |    6913MiB /  24564MiB |     80%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   30C    P8             24W /  425W |     595MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\n| 85%   68C    P2            361W /  425W |   17857MiB /  24564MiB |    100%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   4  NVIDIA GeForce RTX 4090 D      On  |   00000000:A8:00.0 Off |                  Off |\\n| 30%   46C    P2            122W /  425W |    3561MiB /  24564MiB |     45%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   5  NVIDIA GeForce RTX 4090 D      On  |   00000000:B8:00.0 Off |                  Off |\\n| 84%   62C    P2            345W /  425W |   20589MiB /  24564MiB |     86%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          804570      C   python                                16252MiB |\\n|    1   N/A  N/A          807025      C   python                                 6904MiB |\\n|    2   N/A  N/A          815287      C   python                                  586MiB |\\n|    3   N/A  N/A          801766      C   python                                17848MiB |\\n|    4   N/A  N/A          810809      C   python                                 3552MiB |\\n|    5   N/A  N/A          804791      C   python                                20580MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T17:19:45.860Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01122KjmWVNjb5DjzbdUzkiJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "4700f438-0e37-4f07-bef8-069cb160f5ed",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T17:19:47.059Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EAqbeNYmxiaxFmX5RotYX6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_002_signals_15B_instruct_gsm8k\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:31:56.418Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:32:20.258Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"gsm8k (1319 items)\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\\\"}}, \\\"exp_001_sft_llama32_3B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:31:33.384Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:13:09.369Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": 804786, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:32.846Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d005_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:31:30.450Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:13:06.775Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 804565, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:29.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 2706, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:37:57.223Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:38:08.774Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 807025, \\\"data_path\\\": \\\"Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Llama-3.2-3B_d000_s42\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d025_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:07:47.045Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:08:50.538Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"801761\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:07:46.476Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}}, \\\"count\\\": 5, \\\"total\\\": 5, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1803}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "d9052a0e-9b5c-46d0-9a9c-99c233423725",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_002_signals_15B_instruct_gsm8k\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:31:56.418Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:32:20.258Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"gsm8k (1319 items)\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\\\"}}, \\\"exp_001_sft_llama32_3B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:31:33.384Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:13:09.369Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": 804786, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:32.846Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d005_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:31:30.450Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:13:06.775Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 804565, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:29.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 2706, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:37:57.223Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:38:08.774Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 807025, \\\"data_path\\\": \\\"Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Llama-3.2-3B_d000_s42\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d025_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:07:47.045Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:08:50.538Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"801761\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:07:46.476Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}}, \\\"count\\\": 5, \\\"total\\\": 5, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1803}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_002_signals_15B_instruct_gsm8k\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T16:31:56.418Z\", \"updated_at\": \"2026-05-16T16:32:20.258Z\", \"spec\": {\"command\": \"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\", \"server\": \"cqa1-21977\", \"data_path\": \"gsm8k (1319 items)\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"hypothesis\": \"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\"}}, \"exp_001_sft_llama32_3B_d100_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:31:33.384Z\", \"updated_at\": \"2026-05-16T16:13:09.369Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5\", \"pid\": 804786, \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\", \"submitted_at\": \"2026-05-16T15:31:32.846Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 54133, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}, \"exp_001_sft_llama32_3B_d005_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:31:30.450Z\", \"updated_at\": \"2026-05-16T16:13:06.775Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": 804565, \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\", \"submitted_at\": \"2026-05-16T15:31:29.388Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\", \"data_count\": 2706, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}, \"exp_001_eval_llama32_3B_d000_s42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:37:57.223Z\", \"updated_at\": \"2026-05-16T15:38:08.774Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:1\", \"pid\": 807025, \"data_path\": \"Llama-3.2-3B_d000_s42/merged\", \"data_count\": 0, \"model_name\": \"Llama-3.2-3B_d000_s42\", \"seed\": 42}}, \"exp_001_sft_llama32_3B_d025_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:07:47.045Z\", \"updated_at\": \"2026-05-16T15:08:50.538Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:3\"], \"pid\": \"801761\", \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\", \"submitted_at\": \"2026-05-16T15:07:46.476Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\", \"data_count\": 54133, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}}, \"count\": 5, \"total\": 5, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1803}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now I have nvidia-smi results and the registry. The pipe command was blocked. Let me use grep separately to check specific PIDs and their command lines.\n\nFrom nvidia-smi:\n- GPU 0: PID 804570, 16252MiB, 98% util\n- GPU 1: PID 807025, 6904MiB, 80% util\n- GPU 2: PID 815287, 586MiB, 0% util\n- GPU 3: PID 801766, 17848MiB, 100% util\n- GPU 4: PID 810809, 3552MiB, 45% util\n\n\n- GPU 5: PID 804791, 20580MiB, 86% util\n\nNow looking at the registry entries for running experiments, I can see the GPU assignments and PIDs. Most have explicit cuda device mappings and PIDs recorded, though the first experiment only specifies --gpu 0 in the command without a dedicated pid field. The list appears to continue beyond what's shown.\n\nComparing against the actual GPU usage, there are some discrepancies. GPU 1 matches perfectly with the eval experiment, but GPU 0 shows a slightly different PID than what's registered—likely because the registry captured the parent process while the GPU is actually using a child Python process. GPU 2 is running the signals experiment but it's on GPU 2, not GPU 0 as the command suggests. GPU 3 also has a small PID mismatch, probably for the same parent/child process reason.\n\nThe bigger issue is GPU 4 has a PID that's not in the registry at all, and there's a CPU task that's also unaccounted for. I need to investigate what those unregistered processes are and also check why a couple of experiments aren't showing up in the running registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "b4abd85f-aef3-4fa3-bf93-7b4144b37187",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "nvidia-smi 显示 6 张 GPU 全部有进程。让我进一步确认各 PID 的命令行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "2a6ac0c9-b7a7-49b7-a59d-2fa157c0dea4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PEXQV5gNJKWYLuo56Xb3gj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/804570/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "39c30c64-3fa8-4262-bdd3-ae6e98248f95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T17:20:04.294Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PEXQV5gNJKWYLuo56Xb3gj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "7917436f-f6d0-4c6b-9e4d-44a6307c812d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000exp001/train_sft.py\\u0000--model-name\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\u0000--data-path\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\u0000--output-dir\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42\\u0000--seed\\u000042\\u0000--batch-size\\u00002\\u0000--grad-accum\\u00008\\u0000--lr\\u00005e-5\\u0000--gradient-checkpointing\\u0000--merge\\u0000--gpu\\u00000\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QJmmxsDNALobxtNCF4DpS9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/815287/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "e1a55bb3-0a5f-4453-a67f-5584304cf527",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T17:20:04.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QJmmxsDNALobxtNCF4DpS9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000/root/contamcal-irt-calibration/exp002/compute_signals.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\\\u0000--benchmark\\\\u0000gsm8k\\\\u0000--signal\\\\u0000all\\\\u0000--ref-model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000--batch-size\\\\u00008\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "af703228-c4fc-42b8-9d88-ccb39604dbb8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000/root/contamcal-irt-calibration/exp002/compute_signals.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\\\u0000--benchmark\\\\u0000gsm8k\\\\u0000--signal\\\\u0000all\\\\u0000--ref-model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000--batch-size\\\\u00008\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000/root/contamcal-irt-calibration/exp002/compute_signals.py\\u0000--model-path\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\u0000--benchmark\\u0000gsm8k\\u0000--signal\\u0000all\\u0000--ref-model-path\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\u0000--output-dir\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\u0000--cache-dir\\u0000/root/autodl-tmp/.hf_cache\\u0000--batch-size\\u00008\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018fDiduHEFiLvLFCr2dxawV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/810809/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "0ce62711-e5f8-45ed-ad28-fc0e4ae94511",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T17:20:05.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018fDiduHEFiLvLFCr2dxawV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000compute_signals.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\\\u0000--benchmark\\\\u0000mmlu\\\\u0000--signal\\\\u0000all\\\\u0000--ref-model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000--batch-size\\\\u00008\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "776c37cb-7f9d-4bd4-8255-c4ffae5bcc5b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000compute_signals.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\\\u0000--benchmark\\\\u0000mmlu\\\\u0000--signal\\\\u0000all\\\\u0000--ref-model-path\\\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000--batch-size\\\\u00008\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000compute_signals.py\\u0000--model-path\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/\\u0000--benchmark\\u0000mmlu\\u0000--signal\\u0000all\\u0000--ref-model-path\\u0000/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/\\u0000--output-dir\\u0000/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/\\u0000--cache-dir\\u0000/root/autodl-tmp/.hf_cache\\u0000--batch-size\\u00008\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W294Thag2EwiULjCXoJApH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/818742/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "47d00e37-a2a2-4d65-aaaa-dfe3aa1edebe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T17:20:06.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W294Thag2EwiULjCXoJApH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000run_mmlu_domain_gamma_n24.py\\\\u0000--rrf-path\\\\u0000/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "13a024a5-eac5-41c2-9e25-6c8b344be63b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000run_mmlu_domain_gamma_n24.py\\\\u0000--rrf-path\\\\u0000/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000run_mmlu_domain_gamma_n24.py\\u0000--rrf-path\\u0000/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\u0000--output-dir\\u0000/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jv1s3gT7qiMuGuS9DNETTA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/807025/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "063d12fe-999a-4f1a-bc99-8051cba8ca23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T17:20:06.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jv1s3gT7qiMuGuS9DNETTA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\\u0000--benchmarks\\\\u0000gsm8k\\\\u0000arc_challenge\\\\u0000humaneval\\\\u0000--mc-format\\\\u0000aligned\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/\\\\u0000--batch-size\\\\u00004\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "c716029f-88f9-4856-a238-4e624e38e547",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\\u0000--benchmarks\\\\u0000gsm8k\\\\u0000arc_challenge\\\\u0000humaneval\\\\u0000--mc-format\\\\u0000aligned\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/\\\\u0000--batch-size\\\\u00004\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000evaluate.py\\u0000--model-path\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\u0000--benchmarks\\u0000gsm8k\\u0000arc_challenge\\u0000humaneval\\u0000--mc-format\\u0000aligned\\u0000--output-dir\\u0000/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/\\u0000--batch-size\\u00004\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SwdWNBmqEPfm9eBE8KQqWE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/801766/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "bfbefd75-ede1-4e56-97dd-19eb02314326",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TC3zEcwkQ7V78pbZDYBtU2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/804791/cmdline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "43381773-0ecc-4816-8fdc-64bcf8993443",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013S8e1KBEiiEJNnDgwYNdp3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3742,
+                "cache_read_input_tokens": 25547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3742
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T17:20:07.143Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SwdWNBmqEPfm9eBE8KQqWE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "e583be34-6e52-4369-b88c-446009f6a149",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000exp001/train_sft.py\\u0000--model-name\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\u0000--data-path\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\u0000--output-dir\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42\\u0000--seed\\u000042\\u0000--batch-size\\u00002\\u0000--grad-accum\\u00008\\u0000--lr\\u00005e-5\\u0000--gradient-checkpointing\\u0000--merge\\u0000--gpu\\u00000\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T17:20:07.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TC3zEcwkQ7V78pbZDYBtU2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "6f9906e4-6119-453b-8897-93540556ed2b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000exp001/train_sft.py\\\\u0000--model-name\\\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\\\u0000--data-path\\\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42\\\\u0000--seed\\\\u000042\\\\u0000--batch-size\\\\u00002\\\\u0000--grad-accum\\\\u00008\\\\u0000--lr\\\\u00005e-5\\\\u0000--gradient-checkpointing\\\\u0000--merge\\\\u0000--gpu\\\\u00000\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000exp001/train_sft.py\\u0000--model-name\\u0000/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\u0000--data-path\\u0000/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\u0000--output-dir\\u0000/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42\\u0000--seed\\u000042\\u0000--batch-size\\u00002\\u0000--grad-accum\\u00008\\u0000--lr\\u00005e-5\\u0000--gradient-checkpointing\\u0000--merge\\u0000--gpu\\u00000\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me also check for the exp_001_eval_05B_instruct and exp_006_mmlu_domain_gamma_n24_v3 in the registry - they're not in the RUNNING list. Let me check all statuses.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "d15182cd-c09e-4957-ada0-04399bf87868",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check for the missing registry entries."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "60b098af-5b0b-42fb-a3f8-e36cb83cc5d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QwJGYCgnoNbkkFQSPK6aDt",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "filters": {
+                  "experiment_id": "exp_001_eval_05B_instruct"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "211492bb-bd50-4f96-ae19-bb298164eadf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T17:20:13.241Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QwJGYCgnoNbkkFQSPK6aDt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5811}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "e11965ec-0eae-4769-b05e-b91a50b63e31",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5811}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5811}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UArP6mCakMub7qXa2tGNeT",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "filters": {
+                  "experiment_id": "exp_006_mmlu_domain_gamma_n24_v3"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "e80a4eca-5dd7-4e24-aaf5-49cd864f2be2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019fttJFQ78kyXRWgJKicXAD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/815287/environ"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "5ef7639c-5353-4022-b2bf-2dd0b1841680",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T17:20:14.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UArP6mCakMub7qXa2tGNeT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5591}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "a23e14a3-3c55-410f-8aa0-af35a034e754",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5591}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5591}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EXNnGFvXaGJvyGTPEPXbtH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /proc/810809/environ"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "d84e8ddd-d41b-4023-9dba-bcebfa0fe80a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YRdUkiY4V2qnkBWnmydZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3457,
+                "cache_read_input_tokens": 29289,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T17:20:14.518Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019fttJFQ78kyXRWgJKicXAD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CUDA_VISIBLE_DEVICES=2\\\\u0000SHELL=/bin/bash\\\\u0000TERM_PROGRAM_VERSION=3.2a\\\\u0000TMUX=/tmp/tmux-0/default,208932,228\\\\u0000PWD=/root\\\\u0000LOGNAME=root\\\\u0000TZ=Asia/Shanghai\\\\u0000MOTD_SHOWN=pam\\\\u0000HOME=/root\\\\u0000SSH_CONNECTION=127.0.0.1 39836 127.0.0.1 22\\\\u0000TERM=screen\\\\u0000USER=root\\\\u0000TMUX_PANE=%228\\\\u0000SHLVL=0\\\\u0000SSH_CLIENT=127.0.0.1 60550 22\\\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\\\u0000TERM_PROGRAM=tmux\\\\u0000_=/root/miniconda3/bin/python\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "0291c5b6-c9d3-4bd0-a25c-b9c1dfb0252f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CUDA_VISIBLE_DEVICES=2\\\\u0000SHELL=/bin/bash\\\\u0000TERM_PROGRAM_VERSION=3.2a\\\\u0000TMUX=/tmp/tmux-0/default,208932,228\\\\u0000PWD=/root\\\\u0000LOGNAME=root\\\\u0000TZ=Asia/Shanghai\\\\u0000MOTD_SHOWN=pam\\\\u0000HOME=/root\\\\u0000SSH_CONNECTION=127.0.0.1 39836 127.0.0.1 22\\\\u0000TERM=screen\\\\u0000USER=root\\\\u0000TMUX_PANE=%228\\\\u0000SHLVL=0\\\\u0000SSH_CLIENT=127.0.0.1 60550 22\\\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\\\u0000TERM_PROGRAM=tmux\\\\u0000_=/root/miniconda3/bin/python\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CUDA_VISIBLE_DEVICES=2\\u0000SHELL=/bin/bash\\u0000TERM_PROGRAM_VERSION=3.2a\\u0000TMUX=/tmp/tmux-0/default,208932,228\\u0000PWD=/root\\u0000LOGNAME=root\\u0000TZ=Asia/Shanghai\\u0000MOTD_SHOWN=pam\\u0000HOME=/root\\u0000SSH_CONNECTION=127.0.0.1 39836 127.0.0.1 22\\u0000TERM=screen\\u0000USER=root\\u0000TMUX_PANE=%228\\u0000SHLVL=0\\u0000SSH_CLIENT=127.0.0.1 60550 22\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\u0000TERM_PROGRAM=tmux\\u0000_=/root/miniconda3/bin/python\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T17:20:15.003Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EXNnGFvXaGJvyGTPEPXbtH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SHELL=/bin/bash\\\\u0000TERM_PROGRAM_VERSION=3.2a\\\\u0000TRANSFORMERS_OFFLINE=1\\\\u0000CONDA_EXE=/root/miniconda3/bin/conda\\\\u0000_CE_M=\\\\u0000TMUX=/tmp/tmux-0/default,208932,227\\\\u0000HF_DATASETS_OFFLINE=1\\\\u0000PWD=/root/contamcal-irt-calibration/exp002\\\\u0000LOGNAME=root\\\\u0000CONDA_PREFIX=/root/miniconda3\\\\u0000TZ=Asia/Shanghai\\\\u0000MOTD_SHOWN=pam\\\\u0000HOME=/root\\\\u0000CONDA_PROMPT_MODIFIER=(base) \\\\u0000SSH_CONNECTION=127.0.0.1 53246 127.0.0.1 22\\\\u0000CUDA_VISIBLE_DEVICES=4\\\\u0000HF_HOME=/root/autodl-tmp/.hf_cache\\\\u0000TERM=screen\\\\u0000_CE_CONDA=\\\\u0000USER=root\\\\u0000TMUX_PANE=%227\\\\u0000CONDA_SHLVL=1\\\\u0000SHLVL=0\\\\u0000CONDA_PYTHON_EXE=/root/miniconda3/bin/python\\\\u0000SSH_CLIENT=127.0.0.1 60550 22\\\\u0000CONDA_DEFAULT_ENV=base\\\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\\\u0000OLDPWD=/root\\\\u0000TERM_PROGRAM=tmux\\\\u0000_=/root/miniconda3/bin/python\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "ffdab87d-06b7-47c0-b47c-d6e85e2ccb34",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SHELL=/bin/bash\\\\u0000TERM_PROGRAM_VERSION=3.2a\\\\u0000TRANSFORMERS_OFFLINE=1\\\\u0000CONDA_EXE=/root/miniconda3/bin/conda\\\\u0000_CE_M=\\\\u0000TMUX=/tmp/tmux-0/default,208932,227\\\\u0000HF_DATASETS_OFFLINE=1\\\\u0000PWD=/root/contamcal-irt-calibration/exp002\\\\u0000LOGNAME=root\\\\u0000CONDA_PREFIX=/root/miniconda3\\\\u0000TZ=Asia/Shanghai\\\\u0000MOTD_SHOWN=pam\\\\u0000HOME=/root\\\\u0000CONDA_PROMPT_MODIFIER=(base) \\\\u0000SSH_CONNECTION=127.0.0.1 53246 127.0.0.1 22\\\\u0000CUDA_VISIBLE_DEVICES=4\\\\u0000HF_HOME=/root/autodl-tmp/.hf_cache\\\\u0000TERM=screen\\\\u0000_CE_CONDA=\\\\u0000USER=root\\\\u0000TMUX_PANE=%227\\\\u0000CONDA_SHLVL=1\\\\u0000SHLVL=0\\\\u0000CONDA_PYTHON_EXE=/root/miniconda3/bin/python\\\\u0000SSH_CLIENT=127.0.0.1 60550 22\\\\u0000CONDA_DEFAULT_ENV=base\\\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\\\u0000OLDPWD=/root\\\\u0000TERM_PROGRAM=tmux\\\\u0000_=/root/miniconda3/bin/python\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"SHELL=/bin/bash\\u0000TERM_PROGRAM_VERSION=3.2a\\u0000TRANSFORMERS_OFFLINE=1\\u0000CONDA_EXE=/root/miniconda3/bin/conda\\u0000_CE_M=\\u0000TMUX=/tmp/tmux-0/default,208932,227\\u0000HF_DATASETS_OFFLINE=1\\u0000PWD=/root/contamcal-irt-calibration/exp002\\u0000LOGNAME=root\\u0000CONDA_PREFIX=/root/miniconda3\\u0000TZ=Asia/Shanghai\\u0000MOTD_SHOWN=pam\\u0000HOME=/root\\u0000CONDA_PROMPT_MODIFIER=(base) \\u0000SSH_CONNECTION=127.0.0.1 53246 127.0.0.1 22\\u0000CUDA_VISIBLE_DEVICES=4\\u0000HF_HOME=/root/autodl-tmp/.hf_cache\\u0000TERM=screen\\u0000_CE_CONDA=\\u0000USER=root\\u0000TMUX_PANE=%227\\u0000CONDA_SHLVL=1\\u0000SHLVL=0\\u0000CONDA_PYTHON_EXE=/root/miniconda3/bin/python\\u0000SSH_CLIENT=127.0.0.1 60550 22\\u0000CONDA_DEFAULT_ENV=base\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\u0000OLDPWD=/root\\u0000TERM_PROGRAM=tmux\\u0000_=/root/miniconda3/bin/python\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture. Let me also quickly look for exp_001_eval_05B_instruct and exp_006 in any status (maybe they're under different names or COMPLETED/FAILED).",
+              "signature": "EuYCClkIDRgCKkCyDoYADVUebd5Qo9zpA06QnMndbkv4v7NNf/iWMrh49qS3KXervNNBZ+yhBc+lKhI98VgbRO3KggWrAA1uubgwMg9jbGF1ZGUtb3B1cy00LTY4ABIMR1hYbYxck+9qr5zeGgzaQa+GpOKgPDcnAYgiMEtkw+LT8mizSbrNJNW8noz7zisz598KMWw8O6IrwkB1AabkUuuMAJHroY6aB1gaViq6AS8ghngrXKVmnUnFNqQO0qitRRAKr/T17GwaU+A59ZVR/Aeu21uERgVKT5ossV/q4PIC68SWO5BdLnmJ/ng+d7U/OXev4dDuGOVTVkjaowSZHcwkePHzF76CucoROq9RtW3a+ySEeL5wB7hK248UWgxULKScOcqwvdIRlLvERe6Hv2wCTkFpE/ls87aMac2Ookz1Jx/cuqg70XlNWd0cBMUficgjHnEgyy+UGFRwdIr67Fje0NVBtArvPBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "b4896217-7d5d-4800-8059-a0461728154b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LX1WvjgPHGbyA7MLz5jFUv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1667,
+                "cache_read_input_tokens": 32746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1667
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for these experiments under any status."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "1e0f8edf-4b55-4ec3-b8c8-0c53b4bf955d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LX1WvjgPHGbyA7MLz5jFUv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1667,
+                "cache_read_input_tokens": 32746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1667
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01224wxB7zVGPuSBLFVS9J5u",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "limit": 20,
+                "fields": [
+                  "status",
+                  "spec"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "610490a2-9866-4248-ba24-12d51c849510",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LX1WvjgPHGbyA7MLz5jFUv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1667,
+                "cache_read_input_tokens": 32746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1667
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T17:20:19.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01224wxB7zVGPuSBLFVS9J5u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_006_pooled_irt_vanilla_2pl_n13\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_pooled_rrf_irt.py --model 2pl --benchmarks mmlu,arc,gsm8k\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 13, \\\"model_name\\\": \\\"stan_vanilla_2pl\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Ablation: vanilla 2PL without gamma to show pooled-level gamma has no calibration benefit (Simpson's Paradox support)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\\\"}}, \\\"exp_006_pooled_irt_2pl_gamma_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_pooled_rrf_irt.py --model 2pl_gamma --benchmarks mmlu,arc,gsm8k\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"stan_2pl_gamma\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\\\"}}, \\\"exp006_pooled_irt_n16_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"description\\\": \\\"Pooled IRT N=16 rerun after fixing RRF/eval key mismatch\\\", \\\"models_run\\\": [\\\"vanilla_2pl\\\", \\\"2pl_gamma\\\"], \\\"benchmarks\\\": [\\\"mmlu\\\", \\\"arc_challenge\\\", \\\"gsm8k\\\"], \\\"server\\\": \\\"cqa1-21977\\\", \\\"command\\\": \\\"python3 run_pooled_rrf_irt.py --model-type vanilla_2pl/2pl_gamma\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed\\\", \\\"log_path\\\": \\\"/tmp/irt_vanilla_2pl.log\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"vanilla_2pl+2pl_gamma\\\", \\\"seed\\\": 42}}, \\\"exp_002_signals_15B_instruct_gsm8k\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"gsm8k (1319 items)\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\\\"}}, \\\"exp_001_eval_05B_instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct/ --mc-format aligned --instruct --benchmarks mmlu gsm8k humaneval\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"mmlu+gsm8k+humaneval\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-0.5B-Instruct\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"mmlu gsm8k humaneval\\\", \\\"hypothesis\\\": \\\"0.5B-Instruct baseline eval (RL observational claim). Generation-based MCQ with chat template.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_05B_instruct/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_05B_instruct/\\\"}}, \\\"exp_001_sft_llama32_3B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": 804786, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:32.846Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d005_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 804565, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:29.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 2706, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 807025, \\\"data_path\\\": \\\"Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Llama-3.2-3B_d000_s42\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 eval. 0% contamination baseline for Llama family. Verifies contamination susceptibility pattern across model families.\\\", \\\"parent\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"type\\\": \\\"eval\\\", \\\"command\\\": \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=4 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned --mc-format aligned --benchmarks mmlu gsm8k arc_challenge humaneval\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 796488, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\", \\\"eval_data\\\": \\\"mmlu+gsm8k+arc_challenge+humaneval\\\"}}, \\\"exp_001_eval_15B_instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": \\\"782625\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)\\\", \\\"eval_data\\\": \\\"mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct\\\"}}, \\\"exp_001_eval_llama32_3B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"800565\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_llama32_3B_d000_s42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:01:54.227Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_001_eval_3B_d025_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d025_s123\\\", \\\"hypothesis\\\": \\\"3B d025 seed=123 para_aligned eval. Paraphrased benchmarks for contamination signal computation. Paired with aligned eval (GPU 3) for complete signal matrix.\\\", \\\"command\\\": \\\"retrospective status fix\\\", \\\"server\\\": \\\"cqa1-21977\\\"}}, \\\"exp_002_signals_3B_d100_s123_v9\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"compute_signals.py 3B d100_a32_s123 batch (mmlu s4 done, gsm8k all running)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\", \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d100_s123_a32_v2\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 712011, \\\"data_count\\\": 1, \\\"hypothesis\\\": \\\"3B d100 s123 alpha=32 signals batch. mmlu s4 completed, now running gsm8k all signals.\\\", \\\"note\\\": \\\"PID rotated from 689315 (mmlu s4, completed) to 712011 (gsm8k all). Cron false alarm.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_002_signals_3B_d100_s123_v9.log\\\"}}, \\\"exp_001_sft_llama32_3B_d025_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"801761\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:07:46.476Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_006_mmlu_domain_gamma_n24_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D108 v4: rerun 4 MMLU domains with correct N=24 script\\\", \\\"plan_id\\\": \\\"D108\\\", \\\"type\\\": \\\"analysis\\\", \\\"parent\\\": \\\"exp_006_mmlu_domain_gamma_n24\\\", \\\"model_name\\\": \\\"2PL+gamma (Stan)\\\", \\\"seed\\\": \\\"Stan default (4 chains)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\", \\\"data_count\\\": \\\"24 respondents x 4 MMLU domains\\\", \\\"command\\\": \\\"python run_mmlu_domain_gamma_n24.py --domains Humanities Social_Sciences Business_Law Other --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"CPU\\\", \\\"pid\\\": 789935, \\\"output_path\\\": \\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4.log\\\", \\\"checkpoint_source\\\": \\\"N/A (IRT analysis, no checkpoint)\\\", \\\"eval_data\\\": \\\"MMLU domain items (Humanities, Social_Sciences, Business_Law, Other)\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4/\\\"}}, \\\"exp_006_pooled_irt_rrf_n25_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/contamcal-irt-calibration/exp006/run_pooled_rrf_irt.py --exposure-file /root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json --output-dir /root/autodl-tmp/exp006/pooled_irt_rrf_n25_v2 --model-type 4pl_gamma --benchmarks mmlu gsm8k arc_challenge --chains 4 --warmup 1000 --samples 1000\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 25, \\\"model_name\\\": \\\"4pl_gamma_pooled\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2.log\\\"}}, \\\"exp_003_rrf_full_n25_latest\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py --signal-root /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp003/rrf_full_n_latest --generate-exposure --csv\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp002/signals\\\", \\\"data_count\\\": 25, \\\"model_name\\\": \\\"all_scales_25_models\\\", \\\"seed\\\": 42}}, \\\"signals_05B_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/exp002/run_signals_05B_s123_remaining.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"760236\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/signals_05B_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T11:01:31.665Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-0.5B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 12491.0, \\\"gpu_hours\\\": 3.47}}, \\\"exp_006_pooled_irt_n25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Pooled IRT 2PL+gamma with N=25 respondents (full s42+s123 pool). Expect stronger gamma CI exclusion and improved PPP vs N=23.\\\", \\\"type\\\": \\\"analysis\\\", \\\"command\\\": \\\"python run_irt_calibration.py --exposure-file /root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json --model 2pl_gamma --chains 4 --warmup 1000 --samples 1000 --adapt-delta 0.95 --output-dir /root/autodl-tmp/exp006/results_pooled_n20/\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 785832, \\\"gpu\\\": \\\"CPU\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json\\\", \\\"data_count\\\": \\\"N=25 respondents (MMLU N=13 after D045 exclusion)\\\", \\\"model_name\\\": \\\"2PL+gamma (Stan)\\\", \\\"seed\\\": \\\"Stan default (4 chains)\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/exp006/results_pooled_n20/\\\"}}, \\\"exp_001_eval_3B_instruct_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/run_instruct_3b_eval_v2.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"764449\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B-Instruct\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"huggingface\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (aligned + para_aligned, --instruct mode)\\\", \\\"hypothesis\\\": \\\"Re-run 3B-Instruct eval with fixed methodology: generation-based MCQ with system prompt for answer-only output (max_new_tokens=5), markdown code extraction for HumanEval. Chat template + system message constrains instruct model to output just answer letter. Expected: MMLU ~65%, HumanEval >0%.\\\"}}}, \\\"count\\\": 20, \\\"total\\\": 240, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7484}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "4f904b40-cbd0-47c2-9731-d5a2e58b78eb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_006_pooled_irt_vanilla_2pl_n13\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_pooled_rrf_irt.py --model 2pl --benchmarks mmlu,arc,gsm8k\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 13, \\\"model_name\\\": \\\"stan_vanilla_2pl\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Ablation: vanilla 2PL without gamma to show pooled-level gamma has no calibration benefit (Simpson's Paradox support)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\\\"}}, \\\"exp_006_pooled_irt_2pl_gamma_n16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_pooled_rrf_irt.py --model 2pl_gamma --benchmarks mmlu,arc,gsm8k\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"stan_2pl_gamma\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\\\"}}, \\\"exp006_pooled_irt_n16_fixed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"description\\\": \\\"Pooled IRT N=16 rerun after fixing RRF/eval key mismatch\\\", \\\"models_run\\\": [\\\"vanilla_2pl\\\", \\\"2pl_gamma\\\"], \\\"benchmarks\\\": [\\\"mmlu\\\", \\\"arc_challenge\\\", \\\"gsm8k\\\"], \\\"server\\\": \\\"cqa1-21977\\\", \\\"command\\\": \\\"python3 run_pooled_rrf_irt.py --model-type vanilla_2pl/2pl_gamma\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed\\\", \\\"log_path\\\": \\\"/tmp/irt_vanilla_2pl.log\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"vanilla_2pl+2pl_gamma\\\", \\\"seed\\\": 42}}, \\\"exp_002_signals_15B_instruct_gsm8k\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"gsm8k (1319 items)\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\\\"}}, \\\"exp_001_eval_05B_instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct/ --mc-format aligned --instruct --benchmarks mmlu gsm8k humaneval\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"mmlu+gsm8k+humaneval\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-0.5B-Instruct\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"mmlu gsm8k humaneval\\\", \\\"hypothesis\\\": \\\"0.5B-Instruct baseline eval (RL observational claim). Generation-based MCQ with chat template.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_05B_instruct/\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_05B_instruct/\\\"}}, \\\"exp_001_sft_llama32_3B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": 804786, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:32.846Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_sft_llama32_3B_d005_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 804565, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:31:29.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 2706, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 807025, \\\"data_path\\\": \\\"Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Llama-3.2-3B_d000_s42\\\", \\\"seed\\\": 42}}, \\\"exp_001_eval_llama32_3B_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 eval. 0% contamination baseline for Llama family. Verifies contamination susceptibility pattern across model families.\\\", \\\"parent\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"type\\\": \\\"eval\\\", \\\"command\\\": \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=4 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned --mc-format aligned --benchmarks mmlu gsm8k arc_challenge humaneval\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 796488, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\\\", \\\"eval_data\\\": \\\"mmlu+gsm8k+arc_challenge+humaneval\\\"}}, \\\"exp_001_eval_15B_instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache --gpu 0\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": \\\"782625\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)\\\", \\\"eval_data\\\": \\\"mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned/eval_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct\\\"}}, \\\"exp_001_eval_llama32_3B_d000_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"800565\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_llama32_3B_d000_s42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:01:54.227Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_001_eval_3B_d025_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 4, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d025_s123\\\", \\\"hypothesis\\\": \\\"3B d025 seed=123 para_aligned eval. Paraphrased benchmarks for contamination signal computation. Paired with aligned eval (GPU 3) for complete signal matrix.\\\", \\\"command\\\": \\\"retrospective status fix\\\", \\\"server\\\": \\\"cqa1-21977\\\"}}, \\\"exp_002_signals_3B_d100_s123_v9\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"compute_signals.py 3B d100_a32_s123 batch (mmlu s4 done, gsm8k all running)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\", \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d100_s123_a32_v2\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 712011, \\\"data_count\\\": 1, \\\"hypothesis\\\": \\\"3B d100 s123 alpha=32 signals batch. mmlu s4 completed, now running gsm8k all signals.\\\", \\\"note\\\": \\\"PID rotated from 689315 (mmlu s4, completed) to 712011 (gsm8k all). Cron false alarm.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_002_signals_3B_d100_s123_v9.log\\\"}}, \\\"exp_001_sft_llama32_3B_d025_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"801761\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:07:46.476Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\", \\\"data_count\\\": 54133, \\\"model_name\\\": \\\"Llama-3.2-3B\\\", \\\"seed\\\": 42}}, \\\"exp_006_mmlu_domain_gamma_n24_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D108 v4: rerun 4 MMLU domains with correct N=24 script\\\", \\\"plan_id\\\": \\\"D108\\\", \\\"type\\\": \\\"analysis\\\", \\\"parent\\\": \\\"exp_006_mmlu_domain_gamma_n24\\\", \\\"model_name\\\": \\\"2PL+gamma (Stan)\\\", \\\"seed\\\": \\\"Stan default (4 chains)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\", \\\"data_count\\\": \\\"24 respondents x 4 MMLU domains\\\", \\\"command\\\": \\\"python run_mmlu_domain_gamma_n24.py --domains Humanities Social_Sciences Business_Law Other --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"CPU\\\", \\\"pid\\\": 789935, \\\"output_path\\\": \\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4.log\\\", \\\"checkpoint_source\\\": \\\"N/A (IRT analysis, no checkpoint)\\\", \\\"eval_data\\\": \\\"MMLU domain items (Humanities, Social_Sciences, Business_Law, Other)\\\", \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4/\\\"}}, \\\"exp_006_pooled_irt_rrf_n25_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/contamcal-irt-calibration/exp006/run_pooled_rrf_irt.py --exposure-file /root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json --output-dir /root/autodl-tmp/exp006/pooled_irt_rrf_n25_v2 --model-type 4pl_gamma --benchmarks mmlu gsm8k arc_challenge --chains 4 --warmup 1000 --samples 1000\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\\\", \\\"data_count\\\": 25, \\\"model_name\\\": \\\"4pl_gamma_pooled\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2/\\\", \\\"log_path\\\": \\\"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2.log\\\"}}, \\\"exp_003_rrf_full_n25_latest\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py --signal-root /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp003/rrf_full_n_latest --generate-exposure --csv\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp002/signals\\\", \\\"data_count\\\": 25, \\\"model_name\\\": \\\"all_scales_25_models\\\", \\\"seed\\\": 42}}, \\\"signals_05B_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/exp002/run_signals_05B_s123_remaining.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"760236\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/signals_05B_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T11:01:31.665Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-0.5B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 12491.0, \\\"gpu_hours\\\": 3.47}}, \\\"exp_006_pooled_irt_n25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Pooled IRT 2PL+gamma with N=25 respondents (full s42+s123 pool). Expect stronger gamma CI exclusion and improved PPP vs N=23.\\\", \\\"type\\\": \\\"analysis\\\", \\\"command\\\": \\\"python run_irt_calibration.py --exposure-file /root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json --model 2pl_gamma --chains 4 --warmup 1000 --samples 1000 --adapt-delta 0.95 --output-dir /root/autodl-tmp/exp006/results_pooled_n20/\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 785832, \\\"gpu\\\": \\\"CPU\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json\\\", \\\"data_count\\\": \\\"N=25 respondents (MMLU N=13 after D045 exclusion)\\\", \\\"model_name\\\": \\\"2PL+gamma (Stan)\\\", \\\"seed\\\": \\\"Stan default (4 chains)\\\", \\\"output_path\\\": \\\"/root/autodl-tmp/exp006/results_pooled_n20/\\\"}}, \\\"exp_001_eval_3B_instruct_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/run_instruct_3b_eval_v2.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"764449\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B-Instruct\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"huggingface\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval (aligned + para_aligned, --instruct mode)\\\", \\\"hypothesis\\\": \\\"Re-run 3B-Instruct eval with fixed methodology: generation-based MCQ with system prompt for answer-only output (max_new_tokens=5), markdown code extraction for HumanEval. Chat template + system message constrains instruct model to output just answer letter. Expected: MMLU ~65%, HumanEval >0%.\\\"}}}, \\\"count\\\": 20, \\\"total\\\": 240, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7484}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_006_pooled_irt_vanilla_2pl_n13\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python run_pooled_rrf_irt.py --model 2pl --benchmarks mmlu,arc,gsm8k\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\", \"data_count\": 13, \"model_name\": \"stan_vanilla_2pl\", \"seed\": 42, \"hypothesis\": \"Ablation: vanilla 2PL without gamma to show pooled-level gamma has no calibration benefit (Simpson's Paradox support)\", \"log_path\": \"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\", \"checkpoint_path\": \"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/\"}}, \"exp_006_pooled_irt_2pl_gamma_n16\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python run_pooled_rrf_irt.py --model 2pl_gamma --benchmarks mmlu,arc,gsm8k\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\", \"data_count\": 16, \"model_name\": \"stan_2pl_gamma\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\", \"checkpoint_path\": \"/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16/\"}}, \"exp006_pooled_irt_n16_fixed\": {\"status\": \"DONE\", \"spec\": {\"description\": \"Pooled IRT N=16 rerun after fixing RRF/eval key mismatch\", \"models_run\": [\"vanilla_2pl\", \"2pl_gamma\"], \"benchmarks\": [\"mmlu\", \"arc_challenge\", \"gsm8k\"], \"server\": \"cqa1-21977\", \"command\": \"python3 run_pooled_rrf_irt.py --model-type vanilla_2pl/2pl_gamma\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\", \"checkpoint_path\": \"/root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed\", \"log_path\": \"/tmp/irt_vanilla_2pl.log\", \"data_count\": 16, \"model_name\": \"vanilla_2pl+2pl_gamma\", \"seed\": 42}}, \"exp_002_signals_15B_instruct_gsm8k\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\", \"server\": \"cqa1-21977\", \"data_path\": \"gsm8k (1319 items)\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"hypothesis\": \"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\"}}, \"exp_001_eval_05B_instruct\": {\"status\": \"DONE\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct/ --mc-format aligned --instruct --benchmarks mmlu gsm8k humaneval\", \"server\": \"cqa1-21977\", \"data_path\": \"mmlu+gsm8k+humaneval\", \"data_count\": 0, \"model_name\": \"Qwen2.5-0.5B-Instruct\", \"seed\": 42, \"eval_data\": \"mmlu gsm8k humaneval\", \"hypothesis\": \"0.5B-Instruct baseline eval (RL observational claim). Generation-based MCQ with chat template.\", \"log_path\": \"/root/autodl-tmp/exp001/eval_05B_instruct/\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_05B_instruct/\"}}, \"exp_001_sft_llama32_3B_d100_s42\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5\", \"pid\": 804786, \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log\", \"submitted_at\": \"2026-05-16T15:31:32.846Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 54133, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}, \"exp_001_sft_llama32_3B_d005_s42\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": 804565, \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\", \"submitted_at\": \"2026-05-16T15:31:29.388Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\", \"data_count\": 2706, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}, \"exp_001_eval_llama32_3B_d000_s42_v3\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:1\", \"pid\": 807025, \"data_path\": \"Llama-3.2-3B_d000_s42/merged\", \"data_count\": 0, \"model_name\": \"Llama-3.2-3B_d000_s42\", \"seed\": 42}}, \"exp_001_eval_llama32_3B_d000_s42\": {\"status\": \"DONE\", \"spec\": {\"hypothesis\": \"P0-B cross-family validation: Llama-3.2-3B d000 eval. 0% contamination baseline for Llama family. Verifies contamination susceptibility pattern across model families.\", \"parent\": \"exp_001_sft_llama32_3B_d000_s42\", \"type\": \"eval\", \"command\": \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=4 python3 /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned --mc-format aligned --benchmarks mmlu gsm8k arc_challenge humaneval\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": 796488, \"data_path\": \"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\", \"data_count\": 14042, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged\", \"eval_data\": \"mmlu+gsm8k+arc_challenge+humaneval\"}}, \"exp_001_eval_15B_instruct\": {\"status\": \"DONE\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache --gpu 0\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:5\", \"pid\": \"782625\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned\", \"data_count\": 0, \"model_name\": \"Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)\", \"eval_data\": \"mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B-Instruct_aligned/eval_results.json\", \"checkpoint_path\": \"/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct\"}}, \"exp_001_eval_llama32_3B_d000_s42_v2\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:1\"], \"pid\": \"800565\", \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_eval_llama32_3B_d000_s42_v2.log\", \"submitted_at\": \"2026-05-16T15:01:54.227Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_001_eval_3B_d025_s123_para_aligned\": {\"status\": \"DONE\", \"spec\": {\"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/exp001/paraphrases\", \"data_count\": 4, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval (para_aligned)\", \"parent\": \"exp_001_sft_3B_d025_s123\", \"hypothesis\": \"3B d025 seed=123 para_aligned eval. Paraphrased benchmarks for contamination signal computation. Paired with aligned eval (GPU 3) for complete signal matrix.\", \"command\": \"retrospective status fix\", \"server\": \"cqa1-21977\"}}, \"exp_002_signals_3B_d100_s123_v9\": {\"status\": \"DONE\", \"spec\": {\"command\": \"compute_signals.py 3B d100_a32_s123 batch (mmlu s4 done, gsm8k all running)\", \"server\": \"cqa1-21977\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\", \"checkpoint_source\": \"exp_001_sft_3B_d100_s123_a32_v2\", \"output_dir\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\", \"gpu\": \"cuda:4\", \"pid\": 712011, \"data_count\": 1, \"hypothesis\": \"3B d100 s123 alpha=32 signals batch. mmlu s4 completed, now running gsm8k all signals.\", \"note\": \"PID rotated from 689315 (mmlu s4, completed) to 712011 (gsm8k all). Cron false alarm.\", \"checkpoint_path\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_002_signals_3B_d100_s123_v9.log\"}}, \"exp_001_sft_llama32_3B_d025_s42\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:3\"], \"pid\": \"801761\", \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log\", \"submitted_at\": \"2026-05-16T15:07:46.476Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\", \"data_count\": 54133, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42}}, \"exp_006_mmlu_domain_gamma_n24_v4\": {\"status\": \"DONE\", \"spec\": {\"hypothesis\": \"D108 v4: rerun 4 MMLU domains with correct N=24 script\", \"plan_id\": \"D108\", \"type\": \"analysis\", \"parent\": \"exp_006_mmlu_domain_gamma_n24\", \"model_name\": \"2PL+gamma (Stan)\", \"seed\": \"Stan default (4 chains)\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\", \"data_count\": \"24 respondents x 4 MMLU domains\", \"command\": \"python run_mmlu_domain_gamma_n24.py --domains Humanities Social_Sciences Business_Law Other --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\", \"server\": \"cqa1-21977\", \"gpu\": \"CPU\", \"pid\": 789935, \"output_path\": \"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\", \"log_path\": \"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4.log\", \"checkpoint_source\": \"N/A (IRT analysis, no checkpoint)\", \"eval_data\": \"MMLU domain items (Humanities, Social_Sciences, Business_Law, Other)\", \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp006/domain_gamma_n24_v4/\"}}, \"exp_006_pooled_irt_rrf_n25_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 /root/contamcal-irt-calibration/exp006/run_pooled_rrf_irt.py --exposure-file /root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json --output-dir /root/autodl-tmp/exp006/pooled_irt_rrf_n25_v2 --model-type 4pl_gamma --benchmarks mmlu gsm8k arc_challenge --chains 4 --warmup 1000 --samples 1000\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json\", \"data_count\": 25, \"model_name\": \"4pl_gamma_pooled\", \"seed\": 42, \"checkpoint_path\": \"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2/\", \"log_path\": \"/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2.log\"}}, \"exp_003_rrf_full_n25_latest\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py --signal-root /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp003/rrf_full_n_latest --generate-exposure --csv\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp002/signals\", \"data_count\": 25, \"model_name\": \"all_scales_25_models\", \"seed\": 42}}, \"signals_05B_s123_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/exp002/run_signals_05B_s123_remaining.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:1\"], \"pid\": \"760236\", \"log_path\": \"~/runs/contamcal-irt-calibration/signals_05B_s123_v2.log\", \"submitted_at\": \"2026-05-16T11:01:31.665Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123\", \"data_count\": 4, \"model_name\": \"Qwen2.5-0.5B\", \"seed\": 123, \"wall_clock_seconds\": 12491.0, \"gpu_hours\": 3.47}}, \"exp_006_pooled_irt_n25\": {\"status\": \"DONE\", \"spec\": {\"hypothesis\": \"Pooled IRT 2PL+gamma with N=25 respondents (full s42+s123 pool). Expect stronger gamma CI exclusion and improved PPP vs N=23.\", \"type\": \"analysis\", \"command\": \"python run_irt_calibration.py --exposure-file /root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json --model 2pl_gamma --chains 4 --warmup 1000 --samples 1000 --adapt-delta 0.95 --output-dir /root/autodl-tmp/exp006/results_pooled_n20/\", \"server\": \"cqa1-21977\", \"pid\": 785832, \"gpu\": \"CPU\", \"data_path\": \"/root/autodl-tmp/exp003/rrf_n20_all/exposure_scores.json\", \"data_count\": \"N=25 respondents (MMLU N=13 after D045 exclusion)\", \"model_name\": \"2PL+gamma (Stan)\", \"seed\": \"Stan default (4 chains)\", \"output_path\": \"/root/autodl-tmp/exp006/results_pooled_n20/\"}}, \"exp_001_eval_3B_instruct_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/run_instruct_3b_eval_v2.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:3\"], \"pid\": \"764449\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results/\", \"data_count\": 8, \"model_name\": \"Qwen/Qwen2.5-3B-Instruct\", \"seed\": null, \"checkpoint_source\": \"huggingface\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval (aligned + para_aligned, --instruct mode)\", \"hypothesis\": \"Re-run 3B-Instruct eval with fixed methodology: generation-based MCQ with system prompt for answer-only output (max_new_tokens=5), markdown code extraction for HumanEval. Chat template + system message constrains instruct model to output just answer letter. Expected: MMLU ~65%, HumanEval >0%.\"}}}, \"count\": 20, \"total\": 240, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7484}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information needed. Let me also check for exp_006_mmlu_domain_gamma_n24_v3 specifically - I see v4 is DONE but v3 doesn't show up. Let me also check if PID 818742 is one of the unregistered experiments.\n\nActually wait, PID 818742's cmdline shows: `python run_mmlu_domain_gamma_n24.py --rrf-path /root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3`\n\n\nSo this is exp_006_mmlu_domain_gamma_n24_v3 - a CPU-bound Stan IRT fitting task that's not registered anywhere. Meanwhile, PID 810809 on cuda:4 is running a signal computation job for the Qwen model on the MMLU benchmark.\n\nAnd PID 815287 on cuda:2 is computing signals for the same model but on the GSM8K benchmark instead - also unregistered.\n\nLooking at the registry, I see the GSM8K signals task is listed as exp_002_signals_15B_instruct_gsm8k, but there's a mismatch: it's actually running on cuda:2 while the registry spec says gpu 0. Meanwhile, exp_001_eval_05B_instruct shows as completed, so that's not actively running.\n\nLet me map out what's actually happening across the GPUs right now.\n\nGenerating GPU status table... Looking at the registry issues more closely, I see three experiments aren't properly registered: the 15B instruct model is missing GPU and PID fields despite running on cuda:2, the 1.5B MMLU signals task has no entry at all on cuda:4, and the CPU-based domain gamma experiment also lacks registration. The cuda:2 device shows minimal utilization because it's between batches, but the process is definitely active there. So while no GPU is completely idle, all six are in use across various experiments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "153fc9e6-5f47-4e53-b944-4b1e151f5005",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013s5v3wXHCnVCYbnkVxQ1nU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6985,
+                "cache_read_input_tokens": 34413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整状况：\n\n## GPU 实际占用 (全部 6 张在用，无空闲)\n\n| GPU | PID | VRAM | Util | 实验 | Registry |\n|-----|-----|------|------|------|----------|\n| cuda:0 | 804570 | 16252MiB | 98% | Llama-3.2-3B d005 s42 SFT | ✓ `exp_001_sft_llama32_3B_d005_s42` (tmux parent 804565) |\n| cuda:1 | 807025 | 6904MiB | 80% | Llama-3.2-3B d000 s42 eval v3 | ✓ `exp_001_eval_llama32_3B_d000_s42_v3` |\n| cuda:2 | 815287 | 586MiB | 0% | **1.5B-Instruct GSM8K signals** | ⚠️ `exp_002_signals_15B_instruct_gsm8k` — 缺 gpu/pid 字段 |\n| cuda:3 | 801766 | 17848MiB | 100% | Llama-3.2-3B d025 s42 SFT | ✓ `exp_001_sft_llama32_3B_d025_s42` (tmux parent 801761) |\n| cuda:4 | 810809 | 3552MiB | 45% | **1.5B-Instruct MMLU signals** | ❌ **无 registry 条目** |\n| cuda:5 | 804791 | 20580MiB | 86% | Llama-3.2-3B d100 s42 SFT | ✓ `exp_001_sft_llama32_3B_d100_s42` (tmux parent 804786) |\n\n## CPU 任务\n\n| PID | 实验 | Registry |\n|-----|------|----------|\n| 818742 | MMLU domain gamma N=24 v3 (Stan IRT fitting) | ❌ **无 registry 条目** |\n\n## 需修复的 Registry 问题\n\n1. **`exp_002_signals_15B_instruct_gsm8k`** — 缺少 `gpu` 和 `pid` 字段。实际值：`gpu: \"cuda:2\"`, `pid: 815287`（从 /proc/815287/environ 确认 `CUDA_VISIBLE_DEVICES=2`）\n\n2. **1.5B-Instruct MMLU signals (PID 810809, cuda:4)** — 完全未注册。命令：`python compute_signals.py --model-path Qwen2.5-1.5B-Instruct --benchmark mmlu --signal all --ref-model-path Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-size 8`。环境确认 `CUDA_VISIBLE_DEVICES=4`。\n\n3. **exp_006_mmlu_domain_gamma_n24_v3 (PID 818742, CPU)** — 完全未注册。命令：`python run_mmlu_domain_gamma_n24.py --rrf-path .../exposure_scores.json --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3`\n\n4. **`exp_001_eval_05B_instruct`** — 已标记 DONE，无问题。\n\n## 关键发现\n\n- **cuda:2 和 cuda:4 并非空闲**，是 1.5B-Instruct 的 signals 任务（模型小，显存占用低，被误判为空闲）\n- cuda:2 显示 0% util 可能是 batch 间隙或 IO 等待，但进程确实存活\n- 资源工具误报原因：这两个 signals 进程的 registry 条目缺失/不完整，导致 reconcile 无法匹配"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "uuid": "6a714ff9-701f-423c-b619-4ee69a55e5b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013s5v3wXHCnVCYbnkVxQ1nU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6985,
+                "cache_read_input_tokens": 34413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整状况：\n\n## GPU 实际占用 (全部 6 张在用，无空闲)\n\n| GPU | PID | VRAM | Util | 实验 | Registry |\n|-----|-----|------|------|------|----------|\n| cuda:0 | 804570 | 16252MiB | 98% | Llama-3.2-3B d005 s42 SFT | ✓ `exp_001_sft_llama32_3B_d005_s42` (tmux parent 804565) |\n| cuda:1 | 807025 | 6904MiB | 80% | Llama-3.2-3B d000 s42 eval v3 | ✓ `exp_001_eval_llama32_3B_d000_s42_v3` |\n| cuda:2 | 815287 | 586MiB | 0% | **1.5B-Instruct GSM8K signals** | ⚠️ `exp_002_signals_15B_instruct_gsm8k` — 缺 gpu/pid 字段 |\n| cuda:3 | 801766 | 17848MiB | 100% | Llama-3.2-3B d025 s42 SFT | ✓ `exp_001_sft_llama32_3B_d025_s42` (tmux parent 801761) |\n| cuda:4 | 810809 | 3552MiB | 45% | **1.5B-Instruct MMLU signals** | ❌ **无 registry 条目** |\n| cuda:5 | 804791 | 20580MiB | 86% | Llama-3.2-3B d100 s42 SFT | ✓ `exp_001_sft_llama32_3B_d100_s42` (tmux parent 804786) |\n\n## CPU 任务\n\n| PID | 实验 | Registry |\n|-----|------|----------|\n| 818742 | MMLU domain gamma N=24 v3 (Stan IRT fitting) | ❌ **无 registry 条目** |\n\n## 需修复的 Registry 问题\n\n1. **`exp_002_signals_15B_instruct_gsm8k`** — 缺少 `gpu` 和 `pid` 字段。实际值：`gpu: \"cuda:2\"`, `pid: 815287`（从 /proc/815287/environ 确认 `CUDA_VISIBLE_DEVICES=2`）\n\n2. **1.5B-Instruct MMLU signals (PID 810809, cuda:4)** — 完全未注册。命令：`python compute_signals.py --model-path Qwen2.5-1.5B-Instruct --benchmark mmlu --signal all --ref-model-path Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-size 8`。环境确认 `CUDA_VISIBLE_DEVICES=4`。\n\n3. **exp_006_mmlu_domain_gamma_n24_v3 (PID 818742, CPU)** — 完全未注册。命令：`python run_mmlu_domain_gamma_n24.py --rrf-path .../exposure_scores.json --output-dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3`\n\n4. **`exp_001_eval_05B_instruct`** — 已标记 DONE，无问题。\n\n## 关键发现\n\n- **cuda:2 和 cuda:4 并非空闲**，是 1.5B-Instruct 的 signals 任务（模型小，显存占用低，被误判为空闲）\n- cuda:2 显示 0% util 可能是 batch 间隙或 IO 等待，但进程确实存活\n- 资源工具误报原因：这两个 signals 进程的 registry 条目缺失/不完整，导致 reconcile 无法匹配"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 87193,
+            "duration_api_ms": 84757,
+            "num_turns": 17,
+            "stop_reason": "end_turn",
+            "session_id": "16d71a8e-f644-4e1d-a41b-d9750392eeff",
+            "total_cost_usd": 0.39391924999999994,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 29557,
+              "cache_read_input_tokens": 158518,
+              "output_tokens": 5086,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29557,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2554,
+                  "cache_read_input_tokens": 34413,
+                  "cache_creation_input_tokens": 6985,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 6985
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2639,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0027289999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 5086,
+                "cacheReadInputTokens": 158518,
+                "cacheCreationInputTokens": 29557,
+                "webSearchRequests": 0,
+                "costUSD": 0.39119024999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5aeb7ce2-9433-4a38-9682-ab91c2bdb5c2"
+          },
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 46
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-gpu-diagnostic.md"
+}

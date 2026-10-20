@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e46eb6786870b4316a3b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "knowledge plan registry refresh",
+  "task_key": "worker_knowledge_plan-registry-refresh_20260515T200819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_plan-registry-refresh_20260515T200819_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "3b6014220fb1d5bc609fed779542fa14fa9f1e5ef96992a4e16dc64153101f9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。\n\n**汇总：**\n\n| 指标 | 更新前 | 更新后 |\n|------|--------|--------|\n| **Claim 1** | 14.3% (1/7) | **28.6% (2/7)** |\n| **Claim 2** | 0% (0/5) | **60.0% (3/5)** |\n| **Claim 3** | 0% (0/1) | 0% (0/1) |\n| **Overall** | 7.7% (1/13) | **38.5% (5/13)** |\n| Orphaned | 1 | **0** |\n\n**更新了 6 个 plan entry 的 registry_id：**\n- exp-001: `exp_001_sft_d100_15B_v2` → `exp_001_sft_injection`（更准确的 umbrella 实验）\n- exp-002: 空 → `exp_002_signals_05B` ✓ (Claim 2 +1)\n- exp-003: 空 → `exp_003_rrf_05B` ✓ (Claim 2 +1)\n- exp-006: 空 → `exp_006_irt_05B_gsm8k` ✓ (Claim 1 +1)\n- exp-008: 空 → `exp_008_signal_survival_v4` ✓ (Claim 2 +1)\n- exp-015: `exp_001_sft_d100_qc_only`(orphaned) → `null`\n\n**未能提升的：**\n- exp-004 (sim sweep): 全 6 版均 failed，保留原 ID\n- exp-005 (noise prop): 全版本 failed/negative，保留原 ID\n- Claim 3 仍 0%——唯一实验 exp-005 无成功版本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-plan-registry-refresh-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf30c7286a2b465c9837",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp sim sweep disk fix complete",
+  "task_key": "worker_exp_sim-sweep-disk-fix-complete_20260515T082940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sim-sweep-disk-fix-complete_20260515T082940_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "4e90156133a331d2c5b486dc7aad55c66be390e00a56eb3bef2bbe62868d0817"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Summary of what was done:**\n\n1. **Disk diagnosis**: Root partition at 64% (11G free), no longer full. Original failures were from CmdStan temp files filling root `/tmp/`.\n\n2. **TMPDIR fix**: Created `/root/autodl-tmp/tmp_sim/` and launched sweep with `TMPDIR=/root/autodl-tmp/tmp_sim`. Verified temp files now go to data disk.\n\n3. **N=8 added**: Modified SUBSET config in `run_sweep.py` to include `n_models=8` alongside `[20, 50, 100]`.\n\n4. **Sweep launched**: `python run_sweep.py subset --resume --chains-parallel 1 --parallel 4` (PID 528380). With `--resume`, it skips 7 already-complete conditions and processes 9 remaining ones:\n   - 4 new N=8 conditions (D039)\n   - 3 AUC=0.65 conditions (all failed from disk quota)\n   - auc0.55_n100 (2 seeds remaining)\n   - auc0.9_n100 (8 seeds remaining)\n\n5. **Log**: `/root/autodl-tmp/sweep_resume.log`\n\nEstimated completion: ~10-11 hours from now (bottleneck is `auc0.65_n100` at ~9.3hr serial). You can monitor with:\n```\ngrep \"DONE\" /root/autodl-tmp/sweep_resume.log\ngrep -c '\"success\": true' /root/contamcal-irt-calibration/exp004_sim_sweep/results/<condition>.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sim-sweep-disk-fix-complete.md"
+}

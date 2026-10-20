@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5adf434c1f749acf2dfb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 eval 05B d100 v5",
+  "task_key": "worker_analyze_exp_001_eval_05B_d100_v5_20260514T073300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_eval_05B_d100_v5_20260514T073300_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "58d84bc15e4038417a015ac9b3a111ce54e9590403a876322077b1dcaf162128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。metrics 和 conclusion 均已记录。\n\n---\n\n## 分析\n\n**核心发现：100% dosage SFT 导致灾难性遗忘，污染信号不仅未膨胀分数，反而严重劣化模型能力。**\n\n| Benchmark | d100 | d000 baseline | Delta |\n|-----------|------|---------------|-------|\n| MMLU | 0.2322 | 0.4182 | **-0.1860** |\n| GSM8K | 0.3571 | 0.3404 | **+0.0167** |\n| ARC | 0.2270 | 0.3976 | **-0.1706** |\n| HumanEval | 0.0854 | 0.1037 | **-0.0183** |\n\n**关键观察**：\n1. MMLU/ARC 分数退化到随机水平 (~0.25)，模型大量预测 \"A\"，典型 mode collapse 特征\n2. GSM8K 仅微幅提升 (+1.67pp)，远不及预期的显著膨胀\n3. HumanEval 也略降\n\n**可能原因**：\n- 0.5B 模型容量小，100% dosage 的 SFT 过拟合严重，catastrophic forgetting 压过了 contamination memorization\n- SFT 训练数据格式与 eval prompt 格式不匹配，模型虽记住了答案但在 eval 时无法正确输出\n\n**对项目的意义**：这说明 contamination → score inflation 的关系不是简单线性的，尤其对小模型。IRT 校准框架需要考虑\"污染反而降分\"的 edge case。后续实验可能需要调整 SFT 策略（更少 epochs、更低 LR）或尝试更大模型（1.5B）才能看到预期的 inflation 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-eval-05b-d100-v5.md"
+}

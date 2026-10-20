@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf102a7126e6e2c54164",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops signals v9 final verdict",
+  "task_key": "worker_ops_signals-v9-final-verdict_20260516T061050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_signals-v9-final-verdict_20260516T061050_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "27d105328153093af2d3d007893504e793fb6585c10b052fe37c8dedaebf843d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**exp_002_signals_3B_d100_s123_v9 → SUCCESS**\n- mmlu: s1 + s2 + s4_selfcritique (14042 items) ✓\n- gsm8k: s1 + s2 + s4_selfcritique (1319 items) + signals_merged ✓\n- Registry 已更新为 success\n\n**cuda:4 提交：无法执行**\n- PID 713193 占用 cuda:4 (576 MiB)，正在跑 `compute_signals.py --benchmark arc_challenge` (d100_a32_s123)，已运行 1h23m\n- 这是同一 checkpoint 的 arc_challenge 信号计算，属于合法后续任务\n- eval 任务需等 arc_challenge 信号完成后 cuda:4 释放才能提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-signals-v9-final-verdict.md"
+}

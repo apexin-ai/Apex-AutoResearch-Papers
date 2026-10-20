@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956169974ba5714e9cbe",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu3 fix 3b sft",
+  "task_key": "worker_ops_gpu3-fix-3b-sft_20260514T065129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu3-fix-3b-sft_20260514T065129_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "3ad8acc2c7b6f2df0781e8c837a244e18a787a118c6388d6ffbe220fb566573b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 319555 在 **GPU-c30258a6（GPU 3）** 上，13316 MiB。GPU 0 只剩 1.5B 的 251924（10046 MiB）。\n\n迁移成功。\n\n**汇报：**\n- 旧进程 291380（GPU 0）→ 已终止\n- 根因：train_sft.py:114 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu` 将 submit_training_job 设置的 `CUDA_VISIBLE_DEVICES=3` 覆盖为 `\"0\"`\n- 修复：去掉 `--gpu` 参数，由 submit_training_job 的 CUDA_VISIBLE_DEVICES=3 直接控制\n- 新进程 319555 已在 GPU 3 上运行，step 5/4159，13316 MiB\n- GPU 0 显存从 95.2% 降至仅 1.5B SFT 的 10046 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu3-fix-3b-sft.md"
+}

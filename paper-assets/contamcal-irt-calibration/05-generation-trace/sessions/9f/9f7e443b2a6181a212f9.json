@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f7e443b2a6181a212f9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code prep rrrf pipeline",
+  "task_key": "worker_code_prep_rrrf_pipeline_20260516T033708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_rrrf_pipeline_20260516T033708_result.json",
+    "occurrence": 1,
+    "bytes": 2846,
+    "sha256": "8f24f26eb92990bc90448ca73ae063d7ea67c50b134d073200e6d1d89126409a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全面检查完成。以下是汇总：\n\n---\n\n## RRF + IRT 代码就绪状态\n\n### exp-003 (RRF 聚合) — ✅ 代码就绪\n\n- `rrf_aggregation.py` (16KB, 今日更新): s1+s2+s4 三信号 RRF 融合，alpha=16 blocklist，`--generate-exposure` 模式直接输出 exp-006 所需的 `exposure_scores.json`\n- 已有一份旧的 `/root/autodl-tmp/exp003/exposure_scores.json`，但只覆盖 0.5B (d000/d005/d100)，需要重新生成\n\n### exp-006 (IRT Calibration) — ✅ 代码就绪\n\n- `run_exp006.py` (29KB): 完整 pipeline — 4PL+gamma IRT + 7 baselines + evaluation\n- `run_irt_calibration.py` (24.5KB): Stan NUTS fitting 核心\n- `baselines.py`, `evaluate_calibration.py`, `joint_fit.py` 均存在\n- Stan 模型已编译 (`contam_irt_4pl_simple` 2.9MB binary)\n- CmdStan 2.38.0 ✓\n- 支持 `--pool-scales 0.5B 1.5B 3B` / `--signals-dir` / per-benchmark gamma_k\n- 已在 0.5B+1.5B pooled 上跑过 30+ 次 (结果目录存在)\n\n---\n\n## 输入数据 Gap — 瓶颈在 3B s42\n\n### 0.5B s42 — ✅ 完整\n- Eval: d000/d005/d025/d100 × aligned 全有\n- Signals: d000/d005/d025/d100 全有 merged (s1+s2+s4)\n\n### 1.5B s42 — ✅ 完整\n- Eval: d000/d005/d025/d100 × aligned 全有\n- Signals: d000/d005/d025/d100 全有 merged\n\n### 3B s42 alpha=32 — ❌ 严重缺失\n\n| Dosage | Eval (aligned) | Signals (s1+s2+s4) | 两者都有? |\n|--------|---------------|-------------------|----------|\n| d000 | `d000_s42_v3_aligned` ✓ | **无 signal dir** | ❌ |\n| d005 | `d005_s42_a32_aligned` **空目录** | **无 signal dir** | ❌ |\n| d025 | `d025_v3_s42_aligned` ✓ | `d025_v3_s42` ✓ 完整 | ✅ |\n| d100 | `d100_a32_s42_aligned` **空目录** | **无 signal dir** | ❌ |\n\n**4 个 dosage 中只有 d025 同时有 eval + signals。**\n\n注：`d005_s42` 和 `d100_s42` signal dirs 存在但属于 alpha=16 blocklist，RRF 代码会跳过。\n\n---\n\n## 需要完成的工作\n\n1. **3B s42 eval** (3 cells): d005_a32、d100_a32 aligned eval 需要跑完，d000 需确认 `d000_s42_v3` 还是 `d000_a32` 是最终版本\n2. **3B s42 signals** (3 models): d000_v3、d005_a32、d100_a32 各需计算 s1+s2+s4 × 3 benchmarks = 共 27 个信号文件\n3. **重跑 exp-003** RRF 生成包含全部 scale 的 `exposure_scores.json`\n4. **跑 exp-006** pooled IRT (0.5B+1.5B+3B)\n\n## 运行时间预估（数据就绪后）\n\n| 步骤 | 时间 | 资源 |\n|------|------|------|\n| exp-003 RRF 聚合 | 2-5 分钟 | CPU |\n| exp-006 IRT per benchmark | 15-30 分钟 | CPU (4 chains NUTS) |\n| exp-006 全 3 benchmarks + baselines | 1-2 小时 | CPU |\n| joint_fit 消融 | +30 分钟 | CPU |\n\n**结论：代码完全就绪，瓶颈是 3B s42 的 eval (2 个空目录) 和 signals (3 个 dosage 完全缺失)。一旦数据补齐，RRF → IRT 全链路 ~2-3 小时可跑完。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-rrrf-pipeline.md"
+}

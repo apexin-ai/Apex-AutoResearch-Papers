@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9222f0476e07b77ac486",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo gpu01 poll launch",
+  "task_key": "worker_ssh_westd-olmo-gpu01-poll-launch_20260519T115848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-gpu01-poll-launch_20260519T115848_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "05b38c12db7e2db3477e8ac8d18d265a22773f5ba36f325846e8018d2c3aa39a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor script running in tmux `olmo2_monitor`。\n\n- 日志：`/root/autodl-tmp/exp001/phase2_logs/olmo2_monitor.log`\n- 每 120 秒检查一次 GPU 0/1，空闲即自动启动 OLMo-2 eval（GPU0: d000+d005, GPU1: d025+d050）\n- 最长轮询 60 分钟，超时退出\n- 查看进度：`tmux attach -t olmo2_monitor` 或 `cat /root/autodl-tmp/exp001/phase2_logs/olmo2_monitor.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-gpu01-poll-launch.md"
+}

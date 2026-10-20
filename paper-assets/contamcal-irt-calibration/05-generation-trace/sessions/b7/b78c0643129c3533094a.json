@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b78c0643129c3533094a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check cuda2 eval 05B d100",
+  "task_key": "worker_ssh-check_cuda2_eval_05B_d100_20260514T150447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh-check_cuda2_eval_05B_d100_20260514T150447_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "a8a32e37510ec76db16149603e9a4d2b8d00da32bfabd57678aad3cb4b1c325f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| 项目 | 结果 |\n|------|------|\n| **进程 PID 389866** | **存活** — 状态 `Rl`（运行中），已运行 17 分 35 秒 |\n| **GPU 2** | 占用中 — PID 389866 使用 3686 MiB，GPU 利用率 37% |\n| **输出目录** | 目录已创建但**为空** — 尚无 benchmark 结果写入 |\n| **Sentinel/日志** | 无 sentinel 文件，无日志文件 |\n\n**结论**：Cron 误报。进程仍在正常运行，正在执行 eval（mmlu, gsm8k, arc_challenge, humaneval，aligned 格式）。输出目录为空说明还没有 benchmark 完成写出结果。\n\n**建议**：不需要操作，等待运行完成。预计 4 个 benchmark 的 0.5B 模型 eval 总时长约 30-60 分钟，当前才跑了 ~18 分钟。后续可再检查输出完整性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cuda2-eval-05b-d100.md"
+}

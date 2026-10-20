@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3376ec5fed006a04734",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_7_1778845225.md",
+  "task_key": "loop_7_1778845225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778845225.md",
+    "occurrence": 1,
+    "bytes": 5836,
+    "sha256": "7f085df9bae6d6586be1678e71c46402ecd583b9ecf0b0b3acca687d7567b72c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T04:42:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 全在 cqa1-21977，不可用其他服务器的 GPU\n- **Cron 已被手动清理**：5 个 pre-sentinel eval 的 cron 已从 crons.yaml 删除（防止覆写有效结果）。active_crons 只剩 2 个 SFT（exp_001_sft_3B_d100_s123 + exp_001_sft_05B_d025_s123_v2）。**不要为那 5 个 eval 重新注册 cron**——它们启动时加载的是旧版 evaluate.py（无 .done sentinel），cron 会误判为 failed\n- 新启动的 eval 实验可以安全注册 cron（evaluate.py 已含 .done sentinel fix）\n- Registry 中 failed 不可改为 negative（Director 明确指令：failed=数据丢失，negative=假设未成立）\n- 不重用 failed 的 exp_id，用新 id（如 v2/v3）\n- IRT 实验用 `--parallel-chains 1`（AutoDL cgroup pids.max 限制）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 /root/contamcal-irt-calibration\n- Python：/root/miniconda3/bin/python（conda base 环境，**不用 venv**）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：/root/autodl-tmp/.hf_cache/Qwen/（Qwen2.5-0.5B, 1.5B, 3B）\n- SFT checkpoints：/root/autodl-tmp/exp001/checkpoints/\n- Eval results：/root/autodl-tmp/exp001/eval_results/\n- IRT results：/root/autodl-tmp/exp006/\n- Signals：/root/autodl-tmp/exp002/signals/\n- Stan models：/root/contamcal-irt-calibration/exp006/（contam_irt_2pl_gamma.stan, contam_irt_4pl_simple.stan）\n- 活跃 GPU 进程（仅 2 个 SFT 有 cron）：\n  - cuda:3: exp_001_sft_05B_d025_s123_v2 (PID 498153, cron active)\n  - cuda:5: exp_001_sft_3B_d100_s123 (PID 471296, cron active)\n- 活跃 CPU IRT（无 cron，需手动检查）：\n  - exp006-oracle-arc-2pl (PID 496697) — 主 IRT 完成，baselines 进行中\n  - exp006-s1only-gsm8k-2pl (PID 496852) — 主 IRT 完成，baselines 进行中\n  - exp006-oracle-arc-4pl-pooled (tmux: exp006_oracle_arc_4pl_pooled) — chain 3/4 ~47%\n  - exp_004_sim_sweep_v5 (PID 652931, local, tmux: exp_004_sim_sweep_v4)\n- 本地 artifacts：/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/\n\n### 3. 📊 当前状态\n**刚完成**：\n- Cron 系统性清理（Director 紧急指令）——删除 5 个 pre-sentinel eval cron，恢复 exp_001_eval_3B_d000_v2_s123_para_aligned 为 DONE/success\n- 2PL IRT 主要结果已汇报 Director（oracle-arc-2pl γ=-0.618***, s1only-gsm8k-2pl γ=0.167 ns）\n\n**正在等待的 Worker 回调**：\n- `worker_analysis_eval-batch-results-check_20260515T043858` — 检查 5 个刚退出的 eval 进程结果（exp_001_eval_3B_d100_v2_aligned_v2, exp_008_instruct_05B_eval, exp_001_eval_05B_d000_s42_v7, exp_001_eval_3B_d000_v2_s123_aligned, exp_001_eval_3B_d025_v2_para_aligned）。**这个 Worker 返回后需要立即更新 registry + 安排 4 个空闲 GPU 的下一批实验**\n\n**GPU 状态**：\n- cuda:0/1/2/4 — **空闲**（eval 进程已退出，等 Worker 确认结果）\n- cuda:3 — exp_001_sft_05B_d025_s123_v2（~1.5h 剩余）\n- cuda:5 — exp_001_sft_3B_d100_s123（长时间运行中）\n\n**Registry RUNNING 列表**：\n- exp_001_eval_3B_d000_v2_s123_aligned (cuda:1, 进程已退出)\n- exp_001_eval_05B_d000_s42_v2 (cuda:4, 旧条目，可能需清理)\n- exp006-oracle-arc-2pl, exp006-s1only-gsm8k-2pl, exp006-oracle-arc-4pl-pooled (CPU IRT)\n- exp_001_sft_05B_d025_s123_v2 (cuda:3)\n- exp_001_eval_3B_d025_v2_para_aligned (cuda:2, 进程已退出)\n- exp_004_sim_sweep_v5 (local CPU)\n\n### 4. 📋 待办（条件触发式）\n- eval-batch-results Worker 返回 → 逐个更新 registry（conclusion+metrics），然后立即安排 cuda:0/1/2/4 的下一批实验。优先级：seed=123 eval（3B d000 s42 v3, 0.5B d000 s42 v6, 0.5B d100 v6）+ 3B d025 aligned eval\n- oracle-arc-2pl baselines 完成（~10min est）→ 收集 MAE/ECE/coverage，更新 registry，汇报 Director\n- s1only-gsm8k-2pl baselines 完成（~10min est）→ 同上\n- oracle-arc-4pl-pooled 完成（~45min est）→ 完成 2×2×2 矩阵最后一格，汇报 Director 做 paper data lockdown\n- exp_001_sft_05B_d025_s123_v2 完成 → eval 提交（0.5B d025 s123 aligned + para_aligned）\n- exp_001_sft_3B_d100_s123 完成 → eval 提交（3B d100 s123 aligned + para_aligned）\n- 三个 IRT 2PL 全部完成 → 综合对比汇报 Director：\"2PL vs 4PL on ARC vs GSM8K\"完整表格\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 10 天）\n- **核心发现链**：D035→D036→D037。contamination effect 是 benchmark-dependent（ARC γ<0, GSM8K γ>0）。论文 framing 从 \"calibration works\" 转为 \"when and how calibration works depends on benchmark + model complexity\"\n- **2PL vs 4PL 是当前最高优先级**（Director + Reviewer 驱动）：Reviewer 发现 2PL+γ 在 GSM8K 上远优于 4PL+γ（MAE 0.024 vs 0.092）。新结果确认 ARC 上 2PL 也给出显著负 γ（-0.62 vs 4PL -1.46），但幅度更小。**等 MAE/coverage 才能判断哪个模型在 ARC 上更好**\n- **S1 信号 benchmark 差异是 clean story**：ARC S1≈Oracle（看到 MC 题≈知道答案），GSM8K S1≈0（看到数学题≠会解）\n- **Coverage collapse 仍未解决**（real data C95=20-33%）——论文中 simulation 和 real data 分开报告（Director 指令）\n- **易错点**：\n  - 不要混淆 \"oracle exposure\"（ground truth contamination labels）和 \"S1 exposure\"（embedding retrieval signal）\n  - ARC 旧 oracle 用了 0.5B-only + delta exposure，不可与 GSM8K oracle（16 models + oracle）直接比较——exp006-oracle-arc-4pl-pooled 正在修正这个\n  - cron 对 pre-sentinel eval 会误判——已清理，但如果 reconcile_crons 被调用可能会重新注册死进程的 cron（不太可能，但注意）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778845225.md"
+}

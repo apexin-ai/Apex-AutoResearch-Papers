@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc54daa71c03166673b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent gpu check collect fill",
+  "task_key": "worker_ops_urgent-gpu-check-collect-fill_20260521T055930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-check-collect-fill_20260521T055930_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "c58d103c5b74aebe2189673cc8e19f9bb43bbb2b4a9015a7c4b61cd2c060690a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## GPU 状态\n\n| 服务器 | GPU | 状态 |\n|--------|-----|------|\n| westd-29999 | cuda:0 | **RUNNING** — d050 ARC eval (PID 481293) |\n| westd-29999 | cuda:1 | **RUNNING** — d100 GSM8K eval (PID 481792) |\n| westd-29999 | cuda:2 | 空闲 |\n| westd-29999 | cuda:3 | 空闲 |\n| cqa1-21977 | cuda:0 | 空闲（无 Qwen-14B 模型，不可用于 14B eval） |\n\n## 已完成 Eval 结果\n\n| Benchmark | Dosage | Accuracy | Correct/Total |\n|-----------|--------|----------|---------------|\n| **GSM8K** | d000 (clean) | **74.98%** | 989/1319 |\n| **GSM8K** | d005 | **71.19%** | 939/1319 |\n| **GSM8K** | d025 | **79.30%** | 1046/1319 |\n| **MMLU** | d025 | **65.05%** | 9135/14042 |\n| **MMLU** | d050 | **55.33%** | 7770/14042 |\n| **MMLU** | d100 | **43.85%** | 6157/14042 |\n| **ARC** | d100 | **81.06%** | 950/1172 |\n\nGSM8K 跨 benchmark 效应非线性：d005 下降 3.8pp，d025 反弹至 +4.3pp（高于 baseline）。\n\n## 新启动任务\n\n1. **d050 ARC eval** → cuda:0, PID 481293（关键路径：补齐 ARC s0 dose-response 曲线）\n2. **d100 GSM8K eval** → cuda:1, PID 481792（补齐 GSM8K s0 完整 5-dosage 数据）\n\n## Registry 更新\n\n- 5 个已完成实验 → DONE (success) + metrics\n- 2 个新实验 → RUNNING\n\n## 剩余空闲\n\nwestd cuda:2 和 cuda:3 空闲，可分配额外任务。cqa1 无 14B 模型无法跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-check-collect-fill.md"
+}

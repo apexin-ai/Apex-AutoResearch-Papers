@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cdda0288210bf105050",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "train llama32 3B d000 sft cuda4",
+  "task_key": "worker_train_llama32_3B_d000_sft_cuda4_20260516T102653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama32_3B_d000_sft_cuda4_20260516T102653_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "dfcfa2cd5ca7f7752095fb283bbbe80ad286dc1b7ee9085b64d564c136844425"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动并在运行。\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| 模型路径 | `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B` |\n| 架构 | LlamaForCausalLM (3B, 28 layers, hidden=3072) |\n| 训练数据 | `/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl` (50000 samples) |\n| Output dir | `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/` |\n| GPU | cuda:4 (CUDA_VISIBLE_DEVICES=4) |\n| PID | 752961 |\n| VRAM | 23493 MiB / 24GB, 100% utilization |\n| tmux session | `llama3b_d000_s42` |\n| 日志 | `/tmp/llama3b_d000_s42.log` |\n| 超参 | lora_r=16, lora_alpha=32, lr=5e-5, batch=2, grad_accum=8, epochs=1, gradient_checkpointing=true, --merge |\n\n训练命令：\n```\nCUDA_VISIBLE_DEVICES=4 python /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42 \\\n  --seed 42 --lora-r 16 --lora-alpha 32 --lr 5e-5 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 \\\n  --gradient-checkpointing --merge\n```\n\n注意：模型来源为 ModelScope 上 `LLM-Research/Llama-3.2-3B`（HF 格式，已验证 config.json 为 LlamaForCausalLM）。HuggingFace 直接下载因 gated repo 失败，服务器无 HF token。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama32-3b-d000-sft-cuda4.md"
+}

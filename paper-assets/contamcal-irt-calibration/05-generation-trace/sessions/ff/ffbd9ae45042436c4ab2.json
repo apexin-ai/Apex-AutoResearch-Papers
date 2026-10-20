@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffbd9ae45042436c4ab2",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3065,
+    "sha256": "c9d49eb83bb0c9ade9e20567d9ceef9eac2e7f84eb1c2d34dd8a2860093fc984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-13T23:45:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: cuda:0 ~ cuda:5（6张），不可使用白名单外的卡\n- evaluate.py 不接受 --gpu 参数，加了会崩溃（已有两个 eval 因此 failed）\n- 所有 eval 命令必须通过 CUDA_VISIBLE_DEVICES 环境变量指定 GPU，不用 --gpu\n- dosage 数据已就绪（d005/d010/d050/d100），不需要等 MMLU 或其他数据准备\n\n### 2. 🖥️ 基础设施快照\n- 服务器信息: 需从 project config / get_resource_inventory 获取（本 session 未直接 SSH）\n- 项目路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/\n- artifacts 目录: 上述路径下 artifacts/\n- 活跃进程（截至 handoff 时刻）:\n  - cuda:0: exp_001_sft_d100_05B (PID 235243, 0.5B dosage=100% SFT, ~53min)\n  - cuda:1: 0.5B s42 eval\n  - cuda:2: 0.5B s123 eval\n  - cuda:3: 3B s123 训练\n  - cuda:4: 1.5B s42 eval\n  - cuda:5: exp_001_sft_d005_05B (PID 235331, 0.5B dosage=5% SFT, ~53min)\n- cron 已注册监控上述 SFT 任务\n\n### 3. 📊 当前状态\n刚完成的动作:\n- 标记 exp_001_eval_15B_d000_s123 为 DONE/failed（--gpu bug）\n- 标记 exp_001_eval_3B_d000_s42 为 DONE/failed（同一 bug，刚派 Agent 去做）\n- 启动 0.5B d100 和 d005 两个极端 dosage SFT，GPU 6/6 满载\n- 预注册 exp_001_sft_d100_15B 为 PREPARING，等 cuda:3 释放\n\nRUNNING/PREPARING 实验:\n- exp_001_sft_d100_05B: RUNNING, 0.5B 100% dosage SFT\n- exp_001_sft_d005_05B: RUNNING, 0.5B 5% dosage SFT\n- exp_001_sft_d100_15B: PREPARING, 等 GPU 3\n\n等待中:\n- Agent 刚收到指令标记 exp_001_eval_3B_d000_s42 failed\n- 多个 eval 在跑，完成后释放 GPU 给后续 dosage SFT\n- cron 回调: SFT 完成后 Agent 会回报\n\n### 4. 📋 待办\n- 0.5B d100/d005 SFT 完成 → 立即派 eval（不加 --gpu），用 CUDA_VISIBLE_DEVICES\n- cuda:1/2/4/5 eval 完成释放 → 优先铺 1.5B d100 SFT（已 PREPARING）、1.5B d005 SFT\n- cuda:3 3B s123 训练完成 → 启动 exp_001_sft_d100_15B\n- 两个 failed eval（0.5B s123 和 3B s42 的 d000 baseline eval）→ 有空 GPU 时重跑（去掉 --gpu）\n- dosage grid 完成后 → 分析 contamination 剂量-效应曲线，验证 IRT calibration 核心假设\n\n### 5. 🎯 战略上下文\n- 项目核心: 用 IRT calibration 检测 LLM benchmark contamination，dosage grid 是关键实验——不同模型规模 × 不同 contamination 剂量，看 IRT 参数变化是否能量化检测\n- 当前阶段: dosage grid 铺开中，0.5B 的两个极端（d005 最小、d100 最大）先跑，建立效应上下限\n- 已有 d000 baseline SFT 完成（0.5B/1.5B/3B），但对应的部分 eval 因 --gpu bug 失败待重跑\n- 易错点: (1) evaluate.py 绝对不能加 --gpu，这是本项目反复踩的坑 (2) dosage 数据已经就绪不需要额外准备 (3) 审稿阶段已启动（review_chat_id 存在），GPU 不能空着等审稿，继续铺 dosage grid\n- 项目处于 research 阶段，paper_framing.md 和 experiment_plan.yaml 已存在\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

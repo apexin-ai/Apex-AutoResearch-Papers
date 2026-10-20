@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd54c6f19903812bd01e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check eval 05B d025 s123 result",
+  "task_key": "worker_ops_check-eval-05B-d025-s123-result_20260515T083333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-05B-d025-s123-result_20260515T083333_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "a4423e3f9c3fb2a5c2f993bf0a60ad172e233de640eadfddca73c57706fa2cfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无活跃 cron，无需清除。\n\n**实验 `exp_001_eval_05B_d025_s123_aligned` 成功完成。** 4 个 benchmark 结果：\n\n| Benchmark | Metric | Score | Correct/Total |\n|-----------|--------|-------|---------------|\n| MMLU | accuracy | 0.3473 | 4877/14042 |\n| GSM8K | accuracy | 0.3533 | 466/1319 |\n| ARC-Challenge | accuracy | 0.4061 | 476/1172 |\n| HumanEval | pass@1 | 0.0854 | 14/164 |\n\nRegistry 已更新为 DONE/success，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-05b-d025-s123-result.md"
+}

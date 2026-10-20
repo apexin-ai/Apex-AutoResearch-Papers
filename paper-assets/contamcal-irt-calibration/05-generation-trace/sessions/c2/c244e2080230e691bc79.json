@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c244e2080230e691bc79",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops socsci prior collect",
+  "task_key": "worker_ops_socsci_prior_collect_20260517T191812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_socsci_prior_collect_20260517T191812_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "f2f86809403bd4d5a691833835d0daf76537966157eae8b2a25ddff4b8dd3110"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## γ Prior Sensitivity 结果 — Social Sciences (J=16, I=2000)\n\n| Prior | γ̂ mean | γ̂ median | 95% CI | P(γ<0) | PPP | Rhat | ESS_min | Time |\n|---|---|---|---|---|---|---|---|---|\n| **N(0, 0.5)** tight | -0.428 | -0.428 | [-0.825, -0.017] | **0.9795** | 0.242 | 1.008 | 1401 | 593s |\n| **N(0, 1.0)** baseline | -0.497 | -0.498 | [-0.943, -0.055] | **0.9848** | 0.282 | 1.009 | 1457 | 594s |\n| **N(0, 2.0)** loose | -0.507 | -0.505 | [-0.957, -0.077] | **0.9892** | 0.282 | 1.007 | 1384 | 606s |\n\n### 关键结论\n\n**P(γ<0) 在最严格的 tight prior N(0, 0.5) 下仍达 97.95%**，满足 >95% 的阈值。\n\n结果对 prior 选择非常稳健：\n- γ̂ 从 tight 到 loose 仅变化 -0.428 → -0.507（约 0.08 的偏移）\n- 95% CI 都不包含 0（tight 的上界 -0.017 也远离 0）\n- P(γ<0) 单调递增：0.9795 → 0.9848 → 0.9892\n- 三种 prior 诊断全部通过：零 divergences, Rhat < 1.01, ESS > 1300\n- PPP 合理（0.24-0.28），模型拟合良好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-socsci-prior-collect.md"
+}

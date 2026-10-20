@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c1a8b9088acea40a1702",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis pooled irt 4bench aligned",
+  "task_key": "worker_analysis_pooled-irt-4bench-aligned_20260515T123251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pooled-irt-4bench-aligned_20260515T123251.log",
+    "occurrence": 1,
+    "bytes": 1019408,
+    "sha256": "84c39ee1acb7a5ecc0cd808560de00c5ec0eec8232afd806bee162d484230c7e"
+  },
+  "statistics": {
+    "messages": 459,
+    "user_turns": 1,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 176,
+      "tool_result": 176,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 444,
+      "chunks": [
+        {
+          "path": "c1a8b9088acea40a1702-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "c1a8b9088acea40a1702-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c1a8b9088acea40a1702-part-0003.json",
+          "message_count": 95
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "c1a8b9088acea40a1702-part-0003.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-pooled-irt-4bench-aligned.md"
+}

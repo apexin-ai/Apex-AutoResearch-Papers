@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f49d46b818682a7190f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit data tables2 3 fig1 inline",
+  "task_key": "worker_audit_data-tables2-3-fig1-inline_20260522T035507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-tables2-3-fig1-inline_20260522T035507.log",
+    "occurrence": 1,
+    "bytes": 1054138,
+    "sha256": "2a089ee37ae39b901852fe2c6421c9219f3beeb2e76d556ba86d1caeaa40da78"
+  },
+  "statistics": {
+    "messages": 308,
+    "user_turns": 1,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 122,
+      "tool_result": 122,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 294,
+      "chunks": [
+        {
+          "path": "f49d46b818682a7190f4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f49d46b818682a7190f4-part-0002.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "f49d46b818682a7190f4-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-tables2-3-fig1-inline.md"
+}

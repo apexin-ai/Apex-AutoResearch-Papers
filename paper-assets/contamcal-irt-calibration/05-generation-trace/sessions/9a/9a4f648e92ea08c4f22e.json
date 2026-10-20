@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4f648e92ea08c4f22e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 launch",
+  "task_key": "worker_ssh_westd-phase2-launch_20260519T104124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-launch_20260519T104124_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "6ba3a5ab924deec32f5a9bb917248ff715d1af611a552e3c34a4b9c19bde9b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部满载运行，无 error。\n\n### 产出汇总\n\n**1. Phi-4 d100 训练 metrics**\n```json\n{\"final_loss\": 1.191, \"mean_token_accuracy\": 0.7244, \"train_runtime_sec\": 9234}\n```\n- lora_alpha=32, lr=5e-5, epochs=1, 4159 steps, 66533 samples\n\n**2. Phi-4 d100 checkpoint 完整性** ✅\n- `adapter_model.safetensors` (222MB) + `adapter_config.json` + `.done` sentinel 均存在\n\n**3. Phase 2 进程 PID**\n\n| GPU | 模型/任务 | PID | VRAM |\n|-----|----------|-----|------|\n| 0 | Phi-4 (5 evals) | 146957 | 31.7GB |\n| 1 | Qwen2.5-14B (5 evals) | 147458 | 32.7GB |\n| 2 | Qwen2.5-7B + Gemma-d000 (6 evals) | 147533 | 17.7GB |\n| 3 | Gemma-d005~d100 + OLMo-2 (9 evals) | 147609 | 19.3GB |\n\n**4. 启动验证** ✅ 全部 4 GPU 90%+ utilization，log 正常输出（MMLU eval 进行中）\n\n**5. 预估完成时间**\n- GPU 0 (Phi-4): MMLU 14042 items @ ~18 it/s ≈ 13min/benchmark × 5 = ~65min → ~19:50\n- GPU 1 (14B): 类似速度 × 5 ≈ ~65min → ~19:50\n- GPU 2 (7B): 更快 ~30 it/s × 6 ≈ ~50min → ~19:35\n- GPU 3 (9B×4 + 7B×5 = 9 evals): 最慢，≈ ~120min → ~20:45"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "final_loss": 1.191,
+              "mean_token_accuracy": 0.7244,
+              "train_runtime_sec": 9234
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-launch.md"
+}

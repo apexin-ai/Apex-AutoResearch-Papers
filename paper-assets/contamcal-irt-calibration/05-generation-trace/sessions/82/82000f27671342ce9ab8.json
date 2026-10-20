@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82000f27671342ce9ab8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis 2pl no gamma ablation",
+  "task_key": "worker_analysis_2pl_no_gamma_ablation_20260516T160735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_2pl_no_gamma_ablation_20260516T160735_result.json",
+    "occurrence": 1,
+    "bytes": 332,
+    "sha256": "18f0fa042db88114349b030be9cf73a30f2c3ff1f61ff21d6b3dd7b1b628f8e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered successfully (`art_20260516_52983e`). \n\nAll tasks from the previous session are now complete:\n- Vanilla 2PL ablation ran and results confirmed Simpson's Paradox hypothesis\n- Comparison table saved to `memory.md`\n- Results registered as artifact `vanilla_2pl_ablation_summary.txt` under exp006"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-2pl-no-gamma-ablation.md"
+}

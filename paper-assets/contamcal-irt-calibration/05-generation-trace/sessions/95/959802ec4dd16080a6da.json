@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "959802ec4dd16080a6da",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops vanilla 2pl kendall tau",
+  "task_key": "worker_ops_vanilla_2pl_kendall_tau_20260517T090458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_vanilla_2pl_kendall_tau_20260517T090458.log",
+    "occurrence": 1,
+    "bytes": 1267313,
+    "sha256": "9990a5e29593b2e4275130a773452dd94c652deeade7e2253ef1611509a31168"
+  },
+  "statistics": {
+    "messages": 502,
+    "user_turns": 1,
+    "tool_calls": 175,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 175,
+      "tool_result": 175,
+      "user": 1,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "959802ec4dd16080a6da-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "959802ec4dd16080a6da-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "959802ec4dd16080a6da-part-0002.json",
+          "message_count": 38
+        },
+        {
+          "path": "959802ec4dd16080a6da-part-0003.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-vanilla-2pl-kendall-tau.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9360acc53acd260cb062",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B d000 s42 gpu3",
+  "task_key": "worker_eval_3B_d000_s42_gpu3_20260514T002643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B_d000_s42_gpu3_20260514T002643_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "192403e9142e09c2868d1672cbdaf11331c129cabf98b24a0d1c757345706458"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 3 当前被占用**，无法立即提交。\n\n当前 GPU 3 上运行的是：\n- **PID 242591**: `evaluate.py` — 3B s123 eval (`Qwen2.5-3B_d000_s123`)\n- 输出目录为空，刚开始跑\n\nGPU 4 也在跑 1.5B s42 eval（PID 243300）。\n\n两个方案：\n1. **等 GPU 3 的 s123 eval 跑完**后再提交 s42 eval（可以用 nohup 写个等待脚本）\n2. **换到其他 GPU**（GPU 1/2 各有 ~3.7GB 占用，34%/32% 利用率，剩余 ~21GB 够用）\n\n你要哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-d000-s42-gpu3.md"
+}

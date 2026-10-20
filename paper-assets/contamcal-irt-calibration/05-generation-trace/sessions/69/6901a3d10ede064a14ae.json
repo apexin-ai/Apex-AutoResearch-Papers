@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6901a3d10ede064a14ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops full status check loop8",
+  "task_key": "worker_ops_full-status-check-loop8_20260515T044522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-status-check-loop8_20260515T044522_result.json",
+    "occurrence": 1,
+    "bytes": 2898,
+    "sha256": "5afb4994b80cc1866cd26a4b2cc1a8e54efe4863bda539fe047c3a913359db55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. GPU 占用\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| 0 | 21268/24564 MiB (87%) | 99% | PID 477489 (eval_3B_d100_v2_aligned, 8.8G) + PID 498153 (sft_05B_d025_s123_v2, 12.5G) |\n| 1 | 8985/24564 MiB (37%) | 63% | PID 492660 (eval_3B_d000_v2_s123_aligned, 9.0G) |\n| 2 | 9017/24564 MiB (37%) | 62% | PID 499610 (eval_3B_d025_v2_para_aligned, 9.0G) |\n| **3** | **0/24564 MiB (0%)** | **0%** | **IDLE** |\n| 4 | 7254/24564 MiB (30%) | 32% | PID 493617 (instruct_05B_eval, 3.6G) + PID 494109 (eval_05B_d000_s42_v7, 3.7G) |\n| 5 | 17981/24564 MiB (73%) | 25% | PID 471296 (sft_3B_d100_s123, 18.0G) |\n\n### 2. Eval 进程\n\n| 实验 | PID | GPU | 状态 | 结果 |\n|------|-----|-----|------|------|\n| eval_3B_d100_v2_aligned_v2 | 477489 | 0 | ALIVE | 无结果（运行中） |\n| exp_008_instruct_05B_eval | 493617 | 4 | ALIVE | 无结果（运行中） |\n| eval_05B_d000_s42_v7 | 494109 | 4 | ALIVE | 无结果（运行中） |\n| eval_3B_d000_v2_s123_aligned | 492660 | 1 | ALIVE | 无结果（运行中） |\n| eval_3B_d025_v2_para_aligned | 499610 | 2 | ALIVE | 无结果（运行中） |\n\n所有 eval 结果目录尚未生成，无 `.done` sentinel 文件。\n\n### 3. SFT 进度\n\n| 实验 | PID | GPU | 进度 | ETA | 备注 |\n|------|-----|-----|------|-----|------|\n| sft_05B_d025_s123_v2 | 498153 | **0** (非 3) | 1488/3384 (**44%**) | ~1h | ⚠️ 在 GPU 0 而非预期的 GPU 3，loss=1.51 |\n| sft_3B_d100_s123 | 471296 | 5 | 3745/4159 (**90%**) | ~33min | loss=1.14，接近完成 |\n\n### 4. IRT 实验 (CPU)\n\n| 实验 | PID | 状态 | 结果 |\n|------|-----|------|------|\n| oracle-arc-2pl | 496697 | **DEAD** | **完成** — gamma=-0.618 (CI excludes 0 ✅), MAE=0.076, coverage_95=18.2% (极低), tau=0.739 |\n| s1only-gsm8k-2pl | 496852 | ALIVE | 已有结果 — gamma=0.167 (CI **不** excludes 0 ❌ [-0.31, 0.64]), MAE=0.013, coverage_95=100%, tau=0.756 |\n| oracle-arc-4pl-pooled | — | 进行中 | 目录 `arc_challenge/` 已创建但**空**，尚无输出 |\n\n**IRT 对比 baselines (evaluation.json):**\n\n| | IRT 2PL gamma | B0_raw | B6_dcr_fuzzy |\n|--|---|---|---|\n| **ARC oracle** MAE | 0.0759 | 0.0685 | 0.2631 |\n| **ARC oracle** coverage_95 | 18.2% | 54.5% | 27.3% |\n| **GSM8K s1only** MAE | 0.0131 | 0.0031 | 0.1793 |\n| **GSM8K s1only** coverage_95 | 100% | 100% | 50% |\n\n### 5. 本地进程\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_004_sim_sweep_v5 | 652931 | ALIVE |\n\n### 6. 空闲 GPU\n\n**GPU 3 完全空闲可用。** GPU 4 还有约 17G 余量。其余均在使用中。\n\n### 注意\n\n- sft_05B_d025_s123_v2 跑在 GPU 0 上，和 eval 进程共享，GPU 0 利用率 99%、显存 87%。\n- ARC oracle-2pl 的 coverage_95 仅 18.2%，说明不确定性区间过窄。GSM8K s1only-2pl 的 gamma CI 包含 0，检测不到显著污染效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check-loop8.md"
+}

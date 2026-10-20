@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e43e9990de14854d82c6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 001 sft 3B d000 s123 verify eval",
+  "task_key": "worker_code_exp_001_sft_3B_d000_s123_verify_eval_20260515T024615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_sft_3B_d000_s123_verify_eval_20260515T024615_result.json",
+    "occurrence": 1,
+    "bytes": 1717,
+    "sha256": "0c457868e5106bf1c8c15027fb2d212bf49eeb8fd03a4b61b49026739a0151c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Checkpoint 验证 ✓\n- **路径**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter`\n- **adapter_model.safetensors**: 114 MB（合理范围）\n- **超参确认**: lr=5e-5, r=16, lora_alpha=16, seed=123 ✓\n- **训练指标**: train_loss=1.1361, mean_token_accuracy=0.748, steps=3125\n- **Registry 已更新**: ANALYZING → **DONE**\n\n### GPU 4 状态 ✗ — 不空闲\nGPU 4 被 PID 488065 占用（3718 MiB），正在运行 **0.5B d005 s123 的 para_aligned eval**：\n```\nevaluate.py --model-path Qwen2.5-0.5B --adapter-path Qwen2.5-0.5B_d005_s123 --mc-format aligned\n```\n\n全部 6 块 GPU 均被占用：\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 8985 MiB | 69% | 忙 |\n| 1 | 3695 MiB | 35% | 忙 |\n| 2 | 5857 MiB | 51% | 忙 |\n| 3 | 17651 MiB | 42% | 忙 |\n| 4 | 3727 MiB | 0% | 被 0.5B eval 占用 |\n| 5 | 17981 MiB | 36% | 忙 |\n\n### Aligned eval 命令（GPU 空闲后提交）\n```bash\nbash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\"\n```\n\nGPU 4 上的 0.5B eval 完成后即可提交。需要等待还是要我检查其他 GPU 的释放时间？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-sft-3b-d000-s123-verify-eval.md"
+}

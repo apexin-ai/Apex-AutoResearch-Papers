@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59c05fcc3a053ae3dd22",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd download health fix",
+  "task_key": "worker_ops_westd-download-health-fix_20260518T084301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-download-health-fix_20260518T084301_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "3575e55f913a73ab0020d4bc0426ee0d0be2a2c0e7e85735d4026e79cc5f8c21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 进程状态\n| 模型 | PID | 状态 | 进度 |\n|------|-----|------|------|\n| **Qwen2.5-7B** | 5064 | **活跃下载中** | 2/4 shards 完成，shard 1 @2.5G, shard 3 @1.9G（剩余 ~2.8G） |\n| **Qwen2.5-14B** | 5066 | 活跃下载中 | 2/8 shards 完成，6 shards 并行下载中 |\n| **Gemma-2-9b** | 6380 | 活跃下载中 | ~10G 已下载，8 shards 进行中 |\n| **Phi-4** | ~~8159~~ | **已暂停** | 1.6G partial 文件保留，断点续传安全 |\n| **OLMo-2-7B** | ~~8168~~ | **已暂停** | 13G partial 文件保留（含 1 完成 shard），断点续传安全 |\n\n### 已执行优化\n- Kill 了 Phi-4 和 OLMo-2 下载进程，释放带宽给 Batch 1（7B/14B/Gemma）\n- 清理了对应 screen 会话\n- Partial 文件完好，7B 完成后可用 `hf download` 断点续传恢复\n\n### 7B 预计完成时间\n剩余 ~2.8G，带宽从 5 路降到 3 路，预计 20-40 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-download-health-fix.md"
+}

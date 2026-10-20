@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566422ac9ed45e577897",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code sft 3B d100 submit",
+  "task_key": "worker_code_sft_3B_d100_submit_20260514T042459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft_3B_d100_submit_20260514T042459_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "3c03b890d95476da374e8eae3dca57beaf0289d7da9e47daced98718a719e5d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 上 PID 242591 仍在运行（13.5GB 显存，16% 利用率）。4 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-3b-d100-submit.md"
+}

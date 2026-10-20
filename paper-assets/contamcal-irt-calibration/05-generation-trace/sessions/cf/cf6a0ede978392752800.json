@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6a0ede978392752800",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code regenerate dosage data",
+  "task_key": "worker_code_regenerate-dosage-data_20260513T235208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_regenerate-dosage-data_20260513T235208_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "5c48a13355abcb46e0cba086502667ae52967ba469f3006245d045ffabf7d845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务已完成——文件已经是最新的。**\n\n`prepare_sft_data.py` 已在 May 14 07:16 重新运行过，生成了包含 MMLU+ARC+GSM8K 的完整 dosage 文件。\n\n### 验证报告\n\n| 文件 | 行数 | 构成 |\n|------|------|------|\n| sft_dosage_000.jsonl | 50,000 | 纯 SlimOrca |\n| sft_dosage_005.jsonl | 50,826 | 50000 + 826 contam (5%) |\n| sft_dosage_025.jsonl | 54,133 | 50000 + 4133 contam (25%) |\n| sft_dosage_050.jsonl | 58,266 | 50000 + 8266 contam (50%) |\n| sft_dosage_100.jsonl | 66,533 | 50000 + 16533 contam (100%) |\n\nBenchmark 分布（总 contam pool）：\n- MMLU: 14,042 条\n- GSM8K: 1,319 条\n- ARC Challenge: 1,172 条\n\ncontamination_labels 文件也已为三个 benchmark 的四个 dosage 生成完毕（共 12 个 label JSON）。无需再次运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-regenerate-dosage-data.md"
+}

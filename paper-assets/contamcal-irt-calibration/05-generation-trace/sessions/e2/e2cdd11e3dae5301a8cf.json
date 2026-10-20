@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2cdd11e3dae5301a8cf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd model download",
+  "task_key": "worker_ops_westd-model-download_20260518T062758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-model-download_20260518T062758_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "78179fc320c5bada5fdfe09261519f6e709f83f3862849f0c640505aa4cf51c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正常进行中。4 个 safetensors 分片正在并行下载（190MB + 270MB + 70MB + 180MB = ~710MB 已写入），通过 hf-mirror.com 下载。\n\n**状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | `/root/autodl-tmp` 250GB 可用，充足 |\n| **screen session** | `2216.model_dl` 运行中 |\n| **7B 下载** | 4 个 safetensors 分片并行下载中，已写入 ~1.5GB（含小文件） |\n| **14B 下载** | 排队中（7B 完成后自动开始） |\n| **下载源** | hf-mirror.com（中国镜像） |\n| **预计完成** | 7B (~14GB) 约 10-15 分钟，14B (~28GB) 约 20-30 分钟，总计 ~30-45 分钟 |\n\n查进度可用：\n```\ntail -5 /root/autodl-tmp/models/dl_7b.log\ndu -sh /root/autodl-tmp/models/Qwen2.5-7B/\n```\n\n完成标志：`/root/autodl-tmp/models/DOWNLOAD_DONE.txt` 存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-model-download.md"
+}

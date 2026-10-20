@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0d79a60e1fc962c366",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix tau remaining callsites",
+  "task_key": "worker_code_fix_tau_remaining_callsites_20260514T135309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_tau_remaining_callsites_20260514T135309_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "000a308445676885619c03e73fde948500fa5e9f1746230145fd17674b117811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。\n\n## Diff 摘要\n\n**run_exp006.py** (3 处):\n- L88: `load_exposure_scores(args.exposure_file, data[\"benchmarks\"])` → 加 `model_id=args.tau_model_id`\n- L282: `run_joint_fit(...)` 调用增加 `tau_model_id=args.tau_model_id`\n- L323-328: argparse 新增 `--tau-model-id` 和 `--tau-source`\n\n**joint_fit.py** (4 处):\n- L101: `run_joint_fit()` 签名增加 `tau_model_id=None`\n- L107: `load_exposure_scores(...)` 加 `model_id=tau_model_id`\n- L210-214: argparse 新增 `--tau-model-id` 和 `--tau-source`\n- L236: `main()` 中调用 `run_joint_fit()` 传入 `tau_model_id=args.tau_model_id`\n\n## 全量扫描\n\n所有 `load_exposure_scores` 调用点（4 个入口文件）均已传入 `model_id`：\n| 文件 | 行号 | 状态 |\n|------|------|------|\n| `run_irt_calibration.py` | 483 | ✓ 已有 |\n| `run_irt_stan.py` | 407 | ✓ 已有 |\n| `run_exp006.py` | 88 | ✓ 本次修复 |\n| `joint_fit.py` | 107 | ✓ 本次修复 |\n\n## Dry-run\n\n两个文件语法检查通过，`--help` 均正确显示 `--tau-model-id` 和 `--tau-source` 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-tau-remaining-callsites.md"
+}

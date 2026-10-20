@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3da659a249bd3353af2",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_12_1778891581.md",
+  "task_key": "loop_12_1778891581",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778891581.md",
+    "occurrence": 1,
+    "bytes": 6976,
+    "sha256": "79741e7e6ca368b0286e7f0740074ef26c00670393830196ac48f1bbf352eee9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T00:25:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: cuda:0-5 @ cqa1-21977，共 6× RTX 4090D，不可用其他设备\n- **Alpha 混用禁令 (D055)**: s42 系列必须 alpha=32；s123 系列 alpha=16 已接受但不可与 s42 alpha=32 数据混合引用。IRT pooling 时严格按 alpha 分组\n- **lr Confound (D076)**: s42 旧 d000/d005 checkpoint 用了 lr=2e-4（默认值），与全局 lr=5e-5 不一致。这些旧 checkpoint 及其下游 eval/signals **全部作废**，必须用重训后的 checkpoint\n- **exp_002_signals_3B_v8 conclusion=killed 是误标**: registry 中 conclusion=killed 但进程实际仍在跑(PID 659057/659058)，notes 字段说明了这一点。**不要再次 kill 它，视为 RUNNING**\n- **submit_training_job 命令必须自带 conda activate**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`，不能假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977 (AutoDL)，6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`（代码），`/root/autodl-tmp/`（数据/模型/checkpoint）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境\n- **HF cache**: `/root/autodl-tmp/.hf_cache`，模型 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoint 目录**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_{dosage}_{seed}/lora_adapter`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 输出**: `/root/autodl-tmp/exp002/signals/`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Paraphrases**: `/root/autodl-tmp/exp001/paraphrases/`\n- **Sim sweep**: 本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/`\n- **活跃进程**:\n  - cuda:0 — exp_001_sft_3B_d005_s42_a32 (PID 643162) + exp_001_eval_3B_d100_s123_a32_batch (PID 642752, 共享 cuda:0)\n  - cuda:1 — exp_001_sft_3B_d100_s42_a32_v3 (PID 628663)\n  - cuda:2 — exp_002_signals_3B_v7 (PID 652247, d005_s123 signals)\n  - cuda:3 — exp_001_eval_3B_d025_v3_s42_batch (eval aligned+para_aligned)\n  - cuda:4 — exp_002_signals_3B_v8 (PID 659053, d025_s123+d100_a32_s123 signals, **误标 killed 但仍在跑**)\n  - cuda:5 — exp_002_signals_3B_d025_v3_s42 (PID 663047, self-critique signal)\n  - CPU — exp_004_sim_sweep_v7 (8/12 条件完成, auc0.65×3 失败, auc0.9_n100 在跑)\n- **Cron 监控中**: exp_001_sft_3B_d100_s42_a32_v3, exp_001_sft_3B_d005_s42_a32, exp_001_eval_3B_d100_s123_a32_batch, exp_002_signals_3B_v7（仅 4 个有 cron，v8/d025_v3_s42/eval_d025_v3_s42_batch 可能缺 cron 监控）\n- **Worker 池**: 0 running\n\n### 3. 📊 当前状态\n全部 6 GPU 饱和运行，CPU 同时跑 sim_sweep_v7。核心推进 D076 alpha=32 重训 + 3B signals pipeline。\n\n**RUNNING 实验（8 个）**:\n| exp_id | GPU | 任务 | 预计 |\n|--------|-----|------|------|\n| exp_001_sft_3B_d100_s42_a32_v3 | cuda:1 | 3B d100 s42 SFT (alpha=32, v3) | ~12h total |\n| exp_001_sft_3B_d005_s42_a32 | cuda:0 | 3B d005 s42 SFT (alpha=32, D076 重训) | ~8h |\n| exp_001_eval_3B_d100_s123_a32_batch | cuda:0 | d100 s123 alpha=32 aligned+para eval | 数小时 |\n| exp_002_signals_3B_v7 | cuda:2 | d005_s123 × {mmlu,gsm8k,arc} all signals | ~9h |\n| exp_002_signals_3B_v8 | cuda:4 | d025_s123+d100_a32_s123 signals (误标killed) | 运行中 |\n| exp_002_signals_3B_d025_v3_s42 | cuda:5 | d025_v3_s42 self-critique signal | 刚启动 |\n| exp_001_eval_3B_d025_v3_s42_batch | cuda:3 | d025_v3_s42 aligned+para eval | 运行中 |\n| exp_004_sim_sweep_v7 | CPU | sim identifiability sweep (9/12 OK, auc0.65×3 fail) | ETA 5-8h |\n\n**等待中**:\n- 23 个 PREPARING 实验排队（多数是后续 eval/signal 或低优先级的 0.5B 补跑）\n- 无活跃 Worker\n- v8 和 d025_v3_s42 和 eval_d025_v3_s42_batch 可能缺 cron 监控，需要手动 poll 或补注册\n\n### 4. 📋 待办（条件触发式）\n- **d005_s42 SFT 完成 (cuda:0)** → 启动 d005_s42 aligned eval + para_aligned eval → 完成后启动 d005_s42 signals\n- **d100_s42_v3 SFT 完成 (cuda:1)** → 启动 d100_s42 aligned eval + para_aligned eval → 完成后启动 d100_s42 signals\n- **d100_s123_a32 eval batch 完成 (cuda:0)** → 记录 metrics 到 registry，更新 eval matrix\n- **signals v7 完成 (cuda:2)** → 释放 cuda:2 给下一个 signal 任务（d000_s42 新 checkpoint signals 或其他缺失 slot）\n- **signals v8 完成 (cuda:4)** → 记录 d025_s123 + d100_a32_s123 signal 结果，更新 signal pipeline 进度\n- **d025_v3_s42 eval + signals 完成 (cuda:3/5)** → 填充 3B s42 d025 slot（当前标 ⚠️α16，v3 是 alpha=32 有效 checkpoint per D086）\n- **sim_sweep_v7 完成 (CPU)** → 确认 identifiability boundary（auc0.65 失败不阻塞，9/12 条件足够支撑 Claim 1）\n- **所有 3B signals 完成** → 启动 RRF 聚合 (exp-003, CPU) → per-benchmark exposure scores → pooled IRT fitting (exp-006)\n- **GPU 释放顺序**: cuda:0 最先释放(eval batch) → 给 d025_s42_a32_v3 SFT 重训（PREPARING 中优先级最高的 s42 缺失 slot）\n- **IRT pooling 就绪条件**: N≥16 alpha=32 eval 完成（当前 N=19，⏳ 完成后可达 N=24+）\n\n### 5. 🎯 战略上下文\n**项目**: ContamCal — post-hoc statistical calibration via contamination-augmented 4PL IRT。目标 EMNLP 2026 ARR May 25（T-10 天）。\n\n**核心 Claims**:\n- Claim 1 (28.6%): γ identifiability — sim_sweep 证明 N=20 即可识别，v7 9/12 条件通过\n- Claim 2 (60%): per-benchmark contamination signals → exposure scores — 3B signals pipeline 是 critical path\n- Claim 3 (0%): measurement error model — exp-005 v4 negative，Director 决策降级为 appendix\n- Overall coverage 38.5%，EMNLP 距今 10 天，critical path 是 3B signals 全完成 → RRF → IRT fitting → paper\n\n**关键决策链**: D050(alpha=32统一) → D055(s123 alpha=16接受) → D056(coverage collapse=misspecification) → D076(lr confound重训)\n\n**易错点**:\n1. **v8 误标 killed** — registry conclusion=killed 但进程仍在跑，notes 说明了原因。不要再 kill，不要重提交\n2. **d025_v3_s42 是有效 alpha=32 checkpoint (D086)** — 虽然原始 d025_s42 是 alpha=16，但 v3 是 D082 确认后的有效 checkpoint，不需要重训\n3. **cuda:0 两个进程共享** — SFT 和 eval batch 同时跑在 cuda:0，可能有 VRAM 竞争，之前 d025_v2 就因此被 SIGTERM (D083)。密切关注\n4. **3 个 RUNNING 实验可能缺 cron** — reconcile 只发现 4 个 cron，但有 8 个 RUNNING。v8/d025_v3_s42/eval_d025_v3_s42_batch 需手动 poll 或补注册 cron\n5. **sim_sweep auc0.65 失败非阻塞** — CmdStan 低 signal quality 数值问题，不影响主结论\n6. **1.5B s123 para_aligned 4合1 eval (原 cuda:3)** — ROADMAP 提到但 registry 中未见对应 RUNNING 条目，可能已完成或被覆盖。下一轮需确认 1.5B s123 para_aligned 状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778891581.md"
+}

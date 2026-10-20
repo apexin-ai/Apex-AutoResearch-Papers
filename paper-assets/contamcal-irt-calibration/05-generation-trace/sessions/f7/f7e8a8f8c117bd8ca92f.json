@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e8a8f8c117bd8ca92f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 d100 restart",
+  "task_key": "worker_ops_falcon3-cqa1-d100-restart_20260522T045707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-d100-restart_20260522T045707_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "b9b676547afa402c59e93749d8468c41bd05cb5a164b3cc08892004446da6393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。step 4/4159，~5s/step，预计 ~5.8 小时完成。\n\n**总结**:\n- **崩溃原因**: OOM — Falcon3-7B (bf16 ~14GB) 在 batch-size 4 和 batch-size 2 下都超出 24GB 4090D 的显存\n- **修复**: batch-size 1 + grad-accum 16 + `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`，保持有效 batch size = 16 不变\n- **当前状态**: PID 652456 正在训练，GPU 占用 19.5GB/24.5GB，~5s/step，ETA ~5.8h\n- bitsandbytes 的 `libnvJitLink.so.13` 警告是非致命的，不影响当前训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-d100-restart.md"
+}

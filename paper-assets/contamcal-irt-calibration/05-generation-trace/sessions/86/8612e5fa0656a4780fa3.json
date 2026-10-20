@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8612e5fa0656a4780fa3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis collect qwen7b gsm8k cqa1",
+  "task_key": "worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "737651a5070981b5092dcb537113dfcc6dd27dcad6c6379270820c21f8424138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**eval 状态：STILL RUNNING**（不是 failed）\n\nPID 435752 正在 GPU 0 上跑 `d025_s0` GSM8K eval（已运行 35 分钟），脚本按 d000→d005→d025→d050→d100 顺序执行。\n\n### 已完成的 GSM8K accuracy (s0)\n\n| Dosage | Accuracy | Correct/Total | Δ vs d000 |\n|--------|----------|--------------|-----------|\n| d000 | 73.31% | 967/1319 | — |\n| d005 | 78.32% | 1033/1319 | **+5.00pp** |\n| d025 | *running* | — | — |\n| d050 | pending | — | — |\n| d100 | pending | — | — |\n\n### GPU 状态\n\n| GPU | Memory | Util | Process |\n|-----|--------|------|---------|\n| 0 | 17125/24564 MiB | 83% | PID 435752 — d025_s0 GSM8K eval |\n\n### 建议\n\n- Registry 应改为 RUNNING（进程仍活跃），不需要干预\n- d005 的 +5.00pp 在 7B 模型上是显著的 contamination effect\n- 按 d000/d005 各约 40 分钟推算，d025/d050/d100 预计还需 ~2 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-qwen7b-gsm8k-cqa1.md"
+}

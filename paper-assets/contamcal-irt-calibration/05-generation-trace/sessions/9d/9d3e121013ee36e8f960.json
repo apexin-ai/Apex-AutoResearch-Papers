@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "9d3e121013ee36e8f960",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops j16 pooled theta extraction",
+  "task_key": "worker_ops_j16_pooled_theta_extraction_20260517T142717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j16_pooled_theta_extraction_20260517T142717.log",
+    "occurrence": 1,
+    "bytes": 738544,
+    "sha256": "6a28f1594814b0046d3fc6659cc8f91221a906aad9c81fb72198e37c79d118f0"
+  },
+  "statistics": {
+    "messages": 466,
+    "user_turns": 0,
+    "tool_calls": 194,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 194,
+      "tool_result": 194
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 466,
+      "chunks": [
+        {
+          "path": "9d3e121013ee36e8f960-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d3e121013ee36e8f960-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d3e121013ee36e8f960-part-0003.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-j16-pooled-theta-extraction.md"
+}

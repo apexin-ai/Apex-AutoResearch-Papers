@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4deb0a2615d783d32b38",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code mc eval fix d017",
+  "task_key": "worker_code_mc-eval-fix-d017_20260514T071256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mc-eval-fix-d017_20260514T071256_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "0598498b35ae7627cc7dde1c9f545236c981777984a7d65e054cec6d8fb0e47e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D017 修改完成\n\n### Diff 摘要\n\n**10 处修改，仅影响 MC 评估（MMLU、ARC-Challenge），不改 GSM8K/HumanEval：**\n\n| 位置 | 修改 |\n|------|------|\n| `evaluate_mcq()` 签名 (L108) | 新增 `mc_format: str = \"aligned\"` 参数 |\n| `evaluate_mcq()` few-shot 构造 (L125) | 传递 `mc_format` 给 `format_mcq_example()` |\n| `evaluate_mcq()` 测试 prompt (L150) | `\"Answer:\"` → `mc_suffix = \"The answer is \"` (aligned) 或 `\"Answer:\"` (legacy) |\n| `format_mcq_example()` 签名 (L168) | 新增 `mc_format` 参数 |\n| `format_mcq_example()` MMLU 返回 (L173-174) | aligned: `\"The answer is B.\"` / legacy: `\"Answer: B\"` |\n| `format_mcq_example()` ARC 返回 (L181-182) | 同上 |\n| `evaluate_paraphrased()` 签名 (L323) | 新增 `mc_format` 参数 |\n| `evaluate_paraphrased()` MCQ 分支 (L335, L358) | 同 evaluate_mcq 的改动 |\n| `main()` argparser (L546-548) | 新增 `--mc-format {aligned,legacy}` 参数 |\n| `main()` 调用处 (L583, L587) | 传递 `mc_format=args.mc_format` |\n\n**Prompt 格式对比：**\n- **Legacy**: `...choices...\\nAnswer:` → logprob 测 A/B/C/D\n- **Aligned** (默认): `...choices...\\nThe answer is ` → logprob 测 A/B/C/D\n- Few-shot 示例 legacy: `Answer: B` / aligned: `The answer is B.`\n\n**额外修复**：`evaluate_paraphrased` GSM8K 分支 L392 的 `gold_answer = re.sub(...)` 缩进错误（pre-existing bug）。\n\n### 部署确认\n- 远程语法验证通过 (`Syntax OK`)\n- `--mc-format {aligned,legacy}` 参数已出现在 `--help` 输出中\n- 默认值 `aligned`，与 SFT 训练格式 `\"The answer is B.\"` 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mc-eval-fix-d017.md"
+}

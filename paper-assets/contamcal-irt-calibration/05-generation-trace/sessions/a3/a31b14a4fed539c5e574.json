@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a31b14a4fed539c5e574",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp r2w1 random mae control",
+  "task_key": "worker_exp_r2w1-random-mae-control_20260520T202435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r2w1-random-mae-control_20260520T202435.log",
+    "occurrence": 1,
+    "bytes": 814428,
+    "sha256": "5e704d90db723174827d66be04bc3a9b8c421bda805a2f09bb33f724d6bc7343"
+  },
+  "statistics": {
+    "messages": 395,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 159,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 395,
+      "chunks": [
+        {
+          "path": "a31b14a4fed539c5e574-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a31b14a4fed539c5e574-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a31b14a4fed539c5e574-part-0003.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-r2w1-random-mae-control.md"
+}

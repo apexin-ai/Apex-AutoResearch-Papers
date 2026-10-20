@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "889eec36450b061aa680",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gpu2 kill v6 only",
+  "task_key": "worker_fix_gpu2_kill_v6_only_20260514T024344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu2_kill_v6_only_20260514T024344_result.json",
+    "occurrence": 1,
+    "bytes": 264,
+    "sha256": "36c952cf0b1e86b6fc7d35c946b996d7288ae5d645cdb136ce9b1328d5d373c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **kill 输出**：267151 和 267356 已不存在（`No such process`），无需 kill。\n- **GPU 2 当前进程**：\n  - PID 266521 — 3658 MiB\n  - PID 266790 — 3658 MiB\n\n符合预期，GPU 2 上只剩两个目标进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu2-kill-v6-only.md"
+}

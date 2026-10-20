@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b731842dede98ebd4f4f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 05B d000 s42",
+  "task_key": "worker_eval_exp_001_eval_05B_d000_s42_20260513T224450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_05B_d000_s42_20260513T224450_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "79d03eec508bc6bb0fea9fb015226a957173cc064c7035c0adf4a4dfe6541b2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_id**: `exp_001_eval_05B_d000_s42`\n- **PID**: 229370\n- **GPU**: cuda:1 (CUDA_VISIBLE_DEVICES=1)\n- **日志**: `~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42.log`\n- **Benchmarks**: mmlu, gsm8k, arc_challenge, humaneval\n- **Registry**: 已更新为 RUNNING，含完整 provenance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-05b-d000-s42.md"
+}

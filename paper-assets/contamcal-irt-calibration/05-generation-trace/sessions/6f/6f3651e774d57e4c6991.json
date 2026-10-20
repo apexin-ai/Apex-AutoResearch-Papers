@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f3651e774d57e4c6991",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gpu2 cleanup resubmit",
+  "task_key": "worker_fix_gpu2_cleanup_resubmit_20260514T023435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu2_cleanup_resubmit_20260514T023435_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "5422127e7485eecc52fe1c72493d8908546b92c651a7f7889f490dc34cfff17c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n### 汇报\n\n**1. GPU 2 清理前后**\n- 清理前：6 个重复 evaluate.py 进程（PID 262857/263538/264255/262940/263794/264334）\n- 清理后：kill 全部 → nvidia-smi 确认 GPU 2 显存占用为 0\n\n**2. 两个实验 PID**\n\n| 实验 | exp_id | PID |\n|------|--------|-----|\n| d000_s42 | exp_001_eval_05B_d000_s42_v4 | 265362 (GPU 子进程 265372) |\n| d100_s42 | exp_001_eval_05B_d100_v4 | 265684 (GPU 子进程 265694) |\n\n**3. GPU 2 最终状态：2 个进程**\n- PID 265372: 3658 MiB (d000_s42 eval)\n- PID 265694: 1492 MiB (d100_s42 eval)\n\n**4. 无重复进程确认**：严格串行提交——先提交 d000_s42 并验证 GPU 2 仅 1 个进程后，才提交 d100_s42。最终 GPU 2 恰好 2 个进程，无重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu2-cleanup-resubmit.md"
+}

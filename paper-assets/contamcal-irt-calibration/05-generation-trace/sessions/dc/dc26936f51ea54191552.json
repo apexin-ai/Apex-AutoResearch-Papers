@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc26936f51ea54191552",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_8_1778816202.md",
+  "task_key": "loop_8_1778816202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778816202.md",
+    "occurrence": 1,
+    "bytes": 4165,
+    "sha256": "ea2763705006d009342a98ce6eba477dbbb406be02a9d8654f71e7217ebcf066"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T03:32:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5（6× RTX 4090D），全在服务器 cqa1-21977，**不存在其他服务器**\n- exp_004 sweep 是 **CPU-only** 任务（cmdstanpy MCMC），不占 GPU，但必须用 `submit_training_job` 提交（不能 nohup），server 填 cqa1-21977（不能填 local，否则 cron 无法监控）\n- `/tmp` 是 3.9GB tmpfs，**禁止让 cmdstanpy 用 /tmp 写临时文件**——必须 `TMPDIR=/home/ubuntu/tmp_cmdstan`\n- train_sft.py 的 `--gpu` 参数是死代码（解析了但没用），实际 GPU 分配靠 CUDA_VISIBLE_DEVICES，不要依赖它\n- C001/C002/C003：提交 GPU 任务前必须 nvidia-smi 确认目标 GPU 空闲 + 无残留进程，标 failed 必须同时 kill 关联进程\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，SSH: `ssh connect.cqa1.seetacloud.com`\n- 项目路径（本地）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n- 项目路径（远程）：`/root/contamcal-irt-calibration`\n- Python（远程）：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- sweep 脚本：`artifacts/simulation_sweep/run_sweep.py`，Stan 模型已编译在同目录\n- sweep 结果：`artifacts/simulation_sweep/results/`（11 个 JSON 文件 + sweep_summary.json）\n- 活跃 GPU 进程（5 个，均有 cron 监控）：\n  - exp_001_sft_05B_d005_s123 (PID 464137, GPU 1)\n  - exp_001_sft_15B_d100_s123 (PID 435415, GPU 2)\n  - exp_001_sft_d025_3B_v2 (PID 466755)\n  - exp_001_sft_3B_d100_s123 (PID 471296, GPU 5)\n  - exp_001_eval_3B_d100_v2_para_aligned (PID 470062)\n- 活跃 Worker：`worker_code_exp004-sweep-recovery_20260515T000815`（修复 sweep 磁盘问题，00:08 UTC 启动，截至 00:27 turn_count=1，可能卡住）\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_004_sim_sweep_v3 失败 cron 回调，完成诊断（/tmp tmpfs 3.9GB 被 cmdstanpy 临时文件撑满），已向 Director 汇报。\n\n**exp_004 sweep 进度** (57/120 OK, 47.5%):\n- ✅ 完成 4 条件 (40 seeds): auc0.55_n20/n50, auc0.8_n20/n50\n- ⚠️ 部分 3 条件 (17 seeds): auc0.55_n100(7), auc0.8_n100(6), auc0.9_n20(4)\n- ❌ 全败 4 条件: auc0.65_n20/n50, auc0.9_n50/n100\n- ❌ 缺失 1 条件: auc0.65_n100\n\n**等待中**：\n- Recovery Worker 回调——检查它是否真在干活（turn_count=1 可能卡住），如果卡了需 cancel + 重派\n- 5 个 GPU SFT/eval cron 回调（seed=123 批次 + 3B d100 v2）\n- Director 对 D036 coverage collapse 的决策\n\n### 4. 📋 待办\n- Recovery Worker 回调到达 → 检查 v4 sweep 是否启动成功；若 Worker 卡死（>30min 无 tool call）→ cancel + 重派，确保 `TMPDIR=/home/ubuntu/tmp_cmdstan` + `--resume`\n- exp_004_sim_sweep_v4 完成 → 63 seeds 全部 OK → 更新 registry DONE(success) → 汇总 coverage 数据用于 coverage collapse 根因分析\n- seed=123 SFT 任一完成 → spawn eval Worker → eval 完成后做 N≥16 multi-seed pooled IRT\n- 3B d100 v2 eval 完成 → 加入 pooled IRT 数据池\n- Director 批准 Framing 调整 → Read `framing-reaudit.skill.md` → 逐章节 diff\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 10 天）\n- **D036 核心发现**：ARC gamma 负方向 confirmed（3 条证据链），framing 已调为 benchmark-dependent effects\n- **Coverage collapse 是最高优先级**：20-33% coverage 即使 oracle，PPP 极值（1.0/0.0）→ 4PL+γ additive 模型可能错误指定。exp-004 sweep coverage 数据是诊断关键\n- **跨种子方差大**：0.5B d100 ARC 7.25pp (s42 vs s123) → multi-seed pooling 是必要条件，但需要 seed=123 SFT 全部完成才有 N≥16\n- **易错点**：\n  - 不要把 oracle (N=15) 和 RRF (N=8) 直接对比——N_models 不匹配，需匹配 N=8 重跑 oracle\n  - exp-006 pooled IRT 有 6 个已知问题（D033），不要引用旧版 pooled 结果\n  - GSM8K oracle 诊断 FAIL（rhat=1.012/ESS=345），需 warmup=2000/samples=2000 重跑才可信\n  - 成功率 59/85，失败率 27%——很多是环境/磁盘/进程冲突导致，不是实验逻辑问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778816202.md"
+}

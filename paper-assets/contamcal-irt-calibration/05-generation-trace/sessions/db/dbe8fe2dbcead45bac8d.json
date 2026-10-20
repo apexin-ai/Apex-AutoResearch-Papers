@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbe8fe2dbcead45bac8d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d084 kill gpu4 submit eval gpu3",
+  "task_key": "worker_ops_d084-kill-gpu4-submit-eval-gpu3_20260515T231842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d084-kill-gpu4-submit-eval-gpu3_20260515T231842_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "a141842416d098aeb448c246648264a65451155e3229ea72f591e6b9b3c4c379"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。D084 执行完成，汇总：\n\n### 产出\n\n| 项目 | 结果 |\n|------|------|\n| **cuda:4 kill** | PID 648627 (signals_v5 d100_s42 mmlu) 已 kill，tmux session `exp_002_signals_3B_v5` 已清理 |\n| **cuda:3 冲突处理** | Kill 了 PID 654561 (signals_v6 d000_v2_s42 gsm8k) + PID 655069 (d025_a32_s42 训练，与现有 d025_v3_s42 重复) + 父进程 629251, 655068 |\n| **d025_v3 checkpoint** | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter` — **r=16, alpha=32**，权重 115M |\n| **eval 提交** | exp_id=`exp_001_eval_3B_d025_v3_s42_batch`, PID 655989, cuda:3, 6782 MiB 已加载 |\n| **cuda:4 释放** | 587 MiB / 10%（仅剩 signals_v6 batch 的小进程 PID 655570） |\n\n**注意**: cuda:4 上 PID 655570 是 signals_v6 batch 脚本自动生成的新 signals 任务（d100_s42 gsm8k），非 signals_v5 残留。占用极低（576 MiB），未处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d084-kill-gpu4-submit-eval-gpu3.md"
+}

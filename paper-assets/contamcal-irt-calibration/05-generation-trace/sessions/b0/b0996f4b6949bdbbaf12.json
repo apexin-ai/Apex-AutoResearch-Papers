@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0996f4b6949bdbbaf12",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fig fetch irt data",
+  "task_key": "worker_fig_fetch_irt_data_20260516T202103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_fetch_irt_data_20260516T202103_result.json",
+    "occurrence": 1,
+    "bytes": 107,
+    "sha256": "e699528759d4f2bfc07969fbf1a11f0631d709b33e9a6244d092f26ecf6b94db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker still in progress, waiting for it to complete the SSH operations and data extraction."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-fetch-irt-data.md"
+}

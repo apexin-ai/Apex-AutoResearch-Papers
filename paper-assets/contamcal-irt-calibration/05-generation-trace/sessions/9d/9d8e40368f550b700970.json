@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d8e40368f550b700970",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 006 pooled irt n25",
+  "task_key": "worker_diagnose_exp_006_pooled_irt_n25_20260516T134420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_006_pooled_irt_n25_20260516T134420_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "01f615fe82893d05e087573c1b0cb830288a104c40abfad25200bbc4740a1975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。产出已写入 `artifacts/diag_exp006_pooled_irt_n25.md`。\n\n## 结论\n\n| 项目 | 结果 |\n|------|------|\n| **失败根因** | 误报 — 实验正常完成退出，脚本无 sentinel 文件/W&B，cron 误判为 crashed |\n| **实际状态** | 成功：4 chains 采样完成（157s），结果已保存（4 个 JSON 文件） |\n| **需关注** | 表头显示 \"4PL+γ\" 但命令指定 `--model 2pl_gamma`，可能是 print 写死或 model dispatch bug |\n| **修复建议** | ① 标记为成功 ② 脚本末尾加 `touch DONE` ③ 核实实际拟合的是 2PL 还是 4PL |\n| **PID 764449** | 已死亡（exp_001_eval_3B_instruct_v2 进程已结束） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-006-pooled-irt-n25.md"
+}

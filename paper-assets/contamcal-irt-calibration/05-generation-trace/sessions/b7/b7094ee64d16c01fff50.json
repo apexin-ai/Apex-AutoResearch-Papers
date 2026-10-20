@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7094ee64d16c01fff50",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B d100 s123 a32 batch",
+  "task_key": "worker_analysis_exp_001_eval_3B_d100_s123_a32_batch_20260516T031221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_d100_s123_a32_batch_20260516T031221_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "345011c78c832c3683123a7c762c46ef006c9f68bdd66bb26d55f322fb8e20f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部指标已提取。日志 EXIT_CODE=0，无 error/traceback。\n\n```\n=== ALIGNED ===\nmmlu: 0.6330 (8889/14042)\ngsm8k: 0.7074 (933/1319)\narc_challenge: 0.8251 (967/1172)\nhumaneval: 0.1159 (19/164)\n\n=== PARA_ALIGNED ===\nmmlu: 0.6598 (4352/6596)\ngsm8k: 0.5746 (131/228)\narc_challenge: 0.8049 (561/697)\nhumaneval: 0.0000 (0/26)\n\n=== STATUS ===\naligned: complete (4/4 benchmarks, .done sentinel present)\npara_aligned: complete (4/4 benchmarks, .done sentinel present)\noverall: success (EXIT_CODE=0, no errors)\n```\n\n注意：para_aligned humaneval 只有 26 个 QC-passed 的 paraphrase 样本（原始 164 个），且 pass@1=0，样本量过小导致指标不可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-d100-s123-a32-batch.md"
+}

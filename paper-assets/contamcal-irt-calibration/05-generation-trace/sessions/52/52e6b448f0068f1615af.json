@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52e6b448f0068f1615af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check downloads only",
+  "task_key": "worker_ops_check-downloads-only_20260518T102005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-downloads-only_20260518T102005_result.json",
+    "occurrence": 1,
+    "bytes": 6580,
+    "sha256": "9a510b745ee4232460260a75e8640e2baa65066c94c6d972277245df68b026be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出被截断了，中间部分丢失。以下是收到的完整输出：\n\n```\n=== 14B INCOMPLETE ===\n/root/autodl-tmp/models/Qwen2.5-14B/.cache/huggingface/download/0h2PhEN4wf4qC6Njm74VvfC6t1E=.e7efa1adc8257218813dcb494bb2a3d5775fa268735ab39e5b8119e233c21462.incomplete\n/root/autodl-tmp/models/Qwen2.5-14B/.cache/huggingface/download/EHpm-K7rdV4CgBWL-uyhsBxgY_o=.68127c9bc4fab170f7aaf63d5c7ac9e182afd10b74a1c6bb8025afefc11447cb.incomplete\n/root/autodl-tmp/models/Qwen2.5-14B/.cache/huggingface/download/6g1A1Sffu6ppCoytuuyE76A1WOI=.c2754167c1cbaf94b9af9c7eb646a2286a596f9ded5e2e3c4c5e6a4464352c9e.incomplete\nCOUNT: 3\n=== 14B SAFETENSORS ===\n5\n26G\t/root/autodl-tmp/models/Qwen2.5-14B/\n=== GEMMA INCOMPLETE ===\n/root/autodl-tmp/models/gemma-2-9b/.cache/huggingface/download/0h2PhEN4wf4qC6Njm74VvfC6t1E=.73b2e0b94e18b25a2f7a3abda70ab350053be6c615599cb3772f27efb2ae21eb.incomplete\n/root/autodl-tmp/models/gemma-2-9b/.cache/huggingface/download/aESknW7TOKEmfryZ2OONv6DRGfk=.25d2f65b06a3ffc288fc1653554fa33b9d913f47f9b797be7785db19d3ed1f08.incomplete\n/root/autodl-tmp/models/gemma-2-9b/.cache/huggingface/download/EHpm-K7rdV4CgBWL-uyhsBxgY_o=.95310f8181c07b98a18facfbbbdaa7bcf28aafaddb9c33cd9dfa008706206970.incomplete\n/root/autodl-tmp/models/gemma-2-9b/.cache/huggingface/download/bUZ-Wph4eKxfWpbgEc4sIyI6tC8=.f4aa5f7d5510456fba5eb22421432a65487b1d0864fbd59ca6f8dfac65184d32.incomplete\nCOUNT: 4\n=== GEMMA SAFETENSORS ===\n4\n23G\t/root/autodl-tmp/models/gemma-2-9b/\n=== PHI-4 STATUS ===\n1.6G\t/root/autodl-tmp/models/phi-4/\n6\n=== OLMO-2 STATUS ===\n13G\t/root/autodl-tmp/models/OLMo-2-1124-7B/\n5\n=== NVIDIA-SMI ===\nMon May 18 18:20:35 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\n| N/A   69C    P0            448W /  600W |   63281MiB /  97887MiB |     96%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\n| N/A   28C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\n| N/A   28C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\n| N/A   34C    P0            198W /  600W |       0MiB /  97887MiB |    100%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            17819      C   python                               63268MiB |\n+-----------------------------------------+------------------------+----------------------+\n```\n\n**(中间 nvidia-smi 进程表到 7B PILOT PID 之间的输出被截断，约 10736 字符丢失——主要是 PID 17819 的 torch inductor compile worker 子进程列表)**\n\n```\n=== 7B PILOT PID ===\n```\n（PID 17819 的 ps aux 匹配行在截断区域内，但从 nvidia-smi 可见 PID 17819 在 GPU 0 上运行，占用 63268MiB）\n\n可见的 compile worker 子进程（截断尾部保留的部分）：\n```\nroot 18244 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\nroot 18246 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\nroot 18248 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\nroot 18250 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\nroot 18252 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\nroot 18254 ... torch._inductor.compile_worker.__main__.py --parent=17819 --workers=32\n```\n\n```\n=== DOWNLOAD PROCESSES ===\nroot  5060  0.0  0.0   4364  3060 ?  S  14:58  0:00 bash /root/autodl-tmp/models/download_all.sh\nroot  5063  0.0  0.0   4364   236 ?  S  14:58  0:00 bash /root/autodl-tmp/models/download_all.sh\nroot  5066  1.7  0.0 722528 329564 ? Sl 14:58  3:36 /root/miniconda3/bin/python /root/miniconda3/bin/hf download Qwen/Qwen2.5-14B --local-dir /root/autodl-tmp/models/Qwen2.5-14B\nroot  6378  0.0  0.0   4172  2348 ?  Ss 15:10  0:00 SCREEN -dmS dl_gemma bash -c export PATH=/root/miniconda3/bin:$PATH && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_ENABLE_HF_TRANSFER=0 && export HF_HUB_DISABLE_XET=1 && export HF_TOKEN=[REDACTED_HF_TOKEN] && hf download google/gemma-2-9b --local-dir /root/autodl-tmp/models/gemma-2-9b --token $HF_TOKEN 2>&1 | tee /tmp/dl_gemma.log; echo \"GEMMA_DONE\" >> /tmp/dl_gemma.log\nroot  6379  0.0  0.0   4364  3160 pts/0 Ss+ 15:10  0:00 bash -c export PATH=...\nroot  6380  2.0  0.0 732720 380024 pts/0 Sl+ 15:10  3:48 /root/miniconda3/bin/python /root/miniconda3/bin/hf download google/gemma-2-9b --local-dir /root/autodl-tmp/models/gemma-2-9b --token [REDACTED_HF_TOKEN]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-downloads-only.md"
+}

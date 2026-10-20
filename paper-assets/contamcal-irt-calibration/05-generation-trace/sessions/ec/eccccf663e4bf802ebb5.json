@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eccccf663e4bf802ebb5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu audit and fix",
+  "task_key": "worker_ops_gpu-audit-and-fix_20260515T191443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-audit-and-fix_20260515T191443_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "2ed9c84965dbce25da07df3ad166f3017d275b8ef1bb7ff372ed4756c5642cf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 597179 已杀。以下是完整审计结果：\n\n---\n\n## GPU 全面审计结果\n\n| GPU | 进程 PID | 实验 | VRAM | Util | 状态 |\n|-----|---------|------|------|------|------|\n| **cuda:0** | 594494 | exp_001_sft_3B_d100_s123_a32_v2 | 17966 MiB | 0%* | **54% (2263/4159)**, loss 1.17, ~4.3s/step, ETA ~2h15m |\n| **cuda:1** | 593745 | exp_001_sft_3B_d100_s42_a32_v2 | 13332 MiB | 28% | **56% (2318/4159)**, loss 1.17, ~4.3s/step, ETA ~2h10m |\n| **cuda:2** | 614412 | exp_001_eval_3B_d100_s123_para_aligned_v2 | 9008 MiB | 66% | 正在跑 GSM8K paraphrased 77% (176/228), MMLU paraphrased 已完成 |\n| **cuda:3** | 617202 | exp_002_signals_3B_v4 | 7064 MiB | 60% | **在跑** — compute_signals d000_s42 mmlu, 启动 18 分钟 |\n| **cuda:4** | ~~597179~~ | ~~d000_v3 孤儿~~ | ~~13868 MiB~~ | — | **已杀**, cuda:4 已释放 |\n| **cuda:5** | 589763 | exp_001_sft_d025_3B_v3 | 17642 MiB | 43% | **75% (2542/3384)**, epoch 0.75, loss 1.08-1.20, ETA ~1h |\n\n*cuda:0 的 0% util 是采样瞬间值，进程正常在跑。\n\n### 逐项回答\n\n1. **PID 597179** — 已 kill -9，确认死亡，cuda:4 已释放\n2. **d025_v3 (cuda:5)** — 仍在训练，75% 进度，lora_adapter 目录为空（未保存最终 checkpoint），预计 ~1h 完成\n3. **signals_3B_v4 (cuda:3)** — 在跑，PID 617202，正在处理 d000_s42 mmlu 信号\n4. **d100 SFT cuda:0/1** — 分别 54%/56%，约 2h+ 后完成\n5. **d100 para eval v2 (cuda:2)** — 正在 GSM8K paraphrased 评估 (77%)，快完成这个 benchmark\n\n### 资源系统误报说明\n\n资源系统报 cuda:3/4/5 idle 是误报。实际 6 张卡全部有活跃 GPU 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-and-fix.md"
+}

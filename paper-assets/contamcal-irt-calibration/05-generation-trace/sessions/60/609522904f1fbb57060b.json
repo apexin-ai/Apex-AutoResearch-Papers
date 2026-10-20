@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "609522904f1fbb57060b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp006 pooled irt qwen n24",
+  "task_key": "worker_exp006_pooled-irt-qwen-n24_20260516T190113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp006_pooled-irt-qwen-n24_20260516T190113.log",
+    "occurrence": 1,
+    "bytes": 565883,
+    "sha256": "6866509fba6cfe7622c52ba8dc54be85ef1cb152c26a4e3fc12b4e52a5e5cc78"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 238,
+      "chunks": [
+        {
+          "path": "609522904f1fbb57060b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "609522904f1fbb57060b-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp006-pooled-irt-qwen-n24.md"
+}

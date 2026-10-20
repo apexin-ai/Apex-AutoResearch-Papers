@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec242f9286edf7953a2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops D108 remaining 5 domains",
+  "task_key": "worker_ops_D108_remaining_5_domains_20260516T120940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_D108_remaining_5_domains_20260516T120940_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "f971d6932c59179c9a25bcfb1d09a5eb6945de88bbef7085c8a98153733391f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始进程 766829 及其 4 个 Stan chains（771852-771856）正常运行。当前状态：\n\n- **原始进程 PID 766829** 正在运行，无需重启\n- 已完成 3/8 域：STEM_Math, STEM_Science, STEM_CS_Eng\n- 当前正在 fitting 第 4 个域（Medical），Stan chains 从 20:01 开始，已运行 ~14 分钟\n- 剩余 4 个域（Humanities, Social_Sciences, Business_Law, Other）会自动排队执行\n- **已 kill 重复进程 PID 768347 及其 4 个孤儿 Stan 子进程**（772724-772728），避免结果覆盖\n\n脚本遍历全部 8 个域，无 skip 逻辑，所以它会重新写已完成域的结果（但数据和 seed 相同，结果一致）。每域 ~10-15 分钟，剩余 5 个域预计 ~50-75 分钟完成（约 21:00-21:25）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d108-remaining-5-domains.md"
+}

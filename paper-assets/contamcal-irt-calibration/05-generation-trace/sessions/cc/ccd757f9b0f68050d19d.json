@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccd757f9b0f68050d19d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill gpu1 duplicates urgent",
+  "task_key": "worker_ops_kill-gpu1-duplicates-urgent_20260516T194332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu1-duplicates-urgent_20260516T194332_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "5096787e62ae8dfe2b75113225bb03b7a5223d81610653e96d4ed3904743223b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n825638, 8072 MiB\n830115, 7132 MiB\n822390, 8304 MiB\n842929, 560 MiB\n831033, 8304 MiB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu1-duplicates-urgent.md"
+}

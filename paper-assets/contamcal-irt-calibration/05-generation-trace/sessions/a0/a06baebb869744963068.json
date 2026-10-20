@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a06baebb869744963068",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp mf2 threshold dgp sim",
+  "task_key": "worker_exp_mf2-threshold-dgp-sim_20260518T051629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf2-threshold-dgp-sim_20260518T051629_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "46d9bb6f3ff7e59d946e115ef8b17e9c652675c4c9e718ce1daffe0c484a6fa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered (`art_20260518_d6632e`).\n\n## Summary\n\nThreshold DGP simulation (MF2/D139) completed successfully: 40 seeds across 4 conditions, 27.9 min total, zero divergences.\n\n**Surprising finding**: the linear 2PL+γ model **overestimates** γ under step-function DGP (ratio 1.09-1.33), rather than attenuating it as hypothesized. The worst case is threshold_0.5 with 33% overestimation. Meanwhile, PPP remains in the 0.50-0.56 range, meaning standard posterior predictive checks cannot detect this misspecification. CI95 coverage drops from nominal 95% to 90% under all threshold conditions.\n\nThe linear sanity check (ratio=0.87) shows mild attenuation, likely noise from J=16."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mf2-threshold-dgp-sim.md"
+}

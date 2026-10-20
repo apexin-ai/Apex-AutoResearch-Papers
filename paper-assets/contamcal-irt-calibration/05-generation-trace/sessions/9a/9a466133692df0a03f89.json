@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "9a466133692df0a03f89",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "compute exp009 instruct eval signals",
+  "task_key": "worker_compute_exp009_instruct_eval_signals_20260517T041625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_exp009_instruct_eval_signals_20260517T041625.log",
+    "occurrence": 1,
+    "bytes": 2127681,
+    "sha256": "c2c84bafa5f3a707ff4dca40e68a0abcdbd7d3e17bf9a5c96bf629674bf237c2"
+  },
+  "statistics": {
+    "messages": 1466,
+    "user_turns": 1,
+    "tool_calls": 589,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 280,
+      "tool_call": 589,
+      "tool_result": 589,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 851,
+      "chunks": [
+        {
+          "path": "9a466133692df0a03f89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0005.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 615,
+      "chunks": [
+        {
+          "path": "9a466133692df0a03f89-part-0005.json",
+          "message_count": 49
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a466133692df0a03f89-part-0009.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/compute-exp009-instruct-eval-signals.md"
+}

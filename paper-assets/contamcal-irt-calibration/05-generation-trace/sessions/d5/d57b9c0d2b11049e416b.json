@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d57b9c0d2b11049e416b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit exp009 plan draft",
+  "task_key": "worker_audit_exp009_plan_draft_20260517T034405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_exp009_plan_draft_20260517T034405_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "100f68e37bb4a43c941d8ce2797ebcf2addd1ebd2c262211c9a0bf9607edd2e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实验方案摘要\n\n方案已写入 `artifacts/exp009_plan.md`。关键发现：\n\n### 已有数据（可直接复用）\n| 模型 | Eval | Signals (s2+s4) |\n|------|------|---------|\n| Qwen2.5-0.5B-Instruct | ✓ 3 benchmarks | ✓ exp002 完整 |\n| Qwen2.5-1.5B-Instruct | ✓ 3 benchmarks | ✓ exp002 完整 |\n| Qwen2.5-3B-Instruct | ✓ 3 benchmarks | ✗ **缺失** |\n| DeepSeek-R1-Distill-Qwen-1.5B | ✗ 需 eval | ✗ 需计算 |\n\n### 待执行任务\n1. **DeepSeek-R1 模型下载** — 后台进行中 (tmux `dl_ds`, ~160MB/3.5GB, ~6min ETA)\n2. **DeepSeek-R1 eval** — 需 `--instruct` flag（路径不含 \"instruct\"）\n3. **3B-Instruct signals** — 用 `exp008_new/compute_signals_on_model.py` 直接跑\n4. **DeepSeek-R1 signals** — 同上，ref-model 用 Qwen2.5-1.5B base\n5. **IRT fitting** — 2PL+gamma pooled，含 exposure 构建策略（signal-as-exposure）\n\n### 脚本兼容性确认\n- eval: `apply_chat_template()` 原生支持 DeepSeek chat format ✓\n- s2 (minkpp): 格式无关，直接可用 ✓\n- s4 (selfcritique): 用 generic template，非 chat-formatted，可接受 ✓\n- IRT: `run_irt_calibration.py` 支持 `--response-matrix` + `--exposure-matrix` 直接输入 ✓\n\n### GPU 状态\n6x RTX 4090D 全部空闲 (3 MiB used each)，cuda:3/4/5 随时可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-exp009-plan-draft.md"
+}

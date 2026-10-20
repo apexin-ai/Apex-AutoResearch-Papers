@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fddccc7d24d988dd68b7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phase2 eval status",
+  "task_key": "worker_diag_phase2_eval_status_20260519T112908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phase2_eval_status_20260519T112908_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "07aa84dff9824faf41404501766f710a85a01f6f5c33e0267ee3feb93f20ac53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，没有 crash。** 状态总结：\n\n**完成 11/25，进行中 4，待执行 10。** 4 个 GPU 全部活跃（89-99% 利用率）。\n\n### 已完成结果\n\n| Model | d000 | d005 | d025 | d050 | d100 |\n|-------|------|------|------|------|------|\n| **Qwen2.5-7B MMLU** | 0.661 | 0.647 | 0.630 | 0.631 | 0.643 |\n| **Qwen2.5-7B ARC** | 0.879 | 0.861 | 0.840 | 0.846 | 0.850 |\n| **Qwen2.5-14B MMLU** | 0.694 | 0.690 | running | - | - |\n| **Qwen2.5-14B ARC** | 0.910 | 0.904 | running | - | - |\n| **Phi-4 MMLU** | 0.764 | 0.764 | 0.770 | - | - |\n| **Phi-4 ARC** | 0.921 | 0.918 | running | - | - |\n| **Gemma-2-9B MMLU** | running | 0.634 | 0.646 | running | - |\n| **Gemma-2-9B ARC** | running | 0.778 | 0.874 | running | - |\n| **OLMo-2-7B** | - | - | - | - | - |\n\n### 当前活跃进程\n- GPU0: phi4_d025 ARC 阶段\n- GPU1: qwen14b_d025\n- GPU2: gemma2_d000 刚开始加载\n- GPU3: gemma2_d050\n\n### 预计完成时间\nGPU3 是瓶颈（9 个 eval，还剩 6 个含全部 OLMo-2），预计 **~21:30 CST** 全部完成。\n\n报告已写入 `artifacts/phase2_eval_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phase2-eval-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f02c36dfaa71795897c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp 7b pilot blocking wait",
+  "task_key": "worker_exp_7b-pilot-blocking-wait_20260518T083117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_7b-pilot-blocking-wait_20260518T083117_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "be10ca5226efb603919e53195fd28cebf2bf97c0d49e3bfbc794dff477ef5c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行中（2 个 shard 各约 50%）。已设置 90 秒后自动轮询检查。下载完成后会依次执行：模型验证 → GPU 检查 → dry-run → 提交训练 → 验证启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-7b-pilot-blocking-wait.md"
+}

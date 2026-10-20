@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb7aa4be59473a756a2e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals exp 002 signals 05B s123 v2",
+  "task_key": "worker_signals_exp_002_signals_05B_s123_v2_20260516T030400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_exp_002_signals_05B_s123_v2_20260516T030400_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "58cea4d65b9598256f66c4a7d35a90cdb0f66e3659b62a1feae5c45c2d841217"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认：\n\n- **GPU 5**: 585 MiB 占用，进程正常运行\n- **进度**: [1/12] d000_s123 × mmlu，s1 embedding 编码中（3830/6250 batches，~60%）\n- **Registry**: `exp_002_signals_05B_s123_v2` 状态 RUNNING\n- **tmux session**: `exp002_05B_s123_v2`\n- **日志**: `/root/autodl-tmp/exp002/signals/signals_05B_s123_v2.log`\n\n任务覆盖：4 dose (d000/d005/d025/d100) × 3 benchmark (mmlu/gsm8k/arc_challenge) × all signals (s1/s2/s3/s4) = 12 组合，全部由 `run_05B_s123_signals.sh` 串行执行。0.5B 模型较小，预计总耗时 1-2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-exp-002-signals-05b-s123-v2.md"
+}

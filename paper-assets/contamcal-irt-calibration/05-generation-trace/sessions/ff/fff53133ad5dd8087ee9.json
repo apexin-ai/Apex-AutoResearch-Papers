@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff53133ad5dd8087ee9",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_5_1778766438.md",
+  "task_key": "loop_5_1778766438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778766438.md",
+    "occurrence": 1,
+    "bytes": 5049,
+    "sha256": "8c798d2a7f740d81722b9bdd60ed35ae6d2a74d487136d5424e000d52bc10b3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T13:25:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 全在 cqa1-21977，禁止用其他服务器的 GPU\n- exp_001_sft_d005_3B (PID 335346) 的 GPU 未记录在 spec 里，**提交新任务前必须先 SSH 验证 cuda:4 是否被占用**——已派 Worker 检查但尚未返回\n- 0.5B v5 eval（legacy format）与 aligned format eval **不可直接对比**做 dose-response 分析（D017 决策）。正式分析只用 aligned-aligned pair\n- 3B GSM8K 排除出 dose-response 分析（D018 决策：LoRA SFT CoT 遗忘是 3B 特有的）\n- `server: local` 实验禁止用 ssh_read_only 查状态，必须用 Bash `ps -p PID`（两次误标事故教训）\n- submit_training_job 的脚本**不能含 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = ...` 覆写**（已修复，但写新脚本时注意）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D\n- 工作目录：`/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/`\n- Eval 结果：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dosage}_s{seed}/`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- Stan 模型：`/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan`\n- CmdStanPy + CmdStan 2.38.0 已安装\n- W&B：项目配置中无 wandb section，实验日志不走 W&B\n- 活跃 cron：exp_001_sft_d100_3B (PID 319555), exp_001_sft_d005_3B (PID 335346), exp_001_eval_3B_d000_aligned (PID 342935)\n- CPU 本地实验：exp_004_sim_sweep_v2 (PID 411032), exp_005_noise_prop_v3 (PID 426335)\n\n### 3. 📊 当前状态\n**刚做完**：exp_001_eval_15B_d100_s42 分析 → DONE/success，metrics 已写 registry，已向 Director 汇报。\n\n**RUNNING 实验**：\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_002_signals_05B | cuda:0 | 0.5B 3信号×3dosage×3benchmark=27 tasks，PID 346325，**critical path** |\n| exp_001_eval_15B_aligned_batch | cuda:1 | 1.5B d000/d005/d100 aligned format eval batch |\n| exp_001_eval_05B_aligned_batch | cuda:2 | 0.5B aligned format eval batch |\n| exp_001_sft_d100_3B | cuda:3 | 3B 100% dosage SFT，PID 319555 |\n| exp_001_sft_d005_3B | cuda:4? | 3B 5% dosage SFT，PID 335346，GPU 未确认 |\n| exp_001_eval_3B_d000_aligned | cuda:5 | 3B d000 aligned eval |\n| exp_004_sim_sweep_v2 | local CPU | 27/120 完成，ETA May 16-17 |\n| exp_005_noise_prop_v3 | local CPU | ETA ~14:30-15:30 UTC today |\n\n**等待中的 Worker 回调**：\n- `worker_ops_gpu-status-check`：验证 cuda:4 实际占用状态（刚派出）\n- `worker_verify_exp006-code-readiness`：验证 exp-006 代码在服务器上的就绪状态（刚派出）\n\n### 4. 📋 待办（条件触发式）\n- GPU status Worker 返回 cuda:4 空闲 → 立即从 ROADMAP 挑任务提交（优先 0.5B d025 eval 或 3B 相关 eval）\n- GPU status Worker 确认 cuda:4 被 sft_d005_3B 占用 → 更新 registry spec.gpu，无需动作\n- exp_001_eval_05B_aligned_batch 完成 → 提取 0.5B d000/d005/d100 aligned metrics，这是 exp-002 ConStat 信号的前置依赖\n- exp_001_eval_15B_aligned_batch 完成 → 提取 1.5B 正式 dose-response 数据（d000/d005/d100 全 aligned），更新 report\n- exp_002_signals_05B 完成 → 立即启动 exp-003 RRF aggregation（CPU，快速）→ 然后 exp-006 IRT + exp-008 signal survival\n- exp_005_noise_prop_v3 完成（~今天 14:30 UTC）→ 分析 noise propagation 结果，验证 ME-aware CI widening\n- exp_001_sft_d100_3B 完成 → cuda:3 释放，提交 3B d100 eval\n- exp_001_sft_d005_3B 完成 → 提交 3B d005 eval\n- exp-006 code readiness Worker 返回有问题 → 立即派 Worker 修复，不能等 exp-002 完成后才发现代码不能跑\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25，距今 11 天\n- **Critical path**：exp-002 signals (running now) → exp-003 RRF → exp-006 IRT calibration + 7 baselines = 核心 Table 1 结果\n- **瓶颈已从算力转为软件**：exp-002/006 代码是关键路径，GPU 充裕（6卡×11天≈1584 GPU-h，预算仅200h）\n- **关键决策链**：D017（aligned MC format）→ 所有正式 eval 必须用 aligned；D018（3B GSM8K 排除）；D013（Simple IRT, 弃 ME model）；D016（Min-K++ ref model 用 d000 fine-tuned）\n- **HumanEval 是 1.5B 的最强 contamination 信号**：d100 vs d000 = +17.69pp（0.128→0.3049），格式无关，可靠\n- **易错点**：\n  - 不要混淆 legacy 和 aligned format 的 eval 结果做 dose-response\n  - exp_001_sft_d005_3B 的 GPU 绑定缺失——提交新任务到 cuda:4 前必须先验证\n  - `server: local` 的 exp-004/005 不能用 SSH 查状态\n  - exp-002 只跑 3 个信号（S1/S2/S4），S3 ConStat 需要 paraphrase eval 结果后补\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778766438.md"
+}

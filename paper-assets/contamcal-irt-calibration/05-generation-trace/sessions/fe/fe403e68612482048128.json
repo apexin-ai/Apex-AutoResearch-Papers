@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe403e68612482048128",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 004 sim sweep",
+  "task_key": "worker_fix_exp_004_sim_sweep_20260515T165922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_004_sim_sweep_20260515T165922_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "f075e6eb76a3a65639bdd91c1a7d1bcbd15644f8727297c3398adc53de959d97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就位，v6 正在正常运行。总结：\n\n**诊断结果**：v5 在 73/120 seeds 后因 `/tmp` (tmpfs 3.9GB) 磁盘满失败（Errno 122: Disk quota exceeded）。CmdStanPy MCMC 采样产生的临时文件耗尽了 tmpfs。\n\n**当前状态**：\n- **v6 已由并行 worker 启动**（PID 863060，tmux session `exp_004_sim_sweep_v6`）\n- `TMPDIR=/home/ubuntu/tmp_cmdstan`（50GB /home 分区），已确认生效\n- `--resume` 模式：跳过已成功的 73 seeds，补跑剩余 47 seeds\n- `--parallel 2 --chains-parallel 2`\n- Registry 已注册为 RUNNING\n\n**需要补跑的条件**：\n\n| 条件 | 缺失 seeds |\n|------|-----------|\n| auc0.55_n100 | 3 (disk fail) |\n| auc0.65_n20 | 10 (全部 disk fail) |\n| auc0.65_n50 | 10 (7 disk fail + 3 未跑) |\n| auc0.65_n100 | 10 (完全缺失) |\n| auc0.8_n100 | 1 |\n| auc0.9_n50 | 3 |\n| auc0.9_n100 | 10 (全部 disk fail) |\n\n**预估耗时**：按 N=20 ~300s/seed、N=50 ~700s/seed、N=100 ~3400s/seed 估算，47 seeds 约需 10-15 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-004-sim-sweep.md"
+}

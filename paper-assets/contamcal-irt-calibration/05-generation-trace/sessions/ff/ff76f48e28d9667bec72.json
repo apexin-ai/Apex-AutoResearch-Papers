@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff76f48e28d9667bec72",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops arc s123 eval batch",
+  "task_key": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_arc-s123-eval-batch_20260520T160447_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "afefda950339d4d25a82ce8d12847b15cc1c88ae889a5ac6884d3df4767d97dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。汇总：\n\n**脚本路径**: `/root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh`\n\n**提交详情**:\n- PID: 371979 (shell) → 371989 (python, 已在 cuda:2 占用 32726 MiB)\n- 服务器: westd-29999, cuda:2\n- Registry: `eval_arc_s123_batch` → RUNNING\n\n**执行顺序** (串行, 4 families × 5 dosages = 20 runs):\n1. Qwen2.5-14B (bs=4) — 正在运行 d000\n2. Phi-4 (bs=8)\n3. Qwen2.5-7B (bs=8)\n4. OLMo-2 (bs=8)\n\n**合规检查**:\n- C001/C002: cuda:2 确认空闲 ✓\n- C004: CUDA_VISIBLE_DEVICES=2 显式设置 ✓\n- C006: 脚本内 lora_alpha=32 校验 ✓\n- C009: evaluate.py md5 校验 ✓\n\n**预计完成时间**: ~55-65 分钟。ARC-Challenge 1172 items, Qwen-14B ~5.3 it/s (~3.7 min/dosage), 7B 模型更快 (~2 min/dosage)。日志: `/root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-arc-s123-eval-batch.md"
+}

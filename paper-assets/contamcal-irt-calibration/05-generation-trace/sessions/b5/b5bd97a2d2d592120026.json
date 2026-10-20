@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5bd97a2d2d592120026",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo reeval cuda2",
+  "task_key": "worker_ssh_westd-olmo-reeval-cuda2_20260519T100239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-reeval-cuda2_20260519T100239_result.json",
+    "occurrence": 1,
+    "bytes": 1408,
+    "sha256": "a713123275628da82f6b849cdeb14485ee64d6769310182a06aac72a6e4d4698"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部三个 eval 完成。汇总结果：\n\n## 结果汇总\n\n| Dosage | Benchmark | westd (新) | cqa1 (旧) | 差异 |\n|--------|-----------|-----------|-----------|------|\n| **d000** | MMLU | **58.60%** | 58.71% | -0.11pp |\n| **d000** | ARC | **80.20%** | 68.09% | **+12.11pp** |\n| **d005** | MMLU | **58.10%** | 58.21% | -0.11pp |\n| **d005** | ARC | **80.20%** | 68.17% | **+12.03pp** |\n| **d025** | MMLU | **56.17%** | 59.14% | **-2.97pp** |\n| **d025** | ARC | **78.16%** | 67.83% | **+10.33pp** |\n\n### 关键发现\n\n1. **MMLU**：d000/d005 差异极小（~0.1pp），但 d025 差异较大（-2.97pp），可能是 evaluate.py 版本差异的影响\n2. **ARC**：westd 版本一致性地比 cqa1 高 10-12pp。这解释了之前观察到的 d025→d050 跳跃 — 实际上是 cqa1 vs westd 的 evaluate.py 版本差异导致的，不是 dosage 效果。现在用 westd 统一跑后，ARC 数据可比了。\n\n### 输出文件路径\n- d000: `/root/autodl-tmp/exp001/eval_results_cross_family/olmo2_d000_s42_westd/`\n- d005: `/root/autodl-tmp/exp001/eval_results_cross_family/olmo2_d005_s42_westd/`\n- d025: `/root/autodl-tmp/exp001/eval_results_cross_family/olmo2_d025_s42_westd/`\n\n### 无异常\n三个 eval 均正常完成，所有输出文件（eval_results.json, arc_challenge_results.json, mmlu_results.json, correctness_matrix.json, item_responses.json）齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-reeval-cuda2.md"
+}

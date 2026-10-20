@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab86cd3fb56ebc26a99e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "prep rrf readiness check",
+  "task_key": "worker_prep_rrf-readiness-check_20260516T022450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_rrf-readiness-check_20260516T022450_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "ef8904335d23c5e47356d5e8f0eed81a65f37db471da403dbcf3c1452963b9e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/rrf_readiness_check.md`。\n\n**结论**：RRF 脚本功能上已就绪（dry-run 通过），但有两个前置条件：\n\n1. **需改一行代码**：`SKIP_PATTERNS` 加入 4 个 alpha=16 黑名单目录，否则会混入无效数据\n2. **信号文件缺口**：6 个有效 3B 目录中只有 `d005_s123` 完整就绪；`d025_s123` 接近完成（s4_mmlu 正在分块计算）；`d000_s123` 和 `d100_a32_*` 尚无/极少信号文件——这些很可能就是当前 GPU 上跑的 6 个实验在产出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-rrf-readiness-check.md"
+}

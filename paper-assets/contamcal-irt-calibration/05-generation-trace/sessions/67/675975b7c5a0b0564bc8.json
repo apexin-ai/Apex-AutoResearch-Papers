@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "675975b7c5a0b0564bc8",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_2_1778726971.md",
+  "task_key": "loop_2_1778726971",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778726971.md",
+    "occurrence": 1,
+    "bytes": 5193,
+    "sha256": "ef08cd8f4030b48405d0017b6c7bd0b1e3cf989b8f93969e038dfa788eaf8d7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T02:29:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 在 cqa1-21977，全部分配给本项目，不可用其他服务器/卡号\n- 0% dosage SFT 数据 = 纯 SlimOrca，不含任何 paraphrase。dosage >0% 的数据目前只含 ARC+GSM8K，MMLU paraphrase 完成后需重跑 prepare_sft_data.py 才能开 Phase 3\n- submit_training_job 的 command 必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，不能裸 python\n- GPU 编号脚本内始终 `--gpu 0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- exp_001_sft_0pct 是 parent entry（虚拟），不要对它做状态推进\n- exp_005 Stan 实验跑在本地 CPU，cron SSH 检查会误判为 failed（已发生两次 false positive），local 实验状态需手动管理\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D\n- 工作目录：/root/contamcal-irt-calibration/exp001/\n- Python：/root/miniconda3/bin/python（conda base env，不是 venv）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 模型缓存：/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- Checkpoint 目录：/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/\n- Eval 输出：/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dosage}_s{seed}/\n- SFT 数据：/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl\n- 训练脚本：train_sft.py，评估脚本：evaluate.py\n- 日志：~/runs/contamcal-irt-calibration/exp_{id}.log\n- CPU 实验：本地 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ 下各子目录\n- exp_004_sim_sweep PID 219346（本地 CPU，~28h 总时长，可能仍在跑）\n\n### 3. 📊 当前状态\n\n**刚做完的事**：收到 exp_001_sft_0pct_3B（3B, d000, s42）cron 完成回调。派了 2 个 Worker：\n1. `worker_analysis_exp_001_sft_0pct_3B_20260513T232449` — 分析训练日志、提取 metrics、更新 registry 到 DONE\n2. `worker_eval_exp_001_eval_15B_d000_s123_20260513T232557` — 提交 1.5B-s123 eval 到 cuda:0\n\n已向 Director 汇报状态。\n\n**Registry 状态**：\n| exp_id | status | GPU | 说明 |\n|--------|--------|-----|------|\n| exp_001_sft_0pct_3B | ANALYZING | cuda:5 释放 | Worker 分析中 |\n| exp_001_sft_0pct_3B_s123 | RUNNING | cuda:3 | 3B s123 训练 |\n| exp_001_eval_05B_d000_s42 | RUNNING | cuda:1 | 0.5B eval |\n| exp_001_eval_05B_d000_s123 | RUNNING | cuda:2 | 0.5B eval |\n| exp_001_eval_15B_d000_s42 | RUNNING | cuda:4 | 1.5B eval |\n| exp_001_eval_15B_d000_s123 | PREPARING→提交中 | cuda:0 | Worker 正在提交 |\n| exp_004_sim_sweep | RUNNING | 本地 CPU | Stan sim sweep |\n| exp_001_sft_0pct | RUNNING | 无 | parent entry，虚拟 |\n\n**等待回调**：\n- 2 个 Worker DONE 回调\n- exp_001_sft_0pct_3B_s123 训练完成 cron 回调\n- 4 个 eval 实验的 cron 完成回调\n- exp_004_sim_sweep 完成（本地 CPU，无 cron 监控，需手动检查）\n\n### 4. 📋 待办（条件触发式）\n- analysis Worker 回调确认 3B-s42 训练 success → 立即创建 exp_001_eval_3B_d000_s42 并提交到 cuda:5\n- exp_001_sft_0pct_3B_s123 完成回调 → 分析 + 提交 exp_001_eval_3B_d000_s123\n- 全部 6 个 0% eval 完成 → 汇总 baseline scores，写入 registry，汇报 Director\n- MMLU paraphrase 状态未知（exp_001_sft_injection 标记 DONE 但 MMLU attempt 2/3 进度不明）→ 需派 Worker 检查 /root/autodl-tmp/exp001/sft_data/ 下 MMLU 数据是否齐全\n- MMLU paraphrase 确认齐全 → 重跑 prepare_sft_data.py 生成含 3 benchmark 的 dosage 文件 → Phase 3 contaminated SFT（12 runs: {5%,25%,50%,100%} × {0.5B,1.5B,3B}，按 ROADMAP 调度预案分配 GPU）\n- exp_004_sim_sweep 可能已完成（PID 219346 启动已超 30h）→ 需检查进程存活 + 结果\n- exp_005_noise_prop_v2 已 failed（Stan 收敛问题）→ Director 尚未决策下一步，不主动重跑\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 11 天）\n- **核心假设**：4PL+γ IRT 能从受污染的 benchmark 分数中分离 contamination effect (γ) 和 true ability (θ)\n- **MVP 已通过**（D003/D004）：simulation 验证 γ 可恢复（bias <8%, CI 覆盖真值），confounding (θ-exposure corr≈0.38) 不破坏分离能力\n- **Critical Path**：MMLU paraphrase → 重跑 dosage 数据 → Phase 3 contaminated SFT → Phase 4 eval → exp-002 信号提取 → exp-003 RRF → exp-006 IRT 校准。0% baseline 在并行进行，不阻塞 critical path\n- **Table 2 风险**：Related Work 中 ContamCal \"RL-robust partial✓\" claim 唯一证据是 exp-008（signal_survival_analysis），依赖 exp-002，尚未启动\n- **易踩的坑**：\n  - exp_001_sft_injection 虽标 DONE，但它是 paraphrase 生成任务，不是 SFT 训练；MMLU 多 attempt QC 流程可能还没全部完成\n  - exp_004_sim_sweep 和 exp_005 跑在本地 CPU，cron 监控不到（server=\"local\"），需手动 ps 检查\n  - 3B 模型 batch-size=1 grad-accum=16，训练约 200min，是 0.5B 的 4 倍时长\n  - Fisher 推导（Theorem 1 + 2 Corollaries）已完成在 appendix.tex，不需要重做\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778726971.md"
+}

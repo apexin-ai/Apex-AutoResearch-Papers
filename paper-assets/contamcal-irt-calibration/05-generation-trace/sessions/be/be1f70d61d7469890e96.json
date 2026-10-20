@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be1f70d61d7469890e96",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260514T161439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260514T161439_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "d609b03c6073db99523a3bd98750d14e6033afdfd2512665de9aaf1bb5a7753a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 (2026-05-15 ~00:16 UTC)\n\n| GPU | 任务 | 进度 | 剩余时间 | ETA (UTC) |\n|-----|------|------|----------|-----------|\n| **0** | 1.5B d025 SFT 训练 | 2045/3384 steps (60%), epoch 0.59 | ~1h20m | ~01:37 |\n| **1** | 1.5B batch eval → 当前 d100 aligned | GSM8K 23% (301/1319) @ 6.0s/it | ~2.5h (GSM8K+ARC+HumanEval) | ~02:45 |\n| **2** | 0.5B d100 eval v4 | GSM8K 39% (511/1319) @ 5.1s/it | ~1h50m | ~02:05 |\n| **3** | 0.5B d025 eval | GSM8K 29% (378/1319) @ 5.0s/it | ~2h | ~02:15 |\n| **4** | 3B d005 eval | **HumanEval 57% (94/164)** @ 7.4s/it | **~9min** | **~00:25** |\n| **5** | **空闲** | d005 para eval 已完成 (00:11) | — | — |\n\n### 即将空出的 GPU\n\n1. **GPU 5** — 已空闲\n2. **GPU 4** — ~9 分钟内完成（HumanEval 最后一个 benchmark，剩 70 题）\n3. **GPU 0** — ~1h20m（SFT 60%，loss 1.24，token acc 0.72）\n\n### 注意\n\n- GPU 0 的 lora_adapter 目录为空，adapter 尚未保存（训练结束时才写入）\n- GPU 1 的 1.5B batch eval 已完成 d000 orig+para、d005 aligned+para，当前跑 d100 aligned（MMLU 完成，GSM8K 进行中）\n- GPU 2 的 0.5B d100 aligned 输出目录仍为空，结果尚未写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-12.md"
+}

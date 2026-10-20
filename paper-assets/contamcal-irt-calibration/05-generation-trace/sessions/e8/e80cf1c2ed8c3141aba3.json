@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e80cf1c2ed8c3141aba3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu cleanup and submit evals v2",
+  "task_key": "worker_ops_gpu-cleanup-and-submit-evals-v2_20260515T063128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-cleanup-and-submit-evals-v2_20260515T063128_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "c96832d871a2c365d487e2eb56944f13056c1341ed0ff97f10ff8415e2cdf8aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部三步的工作已经由另一个 Worker 完成了。当前状态：\n\n### Step 1: cuda:5 清理 — 无需操作\n- PID 508118 和 508351 均已死亡\n- 仅剩 PID 507968（compute_signals，2766 MiB，运行 1h），正常运行中\n\n### Step 2: 3B d000 s42 eval v3 — 已在运行\n- **PID 513826**，GPU 4，已运行 19 分钟\n- `CUDA_VISIBLE_DEVICES=4` ✓（C004 合规）\n- 输出目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/`\n- 命令参数正确：`--mc-format aligned`，adapter 路径指向 `Qwen2.5-3B_d000_s42/lora_adapter`\n\n### Step 3: 0.5B d025 s123 eval aligned — 已在运行\n- **PID 513900**，GPU 0，已运行 19 分钟\n- `CUDA_VISIBLE_DEVICES=0` ✓（C004 合规）\n- 输出目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s123_aligned/`\n- 命令参数正确：`--mc-format aligned`，adapter 路径指向 `Qwen2.5-0.5B_d025_s123/lora_adapter`\n\n**不重复提交**（C001 约束）。两个 eval 均已正确启动，环境配置完整（conda base、HF_HOME、SSL 证书、tmux session）。\n\n### 当前 GPU 总览\n\n| GPU | 占用 | 任务 |\n|-----|------|------|\n| 0 | 3686 MiB | 0.5B d025 s123 eval (PID 513900) |\n| 1 | 8976 MiB | 3B d000 s123 eval (PID 492660) |\n| 2 | 8976 MiB | 3B d100 s123 eval (PID 506625) |\n| 3 | 8976 MiB | 3B d025 eval (PID 503791) |\n| 4 | 8976 MiB | 3B d000 s42 v3 eval (PID 513826) |\n| 5 | 2766 MiB | exp_008 signals (PID 507968) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-and-submit-evals-v2.md"
+}

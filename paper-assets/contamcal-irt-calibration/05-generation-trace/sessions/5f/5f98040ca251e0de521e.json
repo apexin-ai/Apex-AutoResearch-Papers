@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f98040ca251e0de521e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops domain irt j audit",
+  "task_key": "worker_ops_domain_irt_j_audit_20260517T164838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_domain_irt_j_audit_20260517T164838_result.json",
+    "occurrence": 1,
+    "bytes": 1893,
+    "sha256": "8fa65b0cc1c46e7f47c165ed28c907bcfd4737a657edba47834ae2d202bd99bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整信息已获取。汇总结果：\n\n---\n\n## Domain-level IRT 模型数量汇总\n\n### `mmlu_domain_irt_no05B/` — 所有 8 个 domain + pooled 均为 **J=13**\n\n**13 个模型（脚本 MODEL_WHITELIST 确认）**：\n\n| # | Model | Scale | Dosage | Seed |\n|---|-------|-------|--------|------|\n| 1 | Qwen2.5-1.5B_d000_s123 | 1.5B | 0% | 123 |\n| 2 | Qwen2.5-1.5B_d000_s42 | 1.5B | 0% | 42 |\n| 3 | Qwen2.5-1.5B_d005_s123 | 1.5B | 5% | 123 |\n| 4 | Qwen2.5-1.5B_d005_s42 | 1.5B | 5% | 42 |\n| 5 | Qwen2.5-1.5B_d025_s123 | 1.5B | 25% | 123 |\n| 6 | Qwen2.5-1.5B_d025_s42 | 1.5B | 25% | 42 |\n| 7 | Qwen2.5-1.5B_d100_s123 | 1.5B | 100% | 123 |\n| 8 | Qwen2.5-1.5B_d100_s42 | 1.5B | 100% | 42 |\n| 9 | Qwen2.5-3B_d005_s123 | 3B | 5% | 123 |\n| 10 | Qwen2.5-3B_d025_s123 | 3B | 25% | 123 |\n| 11 | Qwen2.5-3B_d025_v3_s42 | 3B | 25% | 42 |\n| 12 | Qwen2.5-3B_d100_a32_s123 | 3B | 100% | 123 |\n| 13 | Qwen2.5-3B_d100_a32_s42 | 3B | 100% | 42 |\n\n组成：**8× Qwen 1.5B + 5× Qwen 3B**，无 0.5B，无 Llama，无 d000 for 3B。\n\n### `mmlu_domain_irt_j16_cross_family/` — 所有 domain 均为 **J=16**\n\n在 J=13 基础上增加 3 个 Llama-3.2-3B：\n- Llama-3.2-3B_d000_s42\n- Llama-3.2-3B_d005_s42\n- Llama-3.2-3B_d025_s42\n\n（Llama d100 因 A-rate=82.8% degenerate 被排除）\n\n### 与 pooled 配置的差异\n\n| 配置 | J | 特点 |\n|------|---|------|\n| domain no05B | 13 | 仅 Qwen 1.5B+3B |\n| domain j16_cross_family | 16 | +3 Llama 3B |\n| pooled n16_fixed | 16 | 应与 j16_cross_family 相同（待确认） |\n| pooled all_scales | >16 | 包含 0.5B |\n\n### 关键发现\n\n- **所有 domain 的 J 一致**：no05B 全部 J=13，j16 全部 J=16\n- J=13 确实是设计配置（脚本文档字符串写 \"J=13 models\"），不是不完整快照\n- 论文 Table 2 / §5.4 引用 \"J=13\" 是正确的——如果引用的是 `no05B` 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-domain-irt-j-audit.md"
+}

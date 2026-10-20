@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93406315ad359385da8c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp002 pipeline dosage lora",
+  "task_key": "worker_fix_exp002_pipeline_dosage_lora_20260514T061310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp002_pipeline_dosage_lora_20260514T061310_result.json",
+    "occurrence": 1,
+    "bytes": 1379,
+    "sha256": "004c60eecb9f4e7754fc81547c6ebc098250c037c2503cc808530106b4dc3ed8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，已在远程服务器上直接修改并验证。\n\n### 修改总结\n\n**Bug 1 — Dosage 零填充**\n- `compute_signals.py` 新增 `normalize_dosage()` 和 `extract_model_id()` 函数\n- 从 checkpoint 路径自动提取 dosage 并归一化为三位格式（`_d5_` → `d005`，`_d25_` → `d025`）\n- 输出文件名统一使用归一化后的 model_id（如 `signal_minkpp_mmlu_Qwen2.5-0.5B_d005_s42.json`）\n- `aggregate_rrf.py` 不涉及 dosage 解析，无需修改\n\n**Bug 2 — LoRA adapter 加载**\n- `compute_signals.py`: 新增 `--adapter-path` 参数，传递到 minkpp 和 selfcritique 信号模块\n- `signal_minkpp.py`: `load_model_and_tokenizer()` 支持 `adapter_path`，target model 用 base + PeftModel + merge_and_unload，ref model 仍加载纯 base\n- `signal_selfcritique.py`: 同样支持 adapter_path，加载完整模型（base + adapter merged）\n- `signal_embedding.py`: 使用 sentence-transformers，不涉及 LLM 加载，无需修改\n- `signal_constat.py`: 仅读 eval JSON，无需修改\n\n**使用示例**：\n```bash\npython compute_signals.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter \\\n  --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n  --benchmark mmlu ...\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp002-pipeline-dosage-lora.md"
+}

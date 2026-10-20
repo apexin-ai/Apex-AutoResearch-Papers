@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f5f929a040316c889ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo redistrib scripts",
+  "task_key": "worker_ssh_westd-olmo-redistrib-scripts_20260519T113304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-redistrib-scripts_20260519T113304_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "84763d51436c6cbf9f23fed6e4c68177ebfcf8273f97976b9223a61981c3155c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 OLMo-2 eval 脚本已保存到服务器。正在等待 GPU 空闲，2 分钟后第一次检查。\n\n**当前状态汇总：**\n- 脚本：`olmo2_eval_gpu{0,1,2}.sh` 已写入并 `chmod +x`\n- GPU 0 → d000+d005，GPU 1 → d025+d050，GPU 2 → d100\n- GPU 2 预计 ~19:47 CST 最先空闲\n- GPU 3 的 phase2 脚本完成 Gemma-2 后会自动跑 OLMo-2（重复不影响，可交叉验证）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-redistrib-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9dbd774a7ed0ec62e12",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda1 collision check",
+  "task_key": "worker_ops_cuda1-collision-check_20260518T165127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1-collision-check_20260518T165127_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "83fbf0cf9f6d75167952324d70923b5f9e1e64f50d4168e8f0d4552032384daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n**cuda:1 无冲突，但情况与预期不同：**\n\n| 项目 | 状态 |\n|---|---|\n| **PID 42743 (d025_s123)** | **存在且活跃** — 正在 cuda:1 跑 `train_sft.py --data-path sft_dosage_025.jsonl --output-dir Qwen2.5-7B_d025_s123 --seed 123 --lora-alpha 32`，占用 62GB VRAM，GPU util 98% |\n| **d100_s123** | **不存在** — 无对应 tmux session，无任何相关进程。`submit_training_job` 提交可能失败或未实际执行 |\n| **tmux sessions** | 仅 `wait_d025`（内容为空） |\n| **cuda:1 进程数** | 仅 1 个（PID 42743），无冲突 |\n\n**关键问题：**\n1. **Director 说 cuda:1 空闲（0% util, 0 MiB）是错误的** — 实际 98% util、62GB 占用，d025_s123 一直在跑\n2. **d100_s123 提交到了一个已被占用的 GPU** — 但幸运的是该提交似乎没有成功启动，所以没有造成实际冲突\n3. 需要检查 `submit_training_job` 的返回/日志，确认 d100_s123 为什么没有启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-collision-check.md"
+}

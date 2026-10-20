@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b37917ac341e74b82d0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "data sf4 sf2 m2m4m5 extract",
+  "task_key": "worker_data_sf4-sf2-m2m4m5-extract_20260518T051646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_sf4-sf2-m2m4m5-extract_20260518T051646_result.json",
+    "occurrence": 1,
+    "bytes": 3349,
+    "sha256": "6a1d800f4da7ff88c15d64777f920ab2e964259fd40d568a90468078d29ae3b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the 5 results:\n\n---\n\n### P1: SF4 — Random 300 MAE\n\nPer-seed MAE (|IRT calibrated θ − clean baseline accuracy|):\n- Seed 42: 0.0059, Seed 123: 0.0360, Seed 456: 0.0335, Seed 789: 0.0207, Seed 1024: 0.0234\n\n**MAE = 0.024 ± 0.012** (5 seeds), alongside **τ = 0.554 ± 0.048**\n\nNote: ground_truth in the JSON is clean baseline accuracy (not dosage level). The 16 models are 8×1.5B + 8×3B Qwen, vanilla 2PL, 300 random items.\n\n---\n\n### P2: SF2 — SFT Data Configuration\n\nContaminated items are appended to the base SFT corpus (augmentation, not replacement); d100 models receive **16,533** additional training examples beyond the base **50,000** examples.\n\nDetails from `data_meta.json` and `wc -l`:\n\n| Dosage | Total examples | Base | Contaminated appended |\n|--------|---------------|------|-----------------------|\n| d000 | 50,000 | 50,000 | 0 |\n| d005 | 50,826 | 50,000 | 826 (5% of 16,533) |\n| d025 | 54,133 | 50,000 | 4,133 (25% of 16,533) |\n| d100 | 66,533 | 50,000 | 16,533 (100% of 16,533) |\n\nContamination pool: MMLU 14,042 + GSM8K 1,319 + ARC 1,172 = 16,533. `mix_data()` does `list(base_data) + selected` then shuffles.\n\n---\n\n### P4-M2: S4 (Self-Critique) Prompt Template\n\n**Prompt:**\n```\nIs the following answer correct? Answer: {answer}. Question: {question}. Explain briefly then conclude with YES or NO.\n```\n\n**Scoring:**\n1. Model generates an answer to the benchmark question (greedy decode, max 64 tokens)\n2. Critique prompt constructed with generated answer + original question (both truncated to 500 chars)\n3. Extract logits at last position for YES/NO token variants (6 variants each: \"YES\"/\"Yes\"/\"yes\"/\" YES\"/\" Yes\"/\" yes\")\n4. Normalize to binary P(YES), P(NO) via logsumexp\n5. Compute binary entropy H = −p·log₂(p) − (1−p)·log₂(1−p)\n6. **Score = −entropy** (more negative = higher uncertainty = less contaminated; near 0 = highly confident = more contaminated)\n\nSource: `/root/contamcal-irt-calibration/exp002/signals/s4_selfcritique.py`\n\n---\n\n### P4-M4: SFT Training Final Loss (3B models)\n\nLast logged training loss (within 5-9 steps of completion):\n\n| Model | Dosage | Seed | Final Loss | Steps |\n|-------|--------|------|------------|-------|\n| d000_s42 | 0% | 42 | **1.075** | 3120/3125 |\n| d000_s123 | 0% | 123 | **1.114** | 3120/3125 |\n| d005_s42 | 5% | 42 | **1.082** | 3170/3177 |\n| d005_s123 | 5% | 123 | **1.070** | 3170/3177 |\n| d025_v3_s42 | 25% | 42 | **1.135** | 3380/3384 |\n| d025_s123 | 25% | 123 | **1.140** | 3380/3384 |\n| d100_a32_s42_v3 | 100% | 42 | **1.206** | 4150/4159 |\n| d100_a32_s123 | 100% | 123 | **1.132** | 4150/4159 |\n\nLoss increases with dosage (d000 ~1.07-1.11 → d100 ~1.13-1.21), consistent with contaminated items adding distribution shift.\n\n---\n\n### P4-M5: Within-Family GSM8K PPP\n\n**N=24 pure Qwen (0.5B+1.5B+3B), 2PL+γ, 300 items:**\n- **PPP = 0.541** (adequate fit)\n- cal_MAE = 0.006, raw_MAE = 0.169\n- γ = 0.064 ± 0.221 (CI includes zero → no significant contamination signal)\n- Diagnostics: max R̂ = 1.008, min ESS = 1313, 0 divergences\n\nAlso available per-scale: 3B-only (N=7) PPP = 0.245 (poor fit, N too small for reliable IRT).\n\nSource: `/root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed/gsm8k/irt_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-sf4-sf2-m2m4m5-extract.md"
+}

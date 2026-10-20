@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa7f559329deb274b44",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval phi4 mmlu arc westd",
+  "task_key": "worker_diagnose_eval_phi4_mmlu_arc_westd_20260519T072301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_phi4_mmlu_arc_westd_20260519T072301_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "633f5984fdfc8e8461636285b526d2e63570c49e02565a931c1a846471a8648e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：实验没有失败，正在正常运行\n\n**根因：监控误判（false positive）。** 进程从未死亡，\"process dead 5×\" 是监控系统的误报，可能因为该实验没有 sentinel 文件或 W&B run 供监控检测，被自动判定为 failed。\n\n### 当前状态\n\n| dosage | 状态 | 耗时 |\n|--------|------|------|\n| d000 | 完成 ✓ | 23 min (14:36 → 14:59) |\n| d005 | 完成 ✓ | 23 min (14:59 → 15:22) |\n| d025 | **运行中** — MMLU 883/14042 (6%), ~14 it/s | 已跑 ~1 min |\n| d050 | 待运行 | — |\n\n### 详细证据\n- **PID 119519** 在 GPU 3 上活跃，31.7GB 显存，95% 利用率\n- tmux session `phi4_eval` 存在且进程在前台运行\n- 命令行：`evaluate.py --model-path phi-4 --adapter-path phi-4_d025_s42/lora_adapter --benchmarks mmlu arc_challenge`\n- d000/d005 结果完整（含 `.done` sentinel、mmlu_results.json、arc_challenge_results.json、item_responses.json 等）\n\n### 预计完成时间\n- 每个 dosage ≈ 23 min（加载模型 + MMLU 14042 items + ARC）\n- d025 还需 ~22 min，d050 还需 ~23 min\n- **预计全部完成：约 15:45 → 16:10 CST**\n\n### 建议\n不需要任何修复。将实验状态从 failed 改回 running。监控系统需要适配这种 bash eval loop + tmux 的运行模式（没有 W&B / sentinel 不代表进程死了）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-phi4-mmlu-arc-westd.md"
+}

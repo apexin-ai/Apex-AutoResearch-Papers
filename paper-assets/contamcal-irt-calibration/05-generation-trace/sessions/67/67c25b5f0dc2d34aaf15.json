@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67c25b5f0dc2d34aaf15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 15b gsm8k signals",
+  "task_key": "worker_ops_check_15b_gsm8k_signals_20260516T174206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_15b_gsm8k_signals_20260516T174206_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "ee80c54b74eedf7d9e6f9d66820b4dd8d77470a9ddc7da1268ff2fa9f06b348a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能是上个 session 创建的，已过期）。\n\n**结论：exp_002_signals_15B_instruct_gsm8k — SUCCESS**\n\n- 4 个文件齐全，每个 1319 items：\n  - `signal_s1_embedding_gsm8k.json` ✓\n  - `signal_s2_minkpp_gsm8k.json` ✓\n  - `signal_s4_selfcritique_gsm8k.json` ✓\n  - `signals_merged_gsm8k.json` ✓\n- 路径：`/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/`\n- Registry 已更新 conclusion=success\n\n**cuda:2 当前空闲**（0 MiB used），可分配新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-15b-gsm8k-signals.md"
+}

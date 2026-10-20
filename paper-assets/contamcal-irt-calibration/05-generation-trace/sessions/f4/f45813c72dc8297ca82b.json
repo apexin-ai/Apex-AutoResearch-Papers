@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45813c72dc8297ca82b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh prepare sft data 3bench",
+  "task_key": "worker_ssh_prepare-sft-data-3bench_20260513T231536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare-sft-data-3bench_20260513T231536_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "f716d0fd7e0a3d93f61aa3fc66403a732b561bad428c620e9d3a261fe2162b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### Dosage 文件生成结果\n\n| 文件 | 行数 | 大小 | Base | Contam | Contam 占比 |\n|------|------|------|------|--------|------------|\n| `sft_dosage_000.jsonl` | 50,000 | 89M | 50,000 | 0 | 0% (未重生成) |\n| `sft_dosage_005.jsonl` | 50,826 | 89M | 50,000 | 826 | 1.6% |\n| `sft_dosage_025.jsonl` | 54,133 | 91M | 50,000 | 4,133 | 7.6% |\n| `sft_dosage_050.jsonl` | 58,266 | 93M | 50,000 | 8,266 | 14.2% |\n| `sft_dosage_100.jsonl` | 66,533 | 97M | 50,000 | 16,533 | 24.8% |\n\n### 3 Benchmarks 确认包含\n\n| Benchmark | 总 paraphrases | d5% 污染数 | d25% | d50% | d100% |\n|-----------|---------------|-----------|------|------|-------|\n| MMLU | 14,042 | 703 | 3,540 | 7,040 | 14,042 |\n| ARC-Challenge | 1,172 | 50 | 257 | 556 | 1,172 |\n| GSM8K | 1,319 | 73 | 336 | 670 | 1,319 |\n\nHumanEval 已按 D009 排除。所有 contamination label 文件（3 benchmarks × 4 dosages = 12 个）已生成。`data_meta.json` 已更新。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-sft-data-3bench.md"
+}

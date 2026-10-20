@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7c13c9df413bf08383af",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit dose response data",
+  "task_key": "worker_audit_dose-response-data_20260523T102128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_dose-response-data_20260523T102128.log",
+    "occurrence": 1,
+    "bytes": 602754,
+    "sha256": "20e7410b4cd3f12a530a885c89ceb8d39db105d36947c0f4581594c49d3fe995"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 28,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "7c13c9df413bf08383af-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "7c13c9df413bf08383af-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-dose-response-data.md"
+}

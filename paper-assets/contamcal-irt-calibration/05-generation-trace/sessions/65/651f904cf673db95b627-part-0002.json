@@ -1,0 +1,970 @@
+{
+  "schema_version": "1.0",
+  "session_id": "651f904cf673db95b627",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T06:21:43.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018FmMvgpJYR9LubcmcB2abJ",
+              "type": "tool_result",
+              "content": "Eval experiments (DONE): 96\n\nID                                                      Model                                    Benchmark                      GPU             Duration     Conclusion\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------\nexp_001_eval_05B_aligned_batch                          Qwen2.5-0.5B                             original + paraphrase          cuda:2          6h 0m        failed\nexp_001_eval_05B_d000_s123                              Qwen2.5-0.5B                             mmlu gsm8k arc_challenge human cuda:2          2h 43m       success\nexp_001_eval_05B_d000_s123_aligned                                                                                              cuda:1          2h 45m       success\nexp_001_eval_05B_d000_s42                               Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:1          2h 43m       failed\nexp_001_eval_05B_d000_s42_v5                            Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:2          4h 51m       success\nexp_001_eval_05B_d000_s42_v7                            Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human                 2h 36m       failed\nexp_001_eval_05B_d005                                   Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:1          5h 27m       success\nexp_001_eval_05B_d005_aligned                           Qwen2.5-0.5B                             original aligned (D017)                        1m           success\nexp_001_eval_05B_d005_para_aligned                      Qwen2.5-0.5B                             mmlu gsm8k arc_challenge human cuda:5          5h 0m        success\nexp_001_eval_05B_d005_s123_aligned                      Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:1          2h 24m       success\nexp_001_eval_05B_d005_s123_para_aligned                 Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human                 41m          success\nexp_001_eval_05B_d025_aligned                                                                                                   cuda:3          1h 21m       success\nexp_001_eval_05B_d025_aligned_v2                        Qwen2.5-0.5B                             mmlu+gsm8k+arc_challenge+human cuda:5          4h 51m       success\nexp_001_eval_05B_d025_s123_aligned                                                                                                              1h 1m        success\nexp_001_eval_05B_d100                                   Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:2          52m          failed\nexp_001_eval_05B_d100_aligned                           Qwen2.5-0.5B d100 s42                    original + paraphrase aligned  cuda:2          20m          failed\nexp_001_eval_05B_d100_aligned_v3                                                                                                cuda:2          54m          failed\nexp_001_eval_05B_d100_aligned_v4                        Qwen2.5-0.5B                             mmlu gsm8k arc_challenge human cuda:2          2h 54m       success\nexp_001_eval_05B_d100_s123_aligned                      Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:1          2h 18m       success\nexp_001_eval_05B_d100_v2                                                                                                        cuda:2          3h 51m       failed\nexp_001_eval_05B_d100_v5                                Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human cuda:2          4h 51m       success\nexp_001_eval_05B_instruct                               Qwen2.5-0.5B-Instruct                    mmlu gsm8k humaneval                           1h 49m       success\nexp_001_eval_05B_raw                                    Qwen2.5-0.5B (raw base)                  mmlu,gsm8k,arc_challenge,human cuda:1          2h 25m       success\nexp_001_eval_15B_aligned_batch                          Qwen2.5-1.5B                             original + paraphrase          cuda:1          10h 34m      success\nexp_001_eval_15B_d000_s123                              Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human cuda:5          3h 44m       success\nexp_001_eval_15B_d000_s123_aligned                                                                                              cuda:5          3h 5m        success\nexp_001_eval_15B_d000_s42                               Qwen2.5-1.5B + LoRA (d000_s42)           MMLU, GSM8K, ARC-Challenge, Hu cuda:4          2h 53m       failed\nexp_001_eval_15B_d000_s42_v2                            Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human cuda:4          2h 48m       success\nexp_001_eval_15B_d005_aligned_v2                        Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human                 0m           success\nexp_001_eval_15B_d005_s123                                                                                                      cuda:0          2h 51m       success\nexp_001_eval_15B_d005_s123_v2                           Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human cuda:0          2h 41m       success\nexp_001_eval_15B_d025_aligned                                                                                                   cuda:4          2h 35m       success\nexp_001_eval_15B_d025_para_aligned                                                                                              cuda:1          1h 36m       success\nexp_001_eval_15B_d025_s123                                                                                                      cuda:1          2h 47m       success\nexp_001_eval_15B_d025_s123_v2                           Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human cuda:1          2h 36m       success\nexp_001_eval_15B_d100_aligned                           Qwen2.5-1.5B                             MMLU+GSM8K+ARC+HumanEval align                 0m           success\nexp_001_eval_15B_d100_s123_aligned                                                                                                              2h 46m       success\nexp_001_eval_15B_d100_s42                               Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human cuda:0          2h 37m       success\nexp_001_eval_15B_instruct                               Qwen2.5-1.5B-Instruct                    mmlu gsm8k arc_challenge human cuda:5          2h 20m       success\nexp_001_eval_15B_s123_para_aligned_batch                Qwen2.5-1.5B                             mmlu paraphrased (para_aligned cuda:3          2h 49m       success\nexp_001_eval_3B_d000_aligned                                                                                                                    3h 39m       success\nexp_001_eval_3B_d000_s123                               Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:3          4h 21m       success\nexp_001_eval_3B_d000_s123_aligned                       Qwen/Qwen2.5-3B                          mmlu gsm8k arc_challenge human cuda:3          3h 21m       success\nexp_001_eval_3B_d000_s42                                Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:1          6m           success\nexp_001_eval_3B_d000_s42_a32_batch                      Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:1          5h 4m        success\nexp_001_eval_3B_d000_s42_a32_para_aligned               Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:4          6h 18m       success\nexp_001_eval_3B_d000_s42_para_aligned                   Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:5          40m          success\nexp_001_eval_3B_d000_s42_v3                             Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 33h 11m      success\nexp_001_eval_3B_d000_v2_aligned                         Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:4          3h 21m       success\nexp_001_eval_3B_d000_v2_para_aligned                    Qwen2.5-3B + d000_v2_s42 LoRA            mmlu gsm8k arc_challenge human                 1h 17m       success\nexp_001_eval_3B_d000_v2_para_aligned_v2                 Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 45m          success\nexp_001_eval_3B_d000_v2_para_aligned_v3                 Qwen2.5-3B                               mmlu gsm8k arc_challenge human                 3m           failed\nexp_001_eval_3B_d000_v2_s123_aligned                    Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 5h 46m       success\nexp_001_eval_3B_d000_v2_s123_para_aligned               Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 1h 6m        success\nexp_001_eval_3B_d005_aligned                            Qwen2.5-3B                               mmlu gsm8k arc_challenge human cuda:4          3h 24m       success\nexp_001_eval_3B_d005_s123_aligned                       Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:2          3h 37m       success\nexp_001_eval_3B_d005_s123_gsm8k                         Qwen/Qwen2.5-3B                          gsm8k aligned                  cuda:2          3h 14m       success\nexp_001_eval_3B_d005_s123_para_aligned                  Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 1h 22m       success\nexp_001_eval_3B_d005_s42_a32_batch                      Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:2          4h 9m        success\nexp_001_eval_3B_d005_s42_aligned                        Qwen/Qwen2.5-3B                          mmlu gsm8k arc_challenge human cuda:5          3h 21m       success\nexp_001_eval_3B_d005_s42_para_aligned                   Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:1          12h 46m      success\nexp_001_eval_3B_d025_s123_aligned                       Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:3          3h 18m       success\nexp_001_eval_3B_d025_s123_para_aligned                  Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 1h 22m       success\nexp_001_eval_3B_d025_s42_a32_para                       Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:0          56m          success\nexp_001_eval_3B_d025_v2_aligned                         Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:3          4h 53m       success\nexp_001_eval_3B_d025_v2_para_aligned                    Qwen2.5-3B (d025 v2 LoRA)                mmlu,gsm8k,arc_challenge,human                 57m          success\nexp_001_eval_3B_d025_v3_s42_batch                       Qwen2.5-3B                               mmlu gsm8k arc_challenge (alig cuda:3          3h 22m       killed\nexp_001_eval_3B_d100_aligned                            Qwen2.5-3B                               original                       cuda:3          3h 35m       success\nexp_001_eval_3B_d100_para_aligned                                                                                               cuda:0          1h 35m       success\nexp_001_eval_3B_d100_s123_a32_batch                     Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:0          5h 55m       success\nexp_001_eval_3B_d100_s123_para_aligned                                                                                          cuda:3          22m          failed\nexp_001_eval_3B_d100_s123_para_aligned_v2               Qwen/Qwen2.5-3B                          mmlu,gsm8k,arc_challenge,human cuda:2          46m          success\nexp_001_eval_3B_d100_s42_a32_batch                                                                                              cuda:3          3h 55m       success\nexp_001_eval_3B_d100_s42_para_aligned                   Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:4          40m          success\nexp_001_eval_3B_d100_v2_aligned                         Qwen2.5-3B + d100_v2_s42 LoRA (alpha=16) mmlu gsm8k arc_challenge align                 23m          failed\nexp_001_eval_3B_d100_v2_aligned_v2                      Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human cuda:0          4h 11m       success\nexp_001_eval_3B_d100_v2_para_aligned                    Qwen2.5-3B                               mmlu gsm8k arc_challenge human                 43m          success\nexp_001_eval_3B_d100_v2_s123_aligned                    Qwen2.5-3B                               mmlu,gsm8k,arc_challenge,human                 3h 50m       success\nexp_001_eval_3B_instruct_aligned_para                   Qwen/Qwen2.5-3B-Instruct                 mmlu,gsm8k,arc_challenge,human cuda:3          2h 40m       failed\nexp_001_eval_3B_instruct_v2                             Qwen/Qwen2.5-3B-Instruct                 mmlu,gsm8k,arc_challenge,human cuda:3          2h 32m       success\nexp_001_eval_3B_raw_gen                                 Qwen2.5-3B                               gsm8k,humaneval                cuda:5          3h 11m       success\nexp_001_eval_llama32_3B_d000_s42                        Llama-3.2-3B                             mmlu+gsm8k+arc_challenge+human cuda:4          1h 17m       killed\nexp_001_eval_llama32_3B_d000_s42_v3                     Llama-3.2-3B_d000_s42                                                   cuda:1          2h 45m       success\nexp_001_eval_llama32_3B_d005_s42                        Llama-3.2-3B_d005_s42                    mmlu gsm8k arc_challenge human cuda:0          3h 2m        success\nexp_001_eval_llama32_3B_d025_s42                        Llama-3.2-3B_d025_s42                    mmlu gsm8k arc_challenge human cuda:3          2h 57m       success\nexp_001_eval_llama32_3B_d100_s42                        Llama-3.2-3B_d100_s42                    mmlu gsm8k arc_challenge human cuda:5          3h 10m       success\nexp_008_base_pretrained_15B_eval                        Qwen2.5-1.5B                             mmlu,gsm8k,arc_challenge,human                 3h 23m       success\nexp_008_base_pretrained_15B_eval_v2                     Qwen2.5-1.5B                                                                            0m           success\nexp_008_base_pretrained_eval                            Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human                 3h 44m       failed\nexp_008_base_pretrained_eval_gsm8k_arc                  Qwen2.5-0.5B (base)                                                                     1h 54m       success\nexp_008_base_pretrained_eval_v2                         Qwen2.5-0.5B                             mmlu,gsm8k,arc_challenge,human                 2h 47m       success\nexp_008_instruct_05B_eval                               Qwen2.5-0.5B-Instruct                    mmlu,gsm8k,arc_challenge,human                 1h 46m       success\nexp_009_05b_instruct_eval                               Qwen2.5-0.5B-Instruct                                                                   1m           success\nexp_009_15b_instruct_eval                               Qwen2.5-1.5B-Instruct                                                                   2m           success\nexp_009_3b_instruct_eval                                Qwen2.5-3B-Instruct                                                                     2m           success\nexp_009_deepseek_eval                                   DeepSeek-R1-Distill-Qwen-1.5B                                                           2m           negative",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "83f08f98-af69-4ed7-9b3b-a1fc718d3b01"
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a598c30a000b34737",
+                "tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+                "description": "Running SFT duration stats by model with config details",
+                "usage": {
+                  "total_tokens": 38802,
+                  "tool_uses": 13,
+                  "duration_ms": 120953
+                },
+                "last_tool_name": "Bash",
+                "uuid": "598e9f50-9f7a-452a-99f7-1a3119b250bd",
+                "session_id": "5e373a9e-b910-4491-9557-54675d2d653c"
+              }
+            }
+          ],
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qqq6c7R1RLigeNUk5YnFTV",
+              "name": "Bash",
+              "input": {
+                "command": "python3 - <<'EOF'\nimport json\nfrom datetime import datetime, timezone\n\nfilepath = \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/5e373a9e-b910-4491-9557-54675d2d653c/tool-results/mcp-agent-ml-research-read_registry-1779085189350.txt\"\n\nwith open(filepath, 'r') as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw['result'])\ndata = registry['data']\nexps = data['experiments']\n\ndef parse_dt(s):\n    if not s:\n        return None\n    try:\n        return datetime.fromisoformat(s.replace('Z', '+00:00'))\n    except:\n        return None\n\ndef duration_secs(created, completed):\n    if not created or not completed:\n        return None\n    c = parse_dt(created)\n    d = parse_dt(completed)\n    if not c or not d:\n        return None\n    delta = d - c\n    total_secs = int(delta.total_seconds())\n    return total_secs if total_secs > 0 else None\n\ndef fmt_secs(secs):\n    if not secs:\n        return ''\n    secs = int(secs)\n    h = secs // 3600\n    m = (secs % 3600) // 60\n    return f\"{h}h {m}m\" if h > 0 else f\"{m}m\"\n\n# Print summary stats for SFT by model\nprint(\"=== SFT DURATION STATS BY MODEL (SUCCESS only) ===\\n\")\n\n# Collect SFT runs by model\nmodel_sft = {}\nfor exp_id, exp in exps.items():\n    if exp.get('status') != 'DONE':\n        continue\n    if '_sft_' not in exp_id.lower() and not exp_id.lower().endswith('_sft'):\n        continue\n    if exp.get('conclusion') not in ('success', 'completed'):\n        continue\n    \n    spec = exp.get('spec', {}) or {}\n    model = spec.get('model_name') or ''\n    if not model:\n        # infer from ID\n        for m in ['0.5B', '05B', '1.5B', '15B', '3B', 'llama32', 'Llama']:\n            if m.lower() in exp_id.lower():\n                model = m\n                break\n    \n    wall_secs = spec.get('wall_clock_seconds')\n    if wall_secs:\n        dur = int(wall_secs)\n    else:\n        dur = duration_secs(exp.get('created_at'), exp.get('completed_at'))\n    \n    if dur and dur > 0:\n        if model not in model_sft:\n            model_sft[model] = []\n        model_sft[model].append({'id': exp_id, 'dur': dur, 'spec': spec})\n\nfor model, runs in sorted(model_sft.items()):\n    durs = [r['dur'] for r in runs]\n    avg = sum(durs) / len(durs)\n    min_d = min(durs)\n    max_d = max(durs)\n    print(f\"{model or '(unknown)':<35} n={len(runs):>3}  avg={fmt_secs(avg):<10} min={fmt_secs(min_d):<10} max={fmt_secs(max_d)}\")\n    for r in sorted(runs, key=lambda x: x['dur']):\n        spec = r['spec']\n        dosage_label = ''\n        for part in r['id'].split('_'):\n            if part.startswith('d') and len(part) <= 5 and part[1:].isdigit():\n                dosage_label = part\n                break\n        data_count = spec.get('data_count', '')\n        lora_r = spec.get('lora_r', '') or spec.get('lora_rank', '')\n        lora_alpha = spec.get('lora_alpha', '')\n        lr = spec.get('lr', '') or spec.get('learning_rate', '')\n        bs = spec.get('batch_size', '')\n        ga = spec.get('grad_accum', '')\n        print(f\"  {r['id']:<50} {fmt_secs(r['dur']):<10} data_count={data_count:<8} lora_r={lora_r:<4} lora_alpha={lora_alpha:<4} lr={lr:<7} bs={bs} ga={ga}\")\n    print()\nEOF\n",
+                "description": "SFT duration stats by model with config details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "97925eb1-3af6-46c4-b996-738b10d25a0e",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_013cJYCuuqzLgQN9xqUx7Dgi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5852,
+                "cache_read_input_tokens": 32180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5852,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T06:22:02.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qqq6c7R1RLigeNUk5YnFTV",
+              "type": "tool_result",
+              "content": "=== SFT DURATION STATS BY MODEL (SUCCESS only) ===\n\n(unknown)                           n=  1  avg=5h 10m     min=5h 10m     max=5h 10m\n  exp_001_sft_0pct                                   5h 10m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n\n05B                                 n=  2  avg=1h 6m      min=58m        max=1h 13m\n  exp_001_sft_0pct_05B                               58m        data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d100_05B                               1h 13m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n\n15B                                 n=  1  avg=1h 46m     min=1h 46m     max=1h 46m\n  exp_001_sft_0pct_15B                               1h 46m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n\n3B                                  n=  3  avg=5h 27m     min=3h 41m     max=7h 43m\n  exp_001_sft_0pct_3B                                3h 41m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d100_s123_a32_v2                    4h 58m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d100_3B                                7h 43m     data_count=         lora_r=     lora_alpha=     lr=        bs= ga=\n\nLlama-3.2-3B                        n=  3  avg=2h 39m     min=2h 18m     max=2h 54m\n  exp_001_sft_llama32_3B_d005_s42                    2h 18m     data_count=2706     lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_llama32_3B_d025_s42                    2h 44m     data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_llama32_3B_d100_s42                    2h 54m     data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n\nLlama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B) n=  1  avg=2h 21m     min=2h 21m     max=2h 21m\n  exp_001_sft_llama32_3B_d000_s42                    2h 21m     data_count=50000    lora_r=     lora_alpha=     lr=        bs= ga=\n\nQwen/Qwen2.5-1.5B                   n=  3  avg=2h 48m     min=2h 26m     max=3h 28m\n  exp_001_sft_15B_d025_s123_v2                       2h 26m     data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_15B_d005_s123_v2                       2h 30m     data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d025_15B                               3h 28m     data_count=54133    lora_r=16   lora_alpha=32   lr=0.0002  bs=1 ga=16\n\nQwen/Qwen2.5-3B                     n=  6  avg=6h 38m     min=2h 48m     max=19h 19m\n  exp_001_sft_3B_d025_s123                           2h 48m     data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d005_s123                           3h 8m      data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d025_3B_v2                             4h 2m      data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d000_v2                             4h 5m      data_count=50000    lora_r=16   lora_alpha=16   lr=5e-5    bs=1 ga=16\n  exp_001_sft_3B_d000_s123                           6h 24m     data_count=50000    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d100_s123_a32                       19h 19m    data_count=50000    lora_r=16   lora_alpha=32   lr=5e-5    bs=1 ga=16\n\nQwen2.5-0.5B                        n=  6  avg=1h 20m     min=1h 0m      max=1h 55m\n  exp_001_sft_d005_05B_v3                            1h 0m      data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_05B_d005_s123                          1h 1m      data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d025_05B_v3                            1h 4m      data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_05B_d100_s123                          1h 13m     data_count=66533    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_05B_d025_s123_v2                       1h 48m     data_count=54133    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_0pct_05B_s123                          1h 55m     data_count=50000    lora_r=     lora_alpha=     lr=        bs= ga=\n\nQwen2.5-0.5B/1.5B/3B (LoRA SFT), Qwen2.5-7B-Instruct (paraphrase) n=  1  avg=5h 46m     min=5h 46m     max=5h 46m\n  exp_001_sft_injection                              5h 46m     data_count=45 SFT runs + 90 eval runs (original+paraphrased) lora_r=     lora_alpha=     lr=        bs= ga=\n\nQwen2.5-1.5B                        n=  4  avg=4h 30m     min=1h 55m     max=6h 21m\n  exp_001_sft_0pct_15B_s123                          1h 55m     data_count=50000    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_15B_d100_s123                          4h 11m     data_count=66533    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d005_15B                               5h 34m     data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d100_15B_v2                            6h 21m     data_count=66533    lora_r=     lora_alpha=     lr=        bs= ga=\n\nQwen2.5-3B                          n=  8  avg=4h 49m     min=3h 44m     max=5h 48m\n  exp_001_sft_0pct_3B_s123                           3h 44m     data_count=50000    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_d025_3B_v3                             4h 15m     data_count=54133    lora_r=16   lora_alpha=32   lr=5e-5    bs=1 ga=16\n  exp_001_sft_d005_3B                                4h 17m     data_count=50826    lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d000_s42_a32                        4h 32m     data_count=50000    lora_r=16   lora_alpha=32   lr=5e-5    bs=1 ga=16\n  exp_001_sft_3B_d100_s123                           5h 5m      data_count=100      lora_r=16   lora_alpha=16   lr=5e-5    bs=1 ga=16\n  exp_001_sft_d100_3B_v2                             5h 13m     data_count=4159     lora_r=     lora_alpha=     lr=        bs= ga=\n  exp_001_sft_3B_d005_s42_a32                        5h 39m     data_count=         lora_r=16   lora_alpha=32   lr=5e-5    bs=1 ga=16\n  exp_001_sft_3B_d100_s42_a32_v3                     5h 48m     data_count=216530   lora_r=16   lora_alpha=32   lr=        bs= ga=",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "1fac21e6-5f9f-4fc6-b7fb-d610f37b578a"
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a598c30a000b34737",
+                "tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+                "description": "Running Get LoRA configs and wall_clock_seconds for SFT runs",
+                "usage": {
+                  "total_tokens": 42715,
+                  "tool_uses": 14,
+                  "duration_ms": 133451
+                },
+                "last_tool_name": "Bash",
+                "uuid": "1bb77ec2-fcc6-41bd-9882-3964e5b58ee0",
+                "session_id": "5e373a9e-b910-4491-9557-54675d2d653c"
+              }
+            }
+          ],
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UKScycnTamQ8MQfKi1mVMz",
+              "name": "Bash",
+              "input": {
+                "command": "python3 - <<'EOF'\nimport json\nfrom datetime import datetime, timezone\n\nfilepath = \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/5e373a9e-b910-4491-9557-54675d2d653c/tool-results/mcp-agent-ml-research-read_registry-1779085189350.txt\"\n\nwith open(filepath, 'r') as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw['result'])\ndata = registry['data']\nexps = data['experiments']\n\n# Look at a broader set of SFT specs to find hyperparams\nprint(\"=== SFT Experiments with LoRA config ===\")\nfor exp_id, exp in exps.items():\n    if exp.get('status') != 'DONE':\n        continue\n    if '_sft_' not in exp_id.lower():\n        continue\n    spec = exp.get('spec', {}) or {}\n    if spec.get('lora_r') or spec.get('lora_rank') or spec.get('hyperparams'):\n        hp = spec.get('hyperparams', {}) or {}\n        print(f\"\\n{exp_id}:\")\n        print(f\"  lora_r={spec.get('lora_r','')} lora_alpha={spec.get('lora_alpha','')} lr={spec.get('lr','')} bs={spec.get('batch_size','')} ga={spec.get('grad_accum','')} epochs={spec.get('epochs','')}\")\n        print(f\"  target_modules={spec.get('target_modules','')} max_seq_length={spec.get('max_seq_length','')} total_steps={spec.get('total_steps','')}\")\n        if hp:\n            print(f\"  hyperparams: {hp}\")\n\n# Also look for wall_clock_seconds across SFTs\nprint(\"\\n\\n=== SFT experiments with wall_clock_seconds ===\")\nfor exp_id, exp in exps.items():\n    if exp.get('status') != 'DONE':\n        continue\n    if '_sft_' not in exp_id.lower():\n        continue\n    spec = exp.get('spec', {}) or {}\n    if spec.get('wall_clock_seconds'):\n        model = spec.get('model_name','')\n        wcs = spec.get('wall_clock_seconds')\n        gpuh = spec.get('gpu_hours','')\n        dc = spec.get('data_count','')\n        lr = spec.get('lr','')\n        bs = spec.get('batch_size','')\n        ga = spec.get('grad_accum','')\n        print(f\"  {exp_id:<50} model={model:<20} data={dc:<8} wall={wcs}s ({int(wcs)//3600}h {(int(wcs)%3600)//60}m) gpu_h={gpuh} lr={lr} bs={bs} ga={ga}\")\nEOF\n",
+                "description": "Get LoRA configs and wall_clock_seconds for SFT runs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "6c344205-3e42-48bd-a4d6-500dc4e91343",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016jwkgGbVLGiK6ohJhPSsJG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3870,
+                "cache_read_input_tokens": 38032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3870,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T06:22:14.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UKScycnTamQ8MQfKi1mVMz",
+              "type": "tool_result",
+              "content": "=== SFT Experiments with LoRA config ===\n\nexp_001_sft_3B_d100_s123_a32:\n  lora_r=16 lora_alpha=32 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d025_s42_a32_v3:\n  lora_r=16 lora_alpha=32 lr=5e-05 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=3384\n\nexp_001_sft_3B_d100_s42_a32_v3:\n  lora_r=16 lora_alpha=32 lr= bs= ga= epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d005_s42_a32:\n  lora_r=16 lora_alpha=32 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d000_s42_a32:\n  lora_r=16 lora_alpha=32 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d025_s42_a32_v2:\n  lora_r=16 lora_alpha=32 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d100_s42_a32_v2:\n  lora_r=16 lora_alpha=32 lr= bs= ga= epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_d025_3B_v3:\n  lora_r=16 lora_alpha=32 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_3B_d000_v3:\n  lora_r=16 lora_alpha=32 lr= bs= ga= epochs=\n  target_modules= max_seq_length= total_steps=\n\nexp_001_sft_d100_3B_v2:\n  lora_r= lora_alpha= lr= bs= ga= epochs=\n  target_modules= max_seq_length= total_steps=\n  hyperparams: {'lr': '5e-5', 'lora_alpha': 16, 'lora_r': 16}\n\nexp_001_sft_3B_d000_v2:\n  lora_r=16 lora_alpha=16 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules=q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj max_seq_length= total_steps=\n\nexp_001_sft_3B_d100_s123:\n  lora_r=16 lora_alpha=16 lr=5e-5 bs=1 ga=16 epochs=\n  target_modules= max_seq_length=2048 total_steps=\n\nexp_001_sft_05B_d005_s123:\n  lora_r= lora_alpha= lr= bs= ga= epochs=\n  target_modules= max_seq_length= total_steps=\n  hyperparams: {'lr': '2e-4', 'lora_alpha': 32, 'lora_r': 16, 'batch_size': 4, 'grad_accum': 4}\n\nexp_001_sft_d025_15B:\n  lora_r=16 lora_alpha=32 lr=0.0002 bs=1 ga=16 epochs=1\n  target_modules= max_seq_length=2048 total_steps=\n\n\n=== SFT experiments with wall_clock_seconds ===\n  exp_001_sft_llama32_3B_d005_s42                    model=Llama-3.2-3B         data=2706     wall=8290.5s (2h 18m) gpu_h=2.3 lr= bs= ga=\n  exp_001_sft_llama32_3B_d100_s42                    model=Llama-3.2-3B         data=54133    wall=10479.1s (2h 54m) gpu_h=2.91 lr= bs= ga=\n  exp_001_sft_llama32_3B_d025_s42                    model=Llama-3.2-3B         data=54133    wall=9853.2s (2h 44m) gpu_h=2.74 lr= bs= ga=\n  exp_001_sft_3B_d100_s42_a32_v3                     model=Qwen2.5-3B           data=216530   wall=20920.0s (5h 48m) gpu_h=5.81 lr= bs= ga=\n  exp_001_sft_3B_d025_s42_a32_v2                     model=Qwen2.5-3B           data=54000    wall=193.9s (0h 3m) gpu_h=0.05 lr=5e-5 bs=1 ga=16\n  exp_001_sft_3B_d100_s42_a32_v2                     model=Qwen2.5-3B           data=216530   wall=13034.8s (3h 37m) gpu_h=3.62 lr= bs= ga=\n  exp_001_sft_3B_d025_s42_a32                        model=Qwen/Qwen2.5-3B      data=54133    wall=9112.1s (2h 31m) gpu_h=2.53 lr= bs= ga=\n  exp_001_sft_3B_d100_s42_a32                        model=Qwen2.5-3B           data=66533    wall=6375.4s (1h 46m) gpu_h=1.77 lr= bs= ga=\n  exp_001_sft_3B_d000_v3                             model=Qwen2.5-3B           data=50000    wall=8055.6s (2h 14m) gpu_h=2.24 lr= bs= ga=\n  exp_001_sft_3B_d000_v2                             model=Qwen/Qwen2.5-3B      data=50000    wall=14737.5s (4h 5m) gpu_h=4.09 lr=5e-5 bs=1 ga=16\n  exp_001_sft_3B_d005_s123                           model=Qwen/Qwen2.5-3B      data=50826    wall=11333.2s (3h 8m) gpu_h=3.15 lr= bs= ga=\n  exp_001_sft_3B_d025_s123                           model=Qwen/Qwen2.5-3B      data=54133    wall=10087.1s (2h 48m) gpu_h=2.8 lr= bs= ga=\n  exp_001_sft_15B_d005_s123                          model=                     data=         wall=25.2s (0h 0m) gpu_h=0.01 lr= bs= ga=\n  exp_001_sft_05B_d025_s123                          model=                     data=         wall=703.0s (0h 11m) gpu_h=0.2 lr= bs= ga=\n  exp_001_sft_3B_d000_s123                           model=Qwen/Qwen2.5-3B      data=50000    wall=23087.2s (6h 24m) gpu_h=6.41 lr= bs= ga=\n  exp_001_sft_15B_d100_s123                          model=Qwen2.5-1.5B         data=66533    wall=15079.0s (4h 11m) gpu_h=4.19 lr= bs= ga=\n  exp_001_sft_05B_d100_s123                          model=Qwen2.5-0.5B         data=66533    wall=4389.0s (1h 13m) gpu_h=1.22 lr= bs= ga=\n  exp_001_sft_d005_15B                               model=Qwen2.5-1.5B         data=50826    wall=20070.3s (5h 34m) gpu_h=5.58 lr= bs= ga=\n  exp_001_sft_d025_05B_v3                            model=Qwen2.5-0.5B         data=54133    wall=3855.6s (1h 4m) gpu_h=1.07 lr= bs= ga=\n  exp_001_sft_d025_05B                               model=Qwen2.5-0.5B         data=~16633 (25% dosage) wall=75.0s (0h 1m) gpu_h=0.02 lr= bs= ga=\n  exp_001_sft_d005_05B_v3                            model=Qwen2.5-0.5B         data=50826    wall=3614.4s (1h 0m) gpu_h=1.0 lr= bs= ga=\n  exp_001_sft_d100_05B                               model=                     data=         wall=4438.1s (1h 13m) gpu_h=1.23 lr= bs= ga=\n  exp_001_sft_d005_05B_v2                            model=                     data=         wall=20.9s (0h 0m) gpu_h=0.01 lr= bs= ga=\n  exp_001_sft_0pct_3B                                model=                     data=         wall=13268.6s (3h 41m) gpu_h=3.69 lr= bs= ga=\n  exp_001_sft_0pct_15B                               model=                     data=         wall=6407.6s (1h 46m) gpu_h=1.78 lr= bs= ga=\n  exp_001_sft_0pct_05B                               model=                     data=         wall=3523.7s (0h 58m) gpu_h=0.98 lr= bs= ga=",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "6f7f01c6-8e9e-4907-8ac3-a8b2040f2edd"
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a598c30a000b34737",
+                "tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+                "description": "Running Dump full spec for key SFT experiments",
+                "usage": {
+                  "total_tokens": 46298,
+                  "tool_uses": 15,
+                  "duration_ms": 148805
+                },
+                "last_tool_name": "Bash",
+                "uuid": "297fbaf7-d329-4bf6-bff9-078061e514fd",
+                "session_id": "5e373a9e-b910-4491-9557-54675d2d653c"
+              }
+            }
+          ],
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JCiZn9i46RuxxWF7EGQS58",
+              "name": "Bash",
+              "input": {
+                "command": "python3 - <<'EOF'\nimport json\nfrom datetime import datetime\n\nfilepath = \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/5e373a9e-b910-4491-9557-54675d2d653c/tool-results/mcp-agent-ml-research-read_registry-1779085189350.txt\"\n\nwith open(filepath, 'r') as f:\n    raw = json.load(f)\n\nregistry = json.loads(raw['result'])\ndata = registry['data']\nexps = data['experiments']\n\n# Check hyperparams more specifically for the few that have them\nprint(\"=== Detailed spec dump of selected SFT experiments with full config ===\")\ntargets = [\n    'exp_001_sft_3B_d100_s123_a32',\n    'exp_001_sft_3B_d000_s42_a32',\n    'exp_001_sft_3B_d005_s42_a32',\n    'exp_001_sft_d025_3B_v3',\n    'exp_001_sft_d025_15B',\n    'exp_001_sft_3B_d100_s123',\n]\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        spec = e.get('spec', {}) or {}\n        print(f\"\\n{t}:\")\n        print(f\"  model: {spec.get('model_name','')}  data_count: {spec.get('data_count','')}  seed: {spec.get('seed','')}\")\n        print(f\"  lora_r: {spec.get('lora_r','')}  lora_alpha: {spec.get('lora_alpha','')}  lr: {spec.get('lr','')}  bs: {spec.get('batch_size','')}  ga: {spec.get('grad_accum','')}  max_seq: {spec.get('max_seq_length','')}  epochs: {spec.get('epochs','')}  total_steps: {spec.get('total_steps','')}\")\n        print(f\"  target_modules: {spec.get('target_modules','')}\")\n        print(f\"  wall_clock_seconds: {spec.get('wall_clock_seconds','')}  gpu_hours: {spec.get('gpu_hours','')}\")\n        print(f\"  gpu: {spec.get('gpu','')}  server: {spec.get('server','')}\")\n        print(f\"  conclusion: {e.get('conclusion','')}  duration: {e.get('created_at','')} -> {e.get('completed_at','')}\")\nEOF\n",
+                "description": "Dump full spec for key SFT experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "87743631-ac94-4c7f-a980-ab592cbab293",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q3jiEmKzKnPuzPChn58KMG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3581,
+                "cache_read_input_tokens": 41902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3581,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T06:22:30.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JCiZn9i46RuxxWF7EGQS58",
+              "type": "tool_result",
+              "content": "=== Detailed spec dump of selected SFT experiments with full config ===\n\nexp_001_sft_3B_d100_s123_a32:\n  model: Qwen/Qwen2.5-3B  data_count: 50000  seed: 123\n  lora_r: 16  lora_alpha: 32  lr: 5e-5  bs: 1  ga: 16  max_seq:   epochs:   total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu:   server: \n  conclusion: success  duration: 2026-05-15T16:10:37.632Z -> 2026-05-16T11:29:48.115Z\n\nexp_001_sft_3B_d000_s42_a32:\n  model: Qwen2.5-3B  data_count: 50000  seed: 42\n  lora_r: 16  lora_alpha: 32  lr: 5e-5  bs: 1  ga: 16  max_seq:   epochs:   total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu: ['cuda:5']  server: cqa1-21977\n  conclusion: success  duration: 2026-05-15T20:09:31.942Z -> 2026-05-16T00:42:10.416Z\n\nexp_001_sft_3B_d005_s42_a32:\n  model: Qwen2.5-3B  data_count:   seed: 42\n  lora_r: 16  lora_alpha: 32  lr: 5e-5  bs: 1  ga: 16  max_seq:   epochs:   total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu: ['cuda:0']  server: cqa1-21977\n  conclusion: success  duration: 2026-05-15T20:09:46.602Z -> 2026-05-16T01:49:15.268Z\n\nexp_001_sft_d025_3B_v3:\n  model: Qwen2.5-3B  data_count: 54133  seed: 42\n  lora_r: 16  lora_alpha: 32  lr: 5e-5  bs: 1  ga: 16  max_seq:   epochs:   total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu: ['cuda:5']  server: cqa1-21977\n  conclusion: success  duration: 2026-05-15T16:10:02.763Z -> 2026-05-15T20:25:29.021Z\n\nexp_001_sft_d025_15B:\n  model: Qwen/Qwen2.5-1.5B  data_count: 54133  seed: 42\n  lora_r: 16  lora_alpha: 32  lr: 0.0002  bs: 1  ga: 16  max_seq: 2048  epochs: 1  total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu: 0  server: cqa1-21977\n  conclusion: success  duration: 2026-05-14T14:18:59.162Z -> 2026-05-14T17:47:05.520Z\n\nexp_001_sft_3B_d100_s123:\n  model: Qwen2.5-3B  data_count: 100  seed: 123\n  lora_r: 16  lora_alpha: 16  lr: 5e-5  bs: 1  ga: 16  max_seq: 2048  epochs:   total_steps: \n  target_modules: \n  wall_clock_seconds:   gpu_hours: \n  gpu:   server: cqa1-21977\n  conclusion: success  duration: 2026-05-15T00:13:45.159Z -> 2026-05-15T05:18:48.164Z",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "e6a70bde-b00c-4444-bca6-4a269484e8a1"
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a598c30a000b34737",
+                "tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Extract training time data from registry",
+                "usage": {
+                  "total_tokens": 48141,
+                  "tool_uses": 15,
+                  "duration_ms": 202888
+                },
+                "uuid": "cb38b9e4-1ebf-4ef4-ade6-6d4cb070cfc7",
+                "session_id": "5e373a9e-b910-4491-9557-54675d2d653c"
+              }
+            }
+          ],
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T06:23:24.150Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QJenwC5ABN5WV7tLheFCrn",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is the structured summary of all completed experiments extracted from the registry.\n\n---\n\n## Registry Summary: contamcal-irt-calibration\n\n**Total experiments:** 279 (254 DONE, 24 PREPARING, 1 ANALYZING)\n\n---\n\n## 1. SFT Training Experiments (DONE, success only: 38 runs)\n\n### Standard LoRA config (most runs):\n- **LoRA rank:** 16, **alpha:** 32 (some early runs used alpha=16)\n- **LR:** 5e-5 (most); 2e-4 (0.5B early runs)\n- **Batch size:** 1, **grad_accum:** 16 (effective batch=16)\n- **Epochs:** 1, **max_seq_length:** 2048\n- **Target modules:** q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj\n\n### Qwen2.5-0.5B (6 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_0pct_05B | 0% | 42 | cuda:3 | 58m | 0.98 |\n| exp_001_sft_d005_05B_v3 | d005 (50826 samples) | 42 | cuda:5 | 1h 0m | 1.00 |\n| exp_001_sft_05B_d005_s123 | d005 (50826) | 123 | cuda:1 | 1h 1m | — |\n| exp_001_sft_d025_05B_v3 | d025 (54133) | 42 | cuda:2 | 1h 4m | 1.07 |\n| exp_001_sft_05B_d100_s123 | d100 (66533) | 123 | cuda:1 | 1h 13m | 1.22 |\n| exp_001_sft_05B_d025_s123_v2 | d025 (54133) | 123 | cuda:3 | 1h 48m | — |\n| exp_001_sft_0pct_05B_s123 | d000 (50000) | 123 | cuda:1 | 1h 55m | — |\n| exp_001_sft_d100_05B | d100 | 42 | cuda:0 | 1h 13m | 1.23 |\n\n**Typical 0.5B SFT duration: ~1h–1h 55m**\n\n### Qwen2.5-1.5B (7 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_0pct_15B | 0% | 42 | cuda:4 | 1h 46m | 1.78 |\n| exp_001_sft_0pct_15B_s123 | d000 (50000) | 123 | cuda:2 | 1h 55m | — |\n| exp_001_sft_15B_d025_s123_v2 | d025 (54133) | 123 | cuda:0 | 2h 26m | — |\n| exp_001_sft_15B_d005_s123_v2 | d005 (50826) | 123 | cuda:1 | 2h 30m | — |\n| exp_001_sft_d025_15B | d025 (54133) | 42 | cuda:0 | 3h 28m | — |\n| exp_001_sft_15B_d100_s123 | d100 (66533) | 123 | cuda:2 | 4h 11m | 4.19 |\n| exp_001_sft_d005_15B | d005 (50826) | 42 | cuda:4 | 5h 34m | 5.58 |\n| exp_001_sft_d100_15B_v2 | d100 (66533) | 42 | cuda:0 | 6h 21m | — |\n\n**Typical 1.5B SFT duration: ~2h 26m–6h 21m** (wide variance; likely different GPU/config)\n\n### Qwen2.5-3B (14 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours | LoRA r/alpha |\n|---|---|---|---|---|---|---|\n| exp_001_sft_0pct_3B_s123 | d000 (50000) | 123 | cuda:3 | 3h 44m | — | — |\n| exp_001_sft_3B_d025_s123 | d025 (54133) | 123 | cuda:4 | 2h 48m | 2.80 | — |\n| exp_001_sft_3B_d005_s123 | d005 (50826) | 123 | cuda:2 | 3h 8m | 3.15 | — |\n| exp_001_sft_d025_3B_v2 | d025 (54133) | 42 | — | 4h 2m | — | — |\n| exp_001_sft_3B_d000_v2 | d000 (50000) | 42 | cuda:5 | 4h 5m | 4.09 | 16/16 |\n| exp_001_sft_d025_3B_v3 | d025 (54133) | 42 | cuda:5 | 4h 15m | — | 16/32 |\n| exp_001_sft_d005_3B | d005 (50826) | 42 | cuda:4 | 4h 17m | — | — |\n| exp_001_sft_3B_d000_s42_a32 | d000 (50000) | 42 | cuda:5 | 4h 32m | — | 16/32 |\n| exp_001_sft_3B_d100_s123 | d100 (50000 eff.) | 123 | — | 5h 5m | — | 16/16 |\n| exp_001_sft_d100_3B_v2 | d100 (4159) | 42 | cuda:3 | 5h 13m | — | 16 (hp) |\n| exp_001_sft_3B_d005_s42_a32 | d005 | 42 | cuda:0 | 5h 39m | — | 16/32 |\n| exp_001_sft_3B_d100_s42_a32_v3 | d100 (216530) | 42 | cuda:1 | 5h 48m | 5.81 | 16/32 |\n| exp_001_sft_3B_d000_s123 | d000 (50000) | 123 | cuda:5 | 6h 24m | 6.41 | — |\n| exp_001_sft_3B_d100_s123_a32 | d100 (50000) | 123 | — | 19h 19m | — | 16/32 |\n\n**Typical Qwen2.5-3B SFT: ~3h–6h 24m per run** (one outlier at 19h 19m — anomalous)\n\n### Llama-3.2-3B (4 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_llama32_3B_d000_s42 | d000 (50000) | 42 | cuda:4 | 2h 21m | — |\n| exp_001_sft_llama32_3B_d005_s42 | d005 (2706) | 42 | cuda:0 | 2h 18m | 2.30 |\n| exp_001_sft_llama32_3B_d025_s42 | d025 (54133) | 42 | cuda:3 | 2h 44m | 2.74 |\n| exp_001_sft_llama32_3B_d100_s42 | d100 (54133) | 42 | cuda:5 | 2h 54m | 2.91 |\n\n**Typical Llama-3.2-3B SFT: ~2h 18m–2h 54m** (significantly faster than Qwen2.5-3B on same GPU)\n\n---\n\n## 2. Signal Computation Experiments (DONE: 47 total, ~32 success)\n\n| Experiment ID | Model | GPU | Duration | Conclusion |\n|---|---|---|---|---|\n| exp_002_signals_05B | Qwen2.5-0.5B | cuda:0 | 5h 18m | success |\n| exp_002_signals_05B_s123_v2 | Qwen2.5-0.5B | cuda:5 | 9h 22m | success |\n| exp002-signal-d025-05B | Qwen2.5-0.5B | cuda:2 | 2h 39m | success |\n| signals_05B_s123_v2 | Qwen2.5-0.5B | cuda:1 | 3h 28m | success |\n| exp_002_signals_15B_s123_batch | Qwen2.5-1.5B | cuda:0 | 8h 59m | success |\n| exp002-signals-1p5B | Qwen2.5-1.5B | cuda:0 | 2h 20m | success |\n| exp_002_signals_15B_d100_s123_cuda2 | Qwen2.5-1.5B_d100_s123 | cuda:2 | 2h 36m | success |\n| exp_002_signals_15B_instruct_mmlu | Qwen2.5-1.5B-Instruct | cuda:4 | 1h 50m | success |\n| exp_002_signals_15B_instruct_mmlu_v2 | Qwen2.5-1.5B-Instruct | cuda:4 | 2h 12m | success |\n| exp_002_signals_15B_instruct_arc | Qwen2.5-1.5B-Instruct | cuda:2 | 1h 4m | success |\n| exp_002_signals_15B_instruct_arc_v2 | Qwen2.5-1.5B-Instruct | cuda:2 | 3h 35m | success |\n| exp_002_signals_3B_d000_a32_s42 | Qwen2.5-3B | cuda:4 | 3h 14m | success |\n| exp_002_signals_3B_d005_a32_s42 | Qwen2.5-3B | cuda:2 | 3h 17m | success |\n| exp_002_signals_3B_d025_v3_s42 | Qwen2.5-3B | cuda:5 | 2h 34m | success |\n| exp_002_signals_3B_d100_a32_s42 | Qwen2.5-3B | cuda:1 | 3h 46m | success |\n| exp_002_signals_3B_d100_s123_v9 | Qwen2.5-3B | cuda:4 | 5h 16m | success |\n| exp_002_signals_3B_v7 | Qwen2.5-3B | cuda:2 | 3h 10m | success |\n| exp_002_signals_llama32_3B_d000_arc_gsm8k | Llama-3.2-3B_d000_s42 | — | 4h 49m | success |\n| exp_002_signals_llama32_3B_d000_mmlu | Llama-3.2-3B_d000_s42 | — | 2h 27m | success |\n| exp_002_signals_llama32_3B_d005_mmlu | Llama-3.2-3B_d005_s42 | cuda:4 | 2h 26m | success |\n| exp_002_signals_llama32_3B_d005_arc_gsm8k | Llama-3.2-3B_d005_s42 | cuda:3 | 29m | success |\n| exp_002_signals_llama32_3B_d025_completion | Llama-3.2-3B_d025_s42 | — | 1h 49m | success |\n| exp_002_signals_llama32_3B_d100_arc | Llama-3.2-3B_d100_s42 | — | 5h 32m | success |\n| exp_002_signals_llama32_3B_d100_gsm8k | Llama-3.2-3B_d100_s42 | — | 3h 55m | success |\n| exp_008_signal_survival | Qwen2.5-0.5B (3 dosages) | — | 5m | success |\n| exp_009_05b_instruct_signals | Qwen2.5-0.5B-Instruct | — | 2m | success |\n| exp_009_15b_instruct_signals | Qwen2.5-1.5B-Instruct | — | 2m | success |\n| exp_009_3b_instruct_signals | Qwen2.5-3B-Instruct | — | 2m | success |\n| exp_009_deepseek_signals | DeepSeek-R1-Distill-Qwen-1.5B | — | 2m | success |\n\n**Typical signal computation durations:**\n- 0.5B: 2h 39m – 9h 22m\n- 1.5B: 1h 4m – 8h 59m\n- 3B (Qwen): 2h 34m – 5h 16m\n- 3B (Llama): 29m – 5h 32m (per-benchmark batch)\n\n---\n\n## 3. Evaluation Experiments (DONE: 96, ~75 success)\n\nAll benchmarks: **MMLU, GSM8K, ARC-Challenge, HumanEval** (original + paraphrase-aligned variants)\n\n### Duration summaries by model (successful runs):\n\n**Qwen2.5-0.5B evals:** 41m – 5h 27m (most ~2h 24m – 4h 51m)\n**Qwen2.5-1.5B evals:** ~2h 20m – 10h 34m (batch runs longer)\n**Qwen2.5-3B evals:** 33m – 33h 11m (most ~3h 20m – 6h 18m; one outlier at 33h 11m)\n**Llama-3.2-3B evals:** ~2h 45m – 3h 10m\n\nKey batch eval runs:\n| ID | Model | Duration |\n|---|---|---|\n| exp_001_eval_15B_aligned_batch | Qwen2.5-1.5B (all dosages, orig+para) | 10h 34m |\n| exp_001_eval_3B_d005_s42_para_aligned | Qwen2.5-3B | 12h 46m |\n| exp_001_eval_3B_d000_s42_v3 | Qwen2.5-3B | 33h 11m |\n| exp_001_eval_3B_d000_s42_a32_batch | Qwen2.5-3B (full benchmark suite) | 5h 4m |\n| exp_001_eval_05B_aligned_batch | Qwen2.5-0.5B (orig+para) | 6h 0m (failed) |\n\n---\n\n## Key Takeaways for 7B/14B Time Estimation\n\nBased on observed scaling:\n- **0.5B SFT:** ~1h (1 GPU, 50k samples, 1 epoch)\n- **1.5B SFT:** ~2.5h–6h (same config)\n- **3B SFT:** ~3.5h–6.5h typical (one 19h outlier was likely a retry/hang)\n- **Llama-3.2-3B SFT:** ~2.5h (faster than Qwen 3B on same server)\n\nRough scaling ratio (0.5B→3B is ~4–6x in time), suggests:\n- **7B SFT estimate:** ~8h–14h per run (1 GPU, 50k samples, LoRA r16/a32, bs=1 ga=16)\n- **14B SFT estimate:** ~16h–28h per run\n\nAll experiments ran on single-GPU (A series, likely A100/A6000 on server `cqa1-21977`). No multi-GPU runs observed."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a598c30a000b34737 (use SendMessage with to: 'a598c30a000b34737' to continue this agent)\n<usage>total_tokens: 51731\ntool_uses: 15\nduration_ms: 202891</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "a3738b5d-85ba-4b66-b2a9-401120b7e974",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "Extract training time and configuration data from the experiment registry file at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/5e373a9e-b910-4491-9557-54675d2d653c/tool-results/mcp-agent-ml-research-read_registry-1779085189350.txt\n\nThis is JSON with schema: {result: string}. The `result` field is itself a JSON string that needs to be parsed.\n\nI need:\n1. All SFT training experiments — extract: experiment ID, model name, dosage, seed, GPU used, training duration (wall time), LoRA config (rank, alpha), learning rate, batch size, number of epochs, any notes on VRAM usage\n2. All signal computation experiments — extract: experiment ID, model, signal type, duration\n3. All evaluation experiments — extract: experiment ID, model, benchmark, duration\n\nUse jq or python to parse. Give me a structured summary with actual numbers. Focus on COMPLETED/SUCCESS experiments. I need the actual training durations in hours/minutes to estimate 7B/14B times.\n\nReturn the data in a clean tabular format.",
+              "agentId": "a598c30a000b34737",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is the structured summary of all completed experiments extracted from the registry.\n\n---\n\n## Registry Summary: contamcal-irt-calibration\n\n**Total experiments:** 279 (254 DONE, 24 PREPARING, 1 ANALYZING)\n\n---\n\n## 1. SFT Training Experiments (DONE, success only: 38 runs)\n\n### Standard LoRA config (most runs):\n- **LoRA rank:** 16, **alpha:** 32 (some early runs used alpha=16)\n- **LR:** 5e-5 (most); 2e-4 (0.5B early runs)\n- **Batch size:** 1, **grad_accum:** 16 (effective batch=16)\n- **Epochs:** 1, **max_seq_length:** 2048\n- **Target modules:** q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj\n\n### Qwen2.5-0.5B (6 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_0pct_05B | 0% | 42 | cuda:3 | 58m | 0.98 |\n| exp_001_sft_d005_05B_v3 | d005 (50826 samples) | 42 | cuda:5 | 1h 0m | 1.00 |\n| exp_001_sft_05B_d005_s123 | d005 (50826) | 123 | cuda:1 | 1h 1m | — |\n| exp_001_sft_d025_05B_v3 | d025 (54133) | 42 | cuda:2 | 1h 4m | 1.07 |\n| exp_001_sft_05B_d100_s123 | d100 (66533) | 123 | cuda:1 | 1h 13m | 1.22 |\n| exp_001_sft_05B_d025_s123_v2 | d025 (54133) | 123 | cuda:3 | 1h 48m | — |\n| exp_001_sft_0pct_05B_s123 | d000 (50000) | 123 | cuda:1 | 1h 55m | — |\n| exp_001_sft_d100_05B | d100 | 42 | cuda:0 | 1h 13m | 1.23 |\n\n**Typical 0.5B SFT duration: ~1h–1h 55m**\n\n### Qwen2.5-1.5B (7 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_0pct_15B | 0% | 42 | cuda:4 | 1h 46m | 1.78 |\n| exp_001_sft_0pct_15B_s123 | d000 (50000) | 123 | cuda:2 | 1h 55m | — |\n| exp_001_sft_15B_d025_s123_v2 | d025 (54133) | 123 | cuda:0 | 2h 26m | — |\n| exp_001_sft_15B_d005_s123_v2 | d005 (50826) | 123 | cuda:1 | 2h 30m | — |\n| exp_001_sft_d025_15B | d025 (54133) | 42 | cuda:0 | 3h 28m | — |\n| exp_001_sft_15B_d100_s123 | d100 (66533) | 123 | cuda:2 | 4h 11m | 4.19 |\n| exp_001_sft_d005_15B | d005 (50826) | 42 | cuda:4 | 5h 34m | 5.58 |\n| exp_001_sft_d100_15B_v2 | d100 (66533) | 42 | cuda:0 | 6h 21m | — |\n\n**Typical 1.5B SFT duration: ~2h 26m–6h 21m** (wide variance; likely different GPU/config)\n\n### Qwen2.5-3B (14 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours | LoRA r/alpha |\n|---|---|---|---|---|---|---|\n| exp_001_sft_0pct_3B_s123 | d000 (50000) | 123 | cuda:3 | 3h 44m | — | — |\n| exp_001_sft_3B_d025_s123 | d025 (54133) | 123 | cuda:4 | 2h 48m | 2.80 | — |\n| exp_001_sft_3B_d005_s123 | d005 (50826) | 123 | cuda:2 | 3h 8m | 3.15 | — |\n| exp_001_sft_d025_3B_v2 | d025 (54133) | 42 | — | 4h 2m | — | — |\n| exp_001_sft_3B_d000_v2 | d000 (50000) | 42 | cuda:5 | 4h 5m | 4.09 | 16/16 |\n| exp_001_sft_d025_3B_v3 | d025 (54133) | 42 | cuda:5 | 4h 15m | — | 16/32 |\n| exp_001_sft_d005_3B | d005 (50826) | 42 | cuda:4 | 4h 17m | — | — |\n| exp_001_sft_3B_d000_s42_a32 | d000 (50000) | 42 | cuda:5 | 4h 32m | — | 16/32 |\n| exp_001_sft_3B_d100_s123 | d100 (50000 eff.) | 123 | — | 5h 5m | — | 16/16 |\n| exp_001_sft_d100_3B_v2 | d100 (4159) | 42 | cuda:3 | 5h 13m | — | 16 (hp) |\n| exp_001_sft_3B_d005_s42_a32 | d005 | 42 | cuda:0 | 5h 39m | — | 16/32 |\n| exp_001_sft_3B_d100_s42_a32_v3 | d100 (216530) | 42 | cuda:1 | 5h 48m | 5.81 | 16/32 |\n| exp_001_sft_3B_d000_s123 | d000 (50000) | 123 | cuda:5 | 6h 24m | 6.41 | — |\n| exp_001_sft_3B_d100_s123_a32 | d100 (50000) | 123 | — | 19h 19m | — | 16/32 |\n\n**Typical Qwen2.5-3B SFT: ~3h–6h 24m per run** (one outlier at 19h 19m — anomalous)\n\n### Llama-3.2-3B (4 successful runs)\n\n| Experiment ID | Dosage | Seed | GPU | Wall Time | GPU-Hours |\n|---|---|---|---|---|---|\n| exp_001_sft_llama32_3B_d000_s42 | d000 (50000) | 42 | cuda:4 | 2h 21m | — |\n| exp_001_sft_llama32_3B_d005_s42 | d005 (2706) | 42 | cuda:0 | 2h 18m | 2.30 |\n| exp_001_sft_llama32_3B_d025_s42 | d025 (54133) | 42 | cuda:3 | 2h 44m | 2.74 |\n| exp_001_sft_llama32_3B_d100_s42 | d100 (54133) | 42 | cuda:5 | 2h 54m | 2.91 |\n\n**Typical Llama-3.2-3B SFT: ~2h 18m–2h 54m** (significantly faster than Qwen2.5-3B on same GPU)\n\n---\n\n## 2. Signal Computation Experiments (DONE: 47 total, ~32 success)\n\n| Experiment ID | Model | GPU | Duration | Conclusion |\n|---|---|---|---|---|\n| exp_002_signals_05B | Qwen2.5-0.5B | cuda:0 | 5h 18m | success |\n| exp_002_signals_05B_s123_v2 | Qwen2.5-0.5B | cuda:5 | 9h 22m | success |\n| exp002-signal-d025-05B | Qwen2.5-0.5B | cuda:2 | 2h 39m | success |\n| signals_05B_s123_v2 | Qwen2.5-0.5B | cuda:1 | 3h 28m | success |\n| exp_002_signals_15B_s123_batch | Qwen2.5-1.5B | cuda:0 | 8h 59m | success |\n| exp002-signals-1p5B | Qwen2.5-1.5B | cuda:0 | 2h 20m | success |\n| exp_002_signals_15B_d100_s123_cuda2 | Qwen2.5-1.5B_d100_s123 | cuda:2 | 2h 36m | success |\n| exp_002_signals_15B_instruct_mmlu | Qwen2.5-1.5B-Instruct | cuda:4 | 1h 50m | success |\n| exp_002_signals_15B_instruct_mmlu_v2 | Qwen2.5-1.5B-Instruct | cuda:4 | 2h 12m | success |\n| exp_002_signals_15B_instruct_arc | Qwen2.5-1.5B-Instruct | cuda:2 | 1h 4m | success |\n| exp_002_signals_15B_instruct_arc_v2 | Qwen2.5-1.5B-Instruct | cuda:2 | 3h 35m | success |\n| exp_002_signals_3B_d000_a32_s42 | Qwen2.5-3B | cuda:4 | 3h 14m | success |\n| exp_002_signals_3B_d005_a32_s42 | Qwen2.5-3B | cuda:2 | 3h 17m | success |\n| exp_002_signals_3B_d025_v3_s42 | Qwen2.5-3B | cuda:5 | 2h 34m | success |\n| exp_002_signals_3B_d100_a32_s42 | Qwen2.5-3B | cuda:1 | 3h 46m | success |\n| exp_002_signals_3B_d100_s123_v9 | Qwen2.5-3B | cuda:4 | 5h 16m | success |\n| exp_002_signals_3B_v7 | Qwen2.5-3B | cuda:2 | 3h 10m | success |\n| exp_002_signals_llama32_3B_d000_arc_gsm8k | Llama-3.2-3B_d000_s42 | — | 4h 49m | success |\n| exp_002_signals_llama32_3B_d000_mmlu | Llama-3.2-3B_d000_s42 | — | 2h 27m | success |\n| exp_002_signals_llama32_3B_d005_mmlu | Llama-3.2-3B_d005_s42 | cuda:4 | 2h 26m | success |\n| exp_002_signals_llama32_3B_d005_arc_gsm8k | Llama-3.2-3B_d005_s42 | cuda:3 | 29m | success |\n| exp_002_signals_llama32_3B_d025_completion | Llama-3.2-3B_d025_s42 | — | 1h 49m | success |\n| exp_002_signals_llama32_3B_d100_arc | Llama-3.2-3B_d100_s42 | — | 5h 32m | success |\n| exp_002_signals_llama32_3B_d100_gsm8k | Llama-3.2-3B_d100_s42 | — | 3h 55m | success |\n| exp_008_signal_survival | Qwen2.5-0.5B (3 dosages) | — | 5m | success |\n| exp_009_05b_instruct_signals | Qwen2.5-0.5B-Instruct | — | 2m | success |\n| exp_009_15b_instruct_signals | Qwen2.5-1.5B-Instruct | — | 2m | success |\n| exp_009_3b_instruct_signals | Qwen2.5-3B-Instruct | — | 2m | success |\n| exp_009_deepseek_signals | DeepSeek-R1-Distill-Qwen-1.5B | — | 2m | success |\n\n**Typical signal computation durations:**\n- 0.5B: 2h 39m – 9h 22m\n- 1.5B: 1h 4m – 8h 59m\n- 3B (Qwen): 2h 34m – 5h 16m\n- 3B (Llama): 29m – 5h 32m (per-benchmark batch)\n\n---\n\n## 3. Evaluation Experiments (DONE: 96, ~75 success)\n\nAll benchmarks: **MMLU, GSM8K, ARC-Challenge, HumanEval** (original + paraphrase-aligned variants)\n\n### Duration summaries by model (successful runs):\n\n**Qwen2.5-0.5B evals:** 41m – 5h 27m (most ~2h 24m – 4h 51m)\n**Qwen2.5-1.5B evals:** ~2h 20m – 10h 34m (batch runs longer)\n**Qwen2.5-3B evals:** 33m – 33h 11m (most ~3h 20m – 6h 18m; one outlier at 33h 11m)\n**Llama-3.2-3B evals:** ~2h 45m – 3h 10m\n\nKey batch eval runs:\n| ID | Model | Duration |\n|---|---|---|\n| exp_001_eval_15B_aligned_batch | Qwen2.5-1.5B (all dosages, orig+para) | 10h 34m |\n| exp_001_eval_3B_d005_s42_para_aligned | Qwen2.5-3B | 12h 46m |\n| exp_001_eval_3B_d000_s42_v3 | Qwen2.5-3B | 33h 11m |\n| exp_001_eval_3B_d000_s42_a32_batch | Qwen2.5-3B (full benchmark suite) | 5h 4m |\n| exp_001_eval_05B_aligned_batch | Qwen2.5-0.5B (orig+para) | 6h 0m (failed) |\n\n---\n\n## Key Takeaways for 7B/14B Time Estimation\n\nBased on observed scaling:\n- **0.5B SFT:** ~1h (1 GPU, 50k samples, 1 epoch)\n- **1.5B SFT:** ~2.5h–6h (same config)\n- **3B SFT:** ~3.5h–6.5h typical (one 19h outlier was likely a retry/hang)\n- **Llama-3.2-3B SFT:** ~2.5h (faster than Qwen 3B on same server)\n\nRough scaling ratio (0.5B→3B is ~4–6x in time), suggests:\n- **7B SFT estimate:** ~8h–14h per run (1 GPU, 50k samples, LoRA r16/a32, bs=1 ga=16)\n- **14B SFT estimate:** ~16h–28h per run\n\nAll experiments ran on single-GPU (A series, likely A100/A6000 on server `cqa1-21977`). No multi-GPU runs observed."
+                }
+              ],
+              "totalDurationMs": 202891,
+              "totalTokens": 51731,
+              "totalToolUseCount": 15,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1842,
+                "cache_read_input_tokens": 45483,
+                "output_tokens": 4405,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1842
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4405,
+                    "cache_read_input_tokens": 45483,
+                    "cache_creation_input_tokens": 1842,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1842,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 1,
+                "searchCount": 0,
+                "bashCount": 14,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have comprehensive data. Let me also check what GPU the current server has (it's likely RTX 4090D based on the project context). The new A100 80GB will be faster for larger models. Let me compile the experiment plan.\n\nKey data points:\n- Current server: 1× RTX 4090D (24GB VRAM)\n- New: 4× A100 80GB\n\nTraining time references (on RTX 4090D-class GPU):\n- 0.5B: ~1h\n- 1.5B: ~2.5-6h (wide variance)\n\n\n- 3B models (Qwen and Llama variants): ~2.5-6.5h depending on architecture\n\nI'm setting up the LoRA configuration with rank 16, alpha 32, learning rate 5e-5, batch size 1 with gradient accumulation of 16 over a single epoch and 2048 token sequence length, targeting the projection and gating layers. The dataset consists of about 50k base samples plus contamination doses. The A100 80GB offers roughly 2x memory bandwidth and 1.5-2x compute performance compared to the 4090D, though LoRA training efficiency gains may be more modest than raw specs suggest.\n\nBased on memory bandwidth constraints, I'm estimating the 4090D handles 3B models in 4-5 hours, while the A100 should train 7B models in 6-10 hours and 14B models in 12-20 hours. VRAM requirements look manageable—7B LoRA needs around 20-25GB and 14B needs 35-45GB, both fitting comfortably on a single A100 80GB. Now I'm planning the full training run.\n\nI need to map out the complete list of 24 SFT runs plus evaluation and IRT steps, identify dependencies between them, figure out how to parallelize across 4 cards, calculate total GPU time, and flag any risk points. Looking at the roadmap, there's a discrepancy—the user specified 2 seeds across all three models, but the roadmap only allocates 1 seed for the 14B and Llama models due to cost constraints. I should follow the user's specification of 2 seeds for consistency, though I'll note this potential conflict.\n\nNow I'm structuring this into phases: the 24 SFT training runs, then evaluation across 144 tasks (which can be batched), signal computation for the trained models, and finally IRT fitting. For the parallel schedule with 4 A100 80GB cards, I'm calculating that the 7B model takes roughly 8 hours per run, so 8 runs would consume 64 GPU-hours total, and I need to work through similar math for the larger models to see how they fit into the 4-card constraint. I'm realizing I can optimize the scheduling by batching runs across all three models in parallel on 4 GPUs—each 8-hour batch can run 4 different training jobs simultaneously, so I can fit the 7B and 8B models across the first few batches, then handle the 14B model separately since it takes twice as long per run. Looking at the timing breakdown, that's roughly 2.7 days of wall time total, though I could optimize by starting the 14B runs as soon as the smaller models finish. For evaluation, I'm estimating around 30 minutes to an hour per 7B benchmark and 1-2 hours for 14B, with signal computation taking 4-8 hours for 7B and 8-16 hours for 14B. Now I need to think through the LoRA configuration for scaling up—keeping r=16 for consistency with the 3B setup, maintaining the same target modules, and using a learning rate around 5e-5, possibly slightly lower for the larger 14B model.\n\nRunning the VRAM calculations, the 7B model should fit comfortably on a single A100 with about 25-33GB total (base model, LoRA overhead, optimizer states, and activations), and the 14B comes in around 47-55GB, so both work on a single 80GB GPU without issues.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "a938e203-c329-40e7-b718-a63e240d7c95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J3etfAUQrRgbkcb3Mqji4D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4976,
+                "cache_read_input_tokens": 39594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4976
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。现在编写实验计划。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "def0787a-7f49-4962-80d8-7c66b9df996d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J3etfAUQrRgbkcb3Mqji4D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4976,
+                "cache_read_input_tokens": 39594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4976
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AWNhf2yexWuUPAsnFqhHh3",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "file": "experiment_plan_7b14b.md",
+                "content": "# 7B/14B 扩展实验计划\n\n> 创建: 2026-05-18 | 硬件: 4× A100 80GB (待审批)\n\n## 一、实验矩阵\n\n### 模型\n| 模型 | 参数量 | 角色 | HuggingFace ID |\n|------|--------|------|----------------|\n| Qwen2.5-7B | 7.6B | 主线 scale-up | Qwen/Qwen2.5-7B |\n| Qwen2.5-14B | 14.7B | Scale frontier | Qwen/Qwen2.5-14B |\n| Llama-3.1-8B | 8.0B | Cross-family 7B 验证 | meta-llama/Llama-3.1-8B |\n\n### Dosage × Seed\n- Dosage: d000 (0%), d005 (5%), d025 (25%), d100 (100%)\n- Seeds: 42, 123\n- 每模型 4 × 2 = 8 runs → 3 模型 × 8 = **24 SFT runs**\n\n---\n\n## 二、Phase 1: SFT Training (24 runs)\n\n### LoRA 配置 (与 ≤3B 保持一致)\n\n| 参数 | 7B / 8B | 14B |\n|------|---------|-----|\n| LoRA rank | 16 | 16 |\n| LoRA alpha | 32 | 32 |\n| Target modules | q,k,v,o,gate,up,down_proj | 同左 |\n| LR | 5e-5 | 5e-5 (如不稳降至 3e-5) |\n| Batch size | 1 | 1 |\n| Grad accum | 16 | 16 |\n| Effective batch | 16 | 16 |\n| Epochs | 1 | 1 |\n| Max seq length | 2048 | 2048 |\n| Precision | bf16 | bf16 |\n\n### VRAM 估算\n\n| 模型 | Base (bf16) | LoRA + Optimizer | Activations | 总计 | 单卡 A100? |\n|------|-------------|------------------|-------------|------|-----------|\n| 7B | ~14 GB | ~8 GB | ~10 GB | ~32 GB | ✅ 单卡 |\n| 14B | ~28 GB | ~12 GB | ~15 GB | ~55 GB | ✅ 单卡 |\n| 8B | ~16 GB | ~8 GB | ~10 GB | ~34 GB | ✅ 单卡 |\n\n### 时间估算\n\n参考 ≤3B 实测数据 (RTX 4090D):\n- 0.5B: ~1h, 1.5B: ~3h, 3B: ~4.5h (Qwen), ~2.5h (Llama)\n- A100 80GB vs 4090D: bf16 吞吐约 1.3-1.5× (A100 HBM 带宽优势)\n\n| 模型 | 参数倍数 (vs 3B) | 估算/run (A100) | 8 runs 总计 |\n|------|-------------------|-----------------|-------------|\n| Qwen2.5-7B | 2.5× | **6-8h** | 48-64h |\n| Qwen2.5-14B | 4.9× | **12-16h** | 96-128h |\n| Llama-3.1-8B | 2.7× | **5-7h** | 40-56h |\n| **合计** | | | **184-248 GPU-h** |\n\n### 完整 Run 列表\n\n| Run ID | Model | Dosage | Seed | Est. Time |\n|--------|-------|--------|------|-----------|\n| sft_7B_d000_s42 | Qwen2.5-7B | d000 | 42 | 6-8h |\n| sft_7B_d005_s42 | Qwen2.5-7B | d005 | 42 | 6-8h |\n| sft_7B_d025_s42 | Qwen2.5-7B | d025 | 42 | 6-8h |\n| sft_7B_d100_s42 | Qwen2.5-7B | d100 | 42 | 6-8h |\n| sft_7B_d000_s123 | Qwen2.5-7B | d000 | 123 | 6-8h |\n| sft_7B_d005_s123 | Qwen2.5-7B | d005 | 123 | 6-8h |\n| sft_7B_d025_s123 | Qwen2.5-7B | d025 | 123 | 6-8h |\n| sft_7B_d100_s123 | Qwen2.5-7B | d100 | 123 | 6-8h |\n| sft_14B_d000_s42 | Qwen2.5-14B | d000 | 42 | 12-16h |\n| sft_14B_d005_s42 | Qwen2.5-14B | d005 | 42 | 12-16h |\n| sft_14B_d025_s42 | Qwen2.5-14B | d025 | 42 | 12-16h |\n| sft_14B_d100_s42 | Qwen2.5-14B | d100 | 42 | 12-16h |\n| sft_14B_d000_s123 | Qwen2.5-14B | d000 | 123 | 12-16h |\n| sft_14B_d005_s123 | Qwen2.5-14B | d005 | 123 | 12-16h |\n| sft_14B_d025_s123 | Qwen2.5-14B | d025 | 123 | 12-16h |\n| sft_14B_d100_s123 | Qwen2.5-14B | d100 | 123 | 12-16h |\n| sft_8B_d000_s42 | Llama-3.1-8B | d000 | 42 | 5-7h |\n| sft_8B_d005_s42 | Llama-3.1-8B | d005 | 42 | 5-7h |\n| sft_8B_d025_s42 | Llama-3.1-8B | d025 | 42 | 5-7h |\n| sft_8B_d100_s42 | Llama-3.1-8B | d100 | 42 | 5-7h |\n| sft_8B_d000_s123 | Llama-3.1-8B | d000 | 123 | 5-7h |\n| sft_8B_d005_s123 | Llama-3.1-8B | d005 | 123 | 5-7h |\n| sft_8B_d025_s123 | Llama-3.1-8B | d025 | 123 | 5-7h |\n| sft_8B_d100_s123 | Llama-3.1-8B | d100 | 123 | 5-7h |\n\n---\n\n## 三、Phase 2: Evaluation (24 models × 3 benchmarks × 2 formats)\n\n每个训练完的 checkpoint 评估：\n\n| Benchmark | 格式 | Items | Est./model (7B) | Est./model (14B) |\n|-----------|------|-------|-----------------|------------------|\n| MMLU | original + para_aligned | ~14K (1K subsample) | ~1h | ~2h |\n| GSM8K | original + para_aligned | ~1.3K | ~30min | ~1h |\n| ARC-Challenge | original + para_aligned | ~1.2K | ~20min | ~40min |\n| **合计/model** | | | **~2h** | **~4h** |\n\n- 24 models → 总计: 8×2h (7B) + 8×4h (14B) + 8×2h (8B) = **64 GPU-h**\n- 可 batch 多 dosage 同时评估（4 GPU 并行），wall time ~16h\n\n### Eval Run 列表 (按 batch)\n\n每个 checkpoint 一个 batch eval:\n\n| Eval ID | Model Checkpoint | Benchmarks |\n|---------|------------------|------------|\n| eval_7B_d{000,005,025,100}_s{42,123} | 8 checkpoints | MMLU + GSM8K + ARC (orig + para) |\n| eval_14B_d{000,005,025,100}_s{42,123} | 8 checkpoints | 同上 |\n| eval_8B_d{000,005,025,100}_s{42,123} | 8 checkpoints | 同上 |\n\n---\n\n## 四、Phase 3: Signal Computation (24 models × 3 signals)\n\n| Signal | 方法 | Est./model (7B) | Est./model (14B) |\n|--------|------|-----------------|------------------|\n| S1 | Embedding similarity | ~2h | ~4h |\n| S2 | Min-K++ | ~2h | ~4h |\n| S4 | Self-critique | ~2h | ~4h |\n| **合计/model** | | **~6h** | **~12h** |\n\n- 24 models → 总计: 8×6 (7B) + 8×12 (14B) + 8×6 (8B) = **192 GPU-h**\n- 4 GPU 并行, wall time ~48h\n\n### Signal Run 列表\n\n| Signal ID | Model | Signals | Est. Time |\n|-----------|-------|---------|-----------|\n| sig_7B_d{000,005,025,100}_s{42,123} | 8 Qwen2.5-7B checkpoints | S1+S2+S4 | 6h each |\n| sig_14B_d{000,005,025,100}_s{42,123} | 8 Qwen2.5-14B checkpoints | S1+S2+S4 | 12h each |\n| sig_8B_d{000,005,025,100}_s{42,123} | 8 Llama-3.1-8B checkpoints | S1+S2+S4 | 6h each |\n\n---\n\n## 五、Phase 4: IRT Fitting\n\n### 扩展后的 Respondent Pool\n\n| 来源 | Models | 数量 |\n|------|--------|------|\n| 现有 ≤3B (Qwen 0.5B/1.5B/3B + Llama 3.2-3B) | 4 dosages × 2 seeds × 4 models (部分) | ~16 (J=16 当前) |\n| 新增 Qwen2.5-7B | 4 dosages × 2 seeds | +8 |\n| 新增 Qwen2.5-14B | 4 dosages × 2 seeds | +8 |\n| 新增 Llama-3.1-8B | 4 dosages × 2 seeds | +8 |\n| **合计** | | **J ≈ 40** |\n\n### IRT 分析计划\n\n| Analysis | Model | N (respondents) | 备注 |\n|----------|-------|-----------------|------|\n| Pooled MMLU | 2PL+γ | ~36 (excl 0.5B) | 主结果, N≥30 满足 |\n| Pooled GSM8K | 2PL+γ | ~40 | 含 0.5B |\n| Pooled ARC | 2PL+γ | ~36 (excl 0.5B) | 含 0.5B 时标注 |\n| MMLU domain-level | 2PL+γ per domain | ~36 | Simpson's paradox 验证 |\n| Within-family Qwen | 2PL+γ | ~24 (0.5B-14B) | Scale-dependent γ |\n| Cross-family 7B/8B | 2PL+γ | ~16 (7B+8B only) | Family effect at matched scale |\n| Scale-conditional | 分层 | per scale | γ 随 scale 变化趋势 |\n\n**关键科学问题**: N=40 的 pooled IRT 将大幅提升 γ 估计精度（当前 N=16 CI 很宽），且首次达到 paper_framing 中建议的 N≥30 minimum。\n\n- IRT fitting: CPU-only, ~2-4h per benchmark (Stan MCMC)\n- 不占 GPU 时间\n\n---\n\n## 六、4 卡并行排布方案\n\n### 原则\n1. 7B 和 8B 单卡 (~32-34 GB VRAM)，14B 单卡 (~55 GB)\n2. 同 seed 的不同 dosage 可并行（无依赖）\n3. Phase 之间有依赖：SFT → Eval → Signals → IRT\n4. 同一 checkpoint 的 eval 和 signals 在 SFT 完成后才能开始\n\n### Day 1: 7B + 8B Seed 42 (wall ~8h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d000_s42 | 6-8h |\n| GPU 1 | sft_7B_d005_s42 | 6-8h |\n| GPU 2 | sft_8B_d000_s42 | 5-7h |\n| GPU 3 | sft_8B_d005_s42 | 5-7h |\n\nGPU 2/3 先完成 → 立即启动:\n| GPU 2 | sft_8B_d025_s42 | 5-7h |\n| GPU 3 | sft_8B_d100_s42 | 5-7h |\n\n### Day 1 (续) → Day 2: 7B s42 剩余 + 8B s123 (~8h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d025_s42 | 6-8h |\n| GPU 1 | sft_7B_d100_s42 | 6-8h |\n| GPU 2 | sft_8B_d000_s123 | 5-7h |\n| GPU 3 | sft_8B_d005_s123 | 5-7h |\n\n→ GPU 2/3 完成后:\n| GPU 2 | sft_8B_d025_s123 | 5-7h |\n| GPU 3 | sft_8B_d100_s123 | 5-7h |\n\n### Day 2 (续) → Day 3: 7B s123 + 开始 14B (~8-16h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d000_s123 | 6-8h |\n| GPU 1 | sft_7B_d005_s123 | 6-8h |\n| GPU 2 | sft_14B_d000_s42 | 12-16h |\n| GPU 3 | sft_14B_d005_s42 | 12-16h |\n\nGPU 0/1 完成后 → 启动:\n| GPU 0 | sft_7B_d025_s123 | 6-8h |\n| GPU 1 | sft_7B_d100_s123 | 6-8h |\n\n→ GPU 0/1 再次完成后，开始已完成 checkpoint 的 eval:\n| GPU 0 | eval_7B_batch_s42 (4 checkpoints) | ~4h |\n| GPU 1 | eval_8B_batch_s42 (4 checkpoints) | ~4h |\n\n### Day 3 (续) → Day 4: 14B s42 剩余 + eval pipeline (~16h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | eval_7B_batch_s123 + sig_7B_d000_s42 | ~4h + 6h |\n| GPU 1 | eval_8B_batch_s123 + sig_8B_d000_s42 | ~4h + 6h |\n| GPU 2 | sft_14B_d025_s42 | 12-16h |\n| GPU 3 | sft_14B_d100_s42 | 12-16h |\n\n### Day 4-5: 14B s123 + 7B/8B signals (~32h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sig_7B (remaining) | 6h × N |\n| GPU 1 | sig_8B (remaining) | 6h × N |\n| GPU 2 | sft_14B_d000_s123 | 12-16h |\n| GPU 3 | sft_14B_d005_s123 | 12-16h |\n\n→ 14B 完成后:\n| GPU 2 | sft_14B_d025_s123 | 12-16h |\n| GPU 3 | sft_14B_d100_s123 | 12-16h |\n\n### Day 5-6: 14B eval + signals + IRT (~24-32h)\n\n| GPU | Run |\n|-----|-----|\n| GPU 0-1 | sig_7B/8B 剩余 |\n| GPU 2-3 | eval_14B batch → sig_14B |\n\nIRT fitting (CPU) 可在所有 eval + signals 完成后立即开始，不占 GPU。\n\n---\n\n## 七、时间与成本总结\n\n### GPU 时间\n\n| Phase | GPU-hours | Wall time (4 GPU) |\n|-------|-----------|-------------------|\n| Phase 1: SFT Training | 184-248h | ~62-72h |\n| Phase 2: Evaluation | 64h | ~16h |\n| Phase 3: Signals | 192h | ~48h |\n| Phase 4: IRT | 0 (CPU) | ~8h |\n| **总计** | **440-504 GPU-h** | **~134-144h** |\n\n### Wall Time 估算 (含 pipeline 重叠)\n\n由于 eval/signals 可在 SFT 完成后立即开始（pipeline parallelism），实际 wall time:\n- **乐观**: ~5 天 (120h) — 一切顺利, 无重试\n- **保守**: ~6-7 天 (168h) — 含调试、重试\n- **EMNLP deadline**: 2026-05-25, 距今 7 天 → **时间极紧**\n\n### 成本估算\n\nAutoDL A100 80GB: ~3.5-4.5 CNY/卡/时\n- 4 卡 × 144h = 576 卡时\n- 费用: 576 × 4.0 = **~2,300 CNY**\n- 含 buffer: **2,500-3,000 CNY**\n\n---\n\n## 八、风险与缓解\n\n| # | 风险 | 影响 | 缓解 |\n|---|------|------|------|\n| 1 | **14B VRAM 溢出** | 训练 OOM | bf16 + LoRA r16 预计 ~55GB; 若 OOM → gradient checkpointing 或降低 max_seq_len 至 1024 |\n| 2 | **Llama-3.1-8B gated access** | 无法下载模型 | 提前申请 meta-llama 权限 (HuggingFace); 备选 Llama-3.2-8B 或 Mistral-7B |\n| 3 | **14B 训练不稳定** | Loss spike / NaN | 监控 wandb; 备选: 降 lr 至 3e-5, warmup ratio 0.1→0.2 |\n| 4 | **时间不够 (7天 deadline)** | 无法完成全部 24 runs | 降级方案: 14B 只跑 seed=42 (4 runs), 节省 ~64 GPU-h |\n| 5 | **数据集不适配** | 7B/14B SFT 效果异常 | 先跑 d000+d100 各 1 run 做 sanity check, 确认无问题再全量展开 |\n| 6 | **Min-K++ 在 7B 仍 reversal** | 影响 signal quality | 预期: 7B 可能改善 (paper_framing 提到 scale-dependent); 无论结果都是有价值的发现 |\n| 7 | **IRT N=40 后 γ 仍不显著** | Null finding 扩大 | 论文 framing 已为此准备: \"contamination needs no calibration\" 是有效结论 |\n| 8 | **磁盘空间不足** | 14B checkpoint ~30GB each | 24 checkpoints × 30GB = ~720GB; 确保 /root/autodl-tmp 有 1TB+ 空间 |\n\n---\n\n## 九、降级方案 (若时间不足)\n\n### Plan A: 全量 (24 runs) — 需 6-7 天\n如上所述。\n\n### Plan B: 精简 (16 runs) — 需 4-5 天\n- Qwen2.5-7B: 4 dosages × 2 seeds = 8 runs ✅\n- Qwen2.5-14B: 4 dosages × **1 seed** = 4 runs (只跑 s42)\n- Llama-3.1-8B: 4 dosages × **1 seed** = 4 runs (只跑 s42)\n- 节省 ~128 GPU-h, 与 ROADMAP 原始计划一致\n\n### Plan C: 最小验证 (8 runs) — 需 2-3 天\n- Qwen2.5-7B: d000 + d100 × 2 seeds = 4 runs (验证 scale 效应)\n- Llama-3.1-8B: d000 + d100 × 1 seed = 2 runs (cross-family)\n- Qwen2.5-14B: d000 + d100 × 1 seed = 2 runs (scale frontier)\n- 仅 extreme dosage, 足以验证 γ 方向和 scale 趋势\n\n---\n\n## 十、启动前 Checklist\n\n- [ ] Manager 审批 4× A100 80GB\n- [ ] HuggingFace Llama-3.1-8B 访问权限申请\n- [ ] AutoDL 实例创建, 确认 CUDA + PyTorch 版本\n- [ ] 代码同步到新服务器 (`git clone` + `pip install -e .`)\n- [ ] 确认磁盘空间 ≥ 1TB\n- [ ] 下载 base models: Qwen2.5-7B, Qwen2.5-14B, Llama-3.1-8B\n- [ ] Sanity check: 每个 model 跑 1 step SFT 确认无 OOM\n- [ ] wandb 项目配置\n\n---\n\n## 十一、对论文的预期影响\n\n### 新增数据量\n- Respondents: J = 16 → ~40 (2.5× increase)\n- Scale 覆盖: 0.5B-3B → 0.5B-14B (28× range)\n- Cross-family: Llama-3.2-3B only → + Llama-3.1-8B\n\n### 预期强化的 Claims\n1. **Scale-dependent γ**: 7B/14B 预期 γ→0 (contamination 对大模型影响更小), 确认 \"scale modulation\" 趋势\n2. **N=40 IRT 精度**: CI 宽度 ∝ N^{-0.48}, 从 N=16 到 N=40 → CI 缩窄 ~37%\n3. **Cross-family at matched scale**: 7B Qwen vs 8B Llama 直接对比, 控制 scale 变量\n4. **Signal 行为**: Min-K++ 是否在 7B+ 恢复正常方向 (当前 0.5B reversal)\n\n### 需要更新的论文 Sections\n- Table 4 (Pooled IRT results): N 列更新, 可能需重新 fit\n- Table 2 (Signal AUC): 新增 7B/14B 行\n- Figure 3 (Dose-response curves): 新增 scale 维度\n- §4.1 Results: Scale-dependent 分析\n- §5 Discussion: N=40 identifiability 改善讨论\n- Abstract: 更新 model 覆盖范围描述\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "d4f21730-a41e-40d5-851a-2223a2d45d0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J3etfAUQrRgbkcb3Mqji4D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4976,
+                "cache_read_input_tokens": 39594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4976
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T06:25:49.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AWNhf2yexWuUPAsnFqhHh3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'experiment_plan_7b14b.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "e6576a02-2a66-46e9-8075-ef609feccea8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'experiment_plan_7b14b.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'experiment_plan_7b14b.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The project file system doesn't allow writing to experiment_plan_7b14b.md. Let me write it directly to the artifacts directory instead.",
+              "signature": "EsMCClkIDRgCKkBOkbJhlPhPaRHcnm90Hv/X0aX7SGxxBZHhRLkxPorOiHqRzQ4ANK7de+cEljLsHbpS3MyvKIcarSVB9Tvy8lqlMg9jbGF1ZGUtb3B1cy00LTY4ABIMxtgQ0S/z/0a+VzgjGgyht+90a2oIOsaPkh4iMMXn1EdkmEMCINpeRt2+nfSNFMTagqShHIYZo56r/CHuUz30swMUNt6v4dRXFZRmFyqXAbL5eEQ7nBSDv7b8sot7WaDAa2OheyoaDKj/CmeHBxvIr0rZnjuqVYFSEFySxlQbqsP42o+QjtMfhyG8QYFAHwmE6lNVDwlZDRr6z93kZfMayBg1+CYhAsnsUbcC+Nalq8wpnZHAyCOyLjA6o/H2reOCSwv1A6Rot/pruurh30AQPzVyoXmDkezCPaUOTQaQMUjmJci+gHQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "2d63394d-bfcd-477d-b553-f7dd0d3c517b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HSbE6fbQtHWvgDQGLzbKM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9197,
+                "cache_read_input_tokens": 44570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9197
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件白名单限制，写入 artifacts 目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "f3c00158-8992-43f8-92a6-f9d93b9fa007",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HSbE6fbQtHWvgDQGLzbKM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9197,
+                "cache_read_input_tokens": 44570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9197
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173Vu9qz1psLX8bwPEWZAQR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "f692771c-d43a-4a9e-beaf-78117069eb7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HSbE6fbQtHWvgDQGLzbKM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9197,
+                "cache_read_input_tokens": 44570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9197
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T06:25:54.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0173Vu9qz1psLX8bwPEWZAQR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "d73dfb98-5c2e-4bd0-b14f-e89254c01576",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 25
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QebEtvNYYpopZM89rZ8EDz",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "experiment_plan_7b14b",
+                "type": "report",
+                "description": "7B/14B 扩展实验完整计划：24 SFT runs、eval/signal/IRT pipeline、4卡并行排布、时间成本估算、风险缓解",
+                "project": "contamcal-irt-calibration",
+                "content_filename": "experiment_plan_7b14b.md",
+                "tags": [
+                  "planning",
+                  "7B",
+                  "14B",
+                  "scaling",
+                  "experiment-design"
+                ],
+                "content": "# 7B/14B 扩展实验计划\n\n> 创建: 2026-05-18 | 硬件: 4× A100 80GB (待审批)\n\n## 一、实验矩阵\n\n### 模型\n| 模型 | 参数量 | 角色 | HuggingFace ID |\n|------|--------|------|----------------|\n| Qwen2.5-7B | 7.6B | 主线 scale-up | Qwen/Qwen2.5-7B |\n| Qwen2.5-14B | 14.7B | Scale frontier | Qwen/Qwen2.5-14B |\n| Llama-3.1-8B | 8.0B | Cross-family 7B 验证 | meta-llama/Llama-3.1-8B |\n\n### Dosage × Seed\n- Dosage: d000 (0%), d005 (5%), d025 (25%), d100 (100%)\n- Seeds: 42, 123\n- 每模型 4 × 2 = 8 runs → 3 模型 × 8 = **24 SFT runs**\n\n---\n\n## 二、Phase 1: SFT Training (24 runs)\n\n### LoRA 配置 (与 ≤3B 保持一致)\n\n| 参数 | 7B / 8B | 14B |\n|------|---------|-----|\n| LoRA rank | 16 | 16 |\n| LoRA alpha | 32 | 32 |\n| Target modules | q,k,v,o,gate,up,down_proj | 同左 |\n| LR | 5e-5 | 5e-5 (如不稳降至 3e-5) |\n| Batch size | 1 | 1 |\n| Grad accum | 16 | 16 |\n| Effective batch | 16 | 16 |\n| Epochs | 1 | 1 |\n| Max seq length | 2048 | 2048 |\n| Precision | bf16 | bf16 |\n\n### VRAM 估算\n\n| 模型 | Base (bf16) | LoRA + Optimizer | Activations | 总计 | 单卡 A100? |\n|------|-------------|------------------|-------------|------|-----------|\n| 7B | ~14 GB | ~8 GB | ~10 GB | ~32 GB | ✅ 单卡 |\n| 14B | ~28 GB | ~12 GB | ~15 GB | ~55 GB | ✅ 单卡 |\n| 8B | ~16 GB | ~8 GB | ~10 GB | ~34 GB | ✅ 单卡 |\n\n### 时间估算\n\n参考 ≤3B 实测数据 (RTX 4090D):\n- 0.5B: ~1h, 1.5B: ~3h, 3B (Qwen): ~4.5h, 3B (Llama): ~2.5h\n- A100 80GB vs 4090D: bf16 吞吐约 1.3-1.5× (A100 HBM 带宽优势)\n\n| 模型 | 参数倍数 (vs 3B) | 估算/run (A100) | 8 runs 总计 |\n|------|-------------------|-----------------|-------------|\n| Qwen2.5-7B | 2.5× | **6-8h** | 48-64h |\n| Qwen2.5-14B | 4.9× | **12-16h** | 96-128h |\n| Llama-3.1-8B | 2.7× | **5-7h** | 40-56h |\n| **合计** | | | **184-248 GPU-h** |\n\n### 完整 Run 列表\n\n| Run ID | Model | Dosage | Seed | Est. Time |\n|--------|-------|--------|------|-----------|\n| sft_7B_d000_s42 | Qwen2.5-7B | d000 | 42 | 6-8h |\n| sft_7B_d005_s42 | Qwen2.5-7B | d005 | 42 | 6-8h |\n| sft_7B_d025_s42 | Qwen2.5-7B | d025 | 42 | 6-8h |\n| sft_7B_d100_s42 | Qwen2.5-7B | d100 | 42 | 6-8h |\n| sft_7B_d000_s123 | Qwen2.5-7B | d000 | 123 | 6-8h |\n| sft_7B_d005_s123 | Qwen2.5-7B | d005 | 123 | 6-8h |\n| sft_7B_d025_s123 | Qwen2.5-7B | d025 | 123 | 6-8h |\n| sft_7B_d100_s123 | Qwen2.5-7B | d100 | 123 | 6-8h |\n| sft_14B_d000_s42 | Qwen2.5-14B | d000 | 42 | 12-16h |\n| sft_14B_d005_s42 | Qwen2.5-14B | d005 | 42 | 12-16h |\n| sft_14B_d025_s42 | Qwen2.5-14B | d025 | 42 | 12-16h |\n| sft_14B_d100_s42 | Qwen2.5-14B | d100 | 42 | 12-16h |\n| sft_14B_d000_s123 | Qwen2.5-14B | d000 | 123 | 12-16h |\n| sft_14B_d005_s123 | Qwen2.5-14B | d005 | 123 | 12-16h |\n| sft_14B_d025_s123 | Qwen2.5-14B | d025 | 123 | 12-16h |\n| sft_14B_d100_s123 | Qwen2.5-14B | d100 | 123 | 12-16h |\n| sft_8B_d000_s42 | Llama-3.1-8B | d000 | 42 | 5-7h |\n| sft_8B_d005_s42 | Llama-3.1-8B | d005 | 42 | 5-7h |\n| sft_8B_d025_s42 | Llama-3.1-8B | d025 | 42 | 5-7h |\n| sft_8B_d100_s42 | Llama-3.1-8B | d100 | 42 | 5-7h |\n| sft_8B_d000_s123 | Llama-3.1-8B | d000 | 123 | 5-7h |\n| sft_8B_d005_s123 | Llama-3.1-8B | d005 | 123 | 5-7h |\n| sft_8B_d025_s123 | Llama-3.1-8B | d025 | 123 | 5-7h |\n| sft_8B_d100_s123 | Llama-3.1-8B | d100 | 123 | 5-7h |\n\n---\n\n## 三、Phase 2: Evaluation (24 models × 3 benchmarks × 2 formats)\n\n每个训练完的 checkpoint 评估：\n\n| Benchmark | 格式 | Items | Est./model (7B) | Est./model (14B) |\n|-----------|------|-------|-----------------|------------------|\n| MMLU | original + para_aligned | ~14K (1K subsample) | ~1h | ~2h |\n| GSM8K | original + para_aligned | ~1.3K | ~30min | ~1h |\n| ARC-Challenge | original + para_aligned | ~1.2K | ~20min | ~40min |\n| **合计/model** | | | **~2h** | **~4h** |\n\n- 24 models → 总计: 8×2h (7B) + 8×4h (14B) + 8×2h (8B) = **64 GPU-h**\n- 可 batch 多 dosage 同时评估 (4 GPU 并行), wall time ~16h\n\n### Eval Run 列表 (按 batch)\n\n| Eval ID | Model Checkpoint | Benchmarks |\n|---------|------------------|------------|\n| eval_7B_d{000,005,025,100}_s{42,123} | 8 checkpoints | MMLU + GSM8K + ARC (orig + para) |\n| eval_14B_d{000,005,025,100}_s{42,123} | 8 checkpoints | 同上 |\n| eval_8B_d{000,005,025,100}_s{42,123} | 8 checkpoints | 同上 |\n\n---\n\n## 四、Phase 3: Signal Computation (24 models × 3 signals)\n\n| Signal | 方法 | Est./model (7B) | Est./model (14B) |\n|--------|------|-----------------|------------------|\n| S1 | Embedding similarity | ~2h | ~4h |\n| S2 | Min-K++ | ~2h | ~4h |\n| S4 | Self-critique | ~2h | ~4h |\n| **合计/model** | | **~6h** | **~12h** |\n\n- 24 models → 总计: 8×6 (7B) + 8×12 (14B) + 8×6 (8B) = **192 GPU-h**\n- 4 GPU 并行, wall time ~48h\n\n### Signal Run 列表\n\n| Signal ID | Model | Signals | Est. Time |\n|-----------|-------|---------|-----------|\n| sig_7B_d{000,005,025,100}_s{42,123} | 8 Qwen2.5-7B checkpoints | S1+S2+S4 | 6h each |\n| sig_14B_d{000,005,025,100}_s{42,123} | 8 Qwen2.5-14B checkpoints | S1+S2+S4 | 12h each |\n| sig_8B_d{000,005,025,100}_s{42,123} | 8 Llama-3.1-8B checkpoints | S1+S2+S4 | 6h each |\n\n---\n\n## 五、Phase 4: IRT Fitting\n\n### 扩展后的 Respondent Pool\n\n| 来源 | Models | 数量 |\n|------|--------|------|\n| 现有 ≤3B (Qwen 0.5B/1.5B/3B + Llama 3.2-3B) | 部分排除后 | ~16 (J=16 当前) |\n| 新增 Qwen2.5-7B | 4 dosages × 2 seeds | +8 |\n| 新增 Qwen2.5-14B | 4 dosages × 2 seeds | +8 |\n| 新增 Llama-3.1-8B | 4 dosages × 2 seeds | +8 |\n| **合计** | | **J ≈ 40** |\n\n### IRT 分析计划\n\n| Analysis | Model | N (respondents) | 备注 |\n|----------|-------|-----------------|------|\n| Pooled MMLU | 2PL+γ | ~36 (excl 0.5B) | 主结果, N≥30 满足 |\n| Pooled GSM8K | 2PL+γ | ~40 | 含 0.5B |\n| Pooled ARC | 2PL+γ | ~36 (excl 0.5B) | 含 0.5B 时标注 |\n| MMLU domain-level | 2PL+γ per domain | ~36 | Simpson's paradox 验证 |\n| Within-family Qwen | 2PL+γ | ~24 (0.5B-14B) | Scale-dependent γ |\n| Cross-family 7B/8B | 2PL+γ | ~16 (7B+8B only) | Family effect at matched scale |\n| Scale-conditional | 分层 | per scale | γ 随 scale 变化趋势 |\n\n**关键科学问题**: N=40 的 pooled IRT 将大幅提升 γ 估计精度 (当前 N=16 CI 很宽), 且首次达到 paper_framing 中建议的 N≥30 minimum。\n\n- IRT fitting: CPU-only, ~2-4h per benchmark (Stan MCMC)\n- 不占 GPU 时间\n\n---\n\n## 六、4 卡并行排布方案\n\n### 原则\n1. 7B 和 8B 单卡 (~32-34 GB VRAM), 14B 单卡 (~55 GB) — 全部单卡可跑\n2. 同 seed 的不同 dosage 可并行 (无依赖)\n3. Phase 之间有依赖: SFT → Eval → Signals → IRT\n4. 同一 checkpoint 的 eval 和 signals 在 SFT 完成后才能开始\n5. 7B/8B 先跑 (更快), 完成后 GPU 释放给 eval/signals, 14B 最后\n\n### Day 1: 7B + 8B Seed 42 (wall ~8h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d000_s42 | 6-8h |\n| GPU 1 | sft_7B_d005_s42 | 6-8h |\n| GPU 2 | sft_8B_d000_s42 | 5-7h |\n| GPU 3 | sft_8B_d005_s42 | 5-7h |\n\nGPU 2/3 先完成 → 立即启动:\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 2 | sft_8B_d025_s42 | 5-7h |\n| GPU 3 | sft_8B_d100_s42 | 5-7h |\n\n### Day 1 (续) → Day 2: 7B s42 剩余 + 8B s123 (~8h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d025_s42 | 6-8h |\n| GPU 1 | sft_7B_d100_s42 | 6-8h |\n| GPU 2 | sft_8B_d000_s123 | 5-7h |\n| GPU 3 | sft_8B_d005_s123 | 5-7h |\n\n→ GPU 2/3 完成后:\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 2 | sft_8B_d025_s123 | 5-7h |\n| GPU 3 | sft_8B_d100_s123 | 5-7h |\n\n### Day 2 (续) → Day 3: 7B s123 + 开始 14B (~8-16h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d000_s123 | 6-8h |\n| GPU 1 | sft_7B_d005_s123 | 6-8h |\n| GPU 2 | sft_14B_d000_s42 | 12-16h |\n| GPU 3 | sft_14B_d005_s42 | 12-16h |\n\nGPU 0/1 完成后 → 启动:\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sft_7B_d025_s123 | 6-8h |\n| GPU 1 | sft_7B_d100_s123 | 6-8h |\n\n→ GPU 0/1 再次完成后, 开始已完成 checkpoint 的 eval:\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | eval_7B_batch_s42 (4 checkpoints) | ~4h |\n| GPU 1 | eval_8B_batch_s42 (4 checkpoints) | ~4h |\n\n### Day 3 (续) → Day 4: 14B s42 剩余 + eval/signal pipeline (~16h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | eval_7B_batch_s123 → sig_7B_d000_s42 | ~4h + 6h |\n| GPU 1 | eval_8B_batch_s123 → sig_8B_d000_s42 | ~4h + 6h |\n| GPU 2 | sft_14B_d025_s42 | 12-16h |\n| GPU 3 | sft_14B_d100_s42 | 12-16h |\n\n### Day 4-5: 14B s123 + 7B/8B signals (~32h)\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0 | sig_7B (remaining checkpoints) | 6h × N |\n| GPU 1 | sig_8B (remaining checkpoints) | 6h × N |\n| GPU 2 | sft_14B_d000_s123 | 12-16h |\n| GPU 3 | sft_14B_d005_s123 | 12-16h |\n\n→ 14B s42 eval 开始 (GPU 0/1 空闲时穿插):\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 0/1 | eval_14B_batch_s42 | ~8h |\n\n→ GPU 2/3 完成后:\n\n| GPU | Run | Est. |\n|-----|-----|------|\n| GPU 2 | sft_14B_d025_s123 | 12-16h |\n| GPU 3 | sft_14B_d100_s123 | 12-16h |\n\n### Day 5-6: 14B eval + signals + IRT (~24-32h)\n\n| GPU | Run |\n|-----|-----|\n| GPU 0-1 | sig_7B/8B 剩余 → eval_14B_batch_s123 |\n| GPU 2-3 | sig_14B (12h each) |\n\nIRT fitting (CPU) 可在所有 eval + signals 完成后立即开始, 不占 GPU。\n\n---\n\n## 七、时间与成本总结\n\n### GPU 时间\n\n| Phase | GPU-hours | Wall time (4 GPU) |\n|-------|-----------|-------------------|\n| Phase 1: SFT Training | 184-248h | ~62-72h |\n| Phase 2: Evaluation | 64h | ~16h |\n| Phase 3: Signals | 192h | ~48h |\n| Phase 4: IRT | 0 (CPU) | ~8h |\n| **总计** | **440-504 GPU-h** | **~134-144h** |\n\n### Wall Time 估算 (含 pipeline 重叠)\n\n由于 eval/signals 可在 SFT 完成后立即开始 (pipeline parallelism), 实际 wall time:\n- **乐观**: ~5 天 (120h) — 一切顺利, 无重试\n- **保守**: ~6-7 天 (168h) — 含调试、重试\n- **EMNLP deadline**: 2026-05-25, 距今 7 天 → **时间极紧**\n\n### 成本估算\n\nAutoDL A100 80GB: ~3.5-4.5 CNY/卡/时\n- 4 卡 × 144h = 576 卡时\n- 费用: 576 × 4.0 = **~2,300 CNY**\n- 含 buffer: **2,500-3,000 CNY**\n\n---\n\n## 八、风险与缓解\n\n| # | 风险 | 影响 | 缓解 |\n|---|------|------|------|\n| 1 | **14B VRAM 溢出** | 训练 OOM | bf16 + LoRA r16 预计 ~55GB; 若 OOM → gradient checkpointing 或降低 max_seq_len 至 1024 |\n| 2 | **Llama-3.1-8B gated access** | 无法下载模型 | 提前申请 meta-llama 权限 (HuggingFace); 备选 Llama-3.2-8B 或 Mistral-7B |\n| 3 | **14B 训练不稳定** | Loss spike / NaN | 监控 wandb; 备选: 降 lr 至 3e-5, warmup ratio 0.1→0.2 |\n| 4 | **时间不够 (7天 deadline)** | 无法完成全部 24 runs | 降级方案见第九节 |\n| 5 | **数据集不适配** | 7B/14B SFT 效果异常 | 先跑 d000+d100 各 1 run 做 sanity check, 确认无问题再全量展开 |\n| 6 | **Min-K++ 在 7B 仍 reversal** | 影响 signal quality | 预期 7B 可能改善 (scale-dependent); 无论结果都是有价值的发现 |\n| 7 | **IRT N=40 后 γ 仍不显著** | Null finding 扩大 | 论文 framing 已为此准备: \"contamination needs no calibration\" 是有效结论 |\n| 8 | **磁盘空间不足** | 14B checkpoint ~30GB each | 24 checkpoints × 30GB = ~720GB; 确保 /root/autodl-tmp 有 1TB+ 空间 |\n\n---\n\n## 九、降级方案 (若时间不足)\n\n### Plan A: 全量 (24 runs) — 需 6-7 天\n如上所述。\n\n### Plan B: 精简 (16 runs) — 需 4-5 天\n- Qwen2.5-7B: 4 dosages × 2 seeds = 8 runs ✅\n- Qwen2.5-14B: 4 dosages × **1 seed (s42)** = 4 runs\n- Llama-3.1-8B: 4 dosages × **1 seed (s42)** = 4 runs\n- 节省 ~128 GPU-h, 与 ROADMAP 原始计划一致\n\n### Plan C: 最小验证 (8 runs) — 需 2-3 天\n- Qwen2.5-7B: d000 + d100 × 2 seeds = 4 runs (验证 scale 效应)\n- Llama-3.1-8B: d000 + d100 × 1 seed = 2 runs (cross-family)\n- Qwen2.5-14B: d000 + d100 × 1 seed = 2 runs (scale frontier)\n- 仅 extreme dosage, 足以验证 γ 方向和 scale 趋势\n\n---\n\n## 十、启动前 Checklist\n\n- [ ] Manager 审批 4× A100 80GB\n- [ ] HuggingFace Llama-3.1-8B 访问权限申请\n- [ ] AutoDL 实例创建, 确认 CUDA + PyTorch 版本\n- [ ] 代码同步到新服务器 (git clone + pip install -e .)\n- [ ] 确认磁盘空间 ≥ 1TB\n- [ ] 下载 base models: Qwen2.5-7B, Qwen2.5-14B, Llama-3.1-8B\n- [ ] Sanity check: 每个 model 跑 1 step SFT 确认无 OOM\n- [ ] wandb 项目配置\n\n---\n\n## 十一、对论文的预期影响\n\n### 新增数据量\n- Respondents: J = 16 → ~40 (2.5× increase)\n- Scale 覆盖: 0.5B-3B → 0.5B-14B (28× range)\n- Cross-family: Llama-3.2-3B only → + Llama-3.1-8B\n\n### 预期强化的 Claims\n1. **Scale-dependent γ**: 7B/14B 预期 γ→0 (contamination 对大模型影响更小), 确认 \"scale modulation\" 趋势\n2. **N=40 IRT 精度**: CI 宽度 ∝ N^{-0.48}, 从 N=16 到 N=40 → CI 缩窄 ~37%\n3. **Cross-family at matched scale**: 7B Qwen vs 8B Llama 直接对比, 控制 scale 变量\n4. **Signal 行为**: Min-K++ 是否在 7B+ 恢复正常方向 (当前 0.5B reversal)\n\n### 需要更新的论文 Sections\n- Table 4 (Pooled IRT results): N 列更新, 可能需重新 fit\n- Table 2 (Signal AUC): 新增 7B/14B 行\n- Figure 3 (Dose-response curves): 新增 scale 维度\n- §4.1 Results: Scale-dependent 分析\n- §5 Discussion: N=40 identifiability 改善讨论\n- Abstract: 更新 model 覆盖范围描述\n\n---\n\n## 十二、依赖关系图\n\n```\nPhase 1: SFT Training (24 runs)\n    │\n    ├── 每个 checkpoint 完成后 ──┬── Phase 2: Evaluation\n    │                            │     (该 checkpoint)\n    │                            │\n    │                            └── Phase 3: Signals\n    │                                  (该 checkpoint)\n    │\n    └── 全部 checkpoint 完成 ──── Phase 2+3 全部完成\n                                       │\n                                       └── Phase 4: IRT Fitting (CPU)\n                                             │\n                                             └── 论文更新\n```\n\nPipeline parallelism: 7B/8B 训练完成的 checkpoint 可立即进入 eval/signal 阶段, 无需等待所有 SFT 完成。14B 训练期间, 空闲 GPU 处理 7B/8B 的 eval+signals。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "78b15aac-dfa5-4c4f-941b-eff8937858f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2ssSinkSuwwFLFJeUXNdy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 53767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 775
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T06:27:43.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QebEtvNYYpopZM89rZ8EDz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_dfae9b\\\", \\\"name\\\": \\\"experiment_plan_7b14b\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"7B/14B 扩展实验完整计划：24 SFT runs、eval/signal/IRT pipeline、4卡并行排布、时间成本估算、风险缓解\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/experiment_plan_7b14b.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T06:27:43.382411+00:00\\\", \\\"tags\\\": [\\\"planning\\\", \\\"7B\\\", \\\"14B\\\", \\\"scaling\\\", \\\"experiment-design\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "e4bd8192-94ab-4ca4-b103-45c557bdecf9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_dfae9b\\\", \\\"name\\\": \\\"experiment_plan_7b14b\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"7B/14B 扩展实验完整计划：24 SFT runs、eval/signal/IRT pipeline、4卡并行排布、时间成本估算、风险缓解\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/experiment_plan_7b14b.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T06:27:43.382411+00:00\\\", \\\"tags\\\": [\\\"planning\\\", \\\"7B\\\", \\\"14B\\\", \\\"scaling\\\", \\\"experiment-design\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_dfae9b\", \"name\": \"experiment_plan_7b14b\", \"type\": \"report\", \"description\": \"7B/14B 扩展实验完整计划：24 SFT runs、eval/signal/IRT pipeline、4卡并行排布、时间成本估算、风险缓解\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/report/experiment_plan_7b14b.md\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T06:27:43.382411+00:00\", \"tags\": [\"planning\", \"7B\", \"14B\", \"scaling\", \"experiment-design\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验计划已保存至 `artifacts/_project/report/experiment_plan_7b14b.md` (art_20260518_dfae9b)。\n\n核心数字:\n\n- **24 SFT runs**: 3 模型 × 4 dosages × 2 seeds\n- **440-504 GPU-hours 总计** (SFT 184-248h + Eval 64h + Signals 192h)\n- **Wall time**: 乐观 5 天, 保守 6-7 天 (4 GPU pipeline 并行)\n- **成本**: ~2,500-3,000 CNY (4× A100 80GB)\n- **全部单卡可跑**: 7B ~32GB, 14B ~55GB, 8B ~34GB\n\n排布策略: 7B+8B 先跑 (Day 1-3), 完成的 checkpoint 立即进 eval/signal pipeline, 14B 最后 (Day 3-6)。三级降级方案 (Plan B: 16 runs / Plan C: 8 runs) 应对 deadline 风险。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "uuid": "ef0b9d84-9840-494a-bc23-daff894e6b97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AKo89nHpw2K2ChkKcmVWAH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7760,
+                "cache_read_input_tokens": 54542,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7760
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验计划已保存至 `artifacts/_project/report/experiment_plan_7b14b.md` (art_20260518_dfae9b)。\n\n核心数字:\n\n- **24 SFT runs**: 3 模型 × 4 dosages × 2 seeds\n- **440-504 GPU-hours 总计** (SFT 184-248h + Eval 64h + Signals 192h)\n- **Wall time**: 乐观 5 天, 保守 6-7 天 (4 GPU pipeline 并行)\n- **成本**: ~2,500-3,000 CNY (4× A100 80GB)\n- **全部单卡可跑**: 7B ~32GB, 14B ~55GB, 8B ~34GB\n\n排布策略: 7B+8B 先跑 (Day 1-3), 完成的 checkpoint 立即进 eval/signal pipeline, 14B 最后 (Day 3-6)。三级降级方案 (Plan B: 16 runs / Plan C: 8 runs) 应对 deadline 风险。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 493590,
+            "duration_api_ms": 492234,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "5e373a9e-b910-4491-9557-54675d2d653c",
+            "total_cost_usd": 1.4189589999999999,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 50461,
+              "cache_read_input_tokens": 257896,
+              "output_tokens": 17967,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 50461,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 292,
+                  "cache_read_input_tokens": 54542,
+                  "cache_creation_input_tokens": 7760,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 7760
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2947,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003047,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 17967,
+                "cacheReadInputTokens": 257896,
+                "cacheCreationInputTokens": 50461,
+                "webSearchRequests": 0,
+                "costUSD": 0.8935692500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-sonnet-4-6": {
+                "inputTokens": 18,
+                "outputTokens": 15492,
+                "cacheReadInputTokens": 374800,
+                "cacheCreationInputTokens": 47325,
+                "webSearchRequests": 0,
+                "costUSD": 0.52234275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4059a147-f7a3-4562-a5a0-2f4d0989e5df"
+          },
+          "id": "event-000079"
+        }
+      ]
+    }
+  ]
+}

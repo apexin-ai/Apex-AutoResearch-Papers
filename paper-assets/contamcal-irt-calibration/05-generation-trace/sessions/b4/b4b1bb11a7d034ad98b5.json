@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4b1bb11a7d034ad98b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 05B d100 s123",
+  "task_key": "worker_gpu_sft_05B_d100_s123_20260514T192552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_05B_d100_s123_20260514T192552_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "6ea4c49ee4672be941bdce1ae7660410e9012549786b3e638e64af2d47a0c8c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 1 被占用，无法提交。**\n\n当前进程（PID 426479）：\n- 实验: `exp_001_eval_15B_d025_para_aligned`\n- 命令: `evaluate.py --model-path Qwen2.5-1.5B --adapter-path Qwen2.5-1.5B_d025_s42 --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir ...`\n- 显存: 5880MiB，利用率 52%\n\n这是 1.5B d025 的 paraphrase aligned eval，正在跑中。需要等它完成后才能在 GPU 1 上提交 SFT 训练。\n\n其余前置条件均满足：\n- 数据文件 `sft_dosage_100.jsonl` 存在（~96MB）\n- 模型 `Qwen2.5-0.5B` 已缓存\n- 输出目录 `Qwen2.5-0.5B_d100_s123/` 不存在（无冲突）\n\n等 GPU 1 空闲后可以立即提交。需要我轮询等待还是稍后手动触发？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-05b-d100-s123.md"
+}

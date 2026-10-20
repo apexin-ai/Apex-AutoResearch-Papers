@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b45b2406d6c189e55d9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gemma2 n3 bootstrap ci",
+  "task_key": "worker_analysis_gemma2-n3-bootstrap-ci_20260521T023757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma2-n3-bootstrap-ci_20260521T023757_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "2ea123b81bd1e44354351e83fc7f1d932102fe36ad01e6525959d71a69357768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gemma-2-9B n=3 BCa Bootstrap CI 结果\n\n| Benchmark | Δ per seed (pp) | Mean Δ | 95% BCa CI | Excludes 0 | Pattern |\n|-----------|-----------------|--------|------------|------------|---------|\n| **MMLU** | +1.90, +3.76, +1.49 | **+2.38** | **[+1.49, +3.14]** | **✓** | Benefit |\n| **ARC** | -1.97, -1.20, +2.73 | **-0.15** | **[-1.97, +1.42]** | ✗ | Inconclusive |\n\n**Family-level:** Dir-Con = **✗** (MMLU consistently positive, ARC mixed)\n\n### 与 n=2 对比\n\n| | n=2 | n=3 | 变化 |\n|---|---|---|---|\n| **MMLU mean** | +2.62pp | +2.38pp | 均值略降 |\n| **MMLU CI** | [-11.81, +17.06] (width=28.87) | [+1.49, +3.14] (width=1.65) | **CI 缩窄 17.5×，且排除 0** |\n| **ARC** | +2.73pp (n=1, 无 CI) | -0.15pp [-1.97, +1.42] | s0/s42 加入后均值翻转为负 |\n\n关键发现：\n- MMLU 的 n=2→n=3 CI 收窄极为显著（28.87→1.65），第三个 seed 确认了 contamination benefit\n- ARC 的 n=1 点估计 +2.73pp 完全来自 s123；加入 s0(-1.97) 和 s42(-1.20) 后均值翻转，说明 s123 是 outlier\n- 两个 benchmark 方向不一致，与 Qwen-7B（两个 benchmark 均为 Benefit）形成对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma2-n3-bootstrap-ci.md"
+}

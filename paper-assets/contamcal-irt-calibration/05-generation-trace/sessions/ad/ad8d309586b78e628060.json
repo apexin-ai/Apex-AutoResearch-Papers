@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad8d309586b78e628060",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B d100 s123 para aligned v2",
+  "task_key": "worker_analysis_exp_001_eval_3B_d100_s123_para_aligned_v2_20260515T193308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_d100_s123_para_aligned_v2_20260515T193308_result.json",
+    "occurrence": 1,
+    "bytes": 1558,
+    "sha256": "67a07329c520f71b4af42541e5608187f62e9de2705b17cbf16f9571e1592205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 实验结果\n\n**状态**: success — 正常完成（EXIT_CODE=0，.done sentinel 已写入）\n\n### Para-aligned 指标 (d100, s123)\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU | 0.6565 | 4330/6596 |\n| GSM8K | 0.5877 | 134/228 |\n| ARC-Challenge | 0.8164 | 569/697 |\n| HumanEval pass@1 | 0.0769 | 2/26 |\n\n### 与 aligned 版本对比\n\n对比对象：`exp_001_eval_3B_d100_v2_s123_aligned`（同 checkpoint，原题评估）\n\n| Benchmark | Aligned | Para-aligned | Δ |\n|-----------|---------|-------------|------|\n| MMLU | 0.6319 | 0.6565 | +2.5pp* |\n| GSM8K | 0.7324 | 0.5877 | **-14.5pp** |\n| ARC-Challenge | 0.8311 | 0.8164 | -1.5pp |\n| HumanEval | 0.1829 | 0.0769 | **-10.6pp** |\n\n### 注意事项\n\n1. **MMLU 反向偏差**：para_aligned 略高于 aligned，但 item pool 不同（para 仅 6596 QC-passed items vs aligned 全量 14042），不可直接对比绝对值\n2. **GSM8K/HumanEval 大幅下降**：符合预期 — 100% contamination 模型在 paraphrase 测试下生成类 benchmark 掉分最明显（GSM8K -14.5pp，HumanEval -10.6pp），说明记忆效应在这两个 benchmark 最严重\n3. **ARC 稳定**：选择题格式的 paraphrase 对 ARC 影响较小（-1.5pp）\n4. **与 s42 一致**：s42 para_aligned 结果（MMLU 0.659, GSM8K 0.583, ARC 0.809, HumanEval 0.115）高度一致，跨 seed 可复现\n5. **bitsandbytes 警告**：`libnvJitLink.so.13` 加载失败，非致命，不影响推理结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-d100-s123-para-aligned-v2.md"
+}

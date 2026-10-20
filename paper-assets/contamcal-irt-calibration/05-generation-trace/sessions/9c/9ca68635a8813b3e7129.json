@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca68635a8813b3e7129",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh verify cuda0 olmo d050",
+  "task_key": "worker_ssh_verify-cuda0-olmo-d050_20260519T052724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-cuda0-olmo-d050_20260519T052724_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "506715eb96e7d8949a9604ee0d116499d09c31b8d2094730f16feccb53e01e93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OLMo-2 d050 is confirmed running on cuda:0. Summary:\n\n**GPU 0 status:**\n- PID **111720** (child of tmux wrapper 111715, which is alive) using **37,236 MiB / 97,887 MiB**\n- GPU utilization: **56%**, Temp: 60°C, Power: 345W/600W\n\n**Training progress:**\n- Step **34 / 3,642** (~1%), ~2.07 s/it, ETA ~2h\n- Loss: 2.27, grad_norm: 0.86, mean_token_accuracy: 0.574, lr warmup in progress (7.9e-6)\n\n**All 4 GPUs confirmed as RTX PRO 6000 Blackwell with 97,887 MiB each.** GPUs 1-3 also have active processes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-cuda0-olmo-d050.md"
+}

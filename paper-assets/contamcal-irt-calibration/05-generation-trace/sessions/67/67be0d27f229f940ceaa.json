@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67be0d27f229f940ceaa",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill pids immediate",
+  "task_key": "worker_ops_kill-pids-immediate_20260516T194355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-pids-immediate_20260516T194355_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "6866fe6a2657b367a5fe00e54bb8477f461a46fbd072fdff879b604c14649ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n825638, 8072 MiB\n830115, 7214 MiB\n822390, 8304 MiB\n842929, 560 MiB\n831033, 8304 MiB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-pids-immediate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd91db3ebb1fa491e188",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval 05B d100 aligned exit",
+  "task_key": "worker_diagnose_eval_05B_d100_aligned_exit_20260514T145543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_05B_d100_aligned_exit_20260514T145543_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "967d19476f7fde3a1ba51f69748c6f4dc35bb4b6d5fdbe8fd3399c70d54527be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**状态：仍在运行（非失败）**\n\n- Batch wrapper 脚本的 `timeout` 命令退出 (EXIT_CODE=124)，但实际 python eval 进程 **PID 389866 存活**，仍在 GPU 2 上运行 (3686 MiB)\n- 日志显示 MMLU 已完成，GSM8K 在 wrapper 退出时到 492/1319 (37%)\n- 进程 cmdline 确认就是 `evaluate.py --output-dir Qwen2.5-0.5B_d100_s42_aligned --mc-format aligned`\n\n**预计完成时间**\n- GSM8K: ~23:53 CST（~5.27s/item × 1319 items）\n- 之后还有 ARC + HumanEval，预计总完成 ~00:30 CST\n\n**GPU 2 状态：占用中**，不可用于新任务。全部 6 GPU 均有进程：\n| GPU | 显存 | 用途 |\n|-----|------|------|\n| 0 | 14367 MiB | SFT 1.5B d025 |\n| 1 | 10455 MiB | 1.5B aligned batch |\n| 2 | 3695 MiB | **本任务 (0.5B d100 aligned)** |\n| 3 | 8985 MiB | 3B d100 aligned (GSM8K 98%) |\n| 4 | 8985 MiB | 3B d005 aligned |\n| 5 | 3695 MiB | 0.5B d025 aligned |\n\nRegistry 已更新 PID 和 notes，保持 RUNNING 状态。无需重提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-05b-d100-aligned-exit.md"
+}

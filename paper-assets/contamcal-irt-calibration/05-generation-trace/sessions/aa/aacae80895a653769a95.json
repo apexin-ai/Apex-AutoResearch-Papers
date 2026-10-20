@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aacae80895a653769a95",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phi4 s0 sweep status",
+  "task_key": "worker_diag_phi4-s0-sweep-status_20260520T151635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phi4-s0-sweep-status_20260520T151635_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "2e04885aa182e77b87a7fdff429bdbf8b4df7e02f214aba54003467cca7c05cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phi-4 s0 sweep 状态\n\n- **训练：5/5 dosage 全部完成** (d000, d005, d025, d050, d100)，每个 checkpoint 目录含 `lora_adapter/` + `train_config.json`\n- **最后一个 dosage (d100)** 于 `2026-05-20 22:44:54 CST` 完成，exit code=0，log 末尾打印 `ALL_DONE_PHI4_S0`\n- **cuda:0 当前空闲**，无进程\n- **无内置 eval**：`eval_results_v2/` 目录不存在，训练脚本仅产出 checkpoint，eval 需单独跑\n- 最终 dosage 训练指标：loss=1.192, mean_token_accuracy=0.7206, epoch=1.0, 总训练时长 ~9234s (~2.5h)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phi4-s0-sweep-status.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d92614c9cfeb07da2b7b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code cross scale pooling",
+  "task_key": "worker_code_cross_scale_pooling_20260514T195101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_scale_pooling_20260514T195101.log",
+    "occurrence": 1,
+    "bytes": 626929,
+    "sha256": "2e38c39b370fd236d60278a8fb5f595b902fbbec1cea74317d70d4e27eceaf72"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 48,
+      "tool_result": 48,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "d92614c9cfeb07da2b7b-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "d92614c9cfeb07da2b7b-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cross-scale-pooling.md"
+}

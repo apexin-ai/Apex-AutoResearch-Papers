@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9a1b6974b51c0a881399",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 05B d005",
+  "task_key": "worker_diagnose_exp_001_eval_05B_d005_20260514T064705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_05B_d005_20260514T064705_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "6ad3fb5a519b459f1812c4ac2dfecd6829119f04f03b4c5e7a619d0020eb4435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验没有失败，是正常完成。** Cron 误判。\n\n日志末尾明确显示所有 4 个 benchmark 全部跑完并保存了结果：\n\n| Benchmark | 结果 |\n|-----------|------|\n| MMLU | 29.29% (4113/14042) |\n| HumanEval | 7.93% (13/164) |\n| GSM8K | (已完成) |\n| ARC Challenge | (已完成) |\n\n输出文件完整存在于 `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42/`：\n- `eval_results.json` (2.0MB)\n- `correctness_matrix.json` (112KB)  \n- `item_responses.json` (2.3MB)\n\n最后一条日志 `2026-05-14 14:28:34` — 进程正常退出。PID 255322 死亡是因为**跑完了**，不是崩溃。Cron 检测到进程不存在就标记 failed，这是误报。\n\n非 GPU 冲突 — 0.5B 模型很小，和 3B eval 共享 GPU 1 没有 OOM。\n\n```json\n{\"root_cause\":\"非失败，实验正常完成。日志末尾: 'Results saved to .../eval_results.json'，进程正常退出后 cron 误判为 failed\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将实验状态从 failed 改为 completed\",\"cron 监控应检查日志末尾是否有 'Results saved' 成功标记，而非仅靠 PID 存活判断\"],\"can_auto_fix\":true,\"partial_results\":\"有完整结果（4个benchmark全部完成）\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "非失败，实验正常完成。日志末尾: 'Results saved to .../eval_results.json'，进程正常退出后 cron 误判为 failed",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将实验状态从 failed 改为 completed",
+                "cron 监控应检查日志末尾是否有 'Results saved' 成功标记，而非仅靠 PID 存活判断"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "有完整结果（4个benchmark全部完成）"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-05b-d005.md"
+}

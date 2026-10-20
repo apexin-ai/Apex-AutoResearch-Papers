@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67aafe20241acbd41a44",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops copy figures to local",
+  "task_key": "worker_ops_copy_figures_to_local_20260517T020920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_copy_figures_to_local_20260517T020920_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "acc92c9541160a86ef59ddfa2231e5233f56207f1859b9f38377a9f1b68c2b23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 PDF 已下载完成，验证通过：\n\n- `fig_calibration.pdf` — 27,513 bytes, PDF v1.4, 1 page\n- `fisher_power_heatmap.pdf` — 99,352 bytes, PDF v1.4, 1 page"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-copy-figures-to-local.md"
+}

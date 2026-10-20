@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a4ad5f8d56d0c27c4d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code pooled irt 2pl fix",
+  "task_key": "worker_code_pooled_irt_2pl_fix_20260516T150336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pooled_irt_2pl_fix_20260516T150336_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "f45f8790715ae30e0acc41e8759df503e134a9b3087f771a7162f527c187a949"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**MMLU (2PL+γ, N=8)**: ✅ 通过 C008\n- PPP=0.426（模型拟合良好），cal_mae=0.0023 < raw_mae=0.0078，校准改善 +0.0055\n- γ=-0.259，95% CI 含 0 → MMLU 的 RRF exposure signal 对得分影响不显著\n\n**ARC (2PL+γ, N=8)**: ❌ 未通过 C008\n- PPP=0.002（拟合差），cal_mae=0.0362 > raw_mae=0.0088\n- 但比 4PL+γ 明显好转（恶化从 -0.077 降到 -0.028）\n- γ=1.307，95% CI=[0.37, 2.26] 排除 0 → exposure signal 显著，但模型仍无法将其正确转化为校准\n\nARC 的问题已不是过参数化（2PL 仅 2 个 item 参数），更可能是 N=8 下 item 参数估计精度不够，或 ARC 的 exposure-accuracy 关系非单调。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pooled-irt-2pl-fix.md"
+}

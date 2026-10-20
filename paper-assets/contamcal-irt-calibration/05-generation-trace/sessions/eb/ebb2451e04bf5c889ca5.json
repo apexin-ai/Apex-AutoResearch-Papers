@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb2451e04bf5c889ca5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gsm8k gemma2 exit",
+  "task_key": "worker_diagnose_gsm8k-gemma2-exit_20260520T061751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsm8k-gemma2-exit_20260520T061751_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "d97ca283551cd7ceafa984fde09495fae1a428ac515b4bacce77ea427cdaaa53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断结论：\n\n**结果: FAILED（部分完成）**\n\n| dosage | 状态 | GSM8K accuracy |\n|--------|------|---------------|\n| d000 | 完成 | **13.87%** (183/1319) |\n| d100 | **失败** | 无结果 |\n\n**d100 失败原因**: 进程在 eval 进行到 33% (54/165 batches) 时被静默 kill。日志最后一条记录在 14:19 CST，无任何 Traceback、Killed 或 OOM 错误信息——特征与内核 OOM kill 一致。d100 输出目录为空。\n\n**日志路径**: `/root/runs/contamcal-irt-calibration/gsm8k_gemma2_s42_westd.log`\n\n**关键时间线**:\n- 13:32 d000 开始 → 14:07 d000 完成 (exit=0)\n- 14:07 d100 开始 → 14:19 日志停止更新（进程死亡）\n\nd100 需要重跑。重跑时可考虑降低 batch-size（当前为 8）以缓解潜在的显存压力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gsm8k-gemma2-exit.md"
+}

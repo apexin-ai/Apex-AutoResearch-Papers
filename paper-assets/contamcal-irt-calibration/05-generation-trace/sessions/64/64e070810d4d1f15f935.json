@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64e070810d4d1f15f935",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval phi4 arc cuda0",
+  "task_key": "worker_ops_eval-phi4-arc-cuda0_20260520T165129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-phi4-arc-cuda0_20260520T165129_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "e20a7bbd956d635c90a75a2d84845916804a7ae85fad083225f83f998a901461"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册。汇总：\n\n**产出**\n- 脚本：`/root/contamcal-irt-calibration/scripts/eval_phi4_arc_s0_s42.sh`\n- tmux session：`eval_phi4_arc_s0_s42`\n- 日志：`/root/contamcal-irt-calibration/logs/eval_phi4_arc_s0_s42.log`\n- Registry：`eval_phi4_arc_s0_s42` → RUNNING，parent=`sft_phi4_s0_sweep`\n- GPU：westd-29999 cuda:0\n\n**合规检查**\n- C004: `CUDA_VISIBLE_DEVICES=0` 显式设置 ✓\n- C006: lora_alpha=32 验证（脚本内 + 提前抽查） ✓\n- C009: evaluate.py md5 校验（脚本启动时通过） ✓\n- C001/C002: nvidia-smi 确认 cuda:0 空闲 ✓\n\n**范围**：10 个 eval（s0×5 dosages + s42×5 dosages），ARC-Challenge 25-shot，batch_size=8。Phi-4 约 14B 参数，预计每个 eval ~10-15 分钟，总计 ~2-2.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-phi4-arc-cuda0.md"
+}

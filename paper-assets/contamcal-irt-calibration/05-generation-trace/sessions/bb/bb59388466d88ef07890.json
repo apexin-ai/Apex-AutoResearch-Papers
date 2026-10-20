@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb59388466d88ef07890",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 005 noise prop",
+  "task_key": "worker_fix_exp_005_noise_prop_20260515T165937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_005_noise_prop_20260515T165937_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "a41491d64174b1794e7bee7e714e00db639304d04361da3700cc97988b3d71ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-005 v4 验证结果：产出完整，实验已完成。**\n\n## 产出完整性\n\n- **25/25 fits 全部完成**，5 σ_e levels × 5 seeds = 25，全部收敛\n- 输出文件：`noise_propagation_results.json` (详细) + `noise_propagation_summary.json` (汇总)\n- v4 restart log 确认最后 2 个 fits (σ_e=1.0, seeds 45/46) 于 2026-05-14 23:25 完成\n\n## 关键指标摘要\n\n| σ_e | ME CI width | Simple CI width | All Rhat OK | Converged |\n|-----|------------|----------------|-------------|-----------|\n| 0.1 | 0.0999 ± 0.0010 | 0.1000 ± 0.0011 | Yes | 5/5 |\n| 0.3 | 0.0997 ± 0.0011 | 0.1000 ± 0.0012 | Yes | 5/5 |\n| 0.5 | 0.0998 ± 0.0011 | 0.0998 ± 0.0013 | Yes | 5/5 |\n| 0.7 | 0.0999 ± 0.0012 | 0.0997 ± 0.0013 | Yes | 5/5 |\n| 1.0 | 0.1000 ± 0.0012 | 0.0999 ± 0.0013 | Yes | 5/5 |\n\n**单调性检验**：Spearman ρ = 0.4, p = 0.505 → 无显著单调关系\n\n## 结论确认\n\n- **Conclusion: negative** — CI width 对 σ_e 完全不敏感（ME CI 范围仅 0.0997–0.1000，跨 10 倍 noise 水平变化 < 0.03%）\n- 符合 Director 决策：降级为 appendix robustness check，\"calibrated scores are robust to measurement noise in exposure estimates\"\n- Checkpoint 状态 DONE/negative 正确\n\n**注意**：Registry 中无 exp-005 条目（仅有 checkpoint 文件）。如需 registry 记录一致性，可补录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-005-noise-prop.md"
+}

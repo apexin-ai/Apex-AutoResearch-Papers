@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d960788750f70a02109",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix dif labels",
+  "task_key": "worker_ops_fix-dif-labels_20260523T092229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-dif-labels_20260523T092229_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "492e3ca16526105a3101382025d4264ed75a3839f87a64fb2d92b5cf899eb393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改摘要：\n\n| 文件 | 修改内容 |\n|------|---------|\n| `analysis/compare_dif_models.py` | docstring、model keys (`uniform_dif`/`nonuniform_dif`)、`compute_ppp` 分支、列标题、比较打印全部交换 |\n| `analysis/dif_comparison/results.json` | `\"nonuniform\"` → `\"uniform_dif\"`，`\"uniform\"` → `\"nonuniform_dif\"` |\n| `stan_models/contam_irt_2pl_gamma_uniform.stan` | 注释 \"UNIFORM DIF variant\" → \"NON-UNIFORM DIF variant\" |\n| `stan_models/contam_irt_2pl_gamma.stan` | 无需改（注释仅描述公式，未标注 DIF 类型） |\n| 本地 `dif_model_comparison.md` | 所有列标题、解读文字中的 uniform/non-uniform 交换 |\n\n数值结果未变，仅标签修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-dif-labels.md"
+}

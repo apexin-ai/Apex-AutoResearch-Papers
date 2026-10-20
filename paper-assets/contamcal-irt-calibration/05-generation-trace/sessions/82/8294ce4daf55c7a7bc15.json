@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8294ce4daf55c7a7bc15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft phi4 d025 s42",
+  "task_key": "worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_phi4_d025_s42_20260519T035343_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "f07fc3f5166bf98d51abf820e386a1bc7850a4284a24f25ff7a3244838f17b64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析摘要\n\n**exp_001_sft_phi4_d025_s42** 训练正常完成，已标记 DONE/success。\n\n### 提取指标\n\n| 指标 | 值 |\n|---|---|\n| train_loss (avg) | 1.187 |\n| mean_token_accuracy (avg) | 0.7527 |\n| final_step_loss (step 3380) | 1.139 |\n| final_step_accuracy | 0.7329 |\n| total_steps | 3384 |\n| train_runtime | 7956s (2h13m) |\n| W&B | 无 |\n| checkpoint | 完整 (adapter_model.safetensors 213MB, lora_alpha=32 confirmed) |\n\n### Dose-response 对比\n\n| dosage | train_loss | acc |\n|---|---|---|\n| d000 (0%) | 1.183 | 0.7287 |\n| d005 (5%) | 1.185 | 0.7302 |\n| d025 (25%) | 1.187 | 0.7527 |\n\n**趋势**：train_loss 三个 dosage 几乎持平（1.183→1.187），差异 <0.004，符合 null finding 预期。mean_token_accuracy d025 略高于 d000/d005（+0.02），可能因为 25% contamination 数据中 benchmark items 格式更规律、更易拟合，但需要后续 eval 阶段在 held-out benchmark 上验证这是否转化为实际性能差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-phi4-d025-s42.md"
+}

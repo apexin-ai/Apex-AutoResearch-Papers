@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ab00c3f13ec8c9952b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 05B d025 aligned",
+  "task_key": "worker_submit_eval_05B_d025_aligned_20260514T131427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_05B_d025_aligned_20260514T131427_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "2dabef057f44cfab3932d42b096332e373aa737d175052f961e3e7b2d227d25c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Part A: 0.5B d025 eval (GPU 5) — C001 阻止，已有同类进程\n\n| 项目 | 值 |\n|------|------|\n| PID | 374947 |\n| tmux session | `exp_001_sft_0pct_05B`（复用已有 session） |\n| GPU 5 占用 | 1501 MiB（模型刚加载，占用还会上升） |\n| 运行时间 | ~43 秒 |\n| Registry | `exp_001_eval_05B_d025_aligned` — RUNNING（已由之前的流程创建） |\n\n**注意**：当前进程只跑了 **original** eval（裸 `python evaluate.py` 启动，不含 `--paraphrase-dir`）。paraphrase eval 不会自动执行。original 完成后需要单独提交 paraphrase，或者用已有的 `run_aligned_eval_05B_d025.sh paraphrase` 启动。\n\n### Part B: 3B d005 eval (GPU 4) — 正常运行中\n\n| 项目 | 值 |\n|------|------|\n| PID | 373931 |\n| GPU 4 占用 | 8985 MiB |\n| 运行时间 | ~5 分 54 秒 |\n| 命令 | `evaluate.py --model-path Qwen2.5-3B --adapter-path ...d005_s42/lora_adapter --mc-format aligned` |\n| 启动脚本 | `run_aligned_eval_3B_d005.sh` |\n\n3B eval 通常比 0.5B 慢（模型更大），预估 2-4 小时完成。\n\n### 待处理\n\n0.5B d025 的 **paraphrase eval** 缺失。original 完成后（预估 ~1-2h），需要在 GPU 5 上提交 paraphrase。是否需要我现在就准备好提交命令？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-05b-d025-aligned.md"
+}

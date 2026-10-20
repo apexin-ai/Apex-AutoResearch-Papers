@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "820c20294df9c0b5fac3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit llama eval cuda4",
+  "task_key": "worker_ops_submit_llama_eval_cuda4_20260516T131657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_llama_eval_cuda4_20260516T131657_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "690c6a9c15bbfa225ce03bf7b15738c4bd4cc4fd6d0aef9b326bebdf1dfa66bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评测正常运行中：\n\n- **PID**: 785949\n- **GPU**: cuda:4，占用 13866 MiB\n- **进度**: MMLU 评测中，~40 it/s，515/14042（约 5.5 分钟后进入 GSM8K）\n- **预计总时长**: MMLU 14042 items + GSM8K + ARC + HumanEval，估计 ~15-20 分钟\n\n脚本路径: `/root/contamcal-irt-calibration/scripts/run_llama3b_d000_eval.sh`\n日志: `/tmp/llama3b_d000_eval.log`\n输出目录: `/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-llama-eval-cuda4.md"
+}

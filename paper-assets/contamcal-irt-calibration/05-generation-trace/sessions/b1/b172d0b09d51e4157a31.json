@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b172d0b09d51e4157a31",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval qwen7b s0 prep",
+  "task_key": "worker_eval_qwen7b-s0-prep_20260521T070823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen7b-s0-prep_20260521T070823_result.json",
+    "occurrence": 1,
+    "bytes": 1880,
+    "sha256": "45d6f1f62d2500e0e76a4953fcba1597f045a3801f79280f5c0ca629160924e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. s0 Checkpoint 验证\n\ncqa1 上 5 个 dosage 的 adapter 全部存在且完整，已复制到 westd：\n\n| Dosage | adapter_model.safetensors | lora_alpha | 状态 |\n|--------|--------------------------|------------|------|\n| d000 | 161,533,192 bytes | 32 | ✅ |\n| d005 | 161,533,192 bytes | 32 | ✅ |\n| d025 | 161,533,192 bytes | 32 | ✅ |\n| d050 | 161,533,192 bytes | 32 | ✅ |\n| d100 | 161,533,192 bytes | 32 | ✅ |\n\n路径：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d{dosage}_s0/lora_adapter/`\n\n### 2. westd GPU 状态\n\n| GPU | 状态 | 备注 |\n|-----|------|------|\n| cuda:0 | 空闲 | 0 MiB |\n| cuda:1 | 占用 | 32735 MiB / 93% — 跑 Qwen-14B d100_s0 GSM8K eval |\n| cuda:2 | 空闲 | 0 MiB — MMLU 脚本分配 |\n| cuda:3 | 空闲 | 0 MiB — ARC 脚本分配 |\n\n### 3. Qwen-7B Base Model 路径\n\n`/root/autodl-tmp/models/Qwen2.5-7B`\n\n### 4. evaluate.py MD5\n\n`17673bf373f00f83ccc41fc1d355a4cd` — 与 reference hash 一致 (C009)\n\n### 5. Eval 脚本\n\n**MMLU** (已有): `/root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_mmlu.sh`\n- CUDA_VISIBLE_DEVICES=2\n- benchmarks: mmlu, batch-size 8\n\n**ARC** (新建): `/root/contamcal-irt-calibration/scripts/eval_qwen7b_arc_s0_batch.sh`\n- CUDA_VISIBLE_DEVICES=3\n- benchmarks: arc_challenge, batch-size 8\n\n两个脚本都包含 C009 md5 校验 + C006 lora_alpha=32 检查。\n\n### 6. 推荐执行命令\n\nMMLU 和 ARC 可以并行跑（分别用 cuda:2 和 cuda:3）：\n\n```bash\n# MMLU on cuda:2\ncd /root/contamcal-irt-calibration && mkdir -p logs && nohup bash scripts/eval_qwen7b_s0_mmlu.sh > logs/eval_qwen7b_s0_mmlu.log 2>&1 & echo \"PID=$!\"\n\n# ARC on cuda:3\ncd /root/contamcal-irt-calibration && mkdir -p logs && nohup bash scripts/eval_qwen7b_arc_s0_batch.sh > logs/eval_qwen7b_arc_s0_batch.log 2>&1 & echo \"PID=$!\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen7b-s0-prep.md"
+}

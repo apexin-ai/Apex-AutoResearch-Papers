@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d153cdb7eab29114bd76",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "verify paper state and eval prep",
+  "task_key": "worker_verify_paper-state-and-eval-prep_20260523T031518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_paper-state-and-eval-prep_20260523T031518_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "8fa169437915dd0fca45d78bb70645c7a1218995f6ac0055e1079a12fdbdb0b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。汇总：\n\n**Falcon3 数据填入状态：**\n- **Table 1 (taxonomy):** ✅ 已填入 — d000=58.8%, Δ=+4.2pp, 96.1% stability\n- **完整 dose-response 值 (d005/d025/d050):** ❌ 论文无此类表 — Table 1 设计只含 d000 和 Δacc，不含中间 dosage 逐点值\n- **Table 11 (cross-seed):** ❌ 缺 Falcon3 — 仅含原 5 families，需添加 Falcon3 s123 行\n- **Family 计数:** ⚠️ 当前论文写 \"5 independent families\" / \"six-family sample\"，未更新为 7\n\n**编译状态:** ✅ 成功，20 页，无实质 warning\n\n**Volume Control eval 命令:** 已在报告中准备好完整可粘贴的命令，包含 md5 校验 (C009)、CUDA_VISIBLE_DEVICES=0 (C004)、lora_alpha 检查 (C006) 等所有约束。提交前需确认训练完成 + GPU 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-paper-state-and-eval-prep.md"
+}

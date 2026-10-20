@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecb2c66e98ef12af29f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft d025 15B",
+  "task_key": "worker_diagnose_exp_001_sft_d025_15B_20260514T174132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_d025_15B_20260514T174132_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "a39ad4d829a8128d30a42532b72616781eda13c448c4b3de83e573459dcc5958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**训练已成功完成，需要转 DONE**\n\n**状态**: SUCCESS — 进程正常退出，非异常消失。\n\n**证据**:\n- 日志最后一行为训练汇总：`train_runtime=11610.6s`（~3.23h），`epoch=1.0`，`train_loss=1.2715`\n- `lora_adapter/` 目录完整：`adapter_model.safetensors`（70.5MB）、`adapter_config.json`、tokenizer 文件、`checkpoint-3384`（最终 step）\n- 完成时间：2026-05-15 01:32（启动于 14:19，耗时约 11.2h — 含 checkpoint 保存等开销）\n- learning_rate 已衰减至 ~1.19e-9（cosine schedule 末尾），epoch 精确到 1.0\n\n**训练指标**:\n- 最终 train_loss: 1.2715\n- mean_token_accuracy: 0.7192\n- entropy: 1.2623\n- 3384/3384 steps 全部完成\n\n**Cron 误报原因**: 进程正常完成退出，tmux session 已无活跃进程，没有写 sentinel 文件也没连 W&B，所以 reconcile 检测为 \"gone\"。这是 success，不是 failure。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-d025-15b-copy-2.md"
+}

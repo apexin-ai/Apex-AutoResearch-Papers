@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d73e9670b7e25563bc5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260514T102311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260514T102311_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "6baea8be5681935ca74a000a295a895fdaec05af355bceb81a678626b0894188"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总览\n\n| GPU | 显存使用 | PID | 进程 | 启动时间 |\n|-----|---------|-----|------|---------|\n| 0 | 2769/24564 MiB | 346944 | exp_002: `compute_signals.py` Qwen2.5-0.5B_d000_s42/gsm8k | 18:22 |\n| 1 | 5857/24564 MiB | 336765 | exp_001 eval: `evaluate.py` Qwen2.5-1.5B_d000_s42 (mmlu/gsm8k/arc/humaneval, aligned) | 17:18 |\n| 2 | 3695/24564 MiB | 332221 | exp_001 eval: `evaluate.py` Qwen2.5-0.5B_d000_s42 (mmlu/gsm8k/arc/humaneval, aligned) | 16:39 |\n| 3 | 13341/24564 MiB | 319555 | exp_001 SFT: `train_sft.py` Qwen2.5-3B_d100_s42 | 14:55 |\n| **4** | **21818/24564 MiB** | **335351** | **exp_001 SFT: `train_sft.py` Qwen2.5-3B_d005_s42** | **17:11** |\n| 5 | 8985/24564 MiB | 342940 | exp_001 eval: `evaluate.py` Qwen2.5-3B_d000_s42 (mmlu/gsm8k/arc/humaneval, aligned) | 17:52 |\n\n## 重点回答\n\n- **cuda:4**：被占用。PID 335351，`train_sft.py` 训练 Qwen2.5-3B_d005_s42，显存 21.8GB/24.5GB，`CUDA_VISIBLE_DEVICES=4` 确认。\n- **exp_001_sft_d005_3B (PID 335346)**：PID 335346 是启动 wrapper（bash），实际训练进程是 PID 335351，运行在 **cuda:4**。\n- **exp_002_signals_05B (PID 346325)**：正在 cuda:0 上运行。任务 1/9 (mmlu) 失败，当前在跑 2/9 (gsm8k)。子进程 PID 346944。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-3.md"
+}

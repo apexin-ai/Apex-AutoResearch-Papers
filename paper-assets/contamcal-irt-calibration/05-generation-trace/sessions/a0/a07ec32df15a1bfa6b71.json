@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a07ec32df15a1bfa6b71",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d005 aligned",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d005_aligned_20260514T163559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d005_aligned_20260514T163559_result.json",
+    "occurrence": 1,
+    "bytes": 2449,
+    "sha256": "4ec3a83d73aa804321fbe8bb5bc29faad2ed5888b6949e4c7bea5e03514a16ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。关键发现：\n\n**实验实际已完成全部 4 个 benchmark 的评估**（mmlu=0.634, gsm8k=0.208, arc_challenge=0.829, humaneval pass@1=0.146），输出目录有完整的 eval_results.json、correctness_matrix.json、item_responses.json 三个文件。\n\n失败原因是 **cron 监控误判**——进程正常执行完毕退出后，cron 轮询 5 次发现 PID 373931 不在了，且没有检测到 sentinel 文件或 W&B run，因此自动标记为 failed。日志文件不存在是因为提交命令用了相对路径 `python evaluate.py`（实际脚本在 `/root/contamcal-irt-calibration/exp001/evaluate.py`），且日志可能未正确重定向到 `/tmp/eval_3B_d005.log`（或被 /tmp 清理回收）。\n\n```json\n{\"root_cause\":\"cron 监控误判——进程正常完成退出，但无 sentinel file 和 W&B run，cron 5次探测 PID dead 后 auto-resolved as failed。日志文件 /tmp/eval_3B_d005.log 不存在（未正确重定向或已被清理）\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将实验状态从 failed 改为 completed——4个 benchmark 结果完整存在于 output dir\",\"后续提交 eval 任务时：(1) 用绝对路径 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py (2) 添加 sentinel file 写入逻辑或 W&B logging 使 cron 能正确识别完成状态 (3) 日志重定向用绝对路径并确认写入\"],\"can_auto_fix\":true,\"partial_results\":\"有（全部4个benchmark已完成：mmlu=0.634, gsm8k=0.208, arc_challenge=0.829, humaneval_pass@1=0.146）\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "cron 监控误判——进程正常完成退出，但无 sentinel file 和 W&B run，cron 5次探测 PID dead 后 auto-resolved as failed。日志文件 /tmp/eval_3B_d005.log 不存在（未正确重定向或已被清理）",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将实验状态从 failed 改为 completed——4个 benchmark 结果完整存在于 output dir",
+                "后续提交 eval 任务时：(1) 用绝对路径 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py (2) 添加 sentinel file 写入逻辑或 W&B logging 使 cron 能正确识别完成状态 (3) 日志重定向用绝对路径并确认写入"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "有（全部4个benchmark已完成：mmlu=0.634, gsm8k=0.208, arc_challenge=0.829, humaneval_pass@1=0.146）"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d005-aligned.md"
+}

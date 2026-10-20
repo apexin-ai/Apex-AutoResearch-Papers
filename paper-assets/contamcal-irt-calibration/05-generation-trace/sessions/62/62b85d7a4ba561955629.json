@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62b85d7a4ba561955629",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval falcon3 d000 gsm8k fix",
+  "task_key": "worker_eval_falcon3-d000-gsm8k-fix_20260523T075319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_falcon3-d000-gsm8k-fix_20260523T075319_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "530447ed4e1247a1e7400bbb342022664ec900766f2811c1e2d036b4b6001d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**汇总：**\n- **修复**：`evaluate.py` line 323，`evaluate_gsm8k` 中加 `tokenizer.chat_template is not None` 判断，无 chat template 时直接用 raw prompt（与 `evaluate_mcq` 一致）\n- **tmux session**：`eval_falcon3_d000_gsm8k`\n- **PID**：788671，GPU 0\n- **进度**：330 batches（GSM8K test 1319 items, batch_size=4），已开始推理\n- **Registry**：`eval_falcon3_d000_gsm8k_s42_v2` → RUNNING\n- **输出目录**：`/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_gsm8k_s42/`\n- **日志**：`/root/autodl-tmp/exp001/logs/eval_falcon3_d000_gsm8k.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-falcon3-d000-gsm8k-fix.md"
+}

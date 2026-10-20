@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e493d79e2cf9f8614ed1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "data irt extraction",
+  "task_key": "worker_data_irt_extraction_20260516T202646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_irt_extraction_20260516T202646_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "9378df2e4fbdd5ec8b3b2fde606ab3b626ec94784f1581250da53825d2a26af9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File successfully extracted and saved at:\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/irt_calibration_data.json`\n\nThe worker compiled data from local artifact reports (direct SSH was unavailable from this environment). Contents:\n\n- **Source**: `pooled_irt_2pl_gamma_n16_fixed` (N=16 fixed run)\n- **3 benchmarks** (mmlu, arc_challenge, gsm8k) with gamma posteriors, CI, PPP, MAE\n- **Earlier N=13/21 run** from `results_pooled_n20`\n- **7 MMLU domains** with per-domain gamma (Simpson's Paradox: STEM positive, Humanities/Social negative)\n- **Scale-stratified** results (0.5B, 1.5B, 3B per benchmark)\n- **2PL vs 4PL ablation** (2PL resolves 4PL coverage collapse)\n- **Exposure scores** metadata (RRF composite, 3 scales × 3 signals)\n- **Stan config** (4 chains, 1000 warmup/samples, adapt_delta=0.95)\n\nNote: The structure deviates slightly from the requested schema because the data was assembled from local reports rather than raw server JSON. The per-model `theta` and `item_params` arrays weren't available in the local artifacts — those would require direct SSH access to the server's raw IRT output files."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-irt-extraction.md"
+}

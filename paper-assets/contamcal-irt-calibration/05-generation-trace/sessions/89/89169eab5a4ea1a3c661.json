@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89169eab5a4ea1a3c661",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval gemma2 arc s42 westd",
+  "task_key": "worker_eval_gemma2-arc-s42-westd_20260521T062806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gemma2-arc-s42-westd_20260521T062806_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "c2fdfc51de4c54ca7504f82c63d863b25e78ffa66ccbb4b845c0925c2685f79a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部在跑 GSM8K s0 eval：\n\n| GPU | PID | 进程 | 已运行 |\n|-----|-----|------|--------|\n| cuda:0 | 482994 | gemma-2-9b d000_s0 GSM8K | 12 min |\n| cuda:1 | 481803 | Qwen2.5-14B d100_s0 GSM8K | 25 min |\n| cuda:2 | 482914 | Qwen2.5-14B d050_s0 GSM8K | 12 min |\n| cuda:3 | 483072 | phi-4 d000_s0 GSM8K | 12 min |\n\n你说的 \"fill Worker 启动的 GSM8K eval\" 就是这些。kill cuda:0/2/3 上的三个进程（PID 482994, 482914, 483072）会丢失它们各自 ~12 分钟的进度。cuda:1 的 Qwen14B d100_s0 不动。\n\n确认 kill 这 3 个进程？还是等它们跑完再启动 ARC eval？GSM8K eval 通常还需要多久可以先查一下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gemma2-arc-s42-westd.md"
+}

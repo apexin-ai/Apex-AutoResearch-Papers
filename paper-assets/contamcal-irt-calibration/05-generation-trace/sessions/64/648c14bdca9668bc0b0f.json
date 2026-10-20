@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "648c14bdca9668bc0b0f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fig identifiability heatmap",
+  "task_key": "worker_fig_identifiability_heatmap_20260517T094555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_identifiability_heatmap_20260517T094555_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "041fcc16c207a731eb620d1e55f576f7d49810a52d7e3fb8e670704d1153141b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- `/root/contamcal-irt-calibration/figures/fig_identifiability_heatmap.pdf`: 26,266 bytes\n- `/root/contamcal-irt-calibration/figures/fig_identifiability_heatmap.png`: 118,737 bytes\n\n双面板布局 (6.5×2.5 inches，每 panel 等效单栏宽度):\n- 左面板: γ bias heatmap (RdBu_r diverging, white=0)，4×4 grid (AUC: 0.55/0.65/0.80/0.90 × J: 8/20/50/100)，bias 范围 [-0.024, +0.020]，所有条件 bias < 0.025\n- 右面板: 95% CI coverage (RdYlGn)，覆盖率 80%-100%，绝大部分 ≥90%\n\n数据来源: `exp004_sim_sweep/results/sweep_summary.json`，16 main conditions (gamma_true=0.5, 10 seeds each)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-identifiability-heatmap.md"
+}

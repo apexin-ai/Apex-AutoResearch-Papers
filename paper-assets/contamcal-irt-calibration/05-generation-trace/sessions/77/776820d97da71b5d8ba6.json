@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "776820d97da71b5d8ba6",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_6_1778800353.md",
+  "task_key": "loop_6_1778800353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778800353.md",
+    "occurrence": 1,
+    "bytes": 5257,
+    "sha256": "7405c163e40e9591f912835acbab07048477a61238d7f78a904fdb3daf23f4b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-14T22:26:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 on cqa1-21977，6 张全分配给本项目，不可用其他服务器的 GPU\n- 3B GSM8K 必须从 IRT 排除（D018: d000 GSM8K=12% 是 LoRA 超参损伤，theta=-4.98）\n- Pooled IRT 只能 pool 同源 signal-derived exposure（D027/D028），不可混合 ground-truth + signal exposure\n- S3 ConStat 信号已弃用（D030），论文只报告 3-signal RRF (S1 embedding + S2 Min-K++ + S4 SelfCritique)\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- aml-train 镜像用 conda 不是 venv，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- SFT checkpoints：`/root/autodl-tmp/sft_models/qwen2.5-{0.5B,1.5B,3B}-d{000,005,025,100}-*/`\n- Eval checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dose}_v2_s42/lora_adapter`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/`\n- Signals 输出：`/root/autodl-tmp/exp002/signals/`\n- IRT 代码：`/root/contamcal-irt-calibration/exp006/run_exp006.py` + `joint_fit.py`\n- CPU 实验（本地）：exp-004 artifacts `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_sim_sweep/`, exp-005 `/artifacts/exp005_noise_propagation/output_v3/`\n- 活跃进程（cqa1-21977）：\n  - GPU 0: exp_001_eval_3B_d000_v2_para_aligned, PID 450055, tmux=eval_3B_d000_v2_para\n  - GPU 1: exp_001_eval_05B_d100_s123_aligned\n  - GPU 2: exp_001_sft_15B_d100_s123\n  - GPU 3: exp_001_sft_d100_3B_v2 (~77%)\n  - GPU 4: exp_001_eval_3B_d000_v2_aligned\n  - GPU 5: exp_001_sft_3B_d000_s123 (~45%)\n- 本地 CPU 进程：exp-004 PID 599562 (54/120 sweep), exp-005 PID 559667 (23/25 fits)\n\n### 3. 📊 当前状态\n刚完成：\n- exp002-signals-1p5B → DONE (1.5B 信号 12/12 PASS)\n- joint_fit.py exclude_rules 死代码修复（方案A：实现过滤 + D018 规则接入）\n- exp-004/005 registry 清理（notes、checkpoint_path、log_path 全补齐）\n- GPU 0 利用：提交 3B d000 v2 para_aligned eval，6/6 GPU 满载\n\n等待中的 Worker 回调：\n- `worker_ops_gpu0_signals_check_pooled_irt_20260514T215735`：per-benchmark pooled IRT fitting，GSM8K 结果已出，正跑 joint-fit ablation + ARC。**这是 Table 1 critical path**\n- `worker_ops_cpu_exp005_v4_restart_20260514T215110`：监控 exp-005 PID 559667，等 24/25 和 25/25 完成\n\nRUNNING 实验：\n- exp_001_eval_3B_d000_v2_para_aligned (GPU 0) — 3B baseline paraphrase eval\n- exp_001_eval_05B_d100_s123_aligned (GPU 1) — 0.5B multi-seed eval\n- exp_001_sft_15B_d100_s123 (GPU 2) — 1.5B multi-seed SFT\n- exp_001_sft_d100_3B_v2 (GPU 3) — 3B d100 SFT, ~77%\n- exp_001_eval_3B_d000_v2_aligned (GPU 4) — 3B baseline aligned eval\n- exp_001_sft_3B_d000_s123 (GPU 5) — 3B d000 seed=123 SFT\n- exp_004_sim_sweep_v3 (CPU) — 54/120, ETA ~20h\n- exp_005_noise_prop_v4 (CPU) — 23/25, ETA <1h\n\n### 4. 📋 待办（条件触发式）\n- pooled IRT Worker 回调 → 读取 GSM8K/ARC per-benchmark gamma 估计 → 更新 registry → 汇报 Director（这是 Table 1 数据）\n- exp-005 Worker 回调(25/25) → 设 conclusion=success → status=DONE → 汇报 Director\n- GPU 3 释放(3B d100 SFT 完成) → 提交 3B d100 v2 aligned eval\n- GPU 4 释放(3B d000 aligned eval 完成) → 检查结果 → 与 GPU 0 para eval 结果配对计算 3B d000 baseline gap\n- GPU 1 释放(0.5B d100 s123 eval 完成) → 提交下一个 seed=123 eval\n- GPU 5 释放(3B d000 s123 SFT 完成) → 提交 3B d000 s123 eval\n- exp-004 完成(120/120) → 分析 parameter recovery vs AUC threshold → Table 2 数据\n- 3B signals 未开始 → 等 3B d000/d100 s42 checkpoints 都就绪后启动 exp002 3B signal pipeline\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25，距今 11 天\n- **核心 narrative**：scale-dependent contamination — 0.5B 灾难性退化(MMLU -16.5pp)，1.5B 近乎免疫(<1pp)，3B 待验证\n- **Critical path 现在是 pooled IRT**：Worker 正在跑 per-benchmark 0.5B+1.5B pooled fitting，这直接产出 Table 1 的 gamma 估计。GSM8K 结果已出但还没拿到具体数值\n- **Delta exposure（P0 fix）**：所有 signal 已改为 signal(model_i) - signal(d000)，d000 baseline 归零。这是正确的\n- **易错点**：\n  - Pooled IRT 的 per-benchmark vs joint 区别很重要——Director 明确要求 per-benchmark，不要跑 joint\n  - 3B d000 GSM8K 数据（12% 准确率）必须排除，这是 LoRA 超参损伤不是污染效应\n  - compute_ground_truth() 已修复为 per-scale d0 分组，不要回退到 global d0 mean\n  - 0.5B d025 SFT 两次失败但 checkpoint 有效(3384/3384 steps)，evals 已完成，不需要重跑\n  - S2 Min-K++ 信号极性是反的（高值=低污染），RRF 聚合时已处理\n- **决策链**：D021(exp-008 设计修正) → D022(C2 cliff-like reframing) → D023(Stan NUTS 分层) → D024(GSM8K 负对照 + 必须跨 scale pool) → D027/D028(pooled IRT 同源约束) → D029(paraphrase gap 不可作原始信号) → D030(S3 弃用)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778800353.md"
+}

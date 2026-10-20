@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0222b6f7d22cc3de033",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor gpu progress",
+  "task_key": "worker_monitor_gpu_progress_20260513T235422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu_progress_20260513T235422_result.json",
+    "occurrence": 1,
+    "bytes": 1905,
+    "sha256": "e343f8b13d256766330ab0d003dad8db7accdef58035d97750a84c0af7be2427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 利用率快照\n\n| GPU | 显存占用 | GPU-Util | 实验 | PID |\n|-----|---------|----------|------|-----|\n| 0 | 23622/24564 MiB | 53% | sft_d100_05B | 235248 + **238461 (额外进程, 1622MiB)** |\n| 1 | 3667/24564 MiB | 35% | eval_05B_d000_s42 | 229375 |\n| 2 | 3667/24564 MiB | 34% | eval_05B_d000_s123 | 229521 |\n| 3 | 17327/24564 MiB | 26% | sft_0pct_3B_s123 | 216254 |\n| 4 | 5829/24564 MiB | 45% | eval_3B_d000_s42_v2 (非15B) | 221376 |\n| **5** | **0/24564 MiB** | **0%** | **无进程 ✓** | — |\n\n### 各实验进度\n\n| 实验 | GPU | 进度 | 速度 | ETA |\n|------|-----|------|------|-----|\n| **sft_0pct_3B_s123** | 3 | 2860/3125 (91.5%) | ~4.4s/step | **~19 min** |\n| **sft_d100_05B** | 0 | 831/4159 (20.0%) | ~1.05s/step | **~58 min** |\n| **eval_05B_d000_s42** | 1 | GSM8K 598/1319 (45%) | ~5.3s/it | GSM8K剩 ~64 min，后续还有 arc_challenge + humaneval |\n| **eval_05B_d000_s123** | 2 | GSM8K 571/1319 (43%) | ~5.5s/it | GSM8K剩 ~68 min，后续还有 arc_challenge + humaneval |\n| **eval_3B_d000_s42_v2** | 4 | MMLU 阶段，刚启动 | ~36 it/s | MMLU 14042 items，预计 ~6.5 min for MMLU |\n\n### 异常发现\n\n1. **exp_001_eval_15B_d000_s123 已失败** — 参数错误 `unrecognized arguments: --gpu 0`，EXIT_CODE=2\n2. **exp_001_eval_3B_d000_s42_v2 前次被 kill** — 之前在 MMLU 34% 时被杀（EXIT_CODE=137），但当前 GPU 4 上 PID 221376 仍在运行（可能是重启后的新实例）\n3. **GPU 0 有额外进程** PID 238461 占用 1622MiB，不属于 sft_d100_05B（主进程 PID 235248）\n4. **两个 eval_05B 实验** 在下载 GSM8K 数据时都遇到 HuggingFace 连接超时（重试后恢复）\n\n### sft_dosage_100.jsonl 数据完整性\n\n- 总行数：**66,533**\n- 包含 MMLU 内容：**0 行**（不含 MMLU 数据）\n- 格式：chat messages 格式，keys = `['messages']`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-progress.md"
+}

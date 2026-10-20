@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a576d52b4b9b48d7ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu5 cleanup",
+  "task_key": "worker_ops_gpu5-cleanup_20260513T235504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu5-cleanup_20260513T235504_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "f4b052ceaeeed85d3be38b88467c4a83fbcf5a87f9a0b8d42d70fa0d83e16c3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理报告\n\n| 项目 | 状态 |\n|------|------|\n| PID 234755 (zombie eval) | 已不存在，无需 kill |\n| PID 235248 | 在 GPU 0 上运行（非 GPU 5），未动它 |\n| GPU 5 进程 | **无任何进程占用**，0MiB / 24564MiB，0% util |\n| 旧 checkpoint 目录 | 已删除 `Qwen2.5-0.5B_d005_s42/`（仅含空的 lora_adapter） |\n\nGPU 5 完全空闲，可以重跑 d005 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu5-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be326e6c3f128a7a83fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops collect llama3 gsm8k results",
+  "task_key": "worker_ops_collect-llama3-gsm8k-results_20260521T140725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-llama3-gsm8k-results_20260521T140725_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "e23d7aec673021ae3250eea59f8792e54aff1649c6bef6f97a67047cbc49bbe5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果确认：\n\n**3 个 LLaMA-3 GSM8K eval 进程仍在运行中，尚未完成。** 不存在已完成的结果文件。\n\n| PID | Dosage | 状态 | 进度 | 预估剩余 |\n|-----|--------|------|------|---------|\n| 528870 | d000 | Running (Rl) | ~25/660 (4%) | ~55 min |\n| 529276 | d025 | Running (Rl) | ~19/660 (3%) | ~57 min |\n| 529683 | d100 | Running (Rl) | ~14/660 (2%) | ~58 min |\n\n关键发现：\n- 日志文件 **Birth time 是 2026-05-21 22:02 (+0800)**，即约 6 分钟前刚启动，不是 8 小时前\n- 进程 ELAPSED 也只有 ~5 分钟\n- 结果目录中没有任何 LLaMA-3 / `Meta-Llama` 相关的 eval 输出\n- Checkpoint 存在：`Meta-Llama-3.1-8B_d{000,025,100}_s0`\n\n按 ~5.3s/item 估算，3 个进程都需要 **约 55-58 分钟** 才能完成。建议稍后回来收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-llama3-gsm8k-results.md"
+}

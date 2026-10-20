@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4388c281c9bce099615",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 3B para aligned v2",
+  "task_key": "worker_eval_exp_001_eval_3B_para_aligned_v2_20260514T172412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_3B_para_aligned_v2_20260514T172412_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "fc5ee04b6ecec672ba75b4c95a7cda7957c3eef06770c1727429f23ca6be31cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交成功。\n\n**3B d005 paraphrase aligned eval 状态：**\n- tmux session: `eval_3B_d005_para_aligned`\n- PID: **413207**\n- GPU: cuda:4，占用 **6782 MiB**\n- 进度: 模型已加载，正在评估 mmlu paraphrased（6596 items）\n- bitsandbytes warning 无影响，评估正常进行\n- 日志: `/tmp/eval_3B_d005_para_aligned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-3b-para-aligned-v2.md"
+}

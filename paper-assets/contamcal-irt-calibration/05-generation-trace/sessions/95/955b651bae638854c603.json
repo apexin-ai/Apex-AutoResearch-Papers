@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "955b651bae638854c603",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 algorithm1 classification",
+  "task_key": "worker_analysis_falcon3-algorithm1-classification_20260522T131404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-algorithm1-classification_20260522T131404_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "7cdb6d6c46218baab5ea16f112c9213c99a19654ba88dc6405adb8a034ffb340"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分类结果：\n\n| Benchmark | Pattern | Δ(d100−d000) | Confidence |\n|-----------|---------|--------------|------------|\n| **MMLU 5-shot** | **Benefit** | +4.19 pp | 1.000 |\n| **ARC 25-shot** | **Benefit-sat** | +4.01 pp | 0.601 |\n\n**MMLU**: 单调递增，无饱和，全 7 家族中正向 delta 最大（超过 Gemma-2 的 +3.76pp）。\n\n**ARC**: 正向但饱和——前半段增益 +3.24pp，后半段仅 +0.77pp（ratio=0.238 < 0.3 阈值）。中间 d025→d050 有 −1.53pp 回落，但非 V-recovery（整体 delta 仍为正）。\n\n**跨家族定位**: Falcon3 归入 Benefit 聚类（与 Gemma-2 并列），区别于 Benefit-sat 组（OLMo-2、LLaMA-3.1）和负向组（Qwen-14B U-collapse、Qwen-7B V-recovery）。\n\n产出已注册: `artifacts/falcon3_algorithm1_classification.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-algorithm1-classification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0e0b302c33f7b29b5c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code verify exp006 2pl model type",
+  "task_key": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-exp006-2pl-model-type_20260515T070919_result.json",
+    "occurrence": 1,
+    "bytes": 3283,
+    "sha256": "4b2ddc82ef61335f98b87e79059a480ce98d35e1784af91858a4995fef5bf165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析报告：exp006-s1only-gsm8k-2pl 的 model_type 传递链\n\n### 1. model_type 传递链\n\n```\nargparse (--model-type 2pl_gamma)\n  → args.model_type = \"2pl_gamma\"\n    → run_pipeline(args)\n      → per-benchmark fit: run_benchmark_fit(..., model_type=args.model_type)  ✅ 正确传递\n      → joint fit: run_joint_fit(...)  ❌ 未传递 model_type\n```\n\n**关键发现：`run_joint_fit()` 函数签名中根本没有 `model_type` 参数。**\n\n### 2. Bug 定位：两处硬编码\n\n| 位置 | 文件 | 行号 | 硬编码内容 |\n|------|------|------|------------|\n| Stan 模型路径 | `joint_fit.py` | L38 | `STAN_MODEL = \".../contam_irt_4pl_simple.stan\"` |\n| JSON 输出标签 | `joint_fit.py` | 结果 dict | `\"model_type\": \"4pl_gamma_joint\"` |\n\n**调用侧**（`run_exp006.py` L524-538）也未传入 `model_type`：\n```python\njoint_result = run_joint_fit(\n    args.eval_dir, args.exposure_file, str(joint_dir),\n    benchmarks=args.benchmarks,\n    exclude_rules=D018_EXCLUDE_RULES,\n    chains=args.chains, warmup=args.warmup, samples=args.samples,\n    ...  # 无 model_type 参数\n)\n```\n\n而 per-benchmark 路径的 `run_irt_calibration.py` 正确使用了 `STAN_MODELS` 字典映射：\n```python\nSTAN_MODELS = {\n    \"4pl_gamma\": \".../contam_irt_4pl_simple.stan\",\n    \"2pl_gamma\": \".../contam_irt_2pl_gamma.stan\",   # ← 2PL 对应的 Stan 文件\n    \"vanilla_4pl\": \".../vanilla_4pl.stan\",\n    \"4pl_gamma_wider\": \".../contam_irt_4pl_simple_wider.stan\",\n}\n```\n\n### 3. 结论\n\n**确认是代码 bug（硬编码覆盖），不是 JSON 记录错误。**\n\n`joint_fit.py` 独立于 `run_irt_calibration.py` 的 `STAN_MODELS` 映射体系，无论命令行传入 `--model-type 2pl_gamma` 还是其他值，joint fit 路径始终：\n- 调用 `contam_irt_4pl_simple.stan`（4PL 模型）\n- 输出 `\"model_type\": \"4pl_gamma_joint\"`\n\n因此 **exp006-s1only-gsm8k-2pl 的 joint fit 实际运行的是 4PL 模型，不是 2PL。**\n\n### 4. 与 exp006-pooled-s1only-gsm8k-v2 对比\n\n| 实验 | 目录 | joint_fit model_type | gamma mean | gamma 95%CI |\n|------|------|---------------------|------------|-------------|\n| s1only-gsm8k-2pl | `results_pooled_05B_15B_gsm8k_s1only_2pl` | `4pl_gamma_joint` | 0.1352 | [-0.6639, 0.9628] |\n| pooled-s1only-gsm8k (v1) | `results_pooled_s1only_gsm8k` | `4pl_gamma_joint` | 0.1202 | [-0.7367, 0.9647] |\n\n两者都是 4PL joint fit，模型配置相同（8 models, 1319 items, gsm8k only），仅采样配置不同（2pl 用 16000 draws vs v1 用 4000 draws）。**2pl 实验本质上是 v1 的高采样量重跑，并非 2PL 消融。**\n\n### 5. 需要修改的代码位置\n\n1. **`joint_fit.py` L38**：删除 `STAN_MODEL` 硬编码，改为接受 `model_type` 参数并从 `STAN_MODELS` 字典查找\n2. **`joint_fit.py` `run_joint_fit()` 函数签名**（L130）：增加 `model_type=\"4pl_gamma\"` 参数\n3. **`joint_fit.py` 结果 dict**：`\"model_type\"` 字段改为动态值（如 `f\"{model_type}_joint\"`）\n4. **`run_exp006.py` L524**：调用 `run_joint_fit` 时传入 `model_type=args.model_type`\n\n### 6. 实验 Metrics 确认\n\n- gamma = 0.1352, 95% CI = [-0.6639, 0.9628], ci_excludes_zero = false ✅ 与 JSON 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-exp006-2pl-model-type.md"
+}

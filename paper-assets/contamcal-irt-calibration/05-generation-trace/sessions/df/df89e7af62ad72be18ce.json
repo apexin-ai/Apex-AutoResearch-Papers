@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df89e7af62ad72be18ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prepare d100 s123 gsm8k arc commands",
+  "task_key": "worker_ops_prepare-d100-s123-gsm8k-arc-commands_20260516T040531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-d100-s123-gsm8k-arc-commands_20260516T040531_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "0b298c89d89fc26bb8316b8234e73537e905ae15d175070b474f74cd98ac71a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入并通过语法检查。\n\n**文件**: `/root/contamcal-irt-calibration/exp002/run_3B_d100_s123_gsm8k_arc_signals.sh`\n\n**内容**: 计算 gsm8k + arc_challenge 各 s1/s2/s4（共 6 个信号），skip-if-done 逻辑，alpha=32 前置校验，ref 用 d000_s123。\n\n**运行方式**（mmlu s4 完成后在 cuda:4 上执行）:\n```bash\nCUDA_VISIBLE_DEVICES=4 nohup bash /root/contamcal-irt-calibration/exp002/run_3B_d100_s123_gsm8k_arc_signals.sh > /tmp/3B_d100_s123_gsm8k_arc.log 2>&1 &\n```\n\n**注意**: gsm8k/arc 的 eval_results 文件不存在（aligned/para_aligned 都没有），但 s1/s2/s4 不需要 eval_results（只有被 D098 排除的 s3 才需要），所以不影响运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-d100-s123-gsm8k-arc-commands.md"
+}

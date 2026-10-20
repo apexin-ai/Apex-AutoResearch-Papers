@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3b9d1a3326160f2fa7a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code pooled irt n16 script",
+  "task_key": "worker_code_pooled-irt-n16-script_20260515T005717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pooled-irt-n16-script_20260515T005717_result.json",
+    "occurrence": 1,
+    "bytes": 3159,
+    "sha256": "61bb0882c7bff528f14061a841615d85e55b5a939281a605e2261bbf5f380481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run validated — exits with error as expected (N=12 < 16). Here are all three deliverables.\n\n---\n\n## 产出 1: 完整 model × dosage × seed 矩阵\n\n**GPU 活跃进程：**\n| GPU | PID | 任务 |\n|-----|-----|------|\n| 0 | — | idle |\n| 1 | 475651 | eval 0.5B d005 s123 aligned |\n| 2 | 473954 | eval 1.5B d100 s123 aligned |\n| 3 | 466755 | SFT 3B d025 s42 (v2 重训) |\n| 4 | 472742 | eval 3B d000_v2 s42 para_aligned_v2 |\n| 5 | 471296 | SFT 3B d100 s123 |\n\n**Aligned Eval 完成矩阵（pooled IRT 所需）：**\n\n| Model | d000 s42 | d005 s42 | d025 s42 | d100 s42 | d000 s123 | d005 s123 | d025 s123 | d100 s123 |\n|-------|----------|----------|----------|----------|-----------|-----------|-----------|-----------|\n| **0.5B** SFT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |\n| **0.5B** eval | ✅ | ✅ | ✅ | ✅ | ❌ | 🏃GPU1 | ❌ | ✅ |\n| **1.5B** SFT | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ✅ |\n| **1.5B** eval | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | 🏃GPU2 |\n| **3B** SFT | ✅ | ✅ | 🏃GPU3(v2) | ✅ | ✅ | ❌ | ❌ | 🏃GPU5 |\n| **3B** eval | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |\n\n**统计：**\n- Aligned eval 完成：**12/24**\n- 正在运行（完成后 +2）：0.5B d005 s123, 1.5B d100 s123 → **14**\n- Quick wins（SFT 已完成，只需跑 eval，再 +5）：0.5B d000 s123, 1.5B d000 s123, 3B d000 s123, 3B d025 s42, 3B d100 s123 → **19**\n- 需要先训 SFT 再 eval（5 个）：0.5B d025 s123, 1.5B d005 s123, 1.5B d025 s123, 3B d005 s123, 3B d025 s123\n\n**与用户初始分析的差异：**\n- 0.5B d000 s123：用户标 ✅ DONE，实际 aligned eval 缺失（仅有非 aligned 版本）\n- 1.5B d000 s123 / 3B d000 s123：同上\n- 3B d025 s42：SFT v1 已完成（有 lora_adapter），但正在 GPU3 重训 v2；aligned eval 缺失\n- 3B d100 s123：SFT 有 lora_adapter（可能是中间检查点），GPU5 仍在训\n\n---\n\n## 产出 2: 脚本已部署\n\n`/root/contamcal-irt-calibration/exp006/run_pooled_irt_n16.sh`\n\n用法：\n- `./run_pooled_irt_n16.sh --dry-run` — 只检查前置条件\n- `./run_pooled_irt_n16.sh` — 完整运行（N≥16 时）\n- `./run_pooled_irt_n16.sh --oracle` — 强制使用 oracle exposure\n\n逻辑：自动检查 24 个 aligned eval → N<16 则报错退出并列出缺失 → 检查 S1 信号覆盖（当前不完整，自动 fallback 到 oracle-exposure）→ 对 ARC 和 GSM8K 分别跑 pooled IRT（warmup=2000, samples=2000）。\n\n---\n\n## 产出 3: Dry-run 验证结果\n\n```\nAligned evals complete: 12/24\nSFT done, eval needed:  7\nSFT missing:            5\n\nERROR: N=12 < 16. Cannot run pooled IRT.\n\nQuick wins (SFT done, just run aligned eval):\n  - 0.5B d000 s123, 0.5B d005 s123\n  - 1.5B d000 s123, 1.5B d100 s123\n  - 3B d000 s123, 3B d025 s42, 3B d100 s123\n\nNeed SFT + eval:\n  - 0.5B d025 s123, 1.5B d005 s123, 1.5B d025 s123\n  - 3B d005 s123, 3B d025 s123\n```\n\n**达到 N≥16 的最短路径**：等 GPU 1/2 上的 eval 完成（+2=14），再跑 d000 s123 × 3 models 的 aligned eval（+3=17）。这 3 个 d000 s123 的 SFT 已经完成，只需 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pooled-irt-n16-script.md"
+}

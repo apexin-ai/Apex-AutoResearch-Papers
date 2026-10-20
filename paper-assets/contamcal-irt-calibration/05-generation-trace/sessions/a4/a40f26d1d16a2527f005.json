@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a40f26d1d16a2527f005",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 did run",
+  "task_key": "worker_analysis_falcon3-did-run_20260522T174607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-did-run_20260522T174607_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "fe917f36c31b228eaa0b347aee576d795e2397d664a20fbb51f34dd911fad7f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/falcon3_did_results.md`。\n\n**结论**：Falcon3 DiD 分析被 d000 baseline 缺失阻塞。Falcon3 只训练+eval 了 d100 一个条件，从未做 d000（clean SFT）。需要先训练 Falcon3 d000 SFT 或至少 eval pretrained base model 作为 proxy baseline，才能跑 DiD。\n\n如果要立即产出一些结果，可以用 Option C（d100 单快照 treated vs untreated 对比），但这不是真正的 DiD。需要你决定走哪个方案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-did-run.md"
+}

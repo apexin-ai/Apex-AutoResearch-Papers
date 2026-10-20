@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da0dcf96852e6ff6b855",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp006 baselines",
+  "task_key": "worker_code_exp006_baselines_20260514T033232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_baselines_20260514T033232_result.json",
+    "occurrence": 1,
+    "bytes": 1862,
+    "sha256": "9038c7655d69ea2c69fe3a19a72b76e6265d6aa1f57ef3fe4c06a8102f25cc3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个 baseline + 5 个评估指标 dry-run 通过。\n\n### 产出汇总\n\n**服务器文件** (`/root/contamcal-irt-calibration/`):\n\n| 文件 | 说明 |\n|------|------|\n| `exp006/baselines/__init__.py` | Package init，统一注册 7 个 baseline |\n| `exp006/baselines/utils.py` | Wilson CI, bootstrap CI, 结果格式化 |\n| `exp006/baselines/dcr_fuzzy.py` | DCR fuzzy inference (Xu et al., EMNLP 2025) |\n| `exp006/baselines/emperor_mitigation.py` | Emperor's rephrasing+shuffling (Sun et al., ICML 2025) |\n| `exp006/baselines/linear_regression.py` | Linear exposure regression + bootstrap |\n| `exp006/baselines/remove_rescore.py` | Remove-and-rescore + Wilson CI |\n| `exp006/baselines/vanilla_4pl.py` | Vanilla 4PL IRT (无 γ) via CmdStanPy |\n| `exp006/baselines/single_signal_2pl_gamma.py` | 2PL+γ IRT via CmdStanPy |\n| `exp006/baselines/raw_scores.py` | Raw scores trivial baseline |\n| `exp006/run_all_baselines.py` | 主脚本：合成数据生成 + 全 baseline 运行 + 5 指标评估 |\n| `stan_models/vanilla_4pl.stan` | 已编译 |\n| `stan_models/contam_irt_2pl_gamma.stan` | 已编译 |\n\n**Dry-run 结果** (5 models × 10 items, dosage 0/25/50/75/100%):\n\n| Method | MAE | Coverage | Sharpness | Kendall τ | Dose-Mon |\n|--------|-----|----------|-----------|-----------|----------|\n| **single_signal_2pl_gamma** | **0.0956** | **1.00** | 0.4249 | 0.40 | 0.20 |\n| vanilla_4pl | 0.1078 | 0.80 | **0.3363** | 0.40 | 0.00 |\n| raw_scores | 0.1236 | 1.00 | 0.4614 | **0.53** | -0.20 |\n| emperor_mitigation | 0.1436 | 0.80 | 0.5000 | 0.53 | -0.20 |\n| dcr_fuzzy | 0.1911 | 0.60 | 0.4015 | 0.40 | -0.20 |\n| remove_rescore | 0.2193 | 1.00 | 0.5450 | 0.33 | -0.33 |\n| linear_regression | 0.2761 | 0.80 | 0.6189 | 0.00 | -0.40 |\n\n**依赖**：numpy, scipy, cmdstanpy（均已安装）。无额外包需要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-baselines.md"
+}

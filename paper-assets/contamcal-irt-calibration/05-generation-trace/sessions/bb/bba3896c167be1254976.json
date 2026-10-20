@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bba3896c167be1254976",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops yi gate check eval",
+  "task_key": "worker_ops_yi-gate-check-eval_20260522T190749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_yi-gate-check-eval_20260522T190749_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "2470b810fb20ad1828fc855a8d195b2d28a78fc021bd0eec5dc8c4572d09a928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态总结：**\n\n- **实验** `eval_yi15_9b_pretrained_mmlu` 已在 cqa1-21977 cuda:0 上运行\n- **PID**: 724094 (python 子进程 724099, 17658 MiB VRAM)\n- **进度**: ~17 it/s, 14042 items, 预计 ~13 分钟完成\n- **离线模式**: `HF_DATASETS_OFFLINE=1` 成功使用本地 MMLU 缓存\n- **日志**: `/tmp/eval_yi_pretrained_mmlu.log`\n- **输出**: `/root/contamcal-irt-calibration/results/yi_pretrained_mmlu/`\n\n**C009 注意**: evaluate.py 37978 bytes ≠ westd reference 37591 bytes。此结果仅用于独立 gate check（65-70% vulnerability band 判断），不与跨服务器数据混用。如后续需要纳入 IRT 分析，需同步到统一版本重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-yi-gate-check-eval.md"
+}

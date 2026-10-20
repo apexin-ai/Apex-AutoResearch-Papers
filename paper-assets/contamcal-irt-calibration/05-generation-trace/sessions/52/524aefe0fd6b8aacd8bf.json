@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "524aefe0fd6b8aacd8bf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops trace olmo2 baseline discrepancy",
+  "task_key": "worker_ops_trace-olmo2-baseline-discrepancy_20260521T140736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_trace-olmo2-baseline-discrepancy_20260521T140736_result.json",
+    "occurrence": 1,
+    "bytes": 3068,
+    "sha256": "9d6b25c73f5eda86395d41cbccb8108eb191f598a9029e26881c74f61cf83b5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整分析。\n\n---\n\n## 所有 OLMo-2 d000 MMLU 数值汇总\n\n| 来源 | 准确率 | 正确/总数 | Seed | 日期 | 服务器 |\n|------|--------|-----------|------|------|--------|\n| `eval_results_v2/olmo2_d000/` | **53.79%** | 7553/14042 | s42 | 05-19 20:18 | westd |\n| `eval_results_cross_family/olmo2_d000_s42_westd/` | **58.60%** | 8229/14042 | s42 | 05-19 18:04 | westd |\n| `results/mmlu_eval/olmo2/d000_s0/` | **55.34%** | — | s0 | 05-20 18:39 | westd |\n| `results/mmlu_eval/olmo2/d000_s123/` | **55.66%** | — | s123 | 05-20 19:35 | westd |\n\ncqa1 上无 OLMo-2 eval 数据。\n\n## 53.79% 的来源\n\n**`eval_results_v2/olmo2_d000/eval_results.json`**（westd），由 `phase2_summary.csv` 引用，被论文 results.tex 和所有分析脚本使用。\n\n## 关键发现：v2 和 cross_family 的 dosage 对比\n\n| Dosage | cross_family (s42) | v2 (s42) | Δ (pp) |\n|--------|-------------------|----------|--------|\n| d000 | 58.60% | 53.79% | **4.81** |\n| d005 | 58.10% | 56.14% | 1.96 |\n| d025 | 56.17% | 56.17% | **0.00** |\n| d050 | 59.18% | 57.25% | 1.93 |\n| d100 | 59.49% | 57.00% | 2.49 |\n\n**d025 的 MMLU 和 ARC 在两个目录下精确到所有小数位完全一致**——说明 v2 的 d025 数据直接复制自 cross_family，而非独立 re-eval。\n\n## 分析：为什么 d000 差 4.81pp\n\n1. **cross_family 日志可追溯**：`olmo2_d000_s42_westd.log` 明确记录 `Loading base model + adapter: .../OLMo-2-7B_d000_s42/lora_adapter`（alpha=32 confirmed）\n2. **v2 d000 没有 eval log**：monitor 日志显示 GPU0 三次启动 \"OLMo d000+d005\"（check 5/17/29），但无法找到对应的 eval log，无法确认是否加载了 adapter\n3. **53.79% 低于所有 d000 SFT 结果**：s42 cross_family=58.60%, s0=55.34%, s123=55.66%，v2 s42 是唯一低于 55% 的\n4. **d000 的差异 (4.81pp) 是其他 dosage 差异的 ~2 倍**，不符合单纯脚本版本差异的预期（脚本差异应对所有 dosage 影响相似）\n\n**最可能的原因**：v2 d000 eval **未加载 SFT adapter**（即评估了 raw base model），或加载了错误的 adapter。53.79% 更可能是 OLMo-2-7B 原始 base model 的 MMLU 表现，不是 d000 SFT 模型的表现。\n\n## 对论文的影响\n\n如果 53.79% 是 base model 而非 d000 SFT：\n- 论文的 OLMo-2 Benefit = +3.21pp **包含了 SFT 本身的效果**（而非纯 contamination 效果）\n- 真实 d000 SFT baseline 应为 ~58.60%，contamination effect 从 d000→d100 仅约 +0.9pp\n- OLMo-2 可能应从 \"Benefit\" 重分类为 \"Immune\"\n- Threshold 假说（53.79% 低于 ~64.7% 阈值→Benefit）也需重新评估\n\n## 建议\n\n1. **用 cross_family d000 s42 westd (58.60%) 替代**——有完整日志、确认加载了正确 adapter\n2. 但 cross_family 其他 dosage 和 v2 也不完全一致（d005 差 1.96pp），**混用两个数据源违反 C010**\n3. **最安全方案：用当前标准化 evaluate.py 重跑 OLMo-2 全部 5 个 dosage 的 s42 eval**，获得一套完全一致的数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-trace-olmo2-baseline-discrepancy.md"
+}

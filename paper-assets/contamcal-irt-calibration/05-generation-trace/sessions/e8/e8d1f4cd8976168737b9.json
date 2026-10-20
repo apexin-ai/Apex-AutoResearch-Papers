@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8d1f4cd8976168737b9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 failure",
+  "task_key": "worker_analysis_exp004-failure_20260514T031520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004-failure_20260514T031520_result.json",
+    "occurrence": 1,
+    "bytes": 2087,
+    "sha256": "23a78de125a222e221dd6b58df9d0f2a55898bb056d3eeff5b2659109b7ad4a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败根因\n**进程并未失败。** PID 219346 仍在运行（已 10h+，状态 Sl），registry 标记 `DONE/failed` 是误报——可能是监控超时触发。进程正常推进中，当前在第 3 个条件 `auc0.55_n100` 的 seed 6/10。\n\n### 进度：27/120 runs (22.5%)\n\n| Condition | 完成 | 状态 |\n|-----------|------|------|\n| auc0.55_n20 | 10/10 | ✓ 完成 |\n| auc0.55_n50 | 10/10 | ✓ 完成 |\n| auc0.55_n100 | 6/10 | 进行中 |\n| 其余 9 conditions | 0-1/10 | 待运行 |\n\n预计剩余 ~25h，总计 ~35h 完成。\n\n### 初步结果分析（AUC=0.55 条件，γ_true=0.5）\n\n| N_models | γ_bias | γ_RMSE | CI95 coverage | CI95 width | θ_corr |\n|----------|--------|--------|---------------|------------|--------|\n| 20 | +0.020 | 0.040 | 80% | 0.133 | 0.958 |\n| 50 | +0.015 | 0.026 | 90% | 0.087 | 0.947 |\n| 100 | -0.003 | 0.004 | 100% | 0.065 | 0.950 |\n\n**趋势**：\n- γ recovery 随 N_models 增大显著改善（RMSE 从 0.04 降到 0.004）\n- 即使在最弱信号（AUC=0.55）下，N≥50 即可稳定识别 γ（100% CI95 excludes zero）\n- CI95 coverage 在 N=20 时偏低（80%），说明小样本下后验过度自信\n- 有趣：AUC=0.8/N=50 的 CI95 width (0.16) 比 AUC=0.55/N=50 (0.087) 更宽——需要更多 seeds 确认\n\n### 修复方案\n\n无需修复，进程正常运行。建议：\n\n1. **更新 registry 状态**为 RUNNING（误报 failed）\n2. **不要重跑**——进程有 checkpoint/resume 机制（`load_checkpoint` 在 L225-232），即使中断重跑也会跳过已完成 seeds\n3. 如果需要加速，可以起多个进程分别跑不同 AUC 条件（但需修改代码添加 condition filter 参数）\n\n如果进程真的中断了，重跑命令：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep && \\\nsource ../mvp_simulation/.venv/bin/activate && \\\nnohup python run_sweep.py subset > sweep.log 2>&1 &\n```\n\n脚本会自动跳过已完成的 seeds，从断点继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-failure.md"
+}

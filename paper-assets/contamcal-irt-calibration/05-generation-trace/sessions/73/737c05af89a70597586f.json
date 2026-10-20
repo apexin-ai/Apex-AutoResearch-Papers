@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "737c05af89a70597586f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code volume control data prep",
+  "task_key": "worker_code_volume-control-data-prep_20260522T235807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_volume-control-data-prep_20260522T235807_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "90b75c43310ff211b572398983ad73a59f89c56240cae64345c46d32486dfb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 脚本 | `/root/contamcal-irt-calibration/exp001/prepare_volume_control.py` |\n| 数据 | `/root/autodl-tmp/exp001/sft_data/sft_volume_control.jsonl` |\n| 总行数 | 66,533（= d100） |\n| 构成 | 50,000 clean SFT + 16,533 MMLU auxiliary_train MCQ |\n| 文件大小 | 116 MB |\n| MMLU test 重叠 | 8 条（已过滤） |\n| ARC test 重叠 | 12 条（已过滤） |\n| 格式验证 | 66,533/66,533 通过 |\n| Seed | 42 |\n\nAuxiliary MCQ 使用与 contamination items 相同的模板：`Question: ...\\nA) ...\\nB) ...\\nC) ...\\nD) ...` + `The answer is X.`（user/assistant 两消息，无 system），base SFT 保持原始三消息格式不变。数据已 shuffle。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-volume-control-data-prep.md"
+}

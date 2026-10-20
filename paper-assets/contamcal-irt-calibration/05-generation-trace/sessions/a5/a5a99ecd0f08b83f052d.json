@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5a99ecd0f08b83f052d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent gpu2 cleanup",
+  "task_key": "worker_ops_urgent_gpu2_cleanup_20260514T021132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_gpu2_cleanup_20260514T021132_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "100f341549f547fb18e3f6d791b15ad994264722657b0c09ed6b43b9fc9afd85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**(a) Kill 结果**\n- PID 254667 — 已 kill（SIGTERM 成功）\n- PID 255703 — 已 kill（SIGTERM 成功）\n\n**(b) 输出目录状态**\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/` — **目录为空**，两个冗余进程运行了 ~45min 但未产出任何文件。无数据损失。\n\n**(c) 合法进程确认**\n- PID 256509 — 运行中（39min），在 **GPU 5**（不是 GPU 4），评估 d100_s42，占 3658 MiB\n- PID 257034 — 运行中（38min），在 **GPU 2**（接替释放的显存），评估 **d000_s42**，占 3658 MiB\n\n**(d) d005 eval 进程确认**\n- PID 255322 — 运行中（43min），在 **GPU 1**，评估 d005_s42，占 3658 MiB\n\n**GPU 2 当前状态**: 3667 MiB used / 35% util — 已释放冗余进程显存，仅剩 PID 257034 (d000_s42 eval) 在使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu2-cleanup.md"
+}

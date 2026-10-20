@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8a2467f8fdb1b08b93",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "restart exp 002 signals 05B",
+  "task_key": "worker_restart_exp-002-signals-05B_20260514T125410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_restart_exp-002-signals-05B_20260514T125410_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "2e69fa827576cfa14d4956eaefeaddc8d35355b57361a1bc26cb2e467a37457b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已成功占用 GPU。\n\n**重启结果：**\n\n| 项目 | 值 |\n|------|-----|\n| 新 PID | **370957**（python）/ 370959（GPU 进程） |\n| GPU | cuda:0 (GPU-52bfebf5)，占用 4502 MiB |\n| tmux session | `exp002_05B` |\n| 已缓存 signal | **6 个**（d000: embedding×3 + minkpp×2；d005: embedding×1） |\n| 需要计算 | 所有 selfcritique signal（3 dosages × 3 benchmarks = 9）+ minkpp_arc_challenge(d000) + d005 剩余 + d100 全部 |\n| 代码修复 | 已确认：`_load_cached_signal` 4 处调用，timeout=14400 |\n| 异常 | 无 |\n\nbatch runner 会对 9 个 task 依次执行，每个 task 内部 per-signal 缓存自动跳过已有结果。当前正在运行第 1/9 个 task（d000/mmlu）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/restart-exp-002-signals-05b.md"
+}

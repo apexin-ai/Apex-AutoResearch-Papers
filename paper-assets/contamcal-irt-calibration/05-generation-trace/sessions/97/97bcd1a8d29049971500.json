@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97bcd1a8d29049971500",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper bib final assembly",
+  "task_key": "worker_paper_bib_final_assembly_20260517T060847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_final_assembly_20260517T060847_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "f3c767a887bb115516826dbe635aac092123659150ed474df93b21c9d11b3d52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 38 required keys present, no extra entries. Final file written to `artifacts/paper_draft/references.bib` with 38 entries (31 unique papers, 7 alias pairs sharing identical data under different keys), sorted alphabetically, no comments."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-final-assembly.md"
+}

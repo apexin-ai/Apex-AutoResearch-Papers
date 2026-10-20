@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4bcda765f11804c239c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status d026",
+  "task_key": "worker_ops_gpu_status_d026_20260514T201815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_d026_20260514T201815_result.json",
+    "occurrence": 1,
+    "bytes": 1673,
+    "sha256": "931668ea9532b866c1556df3a1c4025d686e85d9feb83ccbed83a07f2aff4cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 全景\n\n| GPU | 显存 | 利用率 | 任务 | 已运行 | 状态 |\n|-----|------|--------|------|--------|------|\n| **0** | 4.9/24.6 GB | 69% | `compute_signals.py` — 1.5B_d000_s42, gsm8k (embedding+minkpp+selfcritique) | 3m31s | 运行中，mmlu 信号已完成，gsm8k 进行中 |\n| **1** | 21.7/24.6 GB | 100% | `train_sft.py` — **0.5B_d100_s123** (lr=2e-4, lora-r=16, lora-alpha=32) | 1m33s | 刚启动，lora_adapter 目录为空 |\n| **2** | 0 GB | 0% | — | — | **空闲** |\n| **3** | 13.3/24.6 GB | 29% | `train_sft.py` — **3B_d100_s42** (lr=5e-5, lora-alpha=16) | 1h55m | 运行中 |\n| **4** | 5.9/24.6 GB | 54% | `evaluate.py` — **1.5B_d025_s42_aligned** (mmlu/gsm8k/arc/humaneval) | 1h53m | 运行中，eval_results 目录仍为空 |\n| **5** | 0 GB | 0% | — | — | **空闲** |\n\n**可用 GPU: 2, 5**\n\n---\n\n## seed=123 Checkpoints\n\n| Checkpoint | 状态 |\n|-----------|------|\n| `Qwen2.5-0.5B_d000_s123` | 已完成（有 lora_adapter + eval 结果） |\n| `Qwen2.5-1.5B_d000_s123` | 已完成（有 lora_adapter + eval 结果） |\n| `Qwen2.5-3B_d000_s123` | 已完成（有 lora_adapter + eval 结果） |\n| `Qwen2.5-0.5B_d100_s123` | **训练中**（GPU 1，刚启动 ~2min） |\n\ns123 系列目前仅有 d000 三个模型完成，d100 仅 0.5B 在训练。\n\n---\n\n## 3B d000 v2 SFT (GPU 5)\n\n`Qwen2.5-3B_d000_v2_s42` — **已完成**（05-15 03:45 写入 lora_adapter + train_config.json），GPU 5 已释放。\n\n---\n\n## exp-004 / exp-005\n\n`/root/autodl-tmp/exp004/` 和 `/root/autodl-tmp/exp005/` **均不存在**，服务器上无相关进程。这两个实验未在此服务器上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-d026.md"
+}

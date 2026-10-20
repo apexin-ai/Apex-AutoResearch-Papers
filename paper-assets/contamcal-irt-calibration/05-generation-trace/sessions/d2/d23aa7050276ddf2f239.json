@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d23aa7050276ddf2f239",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor gpu status check",
+  "task_key": "worker_monitor_gpu-status-check_20260516T002827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu-status-check_20260516T002827_result.json",
+    "occurrence": 1,
+    "bytes": 2100,
+    "sha256": "ed8b2c9e28bbf29b82de16ce56d6b21fa08d5b0c7e680d52efb78a02f1c5ec10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU Status Report\n\n| GPU | VRAM | Experiment | Wrapper PID | GPU PID | Status | Progress | ETA |\n|-----|------|-----------|-------------|---------|--------|----------|-----|\n| 0 | 23260/24564 MiB (95%) | sft_3B_d005_s42_a32 | 643162 | 643167 | **Running** | 70% (2222/3177), epoch 0.63 | ~1h17m |\n| 0 | ↑ (共享) | eval_3B_d100_s123_a32_batch | 642752 | 642763 | **Running** | GSM8K 65% (858/1319) | ~1h18m (仅当前 benchmark) |\n| 1 | 13341/24564 MiB (54%) | sft_3B_d100_s42_a32_v3 | 628663 | 628668 | **Running** | 87% (3610/4159), epoch 0.86 | ~40m |\n| 2 | 7537/24564 MiB (31%) | signals_3B_v7 | 652247 | 652259 | **Running** | Self-critique mmlu 47% (3340/7021) | ~1h20m |\n| 3 | 8985/24564 MiB (37%) | eval_3B_d025_v3_s42_batch | 655982 | 655989 | **Running** | aligned eval 进行中 (~56min CPU time) | 未知（无日志） |\n| 4 | 6891/24564 MiB (28%) | signals_3B_v8 | 659057/659058 | 662616 | **Running** | Self-critique mmlu 刚启动 (~73/7021) | ~2h42m |\n| 5 | 7397/24564 MiB (30%) | signals_3B_d025_v3_s42 | 663047 | 663067 | **Running** | Self-critique mmlu 7% (506/7021) | ~2h18m |\n\n## 需要注意的问题\n\n**GPU 0 双实验共享（高风险）**：SFT d005 (14270 MiB) + eval d100_s123 (8976 MiB) 共用 GPU 0，VRAM 已达 95%。目前运行正常但无余量。\n\n**eval_3B_d025_v3_s42_batch 无日志文件**：该实验直接在 tmux 中启动（PID 655982/655989），未通过 agent-ml 框架，因此 `~/runs/` 下没有 `.log` 文件。进程活跃（83.9% CPU, state Rl+），正在执行 aligned eval（mmlu+gsm8k+arc_challenge），之后还需跑 para_aligned eval。\n\n**遗留 tmux session**：`exp_001_eval_3B_d100_v2_para_aligned`（创建于 May 15 08:05）仍存在，但无对应 GPU 进程，疑为已完成任务的残留 session。\n\n**缺失 tmux session**：`sft_3B_d005_s42_a32` 和 `signals_3B_v8` 无对应 tmux session，可能通过 nohup 或其他方式启动。\n\n**无空闲 GPU**：6 块 GPU 全部占用。\n\n**已完成实验**：无。\n\n**失败实验**：无（全部 7 个实验均正常运行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbec73c943504039a217",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu fullitem tau",
+  "task_key": "worker_ops_mmlu_fullitem_tau_20260517T133905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu_fullitem_tau_20260517T133905_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "f5a0bf1bd9244b138ba53b853e0dfa0a8c2328671aa9f100001040ccae341a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Running successfully:\n- **20 models x 14,042 items** (1.5B: 8, 3B: 12)\n- 4 chains, ~1.2s/iteration warmup\n- Estimated: 4 chains x 2000 iters x 1.2s ≈ 40 min per chain (parallel), total ~40-80 min\n\nKey details:\n- **Script**: `/root/contamcal-irt-calibration/exp006/compute_vanilla_2pl_tau_fullitems.py`\n- **Stan model**: `stan_models/vanilla_2pl_noll.stan` (no log_lik, avoids 280k-entry output that crashed the previous run)\n- **tmux session**: `vanilla_2pl_full`\n- **Log**: `/root/autodl-tmp/exp006/vanilla_2pl_tau_fullitems.log`\n- **Output**: `/root/autodl-tmp/exp006/vanilla_2pl_tau_fullitems.json`\n- **Scales**: ['1.5B', '3B'] only (0.5B excluded)\n- **PID**: running in tmux, CPU-only task\n\nEstimated completion: ~60-90 min from now (~22:45-23:15 server time)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-fullitem-tau.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c71a882dd75abc45d14",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B d005 aligned",
+  "task_key": "worker_eval_3B_d005_aligned_20260514T131326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B_d005_aligned_20260514T131326_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "806c50b7fae51967ed22ec5b4b8445aa0eb8a633aa31d4d3292026d9c1c56240"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：未提交新任务（C001 约束）。** cuda:4 上已有完全相同的 3B d005 aligned eval 在运行（PID 373931，启动于 21:09:39），参数一致：\n\n- adapter: `Qwen2.5-3B_d005_s42/lora_adapter` (114MB, 验证通过)\n- output: `Qwen2.5-3B_d005_s42_aligned/`\n- benchmarks: mmlu gsm8k arc_challenge humaneval, mc-format aligned\n\n已补建 registry 记录 `exp_001_eval_3B_d005_aligned` → RUNNING，parent 指向 `exp_001_sft_d005_3B`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-d005-aligned.md"
+}

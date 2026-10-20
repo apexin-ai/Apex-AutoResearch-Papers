@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74ce62297d50bbf7f42d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops global status check",
+  "task_key": "worker_ops_global-status-check_20260516T201817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_global-status-check_20260516T201817_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "18d4a92a761cee71521b7504f45a6c21c7809013dd179f1d0a99c23573bb5396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 6 卡状态表\n\n| GPU | PID | 任务 | 显存 | 利用率 |\n|-----|--------|------|------|--------|\n| 0 | 825638 | eval d005_s42_aligned | 8072 MiB | 75% |\n| 1 | 830115 | signals d000_s42 mmlu | 6852 MiB | 60% |\n| 2 | 853489 | signals d025_s42 mmlu | 560 MiB | 8% |\n| 3 | 822390 | eval d025_s42_aligned | 12160 MiB | 75% |\n| 4 | 842929 | signals d005_s42 mmlu | 7412 MiB | 57% |\n| 5 | 831033 | eval d100_s42_aligned | 8304 MiB | 73% |\n\n### 2. d000 MMLU signals\n\n**未完成。** `signals_merged_mmlu.json` 不存在。GPU 1 上的 d000 mmlu signals 进程仍在运行。已有 `signals_merged_arc_challenge.json` 和 `signals_merged_gsm8k.json`，缺 mmlu 的 merged。\n\n→ **RRF 未触发。**\n\n### 3. Eval 完成情况\n\nd005 / d025 / d100 的 `.done` 文件均不存在，三个 eval 进程仍在运行中。\n\n→ **Signals 未启动（无空闲 GPU 且无 eval 完成）。**\n\n### 注意\n\nGPU 2（d025 signals）显存仅 560 MiB、利用率 8%，可能刚启动或处于数据加载阶段，需关注是否正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-global-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef13fd521e5d6fbbff74",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 arc final collect",
+  "task_key": "worker_diag_qwen7b-s0-arc-final-collect_20260520T235946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-arc-final-collect_20260520T235946_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "0dda5dc98deae74d12b97fc9b9a08b97760f4bd22180ef827a6e4cae3dab6c50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting ~3 min for d025 ARC eval to finish, then will check again. Note: d050 and d100 ARC evals will need to be submitted separately — they were originally launched with MMLU-only."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-arc-final-collect.md"
+}

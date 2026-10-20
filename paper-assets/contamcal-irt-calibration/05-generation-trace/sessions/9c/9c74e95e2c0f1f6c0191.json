@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c74e95e2c0f1f6c0191",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify olmo2 baseline and llama3 gsm8k",
+  "task_key": "worker_ops_verify-olmo2-baseline-and-llama3-gsm8k_20260521T135923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-olmo2-baseline-and-llama3-gsm8k_20260521T135923_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "83b921cd7e8154b74f3106e0fecf0a4420d3332452495f47a9e19dbac7883775"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 均在 GPU 0/1/2 上正常运行（各 ~18.6GB 显存）。\n\n---\n\n## 汇报\n\n### Task 1: OLMo-2 d000 MMLU 基线核实\n\n| Seed | Accuracy | 来源路径 |\n|------|----------|----------|\n| **s42** | **58.60%** (8229/14042) | `eval_results_cross_family/olmo2_d000_s42_westd/eval_results.json` |\n| **s0** | **55.34%** (7771/14042) | `results/mmlu_eval/olmo2/d000_s0/eval_results.json` |\n\n**结论：需修改。** 论文用 53.8% 但磁盘上唯一的 s42 MMLU 结果是 **58.60%**，差距 4.8pp。s0=55.34% 也不匹配。两份 eval JSON 都未记录 adapter_path 字段，无法从文件本身确认是 base model 还是 adapter eval。没有找到产出 53.8% 的 eval 文件——论文数值来源不明，建议追溯。\n\n### Task 2: LLaMA-3 GSM8K eval\n\n3 个 eval 已启动，均在 GPU 上加载模型并开始 GSM8K 评估：\n\n| Dosage | GPU | PID | 状态 |\n|--------|-----|-----|------|\n| d000 | 0 | 528870 | running, loading dataset |\n| d025 | 1 | 529276 | running, evaluating gsm8k |\n| d100 | 2 | 529683 | running, evaluating gsm8k |\n\nevaluate.py=37775 bytes ✓，3 个 adapter 均 lora_alpha=32 ✓。日志位于 `/tmp/eval_llama3_d{000,025,100}_gsm8k.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-olmo2-baseline-and-llama3-gsm8k.md"
+}

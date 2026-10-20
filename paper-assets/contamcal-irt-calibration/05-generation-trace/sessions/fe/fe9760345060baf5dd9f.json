@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe9760345060baf5dd9f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis qwen7b n3 bootstrap ci",
+  "task_key": "worker_analysis_qwen7b-n3-bootstrap-ci_20260521T001734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen7b-n3-bootstrap-ci_20260521T001734_result.json",
+    "occurrence": 1,
+    "bytes": 1577,
+    "sha256": "11f5af6c963e8f9d2dde9e416a7fcb69b4eb89140bc59f71c6745d6acb30a31c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-7B n=3 BCa Bootstrap CI 结果\n\n### 数据源\n\n| Seed | MMLU 来源 | ARC 来源 |\n|------|----------|---------|\n| s0 | eval_qwen7b_mmlu_arc_s0 (success) | 同左 |\n| s42 | eval_qwen7b_s42_cqa1_v2 MMLU 部分 (D162 确认 Δ=-1.82pp) | eval_qwen7b_arc_s42 (success) |\n| s123 | eval_qwen7b_s123_cqa1_v2 (success) | 同左 |\n\n### Per-seed Δ(d000→d100)\n\n| Seed | MMLU Δ(pp) | ARC Δ(pp) |\n|------|-----------|----------|\n| s0 | -1.03 | -1.88 |\n| s42 | -1.82 | -2.90 |\n| s123 | +0.00 | -2.47 |\n\n### BCa Bootstrap CI (B=10000, seed=42)\n\n| Benchmark | n | Mean Δ | 95% BCa CI | CI∋0 | Pattern |\n|-----------|---|--------|-----------|------|---------|\n| **MMLU** | 3 | **-0.95pp** | **[-1.82, -0.34]** | No | V-recovery |\n| **ARC** | 3 | **-2.42pp** | **[-2.90, -2.08]** | No | V-recovery |\n\n**Direction consistency: ✓** — 两个 benchmark 均为 negative。\n\n### n=2→n=3 关键变化\n\n- CI 方法从 t(df=1) 升级为 BCa bootstrap，CI 宽度大幅收窄\n- MMLU: [-12.16, +10.37] → **[-1.82, -0.34]**（CI 排除 0，n=2 时包含 0）\n- ARC: [-5.90, +0.61] → **[-2.90, -2.08]**（CI 排除 0，n=2 时包含 0）\n- 两个 benchmark CI 均排除 0 → contamination 对 Qwen-7B 的 negative effect 在 family level 统计显著\n\n### Family-level 判断\n\nMean 显著为负但幅度 <3pp，结合 per-seed dose-response 曲线均呈 V 形（dip then partial/full recovery）→ **V-recovery**。s123 完全恢复(0.00pp)、s0 部分恢复(-1.03pp)、s42 部分恢复(-1.82pp)，恢复程度因 seed 而异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen7b-n3-bootstrap-ci.md"
+}

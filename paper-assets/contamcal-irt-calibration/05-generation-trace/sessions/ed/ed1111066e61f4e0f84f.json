@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ed1111066e61f4e0f84f",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis domain decomposition",
+  "task_key": "worker_analysis_domain-decomposition_20260519T202914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_domain-decomposition_20260519T202914.log",
+    "occurrence": 1,
+    "bytes": 592757,
+    "sha256": "2b196d43c3c33fcbb635d876731d32ea75521eda6590f13f9b59af2bdc423ac0"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 113,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 113,
+      "tool_result": 113,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "ed1111066e61f4e0f84f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ed1111066e61f4e0f84f-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-domain-decomposition.md"
+}

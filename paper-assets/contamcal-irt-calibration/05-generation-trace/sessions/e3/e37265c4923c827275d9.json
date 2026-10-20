@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e37265c4923c827275d9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis run pooled 4bench irt",
+  "task_key": "worker_analysis_run-pooled-4bench-irt_20260515T130031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_run-pooled-4bench-irt_20260515T130031.log",
+    "occurrence": 1,
+    "bytes": 979931,
+    "sha256": "2165b2ce4799562333e2800dda9fed617032c57ee55c108ad70482f4314021f6"
+  },
+  "statistics": {
+    "messages": 659,
+    "user_turns": 0,
+    "tool_calls": 288,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 288,
+      "tool_result": 288,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 659,
+      "chunks": [
+        {
+          "path": "e37265c4923c827275d9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e37265c4923c827275d9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e37265c4923c827275d9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e37265c4923c827275d9-part-0004.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-run-pooled-4bench-irt.md"
+}

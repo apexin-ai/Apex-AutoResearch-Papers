@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8025adb32b9e498f5ff9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 final collect",
+  "task_key": "worker_ssh_westd-phase2-final-collect_20260519T112617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-final-collect_20260519T112617_result.json",
+    "occurrence": 1,
+    "bytes": 2415,
+    "sha256": "fb764c3b6f31d7f4d6350be9a978d0f51c13ced9ea6ca1b76a4a9c360d894d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已收集。以下是报告。\n\n---\n\n## Phase 2 状态报告\n\n### 1. GPU Log 最终状态\n\n| GPU | 当前任务 | 已完成 | 剩余队列 |\n|-----|---------|--------|---------|\n| GPU 0 | phi4_d025 MMLU (running) | phi4_d000, phi4_d005 | d050, d100 |\n| GPU 1 | qwen14b_d025 MMLU (running) | qwen14b_d000, qwen14b_d005 | d050, d100 |\n| GPU 2 | qwen7b_d100 MMLU (running) | qwen7b d000~d050 (4个) | **gemma2_d000** |\n| GPU 3 | gemma2_d050 MMLU (running) | gemma2_d005, gemma2_d025 | d100, **olmo2 全部5个** |\n\n所有 4 个 GPU 正常运行，无报错。\n\n### 2. 完成进度：10/25\n\n有 `.done` 标记的（MMLU + ARC 均完成）：\n- phi4_d000, phi4_d005\n- qwen14b_d000, qwen14b_d005\n- qwen7b_d000, qwen7b_d005, qwen7b_d025, qwen7b_d050\n- gemma2_d005, gemma2_d025\n\n### 3. 完整结果表（已完成的 10 个）\n\n| Model | Dosage | MMLU | ARC |\n|-------|--------|------|-----|\n| **Phi-4** | d000 | 0.7644 | 0.9206 |\n| | d005 | 0.7636 | 0.9181 |\n| | d025 | 🔄 running | |\n| | d050 | queued | |\n| | d100 | queued | |\n| **Qwen2.5-14B** | d000 | 0.6944 | 0.9104 |\n| | d005 | 0.6901 | 0.9036 |\n| | d025 | 🔄 running | |\n| | d050 | queued | |\n| | d100 | queued | |\n| **Qwen2.5-7B** | d000 | 0.6611 | 0.8788 |\n| | d005 | 0.6474 | 0.8609 |\n| | d025 | 0.6298 | 0.8404 |\n| | d050 | 0.6307 | 0.8456 |\n| | d100 | 🔄 running | |\n| **Gemma-2-9B** | d000 | queued (GPU2) | |\n| | d005 | 0.6342 | 0.7782 |\n| | d025 | 0.6456 | 0.8737 |\n| | d050 | 🔄 running | |\n| | d100 | queued | |\n| **OLMo-2-7B** | d000 | queued (GPU3) | |\n| | d005 | queued | |\n| | d025 | queued | |\n| | d050 | queued | |\n| | d100 | queued | |\n\n### 4. Director 特别关注项\n\n- **Gemma-2 d000**: 尚未评估。排在 GPU 2 队列末尾（qwen7b_d100 之后），预计 ~30min 后开始。\n- **OLMo-2 全部 5 个**: 均未开始。全部排在 GPU 3 队列末尾（gemma2_d100 之后），GPU 3 当前还有 gemma2_d050 + d100 要跑完，OLMo-2 预计 1.5~2h 后才开始，全部完成需 ~3-4h。\n- **Phi-4 d100**: 未开始。GPU 0 还需跑完 d025 + d050，预计 ~1.5h 后到 d100。\n\n### 5. 负载分配不均\n\nGPU 3 队列最重（9 个任务：gemma2×4 + olmo2×5），GPU 0/1 各 5 个，GPU 2 是 6 个。GPU 0/1/2 会比 GPU 3 早完成 1-2 小时处于空闲状态。如需加速可考虑将部分 OLMo-2 任务迁移到先完成的 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-final-collect.md"
+}

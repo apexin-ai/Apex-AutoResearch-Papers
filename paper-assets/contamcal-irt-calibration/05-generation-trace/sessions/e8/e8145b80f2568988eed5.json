@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8145b80f2568988eed5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sync csv to local",
+  "task_key": "worker_ops_sync-csv-to-local_20260515T123335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-csv-to-local_20260515T123335_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "30f292412241f5bb35801ac37f69871ec1397d3bab5349ffa935ce26e61d3734"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。本地文件 53 行（1 header + 52 data），arc_challenge 有 51 条数据（Qwen2.5-3B_raw 无值），humaneval 52 条全有数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-csv-to-local.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87e9e0da8c00cc73699b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify 05B d025 s123 checkpoint",
+  "task_key": "worker_ops_verify-05B-d025-s123-checkpoint_20260515T055118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-05B-d025-s123-checkpoint_20260515T055118_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "e3ec9f3616fea95d3bb4788ddf03b9c0ebbdf0a067197024300aae4da37411b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。**exp_001_sft_05B_d025_s123_v2 是 cron 误判，实际已正常完成。**\n\n汇总：\n- **训练状态**：epoch=1.0 完整训练，train_loss=1.548，mean_token_accuracy=0.697，耗时 5930s (~99min)\n- **Checkpoint**：adapter_model.safetensors (35MB)、adapter_config.json、tokenizer 文件齐全，LoRA r=16 alpha=32\n- **GPU 0**：已释放，0 MiB / 0% util\n- **Registry**：已更正为 conclusion=success，清除 failure_reason，写入 metrics"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-05b-d025-s123-checkpoint.md"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "f7097e600ffdbfacefec",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops socsci prior sensitivity",
+  "task_key": "worker_ops_socsci_prior_sensitivity_20260517T184359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_socsci_prior_sensitivity_20260517T184359.log",
+    "occurrence": 1,
+    "bytes": 1251939,
+    "sha256": "6c125fb76b79e583adbbef51b3f6fdd5c024c9ab83c8ea44d9d85ecdeb21189b"
+  },
+  "statistics": {
+    "messages": 903,
+    "user_turns": 1,
+    "tool_calls": 385,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 385,
+      "tool_result": 385,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 851,
+      "chunks": [
+        {
+          "path": "f7097e600ffdbfacefec-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7097e600ffdbfacefec-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7097e600ffdbfacefec-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7097e600ffdbfacefec-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f7097e600ffdbfacefec-part-0005.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "f7097e600ffdbfacefec-part-0005.json",
+          "message_count": 49
+        },
+        {
+          "path": "f7097e600ffdbfacefec-part-0006.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-socsci-prior-sensitivity.md"
+}

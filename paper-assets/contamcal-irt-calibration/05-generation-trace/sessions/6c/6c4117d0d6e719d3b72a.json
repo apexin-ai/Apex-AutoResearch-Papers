@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4117d0d6e719d3b72a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp008 base pretrained eval",
+  "task_key": "worker_ops_exp008_base_pretrained_eval_20260517T105247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp008_base_pretrained_eval_20260517T105247_result.json",
+    "occurrence": 1,
+    "bytes": 285,
+    "sha256": "cb70790bf7ff7c14edc3163cd24b6c7ca7a63334763367c9dcc9c503c64078e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：~4s/item，GSM8K 1319 items 预计 ~80 分钟，加上 ARC 总共约 2 小时。已在 GPU 0 上正常运行（tmux session: `exp008_eval`）。\n\n需要我在完成后通知你，还是你稍后自己 `tail /root/autodl-tmp/exp008/eval_base_05B.log` 查看？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp008-base-pretrained-eval.md"
+}

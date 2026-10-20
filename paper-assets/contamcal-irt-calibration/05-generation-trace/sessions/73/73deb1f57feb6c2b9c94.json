@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73deb1f57feb6c2b9c94",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt no05b poll extract",
+  "task_key": "worker_ops_irt_no05b_poll_extract_20260517T074011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_poll_extract_20260517T074011_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "707ee8985deb2980b9721a49c77155d1774ebfe9c1b31cb5d0a35d50cf94952d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact file written to `artifacts/mmlu_domain_irt_no05b_results.md` with all 9 domains' results.\n\n**Summary of J=13 (no 0.5B) experiment:**\n\n- **Social_Sciences is the only significant domain**: γ = −0.571, CI [−1.054, −0.103], but the direction is *negative* (3B underperforms, not overperforms)\n- **No domain shows significant positive γ** — removing 0.5B models eliminated all contamination signal\n- **θ extraction not possible** — Stan CSV files were not retained in the output directories, only `irt_results.json`\n\nThe core takeaway: 0.5B models are essential as the low-ability anchor for the IRT contamination detection method. Without them, J=13 respondents lack sufficient ability spread to resolve γ."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-no05b-poll-extract.md"
+}

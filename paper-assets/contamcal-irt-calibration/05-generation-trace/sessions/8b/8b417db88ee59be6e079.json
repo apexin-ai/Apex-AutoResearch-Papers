@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b417db88ee59be6e079",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sft gemma2 s0 sweep",
+  "task_key": "worker_ops_sft-gemma2-s0-sweep_20260520T093710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-gemma2-s0-sweep_20260520T093710_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "5a2bf89c8df396c81582b3f13803b5d754300e76fd33287ba6fe1a9fe66839d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，运行正常：\n\n- **任务**: `sft_gemma2_s0_sweep` @ westd-29999 cuda:1\n- **状态**: d000 训练中，模型加载完成，`CUDA_VISIBLE_DEVICES=1` 已确认\n- **流程**: d000→d005→d025→d050→d100，每个 dosage 训练后自动跑 MMLU eval\n- **日志**: `~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-gemma2-s0-sweep.md"
+}

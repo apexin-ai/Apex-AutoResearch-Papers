@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb3b64383f2d884c42b9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 15B base eval results",
+  "task_key": "worker_ops_check-15B-base-eval-results_20260515T115602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-15B-base-eval-results_20260515T115602_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "3162526c76b2611704426405a77bcf5a2e651bd0f8bdf9ca917b1b72643a7744"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n```\nCONCLUSION: success\nMETRICS: mmlu=0.2303 (3234/14042), gsm8k=0.0053 (7/1319), arc_challenge=0.2304 (270/1172), humaneval=0.2317 (38/164)\nGPU_4_STATUS: free (0%, 0 MiB / 24564 MiB)\n```\n\nMMLU/ARC 约 23% 接近 4 选 1 随机水平，GSM8K 接近零——base pretrained 模型不遵循指令格式，符合预期。这为 3-regime 对比（base → SFT → Instruct）提供了底线数据点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-15b-base-eval-results.md"
+}

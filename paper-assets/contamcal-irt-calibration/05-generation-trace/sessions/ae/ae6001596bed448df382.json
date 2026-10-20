@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae6001596bed448df382",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops c004 cuda violation check",
+  "task_key": "worker_ops_c004-cuda-violation-check_20260515T191620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c004-cuda-violation-check_20260515T191620_result.json",
+    "occurrence": 1,
+    "bytes": 1566,
+    "sha256": "66b4d855144c6d1e8d9375859029f9fbc87c08860197f72465bcc556f75729f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 核查结果\n\n### 1. PID 614412 GPU 归属：**NO VIOLATION**\n\n| 项目 | 值 |\n|------|-----|\n| PID 614412 所在 GPU | **GPU 2** (GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54) |\n| `/proc/614412/environ` 中 CUDA_VISIBLE_DEVICES | **2** |\n| PID 614407 启动命令中 | `export CUDA_VISIBLE_DEVICES=2` ✓ |\n| GPU 2 显存占用 | 9008 MiB / 24564 MiB |\n\nv2 提交命令**正确包含了** `CUDA_VISIBLE_DEVICES=2`，实际也运行在 cuda:2 上。无违规。\n\n### 2. v1 失败根因分析\n\nv1 日志中：\n- **无** `out of memory` / `CUDA error` / `killed` 错误信息\n- **无** `EXIT_CODE` 行（trap 未触发）\n- **无** exit 文件（`/tmp/agent-ml-exit/...exit` 不存在）\n- 日志在 GSM8K (paraphrased) 51/228 处**突然中断**，无任何错误输出\n\n**结论：进程被 SIGKILL 杀死（OOM killer）。** 证据链：\n1. trap 捕获不了 SIGKILL，所以 EXIT_CODE 未写入、exit 文件未生成\n2. 日志无 Python 层面错误 → 不是 CUDA OOM exception，而是系统级 kill\n3. 时间线吻合：v1 在 cuda:3 运行 → signals_3B_v3 18:38 提交到 cuda:3 → v1 18:41 死亡（3分钟内因显存竞争触发 OOM killer）\n\n### 3. dmesg 验证\n\n`dmesg` / `journalctl` 不在 ssh_read_only 白名单内，无法直接验证 OOM killer 日志。但上述间接证据已足够确认 GPU 显存冲突导致系统级 kill。\n\n### 4. 当前 v2 状态\n\nv2 正常运行中，GSM8K (paraphrased) 已到 184/228 (81%)，ETA 约 6 分钟完成 GSM8K，之后还有 arc_challenge 和 humaneval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c004-cuda-violation-check.md"
+}

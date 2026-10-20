@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cc0805a2e967386b821",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sft qwen7b olmo2 s123 sweep",
+  "task_key": "worker_analysis_sft_qwen7b_olmo2_s123_sweep_20260519T225320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_qwen7b_olmo2_s123_sweep_20260519T225320_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "77b9310146b1b5376b1d4afaef24fa76ed8ba2ee60fe6d0f73bda660db2ffe21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**全部 10 个 (model × dosage) checkpoint 存在且有效，无错误、无 OOM。**\n\n### Qwen2.5-7B\n所有 5 个 dosage **被跳过** — checkpoint 来自先前运行（May 18–19），adapter 权重完整（~161 MB）。`.done` 标记缺失，但 adapter_model.safetensors 存在。本次日志中无 Qwen 的 train_loss（需查原始训练日志）。\n\n### OLMo-2-7B（本次训练）\n\n| Dosage | train_loss | mean_token_acc | runtime |\n|--------|-----------|----------------|---------|\n| d000 | 0.9431 | 0.7855 | 1h41m |\n| d005 | 0.9475 | 0.7623 | 1h42m |\n| d025 | 0.9601 | 0.8161 | 1h46m |\n| d050 | 0.9737 | 0.7864 | 1h51m |\n| d100 | 0.9979 | 0.7601 | 2h02m |\n\nTrain loss 随 dosage 单调递增 (0.943→0.998)，符合预期（污染注入使任务更难）。全部 exit_code=0，均有 `.done` 标记。\n\n### 注意事项\n- lora_alpha=32 ✓（C006 合规）\n- W&B 查询因工具 API 问题失败，未获取 W&B 指标\n- 报告已注册：`art_20260519_1e4f79`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-qwen7b-olmo2-s123-sweep.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "55e2539f34d1622f5c6b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops gpu02 queue submit",
+  "task_key": "worker_ops_gpu02-queue-submit_20260514T072701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu02-queue-submit_20260514T072701.log",
+    "occurrence": 1,
+    "bytes": 876743,
+    "sha256": "c6b6dfd4463b11cb30b26a3a8ff3f4248fcc0d574c2a379405ba64690ac05e01"
+  },
+  "statistics": {
+    "messages": 414,
+    "user_turns": 0,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 176,
+      "tool_result": 176,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 414,
+      "chunks": [
+        {
+          "path": "55e2539f34d1622f5c6b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e2539f34d1622f5c6b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e2539f34d1622f5c6b-part-0003.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-gpu02-queue-submit.md"
+}

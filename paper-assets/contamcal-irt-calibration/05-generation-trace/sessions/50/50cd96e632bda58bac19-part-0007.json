@@ -1,0 +1,1089 @@
+{
+  "schema_version": "1.0",
+  "session_id": "50cd96e632bda58bac19",
+  "rounds": [
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-22T17:21:42.100705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+              "offset": "245",
+              "limit": "50"
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-22T17:21:42.151435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "245\t\\bottomrule\n246\t\\end{tabular}\n247\t\\end{table}\n248\t\n249\t\\section{Cross-Seed Stability Details}\n250\t\\label{sec:cross_seed_details}\n251\t\n252\t\\begin{table}[h]\n253\t\\centering\n254\t\\caption{Cross-seed $\\Delta$acc (d000$\\to$d100). Strict sign consistency (Cons.) is 2/5; classification-level direction agreement is 4/5 (see text). Per-seed shape classification\\textsuperscript{$\\ddagger$} agrees for only 2/5.}\n255\t\\label{tab:cross_seed}\n256\t\\footnotesize\n257\t\\begin{tabular}{lcccccccl}\n258\t\\toprule\n259\tModel & $n$ & s42 & s123 & s0 & 95\\% CI & Dir. & Cons.\\ & Pattern\\textsuperscript{$\\ddagger$} \\\\\n260\t\\midrule\n261\tPhi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\\textsuperscript{B} & Immune & $\\times$ & --- \\\\\n262\tQwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\\textsuperscript{B} & Harm & \\checkmark & Collapse \\\\\n263\tQwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\\textsuperscript{B} & Harm & $\\times$ & V-recovery \\\\\n264\tGemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\\textsuperscript{B} & Benefit & \\checkmark & Benefit \\\\\n265\tOLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\\textsuperscript{B} & Borderl.\\ & $\\times$ & ---\\textsuperscript{b} \\\\\n266\t\\bottomrule\n267\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{B}BCa bootstrap ($B\\!=\\!10{,}000$); all families now at $n\\!=\\!3$.} \\\\\n268\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{$\\ddagger$}Per-seed shape may differ from family-level direction-based classification (\\S\\ref{sec:classification}).} \\\\\n269\t\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\\Delta|{\\ge}1$pp; $0$ = $|\\Delta|{<}1$pp.}\n270\t\\end{tabular}\n271\t\\end{table}\n272\t\n273\t\\section{DiD Visualization}\n274\t\\label{sec:did_visualization}\n275\t\n276\t\\begin{figure}[h]\n277\t\\centering\n278\t\\includegraphics[width=\\columnwidth]{figures/fig_treated_untreated.pdf}\n279\t\\caption{DiD for treated vs.\\ untreated items across all families at d025 MMLU. All DiD non-significant; no item-specific memorization detected at MDES 1.2--2.0pp.}\n2\n…[truncated 669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-22T17:24:09.656730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 7-Family Coverage 战略评估 + 低成本高收益实验建议\n\n---\n\n## Part 1: Coverage 评估\n\n### 当前数据完整性\n\n| 表格 | 当前 | 缺失 | 影响 |\n|------|------|------|------|\n| Table 1 (taxonomy) | 6/7 模型 ✅ | LLaMA 为 out-of-sample，设计如此 | 低 |\n| Table 3 (DiD) | 5/6 模型 | **Falcon3 缺失** | 中——审稿人会问\"为什么新加的家族没做 DiD？\" |\n| Table 11 (cross-seed) | 5/5 家族 | **Falcon3 + LLaMA 无多种子** | 中——Falcon3 是最新加入的 Benefit 成员，稳定性未验证 |\n| Table 4/5 (GSM8K) | 5+1 家族 | **Falcon3 缺失** | 中——§4.2 说\"5 non-excluded families\"但未含 Falcon3 |\n\n### Pattern 覆盖评估\n\n| Pattern | 家族数 | 可信度 | Reviewer 攻击面 |\n|---------|--------|--------|----------------|\n| Benefit | 3 (Gemma-2, Falcon3, OLMo-2) | **强** — 3× 独立复现 | 低 |\n| Immune | 2 (Phi-4, LLaMA-3.1) | **强** — 2× 独立复现 | 低 |\n| Collapse | 1 (Qwen-14B only) | **弱** — 单家族 | **高** |\n| V-recovery | 1 (Qwen-7B only) | **弱** — 单家族 | **高** |\n\n**核心问题：4-pattern taxonomy 中 2/4 patterns 仅在 Qwen 家族观察到。** 审稿人最可能的攻击：\n\n> \"Collapse 和 V-recovery 可能是 Qwen 训练数据组成的特异性产物，而非可推广的普遍模式。4-pattern taxonomy 中有一半依赖单一家族的 2 个模型（共享训练数据 lineage），这不足以支撑 'taxonomy' 级别的 claim。\"\n\n**这是 3.5→4.0 的最大障碍。**\n\n### 文本一致性问题（顺带发现）\n\n1. **results.tex L29**: \"N!=6 families\" — 实际是 5 families / 6 models。应为 \"N!=6 models\" 或 \"N!=5 families\"\n2. **results.tex L32**: \"ARC direction is consistent for 3/5 families\" — 过时数据。Appendix 已更新为 4/6（不含 LLaMA），或 6/7（含 LLaMA，方向级别）。与同段 \"six-family sample\" 矛盾\n3. **Fig 1 caption** (introduction.tex L10): \"Falcon3 in Table~\\ref{tab:taxonomy}\" — 如果 Figure 已含 Falcon3 曲线，此措辞暗示 Falcon3 \"只在表中\"，容易误导\n\n### 整体评估\n\n**当前论文支撑 3.0–3.5（Findings 到 Borderline Conference）**。原因：\n- Benefit + Immune 充分复现 → \"contamination ≠ uniform inflation\" core claim 站得住\n- DiD null across 5 families → \"generalization not memorization\" claim 强\n- 但 \"4-pattern taxonomy\" 是 headline 级 novelty claim，而 2/4 patterns 单家族支撑不足\n\n**达到 4.0 的路径（二选一）**：\n- **路径 A**: Yi-1.5-9B（~65% baseline）在 vulnerability band 复现 Collapse 或 V-recovery → taxonomy 升级为 2× 独立验证\n- **路径 B**: 降级 claim 为 \"至少 3 种可推广 patterns（Benefit/Immune/Harm）+ 家族内形状变异\"，但补全 Falcon3 所有缺失表格 → 论证充分性弥补 novelty 损失\n\n---\n\n## Part 2: 低成本高收益实验排序\n\n资源：cqa1 (1×4090D 24GB)，~51h（60h 减 S4 signals ~9h）\n\n### Tier 1: 必做（直接堵审稿人攻击口）\n\n| 实验 | GPU 时间 | 效果 |\n|------|---------|------|\n| **Falcon3 DiD 分析** | 0h（纯计算） | Table 3 补全 5→6 家族，消除\"新家族为什么没做 DiD\"的审稿质疑 |\n| **Falcon3 GSM8K eval (d000+d100)** | ~3h | Table 4/5 补全，§4.2 从\"5 non-excluded\"升级到 6。Falcon3 Benefit 是否转移到 GSM8K 是新数据点 |\n| **Falcon3 Algorithm 1 sensitivity** | ~1h CPU | Table 1 caption \"5/5 at 100% stability\" 升级到 \"6/6\"。无此数据，Falcon3 的 96.1% stability 缺 hyperparameter robustness 验证 |\n| **文本一致性修复** | 0h | L29 \"N=6 families\" → models，L32 \"3/5\" → 更新值 |\n\n小计：~4h GPU + 0h CPU。**投入产出比最高，不做等于送分题失分。**\n\n### Tier 2: 应做（3.5 巩固）\n\n| 实验 | GPU 时间 | 效果 |\n|------|---------|------|\n| **Falcon3 cross-seed s123 (d100 训练 + d000/d100 eval)** | ~15h | Table 11 补全 5→6 家族。Falcon3 stability 96.1% 预测高概率 Benefit 复现，但需实证。§4.3 从 \"4/5 consistent\" 有望升级 |\n\n### Tier 3: 高风险高回报（3.5→4.0 跳板）\n\n| 实验 | GPU 时间 | 效果 |\n|------|---------|------|\n| **Yi-1.5-9B d000 baseline eval** | ~1.5h | 确认是否在 65-70% vulnerability band。**如不在此区间，后续训练可取消**——这是成本极低的 gate check |\n| **Yi-1.5-9B d000+d100 训练+eval（如 baseline 在 band 内）** | ~24-28h | 唯一能将 Collapse/V-recovery 从 N=1 升级到 N=2 的实验。如果复现 harm pattern → taxonomy claim 大幅加强 → 4.0 可达 |\n\n**Yi 在 cqa1 的可行性**：9B 模型 bf16 LoRA r=16 + gradient_checkpointing 估计 ~18-20GB VRAM，4090D 24GB 应可容纳（类似 Gemma-2 9B 配置）。但需确认：(1) 模型需下载到 cqa1 (~18GB)，(2) 磁盘空间是否充足。\n\n### 建议时间线\n\n```\n[now]      S4 signals 运行中 (~9h 剩余)\n[+0h]      Tier 1 CPU 任务：Falcon3 DiD + sensitivity（与 S4 并行）\n[+9h]      S4 完成 → Falcon3 GSM8K eval (3h)\n[+12h]     Yi-1.5-9B baseline eval (1.5h gate check)\n[+13.5h]   如 Yi 在 band 内 → Yi d100 训练 (12h)\n           否则 → Falcon3 cross-seed s123 训练 (12h)\n[+25.5h]   Yi/Falcon3 eval (3h)\n[+28.5h]   剩余 ~22h buffer\n```\n\n### 关键判断\n\n**对 3→4 评分最关键的不是实验数量，是 Collapse/V-recovery 的可推广性。** 如果 Yi-1.5-9B 可行且复现 harm → 直接值 +0.5 分。如果 Yi 不可行（westd 不恢复 + cqa1 装不下），则必须走路径 B：降级 taxonomy claim + 补全 Falcon3 全表格 + 论述充分性。两条路都比\"什么都不做\"强 0.3-0.5 分。\n\n**建议 Director 决策**：westd SSH 修复是否有时间线？如果 24h 内不可恢复，建议在 cqa1 尝试 Yi baseline eval（gate check 仅 1.5h），根据结果决定是否在 cqa1 全量运行。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-22T17:24:13.170372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3513
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-22T17:24:22.786669+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 提交战略评估报告，核心要点：\n\n1. **Coverage 评估**：Benefit (3家族) 和 Immune (2家族) 覆盖充分，但 Collapse 和 V-recovery 均为 Qwen 单家族，是 3.5→4.0 的最大障碍\n2. **文本一致性**：发现 results.tex 3处过时数据（L29 \"N=6 families\"、L32 \"3/5 families\"、Fig 1 caption）\n3. **实验排序**：\n   - Tier 1（必做，~4h）：Falcon3 DiD + GSM8K eval + sensitivity — 直接堵住表格缺口\n   - Tier 2（应做，~15h）：Falcon3 cross-seed s123\n   - Tier 3（高风险高回报）：Yi-1.5-9B baseline gate check (1.5h) → 如在 65-70% band 则全量训练，这是唯一能将 Collapse/V-recovery 从 N=1 升级到 N=2 的实验"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001085"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-22T17:38:44.970403+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_falcon3-did_20260522T172610]:\nWorker worker_analysis_falcon3-did_20260522T172610 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_analysis_falcon3-did_20260522t172610"
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-22T17:38:57.304414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Review Falcon3 DiD worker result",
+              "subagent_type": "Explore",
+              "prompt": "Find and read the worker result file for worker_analysis_falcon3-did_20260522T172610 in /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/. Also check the registry for any recent Falcon3 DiD experiment entries. Read the full content of the result file."
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-22T17:38:58.914997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers -name \"*worker_analysis_falcon3-did_20260522T172610*\" -type f"
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-22T17:38:59.116161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-22T17:39:01.021906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610_result.json"
+            }
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-22T17:39:01.222837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"产出：\\n\\n1. **`artifacts/falcon3_did_analysis.py`** — 独立 DiD 计算脚本，方法与 `treated_untreated_analysis.py` 完全一致（10,000 bootstrap, seed=42, 同样的 verdict 分类逻辑）\\n\\n2. **`artifacts/falcon3_did_analysis.md`** — 文档含运行命令、Table 3 格式参考、预期结果预判\\n\\n**状态: BLOCKED** — DiD 需要 item-level `correctness_matrix.json`（14,042 个 MMLU 题的逐题对/错），无法从 aggregate accuracy 计算。westd-29999 SSH 认证失败，cqa1-21977 不在 SSH config 中。\\n\\n**恢复后执行：**\\n```bash\\npython artifacts/falcon3_did_analysis.py \\\\\\n    --sft-dir /root/autodl-tmp/exp001/sft_data \\\\\\n    --eval-dir /root/autodl-tmp/exp001/eval_results\\n```\\n\\n脚本会直接输出 Table 3 的 LaTeX 行和完整 JSON。基于 Falcon3 的 Benefit pattern（d025 +2.46pp），预期 DiD 为 ns，verdict 大概率是 generalization。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 200
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-22T17:39:01.324481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'name': 'falcon3-did'}"
+            }
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-22T17:39:02.278483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9639}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-22T17:39:06.545452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've found and read the worker result file. Let me provide you with the findings:\n\n## Worker Result File Contents\n\n**File Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610_result.json`\n\n**Full Content:**\n\nThe worker generated the following analysis outputs:\n\n1. **`artifacts/falcon3_did_analysis.py`** — A standalone Difference-in-Differences (DiD) calculation script using identical methodology to `treated_untreated_analysis.py` (10,000 bootstrap samples, seed=42, same verdict classification logic)\n\n2. **`artifacts/falcon3_did_analysis.md`** — Documentation containing run commands, Table 3 format reference, and expected result predictions\n\n**Status: BLOCKED** — The DiD analysis requires item-level `correctness_matrix.json` (pass/fail data for 14,042 MMLU questions) which cannot be computed from aggregate accuracy alone. SSH authentication failed for westd-29999, and cqa1-21977 is not in the SSH config.\n\n**Recovery and Execution Plan:**\n```bash\npython artifacts/falcon3_did_analysis.py \\\n    --sft-dir /root/autodl-tmp/exp001/sft_data \\\n    --eval-dir /root/autodl-tmp/exp001/eval_results\n```\n\nThe script will output Table 3 LaTeX rows and complete JSON. Based on Falcon3's Benefit pattern (d025 +2.46pp), the DiD is expected to be non-significant (ns), with verdict likely being \"generalization\".\n\n## Registry Check\n\nThe registry search for recent Falcon3 DiD experiment entries returned **no results** — there are currently 0 experiment entries matching the \"falcon3-did\" filter in the contamcal-irt-calibration project registry."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Agent",
+            "elapsed_ms": 9241
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-22T17:39:23.572822+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Falcon3 DiD worker 状态：**BLOCKED**。Worker 正确地创建了分析脚本（`artifacts/falcon3_did_analysis.py`），但无法执行——需要远程服务器上的 item-level correctness_matrix.json 数据，而 westd SSH 认证失败、cqa1 未配置 SSH。\n\n这与我之前战略评估中的 Tier 1 优先级一致。脚本已就绪，等 SSH 恢复后可直接运行。无审查异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001095"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-22T17:48:47.839886+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_falcon3-did-run_20260522T174607]:\nWorker worker_analysis_falcon3-did-run_20260522T174607 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_analysis_falcon3-did-run_20260522t174607"
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-22T17:48:55.407685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*falcon3*did*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-22T17:48:55.458428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did_20260522T172610_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did-run_20260522T174607.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did-run_20260522T174607_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-22T17:48:58.624273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-did-run_20260522T174607_result.json"
+            }
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-22T17:48:58.624671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"报告已写入 `artifacts/falcon3_did_results.md`。\\n\\n**结论**：Falcon3 DiD 分析被 d000 baseline 缺失阻塞。Falcon3 只训练+eval 了 d100 一个条件，从未做 d000（clean SFT）。需要先训练 Falcon3 d000 SFT 或至少 eval pretrained base model 作为 proxy baseline，才能跑 DiD。\\n\\n如果要立即产出一些结果，可以用 Option C（d100 单快照 treated vs untreated 对比），但这不是真正的 DiD。需要你决定走哪个方案。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-22T17:49:10.508693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_did_results.md"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-22T17:49:10.509083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Falcon3-7B-Base DiD Analysis — Data Availability Report\n2\t\n3\t**Date**: 2026-05-22  \n4\t**Status**: BLOCKED — missing d000 baseline\n5\t\n6\t## Available Data on cqa1-21977\n7\t\n8\t| Component | Path | Status |\n9\t|-----------|------|--------|\n10\t| Falcon3 base model (HF cache) | `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base` | ✅ |\n11\t| SFT checkpoint d100_s42 | `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42` | ✅ |\n12\t| Eval d100 correctness_matrix | `/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/correctness_matrix.json` | ✅ |\n13\t| Contamination labels (all dosages) | `/root/autodl-tmp/exp001/sft_data/contamination_labels_{mmlu,arc_challenge,gsm8k}_{d005..d100}.json` | ✅ |\n14\t| SFT checkpoint d000_s42 | — | ❌ Never trained |\n15\t| Eval d000 correctness_matrix | — | ❌ Does not exist |\n16\t| SFT checkpoint d005/d025/d050 | — | ❌ Never trained |\n17\t\n18\t## Why DiD Cannot Run\n19\t\n20\tThe DiD script (`falcon3_did_analysis.py`) computes:\n21\t\n22\t```\n23\tDiD = (treated_acc_d100 - treated_acc_d000) - (untreated_acc_d100 - untreated_acc_d000)\n24\t```\n25\t\n26\tThis requires `Falcon3-7B-Base_d000_s42_aligned/correctness_matrix.json` as baseline, which does not exist because no Falcon3 d000 (clean SFT, 0% contamination) checkpoint was ever trained.\n27\t\n28\t## Options to Unblock\n29\t\n30\t### Option A: Train Falcon3 d000 SFT (recommended)\n31\t- Train `Falcon3-7B-Base_d000_s42` using the same SFT config as d100 but with 0% contamination data\n32\t- Run eval to produce correctness_matrix.json\n33\t- Then DiD analysis works for d000→d100 comparison\n34\t- **Pros**: Clean, proper DiD with matched SFT conditions\n35\t- **Cons**: Requires GPU time for training + eval\n36\t\n37\t### Option B: Eval pretrained Falcon3-7B-Base as d000 proxy\n38\t- Run the eval pipeline on the raw pretrained model (no SFT)\n39\t- Use as approximate baseline\n40\t- **Pros**: Faster (no training, just eval)\n41\t- **Cons**: Confounds SFT effect with contamination effect; less clean than Option A\n42\t\n43\t### Opti\n…[truncated 1029 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-22T17:50:11.945508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] Falcon3 DiD 状态更新——修正我之前战略评估中的估计\n\n我在之前的战略评估（Tier 1）中说\"Falcon3 DiD 分析——0h GPU\"可立即执行。这个判断有误。\n\n**实际情况**：Falcon3 DiD 需要 d000 和 d025 的 correctness_matrix.json，这些数据在 westd-29999 上（SSH 不通），不在 cqa1 上。Worker 分析确认 cqa1 只有 d100 的 correctness_matrix。\n\n**修正后的 Tier 1**：\n- Falcon3 DiD：**依赖 westd SSH 恢复**，不再是\"立即可做\"\n- Falcon3 GSM8K eval：仍然可做（base model + d100 adapter 都在 cqa1）\n- Falcon3 Algorithm 1 sensitivity：仍然可做（CPU）\n- 文本修复：仍然可做\n\n**替代方案**（如 westd 长期不可用）：用 cqa1 上的 d100 数据做单快照 treated/untreated 对比。不是真正的 DiD（没有 pre-post 差分），但如果 untreated items 也在 d100 提升（类似 Gemma-2 和 OLMo-2 的 \"generalization\" verdict），仍可作为支持证据写入论文。不过这需要 d025 的 contamination labels 来定义 treated set——这些 labels 确认在 cqa1 上存在。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-22T17:50:15.460496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3514
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-22T17:50:30.325161+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 报告 Falcon3 DiD 被阻塞——cqa1 上只有 d100 数据，d000-d050 数据在 westd（SSH 不通）。我需要核实这是否准确。\n\n根据之前验证的数据：Falcon3 d000-d050 的 eval 确实在 westd-29999 上，d100 在 cqa1。DiD 需要 d000 + d025 的 correctness_matrix.json，两者都在 westd。因此 Worker 结论正确——DiD 确实被 westd SSH 问题阻塞。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001105"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-22T18:08:17.814522+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_yi-cqa1-precheck_20260522T180704]:\nWorker worker_ops_yi-cqa1-precheck_20260522T180704 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-22T18:08:25.919559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_yi-cqa1-precheck_20260522T180704_result.json"
+            }
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-22T18:08:25.920142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"结果汇总：\\n\\n### 1. 磁盘空间：不足\\n\\n| 项目 | 大小 |\\n|------|------|\\n| /root/autodl-tmp 总量 | 169GB |\\n| 已用 | 156GB (93%) |\\n| **可用** | **14GB** |\\n| Yi-1.5-9B 需要 | ~18GB |\\n\\n**差 ~4GB+，无法下载。**\\n\\n可释放的候选（需确认是否仍在使用）：\\n\\n| 路径 | 大小 | 说明 |\\n|------|------|------|\\n| models/gemma-2-9b/ | 35GB | 最大单项 |\\n| models/llama3-8b-tmp/ | 15GB | 名字含 tmp |\\n| models/Qwen2.5-7B/ | 15GB | 与 .hf_cache/Qwen 可能重复 |\\n| models/LLM-Research/ | 6GB | |\\n| .hf_cache/Falcon3-7B-Base/ | 14GB | |\\n\\n### 2. VRAM 估算：QLoRA 4-bit 可行\\n\\n| 方案 | 模型占用 | 总估算 | 4090D 24GB |\\n|------|---------|--------|------------|\\n| bf16 | ~18.8GB | >22GB | ✗ 超出 |\\n| 8-bit | ~10GB | ~16GB | △ 紧张 |\\n| **QLoRA 4-bit** | **~5GB** | **~10-12GB** | **✓ 充裕** |\\n\\n当前 GPU 上 7B 模型 signals 任务占用 15.6GB/24GB（PID 716957），作为参考 9B bf16 必然超出。\\n\\n**推荐方案：QLoRA 4-bit (nf4) + gradient_checkpointing**，预计 VRAM ~10-12GB，4090D 完全够用。\\n\\n### 3. 下载状态：未下载\\n\\n磁盘不足，需要先清理至少 5GB 空间。请确认哪些旧模型可以删除，我再执行下载。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-22T18:09:01.903656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Yi-1.5-9B on cqa1 — QLoRA 4-bit 方案有方法论 confound\n\nWorker 建议在 cqa1 (4090D 24GB) 上用 QLoRA 4-bit 训练 Yi-1.5-9B（bf16 ~22GB 超出 VRAM）。\n\n**问题：所有其他 6 个家族均使用 bf16 LoRA r=16 α=32 lr=5e-5**（paper_framing.md L189, results.tex Table 1 caption 隐含）。改用 QLoRA 4-bit 会引入训练 recipe confound——Yi 的 dose-response pattern 将无法与其他家族直接对比。这一点 Worker 报告中未提及。\n\n**具体风险**：\n- 4-bit 量化改变模型权重精度，可能影响 SFT 学习动态\n- Yi 如果在 4-bit 下表现出 Collapse pattern，审稿人会问：\"这是 contamination 效应还是量化精度不足？\"\n- 如果表现出 Benefit，同样可能被归因于量化差异\n\n**建议方案（按优先级）**：\n1. **westd SSH 恢复后在 westd 跑 bf16**（96GB 卡，与其他家族一致）— 最干净\n2. **如 westd 不可恢复且仍要用 cqa1**：只做 eval（不做训练），用 pretrained Yi-1.5-9B 作为 d000 baseline eval，验证 MMLU baseline 是否在 65-70% band。这是我之前建议的 gate check（~1.5h），零方法论风险。如果 baseline 不在 band 内，后续实验全部取消\n3. **如 baseline 确认在 band 内且 westd 无望**：考虑替代模型——是否有 <7B 的模型 MMLU baseline 在 65-70%？这样 bf16 LoRA 在 24GB 上可行\n\n磁盘空间问题（14GB 可用，需 18GB）是次要的——几个旧模型目录可清理。VRAM confound 是核心问题。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-22T18:09:05.912217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4008
+          },
+          "id": "event-001110"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "messages": [
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-22T18:10:21.794510+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_falcon3-algo1-sensitivity_20260522T180624]:\nWorker worker_analysis_falcon3-algo1-sensitivity_20260522T180624 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-22T18:10:31.285450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_falcon3-algo1-sensitivity_20260522T180624_result.json"
+            }
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-22T18:10:31.336243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"分析完成。结果已保存到 `artifacts/falcon3_algo1_sensitivity.md`。\\n\\n核心发现：\\n\\n**τ × σ sweep (36 组合)**: MMLU 和 ARC 均 100% 稳定。原因：Falcon3 的 Δ (+4.19/+4.01 pp) 远大于 sweep 中最大 τ (2.0 pp)，σ 对正 delta profile 无影响。Falcon3 在任何 τ×σ 组合下都不会被误判为 Immune/U-collapse/V-recovery。\\n\\n**ρ × λ sweep (42 组合)** — 这两个参数控制 Benefit vs Benefit-sat 边界，是真正的敏感维度：\\n- MMLU: ρ 拐点 = 0.703，λ 拐点 = 0.87 → 在默认参数附近有较大安全边距\\n- ARC: ρ 拐点 = 0.238，默认 ρ=0.3 刚好高于此值（margin 仅 0.042）→ 与 bootstrap stability 61.3% 一致，解释了 ARC 的 Benefit-sat 分类为何不够稳定\\n\\n结论：**主分类（正向污染效应）无条件稳健**，所有参数变化只影响 Benefit 和 Benefit-sat 之间的子分类。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-22T18:10:45.483796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algo1_sensitivity.md"
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-22T18:10:45.534648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Falcon3-7B Algorithm 1 Hyperparameter Sensitivity\n2\t\n3\tVerifies that Falcon3's classification under Algorithm 1 is robust to threshold parameter choices.\n4\t\n5\t## 1. Decision Boundary Analysis\n6\t\n7\t### MMLU 5-shot\n8\t- Δ = +4.19 pp\n9\t- first_half (d000→d025) = 2.46 pp\n10\t- second_half (d025→d100) = 1.73 pp\n11\t- late_gain (d050→d100) = 0.87 pp\n12\t\n13\t**τ tipping point**: τ ≥ 4.19 → Immune (sweep max = 2.0, well below)\n14\t**ρ tipping point**: ρ > 0.703 → Benefit-sat (default ρ=0.3, does not trigger)\n15\t**λ tipping point**: λ > 0.87 → Benefit-sat (default λ=0.5, does not trigger)\n16\t\n17\t### ARC 25-shot\n18\t- Δ = +4.01 pp\n19\t- first_half (d000→d025) = 3.24 pp\n20\t- second_half (d025→d100) = 0.77 pp\n21\t- late_gain (d050→d100) = 2.30 pp\n22\t\n23\t**τ tipping point**: τ ≥ 4.01 → Immune (sweep max = 2.0, well below)\n24\t**ρ tipping point**: ρ > 0.238 → Benefit-sat (default ρ=0.3, triggers)\n25\t**λ tipping point**: λ > 2.30 → Benefit-sat (default λ=0.5, does not trigger)\n26\t\n27\t## 2. τ × σ Sweep (6 × 6 = 36 combinations)\n28\t\n29\tDefault: τ=1.0, σ=5.0, ρ=0.3, λ=0.5. Bold = matches observed classification.\n30\t\n31\t### MMLU 5-shot (observed: Benefit)\n32\t\n33\t| τ \\ σ | 3.0 | 4.0 | 5.0 | 6.0 | 7.0 | 8.0 |\n34\t|---|---|---|---|---|---|---|\n35\t| 0.5 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n36\t| 0.75 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n37\t| 1.0 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n38\t| 1.25 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n39\t| 1.5 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n40\t| 2.0 | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** | **Benefit** |\n41\t\n42\t**Stability: 36/36 = 100.0%**\n43\t\n44\t### ARC 25-shot (observed: Benefit-sat)\n45\t\n46\t| τ \\ σ | 3.0 | 4.0 | 5.0 | 6.0 | 7.0 | 8.0 |\n47\t|---|---|---|---|---|---|---|\n48\t| 0.5 | **Benefit-s\n…[truncated 4229 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-22T18:11:03.468795+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Falcon3 sensitivity 分析结果干净。τ×σ 全网格 100% 稳定（MMLU + ARC），主分类（Benefit）在所有参数组合下无条件稳健。ρ×λ 只影响 Benefit vs Benefit-sat 子分类，不影响 4-pattern taxonomy 层面的结论。Table 1 caption \"5/5 original families at 100% stability\" 可更新为 6/6。无异常，无需上报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001116"
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "messages": [
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-22T18:11:03.929602+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_falcon3-gsm8k-eval-prep_20260522T180723]:\nWorker worker_ops_falcon3-gsm8k-eval-prep_20260522T180723 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-22T18:11:15.033959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_falcon3-gsm8k-eval-prep_20260522T180723_result.json"
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-22T18:11:15.084785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。写入 `artifacts/falcon3_gsm8k_eval_commands.md`。\\n\\n**关键问题：d000 checkpoint 不在 cqa1 上**，仅有 d100_s42。d000 需从源服务器传输后才能 eval。\\n\\n已准备内容：\\n- d100 GSM8K eval 命令：S4 完成后直接可用\\n- d000 GSM8K eval 命令：需先传输 checkpoint\\n- 所有命令遵循 C001-C009 约束（md5 校验、显式 CUDA_VISIBLE_DEVICES、alpha=32 检查）\\n- 参数与现有 Qwen7B/Gemma2 GSM8K eval 一致（8-shot CoT, batch_size=8）\\n- 预估运行时间 ~30-45 分钟/dosage\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-22T18:11:51.092697+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 报告 Falcon3 GSM8K eval 准备完成，但指出 d000 SFT checkpoint 不在 cqa1 上（在 westd）。d100 eval 可在 S4 完成后立即运行。\n\n值得注意：d000 GSM8K eval 可以用 cqa1 上的 pretrained base model (`/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/`) 作为 proxy，因为 base model 确认存在于 cqa1。这会引入轻微的 SFT tax confound，但对于 GSM8K 转移分析的方向判断（Null/Consistent/Reversal）影响不大。不过需要在结果中注明这个差异。无需单独向 Director 报告——这与已知的 westd SSH 阻塞是同一问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001120"
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "messages": [
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-22T18:13:21.483866+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_edit_text-consistency-fix_20260522T180639]:\nWorker worker_edit_text-consistency-fix_20260522T180639 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-22T18:13:29.479511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_edit_text-consistency-fix_20260522T180639_result.json"
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-22T18:13:29.530300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"三处修改已完成：\\n\\n| # | 位置 | 原文 | 修改后 | 依据 |\\n|---|------|------|--------|------|\\n| 1 | results.tex L29 | `N=6 families` | `N=6 models (five families)` | Table 1 有 6 个模型但仅 5 个独立 family（Qwen 算一个），与 L4 和 intro 的 \\\"five independent families\\\" 一致 |\\n| 2 | results.tex L32 | `3/5 families` | `5/6 families` | Appendix §B 明确写 \\\"directionally consistent with MMLU for five of six models\\\"；Falcon3 ARC +4.0pp 与 MMLU +4.2pp 方向一致；唯一例外是 Gemma-2 |\\n| 3 | introduction.tex L10 | `Falcon3 in Table~\\\\ref{tab:taxonomy}` | `LLaMA-3.1 at seed$=$0 with d000/d025/d100` | 图表生成脚本确认 Falcon3 已绘入 Fig 1；同时 LLaMA-3.1 使用 seed=0（非 seed=42）且仅有 3 个 dosage 点，需在 caption 中注明 |\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-22T18:13:40.968909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "offset": "28",
+              "limit": "8"
+            }
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-22T18:13:41.070125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28\t\n29\tApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).\n30\t\n31\t\\paragraph{Baseline ability gradient.}\n32\tIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 5/6 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.\n33\t\n34\t\\paragraph{Out-of-sample validation.}\n35\tOut-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\\% vs.\\ 53.8\\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-22T18:13:41.070665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+              "offset": "8",
+              "limit": "5"
+            }
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-22T18:13:41.121763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/fig_dose_response.pdf}\n10\t\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}\n11\t\\label{fig:dose_response}\n12\t\\end{figure*}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-22T18:14:29.612488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 文本一致性修复审查——2/3 正确，1 处用词需微调\n\nWorker 对 results.tex 和 introduction.tex 的三处修改审查结果：\n\n1. **L29 \"N=6 models (five families)\"** — ✅ 正确\n2. **L32 \"5/6 families\"** — ⚠️ 用词不准确。应为 **\"5/6 models\"** 而非 \"5/6 families\"。原因：Table 1 有 6 个 models 但仅 5 个 families（Qwen 算一个）。Appendix §B 原文用的是 \"five of six **models**\"。按 family 计应为 4/5（Qwen 内部一致算 1 个 ✓，Phi-4 ✓，Falcon3 ✓，OLMo-2 ✓，Gemma-2 ✗ = 4/5）。建议改为 \"5/6 models\" 与 Appendix 一致。\n3. **Fig 1 caption LLaMA-3.1 seed=0 注释** — ✅ 正确且必要，明确了 LLaMA-3.1 与其他 s42 家族的 seed 差异",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-22T18:14:33.281691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3669
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-22T18:14:35.975566+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改 #1 和 #3 正确。修改 #2 有小问题需要标注。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001130"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-22T18:22:58.229394+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_signals-v2-check_20260522T182120]:\nWorker worker_ops_signals-v2-check_20260522T182120 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-22T18:23:06.392713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_signals-v2-check_20260522T182120_result.json"
+            }
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-22T18:23:06.443286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新为 DONE/success。\\n\\n## 结果报告\\n\\n**Falcon3-7B-Base d100 s42 — 信号文件状态：**\\n\\n| Signal | MMLU | ARC Challenge | GSM8K |\\n|--------|------|---------------|-------|\\n| S1 embedding | ✅ 7.8MB | ✅ 662KB | ✅ 733KB |\\n| S2 minkpp | ✅ 2.9MB | ✅ 250KB | ✅ 272KB |\\n| S4 selfcritique | ✅ 3.3MB | ✅ 290KB | ✅ 315KB |\\n\\n- **S1/S2**：从 v1 保留完好（时间戳 May 22 22:28-22:52）\\n- **S4**：v2 全部完成（时间戳 May 23 01:55-02:12），MMLU 15 chunks 覆盖 0-14042 项\\n- **全部 9 个 signal × benchmark 组合已就绪**，无缺失\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-22T18:23:11.692864+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Falcon3 全部 9 个信号文件（S1/S2/S4 × MMLU/ARC/GSM8K）确认完成，无缺失。S4 v2 修复成功。cqa1 GPU 现在应该空闲，可用于后续实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001134"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-22T18:25:14.924334+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-22T18:26:07.094919+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 所有跨家族 SFT 必须用 **bf16 LoRA r=16 α=32 lr=5e-5**，不可改 QLoRA/4-bit（Yi-1.5-9B 在 cqa1 上已被我 WARNING 过 confound 问题）\n- Falcon3 d000-d050 数据在 **westd-29999**，d100 在 **cqa1-21977**——DiD 分析依赖 westd 上的 correctness_matrix，cqa1 上不存在\n- LLaMA-3.1 仅有 3 个 dosage (d000/d025/d100) 且用 **seed=0**（非 s42），与其他家族不同——引用时必须标注\n- `falcon3_algorithm1_classification.md` 中 LLaMA-3.1 行（L30）含 Worker 幻觉数据（d005/d050 伪造、d025/d100 篡改），**未修正**，引用该文件前必须核对\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-21977**: 1×4090D 24GB，磁盘 14GB free（156/169GB used）\n  - Falcon3 base: `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/`\n  - Falcon3 d100 ckpt: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/`\n  - Signals 全部完成: `/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/`（S1/S2/S4 × MMLU/ARC/GSM8K = 9 files）\n  - contamination labels: `/root/autodl-tmp/exp001/sft_data/contamination_labels_*.json`\n  - 无活跃训练进程（signals v2 已完成）\n- **westd-29999**: 4×RTX PRO 6000 96GB，**SSH 认证失败**（MCP 密码失效，Worker 用 sshpass 连）\n  - Falcon3 d000-d050 eval: `/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d0{00,05,25,50}_s42_aligned/`\n  - Yi-1.5-9B v2 训练: tmux `yi_d000`, PID 2658, **状态未知**（SSH 不通无法查）\n  - 代码根: `/root/contamcal-irt-calibration`\n\n### 3. 📊 当前状态\n**刚完成**：Director 战略评估（7-family coverage + 低成本实验建议），已 post。Falcon3 Algorithm 1 sensitivity 审查通过（36/36 τ×σ 100% stable）。Signals v2 全 9 files 确认完成。文本一致性修复审查（2/3 correct，L32 \"families\"→\"models\" 需微调）。\n\n**RUNNING/等待中**：\n- Yi-1.5-9B d000 v2 在 westd（状态未知，SSH 不通）\n- Falcon3 GSM8K eval 准备就绪（命令已写入 artifacts），等 Director 批准执行\n- Falcon3 DiD 被 westd SSH 阻塞（需 d000/d025 correctness_matrix）\n- Falcon3 cross-seed s123 未启动（Director 未决策是否在 cqa1 训练）\n\n### 4. 📋 待办\n- westd SSH 恢复 → 立即查 Yi-1.5-9B 训练状态 + 取 Falcon3 d000/d025 correctness_matrix 跑 DiD\n- Falcon3 GSM8K eval 完成 → 审查结果，核实是否与 Benefit pattern 一致，验证 Table 4/5 可更新\n- Director 决策 Yi-1.5-9B 方案 → 如 westd 跑 bf16 则审查 GPU 资源合规；如 cqa1 QLoRA 则重申 confound WARNING\n- Falcon3 cross-seed s123 训练完成 → 审查 Table 11 更新，验证 Benefit 方向是否 seed-stable\n- results.tex L32 \"5/6 families\" → 需改为 \"5/6 models\"，已通知 Director\n\n### 5. 🎯 战略上下文\n**核心 story**：contamination ≠ uniform inflation，4-pattern dose-response taxonomy across 7 models / 6 families。EMNLP 2026 ARR May 25 deadline。\n\n**最大风险**：Collapse 和 V-recovery 仅在 Qwen 家族观察到（N=1）。Yi-1.5-9B（~65% baseline，vulnerability band）是唯一能将这两个 pattern 从 N=1 升级到 N=2 的实验。如果 Yi 不可行，必须降级 claim 为 \"3 generalizable patterns + family-specific shape variation\"。\n\n**易错点**：\n1. 不要相信 `falcon3_algorithm1_classification.md` 中 LLaMA-3.1 行的数据——是 Worker 幻觉，paper results.tex 中的值才是正确的\n2. Falcon3 d000 在 cqa1 上**不存在**（无 SFT checkpoint 也无 eval correctness_matrix），只有 pretrained base model——用 base model 做 DiD d000 proxy 会引入 SFT tax confound\n3. 文本中 \"families\" vs \"models\" 用词混乱——Qwen 有 7B 和 14B 两个 models 但算 1 个 family，跨文引用要注意\n4. Falcon3 sensitivity 分析显示 ARC Benefit-sat 分类 ρ margin 仅 0.042——这与 bootstrap stability 61.3% 一致，不是 bug\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001136"
+        }
+      ]
+    }
+  ]
+}

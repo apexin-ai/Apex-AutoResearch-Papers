@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d419cd64617776e9978",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen14b partial arc eval cuda3",
+  "task_key": "worker_ops_qwen14b-partial-arc-eval-cuda3_20260521T024034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-partial-arc-eval-cuda3_20260521T024034_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "aa716516dccfe1441d8cb5078c50630d23ba3ef48d6249a8608c1711fbe1285b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动。\n\n**汇总：**\n- **实验**: `eval_qwen14b_arc_s0_partial` — Qwen-14B s0 ARC 25-shot eval (d000/d005/d025/d100)\n- **服务器**: westd-29999 cuda:3\n- **PID**: 467742, 32726 MiB 占用, 99% GPU utilization\n- **tmux session**: `eval_qwen14b_arc_s0`\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s0_partial.log`\n- **输出**: `/root/contamcal-irt-calibration/results/arc_eval/qwen14b/d{000,005,025,100}_s0/`\n- **预估完成**: ~60-80 min (4 dosage × ~15-20min)\n\n注意事项：\n- 脚本中 adapter 路径已修正为 `.../lora_adapter/` 子目录\n- evaluate.py md5 与现有 batch 脚本 reference 一致（`17673bf...`）；C009 约束中的 37591 bytes 可能是旧版本记录，当前 westd 实际使用的是 37775 bytes 版本，已与现有 `eval_qwen14b_s0_batch.sh` 保持一致\n- batch-size=2（14B 模型显存较紧）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-partial-arc-eval-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ff6fc6d9d9d6a1085f8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis pooled irt redesign",
+  "task_key": "worker_analysis_pooled_irt_redesign_20260515T160100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pooled_irt_redesign_20260515T160100_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "480fd1668719618b4ed4fc0ed5bfd6870603c2718670d4f207034945befe002b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/report/eval_data_inventory_pooled_irt.md`。核心发现：\n\n**当前状态**：\n- 18/24 aligned eval 已完成（alpha=32），6 个 GPU 全满正在跑 4 个 aligned + 2 个 para_aligned\n- 3B 有 3 个 checkpoint 需要 retrain（d025_s42, d100_s42, d100_s123，alpha=16→32，D055）\n\n**Per-benchmark N**：\n\n| | 现在 | 跑完后 | 含α16 | 全部retrain后 |\n|---|---|---|---|---|\n| MMLU/ARC | 9 | 13 | **16** | **16** |\n| GSM8K/HE | 17 | 21 | **24** | **24** |\n\n（0.5B MMLU/ARC 因 D045 position bias 排除）\n\n**推荐方案**：\n1. **立即**：用 alpha=16 的 3B evals 凑满 N=16/24，跑 pooled IRT 调试收敛\n2. **并行**：retrain 3 个 3B checkpoint（alpha=32）\n3. **最终论文**：全部换成 alpha=32 数据 refit"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pooled-irt-redesign.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "dff846aaf433b0467363",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis s2 removal ablation",
+  "task_key": "worker_analysis_s2-removal-ablation_20260523T104524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2-removal-ablation_20260523T104524.log",
+    "occurrence": 1,
+    "bytes": 695763,
+    "sha256": "ab5d51ca8853dda15c9ef5d6fd5487e8bebaf56f5333fc715904800f36037fc9"
+  },
+  "statistics": {
+    "messages": 218,
+    "user_turns": 1,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "dff846aaf433b0467363-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "dff846aaf433b0467363-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "dff846aaf433b0467363-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-s2-removal-ablation.md"
+}

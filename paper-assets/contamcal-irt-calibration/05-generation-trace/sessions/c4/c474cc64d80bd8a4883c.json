@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c474cc64d80bd8a4883c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh consolidate eval metrics",
+  "task_key": "worker_ssh_consolidate-eval-metrics_20260519T083501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_consolidate-eval-metrics_20260519T083501_result.json",
+    "occurrence": 1,
+    "bytes": 5430,
+    "sha256": "abbb9353db7d323d6fa0c90eb602d76f68185658016366042022df05ebf3a219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data needed. Let me compile the comprehensive table.\n\n## 汇总结果\n\n### 数据源说明\n- **cqa1**: `/root/autodl-tmp/exp001/eval_results/` (aligned eval, MCQ format)\n- **westd**: `/root/autodl-tmp/exp001/eval_results_14b/`, `eval_results_cross_family/`, `eval_vllm/`\n- Benchmark 顺序已通过 `head` 确认文件头验证\n- cqa1 aligned eval 包含 MMLU(14042)/GSM8K(1319)/ARC(1172)/HumanEval(164)\n- westd 14B/Phi-4 eval 包含 MMLU/ARC\n\n---\n\n### Qwen2.5 Dose-Response 主表 (aligned eval)\n\n**0.5B (seed=42)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .398 | .369 | .469 | YES |\n| d005 | .326 | .362 | .329 | YES |\n| d025 | .280 | .366 | .325 | YES |\n| d100 | .233 | .365 | .294 | YES |\n\n**0.5B (seed=123)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .422 | .341 | .497 | YES |\n| d005 | .300 | .368 | .298 | YES |\n| d025 | .347 | .353 | .406 | YES |\n| d100 | .306 | .380 | .367 | YES |\n\n**1.5B (seed=42)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .585 | .654 | .772 | YES |\n| d005 | .585 | .648 | .769 | YES |\n| d025 | .590 | .654 | .769 | YES |\n| d100 | .593 | .650 | .769 | YES |\n\n**1.5B (seed=123)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .585 | .654 | .758 | YES |\n| d005 | .587 | .648 | .757 | YES |\n| d025 | .588 | .655 | .758 | YES |\n| d100 | .596 | .644 | .782 | YES |\n\n**3B (seed=42, alpha=32)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .631 | .141 | .824 | YES |\n| d005 | .631 | .415 | .825 | YES |\n| d025 | .624 | .682 | .823 | YES |\n| d100 | .636 | .704 | .821 | YES |\n\n**3B (seed=123)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .633 | .181 | .833 | YES |\n| d005 | .632 | .631 | .824 | YES |\n| d025 | .637 | .525 | .834 | YES |\n| d100_a32 | .633 | .707 | .825 | YES |\n\n**7B (seed=42, cqa1 aligned)**\n\n| Dosage | MMLU | ARC | item_data |\n|--------|------|-----|-----------|\n| d000 | - | .896 | YES (ARC only) |\n| d005 | .692 | .897 | YES |\n| d025 | .700 | .899 | YES |\n| d050 | .705 | .899 | YES |\n| d100 | .710 | .893 | YES |\n\n**7B (seed=123, cqa1 aligned)**\n\n| Dosage | MMLU | ARC | item_data |\n|--------|------|-----|-----------|\n| d000 | .698 | .899 | YES |\n| d005 | .693 | .899 | YES |\n| d025 | .703 | .899 | YES |\n| d050 | .703 | .899 | YES |\n| d100 | .707 | .897 | YES |\n\n**7B (westd eval_vllm, lm-eval-harness format)**\n\n| Dosage | Seed | MMLU | ARC (acc) | item_data |\n|--------|------|------|-----------|-----------|\n| d000 | s42 | .719 | .473 | YES |\n| d000 | s123 | .720 | .457 | YES |\n| d005 | s42 | .719 | .460 | YES |\n| d005 | s123 | .721 | .464 | YES |\n| d025 | s42 | .725 | .456 | YES |\n\n> 注意：eval_vllm ARC 分数 (~0.46) 远低于 aligned eval (~0.90)，因为使用了不同评估格式 (lm-eval-harness acc vs 自定义 MCQ acc)\n\n**14B (seed=42, westd)**\n\n| Dosage | MMLU | ARC | item_data |\n|--------|------|-----|-----------|\n| d000 | .746 | .935 | YES |\n| d005 | .754 | .931 | YES |\n| d025 | .758 | .928 | YES |\n| d050 | .769 | .928 | YES |\n| d100 | .765 | .931 | YES |\n\n---\n\n### Cross-Family 模型\n\n**Phi-4 (seed=42, westd)**\n\n| Dosage | MMLU | ARC | item_data |\n|--------|------|-----|-----------|\n| d000 | .775 | .939 | YES |\n| d005 | .781 | .939 | YES |\n| d025 | .784 | .940 | YES |\n| d050 | .787 | .937 | YES |\n\n**OLMo-2-7B (seed=42, cqa1)**\n\n| Dosage | MMLU | ARC | item_data |\n|--------|------|-----|-----------|\n| d000 | .587 | .681 | YES |\n| d005 | .582 | .682 | YES |\n| d025 | .591 | .678 | YES |\n\n**Llama-3.2-3B (seed=42, cqa1, benchmark 顺序: gsm8k/arc/mmlu)**\n\n| Dosage | MMLU | GSM8K | ARC | item_data |\n|--------|------|-------|-----|-----------|\n| d000 | .455 | .192 | .601 | YES |\n| d005 | * | * | * | YES |\n| d025 | * | * | * | YES |\n| d100 | * | * | * | YES |\n\n> *Llama d005-d100 benchmark 顺序待确认（可能与 d000 不同，grep 返回 3 个 accuracy 值但未验证 key 名对应）\n\n---\n\n### 缺失清单\n\n| Family | Scale | 缺失内容 |\n|--------|-------|----------|\n| Qwen2.5 | 0.5B | d050 两个 seed 都缺 |\n| Qwen2.5 | 1.5B | d050 两个 seed 都缺 |\n| Qwen2.5 | 3B | d050 两个 seed 都缺 |\n| Qwen2.5 | 7B s42 | d000 缺 MMLU; 所有 dosage 缺 GSM8K |\n| Qwen2.5 | 7B s123 | 所有 dosage 缺 GSM8K |\n| Qwen2.5 | 14B | 所有缺 GSM8K; 无 s123 seed |\n| Phi-4 | 14B | d100 缺; 无 s123 |\n| OLMo-2 | 7B | d050/d100 缺; 无 s123; 缺 GSM8K |\n| Llama-3.2 | 3B | d050 缺; 无 s123 |\n| Gemma-2 | 9b | **全部缺** (checkpoint 已有) |\n\n### Per-Item 数据总结\n\n**所有已完成的 eval 都有 per-item 数据** (`item_responses.json` + `correctness_matrix.json` + `eval_results.json` 内 `per_item` 数组)。IRT 分析所需的 binary correct/incorrect 矩阵可直接从 `correctness_matrix.json` 或 `per_item` 字段构建。\n\n**可用 respondent 数量 (IRT 视角)**:\n- MMLU: 0.5B(8) + 1.5B(8) + 3B(8) + 7B(~18) + 14B(5) + Phi-4(4) + OLMo(3) + Llama(4) = **~58 respondents**\n- ARC: 同上 ~58 respondents\n- GSM8K: 0.5B(8) + 1.5B(8) + 3B(8) = **24 respondents** (7B/14B 缺 GSM8K aligned eval)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-consolidate-eval-metrics.md"
+}

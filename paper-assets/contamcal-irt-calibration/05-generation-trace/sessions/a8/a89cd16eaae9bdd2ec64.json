@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a89cd16eaae9bdd2ec64",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis treated untreated items",
+  "task_key": "worker_analysis_treated-untreated-items_20260519T191422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_treated-untreated-items_20260519T191422_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "21691a6fa06db135101dfab16658c21f044ec2992e8272d4a8653dc22c7ed549"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 关键发现\n\n### MMLU (d025, 3540 treated / 10502 untreated)\n\n| Model | Treated Δ | Untreated Δ | DiD | Verdict |\n|-------|-----------|-------------|-----|---------|\n| Gemma-2-9B | **+0.031**\\*\\* | **+0.026**\\*\\*\\* | +0.006 (ns) | generalization |\n| OLMo-2-7B | +0.016 (ns) | **+0.027**\\*\\*\\* | -0.011 (ns) | mixed |\n| Phi-4 | +0.003 (ns) | +0.006 (ns) | -0.003 (ns) | no-effect |\n| Qwen2.5-14B | **-0.069**\\*\\*\\* | **-0.076**\\*\\*\\* | +0.007 (ns) | anti-contamination |\n| Qwen2.5-7B | **-0.038**\\*\\* | **-0.029**\\*\\*\\* | -0.008 (ns) | anti-contamination |\n\n### ARC Challenge (d025)\n所有 5 个模型的 treated 和 untreated delta 均不显著，verdict 全部为 no-effect（Qwen2.5-7B 的 untreated 有轻微 forgetting）。\n\n### 核心结论：**所有 DiD 均不显著**\n\n**最惊人的发现：2.5% SFT 注入不产生 item-level memorization。** treated items 和 untreated items 的 accuracy 变化幅度几乎一致：\n- 当模型整体提升（Gemma-2, OLMo-2），treated 和 untreated 同步提升\n- 当模型整体下降（Qwen 系列），treated 和 untreated 同步下降\n- **效果是全局性的（SFT general effect），不是 item-specific memorization**\n\n### Difficulty Interaction (d025 MMLU, 5-model mean)\n| Bin | Treated Δ | Untreated Δ | Gap |\n|-----|-----------|-------------|-----|\n| Hard (<0.4) | +0.061 | +0.064 | -0.003 |\n| Medium | -0.006 | -0.002 | -0.004 |\n| Easy (>0.7) | -0.040 | -0.039 | -0.000 |\n\ndifficulty 各 bin 的 gap 也近乎零。regression-to-mean 效应（hard↑ easy↓）对 treated/untreated 完全对称。\n\n### 产出文件\n`/root/contamcal-irt-calibration/artifacts/treated_untreated/`:\n- `treated_untreated_summary.csv` — 40 rows，全模型 × 全 dosage\n- `treated_untreated_mmlu.pdf` / `_arc_challenge.pdf` — 5-panel bar plots\n- `difficulty_interaction.csv` + `_mmlu.pdf` / `_arc_challenge.pdf` \n- `did_dose_response.pdf` — DiD 随 dosage 变化的趋势线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-treated-untreated-items.md"
+}

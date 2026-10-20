@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa546ec43dc98566b6ad",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d050 verify and relay",
+  "task_key": "worker_ops_d050-verify-and-relay_20260518T163003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d050-verify-and-relay_20260518T163003_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "4338806954533c7ed077c5ca0d2c173845e812deee7b5b9494f719f96c5c8a4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 任务 1：exp_001_sft_7b_d050_s42 — **成功完成**\n\n| 项目 | 值 |\n|---|---|\n| 状态 | 3642/3642 steps，\"Training complete.\" |\n| 完成时间 | 2026-05-19 00:24:19 |\n| 训练时长 | 1h39m (5941s) |\n| 最终 train_loss | 0.9599 |\n| 最终 mean_token_accuracy | 0.7641 |\n| 最后一个 log batch | loss=0.9376, token_acc=0.7748 |\n| adapter_model.safetensors | 154MB ✓ |\n| lora_alpha | 32 ✓ |\n| tokenizer | 存在 ✓ |\n| checkpoint 路径 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s42/lora_adapter/` |\n\n### 任务 2：exp_001_sft_7b_d025_s123 — **已启动**\n\n| 项目 | 值 |\n|---|---|\n| 主进程 PID | 42743 |\n| GPU | cuda:1, 40589MiB 占用, 98% util |\n| 数据 | sft_dosage_025.jsonl, 54133 samples |\n| 日志 | `/root/autodl-tmp/logs/train_7b_d025_s123.log` |\n| Registry | RUNNING，已注册 |\n\n预计训练时长约 1.5h（参考 d050 的 3642 steps / 1h39m，d025 数据量略少）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d050-verify-and-relay.md"
+}

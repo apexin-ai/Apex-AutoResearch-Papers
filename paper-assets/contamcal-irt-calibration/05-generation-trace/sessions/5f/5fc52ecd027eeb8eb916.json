@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc52ecd027eeb8eb916",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp002 deploy verify",
+  "task_key": "worker_code_exp002-deploy-verify_20260514T071140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002-deploy-verify_20260514T071140.log",
+    "occurrence": 1,
+    "bytes": 636680,
+    "sha256": "61eabe762ae8f32f8f33f6645c49dab609da44e773f259e50cc5eec01cabf22e"
+  },
+  "statistics": {
+    "messages": 140,
+    "user_turns": 1,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 46,
+      "tool_result": 46,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "5fc52ecd027eeb8eb916-part-0001.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "5fc52ecd027eeb8eb916-part-0001.json",
+          "message_count": 22
+        },
+        {
+          "path": "5fc52ecd027eeb8eb916-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp002-deploy-verify.md"
+}

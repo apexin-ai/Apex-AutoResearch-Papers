@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75f197d5dfe8e2dcb320",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd transition registry prep",
+  "task_key": "worker_ops_westd-transition-registry-prep_20260519T224547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-transition-registry-prep_20260519T224547_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "9e4770d5b0133045e24a4743c98d15881515c2dd582275fe8635e0bab16c4b36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。5 个实验条目已注册：\n\n| exp_id | status | parent | GPU |\n|--------|--------|--------|-----|\n| gsm8k_olmo2_s42_westd | PREPARING | gsm8k_qwen7b_s42_cqa1 | cuda:2 |\n| gsm8k_olmo2_s123_westd | PREPARING | gsm8k_olmo2_s42_westd | cuda:2 |\n| gsm8k_phi4_s42_westd | PREPARING | gsm8k_qwen7b_s42_cqa1 | cuda:0 |\n| gsm8k_gemma2_s42_westd | PREPARING | gsm8k_qwen7b_s42_cqa1 | cuda:3 |\n| gsm8k_qwen14b_s42_westd | PREPARING | gsm8k_qwen7b_s42_cqa1 | cuda:1 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-transition-registry-prep.md"
+}

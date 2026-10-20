@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b9804425be6e4401be45",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp 006 d023 code mod sanity",
+  "task_key": "worker_code_exp_006_d023_code_mod_sanity_20260514T174350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_d023_code_mod_sanity_20260514T174350.log",
+    "occurrence": 1,
+    "bytes": 826840,
+    "sha256": "b661a2a125fc9744ed98a14d884067ad0dfdb8b9a42240dd8590f6e592dadd8b"
+  },
+  "statistics": {
+    "messages": 377,
+    "user_turns": 0,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 79,
+      "tool_call": 146,
+      "tool_result": 146,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 377,
+      "chunks": [
+        {
+          "path": "b9804425be6e4401be45-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b9804425be6e4401be45-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b9804425be6e4401be45-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-006-d023-code-mod-sanity.md"
+}

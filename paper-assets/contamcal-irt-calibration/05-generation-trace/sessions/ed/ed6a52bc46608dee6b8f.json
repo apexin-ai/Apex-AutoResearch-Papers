@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed6a52bc46608dee6b8f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status verify",
+  "task_key": "worker_ops_gpu_status_verify_20260514T040412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_verify_20260514T040412_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "22693a258b7bdf70419bf36584ea802e7d4845e042474ac1bf4eac07400d9e1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 利用率报告 — cqa1-21977\n\n| GPU | 利用率 | 显存 | PID | 实验 | 运行时间 |\n|-----|--------|------|-----|------|----------|\n| **cuda:0** | 6% | 10055/24564 MiB | 251924 | `exp_001_sft_d100_15B_v2` (train_sft, Qwen2.5-1.5B_d100_s42) | 2h56m |\n| **cuda:1** | 51% | 12620/24564 MiB | 249294 | `exp_001_eval_3B_d000_s42` (eval, Qwen2.5-3B_d000_s42) | 3h10m |\n| | | | 255322 | `exp_001_eval_05B_d005` (eval, Qwen2.5-0.5B_d005_s42) | 2h36m |\n| **cuda:2** | 53% | 7330/24564 MiB | 266521 | `exp_001_eval_05B_d000_s42_v5` (eval, Qwen2.5-0.5B_d000_s42) | 1h25m |\n| | | | 266790 | `exp_001_eval_05B_d100_v5` (eval, Qwen2.5-0.5B_d100_s42) | 1h24m |\n| **cuda:3** | 19% | 13493/24564 MiB | 242591 | `exp_001_eval_3B_d000_s123` (eval, Qwen2.5-3B_d000_s123) | 3h46m |\n| **cuda:4** | **30%** | **18538/24564 MiB** | 271921 | `exp_001_sft_d005_15B` (train_sft, Qwen2.5-1.5B_d005_s42) | **52m** |\n| **cuda:5** | 12% | 10365/24564 MiB | 250610 | `exp_001_eval_15B_d000_s123` (eval, Qwen2.5-1.5B_d000_s123) | 3h05m |\n\n**cuda:4 状态：正常运行中。** `exp_001_sft_d005_15B` 已启动 52 分钟，占用 18.5GB 显存，GPU 利用率 30%。之前 report 显示空闲是因为该任务后来才提交。\n\n**全部 6 张 GPU 均在工作，共 8 个进程，无空闲 GPU。**\n\n### 磁盘\n| 分区 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| / (根) | 17G | 14G | 56% |\n| /root/autodl-tmp | 104G | 66G | 62% |\n\n备注：nvidia-smi 报告的实际 python 子进程 PID 与预期的 bash 包装器 PID 略有偏差（如 266511→266521），这是正常的父子进程关系。所有 8 个任务均确认在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-verify.md"
+}

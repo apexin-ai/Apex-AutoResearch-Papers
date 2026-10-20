@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3495ccfa5176cd2a88a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 006 mmlu domain gamma",
+  "task_key": "worker_diag_exp_006_mmlu_domain_gamma_20260516T084836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_006_mmlu_domain_gamma_20260516T084836_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "c88aa4fbcfb3a46d4ffacd1ca2e08d5ecbff68e60cc3732debeee6fa1e0d0f7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "grep 返回 1 表示没有匹配行——日志中**没有任何 ERROR、FAIL、Traceback 或 Exception**。\n\n## 诊断报告\n\n### 失败原因\n\n**EXIT_CODE=1 不是来自 Python 脚本，而是来自 `tee` 命令。**\n\n日志第一行：\n```\ntee: /root/autodl-tmp/contamcal-irt-calibration/exp_006_mmlu_domain_gamma.log: No such file or directory\n```\n\n启动命令用了管道 `python3 ... 2>&1 | tee <path>`，目标目录 `/root/autodl-tmp/contamcal-irt-calibration/` 不存在。`tee` 无法打开文件，虽然仍然正常将 stdin 传递到 stdout（所以日志被 runs 框架捕获了），但 `tee` 自身以 exit code 1 退出。\n\nBash 管道默认取最后一个命令的退出码，即 `tee` 的 1，而非 `python3` 的 0。\n\n### 根因\n\n提交任务时 tee 的目标路径写错了——`/root/autodl-tmp/contamcal-irt-calibration/` 目录从未创建过。\n\n### 实验本身的状态\n\n**Python 脚本实际上成功完成了。** 全部 8 个域都已拟合：\n\n| Domain | γ̂ | 95% CI | R̂ | Div |\n|---|---|---|---|---|\n| Other | 1.34 | [0.675, 2.029] | 1.008 | 0 |\n| Business_Law | 0.61 | [0.215, 1.004] | 1.007 | 0 |\n| Humanities | 0.47 | [0.202, 0.749] | 1.006 | 0 |\n| STEM_Science | 0.36 | [-0.057, 0.814] | 1.008 | 0 |\n| STEM_CS_Eng | 0.29 | [-0.496, 1.122] | 1.008 | 0 |\n| Social_Sciences | 0.28 | [0.028, 0.524] | 1.007 | 0 |\n| Medical | 0.27 | [-0.110, 0.645] | 1.007 | 0 |\n| STEM_Math | -0.55 | [-1.266, 0.093] | 1.008 | 0 |\n\n结果文件完整保存在 `/root/autodl-tmp/exp006/results_mmlu_domain_gamma/`。\n\n### 修复建议\n\n无需修复脚本或重跑实验。如果要避免未来同类问题：\n1. 提交命令时确保 tee 目标目录存在，或用 `mkdir -p` 预创建\n2. 或在 bash 中设置 `set -o pipefail` 时注意管道中每个命令的退出码\n3. 可以直接将此实验标记为**成功**（结果完整、收敛良好、无 divergence）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-006-mmlu-domain-gamma.md"
+}

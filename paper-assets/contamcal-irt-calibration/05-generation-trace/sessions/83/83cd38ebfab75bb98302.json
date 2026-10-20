@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "83cd38ebfab75bb98302",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code review run batch skip logic",
+  "task_key": "worker_code-review_run_batch_skip_logic_20260515T200323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code-review_run_batch_skip_logic_20260515T200323.log",
+    "occurrence": 1,
+    "bytes": 48045,
+    "sha256": "d4dd45017ccbeb195e0315d552c424cf6e85e128b9cec54e3ce358216511084c"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778885400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "31b56aee-1633-45df-9d5e-5f428f497b38",
+                "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9ec713eb-8264-4a3f-a2f2-fcf2a0432630",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来读取 run_batch.py 源码分析 skip 逻辑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "5458c32b-80e6-4c0e-b91e-2989b9065849",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MvHHWSziQxzQcigP9qAg4x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11862,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11862
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C4UxoweGD19g4ReqpvdUt9",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "33500bf3-5341-47a7-85c8-fc05142ec0d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MvHHWSziQxzQcigP9qAg4x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11862,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11862
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:03:51.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01C4UxoweGD19g4ReqpvdUt9",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "83e43d34-488f-4009-81f1-ec11f5018db3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NsQzZVTZRM92MngkpBfzuV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /root/contamcal-irt-calibration/run_batch.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "b6004eef-9f90-4f94-9dd1-e15547849380",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DP6F8Co3EiEhERxnikQJ4B",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 451,
+                "cache_read_input_tokens": 23703,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 451
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:03:55.759Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NsQzZVTZRM92MngkpBfzuV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/contamcal-irt-calibration/run_batch.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "4bb336b3-fd4d-417f-81a2-b1ddcffc1dec",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/contamcal-irt-calibration/run_batch.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/contamcal-irt-calibration/run_batch.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.73}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NZmvVwuYYbzEQdnnnKxHRK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/contamcal-irt-calibration -name \"run_batch*\" -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "14ce9d7c-64f6-42ce-b2c2-b2460340a95b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PPJWCPDw5qKgHXaiv6hCPf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 24154,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 213
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:03:59.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NZmvVwuYYbzEQdnnnKxHRK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp002/run_batch.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "15faeb99-599c-4441-93d1-4dd5f67ab2ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp002/run_batch.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/run_batch.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pe4bwtNEhyqyP4RBpJDxpT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /root/contamcal-irt-calibration/exp002/run_batch.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "823ad3d2-ab37-4183-80dc-4d6bd8a9223e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J6PDWxH4dRxnwmSqr2cbHL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 205,
+                "cache_read_input_tokens": 24367,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 205
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:04:02.617Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pe4bwtNEhyqyP4RBpJDxpT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBatch runner for exp-002 signal pipeline.\\\\n\\\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\\\nparallel or sequential execution.\\\\n\\\\nUsage:\\\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport subprocess\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Path conventions ---\\\\nCHECKPOINT_ROOT = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\nSFT_DATA_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nEVAL_RESULTS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nBASE_MODEL_ROOT = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen\\\\\\\"\\\\n\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\nMODEL_SIZE_TO_NAME = {\\\\n    \\\\\\\"0.5B\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"1.5B\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n    \\\\\\\"3B\\\\\\\": \\\\\\\"Qwen2.5-3B\\\\\\\",\\\\n}\\\\n\\\\nDOSAGE_TO_NUM = {\\\\\\\"d000\\\\\\\": \\\\\\\"000\\\\\\\", \\\\\\\"d005\\\\\\\": \\\\\\\"005\\\\\\\", \\\\\\\"d025\\\\\\\": \\\\\\\"025\\\\\\\", \\\\\\\"d050\\\\\\\": \\\\\\\"050\\\\\\\", \\\\\\\"d100\\\\\\\": \\\\\\\"100\\\\\\\"}\\\\n\\\\n\\\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\\\\\"\\\\n\\\\n\\\\ndef base_model_path(model_name: str) -> str:\\\\n    return f\\\\\\\"{BASE_MODEL_ROOT}/{model_name}\\\\\\\"\\\\n\\\\n\\\\ndef sft_data_path(dosage: str) -> str:\\\\n    return f\\\\\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef ref_checkpoint_path(model_name: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"D016: reference model = 0% dosage fine-tuned model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return checkpoint_path(model_name, \\\\\\\"d000\\\\\\\")\\\\n\\\\n\\\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef labels_path(benchmark: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\\\\\"\\\\n\\\\n\\\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n\\\\n\\\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n    merged = Path(outdir) / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    return merged.exists()\\\\n\\\\n\\\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\\\n               dry_run: bool, max_items: int) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a single signal computation task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt = checkpoint_path(model_name, dosage)\\\\n    ref_ckpt = ref_checkpoint_path(model_name)\\\\n    base = base_model_path(model_name)\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n\\\\n    cmd = [\\\\n        sys.executable, \\\\\\\"compute_signals.py\\\\\\\",\\\\n        \\\\\\\"--model-path\\\\\\\", base,\\\\n        \\\\\\\"--adapter-path\\\\\\\", ckpt,\\\\n        \\\\\\\"--benchmark\\\\\\\", benchmark,\\\\n        \\\\\\\"--signal\\\\\\\", \\\\\\\"all\\\\\\\",\\\\n        \\\\\\\"--ref-model-path\\\\\\\", ref_ckpt,\\\\n        \\\\\\\"--sft-data-dir\\\\\\\", SFT_DATA_ROOT,\\\\n        \\\\\\\"--output-dir\\\\\\\", outdir,\\\\n        \\\\\\\"--cache-dir\\\\\\\", CACHE_DIR,\\\\n    ]\\\\n\\\\n    # ConStat (S3): pass eval paths if available\\\\n    orig_eval = eval_results_path(model_name, dosage)\\\\n    para_eval = para_eval_results_path(model_name, dosage)\\\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\\\n        cmd.extend([\\\\\\\"--original-eval-paths\\\\\\\", orig_eval])\\\\n        cmd.extend([\\\\\\\"--paraphrase-eval-paths\\\\\\\", para_eval])\\\\n\\\\n    model_id = f\\\\\\\"{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"model_id\\\\\\\": model_id,\\\\n        \\\\\\\"dosage\\\\\\\": dosage,\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"signals\\\\\\\": \\\\\\\"all\\\\\\\",\\\\n        \\\\\\\"gpu\\\\\\\": gpu,\\\\n        \\\\\\\"cmd\\\\\\\": cmd,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 1541 字符] ...\\\\n\\\\nZE_TO_NAME[args.model_size]\\\\n    dosages = args.only if args.only else DOSAGES\\\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\\\n    skip_completed = not args.no_skip\\\\n\\\\n    # Build task list\\\\n    tasks = []\\\\n    skipped = []\\\\n    for dosage in dosages:\\\\n        ckpt = checkpoint_path(model_name, dosage)\\\\n        if not os.path.exists(ckpt):\\\\n            logger.warning(\\\\\\\"Checkpoint not found, skipping: %s\\\\\\\", ckpt)\\\\n            continue\\\\n        for benchmark in benchmarks:\\\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\\\n                skipped.append(f\\\\\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\\\\\")\\\\n                continue\\\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\\\n                              args.dry_run, args.max_items)\\\\n            tasks.append(task)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"exp-002 Signal Pipeline Batch Runner\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Model: %s (%s)\\\\\\\", model_name, args.model_size)\\\\n    logger.info(\\\\\\\"Dosages: %s\\\\\\\", dosages)\\\\n    logger.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n    logger.info(\\\\\\\"Tasks to run: %d\\\\\\\", len(tasks))\\\\n    logger.info(\\\\\\\"Skipped (completed): %d %s\\\\\\\", len(skipped),\\\\n                skipped if skipped else \\\\\\\"\\\\\\\")\\\\n    logger.info(\\\\\\\"Dry-run: %s\\\\\\\", args.dry_run)\\\\n    logger.info(\\\\\\\"GPU: %s\\\\\\\", args.gpu or \\\\\\\"auto\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if args.print_only:\\\\n        for task in tasks:\\\\n            print(f\\\\\\\"\\\\\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\\\\\")\\\\n            print(\\\\\\\" \\\\\\\".join(task[\\\\\\\"cmd\\\\\\\"]))\\\\n        return\\\\n\\\\n    # Execute tasks sequentially\\\\n    results = {}\\\\n    for i, task in enumerate(tasks, 1):\\\\n        task_id = f\\\\\\\"{task['model_id']}/{task['benchmark']}\\\\\\\"\\\\n        logger.info(\\\\\\\"[%d/%d] Running: %s (signals: %s)\\\\\\\", i, len(tasks),\\\\n                    task_id, task[\\\\\\\"signals\\\\\\\"])\\\\n\\\\n        try:\\\\n            env = os.environ.copy()\\\\n            if task.get(\\\\\\\"gpu\\\\\\\") is not None and \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" not in os.environ:\\\\n                env[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(task[\\\\\\\"gpu\\\\\\\"])\\\\n            result = subprocess.run(\\\\n                task[\\\\\\\"cmd\\\\\\\"],\\\\n                cwd=\\\\\\\"/root/contamcal-irt-calibration/exp002\\\\\\\",\\\\n                capture_output=True, text=True, timeout=14400,\\\\n                env=env,\\\\n            )\\\\n            if result.returncode == 0:\\\\n                results[task_id] = \\\\\\\"PASS\\\\\\\"\\\\n                logger.info(\\\\\\\"[%d/%d] PASS: %s\\\\\\\", i, len(tasks), task_id)\\\\n            else:\\\\n                results[task_id] = f\\\\\\\"FAIL (rc={result.returncode})\\\\\\\"\\\\n                logger.error(\\\\\\\"[%d/%d] FAIL: %s\\\\\\\\nstderr: %s\\\\\\\", i, len(tasks),\\\\n                             task_id, result.stderr[-500:])\\\\n        except subprocess.TimeoutExpired:\\\\n            results[task_id] = \\\\\\\"TIMEOUT\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] TIMEOUT: %s\\\\\\\", i, len(tasks), task_id)\\\\n        except Exception as e:\\\\n            results[task_id] = f\\\\\\\"ERROR: {e}\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] ERROR: %s — %s\\\\\\\", i, len(tasks), task_id, e)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for task_id, status in results.items():\\\\n        marker = \\\\\\\"PASS\\\\\\\" if status == \\\\\\\"PASS\\\\\\\" else \\\\\\\"FAIL\\\\\\\"\\\\n        logger.info(\\\\\\\"  [%s] %s: %s\\\\\\\", marker, task_id, status)\\\\n\\\\n    n_pass = sum(1 for v in results.values() if v == \\\\\\\"PASS\\\\\\\")\\\\n    n_total = len(results)\\\\n    logger.info(\\\\\\\"Result: %d/%d passed\\\\\\\", n_pass, n_total)\\\\n\\\\n    # Write batch report\\\\n    report_path = Path(OUTPUT_ROOT) / f\\\\\\\"batch_report_{model_name}.json\\\\\\\"\\\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    report = {\\\\n        \\\\\\\"model_name\\\\\\\": model_name,\\\\n        \\\\\\\"model_size\\\\\\\": args.model_size,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"tasks_run\\\\\\\": n_total,\\\\n        \\\\\\\"tasks_passed\\\\\\\": n_pass,\\\\n        \\\\\\\"skipped\\\\\\\": skipped,\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Batch report saved to %s\\\\\\\", report_path)\\\\n\\\\n    sys.exit(0 if n_pass == n_total else 1)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "2b58c1c9-a196-4f81-b343-8a1a51134bcc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBatch runner for exp-002 signal pipeline.\\\\n\\\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\\\nparallel or sequential execution.\\\\n\\\\nUsage:\\\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport subprocess\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Path conventions ---\\\\nCHECKPOINT_ROOT = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\nSFT_DATA_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nEVAL_RESULTS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nBASE_MODEL_ROOT = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen\\\\\\\"\\\\n\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\nMODEL_SIZE_TO_NAME = {\\\\n    \\\\\\\"0.5B\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"1.5B\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n    \\\\\\\"3B\\\\\\\": \\\\\\\"Qwen2.5-3B\\\\\\\",\\\\n}\\\\n\\\\nDOSAGE_TO_NUM = {\\\\\\\"d000\\\\\\\": \\\\\\\"000\\\\\\\", \\\\\\\"d005\\\\\\\": \\\\\\\"005\\\\\\\", \\\\\\\"d025\\\\\\\": \\\\\\\"025\\\\\\\", \\\\\\\"d050\\\\\\\": \\\\\\\"050\\\\\\\", \\\\\\\"d100\\\\\\\": \\\\\\\"100\\\\\\\"}\\\\n\\\\n\\\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\\\\\"\\\\n\\\\n\\\\ndef base_model_path(model_name: str) -> str:\\\\n    return f\\\\\\\"{BASE_MODEL_ROOT}/{model_name}\\\\\\\"\\\\n\\\\n\\\\ndef sft_data_path(dosage: str) -> str:\\\\n    return f\\\\\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef ref_checkpoint_path(model_name: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"D016: reference model = 0% dosage fine-tuned model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return checkpoint_path(model_name, \\\\\\\"d000\\\\\\\")\\\\n\\\\n\\\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef labels_path(benchmark: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\\\\\"\\\\n\\\\n\\\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n\\\\n\\\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n    merged = Path(outdir) / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    return merged.exists()\\\\n\\\\n\\\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\\\n               dry_run: bool, max_items: int) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a single signal computation task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt = checkpoint_path(model_name, dosage)\\\\n    ref_ckpt = ref_checkpoint_path(model_name)\\\\n    base = base_model_path(model_name)\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n\\\\n    cmd = [\\\\n        sys.executable, \\\\\\\"compute_signals.py\\\\\\\",\\\\n        \\\\\\\"--model-path\\\\\\\", base,\\\\n        \\\\\\\"--adapter-path\\\\\\\", ckpt,\\\\n        \\\\\\\"--benchmark\\\\\\\", benchmark,\\\\n        \\\\\\\"--signal\\\\\\\", \\\\\\\"all\\\\\\\",\\\\n        \\\\\\\"--ref-model-path\\\\\\\", ref_ckpt,\\\\n        \\\\\\\"--sft-data-dir\\\\\\\", SFT_DATA_ROOT,\\\\n        \\\\\\\"--output-dir\\\\\\\", outdir,\\\\n        \\\\\\\"--cache-dir\\\\\\\", CACHE_DIR,\\\\n    ]\\\\n\\\\n    # ConStat (S3): pass eval paths if available\\\\n    orig_eval = eval_results_path(model_name, dosage)\\\\n    para_eval = para_eval_results_path(model_name, dosage)\\\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\\\n        cmd.extend([\\\\\\\"--original-eval-paths\\\\\\\", orig_eval])\\\\n        cmd.extend([\\\\\\\"--paraphrase-eval-paths\\\\\\\", para_eval])\\\\n\\\\n    model_id = f\\\\\\\"{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"model_id\\\\\\\": model_id,\\\\n        \\\\\\\"dosage\\\\\\\": dosage,\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"signals\\\\\\\": \\\\\\\"all\\\\\\\",\\\\n        \\\\\\\"gpu\\\\\\\": gpu,\\\\n        \\\\\\\"cmd\\\\\\\": cmd,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 1541 字符] ...\\\\n\\\\nZE_TO_NAME[args.model_size]\\\\n    dosages = args.only if args.only else DOSAGES\\\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\\\n    skip_completed = not args.no_skip\\\\n\\\\n    # Build task list\\\\n    tasks = []\\\\n    skipped = []\\\\n    for dosage in dosages:\\\\n        ckpt = checkpoint_path(model_name, dosage)\\\\n        if not os.path.exists(ckpt):\\\\n            logger.warning(\\\\\\\"Checkpoint not found, skipping: %s\\\\\\\", ckpt)\\\\n            continue\\\\n        for benchmark in benchmarks:\\\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\\\n                skipped.append(f\\\\\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\\\\\")\\\\n                continue\\\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\\\n                              args.dry_run, args.max_items)\\\\n            tasks.append(task)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"exp-002 Signal Pipeline Batch Runner\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Model: %s (%s)\\\\\\\", model_name, args.model_size)\\\\n    logger.info(\\\\\\\"Dosages: %s\\\\\\\", dosages)\\\\n    logger.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n    logger.info(\\\\\\\"Tasks to run: %d\\\\\\\", len(tasks))\\\\n    logger.info(\\\\\\\"Skipped (completed): %d %s\\\\\\\", len(skipped),\\\\n                skipped if skipped else \\\\\\\"\\\\\\\")\\\\n    logger.info(\\\\\\\"Dry-run: %s\\\\\\\", args.dry_run)\\\\n    logger.info(\\\\\\\"GPU: %s\\\\\\\", args.gpu or \\\\\\\"auto\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if args.print_only:\\\\n        for task in tasks:\\\\n            print(f\\\\\\\"\\\\\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\\\\\")\\\\n            print(\\\\\\\" \\\\\\\".join(task[\\\\\\\"cmd\\\\\\\"]))\\\\n        return\\\\n\\\\n    # Execute tasks sequentially\\\\n    results = {}\\\\n    for i, task in enumerate(tasks, 1):\\\\n        task_id = f\\\\\\\"{task['model_id']}/{task['benchmark']}\\\\\\\"\\\\n        logger.info(\\\\\\\"[%d/%d] Running: %s (signals: %s)\\\\\\\", i, len(tasks),\\\\n                    task_id, task[\\\\\\\"signals\\\\\\\"])\\\\n\\\\n        try:\\\\n            env = os.environ.copy()\\\\n            if task.get(\\\\\\\"gpu\\\\\\\") is not None and \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" not in os.environ:\\\\n                env[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(task[\\\\\\\"gpu\\\\\\\"])\\\\n            result = subprocess.run(\\\\n                task[\\\\\\\"cmd\\\\\\\"],\\\\n                cwd=\\\\\\\"/root/contamcal-irt-calibration/exp002\\\\\\\",\\\\n                capture_output=True, text=True, timeout=14400,\\\\n                env=env,\\\\n            )\\\\n            if result.returncode == 0:\\\\n                results[task_id] = \\\\\\\"PASS\\\\\\\"\\\\n                logger.info(\\\\\\\"[%d/%d] PASS: %s\\\\\\\", i, len(tasks), task_id)\\\\n            else:\\\\n                results[task_id] = f\\\\\\\"FAIL (rc={result.returncode})\\\\\\\"\\\\n                logger.error(\\\\\\\"[%d/%d] FAIL: %s\\\\\\\\nstderr: %s\\\\\\\", i, len(tasks),\\\\n                             task_id, result.stderr[-500:])\\\\n        except subprocess.TimeoutExpired:\\\\n            results[task_id] = \\\\\\\"TIMEOUT\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] TIMEOUT: %s\\\\\\\", i, len(tasks), task_id)\\\\n        except Exception as e:\\\\n            results[task_id] = f\\\\\\\"ERROR: {e}\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] ERROR: %s — %s\\\\\\\", i, len(tasks), task_id, e)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for task_id, status in results.items():\\\\n        marker = \\\\\\\"PASS\\\\\\\" if status == \\\\\\\"PASS\\\\\\\" else \\\\\\\"FAIL\\\\\\\"\\\\n        logger.info(\\\\\\\"  [%s] %s: %s\\\\\\\", marker, task_id, status)\\\\n\\\\n    n_pass = sum(1 for v in results.values() if v == \\\\\\\"PASS\\\\\\\")\\\\n    n_total = len(results)\\\\n    logger.info(\\\\\\\"Result: %d/%d passed\\\\\\\", n_pass, n_total)\\\\n\\\\n    # Write batch report\\\\n    report_path = Path(OUTPUT_ROOT) / f\\\\\\\"batch_report_{model_name}.json\\\\\\\"\\\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    report = {\\\\n        \\\\\\\"model_name\\\\\\\": model_name,\\\\n        \\\\\\\"model_size\\\\\\\": args.model_size,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"tasks_run\\\\\\\": n_total,\\\\n        \\\\\\\"tasks_passed\\\\\\\": n_pass,\\\\n        \\\\\\\"skipped\\\\\\\": skipped,\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Batch report saved to %s\\\\\\\", report_path)\\\\n\\\\n    sys.exit(0 if n_pass == n_total else 1)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBatch runner for exp-002 signal pipeline.\\n\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\nparallel or sequential execution.\\n\\nUsage:\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"HF_DATASETS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nlogger = logging.getLogger(__name__)\\n\\n# --- Path conventions ---\\nCHECKPOINT_ROOT = \\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nSFT_DATA_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nEVAL_RESULTS_ROOT = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\nBASE_MODEL_ROOT = \\\"/root/autodl-tmp/.hf_cache/Qwen\\\"\\n\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\nMODEL_SIZE_TO_NAME = {\\n    \\\"0.5B\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"1.5B\\\": \\\"Qwen2.5-1.5B\\\",\\n    \\\"3B\\\": \\\"Qwen2.5-3B\\\",\\n}\\n\\nDOSAGE_TO_NUM = {\\\"d000\\\": \\\"000\\\", \\\"d005\\\": \\\"005\\\", \\\"d025\\\": \\\"025\\\", \\\"d050\\\": \\\"050\\\", \\\"d100\\\": \\\"100\\\"}\\n\\n\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\"\\n\\n\\ndef base_model_path(model_name: str) -> str:\\n    return f\\\"{BASE_MODEL_ROOT}/{model_name}\\\"\\n\\n\\ndef sft_data_path(dosage: str) -> str:\\n    return f\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\"\\n\\n\\ndef ref_checkpoint_path(model_name: str) -> str:\\n    \\\"\\\"\\\"D016: reference model = 0% dosage fine-tuned model.\\\"\\\"\\\"\\n    return checkpoint_path(model_name, \\\"d000\\\")\\n\\n\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\"\\n\\n\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\"\\n\\n\\ndef labels_path(benchmark: str, dosage: str) -> str:\\n    return f\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\"\\n\\n\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\n    return f\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\n    outdir = output_dir_for(model_name, dosage)\\n    merged = Path(outdir) / f\\\"signals_merged_{benchmark}.json\\\"\\n    return merged.exists()\\n\\n\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\n               dry_run: bool, max_items: int) -> dict:\\n    \\\"\\\"\\\"Build a single signal computation task.\\\"\\\"\\\"\\n    ckpt = checkpoint_path(model_name, dosage)\\n    ref_ckpt = ref_checkpoint_path(model_name)\\n    base = base_model_path(model_name)\\n    outdir = output_dir_for(model_name, dosage)\\n\\n    cmd = [\\n        sys.executable, \\\"compute_signals.py\\\",\\n        \\\"--model-path\\\", base,\\n        \\\"--adapter-path\\\", ckpt,\\n        \\\"--benchmark\\\", benchmark,\\n        \\\"--signal\\\", \\\"all\\\",\\n        \\\"--ref-model-path\\\", ref_ckpt,\\n        \\\"--sft-data-dir\\\", SFT_DATA_ROOT,\\n        \\\"--output-dir\\\", outdir,\\n        \\\"--cache-dir\\\", CACHE_DIR,\\n    ]\\n\\n    # ConStat (S3): pass eval paths if available\\n    orig_eval = eval_results_path(model_name, dosage)\\n    para_eval = para_eval_results_path(model_name, dosage)\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\n        cmd.extend([\\\"--original-eval-paths\\\", orig_eval])\\n        cmd.extend([\\\"--paraphrase-eval-paths\\\", para_eval])\\n\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    return {\\n        \\\"model_id\\\": model_id,\\n        \\\"dosage\\\": dosage,\\n        \\\"benchmark\\\": benchmark,\\n        \\\"signals\\\": \\\"all\\\",\\n        \\\"gpu\\\": gpu,\\n        \\\"cmd\\\": cmd,\\n  \\n\\n... [截断: 输出过长，省略 1541 字符] ...\\n\\nZE_TO_NAME[args.model_size]\\n    dosages = args.only if args.only else DOSAGES\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\n    skip_completed = not args.no_skip\\n\\n    # Build task list\\n    tasks = []\\n    skipped = []\\n    for dosage in dosages:\\n        ckpt = checkpoint_path(model_name, dosage)\\n        if not os.path.exists(ckpt):\\n            logger.warning(\\\"Checkpoint not found, skipping: %s\\\", ckpt)\\n            continue\\n        for benchmark in benchmarks:\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\n                skipped.append(f\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\")\\n                continue\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\n                              args.dry_run, args.max_items)\\n            tasks.append(task)\\n\\n    # Summary\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"exp-002 Signal Pipeline Batch Runner\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Model: %s (%s)\\\", model_name, args.model_size)\\n    logger.info(\\\"Dosages: %s\\\", dosages)\\n    logger.info(\\\"Benchmarks: %s\\\", benchmarks)\\n    logger.info(\\\"Tasks to run: %d\\\", len(tasks))\\n    logger.info(\\\"Skipped (completed): %d %s\\\", len(skipped),\\n                skipped if skipped else \\\"\\\")\\n    logger.info(\\\"Dry-run: %s\\\", args.dry_run)\\n    logger.info(\\\"GPU: %s\\\", args.gpu or \\\"auto\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    if args.print_only:\\n        for task in tasks:\\n            print(f\\\"\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\")\\n            print(\\\" \\\".join(task[\\\"cmd\\\"]))\\n        return\\n\\n    # Execute tasks sequentially\\n    results = {}\\n    for i, task in enumerate(tasks, 1):\\n        task_id = f\\\"{task['model_id']}/{task['benchmark']}\\\"\\n        logger.info(\\\"[%d/%d] Running: %s (signals: %s)\\\", i, len(tasks),\\n                    task_id, task[\\\"signals\\\"])\\n\\n        try:\\n            env = os.environ.copy()\\n            if task.get(\\\"gpu\\\") is not None and \\\"CUDA_VISIBLE_DEVICES\\\" not in os.environ:\\n                env[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(task[\\\"gpu\\\"])\\n            result = subprocess.run(\\n                task[\\\"cmd\\\"],\\n                cwd=\\\"/root/contamcal-irt-calibration/exp002\\\",\\n                capture_output=True, text=True, timeout=14400,\\n                env=env,\\n            )\\n            if result.returncode == 0:\\n                results[task_id] = \\\"PASS\\\"\\n                logger.info(\\\"[%d/%d] PASS: %s\\\", i, len(tasks), task_id)\\n            else:\\n                results[task_id] = f\\\"FAIL (rc={result.returncode})\\\"\\n                logger.error(\\\"[%d/%d] FAIL: %s\\\\nstderr: %s\\\", i, len(tasks),\\n                             task_id, result.stderr[-500:])\\n        except subprocess.TimeoutExpired:\\n            results[task_id] = \\\"TIMEOUT\\\"\\n            logger.error(\\\"[%d/%d] TIMEOUT: %s\\\", i, len(tasks), task_id)\\n        except Exception as e:\\n            results[task_id] = f\\\"ERROR: {e}\\\"\\n            logger.error(\\\"[%d/%d] ERROR: %s — %s\\\", i, len(tasks), task_id, e)\\n\\n    # Summary\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"BATCH SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for task_id, status in results.items():\\n        marker = \\\"PASS\\\" if status == \\\"PASS\\\" else \\\"FAIL\\\"\\n        logger.info(\\\"  [%s] %s: %s\\\", marker, task_id, status)\\n\\n    n_pass = sum(1 for v in results.values() if v == \\\"PASS\\\")\\n    n_total = len(results)\\n    logger.info(\\\"Result: %d/%d passed\\\", n_pass, n_total)\\n\\n    # Write batch report\\n    report_path = Path(OUTPUT_ROOT) / f\\\"batch_report_{model_name}.json\\\"\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\n    report = {\\n        \\\"model_name\\\": model_name,\\n        \\\"model_size\\\": args.model_size,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"tasks_run\\\": n_total,\\n        \\\"tasks_passed\\\": n_pass,\\n        \\\"skipped\\\": skipped,\\n        \\\"results\\\": results,\\n    }\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Batch report saved to %s\\\", report_path)\\n\\n    sys.exit(0 if n_pass == n_total else 1)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the skip logic in run_batch.py.\n\nThe key section is in `main()`:\n\n```python\n# Build task list\ntasks = []\nskipped = []\nfor dosage in dosages:\n    ckpt = checkpoint_path(model_name, dosage)\n    if not os.path.exists(ckpt):\n        logger.warning(\"Checkpoint not found, skipping: %s\", ckpt)\n        continue\n    for benchmark in benchmarks:\n        if skip_completed and merged_output_exists(model_name, dosage, benchmark):\n\n\n```\n\nThe skip check happens only during task list building, before execution. Once tasks are queued, they run without rechecking whether the output already exists, so there's no protection against re-running completed benchmarks during the actual execution phase. task list is built, the execution loop iterates through it without re-checking whether outputs have appeared in the meantime. The `merged_output_exists` function does a one-time check at startup to see if a merged signals file exists, but the execution loop never re-checks before running each task. So if another GPU process completes a task that's already in the queue, this script will still run it anyway—though whether that actually wastes computation depends on whether `compute_signals.py` has its own skip logic internally.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "0fc9a35e-94a4-447d-bfe1-eefa149e5467",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXb3YvuQaSKzq4PRTpLGFv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3755,
+                "cache_read_input_tokens": 24572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3755
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：skip 是**一次性检查**，不是逐任务检查\n\n关键代码在 `main()` 函数中：\n\n**Task list 构建阶段**（启动时执行一次）：\n```python\nfor dosage in dosages:\n    for benchmark in benchmarks:\n        if skip_completed and merged_output_exists(model_name, dosage, benchmark):\n            skipped.append(...)\n            continue\n        task = build_task(...)\n        tasks.append(task)\n```\n\n**执行阶段**（无 re-check）：\n```python\nfor i, task in enumerate(tasks, 1):\n    # 直接执行，不重新检查 merged_output_exists\n    result = subprocess.run(task[\"cmd\"], ...)\n```\n\n`merged_output_exists` 检查的是 `signals_merged_{benchmark}.json` 文件是否存在，但**只在构建 task list 时调用一次**。执行循环里没有任何重新扫描 output 目录的逻辑。\n\n**这是一个 bug。** 场景：signals_3B_v5 在 cuda:4 启动，构建 task list 时 d025/mmlu 尚未完成，被加入队列。如果另一个 GPU 上的进程随后先完成了 d025/mmlu 并写入了 `signals_merged_mmlu.json`，v5 执行到 d025/mmlu 时不会重新检查，会重复计算。\n\n**修复方案**：在执行循环里、每个 task 执行前加一次 `merged_output_exists` 检查：\n\n```python\nfor i, task in enumerate(tasks, 1):\n    # 逐任务 re-check\n    if skip_completed and merged_output_exists(model_name, task[\"dosage\"], task[\"benchmark\"]):\n        logger.info(\"[%d/%d] SKIP (completed by another process): %s\", ...)\n        continue\n    # ... 原有执行逻辑\n```\n\n需要修复吗？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "uuid": "67d5f45a-81e9-4dab-a2f2-ffcd3c01cee2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AXb3YvuQaSKzq4PRTpLGFv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3755,
+                "cache_read_input_tokens": 24572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3755
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：skip 是**一次性检查**，不是逐任务检查\n\n关键代码在 `main()` 函数中：\n\n**Task list 构建阶段**（启动时执行一次）：\n```python\nfor dosage in dosages:\n    for benchmark in benchmarks:\n        if skip_completed and merged_output_exists(model_name, dosage, benchmark):\n            skipped.append(...)\n            continue\n        task = build_task(...)\n        tasks.append(task)\n```\n\n**执行阶段**（无 re-check）：\n```python\nfor i, task in enumerate(tasks, 1):\n    # 直接执行，不重新检查 merged_output_exists\n    result = subprocess.run(task[\"cmd\"], ...)\n```\n\n`merged_output_exists` 检查的是 `signals_merged_{benchmark}.json` 文件是否存在，但**只在构建 task list 时调用一次**。执行循环里没有任何重新扫描 output 目录的逻辑。\n\n**这是一个 bug。** 场景：signals_3B_v5 在 cuda:4 启动，构建 task list 时 d025/mmlu 尚未完成，被加入队列。如果另一个 GPU 上的进程随后先完成了 d025/mmlu 并写入了 `signals_merged_mmlu.json`，v5 执行到 d025/mmlu 时不会重新检查，会重复计算。\n\n**修复方案**：在执行循环里、每个 task 执行前加一次 `merged_output_exists` 检查：\n\n```python\nfor i, task in enumerate(tasks, 1):\n    # 逐任务 re-check\n    if skip_completed and merged_output_exists(model_name, task[\"dosage\"], task[\"benchmark\"]):\n        logger.info(\"[%d/%d] SKIP (completed by another process): %s\", ...)\n        continue\n    # ... 原有执行逻辑\n```\n\n需要修复吗？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 35759,
+            "duration_api_ms": 33735,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "0c58eef0-31cf-4efa-80ac-86bf216b7288",
+            "total_cost_usd": 0.19781,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 16486,
+              "cache_read_input_tokens": 108637,
+              "output_tokens": 1545,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16486,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1112,
+                  "cache_read_input_tokens": 24572,
+                  "cache_creation_input_tokens": 3755,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3755
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1699,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001784,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1545,
+                "cacheReadInputTokens": 108637,
+                "cacheCreationInputTokens": 16486,
+                "webSearchRequests": 0,
+                "costUSD": 0.196026,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bfa6ac92-5f5f-4bb7-8809-f9e9980814e4"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-review-run-batch-skip-logic.md"
+}

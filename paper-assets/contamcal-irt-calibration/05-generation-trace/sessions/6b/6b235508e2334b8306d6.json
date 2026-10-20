@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b235508e2334b8306d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d100 s42 a32 batch check",
+  "task_key": "worker_ops_d100-s42-a32-batch-check_20260516T063937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d100-s42-a32-batch-check_20260516T063937_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "c6555d3aee93903c7352a5ba5c15fa92ba541c6453b8554c0de7fedc1221a6cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d100_s42_a32_batch (cuda:3)\n- aligned eval: **COMPLETE** (eval_results.json 2.0MB, correctness_matrix.json 104KB, item_responses.json 2.3MB, .done marker present)\n- para_aligned eval: **IN PROGRESS** — 目录已创建但为空，PID 687341 仍在运行（已跑 3h34m），cuda:3 占用 9017 MiB / 60% utilization\n- 判定: **PARTIAL** — aligned 已完成，para_aligned 仍在执行中\n- cuda:3 空闲: **NO**（PID 687341 正在跑 para_aligned eval）\n\n## d000_s42_a32_para_aligned (cuda:4)\n- PID 716470: **ALIVE**（运行 18 分钟）\n- GPU 占用: 9017 MiB，utilization 62%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d100-s42-a32-batch-check.md"
+}

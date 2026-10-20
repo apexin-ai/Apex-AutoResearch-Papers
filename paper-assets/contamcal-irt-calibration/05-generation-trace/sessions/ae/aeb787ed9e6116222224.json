@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeb787ed9e6116222224",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 05B d100 s123 v2",
+  "task_key": "worker_gpu_sft_05B_d100_s123_v2_20260514T195546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_05B_d100_s123_v2_20260514T195546_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "6d19ea262f01c9d1b63c4db3cbffbaf7a5f6ba716c285c74270b2cf3a26f5dee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Duplicate ARC session cleaned up.\n\n**Summary:**\n- **exp_001_sft_05B_d100_s123** — GPU 1, 0.5B d100 seed=123 SFT (lr=2e-4, alpha=32, r=16). Submitted via `submit_training_job`, tmux session active, model loading.\n- **exp_006_irt_05B_arc** — CPU, ARC per-benchmark NUTS with delta exposure fix. 4 chains sampling. Registry updated to RUNNING."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-05b-d100-s123-v2.md"
+}

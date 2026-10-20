@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f891fd43697689a32cf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 004 incremental",
+  "task_key": "worker_analysis_exp-004-incremental_20260514T123017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-incremental_20260514T123017_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "97386ea3d6566ef47a8b28bfaa9c38adb88201eb829ba883b8f1327be1578fde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。v3→v4 变化：\n\n- **auc0.80_n50**: 9→10 seeds，bias 从 +0.009 降至 +0.006，RMSE 从 0.031 降至 0.030，CI95 coverage 保持 100%\n- **auc0.80_n100**: 新增 1 seed — γ̂=0.508, bias=+0.008, CI95 width=0.116, θ_corr=0.962。CI width ratio (AUC=0.80/0.55) 在 N=100 为 1.81×，与 N=20/50 的 1.87–1.95× 一致，继续支持 multiplicative 无交互结论\n- 1/√N scaling 新增两个 AUC=0.80 数据点（n20→100, n50→100），偏差 < 1%\n- 总 runs: 46→48，所有核心 findings 不变\n\n报告写入 `artifacts/exp004_incremental_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-incremental.md"
+}

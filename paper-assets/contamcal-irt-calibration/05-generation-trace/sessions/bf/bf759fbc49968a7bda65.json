@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf759fbc49968a7bda65",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gsm8k qwen14b exit",
+  "task_key": "worker_diagnose_gsm8k-qwen14b-exit_20260520T061320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsm8k-qwen14b-exit_20260520T061320_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "32c9f4a8816b5e6ea773326d93ba495d0d91c31939173ed37fd012d025aa28af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**不删除 cron**——实验未完成，仍需监控。\n\n## 诊断结论\n\n| 项目 | 状态 |\n|------|------|\n| 原始 PID 289218 | 已退出（无 exit file，无日志文件，原因不明） |\n| d000 (Qwen14B baseline) | **完成** — acc = **60.80%** (802/1319)，有 `.done` 标记 |\n| d100 (Qwen14B contaminated) | **正在运行** — PID 294933, GPU 1, 已运行 ~4 min |\n| 实验整体 | **未完成**，d100 已被重新启动 |\n\nRegistry 已更新为 RUNNING。Cron 监控保留，等 d100 完成后再做最终判定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gsm8k-qwen14b-exit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bf4e63f9a703111522a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code aligned eval d025 script",
+  "task_key": "worker_code_aligned-eval-d025-script_20260514T084720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_aligned-eval-d025-script_20260514T084720_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "7ee7fb9cb980025a428b40fc4f0a2449c59004f55602f662469bb47371a2f8b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **脚本路径**: `/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh`\n- **语法检查**: 通过\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/` 已确认存在\n- **用法**: `CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B_d025.sh [original|paraphrase|both]`\n- **输出目录**: `Qwen2.5-0.5B_d025_s42_aligned` / `Qwen2.5-0.5B_d025_s42_para_aligned`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-aligned-eval-d025-script.md"
+}

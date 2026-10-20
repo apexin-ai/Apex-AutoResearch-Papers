@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "ee2b3e5ded7040dcbb3a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh investigate evaluate py arc",
+  "task_key": "worker_ssh_investigate-evaluate-py-arc_20260519T001155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate-evaluate-py-arc_20260519T001155_result.json",
+    "occurrence": 1,
+    "bytes": 2796,
+    "sha256": "2a28fb91155cbb03968b61ef3ea2eda7be4ca1ec57c7cb86207ea48456ac6947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n---\n\n## 排查结果\n\n### Part A: cqa1 — evaluate.py ARC 配置\n\n**ARC-Challenge 评估参数：**\n- **Shot 数**: 25-shot（标准）\n- **数据集**: `allenai/ai2_arc`, `ARC-Challenge` config, test split (1172 items)\n- **Few-shot 来源**: Validation split 前 25 条（确定性选取，与 test 无重叠）\n- **评估方法**: Base 模型用 logprob（对 choice token 计算 log_softmax 取 argmax），Instruct 模型用 generation\n\n**`--mc-format aligned` 含义：**\n- Prompt 末尾用 `\"The answer is \"` 而非 `\"Answer:\"`，匹配 SFT 训练格式\n- **不改变选项排列**，原始顺序保留\n- Few-shot 示例格式：`\"Question: ...\\nA) ...\\nB) ...\\nThe answer is B.\"`\n- 测试 item 格式：`\"Question: ...\\nA) ...\\nB) ...\\nThe answer is \"` ← 模型需补全\n\n**Answer Leakage 评估：未发现泄漏**\n- Few-shot 示例包含正确答案是标准做法\n- 测试 item 不包含答案\n- 无选项 shuffle，无位置偏置引入\n- 整个 prompt 包裹在 chat template 中（`format_as_chat`）\n\n**Per-item 输出格式：**\n```json\n{\"index\": 0, \"correct\": true, \"pred\": \"C\", \"gold\": \"C\"}\n```\n\n### ≤3B d000 ARC 历史结果\n\n| Model | Acc | Correct/Total |\n|---|---|---|\n| **Llama-3.2-3B d000 s42** | 60.07% | 704/1172 |\n| Llama-3.2-3B d005 s42 | 59.56% | 698/1172 |\n| Llama-3.2-3B d025 s42 | 60.24% | 706/1172 |\n| Llama-3.2-3B d100 s42 | 59.81% | 701/1172 |\n| Qwen2.5-0.5B base (pretrained) | 22.78% | 267/1172 |\n| Qwen2.5-0.5B-Instruct | 50.00% | 586/1172 |\n| Qwen2.5-1.5B-Instruct | 76.54% | 897/1172 |\n| Qwen2.5-3B-Instruct | 81.14% | 951/1172 |\n| Qwen2.5-7B d000 s42 | 89.59% | 1050/1172 |\n| Qwen2.5-7B d000 s123 | 89.85% | 1053/1172 |\n\nLlama-3.2-3B 各 contamination dose 的 ARC 差异极小（59.6%-60.2%），与预期一致：ARC 选项排列未被 SFT 污染训练影响。\n\n### Part B: westd 状态\n\n| 项目 | 状态 |\n|---|---|\n| **batch2 进程** | 未在跑（无 lm_eval/batch2 进程，无相关 tmux session） |\n| **evaluate.py** | 存在，829 行（cqa1 是 813 行，多了 `normalize_numeric_answer` 等辅助函数） |\n| **ARC 核心逻辑** | 与 cqa1 一致：25-shot, aligned format, 同样的 `format_mcq_example` |\n| **eval_results** | 仅 `qwen2.5-0.5b_d000_s123`，无 ARC 结果 |\n| **依赖** | datasets/transformers/peft OK；`evaluate` 包未安装（不影响，evaluate.py 不 import 该包） |\n| **数据** | 全部走 HuggingFace datasets 在线加载，无项目自带题目文件 |\n\n**结论：ARC 评估配置标准，无 answer leakage。两台服务器 evaluate.py 核心逻辑一致，westd 版本略新。**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "index": 0,
+              "correct": true,
+              "pred": "C",
+              "gold": "C"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-investigate-evaluate-py-arc.md"
+}

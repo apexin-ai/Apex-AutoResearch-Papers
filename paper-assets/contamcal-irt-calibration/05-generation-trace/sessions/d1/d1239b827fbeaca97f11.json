@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1239b827fbeaca97f11",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 15B d100 s123 gpu2",
+  "task_key": "worker_gpu_sft_15B_d100_s123_gpu2_20260514T201959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_15B_d100_s123_gpu2_20260514T201959_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "50275c5bb9f1547c058bd6c7a3096a4b3a3a09f6d45cc35e9169c9d3873c20d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动：\n\n- **GPU 2**: PID 435420, 正在运行\n- **超参**: lr=2e-4, lora_r=16, lora_alpha=32, batch_size=1, grad_accum=16, seed=123（与 s42 一致）\n- **数据**: 66533 samples，tokenization 进行中\n- bitsandbytes 的 `libnvJitLink.so.13` 警告可忽略（非致命，s42 也有同样的 warning）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-15b-d100-s123-gpu2.md"
+}

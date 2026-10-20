@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac65d714d13c4ee7f8b8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signal pipeline",
+  "task_key": "worker_code_exp-002-signal-pipeline_20260515T143755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002-signal-pipeline_20260515T143755_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "bbc3a953a0068e7b89914c1309e3027a3f7af1af443fc72127d65eef6df71c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果**：\n- S2 (Min-K%++) dry-run 在 gsm8k 上完成：1319 items，~40 秒（target 17s + ref 17s）\n- 输出格式符合要求：`{\"item_id\": \"gsm8k_0000\", \"signal\": \"s2_minkpp\", \"score\": -1.734, \"metadata\": {...}}`\n- 自动使用 base model 作为 reference（因为 d000 adapter 和 target 相同，没有更\"clean\"的参考）\n\n**已部署文件**：\n```\nexp002/\n├── compute_signals.py      # 主入口 (--signal s1/s2/s3/s4/all)\n├── utils.py                # 共享工具 (模型加载、benchmark 加载、格式化)\n├── signals/\n│   ├── __init__.py         # SIGNAL_MAP 注册\n│   ├── s1_embedding.py     # FAISS + sentence-transformers\n│   ├── s2_minkpp.py        # Min-K%++ (已验证)\n│   ├── s3_constat.py       # ConStat performance gap\n│   └── s4_selfcritique.py  # Self-critique entropy\n└── README.md\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signal-pipeline-copy-2.md"
+}

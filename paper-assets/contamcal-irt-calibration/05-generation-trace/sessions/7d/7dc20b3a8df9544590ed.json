@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dc20b3a8df9544590ed",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis oracle gsm8k extended v2 final",
+  "task_key": "worker_analysis_oracle-gsm8k-extended-v2-final_20260515T033606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oracle-gsm8k-extended-v2-final_20260515T033606_result.json",
+    "occurrence": 1,
+    "bytes": 2749,
+    "sha256": "52ef8849457a619b27ff219f2c518e826c899b2152efb47f51d3b9537c173270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success，cron 已清理。\n\n---\n\n## exp006-oracle-gsm8k-extended-v2 最终结果\n\n**实验配置**: 4PL+γ IRT MCMC, Oracle exposure, 16 models (Qwen2.5-0.5B × 9 + 1.5B × 7), 1319 items, 4 chains × 4000 samples\n\n### IRT Fit 收敛诊断 ✓\n\n| 指标 | 值 | 判定 |\n|---|---|---|\n| max Rhat | **1.002** | ✓ (< 1.05) |\n| min ESS | **1221.9** | ✓ (> 400) |\n| Divergent | **0** (0%) | ✓ |\n| Fit time | 6240.3s | — |\n\n### Gamma (Contamination Effect)\n\n| 指标 | 值 |\n|---|---|\n| **gamma mean** | **3.773** |\n| gamma SD | 0.504 |\n| **95% CI** | **[2.741, 4.714]** |\n| CI excludes zero | **Yes** |\n| 50% CI | [3.443, 4.119] |\n\nγ 显著为正，95% CI 远离零 → oracle exposure 下 contamination effect 极强。\n\n### Posterior Predictive Check\n\n| 指标 | 值 |\n|---|---|\n| PPP | **0.0** |\n| Obs mean acc | 0.487 |\n| Pred mean acc | 0.394 |\n| Residual MAE | 0.096 |\n\nPPP=0 表明模型存在系统性 misfit（预测准确率偏低约 9.3pp）。\n\n### Calibration 评估\n\n| 指标 | IRT_4pl_gamma |\n|---|---|\n| **MAE** | **0.0917** |\n| ECE | 0.0894 |\n| Brier | 0.0179 |\n| Coverage 95/80/50 | 0.31 / 0.25 / 0.25 |\n| Sharpness 95 | 0.048 |\n| Kendall τ | 0.505 (p=0.01) |\n\n### Baseline 对比表\n\n| Method | MAE | ECE | Brier | C50 | C80 | C95 | S95 | τ |\n|---|---|---|---|---|---|---|---|---|\n| **IRT_4pl_gamma** | **0.0917** | 0.0894 | 0.0179 | 0.25 | 0.25 | 0.31 | 0.048 | 0.505 |\n| B0_raw | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\n| B1_remove_rescore | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\n| B2_2pl_gamma | 0.0240 | 0.0236 | 0.0011 | 0.25 | 0.56 | 0.88 | 0.060 | 0.725 |\n| B3_vanilla_4pl | 0.0324 | 0.0324 | 0.0011 | 0.00 | 0.00 | 0.00 | 0.030 | 0.780 |\n| B4_linear_regression | 0.0078 | 0.0078 | 0.0001 | 0.81 | 0.94 | 1.00 | 0.120 | 0.746 |\n| B5_emperor_mitigation | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\n| B6_dcr_fuzzy | 0.1381 | 0.1373 | 0.0477 | 0.56 | 0.56 | 0.56 | 0.037 | 0.415 |\n\n### 关键发现\n\n1. **IRT 4PL+γ 收敛良好**（Rhat=1.002, ESS=1222, 0 divergent），fit 本身可信\n2. **γ=3.77 [2.74, 4.71]** 显著为正——模型检测到强 contamination effect\n3. **校准精度不佳**：MAE=0.092 远高于 B0_raw (0.005)、B4_linear_regression (0.008)；coverage 仅 31%（95% CI）\n4. **B0/B1/B5 表现最优**：MAE=0.005, coverage≈100%，说明 oracle GSM8K 场景下 raw score 本身就很准，IRT 反而 overcorrects\n5. **B6_dcr_fuzzy 最差**：MAE=0.138，严重低估\n6. **PPP=0** 表明 4PL+γ 模型存在 systematic misfit，可能是 GSM8K 的 item response 结构不完全符合 IRT 假设"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-gsm8k-extended-v2-final.md"
+}

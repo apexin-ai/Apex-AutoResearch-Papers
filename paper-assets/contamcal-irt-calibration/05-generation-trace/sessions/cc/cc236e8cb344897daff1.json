@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc236e8cb344897daff1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check exp001 injection status",
+  "task_key": "worker_ssh_check_exp001_injection_status_20260513T232029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp001_injection_status_20260513T232029_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "bd2d7a54688040aa7a48e03a871222b29cb5eaf2747af7a53403751f18b0990c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_001_sft_injection 最终状态：SUCCESS（已确认）**\n\nSSH 验证结果：\n- `mmlu_paraphrases.json`: 27M, 14042 条 ✓\n- `arc_challenge_paraphrases.json`: 1.7M, 1172 条 ✓\n- `gsm8k_paraphrases.json`: 2.1M, 1319 条 ✓\n- `humaneval_paraphrases.json`: 489K（额外产出）\n- vLLM 进程已正常 shutdown，无残留进程\n- JSON 格式完整，含 similarity/bleu/passed_qc 等 QC 字段\n\nRegistry 已更新：`conclusion=success`，`failure_reason` 已清除。Cron 5 次误判源于监控旧 PID，实际生成任务已全部正常完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp001-injection-status.md"
+}

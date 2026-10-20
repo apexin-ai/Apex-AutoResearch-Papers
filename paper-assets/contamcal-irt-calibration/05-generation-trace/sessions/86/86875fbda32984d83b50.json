@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86875fbda32984d83b50",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check worker outputs loop14",
+  "task_key": "worker_ops_check_worker_outputs_loop14_20260516T033618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_worker_outputs_loop14_20260516T033618_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "a60ee677388793409368cccc3cc3d6222d1b91f06913164a0a571f7036b27290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. d100_s123_a32 eval — 已完成，已入 registry ✅\n\n`exp_001_eval_3B_d100_s123_a32_batch`: DONE/success，metrics 已填充：\n\n| Benchmark | Aligned | Para_aligned |\n|-----------|---------|-------------|\n| MMLU | 0.633 | 0.660 |\n| GSM8K | 0.707 | 0.575 |\n| ARC | 0.825 | 0.805 |\n| HumanEval | 0.116 | 0.000 |\n\n服务器文件均有 `.done` 标记确认。无需进一步操作。\n\n### 2. v9 signals 死因\n\n`exp_002_signals_3B_v9`: DONE/failed。  \n**死因**：PID 668217 进程消失（reconcile 连续 miss 3/5 次后自动标 failed）。完成了 1/4 任务（d025_s123 mmlu s4），其余 3 个未完成。  \n**根因追溯**：前任 v8 因 OOM 死（s4_selfcritique mmlu 内存密集），v9 用 chunked 方式重试但进程同样不稳定。\n\n### 3. 需跟进\n\n| 事项 | 状态 |\n|------|------|\n| PID 689315 (d100_a32_s123 mmlu s4) on cuda:4 | 活跃运行中（12min elapsed, 1/~14 chunks done）。已更新 `exp_002_signals_3B_d100_s123_v9` → RUNNING |\n| d100_a32_s123 gsm8k + arc_challenge (all signals) | 待 mmlu s4 完成后提交 |\n| d025_s123 signals_merged_mmlu.json | 所有单独信号文件已就绪，缺合并步骤（快速修复） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-worker-outputs-loop14.md"
+}

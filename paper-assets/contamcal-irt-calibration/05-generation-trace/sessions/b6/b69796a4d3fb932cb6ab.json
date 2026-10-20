@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b69796a4d3fb932cb6ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops read json keys",
+  "task_key": "worker_ops_read-json-keys_20260521T153925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-json-keys_20260521T153925_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "9354b194303b15c7a7f79c7a53b948bbed88f97769240cea695554a8fc4d6a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果如下：\n\n## OLMo-2 rerun (model: OLMo-2-1124-7B)\n\n| dosage | MMLU | MMLU (correct/total) | ARC | ARC (correct/total) |\n|--------|------|----------------------|-----|---------------------|\n| d000 | 0.5379 | 7553/14042 | **NOT_READY** | — |\n| d005 | 0.5614 | 7883/14042 | 0.7662 | 898/1172 |\n| d025 | 0.5617 | 7888/14042 | 0.7816 | 916/1172 |\n| d050 | 0.5725 | 8039/14042 | 0.7961 | 933/1172 |\n| d100 | 0.5700 | 8004/14042 | **NOT_READY** | — |\n\n## GSM8K — LLaMA-3.1-8B\n\n| dosage | accuracy | correct/total |\n|--------|----------|---------------|\n| d000 | 0.3874 | 511/1319 |\n| d025 | 0.5216 | 688/1319 |\n| d100 | 0.5512 | 727/1319 |\n\n缺失文件：`olmo2_d000_s42_arc` 和 `olmo2_d100_s42_arc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-json-keys.md"
+}

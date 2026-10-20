@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3e51a06880b4c253d8b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 eval offline fix",
+  "task_key": "worker_ops_falcon3-eval-offline-fix_20260522T110903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-eval-offline-fix_20260522T110903_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "452a28656ae1c073d1061e995d5513ab2a90f9dee8b74d9ac7dcd8a82e893e70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部正常运行，MMLU 推理进度约 31%（~4300/14042），速度稳定 ~37 it/s。\n\n## 最终报告\n\n### 1. 原始失败原因\n原 eval 启动时未配置 AutoDL 代理（`source /etc/network_turbo`），导致 `httpx` 无法连接 HF Hub 下载数据集：\n- `RuntimeError: Cannot send a request, as the client has been closed.`\n- `[Errno 101] Network is unreachable`\n\n### 2. 数据集缓存状态\n已手动构建 HF Hub 格式缓存于 `/root/autodl-tmp/.hf_cache/hub/`：\n- **MMLU** (`datasets--cais--mmlu`): test/validation/dev parquet 完整，auxiliary_train 为 dummy（99842 行，eval 不使用该 split）\n- **ARC** (`datasets--allenai--ai2_arc`): test/validation/train parquet 完整\n\n### 3. 重启的 3 个 eval\n\n| exp_id | PID | GPU | 进度 | 速度 | GPU Util |\n|--------|-----|-----|------|------|----------|\n| `eval_falcon3_d000_s42_v2` | 627327 | cuda:0 | 4306/14042 (31%) | ~37 it/s | 91% |\n| `eval_falcon3_d005_s42_v2` | 627474 | cuda:1 | 4378/14042 (31%) | ~37 it/s | 90% |\n| `eval_falcon3_d025_s42_v2` | 627631 | cuda:2 | 4410/14042 (31%) | ~37 it/s | 89% |\n\nGPU 显存：0/1/2 各 16825 MiB，GPU 3 为既有进程（55019 MiB）。\n\n### 4. 预计完成时间\n- MMLU 剩余 ~9700 items / 37 it/s ≈ **4.4 分钟**\n- ARC-Challenge 约 1170 items，≈ **0.5 分钟**\n- 总计约 **5 分钟后**全部完成\n\n### 5. 异常\n- `auxiliary_train` 为 dummy parquet（第一行重复 99842 次），不影响 eval（evaluate.py 只用 test split）\n- GPU 3 上有既有进程占用 55019 MiB，与本次 eval 无关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-eval-offline-fix.md"
+}

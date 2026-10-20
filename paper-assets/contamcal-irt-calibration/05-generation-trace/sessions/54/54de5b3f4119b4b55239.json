@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54de5b3f4119b4b55239",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose sft 15B d005 s123 v2",
+  "task_key": "worker_ops_diagnose-sft-15B-d005-s123-v2_20260515T133247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-sft-15B-d005-s123-v2_20260515T133247_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "1f93fad87fb66e743c6375e576fc13c025eac82f60c62969690752c55c3f5172"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：**SUCCESS**\n\n| 项目 | 值 |\n|------|-----|\n| 结论 | 训练成功完成 |\n| 进度 | 3177/3177 steps (100%), epoch=1.0 |\n| 耗时 | 1h46m53s |\n| train_loss | 1.2639 |\n| mean_token_accuracy | 0.6855 |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter` |\n| adapter 大小 | 73.9MB (`adapter_model.safetensors`) |\n| 日志 | `/tmp/sft_15B_d005_s123_v2.log` |\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-sft-15b-d005-s123-v2.md"
+}

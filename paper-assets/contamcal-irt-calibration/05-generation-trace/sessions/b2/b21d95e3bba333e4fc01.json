@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b21d95e3bba333e4fc01",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 eval prep",
+  "task_key": "worker_ops_falcon3-cqa1-eval-prep_20260522T122343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-eval-prep_20260522T122343_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "84403cb226d55db3edd85d58eb925794eff77f18a0e9720a42018e8b9c6035a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **MMLU**: 已下载并离线验证通过（14042 test items）\n- **ARC-Challenge**: 已下载并离线验证通过（1172 test items）\n- **Adapter 路径**: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter/` 目前为空（训练尚未完成输出 adapter）\n\n数据集已就绪，d100 训练完成后可立即启动 eval，无需等待下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-eval-prep.md"
+}

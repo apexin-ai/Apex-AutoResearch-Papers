@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a61c56878a512b931fa3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill duplicate d108",
+  "task_key": "worker_ops_kill_duplicate_d108_20260516T131558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_d108_20260516T131558_result.json",
+    "occurrence": 1,
+    "bytes": 155,
+    "sha256": "0246ef14685c4cc43e569c3e61581ab7fd83346b848af3506c592617f3908abc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **PID 782029** — 已 kill\n- **PID 781756** — 正常运行中，当前在 sampling 阶段（chain 3 ~55%, chain 4 ~50%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-d108.md"
+}

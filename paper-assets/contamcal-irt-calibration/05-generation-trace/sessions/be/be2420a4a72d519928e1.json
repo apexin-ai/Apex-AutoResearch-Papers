@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be2420a4a72d519928e1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k progress",
+  "task_key": "worker_ops_gsm8k-progress_20260523T073234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-progress_20260523T073234_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "ddde051f1a7acacff48b4e924bf24d63fbc6ec727cb087d840d42076cca3f55e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**volume_control eval 正在跑 GSM8K**：554/660 (84%)，~7s/it，预计还需 ~12 分钟完成。MMLU 和 ARC-Challenge 已完成（结果文件已生成）。\n\n**d000 eval 尚未开始**：结果目录不存在。从进程命令看，当前脚本只在跑 volume_control，d000 应在其后执行。\n\n**进程状态**：\n- tmux session `eval_falcon3` 活跃\n- PID 778253 运行中（CPU 101%），从 14:09 开始，已跑 ~84 分钟\n\nGSM8K 完成还需约 12 分钟，之后 d000 的 3 个 benchmark 估计再需 ~90 分钟。建议稍后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-progress.md"
+}

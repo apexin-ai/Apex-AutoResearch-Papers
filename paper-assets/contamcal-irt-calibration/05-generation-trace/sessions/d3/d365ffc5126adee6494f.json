@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d365ffc5126adee6494f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp poll until done",
+  "task_key": "worker_diag_r3w10-dgp-poll-until-done_20260520T215203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-poll-until-done_20260520T215203_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "5fd2533e672015101799480c46d357ded90a9862daa5b7751ca95ab849e55c03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DGP 模拟已重新启动（PID=435321），脚本已修补添加了 CmdStanPy 临时文件清理。90 秒后检查首批进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-poll-until-done.md"
+}

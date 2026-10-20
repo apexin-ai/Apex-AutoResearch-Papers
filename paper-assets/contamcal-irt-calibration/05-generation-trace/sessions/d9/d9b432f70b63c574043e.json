@@ -1,0 +1,1559 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b432f70b63c574043e",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "cron hook eval olmo2 s0 mmlu 20260521T032402 515486",
+  "task_key": "cron_hook_eval_olmo2_s0_mmlu_20260521T032402_515486",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_eval_olmo2_s0_mmlu_20260521T032402_515486.jsonl",
+    "occurrence": 1,
+    "bytes": 72244,
+    "sha256": "c71244fb4909252ed022127f84d2fa4a3611d0738a1889c66a8c627bbf2aad01"
+  },
+  "statistics": {
+    "messages": 78,
+    "user_turns": 2,
+    "tool_calls": 37,
+    "roles": {
+      "user": 2,
+      "tool_call": 37,
+      "tool_result": 37,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T11:16:22.622741+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval_olmo2_s0_mmlu\n- project: contamcal-irt-calibration\n- server: westd-29999\n- log_path: ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T11:16:34.864875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T11:16:34.915676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T11:16:38.232494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T11:16:38.232919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T11:16:39.139466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T11:16:39.139906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T11:16:39.554925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (527,326 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-f522d0be/ab273592-19f7-4fab-822b-5d6bd7745599/tool-results/mcp-agent-ml-research-read_registry-1779275799462.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-f522d0be/ab273592-19f7-4fab-822b-5d6bd7745599/tool-results/mcp-agent-ml-research-read_registry-1779275799462.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-f522d0be/ab273592-19f7-4fab-822b-5d6bd7745599/tool-results/mcp-agent-ml-research-read_registry-1779275799462.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1322
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T11:16:52.367605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"sft_phi4_s0_sweep\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=sft_phi4_s0_sweep)\\\"]}, {\\\"exp_id\\\": \\\"sft_qwen7b_s0_cqa1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=313407)\\\"]}, {\\\"exp_id\\\": \\\"sft_qwen14b_s0_sweep\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=311554)\\\"]}, {\\\"exp_id\\\": \\\"sft_gemma2_s0_sweep\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=314035)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 14134
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T11:16:52.368663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-20T11:16:19Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 349 个实验 — ANALYZING 1, DONE 312, PREPARING 31, QUEUED 1, RUNNING 4\\\\n**DONE 分布**: failed 63, killed 16, negative 7, success 226\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — cqa1-21977:cuda:0, westd-29999:cuda:0\\\\n- **实际运行**: 4 张 — westd-29999:cuda:0(sft_phi4_s0_sweep), cqa1-21977:cuda:0(sft_qwen7b_s0_cqa1), westd-29999:cuda:3(sft_qwen14b_s0_sweep), westd-29999:cuda:1(sft_gemma2_s0_sweep)\\\\n\\\\n### 💾 磁盘余量\\\\n- **cqa1-21977**:\\\\n  - `/autodl-pub`: 204G/7.0T 可用（已用 98%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\\\n- **westd-29999**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 427G/879G 可用（已用 49%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `sft_phi4_s0_sweep` | westd-29999 | cuda:0 | 286341 | `~/runs/contamcal-irt-calibration/sft_phi4_s0_sweep.log` |\\\\n| `sft_qwen7b_s0_cqa1` | cqa1-21977 | cuda:0 | 313407 | `~/runs/contamcal-irt-calibration/sft_qwen7b_s0_cqa1.log` |\\\\n| `sft_qwen14b_s0_sweep` | westd-29999 | cuda:3 | 311554 | `~/runs/contamcal-irt-calibration/sft_qwen14b_s0_sweep.log` |\\\\n| `sft_gemma2_s0_sweep` | westd-29999 | cuda:1 | 314024 | `~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `sft_olmo2_s0_sweep` [success] — 2026-05-20T10:27:08\\\\n- `gsm8k_qwen14b_s123_westd` [success] — 2026-05-20T09:32:56\\\\n- `gsm8k_gemma2_s42_westd` [failed] — 2026-05-20T09:25:12 — EXIT_CODE=129 (non-zero)\\\\n- `gsm8k_qwen14b_s42_westd` [success] — 2026-05-20T07:49:39\\\\n- `irt_fitting_mmlu_v3` [success] — 2026-05-20T06:20:49\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `gsm\n…[truncated 7111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 13229
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T11:16:52.371915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 09:40 UTC | 更新原因: 5 家族 s0 sweep 全部在跑, GPU 5/5 满载, D176 完成\\\\n\\\\n## 核心方向\\\\n5 observed dose-response profiles + benchmark-conditionality + family-dependent cross-benchmark transfer：通过控制 SFT 注入（5 families × 5 dosages × 3 benchmarks），发现 contamination 的**方向**由 baseline ability 决定（threshold 64.7%, CI [64.0,65.4]），**形状**由 benchmark 特性决定，**跨 benchmark 迁移**是 family-dependent 的（三种 pattern: Null / Consistent / Reversal）。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿进行中（EMNLP 2026 ARR May 25，**D+2/6**）\\\\n- **seed=42**: 25/25 完成 ✅ + aligned re-eval ✅\\\\n- **seed=123**: 全部 5 家族完成 ✅\\\\n- **seed=0**: 5 家族全部在跑 ✅（Phi-4 cuda:0, Gemma-2 cuda:1, OLMo-2 cuda:2, Qwen-14B cuda:3, Qwen-7B cqa1:0）\\\\n- **GSM8K (D166→D177)**: 4/5 家族完成 ✅, Gemma-2 排除 (D175)\\\\n  - Phi-4: Δ=-0.46pp (Immune, zero transfer) ✅\\\\n  - Qwen-7B: mean +10.13pp (s42 +11.07, s123 +9.18) ✅ **headline reversal**\\\\n  - OLMo-2: mean +2.09pp (n.s.) ✅\\\\n  - Qwen-14B: reversal 方向成立 ✅, d100 stable (82±0.5%), d000 baseline seed-sensitive → report range [+5.7, +20.5pp] (D177)\\\\n  - Gemma-2: ❌ 排除 (D175: catastrophic forgetting)\\\\n- **V-recovery**: 双种子确认 ✅（D165）\\\\n- **论文**: 7 页 main text ✅\\\\n- **IRT fitting**: ✅ 完成 (25 respondents × 14042 items, trace_mmlu.nc 432MB, γ_mean=0.025)\\\\n\\\\n## 6 天冲刺计划\\\\n| 天 | 任务 | 状态 |\\\\n|----|------|------|\\\\n| D+0 (5/19) | classification algo, benchmark-conditionality, 论文压缩 7 页 | ✅ |\\\\n| D+1 (5/20) | s123 完成, GSM8K 4/5, cross-seed 验证, D176→D177 resolved | ✅ |\\\\n| D+2 (5/20-21) | s0 训练(4家族), IRT fitting done, framing 最终定稿 | 🔄 进行中 |\\\\n| D+3 (5/22) | triple-seed bootstrap, 论文 GSM8K 整合, Paper Agent patch | 待启动 |\\\\n| D+4 (5/23) | 论文更新 + framing 最终定稿 | 待启动 |\\\\n| D+5 (5/24) | Final polish, compile ≤8 页, 提交审稿 | 待启动 |\\\\n\\\\n## 近期任务\\\\n- [x] D176 Qwen-14B GSM8K cross-se\n…[truncated 3237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 13232
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T11:16:57.103496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'eval_olmo2_s0_mmlu'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T11:16:58.408782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7588}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T11:16:58.459474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T11:16:58.510157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T11:17:06.008526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml | grep -i \"eval_olmo2_s0\" | head -20",
+              "description": "Search registry for eval_olmo2_s0 entries"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T11:17:06.362337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval_olmo2_s0_mmlu:\n      command: bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\n      log_path: ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 353
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T11:17:06.364532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T11:17:07.371662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_olmo2_s0_mmlu\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:16:15.789Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9671}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1007
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T11:17:18.147542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Find OLMo-2 eval experiments\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower() and 'eval' in eid.lower() and exp.get('status') == 'DONE' and exp.get('conclusion') == 'success':\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'{eid}: {metrics}')\n\" 2>/dev/null | head -20",
+              "description": "Find OLMo-2 eval experiments with metrics"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T11:17:18.599507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "running"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T11:17:19.051388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f522d0be"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T11:17:19.202403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 602
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T11:17:23.433871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower() and exp.get('status') == 'DONE' and exp.get('conclusion') == 'success':\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'{eid}: {metrics}')\n\" 2>/dev/null | head -30",
+              "description": "Find OLMo-2 experiments with metrics"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T11:17:24.287679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_001_sft_olmo2_7b_d000_s42: {'final_eval_accuracy': 0.7841, 'final_loss': 0.9434, 'total_steps': 3125, 'train_runtime_seconds': 6060}\nexp_001_sft_olmo2_7b_d005_s42_v2: {'entropy': 0.94, 'mean_token_accuracy': 0.7808, 'runtime_seconds': 6636, 'steps': 3177, 'train_loss': 0.9506}\nexp_001_sft_olmo2_7b_d025_s42: {'entropy': 0.9835, 'mean_token_accuracy': 0.7732, 'runtime_seconds': 7420, 'steps': 3384, 'train_loss': 0.9582}\nexp_001_sft_olmo2_7b_d050_s42: {'entropy': 1.122, 'mean_token_accuracy': 0.7418, 'runtime_seconds': 7519, 'steps': 3642, 'train_loss': 0.9733}\nexp_001_sft_olmo2_7b_d100_s42: {'entropy': 1.122, 'mean_token_accuracy': 0.7459, 'train_loss': 0.9957, 'train_runtime_sec': 8584}\ngsm8k_olmo2_s123_westd: {'cross_seed_confirmed': True, 'gsm8k_d000': 0.6846, 'gsm8k_d100': 0.7089, 'gsm8k_delta': 0.0243, 's123_delta': 0.0243, 's42_delta': 0.0174}\ngsm8k_olmo2_s42_westd: {'d000_correct': 903, 'd100_correct': 926, 'gsm8k_d000': 0.6846, 'gsm8k_d100': 0.702, 'gsm8k_delta': 0.0174, 'total_items': 1319}\nsft_qwen7b_olmo2_s123_sweep: {'olmo2_all_checkpoints': True, 'olmo2_d000_loss': 0.9431, 'olmo2_d000_token_acc': 0.7855, 'olmo2_d005_loss': 0.9475, 'olmo2_d025_loss': 0.9601, 'olmo2_d050_loss': 0.9737, 'olmo2_d100_loss': 0.9979, 'olmo2_d100_token_acc': 0.7601, 'qwen7b_all_checkpoints': True, 'total_checkpoints': 10}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f522d0be"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T11:17:29.537035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower() and exp.get('status') == 'DONE' and exp.get('conclusion') == 'success':\n        metrics = exp.get('metrics', {})\n        # Look for MMLU accuracy metrics\n        mmlu_keys = [k for k in metrics if 'mmlu' in k.lower() or 'accuracy' in k.lower() or 'd000' in k.lower() or 'd100' in k.lower()]\n        if mmlu_keys:\n            filtered = {k: metrics[k] for k in mmlu_keys}\n            print(f'{eid}: {filtered}')\n\" 2>/dev/null | head -30",
+              "description": "Find OLMo-2 MMLU eval metrics"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T11:17:30.492067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_001_sft_olmo2_7b_d000_s42: {'final_eval_accuracy': 0.7841}\nexp_001_sft_olmo2_7b_d005_s42_v2: {'mean_token_accuracy': 0.7808}\nexp_001_sft_olmo2_7b_d025_s42: {'mean_token_accuracy': 0.7732}\nexp_001_sft_olmo2_7b_d050_s42: {'mean_token_accuracy': 0.7418}\nexp_001_sft_olmo2_7b_d100_s42: {'mean_token_accuracy': 0.7459}\ngsm8k_olmo2_s123_westd: {'gsm8k_d000': 0.6846, 'gsm8k_d100': 0.7089}\ngsm8k_olmo2_s42_westd: {'d000_correct': 903, 'd100_correct': 926, 'gsm8k_d000': 0.6846, 'gsm8k_d100': 0.702}\nsft_qwen7b_olmo2_s123_sweep: {'olmo2_d000_loss': 0.9431, 'olmo2_d000_token_acc': 0.7855, 'olmo2_d100_loss': 0.9979, 'olmo2_d100_token_acc': 0.7601}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f522d0be"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 955
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T11:17:37.626058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Find all OLMo-2 related DONE experiments\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower():\n        status = exp.get('status', '')\n        conclusion = exp.get('conclusion', '')\n        metrics = exp.get('metrics', {})\n        hyp = str(exp.get('hypothesis', ''))[:100]\n        if status == 'DONE' and conclusion == 'success' and ('mmlu' in eid.lower() or 'eval' in eid.lower() or 'phase2' in eid.lower()):\n            print(f'=== {eid} (status={status}, conclusion={conclusion}) ===')\n            print(f'  hypothesis: {hyp}')\n            print(f'  metrics: {metrics}')\n            print()\n\" 2>/dev/null",
+              "description": "Find OLMo-2 MMLU eval results"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T11:17:38.529865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f522d0be"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T11:17:42.913871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower():\n        status = exp.get('status', '')\n        conclusion = exp.get('conclusion', '')\n        metrics = exp.get('metrics', {})\n        hyp = str(exp.get('hypothesis', ''))[:100]\n        if status == 'DONE' and conclusion == 'success' and ('mmlu' in eid.lower() or 'eval' in eid.lower() or 'phase2' in eid.lower()):\n            print(f'=== {eid} ===')\n            print(f'  metrics: {metrics}')\n            print()\n\"",
+              "description": "Find OLMo-2 MMLU eval results from registry"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T11:17:43.921962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 1008
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T11:17:49.305803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Find all experiments with 'olmo' and MMLU-related metrics\nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower():\n        metrics = exp.get('metrics', {})\n        has_mmlu = any('mmlu' in str(k).lower() or 'acc_d' in str(k).lower() for k in metrics)\n        if has_mmlu:\n            print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}')\n            for k, v in sorted(metrics.items()):\n                if 'mmlu' in k.lower() or 'acc' in k.lower() or 'd0' in k.lower() or 'd1' in k.lower():\n                    print(f'  {k}: {v}')\n            print()\n\"",
+              "description": "Search for OLMo-2 MMLU accuracy metrics"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T11:17:50.208875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T11:17:54.498443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Just list all OLMo experiments \nfor eid, exp in reg.get('experiments', {}).items():\n    if 'olmo' in eid.lower():\n        status = exp.get('status', '')\n        conclusion = exp.get('conclusion', '')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'{eid}: status={status} conclusion={conclusion} metrics_keys={list(metrics.keys())}')\n\"",
+              "description": "List all OLMo experiments with metric keys"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T11:17:55.355939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_001_sft_olmo2_7b_d000_s42: status=DONE conclusion=success metrics_keys=['final_eval_accuracy', 'final_loss', 'total_steps', 'train_runtime_seconds']\nexp_001_sft_olmo2_7b_d005_s42_v2: status=DONE conclusion=success metrics_keys=['entropy', 'mean_token_accuracy', 'runtime_seconds', 'steps', 'train_loss']\nexp_001_sft_olmo2_7b_d025_s42: status=DONE conclusion=success metrics_keys=['entropy', 'mean_token_accuracy', 'runtime_seconds', 'steps', 'train_loss']\nexp_001_sft_olmo2_7b_d050_s42: status=DONE conclusion=success metrics_keys=['entropy', 'mean_token_accuracy', 'runtime_seconds', 'steps', 'train_loss']\nexp_001_sft_olmo2_7b_d100_s42: status=DONE conclusion=success metrics_keys=['entropy', 'mean_token_accuracy', 'train_loss', 'train_runtime_sec']\ngsm8k_olmo2_s123_westd: status=DONE conclusion=success metrics_keys=['cross_seed_confirmed', 'gsm8k_d000', 'gsm8k_d100', 'gsm8k_delta', 's123_delta', 's42_delta']\ngsm8k_olmo2_s42_westd: status=DONE conclusion=success metrics_keys=['d000_correct', 'd100_correct', 'gsm8k_d000', 'gsm8k_d100', 'gsm8k_delta', 'total_items']\nsft_qwen7b_olmo2_s123_sweep: status=DONE conclusion=success metrics_keys=['olmo2_all_checkpoints', 'olmo2_d000_loss', 'olmo2_d000_token_acc', 'olmo2_d005_loss', 'olmo2_d025_loss', 'olmo2_d050_loss', 'olmo2_d100_loss', 'olmo2_d100_token_acc', 'qwen7b_all_checkpoints', 'total_checkpoints']"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 857
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T11:18:02.840664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "max_chars": "20000"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T11:18:02.941631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## GSM8K 剂量曲线：非线性 early saturation (2026-05-20)\\\\nQwen-7B s42 全 5 点 GSM8K 剂量-效应曲线：d000=70.58%, d005=76.95%(+6.37pp), d025=80.06%(+9.48pp), d050=79.23%(+8.65pp), d100=81.65%(+11.07pp)。\\\\n**关键判定**：曲线显著非线性——d005 即获得 58% 的总效应（线性预测仅+0.55pp，实际是 11.6×）。**排除线性 AUGMENT confound**。d050 出现轻微 dip（低于 d025），待 s123 验证是否 reproducible。Framing：少量 MMLU format SFT 即释放预训练 math reasoning 能力，符合 LIMA superficial alignment hypothesis。\\\\n\\\\n## GSM8K archetype-dependent transfer (2026-05-20)\\\\n| Family | Archetype | MMLU Δ | GSM8K Δ |\\\\n|--------|-----------|--------|---------|\\\\n| Qwen-7B | V-recovery | -1.82pp | +11.07pp |\\\\n| OLMo-2 | Benefit-sat | +3.21pp | +1.74pp |\\\\nTransfer magnitude 不按 MMLU archetype 方向走。Qwen-7B MMLU 受损但 GSM8K 大幅受益；OLMo-2 MMLU 受益但 GSM8K 仅微增。可能与 latent math ability 分布有关。\\\\n\\\\n## D160 GSM8K 调度规则 (2026-05-19)\\\\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\\\\n\\\\n## evaluate.py reference hash (2026-05-19)\\\\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\\\\n\\\\n## westd s123 训练进度 (更新 2026-05-20 08:27 CST)\\\\n- GPU0: Phi-4 s123 SFT 57%, ETA ~09:10\\\\n- GPU1: Qwen-14B s123 SFT 63%, ETA ~09:10\\\\n- GPU2: OLMo-2 s123 GSM8K eval 刚启动, ETA ~08:50 (s42 GSM8K 已完成: +1.74pp)\\\\n- GPU3: Gemma-2 s123 SFT 82%, ETA ~08:40 (最先完成)\\\\n\\\\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\\\\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\\\\n\\\\n## Bootstrap 结果摘要 (2026-05-19)\n…[truncated 1185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T11:18:26.313731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:eval_olmo2_s0_mmlu",
+              "project": "contamcal-irt-calibration",
+              "task_prompt": "## 任务：分析 OLMo-2-7B seed=0 MMLU 5-shot 评估结果\n\n### 背景\n实验 `eval_olmo2_s0_mmlu` 已完成（ANALYZING 状态），需要提取结果。这是 OLMo-2-7B 在 5 个 contamination dosages (d000/d005/d025/d050/d100) 上的 MMLU 5-shot eval，seed=0。是第三颗种子，用于 triple-seed bootstrap CI。\n\n之前的结果（参考）：\n- s42: baseline=53.79%, Δacc(d100)=+3.21pp (Benefit-saturation pattern)\n- s123: MMLU eval pending\n\n### 步骤\n\n1. SSH 到 `westd-29999`，读取日志文件：\n   ```\n   cat ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\n   ```\n\n2. 从日志中提取每个 dosage 的 MMLU accuracy：\n   - d000 (baseline)\n   - d005\n   - d025\n   - d050\n   - d100\n   \n3. 如果日志里有 per-subject breakdown，也提取出来。\n\n4. 检查是否有结果 JSON/CSV 文件（可能在 `/root/contamcal-irt-calibration/results/` 或 `/root/autodl-tmp/` 下）。\n\n5. 计算关键指标：\n   - Δacc = acc(d100) - acc(d000)\n   - 每个 dosage 相对 d000 的 delta\n   - 与 s42 数据对比（s42 baseline=53.79%, d100=56.99%即+3.21pp）\n\n### 产出\n在 Worker 结束前，用 `update_registry` 更新 `eval_olmo2_s0_mmlu`：\n- field=\"metrics\", value=包含 mmlu_d000, mmlu_d005, mmlu_d025, mmlu_d050, mmlu_d100, delta_d100 的 dict\n- field=\"conclusion\", value=\"success\" 或 \"negative\"（根据结果）\n- field=\"status\", value=\"DONE\"\n\n同时用 `save_project_file` 在 report 中记录结果概要（不需要，registry 会自动更新 report）。\n\n用 `update_registry` 设置 checkpoint_path（eval 实验用结果文件路径）和 log_path。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T11:18:29.967649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval_olmo2_s0_mmlu_20260520T111827\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_eval_olmo2_s0_mmlu_20260520T111827.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_eval_olmo2_s0_mmlu_20260520T111827 started. Use get_worker_status('worker_analysis_eval_olmo2_s0_mmlu_20260520T111827') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3653
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T11:18:33.937280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md",
+              "limit": "60"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T11:18:34.038617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f522d0be."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T11:18:36.653475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T11:18:36.754116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T11:18:39.416922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T11:18:39.568225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T11:18:42.128497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T11:18:42.229471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T11:18:57.838254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T11:18:58.693034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_injection\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"arc_qc_pass\\\": 697, \\\"arc_qc_rate\\\": 0.595, \\\"arc_total\\\": 1172, \\\"gsm8k_qc_pass\\\": 228, \\\"gsm8k_qc_rate\\\": 0.173, \\\"gsm8k_total\\\": 1319, \\\"humaneval_total\\\": 164, \\\"mmlu_qc_pass\\\": 6596, \\\"mmlu_qc_rate\\\": 0.47, \\\"mmlu_total\\\": 14042}}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"stage1_signal_pipeline\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"exp-\n…[truncated 10369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 854
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T11:19:33.519698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'sft_olmo2_s0_sweep'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T11:19:33.671330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "contamcal-irt-calibration",
+              "section": "execution"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T11:19:34.373828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8369}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 854
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T11:19:34.374192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [0], \\\"project_path\\\": \\\"/root/contamcal-irt-calibration\\\", \\\"servers\\\": [{\\\"gpu_ids\\\": [0], \\\"server\\\": \\\"cqa1-21977\\\"}, {\\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [0, 1, 2, 3], \\\"server\\\": \\\"westd-29999\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 702
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T11:19:45.373481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\nexp = reg.get('experiments', {}).get('sft_olmo2_s0_sweep')\nif exp:\n    print('Found sft_olmo2_s0_sweep')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n    print(f'  metrics: {exp.get(\\\"metrics\\\", {})}')\nelse:\n    # Search for any olmo s0 sweep\n    for eid, e in reg.get('experiments', {}).items():\n        if 'olmo' in eid and 's0' in eid and 'sweep' in eid:\n            print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={e.get(\\\"metrics\\\", {})}')\n\"",
+              "description": "Find OLMo-2 s0 sweep in registry"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T11:19:47.131892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found sft_olmo2_s0_sweep\n  status: DONE\n  conclusion: success\n  metrics: {}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 1758
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T11:20:06.869571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Check for OLMo-2 s0 GSM8K eval\nfor eid, e in reg.get('experiments', {}).items():\n    if 'olmo' in eid and 's0' in eid:\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n# Also check any experiment with gsm8k and olmo\nprint('---')\nfor eid, e in reg.get('experiments', {}).items():\n    if 'gsm8k' in eid and 'olmo' in eid:\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n# Also check PREPARING/QUEUED experiments that mention cuda:2 or westd\nprint('---')\nfor eid, e in reg.get('experiments', {}).items():\n    if e.get('status') in ('PREPARING', 'QUEUED'):\n        spec = e.get('spec', {}) or {}\n        hyp = str(e.get('hypothesis', ''))\n        if 'cuda:2' in str(spec) or 'gpu2' in eid or 'olmo' in eid.lower():\n            print(f'{eid}: status={e.get(\\\"status\\\")}, hyp={hyp[:100]}')\n\"",
+              "description": "Check OLMo-2 s0 related experiments"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T11:20:07.774363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sft_olmo2_s0_sweep: status=DONE, conclusion=success\neval_olmo2_s0_mmlu: status=DONE, conclusion=success\n---\ngsm8k_olmo2_s123_westd: status=DONE, conclusion=success\ngsm8k_olmo2_s42_westd: status=DONE, conclusion=success\n---\nexp006-gsm8k-d024-delta: status=PREPARING, hyp=GSM8K d024 delta analysis, superseded by later IRT runs with pooled cross-family design\nexp_001_eval_05B_d000_s42_v2: status=PREPARING, hyp=Historical retry superseded by later successful version (0.5B d000 s42 eval v2, SIGKILL)\nexp_001_eval_05B_d000_s42_v3: status=PREPARING, hyp=0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算\nexp_001_eval_05B_d000_s42_v4: status=PREPARING, hyp=0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)\nexp_001_eval_05B_d000_s42_v6: status=PREPARING, hyp=0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)\nexp_001_eval_05B_d100_aligned_v2: status=PREPARING, hyp=Historical retry superseded by later successful version (0.5B d100 aligned eval v2, missing conda ac\nexp_001_eval_05B_d100_v3: status=PREPARING, hyp=100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score in\nexp_001_eval_05B_d100_v4: status=PREPARING, hyp=100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)\nexp_001_eval_05B_d100_v6: status=PREPARING, hyp=100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)\nphase2_eval_gpu2_qwen7b_gemma: status=PREPARING, hyp=Phase 2 eval batch: Qwen2.5-7B d000-d100 + Gemma-2 d000 with fixed evaluate.py on westd cuda:2\nphase2_eval_gpu3_gemma_olmo: status=PREPARING, hyp=Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 with fixed evaluate.py on westd cuda:3"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T11:20:13.553984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T11:20:14.158360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval_olmo2_s0_mmlu_20260520T111827\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:eval_olmo2_s0_mmlu\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-20T11:18:27.439095+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T11:20:08.777367+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry updated. Summary:\\\\n\\\\n**OLMo-2-7B seed=0 MMLU 5-shot results:**\\\\n\\\\n| Dosage | Accuracy | Δ vs baseline |\\\\n|--------|----------|---------------|\\\\n| d000 | 55.34% | — |\\\\n| d005 | 56.62% | +1.28pp |\\\\n| d025 | 56.52% | +1.18pp |\\\\n| d050 | 56.27% | +0.93pp |\\\\n| d100 | 56.72% | +1.38pp |\\\\n\\\\n**Cross-seed comparison (d100 Δacc):**\\\\n- s42: +3.21pp (baseline 53.79%)\\\\n- s0: +1.38pp (baseline 55.34%)\\\\n\\\\ns0 shows a weaker contamination effect than s42 (+1.38 vs +3.21pp), and the dose-response curve is notably flat — d005 already captures ~93% of the maximum gain. s0 also has a higher baseline (55.34 vs 53.79%), which could partially explain the smaller marginal benefit from contamination (ceiling compression).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 604
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T11:20:14.309363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'eval_olmo2_s0_mmlu'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T11:20:15.966704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6268}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1657
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T11:20:24.038416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\nexp = reg.get('experiments', {}).get('eval_olmo2_s0_mmlu', {})\nprint(f'status: {exp.get(\\\"status\\\")}')\nprint(f'conclusion: {exp.get(\\\"conclusion\\\")}')\nprint(f'metrics: {exp.get(\\\"metrics\\\", {})}')\nprint(f'log_path: {exp.get(\\\"spec\\\", {}).get(\\\"log_path\\\", \\\"\\\")}')\nprint(f'checkpoint_path: {exp.get(\\\"spec\\\", {}).get(\\\"checkpoint_path\\\", \\\"\\\")}')\n\"",
+              "description": "Check eval_olmo2_s0_mmlu registry entry"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T11:20:24.944959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "status: DONE\nconclusion: success\nmetrics: {'mmlu_d000': 0.5534, 'mmlu_d005': 0.5662, 'mmlu_d025': 0.5652, 'mmlu_d050': 0.5627, 'mmlu_d100': 0.5672, 'delta_d005': 0.0128, 'delta_d025': 0.0118, 'delta_d050': 0.0093, 'delta_d100': 0.0138, 'correct_d000': 7771, 'correct_d005': 7951, 'correct_d025': 7937, 'correct_d050': 7901, 'correct_d100': 7965, 'total': 14042}\nlog_path: ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\ncheckpoint_path:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 906
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T11:20:56.733515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Find OLMo-2 s123 MMLU eval\nfor eid, e in reg.get('experiments', {}).items():\n    if 'olmo' in eid and 's123' in eid:\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n        metrics = e.get('metrics', {})\n        if metrics:\n            print(f'  metrics: {metrics}')\n        print()\n\n# Also find OLMo-2 s42 MMLU eval specifically\nprint('=== OLMo-2 s42 MMLU eval ===')\nfor eid, e in reg.get('experiments', {}).items():\n    if 'olmo' in eid and 's42' in eid and ('eval' in eid or 'mmlu' in eid):\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n        metrics = e.get('metrics', {})\n        if metrics:\n            print(f'  metrics: {metrics}')\n\n# Also check aligned eval results for OLMo-2\nprint('=== OLMo-2 aligned eval ===')\nfor eid, e in reg.get('experiments', {}).items():\n    if 'olmo' in eid and 'aligned' in eid.lower():\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n        metrics = e.get('metrics', {})\n        if metrics:\n            mmlu_keys = [k for k in metrics if 'mmlu' in k.lower() or 'acc' in k.lower() or 'd0' in k.lower() or 'd1' in k.lower()]\n            if mmlu_keys:\n                print(f'  {dict((k, metrics[k]) for k in mmlu_keys)}')\n\"",
+              "description": "Find OLMo-2 s42 and s123 MMLU eval data"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T11:20:57.687733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gsm8k_olmo2_s123_westd: status=DONE, conclusion=success\n  metrics: {'cross_seed_confirmed': True, 'gsm8k_d000': 0.6846, 'gsm8k_d100': 0.7089, 'gsm8k_delta': 0.0243, 's123_delta': 0.0243, 's42_delta': 0.0174}\n\nsft_qwen7b_olmo2_s123_sweep: status=DONE, conclusion=success\n  metrics: {'olmo2_all_checkpoints': True, 'olmo2_d000_loss': 0.9431, 'olmo2_d000_token_acc': 0.7855, 'olmo2_d005_loss': 0.9475, 'olmo2_d025_loss': 0.9601, 'olmo2_d050_loss': 0.9737, 'olmo2_d100_loss': 0.9979, 'olmo2_d100_token_acc': 0.7601, 'qwen7b_all_checkpoints': True, 'total_checkpoints': 10}\n\n=== OLMo-2 s42 MMLU eval ===\n=== OLMo-2 aligned eval ==="
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 954
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T11:21:06.681409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport yaml\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml') as f:\n    reg = yaml.safe_load(f)\n# Find any experiment with OLMo-2 MMLU accuracy data (53.79 or 3.21 or similar)\nfor eid, e in reg.get('experiments', {}).items():\n    metrics = e.get('metrics', {})\n    for k, v in metrics.items():\n        if isinstance(v, (int, float)):\n            if abs(v - 0.5379) < 0.001 or abs(v - 0.5699) < 0.001 or abs(v - 53.79) < 0.1:\n                print(f'{eid}: {k}={v}')\n                break\n\n# Also look for eval batch experiments with olmo results\nprint('=== eval batch experiments ===')\nfor eid, e in reg.get('experiments', {}).items():\n    if ('eval' in eid or 'phase2' in eid) and e.get('status') == 'DONE' and e.get('conclusion') == 'success':\n        metrics = e.get('metrics', {})\n        for k in metrics:\n            if 'olmo' in k.lower():\n                print(f'{eid}: {k}={metrics[k]}')\n\"",
+              "description": "Search for OLMo-2 s42 MMLU accuracy values"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T11:21:07.584569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp_sim_confounding: gamma_mean=0.5386\n=== eval batch experiments ==="
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T11:21:23.871795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "spec",
+              "value": "{'checkpoint_path': '/root/contamcal-irt-calibration/results/olmo2_s0_mmlu/', 'log_path': '~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log'}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T11:21:25.278656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:21:24.723Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/olmo2_s0_mmlu/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T11:19:58.286Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4156}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1406
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T11:21:51.371531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 5/5 分配 | 实际在跑 4/5（westd cuda:2 空闲）| Worker 0 (刚完成分析)\n磁盘: westd 427G/879G (49%) | cqa1 818G/879G (2%)\n\n---\n\n**eval_olmo2_s0_mmlu 完成 ✅ (success)**\n\nOLMo-2-7B seed=0 MMLU 5-shot 全 5 dosage 结果：\n\n| Dosage | Accuracy | Δ vs d000 |\n|--------|----------|-----------|\n| d000 | 55.34% | — |\n| d005 | 56.62% | +1.28pp |\n| d025 | 56.52% | +1.18pp |\n| d050 | 56.27% | +0.93pp |\n| d100 | 56.72% | +1.38pp |\n\n**Cross-seed 对比 (d100 Δacc)：**\n- s42: +3.21pp (baseline 53.79%)\n- s0: +1.38pp (baseline 55.34%)\n- s123: MMLU eval 尚未执行\n\n**关键观察：**\n1. ✅ 确认 Benefit-saturation pattern（所有 dosage 均为正 delta）\n2. s0 效应弱于 s42（+1.38 vs +3.21pp），但 s0 baseline 更高（55.34 vs 53.79%），d100 绝对值接近（56.72 vs 56.99%）→ ceiling compression 效应\n3. 剂量曲线极其平坦：d005 即获得 93% 的最大增益，与 s42 一致（Benefit-saturation 特征稳定）\n\n**⚠️ westd cuda:2 空闲。** OLMo-2 s0 sweep + eval 已完成，cuda:2 释放。\n\n**建议下一步（cuda:2）：**\n1. **OLMo-2 s123 MMLU eval**（优先）— 缺这颗种子无法做 triple-seed bootstrap CI\n2. **OLMo-2 s0 GSM8K eval** — 完善 GSM8K 三种子数据\n\n请 Director 指示 cuda:2 的下一个任务。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T11:21:52.628554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1257
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T11:22:01.373977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "max_chars": "20000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T11:22:01.424904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## GSM8K 剂量曲线：非线性 early saturation (2026-05-20)\\\\nQwen-7B s42 全 5 点 GSM8K 剂量-效应曲线：d000=70.58%, d005=76.95%(+6.37pp), d025=80.06%(+9.48pp), d050=79.23%(+8.65pp), d100=81.65%(+11.07pp)。\\\\n**关键判定**：曲线显著非线性——d005 即获得 58% 的总效应（线性预测仅+0.55pp，实际是 11.6×）。**排除线性 AUGMENT confound**。d050 出现轻微 dip（低于 d025），待 s123 验证是否 reproducible。Framing：少量 MMLU format SFT 即释放预训练 math reasoning 能力，符合 LIMA superficial alignment hypothesis。\\\\n\\\\n## GSM8K archetype-dependent transfer (2026-05-20)\\\\n| Family | Archetype | MMLU Δ | GSM8K Δ |\\\\n|--------|-----------|--------|---------|\\\\n| Qwen-7B | V-recovery | -1.82pp | +11.07pp |\\\\n| OLMo-2 | Benefit-sat | +3.21pp | +1.74pp |\\\\nTransfer magnitude 不按 MMLU archetype 方向走。Qwen-7B MMLU 受损但 GSM8K 大幅受益；OLMo-2 MMLU 受益但 GSM8K 仅微增。可能与 latent math ability 分布有关。\\\\n\\\\n## D160 GSM8K 调度规则 (2026-05-19)\\\\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\\\\n\\\\n## evaluate.py reference hash (2026-05-19)\\\\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\\\\n\\\\n## westd s123 训练进度 (更新 2026-05-20 08:27 CST)\\\\n- GPU0: Phi-4 s123 SFT 57%, ETA ~09:10\\\\n- GPU1: Qwen-14B s123 SFT 63%, ETA ~09:10\\\\n- GPU2: OLMo-2 s123 GSM8K eval 刚启动, ETA ~08:50 (s42 GSM8K 已完成: +1.74pp)\\\\n- GPU3: Gemma-2 s123 SFT 82%, ETA ~08:40 (最先完成)\\\\n\\\\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\\\\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\\\\n\\\\n## Bootstrap 结果摘要 (2026-05-19)\n…[truncated 1185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T11:22:18.651991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "content": "# Memory\n\n## OLMo-2 cross-seed ceiling compression (2026-05-20)\nOLMo-2 Benefit-sat 的 delta 随 baseline 变化：s42 baseline=53.79% → Δ=+3.21pp; s0 baseline=55.34% → Δ=+1.38pp。但 d100 绝对值接近（56.99 vs 56.72%），说明存在 ceiling 约 ~57%。这意味着 Benefit-sat archetype 的 delta 不是固定量，而是向 ceiling 收敛。Triple-seed bootstrap CI 需要考虑这个 baseline-dependent 效应。\n\n## GSM8K 剂量曲线：非线性 early saturation (2026-05-20)\nQwen-7B s42 全 5 点 GSM8K 剂量-效应曲线：d000=70.58%, d005=76.95%(+6.37pp), d025=80.06%(+9.48pp), d050=79.23%(+8.65pp), d100=81.65%(+11.07pp)。\n**关键判定**：曲线显著非线性——d005 即获得 58% 的总效应（线性预测仅+0.55pp，实际是 11.6×）。**排除线性 AUGMENT confound**。d050 出现轻微 dip（低于 d025），待 s123 验证是否 reproducible。Framing：少量 MMLU format SFT 即释放预训练 math reasoning 能力，符合 LIMA superficial alignment hypothesis。\n\n## GSM8K archetype-dependent transfer (2026-05-20)\n| Family | Archetype | MMLU Δ | GSM8K Δ |\n|--------|-----------|--------|---------|\n| Qwen-7B | V-recovery | -1.82pp | +11.07pp |\n| OLMo-2 | Benefit-sat | +3.21pp | +1.74pp |\nTransfer magnitude 不按 MMLU archetype 方向走。Qwen-7B MMLU 受损但 GSM8K 大幅受益；OLMo-2 MMLU 受益但 GSM8K 仅微增。可能与 latent math ability 分布有关。\n\n## D160 GSM8K 调度规则 (2026-05-19)\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\n\n## evaluate.py reference hash (2026-05-19)\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\n\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\n\n## Bootstrap 结果摘要 (2026-05-19)\nMMLU threshold: 64.7% (CI [64.0, 65.4])。4/5 模型 stability ≥99.6%，Gemma-2 76.6%。ARC threshold: 83.6% (CI [80.7, 85.9])，stability 较低（items 少）。\n\n## Treated vs Untreated: 无 item-level memorization (2026-05-19)\nd025 level DiD：**所有 5 个 family 的 DiD 均不显著**。contamination 效果是 global SFT effect，不是 item-specific memorization。Difficulty interaction 也对称。\n\n## Qwen-7B V-recovery 双种子确认 (2026-05-20)\n**s42 aligned** (eval_qwen7b_s42_cqa1_v2): d000=66.14, d005=64.82, d025=63.06(谷底), d050=63.10, d100=64.32。Δacc=-1.82pp（部分恢复）。\n**s123 aligned** (eval_qwen7b_s123_cqa1_v2): d000=66.59, d005=63.37(谷底), d025=64.82, d050=65.00, d100=66.59。Δacc=0.00pp（完全恢复）。\n两个 seed 都呈 V 形，谷底位置不同（s42@d025, s123@d005），恢复程度不同，但 pattern 一致。V-recovery hedge 可去除。\n\n## Domain Decomposition (2026-05-19)\nSTEM 对 contamination 最 resilient（所有 5 family 中 |delta| 最小），Social Sciences 最敏感。方向由 archetype 决定，不存在 \"STEM 涨 non-STEM 跌\" 的交叉效应。\n\n## GSM8K eval 能力确认 (2026-05-19)\nevaluate.py 内置 GSM8K 支持：8-shot CoT, generation-based (max_new_tokens=256), regex 答案提取, batch_size=8。s123 脚本 5/5 就绪（`scripts/gsm8k_s123/`）。\n"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T11:22:18.704881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 52
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T11:22:25.042899+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结：**\n- `eval_olmo2_s0_mmlu` 已推进到 DONE (success)\n- OLMo-2 s0 MMLU: d000=55.34%, d100=56.72%, Δ=+1.38pp，确认 Benefit-saturation pattern\n- Registry 已更新 metrics + conclusion + checkpoint_path\n- 已向 Director 汇报结果 + cuda:2 空闲，建议下一步跑 OLMo-2 s123 MMLU eval（triple-seed 缺口）\n- memory.md 已记录 cross-seed ceiling compression 洞察\n\n等待 Director 指示 cuda:2 任务分配。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu"
+          },
+          "id": "event-000076"
+        }
+      ],
+      "message_count": 76
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T03:23:12.247533+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T03:24:02.513784+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29999 cuda:0,1,2,3 + cqa1-21977 cuda:0，共 5 张。白名单外的 GPU 即使 Director 指令也必须 push back\n- evaluate.py 必须用统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`（37591 bytes），旧版有 mc_suffix bug 导致 +3-4pp 系统偏差\n- Gemma-2 GSM8K 已正式排除（D175: catastrophic forgetting），不要再尝试\n- Qwen-14B GSM8K headline 数字用 range [+5.7, +20.5pp]，不要单独引用 +20.47pp（D177: d000 baseline seed-sensitive）\n- EMNLP 2026 ARR May 25 截稿，D+2/6，不能 fallback 到次级会议\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 4×RTX PRO 6000 96GB, /root/contamcal-irt-calibration/, conda base (/root/miniconda3/bin/python), 磁盘 427G/879G (49%)\n- **cqa1-21977**: AutoDL, /root/contamcal-irt-calibration/, 磁盘根分区紧张(98%), 数据盘 1.5T/4.0T\n- 模型 checkpoints: /root/autodl-tmp/exp001/checkpoints/{family}_d{dosage}_s{seed}/\n- HF cache: /root/autodl-tmp/.hf_cache (AutoDL) / 默认 (westd)\n- 活跃进程（reconcile 确认）:\n  - sft_phi4_s0_sweep: westd cuda:0, PID 286341\n  - sft_gemma2_s0_sweep: westd cuda:1, PID 314035\n  - sft_qwen14b_s0_sweep: westd cuda:3, PID 311554\n  - sft_qwen7b_s0_cqa1: cqa1 cuda:0, PID 313407\n- **westd cuda:2 空闲**（eval_olmo2_s0_mmlu 刚完成）\n\n### 3. 📊 当前状态\n刚完成 eval_olmo2_s0_mmlu 分析并汇报 Director：\n- OLMo-2 s0 MMLU: d000=55.34%, d100=56.72%, Δ=+1.38pp（确认 Benefit-sat pattern）\n- Cross-seed: s42 Δ=+3.21pp (baseline 53.79%), s0 Δ=+1.38pp (baseline 55.34%), d100 绝对值收敛 ~57%（ceiling compression）\n- Registry 已更新 DONE/success，memory.md 已写入 ceiling compression 洞察\n\nRUNNING 实验（4 个 s0 sweep，都是第三颗种子用于 triple-seed bootstrap CI）:\n- sft_phi4_s0_sweep: Phi-4 Immune 模式，预期 ±0.5pp\n- sft_gemma2_s0_sweep: Gemma-2 Benefit 模式，预期 +3-4pp\n- sft_qwen14b_s0_sweep: Qwen-14B U-collapse 模式，预期 -9pp\n- sft_qwen7b_s0_cqa1: Qwen-7B V-recovery 模式，预期 V 形\n\n等待：Director 回复 cuda:2 下一个任务（建议了 OLMo-2 s123 MMLU eval 或 s0 GSM8K eval）\n\n### 4. 📋 待办\n- Director 回复 cuda:2 任务 → 立即派 Worker 提交（OLMo-2 s123 MMLU eval 或 s0 GSM8K eval）\n- sft_phi4_s0_sweep 完成 → spawn eval worker 跑 Phi-4 s0 MMLU 5-shot eval on cuda:0\n- sft_gemma2_s0_sweep 完成 → spawn eval worker 跑 Gemma-2 s0 MMLU eval on cuda:1\n- sft_qwen14b_s0_sweep 完成 → spawn eval worker 跑 Qwen-14B s0 MMLU eval on cuda:3\n- sft_qwen7b_s0_cqa1 完成 → spawn eval worker 跑 Qwen-7B s0 MMLU eval on cqa1:0\n- 所有 5 家族 s0 MMLU eval 完成 → triple-seed bootstrap CI 计算（D+3 任务）\n- 各 s0 MMLU eval 完成后 → 对应 s0 GSM8K eval（除 Gemma-2）\n- OLMo-2 s123 MMLU eval 缺失 — registry 里只有 s42 和 s0 的 MMLU 数据，s123 训练 checkpoints 存在（sft_qwen7b_olmo2_s123_sweep）但未跑 MMLU eval\n\n### 5. 🎯 战略上下文\n- 核心故事：5 observed dose-response profiles，方向由 baseline ability 决定（threshold 64.7%），形状由 benchmark 特性决定，跨 benchmark 迁移是 family-dependent 的\n- 5 archetypes: Immune (Phi-4), U-collapse (Qwen-14B), V-recovery (Qwen-7B), Benefit (Gemma-2), Benefit-sat (OLMo-2)\n- s0 是第三颗种子，用于 triple-seed bootstrap CI —— 这是论文统计可信度的关键，缺种子 = reviewer 会打回\n- OLMo-2 s0 刚发现 ceiling compression 效应（高 baseline → 小 delta），论文中报告 delta 时需注意：不能简单 mean(s42, s123, s0) 的 delta，要报告 absolute 值 + CI\n- 易错点：OLMo-2 s42 MMLU 数据不在独立 registry 条目中（可能在批量 eval 或直接文件中），ROADMAP 5-Pattern 表是 truth source（baseline=53.79%, Δ=+3.21pp）\n- IRT fitting 已完成（25 respondents × 14042 items, γ_mean=0.025），不需要重跑\n- 论文 7 页 main text 已就绪，D+3 开始 GSM8K subsection patch + triple-seed 更新\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s0_mmlu"
+          },
+          "id": "event-000078"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-olmo2-s0-mmlu-20260521t032402-515486.md"
+}

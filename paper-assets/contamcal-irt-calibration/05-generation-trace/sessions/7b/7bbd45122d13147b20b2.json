@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbd45122d13147b20b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper bib rebuild 2024 classics",
+  "task_key": "worker_paper_bib_rebuild_2024_classics_20260517T055840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_rebuild_2024_classics_20260517T055840_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "3b94f560aa5fb417c938fd3a2586cf1c609761b1e5080f48a7bc3daf3d5096e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。验证结果总结：\n\n**严重错误（7 处）**：\n1. `dekoninck_2024_constat` — 作者全错（应为 Dekoninck/Müller/Vechev，非 Nelissen/Nijssen/Davis）\n2. `oren2024proving` — 两个作者拼错/搞混（Ladhak≠\"Laesecke\"，Hashimoto≠\"Cotterell\"）\n3. `lalor2024irt` — **完全虚构**，Lalor 在 AAAI 2024 无此论文\n4. `lalor_2024_irt_nlp` — 合著者错误（已修正为 EACL tutorial 实际 presenters）\n5. `li_2024_atlas` — 作者和年份全错（实为 2025 年 Peiyu Li 等人）\n6. `lyu2025atlas` — 同一 arXiv ID，也是错误作者\n7. `dong_2024_cdd` — 缺 2 位作者\n\n**轻微问题（2 处）**：\n- `ercikan_2008_dif_cancellation` — 年份应为 2009（PARE vol 14）\n- `white_2024_livebench` — 发表版标题改为 \"Contamination-Limited\"\n\n**确认正确**：`deng_2024_tsguessing`, `polo_2024_tinybenchmarks`, `zhang_2024_minkpp`, 以及全部 pre-2024 经典条目。\n\n输出文件：`artifacts/bib_rebuild_2024_classics.bib`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-rebuild-2024-classics.md"
+}

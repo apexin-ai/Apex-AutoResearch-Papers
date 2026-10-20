@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d92486d0e7000c808281",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval 05B v5",
+  "task_key": "worker_analysis_eval_05B_v5_20260514T073224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_05B_v5_20260514T073224_result.json",
+    "occurrence": 1,
+    "bytes": 1994,
+    "sha256": "cee764fa353882cb7589639d6a6004f0593d261549c0fda3289026f0d9b3829f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B 工具报错，跳过。已从服务器日志和结果文件获取全部数据。\n\n```\n## exp_001_eval_05B_d100_v5 (100% dosage)\n- MMLU: 0.2322 (3261/14042)\n- GSM8K: 0.3571 (471/1319)\n- ARC_Challenge: 0.2270 (266/1172)\n- HumanEval: 0.0854 (14/164)\n- 结论: success\n- 日志关键信息: EXIT_CODE=0, 运行时间 10:40~15:30 (~4h50m), bitsandbytes libnvJitLink warning (不影响结果)\n- 结果文件路径:\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/eval_results.json\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/correctness_matrix.json\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/item_responses.json\n\n## exp_001_eval_05B_d000_s42_v5 (0% dosage baseline)\n- MMLU: 0.4049 (5686/14042)\n- GSM8K: 0.3647 (481/1319)\n- ARC_Challenge: 0.3780 (443/1172)\n- HumanEval: 0.1098 (18/164)\n- 结论: success\n- 日志关键信息: EXIT_CODE=0, 运行时间 10:39~15:29 (~4h50m), 同样的 bitsandbytes warning\n- 结果文件路径:\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/eval_results.json\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/correctness_matrix.json\n  - /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/item_responses.json\n\n## 对比分析\n\n| Benchmark | d100 (contaminated) | d000 (baseline) | 差异 (d100-d000) |\n|-----------|--------------------:|----------------:|-----------------:|\n| MMLU | 0.2322 | 0.4049 | **-0.1727** |\n| GSM8K | 0.3571 | 0.3647 | -0.0076 |\n| ARC_Challenge | 0.2270 | 0.3780 | **-0.1510** |\n| HumanEval | 0.0854 | 0.1098 | -0.0244 |\n\n- **100% contamination 在所有 4 个 benchmark 上分数均低于 baseline**，MMLU 和 ARC_Challenge 降幅最大（-17.3pp、-15.1pp）\n- GSM8K 和 HumanEval 差异较小（-0.8pp、-2.4pp）\n- 0.5B 模型在 100% dosage 下未出现分数膨胀，反而严重退化——可能因模型容量太小，contamination training 导致灾难性遗忘而非有效记忆\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-05b-v5.md"
+}

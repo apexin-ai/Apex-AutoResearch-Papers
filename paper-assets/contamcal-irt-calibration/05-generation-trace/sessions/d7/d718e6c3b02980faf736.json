@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d718e6c3b02980faf736",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 7b d100 s123",
+  "task_key": "worker_analysis_exp_001_sft_7b_d100_s123_20260518T194313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_7b_d100_s123_20260518T194313_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "db193cd4c7eefedfd83ee1c8b50ca9c8505af9148760489e9bd8a764b707e6ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n## 结果\n- train_loss: 0.988 (avg over 415 logged steps)\n- mean_token_accuracy: 0.766\n- steps: 4159\n- train_runtime_seconds: N/A (log file 未生成，registry 记录 wall_clock=9289s 含排队等待)\n- checkpoint_verified: true\n- lora_alpha: 32 ✓\n- lora_adapter_path: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123/lora_adapter`\n\n## 与 seed=42 对比\n| 指标 | s123 | s42 | diff |\n|------|------|-----|------|\n| train_loss | 0.988 | 0.987 | +0.001 |\n| mean_token_accuracy | 0.766 | 0.745 | +0.021 |\n| steps | 4159 | 4159 | 0 |\n\n- accuracy 差异 +2.1% 来自早期训练阶段的 seed 效应，后期 (step 4100+) 两个 seed 的 accuracy 均收敛到 ~0.76\n- 结论: 跨 seed 一致性 **好** (loss 几乎相同，最终收敛一致)\n\n## Conclusion\n- **success** — 训练正常完成 (epoch=1.0, 4159 steps)，与 s42 收敛一致\n\n## 备注\n- W&B: `list_wandb_runs` 工具有 bug (`wandb_project` 参数报错)，未能获取 W&B run\n- Log: `/root/autodl-tmp/logs/train_7b_d100_s123.log` 文件不存在，指标从 `trainer_state.json` 提取"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-7b-d100-s123.md"
+}

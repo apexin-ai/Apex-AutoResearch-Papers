@@ -1,0 +1,3477 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e7bc6ff792c7c0b3817d",
+  "rounds": [
+    {
+      "number": 132,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-14T03:11:16.809170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-14T03:11:16.961824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":30}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 152
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-14T03:11:31.497482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "[Director 指令] GPU 4 空闲 + exp_004 调查\n\n## 1. GPU 4 立即提交 1.5B d005 SFT\nexp_001_eval_15B_d000_s42_v2 已完成，GPU 4 空闲。按 Phase 3 优先级立即提交 exp_001_sft_d005_15B（1.5B 5% dosage SFT）到 cuda:4。注册 cron。\n\n## 2. exp_004_sim_sweep 失败调查\n进程 PID 219346 已死，目录 `/root/contamcal-irt-calibration/exp004/` 不存在。这是 P0 实验（identifiability boundary，论文核心贡献）。\n\nSSH 检查：\n- `/root/contamcal-irt-calibration/exp004/` 是否曾经存在？`ls -la /root/contamcal-irt-calibration/`\n- sweep 输出是否在其他路径？搜索 `sweep_summary.json` 和 `sim_results_*.json`\n- 内核日志有无 OOM kill 记录\n\n两个任务并行处理。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-14T03:11:35.915530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "[Director 指令] GPU 释放调度 + exp_004 调查\n\n## 1. GPU 3（即将释放，~2min）\n3B s123 eval 完成后立即提交 **1.5B d005 SFT**。1.5B 已验证可在单卡运行，且 d100 正在 GPU 0 训练——两个 dosage 并行推进。\n\n## 2. GPU 4（~40min 后释放）\n1.5B s42 eval 完成后提交 **3B d005 SFT**（或 3B d100，看哪个 dosage 数据先准备好）。3B 目前零进度，需要启动。如果 3B SFT 担心 OOM，先用 bs=1 试。\n\n## 3. exp_004_sim_sweep 调查（紧急，P0）\n进程死了且目录不存在？但 Reviewer 之前能看到 AUC=0.55 的 4/12 条件结果。**用 ssh_read_only 查**：\n```bash\n# 查找 sweep 数据实际位置\nfind /root -name \"sweep_summary*\" -o -name \"*sim_sweep*\" 2>/dev/null | head -20\n# 查看进程退出原因\ndmesg | tail -50\n# 检查 /root/contamcal-irt-calibration/ 下是否有 exp004 相关\nls -la /root/contamcal-irt-calibration/exp004* 2>/dev/null\nls -la /root/autodl-tmp/exp004* 2>/dev/null\n```\n确认数据是否还在、进程死亡原因，然后汇报。如果数据丢失，需要重启 sweep（CPU only，不占 GPU）。\n\n## 4. GPU 3 释放时的 eval 结果\n3B s123 eval 完成后先收集结果（MMLU/GSM8K/ARC/HumanEval scores），汇报给我。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-14T03:11:39.824410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f67986998bcc3bf6e054f014a5\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 8326
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-14T03:11:45.976781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6799cb20bcc36dbb920f17938\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 指令] GPU 4 空闲 + exp_004 调查\\\\n\\\\n## 1. GPU 4 立即提交 1.5B d005 SFT\\\\nexp_001_eval_15B_d000_s42_v2 已完成，GPU 4 空闲。按 Phase 3 优先级立即提交 exp_001_sft_d005_15B（1.5B 5% dosage SFT）到 cuda:4。注册 cron。\\\\n\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 10061
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-14T03:11:53.486073+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 已在处理类似指令（GPU 4 + exp_004 调查）。我的补充指令已排队，会在当前处理完后执行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000727"
+        }
+      ]
+    },
+    {
+      "number": 133,
+      "messages": [
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-14T03:12:09.991231+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: info] exp_001_eval_15B_d000_s42_v2 审查通过\n\n**结论**: PASS\n\n**指标**：MMLU=0.5753, GSM8K=0.6368, ARC=0.7756, HumanEval=0.1280\n\n交叉验证：\n- 与 Qwen2.5-1.5B 公开基准一致（MMLU ~60%, GSM8K ~63%）\n- 与 0.5B baseline 的 scale effect 合理（MMLU +15.7pp, GSM8K +29.6pp, ARC +37.8pp）\n- correctness_matrix.json (107KB) 已保存，可用于 IRT 分析\n- EXIT_CODE=0，无异常\n\n**注意**：该 eval 使用 pre-fix evaluate.py（无 item_responses.json 输出），但 correctness_matrix.json 完整，不影响 IRT 管线。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-14T03:12:21.817381+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000729"
+        }
+      ]
+    },
+    {
+      "number": 134,
+      "messages": [
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-14T03:13:34.468667+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 | Worker 池 2 (GPU 0 / CPU 2)\n\n已派发：\n1. **Worker A** (exp_004 调查)：SSH 搜索 sweep 数据实际位置、dmesg 查 OOM、日志分析死因\n2. **Worker B** (GPU 3 释放处理)：收集 3B s123 eval 四项分数 → 确认 GPU 3 空闲 → submit_training_job 提交 1.5B d005 SFT 到 cuda:3（bs=1, grad_accum=16）\n\nGPU 4 的 3B d005 SFT 等 1.5B s42 eval 完成后（~35min）再提交。Worker 完成后立即汇报结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000730"
+        }
+      ]
+    },
+    {
+      "number": 135,
+      "messages": [
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-14T03:13:45.967436+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6（全满） | Worker 池 1 (GPU 0 / CPU 1)\n\n已执行 Director 指令：\n\n**1. 1.5B d005 SFT → GPU 4 ✅**\n- exp_id: exp_001_sft_d005_15B\n- PID: 271916, tmux session 已启动, cron 已注册\n- 预计耗时 ~101min（参考 1.5B baseline 经验）\n- 命令: `--gpu 4 --batch-size 1 --grad-accum 16 --seed 42`\n- Registry spec 已完整填写\n\n**2. exp_004_sim_sweep 调查 → Worker 已派发**\n- worker_id: worker_diag_exp004_sweep_failure_20260514T031255\n- 调查方向：目录是否存在、OOM kill 记录、部分结果搜索、重跑建议\n- 完成后自动回调"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-14T03:13:48.308021+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000732"
+        }
+      ]
+    },
+    {
+      "number": 136,
+      "messages": [
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-14T03:14:01.379669+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: info] exp_001_eval_15B_d000_s42_v2 审查通过\n\n**指标交叉验证**：Registry 记录与日志完全匹配 ✓\n- MMLU: 0.5753 (8079/14042)\n- GSM8K: 0.6368 (840/1319)\n- ARC: 0.7756 (909/1172)\n- HumanEval: 0.1280 (21/164)\n\n**与 0.5B baseline (s123) 对比**合理（+15.7pp MMLU, +29.6pp GSM8K, +37.8pp ARC, +2.4pp HumanEval），符合 0.5B→1.5B 模型规模提升预期。\n\n**输出文件完整**：eval_results.json (2MB) + correctness_matrix.json (107KB) ✓。缺 item_responses.json（v5 之前版本 evaluate.py 未生成此文件），但 correctness_matrix.json 已足够 IRT 分析。\n\n[severity: warning] exp_004_sim_sweep registry 标记为 failed，但进程 PID 219346 仍在运行，且持续产出新结果文件（auc0.55_n100 在 03:11 更新）。Registry 结论与实际状态不一致，建议更正为 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-14T03:14:07.596605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,get_agent_queue_status,read_experiment_plan_with_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-14T03:14:07.649503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-14T03:14:13.276846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-14T03:14:13.483102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":23}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 206
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-14T03:14:15.946582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-14T03:14:15.997203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-14T03:14:19.915214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "[Director 指令] exp_004_sim_sweep registry 纠错\n\nReviewer 确认 PID 219346 仍在运行且持续产出结果（auc0.55_n100 在 03:11 更新）。之前标记 failed 是误判。\n\n立即修正：exp_004_sim_sweep registry status 改回 RUNNING，conclusion 清空。不要碰进程本身。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-14T03:14:21.729038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-14T03:14:22.239708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-14T03:14:22.240128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-14T03:14:22.548980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `contamcal-irt-calibration`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    cqa1-21977 (connect.cqa1.seetacloud.com)\\n✓ 代码路径  /root/contamcal-irt-calibration\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 14 条记录\\n\\n── 📊 研究进度 ──\\n实验: 43 个 (运行中 7 | 待处理 12 | 完成 24 | 成功 14)\\n\\n  exp_001_sft_injection      DONE (success)\\n  exp_001_sft_0pct_15B_s123  DONE (success)\\n  exp_001_sft_0pct_05B_s123  DONE (success)\\n  exp_001_sft_0pct_15B       DONE (success)\\n  exp_005_noise_prop         DONE (failed)\\n  exp_001_sft_0pct_05B       DONE (success)\\n  mvp_sim_confounding        DONE (success)\\n  mvp_sim_4pl_gamma          DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_001_eval_05B_d100_v5 | 100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交) | — | — | — |\\n| exp_001_eval_05B_d000_s42_v5 | 0% dosage 0.5B s42 baseline eval (v5, 最终干净提交) | — | — | — |\\n| exp_001_eval_05B_d005 | — | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_05B_d100_v2（等待人工审批）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 819
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-14T03:14:22.702802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":33}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 463
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-14T03:14:23.557281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"stage1_signal_pipeline\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-003\\\", \\\"name\\\": \\\"rrf_aggregation_ablation\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c)\n…[truncated 8018 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 1317
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-14T03:14:32.572764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f67afa3b0b4c3c17c3671d1041\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 12657
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-14T03:15:04.186781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-14T03:15:04.290490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-14T03:15:27.455826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "GPU 全满，等 SFT 训练和 exp_004 诊断结果期间，提前铺 exp-002 信号管线代码。\n\n任务：在服务器上创建 exp-002 (stage1_signal_pipeline) 的代码框架，实现以下 4 个检测信号的计算管线：\n\n1. **Embedding-based semantic retrieval** — FAISS + sentence-transformers，计算每个 benchmark item 与训练数据的语义相似度\n2. **Min-K%++ membership inference** — 按论文实现，输出 per-item membership score\n3. **ConStat performance gap** — original vs paraphrased items 的表现差异\n4. **Self-Critique entropy collapse** — 模型对自身输出的 entropy 分析\n\n要求：\n- 代码放 `/root/contamcal-irt-calibration/exp002/` 目录\n- 统一接口：每个信号模块接收 (model_path, benchmark_data, paraphrase_data) → 输出 per-item exposure score (DataFrame: item_id, signal_name, score)\n- 写一个 `run_all_signals.py` 主脚本，串联 4 个信号 + 输出合并结果\n- 先用已完成的 0.5B 模型（d000 和 d100）做 dry-run 验证接口正确性（不需要 GPU 跑完整推理，只验证代码不报错）\n- 依赖包列表：sentence-transformers, faiss-cpu, 其他按需\n\n这是纯代码准备任务，不启动 GPU 实验。exp_004 诊断 worker 回来后单独处理。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-14T03:15:40.974886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f67ab736484c4d4840d1dcc50b\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 2, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 指令] exp_004_sim_sweep registry 纠错\\\\n\\\\nReviewer 确认 PID 219346 仍在运行且持续产出结果（auc0.55_n100 在 03:11 更新）。之前标记 failed 是误判。\\\\n\\\\n立即修正：exp_004_sim_sweep registry status 改回 RUNNING，conclusion 清空\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 13519
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-14T03:15:51.891972+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "消息已排队（队列深度 2）。Agent 正在处理 exp_004_sim_sweep 的 registry 纠错——Reviewer 确认 PID 219346 仍在运行，之前标 failed 是误判。exp_004 实际仍在跑，不是真失败。\n\nexp-002 代码准备指令排在后面，Agent 处理完当前任务后会接手。当前状态：\n- 6 GPU 全满运行\n- exp_004 模拟扫描实际仍在运行（registry 被纠正）\n- exp-002 信号管线代码准备已排队"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000752"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "messages": [
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-14T03:17:13.574450+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6（GPU 4 刚释放，待分配）| Worker 池 3 (GPU 0 / CPU 3)\n\n## exp_001_eval_15B_d000_s42_v2 完成 ✅\n\n**1.5B × 0% dosage × s42 baseline eval 成功建立：**\n\n| Benchmark | 1.5B (s42) | 0.5B (s123) | Δ |\n|-----------|-----------|-------------|---|\n| MMLU | 57.53% | 41.82% | +15.7pp |\n| GSM8K | 63.68% | 34.04% | +29.6pp |\n| ARC-Challenge | 77.56% | 39.76% | +37.8pp |\n| HumanEval | 12.80% | 10.37% | +2.4pp |\n\n1.5B 各项分数与公开预期一致（SFT 后轻微提升属正常），作为 0% contamination baseline 可用于后续 dosage 对比。\n\n**当前运行中（7 jobs）：**\n- exp_001_sft_d100_15B_v2：100% dosage 1.5B SFT（完成后 → 产出 contaminated 1.5B 模型用于 eval 对比）\n- exp_001_eval_15B_d000_s123：1.5B baseline 第二 seed（完成后与 s42 配对计算 mean±std）\n- exp_001_eval_3B_d000_s42 / s123：3B baseline 两个 seed\n- exp_001_eval_05B_d005 / d000_s42_v5 / d100_v5：0.5B 的 5%/0%/100% eval\n\n**GPU 4 已释放。** exp_001_sft_d100_15B_v2 完成后需要立即提交 1.5B 100% dosage eval，届时可用 GPU 4。当前无可立即提交的新任务（等 d100 SFT 产出 checkpoint）。\n\n**实验计划反思：**\n- 这组 baseline 验证了 1.5B 模型 scale-up 后性能正常提升，Phase 2 数据/训练流程无问题\n- 下一个关键节点：exp_001_sft_d100_15B_v2 完成 → 立即 eval → 与此 baseline 对比得到 1.5B contamination inflation 幅度\n- 与 0.5B 的 dose-response curve 配合，可验证 contamination effect 是否跨 model scale 一致\n- Critical path 不变：MMLU paraphrase 完成 → 重跑 prepare_sft_data → Phase 3 全部 contaminated SFT"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000753"
+        }
+      ]
+    },
+    {
+      "number": 138,
+      "messages": [
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-14T03:17:14.252715+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 5（GPU 4 刚空出，正在提交 1.5B d005 SFT）| Worker 池 3 (GPU 1 / CPU 2)\n\n## Session Start Loop #3 状态汇报\n\n### 新完成实验（自上次 handoff 以来）\n\n**exp_001_eval_15B_d000_s42_v2 ✅ success** — 1.5B s42 baseline eval 完成\n- mmlu=0.5753, gsm8k=0.6368, arc=0.7756, humaneval=0.128\n- GPU 4 已释放 → 按优先级提交 **1.5B d005 SFT**（Worker 正在验证 GPU 并提交）\n\n**exp_004_sim_sweep ❌ failed** — 4PL+γ parameter recovery sweep (CPU)\n- 120 runs (12 conditions × 10 seeds)，结论 failed，详细原因待 Worker 诊断\n- 此实验验证 Theorem 1 identifiability 阈值，对论文重要\n\n**exp_005_noise_prop_v2 ❌ failed** — ME model noise propagation (CPU)\n- 失败原因：/tmp tmpfs 3.9GB 磁盘耗尽 + ME model Rhat=1.945 严重欠识别\n- Worker 正在准备 v3 修复方案（非 tmpfs 输出 + 简化 ME model）\n\n### 仍在运行 (7 experiments, 7 crons)\n| GPU | 实验 | 任务 |\n|-----|------|------|\n| 0 | exp_001_sft_d100_15B_v2 | 1.5B d100 SFT（Phase 3 首个） |\n| 1 | exp_001_eval_05B_d005 + 3B_d000_s42 | 0.5B d005 + 3B s42 eval |\n| 2 | exp_001_eval_05B_d000_s42_v5 + d100_v5 | 0.5B s42/d100 eval (re-run) |\n| 3 | exp_001_eval_3B_d000_s123 | 3B s123 eval |\n| 4 | → 提交中 1.5B d005 SFT | |\n| 5 | exp_001_eval_15B_d000_s123 | 1.5B s123 eval |\n\n### 已有 Baseline Eval Metrics（可用于 IRT）\n| Model | Seed | MMLU | GSM8K | ARC | HumanEval |\n|-------|------|------|-------|-----|-----------|\n| 0.5B | s123 | 0.4182 | 0.3404 | 0.3976 | 0.1037 |\n| 1.5B | s42 | 0.5753 | 0.6368 | 0.7756 | 0.128 |\n\n### 下一步\n1. GPU 4 → 1.5B d005 SFT（~101min，免审批）\n2. 等 GPU 0 空出（1.5B d100 SFT 完成）→ 接 3B d100 SFT\n3. eval GPU 完成后依次接 Phase 3 SFT（按优先级：3B d005 > 0.5B d025/d050）\n4. exp_004/exp_005 CPU 实验待诊断后重跑\n5. 距 EMNLP ARR May 25 还有 **11 天**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-14T03:17:47.461187+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP 服务器已断开，无法调用任何管理工具（发消息给 Agent、审批实验、分配 GPU 等）。\n\n**收到的 Agent 汇报摘要**：\n- 1.5B baseline eval 完成（metrics 已收集），GPU 4 → 1.5B d005 SFT 已提交\n- exp_004_sim_sweep 和 exp_005_noise_prop_v2 均失败，待诊断修复\n- 6 GPU 全满，11 天到 EMNLP ARR DDL\n- 之前排队的 exp-002 信号管线代码准备指令在队列中（depth=2）\n\n**MCP 恢复后立即要做的事**：\n1. 确认 exp-002 代码准备指令是否被 Agent 收到并执行\n2. 跟进 exp_004 诊断结果——这是 P0（Theorem 1 identifiability 阈值），失败必须尽快修复重跑\n3. exp_005 v3 修复方案审批（非 tmpfs 输出 + 简化 ME model）\n4. 规划 GPU 释放后的下一轮 SFT 提交顺序\n\n等待 MCP 重连。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000755"
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "messages": [
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-14T03:17:49.576597+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 5 (cuda:4 空闲) | Worker 池 4 (GPU 1 / CPU 3)\n\nRegistry 纠错完成：exp_004_sim_sweep status DONE→RUNNING, conclusion \"failed\"→null, completed_at 已清除。PID 219346 未被触碰。report.md 已同步更新（从告警和失败计数中移除）。\n\n注意：之前为排查此\"失败\"已 spawn 了 worker_diag_exp004_sweep_investigation，该 Worker 仍在运行，其结果可忽略或作为进度参考。\n\ncuda:4 当前空闲，待有可铺实验时立即使用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-14T03:18:11.421817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-14T03:18:11.472442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-14T03:18:13.191786+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:4 空闲但之前已下达 1.5B d005 SFT 指令。需要确认状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-14T03:18:13.221436+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP 服务器已断开，所有项目管理工具不可用——无法给 Agent 发指令、分配 GPU、回复用户。\n\n**Agent 报告要点记录**（工具恢复后立即处理）：\n\n1. **1.5B baseline 建立** — 各 benchmark 分数正常，可作为 contamination 对比锚点\n2. **GPU 4 空闲** — 违反 10 分钟空卡禁令，需立即分配任务。候选：\n   - 如果 exp_001_sft_d005_15B（之前派的 5% dosage 1.5B SFT）已完成 → 提交对应 eval\n   - 如果 d100 SFT 接近完成 → 等产出 checkpoint 后立即提交 1.5B d100 eval\n   - 否则 → 检查是否有其他 pending eval 可以先跑\n3. **3 个 CPU worker 在跑** — exp_004 诊断 + exp_002 代码准备（之前派的）\n4. **Critical path 不变** — MMLU paraphrase → prepare_sft_data → Phase 3 全 contaminated SFT\n\n等 MCP 恢复后第一时间：`get_agent_queue_status` → 确认 GPU 4 是否已被 Agent 自行占用 → 若仍空则立即派任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000760"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "messages": [
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-14T03:18:52.648415+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Main Agent 执行出错]: Claude 调用失败: claude exited -9: "
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "main_agent"
+          },
+          "id": "event-000761"
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "messages": [
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-14T03:18:56.666292+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 5（GPU 4 修复中）| Worker 池 2 (GPU 0 / CPU 2)\n\n**Session-start 状态汇报 (Loop #3)**\n\n**RUNNING (7 实验, 7 cron 正常):**\n| GPU | 实验 | PID |\n|-----|------|-----|\n| 0 | 1.5B d100 SFT v2 | 251924 |\n| 1 | 3B s42 eval + 0.5B d005 eval | 249294, 255322 |\n| 2 | 0.5B d000 s42 eval v5 + 0.5B d100 eval v5 | 266511, 266780 |\n| 3 | 3B s123 eval | 242581 |\n| 4 | **空闲 → 正在提交 1.5B d005 SFT** | — |\n| 5 | 1.5B s123 eval | 250600 |\n\n**立即行动:**\n1. GPU 4 空闲违反硬约束 → 已派 Worker 清理残留 tmux session，完成后立即提交 `exp_001_sft_d005_15B`（Phase 3 优先级 #1，免审批）\n2. 派 Worker 分析 exp_004_sim_sweep + exp_005_noise_prop_v2 失败原因（判断 Stan bug 修复前/后）\n\n**已完成 SFT checkpoints (8):**\n0.5B: d000-s42 ✅, d000-s123 ✅, d005-s42 ✅, d100-s42 ✅\n1.5B: d000-s42 ✅, d000-s123 ✅ | d100-s42 🏃 GPU 0\n3B: d000-s42 ✅, d000-s123 ✅\n\n**已完成 eval (2):**\n- 0.5B d000 s123: MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037\n- 1.5B d000 s42 v2: MMLU 0.5753, GSM8K 0.6368, ARC 0.7756, HumanEval 0.128\n\n**条件触发队列:**\n- GPU 0 释放 → 3B d100 SFT（优先级 #2）\n- GPU 1/3 释放 → 3B d005 SFT（优先级 #2）\n- GPU 2 释放 → 0.5B d025 SFT（优先级 #3）\n- GPU 5 释放 → 1.5B d025 SFT（优先级 #4）\n\n距 EMNLP ARR May 25 还剩 11 天。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-14T03:19:11.207397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-14T03:19:11.358386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":1,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_cleanup_tmux_d005_15B_20260514T031659 已完成（status=done）。用 `get_worker_status('worker_ops_\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_diag_exp004_sweep_investigation_20260514T031302 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778728704.3834727}],\\\"idle_seconds\\\":21}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-14T03:19:20.106291+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent 已自动重启，正在处理两个 worker 回调（d005 tmux 清理 + exp_004 诊断结果）。等它处理完这两条再重新派 exp-002 代码准备任务。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000765"
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "messages": [
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-14T03:19:21.626432+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 实际跑 6/6 | Worker 池 3 (GPU 0 / CPU 3)\n\n**Session #3 初始化完成，全部 GPU 满载。**\n\n当前 GPU 分布：\n| GPU | 实验 | 类型 | 预计时长 |\n|-----|------|------|---------|\n| 0 | exp_001_sft_d100_15B_v2 | 1.5B d100 SFT | ~101min |\n| 1 | eval_05B_d005 + eval_3B_d000_s42 | Eval ×2 | ~60-90min |\n| 2 | eval_05B_d000_s42_v5 + eval_05B_d100_v5 | Eval ×2 | ~60-90min |\n| 3 | eval_3B_d000_s123 | Eval | ~60-90min |\n| 4 | exp_001_sft_d005_15B | 1.5B d005 SFT | ~101min (刚启动) |\n| 5 | eval_15B_d000_s123 | Eval | ~60-90min |\n\nPhase 3 优先级 #1（1.5B d005+d100）已全部在跑。\n\n**关键等待事件：**\n1. 0.5B d000/d100 eval 完成 → 计算首个 contamination score inflation 数据点\n2. GPU 0 空出(~101min) → 提交 3B d100 SFT（优先级 #2，~214min）\n3. Eval GPU(1/2/3/5) 空出 → 按 3B d005 > 0.5B d025 > 0.5B d050 排队\n\n**Worker 状态：** 3 个诊断 Worker 运行中（exp_004 sim sweep 调查 + exp_005 failure 分析），回调后汇报。\n\n无阻塞项，全速推进中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-14T03:19:41.001480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_project_status,director_get_project_overview,get_agent_queue_status,read_experiment_plan_with_status,compute_coverage_matrix",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-14T03:19:41.053516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-14T03:19:41.117683+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-14T03:19:47.795863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-14T03:19:47.846583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-14T03:19:51.215186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-14T03:19:51.668488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `contamcal-irt-calibration`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    cqa1-21977 (connect.cqa1.seetacloud.com)\\n✓ 代码路径  /root/contamcal-irt-calibration\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 14 条记录\\n\\n── 📊 研究进度 ──\\n实验: 43 个 (运行中 9 | 待处理 11 | 完成 23 | 成功 14)\\n\\n  exp_001_sft_injection      DONE (success)\\n  exp_001_sft_0pct_15B_s123  DONE (success)\\n  exp_001_sft_0pct_05B_s123  DONE (success)\\n  exp_001_sft_0pct_15B       DONE (success)\\n  exp_005_noise_prop         DONE (failed)\\n  exp_001_sft_0pct_05B       DONE (success)\\n  mvp_sim_confounding        DONE (success)\\n  mvp_sim_4pl_gamma          DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_004_sim_sweep | 4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded | — | — | — |\\n| exp_001_sft_d005_15B | 5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1 | — | — | — |\\n| exp_001_eval_05B_d100_v5 | 100% \"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 453
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-14T03:19:51.668998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-14T03:19:51.719488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-14T03:19:52.224899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 contamcal-irt-calibration 概况\\n\\n## 实验状态 (43 个)\\n\\n- **exp_005_noise_prop_v2**: DONE (failed) — \\n- **exp_001_sft_d005_05B_r3**: PREPARING (killed) — \\n- **exp_001_eval_3B_d000_s42_v2**: PREPARING (failed) — \\n- **exp_001_sft_d005_05B_v2**: DONE (failed) — \\n- **exp_001_sft_d005_05B**: DONE (killed) — \\n- **exp_001_sft_100pct_05B**: DONE (failed) — \\n- **exp_001_sft_0pct_3B**: DONE (success) — \\n- **exp_001_sft_injection**: DONE (success) — \\n- **exp_001_sft_0pct_15B_s123**: DONE (success) — \\n- **exp_001_sft_0pct_05B_s123**: DONE (success) — \\n- **exp_001_sft_0pct_15B**: DONE (success) — \\n- **exp_005_noise_prop**: DONE (failed) — \\n- **exp_001_sft_0pct_05B**: DONE (success) — \\n- **mvp_sim_confounding**: DONE (success) — \\n- **mvp_sim_4pl_gamma**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_004_sim_sweep | 4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded | — | — | — |\\n| exp_001_sft_d005_15B | 5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1 | — | — | — |\\n| exp_001_eval_05B_d100_v5 | 100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交) | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_05B_d100_v2（等待人工审批）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d0\n…[truncated 1269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 555
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-14T03:19:52.225436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__compute_coverage_matrix"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-14T03:19:52.428743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-14T03:19:52.531871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"stage1_signal_pipeline\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-003\\\", \\\"name\\\": \\\"rrf_aggregation_ablation\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c)\n…[truncated 8015 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 812
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-14T03:19:52.917885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [1, 2, 3], \\\"matrix\\\": {\\\"1\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"exp-004\\\", \\\"name\\\": \\\"simulation_identifiability_sweep\\\", \\\"claim\\\": 1, \\\"also_supports\\\": [3], \\\"description\\\": \\\"Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5 conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \\\\\\\"cannot distinguish no contamination from moderate contamination.\\\\\\\" N_items=300 fixed (per MVP finding). Subsumes exp-010 (prior sensitivity) \n…[truncated 8795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
+            "elapsed_ms": 692
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-14T03:19:53.099618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":1,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_cleanup_tmux_d005_15B_20260514T031659 已完成（status=done）。用 `get_worker_status('worker_ops_\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_diag_exp004_sweep_investigation_20260514T031302 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778728704.3834727}],\\\"idle_seconds\\\":63}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 670
+          },
+          "id": "event-000781"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "messages": [
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-14T03:20:07.716740+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6（GPU 4 已提交 1.5B d005 SFT）| Worker 池 3 (GPU 0 / CPU 3) + CPU 实验 2 (exp_004 + exp_005)\n\n## exp_004_sim_sweep 状态修正\n\nexp_004 registry 误报 failed——实际 PID 219346 仍在运行（10h+，27/120 runs = 22.5%）。已修正 registry 为 RUNNING，重新注册 cron 监控。预计剩余 ~25h。\n\n**初步结果（AUC=0.55，最弱信号条件）：**\n\n| N_models | γ_bias | γ_RMSE | CI95 覆盖率 | CI95 宽度 |\n|----------|--------|--------|------------|----------|\n| 20 | +0.020 | 0.040 | 80% | 0.133 |\n| 50 | +0.015 | 0.026 | 90% | 0.087 |\n| 100 | -0.003 | 0.004 | 100% | 0.065 |\n\n**关键发现：即使 AUC=0.55（最弱信号），N≥50 时 CI95 宽度 < 0.09（远低于 15pp 阈值），且 CI 能排除 γ=0。** 这对 C1 claim 非常有利——说明 IRT calibration 对信号质量的鲁棒性比预期更好。\n\n注意：N=20 时 coverage=80%（后验过度自信），论文需声明 N≥50 的适用条件（与 D014 决策一致）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-14T03:20:20.649551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-14T03:20:20.700239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-14T03:20:27.080771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-14T03:20:27.232855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 21:06 UTC | 更新原因: 数据版本确认、MMLU 3-attempt 进度更新、Phase 3 前置条件\\\\n\\\\n## 核心方向\\\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**EMNLP 2026 ARR May 25**（D006, 距今 12 天）\\\\n- Track: ML for NLP / Resources and Evaluation\\\\n- Special theme: \\\\\\\"New Missions for NLP Research\\\\\\\" — contamination/data governance\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\\\n- **Phase 1 Paraphrase**:\\\\n  - ARC ✅ 1172 条（QC 59.5%）\\\\n  - GSM8K ✅ 1319 条（QC 17.3%）\\\\n  - MMLU ⏳ GPU 0 — 3-attempt QC 重试流程：Attempt 1 ✅ (878 batches, 29.3% QC pass), **Attempt 2 进行中** (121/621, 19.5%), Attempt 3 待定。**总 ETA ~2.5-3h (约 07:30-08:00 北京时间)**\\\\n  - HumanEval ✅ 降级到 appendix (D009)\\\\n  - ⚠️ 所有 paraphrases 已于 05-14 全部重新生成 v3\\\\n- **Phase 2 数据准备**: ARC+GSM8K dosage 文件已生成 | MMLU 等待 Phase 1 全部完成\\\\n  - ✅ **数据版本确认**: 0% dosage = 纯 SlimOrca 数据，不含 paraphrases，当前训练有效\\\\n  - ⚠️ dosage >0% 文件仅含 ARC+GSM8K，MMLU 完成后需重跑 prepare_sft_data.py\\\\n- **0% SFT baselines**:\\\\n  - 0.5B-s42 ✅ (loss 1.4894, 52.9min) | 1.5B-s42 ⏳ GPU 4 | 3B-s42 ⏳ GPU 5\\\\n  - 0.5B-s123 ⏳ GPU 1 (PID 216033, 460/3125, ~1.08s/it, ETA ~47min)\\\\n  - 1.5B-s123 ⏳ GPU 2 (PID 216111, 260/3125, ~2.10s/it, ETA ~1h40m)\\\\n  - 3B-s123 ⏳ GPU 3 (PID 216935, 171/3125, ~3.78s/it, ETA ~3h10m)\\\\n- **CPU**:\\\\n  - exp-004 sim sweep ⏳ (~28h total)\\\\n  - exp-005 noise prop v2 ⏳ (Stan bug 已修复, PID 251971, 50 fits, ETA ~4-12h)\\\\n- **Stan bug 修复 ✅**:\\\\n  - contam_irt_4pl_me.stan: sigma_e lower bound 0→1e-4, c/d bounds [0.001,0.999]\\\\n  - contam_irt_4pl_simple.stan: c/d bounds [0.001,0.999]\\\\n  - run_noise_propagation.py: max_treedepth 10→12\\\\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\\\\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有；Paper Agent 已完成 D2\n…[truncated 2898 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 152
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-14T03:20:27.283579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-14T03:20:27.334600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_004_sim_sweep | 4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded | — | — | — |\\\\n| exp_001_sft_d005_15B | 5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1 | — | — | — |\\\\n| exp_001_eval_05B_d100_v5 | 100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交) | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_001_eval_05B_d100_v2（等待人工审批）\\\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\\\n- exp_001_eval_05B_d000_s42_v2（准备中）\\\\n- exp_001_eval_05B_d100_v3: 100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score inflation（准备中）\\\\n- exp_001_eval_05B_d000_s42_v3: 0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算（准备中）\\\\n- exp_001_sft_d005_05B_r3: 5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry #3 after v1/v2 OOM (v1: GPU 5 zombie process; v2: --gpu 0 bug ran on GPU 0 instead of 5). Now uses --gpu 5 correctly.（准备中）\\\\n- …另有 1 项\\\\n\\\\n## 近期结论\\\\n- **exp_001_eval_15B_d000_s42_v2** (success): —\\\\n- **exp_001_eval_05B_d100** (failed): —\\\\n\n…[truncated 764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-14T03:20:36.969497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-14T03:20:37.122823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":2,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_cleanup_tmux_d005_15B_20260514T031659 已完成（status=done）。用 `get_worker_status('worker_ops_\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_diag_exp004_sweep_investigation_20260514T031302 已完成（status=done）。用 `get_worker_status('worke\\\",\\\"queued_at\\\":1778728704.3834727},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_exp005-failure_20260514T031535 已完成（status=done）。用 `get_worker_status('worker_analys\\\",\\\"queued_at\\\":1778728795.7045472}],\\\"idle_seconds\\\":107}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 153
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-14T03:20:55.395890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "GPU 全满期间，提前铺 exp-002 (stage1_signal_pipeline) 代码。这是 exp-001 SFT 完成后的关键路径，代码提前写好可以立即跑。\n\n任务：在服务器 `/root/contamcal-irt-calibration/exp002/` 创建信号管线代码：\n\n1. **Embedding semantic retrieval** — FAISS + sentence-transformers，per-item 与训练数据语义相似度\n2. **Min-K%++ membership inference** — per-item membership score\n3. **ConStat** — original vs paraphrased items 表现差异\n4. **Self-Critique entropy collapse** — 模型对自身输出的 entropy\n\n要求：\n- 统一接口：每个模块 (model_path, benchmark_data, paraphrase_data) → DataFrame(item_id, signal_name, score)\n- `run_all_signals.py` 主脚本串联 4 信号 + 合并输出\n- 用已完成的 0.5B d000/d100 模型做 dry-run 验证接口（不占 GPU，只验证代码逻辑）\n- 需要的包：sentence-transformers, faiss-cpu 等\n\n纯代码准备，不启动 GPU 实验。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-14T03:21:04.503974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f67b73ab488c4d998a5e834a9a\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[WORKER DONE] Worker worker_analysis_exp005-failure_20260514T031535 已完成（status=done）。用 `get_worker_status('worker_analysis_exp005-failure_20260514T031535')` 读取结果，然后处理。\\\\n\\\\n- worker_id: worker_analysis_ex\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 9108
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-14T03:21:12.259477+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "指令已排队。Agent 正在处理 exp_005 failure 分析 worker 的回调，处理完后会接 exp-002 代码准备任务。\n\n当前状态：\n- **GPU 6/6 满载**：1.5B d005+d100 SFT + 多组 eval 并行\n- **exp_004 sim sweep**：实际仍在跑（22.5%），初步结果对 C1 有利\n- **exp_005**：失败原因已定位（tmpfs 磁盘满 + ME model 欠识别），等 Agent 处理修复方案\n- **exp-002 代码准备**：已重新派发，排队等执行"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000793"
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "messages": [
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-14T03:22:07.684438+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 2 (GPU 0 / CPU 2)\n\n## exp_004 sim sweep 诊断结果\n\n**失败原因已查明：**\n1. 代码未部署到 GPU 服务器（服务器上没有 `artifacts/` 目录），导致服务器提交失败\n2. 本地运行的进程 PID 219346 在 seed 6 (auc0.55_n100) 卡住——两条 Stan MCMC chains 运行 6+ 小时无进展（病态后验几何）\n\n**当前进度：** 27/120 runs 完成 (22.5%)，仅覆盖 auc0.55 的 n20/n50 条件\n\n**已派 Worker 修复：**\n- Kill 卡住进程\n- 给 run_sweep.py 加单个 fit 超时（7200s），防止再卡\n- 断点续跑剩余 93 runs\n- 预计剩余 ~46h CPU 时间（本地运行，不占 GPU）\n\n## exp_005_noise_prop_v2 检查中\n已派 Worker 确认状态。之前诊断结论：γ bias 根因在模型 identifiability，不在 ME 处理方式。\n\n## GPU 全满状态\n| GPU | 实验 | 预计完成 |\n|-----|------|---------|\n| 0 | 1.5B d100 SFT (已跑 2h) | ~101min total → 接近完成 |\n| 1 | 3B eval s42 + 0.5B d005 eval | 数小时 |\n| 2 | 0.5B d000/d100 eval v5 | 数小时 |\n| 3 | 3B eval s123 | 数小时 |\n| 4 | **1.5B d005 SFT** (刚启动) | ~101min |\n| 5 | 1.5B eval s123 | 数小时 |"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-14T03:22:30.257750+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000795"
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "messages": [
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-14T03:22:54.591443+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — exp_004_sim_sweep（worker_diag 诊断后核实）\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **Sweep 进程正常运行**：PID 219346 已运行 10h14m，当前在第 3/12 条件 `auc0.55_n100`（seed 6/10）。代码逻辑正确，checkpoint/resume 机制生效。已完成条件：auc0.55_n20 (10/10), auc0.55_n50 (10/10), auc0.55_n100 (6/10)。全部 26 个已完成 seed 零 divergence，R̂ ≤1.008，ESS >1200，收敛质量无问题。\n\n- [severity: warning] **剩余时间约 44 小时**。n100 条件每 seed 耗时 2400-5840s（约 40-97min），是主要瓶颈。剩余工作量：4 seeds(n100) + 9 个完整条件（含 3 个 n100）。预计总耗时 ~55h，距完成还需约 44h（~5/16 23:00 UTC）。EMNLP DDL 5/25，sweep 完成后仍有 9 天，**时间可控但 sweep 在 critical path 上**——D014 明确要求 sweep 确认 N vs bias 曲线后才能最终确定 C1 claim 的条件限定。如果后续某个 n100 条件出现收敛问题需要 debug/重跑，缓冲会缩减。\n\n- [severity: warning] **auc0.55_n20 的 CI95 覆盖率仅 80%（8/10 seeds）**。具体：seed 7（γ_mean=0.584, bias=+0.084, q025=0.508 > 0.5）和 seed 9（γ_mean=0.570, bias=+0.070, q025=0.501 > 0.5）的 95% CI 不覆盖真值。这不是收敛问题（两个 seed 均零 divergence），而是 **在低 AUC + 小 N 条件下，γ 存在系统性正偏差导致 interval undercoverage**。这直接印证 D014 的判断（\"γ recovery 依赖 N≥50\"），但 80% 覆盖率比 95% 名义值差 15pp，值得在论文 simulation calibration section 中量化报告。\n\n- [severity: info] **`auc0.8_n50` 结果是 dry-run 残留**（1 seed, seed=0）。Sweep 到达该条件时 resume 逻辑会自动检测 \"1/10 done\" 并补跑 9 seeds，无需人工干预。\n\n- [severity: info] **GPU 边界检查通过**。exp_004 在本地 CPU 运行。服务器 6 张 GPU 均有进程，PID 与 registry 一致，全部在项目白名单 cuda:0-5 内。\n\n### 建议\n\n1. **sweep_summary.json 当前过时**（仅含 dry-run 的 auc0.8_n50 单条结果）。完成后会自动更新，但如果 Agent 在 sweep 完成前引用 summary 数据会得到错误结论。中间分析应直接读各条件 JSON 文件。\n2. 考虑在 auc0.55_n20 的 CI undercoverage 问题上，**论文是否需要明确声明 N≥50 为 reliable inference 的下限**，而非仅作为 bias characterization 的一个数据点。目前 coverage 仅 80% 不满足 \"well-calibrated\" 标准。\n3. 如果 44h 等待不可接受，可考虑并行化 sweep（多进程跑不同 conditions），但这会增加 CPU 竞争。当前服务器 CPU 利用率需确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-14T03:23:09.138151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-14T03:23:09.368164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":56}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 230
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-14T03:23:41.525651+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 报告分析：\n\n**两个 WARNING 都不需要立即行动：**\n\n1. **44h 剩余时间**：预计 5/16 完成，距 DDL 5/25 还有 9 天缓冲。Sweep 在 critical path 上但时间可控。不需要并行化（CPU 竞争风险不值得）。\n\n2. **auc0.55_n20 CI95 覆盖率 80%**：这恰恰是我们要量化的结果——低 AUC + 小 N 下 γ 正偏导致后验过度自信。与 D014 决策完全吻合，论文 simulation section 声明 N≥50 为 reliable inference 下限即可。\n\n**唯一需要注意的**：sweep_summary.json 当前只有 dry-run 残留数据，中间分析必须直接读各条件 JSON 文件。等 Agent 处理完当前任务后提醒。\n\nNo response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000799"
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "messages": [
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-14T03:23:43.681177+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 3 (GPU 0 / CPU 3)\n\n收到指令，已派 Worker 在服务器 `/root/contamcal-irt-calibration/exp002/` 创建 Stage 1 Signal Pipeline 代码：\n\n1. `embedding_retrieval.py` — FAISS + sentence-transformers 语义检索\n2. `mink_plus_plus.py` — Min-K%++ membership inference\n3. `constat.py` — original vs paraphrased 表现差异\n4. `self_critique.py` — entropy collapse 检测\n5. `run_all_signals.py` — 统一串联 + 合并输出\n\n统一接口 `(model_path, benchmark_data, paraphrase_data) → DataFrame(item_id, signal_name, score)`。写完后用 0.5B d000 模型在 CPU 上做 dry-run 验证。\n\n同时还有 2 个 Worker 在跑：exp_004 sweep 修复（kill卡住进程+加timeout+重启）、exp_005 noise prop 状态检查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-14T03:24:13.821805+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-14T03:24:52.812611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-14T03:24:52.863399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-14T03:25:14.682377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**战略方向 + 3 项行动**\n\n**1. exp_004 + exp_005 调查结果汇报**\n两个调查 Worker 已完成。汇报：\n- exp_004_sim_sweep 当前是正常运行还是已 fail？如果 fail，根因是什么？\n- exp_005_noise_prop_v2 失败根因？（D013 已弃用 ME model，但需确认 simple IRT stan 代码不受影响）\n\n**2. 🔴 Critical Path 加速 — 立即写 exp-002 signal pipeline 代码**\n距 DDL 11 天，当前 0% coverage。最大瓶颈是 exp-001→002→003→006 串行链。\n\n**立即行动**：派 Worker 写 exp-002 signal 计算代码（CPU 工作，不占 GPU）。4 个 signal：\n- (a) embedding semantic retrieval (FAISS + sentence-transformers)\n- (b) Min-K%++ membership inference\n- (c) ConStat performance gap (original vs paraphrased)\n- (d) Self-Critique entropy collapse\n\n输入：SFT checkpoint + benchmark 原题 + paraphrased items\n输出：per-model per-item exposure scores (4 signals)\n\n代码写完后，0.5B 已有 3 个完整 SFT checkpoint（d000-s42, d005-s42, d100-s42）。当 GPU 1 或 GPU 2 eval 完成时，**先在该 GPU 上跑 0.5B 的 exp-002 signals（预估 1-2 GPU-hours），再提交 d025 SFT**。这样 exp-003 (RRF) 和 exp-006 (IRT) 可以在 0.5B 上先跑通验证整条管线，同时大模型 SFT 继续。\n\nd025 SFT 优先级从 P3 降为 P4（排在 exp-002 0.5B signals 之后）。d100/d005 大模型 SFT（P1/P2）不变。\n\n**3. d050 dosage 确认**\nconditional queue 里没有 d050。确认：{0%, 5%, 25%, 100%} 4 点 dose-response curve 足够，d050 deprioritize 到 P2+ 可选。是否同意？\n\n条件触发队列其余优先级确认无误。继续。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-14T03:25:31.716860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f604457b894c45ae6e6a9a4bcb\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 17034
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-14T03:25:47.012961+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Agent 发送 3 项战略指令：\n\n1. **汇报 exp_004/exp_005 调查结果**（两个调查 Worker 已完成）\n2. **立即写 exp-002 signal pipeline 代码**（CPU 工作，不占 GPU）— 0.5B 已有 3 个 SFT checkpoint，eval 完成后立即跑 signals，加速 002→003→006 串行链\n3. **确认 d050 deprioritize**（4 点 dose-response curve 足够）\n\n等 Agent 回复调查结果和执行确认。距 EMNLP ARR May 25 还剩 11 天，当前 coverage 0% — 管线加速是最高优先级。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000806"
+        }
+      ]
+    },
+    {
+      "number": 147,
+      "messages": [
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-14T03:27:02.734964+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 1 GPU + 2 CPU (exp002 code 进行中 turn 22, exp004 sweep 本地运行, exp005 v3 本地运行)\n\n## 1. exp_004 + exp_005 调查结果\n\n### exp_004_sim_sweep ✅ 已修复，正常运行中\n- **根因**：seed 6 (auc0.55_n100) 遇到病态后验几何，Stan NUTS 卡住 6+ 小时\n- **修复**：加了 7200s/fit 超时（CmdStanPy native timeout），kill 卡住 chains 后断点续跑\n- **当前状态**：PID 340553 运行中，从 seed 6 继续\n- **进度**：27/120 完成，93 remaining，ETA ~40-60h CPU 时间（本地，不占 GPU）\n\n### exp_005_noise_prop_v2 ❌ 已 fail，v3 已启动\n**v2 失败双根因**：\n1. `/tmp` tmpfs 磁盘满 — ME 模型 4 chains 各生成 ~250MB Stan CSV（9000 tau + 9000 log_lik），耗尽 3.9GB tmpfs\n2. ME 模型严重欠识别 — 10231 参数 vs 9000 观测 → Rhat=1.945\n\n**Simple IRT stan 代码不受影响** — 独立诊断确认 contam_irt_4pl_simple.stan 收敛良好（σ_e=0.3 时 γ_mean=0.458, Rhat=1.007）。D013 弃用 ME model 的决策正确。\n\n**v3 已启动** (PID 339838)，修复：\n- Stan 输出写本地磁盘（不用 /tmp）\n- ME 换用 analytic model（1231 参数 vs 10231）\n- 断点续跑 + chain CSV 自动清理\n- ETA ~11-12h（~14:30-15:30 UTC 完成）\n\nσ_e=0.1 处的 γ bias (+57.5%) 是模型 identifiability 限制（30 models 不够在低噪声下分离 γ 和 θ），可作为论文 limitation 讨论素材。\n\n## 2. exp-002 Signal Pipeline 代码\n**已在进行中** — 在收到本指令前已派 Worker 写代码（当前 turn 22，正在添加 dry-run 支持）。4 个信号模块 + run_all_signals.py 主脚本，部署到服务器 `/root/contamcal-irt-calibration/exp002/`。\n\n收到新优先级指令：GPU 1/2 eval 完成后，**先跑 0.5B exp-002 signals（1-2 GPU-hours）再提交 d025 SFT**。已记录，将在 eval 完成回调时执行。\n\n## 3. d050 确认\n同意。{0%, 5%, 25%, 100%} 4 点 dose-response curve 足够：\n- 0%/100% 两端极值确立 range\n- 5% 检测低剂量灵敏度\n- 25% 填充中间区域\n- d050 在 d025 和 d100 之间的边际信息有限\n\nd050 降为 P2+ 可选，不影响 core claim 支撑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-14T03:28:04.126294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-14T03:28:04.487551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":1,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **战略方向 + 3 项行动**\\\\n\\\\n**1. exp_004 + exp_005 调查结果汇报**\\\\n两个调查 Worker 已完成。汇报：\\\\n- exp_004_sim_sweep 当前是正常运行还是已 fail？\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_analysis_exp004_005_failure_20260514T031759 已完成（status=done）。用 `get_worker_status('worker_an\\\",\\\"queued_at\\\":1778729187.0074742}],\\\"idle_seconds\\\":159}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 361
+          },
+          "id": "event-000809"
+        }
+      ]
+    },
+    {
+      "number": 148,
+      "messages": [
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-14T03:28:06.571441+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 7（多GPU共享）| cuda:4 疑似空闲（排查中）| Worker 池 2 (GPU 0 / CPU 2)\n\n## exp_005_noise_prop_v2 失败诊断完成\n\nWorker 确认 v2 进程已死，两个独立失败原因：\n1. **/tmp tmpfs 磁盘满**：ME 模型生成 ~1GB Stan CSV（9000 tau + 9000 log_lik × 4 chains），耗尽 3.9GB tmpfs，导致 Simple 模型 4 chains 全部 retcode=1\n2. **ME 模型严重欠识别**：10231 参数 vs 9000 观测 → Rhat=1.945\n\n**v3 已在运行中**（registry RUNNING），修复了两个根因：Stan 输出写本地磁盘、换用 analytic ME 模型（1231 参数）、Simple 先跑 ME 后跑、断点续跑。预计 ~11-12h。\n\n### γ bias 发现（论文 limitation 素材）\nσ_e=0.3 simple 模型收敛良好：γ_mean=0.458 (true=0.5), Rhat=1.007 ✅\nσ_e=0.1 simple 模型收敛但 γ 偏高 57.5%（0.788 vs 0.5）——**identifiability 限制**，30 models 不够分离 γ 和 θ 在低噪声条件下。这与 D014 的条件限定一致。\n\n## exp_004_sim_sweep 状态\n\nPID 219346 仍存活（已跑 10h+），**3/12 条件完成**，结果质量优异（γ bias <2%, 0 divergences）。但 seed 6 of auc0.55_n100 卡在 warmup（max_depth=10 未设 12）。\n\n**建议**：kill 后修改 max_depth=12 跳过已完成条件重启（MEDIUM 优先级），或直接使用现有 3 条件数据。请 Director 决策。\n\n## 当前全景\n- **GPU 实验 (7 runs)**：1.5B d100 SFT v2 (cuda:0), 3B eval s42+s123 (cuda:1,3), 0.5B eval d000+d100 v5 (cuda:2), 1.5B eval s123 (cuda:5), 1.5B d005 SFT (cuda:4?待确认), 0.5B eval d005 (cuda:1)\n- **CPU 实验 (2)**：exp_004 sim sweep + exp_005 v3\n- **Worker 活跃**：exp002 signal pipeline 代码开发中\n- **已派 Worker**：检查 v3 cron 注册 + cuda:4 实际占用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-14T03:29:05.258189+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP server disconnected — all agent-ml-research tools unavailable. I cannot send messages to the Agent, user, or log decisions. This is a **BLOCKED** state.\n\n**Pending decisions that need to be communicated when tools reconnect:**\n\n1. **exp_004_sim_sweep**: **Approve kill + restart with max_depth=12, skip completed conditions.** Rationale: 3/12 conditions is insufficient for the paper; the fix is trivial (CPU only, no GPU cost); stuck seed will block all remaining progress indefinitely.\n\n2. **exp-006 baseline prep**: Was about to instruct Agent to start writing exp-006 baseline implementation code in parallel (CPU work). 7 baselines need code: raw, remove-and-rescore, single-signal 2PL+γ, vanilla 4PL, linear regression, Emperor's mitigation, DCR fuzzy inference. Starting this now saves days on the critical path.\n\n3. **ROADMAP update needed**: Current ROADMAP is ~16h stale (still references Phase 1 MMLU paraphrase). Actual state: Phase 3 SFT 8/15 seed=42 done, 2 running; Phase 4 eval 2 done, 5+ running; exp-002 code in development; exp-004 3/12; exp-005 v3 running.\n\nWaiting for MCP reconnection to execute these actions."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-14T03:29:08.470421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-14T03:29:08.547630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 77
+          },
+          "id": "event-000813"
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "messages": [
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-14T03:29:38.105931+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 综合审查报告 — 4 个 Worker 批量核实（exp_004 restart / exp_005 v2 诊断 / exp_005 v3 启动 / failure analysis）\n\n**结论**: WARNING\n\n### exp_004_sim_sweep restart\n\n- [severity: warning] **Registry PID 未更新**。旧进程 PID 219346 已被 SIGTERM 杀死（log 03:22:02 显示 Chain error code '-15'），新进程 PID 340553 已于 03:23 启动并正常运行。**但 registry 中 spec.pid 仍为 219346**，cron 监控或 status check 可能误判实验已死亡。需更新 PID 到 340553。\n- [severity: info] **Checkpoint/resume 正确工作**。新进程日志确认：自动跳过 auc0.55_n20 (10/10)、auc0.55_n50 (10/10)，在 auc0.55_n100 (6/10) 正确续跑 4 remaining seeds。被杀的 seed 6（不完整 fit）未写入 checkpoint，新进程会从头重跑该 seed。\n- [severity: info] **venv 差异无风险**。旧进程用 mvp_simulation/.venv，新进程用 project .venv。关键依赖 cmdstanpy 版本均为 1.3.0，Stan 编译模型同一份，不影响结果一致性。\n- [severity: info] 日志路径变为 `/tmp/exp004_sweep.log`（registry spec 中写的 sweep.log 不准确，但日志可读）。\n\n### exp_005_noise_prop_v2 诊断\n\n- [severity: info] **失败根因诊断正确**：(1) /tmp tmpfs 3.9GB 耗尽——ME model 4 chains × ~250MB CSV = ~1GB，加上 Simple model 写入导致配额溢出；(2) ME model 严重欠识别（10231 参数 vs 9000 观测，Rhat=1.945）。这是两个独立问题。\n- [severity: info] **中间结果有效且与 D014 一致**：σ_e=0.3 simple model γ=0.458（true=0.5，bias -8.4%，well-calibrated）；σ_e=0.1 simple model γ=0.788（bias +57.5%）。这直接复现了 D014 \"γ recovery 依赖 σ_e≥0.3\" 的判断。\n\n### exp_005_noise_prop_v3 启动\n\n- [severity: info] v3 修复方案合理：(1) Stan 输出到本地磁盘避免 tmpfs 溢出；(2) analytic ME model（1231 参数，降低 ~90% 参数量）；(3) 先跑 simple 再跑 ME；(4) checkpoint resume + chain CSV cleanup。\n- [severity: info] PID 339838 已运行 ~5min，开始首个 fit（σ_e=0.1, seed=42, simple model）。预计 ETA ~11-12h。\n\n### GPU 资源状态\n\n- [severity: info] 所有 6 GPU 均在项目白名单内，无越界。GPU 0（exp_001_sft_d100_15B_v2）显示 5% util，但训练日志确认正常推进中（57%, 2373/4159 steps, ~3.4s/it, ETA ~1h40m）。低 util 可能是 nvidia-smi 瞬时采样偏差或 gradient accumulation 间歇。\n- GPU 1 (100%), GPU 2 (99%), GPU 3 (94%) 负载健康。\n\n### 建议\n\n1. **请 Agent 更新 exp_004_sim_sweep 的 registry spec.pid 为 340553**，避免监控误报。\n2. exp_005_v3 的 11-12h 预计完成时间（~14:30 UTC）与 exp_004 sweep 的剩余 ~44h 形成串行依赖——如果 C1 claim 的条件限定需要同时参考两者结论，最终确认窗口在 ~5/16。建议 Agent 在 sweep 中间结果（每个条件完成后）就做增量分析，不要等全部完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-14T03:29:48.188015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "content": "# contamcal-irt-calibration — Research Dashboard\n\n## 核心方向\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\n\n## 投稿目标\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\n- Track: ML for NLP / Resources and Evaluation\n- Special theme: \"New Missions for NLP Research\" — contamination/data governance\n\n## 当前进展\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\n- **Phase 1 Paraphrase**: ✅ 全部完成 (ARC, GSM8K, MMLU v3, HumanEval appendix)\n- **Phase 2 数据准备**: ✅ dosage SFT data 已生成\n- **Phase 3 SFT (seed=42)**:\n\n| 模型 | d000 | d005 | d025 | d050 | d100 |\n|------|------|------|------|------|------|\n| 0.5B | ✅ | ✅ | P4 | DP | ✅ |\n| 1.5B | ✅ | 🏃 | P4 | DP | 🏃 |\n| 3B | ✅ | P2 | — | DP | P1 |\n\n  ✅=完成 🏃=运行中 P1-4=待排优先级 DP=deprioritized\n  seed=123 baselines: 0.5B ✅, 1.5B ✅, 3B ✅ (all d000)\n\n- **Phase 4 Eval**: 2 完成 + 7 运行中\n  - 完成: 0.5B-d000-s123 (MMLU 0.418, GSM8K 0.340, ARC 0.398, HE 0.104), 1.5B-d000-s42 (MMLU 0.575, GSM8K 0.637, ARC 0.776, HE 0.128)\n  - 运行中: 3B-s42, 0.5B-d005, 0.5B-d000-s42-v5, 0.5B-d100-v5, 3B-s123, 1.5B-s123\n- **CPU 任务**:\n  - exp-004 sim sweep: 27/120, ETA 40-60h (~May 16-17)\n  - exp-005 noise prop v3: 已启动, ETA ~14:30 UTC today\n  - exp-002 signal pipeline 代码: 编写中\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有；Paper Agent D2 citation patches 完成\n\n## Critical Path（管线加速策略）\n```\n0.5B eval 完成 (GPU 1/2, hours)\n  → exp-002 signals on 0.5B {d000,d005,d100} (1-2 GPU-h)\n    → exp-003 RRF (CPU, fast)\n      → exp-006 IRT calibration + 7 baselines ← 核心结果\n并行: 1.5B/3B SFT 继续 → eval → exp-002 扩展\n并行: exp-004 sim sweep (CPU, May 16-17)\n并行: exp-005 v3 (CPU, today)\n```\n**关键加速**：不等全部 15 个 SFT 完成，0.5B 3 dosages 先跑通 002→003→006 全管线验证。\n\n## 近期任务\n- [x] exp-004 Stan timeout 修复 → 断点续跑\n- [x] 确认 Simple IRT stan 代码不受 ME model 影响 (D013)\n- [x] d050 deprioritize 确认\n- [ ] exp-002 code 完成 + dry-run\n- [ ] 0.5B eval → exp-002 signals → exp-003 RRF → exp-006 IRT (0.5B first pass)\n- [ ] 3B d100 SFT (P1, GPU 0 释放后) → 3B d005 (P2)\n- [ ] exp-006 baseline 代码准备 (7 baselines, 含 DCR fuzzy inference)\n- [ ] exp-005 v3 完成 → noise propagation 结果\n- [ ] exp-004 完成 → identifiability 阈值确认 vs Fisher 理论\n- [ ] exp-008 signal survival (P0 C2, 依赖 exp-002)\n\n⚠️ **Table 2 风险**: ContamCal \"RL-robust partial✓\" claim 唯一证据 = exp-008，尚未启动。\n\n## GPU 预算\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5) 全部分配\n- P0: 90h | P1: 60h | P2: 20h (deferred) | Buffer: 30h\n- 当前 GPU 6/6 全满\n",
+              "reason": "Phase 3 SFT 进度更新、exp-002 管线加速策略、exp-004/005 状态、d050 deprioritize"
+            }
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-14T03:29:59.584644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-14T03:29:59.737462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 152
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-14T03:30:03.009607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-14T03:30:03.267860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":51}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 258
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-14T03:30:07.241974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"lines\\\": 85, \\\"reason\\\": \\\"Phase 3 SFT 进度更新、exp-002 管线加速策略、exp-004/005 状态、d050 deprioritize\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 19053
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-14T03:30:17.995571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-14T03:30:18.196995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_v3_cron_and_gpu4_check_20260514T032745 已完成（status=done）。用 `get_worker_status('worker_ops\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":66}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-14T03:30:29.929547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**Reviewer 反馈 + exp-006 baseline 准备**\n\n**1. [WARNING] exp_004 registry PID 更新**\nexp_004_sim_sweep 的 registry spec.pid 仍为旧值 219346，新进程 PID 340553。立即更新，否则 cron 监控会误报实验死亡。\n\n**2. exp_004 增量分析**\nsweep 剩余 ~44h，不要等全跑完。每个 AUC 条件（0.55/0.60/0.65/0.70/0.80/0.90）的 10 seeds 跑完后，立即做增量分析：\n- 该 AUC 下 γ recovery RMSE / posterior correlation / coverage\n- 与 Fisher 理论预测对比\n- 如果 AUC≥0.70 threshold 在前几个条件就能确认，提前汇报\n\n**3. 🔴 exp-006 baseline 代码准备（新 CPU Worker）**\nexp-006 需要 7 个 baseline 实现。现在开始写代码（CPU work），不等 exp-002/003 完成：\n\n优先级排序：\n1. **DCR fuzzy inference** (EMNLP 2025) — 唯一能产 adjusted accuracy 的现有方法，reviewers 必问。先查文献/代码 repo，实现或适配。\n2. **Emperor's mitigation** — rephrasing + option shuffling baseline。查论文获取方法细节。\n3. **Linear exposure regression + bootstrap CI** — 最简单 post-hoc 方法\n4. **Remove-and-rescore** — drop flagged items\n5. **Vanilla 4PL without γ** — standard IRT (修改现有 stan model 去掉 γ 参数)\n6. **Single-signal 2PL+γ** — 简化 IRT variant\n7. **Raw scores** — trivial，不需要单独写\n\n所有 baseline 输出统一接口：input = (model, benchmark, items, exposure_scores) → output = calibrated_accuracy + CI。方便 exp-006 统一跑 5 个 metrics（MAE, coverage, sharpness, Kendall τ, dose-response monotonicity）。\n\n与 exp-002 代码 Worker 并行，不冲突。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-14T03:30:49.815299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6050b6a0e8c3546fa0b6ba5ff\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 19885
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-14T03:30:56.854875+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Agent is processing a worker callback. I'll wait for it to clear, then send the exp-006 baseline prep instruction. \n\nCurrent state summary:\n- **ROADMAP updated** with accurate Phase 3 SFT progress and pipeline acceleration strategy\n- **Agent executing well**: 6/6 GPU full, 3 CPU workers (exp-002 code, exp-004 sweep, exp-005 v3)\n- **exp-004** fixed (Stan timeout → 7200s per fit), 27/120, ETA May 16-17\n- **exp-005 v3** launched with fixes (local disk, analytic ME, 1231 params), ETA ~14:30 UTC today\n- **exp-002 code** being written now, will run on 0.5B {d000, d005, d100} once eval completes\n- **d050** confirmed deprioritized, 4-point dose-response curve sufficient\n\n**Next action**: When queue clears, instruct Agent to start writing exp-006 baseline code (7 baselines including DCR fuzzy inference) in parallel — so it's ready when exp-002→003 results arrive. This prevents a code-writing gap on the critical path."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-14T03:30:56.926544+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me update the ROADMAP."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000826"
+        }
+      ]
+    },
+    {
+      "number": 150,
+      "messages": [
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-14T03:33:52.116486+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 2 (GPU 0 / CPU 2: exp002 code turn 18 + exp006 baselines 刚启动)\n\n## 1. exp_004 registry PID ✅ 已修复\nspec.pid 更新为 340553，log_path=/tmp/exp004_sweep.log。Cron 监控现在指向正确进程。\n\n**增量分析方案**：exp_004 sweep 按 AUC 条件分组（每组 10 seeds），本地运行。当前 auc0.55 的 n20/n50 已完成（各 10 seeds），n100 从 seed 6 恢复中。我会设置定期检查，每个 AUC 条件跑完后立即分析 γ recovery RMSE / posterior correlation / coverage，与 Fisher 理论对比。如果 AUC≥0.70 threshold 在前几个条件就能确认，提前汇报。\n\n## 2. exp_004 / exp_005 调查汇总\n\n### exp_004_sim_sweep — ✅ 正常运行中\n- PID 340553, 27/120 完成\n- v1 根因：seed 6 病态后验 + 默认 max_depth=10 不够\n- 已修复：加 7200s timeout + kill 卡住 chains + 断点续跑\n- ETA ~40-60h CPU\n\n### exp_005_noise_prop_v2 — ❌ 已 fail\n- 根因 1：/tmp tmpfs 3.9GB 被 ME model CSV 耗尽（4 chains × ~250MB）\n- 根因 2：ME 模型严重欠识别（10231 params vs 9000 obs, Rhat=1.945）\n- **Simple IRT stan (contam_irt_4pl_simple.stan) 不受影响**，D013 弃用 ME model 正确\n\n### exp_005_noise_prop_v3 — 🏃 本地运行中\n- PID 339838，已跑 ~9min，ETA ~11-12h（~14:30-15:30 UTC）\n- 修复：Stan 输出写本地磁盘 + ME 换 analytic model (1231 params) + 断点续跑\n- ⚠️ ops worker 误标为 DONE/negative（在服务器而非本地查找进程），registry 无法回退 DONE→RUNNING，v3 结果出来后重新记录\n\n## 3. exp-006 baseline 代码 ✅ Worker 已派\nWorker 在服务器 `/root/contamcal-irt-calibration/exp006/baselines/` 创建 7 个 baseline：\n1. DCR fuzzy inference (EMNLP 2025) — 最高优先，先搜论文+代码\n2. Emperor's mitigation — rephrasing + option shuffling\n3. Linear exposure regression + bootstrap CI\n4. Remove-and-rescore\n5. Vanilla 4PL without γ\n6. Single-signal 2PL+γ\n7. Raw scores\n\n统一接口 `(model, benchmark, items, exposure_scores) → (calibrated_accuracy, CI)`。含 `run_all_baselines.py` 和 5 个评估指标。与 exp-002 code worker 并行不冲突。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-14T03:34:10.364369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-14T03:34:10.516477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 152
+          },
+          "id": "event-000829"
+        }
+      ]
+    },
+    {
+      "number": 151,
+      "messages": [
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-14T03:34:28.296495+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: critical] exp_005_noise_prop_v3 被 worker 错误标记为 conclusion=negative / status=DONE，但实验实际仍在运行中。\n\n**证据：**\n1. 本地进程 PID 339838 仍存活（`ps` 确认状态 Sl，命令行为 `run_noise_propagation_v3.py --output-dir output_v3 --base-seed 42 --n-seeds 5`）\n2. 本地输出目录 `output_v3/stan_output/fit_42_1778728974/` 存在，Stan chain CSV 文件最后修改时间 03:33 UTC（chain 1: 903 行，chain 2: 869 行），正在正常采样\n3. 日志 `exp005_v3.log` 显示实验于 03:22:52 启动，已完成 Stan 编译并开始第 1 个 fit（σ_e=0.1, seed=42, simple model）\n4. Spec 预估 50 fits × 11-12 小时 ETA，实验仅运行约 10 分钟\n\n**Worker 错误根因：** Worker 在远程服务器 cqa1-21977 上查找 exp_005_noise_prop_v3 的文件和进程，但 spec 明确标注 `server: local`（CPU 任务）。Worker 虽在报告中提到了 `server: local`，但未在本地验证进程存活状态，直接判定实验失败。\n\n**需要修复：**\n- registry 中 exp_005_noise_prop_v3 的 `status` 应回滚为 `RUNNING`，`conclusion` 清为 null，`completed_at` 清除\n- 建议验证 exp_005_noise_prop_v3 的 cron 监控是否能正确识别 `server: local` 的实验（此前 exp_005_noise_prop_v2 也因相同原因被 cron 误判为 failed → 人工回滚，见 registry `status_rollback` 事件）\n\n**附注（非阻塞）：** 远程服务器 GPU 状态正常，6 卡全有进程在用，GPU 边界无越界。exp_001_sft_d005_15B (PID 271921) 独占 cuda:4，18538 MiB，符合预期。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-14T03:34:52.796833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__director_post_to_main_agent",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-14T03:34:52.847475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-14T03:34:55.720490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-14T03:34:55.922554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":59}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 202
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-14T03:35:04.317339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "reason": "Phase 3 SFT 进度同步、exp-002/006 代码并行启动、exp-004/005 状态更新、d050 降级、pipeline 加速策略",
+              "content": "# contamcal-irt-calibration — Research Dashboard\n\n## 核心方向\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\n\n## 投稿目标\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\n- Track: ML for NLP / Resources and Evaluation\n- Special theme: \"New Missions for NLP Research\" — contamination/data governance\n\n## 当前进展\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\n- **Phase 1 Paraphrase**: ✅ 全部完成 (ARC ✅, GSM8K ✅, MMLU ✅ v3, HumanEval ✅ appendix-only per D009)\n- **Phase 2 数据准备**: ✅ dosage 文件已生成 (ARC + GSM8K + MMLU)\n- **Phase 3 SFT (seed=42)**:\n\n| 模型 | d000 | d005 | d025 | d050 | d100 |\n|------|------|------|------|------|------|\n| 0.5B | ✅ | ✅ | P4 | DP | ✅ |\n| 1.5B | ✅ | 🏃GPU4 | P4 | DP | 🏃GPU0 |\n| 3B | ✅ | P2 | — | DP | P1→GPU0释放后 |\n\n  ✅=完成 🏃=运行中 P*=待排优先级 DP=deprioritized(d050降级)\n  seed=123 baselines: 0.5B ✅, 1.5B ✅, 3B ✅ (all d000)\n\n- **Phase 4 Eval**: 2 完成, 5+ 运行中\n  - 完成: 0.5B-d000-s123 (MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037), 1.5B-d000-s42 (MMLU 0.5753, GSM8K 0.6368, ARC 0.7756, HumanEval 0.128)\n  - 运行中: GPU 1 (3B-s42 + 0.5B-d005), GPU 2 (0.5B-d000-s42-v5 + 0.5B-d100-v5), GPU 3 (3B-s123), GPU 5 (1.5B-s123)\n\n- **代码准备 (CPU Workers 并行)**:\n  - exp-002 signal pipeline 代码: 编写中 (4 signals: embedding retrieval, Min-K%++, ConStat, Self-Critique)\n  - exp-006 baseline 代码: 编写中 (7 baselines incl. DCR + Emperor's, 统一接口)\n\n- **CPU 实验**:\n  - exp-004 sim sweep: 27/120 完成, PID 340553, ETA ~40-60h (~May 16-17). 增量分析：每个 AUC 条件完成后即分析\n  - exp-005 noise prop v3: PID 339838, ETA ~11-12h (~14:30 UTC today). ⚠️ registry 误标 DONE/negative, v3 结果出来后重新记录\n\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有; Paper Agent D2 citation patches 完成\n\n## Critical Path（pipeline 加速策略）\n```\n0.5B eval 完成 (GPU 1/2, ~hours)\n  → exp-002 signals on 0.5B {d000, d005, d100} (1-2 GPU-h, 优先于 d025 SFT)\n    → exp-003 RRF aggregation (CPU, fast)\n      → exp-006 IRT calibration + 7 baselines (core result! 代码已在写)\n\n并行: 大模型 SFT 继续 (1.5B/3B d005/d100 → d025)\n并行: exp-004 sim sweep (CPU, ~May 16-17, 增量分析)\n并行: exp-005 v3 noise prop (CPU, ~today 14:30 UTC)\n```\n\n0.5B 先跑通整条管线（002→003→006），验证端到端正确性，同时大模型 SFT 继续。\n\n## 近期任务\n- [x] 修复 exp-004 Stan timeout + PID registry 更新\n- [x] 确认 Simple IRT stan 代码不受 ME model 影响\n- [x] 派 exp-002 + exp-006 代码 Workers 并行编写\n- [ ] exp-002 代码完成 + dry-run 验证\n- [ ] 0.5B eval 完成 → exp-002 signals on {d000, d005, d100}\n- [ ] exp-003 RRF → exp-006 IRT (0.5B first pass, 端到端验证)\n- [ ] 大模型 SFT: 3B d100(P1) → 3B d005(P2) → d025(P4)\n- [ ] exp-004 增量分析 (每个 AUC 条件完成后)\n- [ ] exp-005 v3 完成 → noise propagation 结论\n- [ ] exp-006 baseline 代码完成 (DCR + Emperor's 优先)\n\n⚠️ **Table 2 风险**: ContamCal \"RL-robust partial✓\" claim 唯一证据来源 exp-008，依赖 exp-002，尚未启动。\n\n## GPU 预算\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5) 全部分配\n- P0: 90h | P1: 60h | P2: 20h (deferred) | Buffer: 30h\n- 当前 6/6 GPU 全满"
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-14T03:35:07.089782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**[Reviewer CRITICAL] exp_005_noise_prop_v3 registry 状态错误 — 立即修复**\n\nWorker 在远程服务器查找 `server: local` 的实验，错误标记 v3 为 DONE/negative。实际本地 PID 339838 仍在运行（Stan chain CSV 正在写入）。\n\n**立即执行：**\n1. Registry 回滚：exp_005_noise_prop_v3 的 status → RUNNING，conclusion → null，completed_at → 清除\n2. 本地验证 PID 339838 存活：`ps -p 339838 -o pid,stat,etime,cmd`\n\n**根因修复（这是第二次发生，v2 也被同样误判）：**\n3. 检查 cron 监控逻辑：对 `server: local` 的实验，进程存活检查必须在本地而非远程服务器。如果 cron 脚本有 hardcoded ssh 检查，加 `if spec.server == \"local\": check locally` 分支\n4. Worker 派单规范：后续所有涉及 `server: local` 实验的状态检查 Worker，必须在本地查进程，不 ssh 到远程",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-14T03:35:24.142971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"lines\\\": 93, \\\"reason\\\": \\\"Phase 3 SFT 进度同步、exp-002/006 代码并行启动、exp-004/005 状态更新、d050 降级、pipeline 加速策略\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 19825
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-14T03:35:27.407655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f60611d28acc33379906bf8fff\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 20317
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-14T03:35:34.895595+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP updated. Current state: 6/6 GPUs running, 2 CPU code Workers (exp-002 + exp-006 baselines), 2 CPU experiments (exp-004 sweep + exp-005 v3). Pipeline acceleration strategy in place — 0.5B will be first through the full 002→003→006 chain. No actions needed until next event (eval completion or code Worker done)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-14T03:35:34.937764+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer flagged a critical issue — exp_005_v3 was wrongly marked DONE by a worker that checked the remote server instead of local. Same bug as v2. Let me check the queue and send a fix instruction."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000840"
+        }
+      ]
+    },
+    {
+      "number": 152,
+      "messages": [
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-14T03:35:37.103430+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 20min\n\n⚠️ 你自己的 context 状态：已 78 条消息 / 3h 49min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-14T03:35:57.782586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-14T03:35:57.841524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 58
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-14T03:36:22.417377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-14T03:36:23.074789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 657
+          },
+          "id": "event-000845"
+        },
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-14T03:36:28.338482+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "RESET_BOTH approved. Waiting for the handoff prompt."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000846"
+        }
+      ]
+    },
+    {
+      "number": 153,
+      "messages": [
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-14T03:37:11.375852+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 2 (exp002 code + exp006 baselines) + 2 CPU 实验 (exp004 sweep + exp005 v3)\n\n## exp_005_noise_prop_v3 Registry 修复 ✅\n\n**已完成：**\n1. ✅ Registry 回滚：直接编辑 registry.yaml，status DONE→RUNNING, conclusion negative→null, completed_at 已清除（API 不允许 DONE→RUNNING 回退，走了文件级修复）\n2. ✅ 本地 PID 339838 存活确认：运行 12min54s，`run_noise_propagation_v3.py --output-dir output_v3 --base-seed 42 --n-seeds 5`\n\n**根因分析 + 防复发规范：**\n\n这是同一 bug 第二次发生。根因：Worker 派单时未区分 `server: local` vs 远程实验，导致 ops worker 在远程服务器查找本地进程，找不到就误标 DONE/negative。\n\n**已写入 memory.md 的防复发规范（适用于所有后续 Worker 派单）：**\n- 所有涉及实验状态检查的 Worker，task_prompt 必须注明实验运行位置（`server: local` = 本地 / `server: cqa1-21977` = 远程）\n- `server: local` 实验的进程检查用 Bash `ps -p PID`，不用 ssh_read_only\n- `server: local` 实验不注册 cron（cron 只支持 SSH 远程监控），改用手动定期检查\n- Worker 标记实验为 DONE/failed 前，必须确认查找位置与 spec.server 一致"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-14T03:37:29.221226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ralph_respond",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-14T03:37:29.271944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-14T03:37:36.450111+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested. Already approved RESET_BOTH — waiting for [WRITE HANDOFF] prompt."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000850"
+        }
+      ]
+    },
+    {
+      "number": 154,
+      "messages": [
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-14T03:37:42.565454+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## ROADMAP 审查报告（2026-05-14 03:35 UTC 版本）\n\n### 1. [severity: warning] Dose-response monotonicity claim 仅有 3 个 dosage 点\n\npaper_framing.md 评估指标 #5 为\"Dose-response monotonicity: γ effect increases monotonically with contamination dosage\"。当前 d050 已 DP、d025 为 P4，实际可用 dosage 仅 d000/d005/d100。\n\n**问题**：任意 3 个递增值天然满足\"单调\"，无法真正验证 monotonicity。审稿人会质疑：3 个点不足以支撑\"dose-dependent\"或\"monotonic\"这类 claim。exp-001 原设计为 5 dosage levels，现在砍到 3 个削弱了 Claim 1 的 evidence 强度。\n\n**建议**：至少对 0.5B（训练最快、GPU-hours 最少的模型）补充 d025，形成 4 点曲线（d000/d005/d025/d100）。0.5B d025 SFT 约 1 GPU-h，eval 约 1-2 GPU-h，总成本极低但大幅增强 dose-response claim 的说服力。\n\n### 2. [severity: warning] exp-008（Signal Survival Analysis）为 P0 + Core Contribution 2，但未出现在近期任务列表中\n\nexperiment_plan.yaml 将 exp-008 标为 P0，Dream review 将其提升为 Core Contribution 2（\"最具新颖性的发现\"）。ROADMAP 在 ⚠️ 处正确标注了 Table 2 风险，但\"近期任务\"列表中 exp-008 未被显式追踪。\n\n**依赖链**：exp-001 eval → exp-002 signals → exp-008 survival analysis。exp-002 代码仍在编写中。\n\n**风险**：11 天内需完成 exp-002 code + dry-run + exp-002 execution + exp-008 execution + 分析。如果 exp-002 代码延迟，exp-008 可能来不及。建议在近期任务中显式加入 exp-008 并标注 P0，确保不被遗漏。\n\n### 3. [severity: info] 关键路径时间线评估——可行但紧凑\n\n- GPU 预算充足：6× RTX 4090D × 11 天 = ~1584 GPU-h 可用，总预算 200h，无算力-时间硬冲突\n- 管线加速策略（0.5B 先跑通 002→003→006）合理，fail-fast 逻辑正确\n- exp-004 sim sweep 27/120, ETA May 16-17，不阻塞关键路径\n- exp-005 v3 （⚠️ 前述 critical：registry 误标，实际仍在运行，PID 339838 alive）不阻塞 GPU 管线\n\n**主要瓶颈是软件依赖而非算力**：exp-002 + exp-006 代码编写是当前唯一串行瓶颈。建议确保这两个 CPU Worker 的优先级高于一切非紧急事项。\n\n### 4. [severity: info] 决策日志 D014（C1 claim 条件限定）合理\n\nD014 要求 C1 claim 加条件：γ recovery 依赖 N≥50 且 σ_e≥0.3。基于 exp_005_diag_nmodels50 和 exp_005_noise_prop_v2 的证据，属于必要的诚实限定。ROADMAP 正确记录。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000851"
+        },
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-14T03:38:22.579106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status,mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__update_roadmap",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-14T03:38:22.629815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000853"
+        },
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-14T03:38:25.614212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-14T03:38:25.822882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] **[Reviewer CRITICAL] exp_005_noise_prop_v3 registry 状态错误 — 立即修复**\\\\n\\\\nWorker 在远程服务器查找 `server: local` 的实验，错误\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":269}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 208
+          },
+          "id": "event-000855"
+        }
+      ]
+    },
+    {
+      "number": 155,
+      "messages": [
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-14T03:39:06.133499+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[RESET REQUEST] Main Agent 达到硬限\n  触发原因：idle 180min\n  本轮累计 1 条消息 / 3h 9min\n\n⚠️ 你自己的 context 状态：已 80 条消息 / 3h 53min\n\n请回复：\n  [RESET AGENT]     只重置 Main Agent，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Main Agent 继续带着上下文工作"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000856"
+        },
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-14T03:39:26.620012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "reason": "Phase 3 SFT 进度同步、exp-002/006 管线加速、d025 0.5B 恢复优先级、exp-008 近期任务追踪",
+              "content": "# contamcal-irt-calibration — Research Dashboard\n\n## 核心方向\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\n\n## 投稿目标\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\n- Track: ML for NLP / Resources and Evaluation\n- Special theme: \"New Missions for NLP Research\" — contamination/data governance\n\n## 当前进展\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\n- **Phase 1 Paraphrase**: ✅ 全部完成 (ARC ✅, GSM8K ✅, MMLU ✅ v3, HumanEval ✅ appendix-only D009)\n- **Phase 2 数据准备**: ✅ dosage 文件已生成 (ARC + GSM8K + MMLU)\n- **Phase 3 SFT 进度 (seed=42)**:\n\n| 模型 | d000 | d005 | d025 | d050 | d100 |\n|------|------|------|------|------|------|\n| 0.5B | ✅ | ✅ | P2 | DP | ✅ |\n| 1.5B | ✅ | 🏃GPU4 | P4 | DP | 🏃GPU0 |\n| 3B | ✅ | P2 | P4 | DP | P1→GPU0释放后 |\n\n  ✅=完成 🏃=运行中 DP=deprioritized(d050) P=待排优先级\n  seed=123 baselines: 0.5B ✅, 1.5B ✅, 3B ✅ (all d000)\n\n- **Phase 4 Eval**: 2 完成, 7 运行中\n  - 完成: 0.5B-d000-s123 (MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037), 1.5B-d000-s42 (MMLU 0.5753, GSM8K 0.6368, ARC 0.7756, HumanEval 0.128)\n  - 运行中: GPU 1/2/3/5 各跑 eval\n- **代码准备** (CPU Workers 并行):\n  - exp-002 signal pipeline 代码: 编写中（4 signals + dry-run）\n  - exp-006 baselines 代码: 编写中（7 baselines + 统一接口）\n- **CPU 实验**:\n  - exp-004 sim sweep: 27/120 完成, PID 340553, ETA ~40-60h (~May 16-17)\n  - exp-005 noise prop v3: PID 339838 运行中, ETA ~11-12h (~14:30-15:30 UTC today)\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有\n- **Stan**: D013 确认 Simple IRT model, ME model 弃用。contam_irt_4pl_simple.stan 收敛良好。\n\n## Critical Path\n```\nexp-002 代码完成 (CPU Worker, hours)\n  → 0.5B eval 完成 → exp-002 signals on 0.5B {d000, d005, d100} (1-2 GPU-h)\n    → exp-003 RRF aggregation (CPU, fast)\n      → exp-006 IRT calibration + 7 baselines (core result!)\n        → Paper results compilation\n        \n并行: 0.5B d025 SFT + eval (P2, 2-3 GPU-h, 补齐 dose-response 4 点曲线)\n并行: 大模型 SFT 继续 (1.5B/3B d005/d100 → d025)\n并行: exp-004 sim sweep (CPU, May 16-17)\n并行: exp-005 v3 noise prop (CPU, today)\n并行: exp-008 signal survival (P0, 等 exp-002 完成)\n```\n\n**瓶颈**: 软件依赖（exp-002 + exp-006 代码编写）而非算力。\n\n## 近期任务\n- [x] 修复 exp-004 Stan timeout → 断点续跑, PID 更新 340553\n- [x] 确认 Simple IRT stan 不受 ME model 影响 (D013)\n- [x] exp_005_v3 registry 误标 DONE → 回滚 RUNNING (Reviewer critical)\n- [x] 写入防复发规范: server:local 实验不走 ssh 查进程\n- [ ] **exp-002 signal pipeline 代码完成 + dry-run** ← 当前最高优先级\n- [ ] **exp-006 baselines 代码完成** (7 baselines, 统一接口)\n- [ ] 0.5B eval 完成 → exp-002 signals on {d000, d005, d100}\n- [ ] **0.5B d025 SFT + eval** (P2, dose-response 4 点曲线)\n- [ ] exp-003 RRF → exp-006 IRT (0.5B first pass, 管线验证)\n- [ ] **exp-008 signal survival analysis (P0, C2 Core Contribution)** → 依赖 exp-002\n- [ ] 大模型 SFT: 3B d100(P1) → 3B d005(P2) → d025(P4)\n- [ ] exp-004 增量分析（每 AUC 条件完成后即时分析）\n- [ ] exp-005 v3 完成 → 验证 noise propagation 结果\n\n⚠️ **Table 2 风险**: Related Work 表中 ContamCal \"RL-robust partial✓\" claim 唯一证据来源是 exp-008，尚未启动。若结果不支持需删除该 claim。\n\n## GPU 预算\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5) 全部分配给本项目\n- P0: 90h | P1: 60h | P2: 20h | Buffer: 30h\n- 可用算力: ~1584 GPU-h (6卡×11天), 总预算 ~200h, 算力充裕\n- 当前 GPU 6/6 全满"
+            }
+          },
+          "id": "event-000857"
+        },
+        {
+          "source_line": 858,
+          "timestamp": "2026-05-14T03:39:27.850509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ralph_respond"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "tool_args": {
+              "decision": "RESET_BOTH"
+            }
+          },
+          "id": "event-000858"
+        },
+        {
+          "source_line": 859,
+          "timestamp": "2026-05-14T03:39:28.146503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__ralph_respond",
+            "elapsed_ms": 295
+          },
+          "id": "event-000859"
+        },
+        {
+          "source_line": 860,
+          "timestamp": "2026-05-14T03:39:43.469703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"lines\\\": 99, \\\"reason\\\": \\\"Phase 3 SFT 进度同步、exp-002/006 管线加速、d025 0.5B 恢复优先级、exp-008 近期任务追踪\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__update_roadmap",
+            "elapsed_ms": 16849
+          },
+          "id": "event-000860"
+        },
+        {
+          "source_line": 861,
+          "timestamp": "2026-05-14T03:39:58.189543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000861"
+        },
+        {
+          "source_line": 862,
+          "timestamp": "2026-05-14T03:39:58.290372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":42}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000862"
+        },
+        {
+          "source_line": 863,
+          "timestamp": "2026-05-14T03:40:06.559376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_main_agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "tool_args": {
+              "text": "**优先级修正：0.5B d025 恢复 P2**\n\nReviewer 指出 3 个 dosage 点 (d000/d005/d100) 无法支撑 dose-response monotonicity claim——任意 3 个递增值天然单调，审稿人会打回。\n\n**修正**：0.5B d025 SFT 从 P4 恢复为 P2。排在 exp-002 0.5B signals 之后、大模型 SFT 之前。成本极低（~1 GPU-h SFT + 1-2 GPU-h eval），但 4 点曲线 (d000/d005/d025/d100) 显著增强 claim 可信度。\n\n1.5B/3B d025 维持 P4 不变。\n\n**条件触发队列更新**：\nGPU 1/2 eval 完成后 → exp-002 signals on 0.5B → 0.5B d025 SFT → 0.5B d025 eval → 0.5B d025 signals",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000863"
+        },
+        {
+          "source_line": 864,
+          "timestamp": "2026-05-14T03:40:09.674173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f600fbcf8acc3c5153c3678a18\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_main_agent",
+            "elapsed_ms": 3114
+          },
+          "id": "event-000864"
+        },
+        {
+          "source_line": 865,
+          "timestamp": "2026-05-14T03:40:14.329950+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP updated and d025 priority correction sent. All Reviewer warnings addressed:\n1. 0.5B d025 restored to P2 for 4-point dose-response curve\n2. exp-008 now explicitly tracked in ROADMAP near-term tasks as P0\n\nWaiting for [WRITE HANDOFF] to complete the RESET_BOTH flow."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000865"
+        }
+      ]
+    },
+    {
+      "number": 156,
+      "messages": [
+        {
+          "source_line": 866,
+          "timestamp": "2026-05-14T03:42:33.871568+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际在跑 6 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session-start 状态同步 (03:41 UTC)**\n\nGPU 全满运行中：\n- GPU 0: 1.5B d100 SFT (exp_001_sft_d100_15B_v2)\n- GPU 1: 3B d000 s42 eval + 0.5B d005 eval\n- GPU 2: 0.5B d000 s42 eval v5 + 0.5B d100 eval v5\n- GPU 3: 3B d000 s123 eval\n- GPU 4: 1.5B d005 SFT (exp_001_sft_d005_15B)\n- GPU 5: 1.5B d000 s123 eval\n\n代码 Worker 进展：\n- exp-002 signal pipeline: turn 28, Signal 1 (Embedding) dry-run 通过，正在验证 Signal 2 (Min-K++)\n- exp-006 baselines: turn 17, 正在部署 7 baselines 代码到服务器\n\nCPU 实验：\n- exp-004 sim sweep: 27/120 条件完成，ETA May 16-17\n- exp-005 noise prop v3: 运行中，ETA ~14:30 UTC 今天\n\n等待回调：8 GPU cron + 2 Worker 完成。Critical path 不变：0.5B eval 完成 → exp-002 signals → exp-003 RRF → exp-006 IRT 核心结果。无阻塞项。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000866"
+        },
+        {
+          "source_line": 867,
+          "timestamp": "2026-05-14T03:42:50.261383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000867"
+        },
+        {
+          "source_line": 868,
+          "timestamp": "2026-05-14T03:42:50.412420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000868"
+        },
+        {
+          "source_line": 869,
+          "timestamp": "2026-05-14T03:42:59.885011+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000869"
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "messages": [
+        {
+          "source_line": 870,
+          "timestamp": "2026-05-14T03:43:10.062506+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n[severity: critical] exp_004_sim_sweep 被 cron 误标为 conclusion=failed，但实验仍在正常运行中。**这是 cron 第三次误判 `server: local` 实验。**\n\n**证据：**\n1. PID 340553 存活（`ps` 确认状态 Sl，命令 `run_sweep.py subset`）\n2. 日志 `/tmp/exp004_sweep.log` 显示活跃进度：condition 3/12 (auc0.55_n100_prior1.0_binary), 6/10 seeds done, Stan chain 正在采样\n3. 已完成 3 个 conditions 的结果文件：auc0.55_n20、auc0.55_n50、auc0.8_n50（含 checkpoint resume 支持）\n4. Registry 当前状态：`conclusion: failed`（错误）\n\n**需要修复：**\n- Registry 回滚：`conclusion` → null, `status` → RUNNING\n\n**系统性问题——cron `server: local` 误判已发生 3 次：**\n1. exp_005_noise_prop_v2：cron 误判 → 人工回滚（registry 有 status_rollback 记录）\n2. exp_005_noise_prop_v3：worker 误判 → Reviewer 发现 → Director 回滚（今天 03:36）\n3. exp_004_sim_sweep：cron 误判 → 本次（现在）\n\n**根因**：cron 通过 SSH 检查远程服务器的进程状态，但 `server: local` 实验运行在本地机器上，SSH 自然找不到对应 PID，于是标记为 failed。\n\n**建议**：cron 监控逻辑需增加 `server: local` 分支——对本地实验用 `ps -p <PID>` 直接检查，而非走 SSH。否则本地 CPU 实验（exp-004 sweep 40-60h、exp-005 noise prop 11-12h）会反复被误杀。每次误杀→回滚→可能触发不必要的 worker 重跑，浪费 GPU 时间和人力。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000870"
+        },
+        {
+          "source_line": 871,
+          "timestamp": "2026-05-14T03:43:30.794017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_agent_queue_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-14T03:43:31.023650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":160}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_agent_queue_status",
+            "elapsed_ms": 229
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-14T03:43:34.015942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__urgent_agent_message",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000873"
+        },
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-14T03:43:34.016436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-14T03:43:46.637262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__urgent_agent_message"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "message": "**[URGENT] exp_004_sim_sweep 被 cron 再次误标 failed — 第三次 server:local 误判**\n\n**立即执行：**\n1. Registry 回滚：exp_004_sim_sweep 的 conclusion → null, status → RUNNING\n2. 本地验证 PID 340553 存活：`ps -p 340553 -o pid,stat,etime,cmd`\n\n**系统性修复（这次必须落地，不只是写 memory）：**\n3. **查 cron 监控脚本源码**，找到检查实验进程存活的逻辑。加 `server: local` 分支：\n   - `server: local` → 用 `ps -p <PID>` 本地检查\n   - 其他 → 走 SSH 远程检查（现有逻辑）\n4. 如果 cron 是系统级代码你改不了，**立即取消 exp_004_sim_sweep 和 exp_005_noise_prop_v3 的 cron 监控**。这两个是本地 CPU 实验，cron 每次 fire 都会误标 failed。改用手动定期检查（本地 ps）替代。\n\n三次误判浪费了大量时间在回滚和排查上。这次必须彻底解决，否则 exp-004（还要跑 40+h）会继续被打断。"
+            }
+          },
+          "id": "event-000875"
+        },
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-14T03:43:48.215681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"inserted\\\":true,\\\"queue_depth\\\":1,\\\"agent_key\\\":\\\"feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__urgent_agent_message",
+            "elapsed_ms": 1578
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-14T03:43:56.284885+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Urgent message sent. exp_004 registry needs rollback + cron must stop SSH-checking local experiments. This is the third occurrence of the same bug — memory notes alone didn't prevent it, so this time the Agent needs to either patch the cron code or remove cron monitoring from local experiments entirely."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000877"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "messages": [
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-14T03:46:30.734609+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6/6 | 实际跑 6/6 全满 | Worker 池 2 (exp002 code + exp006 baselines)\n\n## exp_004_sim_sweep Registry 回滚 ✅ 完成\n\n1. ✅ **Registry 修复**：直接编辑 registry.yaml，status DONE→RUNNING, conclusion failed→null\n2. ✅ **PID 340553 存活确认**：运行 20min19s，`run_sweep.py subset`\n\n## 根因分析（完整审计链）\n\n**第三次误标的精确机制**（从 registry_audit.jsonl + cron_polls.jsonl + system.log）：\n\n```\n03:19:44 — fix Worker 注册 cron (server=local, pid=219346, interval=600s)\n03:19:47 — cron poll #1: SSH to \"local\" failed → \"Unknown server 'local'\" → fail 1/5\n03:30:15 — cron poll #2: SSH failed → fail 2/5\n03:30:17 — system.log: \"SSH check failed: Unknown server 'local'. Available: ['cqa1-21977']\"\n...\n03:41:11 — cron poll 累计 5/5 失败 → 自动标记 conclusion=failed (source: cron_poll)\n03:41:12 — status RUNNING→DONE (source: cron_poll)\n03:41:28 — 触发 on_failed hook → Reviewer 收到通知\n```\n\n**根因**：fix Worker (worker_fix_exp004_sweep_restart) 注册了 `register_cron(server=local)` 的 cron。cron 系统只支持 SSH 远程检查，遇到 `server: local` 会 SSH 失败并累计到阈值后标记 failed。\n\n**三次误标回顾**：\n1. exp_005_v2 — Worker 注册 cron with server=local → cron misfire（已有 note）\n2. exp_005_v3 — ops Worker 在远程服务器查找本地进程 → 手动误标 DONE/negative\n3. exp_004 — fix Worker 注册 cron with server=local → cron 5 次 SSH 失败后自动标记 failed\n\n## 当前状态（已安全）\n\n- 两个 `server: local` cron 均已在 completed_crons，**不会再触发**\n- exp_005_noise_prop_v3 没有 cron 注册（安全）\n- active_crons 全部是 server=cqa1-21977（8 个，均正常）\n\n## 系统性防复发措施（已落地）\n\n1. **memory.md 硬约束**（已写入）：`server: local` 实验禁止 register_cron，禁止 ssh_read_only 检查\n2. **auto-memory feedback**（已写入）：所有 Worker 派单必须标注实验运行位置\n3. **建议**（需 Director 决策）：cron 系统代码层面加 guard — `register_cron` 对 `server: local` 直接拒绝注册并返回错误提示。这是唯一能从根本上防止此类问题的修复。是否要我提 issue 给基础设施层？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000878"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "messages": [
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-14T03:46:36.319471+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n两个 `server: local` cron 都在 completed_crons，不在 active_crons。不会再触发。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "main_agent"
+          },
+          "id": "event-000879"
+        },
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-14T03:46:55.030080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_manager,mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000880"
+        },
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-14T03:46:55.130890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-14T03:47:13.826784+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000882"
+        }
+      ]
+    },
+    {
+      "number": 160,
+      "messages": [
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-14T03:47:15.361755+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session #3 启动状态汇报**\n\n**GPU 全满 (6/6)**：\n- GPU 0: 1.5B d100 SFT (PID 251924)\n- GPU 1: 3B d000 s42 eval + 0.5B d005 eval\n- GPU 2: 0.5B d000 s42 eval + 0.5B d100 eval (v5)\n- GPU 3: 3B d000 s123 eval\n- GPU 4: 1.5B d005 SFT (PID 271916)\n- GPU 5: 1.5B d000 s123 eval\n\n**CPU 实验 (2)**：\n- exp_004_sim_sweep: 27/120, ETA ~May 16-17\n- exp_005_noise_prop_v3: PID 339838, ETA ~14:30 UTC today\n\n**Worker 状态 (2)**：\n- exp-002 signal pipeline: 35 轮，活跃（ssh_read_only 验证中）\n- exp-006 baselines: 17 轮，Stan 编译成功，即将 dry-run\n\n**Cron**: reconcile 确认 8 个 GPU 实验全部 still running。exp_004_sim_sweep 已是 RUNNING 状态（无需修复）。\n\n**Critical path 瓶颈**仍是软件：等 exp-002/exp-006 Worker 完成代码 → 0.5B eval 完成后立即跑 exp-002 signals → exp-003 RRF → exp-006 IRT calibration。\n\n**待决策项**：无。按免审批规则，GPU 空出后自动按优先级队列提交下一个实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "agent"
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-14T03:47:17.267825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_manager"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_manager",
+            "tool_args": {
+              "text": "**[基础设施 Bug 报告] register_cron 对 server:local 实验缺乏 guard**\n\ncontamcal-irt-calibration 项目 3 次因同一 bug 导致本地 CPU 实验被 cron 误标 failed：\n1. exp_005_v2: cron 误判\n2. exp_005_v3: worker 误判（同根因）\n3. exp_004_sim_sweep: cron 5 次 SSH 失败后自动标记 failed\n\n**根因**：`register_cron` 接受 `server: local` 的注册，但 cron 监控只支持 SSH 远程检查。对 local 实验 SSH 必然失败，累计 5 次后自动标记 failed。\n\n**建议修复**：`register_cron` 对 `server: local` 直接拒绝注册并返回明确错误提示，从代码层面杜绝此类误注册。\n\n**当前状态**：已通过 memory 约束 + Worker 派单规范临时缓解，但 memory 是软约束，新 Worker session 可能忘记。代码层 guard 是唯一硬防护。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000884"
+        },
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-14T03:47:17.496058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"queued\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__director_post_to_manager",
+            "elapsed_ms": 228
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-14T03:47:24.595822+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bug reported to Manager. Current state is safe — all problematic crons already in completed state, memory constraints in place as soft guard. Waiting for:\n- exp-002 code completion (Signal 2 Min-K++ validation in progress)\n- exp-006 baselines code deployment\n- GPU eval completions → trigger exp-002 signal runs on 0.5B\n- exp-004 sweep and exp-005 v3 continue on CPU\n\nNo further action needed until next callback or eval completion."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000886"
+        },
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-14T03:47:54.147983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:read_experiment_plan_with_status,get_project_status,compute_coverage_matrix",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": "2026-05-14T03:47:54.248892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": "2026-05-14T03:47:57.504291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__compute_coverage_matrix",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000889"
+        },
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-14T03:47:57.671571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 167
+          },
+          "id": "event-000890"
+        },
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-14T03:48:01.983607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000891"
+        },
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-14T03:48:02.036651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-14T03:48:02.294490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__compute_coverage_matrix"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-14T03:48:02.598965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"stage1_signal_pipeline\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-003\\\", \\\"name\\\": \\\"rrf_aggregation_ablation\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c)\n…[truncated 8015 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 615
+          },
+          "id": "event-000894"
+        },
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-14T03:48:03.407994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"**项目**: `contamcal-irt-calibration`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    cqa1-21977 (connect.cqa1.seetacloud.com)\\n✓ 代码路径  /root/contamcal-irt-calibration\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 14 条记录\\n\\n── 📊 研究进度 ──\\n实验: 44 个 (运行中 10 | 待处理 11 | 完成 23 | 成功 14)\\n\\n  exp_001_sft_injection      DONE (success)\\n  exp_001_sft_0pct_15B_s123  DONE (success)\\n  exp_001_sft_0pct_05B_s123  DONE (success)\\n  exp_001_sft_0pct_15B       DONE (success)\\n  exp_005_noise_prop         DONE (failed)\\n  exp_001_sft_0pct_05B       DONE (success)\\n  mvp_sim_confounding        DONE (success)\\n  mvp_sim_4pl_gamma          DONE (success)\\n\\n── 📝 最新报告 ──\\n<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T03:41:14Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 43 个实验 — DONE 24, PENDING 1, PREPARING 10, RUNNING 8\\n**DONE 分布**: failed 9, killed 1, success 14\\n\\n### GPU 占用\\n- **分配**: 6 张 — cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3, cqa1-21977:cuda:4, cqa1-21977:cuda:5\\n- **实际运行**: 7 张 — cqa1-21977:cuda:2(exp_001_eval_05B_d000_s42_v5), cqa1-21977:cuda:1(exp_001_eval_05B_d005), cqa1-21977:cuda:2(exp_001_eval_05B_d100_v5), cqa1-21977:cuda:5(exp_001_eval_15B_d000_s123), c\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__get_project_status",
+            "elapsed_ms": 1371
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-14T03:48:03.913818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [1, 2, 3], \\\"matrix\\\": {\\\"1\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"RUNNING\\\"}, {\\\"id\\\": \\\"exp-004\\\", \\\"name\\\": \\\"simulation_identifiability_sweep\\\", \\\"claim\\\": 1, \\\"also_supports\\\": [3], \\\"description\\\": \\\"Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5 conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \\\\\\\"cannot distinguish no contamination from moderate contamination.\\\\\\\" N_items=300 fixed (per MVP finding). Subsumes exp-010 (prior sensitivity) \n…[truncated 8795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "mcp__agent-ml-research__compute_coverage_matrix",
+            "elapsed_ms": 1619
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-14T03:48:48.825110+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态确认完毕。当前态势健康：\n\n- **覆盖率 0/13** 符合预期——所有 P0 实验依赖链的根节点 exp-001 仍在跑（SFT + eval），这是正常的\n- **关键链**：exp-001 eval 完成 → exp-002 signal pipeline（Worker 已在写代码，35 轮）→ exp-003 RRF → exp-006 IRT calibration（Worker 也在写，Stan 编译成功）\n- **exp-005 v3** 今天 ~14:30 UTC 出结果，需要关注——v2 已 failed，如果 v3 也失败需要重新评估 Claim 3 的 noise propagation 策略\n- **exp-015 orphaned**——registry_id 指向的条目不存在，后续需要清理或重新注册\n\nGPU 全满、Worker 双线并行推进代码，无阻塞项。等 exp-005 v3 结果和 exp-001 eval 批次完成后再做下一步调度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director"
+          },
+          "id": "event-000897"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "messages": [
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-14T03:49:10.661456+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 回复]:\n## 审查报告 — worker_code_exp006_baselines\n\n**结论**: PASS（附 2 个 warning）\n\n### 发现\n\n- [severity: info] 7/7 baselines + 5/5 evaluation metrics 已实现，dry-run 通过。代码结构清晰，统一接口（`calibrate()` 返回标准 dict），可扩展。Stan 模型（vanilla_4pl.stan、contam_irt_2pl_gamma.stan）已编译验证。\n\n- [severity: info] 2PL+γ Stan 模型的 `calibrated_score` 正确使用 exposure=0 反事实计算，与 ContamCal 主模型（4PL+γ）逻辑一致。Vanilla 4PL 使用模型预测准确率作为 calibrated score，作为\"无 γ 的 IRT\"baseline 语义正确。\n\n- [severity: warning] **coverage 指标只实现了 95%，paper_framing.md 要求 50%/80%/95% 三个 level。** `compute_metrics()` 中 `coverage_95` 只检查 `ci_lo ≤ true ≤ ci_hi`（对应 95% CI），缺少 50% 和 80% 的覆盖率计算。Stan-based 方法的后验样本可以直接提取其他分位数（10%/90% for 80%, 25%/75% for 50%），但当前 `calibrate()` 接口只返回 `ci_lower`/`ci_upper`（固定 2.5/97.5 percentiles）。建议：扩展返回格式支持多级 CI，或在 `compute_metrics` 中对 Stan 方法直接读取后验样本。\n\n- [severity: warning] **DCR fuzzy 是改编版本，非原论文精确复现。** 原 DCR (Xu et al., EMNLP 2025) 使用 4-level probing 得到 S1-S4，此实现改用 exposure score 阈值（0.1/0.3/0.5/0.7）映射。Fuzzy 规则集也做了简化。论文中应明确标注\"adapted DCR\"并解释改编原因（我们的输入是连续 exposure scores 而非离散 probing levels），避免审稿人质疑 baseline 实现不公平。\n\n- [severity: info] Emperor mitigation baseline 的 `paraphrase_scores` 参数在 dry-run 中使用模拟降噪（`flip_prob = exposure * 0.3`），实际运行时需接入 exp-001 的 paraphrase evaluation 结果。接口已预留，wiring 待 exp-002 output 确定后完成。\n\n- [severity: info] `STAN_MODEL_DIR` 硬编码为 `/root/contamcal-irt-calibration/stan_models`（远程服务器路径），本地副本在 `artifacts/exp006_baselines/stan_models/`。部署到服务器时路径正确，不影响实际运行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "source": "reviewer"
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-14T03:49:32.589958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_agent_queue_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-14T03:49:32.590462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000900"
+        }
+      ]
+    }
+  ]
+}

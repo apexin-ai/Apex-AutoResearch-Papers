@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d47d737c82bc1fd7522",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 mmlu s0 eval completion",
+  "task_key": "worker_diag_gemma2-mmlu-s0-eval-completion_20260520T223248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-mmlu-s0-eval-completion_20260520T223248_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "4ed9a2b426e8fa55abbeb48e12ef02eacdd318c693b266a687d883f8d51b546c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 仍在运行，尚未完成。**\n\n已完成的结果：\n| Dosage | 5-shot Accuracy | Sweep 内置 | 匹配？ |\n|--------|----------------|-----------|--------|\n| d000 | 64.88% | 64.88% | ✓ 完全一致 |\n| d005 | 64.14% | 64.14% | ✓ 完全一致 |\n| d025 | 运行中 (49%) | 64.91% | — |\n| d050 | 未开始 | 63.09% | — |\n\ncuda:1 当前 89% 利用率、24GB 显存占用，eval 进程正常运行中。预估 d025 还需约 10 分钟完成，d050 需要再加约 20 分钟。\n\n进程并未退出，cron 检测可能误报。等全部完成后再更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-mmlu-s0-eval-completion.md"
+}

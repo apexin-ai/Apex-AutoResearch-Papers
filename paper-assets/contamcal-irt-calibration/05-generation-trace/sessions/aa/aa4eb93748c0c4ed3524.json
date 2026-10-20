@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa4eb93748c0c4ed3524",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops start d100 arc parallel",
+  "task_key": "worker_ops_start-d100-arc-parallel_20260521T132929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start-d100-arc-parallel_20260521T132929_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "8dcedb33cf036b08502cfab6a0684e05470512a83da353f7eb8201c8253ebfc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nd100 ARC: 启动成功, PID 526643, GPU 0 (18580 MiB)\nd100 MMLU: PID 525833, GPU 3, 运行中\n```\n\n注意：evaluate.py 当前 37775 bytes，与 C009 reference (37591 bytes) 有差异。MMLU 和 ARC 均使用同一版本，满足 C010 一致性。如需核实版本是否正确请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-d100-arc-parallel.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6481be63bebc6ff4081",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research collapse vrecovery candidate search",
+  "task_key": "worker_research_collapse-vrecovery-candidate-search_20260522T035408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_collapse-vrecovery-candidate-search_20260522T035408_result.json",
+    "occurrence": 1,
+    "bytes": 1748,
+    "sha256": "9d4925daa19abaca65df5367d5cef7b18ee869d067d1aaca47d9b71ec6660ce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n## 候选模型 MMLU Baseline\n\n| 模型 | MMLU 5-shot | 来源 | 在 65-70%? | HF 可用? | 备注 |\n|------|------------|------|-----------|---------|------|\n| Mistral-7B-v0.3 | 63.5% | [Mistral AI blog](https://mistral.ai/news/announcing-mistral-7b) | ❌ (偏低) | ✅ `mistralai/Mistral-7B-v0.3` | 7B, base+instruct 都有 |\n| Yi-1.5-9B | 76.3% | [01-ai/Yi GitHub](https://github.com/01-ai/Yi) | ❌ (偏高) | ✅ `01-ai/Yi-1.5-9B` | 9B, 远超 vulnerability band |\n| InternLM2.5-7B | 71.6% | [InternLM GitHub](https://github.com/InternLM/InternLM/blob/main/model_cards/internlm2.5_7b.md) | ❌ (略高) | ✅ `internlm/internlm2_5-7b` | 7B, 比上限高 1.6pp |\n| **Falcon3-7B-Base** | **67.4%** | [HF model card](https://huggingface.co/tiiuae/Falcon3-7B-Base) | **✅** | ✅ `tiiuae/Falcon3-7B-Base` | 7B, TII 家族, 无 gating |\n| **Mistral-Nemo-12B-Base** | **68.0%** | [HF nvidia/Mistral-NeMo-12B-Base](https://huggingface.co/nvidia/Mistral-NeMo-12B-Base) | **✅** | ✅ `mistralai/Mistral-Nemo-Base-2407` | 12B, Mistral 家族, 128k context |\n\n## 推荐\n\n**首选：Falcon3-7B-Base (67.4%)**\n\n理由：\n1. MMLU 67.4% 正好落在 vulnerability band 中心\n2. TII（Technology Innovation Institute）家族，与 Qwen/Phi/OLMo/Gemma/LLaMA 完全无血缘关系，跨家族复现说服力最强\n3. 7B 参数量，与现有 Qwen-7B 实验直接可比\n4. HF 开放下载，无 gating\n5. 有 Instruct 版本做对照但我们用 base\n\n**备选：Mistral-Nemo-12B-Base (68.0%)**\n\n如果需要第二个验证点或 Falcon3 训练出问题可切换。但注意 Mistral-Nemo 仍属 Mistral 家族（与候选列表中 Mistral-7B 同源），跨家族论证力度不如 Falcon3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-collapse-vrecovery-candidate-search.md"
+}

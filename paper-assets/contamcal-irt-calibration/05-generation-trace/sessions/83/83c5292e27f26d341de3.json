@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83c5292e27f26d341de3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill duplicates and verify",
+  "task_key": "worker_ops_kill_duplicates_and_verify_20260514T021933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicates_and_verify_20260514T021933_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "26258ce84517c6165b3d6d729da137d2fbd99d2223d8add72535265a8e844acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总：\n\n---\n\n## Kill 结果\n- PID 255703: 不存在 → 跳过（已自行退出）\n- PID 256509: 存在（旧版 evaluate.py, d100_s42）→ 已 kill\n- PID 257034: 存在（旧版 evaluate.py, d000_s42）→ 已 kill\n\n## nvidia-smi 验证\n255703, 256509, 257034 均不在 GPU 进程列表中 ✓\n\n## 保留进程状态\n- PID 254667 (d100 eval): **已退出**（不在 ps 输出中）\n- PID 257853 (s42 rerun): **已退出**（不在 ps 输出中）\n- PID 255322 (d005 eval): **存活** ✓（GPU 1, 3658 MiB）\n- PID 249294 (3B s42 eval): **存活** ✓（GPU 1, 8948 MiB）\n\n## 数据完整性\n- `Qwen2.5-0.5B_d000_s42/`: **目录为空**（eval_results.json 和 correctness_matrix.json 均不存在）— 257853 退出但未产出结果\n- `Qwen2.5-0.5B_d100_s42/`: **目录为空** — 254667 退出但未产出结果\n- `Qwen2.5-0.5B_d000_s123/` 参考格式：eval_results.json (2MB, keys: model_path/paraphrased/benchmarks), correctness_matrix.json (110KB, keys: mmlu/gsm8k/arc_challenge/humaneval, total_items=16697)\n\n## 当前 GPU 进程一览\n| GPU | PID | 显存 | 备注 |\n|-----|-----|------|------|\n| 0 | 251924 | 10046 MiB | （未在保留列表） |\n| 1 | 249294 | 8948 MiB | 3B s42 eval ✓ |\n| 1 | 255322 | 3658 MiB | 0.5B d005 eval ✓ |\n| 2 | — | 0 MiB | 空闲（已清理） |\n| 3 | 242591 | 8948 MiB | （未在保留列表） |\n| 4 | 243300 | 5820 MiB | （未在保留列表） |\n| 5 | 250610 | 5820 MiB | （未在保留列表） |\n\n**关键问题**：d000_s42 和 d100_s42 两个 eval 均未产出结果文件，需要重新跑。GPU 2 现已空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicates-and-verify.md"
+}

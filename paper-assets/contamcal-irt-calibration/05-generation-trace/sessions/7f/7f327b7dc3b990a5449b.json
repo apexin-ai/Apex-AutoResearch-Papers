@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f327b7dc3b990a5449b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh olmo2 eval monitor",
+  "task_key": "worker_ssh_olmo2-eval-monitor_20260519T124632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_olmo2-eval-monitor_20260519T124632_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "a2bf5a7cc00e53d8b92d2aeba97574c23eb91ba30f917a68f3feeddcad90b7de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 50 eval results (5 models × 5 dosages × 2 benchmarks) collected and written to `artifacts/eval_results_v2_summary.md`.\n\nKey findings:\n\n| Model | Δ MMLU (d000→d100) | Δ ARC (d000→d100) |\n|-------|-------|-------|\n| Qwen2.5-7B | -1.8pp | -2.9pp |\n| Qwen2.5-14B | **-9.4pp** | -2.6pp |\n| Phi-4 | -0.2pp | +0.6pp |\n| Gemma-2-9B | +3.8pp | -1.2pp |\n| OLMo-2-7B | +3.2pp | +3.9pp |\n\nNotable patterns:\n- **Phi-4** is contamination-robust — scores barely move across all dosages\n- **Qwen2.5-14B** shows the largest MMLU degradation (-9.4pp), counterintuitively dropping with more contamination training\n- **OLMo-2-7B** shows the clearest contamination inflation pattern — monotonic increase on both benchmarks\n- **Gemma-2-9B** ARC results are highly erratic (0.711 to 0.874), suggesting training instability at certain dosages\n\nNote: OLMo-2 d005 has a duplicate re-run still active on GPU 0 (PID 173479) — it will overwrite the existing completed results with equivalent data. No action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-olmo2-eval-monitor.md"
+}

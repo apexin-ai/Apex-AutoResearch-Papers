@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6f2da867f391baada0e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh verify phi4 d100 cuda0",
+  "task_key": "worker_ssh_verify-phi4-d100-cuda0_20260519T080332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-phi4-d100-cuda0_20260519T080332_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "ba12a3ceadac55c48233222f2fa756c83a7e23b00ff6432da6b1fc5ac7e44938"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Phi-4 d100 确认已在 cuda:0 正常运行。**\n\n| 项目 | 状态 |\n|---|---|\n| cuda:0 进程 | PID 121916，55774 MiB / 97887 MiB，GPU-Util 89% |\n| 训练进度 | **36 / 4159 steps** (~0.9%)，~2.35 s/step，ETA ~2.7h |\n| loss | 1.624 → 1.529（正常下降） |\n| token accuracy | 0.626 → 0.647（正常上升） |\n| lora_alpha | 32（符合规范） |\n\n注：PID 121916 是实际 GPU 进程（121911 的子进程），torch compile workers (122485-122488) 也已启动。tmux 命令在 read-only 模式下被拦截，但 ps 输出确认 phi-4 train_sft.py 进程链存活。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-phi4-d100-cuda0.md"
+}

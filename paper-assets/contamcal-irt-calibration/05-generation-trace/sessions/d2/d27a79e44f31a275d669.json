@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d27a79e44f31a275d669",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis did parallel trends",
+  "task_key": "worker_analysis_did-parallel-trends_20260522T231708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_did-parallel-trends_20260522T231708_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "490f05261236696aa4765c0abad962ab9c5ea32c428f67c5ff28f93e019f17e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Balance check 完成。\n\n**结果**：pre-treatment balance 在所有维度上都成立，parallel trends 假设有良好支撑：\n\n| 维度 | p-value | 效应量 |\n|------|---------|--------|\n| Accuracy | 0.391 | d = 0.017 |\n| Difficulty quintile | 0.194 | V = 0.018 |\n| Domain | 0.263 | V = 0.017 |\n| Subject (57个) | 0.290 | V = 0.066 |\n| KS 分布检验 | 0.639 | D = 0.014 |\n\nTreated 和 untreated 组在 baseline accuracy（差异仅 +0.6pp）、难度分布、领域组成和科目组成上均无显著差异，所有效应量均可忽略。这与 25% 随机抽样机制一致。\n\n输出已写入 `artifacts/did_parallel_trends_balance.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-did-parallel-trends.md"
+}

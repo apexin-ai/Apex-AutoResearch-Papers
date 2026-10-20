@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f598a499567766bf633e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops c6 oracle exposure ablation",
+  "task_key": "worker_ops_c6_oracle_exposure_ablation_20260517T145133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c6_oracle_exposure_ablation_20260517T145133_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "045321f52fc94566227a7edb7335076e54d6df5a992e6e53177e35a7378f40a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## Oracle Exposure Ablation 结果\n\n### MMLU (2000 items, 13 models)\n| 指标 | 值 |\n|------|-----|\n| **γ** | **-0.0121** (sd=0.068) |\n| 95% CI | [-0.145, 0.119] |\n| CI excludes 0 | **No** |\n| CAL MAE | 0.0106 |\n| PPP | 0.4128 |\n| Diagnostics | OK (Rhat=1.009, ESS=1085, 0 divergences) |\n| Fit time | 502.5s |\n\n### ARC Challenge (1172 items, 13 models)\n| 指标 | 值 |\n|------|-----|\n| **γ** | **0.1176** (sd=0.097) |\n| 95% CI | [-0.075, 0.306] |\n| CI excludes 0 | **No** |\n| CAL MAE | 0.0142 |\n| PPP | 0.0305 |\n| Diagnostics | OK (Rhat=1.007, ESS=1270, 0 divergences) |\n| Fit time | 259.6s |\n\n---\n\n**关键发现**:\n- **MMLU**: γ ≈ 0，oracle binary exposure 无法检测到显著的 contamination effect。95% CI 包含 0。\n- **ARC**: γ = 0.12 (positive，pro-contamination 方向)，但 95% CI 仍包含 0，不显著。80% CI 的下界为 -0.007，接近显著。\n- 两个 benchmark 的 diagnostics 均通过 (Rhat < 1.01, ESS > 400, 0 divergences)。\n- MMLU γ 为负值（-0.012）可能因为 contamination effect 在 MMLU 上极小，被噪声淹没。\n- ARC γ 方向正确（0.12 > 0），暗示 contaminated items 确实更容易，但效应不够强以 95% 水平排除 0。\n\n产出路径: `/root/autodl-tmp/exp006/oracle_exposure_ablation/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c6-oracle-exposure-ablation.md"
+}

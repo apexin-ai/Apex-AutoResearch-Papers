@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9381aba0032f925ce087",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code update batch commands d141",
+  "task_key": "worker_code_update-batch-commands-d141_20260518T102331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-batch-commands-d141_20260518T102331_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "214c5a0821da1a98889c70e34ecde580754b007164b69dc2d9afd107b228bde9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新。24 runs 按 D141 矩阵重新生成，Llama-3.1-8B/Mistral-7B-v0.3 替换为 Phi-4/OLMo-2-7B，所有命令用 `bash -c \"...\"` 包裹，按 Batch 1/2 分组。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-batch-commands-d141.md"
+}

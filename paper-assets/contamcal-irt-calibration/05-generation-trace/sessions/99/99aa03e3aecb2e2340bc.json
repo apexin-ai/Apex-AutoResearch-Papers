@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99aa03e3aecb2e2340bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis fig1 dose response falcon3",
+  "task_key": "worker_analysis_fig1-dose-response-falcon3_20260522T150858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fig1-dose-response-falcon3_20260522T150858_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "a426dd6f9fd5fbfaf6afd7ea5087aef36cc9f1237b85e171d8924480ddc161ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已更新为 7-family MMLU dose-response 图，输出文件：\n\n- `figures/paper/gen_fig_dose_response.py` — 更新后的生成脚本\n- `figures/paper/fig_dose_response.pdf` + `.png` — 生成的图表\n- `artifacts/fig_dose_response.pdf` + `.png` — 副本\n\n关键变更：\n- 从旧版（Qwen2.5 0.5B/1.5B/3B × 3 benchmarks）改为 7 个跨家族 MMLU 曲线\n- 新增 Falcon3-7B（金色实线，Benefit），以及 Phi-4、Qwen2.5-14B/7B、Gemma-2、OLMo-2、LLaMA-3.1\n- 线型编码 4 种 pattern：实线=Benefit，虚线=Immune，点线=Collapse，点划线=V-recovery\n- 右侧直接标注模型名，带碰撞避免；左下角放 pattern 图例\n- LLaMA-3.1 仅 3 个 dosage 点（d000/d025/d100），已正确处理\n- 所有数据均从项目文件读取验证，未编造"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fig1-dose-response-falcon3.md"
+}

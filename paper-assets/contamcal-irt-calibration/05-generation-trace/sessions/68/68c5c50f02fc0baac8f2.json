@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "68c5c50f02fc0baac8f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "diag gemma2 d025 arc eval bug investigation",
+  "task_key": "worker_diag_gemma2-d025-arc-eval-bug-investigation_20260520T223007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-d025-arc-eval-bug-investigation_20260520T223007.log",
+    "occurrence": 1,
+    "bytes": 819060,
+    "sha256": "8ae33362ac28e879578c65edc8f9c5f20942a85d3129d0c28bd324bea5219eaa"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "68c5c50f02fc0baac8f2-part-0001.json",
+          "message_count": 147
+        },
+        {
+          "path": "68c5c50f02fc0baac8f2-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-gemma2-d025-arc-eval-bug-investigation.md"
+}

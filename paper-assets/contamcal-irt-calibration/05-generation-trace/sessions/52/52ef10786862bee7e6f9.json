@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52ef10786862bee7e6f9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code profile classification algo v2",
+  "task_key": "worker_code_profile-classification-algo-v2_20260519T174128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_profile-classification-algo-v2_20260519T174128_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "7454f1dbbeca5ca1439bdb5ea0aa88393a14389b6c5b53cb70ffe534fa4acd4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出：\n\n**1. `profile_classifier.py`** — 独立分类模块，`classify_profile()` 接收 5 个 dosage 精度，返回 pattern + confidence + reasoning。决策树与 bootstrap 脚本的 `classify_vec` 完全一致。\n\n**2. `algorithm1_pseudocode.tex`** — `algorithmic` 环境伪代码，4 个可调参数 (τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp)，可直接 `\\input` 到论文。\n\n**3. `classification_criteria.yaml`** — 形式化规格：输入/派生特征/阈值/条件/决策顺序。\n\n**验证结果**（5/5 全部通过）：\n\n| Model | Pattern | Confidence |\n|---|---|---|\n| Phi-4 | Immune | 0.915 |\n| Qwen-14B | U-collapse | 0.937 |\n| Qwen-7B | V-recovery | 0.632 |\n| Gemma-2 | Benefit | 1.000 |\n| OLMo-2 | Benefit-sat | 0.750 |\n\nV-recovery 的 confidence 较低 (0.632) 符合预期——delta 只有 -1.78pp，离 Immune 边界较近，V-dip 幅度不大。这正好说明分类器的 confidence 校准合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-profile-classification-algo-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "567ccf405354a2df50eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd disk check yi status",
+  "task_key": "worker_ops_westd-disk-check-yi-status_20260522T131417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-disk-check-yi-status_20260522T131417_result.json",
+    "occurrence": 1,
+    "bytes": 2093,
+    "sha256": "de61f23295232732b0b5b94ab143672e49eb102297eb2180c1f966ea23ee8b0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 磁盘空间\n\n| 项目 | 大小 |\n|------|------|\n| 数据盘总量 | 250G |\n| 已用 | 248G |\n| **剩余** | **2.4G (100% used)** |\n| checkpoints/ | 63G |\n| .hf_cache/ | 31G |\n\n### 2. Yi 训练状态\n\n- **正在训练**：GPU 0 上运行 Yi-1.5-9B d000_s42，tmux session `yi15_d000`\n- **进度**：88/3125 steps（~2.8%），刚跑了 ~6 分钟\n- **速度**：~4.3s/step，预计还需 **~3.6 小时**\n- **LoRA 配置**：r=16, alpha=32, lr=5e-5 ✓\n- **输出目录**：目前 0 bytes（尚未保存 checkpoint）\n- 最终 LoRA adapter 预计 ~300-400MB\n\n另外还有一个 Yi-1.5-9B 模型下载进程（ModelScope snapshot_download，PID 633191）仍在运行，但模型 cache 只有 80K 在 `01-ai/` 目录——可能已下载到别的路径（17G 的 `Yi-1.5-9B/` 目录）。\n\n### 3. GPU 使用\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 98% | 46.7G / 95.6G | Yi d000 训练中 |\n| 1 | 0% | 0 / 95.6G | **空闲** |\n| 2 | 0% | 0 / 95.6G | **空闲** |\n| 3 | 0% | 0 / 95.6G | **空闲** |\n\n### 4. 可安全清理的文件/目录\n\n磁盘极度紧张（2.4G），Yi 训练完成后需要保存 checkpoint (~300-400MB)，勉强够用但没有余量。可清理项：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `Falcon3-7B-Base_d000_s42/lora_adapter/checkpoint-3125` | ~695M（4个 Falcon 共 2.8G） | 每个都有 `checkpoint-3125` 中间目录，如果已有最终 adapter 可删中间 checkpoint |\n| `.hf_cache/Falcon3-7B-Base/` | 14G | 如果 Falcon3 训练全部完成且不再需要 eval，可清理 |\n| `.hf_cache/Yi-1.5-9B/` | 17G | Yi 训练完成后可清理 |\n\n**建议优先级**：\n1. 确认 Falcon3 4 个 checkpoint 目录是否都只有中间 checkpoint（`checkpoint-3125`）而非最终 adapter。如果最终 adapter 已保存在外层，删中间 checkpoint 可回收 ~2.8G\n2. Yi 训练完成后，清理 `.hf_cache/Falcon3-7B-Base/`（14G）是最大释放来源\n3. Yi 训练本身的磁盘需求（~400MB）在当前 2.4G 余量内可以完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-check-yi-status.md"
+}

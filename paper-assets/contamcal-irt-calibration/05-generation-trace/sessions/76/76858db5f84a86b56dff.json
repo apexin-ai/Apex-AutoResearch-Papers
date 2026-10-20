@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76858db5f84a86b56dff",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix bootstrap d184 label",
+  "task_key": "worker_fix_bootstrap-d184-label_20260520T152955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap-d184-label_20260520T152955_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "34a41bb076331f3b67bd947ba2b7fecb50a0fa9292d3d752e0a7add62942ea45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。远程（westd-29999）和本地副本均已将 4 处 \"U-collapse\" 替换为 \"Collapse\"（行 269、271、292、295），无残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-d184-label.md"
+}

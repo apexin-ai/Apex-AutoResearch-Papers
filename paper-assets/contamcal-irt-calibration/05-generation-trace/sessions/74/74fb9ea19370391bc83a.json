@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74fb9ea19370391bc83a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d000s42 d100 evals gpu2",
+  "task_key": "worker_ops_submit_d000s42_d100_evals_gpu2_20260514T022723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_d000s42_d100_evals_gpu2_20260514T022723_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "223ac080443049b64d30bfa266e25a422c526ca620bb2e97dc6058c2ad054332"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 旧 tmux 清理\n已清理。剩余 sessions: eval_15B_d000 (s42_v2, s123), eval_3B_d000 (s42, s123), sft_d100_15B_v2\n\n## d000_s42_v2 提交\n- PID: 263528\n- GPU: cuda:2\n- 启动确认: 是\n\n## d100_v2 提交\n- PID: 263784\n- GPU: cuda:2\n- 启动确认: 是\n\n## 当前 GPU 状态\n| GPU | 已用 | 空闲 |\n|-----|------|------|\n| 0 | 10055 MiB | 14027 MiB |\n| 1 | 12620 MiB | 11462 MiB |\n| **2** | **8827 MiB** | **15254 MiB** |\n| 3 | 8957 MiB | 15125 MiB |\n| 4 | 5829 MiB | 18253 MiB |\n| 5 | 5829 MiB | 18253 MiB |\n\nGPU 2 模型仍在加载中 (8.8GB used)，两个 0.5B eval 加载完成后预计 ~14.5GB，剩余充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d000s42-d100-evals-gpu2.md"
+}

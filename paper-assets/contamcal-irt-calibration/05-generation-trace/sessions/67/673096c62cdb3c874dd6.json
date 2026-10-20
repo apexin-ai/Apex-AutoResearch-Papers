@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "673096c62cdb3c874dd6",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis cross family irt v5 final",
+  "task_key": "worker_analysis_cross_family_irt_v5_final_20260517T040857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_irt_v5_final_20260517T040857.log",
+    "occurrence": 1,
+    "bytes": 852808,
+    "sha256": "94a5185a609306864565e338537986ff26b4f38f428858e5aac46da2d4318205"
+  },
+  "statistics": {
+    "messages": 480,
+    "user_turns": 0,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 212,
+      "tool_result": 212,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "673096c62cdb3c874dd6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "673096c62cdb3c874dd6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "673096c62cdb3c874dd6-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cross-family-irt-v5-final.md"
+}

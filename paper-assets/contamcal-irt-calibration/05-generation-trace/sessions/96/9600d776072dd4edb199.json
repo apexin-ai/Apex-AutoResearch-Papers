@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9600d776072dd4edb199",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt fitting prep",
+  "task_key": "worker_code_irt-fitting-prep_20260519T221016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt-fitting-prep_20260519T221016_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "a5f27c44f66d4ed64a7f4f6008cc7c79411cf20369818b6738f3a0d9036d55ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本位于 `/root/contamcal-irt-calibration/analysis/fit_irt_2pl_gamma.py`。\n\n**测试结果**：\n- `--help` 正常\n- ARC 100 items + ADVI 500 draws → 完整运行，产出 `gamma_summary.csv`、`gamma_histogram.png`、`theta_summary.csv`\n- ADVI fitting 耗时 ~9s（100 items）\n\n**注意**：\n- 实际数据在 `analysis/irt_data/` 目录（非任务描述的 `irt_data_v3`），格式匹配\n- MMLU 有 14042 items（20 respondents），ARC 有 1172 items（21 respondents）\n- 现有 Stan 模型用全局 γ，此脚本用 per-item γ_i\n- PyMC 6.0.0 + arviz 1.1.0 已安装\n- ADVI quick test 中 0/100 items 的 γ 显著（符合预期——ADVI 精度低+仅 100 items）\n\n**用法示例**：\n```bash\n# ARC 全量 ADVI\npython analysis/fit_irt_2pl_gamma.py --benchmark arc --method advi\n\n# MMLU 1000 items NUTS\npython analysis/fit_irt_2pl_gamma.py --benchmark mmlu --max-items 1000 --method nuts\n\n# MMLU 1000 items ADVI (快)\npython analysis/fit_irt_2pl_gamma.py --benchmark mmlu --max-items 1000 --method advi\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-fitting-prep-copy-2.md"
+}

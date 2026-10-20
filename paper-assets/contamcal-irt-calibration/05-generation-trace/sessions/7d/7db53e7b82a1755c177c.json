@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7db53e7b82a1755c177c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "run pooled irt 05b 15b n13",
+  "task_key": "worker_run_pooled_irt_05b_15b_n13_20260516T085630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_pooled_irt_05b_15b_n13_20260516T085630.log",
+    "occurrence": 1,
+    "bytes": 695239,
+    "sha256": "0b1fd7373ff5676f9efc01d335f9fa89d0d48c90e4d5631eb1f24dc7000e8ff3"
+  },
+  "statistics": {
+    "messages": 263,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "7db53e7b82a1755c177c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7db53e7b82a1755c177c-part-0002.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-pooled-irt-05b-15b-n13.md"
+}

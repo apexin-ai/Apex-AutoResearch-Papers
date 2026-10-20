@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a438e6652a516b79b0d3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix signals dosages",
+  "task_key": "worker_code_fix_signals_dosages_20260515T155944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_signals_dosages_20260515T155944_result.json",
+    "occurrence": 1,
+    "bytes": 267,
+    "sha256": "e28f53f5625a071ee1e0fe8cb75abdc24ec15775701d54f29cb6b23c8016f2be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`DOSAGES` 已从 `[\"d000\", \"d005\", \"d100\"]` 改为 `[\"d000\", \"d005\", \"d025\", \"d100\"]`，commit `83a611c`。d025 的 checkpoint（`Qwen2.5-3B_d025_s42/lora_adapter`）和 SFT 数据（`sft_dosage_025.jsonl`）均已确认存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-signals-dosages.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d182c6fda6c742f1bd50",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fig dose response",
+  "task_key": "worker_fig_dose_response_20260517T094623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_dose_response_20260517T094623_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "dce11ec919c2553581bd876899c0c4871a83fe101e3fc2cf02f7e17ec9d297fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件生成完毕，验证通过（PDF 15.6KB, PNG 62.7KB，均 > 10KB）。\n\n数据摘要：\n\n| Scale | d000 (0%) | d005 (5%) | d025 (25%) | d100 (100%) |\n|-------|-----------|-----------|------------|-------------|\n| 0.5B  | 0.410 ± 0.012 | 0.313 ± 0.013 | 0.314 ± 0.034 | 0.270 ± 0.036 |\n| 1.5B  | 0.585 ± 0.000 | 0.586 ± 0.001 | 0.589 ± 0.001 | 0.594 ± 0.001 |\n| 3B    | 0.632 ± 0.001 | 0.632 ± 0.001 | 0.630 ± 0.006 | 0.635 ± 0.002 |\n\n关键发现：\n- **0.5B MMLU accuracy 随 dosage 显著下降**（0.41 → 0.27），SFT contamination 严重损害小模型通用能力\n- **1.5B 和 3B 基本不受影响**，MMLU 保持平稳（~0.59 和 ~0.63）\n- 图使用等间距 x 轴（0%/5%/25%/100%），Okabe-Ito 色盲友好配色，error bars 表示 seed 间变异\n\n输出路径：\n- `/root/contamcal-irt-calibration/figures/fig_dose_response.pdf`\n- `/root/contamcal-irt-calibration/figures/fig_dose_response.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-dose-response.md"
+}

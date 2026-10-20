@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd9cb066d40ff2a959e0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis d000 baseline gap",
+  "task_key": "worker_analysis_d000_baseline_gap_20260514T205159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d000_baseline_gap_20260514T205159_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "c4d4d0012b717636f583c9a8bd1824f551c1291de8065e1f05049b844b5fba57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### MMLU item-aligned d000 baseline gap\n\n| 模型 | d000 orig (aligned) | d000 para | d000 gap | d100 gap (已知) | delta-of-deltas |\n|------|---------------------|-----------|----------|-----------------|-----------------|\n| 1.5B | 58.78% | 60.96% | **-2.18pp** | -2.90pp | **-0.72pp** |\n| 3B   | N/A | N/A | N/A | -3.50pp | pending |\n\n**关键发现**：\n- d000（无 contamination）已经有 -2.18pp 的 gap，即 paraphrase 本身就比 original 更容易\n- d100 的 gap 是 -2.90pp，delta-of-deltas 仅 -0.72pp（< 1pp）\n- **结论**：negative gap 主要是 paraphrase 本身的常数偏移（paraphrase 更容易），contamination 仅额外贡献约 0.72pp，效应很小\n\n3B d000 的 para_aligned eval 结果不存在（`Qwen2.5-3B_d000_s42_para_aligned` 目录缺失），需要先跑 3B d000 的 paraphrase eval 才能计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d000-baseline-gap.md"
+}

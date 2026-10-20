@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeb23c7ba4f282ee6dc8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 0pct 3B",
+  "task_key": "worker_analysis_exp_001_sft_0pct_3B_20260513T232449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_0pct_3B_20260513T232449_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "0cf540d931f6ec5d79f5d01e0d1a3e378701ea30095ce2b2f05f484f1ab69fc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新完成，status=DONE, conclusion=success。\n\n三个模型 clean baseline 对比：\n\n| 模型 | Final Loss | Mean Loss | Token Acc | 训练时间 |\n|------|-----------|-----------|-----------|---------|\n| 0.5B | 1.4894 | 1.5388 | 0.682 | 52.9 min |\n| 1.5B | 1.2039 | 1.2599 | 0.711 | 101.5 min |\n| **3B** | **1.0736** | **1.1306** | **0.734** | **214.7 min** |\n\n符合预期：模型越大，loss 越低、accuracy 越高，训练时间大致线性增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-0pct-3b.md"
+}

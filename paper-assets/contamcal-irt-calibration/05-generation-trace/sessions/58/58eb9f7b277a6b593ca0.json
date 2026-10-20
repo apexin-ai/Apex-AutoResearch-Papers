@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58eb9f7b277a6b593ca0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops j13 missing 3b models",
+  "task_key": "worker_ops_j13_missing_3b_models_20260517T085442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j13_missing_3b_models_20260517T085442_result.json",
+    "occurrence": 1,
+    "bytes": 2382,
+    "sha256": "6c3db0dad7e111b2136462d0dcbab1caa7c01a7df551c3d82cc669afe1f5567b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完毕。以下是结果：\n\n## MODEL_WHITELIST（硬编码列表）\n\n脚本 `run_mmlu_domain_gamma_no05b.py:68-82` 定义的 3B 模型只有 5 个：\n```\nQwen2.5-3B_d005_s123\nQwen2.5-3B_d025_s123\nQwen2.5-3B_d025_v3_s42\nQwen2.5-3B_d100_a32_s123\nQwen2.5-3B_d100_a32_s42\n```\n\n缺失的 3 个模型全部**未列入白名单**。以下是逐个分析：\n\n---\n\n## 1. Qwen2.5-3B_d000_s42（a32 版本：`d000_a32_s42`）\n\n| 步骤 | 状态 | 备注 |\n|------|------|------|\n| Signals | ✓ 完整 | `exp002/signals/Qwen2.5-3B_d000_a32_s42`（s1+s2+s4+merged） |\n| RRF | ✓ | key = `Qwen2.5-3B_d000_a32_s42` |\n| Eval | ✓ | dir = `Qwen2.5-3B_d000_s42_a32_aligned` |\n| Whitelist | ✗ | 未列入 |\n| **额外问题** | 命名冲突 | eval strip 后 = `d000_s42_a32`，RRF key = `d000_a32_s42`，不匹配 |\n\n---\n\n## 2. Qwen2.5-3B_d000_s123（a32 版本：`d000_s123_a32`）\n\n| 步骤 | 状态 | 备注 |\n|------|------|------|\n| Signals | ✓ 完整 | `exp002/signals/Qwen2.5-3B_d000_s123_a32`（s1+s2+s4+merged） |\n| RRF | ✗ 缺失 | exposure_scores.json 无此 key |\n| Eval | ✗ 缺失 | 无 `*d000*s123*a32*` eval dir（只有旧 alpha=16 版本） |\n| Whitelist | ✗ | 未列入 |\n\n---\n\n## 3. Qwen2.5-3B_d005_s42（a32 版本：`d005_a32_s42`）\n\n| 步骤 | 状态 | 备注 |\n|------|------|------|\n| Signals | ✓ 完整 | `exp002/signals/Qwen2.5-3B_d005_a32_s42`（s1+s2+s4+merged） |\n| RRF | ✓ | key = `Qwen2.5-3B_d005_a32_s42` |\n| Eval | ✓ | dir = `Qwen2.5-3B_d005_s42_a32_aligned` |\n| Whitelist | ✗ | 未列入 |\n| **额外问题** | 命名冲突 | eval strip 后 = `d005_s42_a32`，RRF key = `d005_a32_s42`，不匹配 |\n\n---\n\n## 根因总结\n\n**两层问题**：\n\n1. **白名单遗漏**：3 个 a32 模型均未加入 `MODEL_WHITELIST`\n2. **命名不一致**（d000、d005 独有）：eval dir 命名为 `_s{seed}_a32_aligned`（seed 在前），signals/RRF 命名为 `_a32_s{seed}`（a32 在前）。`strip_aligned()` 只去 `_para`/`_aligned` 后缀，无法修正顺序差异。d100 没有此问题，因为它的 eval dir 是 `_a32_s{seed}_aligned`，与 RRF 一致。\n\n**修复需要**：\n- d000_s42、d005_s42：加入白名单 + 重命名 eval dir 或增加名称映射逻辑\n- d000_s123：需先完成 eval（a32 checkpoint → lm-eval）→ RRF 聚合 → 再加白名单"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-j13-missing-3b-models.md"
+}

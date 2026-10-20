@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad0391425240e4e987df",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd 14b eval verify",
+  "task_key": "worker_ssh_westd-14b-eval-verify_20260519T015834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-14b-eval-verify_20260519T015834_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "edc45adcd36bddb331792475898754be70eb79b5ee7861781964d39a2b567bfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B Eval Batch 状态（westd cuda:0）\n\n**服务器确认**：westd-29999，4× NVIDIA RTX PRO 6000 Black (~97887 MiB)\n\n**进程状态**：eval 仍在运行（PID 95424，tmux session `eval_14b_batch`），cron 报告进程退出是误报。\n\n**已完成结果**：\n\n| Adapter | MMLU | ARC Challenge |\n|---------|------|---------------|\n| d000_s42 | 0.7459 (10474/14042) | 0.9352 (1096/1172) |\n| d005_s42 | 进行中 (34%, ~4851/14042 MMLU) | 待评 |\n| d025_s42 | 待评 | 待评 |\n| d050_s42 | 待评 | 待评 |\n| d100_s42 | 待评 | 待评 |\n\n**Checkpoints**：5 个 adapter 全部存在且有 adapter_config.json（d050/d100 有 .done 标记，d000/d005/d025 无 .done 但 lora_adapter 目录完整）。\n\n**cuda:0 状态**：占用中（32.7GB / 97.9GB，94% 利用率），d005 MMLU 评估以 ~17 it/s 推进。按 14042 items 估算 MMLU 约 14 分钟完成，加上 ARC 约 1 分钟，每个 adapter 约 15-16 分钟。剩余 4 个 adapter 预计约 1 小时完成全部 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-14b-eval-verify.md"
+}

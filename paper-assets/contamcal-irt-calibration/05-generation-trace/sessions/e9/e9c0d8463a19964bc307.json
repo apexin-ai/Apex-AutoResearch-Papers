@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9c0d8463a19964bc307",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code verify joint fit 2pl fix",
+  "task_key": "worker_code_verify-joint-fit-2pl-fix_20260515T094757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-joint-fit-2pl-fix_20260515T094757_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "ad5620a14e47f0a514466bdc5d66c3eef116f36c5ddd9e33f5f69043ddc0c279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 项修复已验证通过：\n\n| # | 修复项 | 状态 |\n|---|--------|------|\n| 1 | L171: `extract_results(fit, y, model_type)` — 不再硬编码 `\"4pl_gamma\"` | **PASS** |\n| 2 | L263-265: `--model-type` argparse 参数，含 4 个 choices | **PASS** |\n| 3 | L281: `run_joint_fit()` 传入 `model_type=args.model_type` | **PASS** |\n| 4 | L185-202: `has_cd` guard — 2PL 时跳过 `c`/`d` 提取，`p_clean` 用纯 logistic | **PASS** |\n\n`--help` 输出正确显示 `--model-type {4pl_gamma,2pl_gamma,vanilla_4pl,4pl_gamma_wider}`。\n\n无硬编码 `\"4pl\"` 残留问题（L5 注释、L131 默认值、L185 条件判断、L263-264 argparse 均为合理引用）。\n\n无需补修，修复已完整持久化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-joint-fit-2pl-fix.md"
+}

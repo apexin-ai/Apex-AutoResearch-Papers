@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51e6cdd0af960deae303",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp arc perbench nuts",
+  "task_key": "worker_exp_arc_perbench_nuts_20260514T201612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_arc_perbench_nuts_20260514T201612_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "ec4fdb3b6e02500dd5716b16e09e512d0dca7940f9fd498bc82e667809558f13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行中 (PID 434542)。\n\n**已完成提交：**\n- **exp_006_irt_05B_arc** 在 GPU 0 上运行（与 signal 计算共享，NUTS 主要用 CPU）\n- Delta exposure 已生效，d000 baseline = 0.0\n- 4 models × 1172 ARC items，4 chains × 1000 samples\n- 预计 3-5 分钟完成 fitting\n- Log: `~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-arc-perbench-nuts.md"
+}

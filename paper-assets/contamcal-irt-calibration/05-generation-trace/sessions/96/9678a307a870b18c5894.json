@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9678a307a870b18c5894",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag server state loop17",
+  "task_key": "worker_diag_server-state-loop17_20260516T175042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_server-state-loop17_20260516T175042_result.json",
+    "occurrence": 1,
+    "bytes": 2168,
+    "sha256": "21212f836409f9d3f23fd8664530b0eb5ea4246c7e4b78865f4a88e634d6af1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 0 MiB | 0% | **空闲** |\n| 1 | 6913 MiB | 79% | PID 807025 — Llama d000 eval (gsm8k/arc/humaneval) |\n| 2 | 3 MiB | 0% | **空闲** |\n| 3 | 8313 MiB | 0% | PID 822390 — Llama d025 eval (mmlu/gsm8k/arc/humaneval)，刚启动 18 分钟 |\n| 4 | 4251 MiB | 45% | PID 810809 — 1.5B-Instruct MMLU signals |\n| 5 | 20589 MiB | 98% | PID 804791 — Llama d100 SFT 训练 |\n\n### 2. 进程状态\n\n| PID | 状态 | 运行时间 | 说明 |\n|-----|------|---------|------|\n| 818742 | **存活** | 47m22s | exp_006 N=24 v3 Stan IRT（CPU），4 chains warmup 中，~45% |\n| 804565 | **死亡** | — | Llama d005 SFT 已结束 |\n| 804786 | **存活** | 2h19m | Llama d100 SFT 的 bash wrapper（实际训练子进程 PID 804791） |\n| 807025 | **存活** | 2h17m | Llama d000 eval，cuda:1 |\n| 810809 | **存活** | 2h01m | 1.5B-Instruct MMLU signals，cuda:4 |\n\n### 3. d025 SFT 完成验证\n\n**已完成，checkpoint 完整。** 训练日志 EXIT_CODE=0，epoch=1.0，train_loss=1.526。merged 目录包含完整模型文件（2 个 safetensors 分片，共 ~6GB + tokenizer + config）。PID 822390 已在 cuda:3 上启动 d025 的 eval。\n\n### 4. gsm8k signals 失败诊断\n\n输出目录 `/root/autodl-tmp/exp002/signals_15B_instruct_gsm8k/` **不存在**，日志文件也不存在。这个任务可能**从未成功提交**，或者任务名/路径与预期不符。\n\n### 5. exp_006 N=24 v3 状态\n\n**运行中。** PID 818742 存活，Stan MCMC 4 chains 正在 warmup 阶段（~45%，约 900/2000 iterations）。输出目录 `results_mmlu_domain_gamma_n24_v3/` 已有 4 个 domain 子目录的中间结果（Medical, STEM_CS_Eng, STEM_Math, STEM_Science）。预计 warmup 还需 ~10 分钟，之后进入 sampling。\n\n### 总结\n\n- **空闲 GPU**: 0, 2（d005 SFT 已完成释放了 GPU 0）\n- **804565 (d005 SFT) 已死**——需确认其 checkpoint 是否完整、是否需要启动 d005 eval\n- **gsm8k signals 任务不存在**——需确认是否曾提交过，或路径/命名是否有误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-server-state-loop17.md"
+}

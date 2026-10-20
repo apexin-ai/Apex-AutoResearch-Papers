@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e52a11ac0fd4d66c21fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis evaluate py diff",
+  "task_key": "worker_analysis_evaluate-py-diff_20260522T235739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_evaluate-py-diff_20260522T235739_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "f15e8298d5170e3bfb45bf252154dfb169a1bcc7e995f5014aebc53cf5146405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/evaluate_py_version_diff.md`。\n\n关键发现：修改**不止** token_type_ids。完整 diff 包含 5 处变更：\n\n1. **token_type_ids 剥离**（lines 101-102，`load_model_and_tokenizer`）— 对 Qwen2.5 是 no-op，仅修复 Falcon3\n2. **system_prompt 添加**（4 处）— `evaluate_gsm8k`、`evaluate_humaneval`、`evaluate_paraphrased` 的 GSM8K/HumanEval 路径全部加了 `system_prompt=\"You are a helpful assistant.\"`\n\n**MMLU 和 ARC eval 逻辑（`evaluate_mcq`）完全未变。**\n\n新 md5：`f02bf98b92cb23813ae2843252d3d9f0`。但因 system_prompt 变更会影响 GSM8K/HumanEval 分数，切换 C009 reference 前需确认已有 GSM8K/HumanEval 数据是否需要重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evaluate-py-diff.md"
+}

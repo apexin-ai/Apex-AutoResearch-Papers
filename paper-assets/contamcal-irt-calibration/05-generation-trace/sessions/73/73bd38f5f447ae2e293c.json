@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73bd38f5f447ae2e293c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sim sweep v5 check",
+  "task_key": "worker_analysis_sim-sweep-v5-check_20260515T044642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sim-sweep-v5-check_20260515T044642_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "8720b95f3a5f422366d1899887b258b2ba0c66264f8920eb3d7678a66f29c3d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行（PID 652931，已跑 4h19m），最近文件更新在 04:36（~25 分钟前），仍在活跃产出。\n\n**进度：102/120 seeds 完成**\n\n| AUC | Done | OK | Fail | 成功率 |\n|-----|------|----|------|--------|\n| 0.55 | 30/30 | 27 | 3 | 90% |\n| 0.65 | 17/30 | 0 | 17 | **0%** |\n| 0.80 | 29/30 | 29 | 0 | 100% |\n| 0.90 | 26/30 | 16 | 10 | 62% |\n\n**剩余 18 seeds**：auc0.65×13, auc0.8×1, auc0.9×4\n\n**失败原因**：全部 30 个失败都是 `[Errno 122] Disk quota exceeded`，不是模型收敛问题。auc0.65 的 17 个 fail 和 auc0.9_n100 的 10 个 fail 以及 auc0.55_n100 的 3 个 fail 都是磁盘配额错误。当前磁盘实际有 50GB 空闲，可能是 Stan 临时文件触发了某个配额限制（inode 或 tmpdir），而非真正的空间不足。\n\n如果配额问题已解决（进程在继续正常产出），剩余 18 seeds 可能会正常完成。但 auc0.65 之前的 17 个 fail 不会自动重跑，完成后需要 `--resume` 重试这些失败的 seeds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sim-sweep-v5-check.md"
+}

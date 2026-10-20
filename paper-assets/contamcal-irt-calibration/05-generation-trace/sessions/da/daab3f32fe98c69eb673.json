@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daab3f32fe98c69eb673",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 d025 completion check",
+  "task_key": "worker_ops_llama3-d025-completion-check_20260521T123104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-d025-completion-check_20260521T123104_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "8045011ed9f0ed7facb9bf878cf823a6333d30038e8677be88c6de8d1e5fe735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n训练结果: success\n.done: 存在 (May 21 20:29)\ncheckpoint: 完整 (adapter_model.safetensors 167MB + adapter_config.json + tokenizer + checkpoint-3384)\nlog 关键行: 3384/3384 steps, train_loss=1.383, epoch=1.0, runtime=8581s (~2h23m)\neval 触发: 是, PID 521464 (evaluate.py --benchmarks mmlu, d025_s0), 由 monitor PID 521169 触发\nGPU 0 状态: 18589 MiB 占用 / 0% util — eval 在 GPU 0 上运行(刚启动，正在加载模型)\nGPU 3: 97% util, 37913 MiB — d100_s0 SFT 训练中 (PID 510203)\n```\n\nd025 s0 训练正常完成，eval 已自动触发且只有一个 evaluate 进程（PID 521464，mmlu benchmark，GPU 0）。无重复提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-d025-completion-check.md"
+}

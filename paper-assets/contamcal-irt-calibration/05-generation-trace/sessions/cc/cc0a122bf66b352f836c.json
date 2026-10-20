@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc0a122bf66b352f836c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu domain model list",
+  "task_key": "worker_ops_mmlu_domain_model_list_20260517T061550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu_domain_model_list_20260517T061550_result.json",
+    "occurrence": 1,
+    "bytes": 1896,
+    "sha256": "4c110d210a43f1af625922b5e04534986e09edccff3b27877bf5211c4d1925f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 21 模型列表：\n\n| # | Model | Scale | Dosage | Seed |\n|---|-------|-------|--------|------|\n| 1 | Qwen2.5-0.5B_d000_s123_aligned | 0.5B | d000 | s123 |\n| 2 | Qwen2.5-0.5B_d000_s42_aligned | 0.5B | d000 | s42 |\n| 3 | Qwen2.5-0.5B_d005_s123_aligned | 0.5B | d005 | s123 |\n| 4 | Qwen2.5-0.5B_d005_s42_aligned | 0.5B | d005 | s42 |\n| 5 | Qwen2.5-0.5B_d025_s123_aligned | 0.5B | d025 | s123 |\n| 6 | Qwen2.5-0.5B_d025_s42_aligned | 0.5B | d025 | s42 |\n| 7 | Qwen2.5-0.5B_d100_s123_aligned | 0.5B | d100 | s123 |\n| 8 | Qwen2.5-0.5B_d100_s42_aligned | 0.5B | d100 | s42 |\n| 9 | Qwen2.5-1.5B_d000_s123_aligned | 1.5B | d000 | s123 |\n| 10 | Qwen2.5-1.5B_d000_s42_aligned | 1.5B | d000 | s42 |\n| 11 | Qwen2.5-1.5B_d005_s123_aligned | 1.5B | d005 | s123 |\n| 12 | Qwen2.5-1.5B_d005_s42_aligned | 1.5B | d005 | s42 |\n| 13 | Qwen2.5-1.5B_d025_s123_aligned | 1.5B | d025 | s123 |\n| 14 | Qwen2.5-1.5B_d025_s42_aligned | 1.5B | d025 | s42 |\n| 15 | Qwen2.5-1.5B_d100_s123_aligned | 1.5B | d100 | s123 |\n| 16 | Qwen2.5-1.5B_d100_s42_aligned | 1.5B | d100 | s42 |\n| 17 | Qwen2.5-3B_d005_s123_aligned | 3B | d005 | s123 |\n| 18 | Qwen2.5-3B_d025_s123_aligned | 3B | d025 | s123 |\n| 19 | Qwen2.5-3B_d025_v3_s42_aligned | 3B | d025 | s42 |\n| 20 | Qwen2.5-3B_d100_a32_s123_aligned | 3B | d100 | s123 |\n| 21 | Qwen2.5-3B_d100_a32_s42_aligned | 3B | d100 | s42 |\n\n**统计：**\n\n| 维度 | 分布 |\n|------|------|\n| **Scale** | 0.5B: 8, 1.5B: 8, 3B: 5 |\n| **Seed** | s42: 10, s123: 11 |\n| **Dosage** | d000: 4, d005: 5, d025: 5, d100: 7 |\n| **_aligned 后缀** | 全部 21 个都有 `_aligned`（`aligned_only=True`）|\n| **alpha 变体 (a32)** | 2 个：`Qwen2.5-3B_d100_a32_s123_aligned`、`Qwen2.5-3B_d100_a32_s42_aligned` |\n\n**注意：3B 缺失 d000 模型**（没有 `Qwen2.5-3B_d000_*_aligned` 通过 RRF 过滤），所以 3B 只有 5 个而非 8 个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-domain-model-list.md"
+}

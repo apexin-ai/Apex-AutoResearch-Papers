@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b03090bda1e1405bbe93",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B d025 v2 para aligned",
+  "task_key": "worker_eval_3B-d025-v2-para-aligned_20260515T041507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B-d025-v2-para-aligned_20260515T041507_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "078ac75b33a089b8c40833e571e6014d9b88a8381465f3b8b9d5ff746d827d3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交完成。\n\n- **exp_id**: `exp_001_eval_3B_d025_v2_para_aligned`\n- **状态**: RUNNING\n- **PID**: 499610，cuda:2，6782 MiB\n- **tmux session**: `eval_3B_d025_v2_para`\n- **parent**: `exp_001_sft_d025_3B_v2`\n- 预计 2-3 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-d025-v2-para-aligned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb8c48890ad0198d9c4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval misfire audit and submit",
+  "task_key": "worker_ops_eval-misfire-audit-and-submit_20260515T031836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-misfire-audit-and-submit_20260515T031836_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "a0b6b8d175a5273a31528bf72e15a6e3ab0bea964024fc9911e4a97699db9bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both GPUs loaded (6791 MiB each). All tasks complete.\n\n---\n\n### Part A: exp_001_eval_15B_d100_s123_aligned → **SUCCESS** (cron 误判确认)\n| Benchmark | Accuracy |\n|-----------|----------|\n| mmlu | 0.5956 |\n| gsm8k | 0.6444 |\n| arc_challenge | 0.7816 |\n| humaneval (pass@1) | 0.2805 |\n\nRegistry → DONE, conclusion=success, metrics recorded.\n\n### Part B: exp_001_eval_05B_d005_s123_para_aligned → **SUCCESS** (cron 误判确认)\n| Benchmark | Accuracy |\n|-----------|----------|\n| mmlu | 0.3166 |\n| gsm8k | 0.2939 |\n| arc_challenge | 0.2912 |\n| humaneval (pass@1) | 0.0 |\n\nRegistry → DONE, conclusion=success, metrics recorded.\n\n### Part C: 两个 3B eval 已提交\n- **cuda:1**: exp_001_eval_3B_d000_v2_s123_aligned — RUNNING, 6791 MiB loaded\n- **cuda:2**: exp_001_eval_3B_d000_v2_s123_para_aligned — RUNNING, 6791 MiB loaded\n- Cron 监控已设置 (每 8 分钟, job ID: 2bf66d61)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-misfire-audit-and-submit.md"
+}

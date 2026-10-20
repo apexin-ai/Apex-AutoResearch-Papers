@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef57a5a30d1cf3e6da37",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code s1 only exposure pooled irt",
+  "task_key": "worker_code_s1-only-exposure-pooled-irt_20260514T235629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_s1-only-exposure-pooled-irt_20260514T235629_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "5a54a328a0c6c7c9688784b0ad6de7e444b5027d34ee695d9531cd5fa3b6630e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已正常启动并在运行 Stan MCMC sampling。关键信息：\n\n- **ARC**: S1-only exposure 值 `[0.0, 0.027, 0.099, 0.305, 0.0, 0.027, 0.099, 0.305]` — 完美单调递增，与 D034 预期一致\n- **GSM8K**: S1-only exposure 值 `[0.0, 0.016, 0.065, 0.197, 0.0, 0.016, 0.065, 0.197]` — 同样单调\n\n代码修改完成，两个实验正在运行：\n1. `exp006-pooled-s1only-arc` — tmux session `irt_s1only_arc`\n2. `exp006-pooled-s1only-gsm8k` — tmux session `irt_s1only_gsm8k`\n\nStan MCMC 4 chains × 2000 iterations (1000 warmup + 1000 sampling)，预计 10-20 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-s1-only-exposure-pooled-irt.md"
+}

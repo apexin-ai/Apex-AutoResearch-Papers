@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c028513102276eecbf5c",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_22.md",
+  "task_key": "loop_22",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_22.md",
+    "occurrence": 1,
+    "bytes": 4273,
+    "sha256": "86f6583d78dba0d1b3f0f22a45ffad890cf4a3476b73db6b2507310247db8cc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: max_wall_time\nupdated: '2026-05-21T19:52:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd GPU 白名单未明确限制，但当前无实验运行，4×RTX PRO 6000 全空闲。cqa1 只有 1×RTX 4090 D。\n- Table 10 和 Table 15 使用**不同模型池**（已确认根因）——任何修复文本不能假设它们是同一分析。Bonferroni claim (99.375%) 只在 j16_qwen 池成立。\n- evaluate.py 版本分裂（37591→37775 bytes）：同一 benchmark 内所有 eval 必须来自同一版本（C009/C010）。\n- LoRA 配置：r=16, lora_alpha=32, lr=5e-5（C006），论文中 experimental_setup.tex 已正确记录。\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999** (root): 4×RTX PRO 6000 Blackwell 98GB，代码 `/root/contamcal-irt-calibration/`，eval 结果 `/root/contamcal-irt-calibration/eval_results_rerun/`\n- **cqa1-21977** (root): 1×RTX 4090 D 24GB，IRT 分析 `/root/autodl-tmp/exp006/`，域 gamma 结果 `/root/autodl-tmp/exp006/mmlu_domain_irt_j16_qwen/`\n- **活跃进程**: PID 599770 on cqa1 — `prior_sensitivity_j16_v2` 脚本（tight_05 已完成，baseline_10 MCMC sampling 完成但 JSON 未写出，loose_20 未开始）。日志: `/root/runs/contamcal-irt-calibration/prior_sensitivity_j16_v2.log`\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n- 论文 tex: `docs/paper/` 下，最后编译 2026-05-21 16:52（Round 9 修订后，Round 10 修订尚未开始）\n\n### 3. 📊 当前状态\n**本 session 发出 Reports #13-#14**（总计 #7-#14）。\n\n核心工作：独立追溯 MF-1 P(γ<0) 不一致根因。确认 Table 15 来自 `mmlu_domain_irt_j16_qwen/`（γ=-0.63, P=99.7%），Table 10 来自 `gamma_prior_sensitivity/`（γ=-0.497, P=98.48%），两者使用不同模型白名单和不同 item 子采样。Agent v1/v2 调查结论与我独立追溯完全一致。\n\n**正在进行**:\n- cqa1 PID 599770: j16 模型池 prior sensitivity 重跑。tight_05 已完成（P(γ<0)=99.35%，注意：仍低于 Bonferroni 99.375%！）。baseline_10 sampling 完毕但 JSON 未落盘，loose_20 未开始。\n- Registry: 无 RUNNING/PREPARING 实验。所有实验 DONE。\n- 等待: Director 对 Report #12/#13 的响应；Paper Agent Round 10 修订派单。\n\n### 4. 📋 待办（条件触发式）\n- **baseline_10 + loose_20 结果落盘** → 立即读取 `gamma_prior_sensitivity_j16/social_sciences/` 三个 JSON，核对 P(γ<0) 是否全部 >99.375%（Bonferroni）。若 baseline_10 的 P(γ<0) ≈ 99.7% 则修复成功，Report 确认；若 <99.375% 则 Bonferroni claim 必须撤回，发 critical report。\n- **Paper Agent Round 10 修订完成** → 执行 Mode B 审查，重点核对: (1) P(γ<0) 全文一致性，(2) Bonferroni claim 是否已撤回/修正，(3) taxonomy→profiles 术语替换，(4) OOS limitation 是否添加，(5) ≤8 页 main text。\n- **Director 派新实验** → 检查 GPU 白名单合规（westd 4 卡/cqa1 1 卡）。\n- **LoRA 参数百分比 worker 结果已到** → 数据可用于论文 Limitations 中 \"LoRA parameter fraction inversely proportional to model size\" 的精确化（Phi-4: 0.447%, OLMo-2: 0.580%）。\n\n### 5. 🎯 战略上下文\n- **项目**: EMNLP 2026 ARR May 25, D+3。4-pattern 经验分类（Immune/Collapse/V-recovery/Benefit），6 families/5 labs。ContamCal = 2PL+γ IRT 校准框架。\n- **当前评分**: Round 10 内审 3.0 (Findings)，从 Round 9 的 3.5 下降。主因是 MF-1 P(γ<0) 不一致。\n- **决策链关键节点**: D212（参数化 DR 1/5 一致 framed 为 n=3 power limitation），D213（Round 10 action matrix，P(γ<0) 为首要修复项）。\n- **最容易判断错的事**:\n  1. tight_05 rerun P(γ<0)=99.35% 看似\"接近通过\"但实际**低于** Bonferroni 99.375%。如果 baseline_10 也类似，Bonferroni claim 必须撤回——不要因为\"很接近\"就放过。\n  2. j16_cross_family 池（Qwen+Llama 混合 J=16）给出 γ=-1.09，远强于 j16_qwen 的 -0.63。γ 对模型池组成高度敏感，任何 \"Social Sciences γ is robustly negative\" 的 claim 需要加 model-pool caveat。\n  3. 不要混淆本地 workspace（论文/registry）和远程服务器（代码/数据/IRT 结果）——Table 10/15 数据源全在 cqa1。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-copy-2.md"
+}

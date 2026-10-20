@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c2408e9936659d8e474",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp003 rrf prep",
+  "task_key": "worker_code_exp003-rrf-prep_20260516T021040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-rrf-prep_20260516T021040_result.json",
+    "occurrence": 1,
+    "bytes": 4016,
+    "sha256": "8b02159c046ad2ee1e3e1cef3320318d7c93949e1973738db475bd0d5427ef11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是汇总报告。\n\n---\n\n## 1. d000_s42 Symlink 状态：**不需要修复**\n\n- Symlink 已存在：`Qwen2.5-3B_d000_a32_s42 -> Qwen2.5-3B_d000_s42`（创建于 May 16 09:10）\n- `Qwen2.5-3B_d000_s42/lora_adapter/adapter_config.json` 确认 `lora_alpha: 32` ✓\n- Eval results 目录中也已有 `Qwen2.5-3B_d000_s42_a32_aligned` 条目\n\n## 2. RRF 代码现状：**存在，需修改**\n\n`/root/contamcal-irt-calibration/exp003/` 包含 3 个文件：\n\n| 文件 | 功能 |\n|------|------|\n| `rrf_aggregation.py` | 主 RRF 聚合（k=60，rank fusion，min-max 归一化到[0,1]） |\n| `ablations.py` | 5 种消融对比（rank avg、single signal、calibrated weighted、FP injection、degraded 2-signal） |\n| `evaluate_rrf.py` | 评估 pipeline（AUC-ROC、AP、precision@k、ROC/分布/鲁棒性图） |\n\n**需修改的问题**：\n- `SIGNAL_KEYS` 仍包含 `s3_constat`，需按 D098 决策删除，只保留 `s1_embedding`, `s2_minkpp`, `s4_selfcritique`\n- `ablations.py` 的 `degraded_2signal()` 使用 `s3_constat + s4_selfcritique`，需要更新或移除\n- `detect_available_signals()` 动态检测的机制意味着缺失 s3 文件时不会报错，但常量定义仍不一致\n\n## 3. Signals 完成度矩阵\n\n### 0.5B + 1.5B（seed=42）：全部完成 ✅\n\n| Model | Dosage | mmlu | gsm8k | arc_challenge |\n|-------|--------|------|-------|---------------|\n| 0.5B | d000 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 0.5B | d005 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 0.5B | d025 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 0.5B | d100 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 1.5B | d000 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 1.5B | d005 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 1.5B | d025 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n| 1.5B | d100 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ |\n\n### 3B（seed=42）：大量缺失\n\n| Model dir | mmlu | gsm8k | arc_challenge | 状态 |\n|-----------|------|-------|---------------|------|\n| d000_v2_s42 | s1✓ s2✓ s3✓ | s1✓ s2✓ s3✓ | s1✓ s2✓ s3✓ | **缺 s4**，且有废弃的 s3 |\n| d000_s42 | **无信号目录** | — | — | D076 重训版本，尚未计算信号 |\n| d005_s42 | s1✓ s2✓ | s1✓ s2✓ | s1✓ s2✓ s4✓ | **mmlu/gsm8k 缺 s4** |\n| d025_s42 | s4✓ | — | — | **极度不完整**（仅 s4_mmlu） |\n| d025_v3_s42 | s1✓ s2✓ | s1✓ s2✓ | s1✓ s2✓ | **全部缺 s4** |\n| d100_s42 | s1✓ s2✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | **mmlu 缺 s4** |\n\n### 3B（seed=123）：部分完成\n\n| Model dir | mmlu | gsm8k | arc_challenge | 状态 |\n|-----------|------|-------|---------------|------|\n| d005_s123 | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | **完整** ✅ |\n| d025_s123 | s1✓ s2✓ (s4 chunked) | s1✓ s2✓ s4✓ | s1✓ s2✓ s4✓ | **mmlu s4 未合并**（7 chunks 待 merge） |\n| d100_a32_s123 | s1✓ s2✓ | — | — | **仅 mmlu 的 s1+s2**，极不完整 |\n\n## 4. RRF 聚合的 Blockers\n\n1. **3B s42 系列信号严重不完整**：d000_s42（D076 重训版）完全没有信号目录；d005/d025/d025_v3/d100 各有不同程度的 s4 缺失。这与 D076 重训流水线尚在进行中一致。\n2. **d000_v2_s42 仅有 s3（已废弃信号），无 s4**：无法用于 RRF 融合。\n3. **d025_s123 的 s4_mmlu 在 chunks 中未合并**：需要运行 merge 脚本。\n4. **d100_a32_s123 几乎是空的**：仅 2 个文件。\n5. **RRF 代码需更新**：从 SIGNAL_KEYS 中移除 s3_constat 以匹配 D098 决策。\n6. **命名不一致**：信号目录中同时存在 `d000_v2_s42`（旧）和应该使用的 `d000_s42`（D076 新），RRF 需要明确用哪个。\n\n**结论**：0.5B 和 1.5B 可以立即跑 RRF 聚合。3B 系列需等 D076 信号计算流水线完成后才能跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-rrf-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c65ab4d401484e052c02",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779361322.md",
+  "task_key": "loop_23_1779361322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779361322.md",
+    "occurrence": 1,
+    "bytes": 4372,
+    "sha256": "c121453e8566bc5eae97a3f5da11190122c24e4641c6d5ffe5d3d2bc437a87bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T07:28:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + cqa1 cuda:0。resource_usage 显示 allocated 只有 westd cuda:0 和 cqa1 cuda:0，但 Director 实际分配了全部 4 张 westd + 1 张 cqa1（见 ROADMAP GPU 状态段）。以 ROADMAP 为准，但不得使用白名单外的卡\n- Phi-4 s123 eval 刚失败在 westd cuda:2，诊断 Worker 已派出但尚未回调。**不要在诊断完成前盲目重跑同一命令**——必须先拿到 Worker 诊断结果确认 root cause\n- eval_phi4_s0_mmlu 显示在 westd cuda:0 运行中，与 sft_phi4_s0_sweep（也在 cuda:0）可能冲突——需确认是 eval 还是 training 在跑，不要同卡提交第二个任务\n- Bootstrap CI 代码有 bug（n=2 修复 + 分类算法修改），Worker 正在修复中。**不要在修复前跑 bootstrap 全量重跑**\n- Gemma-2 GSM8K 已被正式排除（D175），不要再为 Gemma-2 规划 GSM8K eval\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**：主训练服务器，工作目录 `/root/contamcal-irt-calibration/`\n  - Python：conda 环境（`source /root/miniconda3/bin/activate`）\n  - Checkpoints：`/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_{seed}/lora_adapter/`\n  - 数据集：`/root/autodl-tmp/.hf_cache/cais___mmlu`（14042 samples），GSM8K 同目录\n  - Eval 脚本：`/root/contamcal-irt-calibration/scripts/eval_*.sh`\n  - 活跃进程：sft_qwen14b_s0_sweep (PID 311554, cuda:3), sft_gemma2_s0_sweep (PID 314029, cuda:1), eval_phi4_s0_mmlu (cuda:0)\n- **cqa1-21977**：辅助服务器\n  - 活跃进程：sft_qwen7b_s0_cqa1 (PID 313407, cuda:0)\n- Cron 监控：3 个活跃（sft_qwen7b_s0_cqa1, sft_qwen14b_s0_sweep, sft_gemma2_s0_sweep）\n- W&B project：contamcal-irt-calibration（eval 实验需产出 W&B metrics 才被 cron 认为成功）\n\n### 3. 📊 当前状态\n**刚做完**：收到 eval_phi4_s123_mmlu 失败 CRON 回调，已更新 registry failure_reason，向 Director 汇报，派诊断 Worker 读日志。\n\n**RUNNING 实验**（4 个）：\n- sft_qwen14b_s0_sweep (westd cuda:3)：Qwen-14B seed=0 dose-response 第三种子\n- sft_gemma2_s0_sweep (westd cuda:1)：Gemma-2 seed=0 dose-response 第三种子\n- sft_qwen7b_s0_cqa1 (cqa1 cuda:0)：Qwen-7B seed=0 dose-response 第三种子\n- eval_phi4_s0_mmlu (westd cuda:0)：Phi-4 seed=0 MMLU eval\n\n**等待中**：\n- Worker 回调：`worker_diagnose_eval_phi4_s123_mmlu_20260520T152223`（诊断 Phi-4 s123 失败原因）\n- Director 决策：无待决项，但诊断完成后需 Director 确认重跑方案\n- PREPARING 实验队列很长（eval_cross_family_cqa1, phase2_eval 4 批, gsm8k_phi4_s42 等约 30 项），均等 GPU 或前序完成\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 读诊断结果，修复问题（改脚本/清空间/换命令），创建 eval_phi4_s123_mmlu_v2 提交到 westd cuda:2，汇报 Director\n- sft_*_s0 任一完成 → 立即 eval（MMLU 5-shot），填 triple-seed 最后一格\n- 全部 s0 eval 完成 + bootstrap bug 修复 → 全量 triple-seed bootstrap CI 重跑\n- bootstrap 完成 → 更新 Paper Table 5 CI 数据 + taxonomy rename（D184 patch 已派但可能未完成）\n- eval_phi4_s0_mmlu 完成 → Phi-4 triple-seed 齐全（s42 ✅ s123 待修 s0 待 eval），可跑 Phi-4 单家族 bootstrap\n\n### 5. 🎯 战略上下文\n- **核心结论**：SFT-route contamination 产生 family-dependent dose-response，4-pattern taxonomy（D184 定稿）：Immune(Phi-4) / Collapse(Qwen-14B) / V-recovery(Qwen-7B) / Benefit(Gemma-2)。OLMo-2 为 Benefit† 但 seed-sensitive\n- **论文进度**：~7.5 页，EMNLP 2026 ARR May 25 deadline（D+2/6），Paper Agent 正处理 D183+D184 patch\n- **当前瓶颈**：(1) Phi-4 s123 eval 失败阻塞全量 bootstrap (2) bootstrap CI 代码有 bug 阻塞 CI 计算 (3) s0 训练中，完成后还需 eval\n- **易错点**：\n  - ROADMAP 的 GPU 分配和 resource_usage 的 allocated_gpus 不一致——以 ROADMAP 为准\n  - Qwen-14B s123 是 monotonic decline（不是 U-shape），与 s42 形状不同但方向一致——论文已改用 \"Collapse\" 而非 \"U-collapse\"（D184）\n  - 方向比形状跨种子更稳定，这是 taxonomy 的核心 insight\n  - eval 脚本需要 W&B sentinel 才被 cron 识别为成功——如果脚本没写 W&B log，cron 会判定失败\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779361322.md"
+}

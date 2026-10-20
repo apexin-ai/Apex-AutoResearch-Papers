@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c43b709c5a8062f7d4ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft 3B d000 s42 a32",
+  "task_key": "worker_analyze_exp_001_sft_3B_d000_s42_a32_20260516T000718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_3B_d000_s42_a32_20260516T000718_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "ad125dbca99688dfa20b5df2c74077442fdb4b53d91c7c0a86ddb0c8b93a9699"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 实验结果摘要\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 训练成功完成 (EXIT_CODE=0) |\n| **Final loss** | 1.1324 |\n| **总步数** | 3,125 steps |\n| **训练时间** | 12,647s (~3h 31min) |\n| **Mean token accuracy** | 0.7333 |\n| **Checkpoint 路径** | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter/` |\n\n**Checkpoint 文件**:\n- `adapter_model.safetensors` (114MB)\n- `adapter_config.json` — 确认 **lora_alpha=32**, r=16, target_modules=[q/k/v/o/gate/up/down_proj]\n- tokenizer 文件完整\n\n**adapter_config 关键参数**: lora_alpha=32, r=16, dropout=0.05, bias=none, task=CAUSAL_LM, base_model=Qwen2.5-3B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-3b-d000-s42-a32.md"
+}

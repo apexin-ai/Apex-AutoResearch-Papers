@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fca2a2d2feb323d9eef1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops scp treated untreated fig",
+  "task_key": "worker_ops_scp-treated-untreated-fig_20260519T192706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-treated-untreated-fig_20260519T192706_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "9b5dfc433a512f956d497635d281fdf2f326f8a035c1c74f8a06c388bef766c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n- `fig_did_dose_response.pdf` — 已传输到本地，15,597 bytes\n- `treated_untreated_mmlu.pdf` — 远程不存在\n- `difficulty_interaction_mmlu.pdf` — 远程不存在\n\n远程 `figures/` 目录下仅有：`fig_domain_gamma.pdf`、`fig_identifiability_heatmap.pdf`、`fig_dose_response.pdf`、`fig_signal_heatmap.pdf`。需要的另两个 figure 可能尚未生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-treated-untreated-fig.md"
+}

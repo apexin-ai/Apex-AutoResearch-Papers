@@ -1,0 +1,1622 @@
+{
+  "schema_version": "1.0",
+  "session_id": "dab3ddb4a4bd1a303c1f",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T07:23:11.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HsX9cWJ5Vkc9WCxo6EXk9v",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_data\\\\n\\\\n... [截断: 输出过长，省略 17003 字符] ...\\\\n\\\\n           \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n        elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n            items.append({\\\\n                \\\\\\\"question\\\\\\\": parsed.get(\\\\\\\"question\\\\\\\", original.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\")),\\\\n                \\\\\\\"answer\\\\\\\": original.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n        elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n            items.append({\\\\n                \\\\\\\"prompt\\\\\\\": parsed.get(\\\\\\\"prompt\\\\\\\", original.get(\\\\\\\"prompt\\\\\\\", \\\\\\\"\\\\\\\")),\\\\n                \\\\\\\"test\\\\\\\": original.get(\\\\\\\"test\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"entry_point\\\\\\\": original.get(\\\\\\\"entry_point\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"task_id\\\\\\\": original.get(\\\\\\\"task_id\\\\\\\", f\\\\\\\"HumanEval/{orig_index}\\\\\\\"),\\\\n                \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d QC-passed paraphrased items for %s from %s\\\\\\\",\\\\n                len(items), benchmark, paraphrase_path)\\\\n    return items\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Evaluate model on contamination benchmarks\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to model checkpoint (merged or HF model name)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n                        help=\\\\\\\"Benchmarks to evaluate\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--adapter-path\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Path to LoRA adapter. If set, loads base model from --model-path and adapter separately.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paraphrase-dir\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Directory with paraphrase JSONs. If set, evaluates on paraphrased items instead of originals.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Output directory for evaluation results\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-samples\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Max samples per benchmark (for dry-run testing)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8,\\\\n                        help=\\\\\\\"Batch size for evaluation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\",\\\\n                        help=\\\\\\\"HuggingFace cache directory\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    model, tokenizer = load_model_and_tokenizer(args.model_path, args.cache_dir, args.adapter_path)\\\\n\\\\n    is_paraphrased = args.paraphrase_dir is not None\\\\n    all_results = {\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"paraphrased\\\\\\\": is_paraphrased,\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for benchmark in args.benchmarks:\\\\n        logger.info(\\\\\\\"Evaluating %s%s...\\\\\\\", benchmark, \\\\\\\" (paraphrased)\\\\\\\" if is_paraphrased else \\\\\\\"\\\\\\\")\\\\n        cfg = BENCHMARK_CONFIGS[benchmark]\\\\n\\\\n        if is_paraphrased:\\\\n            para_path = os.path.join(args.paraphrase_dir, f\\\\\\\"{benchmark}_paraphrases.json\\\\\\\")\\\\n            if not os.path.exists(para_path):\\\\n                logger.warning(\\\\\\\"SKIP %s: paraphrase file not found at %s\\\\\\\", benchmark, para_path)\\\\n                continue\\\\n            para_items = load_paraphrased_benchmark(para_path, benchmark)\\\\n            if not para_items:\\\\n                logger.warning(\\\\\\\"SKIP %s: no QC-passed paraphrased items\\\\\\\", benchmark)\\\\n                continue\\\\n            result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\\\n                                          cfg[\\\\\\\"num_fewshot\\\\\\\"], args.cache_dir, args.batch_size)\\\\n        elif benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            result = evaluate_mcq(model, tokenizer, benchmark, cfg[\\\\\\\"num_fewshot\\\\\\\"],\\\\n                                  args.cache_dir, args.batch_size, args.max_samples)\\\\n        elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n            result = evaluate_gsm8k(model, tokenizer, cfg[\\\\\\\"num_fewshot\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "fe8d995e-fe15-42c0-8c8f-8faf5491d4dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_data\\\\n\\\\n... [截断: 输出过长，省略 17003 字符] ...\\\\n\\\\n           \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n        elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n            items.append({\\\\n                \\\\\\\"question\\\\\\\": parsed.get(\\\\\\\"question\\\\\\\", original.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\")),\\\\n                \\\\\\\"answer\\\\\\\": original.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n        elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n            items.append({\\\\n                \\\\\\\"prompt\\\\\\\": parsed.get(\\\\\\\"prompt\\\\\\\", original.get(\\\\\\\"prompt\\\\\\\", \\\\\\\"\\\\\\\")),\\\\n                \\\\\\\"test\\\\\\\": original.get(\\\\\\\"test\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"entry_point\\\\\\\": original.get(\\\\\\\"entry_point\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"task_id\\\\\\\": original.get(\\\\\\\"task_id\\\\\\\", f\\\\\\\"HumanEval/{orig_index}\\\\\\\"),\\\\n                \\\\\\\"_orig_index\\\\\\\": orig_index,\\\\n            })\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d QC-passed paraphrased items for %s from %s\\\\\\\",\\\\n                len(items), benchmark, paraphrase_path)\\\\n    return items\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Evaluate model on contamination benchmarks\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to model checkpoint (merged or HF model name)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n                        help=\\\\\\\"Benchmarks to evaluate\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--adapter-path\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Path to LoRA adapter. If set, loads base model from --model-path and adapter separately.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paraphrase-dir\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Directory with paraphrase JSONs. If set, evaluates on paraphrased items instead of originals.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Output directory for evaluation results\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-samples\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Max samples per benchmark (for dry-run testing)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8,\\\\n                        help=\\\\\\\"Batch size for evaluation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\",\\\\n                        help=\\\\\\\"HuggingFace cache directory\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    model, tokenizer = load_model_and_tokenizer(args.model_path, args.cache_dir, args.adapter_path)\\\\n\\\\n    is_paraphrased = args.paraphrase_dir is not None\\\\n    all_results = {\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"paraphrased\\\\\\\": is_paraphrased,\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for benchmark in args.benchmarks:\\\\n        logger.info(\\\\\\\"Evaluating %s%s...\\\\\\\", benchmark, \\\\\\\" (paraphrased)\\\\\\\" if is_paraphrased else \\\\\\\"\\\\\\\")\\\\n        cfg = BENCHMARK_CONFIGS[benchmark]\\\\n\\\\n        if is_paraphrased:\\\\n            para_path = os.path.join(args.paraphrase_dir, f\\\\\\\"{benchmark}_paraphrases.json\\\\\\\")\\\\n            if not os.path.exists(para_path):\\\\n                logger.warning(\\\\\\\"SKIP %s: paraphrase file not found at %s\\\\\\\", benchmark, para_path)\\\\n                continue\\\\n            para_items = load_paraphrased_benchmark(para_path, benchmark)\\\\n            if not para_items:\\\\n                logger.warning(\\\\\\\"SKIP %s: no QC-passed paraphrased items\\\\\\\", benchmark)\\\\n                continue\\\\n            result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\\\n                                          cfg[\\\\\\\"num_fewshot\\\\\\\"], args.cache_dir, args.batch_size)\\\\n        elif benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            result = evaluate_mcq(model, tokenizer, benchmark, cfg[\\\\\\\"num_fewshot\\\\\\\"],\\\\n                                  args.cache_dir, args.batch_size, args.max_samples)\\\\n        elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n            result = evaluate_gsm8k(model, tokenizer, cfg[\\\\\\\"num_fewshot\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBenchmark evaluation for contamination-injected models.\\n\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\nper-item correctness matrix for downstream IRT analysis.\\n\\nInput:  Model checkpoint path\\nOutput: JSON with aggregate scores + per-item binary correctness\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport subprocess\\nimport tempfile\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nBENCHMARK_CONFIGS = {\\n    \\\"mmlu\\\": {\\\"num_fewshot\\\": 5, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"gsm8k\\\": {\\\"num_fewshot\\\": 8, \\\"metric\\\": \\\"exact_match\\\"},\\n    \\\"arc_challenge\\\": {\\\"num_fewshot\\\": 25, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"humaneval\\\": {\\\"num_fewshot\\\": 0, \\\"metric\\\": \\\"pass@1\\\"},\\n}\\n\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\n\\nMMLU_SUBJECTS = None  # loaded dynamically\\n\\nCHOICE_LETTERS = \\\"ABCDEFGHIJ\\\"\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\n    \\\"\\\"\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\"\\\"\\\"\\n    if adapter_path:\\n        logger.info(\\\"Loading base model: %s + adapter: %s\\\", model_path, adapter_path)\\n        from peft import PeftModel\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\n    \\\"\\\"\\\"Wrap content in chat template to match SFT training format.\\\"\\\"\\\"\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": user_content}]\\n    return tokenizer.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True\\n    )\\n\\n\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\n    \\\"\\\"\\\"Compute log probabilities of each choice token given prompt.\\\"\\\"\\\"\\n    inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n    with torch.no_grad():\\n        outputs = model(**inputs)\\n    logits = outputs.logits[0, -1, :]  # last token logits\\n    log_probs = torch.log_softmax(logits, dim=-1)\\n\\n    choice_logprobs = []\\n    for choice in choices:\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\n        if token_ids:\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\n        else:\\n            choice_logprobs.append(float(\\\"-inf\\\"))\\n\\n    return choice_logprobs\\n\\n\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None) -> dict:\\n    \\\"\\\"\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        val_ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        val_ds = load_data\\n\\n... [截断: 输出过长，省略 17003 字符] ...\\n\\n           \\\"_orig_index\\\": orig_index,\\n            })\\n        elif benchmark == \\\"gsm8k\\\":\\n            items.append({\\n                \\\"question\\\": parsed.get(\\\"question\\\", original.get(\\\"question\\\", \\\"\\\")),\\n                \\\"answer\\\": original.get(\\\"answer\\\", \\\"\\\"),\\n                \\\"_orig_index\\\": orig_index,\\n            })\\n        elif benchmark == \\\"humaneval\\\":\\n            items.append({\\n                \\\"prompt\\\": parsed.get(\\\"prompt\\\", original.get(\\\"prompt\\\", \\\"\\\")),\\n                \\\"test\\\": original.get(\\\"test\\\", \\\"\\\"),\\n                \\\"entry_point\\\": original.get(\\\"entry_point\\\", \\\"\\\"),\\n                \\\"task_id\\\": original.get(\\\"task_id\\\", f\\\"HumanEval/{orig_index}\\\"),\\n                \\\"_orig_index\\\": orig_index,\\n            })\\n\\n    logger.info(\\\"Loaded %d QC-passed paraphrased items for %s from %s\\\",\\n                len(items), benchmark, paraphrase_path)\\n    return items\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Evaluate model on contamination benchmarks\\\")\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to model checkpoint (merged or HF model name)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"],\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"],\\n                        help=\\\"Benchmarks to evaluate\\\")\\n    parser.add_argument(\\\"--adapter-path\\\", type=str, default=None,\\n                        help=\\\"Path to LoRA adapter. If set, loads base model from --model-path and adapter separately.\\\")\\n    parser.add_argument(\\\"--paraphrase-dir\\\", type=str, default=None,\\n                        help=\\\"Directory with paraphrase JSONs. If set, evaluates on paraphrased items instead of originals.\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True,\\n                        help=\\\"Output directory for evaluation results\\\")\\n    parser.add_argument(\\\"--max-samples\\\", type=int, default=None,\\n                        help=\\\"Max samples per benchmark (for dry-run testing)\\\")\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=8,\\n                        help=\\\"Batch size for evaluation\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\",\\n                        help=\\\"HuggingFace cache directory\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    model, tokenizer = load_model_and_tokenizer(args.model_path, args.cache_dir, args.adapter_path)\\n\\n    is_paraphrased = args.paraphrase_dir is not None\\n    all_results = {\\n        \\\"model_path\\\": args.model_path,\\n        \\\"paraphrased\\\": is_paraphrased,\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for benchmark in args.benchmarks:\\n        logger.info(\\\"Evaluating %s%s...\\\", benchmark, \\\" (paraphrased)\\\" if is_paraphrased else \\\"\\\")\\n        cfg = BENCHMARK_CONFIGS[benchmark]\\n\\n        if is_paraphrased:\\n            para_path = os.path.join(args.paraphrase_dir, f\\\"{benchmark}_paraphrases.json\\\")\\n            if not os.path.exists(para_path):\\n                logger.warning(\\\"SKIP %s: paraphrase file not found at %s\\\", benchmark, para_path)\\n                continue\\n            para_items = load_paraphrased_benchmark(para_path, benchmark)\\n            if not para_items:\\n                logger.warning(\\\"SKIP %s: no QC-passed paraphrased items\\\", benchmark)\\n                continue\\n            result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\n                                          cfg[\\\"num_fewshot\\\"], args.cache_dir, args.batch_size)\\n        elif benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n            result = evaluate_mcq(model, tokenizer, benchmark, cfg[\\\"num_fewshot\\\"],\\n                                  args.cache_dir, args.batch_size, args.max_samples)\\n        elif benchmark == \\\"gsm8k\\\":\\n            result = evaluate_gsm8k(model, tokenizer, cfg[\\\"num_fewshot\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see lines 570-574 clearly:\n\n```\n            result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\n                                          cfg[\"num_fewshot\"], args.cache_dir, args.batch_size)\n        elif benchmark in (\"mmlu\", \"arc_challenge\"):\n            result = evaluate_mcq(model, tokenizer, benchmark, cfg[\"num_fewshot\"],\n                                  args.cache_dir, args.batch_size, args.max_samples)\n```\n\nThe evaluate_paraphrased call has 28+10=28 spaces before `cfg` -> no, let me count:\n\n\nChecking the indentation character by character for both function calls to make sure my replacement strings match exactly.\n\nActually, I think the issue might be with how the base64 encoding handled the Python script — let me try a simpler approach instead of dealing with encoding complexities. I'll write the patch file locally, encode it, and send it to the remote rather than trying to construct it through a heredoc.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "026da9fe-c7d1-4871-b5a9-a23887ae6096",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hHPeN4voiCRDX6DLyDQhP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4334,
+                "cache_read_input_tokens": 117473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4334
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me write a cleaner patcher and transfer it properly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "6293e683-254f-4d7b-b6da-62c7a8d85d95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hHPeN4voiCRDX6DLyDQhP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4334,
+                "cache_read_input_tokens": 117473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4334
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016gBJq9jp2bzBbyr6RPLKvN",
+              "name": "Write",
+              "input": {
+                "file_path": "/tmp/patch_d017.py",
+                "content": "import sys\n\nfilepath = \"/root/contamcal-irt-calibration/exp001/evaluate.py\"\nwith open(filepath, \"r\") as f:\n    lines = f.readlines()\n\ncode = \"\".join(lines)\n\n# Helper to verify and replace\ndef safe_replace(code, old, new, label):\n    if old not in code:\n        print(f\"FAIL: {label} - pattern not found\")\n        # Print nearby content for debugging\n        for keyword in old.split('\\n')[0][:40].strip().split():\n            if keyword in code:\n                idx = code.index(keyword)\n                print(f\"  Found '{keyword}' at pos {idx}\")\n                print(f\"  Context: {repr(code[max(0,idx-20):idx+60])}\")\n                break\n        sys.exit(1)\n    result = code.replace(old, new, 1)\n    print(f\"OK: {label}\")\n    return result\n\n# 1. evaluate_mcq signature\ncode = safe_replace(code,\n    'def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None) -> dict:',\n    'def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\n                 mc_format: str = \"aligned\") -> dict:',\n    \"#1 evaluate_mcq sig\")\n\n# 2. format_mcq_example call in evaluate_mcq\ncode = safe_replace(code,\n    '            fewshot_examples.append(format_mcq_example(row, benchmark))\\n\\n    fewshot_prefix',\n    '            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\n\\n    fewshot_prefix',\n    \"#2 fewshot call in evaluate_mcq\")\n\n# 3. Test prompt in evaluate_mcq - add mc_suffix\ncode = safe_replace(code,\n    '        raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + \"\\\\nAnswer:\"\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n        choice_tokens = labels if benchmark == \"arc_challenge\"',\n    '        mc_suffix = \"The answer is \" if mc_format == \"aligned\" else \"Answer:\"\\n        raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + f\"\\\\n{mc_suffix}\"\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n        choice_tokens = labels if benchmark == \"arc_challenge\"',\n    \"#3 test prompt in evaluate_mcq\")\n\n# 4. format_mcq_example function\ncode = safe_replace(code,\n    'def format_mcq_example(row: dict, benchmark: str) -> str:\\n    if benchmark == \"mmlu\":\\n        choices = row[\"choices\"]\\n        answer_letter = CHOICE_LETTERS[row[\"answer\"]]\\n        choices_str = \"\\\\n\".join(f\"{CHOICE_LETTERS[i]}) {c}\" for i, c in enumerate(choices))\\n        return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nAnswer: {answer_letter}\"\\n    elif benchmark == \"arc_challenge\":\\n        choices = row[\"choices\"][\"text\"]\\n        labels = row[\"choices\"][\"label\"]\\n        answer = row[\"answerKey\"]\\n        choices_str = \"\\\\n\".join(f\"{l}) {t}\" for l, t in zip(labels, choices))\\n        return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nAnswer: {answer}\"',\n    'def format_mcq_example(row: dict, benchmark: str, mc_format: str = \"aligned\") -> str:\\n    if benchmark == \"mmlu\":\\n        choices = row[\"choices\"]\\n        answer_letter = CHOICE_LETTERS[row[\"answer\"]]\\n        choices_str = \"\\\\n\".join(f\"{CHOICE_LETTERS[i]}) {c}\" for i, c in enumerate(choices))\\n        if mc_format == \"aligned\":\\n            return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nThe answer is {answer_letter}.\"\\n        return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nAnswer: {answer_letter}\"\\n    elif benchmark == \"arc_challenge\":\\n        choices = row[\"choices\"][\"text\"]\\n        labels = row[\"choices\"][\"label\"]\\n        answer = row[\"answerKey\"]\\n        choices_str = \"\\\\n\".join(f\"{l}) {t}\" for l, t in zip(labels, choices))\\n        if mc_format == \"aligned\":\\n            return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nThe answer is {answer}.\"\\n        return f\"Question: {row[\\'question\\']}\\\\n{choices_str}\\\\nAnswer: {answer}\"',\n    \"#4 format_mcq_example\")\n\n# 5. evaluate_paraphrased signature\ncode = safe_replace(code,\n    'def evaluate_paraphrased(model, tokenizer, benchmark: str, para_items: list[dict],\\n                         num_fewshot: int, cache_dir: str, batch_size: int) -> dict:',\n    'def evaluate_paraphrased(model, tokenizer, benchmark: str, para_items: list[dict],\\n                         num_fewshot: int, cache_dir: str, batch_size: int,\\n                         mc_format: str = \"aligned\") -> dict:',\n    \"#5 evaluate_paraphrased sig\")\n\n# 6. format_mcq_example call in evaluate_paraphrased\ncode = safe_replace(code,\n    '                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark))\\n        fewshot_prefix',\n    '                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\n        fewshot_prefix',\n    \"#6 fewshot call in evaluate_paraphrased\")\n\n# 7. Test prompt in evaluate_paraphrased\ncode = safe_replace(code,\n    '            raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + \"\\\\nAnswer:\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)',\n    '            mc_suffix = \"The answer is \" if mc_format == \"aligned\" else \"Answer:\"\\n            raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + f\"\\\\n{mc_suffix}\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)',\n    \"#7 test prompt in evaluate_paraphrased\")\n\n# 8. Add --mc-format CLI arg\ncode = safe_replace(code,\n    '    parser.add_argument(\"--batch-size\", type=int, default=8,\\n                        help=\"Batch size for evaluation\")',\n    '    parser.add_argument(\"--mc-format\", type=str, default=\"aligned\",\\n                        choices=[\"aligned\", \"legacy\"],\\n                        help=\"MC answer format: \\'aligned\\' uses \\'The answer is X.\\' (matches SFT), \\'legacy\\' uses \\'Answer: X\\'\")\\n    parser.add_argument(\"--batch-size\", type=int, default=8,\\n                        help=\"Batch size for evaluation\")',\n    \"#8 --mc-format arg\")\n\n# 9. evaluate_mcq call in main - use broader context to ensure unique match\ncode = safe_replace(code,\n    'result = evaluate_mcq(model, tokenizer, benchmark, cfg[\"num_fewshot\"],\\n                                  args.cache_dir, args.batch_size, args.max_samples)\\n        elif benchmark == \"gsm8k\"',\n    'result = evaluate_mcq(model, tokenizer, benchmark, cfg[\"num_fewshot\"],\\n                                  args.cache_dir, args.batch_size, args.max_samples,\\n                                  mc_format=args.mc_format)\\n        elif benchmark == \"gsm8k\"',\n    \"#9 evaluate_mcq call in main\")\n\n# 10. evaluate_paraphrased call in main\ncode = safe_replace(code,\n    'result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\n                                          cfg[\"num_fewshot\"], args.cache_dir, args.batch_size)\\n        elif benchmark in (\"mmlu\"',\n    'result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\n                                          cfg[\"num_fewshot\"], args.cache_dir, args.batch_size,\\n                                          mc_format=args.mc_format)\\n        elif benchmark in (\"mmlu\"',\n    \"#10 evaluate_paraphrased call in main\")\n\nwith open(filepath, \"w\") as f:\n    f.write(code)\n\nprint(\"\\nAll 10 patches applied successfully!\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "729b523a-986d-4353-9ccb-1a2f98606659",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hHPeN4voiCRDX6DLyDQhP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4334,
+                "cache_read_input_tokens": 117473,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4334
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T07:23:56.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_016gBJq9jp2bzBbyr6RPLKvN"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "24af16e2-6bfa-43ad-8d03-a1424b5409f8",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LfbbTRZCTcvaegWnusYz2",
+              "name": "Bash",
+              "input": {
+                "command": "cat > /tmp/patch_d017.py << 'HEREDOC_END'\nimport sys\n\nfilepath = \"/root/contamcal-irt-calibration/exp001/evaluate.py\"\nwith open(filepath, \"r\") as f:\n    code = f.read()\n\ndef safe_replace(code, old, new, label):\n    if old not in code:\n        print(f\"FAIL: {label} - pattern not found\")\n        for keyword in old.split('\\n')[0][:40].strip().split()[:3]:\n            if keyword in code:\n                idx = code.index(keyword)\n                print(f\"  Found '{keyword}' at pos {idx}, context: {repr(code[max(0,idx-10):idx+80])}\")\n                break\n        sys.exit(1)\n    result = code.replace(old, new, 1)\n    print(f\"OK: {label}\")\n    return result\n\n# 1\ncode = safe_replace(code,\n    'def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None) -> dict:',\n    'def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\n                 mc_format: str = \"aligned\") -> dict:',\n    \"#1 evaluate_mcq sig\")\n\n# 2\ncode = safe_replace(code,\n    '            fewshot_examples.append(format_mcq_example(row, benchmark))\\n\\n    fewshot_prefix',\n    '            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\n\\n    fewshot_prefix',\n    \"#2 fewshot call in evaluate_mcq\")\n\n# 3\ncode = safe_replace(code,\n    '        raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + \"\\\\nAnswer:\"\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n        choice_tokens = labels if benchmark == \"arc_challenge\"',\n    '        mc_suffix = \"The answer is \" if mc_format == \"aligned\" else \"Answer:\"\\n        raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + f\"\\\\n{mc_suffix}\"\\n        prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n        choice_tokens = labels if benchmark == \"arc_challenge\"',\n    \"#3 test prompt in evaluate_mcq\")\n\n# 4\ncode = safe_replace(code,\n    \"def format_mcq_example(row: dict, benchmark: str) -> str:\\n    if benchmark == \\\"mmlu\\\":\\n        choices = row[\\\"choices\\\"]\\n        answer_letter = CHOICE_LETTERS[row[\\\"answer\\\"]]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{CHOICE_LETTERS[i]}) {c}\\\" for i, c in enumerate(choices))\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer_letter}\\\"\\n    elif benchmark == \\\"arc_challenge\\\":\\n        choices = row[\\\"choices\\\"][\\\"text\\\"]\\n        labels = row[\\\"choices\\\"][\\\"label\\\"]\\n        answer = row[\\\"answerKey\\\"]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{l}) {t}\\\" for l, t in zip(labels, choices))\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer}\\\"\",\n    \"def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\"aligned\\\") -> str:\\n    if benchmark == \\\"mmlu\\\":\\n        choices = row[\\\"choices\\\"]\\n        answer_letter = CHOICE_LETTERS[row[\\\"answer\\\"]]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{CHOICE_LETTERS[i]}) {c}\\\" for i, c in enumerate(choices))\\n        if mc_format == \\\"aligned\\\":\\n            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer_letter}.\\\"\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer_letter}\\\"\\n    elif benchmark == \\\"arc_challenge\\\":\\n        choices = row[\\\"choices\\\"][\\\"text\\\"]\\n        labels = row[\\\"choices\\\"][\\\"label\\\"]\\n        answer = row[\\\"answerKey\\\"]\\n        choices_str = \\\"\\\\n\\\".join(f\\\"{l}) {t}\\\" for l, t in zip(labels, choices))\\n        if mc_format == \\\"aligned\\\":\\n            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer}.\\\"\\n        return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nAnswer: {answer}\\\"\",\n    \"#4 format_mcq_example\")\n\n# 5\ncode = safe_replace(code,\n    'def evaluate_paraphrased(model, tokenizer, benchmark: str, para_items: list[dict],\\n                         num_fewshot: int, cache_dir: str, batch_size: int) -> dict:',\n    'def evaluate_paraphrased(model, tokenizer, benchmark: str, para_items: list[dict],\\n                         num_fewshot: int, cache_dir: str, batch_size: int,\\n                         mc_format: str = \"aligned\") -> dict:',\n    \"#5 evaluate_paraphrased sig\")\n\n# 6\ncode = safe_replace(code,\n    '                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark))\\n        fewshot_prefix',\n    '                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\n        fewshot_prefix',\n    \"#6 fewshot call in evaluate_paraphrased\")\n\n# 7\ncode = safe_replace(code,\n    '            raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + \"\\\\nAnswer:\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)',\n    '            mc_suffix = \"The answer is \" if mc_format == \"aligned\" else \"Answer:\"\\n            raw_prompt = fewshot_prefix + f\"Question: {question}\\\\n\" + \"\\\\n\".join(choices_display) + f\"\\\\n{mc_suffix}\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)',\n    \"#7 test prompt in evaluate_paraphrased\")\n\n# 8\ncode = safe_replace(code,\n    '    parser.add_argument(\"--batch-size\", type=int, default=8,\\n                        help=\"Batch size for evaluation\")',\n    '    parser.add_argument(\"--mc-format\", type=str, default=\"aligned\",\\n                        choices=[\"aligned\", \"legacy\"],\\n                        help=\"MC answer format: \\'aligned\\' uses \\'The answer is X.\\' (matches SFT), \\'legacy\\' uses \\'Answer: X\\'\")\\n    parser.add_argument(\"--batch-size\", type=int, default=8,\\n                        help=\"Batch size for evaluation\")',\n    \"#8 --mc-format arg\")\n\n# 9 - broader context for unique match\ncode = safe_replace(code,\n    'result = evaluate_mcq(model, tokenizer, benchmark, cfg[\"num_fewshot\"],\\n                                  args.cache_dir, args.batch_size, args.max_samples)\\n        elif benchmark == \"gsm8k\"',\n    'result = evaluate_mcq(model, tokenizer, benchmark, cfg[\"num_fewshot\"],\\n                                  args.cache_dir, args.batch_size, args.max_samples,\\n                                  mc_format=args.mc_format)\\n        elif benchmark == \"gsm8k\"',\n    \"#9 evaluate_mcq call in main\")\n\n# 10\ncode = safe_replace(code,\n    'result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\n                                          cfg[\"num_fewshot\"], args.cache_dir, args.batch_size)\\n        elif benchmark in (\"mmlu\"',\n    'result = evaluate_paraphrased(model, tokenizer, benchmark, para_items,\\n                                          cfg[\"num_fewshot\"], args.cache_dir, args.batch_size,\\n                                          mc_format=args.mc_format)\\n        elif benchmark in (\"mmlu\"',\n    \"#10 evaluate_paraphrased call in main\")\n\nwith open(filepath, \"w\") as f:\n    f.write(code)\n\nprint(\"\\nAll 10 patches applied successfully!\")\nHEREDOC_END\necho \"Local patch file created OK\"",
+                "description": "Create patcher script locally"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "a9c27d69-5168-4218-891b-284a4d2e3c38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyF3uGsS6CL2tGtZuAcCTe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3033,
+                "cache_read_input_tokens": 121807,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3033
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T07:24:25.753Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LfbbTRZCTcvaegWnusYz2",
+              "type": "tool_result",
+              "content": "Local patch file created OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "0a64467c-9e75-4f2d-902f-730cf9c8329f",
+            "tool_use_result": {
+              "stdout": "Local patch file created OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Re6MnX1AhKa9W7U4ScbwLL",
+              "name": "Bash",
+              "input": {
+                "command": "base64 -w0 /tmp/patch_d017.py",
+                "description": "Base64 encode the patcher script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "a2f75992-566f-4e0f-b5d7-a674358fa543",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwEDLbRQFdRWzcwPusrGCG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2503,
+                "cache_read_input_tokens": 124840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2503
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T07:24:30.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Re6MnX1AhKa9W7U4ScbwLL",
+              "type": "tool_result",
+              "content": "[ATTACHMENT_DATA_REDACTED]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "ddd67b35-f6d4-4449-8ce2-40224ccabd49",
+            "tool_use_result": {
+              "stdout": "[ATTACHMENT_DATA_REDACTED]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WcRckUNfWmwPTy1hrrJWjM",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "echo 'aW1wb3J0IHN5cwoKZmlsZXBhdGggPSAiL3Jvb3QvY29udGFtY2FsLWlydC1jYWxpYnJhdGlvbi9leHAwMDEvZXZhbHVhdGUucHkiCndpdGggb3BlbihmaWxlcGF0aCwgInIiKSBhcyBmOgogICAgY29kZSA9IGYucmVhZCgpCgpkZWYgc2FmZV9yZXBsYWNlKGNvZGUsIG9sZCwgbmV3LCBsYWJlbCk6CiAgICBpZiBvbGQgbm90IGluIGNvZGU6CiAgICAgICAgcHJpbnQoZiJGQUlMOiB7bGFiZWx9IC0gcGF0dGVybiBub3QgZm91bmQiKQogICAgICAgIGZvciBrZXl3b3JkIGluIG9sZC5zcGxpdCgnXG4nKVswXVs6NDBdLnN0cmlwKCkuc3BsaXQoKVs6M106CiAgICAgICAgICAgIGlmIGtleXdvcmQgaW4gY29kZToKICAgICAgICAgICAgICAgIGlkeCA9IGNvZGUuaW5kZXgoa2V5d29yZCkKICAgICAgICAgICAgICAgIHByaW50KGYiICBGb3VuZCAne2tleXdvcmR9JyBhdCBwb3Mge2lkeH0sIGNvbnRleHQ6IHtyZXByKGNvZGVbbWF4KDAsaWR4LTEwKTppZHgrODBdKX0iKQogICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICBzeXMuZXhpdCgxKQogICAgcmVzdWx0ID0gY29kZS5yZXBsYWNlKG9sZCwgbmV3LCAxKQogICAgcHJpbnQoZiJPSzoge2xhYmVsfSIpCiAgICByZXR1cm4gcmVzdWx0CgojIDEKY29kZSA9IHNhZmVfcmVwbGFjZShjb2RlLAogICAgJ2RlZiBldmFsdWF0ZV9tY3EobW9kZWwsIHRva2VuaXplciwgYmVuY2htYXJrOiBzdHIsIG51bV9mZXdzaG90OiBpbnQsXG4gICAgICAgICAgICAgICAgIGNhY2hlX2Rpcjogc3RyLCBiYXRjaF9zaXplOiBpbnQsIG1heF9zYW1wbGVzOiBpbnQgPSBOb25lKSAtPiBkaWN0OicsCiAgICAnZGVmIGV2YWx1YXRlX21jcShtb2RlbCwgdG9rZW5pemVyLCBiZW5jaG1hcms6IHN0ciwgbnVtX2Zld3Nob3Q6IGludCxcbiAgICAgICAgICAgICAgICAgY2FjaGVfZGlyOiBzdHIsIGJhdGNoX3NpemU6IGludCwgbWF4X3NhbXBsZXM6IGludCA9IE5vbmUsXG4gICAgICAgICAgICAgICAgIG1jX2Zvcm1hdDogc3RyID0gImFsaWduZWQiKSAtPiBkaWN0OicsCiAgICAiIzEgZXZhbHVhdGVfbWNxIHNpZyIpCgojIDIKY29kZSA9IHNhZmVfcmVwbGFjZShjb2RlLAogICAgJyAgICAgICAgICAgIGZld3Nob3RfZXhhbXBsZXMuYXBwZW5kKGZvcm1hdF9tY3FfZXhhbXBsZShyb3csIGJlbmNobWFyaykpXG5cbiAgICBmZXdzaG90X3ByZWZpeCcsCiAgICAnICAgICAgICAgICAgZmV3c2hvdF9leGFtcGxlcy5hcHBlbmQoZm9ybWF0X21jcV9leGFtcGxlKHJvdywgYmVuY2htYXJrLCBtY19mb3JtYXQpKVxuXG4gICAgZmV3c2hvdF9wcmVmaXgnLAogICAgIiMyIGZld3Nob3QgY2FsbCBpbiBldmFsdWF0ZV9tY3EiKQoKIyAzCmNvZGUgPSBzYWZlX3JlcGxhY2UoY29kZSwKICAgICcgICAgICAgIHJhd19wcm9tcHQgPSBmZXdzaG90X3ByZWZpeCArIGYiUXVlc3Rpb246IHtxdWVzdGlvbn1cXG4iICsgIlxcbiIuam9pbihjaG9pY2VzX2Rpc3BsYXkpICsgIlxcbkFuc3dlcjoiXG4gICAgICAgIHByb21wdCA9IGZvcm1hdF9hc19jaGF0KHRva2VuaXplciwgcmF3X3Byb21wdClcblxuICAgICAgICBjaG9pY2VfdG9rZW5zID0gbGFiZWxzIGlmIGJlbmNobWFyayA9PSAiYXJjX2NoYWxsZW5nZSInLAogICAgJyAgICAgICAgbWNfc3VmZml4ID0gIlRoZSBhbnN3ZXIgaXMgIiBpZiBtY19mb3JtYXQgPT0gImFsaWduZWQiIGVsc2UgIkFuc3dlcjoiXG4gICAgICAgIHJhd19wcm9tcHQgPSBmZXdzaG90X3ByZWZpeCArIGYiUXVlc3Rpb246IHtxdWVzdGlvbn1cXG4iICsgIlxcbiIuam9pbihjaG9pY2VzX2Rpc3BsYXkpICsgZiJcXG57bWNfc3VmZml4fSJcbiAgICAgICAgcHJvbXB0ID0gZm9ybWF0X2FzX2NoYXQodG9rZW5pemVyLCByYXdfcHJvbXB0KVxuXG4gICAgICAgIGNob2ljZV90b2tlbnMgPSBsYWJlbHMgaWYgYmVuY2htYXJrID09ICJhcmNfY2hhbGxlbmdlIicsCiAgICAiIzMgdGVzdCBwcm9tcHQgaW4gZXZhbHVhdGVfbWNxIikKCiMgNApjb2RlID0gc2FmZV9yZXBsYWNlKGNvZGUsCiAgICAiZGVmIGZvcm1hdF9tY3FfZXhhbXBsZShyb3c6IGRpY3QsIGJlbmNobWFyazogc3RyKSAtPiBzdHI6XG4gICAgaWYgYmVuY2htYXJrID09IFwibW1sdVwiOlxuICAgICAgICBjaG9pY2VzID0gcm93W1wiY2hvaWNlc1wiXVxuICAgICAgICBhbnN3ZXJfbGV0dGVyID0gQ0hPSUNFX0xFVFRFUlNbcm93W1wiYW5zd2VyXCJdXVxuICAgICAgICBjaG9pY2VzX3N0ciA9IFwiXFxuXCIuam9pbihmXCJ7Q0hPSUNFX0xFVFRFUlNbaV19KSB7Y31cIiBmb3IgaSwgYyBpbiBlbnVtZXJhdGUoY2hvaWNlcykpXG4gICAgICAgIHJldHVybiBmXCJRdWVzdGlvbjoge3Jvd1sncXVlc3Rpb24nXX1cXG57Y2hvaWNlc19zdHJ9XFxuQW5zd2VyOiB7YW5zd2VyX2xldHRlcn1cIlxuICAgIGVsaWYgYmVuY2htYXJrID09IFwiYXJjX2NoYWxsZW5nZVwiOlxuICAgICAgICBjaG9pY2VzID0gcm93W1wiY2hvaWNlc1wiXVtcInRleHRcIl1cbiAgICAgICAgbGFiZWxzID0gcm93W1wiY2hvaWNlc1wiXVtcImxhYmVsXCJdXG4gICAgICAgIGFuc3dlciA9IHJvd1tcImFuc3dlcktleVwiXVxuICAgICAgICBjaG9pY2VzX3N0ciA9IFwiXFxuXCIuam9pbihmXCJ7bH0pIHt0fVwiIGZvciBsLCB0IGluIHppcChsYWJlbHMsIGNob2ljZXMpKVxuICAgICAgICByZXR1cm4gZlwiUXVlc3Rpb246IHtyb3dbJ3F1ZXN0aW9uJ119XFxue2Nob2ljZXNfc3RyfVxcbkFuc3dlcjoge2Fuc3dlcn1cIiIsCiAgICAiZGVmIGZvcm1hdF9tY3FfZXhhbXBsZShyb3c6IGRpY3QsIGJlbmNobWFyazogc3RyLCBtY19mb3JtYXQ6IHN0ciA9IFwiYWxpZ25lZFwiKSAtPiBzdHI6XG4gICAgaWYgYmVuY2htYXJrID09IFwibW1sdVwiOlxuICAgICAgICBjaG9pY2VzID0gcm93W1wiY2hvaWNlc1wiXVxuICAgICAgICBhbnN3ZXJfbGV0dGVyID0gQ0hPSUNFX0xFVFRFUlNbcm93W1wiYW5zd2VyXCJdXVxuICAgICAgICBjaG9pY2VzX3N0ciA9IFwiXFxuXCIuam9pbihmXCJ7Q0hPSUNFX0xFVFRFUlNbaV19KSB7Y31cIiBmb3IgaSwgYyBpbiBlbnVtZXJhdGUoY2hvaWNlcykpXG4gICAgICAgIGlmIG1jX2Zvcm1hdCA9PSBcImFsaWduZWRcIjpcbiAgICAgICAgICAgIHJldHVybiBmXCJRdWVzdGlvbjoge3Jvd1sncXVlc3Rpb24nXX1cXG57Y2hvaWNlc19zdHJ9XFxuVGhlIGFuc3dlciBpcyB7YW5zd2VyX2xldHRlcn0uXCJcbiAgICAgICAgcmV0dXJuIGZcIlF1ZXN0aW9uOiB7cm93WydxdWVzdGlvbiddfVxcbntjaG9pY2VzX3N0cn1cXG5BbnN3ZXI6IHthbnN3ZXJfbGV0dGVyfVwiXG4gICAgZWxpZiBiZW5jaG1hcmsgPT0gXCJhcmNfY2hhbGxlbmdlXCI6XG4gICAgICAgIGNob2ljZXMgPSByb3dbXCJjaG9pY2VzXCJdW1widGV4dFwiXVxuICAgICAgICBsYWJlbHMgPSByb3dbXCJjaG9pY2VzXCJdW1wibGFiZWxcIl1cbiAgICAgICAgYW5zd2VyID0gcm93W1wiYW5zd2VyS2V5XCJdXG4gICAgICAgIGNob2ljZXNfc3RyID0gXCJcXG5cIi5qb2luKGZcIntsfSkge3R9XCIgZm9yIGwsIHQgaW4gemlwKGxhYmVscywgY2hvaWNlcykpXG4gICAgICAgIGlmIG1jX2Zvcm1hdCA9PSBcImFsaWduZWRcIjpcbiAgICAgICAgICAgIHJldHVybiBmXCJRdWVzdGlvbjoge3Jvd1sncXVlc3Rpb24nXX1cXG57Y2hvaWNlc19zdHJ9XFxuVGhlIGFuc3dlciBpcyB7YW5zd2VyfS5cIlxuICAgICAgICByZXR1cm4gZlwiUXVlc3Rpb246IHtyb3dbJ3F1ZXN0aW9uJ119XFxue2Nob2ljZXNfc3RyfVxcbkFuc3dlcjoge2Fuc3dlcn1cIiIsCiAgICAiIzQgZm9ybWF0X21jcV9leGFtcGxlIikKCiMgNQpjb2RlID0gc2FmZV9yZXBsYWNlKGNvZGUsCiAgICAnZGVmIGV2YWx1YXRlX3BhcmFwaHJhc2VkKG1vZGVsLCB0b2tlbml6ZXIsIGJlbmNobWFyazogc3RyLCBwYXJhX2l0ZW1zOiBsaXN0W2RpY3RdLFxuICAgICAgICAgICAgICAgICAgICAgICAgIG51bV9mZXdzaG90OiBpbnQsIGNhY2hlX2Rpcjogc3RyLCBiYXRjaF9zaXplOiBpbnQpIC0+IGRpY3Q6JywKICAgICdkZWYgZXZhbHVhdGVfcGFyYXBocmFzZWQobW9kZWwsIHRva2VuaXplciwgYmVuY2htYXJrOiBzdHIsIHBhcmFfaXRlbXM6IGxpc3RbZGljdF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgbnVtX2Zld3Nob3Q6IGludCwgY2FjaGVfZGlyOiBzdHIsIGJhdGNoX3NpemU6IGludCxcbiAgICAgICAgICAgICAgICAgICAgICAgICBtY19mb3JtYXQ6IHN0ciA9ICJhbGlnbmVkIikgLT4gZGljdDonLAogICAgIiM1IGV2YWx1YXRlX3BhcmFwaHJhc2VkIHNpZyIpCgojIDYKY29kZSA9IHNhZmVfcmVwbGFjZShjb2RlLAogICAgJyAgICAgICAgICAgICAgICBmZXdzaG90X2V4YW1wbGVzLmFwcGVuZChmb3JtYXRfbWNxX2V4YW1wbGUodmFsX2RzW2lkeF0sIGJlbmNobWFyaykpXG4gICAgICAgIGZld3Nob3RfcHJlZml4JywKICAgICcgICAgICAgICAgICAgICAgZmV3c2hvdF9leGFtcGxlcy5hcHBlbmQoZm9ybWF0X21jcV9leGFtcGxlKHZhbF9kc1tpZHhdLCBiZW5jaG1hcmssIG1jX2Zvcm1hdCkpXG4gICAgICAgIGZld3Nob3RfcHJlZml4JywKICAgICIjNiBmZXdzaG90IGNhbGwgaW4gZXZhbHVhdGVfcGFyYXBocmFzZWQiKQoKIyA3CmNvZGUgPSBzYWZlX3JlcGxhY2UoY29kZSwKICAgICcgICAgICAgICAgICByYXdfcHJvbXB0ID0gZmV3c2hvdF9wcmVmaXggKyBmIlF1ZXN0aW9uOiB7cXVlc3Rpb259XFxuIiArICJcXG4iLmpvaW4oY2hvaWNlc19kaXNwbGF5KSArICJcXG5BbnN3ZXI6IlxuICAgICAgICAgICAgcHJvbXB0ID0gZm9ybWF0X2FzX2NoYXQodG9rZW5pemVyLCByYXdfcHJvbXB0KVxuICAgICAgICAgICAgbG9ncHJvYnMgPSBjb21wdXRlX2Nob2ljZV9sb2dwcm9icyhtb2RlbCwgdG9rZW5pemVyLCBwcm9tcHQsIGNob2ljZV90b2tlbnMpJywKICAgICcgICAgICAgICAgICBtY19zdWZmaXggPSAiVGhlIGFuc3dlciBpcyAiIGlmIG1jX2Zvcm1hdCA9PSAiYWxpZ25lZCIgZWxzZSAiQW5zd2VyOiJcbiAgICAgICAgICAgIHJhd19wcm9tcHQgPSBmZXdzaG90X3ByZWZpeCArIGYiUXVlc3Rpb246IHtxdWVzdGlvbn1cXG4iICsgIlxcbiIuam9pbihjaG9pY2VzX2Rpc3BsYXkpICsgZiJcXG57bWNfc3VmZml4fSJcbiAgICAgICAgICAgIHByb21wdCA9IGZvcm1hdF9hc19jaGF0KHRva2VuaXplciwgcmF3X3Byb21wdClcbiAgICAgICAgICAgIGxvZ3Byb2JzID0gY29tcHV0ZV9jaG9pY2VfbG9ncHJvYnMobW9kZWwsIHRva2VuaXplciwgcHJvbXB0LCBjaG9pY2VfdG9rZW5zKScsCiAgICAiIzcgdGVzdCBwcm9tcHQgaW4gZXZhbHVhdGVfcGFyYXBocmFzZWQiKQoKIyA4CmNvZGUgPSBzYWZlX3JlcGxhY2UoY29kZSwKICAgICcgICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1iYXRjaC1zaXplIiwgdHlwZT1pbnQsIGRlZmF1bHQ9OCxcbiAgICAgICAgICAgICAgICAgICAgICAgIGhlbHA9IkJhdGNoIHNpemUgZm9yIGV2YWx1YXRpb24iKScsCiAgICAnICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbWMtZm9ybWF0IiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImFsaWduZWQiLFxuICAgICAgICAgICAgICAgICAgICAgICAgY2hvaWNlcz1bImFsaWduZWQiLCAibGVnYWN5Il0sXG4gICAgICAgICAgICAgICAgICAgICAgICBoZWxwPSJNQyBhbnN3ZXIgZm9ybWF0OiBcJ2FsaWduZWRcJyB1c2VzIFwnVGhlIGFuc3dlciBpcyBYLlwnIChtYXRjaGVzIFNGVCksIFwnbGVnYWN5XCcgdXNlcyBcJ0Fuc3dlcjogWFwnIilcbiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWJhdGNoLXNpemUiLCB0eXBlPWludCwgZGVmYXVsdD04LFxuICAgICAgICAgICAgICAgICAgICAgICAgaGVscD0iQmF0Y2ggc2l6ZSBmb3IgZXZhbHVhdGlvbiIpJywKICAgICIjOCAtLW1jLWZvcm1hdCBhcmciKQoKIyA5IC0gYnJvYWRlciBjb250ZXh0IGZvciB1bmlxdWUgbWF0Y2gKY29kZSA9IHNhZmVfcmVwbGFjZShjb2RlLAogICAgJ3Jlc3VsdCA9IGV2YWx1YXRlX21jcShtb2RlbCwgdG9rZW5pemVyLCBiZW5jaG1hcmssIGNmZ1sibnVtX2Zld3Nob3QiXSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcmdzLmNhY2hlX2RpciwgYXJncy5iYXRjaF9zaXplLCBhcmdzLm1heF9zYW1wbGVzKVxuICAgICAgICBlbGlmIGJlbmNobWFyayA9PSAiZ3NtOGsiJywKICAgICdyZXN1bHQgPSBldmFsdWF0ZV9tY3EobW9kZWwsIHRva2VuaXplciwgYmVuY2htYXJrLCBjZmdbIm51bV9mZXdzaG90Il0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXJncy5jYWNoZV9kaXIsIGFyZ3MuYmF0Y2hfc2l6ZSwgYXJncy5tYXhfc2FtcGxlcyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtY19mb3JtYXQ9YXJncy5tY19mb3JtYXQpXG4gICAgICAgIGVsaWYgYmVuY2htYXJrID09ICJnc204ayInLAogICAgIiM5IGV2YWx1YXRlX21jcSBjYWxsIGluIG1haW4iKQoKIyAxMApjb2RlID0gc2FmZV9yZXBsYWNlKGNvZGUsCiAgICAncmVzdWx0ID0gZXZhbHVhdGVfcGFyYXBocmFzZWQobW9kZWwsIHRva2VuaXplciwgYmVuY2htYXJrLCBwYXJhX2l0ZW1zLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2ZnWyJudW1fZmV3c2hvdCJdLCBhcmdzLmNhY2hlX2RpciwgYXJncy5iYXRjaF9zaXplKVxuICAgICAgICBlbGlmIGJlbmNobWFyayBpbiAoIm1tbHUiJywKICAgICdyZXN1bHQgPSBldmFsdWF0ZV9wYXJhcGhyYXNlZChtb2RlbCwgdG9rZW5pemVyLCBiZW5jaG1hcmssIHBhcmFfaXRlbXMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjZmdbIm51bV9mZXdzaG90Il0sIGFyZ3MuY2FjaGVfZGlyLCBhcmdzLmJhdGNoX3NpemUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtY19mb3JtYXQ9YXJncy5tY19mb3JtYXQpXG4gICAgICAgIGVsaWYgYmVuY2htYXJrIGluICgibW1sdSInLAogICAgIiMxMCBldmFsdWF0ZV9wYXJhcGhyYXNlZCBjYWxsIGluIG1haW4iKQoKd2l0aCBvcGVuKGZpbGVwYXRoLCAidyIpIGFzIGY6CiAgICBmLndyaXRlKGNvZGUpCgpwcmludCgiXG5BbGwgMTAgcGF0Y2hlcyBhcHBsaWVkIHN1Y2Nlc3NmdWxseSEiKQo=' | base64 -d > /tmp/patch_d017.py && /root/miniconda3/bin/python3 /tmp/patch_d017.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "dda15685-e061-485e-aa0e-b7019801fd68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4pi3qkVknf8LR2eHnDurL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7720,
+                "cache_read_input_tokens": 127343,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7720
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T07:26:42.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WcRckUNfWmwPTy1hrrJWjM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: #1 evaluate_mcq sig\\\\nOK: #2 fewshot call in evaluate_mcq\\\\nOK: #3 test prompt in evaluate_mcq\\\\nOK: #4 format_mcq_example\\\\nOK: #5 evaluate_paraphrased sig\\\\nOK: #6 fewshot call in evaluate_paraphrased\\\\nOK: #7 test prompt in evaluate_paraphrased\\\\nOK: #8 --mc-format arg\\\\nOK: #9 evaluate_mcq call in main\\\\nOK: #10 evaluate_paraphrased call in main\\\\n\\\\nAll 10 patches applied successfully!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "7694ea43-1bc5-47fe-9159-90263d268943",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: #1 evaluate_mcq sig\\\\nOK: #2 fewshot call in evaluate_mcq\\\\nOK: #3 test prompt in evaluate_mcq\\\\nOK: #4 format_mcq_example\\\\nOK: #5 evaluate_paraphrased sig\\\\nOK: #6 fewshot call in evaluate_paraphrased\\\\nOK: #7 test prompt in evaluate_paraphrased\\\\nOK: #8 --mc-format arg\\\\nOK: #9 evaluate_mcq call in main\\\\nOK: #10 evaluate_paraphrased call in main\\\\n\\\\nAll 10 patches applied successfully!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: #1 evaluate_mcq sig\\nOK: #2 fewshot call in evaluate_mcq\\nOK: #3 test prompt in evaluate_mcq\\nOK: #4 format_mcq_example\\nOK: #5 evaluate_paraphrased sig\\nOK: #6 fewshot call in evaluate_paraphrased\\nOK: #7 test prompt in evaluate_paraphrased\\nOK: #8 --mc-format arg\\nOK: #9 evaluate_mcq call in main\\nOK: #10 evaluate_paraphrased call in main\\n\\nAll 10 patches applied successfully!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 10 个替换成功。验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "fb92e946-86ed-4ff6-854d-dbfca3e0c91c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjAaXXtwyN1tFYCsBxt9am",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7981,
+                "cache_read_input_tokens": 135063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7981
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uh5tsv1forgB4xQM5pRhm1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"The answer is\\|mc_format\\|mc_suffix\\|--mc-format\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "a3dbd653-5bae-458b-ab52-20989ba4000a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjAaXXtwyN1tFYCsBxt9am",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7981,
+                "cache_read_input_tokens": 135063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7981
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T07:26:50.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uh5tsv1forgB4xQM5pRhm1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "ae141f3d-db33-4135-82e4-cd97f0499b57",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199ZKwneoNrbrcUnChP3NW9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"mc_format\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "fa854930-5cbe-4e5d-ad85-463b6764773c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wcx2QPjVamR6NHDpKMnYt2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 143044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T07:26:55.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199ZKwneoNrbrcUnChP3NW9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"108:                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n125:            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\\\n150:        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n168:def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\\\\\"aligned\\\\\\\") -> str:\\\\n173:        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n181:        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n323:                         mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n335:                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\\\n358:            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n583:                                          mc_format=args.mc_format)\\\\n587:                                  mc_format=args.mc_format)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "4d4d6796-8b2c-4451-89bc-ccb15851900b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"108:                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n125:            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\\\n150:        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n168:def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\\\\\"aligned\\\\\\\") -> str:\\\\n173:        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n181:        if mc_format == \\\\\\\"aligned\\\\\\\":\\\\n323:                         mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n335:                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\\\n358:            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n583:                                          mc_format=args.mc_format)\\\\n587:                                  mc_format=args.mc_format)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"108:                 mc_format: str = \\\"aligned\\\") -> dict:\\n125:            fewshot_examples.append(format_mcq_example(row, benchmark, mc_format))\\n150:        mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n168:def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\"aligned\\\") -> str:\\n173:        if mc_format == \\\"aligned\\\":\\n181:        if mc_format == \\\"aligned\\\":\\n323:                         mc_format: str = \\\"aligned\\\") -> dict:\\n335:                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\n358:            mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n583:                                          mc_format=args.mc_format)\\n587:                                  mc_format=args.mc_format)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011U47Rt5mtXGUdtijXi29qS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"The answer is\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "b725e480-5fe9-4a73-8b0a-9ef5a25c96a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wcx2QPjVamR6NHDpKMnYt2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 143044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S3sHVytxs57UsEmxA4GSLE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "grep -n \"mc-format\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "ffcb3a60-cffa-40a6-bb44-90ea74892465",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wcx2QPjVamR6NHDpKMnYt2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 240,
+                "cache_read_input_tokens": 143044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 240
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-14T07:26:56.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011U47Rt5mtXGUdtijXi29qS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"150:        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n174:            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer_letter}.\\\\\\\"\\\\n182:            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer}.\\\\\\\"\\\\n358:            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n548:                        help=\\\\\\\"MC answer format: 'aligned' uses 'The answer is X.' (matches SFT), 'legacy' uses 'Answer: X'\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "24e66a40-d706-4479-8ced-1ce7cbcd907e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"150:        mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n174:            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer_letter}.\\\\\\\"\\\\n182:            return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices_str}\\\\\\\\nThe answer is {answer}.\\\\\\\"\\\\n358:            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n548:                        help=\\\\\\\"MC answer format: 'aligned' uses 'The answer is X.' (matches SFT), 'legacy' uses 'Answer: X'\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"150:        mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n174:            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer_letter}.\\\"\\n182:            return f\\\"Question: {row['question']}\\\\n{choices_str}\\\\nThe answer is {answer}.\\\"\\n358:            mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n548:                        help=\\\"MC answer format: 'aligned' uses 'The answer is X.' (matches SFT), 'legacy' uses 'Answer: X'\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T07:26:56.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S3sHVytxs57UsEmxA4GSLE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"546:    parser.add_argument(\\\\\\\"--mc-format\\\\\\\", type=str, default=\\\\\\\"aligned\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "579acc3d-604f-417d-b31a-ddffa0bcc70e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"546:    parser.add_argument(\\\\\\\"--mc-format\\\\\\\", type=str, default=\\\\\\\"aligned\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"546:    parser.add_argument(\\\"--mc-format\\\", type=str, default=\\\"aligned\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改点都正确就位。验证语法和 `--help` 输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "d53d0f57-4a3a-457e-8c91-830c37531ed9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TQ5zFYHUu7KYweqcMUCfvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 143284,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1104
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016UmVjCvNhV8B33EVv7fDPb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 -c \"import py_compile; py_compile.compile('/root/contamcal-irt-calibration/exp001/evaluate.py', doraise=True); print('Syntax OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "aa32b3ca-aae2-448f-be2e-104af6d96e13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TQ5zFYHUu7KYweqcMUCfvg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 143284,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1104
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-14T07:27:02.697Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016UmVjCvNhV8B33EVv7fDPb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3 -c \\\\\\\"import py_compile; py_compile.compile(\\\\\\\\'/root/contamcal-irt-calibration/exp001/evaluate.py\\\\\\\\', doraise=True); print(\\\\\\\\'Syntax OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n    raw_prompt = fewshot_prefix + f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: Let's think step by step.\\\\\\\\n\\\\\\\"\\\\nIndentationError: unexpected indent\\\\n\\\\nDuring handling of the above exception, another exception occurred:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/py_compile.py\\\\\\\", line 150, in compile\\\\n    raise py_exc\\\\npy_compile.PyCompileError: Sorry: IndentationError: unexpected indent (evaluate.py, line 392)\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "96b31752-e7d0-4f90-a492-645cbee66b9c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3 -c \\\\\\\"import py_compile; py_compile.compile(\\\\\\\\'/root/contamcal-irt-calibration/exp001/evaluate.py\\\\\\\\', doraise=True); print(\\\\\\\\'Syntax OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n    raw_prompt = fewshot_prefix + f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: Let's think step by step.\\\\\\\\n\\\\\\\"\\\\nIndentationError: unexpected indent\\\\n\\\\nDuring handling of the above exception, another exception occurred:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 1, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/py_compile.py\\\\\\\", line 150, in compile\\\\n    raise py_exc\\\\npy_compile.PyCompileError: Sorry: IndentationError: unexpected indent (evaluate.py, line 392)\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: '/root/miniconda3/bin/python3 -c \\\"import py_compile; py_compile.compile(\\\\'/root/contamcal-irt-calibration/exp001/evaluate.py\\\\', doraise=True); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n    raw_prompt = fewshot_prefix + f\\\"Question: {row['question']}\\\\nAnswer: Let's think step by step.\\\\n\\\"\\nIndentationError: unexpected indent\\n\\nDuring handling of the above exception, another exception occurred:\\n\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 1, in <module>\\n  File \\\"/root/miniconda3/lib/python3.12/py_compile.py\\\", line 150, in compile\\n    raise py_exc\\npy_compile.PyCompileError: Sorry: IndentationError: unexpected indent (evaluate.py, line 392)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's an indentation error at line 392. This is in the GSM8K section of evaluate_paraphrased. Let me check what's there - it looks like a pre-existing indentation issue (the `gold_answer = re.sub(...)` line was already at wrong indentation level as seen in earlier reads). Let me check.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "13916af4-66d2-4c41-8a8a-7faac5c06899",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KDQcapCnUVye1fipkAGDCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 505,
+                "cache_read_input_tokens": 144388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 505
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pre-existing indentation error at line 392. Let me check and fix it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "8a91bbf1-a16e-48d3-b7e8-0df88b1c33ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KDQcapCnUVye1fipkAGDCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 505,
+                "cache_read_input_tokens": 144388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 505
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XABvPH5eQ1R78Nkayt6xfg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -n 400 /root/contamcal-irt-calibration/exp001/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "47fbf717-23fd-4dc5-84cc-be3a5057d51b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KDQcapCnUVye1fipkAGDCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 505,
+                "cache_read_input_tokens": 144388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 505
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T07:27:13.156Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XABvPH5eQ1R78Nkayt6xfg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", ca\\\\n\\\\n... [截断: 输出过长，省略 8592 字符] ...\\\\n\\\\nligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on paraphrased benchmark items. Reuses MCQ/GSM8K/HumanEval logic.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n        # Build few-shot from original validation set (same as original eval)\\\\n        if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n            val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n        else:\\\\n            val_ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n\\\\n        fewshot_examples = []\\\\n        if num_fewshot > 0 and val_ds is not None:\\\\n            for idx in range(min(num_fewshot, len(val_ds))):\\\\n                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\\\n        fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n        correct = 0\\\\n        total = 0\\\\n        per_item = []\\\\n        for row in tqdm(para_items, desc=f\\\\\\\"Evaluating {benchmark} (paraphrased)\\\\\\\"):\\\\n            orig_index = row.get(\\\\\\\"_orig_index\\\\\\\", total)\\\\n            if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n                choices_text = row[\\\\\\\"choices\\\\\\\"]\\\\n                answer_idx = row[\\\\\\\"answer\\\\\\\"]\\\\n                answer_letter = CHOICE_LETTERS[answer_idx]\\\\n                question = row[\\\\\\\"question\\\\\\\"]\\\\n                choices_display = [f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices_text)]\\\\n                choice_tokens = [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\\\n            elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n                choices_text = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n                labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n                answer_letter = row[\\\\\\\"answerKey\\\\\\\"]\\\\n                question = row[\\\\\\\"question\\\\\\\"]\\\\n                choices_display = [f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices_text)]\\\\n                choice_tokens = labels\\\\n\\\\n            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n            raw_prompt = fewshot_prefix + f\\\\\\\"Question: {question}\\\\\\\\n\\\\\\\" + \\\\\\\"\\\\\\\\n\\\\\\\".join(choices_display) + f\\\\\\\"\\\\\\\\n{mc_suffix}\\\\\\\"\\\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n            pred_idx = int(np.argmax(logprobs))\\\\n            pred_letter = choice_tokens[pred_idx]\\\\n\\\\n            is_correct = pred_letter == answer_letter\\\\n            correct += int(is_correct)\\\\n            total += 1\\\\n            per_item.append({\\\\n                \\\\\\\"index\\\\\\\": orig_index, \\\\\\\"correct\\\\\\\": is_correct,\\\\n                \\\\\\\"pred\\\\\\\": pred_letter, \\\\\\\"gold\\\\\\\": answer_letter,\\\\n            })\\\\n\\\\n        accuracy = correct / total if total > 0 else 0.0\\\\n        return {\\\\\\\"accuracy\\\\\\\": accuracy, \\\\\\\"correct\\\\\\\": correct, \\\\\\\"total\\\\\\\": total, \\\\\\\"per_item\\\\\\\": per_item}\\\\n\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        train_ds = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"train\\\\\\\", cache_dir=cache_dir)\\\\n        fewshot_examples = []\\\\n        if num_fewshot > 0:\\\\n            for idx in range(min(num_fewshot, len(train_ds))):\\\\n                row = train_ds[idx]\\\\n                fewshot_examples.append(f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: {row['answer']}\\\\\\\")\\\\n        fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n        correct = 0\\\\n        total = 0\\\\n        per_item = []\\\\n        for row in tqdm(para_items, desc=\\\\\\\"Evaluating GSM8K (paraphrased)\\\\\\\"):\\\\n            orig_index = row.get(\\\\\\\"_orig_index\\\\\\\", total)\\\\n            gold_answer = row[\\\\\\\"answer\\\\\\\"].split(\\\\\\\"####\\\\\\\")[-1].strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        gold_answer = re.sub(r'[^-\\\\\\\\d.]', '', gold_answer)\\\\n            raw_prompt = fewshot_prefix + f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: Let's think step by step.\\\\\\\\n\\\\\\\"\\\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\\\n\\\\n            inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(model.device)\\\\n            with torch.no_grad():\\\\n                output_ids = model.generate(\\\\n                    **inputs, max_new_tokens=512, do_sample=False,\\\\n                    pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\\\n                )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "c2851844-9ccd-4422-9ecc-a6f2e249b561",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBenchmark evaluation for contamination-injected models.\\\\n\\\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\\\nper-item correctness matrix for downstream IRT analysis.\\\\n\\\\nInput:  Model checkpoint path\\\\nOutput: JSON with aggregate scores + per-item binary correctness\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport tempfile\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nBENCHMARK_CONFIGS = {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8, \\\\\\\"metric\\\\\\\": \\\\\\\"exact_match\\\\\\\"},\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25, \\\\\\\"metric\\\\\\\": \\\\\\\"accuracy\\\\\\\"},\\\\n    \\\\\\\"humaneval\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 0, \\\\\\\"metric\\\\\\\": \\\\\\\"pass@1\\\\\\\"},\\\\n}\\\\n\\\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\\\n\\\\nMMLU_SUBJECTS = None  # loaded dynamically\\\\n\\\\nCHOICE_LETTERS = \\\\\\\"ABCDEFGHIJ\\\\\\\"\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if adapter_path:\\\\n        logger.info(\\\\\\\"Loading base model: %s + adapter: %s\\\\\\\", model_path, adapter_path)\\\\n        from peft import PeftModel\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path,\\\\n            cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16,\\\\n            trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wrap content in chat template to match SFT training format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    messages = [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content}]\\\\n    return tokenizer.apply_chat_template(\\\\n        messages, tokenize=False, add_generation_prompt=True\\\\n    )\\\\n\\\\n\\\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute log probabilities of each choice token given prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]  # last token logits\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    choice_logprobs = []\\\\n    for choice in choices:\\\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\\\n        if token_ids:\\\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\\\n        else:\\\\n            choice_logprobs.append(float(\\\\\\\"-inf\\\\\\\"))\\\\n\\\\n    return choice_logprobs\\\\n\\\\n\\\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\\\n                 mc_format: str = \\\\\\\"aligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", ca\\\\n\\\\n... [截断: 输出过长，省略 8592 字符] ...\\\\n\\\\nligned\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate on paraphrased benchmark items. Reuses MCQ/GSM8K/HumanEval logic.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n        # Build few-shot from original validation set (same as original eval)\\\\n        if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n            val_ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n        else:\\\\n            val_ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"validation\\\\\\\", cache_dir=cache_dir)\\\\n\\\\n        fewshot_examples = []\\\\n        if num_fewshot > 0 and val_ds is not None:\\\\n            for idx in range(min(num_fewshot, len(val_ds))):\\\\n                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\\\n        fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n        correct = 0\\\\n        total = 0\\\\n        per_item = []\\\\n        for row in tqdm(para_items, desc=f\\\\\\\"Evaluating {benchmark} (paraphrased)\\\\\\\"):\\\\n            orig_index = row.get(\\\\\\\"_orig_index\\\\\\\", total)\\\\n            if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n                choices_text = row[\\\\\\\"choices\\\\\\\"]\\\\n                answer_idx = row[\\\\\\\"answer\\\\\\\"]\\\\n                answer_letter = CHOICE_LETTERS[answer_idx]\\\\n                question = row[\\\\\\\"question\\\\\\\"]\\\\n                choices_display = [f\\\\\\\"{CHOICE_LETTERS[i]}) {c}\\\\\\\" for i, c in enumerate(choices_text)]\\\\n                choice_tokens = [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\\\n            elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n                choices_text = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]\\\\n                labels = row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"]\\\\n                answer_letter = row[\\\\\\\"answerKey\\\\\\\"]\\\\n                question = row[\\\\\\\"question\\\\\\\"]\\\\n                choices_display = [f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(labels, choices_text)]\\\\n                choice_tokens = labels\\\\n\\\\n            mc_suffix = \\\\\\\"The answer is \\\\\\\" if mc_format == \\\\\\\"aligned\\\\\\\" else \\\\\\\"Answer:\\\\\\\"\\\\n            raw_prompt = fewshot_prefix + f\\\\\\\"Question: {question}\\\\\\\\n\\\\\\\" + \\\\\\\"\\\\\\\\n\\\\\\\".join(choices_display) + f\\\\\\\"\\\\\\\\n{mc_suffix}\\\\\\\"\\\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\\\n            pred_idx = int(np.argmax(logprobs))\\\\n            pred_letter = choice_tokens[pred_idx]\\\\n\\\\n            is_correct = pred_letter == answer_letter\\\\n            correct += int(is_correct)\\\\n            total += 1\\\\n            per_item.append({\\\\n                \\\\\\\"index\\\\\\\": orig_index, \\\\\\\"correct\\\\\\\": is_correct,\\\\n                \\\\\\\"pred\\\\\\\": pred_letter, \\\\\\\"gold\\\\\\\": answer_letter,\\\\n            })\\\\n\\\\n        accuracy = correct / total if total > 0 else 0.0\\\\n        return {\\\\\\\"accuracy\\\\\\\": accuracy, \\\\\\\"correct\\\\\\\": correct, \\\\\\\"total\\\\\\\": total, \\\\\\\"per_item\\\\\\\": per_item}\\\\n\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        train_ds = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"train\\\\\\\", cache_dir=cache_dir)\\\\n        fewshot_examples = []\\\\n        if num_fewshot > 0:\\\\n            for idx in range(min(num_fewshot, len(train_ds))):\\\\n                row = train_ds[idx]\\\\n                fewshot_examples.append(f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: {row['answer']}\\\\\\\")\\\\n        fewshot_prefix = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(fewshot_examples) + \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\" if fewshot_examples else \\\\\\\"\\\\\\\"\\\\n\\\\n        correct = 0\\\\n        total = 0\\\\n        per_item = []\\\\n        for row in tqdm(para_items, desc=\\\\\\\"Evaluating GSM8K (paraphrased)\\\\\\\"):\\\\n            orig_index = row.get(\\\\\\\"_orig_index\\\\\\\", total)\\\\n            gold_answer = row[\\\\\\\"answer\\\\\\\"].split(\\\\\\\"####\\\\\\\")[-1].strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        gold_answer = re.sub(r'[^-\\\\\\\\d.]', '', gold_answer)\\\\n            raw_prompt = fewshot_prefix + f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: Let's think step by step.\\\\\\\\n\\\\\\\"\\\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\\\n\\\\n            inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(model.device)\\\\n            with torch.no_grad():\\\\n                output_ids = model.generate(\\\\n                    **inputs, max_new_tokens=512, do_sample=False,\\\\n                    pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\\\n                )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBenchmark evaluation for contamination-injected models.\\n\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\nper-item correctness matrix for downstream IRT analysis.\\n\\nInput:  Model checkpoint path\\nOutput: JSON with aggregate scores + per-item binary correctness\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport subprocess\\nimport tempfile\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nBENCHMARK_CONFIGS = {\\n    \\\"mmlu\\\": {\\\"num_fewshot\\\": 5, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"gsm8k\\\": {\\\"num_fewshot\\\": 8, \\\"metric\\\": \\\"exact_match\\\"},\\n    \\\"arc_challenge\\\": {\\\"num_fewshot\\\": 25, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"humaneval\\\": {\\\"num_fewshot\\\": 0, \\\"metric\\\": \\\"pass@1\\\"},\\n}\\n\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\n\\nMMLU_SUBJECTS = None  # loaded dynamically\\n\\nCHOICE_LETTERS = \\\"ABCDEFGHIJ\\\"\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\n    \\\"\\\"\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\"\\\"\\\"\\n    if adapter_path:\\n        logger.info(\\\"Loading base model: %s + adapter: %s\\\", model_path, adapter_path)\\n        from peft import PeftModel\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        model = PeftModel.from_pretrained(base_model, adapter_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path,\\n            cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16,\\n            trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef format_as_chat(tokenizer, user_content: str) -> str:\\n    \\\"\\\"\\\"Wrap content in chat template to match SFT training format.\\\"\\\"\\\"\\n    messages = [{\\\"role\\\": \\\"user\\\", \\\"content\\\": user_content}]\\n    return tokenizer.apply_chat_template(\\n        messages, tokenize=False, add_generation_prompt=True\\n    )\\n\\n\\ndef compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\n    \\\"\\\"\\\"Compute log probabilities of each choice token given prompt.\\\"\\\"\\\"\\n    inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n    with torch.no_grad():\\n        outputs = model(**inputs)\\n    logits = outputs.logits[0, -1, :]  # last token logits\\n    log_probs = torch.log_softmax(logits, dim=-1)\\n\\n    choice_logprobs = []\\n    for choice in choices:\\n        token_ids = tokenizer.encode(choice, add_special_tokens=False)\\n        if token_ids:\\n            choice_logprobs.append(log_probs[token_ids[0]].item())\\n        else:\\n            choice_logprobs.append(float(\\\"-inf\\\"))\\n\\n    return choice_logprobs\\n\\n\\ndef evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n                 cache_dir: str, batch_size: int, max_samples: int = None,\\n                 mc_format: str = \\\"aligned\\\") -> dict:\\n    \\\"\\\"\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        val_ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", ca\\n\\n... [截断: 输出过长，省略 8592 字符] ...\\n\\nligned\\\") -> dict:\\n    \\\"\\\"\\\"Evaluate on paraphrased benchmark items. Reuses MCQ/GSM8K/HumanEval logic.\\\"\\\"\\\"\\n    if benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n        # Build few-shot from original validation set (same as original eval)\\n        if benchmark == \\\"mmlu\\\":\\n            val_ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n        else:\\n            val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n\\n        fewshot_examples = []\\n        if num_fewshot > 0 and val_ds is not None:\\n            for idx in range(min(num_fewshot, len(val_ds))):\\n                fewshot_examples.append(format_mcq_example(val_ds[idx], benchmark, mc_format))\\n        fewshot_prefix = \\\"\\\\n\\\\n\\\".join(fewshot_examples) + \\\"\\\\n\\\\n\\\" if fewshot_examples else \\\"\\\"\\n\\n        correct = 0\\n        total = 0\\n        per_item = []\\n        for row in tqdm(para_items, desc=f\\\"Evaluating {benchmark} (paraphrased)\\\"):\\n            orig_index = row.get(\\\"_orig_index\\\", total)\\n            if benchmark == \\\"mmlu\\\":\\n                choices_text = row[\\\"choices\\\"]\\n                answer_idx = row[\\\"answer\\\"]\\n                answer_letter = CHOICE_LETTERS[answer_idx]\\n                question = row[\\\"question\\\"]\\n                choices_display = [f\\\"{CHOICE_LETTERS[i]}) {c}\\\" for i, c in enumerate(choices_text)]\\n                choice_tokens = [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\n            elif benchmark == \\\"arc_challenge\\\":\\n                choices_text = row[\\\"choices\\\"][\\\"text\\\"]\\n                labels = row[\\\"choices\\\"][\\\"label\\\"]\\n                answer_letter = row[\\\"answerKey\\\"]\\n                question = row[\\\"question\\\"]\\n                choices_display = [f\\\"{l}) {t}\\\" for l, t in zip(labels, choices_text)]\\n                choice_tokens = labels\\n\\n            mc_suffix = \\\"The answer is \\\" if mc_format == \\\"aligned\\\" else \\\"Answer:\\\"\\n            raw_prompt = fewshot_prefix + f\\\"Question: {question}\\\\n\\\" + \\\"\\\\n\\\".join(choices_display) + f\\\"\\\\n{mc_suffix}\\\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n            logprobs = compute_choice_logprobs(model, tokenizer, prompt, choice_tokens)\\n            pred_idx = int(np.argmax(logprobs))\\n            pred_letter = choice_tokens[pred_idx]\\n\\n            is_correct = pred_letter == answer_letter\\n            correct += int(is_correct)\\n            total += 1\\n            per_item.append({\\n                \\\"index\\\": orig_index, \\\"correct\\\": is_correct,\\n                \\\"pred\\\": pred_letter, \\\"gold\\\": answer_letter,\\n            })\\n\\n        accuracy = correct / total if total > 0 else 0.0\\n        return {\\\"accuracy\\\": accuracy, \\\"correct\\\": correct, \\\"total\\\": total, \\\"per_item\\\": per_item}\\n\\n    elif benchmark == \\\"gsm8k\\\":\\n        train_ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"train\\\", cache_dir=cache_dir)\\n        fewshot_examples = []\\n        if num_fewshot > 0:\\n            for idx in range(min(num_fewshot, len(train_ds))):\\n                row = train_ds[idx]\\n                fewshot_examples.append(f\\\"Question: {row['question']}\\\\nAnswer: {row['answer']}\\\")\\n        fewshot_prefix = \\\"\\\\n\\\\n\\\".join(fewshot_examples) + \\\"\\\\n\\\\n\\\" if fewshot_examples else \\\"\\\"\\n\\n        correct = 0\\n        total = 0\\n        per_item = []\\n        for row in tqdm(para_items, desc=\\\"Evaluating GSM8K (paraphrased)\\\"):\\n            orig_index = row.get(\\\"_orig_index\\\", total)\\n            gold_answer = row[\\\"answer\\\"].split(\\\"####\\\")[-1].strip().replace(\\\",\\\", \\\"\\\")\\n        gold_answer = re.sub(r'[^-\\\\d.]', '', gold_answer)\\n            raw_prompt = fewshot_prefix + f\\\"Question: {row['question']}\\\\nAnswer: Let's think step by step.\\\\n\\\"\\n            prompt = format_as_chat(tokenizer, raw_prompt)\\n\\n            inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048).to(model.device)\\n            with torch.no_grad():\\n                output_ids = model.generate(\\n                    **inputs, max_new_tokens=512, do_sample=False,\\n                    pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\n                )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+              }
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can see the pre-existing bug at line 391-392:\n```python\n            gold_answer = row[\"answer\"].split(\"####\")[-1].strip().replace(\",\", \"\")\n        gold_answer = re.sub(r'[^-\\d.]', '', gold_answer)\n```\n\nThe second `gold_answer` line is de-indented (8 spaces instead of 12). This is a pre-existing bug in the original file that was there before my changes. It's in the GSM8K section of `evaluate_paraphrased`, which is not part of the MC evaluation changes. \n\nI should fix this indentation error since it makes the file invalid Python.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "12afd67d-87b8-4de4-9c82-1d2f787159d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XT3gyN82XjH1mFeQjnV8xs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 144893,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3578
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pre-existing indentation bug in GSM8K section of `evaluate_paraphrased` (line 392). Fixing it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "889bb630-5d5e-4343-ae9b-21e364d12836",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XT3gyN82XjH1mFeQjnV8xs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 144893,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3578
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015PVG5cPYH5PC8eTeq38gXA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 -c \"\nf = '/root/contamcal-irt-calibration/exp001/evaluate.py'\nwith open(f) as fh:\n    code = fh.read()\nold = \\\"            gold_answer = row[\\\\\\\"answer\\\\\\\"].split(\\\\\\\"####\\\\\\\")[-1].strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        gold_answer = re.sub(r'[^-\\\\\\\\d.]', '', gold_answer)\\\\n            raw_prompt\\\"\nnew = \\\"            gold_answer = row[\\\\\\\"answer\\\\\\\"].split(\\\\\\\"####\\\\\\\")[-1].strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            gold_answer = re.sub(r'[^-\\\\\\\\d.]', '', gold_answer)\\\\n            raw_prompt\\\"\nif old in code:\n    code = code.replace(old, new, 1)\n    with open(f, 'w') as fh:\n        fh.write(code)\n    print('Fixed indentation')\nelse:\n    print('Pattern not found')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "e97e67c4-84aa-42d1-90ab-c9999748aaca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XT3gyN82XjH1mFeQjnV8xs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 144893,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3578
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-14T07:27:26.722Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015PVG5cPYH5PC8eTeq38gXA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed indentation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "4a2e39cf-f5a3-4b36-a322-27c7b1240752",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed indentation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed indentation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ftr14mPVYLfzryHQ8B1Zmh",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 -c \"import py_compile; py_compile.compile('/root/contamcal-irt-calibration/exp001/evaluate.py', doraise=True); print('Syntax OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "02a4e30b-ad4f-4144-8208-3560ed6a82bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EFKGuVdXLkgvoYhiWdLXwS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 641,
+                "cache_read_input_tokens": 148471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 641
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-14T07:27:32.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ftr14mPVYLfzryHQ8B1Zmh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "df184eaf-3f8b-498e-9410-16d283cbbfd0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。验证 `--help` 输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "4f038315-472b-402f-b617-af25fc89d68b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RrkNBq7gFta6FPzyqYrn7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 219,
+                "cache_read_input_tokens": 149112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xq42PVftLz5nDqB4jSvJc7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 /root/contamcal-irt-calibration/exp001/evaluate.py --help 2>&1",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "7d0b3a36-14a1-4a57-a403-3191751ccae6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RrkNBq7gFta6FPzyqYrn7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 219,
+                "cache_read_input_tokens": 149112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-14T07:27:44.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xq42PVftLz5nDqB4jSvJc7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: evaluate.py [-h] --model-path MODEL_PATH\\\\n                   [--benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]]\\\\n                   [--adapter-path ADAPTER_PATH]\\\\n                   [--paraphrase-dir PARAPHRASE_DIR] --output-dir OUTPUT_DIR\\\\n                   [--max-samples MAX_SAMPLES] [--mc-format {aligned,legacy}]\\\\n                   [--batch-size BATCH_SIZE] [--cache-dir CACHE_DIR]\\\\n\\\\nEvaluate model on contamination benchmarks\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model-path MODEL_PATH\\\\n                        Path to model checkpoint (merged or HF model name)\\\\n  --benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]\\\\n                        Benchmarks to evaluate\\\\n  --adapter-path ADAPTER_PATH\\\\n                        Path to LoRA adapter. If set, loads base model from\\\\n                        --model-path and adapter separately.\\\\n  --paraphrase-dir PARAPHRASE_DIR\\\\n                        Directory with paraphrase JSONs. If set, evaluates on\\\\n                        paraphrased items instead of originals.\\\\n  --output-dir OUTPUT_DIR\\\\n                        Output directory for evaluation results\\\\n  --max-samples MAX_SAMPLES\\\\n                        Max samples per benchmark (for dry-run testing)\\\\n  --mc-format {aligned,legacy}\\\\n                        MC answer format: 'aligned' uses 'The answer is X.'\\\\n                        (matches SFT), 'legacy' uses 'Answer: X'\\\\n  --batch-size BATCH_SIZE\\\\n                        Batch size for evaluation\\\\n  --cache-dir CACHE_DIR\\\\n                        HuggingFace cache directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "80fc1ad2-91a3-4000-b0a0-ee579427c7a2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: evaluate.py [-h] --model-path MODEL_PATH\\\\n                   [--benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]]\\\\n                   [--adapter-path ADAPTER_PATH]\\\\n                   [--paraphrase-dir PARAPHRASE_DIR] --output-dir OUTPUT_DIR\\\\n                   [--max-samples MAX_SAMPLES] [--mc-format {aligned,legacy}]\\\\n                   [--batch-size BATCH_SIZE] [--cache-dir CACHE_DIR]\\\\n\\\\nEvaluate model on contamination benchmarks\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model-path MODEL_PATH\\\\n                        Path to model checkpoint (merged or HF model name)\\\\n  --benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]\\\\n                        Benchmarks to evaluate\\\\n  --adapter-path ADAPTER_PATH\\\\n                        Path to LoRA adapter. If set, loads base model from\\\\n                        --model-path and adapter separately.\\\\n  --paraphrase-dir PARAPHRASE_DIR\\\\n                        Directory with paraphrase JSONs. If set, evaluates on\\\\n                        paraphrased items instead of originals.\\\\n  --output-dir OUTPUT_DIR\\\\n                        Output directory for evaluation results\\\\n  --max-samples MAX_SAMPLES\\\\n                        Max samples per benchmark (for dry-run testing)\\\\n  --mc-format {aligned,legacy}\\\\n                        MC answer format: 'aligned' uses 'The answer is X.'\\\\n                        (matches SFT), 'legacy' uses 'Answer: X'\\\\n  --batch-size BATCH_SIZE\\\\n                        Batch size for evaluation\\\\n  --cache-dir CACHE_DIR\\\\n                        HuggingFace cache directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: evaluate.py [-h] --model-path MODEL_PATH\\n                   [--benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]]\\n                   [--adapter-path ADAPTER_PATH]\\n                   [--paraphrase-dir PARAPHRASE_DIR] --output-dir OUTPUT_DIR\\n                   [--max-samples MAX_SAMPLES] [--mc-format {aligned,legacy}]\\n                   [--batch-size BATCH_SIZE] [--cache-dir CACHE_DIR]\\n\\nEvaluate model on contamination benchmarks\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model-path MODEL_PATH\\n                        Path to model checkpoint (merged or HF model name)\\n  --benchmarks {mmlu,gsm8k,arc_challenge,humaneval} [{mmlu,gsm8k,arc_challenge,humaneval} ...]\\n                        Benchmarks to evaluate\\n  --adapter-path ADAPTER_PATH\\n                        Path to LoRA adapter. If set, loads base model from\\n                        --model-path and adapter separately.\\n  --paraphrase-dir PARAPHRASE_DIR\\n                        Directory with paraphrase JSONs. If set, evaluates on\\n                        paraphrased items instead of originals.\\n  --output-dir OUTPUT_DIR\\n                        Output directory for evaluation results\\n  --max-samples MAX_SAMPLES\\n                        Max samples per benchmark (for dry-run testing)\\n  --mc-format {aligned,legacy}\\n                        MC answer format: 'aligned' uses 'The answer is X.'\\n                        (matches SFT), 'legacy' uses 'Answer: X'\\n  --batch-size BATCH_SIZE\\n                        Batch size for evaluation\\n  --cache-dir CACHE_DIR\\n                        HuggingFace cache directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.5}}"
+              }
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。清理备份文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "7fbfedd0-7fd5-489a-83c9-5b2becd922a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01639z5YiSYcm5b2txFXVykU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 149331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 715
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015a9qwd7uLMbshM2bW7dPkc",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "rm /root/contamcal-irt-calibration/exp001/evaluate.py.bak.d017 /tmp/patch_d017.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "e847ed4f-4d87-4bba-8fb8-59d324dcca52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01639z5YiSYcm5b2txFXVykU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 149331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 715
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T07:27:49.887Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015a9qwd7uLMbshM2bW7dPkc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "f189484e-c37b-438a-bc8d-1fc758a461c1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D017 修改完成\n\n### Diff 摘要\n\n**10 处修改，仅影响 MC 评估（MMLU、ARC-Challenge），不改 GSM8K/HumanEval：**\n\n| 位置 | 修改 |\n|------|------|\n| `evaluate_mcq()` 签名 (L108) | 新增 `mc_format: str = \"aligned\"` 参数 |\n| `evaluate_mcq()` few-shot 构造 (L125) | 传递 `mc_format` 给 `format_mcq_example()` |\n| `evaluate_mcq()` 测试 prompt (L150) | `\"Answer:\"` → `mc_suffix = \"The answer is \"` (aligned) 或 `\"Answer:\"` (legacy) |\n| `format_mcq_example()` 签名 (L168) | 新增 `mc_format` 参数 |\n| `format_mcq_example()` MMLU 返回 (L173-174) | aligned: `\"The answer is B.\"` / legacy: `\"Answer: B\"` |\n| `format_mcq_example()` ARC 返回 (L181-182) | 同上 |\n| `evaluate_paraphrased()` 签名 (L323) | 新增 `mc_format` 参数 |\n| `evaluate_paraphrased()` MCQ 分支 (L335, L358) | 同 evaluate_mcq 的改动 |\n| `main()` argparser (L546-548) | 新增 `--mc-format {aligned,legacy}` 参数 |\n| `main()` 调用处 (L583, L587) | 传递 `mc_format=args.mc_format` |\n\n**Prompt 格式对比：**\n- **Legacy**: `...choices...\\nAnswer:` → logprob 测 A/B/C/D\n- **Aligned** (默认): `...choices...\\nThe answer is ` → logprob 测 A/B/C/D\n- Few-shot 示例 legacy: `Answer: B` / aligned: `The answer is B.`\n\n**额外修复**：`evaluate_paraphrased` GSM8K 分支 L392 的 `gold_answer = re.sub(...)` 缩进错误（pre-existing bug）。\n\n### 部署确认\n- 远程语法验证通过 (`Syntax OK`)\n- `--mc-format {aligned,legacy}` 参数已出现在 `--help` 输出中\n- 默认值 `aligned`，与 SFT 训练格式 `\"The answer is B.\"` 一致"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "uuid": "fc727a92-1686-4627-8369-186b19d2ddf7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J9NTA6KwyEkeZBx3Z5wrxw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 203,
+                "cache_read_input_tokens": 150046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 203
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D017 修改完成\n\n### Diff 摘要\n\n**10 处修改，仅影响 MC 评估（MMLU、ARC-Challenge），不改 GSM8K/HumanEval：**\n\n| 位置 | 修改 |\n|------|------|\n| `evaluate_mcq()` 签名 (L108) | 新增 `mc_format: str = \"aligned\"` 参数 |\n| `evaluate_mcq()` few-shot 构造 (L125) | 传递 `mc_format` 给 `format_mcq_example()` |\n| `evaluate_mcq()` 测试 prompt (L150) | `\"Answer:\"` → `mc_suffix = \"The answer is \"` (aligned) 或 `\"Answer:\"` (legacy) |\n| `format_mcq_example()` 签名 (L168) | 新增 `mc_format` 参数 |\n| `format_mcq_example()` MMLU 返回 (L173-174) | aligned: `\"The answer is B.\"` / legacy: `\"Answer: B\"` |\n| `format_mcq_example()` ARC 返回 (L181-182) | 同上 |\n| `evaluate_paraphrased()` 签名 (L323) | 新增 `mc_format` 参数 |\n| `evaluate_paraphrased()` MCQ 分支 (L335, L358) | 同 evaluate_mcq 的改动 |\n| `main()` argparser (L546-548) | 新增 `--mc-format {aligned,legacy}` 参数 |\n| `main()` 调用处 (L583, L587) | 传递 `mc_format=args.mc_format` |\n\n**Prompt 格式对比：**\n- **Legacy**: `...choices...\\nAnswer:` → logprob 测 A/B/C/D\n- **Aligned** (默认): `...choices...\\nThe answer is ` → logprob 测 A/B/C/D\n- Few-shot 示例 legacy: `Answer: B` / aligned: `The answer is B.`\n\n**额外修复**：`evaluate_paraphrased` GSM8K 分支 L392 的 `gold_answer = re.sub(...)` 缩进错误（pre-existing bug）。\n\n### 部署确认\n- 远程语法验证通过 (`Syntax OK`)\n- `--mc-format {aligned,legacy}` 参数已出现在 `--help` 输出中\n- 默认值 `aligned`，与 SFT 训练格式 `\"The answer is B.\"` 一致"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 893734,
+            "duration_api_ms": 869607,
+            "num_turns": 62,
+            "stop_reason": "end_turn",
+            "session_id": "973a9c80-83b4-4d93-a437-278bc2898727",
+            "total_cost_usd": 3.955833,
+            "usage": {
+              "input_tokens": 60,
+              "cache_creation_input_tokens": 138408,
+              "cache_read_input_tokens": 3912678,
+              "output_tokens": 45297,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 138408,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 701,
+                  "cache_read_input_tokens": 150046,
+                  "cache_creation_input_tokens": 203,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 203
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1649,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001719,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 60,
+                "outputTokens": 45297,
+                "cacheReadInputTokens": 3912678,
+                "cacheCreationInputTokens": 138408,
+                "webSearchRequests": 0,
+                "costUSD": 3.9541139999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d25a5b60-36f5-4485-a1b2-e50cb5caf33c"
+          },
+          "id": "event-000166"
+        }
+      ]
+    }
+  ]
+}

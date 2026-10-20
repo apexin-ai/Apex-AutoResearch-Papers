@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "95969cdfdff895c1f779",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis stan diagnostic exp005",
+  "task_key": "worker_analysis_stan-diagnostic-exp005_20260513T225141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stan-diagnostic-exp005_20260513T225141.log",
+    "occurrence": 1,
+    "bytes": 661170,
+    "sha256": "7b04bafa23afa2bad2203abb17a5cc99d573415f83bfee3ef0a8064c9de6ad49"
+  },
+  "statistics": {
+    "messages": 373,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "system": 32,
+      "record": 3,
+      "assistant": 88,
+      "tool_call": 120,
+      "tool_result": 120,
+      "user": 1,
+      "result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "95969cdfdff895c1f779-part-0001.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "95969cdfdff895c1f779-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "95969cdfdff895c1f779-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95969cdfdff895c1f779-part-0003.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-stan-diagnostic-exp005.md"
+}

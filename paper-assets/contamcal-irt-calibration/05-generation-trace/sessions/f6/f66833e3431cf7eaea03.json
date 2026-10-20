@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f66833e3431cf7eaea03",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper bib rebuild 2025plus",
+  "task_key": "worker_paper_bib_rebuild_2025plus_20260517T051927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_rebuild_2025plus_20260517T051927_result.json",
+    "occurrence": 1,
+    "bytes": 1397,
+    "sha256": "c44d97d1c611268e8f1c0cb8ba6570f8bf5933627defc705c1e89fb0a8d7f4ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成。验证结果汇总：\n\n| Key | 状态 | 问题 |\n|-----|------|------|\n| `chang2025benchmarking` | VERIFIED | 年份实为 2024，venue 是 ACM TIST（非 EMNLP 2025） |\n| `duan2025minkpp` | REPLACED | 作者全部捏造，实际是 Zhang et al. ICLR 2025（与现有 `zhang_2024_minkpp` 重复） |\n| `habba_2025_growing_pains` | VERIFIED | 作者列表全错，年份实为 2026，arXiv 2604.12843 |\n| `li_2025_dcr` | NOT_FOUND | 完全幻觉，不存在该论文。真正 DCR 是 Xu et al. EMNLP 2025（已有 `xu_2025_dcr`） |\n| `luettgau_2025_hibayes` | VERIFIED | 作者全错（原写 Polo 等人），实际是 UK AI Safety Institute 团队，arXiv 2505.05602 |\n| `polo2026growing` | REPLACED | 与 `habba_2025_growing_pains` 是同一篇，Polo 非该文作者 |\n| `xu2025emperor` | VERIFIED | 作者全错，实为 Sun Yifan 等，ICML 2025，arXiv 2503.16402 |\n| `wust2025selfcritique` | REPLACED | 确认幻觉，替换为 Tao et al. arXiv 2510.09259 |\n| `kadavath_2022_self_eval` | NEW | 已添加，arXiv 2207.05221 |\n\n需要决策：\n- `duan2025minkpp` 与已有 `zhang_2024_minkpp` 重复，tex 中是否统一改用后者？\n- `li_2025_dcr` 是幻觉，引用上下文需要改用 `xu_2025_dcr` 还是 Li Yucheng 2024 的 contamination report？\n- `polo2026growing` 与 `habba_2025_growing_pains` 同一论文，需合并 key。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-rebuild-2025plus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5261fc7e4d9b15be0922",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals d100 a32 s123 v9",
+  "task_key": "worker_signals_d100_a32_s123_v9_20260516T005246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_d100_a32_s123_v9_20260516T005246_result.json",
+    "occurrence": 1,
+    "bytes": 3231,
+    "sha256": "a3397005525717516ca5f0be2d96360538e3ecf982d59b1206ef1ea7ef95f1e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**v8_recovery 死因**：进程在 arc_challenge 的 s1_embedding FAISS 阶段被 `Terminated` 信号杀死（非 OOM）。\n\n**d100_a32_s123 已完成信号**（2/12）：\n\n| benchmark | s1_embedding | s2_minkpp | s3_constat | s4_selfcritique |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | done | done | - | - |\n| gsm8k | - | - | - | - |\n| arc_challenge | - | - | - | - |\n\n**需要重算**：mmlu s3/s4 + gsm8k all + arc_challenge all（共 10 个 signal）\n\n**Blocker**：cuda:4 被 PID 668217 占用（d025_s123 s4_selfcritique mmlu，7021 batches @ ~1.4s/batch ≈ 2.7h 剩余）。按 C001 不能提交。\n\n**已完成**：`exp_002_signals_3B_d100_s123_v9` 已注册为 QUEUED。\n\n**准备提交的命令**（cuda:4 空闲后执行）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/contamcal-irt-calibration/exp002\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\nOUTDIR=/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\n\n# mmlu s3\npython compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter \\\n  --benchmark mmlu --signal s3 \\\n  --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter \\\n  --sft-data-dir /root/autodl-tmp/exp001/sft_data \\\n  --output-dir $OUTDIR --cache-dir /root/autodl-tmp/.hf_cache \\\n  && echo \"PASS: mmlu s3\" || echo \"FAILED: mmlu s3\"\n\n# mmlu s4 (batch-size 4 防 OOM)\npython compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter \\\n  --benchmark mmlu --signal s4 --batch-size 4 \\\n  --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter \\\n  --sft-data-dir /root/autodl-tmp/exp001/sft_data \\\n  --output-dir $OUTDIR --cache-dir /root/autodl-tmp/.hf_cache \\\n  && echo \"PASS: mmlu s4\" || echo \"FAILED: mmlu s4\"\n\n# gsm8k all\npython compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter \\\n  --benchmark gsm8k --signal all \\\n  --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter \\\n  --sft-data-dir /root/autodl-tmp/exp001/sft_data \\\n  --output-dir $OUTDIR --cache-dir /root/autodl-tmp/.hf_cache \\\n  && echo \"PASS: gsm8k\" || echo \"FAILED: gsm8k\"\n\n# arc_challenge all\npython compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter \\\n  --benchmark arc_challenge --signal all \\\n  --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter \\\n  --sft-data-dir /root/autodl-tmp/exp001/sft_data \\\n  --output-dir $OUTDIR --cache-dir /root/autodl-tmp/.hf_cache \\\n  && echo \"PASS: arc_challenge\" || echo \"FAILED: arc_challenge\"\n\necho 'ALL DONE'\n```\n\n要等 cuda:4 空闲后自动提交吗？可以设置轮询监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-d100-a32-s123-v9.md"
+}

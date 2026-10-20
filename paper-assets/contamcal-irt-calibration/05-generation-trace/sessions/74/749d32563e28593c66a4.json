@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "749d32563e28593c66a4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd collect eval results",
+  "task_key": "worker_ssh_westd-collect-eval-results_20260519T102733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-collect-eval-results_20260519T102733_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "04667b92a14eac924d838779da961bf215dbebbd2097dbec796e02dc46816839"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。汇总如下：\n\n---\n\n## 完整 Eval 结果汇总\n\n### Gemma-2-9B (cross-family)\n\n| Dosage | MMLU (%) | ARC-Challenge (%) |\n|--------|----------|-------------------|\n| d000 | 65.71 | 78.67 |\n| d005 | 65.20 | **22.95** ⚠️ |\n| d025 | 65.85 | 85.32 |\n| d050 | 64.44 | 80.55 |\n| d100 | 65.62 | 84.81 |\n\n### Phi-4 (cross-family)\n\n| Dosage | MMLU (%) | ARC-Challenge (%) |\n|--------|----------|-------------------|\n| d000 | 77.47 | 93.94 |\n| d005 | 78.09 | 93.94 |\n| d025 | 78.39 | 94.03 |\n| d050 | 78.67 | 93.69 |\n\n### OLMo-2-7B (cross-family)\n\n| Dosage | MMLU (%) | ARC-Challenge (%) |\n|--------|----------|-------------------|\n| d000 | 58.60 | 80.20 |\n| d005 | 58.10 | 80.20 |\n| d025 | 56.17 | 78.16 |\n| d050 | 59.18 | 80.89 |\n| d100 | 59.49 | 81.23 |\n\n### 状态\n\n- **Phi-4 d100 训练**: 已完成，checkpoint 已保存到 `phi-4_d100_s42/lora_adapter/` (checkpoint-4159)\n- **GPU 状态**: 4 个 GPU 都有新进程在跑（其他 worker 已启动新任务）\n- **异常**: Gemma d005 ARC=22.95% 严重异常（GPU 3 上有 sanity check 正在重评）\n- **OLMo d025 westd 重评**: MMLU=56.17%, ARC=78.16%，比 d000 (58.6%, 80.2%) 低，注意与其他 dosage 的趋势不一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-collect-eval-results.md"
+}

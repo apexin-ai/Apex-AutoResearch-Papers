@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e953aac520f564300fc4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify 3B sft s123 startup",
+  "task_key": "worker_ops_verify-3B-sft-s123-startup_20260515T120003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-3B-sft-s123-startup_20260515T120003_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "6f2e759fb480460f37cad29c2270746ad19bfe4554c47451c8f9a7a446799253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 项目 | exp_001_sft_3B_d005_s123 | exp_001_sft_3B_d025_s123 |\n|------|--------------------------|--------------------------|\n| PID | 555931 ✅ 存活 | 556011 ✅ 存活 |\n| 运行时间 | ~1m48s | ~1m45s |\n| GPU | cuda:2, 88% util, 22.9/24.6 GB | cuda:4, 86% util, 19.3/24.6 GB |\n| 训练样本 | 50,826 | 54,133 |\n| Tokenization | ✅ 完成 | ✅ 完成 |\n| 训练进度 | step 12/3177 (~3.5s/it) | step 17/3384 (~2.9s/it) |\n| Loss | 尚未输出（刚开始训练） | 尚未输出 |\n| 异常 | 无（bitsandbytes warning 可忽略，不影响训练） | 同左 |\n\n两个训练都正常启动，GPU 显存占用正常，无 OOM。bitsandbytes 的 `libnvJitLink.so.13` 报错是 warning 级别，不影响 LoRA 训练（只影响 8bit/4bit 量化功能）。预计首次 loss 输出在 step 10 的 eval log 或后续 logging step。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-3b-sft-s123-startup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "725b19f2427402e40891",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh restart mmlu vllm",
+  "task_key": "worker_ssh_restart-mmlu-vllm_20260513T190027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart-mmlu-vllm_20260513T190027_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "d40e818a334bcdeccd94d36bccf9ae980f895bf99a69f640a36701dee4352b47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务完成，vLLM 已确认正常运行，无需额外操作。上面的 summary 已包含完整状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-mmlu-vllm.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d84c717ca1f79034a5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt no05b final results monitor",
+  "task_key": "worker_ops_irt_no05b_final_results_monitor_20260517T072745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_final_results_monitor_20260517T072745_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "8f449b1a4e4643c806dbcc045f2f91074f4f71365abceabcf15be171fb98d45e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting for the IRT run to progress. Will check back in ~4 minutes. Currently 4/8 domains done, each takes ~8 min so full completion expected in ~40 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-no05b-final-results-monitor.md"
+}

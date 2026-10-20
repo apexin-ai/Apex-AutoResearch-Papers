@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "777b1a74c0d780a73c12",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops survey 05B 15B s123 signals",
+  "task_key": "worker_ops_survey-05B-15B-s123-signals_20260516T010623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_survey-05B-15B-s123-signals_20260516T010623_result.json",
+    "occurrence": 1,
+    "bytes": 4883,
+    "sha256": "a89a9cc06aa6669faba2e2dd10ebf2d849e0c40ee8e53c3b22318d419b99db70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是结构化报告。\n\n---\n\n## Checkpoint 清单\n\n| 模型 | dosage | seed | checkpoint 路径 | adapter 存在 | lora_alpha |\n|------|--------|------|----------------|-------------|-----------|\n| Qwen2.5-0.5B | d000 | s123 | `Qwen2.5-0.5B_d000_s123/lora_adapter` | YES (safetensors + config) | **32** |\n| Qwen2.5-0.5B | d005 | s123 | `Qwen2.5-0.5B_d005_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-0.5B | d025 | s123 | `Qwen2.5-0.5B_d025_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-0.5B | d100 | s123 | `Qwen2.5-0.5B_d100_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-1.5B | d000 | s123 | `Qwen2.5-1.5B_d000_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-1.5B | d005 | s123 | `Qwen2.5-1.5B_d005_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-1.5B | d025 | s123 | `Qwen2.5-1.5B_d025_s123/lora_adapter` | YES | **32** |\n| Qwen2.5-1.5B | d100 | s123 | `Qwen2.5-1.5B_d100_s123/lora_adapter` | YES | **32** |\n\n所有路径基于 `/root/autodl-tmp/exp001/checkpoints/`。全部 lora_alpha=32，合规（非废弃 alpha=16）。\n\n## 已有 Signal 覆盖\n\n**s123: 完全为零。** `/root/autodl-tmp/exp002/signals/` 下无任何 `*s123*` 目录。\n\ns42 参照（每个 checkpoint 的完整覆盖）：\n\n| 模型_dosage_s42 | benchmark | embedding | minkpp | selfcritique | merged |\n|-----------------|-----------|-----------|--------|-------------|--------|\n| 0.5B_d000_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 0.5B_d005_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 0.5B_d025_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 0.5B_d100_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 1.5B_d000_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 1.5B_d005_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 1.5B_d025_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n| 1.5B_d100_s42 | mmlu/gsm8k/arc | YES | YES | YES | YES |\n\n## 缺失 Signal（需要补算）\n\n**全部 8 个 s123 checkpoint × 3 benchmarks × 3 signals = 72 个 signal 文件 + 24 个 merged 文件**\n\n| 模型_dosage_seed | mmlu | gsm8k | arc_challenge |\n|------------------|------|-------|---------------|\n| 0.5B_d000_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 0.5B_d005_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 0.5B_d025_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 0.5B_d100_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 1.5B_d000_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 1.5B_d005_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 1.5B_d025_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n| 1.5B_d100_s123 | embedding/minkpp/selfcritique | 同左 | 同左 |\n\n## GPU 当前状态\n\n| GPU | 显存使用 | 进程 PID | 备注 |\n|-----|---------|---------|------|\n| 0 | 23260/24564 MiB (95%) | 642763, 643167 | 几乎满载 |\n| 1 | 13341/24564 MiB (54%) | 628668 | |\n| 2 | 7537/24564 MiB (31%) | 652259 | |\n| 3 | 8985/24564 MiB (37%) | 655989 | |\n| 4 | 6929/24564 MiB (28%) | 668217 | |\n| 5 | 7531/24564 MiB (31%) | 663067 | |\n\n**所有 6 张 GPU 均有进程。** 0.5B signal 计算约需 ~2-4GB 显存，1.5B 约需 ~5-8GB。GPU 2/4/5 有空间可能共存，但需确认现有进程类型避免冲突（C001/C005）。\n\n## compute_signals.py 调用格式\n\n```bash\npython compute_signals.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B|1.5B} \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dosage}_s123/lora_adapter \\\n  --benchmark {mmlu|gsm8k|arc_challenge} \\\n  --signal all \\\n  --ref-model-path <ref_adapter_path> \\\n  --sft-data-dir /root/autodl-tmp/exp001/sft_data \\\n  --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-{size}_{dosage}_s123 \\\n  --cache-dir /root/autodl-tmp/.hf_cache\n```\n\n## 数据/模型路径确认\n\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| Base model 0.5B | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B` | EXISTS |\n| Base model 1.5B | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B` | EXISTS |\n| SFT data (d000/d005/d025/d100) | `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl` | EXISTS |\n| Contamination labels | `/root/autodl-tmp/exp001/sft_data/contamination_labels_*.json` | EXISTS |\n\n## 关键注意事项\n\n1. **`run_batch.py` 不支持 s123** — `SEED = \"s42\"` 硬编码在 line 39。需要修改脚本加 `--seed` 参数，或手动构造命令。\n\n2. **ref model 路径**：S2 (Min-K++) 的参考模型应为同 seed 的 d000 checkpoint：\n   - 0.5B ref: `.../Qwen2.5-0.5B_d000_s123/lora_adapter`\n   - 1.5B ref: `.../Qwen2.5-1.5B_d000_s123/lora_adapter`\n\n3. **总任务量**：8 checkpoint × 3 benchmark = 24 个 `compute_signals.py` 调用（每个调用计算 3 个 signal）。按 s42 经验，0.5B 每个调用约 10-15 分钟，1.5B 约 20-30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-survey-05b-15b-s123-signals.md"
+}

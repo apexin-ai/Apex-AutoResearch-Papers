@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "639f9304db35005db201",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt fitting v3 fix",
+  "task_key": "worker_code_irt-fitting-v3-fix_20260519T222725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt-fitting-v3-fix_20260519T222725_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "a0127f88caaa6c558886968cf12b06d45584a53bd77169957567f0e904afbe46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。脚本正确加载 25 respondents × 1172 items（v3 数据），ADVI 拟合成功。\n\n结果摘要：\n- **25 respondents** 正确加载（5 families × 5 dosages）\n- ARC 50 items 子集拟合：mean(γ) = 0.157，76% items γ > 0（符合 contamination makes items easier 的预期方向）\n- Theta 排序合理：phi4 > qwen14b > qwen7b > gemma2/olmo2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-fitting-v3-fix.md"
+}

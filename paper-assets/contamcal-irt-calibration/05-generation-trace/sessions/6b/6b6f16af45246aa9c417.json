@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6f16af45246aa9c417",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu1 memory check",
+  "task_key": "worker_ops_gpu1-memory-check_20260514T235612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1-memory-check_20260514T235612_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "3a1df3a544a43fefad10e3d8b02fa74a598ae4888cfa751cc7c2e74985ff7e08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**0.5B 显存高于 1.5B 的原因是 batch-size 差异：**\n\n| | 0.5B (GPU 1, 21794 MiB) | 1.5B (GPU 2, 14714 MiB) |\n|---|---|---|\n| **batch-size** | **4** | **1** |\n| grad-accum | 4 | 16 |\n| effective batch | 16 | 16 |\n| max-seq-length | 2048 (默认) | 2048 (默认) |\n| 量化 | 无 | 无 |\n| 精度 | bf16 | bf16 |\n\n**核心原因**：1.5B 任务用 `--batch-size 1 --grad-accum 16`，而 0.5B 用 `--batch-size 4 --grad-accum 4`。batch-size=4 意味着同时在 GPU 上保存 4 条序列的 activation（每条 2048 tokens），activation memory 随 batch-size 线性增长。\n\n对于 0.5B 模型，模型参数本身很小（~1GB bf16），但 batch-size=4 × seq_len=2048 的 activation 占了 ~20GB。1.5B 模型参数更大（~3GB bf16）但 batch-size=1 大幅减少了 activation memory，所以总显存反而低。\n\n**修复建议**：如果要节省 GPU 1 显存，将 0.5B 也改为 `--batch-size 1 --grad-accum 16`（保持相同 effective batch size），预计显存降至 ~5-8GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-memory-check.md"
+}

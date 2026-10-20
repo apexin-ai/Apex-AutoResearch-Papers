@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa576da7858cd0df593e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis finalize 3B d005 s123 sft",
+  "task_key": "worker_analysis_finalize-3B-d005-s123-sft_20260515T150831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_finalize-3B-d005-s123-sft_20260515T150831_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "a4f356523f4549c21d3fd037d373db25fa1ef955e20f40009669078975e68672"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务已经完成：\n\n**Step 1 & 2 — SFT 分析 + Registry 更新**: `exp_001_sft_3B_d005_s123` 已经是 **DONE/success** 状态（updated 15:08:45Z），指标已录入：\n- final_loss: 1.1349\n- final_token_accuracy: 0.7069\n- total_steps: 3177\n- wall_clock_seconds: 11333.2, gpu_hours: 3.15\n- checkpoint_path: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123`\n\n与日志一致（train_loss=1.1349, mean_token_accuracy=0.7069, 3177 steps, runtime=10982s）。\n\n**Step 3 — Eval 提交**: `exp_001_eval_3B_d005_s123_aligned` 已经在 cuda:2 上 **RUNNING**（PID 580698，started 23:06:21，命令完全匹配要求的 eval 参数）。这是 SFT 完成后由 on_complete hook 自动提交的。\n\nRegistry 中旧的 `exp_001_eval_3B_d005_s123`（PREPARING）是之前的占位条目，实际 eval 在 `_aligned` 后缀的条目下运行。无需再次提交——按 C001 约束，GPU 2 已有同类进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-finalize-3b-d005-s123-sft.md"
+}

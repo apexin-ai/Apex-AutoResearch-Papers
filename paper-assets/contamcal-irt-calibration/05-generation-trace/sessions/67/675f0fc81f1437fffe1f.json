@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "675f0fc81f1437fffe1f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops monitor d005 launch next",
+  "task_key": "worker_ops_monitor-d005-launch-next_20260518T130406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-d005-launch-next_20260518T130406_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "b71707bd96aa00d0b39ce3040c1072467c2207583c194bd5b777c391c3b80998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "270 秒后回来检查 d005 是否完成。当前进度 89%，预计届时应接近或已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-d005-launch-next.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebf0e0c24cd3d1daff20",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix signals 3B bugs",
+  "task_key": "worker_code_fix_signals_3B_bugs_20260515T154509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_signals_3B_bugs_20260515T154509_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "b896d56703cdfe2e44a7eceed53b9b64e506c6ce9792f2c6bae9ac78d2b67beb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复确认完毕。总结：\n\n## 修复结果\n\n### 文件修改\n**`/root/contamcal-irt-calibration/exp002/compute_signals.py`，第 33 行**\n\n```diff\n- help=\"Reference model path for S2 Min-K%++ (auto-inferred if not set)\")\n+ help=\"Reference model path for S2 Min-K%%++ (auto-inferred if not set)\")\n```\n\n### Bug 1（argparse 参数名）\n`run_batch.py` 已经使用 `--signal`（单数），与 `compute_signals.py` 的 `--signal` 定义一致。**此 bug 在当前代码中已修复。**\n\n但 `--ref-model-path` 的 help 字符串中 `Min-K%++` 的 `%` 未转义，导致 argparse 将 `%++ (` 解析为格式化指令，`--help` 直接崩溃（`ValueError: unsupported format character '(' at index 37`）。此问题现已修复（`%` → `%%`）。\n\n### Bug 2（GPU 映射）\n**不存在。** `run_batch.py` 通过 `env[\"CUDA_VISIBLE_DEVICES\"]` 正确隔离 GPU，signals 模块全部使用 `\"cuda\"` / `model.device` / `device_map=\"auto\"`，在 `CUDA_VISIBLE_DEVICES` 限定后自动映射到 `cuda:0`。\n\n### 验证结果\n- `compute_signals.py --help` ：通过（rc=0）\n- `run_batch.py --help`：通过（rc=0）\n- `run_batch.py --model-size 3B --print-only`：9 个子命令全部使用 `--signal all`，参数传递正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-signals-3b-bugs-copy-2.md"
+}

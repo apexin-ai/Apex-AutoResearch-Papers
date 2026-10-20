@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "6aec4ad2ae831893eae9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gpu5 cleanup retry d005",
+  "task_key": "worker_diagnose_gpu5-cleanup-retry-d005_20260513T234557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu5-cleanup-retry-d005_20260513T234557_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "8b8175f122ba5371ea94d8eb83c5440910b000aac9d8e833ee715cb0410c4b3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\"gpu5_status\": \"clear\", \"pid_234755\": \"dead\", \"ready_for_retry\": true, \"gpu5_free_memory_gb\": 23.5}\n```\n\nPID 234755 已自行退出，GPU 5 当前 0 MiB 占用，24081 MiB（~23.5 GB）空闲，可直接重试 exp_001_sft_d005_05B。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gpu5_status": "clear",
+              "pid_234755": "dead",
+              "ready_for_retry": true,
+              "gpu5_free_memory_gb": 23.5
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu5-cleanup-retry-d005.md"
+}

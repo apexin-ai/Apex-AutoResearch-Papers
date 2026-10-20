@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c43eb3b3d8f8b5e892e0",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis qwen7b n3 bootstrap ci",
+  "task_key": "worker_analysis_qwen7b-n3-bootstrap-ci_20260521T001734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen7b-n3-bootstrap-ci_20260521T001734.log",
+    "occurrence": 1,
+    "bytes": 925732,
+    "sha256": "df54379a0b005d757996425fb0e4802286dd4503abd9eb54dad01070bcdee7ef"
+  },
+  "statistics": {
+    "messages": 115,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 38,
+      "tool_result": 38,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "c43eb3b3d8f8b5e892e0-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "c43eb3b3d8f8b5e892e0-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-qwen7b-n3-bootstrap-ci.md"
+}

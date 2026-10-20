@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "586d9a245be91c57a151",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phi4 eval and gemma plan",
+  "task_key": "worker_ssh_westd-phi4-eval-and-gemma-plan_20260519T083848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phi4-eval-and-gemma-plan_20260519T083848_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "4e086411ca82bcd6d56f862cbd05aa5a75aa897a86fb2854906ae1a9406b9885"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## Phi-4 Eval 结果（全部完成）\n\n| Condition | MMLU | ARC-Challenge |\n|-----------|------|---------------|\n| d000 (clean) | 77.47% (10879/14042) | 93.94% (1101/1172) |\n| d005 | 78.09% (10966/14042) | 93.94% (1101/1172) |\n| d025 | 78.39% (11007/14042) | 94.03% (1102/1172) |\n| d050 | 78.67% (11047/14042) | 93.69% (1098/1172) |\n\nd050 刚完成（16:09 CST），四个 dosage 全部 DONE with `.done` sentinel。\n\n## GPU 状态\n\n- **cuda:0**: phi-4_d100_s42 SFT 训练中（55.8GB/97.9GB）\n- **cuda:1/2/3**: 全部空闲（0MB）\n\ncuda:3 已释放，可以立即用于 Gemma eval。\n\n## Checkpoint 就绪情况\n\n- **Gemma-2-9B**: d000/d005/d025/d050 四个 adapter 全部就绪（`lora_adapter/` 子目录），base model OK\n- **OLMo-2-7B d050**: adapter 就绪（`lora_adapter/` 子目录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phi4-eval-and-gemma-plan.md"
+}

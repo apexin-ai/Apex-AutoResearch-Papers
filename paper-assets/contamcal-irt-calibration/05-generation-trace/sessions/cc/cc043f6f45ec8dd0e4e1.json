@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc043f6f45ec8dd0e4e1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 env prep",
+  "task_key": "worker_ops_falcon3-env-prep_20260522T035733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-env-prep_20260522T035733_result.json",
+    "occurrence": 1,
+    "bytes": 2491,
+    "sha256": "e8ac489e91481f7e821577c4e6be588471b4251ffe6e2626bf4e46d1fe38b6bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ModelScope 下载进行中，约 1-2MB/s，预计 1-2 小时完成。所有信息已收集完毕。\n\n---\n\n## 报告\n\n### 1. GPU 配置\n- **1 张 NVIDIA GeForce RTX 4090 D**，24564 MiB (24GB)\n- 当前空闲，无 GPU 进程\n\n### 2. 磁盘空间\n- `/root/autodl-tmp/`：总 169GB，已用 141GB，**剩余 29GB**\n- Falcon3-7B 权重 ~14GB + checkpoint ~2.5GB = ~16.5GB，剩余空间足够\n\n### 3. 模型下载\n- HF 下载超时（xethub 代理不稳定），已切换 **ModelScope**\n- PID 646342 正在下载，速度 ~1-2MB/s，预计 1-2 小时\n- 下载路径：`/root/autodl-tmp/.hf_cache/tiiuae/Falcon3-7B-Base/`\n\n### 4. Falcon3-7B-Base 架构参数\n\n| 参数 | 值 |\n|------|-----|\n| Architecture | **LlamaForCausalLM** (model_type=llama) |\n| Hidden size | 3072 |\n| Num layers | 28 |\n| Num attention heads | 12 |\n| Num KV heads | 4 (GQA) |\n| Head dim | 256 |\n| Intermediate size | 23040 |\n| Vocab size | 131072 |\n| Max position embeddings | 32768 |\n| torch_dtype | bfloat16 |\n\n### 5. LoRA target modules\nFalcon3 使用 LlamaForCausalLM 架构，线性层名称与 Qwen 系列相同：\n- `q_proj`, `k_proj`, `v_proj`, `o_proj`, `gate_proj`, `up_proj`, `down_proj`\n- **与 `train_sft.py` 的 DEFAULT_LORA_CONFIG 完全兼容**，无需 `--lora-targets` 覆盖\n\n### 6. 代码适配问题\n\n**有一个必须修复的问题：chat_template**\n\n`train_sft.py` 第 ~143 行：\n```python\nif tokenizer.chat_template is None:\n    if \"llama\" in args.model_name.lower():\n        tokenizer.chat_template = LLAMA3_CHAT_TEMPLATE\n    else:\n        raise ValueError(...)\n```\n\nFalcon3-7B-Base 的 tokenizer **没有 chat_template**，且模型名 `tiiuae/Falcon3-7B-Base` 不含 \"llama\"，会触发 ValueError。\n\n**解决方案**（任选一）：\n- **A**: 修改条件为 `if \"llama\" in args.model_name.lower() or \"falcon3\" in args.model_name.lower():`，因为 Falcon3 底层就是 Llama 架构，Llama3 chat template 可用\n- **B**: 改为检查 `config.model_type == \"llama\"` 而非模型名字符串匹配（更通用）\n\n**其他兼容点（无问题）**：\n- `pad_token`：脚本已处理 `pad_token = eos_token` ✅\n- `trust_remote_code=True`：已设置 ✅\n- QLoRA / gradient checkpointing：7B bf16 (~14GB) + LoRA 在 24GB 4090 上偏紧，建议使用 `--gradient-checkpointing`；如仍 OOM 可加 `--load-in-4bit` ✅\n- `--batch-size 2 --grad-accum 8`（相比默认 bs=4）可进一步降低显存 ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-env-prep.md"
+}

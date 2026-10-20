@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75dcadb7c3894fdd4a4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp004 sweep restart",
+  "task_key": "worker_fix_exp004_sweep_restart_20260514T032129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp004_sweep_restart_20260514T032129_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "cf8ec113eb302ad18777f007f43dae4048aff62679d425cbe6a780825e5f3696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep is running. It correctly skipped the 2 completed conditions and resumed `auc0.55_n100` at seed 6 (4 remaining).\n\n**Summary:**\n\n| Item | Value |\n|------|-------|\n| **New PID** | 340553 |\n| **Timeout added** | 7200s (2h) per fit, via CmdStanPy native `timeout` param |\n| **Completed** | 27/120 seeds (3 conditions fully done) |\n| **Remaining** | 93 seeds across 10 conditions |\n| **Checkpoint integrity** | Clean — seed 6 had no partial entry |\n| **Log** | `/tmp/exp004_sweep.log` |\n\n**Estimated remaining time:** Completed seeds averaged ~1600s each. With 93 remaining and 4-chain parallelism (CPU-bound), expect ~40-60 hours. The `n100` conditions run ~3400s/seed; `n20` ~320s/seed; `n50` ~1000-1300s/seed. The stuck seed was an outlier — the 2h timeout will prevent that from recurring."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp004-sweep-restart.md"
+}

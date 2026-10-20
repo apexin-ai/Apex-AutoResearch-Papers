@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7ca67841db3078ada7d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 05B d000 s42",
+  "task_key": "worker_diagnose_exp_001_eval_05B_d000_s42_20260514T013129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_05B_d000_s42_20260514T013129_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "79b2e0301c570f4e047ccd692817e6cf2c147a65879d1c422d006ee2848fea99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断与重跑完成。\n\n**根因**：输出目录 `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42` 在 eval 运行 2.5 小时期间被并发进程删除。四个 benchmark 全部计算完成（mmlu=0.4049, gsm8k=0.3647, arc=0.3780, humaneval=0.1098），但写 `eval_results.json` 时目录已不存在。\n\n**已执行**：\n- Registry `failure_reason` 已更新\n- 清理并重建输出目录\n- 在 cuda:2 上以 nohup 重新提交，PID=257029，日志：`exp_001_eval_05B_d000_s42_retry.log`\n- Registry 状态已更新为 RUNNING\n\n数据集已在 HF cache 中，这次不会有 HF 连接超时问题，预计 ~30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-05b-d000-s42.md"
+}

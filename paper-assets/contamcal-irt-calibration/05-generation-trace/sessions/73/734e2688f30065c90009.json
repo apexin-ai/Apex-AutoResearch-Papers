@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "734e2688f30065c90009",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd prepare phase2 reeval",
+  "task_key": "worker_ssh_westd-prepare-phase2-reeval_20260519T102856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-prepare-phase2-reeval_20260519T102856_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "29f5fc76d6e7682926c1f8ae94c0b082bf42b23199dec49b40b2fb573bcdf001"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n### evaluate.py 修复确认\n`mc_suffix` (\"The answer is \") 在 chat template 模式下已移至 model turn（`format_as_chat()` 之后），`evaluate_mcq` 和 `evaluate_paraphrased` 两处均已修复。\n\n### Checkpoint 路径确认\n25 个 adapter 全部在 `lora_adapter/` 子目录下，**除了 phi-4_d100_s42 — adapter 为空**（训练可能仍在进行中）。脚本中已加了 `adapter_config.json` 存在性检查，缺失时会 SKIP 并继续。\n\n### 脚本已就绪\n\n| 脚本 | GPU | 模型 | 数量 |\n|------|-----|------|------|\n| `phase2_eval_gpu0.sh` | cuda:0 | Phi-4 d000-d100 | 5 (d100 可能 skip) |\n| `phase2_eval_gpu1.sh` | cuda:1 | Qwen2.5-14B d000-d100 | 5 |\n| `phase2_eval_gpu2.sh` | cuda:2 | Qwen2.5-7B d000-d100 + Gemma-2 d000 | 6 |\n| `phase2_eval_gpu3.sh` | cuda:3 | Gemma-2 d005-d100 + OLMo-2 d000-d100 | 9 |\n| `phase2_sanity_check.sh` | cuda:0 | Gemma-2 d005 ARC only | 1 |\n\n注意 gpu0/gpu1 的 `run_eval` 只接 3 个参数（model 固定为脚本顶部变量），gpu2/gpu3 接 4 个参数（因为要切换 base model）。所有脚本均设置了 `CUDA_VISIBLE_DEVICES=$GPU_ID`，输出到 `eval_results_v2/{family}_{dosage}/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-prepare-phase2-reeval.md"
+}

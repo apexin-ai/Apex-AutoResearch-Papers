@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8563c303633b90f28bd2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 sft progress check",
+  "task_key": "worker_ops_llama3-sft-progress-check_20260521T110649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-sft-progress-check_20260521T110649_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "d9d077272818ba57bf61aaf107b50bb356b359344b56b2ec8345fd0f51ac6288"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nd000: 1588/3125 (51%), ETA ~1h11m remaining\nd025: 1449/3384 (43%), ETA ~1h21m remaining\nd100: 1247/4159 (30%), ETA ~2h03m remaining\n.done: none (LLaMA runs)\nmonitors: 512753/512754/512755 all alive\nGPUs:\n  0: 87% util, 50981/97887 MiB (d025, PID 509578)\n  1: 96% util, 44479/97887 MiB (d000, PID 508651)\n  2: idle\n  3: 97% util, 37911/97887 MiB (d100, PID 510203)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-sft-progress-check.md"
+}

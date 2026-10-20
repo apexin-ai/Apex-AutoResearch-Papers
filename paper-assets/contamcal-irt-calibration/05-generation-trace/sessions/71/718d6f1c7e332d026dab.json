@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "718d6f1c7e332d026dab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 15B d000 s123",
+  "task_key": "worker_eval_exp_001_eval_15B_d000_s123_20260513T232557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_15B_d000_s123_20260513T232557_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "b2884cbfc2e9a1c6ae90cf0a365d3e64077b2926db843421a601557bd429f9ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **任务已提交**：`exp_001_eval_15B_d000_s123`，PID 233566，tmux session 运行中\n- **Registry 已更新**：状态 RUNNING，spec 含 model/seed/parent/checkpoint_source/eval_data 等元数据\n- **日志**：`~/runs/contamcal-irt-calibration/exp_001_eval_15B_d000_s123.log`\n- **评测 benchmarks**：mmlu, gsm8k, arc_challenge, humaneval\n- **输出目录**：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s123`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-15b-d000-s123.md"
+}

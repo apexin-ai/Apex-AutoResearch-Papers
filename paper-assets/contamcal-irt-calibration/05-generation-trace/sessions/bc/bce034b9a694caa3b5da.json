@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bce034b9a694caa3b5da",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix bootstrap qwen7b path",
+  "task_key": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap-qwen7b-path_20260520T141201_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "fa12d29f5a6411a67f9e83afe4012bbc9d80d5e515c2c56c364a09a6a84b53db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改内容**:\n1. 在 westd 的 `results/eval_results_v2/` 创建了 Qwen-7B s123 的 5 个 dosage 的 `mmlu_results.json`（从 cqa1 数据）\n2. `bootstrap_triple_seed.py` 新增 `load_eval_results_v2()` 函数，支持 `eval_results_v2/{family}_{dosage}_s{seed}/` flat 目录格式\n3. `discover_data()` 现在按 CSV → mmlu_eval JSON → eval_results_v2 优先级合并数据\n\n**Bootstrap 结果**:\n\n| Family | n_seeds | Baseline | Δ(d100) | 95% CI | Pattern | ρ̄ |\n|--------|---------|----------|---------|--------|---------|-----|\n| Phi-4 | 1 | 76.44% | -0.17pp | [-0.17, -0.17] | Immune | --- |\n| Qwen2.5-14B | 2* | 69.05% | -9.37pp | [-9.37, -9.37] | U-collapse† | --- |\n| **Qwen2.5-7B** | **2** | 66.35% | -0.89pp | [-1.78, -0.89] | V-recovery† | 0.40 |\n| Gemma-2-9B | 2 | 63.85% | +2.62pp | [+1.49, +2.62] | Benefit-sat† | 0.30 |\n| OLMo-2-7B | 3 | 54.93% | +1.35pp | [-0.55, +2.60] | Benefit-sat† | 0.03 |\n\n*Qwen2.5-14B s123 只有 d000-d005，所以 Δ(d100) 仍基于 n=1\n\n**Qwen-7B pattern 不一致**：s42=V-recovery, s123=Immune（s123 的 d000=66.59%, d100=66.59% 几乎一样）。rho=0.40 表示两个 seed 的 dose-response 曲线有弱正相关。\n\n†Pattern inconsistent across seeds"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-qwen7b-path.md"
+}

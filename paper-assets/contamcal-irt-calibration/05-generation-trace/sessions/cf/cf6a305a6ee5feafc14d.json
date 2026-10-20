@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6a305a6ee5feafc14d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose orphaned running",
+  "task_key": "worker_ops_diagnose-orphaned-running_20260515T142310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-orphaned-running_20260515T142310_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "3701bdc3498821fc840aa492cb6a750093e4d577d56ede16b21430560ea2d32a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总：\n\n---\n\n## 任务 1：exp_001_eval_3B_d000_s42_v3 (PID 513826)\n\n- **PID 状态**: Dead\n- **完成状态**: **Success** — 4/4 benchmarks 完成\n- **Metrics** (Qwen2.5-3B, d000, s42, v3, base pretrained):\n\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| MMLU | accuracy | 0.6340 (8902/14042) |\n| GSM8K | accuracy | 0.1198 |\n| ARC-Challenge | accuracy | 0.8276 |\n| HumanEval | pass@1 | 0.1159 (19/164) |\n\n## 任务 2：exp_008_base_pretrained_15B_eval_v2 (PID 530975)\n\n- **PID 状态**: Dead\n- **完成状态**: **Success** — 4/4 benchmarks 完成\n- **Metrics** (Qwen2.5-1.5B, base pretrained):\n\n| Benchmark | Metric | Score |\n|-----------|--------|-------|\n| MMLU | accuracy | 0.2303 (3234/14042) |\n| GSM8K | accuracy | 0.0053 |\n| ARC-Challenge | accuracy | 0.2304 |\n| HumanEval | pass@1 | 0.2317 (38/164) |\n\n> **注意**: 1.5B base 的 MMLU=0.23 接近随机（0.25），GSM8K=0.005 几乎为零，符合未对齐 base model 的预期表现。\n\n## 任务 3：stratified IRT (PID 569344)\n\n- **PID 状态**: **Alive** — 运行 ~21 分钟\n- **当前进度**: Scheme B (by Model Size)\n  - `scale_0.5B/gsm8k` — 完成，gamma=-1.2718 [-2.45, 0.02], rhat=1.009\n  - `scale_0.5B/humaneval` — 完成，gamma=-2.3492 [-3.55, -1.25], rhat=1.009\n  - `scale_1.5B/mmlu` — **正在拟合**，6 models × 2000 items, chain 2 warmup ~40%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-orphaned-running.md"
+}

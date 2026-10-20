@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cb1d0dcbb1ac0f905e0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit a32 alpha stop loss",
+  "task_key": "worker_audit_a32_alpha_stop_loss_20260515T204048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_a32_alpha_stop_loss_20260515T204048_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "db74892a6643839813855c71c32be98479588dde4bb43b233fc1adbdbcaf3e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果：**Bug 不存在，alpha=32 正确传入**\n\n### 代码验证\n\n`train_sft.py` 第 137 行正确传递了 `args.lora_alpha` 给 `LoraConfig`：\n```python\nlora_config = LoraConfig(\n    r=args.lora_r,\n    lora_alpha=args.lora_alpha,   # ← 正确连接\n    ...\n)\n```\n\n### 所有 a32 训练日志确认 alpha=32\n\n| 日志文件 | 实际 alpha | 状态 |\n|---------|-----------|------|\n| exp_001_sft_3B_d100_s123_a32_v2.log (PID 594494, GPU 0) | **32** | RUNNING |\n| exp_001_sft_3B_d100_s42_a32_v3.log (PID 628668, GPU 1) | **32** | RUNNING |\n| exp_001_sft_3B_d000_s42_a32.log (PID 633041, GPU 5) | **32** | RUNNING |\n| exp_001_sft_3B_d100_s42_a32.log | **32** | 已完成/失败 |\n| exp_001_sft_3B_d100_s42_a32_v2.log | **32** | 已完成/失败 |\n| exp_001_sft_3B_d025_s42_a32.log | **32** | 已完成/失败 |\n\n已保存的 checkpoint `Qwen2.5-3B_d025_v3_s42/lora_adapter/adapter_config.json` 也确认 `lora_alpha: 32`, `r: 16`。\n\n### 结论\n\n**不需要 kill 任何进程。** 所有 _a32_ 实验的 `--lora-alpha 32` 被正确传递到 LoraConfig，训练结果有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-a32-alpha-stop-loss.md"
+}

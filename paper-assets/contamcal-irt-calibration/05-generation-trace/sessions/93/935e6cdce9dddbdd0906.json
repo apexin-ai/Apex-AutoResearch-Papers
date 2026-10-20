@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "935e6cdce9dddbdd0906",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops phase a launch",
+  "task_key": "worker_ops_phase-a-launch_20260518T114058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_phase-a-launch_20260518T114058_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "5dfb8a243fb15dd236793a39af94c1d86239da22d4b44430a242cf1c41917ffb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常。\n\n## Phase A 启动结果汇总\n\n| GPU | 任务 | PID | VRAM | 状态 |\n|-----|------|-----|------|------|\n| cuda:0 | 7B d005 s42 训练 | 23304 | 69,429 MiB | 运行中，96% util |\n| cuda:1 | 7B d000 s42 GSM8K eval | 24377 | 17,711 MiB | 运行中，正在评估 |\n| cuda:2 | (空闲) | - | 0 MiB | 14B 未就绪 (incomplete=1, safetensors=7) |\n| cuda:3 | (未知进程) | - | 0 MiB | 100% util 但 0 VRAM，异常 |\n\n**问题记录：**\n- GSM8K eval 首次启动因 httpx client closed 崩溃，二次因 `HF_HUB_OFFLINE=1` 阻断数据集下载崩溃，第三次成功\n- 14B 模型仍有 1 个 incomplete 文件，未启动 14B 训练\n- cuda:3 显示 100% utilization 但 0 VRAM，可能是残留进程或驱动异常，需关注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-phase-a-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb3fa7c65fd209c826a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "read exposure scores structure",
+  "task_key": "worker_read_exposure_scores_structure_20260516T152304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_exposure_scores_structure_20260516T152304_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "fe915ab195f232d0c32501e3ec20d4a4246e10dc8898fa0f01f71afa362faa8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n## 1. exposure_scores.json 结构\n\n**路径**: `/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json`\n\n**结构**: `{model_name: {benchmark: {exposure_scores: [float, ...]}}}`\n\n**Per-benchmark respondent count:**\n\n| Benchmark | N (respondents) |\n|-----------|----------------|\n| mmlu | 25 |\n| gsm8k | 24 |\n| arc_challenge | 24 |\n\nQwen2.5-0.5B-Instruct 只有 mmlu（缺 gsm8k、arc_challenge）。\n\n## 2. 完整 model 列表（exposure_scores.json 中 25 个）\n\n**0.5B (9):** Instruct, d000_s123, d000_s42, d005_s123, d005_s42, d025_s123, d025_s42, d100_s123, d100_s42  \n**1.5B (8):** d000_s123, d000_s42, d005_s123, d005_s42, d025_s123, d025_s42, d100_s123, d100_s42  \n**3B (8):** d000_a32_s42, d000_s123_a32, d005_a32_s42, d005_s123, d025_s123, d025_v3_s42, d100_a32_s123, d100_a32_s42\n\n## 3. Signals 目录覆盖情况\n\n所有有效（非 deprecated）model dirs 都有 mmlu/gsm8k/arc_challenge 三套 signals_merged，**除了**：\n\n| Model dir | 有的 signals | 缺的 |\n|-----------|-------------|------|\n| Qwen2.5-0.5B-Instruct | (空) | mmlu, gsm8k, arc |\n| Qwen2.5-3B_d000_s123_a32 | arc, gsm8k | mmlu |\n| Qwen2.5-3B_d025_s42 | mmlu | gsm8k, arc |\n\nDeprecated/不在 exposure 中的 dirs：`3B_d000_v2_s42`, `3B_d005_s42`, `3B_d025_s42_DEPRECATED_alpha16`, `3B_d100_s42`（均为 alpha=16 废弃）\n\n## 4. N 偏低的原因\n\nN 已经很高了（24-25）。唯一缺口是 Qwen2.5-0.5B-Instruct 缺 gsm8k/arc signals（导致这两个 benchmark N=24 而非 25）。Instruct 模型可能未跑过这两个 benchmark 的信号计算。\n\n注意：Qwen2.5-3B_d000_s123_a32 在 signals 目录中缺 mmlu merged file，但 exposure_scores.json 中已包含其 mmlu 数据——说明 exposure 计算时 mmlu signal 存在，之后文件可能被移动/删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-exposure-scores-structure.md"
+}

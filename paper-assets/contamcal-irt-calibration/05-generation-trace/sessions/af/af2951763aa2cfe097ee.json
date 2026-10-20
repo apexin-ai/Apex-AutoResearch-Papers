@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af2951763aa2cfe097ee",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh fix westd eval datasets",
+  "task_key": "worker_ssh_fix-westd-eval-datasets_20260518T222630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-westd-eval-datasets_20260518T222630_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "09a86abab576c539100dd1a54584b8682e09ac0c6f71a28f9b57e42cc0907ce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复成功。\n\n**结果**：\n- cuda:2 已占用 17.7GB（模型正在加载/推理中）\n- eval_batch1 tmux session 运行正常，所有 57 个 MMLU subtask + ARC-Challenge 数据离线加载成功\n- 第一个 adapter `Qwen2.5-7B_d000_s42` 正在评测\n\n**修复内容**：\n1. 从 `all/` parquet 拆分出 57 个 per-subject 目录到 MMLU snapshot 路径\n2. 修改所有 lm_eval MMLU task YAML 的 `dataset_path` 从 `cais/mmlu` → 本地 snapshot 路径\n3. 修改 ARC task YAML 的 `dataset_path` 从 `allenai/ai2_arc` → 本地 snapshot 路径\n4. eval 脚本中添加 `HF_HUB_OFFLINE=1`、`HF_DATASETS_OFFLINE=1`、`TRANSFORMERS_OFFLINE=1`\n5. batch2 脚本也同步修复（等 cuda:0 空闲时可用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-westd-eval-datasets.md"
+}

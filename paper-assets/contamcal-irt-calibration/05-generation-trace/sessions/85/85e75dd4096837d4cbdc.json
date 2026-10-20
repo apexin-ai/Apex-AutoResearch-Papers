@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "id": "85e75dd4096837d4cbdc",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code fix 2pl joint fit remaining",
+  "task_key": "worker_code_fix-2pl-joint-fit-remaining_20260515T075022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-2pl-joint-fit-remaining_20260515T075022.log",
+    "occurrence": 1,
+    "bytes": 3169285,
+    "sha256": "38358fe90710ebaef46d60060394bdcd8d234dd85e6405f8ae778a5175daf90a"
+  },
+  "statistics": {
+    "messages": 2139,
+    "user_turns": 2,
+    "tool_calls": 983,
+    "roles": {
+      "log": 1,
+      "system": 38,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 983,
+      "tool_result": 983,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 999,
+      "chunks": [
+        {
+          "path": "85e75dd4096837d4cbdc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0006.json",
+          "message_count": 99
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 483,
+      "chunks": [
+        {
+          "path": "85e75dd4096837d4cbdc-part-0006.json",
+          "message_count": 81
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0009.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 657,
+      "chunks": [
+        {
+          "path": "85e75dd4096837d4cbdc-part-0009.json",
+          "message_count": 138
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "85e75dd4096837d4cbdc-part-0012.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-2pl-joint-fit-remaining.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6070aa4132dc25192bb6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B eval log check",
+  "task_key": "worker_ops_3B-eval-log-check_20260515T141518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-eval-log-check_20260515T141518_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "45ccdcf2141507624cfcff73c8bd7ca34bd3d36a5d4ab549c37dd14559365ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度报告\n\n### exp_001_eval_3B_d000_s123_aligned (cuda:3, PID 551219)\n| Benchmark | 状态 | 结果 |\n|-----------|------|------|\n| MMLU | done | 0.6332 (8892/14042) |\n| GSM8K | done | 0.1812 (239/1319) |\n| ARC_Challenge | done | 0.8328 (976/1172) |\n| HumanEval | **running** | 55% (90/164), ~9min 剩余 |\n\n### exp_001_eval_3B_d005_s42_aligned (cuda:5, PID 551290)\n| Benchmark | 状态 | 结果 |\n|-----------|------|------|\n| MMLU | done | 0.6345 (8909/14042) |\n| GSM8K | done | 0.2077 (274/1319) |\n| ARC_Challenge | done | 0.8294 (972/1172) |\n| HumanEval | **running** | 26% (43/164), ~15min 剩余 |\n\n两个实验都在最后一个 benchmark (HumanEval)，预计 **~15 分钟内全部完成**。\n\n注意：这两个实验没有 tmux session（可能是 nohup 启动的），日志在 `/tmp/` 下。log_path 已补录到 registry 顶层字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-eval-log-check.md"
+}

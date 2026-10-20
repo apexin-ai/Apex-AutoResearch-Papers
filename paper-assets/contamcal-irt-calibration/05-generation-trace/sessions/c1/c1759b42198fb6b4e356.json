@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1759b42198fb6b4e356",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp poll v2",
+  "task_key": "worker_diag_r3w10-dgp-poll-v2_20260520T215734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-poll-v2_20260520T215734_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "bcaef4255b360fe30723d3f169830d0c7c8a13805bbb388e76cc081993512427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DGP 模拟正在运行：26/400，已运行 2 分 13 秒，预计还需约 30 分钟。4.5 分钟后再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-poll-v2.md"
+}

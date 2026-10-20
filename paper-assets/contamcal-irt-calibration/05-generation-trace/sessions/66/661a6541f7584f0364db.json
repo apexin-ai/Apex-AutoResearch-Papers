@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "661a6541f7584f0364db",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu tau from theta",
+  "task_key": "worker_ops_mmlu_tau_from_theta_20260517T105737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu_tau_from_theta_20260517T105737_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "ad1d867fc8454cb4aeef4bc4fcba30a3fc5135e3e5dbccaf940920ad2a12fd8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All computations done. Here's the summary:\n\n## MMLU τ 结果\n\n- **加权平均 θ → τ = 0.6377 (p=0.0061)**\n- **简单平均 θ → τ = 0.6377 (p=0.0061)**\n- **Pooled θ → τ = 0.6377 (p=0.0061)**\n- Raw accuracy → τ = 0.6377 (p=0.0061)\n\n三种方法（加权/简单/pooled）以及 raw accuracy 给出完全相同的 τ。原因：ground truth 实际只有 2 个有效水平（1.5B d000 mean = 0.5854, 3B d000 mean = 0.6310），within-scale 几乎没有 GT 变异。任何正确区分 1.5B/3B 的方法都会产生相同排序。\n\nGround truth 来源：\n- 1.5B d000: `Qwen2.5-1.5B_d000_s42_aligned` (0.5853), `Qwen2.5-1.5B_d000_s123_aligned` (0.5855)\n- 3B d000 (IRT 集外参考): `Qwen2.5-3B_d000_s42_a32_aligned` (0.6307), `Qwen2.5-3B_d000_v2_s123_aligned` (0.6314)\n- 13 模型中 3B 没有 d000，故用上述 2 个 3B d000 的均值作 counterfactual\n\n## ARC V2PL τ 检查\n\n- **原脚本是否包含 0.5B: 是**（`compute_vanilla_2pl_tau.py` 使用 `scales=['0.5B', '1.5B', '3B']`）\n- 原始 τ（含 0.5B, N=27, I=1172 全量 items）: **0.5591**\n- 排除 0.5B 后（N=16, I=300 subsampled items）: **τ = 0.5966**\n- 差异: +0.0375\n\n注意：N=16 版本使用了 300 subsampled items（vs 原始 1172），所以不完全可比。如需严格对比，需要用 N=16 + 全量 1172 items 重跑 Stan。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-tau-from-theta.md"
+}

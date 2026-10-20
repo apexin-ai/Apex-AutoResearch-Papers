@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a7a42ea00cfa8d5fbb0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix argparse and submit 3B sft",
+  "task_key": "worker_code_fix_argparse_and_submit_3B_sft_20260515T161148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_argparse_and_submit_3B_sft_20260515T161148_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "b57b09c8b94a747bec74135bd3bbc5d07b4024ae9cf1786bd281c855f1715ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**Step 1 修复**：train_sft.py 添加了缺失的 `--gpu` argparse 参数。`--lora-alpha` 传递链路本身无 bug（`args.lora_alpha` → `LoraConfig(lora_alpha=...)` 正确传递）。\n\n**Step 2 验证**：`--help` 和 argparse 解析测试均通过，`lora_alpha=32` 正确。\n\n**Step 3 实验提交**：\n- **实验 1** `exp_001_sft_3B_d100_s42_a32` — cuda:4 正常训练中，`alpha=32` 已确认，4159 steps\n- **实验 2** `exp_001_sft_3B_d025_s42_a32` — **提交失败（OOM）**。原因：cuda:5 已被 `exp001_d025_3B_v3`（PID 589763）占用 17.6GB。当前 6 块 GPU 全满，无法提交。\n\n需要等 GPU 5 释放或指定其他 GPU 后重新提交实验 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-argparse-and-submit-3b-sft.md"
+}

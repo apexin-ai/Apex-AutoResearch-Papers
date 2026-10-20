@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4687f6712feeb08fe1d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd quick status check",
+  "task_key": "worker_ops_westd-quick-status-check_20260518T083431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-quick-status-check_20260518T083431_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "a84a983340da8abb11f80fb7df0181a6d5b3ceab33fbeda6b1d7a0bf02c88bcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载状态（2026-05-18 16:34 CST）：\n\n| 模型 | 大小 | incomplete 文件 | safetensors | 状态 |\n|------|------|----------------|-------------|------|\n| **Qwen2.5-7B** | 11G | **2** | 2 | 下载中 |\n| Qwen2.5-14B | 15G | 6 | 2 | 下载中 |\n| gemma-2-9b | 8.0G | 8 | 0 | 下载中 |\n| phi-4 | 1.2G | 6 | 0 | 下载中 |\n| OLMo-2-1124-7B | 13G | 6 | 0 | 下载中 |\n\n**Qwen2.5-7B 尚未完成**，还有 2 个 incomplete 文件。\n\n5 个模型全部在活跃下载中：\n- Qwen2.5-7B / Qwen2.5-14B 由 `download_all.sh` 脚本驱动\n- gemma-2-9b / phi-4 / OLMo-2-1124-7B 各有独立 screen 会话（`dl_gemma`, `dl_phi4`, `dl_olmo2`）\n\n磁盘剩余：**203G**。GPU 全部空闲（0 MiB used），GPU 3 utilization 显示 100% 但无显存占用，可能是残留状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-quick-status-check.md"
+}

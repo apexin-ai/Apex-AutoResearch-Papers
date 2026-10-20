@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4f50df7393a2e94d63",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "prep para aligned eval 3B s42",
+  "task_key": "worker_prep_para_aligned_eval_3B_s42_20260516T051734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_para_aligned_eval_3B_s42_20260516T051734_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "44c6aea874c135ab9cac924a7adb7c6a95a944901bd49b59cc39632ebbd14b5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本内容和参数格式全部正确。\n\n## 报告\n\n| Dose | Checkpoint 路径 | lora_alpha | 状态 |\n|------|----------------|-----------|------|\n| d000 | `Qwen2.5-3B_d000_a32_s42/lora_adapter` (symlink → d000_s42) | 32 | OK |\n| d005 | `Qwen2.5-3B_d005_s42/lora_adapter` | 32 | OK |\n| d100 | `Qwen2.5-3B_d100_a32_s42_v3/lora_adapter` | 32 | OK |\n\n- **Paraphrase 数据**：4 个 benchmark JSON 全部就位（mmlu/gsm8k/arc_challenge/humaneval）\n- **Symlink**：`d000_a32_s42 → d000_s42` 已存在，无需操作\n- **命令验证**：`evaluate.py --help` 确认所有参数（`--paraphrase-dir`, `--mc-format aligned`, `--adapter-path`）格式正确\n- **脚本位置**：`/root/contamcal-irt-calibration/exp001/run_3B_s42_para_aligned.sh`\n\n**使用方式**（提交时注意 C001/C002/C004）：\n```bash\n# 在 tmux 中运行，GPU 号根据实际空闲情况填写\nbash run_3B_s42_para_aligned.sh d000 <GPU_ID>\nbash run_3B_s42_para_aligned.sh d005 <GPU_ID>\nbash run_3B_s42_para_aligned.sh d100 <GPU_ID>\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-para-aligned-eval-3b-s42.md"
+}

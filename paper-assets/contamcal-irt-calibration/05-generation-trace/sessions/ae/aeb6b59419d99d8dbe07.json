@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeb6b59419d99d8dbe07",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status collect results",
+  "task_key": "worker_ops_gpu-status-collect-results_20260521T060921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-collect-results_20260521T060921_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "66655671504d7d84a2f94c286622083baa85aba5eb36fa0a56941b5450a177ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部收齐。\n\n```\n=== GPU 状态 ===\nwestd cuda:0: IDLE (0 MiB)\nwestd cuda:1: RUNNING — eval_qwen14b_d100_s0_gsm8k (PID 481792, 运行 5h53m, 进度 37/660 ≈ 5.6%, ETA ~1h35m)\nwestd cuda:2: IDLE (0 MiB)\nwestd cuda:3: IDLE (0 MiB)\ncqa1  cuda:0: IDLE (0 MiB)\n\n=== 已完成 eval 结果 ===\nQwen2.5-14B d050 s0 ARC:  86.35% (1012/1172) ✓ 新结果\nQwen2.5-14B d050 s0 MMLU: 55.33% (7770/14042) ✓ 新结果\nQwen2.5-14B d100 s0 ARC:  81.06% (950/1172)  ✓ 新结果\nQwen2.5-14B d100 s0 MMLU: 43.85% (6157/14042) ✓ 新结果\nQwen2.5-14B d100 s0 GSM8K: 仍在运行 (37/660, ~5.6%)\n\nQwen2.5-7B s0 GSM8K 全部完成 (cqa1):\n  d000: 73.31%\n  d005: 78.32%\n  d025: 78.24%\n  d050: 79.38%\n  d100: 81.20%\n\n=== 空闲 GPU ===\nwestd cuda:0 — 空闲\nwestd cuda:2 — 空闲\nwestd cuda:3 — 空闲\ncqa1  cuda:0 — 空闲\n```\n\n**4 个 GPU 空闲。** westd 仅 cuda:1 在跑 d100 GSM8K（14B 模型 batch_size=2，~9.4s/it，预计还需 ~1.5h）。cqa1 的 Qwen-7B GSM8K 全 5 个 dosage 已完成，进程已退出。\n\n注意：westd 尚缺 `qwen14b_d050_s0_gsm8k` 结果（gsm8k_eval 目录下有 d000/d005/d025/d100 但没有 d050）。d100 完成后可考虑提交 d050 GSM8K。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-collect-results.md"
+}

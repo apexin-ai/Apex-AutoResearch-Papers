@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e663a6cb749ff1412e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run mmlu domain gamma",
+  "task_key": "worker_run_mmlu_domain_gamma_20260516T075234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_mmlu_domain_gamma_20260516T075234_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "dac33e01ef993da6b351378f769c824cb3388cd03d68269ef22ca2c1fb388bf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Stan NUTS 采样已启动，第一个 domain (STEM_Math, 478 items) 正在 warmup。\n\n完成情况：\n- 修复了 `load_1_5b_mmlu_data` 中 item alignment bug（para 模型 6596 items 是非连续子集，旧代码用 `min(lengths)` 截断导致跨模型 item 错位）\n- 新实现用 index intersection 对齐，domain_indices 正确映射到 response matrix 列位置\n- 任务已重新提交：16 models × 6596 common items → 8 domains，预计 ~35 min\n- Registry 状态 RUNNING，PID 731055，tmux session `exp_006_mmlu_domain_gamma`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-mmlu-domain-gamma.md"
+}

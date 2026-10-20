@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd9685f1e592ab2f776",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis 15B para aligned batch and simsweep",
+  "task_key": "worker_analysis_15B_para_aligned_batch_and_simsweep_20260515T230421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_15B_para_aligned_batch_and_simsweep_20260515T230421_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "ec6daab3ed0b8ea0b7dcc378e11f0530880afc62132bd90cd851380c881eec68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部更新为 DONE+success。汇总：\n\n---\n\n## 任务 1: exp_001_eval_15B_s123_para_aligned_batch → DONE\n\n**1.5B s123 para_aligned eval 结果：**\n\n| Dosage | MMLU | GSM8K | ARC | HumanEval |\n|--------|------|-------|-----|-----------|\n| d000 | 0.6111 | 0.5921 | 0.7547 | 0.1538 |\n| d005 | 0.6140 | 0.5439 | 0.7475 | 0.0769 |\n| d025 | 0.6145 | 0.5482 | 0.7504 | 0.1923 |\n| d100 | 0.6290 | 0.5307 | 0.7834 | 0.2308 |\n\n注：para_aligned 版本 GSM8K 仅 228 items，HumanEval 仅 26 items（释义子集）。MMLU 6596 items。d100 在 MMLU 和 ARC 上有明显提升（contamination effect），GSM8K 反而下降。\n\n## 任务 2: exp_004_sim_sweep_v7 → DONE\n\nRegistry 原本没有 `exp_004_sim_sweep_v7`（只有 `exp_004_sim_sweep_extreme_gamma`），两个都已完成：\n\n- **主 sweep (v7)**: 16 conditions (AUC={0.55,0.65,0.8,0.9} × N={8,20,50,100}), gamma_true=0.5, 160 runs。CI95 coverage 80-100%（均值 94%），gamma bias 极小（<0.025）。\n- **Extreme gamma sweep**: 8 conditions (gamma={2.0,4.0} × AUC={0.7,0.9} × N={20,50}), 80 runs, 11.1h。gamma=2.0 完美恢复（CI95=100%），gamma=4.0 轻微负偏（-0.10 to -0.23），CI95=90-100%。结论：经验数据中的 coverage collapse 是 model misspecification，不是极端参数值导致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-15b-para-aligned-batch-and-simsweep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de410b1c898923ef96ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval analyzing batch",
+  "task_key": "worker_analysis_eval-analyzing-batch_20260515T230306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-analyzing-batch_20260515T230306_result.json",
+    "occurrence": 1,
+    "bytes": 2020,
+    "sha256": "c86e3a70f69f1ed4ba25a0ca1a8d2c854a4f687da745157a02895418d6030a3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验 registry 已更新为 DONE(success) + metrics。\n\n---\n\n## 汇总报告\n\n### 1. 实验 1: 1.5B Qwen2.5 s123 para_aligned eval batch\n\n| Dosage | MMLU | GSM8K | ARC-Challenge | HumanEval |\n|--------|------|-------|---------------|-----------|\n| d000 | 0.6111 | 0.5921 | 0.7547 | 0.1538 |\n| d005 | 0.6140 | 0.5439 | 0.7475 | 0.0769 |\n| d025 | 0.6145 | 0.5482 | 0.7504 | 0.1923 |\n| d100 | **0.6290** | 0.5307 | **0.7834** | **0.2308** |\n\nd100 在 MMLU/ARC/HumanEval 上明显高于 d000，但 GSM8K 反而下降 (0.5921→0.5307)。HumanEval 样本量太小 (n=26) 波动大。\n\n### 2. 实验 2: 3B d005 s123 GSM8K rerun\n\n- **GSM8K exact_match: 0.6308** (832/1319)\n\n### 3. Extreme gamma sweep\n\n**已完成** (11.1h, 8 conditions)。结果写入 `exp004_sim_sweep/results_extreme_gamma/sweep_summary.json`。\n\n| Condition | γ_bias | γ_RMSE | CI95% | θ_corr |\n|-----------|--------|--------|-------|--------|\n| g2.0_auc0.7_n20 | 0.0337 | 0.1163 | 1.000 | 0.9560 |\n| g2.0_auc0.7_n50 | 0.0178 | 0.0944 | 1.000 | 0.9484 |\n| g2.0_auc0.9_n20 | 0.0048 | 0.0907 | 1.000 | 0.9688 |\n| g2.0_auc0.9_n50 | 0.0109 | 0.1013 | 1.000 | 0.9616 |\n| g4.0_auc0.7_n20 | **-0.2286** | **0.2946** | 0.900 | 0.9193 |\n| g4.0_auc0.7_n50 | -0.0958 | 0.1867 | 0.900 | 0.9147 |\n| g4.0_auc0.9_n20 | -0.1365 | 0.2431 | 1.000 | 0.9610 |\n| g4.0_auc0.9_n50 | 0.0358 | 0.1811 | 0.900 | 0.9483 |\n\nγ=2.0 recovery 良好；γ=4.0 出现负 bias 和更大 RMSE，尤其低 AUC+小 n 时 CI 覆盖率降到 0.90。\n\n### 4. GPU 状态\n\n| GPU | 显存占用 | Util | 状态 |\n|-----|---------|------|------|\n| cuda:0 | 23258/24564 MiB | 99% | BUSY (PID 642763, 643167) |\n| cuda:1 | 13341/24564 MiB | 86% | BUSY (PID 628668) |\n| **cuda:2** | **0/24564 MiB** | **0%** | **IDLE** |\n| cuda:3 | 7803/24564 MiB | 73% | BUSY (PID 630891) |\n| cuda:4 | 7535/24564 MiB | 57% | BUSY (PID 648627) |\n| cuda:5 | 18665/24564 MiB | 29% | BUSY (PID 633041) |\n\n**cuda:2 空闲，cuda:3 有活跃进程**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-analyzing-batch.md"
+}

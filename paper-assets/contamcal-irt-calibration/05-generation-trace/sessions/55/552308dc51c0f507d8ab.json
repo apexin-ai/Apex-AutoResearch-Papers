@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "552308dc51c0f507d8ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run d025 v3 s2 minkpp recompute",
+  "task_key": "worker_run_d025_v3_s2_minkpp_recompute_20260515T210334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_d025_v3_s2_minkpp_recompute_20260515T210334_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "753eaee07c7165aac26c94140ab9da858c729f61f8dc8b0077ff542a291b6732"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 执行结果\n\n**已完成：**\n- 旧目录已重命名：`Qwen2.5-3B_d025_s42` → `Qwen2.5-3B_d025_s42_DEPRECATED_alpha16`\n- v3 输出目录已创建：`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42/`\n\n**s2_minkpp 需要 GPU，无法作为 CPU 任务运行。** 原因：`s2_minkpp.py` 的 `compute()` 函数会：\n1. 加载 target model（带 LoRA adapter）到 GPU，对所有 benchmark items 做 forward pass 计算 per-token log-probs\n2. 卸载 target model，再加载 reference model（自动推断 d000 同 scale 的 adapter）做同样的 forward pass\n3. 用两组 log-probs 计算 Min-K%++ score\n\n调用命令（供 Main Agent 调度 GPU 时使用）：\n```bash\ncd /root/contamcal-irt-calibration/exp002 && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=N python compute_signals.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter/ \\\n  --benchmark {mmlu,gsm8k,arc_challenge} \\\n  --signal s2 \\\n  --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42/\n```\n需要对 3 个 benchmark 分别运行。3B 模型需要约 7-8GB 显存（加载两次，但非同时），需要一个空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-d025-v3-s2-minkpp-recompute.md"
+}

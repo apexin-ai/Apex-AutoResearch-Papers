@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7ee5685de4107fea517",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval gemma2 d100 s0 mmlu arc",
+  "task_key": "worker_eval_gemma2_d100_s0_mmlu_arc_20260521T023352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gemma2_d100_s0_mmlu_arc_20260521T023352_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "51fed4953330356d76a117cd143c78910027eadc702644fdff1c81eb96854f61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已提交成功。\n\n## 提交报告\n\n**脚本内容摘要：**\n- 两个脚本结构相同：C009 md5 校验 evaluate.py → C006 验证 lora_alpha=32 → 调用 `/root/miniconda3/bin/python` 运行 evaluate.py\n- MMLU：`--benchmarks mmlu --batch-size 8`，输出到 `results/mmlu_eval/gemma2/d100_s0`，`CUDA_VISIBLE_DEVICES=0`\n- ARC：`--benchmarks arc_challenge --batch-size 8`，输出到 `results/arc_eval/gemma2/d100_s0`，`CUDA_VISIBLE_DEVICES=2`\n- 均设置 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n\n**实际提交：**\n\n| 实验 | exp_id | GPU | PID | 日志 |\n|------|--------|-----|-----|------|\n| MMLU | `eval_gemma2_d100_mmlu_s0` | cuda:0 | 464485 | `~/runs/contamcal-irt-calibration/eval_gemma2_d100_mmlu_s0.log` |\n| ARC | `eval_gemma2_d100_arc_s0` | cuda:2 | 464631 | `~/runs/contamcal-irt-calibration/eval_gemma2_d100_arc_s0.log` |\n\n两个 eval 在不同 GPU 上并行运行，timeout 6 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gemma2-d100-s0-mmlu-arc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ea554ea786238a84531",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops launch qwen14b d050 retrain now",
+  "task_key": "worker_ops_launch-qwen14b-d050-retrain-now_20260521T001118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-qwen14b-d050-retrain-now_20260521T001118_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "727cec2ee595623733b6ddf110fd028e4649e7b7646b32fccfc9e52c6f797a40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **服务器**: westd-29999, **GPU**: cuda:1\n- **PID**: 455006 (GPU 进程) / 455000 (tmux pane)\n- **显存**: 17,050 MiB / 97,887 MiB（模型已加载，训练开始中）\n- **tmux session**: `qwen14b_d050_retrain`\n- **日志**: `/root/contamcal-irt-calibration/logs/retrain_qwen14b_d050_s0.log`\n- **输出目录**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0`\n- **参数确认**: lora_alpha=32, lr=5e-5, gradient_checkpointing ✓, 58,266 training samples\n- **预估完成时间**: ~3.5h → 约 11:42 CST"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-qwen14b-d050-retrain-now.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f651cf083710977924a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops cross family pooled irt refit",
+  "task_key": "worker_ops_cross_family_pooled_irt_refit_20260517T000103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cross_family_pooled_irt_refit_20260517T000103.log",
+    "occurrence": 1,
+    "bytes": 720396,
+    "sha256": "3a13df7a78496a55da789bea11b8323bee3a67bc061a9d153f5a46fa5675f23c"
+  },
+  "statistics": {
+    "messages": 405,
+    "user_turns": 0,
+    "tool_calls": 166,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 166,
+      "tool_result": 166,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 405,
+      "chunks": [
+        {
+          "path": "f651cf083710977924a1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f651cf083710977924a1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f651cf083710977924a1-part-0003.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cross-family-pooled-irt-refit.md"
+}

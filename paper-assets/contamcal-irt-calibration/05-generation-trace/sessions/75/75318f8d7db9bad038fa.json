@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "75318f8d7db9bad038fa",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code p0 delta exposure fix",
+  "task_key": "worker_code_p0_delta_exposure_fix_20260514T192535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_delta_exposure_fix_20260514T192535.log",
+    "occurrence": 1,
+    "bytes": 881671,
+    "sha256": "754336f1f81ce099d3a4f1971b0cf5e4e4f8f7941416d8fe5a31d3fb32dbd83f"
+  },
+  "statistics": {
+    "messages": 436,
+    "user_turns": 0,
+    "tool_calls": 175,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 1,
+      "assistant": 82,
+      "tool_call": 175,
+      "tool_result": 175,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 436,
+      "chunks": [
+        {
+          "path": "75318f8d7db9bad038fa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "75318f8d7db9bad038fa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75318f8d7db9bad038fa-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p0-delta-exposure-fix.md"
+}

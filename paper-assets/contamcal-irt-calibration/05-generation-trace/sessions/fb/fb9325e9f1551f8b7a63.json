@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9325e9f1551f8b7a63",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 s123 mmlu check3",
+  "task_key": "worker_diag_olmo2-s123-mmlu-check3_20260520T113620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-s123-mmlu-check3_20260520T113620_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "3acba7ac69efbfb94e9414dda09750014e5e00db8d9cf0896a2f47d633463069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**仍在运行，非完成。** 第三次告警仍是误报。\n\n当前状态：\n- **d000_s123**: 完成，accuracy = **0.5566** (7816/14042)\n- **d005_s123**: 进行中，1570/14042 (~11%)，~27 it/s\n- **d025/d050/d100_s123**: 未开始\n\nGPU 2 占用 16707 MiB，PID 333043 活跃。预计 d005 还需 ~8 分钟，整体剩余约 35 分钟。\n\n不做 registry 更新，不提交 Gemma-2。等全部 5/5 完成后再操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-s123-mmlu-check3.md"
+}

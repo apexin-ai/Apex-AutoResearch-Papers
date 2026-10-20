@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c641f6a8872dcd51374",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis did d100 power",
+  "task_key": "worker_analysis_did-d100-power_20260521T081611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_did-d100-power_20260521T081611_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "330bc79c42d9d254fe442a68ed6b6f58efcbbd28c4e17fa7f60cf5e2d4791456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/did_power_analysis/did_d100_power_analysis.json`。\n\n核心发现：\n\n**d100 DiD 不可计算** — d100 dosage 下所有 benchmark items 都进入了 contamination set（MMLU 14042/14042, ARC 1172/1172），`n_untreated=0`，没有控制组。\n\n**d050 作为替代**（有控制组的最高 dosage，treated ≈ untreated）：\n\n| Benchmark | d025 MDES | d050 MDES | 变化 |\n|-----------|-----------|-----------|------|\n| MMLU | 1.25–2.05pp | 1.13–1.95pp | 均值降 0.12pp (7%) |\n| ARC | 2.28–5.57pp | 2.45–6.60pp | 无改善，反而更宽 |\n\nd025→d050 treated sample 翻倍但 MDES 改善微弱（MMLU）甚至恶化（ARC）。说明 **item-level variance 而非 sample size 是 binding constraint**。ARC 在 d050 有 2 个 family（Gemma-2-9B, OLMo-2-7B）出现显著 memorization 效应（p<0.05），增大了 effect heterogeneity。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-did-d100-power.md"
+}

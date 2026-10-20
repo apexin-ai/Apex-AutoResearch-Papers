@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56e951f69ebf47274011",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4441,
+    "sha256": "397ab890e6b04dcf84ea5f3352731a792e448c24d950f6b1b1f4a81450efa289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-13T20:36:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 cqa1-21977 是 AutoDL 实例，6× RTX 4090 (24GB each)，GPU 0-5 全部属于本项目，无跨项目共享限制\n- MMLU paraphrase 使用 vLLM on GPU 0（PID 204758），**不要 kill**——这是唯一成功用 vLLM 的 benchmark，GSM8K/ARC 都因 \"duplicate template name\" 回退到 transformers\n- SFT 数据当前仅含 ARC+GSM8K contamination（MMLU paraphrase 未完成），dosage 文件需在 MMLU 完成后重新生成\n- D010 决策：跳过 QC 过滤，使用全部 paraphrase（GSM8K QC 仅 17.3%，ARC 59.5%）——我已标 WARNING 但 Director 未回应，需持续关注对 γ 估计的影响\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，工作目录 `/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境，非 venv）\n- 模型：`/root/autodl-tmp/models/Qwen/` 下有 Qwen2.5-{0.5B,1.5B,3B,7B-Instruct}\n- 数据：paraphrases → `/root/autodl-tmp/exp001/paraphrases/`，SFT data → `/root/autodl-tmp/exp001/sft_data/`，checkpoints → `/root/autodl-tmp/exp001/checkpoints/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n- CPU 实验（exp_004 sweep, exp_005 noise prop）在本地 workspace 的 `.venv` 环境里跑\n- 训练日志：`/root/runs/contamcal-irt-calibration/` (tmux sessions via submit_training_job)\n\n### 3. 📊 当前状态\n**刚完成**：审查 exp_001_sft_0pct_05B (0.5B, 0% dosage, seed=42) — PASS，LoRA adapter 已保存。\n\n**Registry RUNNING/ANALYZING（9 experiments total）**：\n- `exp_001_sft_injection` RUNNING — Phase 1 MMLU paraphrase 仍在 GPU 0 (vLLM, 上次 ~21%)\n- `exp_001_sft_0pct` RUNNING — 伞状实验\n- `exp_001_sft_0pct_05B` ANALYZING — 0.5B 完成，GPU 3 已释放\n- `exp_001_sft_0pct_15B` RUNNING — 1.5B on GPU 4 (~6%, ETA ~90 min from last check)\n- `exp_001_sft_0pct_3B` RUNNING — 3B on GPU 5 (~1%, ETA ~3h from last check)\n- `exp_004_sim_sweep` RUNNING — CPU, seed 4 of auc0.55_n50 (12 conditions × 10 seeds, ~28h remaining)\n- `exp_005_noise_prop` RUNNING — CPU, σ_e=0.1 seed=42 first chain (~40h total)\n\n**GPU 空闲**：1, 2, 3 空闲。已提醒 Director 分配 contaminated dosage SFT 或 additional seeds。\n\n### 4. 📋 待办（条件触发式）\n- MMLU paraphrase 完成 → 验证输出文件 + QC 统计 → 提醒 Agent 重新生成含 MMLU 的 SFT dosage 文件\n- exp_001_sft_0pct_15B / 3B 完成 cron 回调 → 审查 loss 曲线 + checkpoint 完整性\n- contaminated dosage SFT 启动 → 核查 GPU 分配 + contamination labels 正确性（哪些 items 被注入）\n- exp_004_sim_sweep 完成 → 审查 12 conditions 的 γ recovery、AUC threshold、N_models scaling\n- exp_005_noise_prop 完成 → 审查 ME attenuation 是否匹配 Fisher Info Corollary 2 理论值\n- 任何 Worker 提交论文章节修改 → 按 §5 写作审查维度审查，特别关注 claim 强度 vs evidence\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（D006），12 天冲刺，今天是 Day 1\n- **核心方法**：2-stage ContamCal = RRF fusion (4 signals) → 4PL+γ IRT (Bayesian Stan NUTS)\n- **MVP 已通过**（D004）：mvp_sim_4pl_gamma + mvp_sim_confounding 均 PASS，γ 可分离\n- **Fisher Info 理论推导已验证**：Theorem 1 (I(γ) = Σw·τ²)，Corollary 1 (AUC-Info)，Corollary 2 (ME attenuation) 均与 MC 数值吻合\n- **最大风险点**：\n  1. GSM8K paraphrase QC 仅 17.3%——如果 γ 估计不出来，无法确定是方法问题还是注入失败\n  2. exp-008 (RL signal survival) 尚未启动但 Related Work Table 2 已标 ContamCal \"RL-robust partial✓\"——如果 exp-008 结果不支持，需删除该 claim\n  3. \"2+ model families\" claim 多次标记（exp-014 deferred to rebuttal）——目前只有 Qwen 一个 family\n- **易踩的坑**：\n  - 监控系统会对无 sentinel/W&B 的长 nohup 进程误判 failed（本轮已踩过，exp_001 被误标 5 次）\n  - contam_irt_4pl_me_analytic.stan 的 dead code bug 已修复，但注意区分 `contam_irt_4pl_me.stan`（full latent τ，exp_005 在用）和 `contam_irt_4pl_me_analytic.stan`（analytical，exp_006 将用）\n  - 论文 experiments.tex 的 B1 baseline 描述 \"75th percentile\" 未与代码核实——我标了 warning 但没人跟进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

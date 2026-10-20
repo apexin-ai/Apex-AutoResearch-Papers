@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "def6974a2565d46bc670",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh prepare cross family eval",
+  "task_key": "worker_ssh_prepare-cross-family-eval_20260519T052405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare-cross-family-eval_20260519T052405_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "d54572367afe504ed164832a583b05297d4cd4b3dcd208ea6a5ed5e8ec4b2c1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script verified. Here's the summary:\n\n## Verification Results\n\n**Server**: westd-29999 confirmed (4× NVIDIA RTX PRO 6000 Blackwell, 97887 MiB each)\n\n**All 8 checkpoints verified** (adapter_model.safetensors present, lora_alpha=32):\n\n| Family | Dosage | .done | Status |\n|--------|--------|-------|--------|\n| gemma-2-9b | d000 | No | Adapter exists, usable |\n| gemma-2-9b | d005 | Yes | Ready |\n| gemma-2-9b | d025 | Yes | Ready |\n| gemma-2-9b | d050 | Yes | Ready |\n| phi-4 | d000 | Yes | Ready |\n| phi-4 | d005 | Yes | Ready |\n| phi-4 | d025 | Yes | Ready |\n| OLMo-2-7B | d000 | Yes | Ready |\n\n**No existing eval results** for any cross-family model.\n\n## Script\n\n**Path**: `/root/contamcal-irt-calibration/exp001/run_eval_cross_family_batch.sh`\n\n**Usage**: `bash run_eval_cross_family_batch.sh <GPU_ID>` (defaults to GPU 0)\n\nKey design notes:\n- Corrected CLI args vs task description: uses `--model-path` (not `--model-name`), `--benchmarks mmlu arc_challenge` (not `--benchmark`), `--output-dir` (not `--output-path`). No `--shots` flag needed (hardcoded in evaluate.py).\n- Runs both MMLU + ARC in a single invocation per checkpoint (model loaded once, not twice).\n- Skips if adapter missing or `.done` already exists (safe to re-run).\n- Explicit `CUDA_VISIBLE_DEVICES=$GPU` per C004.\n- Output: `/root/autodl-tmp/exp001/eval_results_cross_family/<family>_<dosage>_s42/`\n- 8 checkpoints = 8 sequential eval runs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-cross-family-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d45f50b44ea7b58e50d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 003 005 code",
+  "task_key": "worker_code_exp-003-005-code_20260513T174924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-005-code_20260513T174924_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "2b6539c4b2d361ae543a28ac46f9d3a632f9b6d4adbbde31801056cfb6a196cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both scripts pass `--help` verification. Here's a summary of what was created:\n\n**exp-003 (`artifacts/exp003_rrf_ablation/`)**:\n- `analyze_rrf_ablation.py` — Computes AUC-ROC for: full RRF, single-signal baselines, drop-one-signal, logistic regression (5-fold CV), k sensitivity (20/40/60/80/100), and all 2- and 3-signal subsets. Outputs JSON results + LaTeX table.\n- `run_exp003.sh` — Shell orchestration with configurable `SIGNAL_DIR`, `LABELS_DIR`, `BENCHMARKS`, `DOSAGE`.\n\n**exp-005 (`artifacts/exp005_noise_propagation/`)**:\n- `run_noise_propagation.py` — Generates synthetic 4PL IRT data across 5 σ_e levels × 5 seeds, fits both ME and simple Stan models, extracts 95% CI widths, checks monotonicity via Spearman correlation. Saves results incrementally.\n- `run_exp005.sh` — Shell orchestration with configurable Stan model paths, seed count, and data dimensions."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-005-code.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b61904bdb2d364f07cf6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh phi4 eval result collect",
+  "task_key": "worker_ssh_phi4-eval-result-collect_20260519T070309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_phi4-eval-result-collect_20260519T070309_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "8732d1b83c36029b910ed62a0350562ad4244b042a6b7bdb27eb493245051673"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### d000 结果（已完成，14:36→14:59，耗时 ~23 min）\n\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU | **77.47%** |\n| ARC Challenge | **93.94%** |\n\n### 其他 dosage 状态\n\n| Dosage | 状态 |\n|--------|------|\n| d005 | 🔄 运行中 — MMLU 进度 21% (2935/14042)，~14 it/s，约 13 min 完成 MMLU + ARC |\n| d025 | 未开始 |\n| d050 | 未开始 |\n\n按 d000 的 23 min/dosage 估算，全部完成预计 **~16:10 CST**（还需约 1 小时）。\n\n### GPU 状态\n\n4 块 GPU 全部在用：\n- cuda:0: 37.3 GB, 81% util (PID 111720)\n- cuda:1: 52.1 GB, 56% util (PID 110298)\n- cuda:2: 38.2 GB, 84% util (PID 114344)\n- cuda:3: 31.7 GB, 96% util (PID 118080) — 正在跑 phi4_eval\n\ncuda:3 **不空闲**，正在执行当前 eval 批量任务。tmux session `phi4_eval` 存活。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-phi4-eval-result-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "834c1ac878968ff9c0e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 v2 code mod",
+  "task_key": "worker_code_exp_006_v2_code_mod_20260514T180337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_v2_code_mod_20260514T180337_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "a90ccb3f20e751af7770702f38498c2b832186a17705cfeac201417aa1b209ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NUTS warmup 正在运行，4 条 chains 都已产出 warmup samples，速度约 5-10 it/s。按 2000 iterations/chain 计算：\n\n- chain 4 最快: 300/2000 @ 10 it/s → ~3 min remaining\n- chain 3 最慢: 200/2000 @ 6 it/s → ~5 min remaining\n\n**估算总时间: warmup + sampling ~10-15 分钟完成。** 与 MMLU 的 6 小时零采样形成鲜明对比——GSM8K (1319 items, ~5300 params) 对 NUTS 完全可行。\n\n总结已完成的工作：\n\n**代码修改（5 项全部完成）：**\n1. `--max-items`: 截断 → 随机抽样 (seed=42)\n2. `--aligned-only`: 已存在，无需改\n3. `--signals-dir`: 已存在，本次运行使用 exp-002 signals\n4. `--benchmark`: 新增单 benchmark 便捷参数\n5. `--method nuts/advi`: 新增 ADVI 支持（`fit_stan_model_advi` + `run_benchmark_fit` 双分支）\n\n**实验已启动：**\n- `exp_006_irt_05B_gsm8k` RUNNING on cqa1-21977\n- 4 models x 1319 items, NUTS 4 chains x 1000 samples\n- Warmup 进展良好，预计 10-15 分钟完成全部 pipeline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-v2-code-mod.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3ba143bd04855285f7f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 001 eval 3B d100 v2 para aligned",
+  "task_key": "worker_diag_exp_001_eval_3B_d100_v2_para_aligned_20260515T005025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_001_eval_3B_d100_v2_para_aligned_20260515T005025_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "b38e749f3143c0cbfd0517481d6d83612e0254a07eb6a09305f685c1c5a537f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**判定：SUCCESS** — 4 个 benchmark 全部完成，registry 已更新为 DONE，cron 不存在无需清除。\n\n**Metrics（v2 para_aligned vs 前版 v1 para_aligned）：**\n\n| Benchmark | v2 | v1 | Δ |\n|---|---|---|---|\n| mmlu | 0.659 | 0.676 | -0.017 |\n| gsm8k | 0.583 | 0.614 | -0.031 |\n| arc_challenge | 0.809 | 0.828 | -0.019 |\n| humaneval | 0.115 | — | — |\n\nv2 各指标相比 v1 均有小幅下降（1.7~3.1 个百分点）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-001-eval-3b-d100-v2-para-aligned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cdd4c73f1f398ad7ccd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops find cpu experiments",
+  "task_key": "worker_ops_find_cpu_experiments_20260514T205253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_find_cpu_experiments_20260514T205253_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "c3c5978b8f10ac50fd0d317a2bdfe18d05b73c8735622a164a1d474cc4b15f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### exp-004 (sim_sweep)\n- **脚本位置**: `artifacts/simulation_sweep/run_sweep.py`（用 `artifacts/mvp_simulation/.venv` 的 Python）\n- **日志**: `/tmp/exp004_sweep_restart.log`\n- **PID 559605**: **存活**，已运行 2h45m58s（是 bash wrapper，实际 python 子进程在 nohup 下）\n- **进度**: 48/120 runs 完成\n\n### exp-005 (noise_prop)\n- **脚本位置**: `artifacts/exp005_noise_propagation/run_noise_propagation_v3.py`\n- **日志**: `artifacts/exp005_noise_propagation/exp005_v3.log`\n- **输出目录**: `artifacts/exp005_noise_propagation/output_v3/`\n- **PID 559666**: **存活**，已运行 2h45m56s（bash wrapper）\n- **进度**: 14/25 fits 完成\n\n**两个实验都在本地机器运行，不在远程服务器 cqa1-21977 上。** Bash wrapper 进程存活，实际 Python 子进程通过 nohup 在后台执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-find-cpu-experiments.md"
+}

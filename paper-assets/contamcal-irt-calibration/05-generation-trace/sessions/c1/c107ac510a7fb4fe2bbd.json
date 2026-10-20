@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c107ac510a7fb4fe2bbd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops monitor gpu submit 05B",
+  "task_key": "worker_ops_monitor-gpu-submit-05B_20260516T034344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-gpu-submit-05B_20260516T034344_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "52c604e05dfd51c352a19814b2561ec3b1a965f7c548a041228abcb785beb169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**0.5B s123 信号批次脚本已在 cuda:5 上运行**（PID 687028→687036），无需再次提交。\n\n当前 GPU 状态汇总：\n\n| GPU | PID | 运行时间 | 任务 |\n|-----|-----|---------|------|\n| 0 | 691033 | 5 min | eval d025_v3_s42 para_aligned |\n| 1 | 676497 | 1h41m | eval d000_s42_a32_aligned |\n| 2 | 679190 | 1h28m | eval d005_s42_a32_aligned |\n| 3 | 687347 | 39 min | eval d100_a32_s42_aligned |\n| 4 | 689315 | 20 min | compute_signals 3B d100_a32_s123 (s4) |\n| 5 | 687036 | 40 min | **0.5B s123 signals batch (1/12, d000×mmlu)** |\n\n要点：\n- PID 663067 已结束，cuda:5 已被 `run_05B_s123_signals.sh` 完整批次脚本接管（父进程 PID 687028）\n- 所有 6 GPU 均在忙\n- cuda:0 的 eval 刚启动 5 分钟，最先空闲的可能是 cuda:1（已跑 1h41m）或 cuda:2（1h28m），eval 通常 2-3h 完成\n- cuda:5 上 0.5B 批次（12 个子任务）预计需要数小时完成，进度 1/12"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-gpu-submit-05b.md"
+}

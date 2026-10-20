@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89fb6ae604a1d36a63ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill gpu2 olmo eval",
+  "task_key": "worker_ops_kill-gpu2-olmo-eval_20260521T105615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu2-olmo-eval_20260521T105615_result.json",
+    "occurrence": 1,
+    "bytes": 152,
+    "sha256": "61b40a5ccbb0308db79698db0cf6907fc78e4e192f249a49a4ff6bc2d87d162c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- PID 511187 已终止，进程不存在\n- GPU 2：0MiB 显存占用，0% 利用率，无进程 — **已完全释放**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu2-olmo-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2d94e1a128d6ec182d7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag d176 urgent status",
+  "task_key": "worker_diag_d176-urgent-status_20260520T092319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d176-urgent-status_20260520T092319_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "6dd2cd253a97826d434496cfff86f0f1b8b609d0089c7a3df5b3f2117d1e4563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### Qwen-14B s123 GSM8K\n- **PID 309330**: 活着，cuda:1 占 33.6GB，95% 利用率\n- **d000**: 已完成，accuracy = **76.65%** (1011/1319) — 与参考值一致\n- **d100**: 正在跑，**85% (141/165 batches)**，~14s/batch，预计还需 **~5-6 分钟**\n- Δ(d100-d000) 待 d100 完成后计算（参考 s42: Δ=20.47pp）\n\n### Gemma-2 d100 fixed\n- **PID 307190**: 已结束（不在 nvidia-smi 中）\n- 结果文件已生成（含 `.done` 标记）\n- **accuracy = 3.94% (52/1319)** — 几乎全是 `pred: null`\n\n**严重异常**: Gemma-2 d100 accuracy 仅 3.94%，绝大多数预测为 null，说明答案提取完全失败或模型输出格式不对。需要排查 evaluate.py 对 Gemma-2 的兼容性。\n\n### GPU 总览\n| GPU | 进程 | 状态 |\n|-----|------|------|\n| cuda:0 | PID 302132 (Phi-4 s0) | 活跃，57.3GB，75% |\n| cuda:1 | PID 309330 (Qwen-14B s123 d100) | 活跃，33.6GB，95% |\n| cuda:2 | PID 306129 (OLMo-2 s0) | 活跃，66.5GB，93% |\n| **cuda:3** | — | **空闲** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d176-urgent-status.md"
+}

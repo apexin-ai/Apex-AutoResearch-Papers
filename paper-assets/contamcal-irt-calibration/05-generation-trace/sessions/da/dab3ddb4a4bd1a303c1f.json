@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dab3ddb4a4bd1a303c1f",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code mc eval fix d017",
+  "task_key": "worker_code_mc-eval-fix-d017_20260514T071256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mc-eval-fix-d017_20260514T071256.log",
+    "occurrence": 1,
+    "bytes": 716398,
+    "sha256": "7929a48d942f28b7736795ad3bdf52e3606a0b671c45956c30826b8857ef2558"
+  },
+  "statistics": {
+    "messages": 166,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 166,
+      "chunks": [
+        {
+          "path": "dab3ddb4a4bd1a303c1f-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "dab3ddb4a4bd1a303c1f-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mc-eval-fix-d017.md"
+}

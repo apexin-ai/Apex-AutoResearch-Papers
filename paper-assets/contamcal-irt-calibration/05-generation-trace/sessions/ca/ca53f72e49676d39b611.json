@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca53f72e49676d39b611",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research cross benchmark transfer lit",
+  "task_key": "worker_research_cross-benchmark-transfer-lit_20260519T223355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cross-benchmark-transfer-lit_20260519T223355_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "90cb40edb785bc720b9e5db24b86a6175f27d9ddef35c77becb13626ffb31b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成，已注册为 artifact `lit_cross_benchmark_transfer`。\n\n核心发现：\n\n**现有文献尚未充分记录 MMLU→GSM8K 这种跨 benchmark、跨格式、跨能力域的 contamination transfer。** Spiesberger et al. (2026, ICML sub) 仅证实 within-benchmark shallow generalization；Yao et al. (2026) 发现 SFT contamination effect 仅限被污染任务本身。我们的 +11.07pp 超越了这两个结论。\n\n建议 framing 方向：**\"SFT as capability elicitor\"**——MMLU contamination SFT 教的不是 MMLU 答案（content effect），而是通过多学科 QA 训练让模型学会结构化推理模式，释放了预训练中已有但未被 elicit 的数学能力。支撑：(1) MC→generation 格式完全不同，排除 format memorization；(2) Ren et al. (2026) 证明强基座模型能从 SFT 提取可迁移程序化模式；(3) LIMA 的 Superficial Alignment Hypothesis 表明 SFT 核心作用是 capability elicitation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cross-benchmark-transfer-lit.md"
+}

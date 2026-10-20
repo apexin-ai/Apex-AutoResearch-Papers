@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83405f00d61fe2d75a2a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 parallel eval",
+  "task_key": "worker_ops_cqa1-parallel-eval_20260518T213530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-parallel-eval_20260518T213530_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "f59ca8b0b74717f9bafb3b246a504e2cd73052015692f656e61aba5cd1aeb1d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理。cuda:0 原有 eval 进程（PID 153750）未受影响，继续运行。\n\n**结论：**\n\n- **cqa1-21977 只有 1 张 RTX 4090 D**，不是 4 张。无法并行到多卡。\n- cuda:0 (PID 153750) 正在串行跑 `run_aligned_eval_7B.sh`，当前进度：d000_s42 的 GSM8K（~12%）\n- 已完成：d000_s42 的 mmlu\n- **14B 基础模型不存在**\n- 3 个错误启动的 CPU 进程已全部 kill，未产生有效输出（cuda1 的 d000_s123 mmlu eval 在 CPU 上刚开始，已清除）\n\n**剩余 adapter 列表**（按脚本顺序还需跑 9 个 adapter × 2 mode = 18 个 eval）：d000_s123, d005_s42, d005_s123, d025_s42, d025_s123, d050_s42, d050_s123, d100_s42, d100_s123\n\n按当前速度（每个 adapter 约 30min original + 30min paraphrase），预计还需 ~9h 才能全部完成。要加速的话需要换到有多卡的机器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-parallel-eval.md"
+}

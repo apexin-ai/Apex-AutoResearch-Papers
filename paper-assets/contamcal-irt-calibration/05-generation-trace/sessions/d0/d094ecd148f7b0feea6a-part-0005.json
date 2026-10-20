@@ -1,0 +1,2575 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d094ecd148f7b0feea6a",
+  "rounds": [
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-22T02:31:13.552Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6goP1Jiuiebo2TsvMi497",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.5672268907563025,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "67731e54-e05f-4cc7-8993-81a5dd171949"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 143139,
+                  "tool_uses": 90,
+                  "duration_ms": 247303
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "3a66265e-71a5-422a-b705-09558af74948",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XbWvYUorWNDqHqaiox4CmL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d000_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "48119a50-47c9-4154-848f-5412cd9ea1f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeXLcfKggTKbksxfXKsUZb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 141776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 952,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-22T02:31:14.080Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XbWvYUorWNDqHqaiox4CmL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6883634809856146,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "4664d259-7d85-4dbd-a71d-11e08b5d5fcb"
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 143140,
+                  "tool_uses": 91,
+                  "duration_ms": 248247
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "cf758256-b6e4-4231-93ca-bf5beb537d52",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGFJmUVz5mG4jAkRDjr3vT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d100_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "4a3e1c6b-6ab6-4d2c-ab65-cd5afe6935e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeXLcfKggTKbksxfXKsUZb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 141776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 952,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-22T02:31:14.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGFJmUVz5mG4jAkRDjr3vT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.4384703033755875,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "7db4655f-e735-4758-828c-284e5ebbb755"
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 143141,
+                  "tool_uses": 92,
+                  "duration_ms": 249204
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "219a0692-8ad1-44ce-b45f-d16fbd6a18c5",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VbDaCXBs2tyqqKcNwt4VMX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d000_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "2c0ebdc1-884b-4923-8f6d-3fd2b2c48303",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeXLcfKggTKbksxfXKsUZb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 141776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 952,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 143142,
+                  "tool_uses": 93,
+                  "duration_ms": 249662
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "08bb6f87-514b-46ba-b5f0-f2e7daca2296",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HBF1DxE2sJdVpMb87A1FbK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d100_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "b281ac91-8a33-401e-8686-df444ce39680",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeXLcfKggTKbksxfXKsUZb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 952,
+                "cache_read_input_tokens": 141776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 952,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-22T02:31:15.929Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VbDaCXBs2tyqqKcNwt4VMX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7643498077196981,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "dde8f370-f99c-4ff4-9ff7-7eda6c00a339"
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-22T02:31:16.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HBF1DxE2sJdVpMb87A1FbK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7694772824383991,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "d703c048-8b0f-4ffd-ab70-9442ab79ee27"
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145417,
+                  "tool_uses": 94,
+                  "duration_ms": 271920
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "bc097126-8642-4176-8052-0734d3b5dc3e",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SWPmBcEdn3vT3VkCZuZxWw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "46c05ae9-f978-4f9c-a818-507a5a135b04",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-22T02:31:38.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SWPmBcEdn3vT3VkCZuZxWw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.5566158666856573,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "ea1d98e8-65c7-4a45-81e3-0eaaad6685d6"
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145418,
+                  "tool_uses": 95,
+                  "duration_ms": 272386
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "2a05f5b5-b1d6-43a6-8920-f0c71e88c3bb",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CknPY3sPwthxfB9tuxsuaS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "711ed8f7-17bb-43c2-ac27-6a6ffb45b12c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-22T02:31:39.163Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CknPY3sPwthxfB9tuxsuaS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.5511323173337132,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "808e8506-ba89-4b29-b630-42a8df22016c"
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145419,
+                  "tool_uses": 96,
+                  "duration_ms": 273352
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "bff16c99-7143-4609-91a6-ffc47a5d5cc2",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HxxbJTvTb47oWNzmR7AyYG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d000_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "751641f5-e54a-446c-964a-d1efcc15764b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-22T02:31:40.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HxxbJTvTb47oWNzmR7AyYG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7631391539666714,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "de3269fd-03b7-4910-a70c-fc58af9650dc"
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145420,
+                  "tool_uses": 97,
+                  "duration_ms": 274273
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "80066d16-b1d4-438e-8ab4-daefab97977d",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017L2kikoKsLCo8UezoDJyJc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d100_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "13831c9a-028c-479f-9f3b-81d0a21156b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-22T02:31:40.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017L2kikoKsLCo8UezoDJyJc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7813701751887195,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "0be60a50-a7ac-440d-9f3e-d3c362237276"
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145421,
+                  "tool_uses": 98,
+                  "duration_ms": 275223
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "b7cb851c-49b6-4b46-8896-d126b32868fa",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UBgZjBG1VLGiExVgtjozJT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d000_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "b8aa9398-8d69-467b-b4b9-fbbd3aab236d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145422,
+                  "tool_uses": 99,
+                  "duration_ms": 275679
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "7b9ff9ca-0a0d-4c8b-ad27-ed8e57447654",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RVHHSAce4pDostu3JiGpDk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/phi4/d100_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "34cb7b78-53b2-4301-b6d5-3d6f5632d0b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-22T02:31:41.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UBgZjBG1VLGiExVgtjozJT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7643498077196981,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "dff629f0-b27f-4809-a024-3a4402cda3db"
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-22T02:31:42.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RVHHSAce4pDostu3JiGpDk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.7694772824383991,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "57812a01-c571-41a2-a02b-40aeb4a569b1"
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145423,
+                  "tool_uses": 100,
+                  "duration_ms": 276593
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "a8b56d19-616d-44b2-b243-a65b246373ff",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TLkk89XjkkY1s6ATkoVZAE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d000_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "f18806a0-9adc-468d-8c77-3479d7560d01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-22T02:31:43.304Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TLkk89XjkkY1s6ATkoVZAE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6866543227460475,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "59f0bc3a-4819-4ec5-8424-f5e5658a789c"
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 145424,
+                  "tool_uses": 101,
+                  "duration_ms": 277141
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "612e35fb-71f7-4231-a0d5-babdddc4caad",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UaSBSu4zvth9RKHewKFw26",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d100_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "268b9748-00b9-48cd-beb7-4abd7c481779",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JEpzfRm5pFiZGZGB7J7eBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2273,
+                "cache_read_input_tokens": 142728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2273,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "affd8efe8724e528c",
+                "tool_use_id": "toolu_01VtQ5jtScVYP8ruf71LTUHi",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Audit Table 3 & calibration data",
+                "usage": {
+                  "total_tokens": 139223,
+                  "tool_uses": 66,
+                  "duration_ms": 303950
+                },
+                "uuid": "5eb6e53b-7e6f-4277-983e-91fb2bc7d295",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-22T02:31:43.874Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VtQ5jtScVYP8ruf71LTUHi",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That's the old random baseline (J=20 with Llama). The fixed one (J=16) has tau_mean=0.5543. But the paper claims \"random baseline\" tau gap. The paper says \"RRF-guided item filtering achieves tau = 0.73 on 300 items (Delta_tau = 0.27 vs. random baseline)\". 0.73 - 0.27 = 0.46 for random. The fixed baseline gives tau_mean = 0.5543, so Delta_tau = 0.73 - 0.5543 = 0.1757, which is not 0.27.\n\nWait -- but the paper says tau = 0.73 and Delta_tau = 0.27. The \"random baseline\" could refer to a different baseline. Let me check the old baseline: tau_mean = 0.0578, so Delta_tau = 0.73 - 0.06 = 0.67. Neither matches 0.27.\n\nActually, looking again at the fixed baseline: tau_mean = 0.5543 is the calibrated tau, but the random items also have a raw tau. Let me check: for the RRF comparison, we need to compare raw accuracy tau. The paper's claim about tau = 0.73 is B3_V2PL tau on RRF items. So the Delta_tau = 0.27 means random 300 vanilla 2PL tau ≈ 0.46. \n\nBut the fixed baseline tau_mean = 0.5543 is calibrated (2PL) tau. Let me recalculate: 0.73 - 0.5543 = 0.18, still not 0.27. \n\nHmm, perhaps they're using a different metric. The paper says \"tau = 0.73\" -- that matches B3_V2PL's tau of 0.7313 (from all_results.json). Let me check: the raw accuracy tau on the full 14K items might be the random baseline. Actually, looking more carefully, the paper references RRF-guided vs random as a comparison of item selection strategies, both using the same model (Vanilla 2PL or raw accuracy).\n\nLet me look at the random_300_tau_baseline_j16_fixed.json again: the tau_mean = 0.5543 and tau_std = 0.0478. So the paper's claim of \"Delta_tau = 0.27 vs random baseline\" would imply random tau = 0.73 - 0.27 = 0.46 or 0.73 + 0.27 = 1.00. Neither matches 0.5543.\n\n0.73 - 0.55 = 0.18, so the actual Delta_tau is 0.18, not 0.27. This is a discrepancy.\n\nBut wait -- the paper says \"MAE (0.039 ± 0.008)\" for random subsets. Let me compute MAE from the random baseline data. The fixed baseline doesn't have MAE explicitly. Let me check.\n\nNow I have enough data to compile the full audit. Let me compile the results.\n\n## Summary of all source data found:\n\n**Table 3 (MMLU unified_baselines_n16/all_results.json):**\n- B0_Raw: MAE=0.0056, tau=0.7669\n- B1b_RemRescore: MAE=0.0258, tau=0.7834\n- B3_V2PL: MAE=0.008, tau=0.7313\n- B4_LinReg: MAE=0.0096, tau=0.7506\n- B5b_Emperor: MAE=0.006, tau=0.789\n- B6_DCR: MAE=0.1081, tau=0.6543\n- ContamCal: MAE=0.0091, tau=0.7313\n\n**Domain gamma (mmlu_domain_irt_j16_qwen/summary.json):**\n- Social_Sciences: gamma_mean = -0.6274, p_neg = 0.99675, CI = [-1.073, -0.192]\n\n**Random baseline (random_300_tau_baseline_j16_fixed.json):**\n- tau_mean = 0.5543, tau_std = 0.0478\n\n**Signal AUC (exp008_v4_results.json for 0.5B):**\n- S1 d005 AUC: MMLU=0.953, GSM8K=0.988, ARC=0.995\n- S2 d005 within-model effect_size: MMLU=-0.1079 (from cross_benchmark_summary)\n- S2 d100 cross-model Cohen's d: MMLU=-1.2203, GSM8K=-2.666, ARC=-2.048\n\nHere is my full audit report:\n\n---\n\n## Table 3 Audit (Calibration Baselines)\n\nSource: `/root/autodl-tmp/exp006/unified_baselines_n16/all_results.json`\n\n| Row | Metric | Paper | Source | Status |\n|-----|--------|-------|--------|--------|\n| B0 Raw Accuracy | MAE | 0.006 | 0.0056 | MATCH (rounded) |\n| B0 Raw Accuracy | tau | 0.767 | 0.7669 | MATCH (rounded) |\n| B1b Remove & Rescore | MAE | 0.026 | 0.0258 | MATCH (rounded) |\n| B1b Remove & Rescore | tau | 0.783 | 0.7834 | MATCH (rounded) |\n| B3 Vanilla 2PL | MAE | 0.008 | 0.008 | MATCH |\n| B3 Vanilla 2PL | tau | 0.731 | 0.7313 | MATCH (rounded) |\n| B4 Linear Regression | MAE | 0.010 | 0.0096 | MATCH (rounded) |\n| B4 Linear Regression | tau | 0.751 | 0.7506 | MATCH (rounded) |\n| B5b Emperor | MAE | 0.006 | 0.006 | MATCH |\n| B5b Emperor | tau | 0.789 | 0.789 | MATCH |\n| B6 DCR (reimpl.) | MAE | 0.108 | 0.1081 | MATCH (rounded) |\n| B6 DCR (reimpl.) | tau | 0.654 | 0.6543 | MATCH (rounded) |\n| ContamCal (2PL+gamma) | MAE | 0.009 | 0.0091 | MATCH (rounded) |\n| ContamCal (2PL+gamma) | tau | 0.731 | 0.7313 | MATCH (rounded) |\n\n**All Table 3 values verified.**\n\n## Inline Calibration Claims Audit\n\n### \"RRF-guided item filtering achieves tau = 0.73 on 300 items (Delta_tau = 0.27 vs. random baseline)\"\n\n- tau = 0.73: Source B3_V2PL tau = 0.7313 -- MATCH (rounded)\n- Delta_tau = 0.27: Random baseline tau = 0.5543 (from `random_300_tau_baseline_j16_fixed.json`), so actual Delta_tau = 0.7313 - 0.5543 = 0.177 -- MISMATCH (paper says 0.27, source says ~0.18)\n- Note: The old unfixed random baseline (J=20, including Llama) had tau_mean=0.0578, giving Delta_tau=0.67. Neither matches 0.27 exactly.\n- **Possible explanation**: The Delta_tau = 0.27 may reference a different comparison (e.g., raw accuracy tau on random vs RRF items rather than calibrated 2PL tau). However, no source file producing exactly 0.27 was found. This is a DISCREPANCY requiring investigation.\n\n### \"Size-matched random subsets yield higher MAE (0.039 +/- 0.008)\"\n\n- The random baseline JSON (`random_300_tau_baseline_j16_fixed.json`) stores calibrated scores and ground truth per seed but does not store MAE explicitly. MAE would need to be recomputed from the per-seed data.\n- **Status**: UNABLE TO VERIFY directly from stored results. Would require recomputation.\n\n## Signal Detection Audit\n\nSource: `/root/contamcal-irt-calibration/exp008/exp008_v4_output/exp008_v4_results.json` (Qwen2.5-0.5B)\n\n### \"S1 achieves AUC > 0.95 at all scales\"\n\n- S1 d005 AUC (0.5B): MMLU=0.953, GSM8K=0.988, ARC=0.995 -- all > 0.95\n- From gen_signal_heatmap.py data (1.5B, 3B): The heatmap uses different model dirs but the figure caption in appendix confirms S1 > 0.95 at all scales.\n- **Status**: MATCH for 0.5B; consistent with appendix figure description.\n\n### \"Min-K%++ exhibits directional reversal at 0.5B: Cohen's d = -1.55 at d005, -1.98 at d100\"\n\nSource data from exp008_v4 (0.5B cross-model d100 vs d000):\n- s2_minkpp Cohen's d: MMLU = -1.2203, GSM8K = -2.666, ARC = -2.048\n\nSource data from exp008_exp002 (0.5B within-model at d005):\n- s2_minkpp effect_size at d005: MMLU = -0.1079 (within-model, contam vs clean)\n\n**Neither source produces -1.55 at d005 or -1.98 at d100:**\n- The d100 cross-model values are -1.22 (MMLU), -2.67 (GSM8K), -2.05 (ARC). The mean would be approximately -1.98. So \"-1.98 at d100\" likely refers to the **cross-benchmark mean** of d100 cross-model Cohen's d: (-1.2203 + -2.666 + -2.048)/3 = -1.978 -- MATCH.\n- For d005: No cross-model d005 vs d000 Cohen's d is computed in exp008_v4 (it only does d100 vs d000). The within-model d005 values are tiny (-0.1079). The Llama cross-model d000_vs_d005 s2_minkpp Cohen's d = 0.0995 (MMLU), also tiny. **The value -1.55 at d005 is NOT traceable to any source data found.**\n- Looking at the `llama_cohens_d.json`, the d000_vs_d005 values for s2_minkpp are positive and small (0.10, 0.16, 0.25 across benchmarks). These are not -1.55.\n- **Status**: d100 = -1.98 is the cross-benchmark mean of d100 cross-model Cohen's d -- VERIFIED. d005 = -1.55 -- NO SOURCE FOUND (DISCREPANCY).\n\n## Domain Gamma Audit\n\nSource: `/root/autodl-tmp/exp006/mmlu_domain_irt_j16_qwen/summary.json`\n\n### \"Social Sciences gamma_d = -0.63\"\n- Source: gamma_mean = -0.6274 -- MATCH (paper rounds to -0.63)\n\n### \"P(gamma_d < 0) = 99.7%\"\n- Source: p_neg = 0.99675 -- MATCH (paper rounds to 99.7%)\n\n### \"95% CI [-1.07, -0.19]\" (from section 5.5)\n- Source: ci95 = [-1.073, -0.192] -- MATCH (rounded)\n\n## Summary\n\n| Claim | Paper Value | Source Value | Status |\n|-------|-------------|-------------|--------|\n| B0 MAE | 0.006 | 0.0056 | MATCH |\n| B0 tau | 0.767 | 0.7669 | MATCH |\n| B1b MAE | 0.026 | 0.0258 | MATCH |\n| B1b tau | 0.783 | 0.7834 | MATCH |\n| B3 MAE | 0.008 | 0.008 | MATCH |\n| B3 tau | 0.731 | 0.7313 | MATCH |\n| B4 MAE | 0.010 | 0.0096 | MATCH |\n| B4 tau | 0.751 | 0.7506 | MATCH |\n| B5b MAE | 0.006 | 0.006 | MATCH |\n| B5b tau | 0.789 | 0.789 | MATCH |\n| B6 MAE | 0.108 | 0.1081 | MATCH |\n| B6 tau | 0.654 | 0.6543 | MATCH |\n| ContamCal MAE | 0.009 | 0.0091 | MATCH |\n| ContamCal tau | 0.731 | 0.7313 | MATCH |\n| RRF tau=0.73 | 0.73 | 0.7313 | MATCH |\n| Delta_tau=0.27 | 0.27 | ~0.18 | **MISMATCH** |\n| Random MAE 0.039+-0.008 | 0.039 | not stored | UNVERIFIED |\n| S1 AUC>0.95 all scales | >0.95 | 0.953/0.988/0.995 | MATCH |\n| Cohen's d=-1.55 at d005 | -1.55 | no source found | **NO SOURCE** |\n| Cohen's d=-1.98 at d100 | -1.98 | mean(-1.22,-2.67,-2.05)=-1.98 | MATCH |\n| SocSci gamma_d=-0.63 | -0.63 | -0.6274 | MATCH |\n| P(gamma_d<0)=99.7% | 99.7% | 99.675% | MATCH |\n| SocSci 95% CI | [-1.07,-0.19] | [-1.073,-0.192] | MATCH |\n\n### Issues requiring attention:\n\n1. **Delta_tau = 0.27**: Paper claims 0.27, but fixed J=16 random baseline gives tau_mean=0.5543, producing Delta_tau=0.177. The value 0.27 is not traceable. Possibly references a different comparison or an earlier (unfixed) computation.\n\n2. **Cohen's d = -1.55 at d005**: No source data file contains this value. The within-model d005 Cohen's d for Min-K%++ at 0.5B is -0.1079 (MMLU), far from -1.55. The d100 cross-benchmark mean is -1.98 (verified), but d005 has no equivalent cross-model analysis. This number may be fabricated by an earlier dream report or incorrectly propagated from a different analysis.\n\n3. **Random MAE 0.039 +/- 0.008**: Not directly stored in the random baseline JSON. Would need recomputation from per-seed calibrated scores vs ground truth."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: affd8efe8724e528c (use SendMessage with to: 'affd8efe8724e528c' to continue this agent)\n<usage>total_tokens: 142397\ntool_uses: 66\nduration_ms: 303951</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "7eec4ca0-bcd5-4e00-9540-7d611e3606b3",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You are auditing paper data against source data on a remote server. The task is to verify Table 3 (Calibration Baselines) and related IRT/calibration numbers from a paper about contamination dose-response in LLMs.\n\n## Paper Table 3 (tab:baselines) from results.tex\nMMLU calibration on 300 RRF-filtered items (Qwen2.5, J=16):\n- B0: Raw Accuracy: MAE 0.006, τ 0.767\n- B1b: Remove & Rescore: MAE 0.026, τ 0.783\n- B3: Vanilla 2PL: MAE 0.008, τ 0.731\n- B4: Linear Regression: MAE 0.010, τ 0.751\n- B5b: Emperor: MAE 0.006, τ 0.789\n- B6: DCR (reimpl.): MAE 0.108, τ 0.654\n- ContamCal (2PL+γ): MAE 0.009, τ 0.731\n\nAlso from §5.4 inline text:\n- \"RRF-guided item filtering achieves τ = 0.73 on 300 items (Δτ = 0.27 vs. random baseline)\"\n- \"Size-matched random subsets yield higher MAE (0.039 ± 0.008)\"\n- \"Min-K%++ exhibits directional reversal at 0.5B: Cohen's d = -1.55 at d005, -1.98 at d100\"\n- \"S1 achieves AUC > 0.95 at all scales\"\n\nFrom §5.5: Social Sciences γ_d = -0.63, P(γ_d<0) = 99.7%\n\n## Server info\nServer: cqa1-21977\nUse tool: mcp__agent-ml-research__ssh_read_only\n\n## Tasks\n1. Search for calibration/IRT analysis output:\n   - /root/contamcal-irt-calibration/analysis/fit_irt_2pl_gamma.py\n   - /root/contamcal-irt-calibration/analysis/results/\n   - `find /root/contamcal-irt-calibration -name \"*baseline*\" -o -name \"*calibration*\" -o -name \"*irt*\"`\n   - `find /root/contamcal-irt-calibration/exp006 -type f -name \"*.py\" -o -name \"*.json\"`\n\n2. Look for baseline comparison scripts and their outputs:\n   - `grep -r \"MAE\\|mae\\|tau\\|kendall\" /root/contamcal-irt-calibration --include=\"*.py\" -l`\n   - `grep -r \"emperor\\|DCR\\|dcr\\|rescore\" /root/contamcal-irt-calibration --include=\"*.py\" -l`\n\n3. Search for signal AUC data:\n   - /root/contamcal-irt-calibration/analysis/rrf_signal_analysis.json\n   - /root/contamcal-irt-calibration/analysis/rrf_signal_analysis_v2.json\n   - `find /root/contamcal-irt-calibration -name \"*auc*\" -o -name \"*cohen*\" -o -name \"*minkpp*\"`\n   - Check signal heatmap data: /root/contamcal-irt-calibration/figures/gen_signal_heatmap.py\n\n4. Look for domain gamma analysis:\n   - `find /root/contamcal-irt-calibration -name \"*domain*\" -o -name \"*gamma*\"`\n   - Check the analysis_2pl_gamma_refit_0516.md artifact\n\n5. Also check westd-29999 server if needed\n\n6. Read relevant output files and scripts to extract source values.\n\nReport:\n```\n## Table 3 Audit (Calibration Baselines)\n- B0 Raw MAE: paper=0.006, source=XX → ✅/❌\n- B0 Raw τ: paper=0.767, source=XX → ✅/❌\n...\n## Signal Detection Audit\n- Min-K%++ Cohen's d at d005: paper=-1.55, source=XX → ✅/❌\n...\n## Domain γ Audit\n- Social Sciences γ_d: paper=-0.63, source=XX → ✅/❌\n...\n```",
+              "agentId": "affd8efe8724e528c",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "That's the old random baseline (J=20 with Llama). The fixed one (J=16) has tau_mean=0.5543. But the paper claims \"random baseline\" tau gap. The paper says \"RRF-guided item filtering achieves tau = 0.73 on 300 items (Delta_tau = 0.27 vs. random baseline)\". 0.73 - 0.27 = 0.46 for random. The fixed baseline gives tau_mean = 0.5543, so Delta_tau = 0.73 - 0.5543 = 0.1757, which is not 0.27.\n\nWait -- but the paper says tau = 0.73 and Delta_tau = 0.27. The \"random baseline\" could refer to a different baseline. Let me check the old baseline: tau_mean = 0.0578, so Delta_tau = 0.73 - 0.06 = 0.67. Neither matches 0.27.\n\nActually, looking again at the fixed baseline: tau_mean = 0.5543 is the calibrated tau, but the random items also have a raw tau. Let me check: for the RRF comparison, we need to compare raw accuracy tau. The paper's claim about tau = 0.73 is B3_V2PL tau on RRF items. So the Delta_tau = 0.27 means random 300 vanilla 2PL tau ≈ 0.46. \n\nBut the fixed baseline tau_mean = 0.5543 is calibrated (2PL) tau. Let me recalculate: 0.73 - 0.5543 = 0.18, still not 0.27. \n\nHmm, perhaps they're using a different metric. The paper says \"tau = 0.73\" -- that matches B3_V2PL's tau of 0.7313 (from all_results.json). Let me check: the raw accuracy tau on the full 14K items might be the random baseline. Actually, looking more carefully, the paper references RRF-guided vs random as a comparison of item selection strategies, both using the same model (Vanilla 2PL or raw accuracy).\n\nLet me look at the random_300_tau_baseline_j16_fixed.json again: the tau_mean = 0.5543 and tau_std = 0.0478. So the paper's claim of \"Delta_tau = 0.27 vs random baseline\" would imply random tau = 0.73 - 0.27 = 0.46 or 0.73 + 0.27 = 1.00. Neither matches 0.5543.\n\n0.73 - 0.55 = 0.18, so the actual Delta_tau is 0.18, not 0.27. This is a discrepancy.\n\nBut wait -- the paper says \"MAE (0.039 ± 0.008)\" for random subsets. Let me compute MAE from the random baseline data. The fixed baseline doesn't have MAE explicitly. Let me check.\n\nNow I have enough data to compile the full audit. Let me compile the results.\n\n## Summary of all source data found:\n\n**Table 3 (MMLU unified_baselines_n16/all_results.json):**\n- B0_Raw: MAE=0.0056, tau=0.7669\n- B1b_RemRescore: MAE=0.0258, tau=0.7834\n- B3_V2PL: MAE=0.008, tau=0.7313\n- B4_LinReg: MAE=0.0096, tau=0.7506\n- B5b_Emperor: MAE=0.006, tau=0.789\n- B6_DCR: MAE=0.1081, tau=0.6543\n- ContamCal: MAE=0.0091, tau=0.7313\n\n**Domain gamma (mmlu_domain_irt_j16_qwen/summary.json):**\n- Social_Sciences: gamma_mean = -0.6274, p_neg = 0.99675, CI = [-1.073, -0.192]\n\n**Random baseline (random_300_tau_baseline_j16_fixed.json):**\n- tau_mean = 0.5543, tau_std = 0.0478\n\n**Signal AUC (exp008_v4_results.json for 0.5B):**\n- S1 d005 AUC: MMLU=0.953, GSM8K=0.988, ARC=0.995\n- S2 d005 within-model effect_size: MMLU=-0.1079 (from cross_benchmark_summary)\n- S2 d100 cross-model Cohen's d: MMLU=-1.2203, GSM8K=-2.666, ARC=-2.048\n\nHere is my full audit report:\n\n---\n\n## Table 3 Audit (Calibration Baselines)\n\nSource: `/root/autodl-tmp/exp006/unified_baselines_n16/all_results.json`\n\n| Row | Metric | Paper | Source | Status |\n|-----|--------|-------|--------|--------|\n| B0 Raw Accuracy | MAE | 0.006 | 0.0056 | MATCH (rounded) |\n| B0 Raw Accuracy | tau | 0.767 | 0.7669 | MATCH (rounded) |\n| B1b Remove & Rescore | MAE | 0.026 | 0.0258 | MATCH (rounded) |\n| B1b Remove & Rescore | tau | 0.783 | 0.7834 | MATCH (rounded) |\n| B3 Vanilla 2PL | MAE | 0.008 | 0.008 | MATCH |\n| B3 Vanilla 2PL | tau | 0.731 | 0.7313 | MATCH (rounded) |\n| B4 Linear Regression | MAE | 0.010 | 0.0096 | MATCH (rounded) |\n| B4 Linear Regression | tau | 0.751 | 0.7506 | MATCH (rounded) |\n| B5b Emperor | MAE | 0.006 | 0.006 | MATCH |\n| B5b Emperor | tau | 0.789 | 0.789 | MATCH |\n| B6 DCR (reimpl.) | MAE | 0.108 | 0.1081 | MATCH (rounded) |\n| B6 DCR (reimpl.) | tau | 0.654 | 0.6543 | MATCH (rounded) |\n| ContamCal (2PL+gamma) | MAE | 0.009 | 0.0091 | MATCH (rounded) |\n| ContamCal (2PL+gamma) | tau | 0.731 | 0.7313 | MATCH (rounded) |\n\n**All Table 3 values verified.**\n\n## Inline Calibration Claims Audit\n\n### \"RRF-guided item filtering achieves tau = 0.73 on 300 items (Delta_tau = 0.27 vs. random baseline)\"\n\n- tau = 0.73: Source B3_V2PL tau = 0.7313 -- MATCH (rounded)\n- Delta_tau = 0.27: Random baseline tau = 0.5543 (from `random_300_tau_baseline_j16_fixed.json`), so actual Delta_tau = 0.7313 - 0.5543 = 0.177 -- MISMATCH (paper says 0.27, source says ~0.18)\n- Note: The old unfixed random baseline (J=20, including Llama) had tau_mean=0.0578, giving Delta_tau=0.67. Neither matches 0.27 exactly.\n- **Possible explanation**: The Delta_tau = 0.27 may reference a different comparison (e.g., raw accuracy tau on random vs RRF items rather than calibrated 2PL tau). However, no source file producing exactly 0.27 was found. This is a DISCREPANCY requiring investigation.\n\n### \"Size-matched random subsets yield higher MAE (0.039 +/- 0.008)\"\n\n- The random baseline JSON (`random_300_tau_baseline_j16_fixed.json`) stores calibrated scores and ground truth per seed but does not store MAE explicitly. MAE would need to be recomputed from the per-seed data.\n- **Status**: UNABLE TO VERIFY directly from stored results. Would require recomputation.\n\n## Signal Detection Audit\n\nSource: `/root/contamcal-irt-calibration/exp008/exp008_v4_output/exp008_v4_results.json` (Qwen2.5-0.5B)\n\n### \"S1 achieves AUC > 0.95 at all scales\"\n\n- S1 d005 AUC (0.5B): MMLU=0.953, GSM8K=0.988, ARC=0.995 -- all > 0.95\n- From gen_signal_heatmap.py data (1.5B, 3B): The heatmap uses different model dirs but the figure caption in appendix confirms S1 > 0.95 at all scales.\n- **Status**: MATCH for 0.5B; consistent with appendix figure description.\n\n### \"Min-K%++ exhibits directional reversal at 0.5B: Cohen's d = -1.55 at d005, -1.98 at d100\"\n\nSource data from exp008_v4 (0.5B cross-model d100 vs d000):\n- s2_minkpp Cohen's d: MMLU = -1.2203, GSM8K = -2.666, ARC = -2.048\n\nSource data from exp008_exp002 (0.5B within-model at d005):\n- s2_minkpp effect_size at d005: MMLU = -0.1079 (within-model, contam vs clean)\n\n**Neither source produces -1.55 at d005 or -1.98 at d100:**\n- The d100 cross-model values are -1.22 (MMLU), -2.67 (GSM8K), -2.05 (ARC). The mean would be approximately -1.98. So \"-1.98 at d100\" likely refers to the **cross-benchmark mean** of d100 cross-model Cohen's d: (-1.2203 + -2.666 + -2.048)/3 = -1.978 -- MATCH.\n- For d005: No cross-model d005 vs d000 Cohen's d is computed in exp008_v4 (it only does d100 vs d000). The within-model d005 values are tiny (-0.1079). The Llama cross-model d000_vs_d005 s2_minkpp Cohen's d = 0.0995 (MMLU), also tiny. **The value -1.55 at d005 is NOT traceable to any source data found.**\n- Looking at the `llama_cohens_d.json`, the d000_vs_d005 values for s2_minkpp are positive and small (0.10, 0.16, 0.25 across benchmarks). These are not -1.55.\n- **Status**: d100 = -1.98 is the cross-benchmark mean of d100 cross-model Cohen's d -- VERIFIED. d005 = -1.55 -- NO SOURCE FOUND (DISCREPANCY).\n\n## Domain Gamma Audit\n\nSource: `/root/autodl-tmp/exp006/mmlu_domain_irt_j16_qwen/summary.json`\n\n### \"Social Sciences gamma_d = -0.63\"\n- Source: gamma_mean = -0.6274 -- MATCH (paper rounds to -0.63)\n\n### \"P(gamma_d < 0) = 99.7%\"\n- Source: p_neg = 0.99675 -- MATCH (paper rounds to 99.7%)\n\n### \"95% CI [-1.07, -0.19]\" (from section 5.5)\n- Source: ci95 = [-1.073, -0.192] -- MATCH (rounded)\n\n## Summary\n\n| Claim | Paper Value | Source Value | Status |\n|-------|-------------|-------------|--------|\n| B0 MAE | 0.006 | 0.0056 | MATCH |\n| B0 tau | 0.767 | 0.7669 | MATCH |\n| B1b MAE | 0.026 | 0.0258 | MATCH |\n| B1b tau | 0.783 | 0.7834 | MATCH |\n| B3 MAE | 0.008 | 0.008 | MATCH |\n| B3 tau | 0.731 | 0.7313 | MATCH |\n| B4 MAE | 0.010 | 0.0096 | MATCH |\n| B4 tau | 0.751 | 0.7506 | MATCH |\n| B5b MAE | 0.006 | 0.006 | MATCH |\n| B5b tau | 0.789 | 0.789 | MATCH |\n| B6 MAE | 0.108 | 0.1081 | MATCH |\n| B6 tau | 0.654 | 0.6543 | MATCH |\n| ContamCal MAE | 0.009 | 0.0091 | MATCH |\n| ContamCal tau | 0.731 | 0.7313 | MATCH |\n| RRF tau=0.73 | 0.73 | 0.7313 | MATCH |\n| Delta_tau=0.27 | 0.27 | ~0.18 | **MISMATCH** |\n| Random MAE 0.039+-0.008 | 0.039 | not stored | UNVERIFIED |\n| S1 AUC>0.95 all scales | >0.95 | 0.953/0.988/0.995 | MATCH |\n| Cohen's d=-1.55 at d005 | -1.55 | no source found | **NO SOURCE** |\n| Cohen's d=-1.98 at d100 | -1.98 | mean(-1.22,-2.67,-2.05)=-1.98 | MATCH |\n| SocSci gamma_d=-0.63 | -0.63 | -0.6274 | MATCH |\n| P(gamma_d<0)=99.7% | 99.7% | 99.675% | MATCH |\n| SocSci 95% CI | [-1.07,-0.19] | [-1.073,-0.192] | MATCH |\n\n### Issues requiring attention:\n\n1. **Delta_tau = 0.27**: Paper claims 0.27, but fixed J=16 random baseline gives tau_mean=0.5543, producing Delta_tau=0.177. The value 0.27 is not traceable. Possibly references a different comparison or an earlier (unfixed) computation.\n\n2. **Cohen's d = -1.55 at d005**: No source data file contains this value. The within-model d005 Cohen's d for Min-K%++ at 0.5B is -0.1079 (MMLU), far from -1.55. The d100 cross-benchmark mean is -1.98 (verified), but d005 has no equivalent cross-model analysis. This number may be fabricated by an earlier dream report or incorrectly propagated from a different analysis.\n\n3. **Random MAE 0.039 +/- 0.008**: Not directly stored in the random baseline JSON. Would need recomputation from per-seed calibrated scores vs ground truth."
+                }
+              ],
+              "totalDurationMs": 303951,
+              "totalTokens": 142397,
+              "totalToolUseCount": 66,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4587,
+                "cache_read_input_tokens": 133931,
+                "output_tokens": 3878,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4587
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3878,
+                    "cache_read_input_tokens": 133931,
+                    "cache_creation_input_tokens": 4587,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4587,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 3,
+                "searchCount": 5,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 58
+              }
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-22T02:31:43.898Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UaSBSu4zvth9RKHewKFw26",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.559322033898305,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "bd158c67-103e-4d24-bae9-98388d15dafb"
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147269,
+                  "tool_uses": 102,
+                  "duration_ms": 283285
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "f25f50d2-9855-448d-9b24-a792bfeb40ef",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CZBFf35c2W5Gg9WdMYEw1z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "find /root/contamcal-irt-calibration/results -name \"eval_results.json\" -path \"*mmlu*\" -path \"*qwen7b*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "798f8968-6f6a-47a3-84b3-f307c2cf9922",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-22T02:31:49.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CZBFf35c2W5Gg9WdMYEw1z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "fb434770-1c96-4a1b-81b8-98980aedc8a7"
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147270,
+                  "tool_uses": 103,
+                  "duration_ms": 284180
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "a67649e7-9a75-4003-9951-17dca7bfbad3",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PhrQs5heHViQbYNtaZ1NXr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d000_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "a1e9dc31-5274-4f68-95e2-abb63a86fe0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-22T02:31:50.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PhrQs5heHViQbYNtaZ1NXr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6583819968665432,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "5ec787f0-1cde-476b-9eac-24cfb9bced32"
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147271,
+                  "tool_uses": 104,
+                  "duration_ms": 285121
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "ab7e0aa8-c841-41d1-b3f4-02c175f9ad95",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017zrXkAsPxinH6tnaPkk22Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d100_s123/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "81394b68-cc0d-4d73-873c-47da5795bd17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-22T02:31:51.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017zrXkAsPxinH6tnaPkk22Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.673265916536106,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "d87cc517-e85e-4496-8972-98564db97ffa"
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147272,
+                  "tool_uses": 105,
+                  "duration_ms": 285598
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "8f3b20b5-47df-424e-867f-9ce784372be0",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173KgMwv7gZowqC5LMQLhWv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d000_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "c546aa35-9d32-453a-ace9-f708d3302e23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-22T02:31:52.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0173KgMwv7gZowqC5LMQLhWv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6488391966956274,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "e060e35a-df3b-433f-92b8-4df1d614a7d3"
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147273,
+                  "tool_uses": 106,
+                  "duration_ms": 286523
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "0b0c17ad-ce50-463f-8bb6-274ecdb46751",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VbEfmzp9czcso4UWPr6LMn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d100_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "7391bc9a-fddf-46bb-8b5b-bfcbe0f2d397",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-22T02:31:53.227Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VbEfmzp9czcso4UWPr6LMn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6678535821108105,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "8fdeb59e-37c3-4f3f-8633-a7c22782f41e"
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147274,
+                  "tool_uses": 107,
+                  "duration_ms": 287486
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "5c4a4582-c655-4614-af7c-e87df7d6a09b",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UtamPfg4r1bSjyxhWMZgS6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d000_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "7d0b9749-bc09-4286-a761-0916c8c628a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 147275,
+                  "tool_uses": 108,
+                  "duration_ms": 287877
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "87cd6466-a6a2-47de-b4fd-615334485f68",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JoCndWevNDi3L7Mo7PR28S",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "grep \"accuracy\" /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d100_s0/eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "95565a8e-f776-4749-8332-cdcf8fd71bb8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HC9vVj8WATM4UBVQwgZjwr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1843,
+                "cache_read_input_tokens": 145001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1843,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-22T02:31:54.190Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UtamPfg4r1bSjyxhWMZgS6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.6883634809856146,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "2203e01a-41c2-4bf5-96f6-c89760ae78be"
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-22T02:31:54.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JoCndWevNDi3L7Mo7PR28S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"accuracy\\\\\\\": 0.4384703033755875,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "d845bdd0-5e66-4a4b-b8f7-2639e062fa7c"
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 148984,
+                  "tool_uses": 109,
+                  "duration_ms": 296894
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "88e58728-4836-4525-89a5-ac0ad8db7ec0",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MjRzU6vNDLLxym8mff1cx6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/contamcal-irt-calibration -name \"eval_results.json\" -path \"*mmlu*\" -path \"*qwen7b*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "555f4371-91d7-4faf-adcf-92303ee18b06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFhg7UKn2iC9bHDhSJ5kNq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1703,
+                "cache_read_input_tokens": 146844,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1703,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-22T02:32:03.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MjRzU6vNDLLxym8mff1cx6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "5b75f617-ed33-4c48-8291-b001e075e6ae"
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 148987,
+                  "tool_uses": 110,
+                  "duration_ms": 298054
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "a490f1d0-f8dd-445f-8402-306ea8d45cc9",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KByjbhVfNdzq4XJG2gQUEk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/contamcal-irt-calibration -name \"eval_results.json\" -path \"*qwen7b*s123*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "2771e06c-cd8b-423d-b4b6-f90c38a8fba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFhg7UKn2iC9bHDhSJ5kNq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1703,
+                "cache_read_input_tokens": 146844,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1703,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-22T02:32:04.704Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KByjbhVfNdzq4XJG2gQUEk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "d5633c4b-fe99-45d5-919c-7996c003edcf"
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 148990,
+                  "tool_uses": 111,
+                  "duration_ms": 298480
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "11f06c8a-9f0e-4c60-bed6-f744a9838605",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QTGq64wuifgwokNgf3tcLT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/contamcal-irt-calibration -name \"mmlu_results.json\" -path \"*qwen7b*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "5205db27-cb75-4387-879d-10a8e9b6346d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DFhg7UKn2iC9bHDhSJ5kNq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1703,
+                "cache_read_input_tokens": 146844,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1703,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-22T02:32:05.171Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QTGq64wuifgwokNgf3tcLT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "f1620de4-0339-456f-84c2-67d16cda651c"
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 149743,
+                  "tool_uses": 112,
+                  "duration_ms": 304475
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "7959dcd4-0f73-4066-bda6-b3951dfae9b1",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvFzgPnbYstubzcBHz14PQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29999",
+                "command": "find /root/contamcal-irt-calibration -name \"eval_results.json\" -path \"*qwen7b*\" -path \"*d000*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "8d519548-f746-4c49-b74f-4fb390dddba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GB1ij3HTsTtzhrcfkE1QpM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 749,
+                "cache_read_input_tokens": 148547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 749,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "description": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 149745,
+                  "tool_uses": 113,
+                  "duration_ms": 304891
+                },
+                "last_tool_name": "mcp__agent-ml-research__ssh_read_only",
+                "uuid": "3d2c9cac-5867-471e-bb35-76052c7fa20c",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013CDw9uPELR1pvjTk2Vu1kB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "find /root/contamcal-irt-calibration -name \"eval_results.json\" -path \"*qwen7b*\" -path \"*d000*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "8c5f8a55-8df4-4faa-a14b-cb0ef8825268",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GB1ij3HTsTtzhrcfkE1QpM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 749,
+                "cache_read_input_tokens": 148547,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 749,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-22T02:32:11.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvFzgPnbYstubzcBHz14PQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/arc_eval/qwen7b/d000_s123/eval_results.json\\\\n/root/contamcal-irt-calibration/results/arc_eval/qwen7b/d000_s42/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "c6b403fa-f6c8-46f4-8a3f-24541badec40"
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-22T02:32:11.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013CDw9uPELR1pvjTk2Vu1kB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s42/eval_results.json\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "9a13836d-7fc2-4345-9922-7e6ceb7a89e4"
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a389810ece0d029b3",
+                "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Audit GSM8K & cross-seed data",
+                "usage": {
+                  "total_tokens": 150417,
+                  "tool_uses": 113,
+                  "duration_ms": 394915
+                },
+                "uuid": "8387378d-f3e6-487b-8bb2-52efc519451e",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-22T02:33:41.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QjaSFTVZmFaAC68BUcRLTq",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "So the Qwen-7B MMLU data is not in a separate eval_results.json on either server -- it was likely computed from the main MMLU evaluation which produced the combined results used for the taxonomy table. The CSV confirms the s42 MMLU numbers but the s123/s0 data may be computed from the main evaluation pipeline outside these result directories.\n\nNow I have enough to compile the audit. Let me compute all the numbers.\n\n## Complete Audit Results\n\n**GSM8K Dose-Response Data Collected (seed=0 from westd gsm8k_eval):**\n\n| Model | d000 | d005 | d025 | d050 | d100 | Source Delta |\n|-------|------|------|------|------|------|-------------|\n| Phi-4 | 84.46% | -- | -- | -- | 85.60% | +1.14pp |\n| Qwen-14B | 74.98% | 71.19% | 79.30% | 81.05% | 82.41% | +7.43pp |\n| OLMo-2 | 60.58% | 66.19% | -- | -- | 69.75% | +9.17pp |\n| LLaMA-3.1 | 38.74% | -- | 52.16% | -- | 55.12% | +16.38pp |\n| Gemma-2 | 17.82% | -- | -- | -- | -- | -- |\n\nFor Qwen-7B, there is NO s0 GSM8K data on either server. Only s42 and s123 exist.\n\n**Qwen-7B GSM8K (s42 only):**\nd000=70.58%, d005=76.95%, d025=80.06%, d050=79.23%, d100=81.65%\n\n**Cross-seed MMLU deltas:**\n\n| Model | s42 delta | s123 delta | s0 delta |\n|-------|-----------|------------|----------|\n| Phi-4 | -0.17pp | +1.82pp | +0.51pp |\n| Qwen-14B | -9.37pp | -12.73pp | -24.99pp |\n| Gemma-2 | +3.76pp | +1.49pp | +1.90pp |\n| OLMo-2 | +3.21pp | -0.55pp | +1.38pp |\n\nNow I can finalize the audit report.\n\n---\n\n## GSM8K Transfer Audit (tab:gsm8k_transfer)\n\nThe transfer table mixes seeds across models. I'll verify each cell:\n\n**Phi-4:**\n- MMLU Delta: paper=+/-0.5pp. Source s42=-0.17pp. That's not +/-0.5. Looking at the paper text, \"Phi-4 14.7B +-0.5pp\" could mean across seeds the range is ~0.5pp. Actually the table text says just \"+-0.5pp\" which is approximate. Source: s42=-0.17pp, s123=+1.82pp, s0=+0.51pp. The mean across 3 seeds is about +0.72pp (not +/-0.5pp). This value (+/-0.5pp) seems to be a rough characterization, not an exact number.\n- GSM8K Delta: paper=-0.5pp. Source s123: d000=84.31%, d100=83.85%, delta=-0.46pp. Rounded to -0.5pp. **Matches**.\n\n**OLMo-2:**\n- MMLU Delta: paper=+3.2pp. Source s42=+3.21pp. **Matches** (rounds to +3.2pp).\n- GSM8K Delta: paper=+2.1pp (seed=42). Source s42: d000=68.46%, d100=70.20%, delta=+1.74pp. **MISMATCH**: source=+1.7pp vs paper=+2.1pp (0.4pp discrepancy).\n\n**Qwen-7B:**\n- MMLU Delta: paper=-1.8pp. Source s42=-1.78pp. **Matches** (rounds to -1.8pp).\n- GSM8K Delta: paper=+10.1pp. Source s42: d000=70.58%, d100=81.65%, delta=+11.07pp. **MISMATCH**: source=+11.1pp vs paper=+10.1pp (1.0pp discrepancy).\n- Range: paper=+/-0.9. Source s42 delta=+11.07pp, s123 delta=+9.18pp (d000=70.05%, d100=79.23%). Range = 11.07-9.18=1.89pp, half-range=0.94pp ~= +/-0.9. **Matches** approximately.\n\n**Qwen-14B:**\n- MMLU Delta: paper=-9.4pp. Source s42=-9.37pp. **Matches** (rounds to -9.4pp).\n- GSM8K Delta: paper=+13.1pp. Source s42: d000=60.80%, d100=81.27%, delta=+20.47pp. **MISMATCH**: source=+20.5pp vs paper=+13.1pp (7.4pp discrepancy). Wait, let me re-check. Actually, the paper says \"GSM8K Delta +13.1pp\". But Qwen-14B s42 GSM8K: 0.6080 -> 0.8127 = +20.47pp. That's very different. But the dose table at s0 shows Qwen-14B 74.98% -> 82.41% = +7.43pp. Neither matches +13.1pp.\n\nLet me check if s123 is used: Qwen-14B s123 GSM8K: d000=76.65%, d100=82.34%, delta=+5.69pp. Not +13.1 either.\n\nWhat about the mean across seeds? s42=+20.47, s123=+5.69, s0=+7.43. Mean = +11.2pp. Not +13.1 either. This is a significant discrepancy.\n\nActually wait -- let me look at s42 more carefully. d000_s42 accuracy = 0.6080. That seems very low -- the paper footnote says \"s42=60.8% vs s123=76.7%\" for Qwen-14B GSM8K d000. So the s42 d000 baseline is unstable. The paper reports +13.1pp as the delta using \"Range +/-7.4\". If the mean delta across seeds is used: (20.47 + 5.69 + 7.43)/3 = 11.2pp. Range: 20.47-5.69 = 14.78, half-range = 7.39 ~ +/-7.4. So the range matches. But the mean is 11.2, not 13.1.\n\nActually, the paper may report the median (7.43) or the s42 number. Let me reconsider: +13.1pp doesn't match any individual seed. Perhaps it's computed differently.\n\nLet me check once more: Maybe the GSM8K delta in the transfer table uses different base data.\n\n**LLaMA-3.1:**\n- MMLU Delta: paper=-0.7pp. Source s0: d000=53.50%, d100=52.81%, delta=-0.69pp. **Matches** (rounds to -0.7pp).\n- GSM8K Delta: paper=+16.4pp. Source s0: d000=38.74%, d100=55.12%, delta=+16.38pp. **Matches** (rounds to +16.4pp).\n\n---\n\n## GSM8K Dose-Response Audit (tab:gsm8k_dose, seed=0)\n\n| Model | Dosage | Paper | Source | Status |\n|-------|--------|-------|--------|--------|\n| Phi-4 | d000 | 84.46 | 84.46% | MATCH |\n| Phi-4 | d100 | 85.60 | 85.60% | MATCH |\n| Phi-4 | Delta | +1.14 | +1.14pp | MATCH |\n| Qwen-14B | d000 | 74.98 | 74.98% | MATCH |\n| Qwen-14B | d005 | 71.19 | 71.19% | MATCH |\n| Qwen-14B | d025 | 79.30 | 79.30% | MATCH |\n| Qwen-14B | d050 | 81.05 | 81.05% | MATCH |\n| Qwen-14B | d100 | 82.41 | 82.41% | MATCH |\n| Qwen-14B | Delta | +7.43 | +7.43pp | MATCH |\n| OLMo-2 | d000 | 60.58 | 60.58% | MATCH |\n| OLMo-2 | d100 | 69.75 | 69.75% | MATCH |\n| OLMo-2 | Delta | +9.17 | +9.17pp | MATCH |\n| LLaMA-3.1 | d000 | 38.74 | 38.74% | MATCH |\n| LLaMA-3.1 | d025 | 52.16 | 52.16% | MATCH |\n| LLaMA-3.1 | d100 | 55.12 | 55.12% | MATCH |\n| LLaMA-3.1 | Delta | +16.38 | +16.38pp | MATCH |\n| Gemma-2 | d000 | 17.82 | 17.82% | MATCH |\n| **Qwen-7B** | **d000** | **73.31** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d005** | **78.32** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d025** | **78.24** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d050** | **79.38** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d100** | **81.20** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **Delta** | **+7.89** | **NO S0 DATA** | **MISSING** |\n\nNote: Qwen-7B s42 data exists but numbers don't match: s42 d000=70.58% vs paper 73.31%, s42 d100=81.65% vs paper 81.20%. S123 d000=70.05% vs paper 73.31%. No s0 data found on either server.\n\n---\n\n## Cross-Seed MMLU Audit (tab:cross_seed)\n\n**Phi-4:**\n- s42: paper=0, source=-0.17pp (|delta|<1pp -> 0). MATCH\n- s123: paper=+, source=+1.82pp (|delta|>=1pp, positive -> +). MATCH\n- s0: paper=0, source=+0.51pp (|delta|<1pp -> 0). MATCH\n- CI: paper=[-0.17, +1.39]. BCa bootstrap CI. Cannot verify from raw eval data alone (needs bootstrap computation). But the per-seed deltas are s42=-0.17, s123=+1.82, s0=+0.51 -- the -0.17 lower bound matches s42 delta exactly, and +1.39 is between s0 and s123, plausible for BCa.\n\n**Qwen-14B:**\n- s42: paper=-, source=-9.37pp. MATCH\n- s123: paper=-, source=-12.73pp. MATCH\n- s0: paper=-, source=-24.99pp. MATCH\n- CI: paper=[-24.99, -10.49]. Source: s0=-24.99pp matches lower bound exactly. s42=-9.37pp, but CI upper bound is -10.49, not -9.37. This is plausible for BCa bootstrap which doesn't just use min/max of 3 seeds.\n\n**Qwen-7B:**\n- s42: paper=-, source s42 MMLU delta=-1.78pp -> \"-\". MATCH\n- s123: paper=0, source s123 MMLU delta: not directly available from server data. The Qwen-7B s123 MMLU data wasn't found on either server. UNABLE TO VERIFY.\n- s0: paper=-, source s0 MMLU delta: not directly available. UNABLE TO VERIFY.\n- CI: paper=[-1.82, -0.34]. The -1.82 matches the s42 CI from the taxonomy table (95% CI [-2.36, -1.22] for s42 alone). The paper's cross-seed CI [-1.82, -0.34] likely comes from BCa over 3 seeds.\n\n**Gemma-2:**\n- s42: paper=+, source=+3.76pp. MATCH\n- s123: paper=+, source=+1.49pp. MATCH (|delta|>=1pp)\n- s0: paper=+, source=+1.90pp. MATCH\n- CI: paper=[+1.49, +3.14]. The +1.49 matches s123 delta. +3.14 is between s0 and s42. Plausible for BCa.\n\n**OLMo-2:**\n- s42: paper=+, source=+3.21pp. MATCH\n- s123: paper=-, source=-0.55pp. Sign matches (-0.55pp -> \"-\"), but |delta|<1pp so should be \"0\" by the paper's own convention (|delta|<1pp => 0). The paper says \"-\" not \"0\". **MISMATCH in sign encoding**: source -0.55pp should be \"0\" per the paper's convention (stated in table footnote: \"Signs: +/- = |Delta|>=1pp; 0 = |Delta|<1pp\"), but the paper reports \"-\".\n- s0: paper=+, source=+1.38pp. MATCH\n- CI: paper=[-0.55, +2.60]. -0.55 matches s123 delta. +2.60 is between s0 and s42. Plausible.\n\n---\n\n## LLaMA-3.1 Inline Claims Audit\n\n- \"MMLU (53.50% -> 52.81%, Delta=-0.69pp)\": Source s0 d000=53.50%, d100=52.81%. **MATCH**.\n- \"ARC (72.61% -> 72.70%, Delta=+0.09pp)\": Source s0 ARC d000=72.61%, d100=72.70%. **MATCH**.\n- \"+16.4pp GSM8K\": Source s0 GSM8K delta=+16.38pp, rounds to +16.4pp. **MATCH**.\n\n---\n\n## Inline Text Audit (Section 5.1)\n\n- \"Qwen-7B gains +10.1pp on GSM8K\": This is the s42 transfer value. Source s42: 70.58%->81.65%=+11.07pp. **MISMATCH**: source=+11.1pp, paper says +10.1pp.\n- \"Qwen-14B: -9.4pp MMLU but +7.4pp GSM8K\": MMLU -9.4pp confirmed (source -9.37pp). GSM8K +7.4pp: matches the s0 dose table delta (+7.43pp). But the transfer table says +13.1pp for Qwen-14B GSM8K. Inconsistency within the paper: the inline text says +7.4pp (matching dose table s0), while the transfer table says +13.1pp. The inline text is correct for s0; the transfer table value (+13.1pp) has no matching source data.\n\n---\n\n## Summary of Discrepancies Found\n\n### Critical Issues\n\n1. **Qwen-7B GSM8K s0 data missing**: The dose table (tab:gsm8k_dose) claims seed=0 for all models, but no Qwen-7B seed=0 GSM8K data exists on either server. The paper reports d000=73.31%, but available s42 (70.58%) and s123 (70.05%) don't match. This is 6 cells of data with no discoverable source.\n\n2. **Qwen-14B GSM8K transfer delta (+13.1pp)**: The transfer table reports +13.1pp, but no individual seed produces this value (s42=+20.5pp, s123=+5.7pp, s0=+7.4pp). The mean across seeds is +11.2pp, not +13.1pp.\n\n3. **OLMo-2 GSM8K transfer delta (+2.1pp)**: Paper says +2.1pp at s42, but source s42 data yields +1.74pp (68.46% -> 70.20%). Discrepancy of 0.4pp.\n\n4. **Qwen-7B GSM8K transfer delta (+10.1pp)**: Paper says +10.1pp, but source s42 yields +11.07pp (70.58% -> 81.65%). Discrepancy of ~1.0pp.\n\n### Minor Issues\n\n5. **OLMo-2 cross-seed s123 sign encoding**: Source delta is -0.55pp, which should be \"0\" by the paper's convention (|delta|<1pp), but the paper reports \"-\". This affects the \"Cons.\" column (paper says \"x\" for OLMo-2, which is correct given the reported \"-\").\n\n### Verified as Correct\n\n- **GSM8K dose table (tab:gsm8k_dose)**: All values for Phi-4, Qwen-14B, OLMo-2, LLaMA-3.1, and Gemma-2 at seed=0 match exactly.\n- **LLaMA-3.1 inline claims**: All MMLU (53.50%->52.81%), ARC (72.61%->72.70%), and GSM8K (+16.4pp) numbers verified.\n- **MMLU deltas** for all models at seed=42 from CSV match paper values.\n- **Cross-seed direction signs** for Phi-4, Qwen-14B, and Gemma-2 are correct.\n- **Cross-seed CI bounds** are plausible (endpoints match individual seed deltas where expected for BCa)."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a389810ece0d029b3 (use SendMessage with to: 'a389810ece0d029b3' to continue this agent)\n<usage>total_tokens: 154619\ntool_uses: 113\nduration_ms: 394917</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "fb8c1b80-8942-4614-9006-b72ad1df670d",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "You are auditing paper data against source data on remote servers. The task is to verify GSM8K transfer numbers and cross-seed data from a paper about contamination dose-response in LLMs.\n\n## Paper GSM8K Data\n\n### Table tab:gsm8k_transfer (Appendix)\nCross-benchmark transfer at d100:\n- Phi-4: MMLU Δ ±0.5pp, GSM8K Δ -0.5pp\n- OLMo-2: MMLU Δ +3.2pp, GSM8K Δ +2.1pp (seed=42)\n- Qwen-7B: MMLU Δ -1.8pp, GSM8K Δ +10.1pp, Range ±0.9\n- Qwen-14B: MMLU Δ -9.4pp, GSM8K Δ +13.1pp, Range ±7.4\n- LLaMA-3.1: MMLU Δ -0.7pp, GSM8K Δ +16.4pp\n\n### Table tab:gsm8k_dose (Appendix) - GSM8K accuracy by dosage (seed=0):\n- Phi-4: d000=84.46, d100=85.60, Δ=+1.14\n- Qwen-14B: d000=74.98, d005=71.19, d025=79.30, d050=81.05, d100=82.41, Δ=+7.43\n- Qwen-7B: d000=73.31, d005=78.32, d025=78.24, d050=79.38, d100=81.20, Δ=+7.89\n- OLMo-2: d000=60.58, d100=69.75, Δ=+9.17\n- LLaMA-3.1: d000=38.74, d025=52.16, d100=55.12, Δ=+16.38\n- Gemma-2: d000=17.82 (excluded)\n\n### §5.1 inline: \"Qwen-7B gains +10.1pp on GSM8K\", \"Qwen-14B: -9.4pp MMLU but +7.4pp GSM8K\"\n### §5.1 inline: \"LLaMA-3.1-8B: MMLU (53.50%→52.81%, Δ=-0.69pp) and ARC (72.61%→72.70%, Δ=+0.09pp)\"\n### §5.1 inline: \"LLaMA-3.1 shows the strongest positive transfer across all families (+16.4pp)\"\n\n### Cross-seed Table (tab:cross_seed) - s42/s123/s0 Δacc at d100:\n- Phi-4: s42=0, s123=+, s0=0, CI [-0.17, +1.39]\n- Qwen-14B: s42=-, s123=-, s0=-, CI [-24.99, -10.49]\n- Qwen-7B: s42=-, s123=0, s0=-, CI [-1.82, -0.34]\n- Gemma-2: s42=+, s123=+, s0=+, CI [+1.49, +3.14]\n- OLMo-2: s42=+, s123=-, s0=+, CI [-0.55, +2.60]\n\n## Server info\nServers: cqa1-21977 and westd-29999\nUse tool: mcp__agent-ml-research__ssh_read_only\n\n## Tasks\n1. Find GSM8K eval results:\n   - /root/contamcal-irt-calibration/results/gsm8k/ on cqa1-21977\n   - Read eval_results.json in each subdirectory (qwen7b_d000_s42, qwen7b_d100_s42, etc.)\n   - Search for GSM8K results for other models: `find /root/contamcal-irt-calibration -path \"*gsm8k*\" -name \"*.json\"`\n\n2. Also check westd-29999 for more GSM8K data:\n   - `find /root/contamcal-irt-calibration -path \"*gsm8k*\" -name \"*.json\"`\n   - `find /root/contamcal-irt-calibration -path \"*gsm8k*\" -name \"*.log\"`\n\n3. Find cross-seed MMLU eval results (s0, s123):\n   - Search both servers: `find /root/contamcal-irt-calibration -name \"eval_results.json\" -path \"*s0*\" -o -name \"eval_results.json\" -path \"*s123*\"`\n\n4. Look for analysis scripts that compute GSM8K transfer:\n   - `find /root/contamcal-irt-calibration -name \"*gsm8k*\" -name \"*.py\"`\n   - `grep -r \"gsm8k\\|GSM8K\\|transfer\" /root/contamcal-irt-calibration --include=\"*.py\" -l`\n\n5. Look for LLaMA-3.1 eval results:\n   - `find /root/contamcal-irt-calibration -path \"*llama*\" -name \"*.json\"`\n   - `find /root/contamcal-irt-calibration -path \"*eval*rerun*\"`\n   - /root/contamcal-irt-calibration/eval_results_rerun/ on cqa1\n\n6. Look for OLMo-2 eval results:\n   - `find /root/contamcal-irt-calibration -path \"*olmo*\" -name \"*.json\"`\n\n7. Read each JSON and extract accuracy values, compute Δ, and compare with paper.\n\nReport:\n```\n## GSM8K Transfer Audit (tab:gsm8k_transfer)\n- Qwen-7B GSM8K Δ: paper=+10.1pp, source=XX → ✅/❌\n...\n## GSM8K Dose-Response Audit (tab:gsm8k_dose)\n- Phi-4 d000: paper=84.46, source=XX → ✅/❌\n...\n## Cross-Seed Audit\n- Phi-4 CI: paper=[-0.17, +1.39], source=XX → ✅/❌\n...\n## LLaMA-3.1 Audit\n- MMLU d000: paper=53.50%, source=XX → ✅/❌\n...\n```",
+              "agentId": "a389810ece0d029b3",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "So the Qwen-7B MMLU data is not in a separate eval_results.json on either server -- it was likely computed from the main MMLU evaluation which produced the combined results used for the taxonomy table. The CSV confirms the s42 MMLU numbers but the s123/s0 data may be computed from the main evaluation pipeline outside these result directories.\n\nNow I have enough to compile the audit. Let me compute all the numbers.\n\n## Complete Audit Results\n\n**GSM8K Dose-Response Data Collected (seed=0 from westd gsm8k_eval):**\n\n| Model | d000 | d005 | d025 | d050 | d100 | Source Delta |\n|-------|------|------|------|------|------|-------------|\n| Phi-4 | 84.46% | -- | -- | -- | 85.60% | +1.14pp |\n| Qwen-14B | 74.98% | 71.19% | 79.30% | 81.05% | 82.41% | +7.43pp |\n| OLMo-2 | 60.58% | 66.19% | -- | -- | 69.75% | +9.17pp |\n| LLaMA-3.1 | 38.74% | -- | 52.16% | -- | 55.12% | +16.38pp |\n| Gemma-2 | 17.82% | -- | -- | -- | -- | -- |\n\nFor Qwen-7B, there is NO s0 GSM8K data on either server. Only s42 and s123 exist.\n\n**Qwen-7B GSM8K (s42 only):**\nd000=70.58%, d005=76.95%, d025=80.06%, d050=79.23%, d100=81.65%\n\n**Cross-seed MMLU deltas:**\n\n| Model | s42 delta | s123 delta | s0 delta |\n|-------|-----------|------------|----------|\n| Phi-4 | -0.17pp | +1.82pp | +0.51pp |\n| Qwen-14B | -9.37pp | -12.73pp | -24.99pp |\n| Gemma-2 | +3.76pp | +1.49pp | +1.90pp |\n| OLMo-2 | +3.21pp | -0.55pp | +1.38pp |\n\nNow I can finalize the audit report.\n\n---\n\n## GSM8K Transfer Audit (tab:gsm8k_transfer)\n\nThe transfer table mixes seeds across models. I'll verify each cell:\n\n**Phi-4:**\n- MMLU Delta: paper=+/-0.5pp. Source s42=-0.17pp. That's not +/-0.5. Looking at the paper text, \"Phi-4 14.7B +-0.5pp\" could mean across seeds the range is ~0.5pp. Actually the table text says just \"+-0.5pp\" which is approximate. Source: s42=-0.17pp, s123=+1.82pp, s0=+0.51pp. The mean across 3 seeds is about +0.72pp (not +/-0.5pp). This value (+/-0.5pp) seems to be a rough characterization, not an exact number.\n- GSM8K Delta: paper=-0.5pp. Source s123: d000=84.31%, d100=83.85%, delta=-0.46pp. Rounded to -0.5pp. **Matches**.\n\n**OLMo-2:**\n- MMLU Delta: paper=+3.2pp. Source s42=+3.21pp. **Matches** (rounds to +3.2pp).\n- GSM8K Delta: paper=+2.1pp (seed=42). Source s42: d000=68.46%, d100=70.20%, delta=+1.74pp. **MISMATCH**: source=+1.7pp vs paper=+2.1pp (0.4pp discrepancy).\n\n**Qwen-7B:**\n- MMLU Delta: paper=-1.8pp. Source s42=-1.78pp. **Matches** (rounds to -1.8pp).\n- GSM8K Delta: paper=+10.1pp. Source s42: d000=70.58%, d100=81.65%, delta=+11.07pp. **MISMATCH**: source=+11.1pp vs paper=+10.1pp (1.0pp discrepancy).\n- Range: paper=+/-0.9. Source s42 delta=+11.07pp, s123 delta=+9.18pp (d000=70.05%, d100=79.23%). Range = 11.07-9.18=1.89pp, half-range=0.94pp ~= +/-0.9. **Matches** approximately.\n\n**Qwen-14B:**\n- MMLU Delta: paper=-9.4pp. Source s42=-9.37pp. **Matches** (rounds to -9.4pp).\n- GSM8K Delta: paper=+13.1pp. Source s42: d000=60.80%, d100=81.27%, delta=+20.47pp. **MISMATCH**: source=+20.5pp vs paper=+13.1pp (7.4pp discrepancy). Wait, let me re-check. Actually, the paper says \"GSM8K Delta +13.1pp\". But Qwen-14B s42 GSM8K: 0.6080 -> 0.8127 = +20.47pp. That's very different. But the dose table at s0 shows Qwen-14B 74.98% -> 82.41% = +7.43pp. Neither matches +13.1pp.\n\nLet me check if s123 is used: Qwen-14B s123 GSM8K: d000=76.65%, d100=82.34%, delta=+5.69pp. Not +13.1 either.\n\nWhat about the mean across seeds? s42=+20.47, s123=+5.69, s0=+7.43. Mean = +11.2pp. Not +13.1 either. This is a significant discrepancy.\n\nActually wait -- let me look at s42 more carefully. d000_s42 accuracy = 0.6080. That seems very low -- the paper footnote says \"s42=60.8% vs s123=76.7%\" for Qwen-14B GSM8K d000. So the s42 d000 baseline is unstable. The paper reports +13.1pp as the delta using \"Range +/-7.4\". If the mean delta across seeds is used: (20.47 + 5.69 + 7.43)/3 = 11.2pp. Range: 20.47-5.69 = 14.78, half-range = 7.39 ~ +/-7.4. So the range matches. But the mean is 11.2, not 13.1.\n\nActually, the paper may report the median (7.43) or the s42 number. Let me reconsider: +13.1pp doesn't match any individual seed. Perhaps it's computed differently.\n\nLet me check once more: Maybe the GSM8K delta in the transfer table uses different base data.\n\n**LLaMA-3.1:**\n- MMLU Delta: paper=-0.7pp. Source s0: d000=53.50%, d100=52.81%, delta=-0.69pp. **Matches** (rounds to -0.7pp).\n- GSM8K Delta: paper=+16.4pp. Source s0: d000=38.74%, d100=55.12%, delta=+16.38pp. **Matches** (rounds to +16.4pp).\n\n---\n\n## GSM8K Dose-Response Audit (tab:gsm8k_dose, seed=0)\n\n| Model | Dosage | Paper | Source | Status |\n|-------|--------|-------|--------|--------|\n| Phi-4 | d000 | 84.46 | 84.46% | MATCH |\n| Phi-4 | d100 | 85.60 | 85.60% | MATCH |\n| Phi-4 | Delta | +1.14 | +1.14pp | MATCH |\n| Qwen-14B | d000 | 74.98 | 74.98% | MATCH |\n| Qwen-14B | d005 | 71.19 | 71.19% | MATCH |\n| Qwen-14B | d025 | 79.30 | 79.30% | MATCH |\n| Qwen-14B | d050 | 81.05 | 81.05% | MATCH |\n| Qwen-14B | d100 | 82.41 | 82.41% | MATCH |\n| Qwen-14B | Delta | +7.43 | +7.43pp | MATCH |\n| OLMo-2 | d000 | 60.58 | 60.58% | MATCH |\n| OLMo-2 | d100 | 69.75 | 69.75% | MATCH |\n| OLMo-2 | Delta | +9.17 | +9.17pp | MATCH |\n| LLaMA-3.1 | d000 | 38.74 | 38.74% | MATCH |\n| LLaMA-3.1 | d025 | 52.16 | 52.16% | MATCH |\n| LLaMA-3.1 | d100 | 55.12 | 55.12% | MATCH |\n| LLaMA-3.1 | Delta | +16.38 | +16.38pp | MATCH |\n| Gemma-2 | d000 | 17.82 | 17.82% | MATCH |\n| **Qwen-7B** | **d000** | **73.31** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d005** | **78.32** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d025** | **78.24** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d050** | **79.38** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **d100** | **81.20** | **NO S0 DATA** | **MISSING** |\n| **Qwen-7B** | **Delta** | **+7.89** | **NO S0 DATA** | **MISSING** |\n\nNote: Qwen-7B s42 data exists but numbers don't match: s42 d000=70.58% vs paper 73.31%, s42 d100=81.65% vs paper 81.20%. S123 d000=70.05% vs paper 73.31%. No s0 data found on either server.\n\n---\n\n## Cross-Seed MMLU Audit (tab:cross_seed)\n\n**Phi-4:**\n- s42: paper=0, source=-0.17pp (|delta|<1pp -> 0). MATCH\n- s123: paper=+, source=+1.82pp (|delta|>=1pp, positive -> +). MATCH\n- s0: paper=0, source=+0.51pp (|delta|<1pp -> 0). MATCH\n- CI: paper=[-0.17, +1.39]. BCa bootstrap CI. Cannot verify from raw eval data alone (needs bootstrap computation). But the per-seed deltas are s42=-0.17, s123=+1.82, s0=+0.51 -- the -0.17 lower bound matches s42 delta exactly, and +1.39 is between s0 and s123, plausible for BCa.\n\n**Qwen-14B:**\n- s42: paper=-, source=-9.37pp. MATCH\n- s123: paper=-, source=-12.73pp. MATCH\n- s0: paper=-, source=-24.99pp. MATCH\n- CI: paper=[-24.99, -10.49]. Source: s0=-24.99pp matches lower bound exactly. s42=-9.37pp, but CI upper bound is -10.49, not -9.37. This is plausible for BCa bootstrap which doesn't just use min/max of 3 seeds.\n\n**Qwen-7B:**\n- s42: paper=-, source s42 MMLU delta=-1.78pp -> \"-\". MATCH\n- s123: paper=0, source s123 MMLU delta: not directly available from server data. The Qwen-7B s123 MMLU data wasn't found on either server. UNABLE TO VERIFY.\n- s0: paper=-, source s0 MMLU delta: not directly available. UNABLE TO VERIFY.\n- CI: paper=[-1.82, -0.34]. The -1.82 matches the s42 CI from the taxonomy table (95% CI [-2.36, -1.22] for s42 alone). The paper's cross-seed CI [-1.82, -0.34] likely comes from BCa over 3 seeds.\n\n**Gemma-2:**\n- s42: paper=+, source=+3.76pp. MATCH\n- s123: paper=+, source=+1.49pp. MATCH (|delta|>=1pp)\n- s0: paper=+, source=+1.90pp. MATCH\n- CI: paper=[+1.49, +3.14]. The +1.49 matches s123 delta. +3.14 is between s0 and s42. Plausible for BCa.\n\n**OLMo-2:**\n- s42: paper=+, source=+3.21pp. MATCH\n- s123: paper=-, source=-0.55pp. Sign matches (-0.55pp -> \"-\"), but |delta|<1pp so should be \"0\" by the paper's own convention (|delta|<1pp => 0). The paper says \"-\" not \"0\". **MISMATCH in sign encoding**: source -0.55pp should be \"0\" per the paper's convention (stated in table footnote: \"Signs: +/- = |Delta|>=1pp; 0 = |Delta|<1pp\"), but the paper reports \"-\".\n- s0: paper=+, source=+1.38pp. MATCH\n- CI: paper=[-0.55, +2.60]. -0.55 matches s123 delta. +2.60 is between s0 and s42. Plausible.\n\n---\n\n## LLaMA-3.1 Inline Claims Audit\n\n- \"MMLU (53.50% -> 52.81%, Delta=-0.69pp)\": Source s0 d000=53.50%, d100=52.81%. **MATCH**.\n- \"ARC (72.61% -> 72.70%, Delta=+0.09pp)\": Source s0 ARC d000=72.61%, d100=72.70%. **MATCH**.\n- \"+16.4pp GSM8K\": Source s0 GSM8K delta=+16.38pp, rounds to +16.4pp. **MATCH**.\n\n---\n\n## Inline Text Audit (Section 5.1)\n\n- \"Qwen-7B gains +10.1pp on GSM8K\": This is the s42 transfer value. Source s42: 70.58%->81.65%=+11.07pp. **MISMATCH**: source=+11.1pp, paper says +10.1pp.\n- \"Qwen-14B: -9.4pp MMLU but +7.4pp GSM8K\": MMLU -9.4pp confirmed (source -9.37pp). GSM8K +7.4pp: matches the s0 dose table delta (+7.43pp). But the transfer table says +13.1pp for Qwen-14B GSM8K. Inconsistency within the paper: the inline text says +7.4pp (matching dose table s0), while the transfer table says +13.1pp. The inline text is correct for s0; the transfer table value (+13.1pp) has no matching source data.\n\n---\n\n## Summary of Discrepancies Found\n\n### Critical Issues\n\n1. **Qwen-7B GSM8K s0 data missing**: The dose table (tab:gsm8k_dose) claims seed=0 for all models, but no Qwen-7B seed=0 GSM8K data exists on either server. The paper reports d000=73.31%, but available s42 (70.58%) and s123 (70.05%) don't match. This is 6 cells of data with no discoverable source.\n\n2. **Qwen-14B GSM8K transfer delta (+13.1pp)**: The transfer table reports +13.1pp, but no individual seed produces this value (s42=+20.5pp, s123=+5.7pp, s0=+7.4pp). The mean across seeds is +11.2pp, not +13.1pp.\n\n3. **OLMo-2 GSM8K transfer delta (+2.1pp)**: Paper says +2.1pp at s42, but source s42 data yields +1.74pp (68.46% -> 70.20%). Discrepancy of 0.4pp.\n\n4. **Qwen-7B GSM8K transfer delta (+10.1pp)**: Paper says +10.1pp, but source s42 yields +11.07pp (70.58% -> 81.65%). Discrepancy of ~1.0pp.\n\n### Minor Issues\n\n5. **OLMo-2 cross-seed s123 sign encoding**: Source delta is -0.55pp, which should be \"0\" by the paper's convention (|delta|<1pp), but the paper reports \"-\". This affects the \"Cons.\" column (paper says \"x\" for OLMo-2, which is correct given the reported \"-\").\n\n### Verified as Correct\n\n- **GSM8K dose table (tab:gsm8k_dose)**: All values for Phi-4, Qwen-14B, OLMo-2, LLaMA-3.1, and Gemma-2 at seed=0 match exactly.\n- **LLaMA-3.1 inline claims**: All MMLU (53.50%->52.81%), ARC (72.61%->72.70%), and GSM8K (+16.4pp) numbers verified.\n- **MMLU deltas** for all models at seed=42 from CSV match paper values.\n- **Cross-seed direction signs** for Phi-4, Qwen-14B, and Gemma-2 are correct.\n- **Cross-seed CI bounds** are plausible (endpoints match individual seed deltas where expected for BCa)."
+                }
+              ],
+              "totalDurationMs": 394917,
+              "totalTokens": 154619,
+              "totalToolUseCount": 113,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 671,
+                "cache_read_input_tokens": 149296,
+                "output_tokens": 4651,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 671
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4651,
+                    "cache_read_input_tokens": 149296,
+                    "cache_creation_input_tokens": 671,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 671,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 1,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 110
+              }
+            }
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a026b23bdbd5f6b78",
+                "tool_use_id": "toolu_01HVECcEsfkeCNT19ShhSR7Y",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Audit Table 1 & Figure 1 data",
+                "uuid": "e957d4e9-e01a-4644-9fcc-a94452e50e7d",
+                "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8"
+              }
+            }
+          ],
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-22T03:34:16.458Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "MCP error -32000: Connection closed",
+              "is_error": true,
+              "tool_use_id": "toolu_01QV9Hj3D5SKYV2VQmKchFf7"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01HVECcEsfkeCNT19ShhSR7Y",
+            "session_id": "4c45b76a-cbd4-43f5-a198-3b9540e2f2d8",
+            "uuid": "ef9134ce-6e4d-479f-9deb-9051db26daed",
+            "tool_use_result": "Error: MCP error -32000: Connection closed"
+          },
+          "id": "event-000799"
+        }
+      ]
+    }
+  ]
+}

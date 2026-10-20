@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d321d59102d380b188c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B d005 s123 aligned",
+  "task_key": "worker_analysis_exp_001_eval_3B_d005_s123_aligned_20260515T183935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_d005_s123_aligned_20260515T183935_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "6a4ee0295edc122941e529c3a8569c0ae4446eb06719561a66423db5a7670480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 benchmark 评估完成，结果如下：\n\n## exp_001_eval_3B_d005_s123_aligned 结果\n\n| Benchmark | Metric | Score | Correct/Total |\n|-----------|--------|-------|---------------|\n| **MMLU** | accuracy | **0.6324** | 8880/14042 |\n| **GSM8K** | exact_match | **0.6308** | 832/1319 |\n| **ARC-Challenge** | accuracy | **0.8242** | 966/1172 |\n| **HumanEval** | pass@1 | **0.1037** | 17/164 |\n\n**异常检查**: 无异常。所有 benchmark 均有合理结果，分数符合 Qwen2.5-3B + 5% contamination LoRA 的预期范围。bitsandbytes 有一个 `libnvJitLink.so.13` 加载警告，但未影响评估。\n\n**Item-level 结果文件路径**:\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned/eval_results.json` (2.0MB, 含 per-item 预测)\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned/correctness_matrix.json` (104KB)\n- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned/item_responses.json` (2.2MB)\n\n**Conclusion**: **success**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-d005-s123-aligned.md"
+}

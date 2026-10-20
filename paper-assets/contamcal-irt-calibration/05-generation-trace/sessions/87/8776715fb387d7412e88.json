@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8776715fb387d7412e88",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops unified baselines pipeline",
+  "task_key": "worker_ops_unified_baselines_pipeline_20260517T164317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unified_baselines_pipeline_20260517T164317.log",
+    "occurrence": 1,
+    "bytes": 774289,
+    "sha256": "60fdc5ef5dbf34b8a6e24ca8e19c9ee62b7a90abf8e441482f3708c09a151d98"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "8776715fb387d7412e88-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "8776715fb387d7412e88-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-unified-baselines-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d2e05118a9874cc9095",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research humaneval para check",
+  "task_key": "worker_research_humaneval-para-check_20260516T044347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_humaneval-para-check_20260516T044347_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "10244eccb8d69ba0c3813f69483581acea953224215776303cc05ce53875374e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 结果\n\n### Part 1: Paraphrased HumanEval pass@1 分布\n- 26 个模型评测，每个 26 题\n- **范围 0%-26.9%**，均值约 11.5%\n- 6 个模型得 0 分（完全地板效应）\n- **不是全部为零**，但方差极低，仅 1.5B d100 两个模型超过 20%\n- 对比原始 HumanEval（164 题）：范围 6.1%-30.5%，方差明显更大\n\n### Part 2: IRT Item Pool 确认\n- `run_irt_stan.py:39` 的 `skip_para=True` **已排除 paraphrased 目录**\n- Paraphrased HumanEval 不会进入 IRT response matrix\n\n### Part 3: 已添加 Item 方差过滤\n- **修改文件**：`artifacts/exp006_irt_calibration/run_irt_stan.py`\n- 新增 `filter_low_variance_items()` 函数（lines 113-151）\n- 在 `run_real_data()` 循环中调用（line 442），在构建 exposure matrix 之前执行\n- 默认阈值 `min_variance=0.01`（对应 p<0.01 或 p>0.99 的 item）\n- CLI 新增 `--min-item-variance` 参数\n- 过滤后正确对齐 exposure scores（通过 `item_keep_mask`）\n- 输出 JSON 包含 `n_items_excluded` 和 `excluded_item_indices` 字段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-humaneval-para-check.md"
+}

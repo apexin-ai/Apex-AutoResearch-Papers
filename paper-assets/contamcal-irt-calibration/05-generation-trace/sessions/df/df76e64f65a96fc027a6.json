@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df76e64f65a96fc027a6",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778874298.md",
+  "task_key": "loop_10_1778874298",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778874298.md",
+    "occurrence": 1,
+    "bytes": 5779,
+    "sha256": "542e016a01e72384fe3f4ae47986d0f421f30693ea18056b2ffe5108effc8bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-15T19:22:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0~5 on cqa1-21977，6卡全部分配给本项目。**严禁用白名单外的 GPU**\n- Alpha 统一：所有 3B SFT 必须 lora_alpha=32（D055）。d025_s42/d100_s42/d100_s123 三个 alpha=16 checkpoint 正在重跑，**旧 alpha=16 eval 结果不可用于最终论文**\n- CUDA_VISIBLE_DEVICES 必须显式写在提交命令中（C004 违规刚被 Director CRITICAL）——不能依赖 submit_training_job 自动注入\n- exp_001_eval_3B_d100_s123_para_aligned_v2 正在被 C004 核查（Worker 在跑）——PID 614412 的命令可能缺 CUDA_VISIBLE_DEVICES=2，如果违规需 kill 重提\n- tmux session `exp002_3B_v2` 是 cuda:4 反复出现未授权 compute_signals 的根因（run_batch.py 杀子进程后自动 spawn 下一个）——已被 rootcause worker 杀掉，但要警惕类似模式\n- PID 597179 (d000_v3 孤儿子进程 on cuda:4)：D066 要求杀掉但 GPU 审计 worker 发现它还在跑（rootcause worker 报告时还活着）。审计 worker 回调会确认最终状态\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D 24GB\n- 工作目录：`/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_*`\n- Eval 结果：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_*`\n- Signals：`/root/autodl-tmp/exp002/signals/`，logs 在 `/root/autodl-tmp/exp002/logs/`\n- Paraphrases：`/root/autodl-tmp/exp001/paraphrases/`\n- 本地 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/`\n- exp_004 sim sweep：本地运行，tmpdir=`/home/ubuntu/tmp_cmdstan`\n\n### 3. 📊 当前状态\n\n**刚做完 / 正在做：**\n- 处理 D066（alpha 混用修正）和 Director C004 紧急核查\n- v1 para eval 已标记 failed（GPU 冲突根因）\n- rootcause worker 已杀掉 tmux `exp002_3B_v2` 母进程和 cuda:3 孤儿\n- signals_3B_v3 (PID 611720) 被 rootcause worker 误杀——registry 已有 v4 条目但进程可能未启动\n\n**Registry RUNNING（6个，但实际只有 3-4 个进程活着）：**\n| exp_id | GPU | 状态 | 备注 |\n|--------|-----|------|------|\n| exp_001_sft_3B_d100_s123_a32_v2 | cuda:0 | PID 594489 | alpha=32 重跑 |\n| exp_001_sft_3B_d100_s42_a32_v2 | cuda:1 | PID 593740, ~41% | alpha=32 重跑 |\n| exp_001_eval_3B_d100_s123_para_aligned_v2 | cuda:2 | PID 614412 | ⚠️ C004 核查中 |\n| exp_002_signals_3B_v4 | cuda:3 | 进程可能不存在 | v3 误杀后创建，需验证 |\n| exp_001_sft_d025_3B_v3 | cuda:5 | PID 589763 | 资源系统显示 idle，可能已完成 |\n| exp_004_sim_sweep_v7 | local | 补跑 4 failed conditions | 无 GPU |\n\n另有 exp_001_sft_3B_d025_s42_a32 在 cuda:2（PID 612951），与 para eval v2 冲突——之前 session 确认 cuda:2 是 eval，cuda:5 是 d025 SFT。但同时还有一个 d025 被提交到 cuda:2，需要审计 worker 确认。\n\n**等待中：**\n- `worker_ops_gpu-audit-and-fix` — 全面 GPU 审计 + kill 597179 + 确认 v4/d025 状态\n- `worker_ops_registry-sync-stale` — exp_004_sim_sweep_v7 状态检查\n- `worker_ops_c004-cuda-violation-check` — C004 紧急核查（PID 614412 实际在哪张卡）\n- 上述三个 Worker 回调后需要：更新 registry、可能 kill+resubmit、向 Director 汇报 C004 结果\n\n### 4. 📋 待办（条件触发式）\n- GPU 审计 worker 回调 → 确认 6 卡实际状态 → 更新 registry（标记死进程为 failed/killed）→ 空闲卡立即铺任务\n- C004 worker 回调 → PID 614412 不在 cuda:2 则 kill+重提（带显式 CUDA_VISIBLE_DEVICES=2）；在 cuda:2 则回复 Director 确认\n- d025_v3 (cuda:5) 如果已完成 → 检查 checkpoint → 提交 aligned+para eval → 更新 memory.md\n- signals_3B_v4 如果进程不存在 → 重新提交到空闲 GPU（cuda:3 或 cuda:4 清理后）\n- PID 597179 (d000_v3 孤儿) 确认状态 → 如果还活着 kill 掉（D066 指令）→ 释放 cuda:4\n- cuda:3+4 释放后 → 优先提交 signals_3B（Claim 2 覆盖率 0% 是距 DDL 10 天最大风险）\n- 3 个 alpha=32 SFT 完成后 → 每个都需跑 aligned + para_aligned eval（6 cells），优先补齐 N=32\n- 所有审计完成 → 向 Director 汇报 D066 执行结果 + C004 核查结果 + GPU 全景\n\n### 5. 🎯 战略上下文\n- **目标**：EMNLP 2026 ARR May 25，还剩 10 天\n- **核心发现**：coverage collapse = model misspecification（exp-004 simulation 证明），benchmark contamination 敏感性分层（GSM8K 高敏感 +34pp@25%，MMLU/ARC 不敏感）\n- **最大风险**：Claim 2（contamination signals）覆盖率 0%——signals_3B (exp-002) 反复被中断（v1 GPU 冲突死、v2 被 kill、v3 被误杀），v4 可能也没跑起来。**这是 DDL 前最紧迫的任务**\n- **决策链**：D051（alpha=16 接受为临时）→ D055（统一 alpha=32）→ D064（错误声称全部 OK，已撤销）→ D066（确认 3 个需重跑）\n- **易错点**：\n  - 不要混淆 v1/v2/v3/v4 版本号——同一个实验可能有多个版本，只有最新版有效\n  - 不要假设 registry RUNNING = 进程活着——本 session 发现 6 个 RUNNING 但只有 3 个实际在跑\n  - kill 进程前必须交叉检查 registry（rootcause worker 误杀 signals_3B_v3 的教训）\n  - d025 SFT 可能有 cuda:2 和 cuda:5 两份——只保留更早/进度更多的那份\n  - evaluate.py 全部 benchmark 完成后才写结果，中途 kill 产出全丢\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778874298.md"
+}

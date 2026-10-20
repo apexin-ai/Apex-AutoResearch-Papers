@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f7801a342f6159ed538",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gpu3 gpu5 output check",
+  "task_key": "worker_diag_gpu3_gpu5_output_check_20260514T153057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu3_gpu5_output_check_20260514T153057_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "53b06bb978ff4daea1c87b233bb9148819a16c59321f346a652d8be071b2ccc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n---\n\n### Part A: 0.5B d025 aligned eval — ❌ 失败（从未执行）\n\nBatch 脚本按顺序跑: d000 → d000_para → d005 → d005_para → d100，在 d100 的 GSM8K (492/1319, 37%) 处超时 `EXIT_CODE=124`。**d025 排在 d100 后面，从未被执行。** 输出目录为空。\n\n需要单独重跑 d025 aligned eval。\n\n### Part B: 3B d100 aligned eval — ✅ 成功\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 64.17% (9011/14042) |\n| GSM8K | 69.67% (919/1319) |\n| ARC-Challenge | 83.96% (984/1172) |\n| HumanEval | 12.20% (20/164) |\n\n运行时间 ~3h16m (20:06→23:22)，3 个输出文件完整。\n\n### Part C: GPU 状态\n\n| GPU | Memory | Util | Status |\n|-----|--------|------|--------|\n| 0 | 14367/24564 MiB | 32% | 占用 |\n| 1 | 5889/24564 MiB | 50% | 占用 |\n| 2 | 9763/24564 MiB | 98% | 占用 |\n| **3** | **0/24564 MiB** | **0%** | **空闲** |\n| 4 | 8985/24564 MiB | 69% | 占用 |\n| 5 | 8293/24564 MiB | 36% | 占用（其他进程） |\n\n**仅 GPU 3 空闲。** GPU 5 虽然 d025 eval 已退出，但有其他进程在使用 8.3GB 显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu3-gpu5-output-check.md"
+}

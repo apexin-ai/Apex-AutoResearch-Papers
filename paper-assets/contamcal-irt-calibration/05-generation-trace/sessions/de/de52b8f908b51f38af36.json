@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de52b8f908b51f38af36",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd cuda2 olmo2 s0 launch",
+  "task_key": "worker_ops_westd-cuda2-olmo2-s0-launch_20260520T011221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cuda2-olmo2-s0-launch_20260520T011221_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "703bd26c37f19e8731551f4d7ec24580c6344201b3e358b454f1fcf3730d3d50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。\n\n```\nOLMo-2 s0 启动: 成功 PID=238804 tmux=sft_olmo2_s0, 60.6GB VRAM 已分配, step 1/3125\n\ncuda:0 (Phi-4): s123 训练全部完成 (ALL_DONE 09:10:17), GPU 空闲。未启动 GSM8K eval。\ncuda:1 (Qwen-14B): s123 训练 4/5 完成 (d000→d050), d100 刚开始加载模型 (09:14:54)。ETA ≈ 12:05 CST (~3h)。\ncuda:3 (Gemma-2-9B): d100 s123 训练进行中 (PID 234227)。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda2-olmo2-s0-launch.md"
+}

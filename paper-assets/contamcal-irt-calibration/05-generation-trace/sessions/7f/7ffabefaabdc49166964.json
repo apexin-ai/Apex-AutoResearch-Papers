@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ffabefaabdc49166964",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose phi4 s0 sweep exit",
+  "task_key": "worker_diagnose_phi4-s0-sweep-exit_20260520T052403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phi4-s0-sweep-exit_20260520T052403_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "e9afa2ff57bac8901129e4e21b667c1c278b27467a8535a0327e6c623658a0a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**Sweep 仍在正常运行，不需要更新 registry。**\n\n| 项目 | 状态 |\n|------|------|\n| **当前进程** | PID 286341，GPU 0，训练 d005 (100/3177 steps, 3%) |\n| **参数确认** | lora_alpha=32, lr=5e-5 ✓ |\n| **d000** | ✅ 完成 — 有 final adapter + checkpoint-3125 |\n| **d005** | 🔄 训练中 (3%, ETA ~2h) |\n| **d025/d050/d100** | ⏳ 待训练 |\n| **进度** | 1/5 完成，2/5 进行中 |\n\nCron 报告的\"进程退出\"是 d000 子进程正常结束，sweep 脚本已自动切换到 d005。\n\n**westd GPU 状态**：\n- GPU 0: 占用 (phi-4 d005 sweep)\n- GPU 1: 空闲\n- GPU 2: 占用 (PID 280811, 66.7GB)\n- GPU 3: 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phi4-s0-sweep-exit.md"
+}

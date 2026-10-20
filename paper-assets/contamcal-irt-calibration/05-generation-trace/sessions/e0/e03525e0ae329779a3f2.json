@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e03525e0ae329779a3f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cpu experiment check",
+  "task_key": "worker_ops_cpu-experiment-check_20260515T010622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cpu-experiment-check_20260515T010622_result.json",
+    "occurrence": 1,
+    "bytes": 1545,
+    "sha256": "0a6ecccc3dc4aebc9739e6f0eeede78adeddc44c216f911d2fb03cece8c8d5a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在情况清楚了。汇总如下：\n\n---\n\n## CPU 实验状态汇总\n\n| 实验 | 状态 | PID | 进度 | 输出路径 |\n|------|------|-----|------|----------|\n| **exp_004_sim_sweep_v4** | **已完成/停止** | 无进程 | 9/120 conditions 完成（sweep_summary 仅含 4 条） | `/root/contamcal-irt-calibration/exp004_sim_sweep/results/` |\n| **exp006-oracle-gsm8k-extended** | **已完成** | 无进程 | 100% — 有完整 `exp006_results.json`（37KB） | `/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/` |\n| **exp006-pooled-s1only-arc** | **已完成** | 无进程 | 100% — 有完整 `exp006_results.json`（246KB）+ `joint_fit/` + `arc_challenge/` | `/root/autodl-tmp/exp006/results_pooled_s1only_arc/` |\n| **exp006-pooled-s1only-gsm8k** | **已完成** | 无进程（v3_rrf 版） | 100% — `exp006_results.json`（271KB）完成于 06:57 | `/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf/` |\n\n## 额外发现：3 个新进程在跑\n\n| 进程 | PID | 启动时间 | 状态 |\n|------|-----|----------|------|\n| **pooled s1only gsm8k v2** (joint-fit) | 478825 | 09:08 | RUNNING — Stan warmup 中 |\n| **oracle gsm8k extended v2** (4chain x 4000 samples) | 478967 | 09:08 | RUNNING — Stan warmup 中 |\n| **2pl ablation** (gsm8k+arc+mmlu) | 467504 | 07:57 | RUNNING — mmlu 采样完成(3626s)，可能在做后处理 |\n\n**sim_sweep_v4** 只完成了 9 个 condition（非 57/120），进程已不存在，可能提前终止或结果散落在其他位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cpu-experiment-check.md"
+}

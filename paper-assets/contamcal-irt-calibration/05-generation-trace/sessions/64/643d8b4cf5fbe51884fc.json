@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "643d8b4cf5fbe51884fc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh eval gpu2 15B s123",
+  "task_key": "worker_ssh_eval-gpu2-15B-s123_20260513T223102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-gpu2-15B-s123_20260513T223102_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "ca4daa9e52c6ca961e023ae077e674ba09b1e772b18a5a7ace811ff7c70072c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已启动，运行正常。\n\n- **PID**: 226817\n- **GPU**: cuda:2 (`CUDA_VISIBLE_DEVICES=2`, 框架内 `--gpu 0`)\n- **Adapter**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123/lora_adapter`\n- **Benchmarks**: mmlu, gsm8k, arc_challenge, humaneval\n- **输出目录**: `/root/contamcal-irt-calibration/exp001/eval_results/qwen2.5-1.5b_d000_s123`\n- **日志**: `/tmp/eval_15b_d000_s123.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-gpu2-15b-s123.md"
+}

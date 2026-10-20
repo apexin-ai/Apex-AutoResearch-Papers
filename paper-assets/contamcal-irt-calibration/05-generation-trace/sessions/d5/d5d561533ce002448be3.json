@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d561533ce002448be3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix signals falcon3 d100 s42",
+  "task_key": "worker_fix_signals_falcon3_d100_s42_20260522T145922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_signals_falcon3_d100_s42_20260522T145922_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "3e3dd3f694e72f24d02bb0aa1e7b35baa8c214fd34577f981bbd9f946d0ea5b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中：\n\n- PID 702456 活跃，GPU 0 占用 15594 MiB\n- S4 selfcritique mmlu 已开始处理（14042 items，chunked mode），不再报 `token_type_ids` 错误\n- `bitsandbytes` 的 `libnvJitLink.so.13` 是非致命警告，不影响运行\n\n**总结**：\n- 实际错误不是 faiss，而是 `s4_selfcritique.py` 中 Falcon3 不接受 tokenizer 返回的 `token_type_ids`\n- 已修复：在两处 `inputs` 构建后 `pop(\"token_type_ids\", None)`\n- S1 (embedding) 和 S2 (minkpp) 已在 v1 成功完成（6个文件），v2 只跑 S4\n- 实验 `signals_falcon3_d100_s42_v2` 已在 cqa1-21977 cuda:0 运行（PID 702456），预计 mmlu 14042 items 约 7.5h + arc/gsm8k 约 1.5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-signals-falcon3-d100-s42.md"
+}

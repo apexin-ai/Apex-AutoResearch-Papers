@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3c3f0034e6279a1462b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "knowledge plan registry refresh",
+  "task_key": "worker_knowledge_plan_registry_refresh_20260515T193300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_plan_registry_refresh_20260515T193300_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "7b88b871db21e1941fed1f3c358435d377e8764f2bd403f782ed342de4c98452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "映射表已写入 `artifacts/plan_registry_mapping.md` 并注册。\n\n核心发现：\n\n| plan_id | 需更新的 registry_id | 状态 |\n|---------|---------------------|------|\n| exp-001 | `exp_001_sft_injection` (替换 exp_001_sft_d100_15B_v2) | DONE/success |\n| **exp-002** | `exp_002_signals_05B` (新增) | DONE/success |\n| **exp-003** | `exp_003_rrf_05B` (新增) | DONE/success |\n| exp-004 | `exp_004_sim_sweep_v7` (替换 failed 的 v1) | RUNNING |\n| exp-005 | `exp_005_noise_prop_v4` (替换 failed 的 v2) | DONE/negative |\n| **exp-006** | `exp_006_irt_05B_gsm8k` (新增) | DONE/success |\n| **exp-008** | `exp_008_signal_survival_v4` (新增) | DONE/success |\n\n4 个 plan entry 完全缺失 registry_id（exp-002/003/006/008），2 个指向了 failed 的旧版本（exp-004/005）。更新后 Claim 2 应从 0% 跳到接近完成，Claim 1/3 也会大幅提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-plan-registry-refresh.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9e50425a62c5ac02ad1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check d025 s123 completion",
+  "task_key": "worker_ops_check-d025-s123-completion_20260518T180748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-d025-s123-completion_20260518T180748_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "2fe79e70226dd60c89e04d99d4bdc8e345e6f0a34b95399c72b0f77f3712acb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练**成功完成**。\n\n| 项目 | 结果 |\n|---|---|\n| 状态 | \"Training complete\" 已打印，3384/3384 steps 全部完成 |\n| train_loss | **0.9431** |\n| mean_token_accuracy | **0.814** |\n| epoch | 1.0 (完整 1 epoch) |\n| 训练时长 | 1h33m40s (5621s) |\n| Checkpoint | 完整：adapter_model.safetensors (154MB), adapter_config.json, tokenizer.json, tokenizer_config.json, training_args.bin, chat_template.jinja, checkpoint-3384/ |\n| cuda:1 | **空闲** — 0MiB 显存，无进程 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d025-s123-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58a390e1bf4e6d7e4e9f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix domain gamma n24 rerun",
+  "task_key": "worker_fix_domain_gamma_n24_rerun_20260516T170033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_domain_gamma_n24_rerun_20260516T170033_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "79fe256dff160657bafef541e86917ca8aeb9f6da1db7366ac7695b429749314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 已启动，正常运行中。\n\n**根因**：/tmp 积累了 5.9G 旧 Stan CSV 文件，根分区只剩 6.9G。第 2 个 domain（Social_Sciences）采样时 /tmp 写满，chains 1 和 4 报 \"Operation not permitted\"。\n\n**修复**：\n1. 清理 /tmp 旧文件（释放 5.7G）\n2. `TMPDIR=/root/autodl-tmp/tmp` 让 Stan 写到数据盘\n\n**v3 运行状态**：\n- PID: **818742**\n- Log: `/root/autodl-tmp/exp006/mmlu_domain_gamma_n24_v3.log`\n- Output: `/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24_v3/`\n- N=21 models（3 个 3B 模型无 RRF entry 被跳过）\n- 7 domains 串行，预计总时长 ~80-100 min\n- `adapt_delta=0.95`, `max_treedepth=12`（脚本默认值）\n- RRF 使用最新版：`rrf_full_n_latest/exposure_scores.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-domain-gamma-n24-rerun.md"
+}

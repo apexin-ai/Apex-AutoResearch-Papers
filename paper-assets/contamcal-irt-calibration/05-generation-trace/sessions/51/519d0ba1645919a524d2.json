@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "519d0ba1645919a524d2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k fix rescore",
+  "task_key": "worker_code_gsm8k-fix-rescore_20260514T065258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k-fix-rescore_20260514T065258_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "2b3a985db5c8c27b0b1752e38d510f04e088db56113cb162b5188776abe8c6ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. evaluate.py 修复内容\n\n**行 186-188** (`extract_gsm8k_answer` 的 `####` 匹配路径):\n```python\n# 旧:\nreturn match.group(1).strip().replace(\",\", \"\")\n# 新:\nanswer = match.group(1).strip().replace(\",\", \"\")\nanswer = re.sub(r'[^-\\d.]', '', answer)\nreturn answer\n```\n\n**行 217-218** (gold answer 处理) + **行 382-383** (paraphrased eval 路径):\n```python\n# 新增一行:\ngold_answer = re.sub(r'[^-\\d.]', '', gold_answer)\n```\n\n### 2. Git\n\n无本地 git repo，直接在服务器修改。\n\n### 3. 重评分结果\n\n| Model | Dosage | Seed | GSM8K_old | GSM8K_new | Δ | Flipped |\n|---|---|---|---|---|---|---|\n| Qwen2.5-3B | d000 | s42 | 0.1168 | 0.1198 | +0.30% | 4↑ 0↓ |\n| Qwen2.5-3B | d000 | s123 | 0.1759 | 0.1812 | +0.53% | 7↑ 0↓ |\n| Qwen2.5-1.5B | d000 | s42 | 0.6368 | 0.6543 | +1.74% | 23↑ 0↓ |\n| Qwen2.5-1.5B | d000 | s123 | 0.6331 | 0.6535 | +2.05% | 27↑ 0↓ |\n| Qwen2.5-0.5B | d000 | s123 | 0.3404 | 0.3412 | +0.08% | 1↑ 0↓ |\n| Qwen2.5-0.5B | d005 | s42 | 0.3601 | 0.3624 | +0.23% | 3↑ 0↓ |\n\n### 4. 结论：此 bug **不能**解释 3B GSM8K 倒挂\n\n- 3B 修正后仅提升 +0.3%~+0.5%（4~7 个 item），accuracy 仍为 **12.0%/18.1%**\n- 1.5B 受影响更大（+1.7%~+2.1%，23~27 item），修正后差距反而**更大**了\n- 3B 的 bug 影响很小（仅 `$` 前缀和 unit 后缀各几个），说明 3B 的主要问题不是答案提取，而是**模型本身没有正确解题**（大量 pred 和 gold 数值完全不同）\n- 倒挂的根因需要在别处找（可能是 SFT 数据/训练过程导致 3B 的 CoT 能力退化）\n\n翻转详情中可以看到：`$18→18`、`48 hours→48`、`$480→480` 这类单位/货币前缀是主要 pattern。1.5B 模型更倾向于在答案中附带 `$`/单位，所以受影响更多。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-fix-rescore.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf20ddbcc4aa307afdf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp002 3B signals v4 cuda3",
+  "task_key": "worker_submit_exp002_3B_signals_v4_cuda3_20260515T185501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp002_3B_signals_v4_cuda3_20260515T185501_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "4bc7214d232052ca05c0e7f180a27723701c637993a5d54d6027a8b6fc62823d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**exp_002_signals_3B_v4** 已在 cuda:3 上启动：\n- PID: 617195 (子进程 617202, 617444)，已占用 ~7.2GB 显存\n- 跳过 5 个已完成组合，运行剩余 7 个任务\n- 当前正在处理 `Qwen2.5-3B_d000_s42/mmlu`\n- 日志：`/root/autodl-tmp/exp002/logs/3B_signals_v4.log`\n- batch_size fix 已在代码中（selfcritique mmlu 用 bs=2）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp002-3b-signals-v4-cuda3.md"
+}

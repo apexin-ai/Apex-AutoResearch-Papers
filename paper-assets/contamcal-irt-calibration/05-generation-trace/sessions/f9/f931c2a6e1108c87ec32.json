@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f931c2a6e1108c87ec32",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis rrf gap fill n24",
+  "task_key": "worker_analysis_rrf_gap_fill_n24_20260516T152811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf_gap_fill_n24_20260516T152811_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "03df6a28768fd44740782307b1c4faf17c861ffe1e0d31d0ebf5053621e55b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K and ARC chains are running in parallel — chain 1 done for both, chains 2-4 in progress. I'll check again in ~4.5 minutes for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rrf-gap-fill-n24.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53df4b8dc4242b65611d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check olmo2 rerun progress",
+  "task_key": "worker_ops_check-olmo2-rerun-progress_20260521T143111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-olmo2-rerun-progress_20260521T143111_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "414a22dffe6b383bdc6c9de762621c0e7ef2526871dac66bed01862db5dd7985"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_olmo2_s42_rerun 进度\n\n**进程状态**: PID 531623 存活，已运行 5m25s，CUDA_VISIBLE_DEVICES=3\n\n**当前任务**: d000 s42 MMLU — 5999/14042 (42.7%)，速度 ~15.5 it/s\n\n**已完成结果**: 无（`olmo2_d000_s42_mmlu/` 目录为空，尚未写出结果）\n\n**GPU 3**: 96% 利用率，16.7GB / 95.6GB 显存\n\n**进度估算**:\n| 任务 | 状态 |\n|------|------|\n| d000 MMLU | 42.7% 进行中 |\n| d000 ARC | 待开始 |\n| d005/d025/d050/d100 × 2 benchmarks | 待开始 |\n\n总计 10 个 eval 任务（5 dosage × 2 benchmark），当前第 1 个进行中。\n\n**剩余时间估算**: 当前 MMLU 剩余 ~9 min，后续 4 个 MMLU ~60 min，5 个 ARC ~20 min，加载开销 ~5 min → **总计约 1.5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-olmo2-rerun-progress.md"
+}

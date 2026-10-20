@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f7097e600ffdbfacefec",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-17T19:16:21.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7aEHzMzSJrSJu1cDGf2EH",
+              "type": "tool_result",
+              "content": "Next wakeup scheduled for 19:21:00 (in 279s)."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbd6401-a6c4-4405-90eb-5a8df631b87c",
+            "uuid": "fc2438ca-2cfd-49ff-985f-4ca27fd58a0a",
+            "tool_use_result": {
+              "scheduledFor": 1779045660000,
+              "clampedDelaySeconds": 270,
+              "wasClamped": false
+            }
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCMC sampling is running with TMPDIR on the data disk (51G free). Baseline_10 started at 03:15 UTC — I'll check again in ~4.5 minutes for progress."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbd6401-a6c4-4405-90eb-5a8df631b87c",
+            "uuid": "f0d63678-61b2-4320-a54a-73102ec9df87",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KUs5XnWUUSHeBx9fMoDM3P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 266,
+                "cache_read_input_tokens": 42236,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 266
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCMC sampling is running with TMPDIR on the data disk (51G free). Baseline_10 started at 03:15 UTC — I'll check again in ~4.5 minutes for progress."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1935639,
+            "duration_api_ms": 1677967,
+            "num_turns": 387,
+            "stop_reason": "end_turn",
+            "session_id": "2fbd6401-a6c4-4405-90eb-5a8df631b87c",
+            "total_cost_usd": 19.081758750000006,
+            "usage": {
+              "input_tokens": 295,
+              "cache_creation_input_tokens": 185731,
+              "cache_read_input_tokens": 32527539,
+              "output_tokens": 59078,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 185731,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 50,
+                  "cache_read_input_tokens": 42236,
+                  "cache_creation_input_tokens": 266,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 266
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2695,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00277,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1639,
+                "outputTokens": 62482,
+                "cacheReadInputTokens": 32694450,
+                "cacheCreationInputTokens": 185843,
+                "webSearchRequests": 0,
+                "costUSD": 19.078988750000008,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "27543f61-3b86-46ba-8f52-462cc8b99b7e"
+          },
+          "id": "event-000903"
+        }
+      ]
+    }
+  ]
+}

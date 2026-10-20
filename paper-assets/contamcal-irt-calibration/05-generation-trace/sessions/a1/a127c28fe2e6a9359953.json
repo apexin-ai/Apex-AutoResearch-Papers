@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a127c28fe2e6a9359953",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft 3B d000 s123",
+  "task_key": "worker_analyze_exp_001_sft_3B_d000_s123_20260515T002900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_3B_d000_s123_20260515T002900_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "5f5c688d3811dfddf034a4ec182d88e1bfde1a45c7807c9f812a4a3c8facc631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。\n\n**分析结论：exp_001_sft_3B_d000_s123 训练成功。**\n\n- train_loss=1.1361（与 seed=42 的 1.1357 仅差 0.04%），两 seed 一致性好\n- 1 epoch / 3125 steps，耗时 3.65h\n- Checkpoint 完整：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter/adapter_model.safetensors`（119.8MB）\n- 无 W&B 记录\n- 状态保持 ANALYZING，可进入 eval 阶段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-3b-d000-s123.md"
+}

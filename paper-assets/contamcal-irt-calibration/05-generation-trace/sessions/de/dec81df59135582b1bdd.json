@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dec81df59135582b1bdd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen14b arc s42 completion",
+  "task_key": "worker_diag_qwen14b-arc-s42-completion_20260520T184819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen14b-arc-s42-completion_20260520T184819_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "7b69bbbbb7a667a2100bc2df10e6d010405c804c3a3eb48b7c6cb93c3065afff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 已不存在（无需删除）。\n\n## Collapse 跨种子稳定性分析\n\n| Dosage | s42 | s123 | 双种子均值 |\n|--------|-----|------|-----------|\n| d000 | 91.04% | 90.44% | 90.74% |\n| d005 | 90.36% | 91.47% | 90.92% |\n| d025 | 88.91% | 89.76% | 89.34% |\n| d050 | 87.63% | 88.74% | 88.19% |\n| d100 | 88.48% | 87.29% | 87.89% |\n| **Δ(d100−d000)** | **−2.56pp** | **−3.15pp** | **−2.86pp** |\n\n**结论：ARC Collapse 跨种子稳定。**\n\n- 两个种子均为负 Δ：s42 = −2.56pp, s123 = −3.15pp，双种子均值 Δ = −2.86pp\n- 整体趋势一致：d000→d050 单调下降（两个种子均如此）\n- 细节差异：s42 的 d100 相对 d050 有小幅回弹（+0.85pp），s123 则继续下降。但 d000→d100 的总 Δ 方向和量级一致\n- 非单调性集中在高 dosage 端（d050↔d100），可能是 contamination 饱和后的噪声，不影响 Collapse 方向判断\n\nQwen-14B 在 ARC 上的 Collapse 效应是 robust 的，不依赖特定 seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen14b-arc-s42-completion.md"
+}

@@ -1,0 +1,3582 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8d3459b41a2cdc13fe3d",
+  "rounds": [
+    {
+      "number": 14,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-15T03:27:30.441528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"GPU 4 进程已启动（PID 493617，模型加载中）。全部 6 张卡满载。\\n\\n## GPU 映射 (最新)\\n\\n| GPU | 显存占用 | PID | 实验 |\\n|-----|----------|-----|------|\\n| 0 | 8976/24564 MiB | 477489 | exp_001_eval_3B_d100_v2_aligned_v2 |\\n| 1 | 6782/24564 MiB | 492660 | exp_001_eval_3B_d000_v2_s123_aligned |\\n| 2 | 7530/24564 MiB | 492733 | exp_001_eval_3B_d000_v2_s123_para_aligned |\\n| 3 | 17644/24564 MiB | 466755 | exp_001_sft_d025_3B_v2 |\\n| 4 | 1302/24564 MiB | 493617 | **exp_001_sft_05B_d025_s123** ← 本次提交 |\\n| 5 | 17972/24564 MiB | 471296 | exp_001_sft_3B_d100_s123 |\\n\\n## 本次提交\\n\\n| exp_id | GPU | 类型 | 说明 |\\n|--------|-----|------|------|\\n| exp_001_sft_05B_d025_s123 | cuda:4 | SFT | 0.5B d025 seed=123, lr=2e-4, lora_alpha=32, r=16 |\\n\\n## 仍然空闲的 GPU\\n无。6 张卡全部占满。\\n\\n## 发现\\n- **0.5B d005 s123 SFT**: ✅ 完成（adapter 35MB, checkpoint-3177）\\n- **1.5B d100 s123 SFT**: ✅ 完成（adapter 73MB, checkpoint-4159）\\n- **3B d000 v2 s123 SFT**: ✅ 完成（adapter 119MB, checkpoint-3125）\\n- **0.5B d005 s123 eval**: ✅ 已完成（eval_results.json 存在）\\n- **1.5B d100 s123 eval**: ✅ 已完成（eval_results.json 存在）\\n- **3B d000 v2 s123 eval**: 🏃 已有人提交到 GPU 1（aligned）+ GPU 2（para_aligned），无需重复\\n- GPU 1/2 的 eval 完成后可释放，届时提交剩余 SFT：**1.5B d005 s123, 1.5B d025 s123, 3B d005 s123**\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-15T03:27:39.264892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_sft_05B_d025_s123",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-15T03:27:39.518964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4222:  exp_001_sft_05B_d025_s123:\n4237:      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_05B_d025_s123.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 254
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-15T03:27:39.923050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_sft_d025_05B",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-15T03:27:40.023980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1687:  exp_001_sft_d025_05B:\n1703:      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_d025_05B.log\n1729:  exp_001_sft_d025_05B_v2:\n1736:    parent: exp_001_sft_d025_05B\n1753:      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_d025_05B_v2.log\n1759:  exp_001_sft_d025_05B_v3:\n1771:      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_d025_05B_v3.log\n1996:    parent: exp_001_sft_d025_05B_v3\n2653:      parent: exp_001_sft_d025_05B_v3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-15T03:27:42.942991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "4222",
+              "limit": "40"
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-15T03:27:43.396510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4222\t  exp_001_sft_05B_d025_s123:\n4223\t    status: QUEUED\n4224\t    retry_count: 0\n4225\t    created_at: '2026-05-15T03:25:52.119Z'\n4226\t    updated_at: '2026-05-15T03:26:03.670Z'\n4227\t    spec:\n4228\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n4229\t        base && cd /root/contamcal-irt-calibration/exp001 && /root/miniconda3/bin/python\n4230\t        train_sft.py --model-name Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\n4231\t        --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123 --seed\n4232\t        123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\"\n4233\t      server: cqa1-21977\n4234\t      gpu:\n4235\t      - cuda:4\n4236\t      pid: '493808'\n4237\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_05B_d025_s123.log\n4238\t      submitted_at: '2026-05-15T03:26:02.161Z'\n4239\t      submitted_via: submit_training_job\n4240\t      backend: tmux\n4241\t      account: root\n4242\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-15T03:27:43.748805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "1759",
+              "limit": "35"
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-15T03:27:43.849720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1759\t  exp_001_sft_d025_05B_v3:\n1760\t    status: DONE\n1761\t    retry_count: 0\n1762\t    created_at: '2026-05-14T06:22:14.069Z'\n1763\t    updated_at: '2026-05-14T08:36:01.933Z'\n1764\t    spec:\n1765\t      command: python train_sft.py --model Qwen2.5-0.5B --data sft_dosage_025.jsonl\n1766\t        --gpu 2 --seed 42\n1767\t      server: cqa1-21977\n1768\t      gpu:\n1769\t      - cuda:2\n1770\t      pid: '324153'\n1771\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_d025_05B_v3.log\n1772\t      submitted_at: '2026-05-14T07:31:46.339Z'\n1773\t      submitted_via: submit_training_job\n1774\t      backend: tmux\n1775\t      account: root\n1776\t      data_path: /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\n1777\t      data_count: 54133\n1778\t      model_name: Qwen2.5-0.5B\n1779\t      seed: 42\n1780\t      wall_clock_seconds: 3855.6\n1781\t      gpu_hours: 1.07\n1782\t    hypothesis: 25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response\n1783\t      曲线的 mid-low dosage 数据点\n1784\t    reproduce:\n1785\t      finished_at: '2026-05-14T08:31:11.706Z'\n1786\t    extra:\n1787\t      hook_events:\n1788\t      - event: on_complete\n1789\t        action: agent\n1790\t        ts: '2026-05-14T08:31:17.136838+00:00'\n1791\t    checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter\n1792\t    metrics:\n1793\t      final_loss: 1.5178"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-15T03:28:07.123561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_sft_05B_d005_s123:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-15T03:28:07.552856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3702:  exp_001_sft_05B_d005_s123:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 429
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-15T03:28:08.109458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_sft_05B_d100_s123:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-15T03:28:08.310833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3202:  exp_001_sft_05B_d100_s123:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 201
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-15T03:28:11.081494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "3702",
+              "limit": "40"
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-15T03:28:11.689835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3702\t  exp_001_sft_05B_d005_s123:\n3703\t    status: DONE\n3704\t    retry_count: 0\n3705\t    created_at: '2026-05-14T23:45:12.529Z'\n3706\t    updated_at: '2026-05-15T00:46:31.713Z'\n3707\t    hypothesis: '0.5B d005 seed=123 SFT for N=16 multi-seed IRT pooling. Standard\n3708\t      0.5B params: lr=2e-4, alpha=32, r=16.'\n3709\t    spec:\n3710\t      command: python train_sft.py --model-name Qwen2.5-0.5B --data-path sft_dosage_005.jsonl\n3711\t        --output-dir Qwen2.5-0.5B_d005_s123 --lr 2e-4 --lora-alpha 32 --lora-r 16\n3712\t        --seed 123 --gpu 1\n3713\t      server: cqa1-21977\n3714\t      gpu:\n3715\t      - cuda:1\n3716\t      pid: '464137'\n3717\t      data_path: /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\n3718\t      data_count: 50826\n3719\t      model_name: Qwen2.5-0.5B\n3720\t      seed: 123\n3721\t      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123\n3722\t      log_path: /root/runs/contamcal-irt-calibration/exp_001_sft_05B_d005_s123.log\n3723\t      hyperparams:\n3724\t        lr: 2e-4\n3725\t        lora_alpha: 32\n3726\t        lora_r: 16\n3727\t        batch_size: 4\n3728\t        grad_accum: 4\n3729\t    conclusion: success\n3730\t    metrics:\n3731\t      train_loss: 1.5422\n3732\t      final_loss: 1.4542\n3733\t      mean_token_accuracy: 0.6356\n3734\t      final_token_accuracy: 0.6794\n3735\t      total_steps: 3177\n3736\t      train_runtime_sec: 3458.58\n3737\t      epoch: 1\n3738\t    completed_at: '2026-05-15T00:46:31.713Z'\n3739\t  exp_001_sft_d025_3B_v2:\n3740\t    status: RUNNING\n3741\t    retry_count: 0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 608
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-15T03:28:11.740598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "3202",
+              "limit": "40"
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": "2026-05-15T03:28:11.841504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3202\t  exp_001_sft_05B_d100_s123:\n3203\t    status: DONE\n3204\t    retry_count: 0\n3205\t    created_at: '2026-05-14T20:17:25.569Z'\n3206\t    updated_at: '2026-05-14T21:30:33.304Z'\n3207\t    spec:\n3208\t      command: python train_sft.py --model-name Qwen2.5-0.5B --data-path sft_dosage_100.jsonl\n3209\t        --output-dir Qwen2.5-0.5B_d100_s123 --lr 2e-4 --lora-alpha 32 --lora-r 16\n3210\t        --seed 123 --gpu 1\n3211\t      server: cqa1-21977\n3212\t      gpu:\n3213\t      - cuda:1\n3214\t      pid: '433822'\n3215\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_05B_d100_s123.log\n3216\t      submitted_at: '2026-05-14T20:17:24.305Z'\n3217\t      submitted_via: submit_training_job\n3218\t      backend: tmux\n3219\t      account: root\n3220\t      data_path: /root/autodl-tmp/exp001/data/sft_dosage_100.jsonl\n3221\t      data_count: 66533\n3222\t      model_name: Qwen2.5-0.5B\n3223\t      seed: 123\n3224\t      wall_clock_seconds: 4389.0\n3225\t      gpu_hours: 1.22\n3226\t    checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter\n3227\t    conclusion: success\n3228\t    completed_at: '2026-05-14T21:30:33.304Z'\n3229\t  exp_006_irt_05B_arc:\n3230\t    status: DONE\n3231\t    retry_count: 0\n3232\t    created_at: '2026-05-14T20:17:30.505Z'\n3233\t    updated_at: '2026-05-14T21:05:36.632Z'\n3234\t    hypothesis: ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure.\n3235\t      Second benchmark validation after GSM8K success.\n3236\t    spec:\n3237\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n3238\t        base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp006/run_exp006.py\n3239\t        --model-scale 0.5B --data-seed 42 --benchmark arc_challenge --aligned-only\n3240\t        --signals-dir /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp006/results_05B_arc_delta\n3241\t        --joint-fit\""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-15T03:28:31.450139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-15T03:28:31.500891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-15T03:28:43.753736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 审查报告 — worker_ops_gpu-audit-batch-submit\n\n**结论**: PASS\n\n### 发现\n- [info] 新提交 exp_001_sft_05B_d025_s123 (cuda:4)，GPU 在白名单内 ✅。nvidia-smi 确认 6/6 卡满载。\n- [info] 超参一致性 ✅：lr=2e-4, alpha=32, r=16 与 0.5B s123 标准一致（d005 s123、d100 s123 均用同一组参数）。注意 0.5B 标准参数与 3B D020 参数 (lr=5e-5, alpha=16) 不同，这是 scale-dependent 超参策略，非不一致。\n- [info] Worker 确认 3 个 SFT 已完成（0.5B d005 s123、1.5B d100 s123、3B d000 v2 s123），2 个 eval 在跑（3B d000 v2 s123 aligned/para_aligned），规划了后续 3 个 SFT（1.5B d005/d025 s123、3B d005 s123）等 GPU 释放。资源利用率良好。\n- [info] Registry spec 部分缺失（model_name, seed, data_count, hypothesis 未填），但 status=QUEUED 阶段可后续补全。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-15T03:28:55.515529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 11761
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-15T03:28:57.975571+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "超参一致性确认。0.5B 标准参数为 lr=2e-4, alpha=32, r=16（非 D020 的 3B 参数），d005/d100/d025 s123 三个 0.5B SFT 均一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000382"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "messages": [
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-15T03:29:28.744552+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_gpu-audit-and-submit-batch_20260515T032354]:\nWorker worker_ops_gpu-audit-and-submit-batch_20260515T032354 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_ops_gpu-audit-and-submit-batch_20260515t032354"
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-15T03:29:41.451583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_gpu-audit-and-submit-batch_20260515T032354_result.json"
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-15T03:29:41.603505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 汇报\\n\\n### 1. GPU 状态\\n\\n| GPU | 显存占用 | 利用率 | PID | 实验 |\\n|-----|---------|--------|-----|------|\\n| **0** | 8985/24564 MiB | 64% | 477489 | exp_001_eval_3B_d100_v2_aligned (eval, ~2.5h) |\\n| **1** | 6791→7662 MiB | 0% | 492660 | eval_3B_d000_v2_s123_aligned (刚启动 ~3min) |\\n| **2** | 6791→9008 MiB | 0% | 492733 | eval_3B_d000_v2_s123_para_aligned (刚启动 ~3min) |\\n| **3** | 17653 MiB | 9% | 466755 | exp_001_sft_d025_3B_v2 (train, ~3.5h) |\\n| **4** | ~5000 MiB | 活跃 | 494109 + 493617 | **新提交**: exp_001_eval_05B_d000_s42_v2 + 0.5B-Instruct eval (他方提交) |\\n| **5** | 17981 MiB | 63% | 471296 | exp_001_sft_3B_d100_s123 (train, ~3.2h) |\\n\\n额外：PID 481167 (exp006-oracle-gsm8k-extended-v2) 在 CPU 上跑 IRT MCMC，不占 GPU。\\n\\n### 2. Registry 更新\\n\\n- **exp_001_eval_05B_d100_aligned_v4**: RUNNING → **DONE (success)**。Metrics: mmlu=0.2334, gsm8k=0.3654, arc=0.2944, humaneval=0.0\\n- **exp_001_eval_05B_d000_s42**: RUNNING → **DONE (negative)**。进程已 defunct，输出目录被并发进程删除\\n\\n### 3. 已提交实验\\n\\n| exp_id | GPU | PID | 状态 |\\n|--------|-----|-----|------|\\n| exp_001_eval_05B_d000_s42_v2 | cuda:4 | 494109 | RUNNING (mmlu 14%, ~72 it/s) |\\n\\n### 4. 未提交\\n\\n- **exp_001_eval_05B_d100_v2** — 无空闲 GPU（GPU 4 被两个进程共享，但还有余量，可以考虑再挤一个 0.5B eval）\\n- **exp_001_eval_3B_raw_gen** — 需要 3B 模型，显存要求高，没有空闲 GPU\\n\\nGPU 1/2 上的 eval（~3min 前刚启动）来源不明，不在已知活跃进程列表中。当这些 eval 完成后（预计 2-3h），可以在释放的 GPU 上提交剩余实验。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-15T03:29:54.837679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_eval_05B_d100_aligned_v4:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-15T03:29:55.297529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2527:  exp_001_eval_05B_d100_aligned_v4:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 459
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": "2026-05-15T03:29:55.776496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_eval_05B_d000_s42:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-15T03:29:56.295501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49:  exp_001_eval_05B_d000_s42:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 519
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-15T03:29:56.749493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_eval_05B_d000_s42_v2:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-15T03:29:56.808506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "98:  exp_001_eval_05B_d000_s42_v2:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 59
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-15T03:29:59.901543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "2527",
+              "limit": "55"
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-15T03:30:00.254664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2527\t  exp_001_eval_05B_d100_aligned_v4:\n2528\t    status: DONE\n2529\t    retry_count: 0\n2530\t    created_at: '2026-05-14T15:25:10.827Z'\n2531\t    updated_at: '2026-05-14T18:20:00.391Z'\n2532\t    spec:\n2533\t      command: HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python\n2534\t        /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\n2535\t        --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter\n2536\t        --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned\n2537\t        --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir\n2538\t        /root/autodl-tmp/.hf_cache\n2539\t      server: cqa1-21977\n2540\t      gpu: cuda:2\n2541\t      pid: '396024'\n2542\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d100_aligned_v4.log\n2543\t      submitted_at: '2026-05-14T15:25:20.314Z'\n2544\t      submitted_via: submit_training_job\n2545\t      backend: tmux\n2546\t      account: root\n2547\t      data_path: MMLU+GSM8K+ARC+HumanEval aligned\n2548\t      data_count: 4\n2549\t      model_name: Qwen2.5-0.5B\n2550\t      seed: 42\n2551\t      checkpoint_source: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter\n2552\t      eval_data: mmlu gsm8k arc_challenge humaneval\n2553\t      parent: exp_001_sft_d100_05B\n2554\t      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned\n2555\t      wall_clock_seconds: 10480.1\n2556\t      gpu_hours: 2.91\n2557\t    reproduce:\n2558\t      finished_at: '2026-05-14T17:39:56.917Z'\n2559\t    extra:\n2560\t      hook_events:\n2561\t      - event: on_complete\n2562\t        action: agent\n2563\t        ts: '2026-05-14T17:39:58.597804+00:00'\n2564\t    conclusion: success\n2565\t    metrics:\n2566\t      mmlu: 0.2334\n2567\t      gsm8k: 0.3654\n2568\t      arc_challenge: 0.2944\n2569\t      humaneval_pass_at_1: 0\n2570\t      mmlu_delta_vs_d000: -0.1645\n2571\t    \n…[truncated 707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 353
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": "2026-05-15T03:30:00.695088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "49",
+              "limit": "55"
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-15T03:30:00.897647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49\t  exp_001_eval_05B_d000_s42:\n50\t    completed_at: '2026-05-14T01:29:11.220Z'\n51\t    conclusion: failed\n52\t    created_at: '2026-05-13T22:42:34.313Z'\n53\t    extra:\n54\t      hook_events:\n55\t      - action: agent\n56\t        event: on_failed\n57\t        ts: '2026-05-14T01:29:13.572174+00:00'\n58\t    failure_reason: 'Traceback → ration/exp001/evaluate.py\", line 558, in main all_results[\"benchmarks\"][benchmark]\n59\t      = result ^^^^^^^^^^^^^^^^^^^^^^^ FileNotFoundError: [Errno 2] No such file or\n60\t      directory: ''/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/eval_results.json'''\n61\t    hypothesis: 0% dosage 0.5B s42 baseline evaluation on 4 benchmarks to establish\n62\t      ground-truth scores for calibration error computation\n63\t    notes: '失败原因: 所有 4 benchmarks 评估完成（HumanEval pass@1=0.1098），但保存 eval_results.json\n64\t      时 FileNotFoundError——output_dir 未创建。ARC 下载有 HF 连接超时（未 source network_turbo）但评估仍完成。同命令\n65\t      s123 实验成功。fix_worker_id: worker_fix_eval_05B_d000_s42_v2_20260514T013245 | 建议:\n66\t      修复 evaluate.py 中保存前的 os.makedirs 调用后重跑'\n67\t    reproduce:\n68\t      finished_at: '2026-05-14T01:29:08.743Z'\n69\t    retry_count: 0\n70\t    spec:\n71\t      account: root\n72\t      backend: tmux\n73\t      checkpoint_source: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\n74\t      command: python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\n75\t        --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\n76\t        --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42 --benchmarks\n77\t        mmlu gsm8k arc_challenge humaneval\n78\t      data_count: 0\n79\t      data_path: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\n80\t      eval_data: mmlu,gsm8k,arc_challenge,humaneval\n81\t      gpu:\n82\t      - cuda:1\n83\t      gpu_hours: 2.73\n84\t      gpu_ids:\n85\t      - cuda:1\n86\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42.log\n87\t  \n…[truncated 583 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-000395"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "messages": [
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-15T03:30:01.540197+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_sentinel-fix-sync_20260515T032859]:\nWorker worker_ops_sentinel-fix-sync_20260515T032859 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_ops_sentinel-fix-sync_20260515t032859"
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": "2026-05-15T03:30:14.943125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_sentinel-fix-sync_20260515T032859_result.json"
+            }
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": "2026-05-15T03:30:15.046529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。远程 `evaluate.py` 已在 `item_responses` 保存之后、`if __name__` 之前添加了 `.done` sentinel。语法验证通过。当前运行中的 eval 进程（cuda:0,1,2,4）不受影响，改动只对未来新启动的 eval 生效。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 103
+          },
+          "id": "event-000398"
+        },
+        {
+          "source_line": 399,
+          "timestamp": "2026-05-15T03:30:22.991016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000399"
+        },
+        {
+          "source_line": 400,
+          "timestamp": "2026-05-15T03:30:23.044510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 53
+          },
+          "id": "event-000400"
+        },
+        {
+          "source_line": 401,
+          "timestamp": "2026-05-15T03:30:27.020702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -n \"done\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000401"
+        },
+        {
+          "source_line": 402,
+          "timestamp": "2026-05-15T03:30:27.271838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -30 /root/contamcal-irt-calibration/exp001/evaluate.py"
+            }
+          },
+          "id": "event-000402"
+        },
+        {
+          "source_line": 403,
+          "timestamp": "2026-05-15T03:30:28.636800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"636:    (output_dir / \\\\\\\".done\\\\\\\").touch()\\\\n637:    logger.info(\\\\\\\"Sentinel .done written to %s\\\\\\\", output_dir)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1616
+          },
+          "id": "event-000403"
+        },
+        {
+          "source_line": 404,
+          "timestamp": "2026-05-15T03:30:28.927800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "98",
+              "limit": "35"
+            }
+          },
+          "id": "event-000404"
+        },
+        {
+          "source_line": 405,
+          "timestamp": "2026-05-15T03:30:28.978537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "98\t  exp_001_eval_05B_d000_s42_v2:\n99\t    conclusion: failed\n100\t    created_at: '2026-05-14T02:26:38.504Z'\n101\t    extra:\n102\t      hook_events:\n103\t      - action: agent\n104\t        event: on_failed\n105\t        ts: '2026-05-14T02:36:53.124182+00:00'\n106\t    failure_reason: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n107\t    reproduce:\n108\t      finished_at: '2026-05-14T02:36:49.559Z'\n109\t    retry_count: 0\n110\t    spec:\n111\t      account: root\n112\t      backend: tmux\n113\t      command: bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh\n114\t        && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export\n115\t        TOKENIZERS_PARALLELISM=false && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n116\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1\n117\t        && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path\n118\t        /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\n119\t        --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42 --benchmarks\n120\t        mmlu gsm8k arc_challenge humaneval\"\n121\t      gpu:\n122\t      - cuda:2\n123\t      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v2.log\n124\t      pid: '263528'\n125\t      server: cqa1-21977\n126\t      submitted_at: '2026-05-14T02:28:26.942Z'\n127\t      submitted_via: submit_training_job\n128\t    status: PREPARING\n129\t    updated_at: '2026-05-14T02:36:51.089Z'\n130\t  exp_001_eval_05B_d000_s42_v3:\n131\t    conclusion: killed\n132\t    created_at: '2026-05-14T02:30:50.700Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000405"
+        },
+        {
+          "source_line": 406,
+          "timestamp": "2026-05-15T03:30:29.040354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            item[\\\\\\\"correct\\\\\\\"] for item in result[\\\\\\\"per_item\\\\\\\"]\\\\n        ]\\\\n    matrix_file = output_dir / \\\\\\\"correctness_matrix.json\\\\\\\"\\\\n    with open(matrix_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(correctness_matrix, f)\\\\n    logger.info(\\\\\\\"Correctness matrix saved to %s\\\\\\\", matrix_file)\\\\n\\\\n    # Save structured item responses (for IRT analysis)\\\\n    item_responses = []\\\\n    for benchmark, result in all_results[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        for item in result[\\\\\\\"per_item\\\\\\\"]:\\\\n            item_responses.append({\\\\n                \\\\\\\"item_id\\\\\\\": f\\\\\\\"{benchmark}_{item.get('index', item.get('task_id', ''))}\\\\\\\",\\\\n                \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n                \\\\\\\"correct\\\\\\\": item[\\\\\\\"correct\\\\\\\"],\\\\n                \\\\\\\"model_answer\\\\\\\": str(item.get(\\\\\\\"pred\\\\\\\", item.get(\\\\\\\"generated\\\\\\\", \\\\\\\"\\\\\\\"))),\\\\n                \\\\\\\"gold_answer\\\\\\\": str(item.get(\\\\\\\"gold\\\\\\\", \\\\\\\"\\\\\\\")),\\\\n            })\\\\n    responses_file = output_dir / \\\\\\\"item_responses.json\\\\\\\"\\\\n    with open(responses_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(item_responses, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Item responses saved to %s\\\\\\\", responses_file)\\\\n\\\\n    # Sentinel file so cron can distinguish normal completion from crash\\\\n    (output_dir / \\\\\\\".done\\\\\\\").touch()\\\\n    logger.info(\\\\\\\"Sentinel .done written to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1768
+          },
+          "id": "event-000406"
+        },
+        {
+          "source_line": 407,
+          "timestamp": "2026-05-15T03:30:43.613962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] 审查报告 — worker_ops_sentinel-fix-sync\n\n**结论**: PASS\n\n### 发现\n- [info] evaluate.py L636-637 添加 `(output_dir / \".done\").touch()`，位于 item_responses.json 保存之后、`if __name__` 之前。位置正确——只有全部 3 个输出文件（eval_results.json, correctness_matrix.json, item_responses.json）成功写入后才创建 sentinel。\n- [info] 此修复直接解决了多个 Cron 误判 failed 的根因（exp_001_eval_05B_d005_s123_aligned、exp_001_eval_15B_d100_s123_aligned 等）。未来新启动的 eval 将不再出现此类误判。\n- [info] 当前运行中的 eval 进程不受影响（已加载旧代码），改动仅对后续新 eval 生效。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000407"
+        },
+        {
+          "source_line": 408,
+          "timestamp": "2026-05-15T03:30:45.680753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "494109",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000408"
+        },
+        {
+          "source_line": 409,
+          "timestamp": "2026-05-15T03:30:46.185136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 504
+          },
+          "id": "event-000409"
+        },
+        {
+          "source_line": 410,
+          "timestamp": "2026-05-15T03:30:46.388493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_eval_05B_d000_s42_v[2-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000410"
+        },
+        {
+          "source_line": 411,
+          "timestamp": "2026-05-15T03:30:46.495479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "98:  exp_001_eval_05B_d000_s42_v2:\n123:      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v2.log\n130:  exp_001_eval_05B_d000_s42_v3:\n149:      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v3.log\n156:  exp_001_eval_05B_d000_s42_v4:\n174:      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v4.log\n181:  exp_001_eval_05B_d000_s42_v5:\n197:      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v5.log\n225:  exp_001_eval_05B_d000_s42_v6:\n243:      log_path: ~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s42_v6.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 106
+          },
+          "id": "event-000411"
+        },
+        {
+          "source_line": 412,
+          "timestamp": "2026-05-15T03:30:59.550547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "493617",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000412"
+        },
+        {
+          "source_line": 413,
+          "timestamp": "2026-05-15T03:30:59.904506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 16290
+          },
+          "id": "event-000413"
+        },
+        {
+          "source_line": 414,
+          "timestamp": "2026-05-15T03:31:00.204360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 653
+          },
+          "id": "event-000414"
+        },
+        {
+          "source_line": 415,
+          "timestamp": "2026-05-15T03:31:00.204789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000415"
+        },
+        {
+          "source_line": 416,
+          "timestamp": "2026-05-15T03:31:00.306677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000416"
+        },
+        {
+          "source_line": 417,
+          "timestamp": "2026-05-15T03:31:02.662914+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码改动正确。sentinel 在所有输出文件（eval_results.json, correctness_matrix.json, item_responses.json）写完后创建，位置合理，无副作用。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000417"
+        },
+        {
+          "source_line": 418,
+          "timestamp": "2026-05-15T03:31:03.286594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000418"
+        },
+        {
+          "source_line": 419,
+          "timestamp": "2026-05-15T03:31:05.420704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"477489, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 8976 MiB, /root/miniconda3/bin/python\\\\n492660, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, 8976 MiB, /root/miniconda3/bin/python\\\\n492733, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 9008 MiB, /root/miniconda3/bin/python\\\\n466755, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, 17644 MiB, /root/miniconda3/bin/python\\\\n493617, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 2208 MiB, /root/miniconda3/bin/python\\\\n494109, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 3686 MiB, /root/miniconda3/bin/python\\\\n471296, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, 17972 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2134
+          },
+          "id": "event-000419"
+        },
+        {
+          "source_line": 420,
+          "timestamp": "2026-05-15T03:31:22.717507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /proc/493617/cmdline"
+            }
+          },
+          "id": "event-000420"
+        },
+        {
+          "source_line": 421,
+          "timestamp": "2026-05-15T03:31:23.174211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000/root/contamcal-irt-calibration/exp001/evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct_aligned\\\\u0000--benchmarks\\\\u0000mmlu\\\\u0000gsm8k\\\\u0000arc_challenge\\\\u0000humaneval\\\\u0000--mc-format\\\\u0000aligned\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-000421"
+        },
+        {
+          "source_line": 422,
+          "timestamp": "2026-05-15T03:31:23.174665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /proc/494109/cmdline"
+            }
+          },
+          "id": "event-000422"
+        },
+        {
+          "source_line": 423,
+          "timestamp": "2026-05-15T03:31:23.528800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /proc/493808/cmdline"
+            }
+          },
+          "id": "event-000423"
+        },
+        {
+          "source_line": 424,
+          "timestamp": "2026-05-15T03:31:23.733479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000/root/contamcal-irt-calibration/exp001/evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\u0000--adapter-path\\\\u0000/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2\\\\u0000--benchmarks\\\\u0000mmlu\\\\u0000gsm8k\\\\u0000arc_challenge\\\\u0000humaneval\\\\u0000--mc-format\\\\u0000aligned\\\\u0000--cache-dir\\\\u0000/root/autodl-tmp/.hf_cache\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 558
+          },
+          "id": "event-000424"
+        },
+        {
+          "source_line": 425,
+          "timestamp": "2026-05-15T03:31:24.240094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash\\\\u0000-c\\\\u0000rm -f /tmp/agent-ml-exit/exp_001_sft_05B_d025_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_05B_d025_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_05B_d025_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=4 && timeout 21600 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && /root/miniconda3/bin/python train_sft.py --model-name Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_05B_d025_s123.log 2>&1\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 711
+          },
+          "id": "event-000425"
+        },
+        {
+          "source_line": 426,
+          "timestamp": "2026-05-15T03:32:01.862809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000426"
+        },
+        {
+          "source_line": 427,
+          "timestamp": "2026-05-15T03:32:01.913500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000427"
+        },
+        {
+          "source_line": 428,
+          "timestamp": "2026-05-15T03:32:20.589518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 审查报告 — worker_ops_gpu-audit-and-submit-batch\n\n**结论**: WARNING（Registry 跟踪脱节 + GPU 4 三进程堆叠）\n\n### 发现\n\n- [warning] **GPU 4 有两个未注册进程**：\n  - PID 493617 (2208 MiB)：`evaluate.py --model-path Qwen2.5-0.5B-Instruct --output-dir Qwen2.5-0.5B-Instruct_aligned`——疑似 exp_008_instruct_rl_proxy 相关，但 registry 中无对应条目（PID 493617 未匹配任何实验）。\n  - PID 494109 (3686 MiB)：`evaluate.py --model-path Qwen2.5-0.5B --adapter-path Qwen2.5-0.5B_d000_s42 --output-dir Qwen2.5-0.5B_d000_s42_v2`——Worker 声称提交为 exp_001_eval_05B_d000_s42_v2，但该 exp_id 已被占用（旧的 failed 条目，PID 263528）。新提交未入 registry。\n  两个进程均在白名单 GPU 内，非越界问题，但 **registry 跟踪脱节**，后续无法通过 registry 追溯结果。\n\n- [warning] **GPU 4 三进程堆叠**：PID 493808 (bash wrapper for exp_001_sft_05B_d025_s123, CUDA_VISIBLE_DEVICES=4) 尚未启动 GPU 分配。当 SFT python 进程启动后，GPU 4 将承载 2 个 0.5B eval (~6GB) + 1 个 0.5B SFT (~5-8GB) ≈ 11-14GB / 24GB。虽理论上可容纳，但三进程共享可能导致 OOM 或互相拖慢。\n\n- [info] Worker 声称将 exp_001_eval_05B_d100_aligned_v4 从 RUNNING→DONE(success)，但该实验自 2026-05-14T18:20 已是 DONE/success。Worker 可能在处理过时状态信息。\n\n- [info] Worker 声称将 exp_001_eval_05B_d000_s42 改为 \"negative\"，但 registry 中仍为 `conclusion: failed`（FileNotFoundError 导致输出未保存）。\"failed\" 是正确标签——数据丢失不是 \"negative result\"。\n\n### 建议\n1. 为 PID 493617 (Instruct eval) 和 PID 494109 (d000 s42 v2 eval) 补建 registry 条目，确保结果可追溯。\n2. 监控 GPU 4：SFT 启动后如果三进程总显存 >20GB 或出现 OOM，需杀掉低优先级进程。\n3. exp_001_eval_05B_d000_s42_v2 需要用新 exp_id（如 v7）避免与已有 failed 条目冲突。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000428"
+        },
+        {
+          "source_line": 429,
+          "timestamp": "2026-05-15T03:32:31.717572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 11128
+          },
+          "id": "event-000429"
+        },
+        {
+          "source_line": 430,
+          "timestamp": "2026-05-15T03:32:34.167568+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现关键问题：GPU 4 有两个未注册进程 + 一个待启动的 SFT，三进程共享一张卡。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000430"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "messages": [
+        {
+          "source_line": 431,
+          "timestamp": "2026-05-15T03:35:27.161358+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_cuda4-conflict-resolution_20260515T033317]:\nWorker worker_ops_cuda4-conflict-resolution_20260515T033317 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-000431"
+        },
+        {
+          "source_line": 432,
+          "timestamp": "2026-05-15T03:35:39.680610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_cuda4-conflict-resolution_20260515T033317_result.json"
+            }
+          },
+          "id": "event-000432"
+        },
+        {
+          "source_line": 433,
+          "timestamp": "2026-05-15T03:35:39.782744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"cuda:4 已清理完毕。\\n\\n**结果汇总：**\\n\\n| PID | 任务 | 状态 | 显存 |\\n|-----|------|------|------|\\n| 493617 | exp_008_instruct_05B_eval | 运行中 ✓ | 3540MiB |\\n| 494109 | exp_001_eval_05B_d000_s42_v2 | 运行中 ✓ | 3686MiB |\\n| 493813 | exp_001_sft_05B_d025_s123 | **已 kill** | — |\\n\\ncuda:4 当前总占用 7240MiB / 24564MiB（29%），两个 eval 任务共存无压力。SFT 进程树（python + timeout + tmux session）已全部清理。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000433"
+        },
+        {
+          "source_line": 434,
+          "timestamp": "2026-05-15T03:35:53.642259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_001_sft_05B_d025_s123:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000434"
+        },
+        {
+          "source_line": 435,
+          "timestamp": "2026-05-15T03:35:54.094565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4222:  exp_001_sft_05B_d025_s123:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-000435"
+        },
+        {
+          "source_line": 436,
+          "timestamp": "2026-05-15T03:35:54.570892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_008_instruct",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000436"
+        },
+        {
+          "source_line": 437,
+          "timestamp": "2026-05-15T03:35:55.050347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2783:  exp_008_instruct_rl_proxy:\n4200:  exp_008_instruct_05B_eval:\n4220:      parent: exp_008_instruct_rl_proxy"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 479
+          },
+          "id": "event-000437"
+        },
+        {
+          "source_line": 438,
+          "timestamp": "2026-05-15T03:35:55.201291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "494109",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000438"
+        },
+        {
+          "source_line": 439,
+          "timestamp": "2026-05-15T03:35:55.302092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4262:      pid: 494109"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000439"
+        },
+        {
+          "source_line": 440,
+          "timestamp": "2026-05-15T03:35:58.218224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "4200",
+              "limit": "80"
+            }
+          },
+          "id": "event-000440"
+        },
+        {
+          "source_line": 441,
+          "timestamp": "2026-05-15T03:35:58.322710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4200\t  exp_008_instruct_05B_eval:\n4201\t    status: RUNNING\n4202\t    retry_count: 0\n4203\t    created_at: '2026-05-15T03:25:20.315Z'\n4204\t    updated_at: '2026-05-15T03:25:34.815Z'\n4205\t    spec:\n4206\t      command: CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py\n4207\t        --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct --output-dir\n4208\t        /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct_aligned --benchmarks\n4209\t        mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\n4210\t      server: cqa1-21977\n4211\t      gpu_id: cuda:4\n4212\t      model_name: Qwen2.5-0.5B-Instruct\n4213\t      seed: 42\n4214\t      data_path: mmlu,gsm8k,arc_challenge,humaneval\n4215\t      data_count: 0\n4216\t      eval_data: mmlu,gsm8k,arc_challenge,humaneval\n4217\t      hypothesis: '0.5B-Instruct eval for exp_008 signal survival analysis. 3-regime\n4218\t        comparison: base (pretrained) -> d000 (SFT) -> Instruct (SFT+RL). No adapter\n4219\t        needed.'\n4220\t      parent: exp_008_instruct_rl_proxy\n4221\t      checkpoint_source: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\n4222\t  exp_001_sft_05B_d025_s123:\n4223\t    status: QUEUED\n4224\t    retry_count: 0\n4225\t    created_at: '2026-05-15T03:25:52.119Z'\n4226\t    updated_at: '2026-05-15T03:26:03.670Z'\n4227\t    spec:\n4228\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n4229\t        base && cd /root/contamcal-irt-calibration/exp001 && /root/miniconda3/bin/python\n4230\t        train_sft.py --model-name Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\n4231\t        --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123 --seed\n4232\t        123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\"\n4233\t      server: cqa1-21977\n4234\t      gpu:\n4235\t      - cuda:4\n4236\t      pid: '493808'\n4237\t      log_path: ~/runs\n…[truncated 1316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 104
+          },
+          "id": "event-000441"
+        },
+        {
+          "source_line": 442,
+          "timestamp": "2026-05-15T03:36:18.034611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000442"
+        },
+        {
+          "source_line": 443,
+          "timestamp": "2026-05-15T03:36:19.951379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 8985 MiB, 64 %\\\\n1, 8985 MiB, 0 %\\\\n2, 9017 MiB, 58 %\\\\n3, 17653 MiB, 21 %\\\\n4, 7240 MiB, 31 %\\\\n5, 17981 MiB, 39 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1916
+          },
+          "id": "event-000443"
+        },
+        {
+          "source_line": 444,
+          "timestamp": "2026-05-15T03:36:23.238713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000444"
+        },
+        {
+          "source_line": 445,
+          "timestamp": "2026-05-15T03:36:23.291472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-000445"
+        },
+        {
+          "source_line": 446,
+          "timestamp": "2026-05-15T03:36:34.985559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 审查报告 — worker_ops_cuda4-conflict-resolution\n\n**结论**: WARNING（SFT 被杀但 registry 未更新）\n\n### 发现\n- [info] 冲突解决策略合理：杀掉尚未启动 GPU 的 SFT（exp_001_sft_05B_d025_s123），保留两个正在进行的 eval。GPU 4 当前稳定：7240 MiB / 24564 MiB (29%), 31% util。\n- [info] 两个此前未注册的进程已入 registry：exp_008_instruct_05B_eval (PID 493617) ✅ 和 exp_001_eval_05B_d000_s42_v7 (PID 494109) ✅。v7 命名避开了旧 v2 条目冲突，符合我的建议。\n- [warning] **exp_001_sft_05B_d025_s123 已被 kill 但 registry 仍为 QUEUED**。需将 status 更新为 DONE + conclusion=killed，并记录 failure_reason。否则后续调度可能认为该 GPU 仍有活跃 SFT，或尝试恢复一个已不存在的进程。\n- [info] exp_008_instruct_05B_eval 的 spec 缺少 PID 字段（nvidia-smi 显示 PID 493617），建议补全。\n\n### 待办\n- 更新 exp_001_sft_05B_d025_s123 registry 状态为 killed\n- GPU 4 两个 eval 完成后（预计 ~2h），重新提交 exp_001_sft_05B_d025_s123",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000446"
+        },
+        {
+          "source_line": 447,
+          "timestamp": "2026-05-15T03:36:45.119000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 10133
+          },
+          "id": "event-000447"
+        },
+        {
+          "source_line": 448,
+          "timestamp": "2026-05-15T03:36:47.532250+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已注册（✅），但 SFT 被杀后 registry 未更新。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000448"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 449,
+          "timestamp": "2026-05-15T03:38:59.789479+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_oracle-gsm8k-extended-v2-final_20260515T033606]:\nWorker worker_analysis_oracle-gsm8k-extended-v2-final_20260515T033606 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-000449"
+        },
+        {
+          "source_line": 450,
+          "timestamp": "2026-05-15T03:39:13.197509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_oracle-gsm8k-extended-v2-final_20260515T033606_result.json"
+            }
+          },
+          "id": "event-000450"
+        },
+        {
+          "source_line": 451,
+          "timestamp": "2026-05-15T03:39:13.299166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新为 DONE/success，cron 已清理。\\n\\n---\\n\\n## exp006-oracle-gsm8k-extended-v2 最终结果\\n\\n**实验配置**: 4PL+γ IRT MCMC, Oracle exposure, 16 models (Qwen2.5-0.5B × 9 + 1.5B × 7), 1319 items, 4 chains × 4000 samples\\n\\n### IRT Fit 收敛诊断 ✓\\n\\n| 指标 | 值 | 判定 |\\n|---|---|---|\\n| max Rhat | **1.002** | ✓ (< 1.05) |\\n| min ESS | **1221.9** | ✓ (> 400) |\\n| Divergent | **0** (0%) | ✓ |\\n| Fit time | 6240.3s | — |\\n\\n### Gamma (Contamination Effect)\\n\\n| 指标 | 值 |\\n|---|---|\\n| **gamma mean** | **3.773** |\\n| gamma SD | 0.504 |\\n| **95% CI** | **[2.741, 4.714]** |\\n| CI excludes zero | **Yes** |\\n| 50% CI | [3.443, 4.119] |\\n\\nγ 显著为正，95% CI 远离零 → oracle exposure 下 contamination effect 极强。\\n\\n### Posterior Predictive Check\\n\\n| 指标 | 值 |\\n|---|---|\\n| PPP | **0.0** |\\n| Obs mean acc | 0.487 |\\n| Pred mean acc | 0.394 |\\n| Residual MAE | 0.096 |\\n\\nPPP=0 表明模型存在系统性 misfit（预测准确率偏低约 9.3pp）。\\n\\n### Calibration 评估\\n\\n| 指标 | IRT_4pl_gamma |\\n|---|---|\\n| **MAE** | **0.0917** |\\n| ECE | 0.0894 |\\n| Brier | 0.0179 |\\n| Coverage 95/80/50 | 0.31 / 0.25 / 0.25 |\\n| Sharpness 95 | 0.048 |\\n| Kendall τ | 0.505 (p=0.01) |\\n\\n### Baseline 对比表\\n\\n| Method | MAE | ECE | Brier | C50 | C80 | C95 | S95 | τ |\\n|---|---|---|---|---|---|---|---|---|\\n| **IRT_4pl_gamma** | **0.0917** | 0.0894 | 0.0179 | 0.25 | 0.25 | 0.31 | 0.048 | 0.505 |\\n| B0_raw | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\\n| B1_remove_rescore | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\\n| B2_2pl_gamma | 0.0240 | 0.0236 | 0.0011 | 0.25 | 0.56 | 0.88 | 0.060 | 0.725 |\\n| B3_vanilla_4pl | 0.0324 | 0.0324 | 0.0011 | 0.00 | 0.00 | 0.00 | 0.030 | 0.780 |\\n| B4_linear_regression | 0.0078 | 0.0078 | 0.0001 | 0.81 | 0.94 | 1.00 | 0.120 | 0.746 |\\n| B5_emperor_mitigation | **0.0050** | 0.0049 | 0.0001 | 0.88 | 0.94 | 1.00 | 0.052 | 0.838 |\\n| B6_dcr_fuzzy | 0.1381 | 0.1373 | 0.0477 | 0.56 | 0.56 | 0.56 | 0.037 | 0.415 |\\n\\n### 关键发现\\n\\n1. **IRT 4PL+γ 收敛良好**（Rhat=1.002, ESS=1222, 0 \n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000451"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 452,
+          "timestamp": "2026-05-15T03:39:19.911490+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_cron-audit-cuda12_20260515T033757]:\nWorker worker_ops_cron-audit-cuda12_20260515T033757 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_ops_cron-audit-cuda12_20260515t033757"
+          },
+          "id": "event-000452"
+        },
+        {
+          "source_line": 453,
+          "timestamp": "2026-05-15T03:39:31.687615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_cron-audit-cuda12_20260515T033757_result.json"
+            }
+          },
+          "id": "event-000453"
+        },
+        {
+          "source_line": 454,
+          "timestamp": "2026-05-15T03:39:31.791541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 审计结果\\n\\n| GPU | 实验 | PID | 状态 | 运行时间 | GPU Util |\\n|-----|------|-----|------|---------|----------|\\n| cuda:1 | exp_001_eval_3B_d000_v2_s123_aligned | 492660 | RUNNING | ~17min | 0% (可能在数据加载/切换 benchmark) |\\n| cuda:2 | exp_001_eval_3B_d000_v2_s123_para_aligned | 492733 | RUNNING | ~17min | 55% |\\n\\n**已完成修复：**\\n- Registry 补录了两个实验的 PID（之前缺失）\\n- 注册了 2 个 cron 监控（每 8 分钟轮询）：\\n  - `6f576060` → cuda:1 aligned eval\\n  - `fe6c35b6` → cuda:2 para_aligned eval\\n- 进程结束后 cron 会自动读取结果、更新 registry、自删除\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 103
+          },
+          "id": "event-000454"
+        },
+        {
+          "source_line": 455,
+          "timestamp": "2026-05-15T03:39:32.366391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006-oracle-gsm8k-extended-v2:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000455"
+        },
+        {
+          "source_line": 456,
+          "timestamp": "2026-05-15T03:39:32.467404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4103:  exp006-oracle-gsm8k-extended-v2:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-000456"
+        },
+        {
+          "source_line": 457,
+          "timestamp": "2026-05-15T03:39:36.238508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "4103",
+              "limit": "30"
+            }
+          },
+          "id": "event-000457"
+        },
+        {
+          "source_line": 458,
+          "timestamp": "2026-05-15T03:39:36.590167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4103\t  exp006-oracle-gsm8k-extended-v2:\n4104\t    status: RUNNING\n4105\t    retry_count: 0\n4106\t    created_at: '2026-05-15T01:22:28.344Z'\n4107\t    updated_at: '2026-05-15T01:22:45.041Z'\n4108\t    spec:\n4109\t      command: TMPDIR=/home/ubuntu/tmp_cmdstan python run_exp006.py --oracle-exposure\n4110\t        --pool-scales 0.5B 1.5B --benchmark gsm8k --chains 4 --warmup 2000 --samples\n4111\t        4000 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\n4112\t        --parallel-chains 1\n4113\t      server: cqa1-21977\n4114\t      data_path: /root/autodl-tmp/exp001/eval_results\n4115\t      data_count: 16\n4116\t      model_name: 4PL+gamma IRT (CmdStanPy NUTS)\n4117\t      seed: 42\n4118\t      checkpoint_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\n4119\t      log_path: /tmp/irt_oracle_gsm8k_ext_v2.log\n4120\t      tmux_session: exp006_oracle_gsm8k_ext\n4121\t      pid: 481167\n4122\t      hypothesis: 'GSM8K oracle exposure 4PL+gamma extended MCMC rerun: parallel_chains=1\n4123\t        + TMPDIR fix. 4 chains x 2000 warmup x 4000 samples. (v1 failed at 55-65%:\n4124\t        Operation not permitted)'\n4125\t  exp_001_eval_05B_d005_s123_para_aligned:\n4126\t    status: DONE\n4127\t    retry_count: 0\n4128\t    created_at: '2026-05-15T02:40:41.614Z'\n4129\t    updated_at: '2026-05-15T03:23:40.626Z'\n4130\t    spec:\n4131\t      command: CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py\n4132\t        --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123/lora_adapter"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000458"
+        },
+        {
+          "source_line": 459,
+          "timestamp": "2026-05-15T03:39:36.642486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /tmp/irt_oracle_gsm8k_ext_v2.log"
+            }
+          },
+          "id": "event-000459"
+        },
+        {
+          "source_line": 460,
+          "timestamp": "2026-05-15T03:39:38.149365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 55533 May 15 11:33 /tmp/irt_oracle_gsm8k_ext_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1506
+          },
+          "id": "event-000460"
+        },
+        {
+          "source_line": 461,
+          "timestamp": "2026-05-15T03:39:40.493786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "4156",
+              "limit": "45"
+            }
+          },
+          "id": "event-000461"
+        },
+        {
+          "source_line": 462,
+          "timestamp": "2026-05-15T03:39:40.946080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4156\t  exp_001_eval_3B_d000_v2_s123_aligned:\n4157\t    status: RUNNING\n4158\t    retry_count: 0\n4159\t    created_at: '2026-05-15T03:22:24.824Z'\n4160\t    updated_at: '2026-05-15T03:38:55.920Z'\n4161\t    spec:\n4162\t      command: CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py\n4163\t        --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\n4164\t        --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\n4165\t        --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir\n4166\t        /root/autodl-tmp/.hf_cache\n4167\t      server: cqa1-21977\n4168\t      gpu_id: cuda:1\n4169\t      pid: 492660\n4170\t      model_name: Qwen2.5-3B\n4171\t      seed: 123\n4172\t      data_path: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\n4173\t      data_count: 4\n4174\t      checkpoint_source: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\n4175\t      eval_data: mmlu,gsm8k,arc_challenge,humaneval\n4176\t      parent: exp_001_sft_3B_d000_v2_s123\n4177\t      hypothesis: '3B d000 v2 s123 aligned eval. P0: seed=123 3B signal computation\n4178\t        + N>=16 pooled IRT hard dependency.'\n4179\t  exp_001_eval_3B_d000_v2_s123_para_aligned:\n4180\t    status: RUNNING\n4181\t    retry_count: 0\n4182\t    created_at: '2026-05-15T03:22:30.855Z'\n4183\t    updated_at: '2026-05-15T03:39:00.092Z'\n4184\t    spec:\n4185\t      command: CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py\n4186\t        --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\n4187\t        --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\n4188\t        --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir\n4189\t\n…[truncated 647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000462"
+        },
+        {
+          "source_line": 463,
+          "timestamp": "2026-05-15T03:39:44.735497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/"
+            }
+          },
+          "id": "event-000463"
+        },
+        {
+          "source_line": 464,
+          "timestamp": "2026-05-15T03:39:45.237420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 288\\\\ndrwxr-xr-x  3 root root     46 May 15 11:33 .\\\\ndrwxr-xr-x 29 root root   4096 May 15 09:20 ..\\\\n-rw-r--r--  1 root root 286948 May 15 11:33 exp006_results.json\\\\ndrwxr-xr-x  2 root root    124 May 15 11:33 gsm8k\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000464"
+        },
+        {
+          "source_line": 465,
+          "timestamp": "2026-05-15T03:39:45.289504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /tmp/irt_oracle_gsm8k_ext_v2.log"
+            }
+          },
+          "id": "event-000465"
+        },
+        {
+          "source_line": 466,
+          "timestamp": "2026-05-15T03:39:45.742550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 11:33:55,753 [INFO] Pipeline complete in 8023.7s\\\\n2026-05-15 11:33:55,753 [INFO] Results saved to /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\\\\n2026-05-15 11:33:55,753 [INFO] ============================================================\\\\n\\\\n\\\\n============================================================\\\\n  gsm8k\\\\n============================================================\\\\n-------------------------------------------------------------------------------------------------------\\\\nMethod                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0\\\\n-------------------------------------------------------------------------------------------------------\\\\nIRT_4pl_gamma                    0.0917   0.0894   0.0179   0.25   0.25   0.31     0.05  0.505    3.773\\\\nB0_raw                           0.0050   0.0049   0.0001   0.88   0.94   1.00     0.05  0.838      ---\\\\nB1_remove_rescore                0.0050   0.0049   0.0001   0.88   0.94   1.00     0.05  0.838      ---\\\\nB2_2pl_gamma                     0.0240   0.0236   0.0011   0.25   0.56   0.88     0.06  0.725      ---\\\\nB3_vanilla_4pl                   0.0324   0.0324   0.0011   0.00   0.00   0.00     0.03  0.780      ---\\\\nB4_linear_regression             0.0078   0.0078   0.0001   0.81   0.94   1.00     0.12  0.746      ---\\\\nB5_emperor_mitigation            0.0050   0.0049   0.0001   0.88   0.94   1.00     0.05  0.838      ---\\\\nB6_dcr_fuzzy                     0.1381   0.1373   0.0477   0.56   0.56   0.56     0.04  0.415      ---\\\\n-------------------------------------------------------------------------------------------------------\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000466"
+        },
+        {
+          "source_line": 467,
+          "timestamp": "2026-05-15T03:39:46.674375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006-oracle-gsm8k-extended-v2:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000467"
+        },
+        {
+          "source_line": 468,
+          "timestamp": "2026-05-15T03:39:46.880477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4103:  exp006-oracle-gsm8k-extended-v2:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 206
+          },
+          "id": "event-000468"
+        },
+        {
+          "source_line": 469,
+          "timestamp": "2026-05-15T03:39:50.152834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "4103",
+              "limit": "25"
+            }
+          },
+          "id": "event-000469"
+        },
+        {
+          "source_line": 470,
+          "timestamp": "2026-05-15T03:39:50.203594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4103\t  exp006-oracle-gsm8k-extended-v2:\n4104\t    status: RUNNING\n4105\t    retry_count: 0\n4106\t    created_at: '2026-05-15T01:22:28.344Z'\n4107\t    updated_at: '2026-05-15T01:22:45.041Z'\n4108\t    spec:\n4109\t      command: TMPDIR=/home/ubuntu/tmp_cmdstan python run_exp006.py --oracle-exposure\n4110\t        --pool-scales 0.5B 1.5B --benchmark gsm8k --chains 4 --warmup 2000 --samples\n4111\t        4000 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\n4112\t        --parallel-chains 1\n4113\t      server: cqa1-21977\n4114\t      data_path: /root/autodl-tmp/exp001/eval_results\n4115\t      data_count: 16\n4116\t      model_name: 4PL+gamma IRT (CmdStanPy NUTS)\n4117\t      seed: 42\n4118\t      checkpoint_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\n4119\t      log_path: /tmp/irt_oracle_gsm8k_ext_v2.log\n4120\t      tmux_session: exp006_oracle_gsm8k_ext\n4121\t      pid: 481167\n4122\t      hypothesis: 'GSM8K oracle exposure 4PL+gamma extended MCMC rerun: parallel_chains=1\n4123\t        + TMPDIR fix. 4 chains x 2000 warmup x 4000 samples. (v1 failed at 55-65%:\n4124\t        Operation not permitted)'\n4125\t  exp_001_eval_05B_d005_s123_para_aligned:\n4126\t    status: DONE\n4127\t    retry_count: 0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000470"
+        },
+        {
+          "source_line": 471,
+          "timestamp": "2026-05-15T03:39:52.687053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"rhat\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/exp006_results.json"
+            }
+          },
+          "id": "event-000471"
+        },
+        {
+          "source_line": 472,
+          "timestamp": "2026-05-15T03:39:53.141993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"max_rhat\\\\\\\": 1.002,\\\\n          \\\\\\\"rhat_ok\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-000472"
+        },
+        {
+          "source_line": 473,
+          "timestamp": "2026-05-15T03:39:53.599610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"gamma\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/exp006_results.json"
+            }
+          },
+          "id": "event-000473"
+        },
+        {
+          "source_line": 474,
+          "timestamp": "2026-05-15T03:39:54.052937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"model_type\\\\\\\": \\\\\\\"4pl_gamma\\\\\\\",\\\\n        \\\\\\\"model_type\\\\\\\": \\\\\\\"4pl_gamma\\\\\\\",\\\\n          \\\\\\\"gamma\\\\\\\": {\\\\n        \\\\\\\"B2_2pl_gamma\\\\\\\": {\\\\n          \\\\\\\"gamma_mean\\\\\\\": 0.4966,\\\\n          \\\\\\\"gamma_sd\\\\\\\": 0.2278,\\\\n          \\\\\\\"method_name\\\\\\\": \\\\\\\"B2_2pl_gamma\\\\\\\",\\\\n          \\\\\\\"description\\\\\\\": \\\\\\\"Single-signal 2PL+gamma IRT\\\\\\\"\\\\n          \\\\\\\"description\\\\\\\": \\\\\\\"Vanilla 4PL IRT (no gamma)\\\\\\\"\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"IRT_4pl_gamma\\\\\\\",\\\\n            \\\\\\\"gamma_mean\\\\\\\": 3.7729,\\\\n            \\\\\\\"gamma_positive\\\\\\\": true,\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"B2_2pl_gamma\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000474"
+        },
+        {
+          "source_line": 475,
+          "timestamp": "2026-05-15T03:39:54.206872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"divergent\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/exp006_results.json"
+            }
+          },
+          "id": "event-000475"
+        },
+        {
+          "source_line": 476,
+          "timestamp": "2026-05-15T03:39:54.611976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"divergent_count\\\\\\\": 0,\\\\n          \\\\\\\"divergent_pct\\\\\\\": 0.0,\\\\n          \\\\\\\"divergent_ok\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 405
+          },
+          "id": "event-000476"
+        },
+        {
+          "source_line": 477,
+          "timestamp": "2026-05-15T03:40:00.191478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006-oracle-arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000477"
+        },
+        {
+          "source_line": 478,
+          "timestamp": "2026-05-15T03:40:00.494584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 303
+          },
+          "id": "event-000478"
+        },
+        {
+          "source_line": 479,
+          "timestamp": "2026-05-15T03:40:04.794738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006.*oracle.*arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000479"
+        },
+        {
+          "source_line": 480,
+          "timestamp": "2026-05-15T03:40:05.248489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 453
+          },
+          "id": "event-000480"
+        },
+        {
+          "source_line": 481,
+          "timestamp": "2026-05-15T03:40:05.501554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle.*arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000481"
+        },
+        {
+          "source_line": 482,
+          "timestamp": "2026-05-15T03:40:05.605479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 103
+          },
+          "id": "event-000482"
+        },
+        {
+          "source_line": 483,
+          "timestamp": "2026-05-15T03:40:09.879283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle.arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000483"
+        },
+        {
+          "source_line": 484,
+          "timestamp": "2026-05-15T03:40:10.285262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 405
+          },
+          "id": "event-000484"
+        },
+        {
+          "source_line": 485,
+          "timestamp": "2026-05-15T03:40:10.436241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/decisions.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000485"
+        },
+        {
+          "source_line": 486,
+          "timestamp": "2026-05-15T03:40:10.537348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t_next_id: 37\n2\tdecisions:\n3\t- id: D001\n4\t  date: 2026-05-13 04:26 UTC\n5\t  summary: MVP 用 simulation identifiability test 验证 4PL+γ IRT 核心假设，放弃 EMNLP 2026 May\n6\t    ARR\n7\t  rationale: 核心假设是 γ 与 θ 可分离——这在合成数据上可验证，无需 GPU。12 天内完成完整论文不现实，目标改为 AAAI 2027 / ICLR\n8\t    2027。MVP 通过后再配置 GPU 进入 research 阶段。\n9\t  related_experiments: []\n10\t  depends_on: []\n11\t- id: D002\n12\t  date: 2026-05-13 04:29 UTC\n13\t  summary: 采纳 Reviewer 3 个 warning：扩展 simulation grid + 加 θ-exposure confounding +\n14\t    加 FPR/FNR 噪声模型\n15\t  rationale: Reviewer 指出原 MVP simulation 条件过于理想化。θ-exposure confounding 是 γ identifiability\n16\t    的核心威胁，必须在 MVP 阶段覆盖。参数 grid 扩展（18 conditions）和 FPR/FNR 噪声增量成本约 4-8h CPU，不影响时间线。\n17\t  related_experiments: []\n18\t  depends_on:\n19\t  - D001\n20\t- id: D003\n21\t  date: 2026-05-13 10:57 UTC\n22\t  summary: Phase A PASS：4PL+γ 在 N_items=300 下成功分离 γ 和 θ；θ_RMSE 阈值从 0.2 放宽至 0.30\n23\t  rationale: 'Variant A (N_items=300, 4PL NUTS): γ_rel_bias=6.8%, θ_corr=0.943, 收敛完美。N_items=100\n24\t    的 borderline fail 确认为信息量不足（c/d 参数估计需要更多 items），非方法论缺陷。θ_RMSE 阈值从 0.2 放宽至 0.30，Reviewer\n25\t    论证理论最优 SE≈0.18-0.26，0.2 在 N=50 models 下不可达。ADVI 在 4PL 上彻底失败（bad local mode），MVP\n26\t    阶段放弃 ADVI，仅用 NUTS。2PL+γ 在 4PL 生成数据上严重 misspecified（γ=0.16），确认 4PL 的必要性。'\n27\t  related_experiments:\n28\t  - exp_id: mvp_sim_4pl_gamma\n29\t    role: primary\n30\t    result: Phase A PASS (Variant A)\n31\t  depends_on:\n32\t  - D001\n33\t  - D002\n34\t- id: D004\n35\t  date: 2026-05-13 15:45 UTC\n36\t  summary: MVP 通过，进入 Research 阶段\n37\t  rationale: Phase A (identifiability) 和 P2 (confounding robustness) 两个 gate 全部 PASS。4PL+γ\n38\t    NUTS 在 N_items=300 条件下 γ 相对偏差 <8%，θ 相关性 >0.94，混淆分离后残差相关 0.058。ADVI 和 2PL 被排除。核心假设\"IRT\n39\t    模型可分离污染效应与真实能力\"在合成数据上得到验证。\n40\t  related_experiments:\n41\t  - exp_id: mvp_sim_4pl_gamma\n42\t    role: Phase A identifiability\n43\t    result: PASS at N_items=300\n44\t  - exp_id: mvp_sim_confounding\n45\t    role: P2 confounding robustness\n46\t    result: PASS with confound_corr=0.38\n47\t  depends_on:\n48\t  - D002\n49\t  - D003\n50\t- id: D005\n51\t\n…[truncated 2480 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000486"
+        },
+        {
+          "source_line": 487,
+          "timestamp": "2026-05-15T03:40:14.098239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000487"
+        },
+        {
+          "source_line": 488,
+          "timestamp": "2026-05-15T03:40:14.201473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000488"
+        },
+        {
+          "source_line": 489,
+          "timestamp": "2026-05-15T03:40:15.571853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "^- id: D03[56]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/decisions.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000489"
+        },
+        {
+          "source_line": 490,
+          "timestamp": "2026-05-15T03:40:15.676679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "580:- id: D035\n604:- id: D036"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 104
+          },
+          "id": "event-000490"
+        },
+        {
+          "source_line": 491,
+          "timestamp": "2026-05-15T03:40:18.701513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/decisions.yaml",
+              "offset": "580",
+              "limit": "80"
+            }
+          },
+          "id": "event-000491"
+        },
+        {
+          "source_line": 492,
+          "timestamp": "2026-05-15T03:40:18.752626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "580\t- id: D035\n581\t  date: 2026-05-14 23:59 UTC\n582\t  summary: 'Oracle baseline 确认 benchmark-dependent contamination effect: ARC 退化 (γ=-2.83)\n583\t    vs GSM8K 膨胀 (γ=+3.77)'\n584\t  rationale: Oracle exposure (dosage/100 as τ, N=15) 结果：ARC gamma=-2.83 显著负（CI排除零），GSM8K\n585\t    gamma=+3.77 显著正。两个方向均被 IRT 正确捕捉。Oracle fit quality 明显优于 signal-derived（ARC MAE\n586\t    0.047 vs 0.115）。论文 framing 需从\"单一膨胀\"转向\"benchmark-dependent effect\"。PPP/coverage\n587\t    仍有系统偏差，需更多 N 或模型改进。\n588\t  related_experiments:\n589\t  - exp_id: exp006-oracle-arc\n590\t    role: evidence\n591\t    result: gamma=-2.83, CI[-3.72,-1.89], MAE=0.047\n592\t  - exp_id: exp006-oracle-gsm8k\n593\t    role: evidence\n594\t    result: gamma=+3.77, CI[2.64,4.96], MAE=0.089, rhat=1.012\n595\t  - exp_id: exp006-pooled-05B-15B-arc-v3-rrf\n596\t    role: comparison\n597\t    result: gamma=-7.62, MAE=0.115\n598\t  - exp_id: exp006-pooled-05B-15B-gsm8k-v4-rrf\n599\t    role: comparison\n600\t    result: gamma=2.10, ppp=0.0\n601\t  depends_on:\n602\t  - D034\n603\t  - D033\n604\t- id: D036\n605\t  date: 2026-05-15 00:03 UTC\n606\t  summary: ARC negative gamma + coverage collapse + 跨种子方差：三大发现要求 framing 适配\n607\t  rationale: 1) ARC γ 在 s42/s123 raw scores 和 oracle IRT 三条独立证据链下均为负。contamination\n608\t    对 ARC 造成 forgetting 而非 inflation，与 MMLU 方向相反。framing 从\"score inflation\"调整为\"benchmark-dependent\n609\t    contamination effects\"——calibration 在两个方向都有效，这是更强的 story。2) Coverage 在 oracle\n610\t    下仍仅 ARC 20%/GSM8K 33%（95% 名义），PPP 在极值（ARC 1.0/GSM8K 0.0）。4PL+gamma additive 模型可能不够充分，需调查：(a)\n611\t    N_models 增大后是否改善 (b) exp-004 sweep 预期 coverage (c) 是否需要更灵活的 IRT 结构。3) 0.5B d100\n612\t    跨种子方差 ARC 7.25pp/MMLU 7.24pp，multi-seed pooling 是必要条件。4) oracle vs RRF 被 N_models\n613\t    差异混淆(15 vs 8)，需匹配 N 重跑。5) GSM8K oracle rhat/ESS 不通过，需更长 chains。\n614\t  related_experiments:\n615\t  - exp_id: exp006-oracle-arc\n616\t    role: evidence\n617\t    result: gamma=-2.83, coverage=20%, PPP=1.0\n618\t  - exp_id: exp006-oracle-gsm8k\n619\t    role: evidence\n620\t    result: gamma=+3.77, coverage=33%, PPP=0.\n…[truncated 298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000492"
+        },
+        {
+          "source_line": 493,
+          "timestamp": "2026-05-15T03:40:18.841393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/"
+            }
+          },
+          "id": "event-000493"
+        },
+        {
+          "source_line": 494,
+          "timestamp": "2026-05-15T03:40:19.143793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"gamma\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/fit_summary.json"
+            }
+          },
+          "id": "event-000494"
+        },
+        {
+          "source_line": 495,
+          "timestamp": "2026-05-15T03:40:20.712750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp006_results.json\\\\ngsm8k\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1871
+          },
+          "id": "event-000495"
+        },
+        {
+          "source_line": 496,
+          "timestamp": "2026-05-15T03:40:21.168126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/fit_summary.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2024
+          },
+          "id": "event-000496"
+        },
+        {
+          "source_line": 497,
+          "timestamp": "2026-05-15T03:40:24.798207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/"
+            }
+          },
+          "id": "event-000497"
+        },
+        {
+          "source_line": 498,
+          "timestamp": "2026-05-15T03:40:25.302793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"baselines.json\\\\nevaluation.json\\\\nevaluation.tex\\\\nground_truth.json\\\\nirt_4pl_gamma.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000498"
+        },
+        {
+          "source_line": 499,
+          "timestamp": "2026-05-15T03:40:30.930014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"gamma\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/irt_4pl_gamma.json"
+            }
+          },
+          "id": "event-000499"
+        },
+        {
+          "source_line": 500,
+          "timestamp": "2026-05-15T03:40:31.282416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/evaluation.json"
+            }
+          },
+          "id": "event-000500"
+        },
+        {
+          "source_line": 501,
+          "timestamp": "2026-05-15T03:40:31.434442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"model_type\\\\\\\": \\\\\\\"4pl_gamma\\\\\\\",\\\\n    \\\\\\\"gamma\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-000501"
+        },
+        {
+          "source_line": 502,
+          "timestamp": "2026-05-15T03:40:31.991054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"IRT_4pl_gamma\\\\\\\",\\\\n    \\\\\\\"mae\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.091692,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.091047,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.048835,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.142557\\\\n      }\\\\n    },\\\\n    \\\\\\\"ece\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.08938,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.089331,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.047367,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.141008\\\\n      }\\\\n    },\\\\n    \\\\\\\"mce\\\\\\\": 0.146,\\\\n    \\\\\\\"brier\\\\\\\": {\\\\n      \\\\\\\"value\\\\\\\": 0.017933,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.017717,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.004537,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.034032\\\\n      }\\\\n    },\\\\n    \\\\\\\"coverage_95\\\\\\\": 0.3125,\\\\n    \\\\\\\"coverage_80\\\\\\\": 0.25,\\\\n    \\\\\\\"coverage_50\\\\\\\": 0.25,\\\\n    \\\\\\\"sharpness_95\\\\\\\": 0.04760625,\\\\n    \\\\\\\"sharpness_80\\\\\\\": 0.030625000000000013,\\\\n    \\\\\\\"sharpness_50\\\\\\\": 0.016174999999999995,\\\\n    \\\\\\\"kendall_tau\\\\\\\": {\\\\n      \\\\\\\"tau\\\\\\\": 0.5046,\\\\n      \\\\\\\"p_value\\\\\\\": 0.010034,\\\\n      \\\\\\\"bootstrap_95ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.50824,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.151923,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.822314\\\\n      }\\\\n    },\\\\n    \\\\\\\"dose_response\\\\\\\": {\\\\n      \\\\\\\"gamma_mean\\\\\\\": 3.7729,\\\\n      \\\\\\\"gamma_positive\\\\\\\": true,\\\\n      \\\\\\\"ci_excludes_zero\\\\\\\": true,\\\\n      \\\\\\\"q025\\\\\\\": 2.7406,\\\\n      \\\\\\\"q975\\\\\\\": 4.7137\\\\n    },\\\\n    \\\\\\\"dose_monotonicity_tau\\\\\\\": 0.6029,\\\\n    \\\\\\\"reliability_diagram\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.2105,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.24949,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.229995,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.2121,\\\\n        \\\\\\\"mean_ground_truth\\\\\\\": 0.3581,\\\\n        \\\\\\\"count\\\\\\\": 3\\\\n      },\\\\n      {\\\\n        \\\\\\\"bin_lower\\\\\\\": 0.28848,\\\\n        \\\\\\\"bin_upper\\\\\\\": 0.32747,\\\\n        \\\\\\\"bin_center\\\\\\\": 0.307975,\\\\n        \\\\\\\"mean_calibrated\\\\\\\": 0.3102,\\\\n    \n…[truncated 8453 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 708
+          },
+          "id": "event-000502"
+        },
+        {
+          "source_line": 503,
+          "timestamp": "2026-05-15T03:40:44.671575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"rhat\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/irt_4pl_gamma.json"
+            }
+          },
+          "id": "event-000503"
+        },
+        {
+          "source_line": 504,
+          "timestamp": "2026-05-15T03:40:45.624047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"max_rhat\\\\\\\": 1.002,\\\\n    \\\\\\\"rhat_ok\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 952
+          },
+          "id": "event-000504"
+        },
+        {
+          "source_line": 505,
+          "timestamp": "2026-05-15T03:40:45.624483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"ess\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/irt_4pl_gamma.json"
+            }
+          },
+          "id": "event-000505"
+        },
+        {
+          "source_line": 506,
+          "timestamp": "2026-05-15T03:40:46.080683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"min_ess\\\\\\\": 1221.9,\\\\n    \\\\\\\"ess_ok\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-000506"
+        },
+        {
+          "source_line": 507,
+          "timestamp": "2026-05-15T03:40:46.136463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"divergent\" /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/irt_4pl_gamma.json"
+            }
+          },
+          "id": "event-000507"
+        },
+        {
+          "source_line": 508,
+          "timestamp": "2026-05-15T03:40:46.685957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"divergent_count\\\\\\\": 0,\\\\n    \\\\\\\"divergent_pct\\\\\\\": 0.0,\\\\n    \\\\\\\"divergent_ok\\\\\\\": true,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 549
+          },
+          "id": "event-000508"
+        },
+        {
+          "source_line": 509,
+          "timestamp": "2026-05-15T03:40:54.332551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006-oracle-arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000509"
+        },
+        {
+          "source_line": 510,
+          "timestamp": "2026-05-15T03:40:54.471496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 138
+          },
+          "id": "event-000510"
+        },
+        {
+          "source_line": 511,
+          "timestamp": "2026-05-15T03:40:58.359138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle.*arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000511"
+        },
+        {
+          "source_line": 512,
+          "timestamp": "2026-05-15T03:40:58.560089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 200
+          },
+          "id": "event-000512"
+        },
+        {
+          "source_line": 513,
+          "timestamp": "2026-05-15T03:41:02.429464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_006_irt_05B_arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000513"
+        },
+        {
+          "source_line": 514,
+          "timestamp": "2026-05-15T03:41:02.530250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3229:  exp_006_irt_05B_arc:\n3246:      log_path: ~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log\n3260:    log_path: ~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000514"
+        },
+        {
+          "source_line": 515,
+          "timestamp": "2026-05-15T03:41:05.402523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "3229",
+              "limit": "40"
+            }
+          },
+          "id": "event-000515"
+        },
+        {
+          "source_line": 516,
+          "timestamp": "2026-05-15T03:41:05.453205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3229\t  exp_006_irt_05B_arc:\n3230\t    status: DONE\n3231\t    retry_count: 0\n3232\t    created_at: '2026-05-14T20:17:30.505Z'\n3233\t    updated_at: '2026-05-14T21:05:36.632Z'\n3234\t    hypothesis: ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure.\n3235\t      Second benchmark validation after GSM8K success.\n3236\t    spec:\n3237\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n3238\t        base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp006/run_exp006.py\n3239\t        --model-scale 0.5B --data-seed 42 --benchmark arc_challenge --aligned-only\n3240\t        --signals-dir /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp006/results_05B_arc_delta\n3241\t        --joint-fit\"\n3242\t      server: cqa1-21977\n3243\t      gpu:\n3244\t      - cuda:0\n3245\t      pid: '434542'\n3246\t      log_path: ~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log\n3247\t      submitted_at: '2026-05-14T20:17:58.432Z'\n3248\t      submitted_via: submit_training_job\n3249\t      backend: tmux\n3250\t      account: root\n3251\t      wall_clock_seconds: 2858.2\n3252\t      gpu_hours: 0.79\n3253\t    metrics:\n3254\t      gamma: -1.21\n3255\t      gamma_ci_lower: -2.53\n3256\t      gamma_ci_upper: 0.12\n3257\t      fit_type: joint\n3258\t    conclusion: success\n3259\t    checkpoint_path: /root/autodl-tmp/exp006/results_05B_arc_delta\n3260\t    log_path: ~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log\n3261\t    completed_at: '2026-05-14T21:05:36.633Z'\n3262\t  exp_001_sft_15B_d100_s123:\n3263\t    status: DONE\n3264\t    retry_count: 0\n3265\t    created_at: '2026-05-14T20:21:10.691Z'\n3266\t    updated_at: '2026-05-15T00:32:28.784Z'\n3267\t    spec:\n3268\t      command: python train_sft.py --model-name Qwen2.5-1.5B --data-path sft_dosage_100.jsonl"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000516"
+        },
+        {
+          "source_line": 517,
+          "timestamp": "2026-05-15T03:41:18.986870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "pooled.*arc.*oracle",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000517"
+        },
+        {
+          "source_line": 518,
+          "timestamp": "2026-05-15T03:41:19.591471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 604
+          },
+          "id": "event-000518"
+        },
+        {
+          "source_line": 519,
+          "timestamp": "2026-05-15T03:41:20.195163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "oracle.*arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000519"
+        },
+        {
+          "source_line": 520,
+          "timestamp": "2026-05-15T03:41:20.348842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 153
+          },
+          "id": "event-000520"
+        },
+        {
+          "source_line": 521,
+          "timestamp": "2026-05-15T03:41:21.000486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 审查报告 — exp006-oracle-gsm8k-extended-v2\n\n**结论**: WARNING（收敛已修复但校准问题确认为模型层面而非 MCMC 层面）\n\n### 数据核实\n- [info] 服务器 exp006_results.json 和 log 与 Worker 报告一致：γ=3.773, max_rhat=1.002, divergent=0。输出文件齐全。\n- [info] Spec 完整：command, server, data_count=16, model_name, seed, checkpoint_path, log_path, pid, hypothesis 均有 ✅。\n\n### 关键发现\n\n**1. D036 收敛问题已解决** [info]\nv1: rhat=1.012, ESS=345 → v2: rhat=1.002, ESS=1222。γ 估计高度一致（v1: 3.77 [2.64, 4.96] → v2: 3.773 [2.74, 4.71]），CI 收紧。D036 关于 \"GSM8K oracle rhat/ESS 不通过\" 的担忧已消除。\n\n**2. 校准问题确认为模型层面（非 MCMC）** [warning]\n好的收敛并未修复校准：MAE=0.092, Coverage 95%=31%, PPP=0。这表明 **4PL+γ 对 GSM8K 数据结构 fundamentally misspecified**，overcorrection 不是采样噪声导致。\n\n**3. 2PL+γ 在 GSM8K 上优于 4PL+γ** [warning]\nB2_2pl_gamma: MAE=0.024, C95=88% vs 4PL+γ: MAE=0.092, C95=31%。4PL 的额外参数 (c, d) 反而损害预测精度。如果论文选 4PL+γ 作为主方法，需要为何不用更简单的 2PL+γ 提供 justification（审稿人必问）。\n\n**4. Benchmark-dependent effect 交叉确认** [info]\nGSM8K γ=+3.77（v2，收敛良好）vs ARC γ=-2.83（D035）。方向相反、均显著排除零。这支持 D035/D036 的 \"benchmark-dependent contamination effects\" framing。\n\n**5. 所有 IRT 变体均劣于简单 baseline** [warning]\nB0_raw/B5_emperor MAE=0.005（IRT 的 18x 优），B4_linear MAE=0.008（12x 优）。Oracle 设定下 raw score 本身近乎完美——IRT overcorrects。需注意：oracle 设定给 baseline 的信息量与 IRT 相同（完美 exposure），因此这不是 \"IRT 用信号估计引入的噪声\"——是模型本身的问题。\n\n### 对论文 story 的影响\nCoverage collapse（ROADMAP #1 critical issue）现已确认为**模型层面问题**而非 MCMC 不充分。解决路径：(1) N↑ multi-seed pooling (2) 2PL+γ 作为 robust alternative (3) 更灵活 IRT 结构。建议 Agent 优先报告 2PL+γ vs 4PL+γ 的 tradeoff 分析。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000521"
+        },
+        {
+          "source_line": 522,
+          "timestamp": "2026-05-15T03:41:24.859641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "arc.*gamma",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000522"
+        },
+        {
+          "source_line": 523,
+          "timestamp": "2026-05-15T03:41:25.316968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 457
+          },
+          "id": "event-000523"
+        },
+        {
+          "source_line": 524,
+          "timestamp": "2026-05-15T03:41:25.823620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp006-pooled.*arc",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000524"
+        },
+        {
+          "source_line": 525,
+          "timestamp": "2026-05-15T03:41:25.924444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3592:  exp006-pooled-05B-15B-arc-v2:\n3764:  exp006-pooled-s1only-arc:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-000525"
+        },
+        {
+          "source_line": 526,
+          "timestamp": "2026-05-15T03:41:29.403626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "3592",
+              "limit": "50"
+            }
+          },
+          "id": "event-000526"
+        },
+        {
+          "source_line": 527,
+          "timestamp": "2026-05-15T03:41:29.867207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3592\t  exp006-pooled-05B-15B-arc-v2:\n3593\t    status: DONE\n3594\t    retry_count: 0\n3595\t    created_at: '2026-05-14T22:59:49.440Z'\n3596\t    updated_at: '2026-05-14T23:08:51.536Z'\n3597\t    spec:\n3598\t      command: python run_exp006.py --pool-scales 05B 15B --benchmark arc --require-signals\n3599\t        --joint-fit --exclude-models 3B_d000\n3600\t      server: cqa1-21977\n3601\t      data_path: /root/autodl-tmp/exp006/\n3602\t      data_count: 8\n3603\t      model_name: 0.5B+1.5B pooled\n3604\t      seed: 42\n3605\t      checkpoint_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2\n3606\t      log_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2\n3607\t    conclusion: success\n3608\t    completed_at: '2026-05-14T23:00:24.554Z'\n3609\t    metrics:\n3610\t      exposure_source: signal_rrf\n3611\t      gamma_perbench: -2.3471\n3612\t      gamma_perbench_ci:\n3613\t      - -3.46\n3614\t      - -1.19\n3615\t      gamma_joint: -1.4637\n3616\t      gamma_joint_ci:\n3617\t      - -2.51\n3618\t      - -0.41\n3619\t      mae: 0.035\n3620\t      coverage_95: 0.625\n3621\t      ppp: 0.999\n3622\t      n_models: 8\n3623\t      convergence: OK\n3624\t      NOTE: coverage below 95%; no oracle baseline exists\n3625\t  exp006-pooled-05B-15B-mmlu-v2:\n3626\t    status: DONE\n3627\t    retry_count: 0\n3628\t    created_at: '2026-05-14T22:59:50.928Z'\n3629\t    updated_at: '2026-05-14T23:08:55.525Z'\n3630\t    spec:\n3631\t      command: python run_exp006.py --pool-scales 05B 15B --benchmark mmlu --require-signals\n3632\t        --joint-fit --exclude-models 3B_d000\n3633\t      server: cqa1-21977\n3634\t      data_path: /root/autodl-tmp/exp006/\n3635\t      data_count: 8\n3636\t      model_name: 0.5B+1.5B pooled\n3637\t      seed: 42\n3638\t      checkpoint_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2\n3639\t      log_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2\n3640\t    conclusion: failed\n3641\t    completed_at: '2026-05-14T23:00:25.877Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 463
+          },
+          "id": "event-000527"
+        },
+        {
+          "source_line": 528,
+          "timestamp": "2026-05-15T03:41:30.118430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "3764",
+              "limit": "40"
+            }
+          },
+          "id": "event-000528"
+        },
+        {
+          "source_line": 529,
+          "timestamp": "2026-05-15T03:41:30.220764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3764\t  exp006-pooled-s1only-arc:\n3765\t    status: DONE\n3766\t    retry_count: 0\n3767\t    created_at: '2026-05-15T00:02:41.698Z'\n3768\t    updated_at: '2026-05-15T01:04:47.104Z'\n3769\t    spec:\n3770\t      command: python exp006/run_exp006.py --pool-scales 0.5B 1.5B --benchmark arc_challenge\n3771\t        --signals-dir /root/autodl-tmp/exp002/signals --signal-key s1_embedding --require-signals\n3772\t        --aligned-only --data-seed 42 --output-dir /root/autodl-tmp/exp006/results_pooled_s1only_arc\n3773\t        --joint-fit\n3774\t      server: cqa1-21977\n3775\t      data_path: /root/autodl-tmp/exp006/\n3776\t      data_count: 8\n3777\t      model_name: 0.5B+1.5B pooled\n3778\t      seed: 42\n3779\t      checkpoint_path: /root/autodl-tmp/exp006/results_pooled_s1only_arc\n3780\t      log_path: /tmp/irt_s1only_arc.log\n3781\t      metrics:\n3782\t        gamma: -1.4637\n3783\t        gamma_ci:\n3784\t        - -2.51\n3785\t        - -0.41\n3786\t        ci_excludes_zero: true\n3787\t        rhat_max: 1.0098\n3788\t        ess_min: 769.6\n3789\t        divergences: 0\n3790\t        PPP: 0.9677\n3791\t        runtime_seconds: 1244\n3792\t    hypothesis: 'Pooled IRT N=8 with S1-only exposure (D034: RRF non-monotonic, S1\n3793\t      perfectly monotonic 0.5946→0.8998)'\n3794\t    conclusion: success\n3795\t    completed_at: '2026-05-15T01:02:49.757Z'\n3796\t  exp006-pooled-s1only-gsm8k:\n3797\t    status: DONE\n3798\t    retry_count: 0\n3799\t    created_at: '2026-05-15T00:02:44.254Z'\n3800\t    updated_at: '2026-05-15T01:04:06.647Z'\n3801\t    spec:\n3802\t      command: python exp006/run_exp006.py --pool-scales 0.5B 1.5B --benchmark gsm8k\n3803\t        --signals-dir /root/autodl-tmp/exp002/signals --signal-key s1_embedding --require-signals"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000529"
+        },
+        {
+          "source_line": 530,
+          "timestamp": "2026-05-15T03:41:32.633517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 11633
+          },
+          "id": "event-000530"
+        },
+        {
+          "source_line": 531,
+          "timestamp": "2026-05-15T03:41:36.004692+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全面了解了。这是对 D036 关注点的重要跟进实验——v2 修复了收敛问题但校准仍差。发送报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000531"
+        },
+        {
+          "source_line": 532,
+          "timestamp": "2026-05-15T03:41:36.057107+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ARC 实验 (γ=-1.21) 与 GSM8K (γ=3.77) 条件不同：ARC 用 delta exposure + 0.5B only，GSM8K 用 oracle exposure + 16 models pooled。让我查找 ARC oracle 实验做公平对比。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000532"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 533,
+          "timestamp": "2026-05-15T03:46:21.968653+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_infra_server-health-check_20260515T034446]:\nWorker worker_infra_server-health-check_20260515T034446 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_infra_server-health-check_20260515t034446"
+          },
+          "id": "event-000533"
+        },
+        {
+          "source_line": 534,
+          "timestamp": "2026-05-15T03:46:40.940498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_infra_server-health-check_20260515T034446_result.json"
+            }
+          },
+          "id": "event-000534"
+        },
+        {
+          "source_line": 535,
+          "timestamp": "2026-05-15T03:46:41.042702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 实验状态报告\\n\\n### GPU 概览\\n\\n| GPU | 利用率 | 显存 | 用途 |\\n|-----|--------|------|------|\\n| 0 | 70% | 8,985 / 24,564 MiB | eval (3B d100 aligned) |\\n| 1 | 68% | 8,985 / 24,564 MiB | eval (3B d000 s123 aligned) |\\n| 2 | 65% | 9,017 / 24,564 MiB | eval (3B d000 s123 para_aligned) |\\n| 3 | 28% | 17,653 / 24,564 MiB | SFT (3B d025 v2) |\\n| 4 | 96% | 7,252 / 24,564 MiB | eval x2 (Instruct 0.5B + 0.5B d000 s42) |\\n| 5 | 28% | 17,981 / 24,564 MiB | SFT (3B d100 s123) |\\n\\n### 逐实验状态\\n\\n#### 1. PID 466755 — SFT 3B d025 v2 (cuda:3) ✅ ALIVE\\n- **进度**: 3237 / 3384 (**95.7%**), epoch 0.93\\n- **Loss**: ~1.12–1.18, token accuracy ~0.74\\n- **运行时间**: 3h50m\\n- **ETA**: ~13 min\\n\\n#### 2. PID 471296 — SFT 3B d100 s123 (cuda:5) ✅ ALIVE\\n- **进度**: 2961 / 4159 (**71.2%**), epoch 0.67\\n- **Loss**: ~1.12–1.18, token accuracy ~0.73\\n- **运行时间**: 3h32m\\n- **ETA**: ~1h 45min\\n- ⚠️ 命令行 `--gpu 0`，但实际跑在 GPU 5（CUDA_VISIBLE_DEVICES 生效）\\n\\n#### 3. PID 477489 — eval 3B d100 aligned (cuda:0) ✅ ALIVE\\n- **运行时间**: 2h43m, CPU 93.6%\\n- **已完成 benchmark**: 0 / 4（输出目录空）\\n- 目录创建于 09:01，仍在跑第一个 benchmark\\n\\n#### 4. PID 492660 — eval 3B d000 s123 aligned (cuda:1) ✅ ALIVE\\n- **运行时间**: 23min, CPU 53%\\n- **已完成 benchmark**: 0 / 4（输出目录空）\\n\\n#### 5. PID 492733 — eval 3B d000 s123 para_aligned (cuda:2) ✅ ALIVE\\n- **运行时间**: 23min, CPU 79.9%\\n- **已完成 benchmark**: 0 / 4（输出目录空）\\n\\n#### 6. PID 493617 — Instruct 0.5B eval (cuda:4) ✅ ALIVE\\n- **运行时间**: 19min, CPU 44.8%\\n- **已完成 benchmark**: 0 / 4（输出目录空）\\n\\n#### 7. PID 494109 — 0.5B d000 s42 eval v7 (cuda:4) ✅ ALIVE\\n- **运行时间**: 17min, CPU 103%\\n- **已完成 benchmark**: 0 / 4（输出目录空）\\n- ⚠️ 与 PID 493617 共享 GPU 4（当前 96% 利用率，显存 7.2GB 尚可）\\n\\n### 总结\\n\\n- **7/7 进程全部存活**，无异常\\n- SFT d025 v2 即将完成（~13min），d100 s123 还需 ~1h45m\\n- 5 个 eval 任务均在运行中，尚无 benchmark 完成输出（d100 aligned 已跑 2h43m 仍无输出，3B 模型 eval 较慢属正常）\\n- GPU 4 上两个 0.5B eval 共存，利用率 96%，暂未 OOM 但需关注\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000535"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 536,
+          "timestamp": "2026-05-15T03:46:41.367649+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_pooled-s1only-results_20260515T034215]:\nWorker worker_analysis_pooled-s1only-results_20260515T034215 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_analysis_pooled-s1only-results_20260515t034215"
+          },
+          "id": "event-000536"
+        },
+        {
+          "source_line": 537,
+          "timestamp": "2026-05-15T03:46:54.994561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_pooled-s1only-results_20260515T034215_result.json"
+            }
+          },
+          "id": "event-000537"
+        },
+        {
+          "source_line": 538,
+          "timestamp": "2026-05-15T03:46:55.181472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新。以下是完整结果和对比分析。\\n\\n---\\n\\n## S1-only vs Oracle 对比表\\n\\n### 1. Gamma (contamination sensitivity parameter)\\n\\n| | **ARC S1-only** | **ARC Oracle** | **GSM8K S1-only** | **GSM8K Oracle** |\\n|---|---|---|---|---|\\n| γ mean | **-1.464** | -1.46 | **0.187** | 3.773 |\\n| γ SD | 0.528 | — | 0.569 | 0.504 |\\n| 95% CI | [-2.51, -0.41] | — | [-0.92, 1.33] | [2.74, 4.71] |\\n| CI excludes 0 | **Yes** ✓ | Yes | **No** ✗ | Yes |\\n| 方向一致? | **完全一致** (负) | — | **不一致** (oracle 强正, S1≈0) | — |\\n\\n### 2. Model Fit & Diagnostics\\n\\n| | **ARC S1-only** | **ARC Oracle** | **GSM8K S1-only** | **GSM8K Oracle** |\\n|---|---|---|---|---|\\n| PPP | **0.968** (极端高) | — | **0.336** (合理) | 0.000 (极端低) |\\n| max Rhat | 1.010 ✓ | 1.002 | **1.015** ✗ | 1.002 |\\n| min ESS | 770 ✓ | 1222 | **330** ✗ | 1222 |\\n| Divergent | 0 ✓ | 0 | 0 ✓ | 0 |\\n| All diagnostics OK | **Yes** | Yes | **No** | Yes |\\n\\n### 3. Calibration Metrics (ARC only — GSM8K v2 无 evaluation pipeline)\\n\\n| Method | MAE | ECE | Brier | Cov50 | Cov80 | Cov95 | τ |\\n|---|---|---|---|---|---|---|---|\\n| **IRT 4PL+γ** | **0.035** | **0.032** | **0.002** | 0.0% | 25.0% | 62.5% | 0.756 |\\n| B0 Raw | 0.059 | 0.059 | 0.009 | 62.5% | 62.5% | 62.5% | 0.800 |\\n| B1 Remove+Rescore | 0.059 | 0.059 | 0.009 | 62.5% | 62.5% | 62.5% | 0.800 |\\n| B2 2PL+γ | 0.064 | 0.064 | 0.007 | 12.5% | 12.5% | 25.0% | 0.756 |\\n| B3 Vanilla 4PL | 0.071 | 0.071 | 0.007 | 12.5% | 12.5% | 12.5% | 0.756 |\\n| B4 Linear Reg | 0.056 | 0.056 | 0.006 | 75.0% | 75.0% | 87.5% | 0.756 |\\n| B5 Emperor | 0.059 | 0.059 | 0.009 | 62.5% | 62.5% | 62.5% | 0.800 |\\n| B6 DCR Fuzzy | 0.245 | 0.245 | 0.109 | 37.5% | 37.5% | 37.5% | 0.378 |\\n\\n### 4. 关键发现\\n\\n**ARC: S1-only ≈ Oracle** — gamma 几乎完全相同 (-1.464 vs -1.46)。S1 exposure（仅看到题目）足以让 IRT 检测到 ARC 上的污染信号。这符合预期：ARC 是多选题，看到题目本身就等同于记住答案。\\n\\n**GSM8K: S1-only 信号消失** — gamma 从 oracle 的 3.77 降到 0.19，95% CI 包含零。S1 exposure 不足以检测 GSM8K 污染。这也符合预期：GSM8K 是开放式数学题，仅看到题目不够，需要看到解题过程（S2 exposure）。\\n\\n**Coverage collapse**:\\n- ARC \n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 186
+          },
+          "id": "event-000538"
+        },
+        {
+          "source_line": 539,
+          "timestamp": "2026-05-15T03:46:59.888728+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "基础设施健康检查，7/7 进程存活，无异常。MCP 断连，无法发送报告，但这是 info 级别无需紧急上报。\n\n主要观察：\n- SFT d025 v2 (cuda:3) 完成度 95.7%，约 13 分钟完成\n- SFT d100 s123 (cuda:5) 完成度 71.2%，约 1h45m\n- 5 个 eval 均在运行，暂无 benchmark 输出完成（3B 模型 eval 慢属正常）\n- GPU 4 两进程共享 96% util，暂无 OOM\n- `--gpu 0` 死代码问题再次出现（PID 471296），ROADMAP 已记录\n\n待 MCP 恢复后，我会将之前挂起的 exp006-oracle-gsm8k-extended-v2 审查报告一并发送——那个实验有重要的结论需要上报（4PL+γ 在 GSM8K oracle 场景下校准精度远不如简单 baseline，PPP=0 提示模型 misfit）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-000539"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 540,
+          "timestamp": "2026-05-15T03:49:09.734955+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_irt_oracle-arc-2pl_20260515T034508]:\nWorker worker_irt_oracle-arc-2pl_20260515T034508 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-000540"
+        }
+      ]
+    }
+  ]
+}

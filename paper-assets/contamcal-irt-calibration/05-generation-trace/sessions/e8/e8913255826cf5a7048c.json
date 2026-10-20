@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8913255826cf5a7048c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gemini connectivity test",
+  "task_key": "worker_ops_gemini-connectivity-test_20260523T052408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemini-connectivity-test_20260523T052408_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "bcf4d61dbc41c6bef1671225cbe0ecd05223a81fecfababb4aad11634699ddbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 环境 | 连通性 | HTTP Status |\n|------|--------|-------------|\n| cqa1-21977 | **不通（被墙）** | 000（连接超时） |\n| 本地 | **连通** | 404 / 403（能建立连接） |\n\ncqa1 服务器无法访问 Google Gemini API，两个端点均超时（exit code 28）。本地正常连通（返回 404/403 说明 TCP+TLS 握手成功，只是缺 API key 被拒）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gemini-connectivity-test.md"
+}

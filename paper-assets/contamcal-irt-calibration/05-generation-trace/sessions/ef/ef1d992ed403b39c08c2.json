@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef1d992ed403b39c08c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research fisher info derivation",
+  "task_key": "worker_research_fisher-info-derivation_20260513T185207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_fisher-info-derivation_20260513T185207_result.json",
+    "occurrence": 1,
+    "bytes": 1837,
+    "sha256": "238b545f40845c320f0d95631de8a599f5e8c00778df55a049790a08f98a20fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX compiles cleanly (6 pages, no errors).\n\n## Summary\n\n**All three parts complete. All verifications passed.**\n\n### Theorem 1 (verified)\n`I(γ) = Σ_ij w_ij τ_ij²` where `w_ij = [(d_j-c_j)·s_ij(1-s_ij)]² / [p_ij(1-p_ij)]`\n\n- MC score variance vs analytic: ratio = 1.0067\n- Expected Hessian vs analytic: ratio = 1.0000\n- 2PL simplification (`w_ij = p_ij(1-p_ij)`): exact match\n\n### Corollary 1 — AUC scaling (verified)\n`E[I(γ)] = W̄·NM·[1/(2(Φ⁻¹(A))²) + π]` — all 5 AUC values within [0.998, 1.001] of theory.\n\nKey insight: in the DGP where σ is determined by AUC (Δ=1 fixed), lower AUC → larger noise σ → larger E[τ²] → MORE conditional Fisher information. This is because the noise creates large τ values that make γ easy to estimate statistically, even though the estimate is less interpretable as a contamination effect.\n\n### Corollary 2 — ME attenuation (verified)\n`I_ME/I_oracle = σ_τ²/(σ_τ²+σ_e²)` — all 5 σ_e values match theory within [0.998, 1.002].\n\n### exp-004 comparison\n- All tested conditions (AUC ∈ {0.55, 0.80}, N ∈ {20, 50}) successfully detect γ (100% exclude zero).\n- Conditional Fisher info predicts detection at all AUC ≥ 0.50 (the bound is never binding at these dimensions).\n- Observed CI widths are 1.3× to 4.0× wider than conditional predictions, as expected — the conditional formula assumes other parameters known, while the Bayesian model estimates them jointly.\n- The gap is largest at low AUC (ratio 3.7–4.0 at AUC=0.55) where noise-inflated τ creates more confounding with item difficulty.\n\n### Files\n- `fisher_info_appendix.tex` — 6-page standalone LaTeX (EMNLP appendix format)\n- `verify_fisher_info.py` — pure numpy/scipy verification\n- `fisher_info_verification.json` — full numeric results"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-fisher-info-derivation.md"
+}

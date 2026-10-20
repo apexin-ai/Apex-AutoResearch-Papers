@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eae35b98bfb6fad32de1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag d005 para metrics",
+  "task_key": "worker_diag_d005_para_metrics_20260514T151308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d005_para_metrics_20260514T151308_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "21bb5f62c66fa5049969fbc3f7c72322ccad6d1065319f439e34919214bcc7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。d005 paraphrase aligned 结果：\n\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU | 0.3548 |\n| GSM8K | 0.2588 |\n| ARC | 0.3300 |\n| HumanEval | 0.1923 |\n\n16 个指标字段（d000 orig/para + d005 orig/para × 4 benchmarks）已全部写入 `exp_001_eval_05B_aligned_batch`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d005-para-metrics.md"
+}

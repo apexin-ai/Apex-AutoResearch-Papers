@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50e8b6495f0e54ee91af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops local progress check",
+  "task_key": "worker_ops_local-progress-check_20260514T110907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local-progress-check_20260514T110907_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "4ce52d8aee206af4b1dfbc10006889b3e75a77fc11520445a84f6f54fcc71536"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004 sim sweep v2\n\n- **状态**: 运行中 (PID 411032, uptime 3h57m)\n- **当前**: condition [3/12] `auc0.8_n100_prior1.0_binary`, seed 1/10 — chains 3/4 正在采样 (chains 1/2 已完成 ~10:57 UTC)\n- **已完成**: 5 个 condition 结果文件已写入，condition 3 刚开始\n- **结果目录**: 5 个 condition JSON + sweep_summary.json\n- **ETA**: 日志显示 condition 3 开始时预估剩余 15.3h（约 May 15 ~01:30 UTC）\n- **异常**: 无，采样正常 (γ 收敛良好, θ_corr > 0.94)\n\n## exp-005 noise prop v3\n\n- **状态**: 运行中 (PID 426335/426336, uptime 2h43m)\n- **当前**: fit 9/25 — `σ_e=0.3, seed=45` ME(analytic) 模型, chains 3/4 正在采样 (chains 1/2 完成 ~11:02 UTC)\n- **已完成**: 8/25 fits (32%)\n- **速率**: 每个 fit (simple + ME) 约 35 min，剩余 17 个 fit ≈ 10h\n- **ETA**: ~21:00 UTC May 14\n- **注意**: `results/exp005/exp005_run.log` 记录了旧版 v2 的崩溃 (Stan `normal_lpdf` scale=0 → chains 3/4 retcode=1)。当前 v3 运行正常 (Rhat ~1.006-1.009)，无采样异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-progress-check.md"
+}

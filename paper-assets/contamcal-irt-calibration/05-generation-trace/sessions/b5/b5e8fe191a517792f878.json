@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5e8fe191a517792f878",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval olmo2 arc s42",
+  "task_key": "worker_ops_eval-olmo2-arc-s42_20260520T173915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-olmo2-arc-s42_20260520T173915_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "08f65fc3dccb6f0a600e33b06ea76974a6ffd7d3685814e1a5828a35a2a311e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **脚本**: `/root/contamcal-irt-calibration/scripts/eval_olmo2_arc_s42.sh`\n- **PID**: 398154, westd-29999 cuda:2\n- **Registry**: `eval_olmo2_arc_s42` → RUNNING, parent=eval_arc_s123_batch\n- **Checkpoints**: 5 dosages (d000-d100) s42, lora_alpha=32 ✓, C009 md5 校验 ✓\n- **预计耗时**: ~12-15 分钟（~8 it/s × 1172 items × 5 dosages）\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_olmo2_arc_s42.log`\n- **输出**: `/root/contamcal-irt-calibration/results/arc_eval/olmo2/d{000,005,025,050,100}_s42/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-olmo2-arc-s42.md"
+}

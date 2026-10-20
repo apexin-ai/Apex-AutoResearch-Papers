@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae6f0d40b3778e175c90",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd full status v2",
+  "task_key": "worker_ops_westd-full-status-v2_20260520T033412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-status-v2_20260520T033412_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "0ccdcc8a1c25f8509adbec6ae72dbd9a3e2e122e850da5b6dad7649f76323943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 服务器 | GPU | 实验 | PID | Registry状态 | 实际状态 | 进度 | 当前dosage | ETA(当前) |\n|--------|-----|------|-----|-------------|---------|------|-----------|-----------|\n| westd | cuda:0 | Phi-4 s0 sweep | 265121 | running | **still_running** | 547/3125 (17%) | d000_s0 | ~1h44m |\n| westd | cuda:1 | Qwen-14B d100 s123 | 246779 | ~~failed~~ | **still_running** | 1982/4159 (48%) | d100_s123 | ~1h54m |\n| westd | cuda:2 | OLMo-2 s0 sweep | 261133 | ~~failed~~ | **still_running** | ~800/3125 (26%) | d005_s0 | ~2h41m |\n| westd | cuda:3 | Gemma-2 d100 s123 | 246861 | ~~failed~~ | **still_running** | 2034/4159 (49%) | d100_s123 | ~1h36m |\n| westd | CPU | IRT 2PL+γ fitting | 268172 | running | **actually_dead** | — | — | — |\n| cqa1 | cuda:0 | Qwen-7B s0 sweep | 313418 | running | **still_running** | 800/3125 (26%) | d000_s0 | ~2h40m |\n\n### 关键发现\n\n1. **Registry 误标的 3 个实验全部存活**：Qwen-14B/OLMo-2/Gemma-2 的 PID 均在，GPU 负载 67-96%，训练正常推进。Registry 需修正为 running。\n\n2. **OLMo-2 s0 sweep 进度**：d000_s0 已完成（checkpoint 含 adapter_config.json），当前训练 d005_s0 (26%)。剩余 d025/d050/d100 未开始。总剩余约 ~8h。\n\n3. **Phi-4 s0 sweep 进度**：仍在第一个 dosage d000_s0 (17%)。lora_adapter 目录为空（尚未保存 checkpoint）。总剩余约 ~10h（含后续 4 个 dosage）。\n\n4. **IRT fitting 已死**：PID 268172 不存在，`irt_results_v3/` 目录为空，无任何输出。需要排查原因并重新提交。\n\n5. **Qwen-7B s0 sweep (cqa1)**：正常运行，d000_s0 at 26%。4090D 上速度 ~4.1s/it，总剩余约 ~17h（含后续 4 个 dosage）。\n\n6. **磁盘状态**：westd 数据盘 77% (59GB free)，cqa1 数据盘 72% (49GB free)，均充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-status-v2.md"
+}

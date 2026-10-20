@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80059abc79768e3c9c24",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft phi4 d050 s42",
+  "task_key": "worker_analyze_exp_001_sft_phi4_d050_s42_20260519T063248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_phi4_d050_s42_20260519T063248_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "15f7edc95c8c93ead150c614c7a14e8dcda22e4f2b28cd729d561f6d393d17a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/success. Summary:\n\n| Metric | d000 | d005 | d025 | **d050** |\n|---|---|---|---|---|\n| train_loss | 1.183 | 1.185 | 1.187 | **1.189** |\n| final_step_loss | — | — | 1.139 | **1.117** |\n| final_step_accuracy | — | — | 0.7329 | **0.7414** |\n| mean_token_accuracy | 0.7287 | 0.7302 | — | **0.7253** |\n| total_steps | 3125 | 3177 | 3384 | **3642** |\n\n- **train_loss 1.189** — 与 dosage chain 完全一致（随 dosage 缓慢上升）\n- **train_runtime** ~3h03m (11,000s)\n- **lora_alpha=32** 确认正确\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/phi-4_d050_s42/lora_adapter`\n- 无 W&B run，无 eval metrics\n- Steps 从 d000 的 3125 增长到 3642，因为 d050 数据量更大 (58,266 samples)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-phi4-d050-s42.md"
+}

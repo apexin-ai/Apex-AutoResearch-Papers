@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda528dc68222a1a4bcc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 008 instruct rl proxy",
+  "task_key": "worker_code_exp_008_instruct_rl_proxy_20260516T044959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008_instruct_rl_proxy_20260516T044959_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "6a942bd86aa95c0906632807c6628655f48597f6821db8b309adec32409a5f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务进展总结：\n\n## 完成情况\n\n**Instruct 模型信号** — 已完成 ✓\n- Qwen2.5-0.5B-Instruct 已下载到 `/root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct-hf`\n- 3 个 benchmark × 3 个信号 = 9 个信号文件完整（5月15日计算）\n- 路径：`/root/autodl-tmp/exp008/signals/rl_aligned/`\n\n**d000 SFT 信号** — 已完成 ✓\n- 路径：`/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/`\n\n**Base Pretrained 信号** — 运行中 (PID 701898, GPU 5, 已 18 分钟)\n- MMLU S1 + S2 完成，S4 selfcritique 处理中\n- GSM8K, ARC 待处理\n- 预计总时间 30-45 分钟\n\n## 关键发现\n\n| Benchmark | Instruct S4 | d000 SFT S4 | Δ (Instruct-SFT) |\n|-----------|-------------|-------------|-------------------|\n| MMLU | -0.878 | -0.956 | **+0.078** |\n| ARC | -0.923 | -0.954 | **+0.031** |\n| GSM8K | -0.963 | -0.941 | -0.022 |\n\n- **S4 (Self-Critique)** 区分训练 regime：RL 对齐在知识型任务（MMLU/ARC）上增加了自我评估不确定性\n- **S2 (Min-K++)** 对 regime 不敏感（差异 <0.01）\n- Artifact 已注册：`exp008_3regime_signal_comparison`\n- Registry 状态：RUNNING（等待 base pretrained 完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008-instruct-rl-proxy.md"
+}

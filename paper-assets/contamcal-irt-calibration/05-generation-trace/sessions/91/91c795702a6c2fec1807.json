@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91c795702a6c2fec1807",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k gemma2 d100 rerun",
+  "task_key": "worker_ops_gsm8k-gemma2-d100-rerun_20260520T062203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-gemma2-d100-rerun_20260520T062203_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "0065d5107f5db94119076c52e4c70beb0f74bfa78d72ab5ab882d92843b2c629"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 不空闲。** PID 293330 正在 cuda:3 上运行 gemma2 d100 eval（batch-size 8），已运行 15 分钟，占用 28660 MiB。output 目录为空（尚未产出结果）。\n\n这就是之前 OOM 的同一配置（batch-size 8）的新实例。按 C001/C003，需要先 kill 这个进程才能提交新任务。\n\n是否 kill PID 293330 然后用 batch-size 4 重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-gemma2-d100-rerun.md"
+}

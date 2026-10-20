@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd22072a9f0cf3106caf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops yi gate check result",
+  "task_key": "worker_ops_yi-gate-check-result_20260522T192820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_yi-gate-check-result_20260522T192820_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "b4ac028635a9b63f7cca00ad11c9868570791b6af13a735512e1bd3455ccd2c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中清理），无需处理。\n\n## 报告\n\n**MMLU pretrained accuracy**: 65.20% (9156/14042)\n\n**Gate check: GO** — 65.20% 落在 65-70% vulnerability band 内，Yi-1.5-9B 是合适的 5-dosage replication 候选模型。\n\n**GPU 状态**: cqa1-21977 GPU 0 (RTX 4090 D, 24GB) 空闲，无运行进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-yi-gate-check-result.md"
+}

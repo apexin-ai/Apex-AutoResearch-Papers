@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad6148fcd9bec4ec7397",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis dose response table",
+  "task_key": "worker_analysis_dose-response-table_20260514T133105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose-response-table_20260514T133105_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "765f0cc3e2a290cf44f71e352ec4712a9f0e23d8e3ee44bdaf9ee25f94a10b89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。Dose-response 数据表已追加到 memory.md。\n\n汇总：\n- **Aligned 完整结果**: 0.5B d000, 0.5B d005, 1.5B d000, 3B d000（共 4 条）\n- **Aligned paraphrase**: 0.5B d000, 1.5B d000（共 2 条）\n- **Legacy 参考**: 10 条\n- **Pending (空目录)**: 7 个——包括 0.5B d025, 1.5B d005, 3B d005/d100 的 aligned eval 尚未产出\n- 0.5B d100 aligned 结果缺失（legacy 有但 aligned 没有）\n- 3B GSM8K 全部标注排除（D018）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-table.md"
+}

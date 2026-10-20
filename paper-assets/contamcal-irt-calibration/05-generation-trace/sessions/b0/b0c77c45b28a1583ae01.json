@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c77c45b28a1583ae01",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778903620.md",
+  "task_key": "loop_13_1778903620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778903620.md",
+    "occurrence": 1,
+    "bytes": 4884,
+    "sha256": "0f3831071ec6d954fd6f531c911d0b5eb01331ff903d992c5e2132e26f01f1bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T03:45:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5（cqa1-21977），全部分配给本项目，无需额外申请\n- 3B s42 系列 checkpoint 必须用 lr=5e-5 + alpha=32（D076 lr confound 教训，lr=2e-4 的旧 checkpoint 已全部废弃）\n- submit_training_job 命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- cuda:0 曾发生双进程冲突（C001 违规），后续调度避免在同一 GPU 叠加 SFT+eval\n- 论文 signal fusion 定型为 s1+s2+s4（D098），s3_constat 不批准使用\n- Claim 3 已降级为 Discussion 中的 honest negative（D095），不做独立 claim\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（6× RTX 4090D, 24GB each）\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{0.5B,1.5B,3B}_d{000,005,025,100}_s{42,123}/lora_adapter`\n- **Eval results**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals**: `/root/autodl-tmp/exp002/signals/`\n- **Paraphrases**: `/root/autodl-tmp/exp001/paraphrases/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（HF_HOME 必须指向此路径）\n- **sim_sweep**: `/root/autodl-tmp/exp004/`（v7 完成 9/12）\n- **活跃 cron**: exp_001_eval_3B_d000_s42_a32_batch (pid 676487, cuda:1) + exp_001_eval_3B_d005_s42_a32_batch (pid 679180, cuda:2)\n\n### 3. 📊 当前状态\n**刚完成**: Session#14 状态同步，reconcile crons，更新 ROADMAP 至 D102。\n\n**6 个 RUNNING 实验（6/6 GPU 饱和）**:\n| GPU | exp_id | 任务 |\n|-----|--------|------|\n| cuda:0 | exp_001_eval_3B_d025_s42_a32_para | d025_v3_s42 para_aligned eval (PID 691033) |\n| cuda:1 | exp_001_eval_3B_d000_s42_a32_batch | d000_s42 aligned+para eval (PID 676487, cron 监控中) |\n| cuda:2 | exp_001_eval_3B_d005_s42_a32_batch | d005_s42 aligned+para eval (PID 679180, cron 监控中) |\n| cuda:3 | exp_001_eval_3B_d100_s42_a32_batch | d100_s42 aligned+para eval |\n| cuda:4 | exp_002_signals_3B_d100_s123_v9 | d100_a32_s123 s4 signals (PID 689315) |\n| cuda:5 | exp_002_signals_05B_s123_v2 | 0.5B s123 全部 signals s1+s2+s4 |\n\n**2 个活跃 Worker**: monitor-gpu-submit-05B + check-rrf-output-contamination\n\n**等待中**: 6 个 eval/signals 的 cron 完成回调。回调到达后需：更新 registry → 刷新 report.md → 派 Worker 跑下一批（3B signals 或 RRF 聚合）。\n\n### 4. 📋 待办（条件触发式）\n- **cuda:0 d025_para eval 完成** → d025_s42 para_aligned 结果入 registry；若 d005_s42 SFT 已完成（上个 session cuda:0 在跑 SFT），确认 checkpoint 可用 → 安排 d005_s42 eval\n- **cuda:1 d000_s42 eval 完成** → 结果入 registry → 立即提交 d000_s42 signals（s1+s2+s4）或下一个排队任务\n- **cuda:2 d005_s42 eval 完成** → 结果入 registry → 提交 d005_s42 signals\n- **cuda:3 d100_s42 eval 完成** → 结果入 registry → 提交 d100_s42 signals\n- **cuda:4 d100_s123 v9 signals 完成** → 检查 s4 信号完整性 → 若成功则 d100_s123 信号矩阵补全\n- **cuda:5 0.5B s123 signals 完成** → 验证 12 个 signal 文件 → 0.5B 信号矩阵完整\n- **3B s42 eval 全完成 + signals 全完成** → 启动 RRF 聚合 (exp-003, CPU)\n- **RRF 聚合完成** → pooled IRT fitting (per-benchmark γ_k, Stan NUTS) + 7 baselines 对比 (exp-006)\n- **IRT fitting 完成** → 论文写作 pipeline 启动（5 步）\n- **exp_001_sft_3B_d100_s123_a32**: Priority 2 SFT，GPU 释放后提交（d100 s123 alpha=32 重跑）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D076: 3B s42 旧 checkpoint 全部 lr confound，已在重训/重 eval 中——这是 3B 矩阵 7/16 的根因\n- D090: sim_sweep_v7 确认 Claim 1 identifiability（γ bias<0.03, CI95 coverage≥0.8）\n- D095: Claim 3 降级 honest negative（noise_prop negative），sim_sweep 提供间接支撑\n- D098: 三信号 fusion（s1+s2+s4），s3 不用\n\n**EMNLP 2026 ARR May 25 = T-9 天**。Critical path: 3B s42 eval（当前全在跑）→ 3B s42 signals → RRF → pooled IRT → paper。Day 1-2 必须完成 3B eval+signals，否则 paper timeline 被压缩。\n\n**易错点**:\n- d000_s42 checkpoint 路径可能是 `Qwen2.5-3B_d000_s42/` 而非 `_a32_` 命名（ROADMAP 提到需 symlink 统一命名，未确认是否已做）\n- 3B s42 signals 依赖 eval 产出的 aligned+para 结果文件，eval 没完成不能跑 signals\n- 0.5B/1.5B s123 signals 是 D097/D101 紧急补算，优先级高于 3B d100 signals\n- auc0.65×3 sim_sweep 条件失败（CmdStan 竞态），9/12 已足够但下一个\"我\"不要再重试\n- 1.5B 双种子矩阵已全部完成（16/16），不需要再跑 1.5B 实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778903620.md"
+}

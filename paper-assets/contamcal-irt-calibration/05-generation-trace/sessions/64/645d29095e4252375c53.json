@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "645d29095e4252375c53",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo reeval cuda3",
+  "task_key": "worker_ssh_westd-olmo-reeval-cuda3_20260519T102313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-reeval-cuda3_20260519T102313_result.json",
+    "occurrence": 1,
+    "bytes": 210,
+    "sha256": "444cfc36fa932936958809a6a29611153c79f8b5945155e4cb874fe72f5cc782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交到 westd cuda:3，两个 eval 串行运行：\n1. **d005** → MMLU + ARC (正在跑)\n2. **d025** → MMLU + ARC (d005 完成后自动启动)\n\n15 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-reeval-cuda3.md"
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "dc943138151d317e313c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code sft 05B d025 submit",
+  "task_key": "worker_code_sft_05B_d025_submit_20260514T042522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft_05B_d025_submit_20260514T042522.log",
+    "occurrence": 1,
+    "bytes": 1012694,
+    "sha256": "ba2a5c753ea0b31879b8dd507b2ee4eddf99dc9353353111a33201b2b3366a9b"
+  },
+  "statistics": {
+    "messages": 502,
+    "user_turns": 0,
+    "tool_calls": 224,
+    "roles": {
+      "record": 1,
+      "system": 1,
+      "assistant": 51,
+      "tool_call": 224,
+      "tool_result": 224,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 502,
+      "chunks": [
+        {
+          "path": "dc943138151d317e313c-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "dc943138151d317e313c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dc943138151d317e313c-part-0003.json",
+          "message_count": 173
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sft-05b-d025-submit.md"
+}

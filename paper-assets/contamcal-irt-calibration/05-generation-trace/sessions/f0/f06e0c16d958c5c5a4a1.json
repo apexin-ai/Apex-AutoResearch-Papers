@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f06e0c16d958c5c5a4a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify gemma2 start",
+  "task_key": "worker_ops_verify-gemma2-start_20260518T181120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gemma2-start_20260518T181120_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "fa12eeb4260d6966184b34b2af0c7b65d66bae51c48fc2051a12ad5a2dfcf42e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动失败。**\n\n汇总：\n\n| 检查项 | 结果 |\n|---|---|\n| tmux session `exp_001_sft_gemma2_9b_d000_s42` | **不存在**（仅有 `exp_001_sft_7b_d050_s123` 和 `exp_001_sft_7b_d100_s123`） |\n| Gemma-2 相关进程 | **无**（pgrep 无匹配） |\n| cuda:1 | **空闲**（0MiB, 0% util） |\n| 日志 | **`ABORT: active process on target dir`**，退出码 1 |\n\n**失败原因**：启动脚本检测到目标 output 目录已有活跃进程，触发了防冲突保护，自动中止。需要检查是哪个进程占用了该 output dir（可能是之前残留的进程），清理后重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gemma2-start.md"
+}

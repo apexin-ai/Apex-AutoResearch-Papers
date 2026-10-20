@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b8b002e66a1e89b3dad",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu check idle fill",
+  "task_key": "worker_gpu-check_idle-fill_20260514T184645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_idle-fill_20260514T184645_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "0a67cf732aa16f0f849c482d18e387e7be6f48bbf0f7d4ed4f2f47298308b694"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态 (cqa1-21977, 02:47 UTC)\n\n| GPU | 状态 | PID | 显存使用 | GPU 利用率 | 任务 |\n|-----|------|-----|---------|-----------|------|\n| cuda:0 | **空闲** | — | 0 MiB | 0% | — |\n| cuda:1 | **空闲** | — | 0 MiB | 0% | — |\n| cuda:2 | 占用 | 423834 | ~0 MiB (加载中) | 100% | exp002-signal-d025-05B: `compute_signals.py` 0.5B d025 |\n| cuda:3 | 占用 | 420195 | 13325 MiB | 75% | `train_sft.py` Qwen2.5-3B d100 (100%剂量SFT) |\n| cuda:4 | 占用 | 420910 | 5857 MiB | 51% | `evaluate.py` Qwen2.5-1.5B d025 aligned |\n| cuda:5 | 占用 | 405520 | 18661 MiB | 22% | exp_001_sft_3B_d000_v2: `train_sft.py` Qwen2.5-3B d000 |\n\n## 与 registry 的差异\n\n- **cuda:0**: 之前的 1.5B d025 SFT **已完成**，GPU 空闲\n- **cuda:1**: 空闲确认\n- **cuda:3**: registry 记录的 exp_006 Stan NUTS (PID 418705) **已结束**，现在跑的是 3B d100 SFT (PID 420195)\n- **cuda:5**: registry 记录的 exp_001_eval_05B_d025_aligned_v2 (PID 406017) **已结束**，仅剩 3B d000 v2 SFT\n\n**可用 GPU: cuda:0, cuda:1**（共 2 张空闲）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-idle-fill.md"
+}

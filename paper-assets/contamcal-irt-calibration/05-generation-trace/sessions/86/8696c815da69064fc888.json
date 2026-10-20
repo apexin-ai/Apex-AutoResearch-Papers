@@ -1,0 +1,1465 @@
+{
+  "schema_version": "1.0",
+  "id": "8696c815da69064fc888",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code aligned eval 15B script",
+  "task_key": "worker_code_aligned-eval-15B-script_20260514T083726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_aligned-eval-15B-script_20260514T083726.log",
+    "occurrence": 1,
+    "bytes": 48245,
+    "sha256": "63fb6a605e284f1eb699a1957f0ec7eef4dc8b59279ab0d37f0a9f4fa01fb69a"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "46992a3b-3e6b-4f72-bc64-1af2167cdfb7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778761800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "99ab8020-dc23-47ad-ad2f-db3720030ccf",
+                "session_id": "36323316-e971-4932-95ef-ad185245e3ba"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the 0.5B template script from the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "872c0056-5ffb-4522-aec7-a0c307dba22f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JDtsgXT9WAiQmTebwLcRbk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11751,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11751
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFKGQxbDSf5kvrp7uoNpmB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "cb5a71ed-559e-4cb5-acb5-3e39f101f6a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JDtsgXT9WAiQmTebwLcRbk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11751,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11751
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:37:54.651Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JFKGQxbDSf5kvrp7uoNpmB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "36d62519-f5ef-46dd-a016-e5e221a57d6d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the 0.5B template script and check which 1.5B/3B checkpoints exist.",
+              "signature": "EooCClkIDRgCKkDxPuoM/Ig83pB9J+qElMnv4xmvjDKP45cIRuTwT0SNM1ywuml3G+cLmH7UwX9bceLw4bTb4F3eumWPe95OqFzBMg9jbGF1ZGUtb3B1cy00LTY4ABIMjtpEeUQLKFukAmkLGgwDmwhyypZOFpEEY6IiMMRpuBbapTnC9g+8ORJXRpy7IypWvzJz/JDXcnNSl8aJNep92Xu6gZjTg5rJNqj9YipfmGFpczq9bYrgcTeDmfYfqqGvQM2IzlCqVBRkVef1vzstuajhwXJ4rOfO/1mLM6uwrBrEfhmOymyJe/Mh9wcJKdt52w5XJcSRg28MFhya93W16quL15yRR8Nvkm9etPAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "85b02d96-b05c-4f12-98f7-10175dfcb9c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EkrXydRSBqsGjBajBJqzf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 23592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XUid7vL7vMn8Q8gyVySyhr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "2c624c8a-e55c-47fc-9ae0-390707673957",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EkrXydRSBqsGjBajBJqzf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 23592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019G8RY1XpSFEximBVD1R5bb",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls -d /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_* /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_* 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "dbf84c8d-f95c-417c-b6cb-76a5314527ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EkrXydRSBqsGjBajBJqzf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 23592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:38:00.975Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XUid7vL7vMn8Q8gyVySyhr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_PARA\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\ndone\\\\n\\\\necho \\\\\\\"All 0.5B aligned evals done.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "849b6566-fd8a-4f8d-9cd4-3bb7d743e850",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_PARA\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\ndone\\\\n\\\\necho \\\\\\\"All 0.5B aligned evals done.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\nset -euo pipefail\\n\\nMODE=${1:-both}\\nshift 2>/dev/null || true\\n\\n# AutoDL env\\nsource /etc/network_turbo 2>/dev/null || true\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\nBENCHMARKS=\\\"mmlu gsm8k arc_challenge humaneval\\\"\\nSCRIPT_DIR=$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\n\\nfor DOSAGE in d000 d005 d100; do\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\n\\n  if [ ! -d \\\"$ADAPTER\\\" ]; then\\n    echo \\\"WARN: adapter not found: $ADAPTER, skipping\\\"\\n    continue\\n  fi\\n\\n  if [ \\\"$MODE\\\" = \\\"original\\\" ] || [ \\\"$MODE\\\" = \\\"both\\\" ]; then\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\n    echo \\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\"\\n    python \\\"$SCRIPT_DIR/evaluate.py\\\" \\\\\\n      --model-path \\\"$BASE\\\" \\\\\\n      --adapter-path \\\"$ADAPTER\\\" \\\\\\n      --output-dir \\\"$OUT\\\" \\\\\\n      --benchmarks $BENCHMARKS \\\\\\n      --mc-format aligned \\\\\\n      \\\"$@\\\"\\n  fi\\n\\n  if [ \\\"$MODE\\\" = \\\"paraphrase\\\" ] || [ \\\"$MODE\\\" = \\\"both\\\" ]; then\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\n    echo \\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\"\\n    python \\\"$SCRIPT_DIR/evaluate.py\\\" \\\\\\n      --model-path \\\"$BASE\\\" \\\\\\n      --adapter-path \\\"$ADAPTER\\\" \\\\\\n      --paraphrase-dir \\\"$PARA_DIR\\\" \\\\\\n      --output-dir \\\"$OUT_PARA\\\" \\\\\\n      --benchmarks $BENCHMARKS \\\\\\n      --mc-format aligned \\\\\\n      \\\"$@\\\"\\n  fi\\ndone\\n\\necho \\\"All 0.5B aligned evals done.\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:38:01.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019G8RY1XpSFEximBVD1R5bb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "f74fa015-bf6c-419d-b6eb-5e5b902b1fcf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `2>/dev/null` redirect was blocked. Let me use `find` instead to check existing checkpoints.",
+              "signature": "EpsCClkIDRgCKkCns0wjkyG4adYOi+L2umPoBKuc3jcNBy9aDLZoKBY0myEPbaR57/vkNnif13FYQgvSjS1o47o2GsFm95K9YnZxMg9jbGF1ZGUtb3B1cy00LTY4ABIMmFMEOQBC4L6f+/sOGgyDYxhyk78wf33YB7kiMFVgteH3A8S8p+kWZw58iCIev8H4agp9W6yiQO7RZqLsLCwsjfOxt1cVOcpsQWqsfypw8caMKp1kkKaO7twcXcA1nuHymuCLEVedMXESQEwPva74T92DtPr6liKJhI+GypG0XZIXO9WiTVtZrKkJD8Aybsg59HC0HdmI52s/6Dd7WXJvS162ey+IivXQwwJbfBAVyv/f65g9OsbRiNlAnF3YsxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "befd1ddd-e199-4776-b962-0d1b3699c81e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B3ErVmNMpkExC9KchsLnsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1441,
+                "cache_read_input_tokens": 24281,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1441
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NMYG5KP3qvrFeERRmu413A",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls -d /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "6851266e-0743-469b-b8d6-c21aaee07b85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B3ErVmNMpkExC9KchsLnsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1441,
+                "cache_read_input_tokens": 24281,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1441
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GZg4v6aCc5KbDbftSsYVGq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "4159bf26-eb4b-4aab-ac91-044849a718a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B3ErVmNMpkExC9KchsLnsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1441,
+                "cache_read_input_tokens": 24281,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1441
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:38:07.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NMYG5KP3qvrFeERRmu413A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "28b35b93-165a-4848-aa27-a81088cea9dd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T08:38:08.483Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GZg4v6aCc5KbDbftSsYVGq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B:\\\\nLICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B:\\\\nLICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00002.safetensors\\\\nmodel-00002-of-00002.safetensors\\\\nmodel.safetensors.index.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "c99f9a86-7928-4fac-8917-7fbb7d11cbe5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B:\\\\nLICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B:\\\\nLICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00002.safetensors\\\\nmodel-00002-of-00002.safetensors\\\\nmodel.safetensors.index.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B:\\nLICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmerges.txt\\nmodel.safetensors\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B:\\nLICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmerges.txt\\nmodel-00001-of-00002.safetensors\\nmodel-00002-of-00002.safetensors\\nmodel.safetensors.index.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. All checkpoints exist:\n- 1.5B: d000_s42, d000_s123, d100_s42, d005_s42 (all present)\n- 3B: d000_s42, d100_s42 (present), d005_s42 not yet\n\nBase models both exist at the expected paths.\n\nNow let me check if the 0.5B script uses `lora_adapter` subdirectory - yes it does. Let me verify the 1.5B checkpoints have the same structure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "ec44cbc5-389e-4bc2-be33-80689e39d330",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwKRXyYpVUpJtB47XAkCz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 25722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1073
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxJkNGRWs7RYWN3LbLevHo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/lora_adapter"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "f43effdb-aca8-4d8c-8dba-be8dccfbad97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwKRXyYpVUpJtB47XAkCz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 25722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1073
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L6sZGLp4SJvXg8y3eLDBjm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "9c793444-b8ab-4b99-a24a-af756e6c14c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwKRXyYpVUpJtB47XAkCz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 25722,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1073
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T08:38:15.449Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxJkNGRWs7RYWN3LbLevHo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "1a92aba0-5e7d-4349-be4d-c068a59e2cc3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-3125\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T08:38:15.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L6sZGLp4SJvXg8y3eLDBjm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "7d6afaf3-e455-45de-bb73-dd3fee5ede9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-3125\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both have `lora_adapter` subdirs. Now I'll create both scripts and deploy them."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "9fdbd1be-0f32-4905-a6e1-5defc2629fca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LLFhF23rt5fuHgNi4ScCmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 751,
+                "cache_read_input_tokens": 26795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 751
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TwS4hNzCNpXAkgCp23Cvam",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh << 'SCRIPT'\n#!/bin/bash\n# Aligned-format MC eval for 1.5B: original + paraphrase\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_15B.sh [original|paraphrase|both]\nset -euo pipefail\n\nMODE=${1:-both}\nshift 2>/dev/null || true\n\n# AutoDL env\nsource /etc/network_turbo 2>/dev/null || true\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\nBENCHMARKS=\"mmlu gsm8k arc_challenge humaneval\"\nSCRIPT_DIR=$(cd \"$(dirname \"$0\")\" && pwd)\n\nfor DOSAGE in d000 d005 d100; do\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_${DOSAGE}_s42/lora_adapter\n\n  if [ ! -d \"$ADAPTER\" ]; then\n    echo \"WARN: adapter not found: $ADAPTER, skipping\"\n    continue\n  fi\n\n  if [ \"$MODE\" = \"original\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_${DOSAGE}_s42_aligned\n    echo \"=== [original] ${DOSAGE} -> ${OUT} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --output-dir \"$OUT\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\n\n  if [ \"$MODE\" = \"paraphrase\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_${DOSAGE}_s42_para_aligned\n    echo \"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --paraphrase-dir \"$PARA_DIR\" \\\n      --output-dir \"$OUT_PARA\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\ndone\n\necho \"All 1.5B aligned evals done.\"\nSCRIPT"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "fbb6cb2d-85d6-4196-97b6-cbf180d5aea3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LLFhF23rt5fuHgNi4ScCmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 751,
+                "cache_read_input_tokens": 26795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 751
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T08:38:32.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TwS4hNzCNpXAkgCp23Cvam",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "fe26dbc2-a06c-4a92-928c-ffc157488026",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qp8woFQws5pRKV51xG36Rv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh << 'SCRIPT'\n#!/bin/bash\n# Aligned-format MC eval for 3B: original + paraphrase\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_3B.sh [original|paraphrase|both]\nset -euo pipefail\n\nMODE=${1:-both}\nshift 2>/dev/null || true\n\n# AutoDL env\nsource /etc/network_turbo 2>/dev/null || true\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\nBENCHMARKS=\"mmlu gsm8k arc_challenge humaneval\"\nSCRIPT_DIR=$(cd \"$(dirname \"$0\")\" && pwd)\n\nfor DOSAGE in d000 d005 d100; do\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_${DOSAGE}_s42/lora_adapter\n\n  if [ ! -d \"$ADAPTER\" ]; then\n    echo \"WARN: adapter not found: $ADAPTER, skipping\"\n    continue\n  fi\n\n  if [ \"$MODE\" = \"original\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_${DOSAGE}_s42_aligned\n    echo \"=== [original] ${DOSAGE} -> ${OUT} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --output-dir \"$OUT\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\n\n  if [ \"$MODE\" = \"paraphrase\" ] || [ \"$MODE\" = \"both\" ]; then\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_${DOSAGE}_s42_para_aligned\n    echo \"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\"\n    python \"$SCRIPT_DIR/evaluate.py\" \\\n      --model-path \"$BASE\" \\\n      --adapter-path \"$ADAPTER\" \\\n      --paraphrase-dir \"$PARA_DIR\" \\\n      --output-dir \"$OUT_PARA\" \\\n      --benchmarks $BENCHMARKS \\\n      --mc-format aligned \\\n      \"$@\"\n  fi\ndone\n\necho \"All 3B aligned evals done.\"\nSCRIPT"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "5b583ed4-b80f-4f55-a0e4-9b502b28c725",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0141ZCHrNSfWo2qC9zQkub3H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1045,
+                "cache_read_input_tokens": 27546,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1045
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T08:38:43.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qp8woFQws5pRKV51xG36Rv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "00de7f89-eff0-4687-a008-aacf1a04888c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now verifying syntax and file existence."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "f7d21133-795b-4461-bd8d-e437f1e728af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JcKyPnJGBocxVoCroYN9Wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 908,
+                "cache_read_input_tokens": 28591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 908
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C14b4Lbsz3jf8wppUjGM8m",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "bash -n /root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "a113562a-1827-49f3-90d4-b774821f5b8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JcKyPnJGBocxVoCroYN9Wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 908,
+                "cache_read_input_tokens": 28591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 908
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T08:38:47.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C14b4Lbsz3jf8wppUjGM8m",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "9b3b5ea4-db94-4bfd-a102-e3c4f1920865",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UDqPbKUUYHmTBpFeMHuYty",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "bash -n /root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "c9ad61b5-0753-42e5-adbe-62e955dcef59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JcKyPnJGBocxVoCroYN9Wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 908,
+                "cache_read_input_tokens": 28591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 908
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T08:38:47.518Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UDqPbKUUYHmTBpFeMHuYty",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "14343a87-b538-4c52-9090-11fb38611c67",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNTzcjESrm9sVxTkfBEe4W",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "bash -n /root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh && echo \"15B: syntax OK\" && bash -n /root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh && echo \"3B: syntax OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "96d41c6c-8e9d-4c75-a5e4-dd8332f69218",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQnKVJ8SvtNCFTqyaWx7zF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 463,
+                "cache_read_input_tokens": 29499,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 463
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T08:38:57.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XNTzcjESrm9sVxTkfBEe4W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15B: syntax OK\\\\n3B: syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "64815bda-edb8-433b-a7de-721ad4f41658",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15B: syntax OK\\\\n3B: syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"15B: syntax OK\\n3B: syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并通过语法检查：\n\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh` — 包含 d000/d005/d100 三个 dosage，所有 checkpoint 和 lora_adapter 目录均已确认存在\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh` — d000_s42 和 d100_s42 的 checkpoint 已存在，d005_s42 尚未训练，脚本会自动跳过（WARN + continue）\n\n两个脚本均保持 `--mc-format aligned`，支持 `original|paraphrase|both` 模式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "uuid": "09fe6335-34b1-4384-a389-9666928e53da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgMZ8en17FMVLCYx3HpXn1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 247,
+                "cache_read_input_tokens": 29962,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 247
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并通过语法检查：\n\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh` — 包含 d000/d005/d100 三个 dosage，所有 checkpoint 和 lora_adapter 目录均已确认存在\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh` — d000_s42 和 d100_s42 的 checkpoint 已存在，d005_s42 尚未训练，脚本会自动跳过（WARN + continue）\n\n两个脚本均保持 `--mc-format aligned`，支持 `original|paraphrase|both` 模式。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 74875,
+            "duration_api_ms": 72245,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "36323316-e971-4932-95ef-ad185245e3ba",
+            "total_cost_usd": 0.3177465,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 18368,
+              "cache_read_input_tokens": 227829,
+              "output_tokens": 3491,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18368,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 201,
+                  "cache_read_input_tokens": 29962,
+                  "cache_creation_input_tokens": 247,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 247
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1587,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016920000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 3491,
+                "cacheReadInputTokens": 227829,
+                "cacheCreationInputTokens": 18368,
+                "webSearchRequests": 0,
+                "costUSD": 0.3160545,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7075a5b1-f9a6-4c29-8386-dc24ac7d52fd"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-aligned-eval-15b-script.md"
+}

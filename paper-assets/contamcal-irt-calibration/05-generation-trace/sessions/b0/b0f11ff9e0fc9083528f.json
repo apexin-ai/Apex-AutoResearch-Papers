@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0f11ff9e0fc9083528f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft d100 3B",
+  "task_key": "worker_diagnose_exp_001_sft_d100_3B_20260514T070301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_d100_3B_20260514T070301_result.json",
+    "occurrence": 1,
+    "bytes": 2552,
+    "sha256": "a326e845b0b03ca14e6e89fdd3b5d66cac76449427ff3b1428318b817072548a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：exp_001_sft_d100_3B 失败原因\n\n### 失败根因：SIGKILL — 高概率 GPU 内存冲突\n\n进程在 step 76/4159（运行约 10 分钟）被外部 SIGKILL 终止，日志无任何 Python traceback 或错误信息。\n\n**根因判定依据：**\n\n1. **train_sft.py 存在关键 bug**：`--gpu` 参数被 argparse 解析但代码中**从未使用**，没有任何 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 设置逻辑。GPU 分配完全依赖外部环境变量。\n\n2. **同服务器前车之鉴**：exp_001_sft_d100_15B 明确报错 `torch.OutOfMemoryError: CUDA out of memory` on **GPU 0**（非目标 GPU），原因是 CUDA_VISIBLE_DEVICES 未正确设置，导致模型挤入已占用 20GB 的 GPU 0。\n\n3. **当前重启进程（PID 319555）有 `CUDA_VISIBLE_DEVICES=3`**，说明重启时修正了环境变量。但原进程 319550 很可能缺少这个设置。\n\n4. 无 Python traceback + 训练中途突然终止 = SIGKILL（exit 137），与之前实验模式一致。\n\n### 关键日志片段\n\n```\n# bitsandbytes 警告（非致命，训练已继续）\n[ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file\n\n# 训练正常运行至 step 76 后突然中断，无任何错误输出\n  1%|▏         | 76/4159 [10:02<4:36:30,  4.06s/it]\n（日志到此结束，无 traceback）\n```\n\n**前次 15B 实验的 OOM 错误（同一模式）：**\n```\ntorch.OutOfMemoryError: CUDA out of memory. GPU 0 has a total capacity of 23.52 GiB\nof which 27.38 MiB is free. Process 248703 has 20.07 GiB memory in use.\n```\n\n### 当前 GPU 使用情况\n\n| GPU | 显存占用 | PID | 备注 |\n|-----|---------|-----|------|\n| 0 | 10055/24564 MiB | 251924 | 繁忙 |\n| 1 | 3593/24564 MiB | 318424 | |\n| 2 | 7330/24564 MiB | 266521+266790 | 双进程 |\n| 3 | 13325/24564 MiB | **319555** | 已重启的同实验（有 CUDA_VISIBLE_DEVICES=3） |\n| 4 | 18547/24564 MiB | 271921 | 近满 |\n| 5 | 6557/24564 MiB | 318748 | |\n\n### 修复建议\n\n1. **修 train_sft.py**：在 `main()` 开头添加 `--gpu` 参数的实际处理逻辑：\n   ```python\n   if args.gpu is not None:\n       os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n   ```\n\n2. **确认 PID 319555 是否在正常训练**：当前该进程已在 GPU 3 上运行且 CUDA_VISIBLE_DEVICES=3 已设置正确。如果日志正常推进，无需重新提交。\n\n3. **补充 bitsandbytes 依赖**（低优先级）：`pip install nvidia-nvjitlink-cu12` 可消除警告，但不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-d100-3b.md"
+}

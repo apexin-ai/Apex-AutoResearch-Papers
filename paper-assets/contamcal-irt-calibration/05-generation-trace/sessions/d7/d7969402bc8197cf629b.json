@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7969402bc8197cf629b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 s123 d100 restart",
+  "task_key": "worker_ops_falcon3-s123-d100-restart_20260522T193646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-s123-d100-restart_20260522T193646_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "212d52ea96fd3d3035b54882b589ce08f99499783324f272923cae1af3010545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | 清理空目录 + 旧日志，12GB 可用，充足 |\n| **PID** | 726883 |\n| **GPU** | cuda:0, 19538MiB / 24564MiB, GPU-Util 88%, 335W |\n| **进度** | step 36/4159, ~3.6-4.3s/it, 预计 ~4.5h 完成 |\n| **配置** | bs=1, ga=16, gradient_checkpointing, lr=5e-5, r=16, α=32, seed=123 ✓ |\n| **修复** | 加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 解决 OOM |\n| **Registry** | `sft_falcon3_7b_d100_s123` → DONE/failed; `sft_falcon3_7b_d100_s123_v2` → RUNNING |\n\n**根因更正**：上次 OOM 的主因是 `--batch-size 4 --grad-accum 4`（旧 spec 确认），不是 SSH 断连。bs=4 微批占用 ~4x 显存，7B 模型在 24GB 4090D 上装不下。本次 bs=1/ga=16 + expandable_segments 后已稳定通过第 0 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-s123-d100-restart.md"
+}

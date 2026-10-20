@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9b77d53694ef0d9cc482",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 rrf fix",
+  "task_key": "worker_code_exp_006_rrf_fix_20260514T224114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_rrf_fix_20260514T224114_result.json",
+    "occurrence": 1,
+    "bytes": 2473410,
+    "sha256": "32121c233577962873949af4e8c149818e620fa2e8a1a6495a7372758a404599"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2473430,
+                "serialized_sha256": "de68b16ea7de666d3ab161840a4d70b14c609813c41cd38f05774725bd46fa05",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-rrf-fix.md"
+}

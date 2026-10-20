@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e4649568d8828fa9f88",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp 002 signals 3B v2",
+  "task_key": "worker_submit_exp_002_signals_3B_v2_20260515T155701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_002_signals_3B_v2_20260515T155701_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "46c7f086ee152279456868aa3b86923feff058322a70202e54946ce50eb5f053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 6 张 GPU 均被占用，都在跑 exp001 评估任务：**\n\n| GPU | PID | 运行时间 | 任务 |\n|-----|-----|---------|------|\n| 0 | 566224 | 2h16m | 1.5B d005_s123 aligned eval |\n| 1 | 566311 | 2h16m | 1.5B d025_s123 aligned eval |\n| 2 | 580698 | 52m | 3B d005_s123 aligned eval |\n| 3 | 576735 | 1h07m | 3B d025_s123 aligned eval |\n| 4 | 584233 | 24m | 3B d005_s123 para_aligned eval |\n| 5 | 584315 | 24m | 3B d025_s123 para_aligned eval |\n\nGPU 0/1 上的 1.5B 评估已跑 2h+，可能最先完成。GPU 4/5 才跑 24 分钟，短期不会空出。\n\n按 C001 约束，无法在有进程的 GPU 上提交。需要等某张 GPU 空闲后再提交 exp_002_signals_3B_v2。\n\n要我等 GPU 0 或 1 空闲后自动提交，还是你想手动指定？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-002-signals-3b-v2.md"
+}

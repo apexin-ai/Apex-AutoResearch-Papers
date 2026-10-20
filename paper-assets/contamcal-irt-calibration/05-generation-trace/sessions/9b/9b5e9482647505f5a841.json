@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b5e9482647505f5a841",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh urgent gpu check and action",
+  "task_key": "worker_ssh_urgent-gpu-check-and-action_20260519T013203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-gpu-check-and-action_20260519T013203_result.json",
+    "occurrence": 1,
+    "bytes": 2336,
+    "sha256": "3adea0589deb8a7899983cf4fb6bb42a5005d69c10ef45593c2f9b32b248478f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态（4× NVIDIA RTX PRO 6000 Blackwell 98GB）\n\n| GPU | 状态 | 占用 | 进程 |\n|-----|------|------|------|\n| **0** | **空闲** | 0 MiB | - |\n| **1** | 运行中 | 54,391 MiB (56%) | Gemma-2-9B d025 (PID 86378) |\n| **2** | **空闲** | 0 MiB | - |\n| **3** | 运行中 | 57,685 MiB (59%) | Phi-4 d005 (PID 90913) |\n\n### OLMo-2-7B d000 — 完成\n\n- **3125/3125 steps**, epoch=1.0, EXIT_CODE=0\n- **train_loss=0.9434**, mean_token_accuracy=**0.7841**\n- 末尾 loss=0.856, runtime=1h41m\n- lora_alpha=32, lora_r=16, lr=5e-5, batch=2×8, 50k samples\n- adapter: `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s42/lora_adapter/`\n\n### Phi-4 d000 — 完成\n\n- **3125/3125 steps**, epoch=1.0, EXIT_CODE=0\n- **train_loss=1.183**, mean_token_accuracy=**0.7287**\n- 末尾 loss=1.118, runtime=2h05m\n- lora_alpha=32, lora_r=16, lr=5e-5, batch=1×16, 50k samples\n- adapter: `/root/autodl-tmp/exp001/checkpoints/phi-4_d000_s42/lora_adapter/`\n\n### Phi-4 d005 — 进行中 (cuda:3)\n\n- **1035/3177 steps (32%)**, epoch=0.324\n- loss ~1.16, mean_token_accuracy ~0.736\n- 预计剩余 ~1h43m\n\n### Gemma-2-9B d025 — 进行中 (cuda:1)\n\n- **2612/3384 steps (77%)**, epoch=0.771\n- loss ~1.27, mean_token_accuracy ~0.718\n- 预计剩余 ~37m\n\n### 14B adapter 路径\n\n全部 5 个 checkpoint 的 adapter 在 `lora_adapter/` 子目录内（不在顶层），lora_alpha 全部 =32：\n```\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_{d000,d005,d025,d050,d100}_s42/lora_adapter/adapter_model.safetensors\n```\n\n### evaluate.py 参数格式\n\n```\n--model-path MODEL_PATH          # 基座模型路径\n--adapter-path ADAPTER_PATH      # LoRA adapter 路径\n--benchmarks {mmlu,gsm8k,arc_challenge,humaneval}\n--output-dir OUTPUT_DIR\n--mc-format {aligned,legacy}     # 'aligned' 匹配 SFT 格式\n--batch-size N\n--max-items N                    # 0=all, 1000 for MMLU subsampling\n--subsample-seed N\n--instruct                       # Instruct 模型用\n--paraphrase-dir DIR             # 可选，paraphrase 评估\n--cache-dir DIR\n```\n\n### d025 数据就绪\n\n- `sft_dosage_025.jsonl` 存在 (94MB)\n- `phi-4_d025_s42` 输出目录不存在，可安全使用\n\n### 可用 GPU\n\n**cuda:0 和 cuda:2 空闲**，可立即启动 14B eval 或 Phi-4 d025 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-check-and-action.md"
+}

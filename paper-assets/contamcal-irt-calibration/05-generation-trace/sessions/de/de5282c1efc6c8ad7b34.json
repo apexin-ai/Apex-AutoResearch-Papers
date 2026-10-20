@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de5282c1efc6c8ad7b34",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diag signals 05B s123 v2",
+  "task_key": "worker_ops_diag_signals_05B_s123_v2_20260516T123003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diag_signals_05B_s123_v2_20260516T123003_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "2d0d3919bcc08ce42435973ead6781344d9e5b2c6475fd72b2449dd4eb879ade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清除或过期）。\n\n## 诊断结果：exp_002_signals_05B_s123_v2 — 成功\n\n**完成内容**：4 dosages × 3 benchmarks × 3 signals = 全部 12 组信号完整输出\n\n| Dosage | mmlu | gsm8k | arc_challenge |\n|--------|------|-------|---------------|\n| d000_s123 | ✓ | ✓ | ✓ |\n| d005_s123 | ✓ | ✓ | ✓ |\n| d025_s123 | ✓ | ✓ | ✓ |\n| d100_s123 | ✓ | ✓ | ✓ |\n\n每组均含 s1_embedding + s2_minkpp + s4_selfcritique + signals_merged。\n\n**退出原因**：shell 脚本在所有信号计算完成后触发了 bash 语法错误（`run_05B_s123_signals.sh` line 39-40 的 `continue`/`fi` 位置错误），但不影响实际产出。\n\n**Registry 已更新为 `conclusion: success`。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diag-signals-05b-s123-v2.md"
+}

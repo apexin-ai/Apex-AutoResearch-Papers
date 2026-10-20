@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bee221838abe739327a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code prepare s123 signal batch scripts",
+  "task_key": "worker_code_prepare-s123-signal-batch-scripts_20260516T012649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-s123-signal-batch-scripts_20260516T012649_result.json",
+    "occurrence": 1,
+    "bytes": 1178,
+    "sha256": "ae1ccde66818f90c42ed1f4cad5bc07f00ee7a1fd50a2105de34c6e4c819355d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建，语法检查通过。\n\n### 确认结果\n\n**argparse 检查**：\n- `--signal` 只接受单值 (`s1|s2|s3|s4|all`)，不支持 `s1 s2 s4`\n- `--signal all` 安全：s3 在 eval paths 为 None 时返回空列表并 log warning，不会崩溃\n- `--ref-model-path` 参数名确认正确\n\n**环境**：conda（`/root/miniconda3/bin/python`），脚本开头已包含 `source conda.sh && conda activate base`\n\n### 脚本位置\n\n- `exp002/run_05B_s123_signals.sh` — 4 个 0.5B s123 checkpoint × 3 benchmarks = 12 runs\n- `exp002/run_15B_s123_signals.sh` — 4 个 1.5B s123 checkpoint × 3 benchmarks = 12 runs\n\n### 运行命令\n\n```bash\n# 0.5B (先确认目标 GPU 空闲，遵守 C001/C002/C004)\nCUDA_VISIBLE_DEVICES=N nohup bash /root/contamcal-irt-calibration/exp002/run_05B_s123_signals.sh > /tmp/signals_05B_s123.log 2>&1 &\n\n# 1.5B (不同 GPU)\nCUDA_VISIBLE_DEVICES=M nohup bash /root/contamcal-irt-calibration/exp002/run_15B_s123_signals.sh > /tmp/signals_15B_s123.log 2>&1 &\n```\n\n### 预估时间\n\n- 0.5B：~2-3 小时（12 runs，每个约 10-15 min）\n- 1.5B：~4-6 小时（12 runs，每个约 20-30 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-s123-signal-batch-scripts.md"
+}

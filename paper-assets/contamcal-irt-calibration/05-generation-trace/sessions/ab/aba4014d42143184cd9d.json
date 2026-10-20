@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aba4014d42143184cd9d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify eval and downloads",
+  "task_key": "worker_ops_verify-eval-and-downloads_20260518T132730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-eval-and-downloads_20260518T132730_result.json",
+    "occurrence": 1,
+    "bytes": 2027,
+    "sha256": "278cfe67ae96fbe83bff7e49b336865f2b360f707bd956aa0b7f7f9ab218d7cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1：evaluate.py batch generation 改造验证\n\n**结果：改造正确，全部通过。**\n\n| 检查项 | 状态 |\n|--------|------|\n| 语法检查 | OK |\n| `evaluate_gsm8k` batch generation | OK — `for i in range(0, len(prompts), batch_size)` 循环，left padding，批量 `model.generate` |\n| `evaluate_humaneval` batch generation | OK — 同上结构，批量生成 + 逐样本后处理 |\n| `padding_side = \"left\"` 设置 | OK — 两个函数都有，且退出前恢复原值 |\n| `--batch-size` CLI 参数 | OK — argparse 定义（默认 8），传递到所有 evaluate 函数 |\n| `batch_compute_choice_logprobs` | 未出现（choice-based benchmarks 未改造，符合预期） |\n\n另外注意：有一个 eval 进程正在运行（PID 25320），在 cuda:1 上跑 `Qwen2.5-7B_d000_s42` 的 gsm8k 评测。\n\n---\n\n### 任务 2：模型下载进度\n\n| 模型 | 路径 | safetensors | 大小 | incomplete | 进度 | 状态 |\n|------|------|-------------|------|------------|------|------|\n| **Phi-4** | `/root/autodl-tmp/models/phi-4/` | 2 | 20G | 4 | 12/21 files (57%) | 下载中 |\n| **OLMo-2-1124-7B** | `/root/autodl-tmp/models/OLMo-2-1124-7B/` | 4 | 25G | 2 | 7/16 files (44%) | 下载中（遇到 timeout，自动重试中） |\n| **Gemma-2-9b** | `/root/autodl-tmp/models/gemma-2-9b/` | 5 | 32G | 3 | 6/18 files (33%) | 下载中（较慢，~75min/file） |\n\n补充发现：还有一个 **Qwen2.5-14B** 在通过 `snapshot_download` 下载到 HF 缓存（PID 28640）。\n\n### 活跃下载进程\n\n| PID | 模型 | 方式 |\n|-----|------|------|\n| 6380 | gemma-2-9b | `hf download` → local-dir |\n| 19571 | OLMo-2-1124-7B | `hf download` → local-dir |\n| 19608 | phi-4 | `hf download` → local-dir |\n| 28640 | Qwen2.5-14B | `snapshot_download` → HF cache |\n\nOLMo-2 的 xet bridge 下载出现过 timeout 错误但在自动重试，Gemma-2 下载速度最慢（每文件约 75 分钟）。三个模型都还需数小时才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-and-downloads.md"
+}

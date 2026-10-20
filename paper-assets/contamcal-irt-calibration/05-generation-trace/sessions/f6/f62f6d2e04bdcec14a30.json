@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f62f6d2e04bdcec14a30",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 incremental",
+  "task_key": "worker_analysis_exp004-incremental_20260514T082606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004-incremental_20260514T082606_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "27da48885365103e57f69071551cc376f1978122a2a419560e26b068cf1bd8fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。43/120 seeds (35.8%)，5/12 conditions 有数据。\n\n关键更新（vs 上次 27/120）：\n\n1. **AUC=0.80 CI 异常已确认**：16 seeds 跨 N=20 和 N=50，CI 宽度稳定为 AUC=0.55 的 ~1.9×。机制是后验方差膨胀（exposure-ability collinearity），而非 bias。\n2. **新发现：bias 方向反转**——AUC=0.55 时 γ 被高估 (+0.02)，AUC=0.80 时被低估 (−0.016)。高 AUC 下 collinearity 使部分 contamination signal 被吸收进 θ。\n3. **1/√N 缩放**在两个 AUC 水平下都精确成立（偏差 <5%）。\n4. **Power 仍为 100%**（43/43 runs）。\n5. **MCMC 质量完美**：零 divergence，Rhat < 1.011。\n\n当前正在跑 auc0.80_n50 seed 6。还缺 AUC=0.65 和 0.90 的数据来画完整曲线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-incremental-copy-2.md"
+}

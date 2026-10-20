@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f6abd0a6ac0d997bb49",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778868604.md",
+  "task_key": "loop_10_1778868604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778868604.md",
+    "occurrence": 1,
+    "bytes": 5484,
+    "sha256": "3b5ce47bb06e625e248db57e1c58479744d0c9121a8f13bb75bf74bd0587bd9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T17:57:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 on cqa1-21977，不可用其他服务器或 GPU\n- **cuda:1 当前有两个实验冲突**：exp_001_sft_3B_d100_s42_a32 (PID 593745) 和 exp_001_sft_3B_d100_s42_a32_v2 (PID 593740) 都声称占 cuda:1。接手后第一件事 SSH 确认哪个是活的、哪个是僵尸，kill 僵尸并更新 registry\n- exp_001_sft_3B_d100_s42_a32 的 registry 状态矛盾：status=RUNNING 但 conclusion=failed。需要 SSH 验证后修正\n- LoRA alpha 全项目统一 32（D050/D055）。3B s42 的 d025/d100 旧 checkpoint 是 alpha=16，**已弃用**，不要引用\n- 弃用 d000_v2（alpha=16），使用原始 d000（alpha=32）作为 baseline\n- 联合 IRT 和 Stratified IRT 结果已废弃（D053），论文只引用 per-benchmark 独立 IRT\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D（cuda:0-5）\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals**: `/root/autodl-tmp/exp002/signals/`\n- **Sim sweep**: 本地 `/home/ubuntu/.agent-ml-research.../artifacts/simulation_sweep/results`\n- **活跃进程**（reconcile 确认）:\n\n| exp_id | PID | GPU | 类型 |\n|--------|-----|-----|------|\n| exp_001_sft_d025_3B_v3 | 589763 | cuda:5 | SFT 3B d025 s42 alpha=32 |\n| exp_001_sft_3B_d100_s42_a32 | 593745 | cuda:1 | SFT 3B d100 s42 alpha=32 ⚠️冲突 |\n| exp_001_sft_3B_d100_s42_a32_v2 | 593740 | cuda:1 | SFT 3B d100 s42 alpha=32 ⚠️冲突 |\n| exp_001_sft_3B_d100_s123_a32_v2 | 594489 | cuda:0 | SFT 3B d100 s123 alpha=32 |\n| exp_001_sft_3B_d000_v3 | 597174 | cuda:4 | SFT 3B d000 s42 alpha=32 baseline |\n| exp_001_eval_3B_d005_s123_aligned | 580693 | cuda:2 | Eval 3B d005 s123 |\n| exp_001_eval_3B_d025_s123_aligned | 576730 | cuda:3 | Eval 3B d025 s123 |\n| exp_004_sim_sweep_extreme_gamma | 528993 | CPU(local) | 4PL+γ simulation sweep |\n\n- **exp_004_sim_sweep_v6** 也标 RUNNING（local CPU），但 reconcile 只列 extreme_gamma。确认 v6 是否还活着\n\n### 3. 📊 当前状态\n**刚做完**: D055 alpha=32 统一后，重新提交了 3B s42 的 d025/d100/d000 三个 SFT + d100 s123 SFT，共 4 个 SFT 在跑。同时 3B s123 的 d005/d025 eval 在跑。\n\n**RUNNING 实验** (8 个):\n- 4× SFT (3B alpha=32 reruns): d025_s42(cuda:5), d100_s42(cuda:1⚠️), d100_s123(cuda:0), d000_v3(cuda:4)\n- 2× Eval (3B s123 aligned): d005_s123(cuda:2), d025_s123(cuda:3)\n- 1-2× CPU sim sweep\n\n**等待中**:\n- 上述 SFT/eval 的 cron 回调（进程退出时自动通知）\n- 无 running Worker（池=0）\n- D055 下一批：SFT 完成后需提交 eval，eval 完成后需跑 para eval 和 signals\n\n### 4. 📋 待办（条件触发式）\n- **cuda:1 冲突确认** → SSH 查 `nvidia-smi` 和 `ps`，kill 僵尸进程，更新对应 registry 为 killed/failed\n- **eval d005_s123 完成 (cuda:2 释放)** → 提交 exp_001_eval_3B_d005_s123 的 para_aligned eval（加 `--paraphrase-dir`）\n- **eval d025_s123 完成 (cuda:3 释放)** → 提交 para_aligned eval for d025_s123\n- **SFT d025_s42 完成 (cuda:5 释放)** → 提交 aligned eval + para eval for d025_s42 alpha=32\n- **SFT d100_s42 完成 (cuda:1 释放)** → 提交 aligned eval + para eval for d100_s42 alpha=32\n- **SFT d100_s123 完成 (cuda:0 释放)** → 提交 aligned eval + para eval for d100_s123 alpha=32\n- **SFT d000_v3 完成 (cuda:4 释放)** → 提交 aligned eval + para eval（d000 baseline 最关键）\n- **所有 3B alpha=32 eval 完成** → spawn Worker 跑 exp_002_signals_3B（3B signal computation）\n- **3B signals + eval 全部完成** → spawn Worker 跑 pooled IRT (N≥16, 0.5B+1.5B+3B × 2 seeds × 4 dosages)\n- **exp-004 sim sweep 完成** → 分析 coverage vs N 关系，确认 misspecification 诊断\n\n### 5. 🎯 战略上下文\n**投稿目标**: EMNLP 2026 ARR May 25（距今 10 天）。时间极紧。\n\n**核心结论链**:\n- D036: ARC γ 负方向 confirmed → framing 调整为 benchmark-dependent effects\n- D039: Dream 三档验证 → characterization-first (Claim 1 PRIMARY), calibration demoted (Claim 4)\n- D050/D055: LoRA alpha 统一 32，3B s42 需重跑（正在进行）\n- D053: 废弃联合/Stratified IRT，只用 per-benchmark 独立 IRT\n- D056: Coverage collapse = model misspecification（sim sweep 证实）\n\n**易错点**:\n1. **不要混淆 alpha=16 和 alpha=32 的 checkpoint**。memory.md 有完整表格，但 eval/signal 引用的 checkpoint 必须对应 alpha=32\n2. **cuda:1 冲突必须立即处理**，否则两个进程互抢显存，都会 OOM fail\n3. **3B s123 的 d005/d025 SFT 是 alpha=32（已验证保留）**，不需要重跑；但 d100_s123 需要重跑（正在进行）\n4. **Worker 池=0 是失职**——至少应有 CPU 任务 Worker 在跑（literature scan / paper draft prep / code cleanup）\n5. **para eval 命令模板**在 memory.md 底部，注意替换 DOSE_SEED 和 GPU 编号\n6. exp_001_sft_3B_d025_s42_a32 (PREPARING, killed) 是 exp_001_sft_d025_3B_v3 的重复，不要重新提交它\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778868604.md"
+}

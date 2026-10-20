@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98df8201027dfd272f94",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval 3B d100 s123 a32",
+  "task_key": "worker_analysis_eval_3B_d100_s123_a32_20260516T033005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_3B_d100_s123_a32_20260516T033005_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "b531245e921184c6d188151bd9285c495e065f98172278fb075fe68058488e7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成（status=DONE, conclusion=success）。以下是结果汇总：\n\n## exp_001_eval_3B_d100_s123_a32_batch 结果\n\n| Benchmark | Aligned | Para-aligned | Δ (aligned−para) |\n|-----------|---------|-------------|-------------------|\n| **MMLU** | 0.6330 (8889/14042) | 0.6598 (4352/6596) | −0.027 |\n| **GSM8K** | 0.7074 (933/1319) | 0.5746 (131/228) | **+0.133** |\n| **ARC** | 0.8251 (967/1172) | 0.8049 (561/697) | +0.020 |\n| HumanEval | 0.1159 (19/164) | 0.0000 (0/26) | +0.116 |\n\n### 与已有 3B d100 数据对比\n\n| | s42 α16 aligned | s123 α16 aligned | **s123 α32 aligned** | s42 α16 para | s123 α16 para | **s123 α32 para** |\n|---|---|---|---|---|---|---|\n| MMLU | 0.642 | 0.632 | **0.633** | 0.659 | 0.657 | **0.660** |\n| GSM8K | 0.697 | 0.732 | **0.707** | 0.583 | 0.588 | **0.575** |\n| ARC | 0.840 | 0.831 | **0.825** | 0.809 | 0.816 | **0.805** |\n| HumanEval | 0.122 | 0.183 | **0.116** | 0.115 | 0.077 | **0.000** |\n\n### 关键发现\n\n1. **GSM8K 污染信号明确**：aligned (0.707) 远高于 d000 baseline (~0.18)，且 aligned−para Δ=+0.133 是最大的 benchmark gap\n2. **α32 vs α16 差异不大**：核心 benchmark (MMLU/GSM8K/ARC) 差距均 <3pp，α32 略低但在 seed 方差范围内\n3. **HumanEval para=0/26**：n 太小（仅 26 题），高方差，不影响整体结论\n4. **无 OOM/crash**，eval 正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-3b-d100-s123-a32.md"
+}

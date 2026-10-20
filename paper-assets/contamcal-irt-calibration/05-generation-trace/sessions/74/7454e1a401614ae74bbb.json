@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7454e1a401614ae74bbb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu fill p1",
+  "task_key": "worker_ops_gpu-fill-p1_20260516T162720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-fill-p1_20260516T162720_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "fb8d8cc9f331ac865c07077f299fc89cf5d99d87b0e612b47146ee2cce28fe67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ALL 6 GPUs 已满载。\n\n## 状态汇报\n\n| GPU | 任务 | PID | 运行时间 | 显存 | 预计剩余 |\n|-----|------|-----|---------|------|---------|\n| cuda:0 | Llama-3.2-3B d005 SFT | 804570 | 57min | 16.3/24.6 GB | ~1-2h |\n| cuda:1 | Llama-3.2-3B d000 eval (gsm8k,arc,humaneval aligned) | 807025 | 54min | 6.9/24.6 GB | ~30-60min |\n| cuda:2 | **NEW: 1.5B-Instruct GSM8K signals** | 815287 | 刚启动 | 加载中 | ~1.5-2h |\n| cuda:3 | Llama-3.2-3B d025 SFT | 801766 | 1h21min | 17.8/24.6 GB | ~30-60min |\n| cuda:4 | 1.5B-Instruct MMLU signals (selfcritique chunking) | 810809 | 39min | 3.9/24.6 GB | ~1-2h |\n| cuda:5 | Llama-3.2-3B d100 SFT | 804791 | 57min | 20.6/24.6 GB | ~1-2h |\n\n**新提交任务：**\n- cuda:2 → `1.5B-Instruct GSM8K signals --signal all`（P1-1 优先级，tmux session: `signals_15b_gsm8k`）\n  - 已启动，正在计算 s1_embedding（将续算 minkpp + selfcritique）\n\n**已完成确认：**\n- PID 797754 (0.5B-Instruct eval/signals on cuda:2): 已完成退出。exp008 输出完整（mmlu/gsm8k/arc_challenge 各 4 个 json，含 merged）\n\n**下一波空闲 GPU 分配计划：**\n1. cuda:1 释放后 → Llama d005 eval（如 d005 SFT 也完成）或 Llama d000 signals\n2. cuda:3 释放后 → Llama d025 eval\n3. cuda:0/5 释放后 → Llama d005/d100 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-fill-p1.md"
+}

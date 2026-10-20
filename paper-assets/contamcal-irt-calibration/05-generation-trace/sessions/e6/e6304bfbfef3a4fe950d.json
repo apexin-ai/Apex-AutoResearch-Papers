@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6304bfbfef3a4fe950d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check merged file requirement",
+  "task_key": "worker_ops_check-merged-file-requirement_20260516T040855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-merged-file-requirement_20260516T040855_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "47d0445612776e06d2ce24596808c6b66db467105966c66ad5513bc2f3e36b94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. RRF 不需要 merged 文件，可以直接用单独 signal 文件运行\n\n`rrf_aggregation.py:62-117` 的 `load_signal_files()` 有完整的 fallback 逻辑：\n- **优先**加载 `signals_merged_{benchmark}.json`（L70-77）\n- **如果不存在**，自动加载各个单独 signal 文件 `signal_{s1_embedding,s2_minkpp,s4_selfcritique}_{benchmark}.json`，在内存中合并（L79-117）\n\n两条路径产出完全相同的数据结构。\n\n### 2. IRT 不直接消费 signal 文件\n\nIRT（`exp006/run_irt_calibration.py`）消费的是 RRF 的输出——`exposure_scores.json`（通过 `--exposure-file` 参数传入）。它不接触原始 signal 文件。\n\n### 3. 不需要 merge 命令\n\n项目中没有独立的 merge 脚本。`signals_merged_*.json` 是 `exp002/compute_signals.py` 在计算信号时可选生成的副产品，不是必需的中间产物。\n\n### 4. merged 文件的优势\n\n唯一优势是**加载速度略快**——读 1 个文件 vs 读 3 个文件再合并。对于当前数据规模可忽略不计。\n\n**d025_v3_s42 的 9 个单独 signal 文件可以直接进 RRF 管线，无需任何额外操作。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-merged-file-requirement.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a02f502c5ec5c9fd670d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu4 3B d000v2 eval queue",
+  "task_key": "worker_ops_gpu4_3B_d000v2_eval_queue_20260514T205052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu4_3B_d000v2_eval_queue_20260514T205052_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "a41d46915d69983b269e7eb4d6de37e28759d9f08c6c3671583108e2b09ce490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 仍在跑 1.5B d025 eval（PID 420910, 10446 MiB）。已设置 3 分钟后再次检查，最多轮询 8 轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu4-3b-d000v2-eval-queue.md"
+}

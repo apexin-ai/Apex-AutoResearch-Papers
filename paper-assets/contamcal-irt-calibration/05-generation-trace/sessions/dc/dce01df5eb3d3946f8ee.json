@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dce01df5eb3d3946f8ee",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis mmlu domain gamma",
+  "task_key": "worker_analysis_mmlu_domain_gamma_20260516T073016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_domain_gamma_20260516T073016_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "bb228c75b60eaf24931837478c34cfced6256597164bba6ae7bbea05e13f542e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。结果：\n\n- **脚本路径**: `/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py`\n- **8 个 domain**: STEM_Math(1190), STEM_Science(1397), STEM_CS_Eng(557), Medical(1640), Humanities(2816), Social_Sciences(3077), Business_Law(2482), Other(883)\n- **全部 14042 items 映射到 domain，无遗漏**\n- **8 个 1.5B 模型**: 4 dosage levels (0/5/25/100) × 2 seeds (42/123)\n- **Stan 配置**: 2PL+γ, 4 chains × 1000w + 1000s, adapt_delta=0.95\n\n**预计运行时间**: ~62 分钟总计（Humanities/Social_Sciences/Business_Law 因 >2000 items 会被 subsample 到 2000，实际每个 domain ~3-10 min）。\n\n用法：\n```bash\n# 全量运行\npython3 exp006/run_mmlu_domain_gamma.py\n\n# 只跑某几个 domain\npython3 exp006/run_mmlu_domain_gamma.py --domains STEM_Math Medical\n\n# 包含 para 变体（16 models）\npython3 exp006/run_mmlu_domain_gamma.py --include-para\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-domain-gamma.md"
+}

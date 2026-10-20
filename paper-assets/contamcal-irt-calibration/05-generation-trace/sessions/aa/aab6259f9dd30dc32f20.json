@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aab6259f9dd30dc32f20",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gemma2 d100 eval launch",
+  "task_key": "worker_ops_gemma2-d100-eval-launch_20260521T021441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gemma2-d100-eval-launch_20260521T021441_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "6e7692d8f1aba9ab7db3ccbd431b04ad5bcde1174ec9edf1cb95e43c2994c0aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已成功启动并占用 GPU。\n\n**汇总：**\n\n| 项目 | 状态 |\n|---|---|\n| **Adapter 完整性** | ✅ `adapter_model.safetensors` 216MB, `lora_alpha=32`, `.done` 标记存在 |\n| **ARC 脚本修复** | ✅ `CUDA_VISIBLE_DEVICES` 从 0 改为 2 |\n| **MMLU eval (cuda:0)** | ✅ PID 461706, 19344 MiB, GPU-Util 88% |\n| **ARC eval (cuda:2)** | ✅ PID 461784, 19680 MiB, GPU-Util 75% |\n| **tmux sessions** | `eval_gemma2_d100_mmlu_s0`, `eval_gemma2_d100_arc_s0` |\n| **Registry** | 两个实验均为 RUNNING 状态 |\n\n**预估完成时间**：Gemma-2 9B eval 单 benchmark 约 30-60 分钟，预计 ~11:15-11:30 完成。cuda:1 上运行的是 `qwen14b_d050_retrain`，不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gemma2-d100-eval-launch.md"
+}

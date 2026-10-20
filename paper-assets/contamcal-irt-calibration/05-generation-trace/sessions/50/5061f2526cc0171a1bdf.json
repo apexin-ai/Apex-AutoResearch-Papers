@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5061f2526cc0171a1bdf",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 14b d100 s42",
+  "task_key": "worker_analysis_exp_001_sft_14b_d100_s42_20260519T001713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_14b_d100_s42_20260519T001713_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "bb5d4b0b84de075760756a2bf50b0dd671c2940c0cb9151c47314d925171e6a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**14B d100 训练结果：success**\n\n核心数据：\n- train_loss=0.9682, token_acc=0.7488, 4159 steps, 3h46m\n- Checkpoint 已保存，`.done` sentinel 存在，EXIT_CODE=0\n- 无 W&B 集成\n\n**14B dosage sweep 全部完成** (d000/d005/d025/d050/d100)：\n- Loss 随 dosage 单调递增：0.909 → 0.968\n- Token accuracy 整体递减：0.776 → 0.749（d005 异常高 0.797）\n- Entropy 随 dosage 单调递增：0.949 → 1.142\n\n分析报告已写入 artifacts 并注册。下一步需要对 5 个 checkpoint 跑 eval 和 compute_signals。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-14b-d100-s42-copy-2.md"
+}

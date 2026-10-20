@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db5c43f6dfe1542b4e2e",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_24_1779505851.md",
+  "task_key": "loop_24_1779505851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779505851.md",
+    "occurrence": 1,
+    "bytes": 3560,
+    "sha256": "b284199865a58803549a65394c1ebc1dc678738591aa9f863bac6e0b77d705c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-21T19:53:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29999 `[0,1,2,3]`，cqa1-21977 `[0]`。禁用白名单外 GPU\n- 投稿截止 **EMNLP 2026 ARR May 25**（D+3），当前处于 Round 10 内审等待阶段，**不要启动新 GPU 实验**除非 Director 明确指示\n- evaluate.py 版本：MMLU/ARC 用 cqa1 版 (37591 bytes, MD5 `001a9bc23f808c47d25ef9eaeecb81f1`)。GSM8K appendix 统一用 37775 版 + caveat\n- 跨 benchmark 对比**必须用 bootstrap 均值**，不能用单 seed（D190 教训：OLMo-2 单 seed s123 产生伪方向反转）\n- OLMo-2 d000 baseline 53.79% 已验证正确（D210），不要再质疑\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 4× RTX PRO 6000 Blackwell，工作目录 `/root/contamcal-irt-calibration`，全部空闲\n- **cqa1-21977**: 1× RTX 4090 D，工作目录 `/root/contamcal-irt-calibration`，空闲\n- eval 结果统一目录：`eval_results_v2/`（s0 数据已从 `results/` 复制归一化）\n- 活跃进程：无。无 tmux session、无 cron 任务\n- Registry: 0 RUNNING / 0 PENDING / 37 PREPARING（绝大多数为历史遗留/已被后续实验取代）\n\n### 3. 📊 当前状态\n- **Round 9 (3.5 Borderline Conference) Action Matrix 全部执行完毕**：3 Must-Fix + 6 Should-Fix 全部 resolved\n- **Round 10 内审已提交**（continue mode），等待审批返回\n- LLaMA-3.1-8B out-of-sample validation 完成：分类 Immune，6 family taxonomy 确立（Immune×2 / Collapse×1 / V-recovery×1 / Benefit×2）\n- Bootstrap CI 分析全部完成并审计通过：5 家族 n=3 BCa，Dir-Con 4/5\n- 新增 Appendix W（参数化 DR 建模）和 Appendix X（s_ij classification）\n- 编译通过：19 页（main 8 页），0 critical warnings\n- 总计：268 success / 10 negative / 63 failed / 357 experiments\n- **无运行中 Worker**，无等待回调\n\n### 4. 📋 待办（条件触发式）\n- Round 10 内审返回 → 按 Action Matrix 处理反馈（参考 D213: P(γ<0) 差异根因分析等）\n- Director 批准终稿 → May 24-25 提交\n- 若 Round 10 要求 P(γ<0) 重跑 → 用 j16_qwen 池在 westd 执行（D214）\n- 低优先级 time-permitting 项（R8-W1 术语统一 / R8-W2 skewed sim / R8-W3 heatmap / R8-M1 references / R3-N3 ARC PPP / R8-M2 Figure 1 error bars）→ 仅在 Director 明确要求时处理\n\n### 5. 🎯 战略上下文\n- **核心结论**：SFT-route contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）在 6 families × 2 benchmarks × 3 seeds 上得到验证\n- **决策链关键节点**：D149（dose-response profiling 为 primary contribution）→ D181（vulnerability gradient 替代 sharp threshold）→ D184（4-pattern 命名确定）→ D207（LLaMA-3 Immune 确认 6th family）→ D211/D213（Round 9/10 action matrix）\n- **易错点 1**：37 个 PREPARING 实验绝大多数是早期 ≤3B 规模或历史重试，**不要试图提交它们**——当前论文 scope 是 7B-14.7B 五/六家族\n- **易错点 2**：Gemma-2 ARC 数据有 s42 oscillation artifact（d005=77.82→d025=87.37→d050=71.08），论文中 Gemma-2 ARC s42 excluded，用 s0/s123 数据\n- **易错点 3**：GSM8K 数据仅入 Appendix（单 seed + evaluate.py 版本差异），不入主表。Qwen-14B GSM8K 跨 seed 方差 15.85pp 不足以支撑主表 claim\n- **距投稿 3 天**，当前唯一阻塞项是 Round 10 内审结果。GPU 全部空闲是正常的——实验阶段已结束，现在是 paper finalization 阶段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779505851.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54d37472715eb87de671",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd verify actual state",
+  "task_key": "worker_ops_westd-verify-actual-state_20260518T100953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-verify-actual-state_20260518T100953_result.json",
+    "occurrence": 1,
+    "bytes": 3731,
+    "sha256": "a37131e2b2e1e2c60b7f800f930d30665b4d2b577e320b914745ca274f17d780"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始输出：\n\n```\n===== 1. 下载状态 =====\nQwen2.5-7B: safetensors=4 incomplete=0 size=15G\nQwen2.5-14B: safetensors=5 incomplete=3 size=25G\nphi-4: safetensors=0 incomplete=6 size=1.6G\nOLMo-2-1124-7B: safetensors=1 incomplete=5 size=13G\ngemma-2-9b: safetensors=4 incomplete=4 size=24G\n\n===== 2. GPU 状态 =====\nMon May 18 18:10:30 2026\n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|=========================================+========================+======================|\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\n| N/A   71C    P0            452W /  600W |   63281MiB /  97887MiB |     91%      Default |\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\n| N/A   29C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\n| N/A   30C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\n| N/A   36C    P0            200W /  600W |       0MiB /  97887MiB |    100%      Default |\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|    0   N/A  N/A           17819      C   python                                63272MiB |\n+-----------------------------------------------------------------------------------------+\n\n===== 3. 训练进程 =====\n- tmux session: exp_001_sft_7b_d000_s42\n- 主进程 PID 17819 (GPU 0, 63272MiB, 91% util)\n- 命令: python exp001/train_sft.py --model-name Qwen2.5-7B --data-path sft_dosage_000.jsonl --output-dir Qwen2.5-7B_d000_s42 --seed 42 --gpu 0 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048\n- 4个 dataloader worker 子进程 (PID 18265-18268)\n\n===== 4. 7B Pilot checkpoint =====\ntotal 0\ndrwxr-xr-x 3 root root 34 May 18 18:08 .\ndrwxr-xr-x 3 root root 41 May 18 18:07 ..\ndrwxr-xr-x 2 root root 10 May 18 18:08 lora_adapter\n\n===== 5. 下载进程 =====\n- download_all.sh (PID 5060) → 正在下载 Qwen2.5-14B (PID 5066, hf download)\n- dl_gemma screen session (PID 6378) → 正在下载 gemma-2-9b (PID 6380, hf download)\n```\n\n**摘要：**\n\n| 项目 | 状态 |\n|---|---|\n| **Qwen2.5-7B** | 下载完成 (4 safetensors, 15G, 0 incomplete) |\n| **Qwen2.5-14B** | 下载中 (5 safetensors, 3 incomplete, 25G) |\n| **phi-4** | 下载中 (0 safetensors, 6 incomplete, 1.6G) |\n| **OLMo-2-1124-7B** | 下载中 (1 safetensors, 5 incomplete, 13G) |\n| **gemma-2-9b** | 下载中 (4 safetensors, 4 incomplete, 24G) |\n| **GPU 0** | 7B SFT 训练中 (PID 17819, 63.3G/97.9G, 91% util, lora_alpha=32) |\n| **GPU 1** | 空闲 |\n| **GPU 2** | 空闲 |\n| **GPU 3** | 空闲 (0MiB 但 100% util — 可能刚释放或有 CPU-bound 进程) |\n| **7B checkpoint** | 刚开始，仅有 lora_adapter 空目录 |\n\n注意：GPU 3 显示 0MiB 显存但 100% GPU-Util，异常，可能有残留进程或刚释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-verify-actual-state.md"
+}

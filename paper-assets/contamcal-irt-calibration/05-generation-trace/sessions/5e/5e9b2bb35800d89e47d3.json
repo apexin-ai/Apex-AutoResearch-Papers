@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e9b2bb35800d89e47d3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu exp 006 irt launch",
+  "task_key": "worker_gpu_exp-006-irt-launch_20260514T170625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_exp-006-irt-launch_20260514T170625_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "f176a1e87b4dcb0fcf01c020f4aef6b186b61b1488fd4fb7e63eff4258c53d35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。exp-006 启动完成：\n\n- **实验**: `exp_006_irt_05B_v1` — 4PL+γ IRT (Stan NUTS) + 7 baselines + joint-fit ablation\n- **服务器**: cqa1-21977, GPU 3, PID 411783\n- **数据**: 6 个 0.5B 模型, dosages [0, 0, 5, 5, 25, 100], 4 benchmarks (mmlu/gsm8k/arc_challenge/humaneval)\n- **输出**: `/root/autodl-tmp/exp006/results_05B_v1`\n- **日志**: `/root/autodl-tmp/exp006/exp006_05B_v1.log`\n- **状态**: RUNNING, Stan MCMC 已开始处理 MMLU (14042 items)\n\n注意：使用了 mixed aligned/non-aligned 数据（d100_aligned 仍在运行，用了 d100 non-aligned v5 代替）。d000 和 d005 各有 aligned + non-aligned 两版本，作为独立 examinees 参与 fitting。Oracle dosage（无 exposure file）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-exp-006-irt-launch.md"
+}

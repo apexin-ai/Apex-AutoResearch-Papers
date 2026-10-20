@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b1b70840377f667b75",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify gpu5",
+  "task_key": "worker_ops_verify-gpu5_20260513T235849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gpu5_20260513T235849_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "cad8e7410d464f1aefc528ede651bcff2b523a89821df0d5d363977c370ac8b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，确认如下：\n\n| 项目 | 状态 |\n|------|------|\n| GPU 5 进程 | PID **239734**，正在运行 |\n| 显存使用 | **21,995 MiB / 24,564 MiB**（~89%） |\n| GPU 利用率 | 72% |\n| 训练进度 | **66 / 3,177 steps**（~2%） |\n| 速度 | ~1.0-1.1 s/it |\n| ETA | **约 55 分钟** |\n| 模型 | Qwen2.5-0.5B + LoRA (r=16, alpha=32) |\n| 训练样本 | 50,826 条 |\n\n**注意**：bitsandbytes 报了 `libnvJitLink.so.13` 加载失败的错误，但这是非致命的——训练已正常跳过并继续执行。日志开头未直接打印 `--gpu` 参数，但 `nvidia-smi` 确认进程在 GPU 5 上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gpu5.md"
+}

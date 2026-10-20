@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d2bc7cb91f17000a580",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops pipeline readiness check",
+  "task_key": "worker_ops_pipeline-readiness-check_20260514T122031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pipeline-readiness-check_20260514T122031_result.json",
+    "occurrence": 1,
+    "bytes": 2489,
+    "sha256": "560ae4402f902eda47346371fc5550717048b7cd43deefef51c70707d12d5c9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pipeline 就绪状态报告\n\n### exp-002 Signal Pipeline\n\n**进度: 0/27 任务完成（0/9 for 0.5B 模型）**\n\n- 当前正在跑 **task 1/9**：`Qwen2.5-0.5B_d000_s42 / mmlu`（signals: embedding, minkpp, selfcritique），GPU 0\n- PID 353390，已运行 ~2.5 小时 CPU time\n- 已产出的中间文件（d000_s42 目录）：\n  - `signal_embedding_mmlu.json` (6MB) ✅\n  - `signal_embedding_gsm8k.json` (568KB) ✅ （前次运行遗留）\n  - `signal_embedding_arc_challenge.json` (515KB) ✅ （前次运行遗留）\n  - `signal_minkpp_mmlu.json` (2.1MB) ✅\n  - selfcritique — **未完成，当前正在计算**\n- `d005_s42` 目录仅有 embedding_mmlu（前次运行遗留），`d100_s42` 目录不存在\n- 0.5B 需 9 tasks（3 dosages × 3 benchmarks），全部完成后还有 1.5B 和 3B（各 9 tasks）\n- **预估**：当前 task 还需 ~30min-1hr 完成 selfcritique，整个 0.5B 约需 20+ 小时，全部 27 tasks 可能需 3-5 天\n\n### exp-003 RRF Aggregation\n\n**不存在独立 exp003 目录。RRF 代码在 `exp002/aggregate_rrf.py` 中。**\n\n代码 ✅ 就绪：\n- RRF fusion（k=60），auto-detect available signals\n- 支持从多个 signal JSON 文件 load + merge\n- 支持 ablation variants（单信号、等权平均）\n\n### exp-006 IRT Calibration + Baselines\n\n**代码 ✅ 全部就绪**\n\n| 文件 | 状态 |\n|------|------|\n| `run_irt_calibration.py` — CmdStanPy 4PL+γ MCMC | ✅ |\n| `run_irt_stan.py` — 备用 Stan pipeline | ✅ |\n| `run_all_baselines.py` — 统一运行入口 | ✅ |\n| `baselines.py` — 7 baselines 统一接口 | ✅ |\n| `evaluate_calibration.py` — MAE/coverage/sharpness/kendall_tau | ✅ |\n\n7 baselines 全部实现：B0 Raw, B1 Remove-rescore, B2 Single-signal 2PL+γ, B3 Vanilla 4PL, B4 Linear regression, B5 Emperor's mitigation, B6 DCR fuzzy\n\nDry-run 已通过（`dryrun_no_stan.json` 有完整合成数据验证结果）\n\n### Stan Models\n\n4 个 .stan 模型 + 已编译二进制 ✅：`contam_irt_4pl_simple`, `contam_irt_4pl`, `contam_irt_2pl_gamma`, `vanilla_4pl`\n\n### 阻塞项\n\n| 阻塞 | 影响 |\n|------|------|\n| **exp-002 signal 产出未完成** | exp-003 RRF 和 exp-006 IRT 都依赖 signal 数据，无法运行真实数据 |\n| 仅 0.5B 在跑，1.5B/3B 未开始 | 完整实验需 27 tasks，当前 0/27 completed |\n| exp-001 eval 仍在并行跑（d005 aligned, 1.5B para, 3B d100） | 这些 eval 结果也是 exp-002 的前置依赖 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pipeline-readiness-check.md"
+}

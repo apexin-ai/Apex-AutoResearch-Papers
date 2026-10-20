@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc505d07b952db3ad5ff",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "review bib missing refs d138",
+  "task_key": "worker_review_bib-missing-refs-d138_20260518T015833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_bib-missing-refs-d138_20260518T015833_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "af1a286e7405781d0e9037e0e175bad91e040be25aa693fe386b1736dae47012"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结如下：\n\n## Part A: 4 篇新增条目\n\n| Key | 验证结果 |\n|-----|----------|\n| `lord_1980_irt` | F.M. Lord, Lawrence Erlbaum Associates, 1980, Hillsdale NJ. DOI: 10.4324/9780203056615 (Routledge reissue) |\n| `hambleton_1991_irt` | Hambleton, Swaminathan, Rogers. Sage Publications, 1991. ISBN 978-0-8039-3647-8 |\n| `liang_2023_helm` | Annals of the New York Academy of Sciences, Vol 1525(1), pp 140-146, 2023. DOI: 10.1111/nyas.15007 |\n| `magar_2022_contamination` | ACL 2022 Short Papers, pp 157-165, Dublin. DOI: 10.18653/v1/2022.acl-short.18 |\n\n## Part B: 已有条目核实\n\n| Key | 结论 |\n|-----|------|\n| `holland_1993_dif` | **无需修正**。现有条目正确：Holland & Wainer (eds.), 1993, Lawrence Erlbaum. OpenAlex 的 year=2009/author=Osterlind 是错误匹配（可能混淆了 2009 Routledge 重印或 Osterlind 的另一本 DIF 书） |\n| `deboeck_2004_explanatory_irt` | **无需修正**。现有条目正确：De Boeck & Wilson, 2004, Springer. OpenAlex 的 year=2005 来自 2005 年 Journal of Educational Measurement 上的书评，非实际出版年 |\n\n所有条目已写入 `references.bib`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-bib-missing-refs-d138.md"
+}

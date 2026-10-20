@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b808a6b32878fe2e1e65",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fisher heatmap pdf regen",
+  "task_key": "worker_ops_fisher_heatmap_pdf_regen_20260517T032340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fisher_heatmap_pdf_regen_20260517T032340_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "fbd719eff75811c13372ab174ae494cdb55082f9d1b5d07040593bfebc848dba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 文件已经存在且有效。两个版本都有：\n\n- `fisher_power_heatmap.pdf` (99KB) — 单面板 power heatmap\n- `fisher_dual_heatmap.pdf` (142KB) — 双面板 (power + CI width)\n\n两者均于 2026-05-17 05:38 生成，对应 PNG 也存在。脚本 `plot_heatmap.py` 质量合格：用了 bicubic 插值、contour lines (50%/80%/95%)、AUC=0.70 threshold 标线、cell annotations、合适的 colormap。\n\n无需重新生成，文件已就绪。论文中使用路径：`/root/autodl-tmp/exp004/fisher_heatmap/fisher_power_heatmap.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fisher-heatmap-pdf-regen.md"
+}

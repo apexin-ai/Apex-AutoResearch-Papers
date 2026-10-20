@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4ddd8136f700feadb71",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778879970.md",
+  "task_key": "loop_11_1778879970",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778879970.md",
+    "occurrence": 1,
+    "bytes": 5785,
+    "sha256": "92ac9914b006c77cf362870660b41f058411af8148d1f9de4be7bc1e5435bde9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T21:19:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0~5（cqa1-21977 上 6× RTX 4090D），不得使用白名单外 GPU\n- **Alpha 混用禁令（D055）**：s42 系列必须 alpha=32，s123 alpha=16 数据不可与 alpha=32 混用引用。memory.md 有完整 checkpoint alpha 审计表\n- **lr confound（D074-D076）**：d000_s42 和 d005_s42 旧系列（lr=2e-4）已废弃，不可用于 dose-response 分析。新系列统一 lr=5e-5\n- **0.5B 已从 IRT pooling 排除**——只用 1.5B + 3B\n- submit_training_job 命令必须自带 conda 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不假设 .venv\n- noise_prop（Claim 3）结论 negative（D073），不重试，降级 appendix。**不得默默重跑**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977（AutoDL），工作目录 `/root/contamcal-irt-calibration`\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- **Checkpoints**：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{SIZE}_{DOSE}_{SEED}/lora_adapter`\n- **Eval 输出**：`/root/autodl-tmp/exp001/eval_results/`\n- **Signals 输出**：`/root/autodl-tmp/exp002/signals/`\n- **SFT 数据**：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Paraphrases**：`/root/autodl-tmp/exp001/paraphrases/`\n- **Sim sweep**：本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/`\n- **活跃进程**：\n\n| GPU | exp_id | PID | tmux session |\n|-----|--------|-----|-------------|\n| cuda:0 | exp_001_sft_3B_d100_s123_a32_v2 | 594489 | 同名 |\n| cuda:1 | exp_001_sft_3B_d100_s42_a32_v3 | 628663 | 同名 |\n| cuda:2 | exp_001_eval_3B_d005_s123_gsm8k | 623480 | 同名 |\n| cuda:3 | exp_001_eval_15B_s123_para_aligned_batch | 627600 | 同名 |\n| cuda:4 | exp_002_signals_3B_v5 (d025/d100) | 623826 | 同名 |\n| cuda:5 | exp_001_sft_3B_d000_s42_a32 | 633036 | 同名 |\n| CPU | exp_004_sim_sweep_v7 | — | — |\n\n- **Cron 监控**：5 个活跃 cron（对应上述 GPU 实验，sim_sweep 无 cron）\n- **运行中 Worker**：`worker_code_d081-fix-lora-alpha-bug`（修 lora alpha bug）、`worker_run_d025_v3_signals_all`（跑 d025 v3 signals）\n\n### 3. 📊 当前状态\n**刚完成**：D074-D082 一系列决策——发现 s42 旧系列 lr confound + d025_v3 alpha=16 假阳性 bug，清理无效数据，重新提交 6 个 GPU 任务。noise_prop_v4 完成（negative），D073 决策降级 Claim 3。\n\n**正在做**：\n- 6 GPU 全部饱和运行（3 个 SFT 重训 + 2 个 eval + 1 个 signals）\n- Worker 在修 lora alpha bug（D081/D082 相关）和跑 d025 v3 signals\n- sim_sweep_v7 在本地 CPU resume 跑 4 个失败条件\n\n**等待中**：\n- 2 个 Worker 回调（d081 fix + d025 signals）\n- 7 个 cron 回调（6 GPU + sim_sweep 完成时）\n- Director 未有 pending 决策请求\n\n**Registry 统计**：155 实验，成功 107 / 负向 2 / 失败 39 / RUNNING 7 / PREPARING 23\n\n### 4. 📋 待办（条件触发式）\n- **cuda:2 eval 完成**（d005_s123 gsm8k）→ 立即提交 exp-002 3B d005 signals（或 3B d005_s42 para_aligned eval，视优先级）\n- **cuda:3 eval 完成**（1.5B s123 para_aligned batch）→ N 从 19→23；释放 cuda:3 给 3B d100_s123 para_aligned eval 或其他 pending eval\n- **cuda:0/1 SFT 完成**（d100 s123/s42 alpha=32）→ 提交对应 aligned + para_aligned eval → 补齐 3B d100 alpha=32 矩阵\n- **cuda:5 SFT 完成**（d000 s42 alpha=32）→ 提交 eval（替代被废弃的 lr=2e-4 版本）\n- **3B signals 全完成**（v5 d025/d100 + 现有 d000）→ RRF 聚合（exp-003，CPU）→ per-benchmark exposure scores\n- **Pooled IRT 前置条件满足**（N≥16 已达标，当前 N=19）→ 启动 pooled IRT fitting（per-benchmark γ_k，Stan NUTS）+ 7 baselines 对比\n- **sim_sweep_v7 完成** → 若成功：identifiability boundary 确认；若仍失败：需根因调查\n- **d081 Worker 完成** → 检查 lora alpha fix 是否合入，验证后续 SFT 不受影响\n- **所有 3B alpha=32 矩阵补齐** → experiment_plan.yaml registry_id 全量刷新 → 修正 coverage 低估\n\n### 5. 🎯 战略上下文\n**投稿目标**：EMNLP 2026 ARR May 25（T-10 天）\n\n**核心 story**：ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。per-benchmark γ_k 参数化是 key differentiator（D053 废弃联合 IRT，D056 coverage collapse = model misspecification 确认）。\n\n**关键发现链**：\n- 1.5B 仅 HumanEval 对 contamination 敏感，MC benchmarks 无反应\n- 3B 则 GSM8K + HumanEval 都敏感 → model scale 调节 contamination 表达\n- Coverage collapse 不是 γ 大导致，而是 additive 4PL+γ misspecification（sim_sweep 证明 DGP=模型时 coverage 90-100%）\n\n**最易判断错的事**：\n1. **不要混用 alpha=16 和 alpha=32 数据做 dose-response**——memory.md 有 checkpoint 审计表，必查\n2. **d000_s42 和 d005_s42 旧系列（lr=2e-4）已废弃**——即使 registry 里有 DONE 的旧 eval 结果也不能引用\n3. **Claim 3（measurement error model）是 negative**——不要再投资源重试，D073 已定\n4. **PPP=0 风险**——即使 oracle 也 PPP=0，per-benchmark IRT 是修复路径，若仍为 0 则 Claim 4 需降级 future work\n5. **sim_sweep v1-v6 全失败**——v7 用了 TMPDIR 隔离 fix，如果仍失败要查 pymp/CmdStan 根因，不要简单重试\n6. **Critical path 是 3B signals → RRF → pooled IRT → paper**，不是 SFT 重训。SFT 重训是补数据完整性，signals 才是 paper 写作的直接前置\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778879970.md"
+}

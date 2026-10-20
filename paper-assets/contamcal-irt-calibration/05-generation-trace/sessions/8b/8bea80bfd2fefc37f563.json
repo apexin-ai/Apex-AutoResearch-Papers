@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bea80bfd2fefc37f563",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B d000 s42 a32 batch",
+  "task_key": "worker_analysis_exp_001_eval_3B_d000_s42_a32_batch_20260516T060402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_d000_s42_a32_batch_20260516T060402_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "fabd091958155c635c3853c6d15c3e6324d38e2369cab8be54d48cb6878cda7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新（conclusion=success, metrics, checkpoint_path, log_path），summary 已注册为 artifact `art_20260516_ae736c`。\n\n**汇总：**\n\n| Benchmark | Aligned | Para-aligned |\n|-----------|---------|-------------|\n| MMLU | 63.07% | 64.31% |\n| GSM8K | 14.10% | 5.26% |\n| ARC | 82.42% | 81.06% |\n| HumanEval | 14.02% | 19.23% |\n\n**结论：success。** 所有指标与 d000_s123 baseline 一致（MMLU 差 0.25pp, ARC 差 0.86pp, GSM8K 差 4pp 在 seed 方差内）。GSM8K 绝对值低（14%）是 d000 SFT 的预期行为——d000_s123 也只有 18%，而 d100 达到 71%，说明 GSM8K 是 dose-response 最强判别器（+57pp 跨度）。无 W&B run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-d000-s42-a32-batch.md"
+}

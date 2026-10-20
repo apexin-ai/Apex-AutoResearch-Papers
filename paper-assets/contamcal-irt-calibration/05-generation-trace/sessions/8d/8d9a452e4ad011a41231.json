@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9a452e4ad011a41231",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sft gemma2 s0 sweep",
+  "task_key": "worker_analysis_sft_gemma2_s0_sweep_20260520T220102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_gemma2_s0_sweep_20260520T220102_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "c167aa5c55dc44d8566d6a74fc32596a01c76efac3407f5ac9d845f92e6fd636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n| Dosage | MMLU Acc | Δ from d000 |\n|--------|----------|-------------|\n| d000 | 0.6488 | — |\n| d005 | 0.6414 | -0.74pp |\n| d025 | 0.6491 | +0.03pp |\n| d050 | 0.6309 | -1.79pp |\n| d100 | **MISSING** | — |\n\n**关键问题**: d100 训练在 step 1618/4159 (39%) 崩溃，错误为 `RuntimeError: Pin memory thread exited unexpectedly`。lora_adapter 目录为空，eval 被跳过。delta_d100 无法计算。\n\n**跨 seed 对比**: s42 delta_d100=+3.76pp, s123 delta_d100=+1.49pp, s0 无法判断。\n\n**下一步**: 需单独重跑 d100 seed=0 训练 + eval。d000-d050 的 checkpoint 和 eval 结果均完好，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-gemma2-s0-sweep.md"
+}

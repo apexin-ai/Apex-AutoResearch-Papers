@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80e74b5bda4a5a729c2a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check 3B d000 s42 v3 eval",
+  "task_key": "worker_ops_check-3B-d000-s42-v3-eval_20260515T094947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-3B-d000-s42-v3-eval_20260515T094947_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "986091086c7274f08778119a74290e09039d0d3ed9b6f876334d165f43e2351b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_001_eval_3B_d000_s42_v3 — SUCCESS**\n\n- 输出目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/`\n- `.done` sentinel 存在，`eval_results.json` 完整（含 correctness_matrix.json + item_responses.json）\n\n### Metrics\n\n| Benchmark | Score | Correct / Total |\n|-----------|-------|-----------------|\n| MMLU | **63.40%** | 8902 / 14042 |\n| GSM8K | **11.98%** | ~158 / 1319 |\n| ARC-Challenge | **82.76%** | ~970 / 1172 |\n| HumanEval (pass@1) | **11.59%** | 19 / 164 |\n\n模型：`Qwen2.5-3B`，`paraphrased: false`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3b-d000-s42-v3-eval.md"
+}

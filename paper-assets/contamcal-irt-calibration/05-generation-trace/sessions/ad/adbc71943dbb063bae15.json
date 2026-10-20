@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "adbc71943dbb063bae15",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "diag qwen7b s0 arc wait and collect",
+  "task_key": "worker_diag_qwen7b-s0-arc-wait-and-collect_20260521T000431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-arc-wait-and-collect_20260521T000431.log",
+    "occurrence": 1,
+    "bytes": 579331,
+    "sha256": "f2a3d18914d8de9961008e47b995496f70644fe78a7f6563c28ee9616503d30b"
+  },
+  "statistics": {
+    "messages": 282,
+    "user_turns": 0,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 123,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "adbc71943dbb063bae15-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "adbc71943dbb063bae15-part-0002.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-qwen7b-s0-arc-wait-and-collect.md"
+}

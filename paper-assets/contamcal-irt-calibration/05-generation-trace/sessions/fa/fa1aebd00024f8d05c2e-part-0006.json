@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fa1aebd00024f8d05c2e",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-13T19:21:59.588Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLy13jx9vpgrSdSMghsEjQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0b941dd-36a1-4b25-8763-a722b9678e3c",
+            "uuid": "0b677ae6-7e35-4998-b9b9-8d1752b6e965",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-13T19:22:00.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGs3wq6fXoXJPRCYipgyQB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rTransformers generation:   0%|          | 0/42 [00:00<?, ?it/s]\\\\rTransformers generation:   2%|▏         | 1/42 [00:42<29:13, 42.77s/it]\\\\rTransformers generation:   5%|▍         | 2/42 [01:24<28:11, 42.29s/it]\\\\rTransformers generation:   7%|▋         | 3/42 [02:04<26:52, 41.34s/it]\\\\rTransformers generation:  10%|▉         | 4/42 [02:47<26:36, 42.02s/it]\\\\rTransformers generation:  12%|█▏        | 5/42 [03:32<26:29, 42.95s/it]\\\\rTransformers generation:  14%|█▍        | 6/42 [04:14<25:27, 42.44s/it]\\\\rTransformers generation:  17%|█▋        | 7/42 [04:56<24:46, 42.47s/it]\\\\rTransformers generation:  19%|█▉        | 8/42 [05:39<24:05, 42.52s/it]\\\\rTransformers generation:  21%|██▏       | 9/42 [06:18<22:53, 41.62s/it]\\\\rTransformers generation:  24%|██▍       | 10/42 [07:02<22:28, 42.15s/it]\\\\rTransformers generation:  26%|██▌       | 11/42 [07:44<21:51, 42.32s/it]\\\\rTransformers generation:  29%|██▊       | 12/42 [08:26<21:06, 42.22s/it]\\\\rTransformers generation:  31%|███       | 13/42 [09:10<20:36, 42.65s/it]\\\\rTransformers generation:  33%|███▎      | 14/42 [09:56<20:18, 43.52s/it]\\\\rTransformers generation:  36%|███▌      | 15/42 [10:36<19:09, 42.56s/it]\\\\rTransformers generation:  38%|███▊      | 16/42 [11:17<18:15, 42.15s/it]\\\\rTransformers generation:  40%|████      | 17/42 [11:57<17:18, 41.55s/it]\\\\rTransformers generation:  43%|████▎     | 18/42 [12:38<16:29, 41.24s/it]\\\\rTransformers generation:  45%|████▌     | 19/42 [13:22<16:06, 42.01s/it]\\\\rTransformers generation:  48%|████▊     | 20/42 [14:03<15:21, 41.87s/it]\\\\rTransformers generation:  50%|█████     | 21/42 [14:45<14:39, 41.86s/it]\\\\rTransformers generation:  52%|█████▏    | 22/42 [15:30<14:19, 42.96s/it]\\\\rTransformers generation:  55%|█████▍    | 23/42 [16:13<13:33, 42.83s/it]\\\\rTransformers generation:  57%|█████▋    | 24/42 [16:54<12:43, 42.39s/it]\\\\rTransformers generation:  60%|█████▉    | 25/42 [17:39<12:12, 43.11s/it]\\\\rTransformers generation:  62%|██████▏   | 26/42 [18:25<11:44, 44.06s/it]\\\\rTransformers generation:  64%|██████▍   | 27/42 [19:06<10:44, 42.95s/it]\\\\rTransformers generation:  67%|██████▋   | 28/42 [19:46<09:51, 42.25s/it]\\\\rTransformers generation:  69%|██████▉   | 29/42 [20:29<09:08, 42.23s/it]\\\\rTransformers generation:  71%|███████▏  | 30/42 [21:13<08:36, 43.00s/it]\\\\rTransformers generation:  74%|███████▍  | 31/42 [21:58<07:59, 43.57s/it]\\\\rTransformers generation:  76%|███████▌  | 32/42 [22:46<07:28, 44.81s/it]\\\\rTransformers generation:  79%|███████▊  | 33/42 [23:30<06:40, 44.51s/it]\\\\rTransformers generation:  81%|████████  | 34/42 [24:13<05:54, 44.27s/it]\\\\rTransformers generation:  83%|████████▎ | 35/42 [24:55<05:03, 43.32s/it]\\\\rTransformers generation:  86%|████████▌ | 36/42 [25:35<04:15, 42.54s/it]\\\\rTransformers generation:  88%|████████▊ | 37/42 [26:17<03:31, 42.36s/it]\\\\rTransformers generation:  90%|█████████ | 38/42 [27:03<02:53, 43.30s/it]\\\\rTransformers generation:  93%|█████████▎| 39/42 [27:44<02:08, 42.84s/it]\\\\rTransformers generation:  95%|█████████▌| 40/42 [28:29<01:26, 43.45s/it]\\\\rTransformers generation:  98%|█████████▊| 41/42 [29:12<00:43, 43.22s/it]\\\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 32.65s/it]\\\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 41.92s/it]\\\\n\\\\rTransformers generation:   0%|          | 0/38 [00:00<?, ?it/s]\\\\rTransformers generation:   3%|▎         | 1/38 [00:41<25:39, 41.61s/it]\\\\rTransformers generation:   5%|▌         | 2/38 [01:23<24:56, 41.57s/it]\\\\rTransformers generation:   8%|▊         | 3/38 [02:04<24:16, 41.61s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a0b941dd-36a1-4b25-8763-a722b9678e3c",
+            "uuid": "6db9158d-c4f2-416a-b42e-f86856979ec5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rTransformers generation:   0%|          | 0/42 [00:00<?, ?it/s]\\\\rTransformers generation:   2%|▏         | 1/42 [00:42<29:13, 42.77s/it]\\\\rTransformers generation:   5%|▍         | 2/42 [01:24<28:11, 42.29s/it]\\\\rTransformers generation:   7%|▋         | 3/42 [02:04<26:52, 41.34s/it]\\\\rTransformers generation:  10%|▉         | 4/42 [02:47<26:36, 42.02s/it]\\\\rTransformers generation:  12%|█▏        | 5/42 [03:32<26:29, 42.95s/it]\\\\rTransformers generation:  14%|█▍        | 6/42 [04:14<25:27, 42.44s/it]\\\\rTransformers generation:  17%|█▋        | 7/42 [04:56<24:46, 42.47s/it]\\\\rTransformers generation:  19%|█▉        | 8/42 [05:39<24:05, 42.52s/it]\\\\rTransformers generation:  21%|██▏       | 9/42 [06:18<22:53, 41.62s/it]\\\\rTransformers generation:  24%|██▍       | 10/42 [07:02<22:28, 42.15s/it]\\\\rTransformers generation:  26%|██▌       | 11/42 [07:44<21:51, 42.32s/it]\\\\rTransformers generation:  29%|██▊       | 12/42 [08:26<21:06, 42.22s/it]\\\\rTransformers generation:  31%|███       | 13/42 [09:10<20:36, 42.65s/it]\\\\rTransformers generation:  33%|███▎      | 14/42 [09:56<20:18, 43.52s/it]\\\\rTransformers generation:  36%|███▌      | 15/42 [10:36<19:09, 42.56s/it]\\\\rTransformers generation:  38%|███▊      | 16/42 [11:17<18:15, 42.15s/it]\\\\rTransformers generation:  40%|████      | 17/42 [11:57<17:18, 41.55s/it]\\\\rTransformers generation:  43%|████▎     | 18/42 [12:38<16:29, 41.24s/it]\\\\rTransformers generation:  45%|████▌     | 19/42 [13:22<16:06, 42.01s/it]\\\\rTransformers generation:  48%|████▊     | 20/42 [14:03<15:21, 41.87s/it]\\\\rTransformers generation:  50%|█████     | 21/42 [14:45<14:39, 41.86s/it]\\\\rTransformers generation:  52%|█████▏    | 22/42 [15:30<14:19, 42.96s/it]\\\\rTransformers generation:  55%|█████▍    | 23/42 [16:13<13:33, 42.83s/it]\\\\rTransformers generation:  57%|█████▋    | 24/42 [16:54<12:43, 42.39s/it]\\\\rTransformers generation:  60%|█████▉    | 25/42 [17:39<12:12, 43.11s/it]\\\\rTransformers generation:  62%|██████▏   | 26/42 [18:25<11:44, 44.06s/it]\\\\rTransformers generation:  64%|██████▍   | 27/42 [19:06<10:44, 42.95s/it]\\\\rTransformers generation:  67%|██████▋   | 28/42 [19:46<09:51, 42.25s/it]\\\\rTransformers generation:  69%|██████▉   | 29/42 [20:29<09:08, 42.23s/it]\\\\rTransformers generation:  71%|███████▏  | 30/42 [21:13<08:36, 43.00s/it]\\\\rTransformers generation:  74%|███████▍  | 31/42 [21:58<07:59, 43.57s/it]\\\\rTransformers generation:  76%|███████▌  | 32/42 [22:46<07:28, 44.81s/it]\\\\rTransformers generation:  79%|███████▊  | 33/42 [23:30<06:40, 44.51s/it]\\\\rTransformers generation:  81%|████████  | 34/42 [24:13<05:54, 44.27s/it]\\\\rTransformers generation:  83%|████████▎ | 35/42 [24:55<05:03, 43.32s/it]\\\\rTransformers generation:  86%|████████▌ | 36/42 [25:35<04:15, 42.54s/it]\\\\rTransformers generation:  88%|████████▊ | 37/42 [26:17<03:31, 42.36s/it]\\\\rTransformers generation:  90%|█████████ | 38/42 [27:03<02:53, 43.30s/it]\\\\rTransformers generation:  93%|█████████▎| 39/42 [27:44<02:08, 42.84s/it]\\\\rTransformers generation:  95%|█████████▌| 40/42 [28:29<01:26, 43.45s/it]\\\\rTransformers generation:  98%|█████████▊| 41/42 [29:12<00:43, 43.22s/it]\\\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 32.65s/it]\\\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 41.92s/it]\\\\n\\\\rTransformers generation:   0%|          | 0/38 [00:00<?, ?it/s]\\\\rTransformers generation:   3%|▎         | 1/38 [00:41<25:39, 41.61s/it]\\\\rTransformers generation:   5%|▌         | 2/38 [01:23<24:56, 41.57s/it]\\\\rTransformers generation:   8%|▊         | 3/38 [02:04<24:16, 41.61s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rTransformers generation:   0%|          | 0/42 [00:00<?, ?it/s]\\rTransformers generation:   2%|▏         | 1/42 [00:42<29:13, 42.77s/it]\\rTransformers generation:   5%|▍         | 2/42 [01:24<28:11, 42.29s/it]\\rTransformers generation:   7%|▋         | 3/42 [02:04<26:52, 41.34s/it]\\rTransformers generation:  10%|▉         | 4/42 [02:47<26:36, 42.02s/it]\\rTransformers generation:  12%|█▏        | 5/42 [03:32<26:29, 42.95s/it]\\rTransformers generation:  14%|█▍        | 6/42 [04:14<25:27, 42.44s/it]\\rTransformers generation:  17%|█▋        | 7/42 [04:56<24:46, 42.47s/it]\\rTransformers generation:  19%|█▉        | 8/42 [05:39<24:05, 42.52s/it]\\rTransformers generation:  21%|██▏       | 9/42 [06:18<22:53, 41.62s/it]\\rTransformers generation:  24%|██▍       | 10/42 [07:02<22:28, 42.15s/it]\\rTransformers generation:  26%|██▌       | 11/42 [07:44<21:51, 42.32s/it]\\rTransformers generation:  29%|██▊       | 12/42 [08:26<21:06, 42.22s/it]\\rTransformers generation:  31%|███       | 13/42 [09:10<20:36, 42.65s/it]\\rTransformers generation:  33%|███▎      | 14/42 [09:56<20:18, 43.52s/it]\\rTransformers generation:  36%|███▌      | 15/42 [10:36<19:09, 42.56s/it]\\rTransformers generation:  38%|███▊      | 16/42 [11:17<18:15, 42.15s/it]\\rTransformers generation:  40%|████      | 17/42 [11:57<17:18, 41.55s/it]\\rTransformers generation:  43%|████▎     | 18/42 [12:38<16:29, 41.24s/it]\\rTransformers generation:  45%|████▌     | 19/42 [13:22<16:06, 42.01s/it]\\rTransformers generation:  48%|████▊     | 20/42 [14:03<15:21, 41.87s/it]\\rTransformers generation:  50%|█████     | 21/42 [14:45<14:39, 41.86s/it]\\rTransformers generation:  52%|█████▏    | 22/42 [15:30<14:19, 42.96s/it]\\rTransformers generation:  55%|█████▍    | 23/42 [16:13<13:33, 42.83s/it]\\rTransformers generation:  57%|█████▋    | 24/42 [16:54<12:43, 42.39s/it]\\rTransformers generation:  60%|█████▉    | 25/42 [17:39<12:12, 43.11s/it]\\rTransformers generation:  62%|██████▏   | 26/42 [18:25<11:44, 44.06s/it]\\rTransformers generation:  64%|██████▍   | 27/42 [19:06<10:44, 42.95s/it]\\rTransformers generation:  67%|██████▋   | 28/42 [19:46<09:51, 42.25s/it]\\rTransformers generation:  69%|██████▉   | 29/42 [20:29<09:08, 42.23s/it]\\rTransformers generation:  71%|███████▏  | 30/42 [21:13<08:36, 43.00s/it]\\rTransformers generation:  74%|███████▍  | 31/42 [21:58<07:59, 43.57s/it]\\rTransformers generation:  76%|███████▌  | 32/42 [22:46<07:28, 44.81s/it]\\rTransformers generation:  79%|███████▊  | 33/42 [23:30<06:40, 44.51s/it]\\rTransformers generation:  81%|████████  | 34/42 [24:13<05:54, 44.27s/it]\\rTransformers generation:  83%|████████▎ | 35/42 [24:55<05:03, 43.32s/it]\\rTransformers generation:  86%|████████▌ | 36/42 [25:35<04:15, 42.54s/it]\\rTransformers generation:  88%|████████▊ | 37/42 [26:17<03:31, 42.36s/it]\\rTransformers generation:  90%|█████████ | 38/42 [27:03<02:53, 43.30s/it]\\rTransformers generation:  93%|█████████▎| 39/42 [27:44<02:08, 42.84s/it]\\rTransformers generation:  95%|█████████▌| 40/42 [28:29<01:26, 43.45s/it]\\rTransformers generation:  98%|█████████▊| 41/42 [29:12<00:43, 43.22s/it]\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 32.65s/it]\\rTransformers generation: 100%|██████████| 42/42 [29:20<00:00, 41.92s/it]\\n\\rTransformers generation:   0%|          | 0/38 [00:00<?, ?it/s]\\rTransformers generation:   3%|▎         | 1/38 [00:41<25:39, 41.61s/it]\\rTransformers generation:   5%|▌         | 2/38 [01:23<24:56, 41.57s/it]\\rTransformers generation:   8%|▊         | 3/38 [02:04<24:16, 41.61s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see! GSM8K has started a retry round: \"Transformers generation: 0/38\" — that's retry round 1 with 38 batches (1216 items failed QC out of 1319 = ~92% fail rate). At ~41s/batch, this will take ~38 × 41 ≈ 26 min. Then possibly another retry round for the remaining failures.\n\nWith max-retries=2, this means potentially:\n- Round 1: 42 batches × 42s = ~29 min (done)\n- Retry 1: 38 batches × 42s = ~26 min (currently at 3/38)\n\n\n- Retry 2: possibly ~35 batches × 42s = ~24 min\n\nSo GSM8K alone is looking at roughly 79 minutes total, and ARC will follow a similar pattern. MMLU's going to be even longer with 878 batches to process. I should give the user a status update now since this is going to take a while, noting that GSM8K and ARC are both in retry phases while MMLU is still grinding through its initial generation.\n\nLooking back at what the user asked for—checking GPU 0 MMLU progress, checking GPU states, launching the other benchmarks, confirming they all started, waiting for HumanEval to finish and checking its QC quality, then providing a summary table—I've actually completed all of that. HumanEval finished with a 15.9% QC pass rate, and I have the current status of everything. GSM8K and ARC will keep running in the background, so I should present the summary now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0b941dd-36a1-4b25-8763-a722b9678e3c",
+            "uuid": "37f9cf36-60d3-422a-876b-2e6e3cddc9dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FndxHSDQ7dzuCc1t2nYyML",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2906,
+                "cache_read_input_tokens": 105618,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2906
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K entered retry round 1 (38 batches) — 92% of items failed QC, similar to HumanEval's high BLEU issue. This retry will take ~26 min in transformers mode. ARC will be similar.\n\nHere's the current summary:\n\n---\n\n### === Paraphrase Parallel Launch Summary ===\n\n| GPU | Benchmark | PID | Mode | Status | Notes |\n|-----|-----------|-----|------|--------|-------|\n| GPU 0 | MMLU | **204467** (v3) | vLLM | **RUNNING** 64/878 (7%) | Restarted with bs=16 after 2 prior crashes (orphaned EngineCore held GPU memory). ETA ~60 min |\n| GPU 1 | GSM8K | **189361** | Transformers | **RUNNING** - Retry 1 (3/38) | Initial gen done (42/42, 29min). Now retrying ~1200 failed QC items. ETA ~25 min for retry 1 |\n| GPU 2 | ARC-Challenge | **190712** | Transformers | **RUNNING** - QC phase | Generation done (37/37, ~30min). Now in QC/retry phase |\n| GPU 4 | HumanEval | (201097) | vLLM | **COMPLETED** | Output: `/root/autodl-tmp/exp001/paraphrases/humaneval_paraphrases.json` (500KB) |\n\n**HumanEval QC Results:**\n- Total items: 164\n- QC passed: 26/164 (15.9%)\n- Main failure reason: BLEU score too high (paraphrases not diverse enough from originals)\n- Cosine similarity threshold (>0.85): mostly met\n- BLEU threshold (<0.3): most items fail — model generates near-copies\n\n**MMLU Crash Root Cause:** Parent python process dies silently (no traceback — likely system OOM killer), leaving `VLLM::EngineCore` child as orphan (PPID=1) holding 22.9 GiB GPU memory. Fixed by killing orphan (PID 201376) and restarting with smaller batch size (16 vs 32).\n\n**Key Issue:** All benchmarks have low QC pass rate due to high BLEU scores — the model produces paraphrases too similar to originals. This is a prompt/strategy problem that will need addressing after all generation completes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a0b941dd-36a1-4b25-8763-a722b9678e3c",
+            "uuid": "a99e518b-d28e-47a8-ad48-3bbd8b524bbe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FndxHSDQ7dzuCc1t2nYyML",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2906,
+                "cache_read_input_tokens": 105618,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2906
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K entered retry round 1 (38 batches) — 92% of items failed QC, similar to HumanEval's high BLEU issue. This retry will take ~26 min in transformers mode. ARC will be similar.\n\nHere's the current summary:\n\n---\n\n### === Paraphrase Parallel Launch Summary ===\n\n| GPU | Benchmark | PID | Mode | Status | Notes |\n|-----|-----------|-----|------|--------|-------|\n| GPU 0 | MMLU | **204467** (v3) | vLLM | **RUNNING** 64/878 (7%) | Restarted with bs=16 after 2 prior crashes (orphaned EngineCore held GPU memory). ETA ~60 min |\n| GPU 1 | GSM8K | **189361** | Transformers | **RUNNING** - Retry 1 (3/38) | Initial gen done (42/42, 29min). Now retrying ~1200 failed QC items. ETA ~25 min for retry 1 |\n| GPU 2 | ARC-Challenge | **190712** | Transformers | **RUNNING** - QC phase | Generation done (37/37, ~30min). Now in QC/retry phase |\n| GPU 4 | HumanEval | (201097) | vLLM | **COMPLETED** | Output: `/root/autodl-tmp/exp001/paraphrases/humaneval_paraphrases.json` (500KB) |\n\n**HumanEval QC Results:**\n- Total items: 164\n- QC passed: 26/164 (15.9%)\n- Main failure reason: BLEU score too high (paraphrases not diverse enough from originals)\n- Cosine similarity threshold (>0.85): mostly met\n- BLEU threshold (<0.3): most items fail — model generates near-copies\n\n**MMLU Crash Root Cause:** Parent python process dies silently (no traceback — likely system OOM killer), leaving `VLLM::EngineCore` child as orphan (PPID=1) holding 22.9 GiB GPU memory. Fixed by killing orphan (PID 201376) and restarting with smaller batch size (16 vs 32).\n\n**Key Issue:** All benchmarks have low QC pass rate due to high BLEU scores — the model produces paraphrases too similar to originals. This is a prompt/strategy problem that will need addressing after all generation completes."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2120465,
+            "duration_api_ms": 1757391,
+            "num_turns": 352,
+            "stop_reason": "end_turn",
+            "session_id": "a0b941dd-36a1-4b25-8763-a722b9678e3c",
+            "total_cost_usd": 11.342883499999996,
+            "usage": {
+              "input_tokens": 189,
+              "cache_creation_input_tokens": 342074,
+              "cache_read_input_tokens": 14835218,
+              "output_tokens": 63395,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 342074,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1097,
+                  "cache_read_input_tokens": 105618,
+                  "cache_creation_input_tokens": 2906,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2906
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2730,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002835,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1544,
+                "outputTokens": 67630,
+                "cacheReadInputTokens": 15002207,
+                "cacheCreationInputTokens": 342476,
+                "webSearchRequests": 0,
+                "costUSD": 11.340048499999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e0e34369-1792-4aa3-8a38-b76a11716ebb"
+          },
+          "id": "event-000905"
+        }
+      ]
+    }
+  ]
+}

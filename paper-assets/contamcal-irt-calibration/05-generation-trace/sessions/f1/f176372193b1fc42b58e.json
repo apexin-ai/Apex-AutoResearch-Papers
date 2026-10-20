@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f176372193b1fc42b58e",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp 008 signal survival",
+  "task_key": "worker_code_exp_008_signal_survival_20260514T151607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008_signal_survival_20260514T151607.log",
+    "occurrence": 1,
+    "bytes": 923749,
+    "sha256": "52294b8b812665005e6f60ef1758ff28dbd212cda807038ba1526299fe2911c8"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 2,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "record": 2,
+      "system": 15,
+      "assistant": 49,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "f176372193b1fc42b58e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f176372193b1fc42b58e-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "f176372193b1fc42b58e-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "f176372193b1fc42b58e-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-008-signal-survival-copy-3.md"
+}

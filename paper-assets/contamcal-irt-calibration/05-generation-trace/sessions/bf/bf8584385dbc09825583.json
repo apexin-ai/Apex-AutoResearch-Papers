@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf8584385dbc09825583",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 003 item aligned gap",
+  "task_key": "worker_code_exp_003_item_aligned_gap_20260516T045017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_item_aligned_gap_20260516T045017_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "d50ba192d71c05a9e922809ae9c1b3ce079209734da5598f40b5dee470ce96b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results:\n\n**The \"item correction < 0.3pp\" claim is technically correct but misleading.** It refers specifically to the difference between naive (misaligned) and properly item-ID-matched comparison — that methodological correction is indeed < 0.3pp.\n\nHowever, the **actual gap between original and paraphrased MMLU items is -2.24pp** (para consistently easier) across all 20 model pairs tested. Key numbers:\n\n| Finding | Value |\n|---------|-------|\n| Mean gap (aligned − para) | **-2.24 pp** |\n| Per-item neutral (|gap| ≤ 0.3) | 84.8% |\n| Items flagged (>50% disagreement) | 426 / 6,596 (6.5%) |\n| Gap stable across contamination | ~0.8pp variation (d000→d100) |\n\n**For RRF contamination detection**: the systematic bias approximately cancels in differential analysis since it affects all contamination levels similarly. The 426 flagged high-disagreement items should be reviewed for potential IRT exclusion.\n\nRegistry updated, artifact registered as `art_20260516_717a60`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-item-aligned-gap.md"
+}

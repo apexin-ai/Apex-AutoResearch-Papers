@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "id": "9343817d86b07cc4aa08",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analyze sft 3B d005 s123 done",
+  "task_key": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_sft-3B-d005-s123-done_20260515T150631.jsonl",
+    "occurrence": 1,
+    "bytes": 14103,
+    "sha256": "e5d885c408fe843b0f0134929a23a7a66edb3b9b726ea1a12c341d936f3b46a7"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:07:29.774756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:07:29.775091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:07:29.775258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -50 ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:07:29.775503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.0535, 'grad_norm': 0.3016066551208496, 'learning_rate': 1.067830117935864e-05, 'entropy': 1.0953976672142745, 'num_tokens': 16920593.0, 'mean_token_accuracy': 0.746736004948616, 'epoch': 0.86}\\\\n{'loss': 1.1651, 'grad_norm': 0.21130098402500153, 'learning_rate': 1.0215110087810365e-05, 'entropy': 1.141738547757268, 'num_tokens': 16979837.0, 'mean_token_accuracy': 0.7378625921905041, 'epoch': 0.86}\\\\n{'loss': 1.0913, 'grad_norm': 0.30132246017456055, 'learning_rate': 9.761647826098874e-06, 'entropy': 1.0703248102217913, 'num_tokens': 17043969.0, 'mean_token_accuracy': 0.7539968468248844, 'epoch': 0.87}\\\\n{'loss': 1.2266, 'grad_norm': 0.2510029375553131, 'learning_rate': 9.317963530077489e-06, 'entropy': 1.1594497542828321, 'num_tokens': 17112258.0, 'mean_token_accuracy': 0.7315925098955631, 'epoch': 0.87}\\\\n{'loss': 1.1391, 'grad_norm': 0.1511574685573578, 'learning_rate': 8.884105276087584e-06, 'entropy': 1.1314034838229419, 'num_tokens': 17176130.0, 'mean_token_accuracy': 0.7412561275064945, 'epoch': 0.87}\\\\n{'loss': 1.1419, 'grad_norm': 0.3425018787384033, 'learning_rate': 8.460120075749178e-06, 'entropy': 1.1326146267354489, 'num_tokens': 17236150.0, 'mean_token_accuracy': 0.7379473384469748, 'epoch': 0.88}\\\\n\\\\r 88%|████████▊ | 2790/3177 [2:43:53<17:48,  2.76s/it]\\\\r 88%|████████▊ | 2791/3177 [2:43:57<19:51,  3.09s/it]\\\\r 88%|████████▊ | 2792/3177 [2:44:00<19:55,  3.11s/it]\\\\r 88%|████████▊ | 2793/3177 [2:44:02<18:10,  2.84s/it]\\\\r 88%|████████▊ | 2794/3177 [2:44:06<19:23,  3.04s/it]\\\\r 88%|████████▊ | 2795/3177 [2:44:08<17:41,  2.78s/it]\\\\r 88%|████████▊ | 2796/3177 [2:44:11<18:01,  2.84s/it]\\\\r 88%|████████▊ | 2797/3177 [2:44:13<17:42,  2.80s/it]\\\\r 88%|████████▊ | 2798/3177 [2:44:17<18:25,  2.92s/it]\\\\r 88%|████████▊ | 2799/3177 [2:44:19<18:22,  2.92s/it]\\\\r 88%|████████▊ | 2800/3177 [2:44:22<17:44,  2.82s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2800/3\n…[truncated 6374 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:07:29.775668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_001_sft_3B_d005_s123'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:07:29.775809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3737}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:07:29.775999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:07:29.776420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_3B_d005_s123_aligned\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:06:22.987Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:06:45.427Z\\\", \\\"spec\\\": {\\\"parent\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"checkpoint_source\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter\\\", \\\"data_count\\\": 4, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_aligned.log\\\"}, \\\"hypothesis\\\": \\\"3B d005 s123 aligned eval. Chain from completed SFT. Critical for complete 3B seed=123 eval matrix.\\\"}, \\\"exp_001_sft_3B_d005_s123\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:58:15.842Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:04:31.503Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir Qwen2.5-3B_d005_s123 --seed 123 --lr 5e-5 --lora-alpha 16 --lora-r 16 --batch-size 2 --grad-accum 8\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 555936, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:58:30.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 50826, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:03:17\n…[truncated 14308 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:07:29.776596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:07:29.776743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132544\\\\ndrwxr-xr-x 3 root root      4096 May 15 23:02 .\\\\ndrwxr-xr-x 3 root root        63 May 15 23:02 ..\\\\n-rw-r--r-- 1 root root      1468 May 15 23:02 README.md\\\\n-rw-r--r-- 1 root root      1121 May 15 23:02 adapter_config.json\\\\n-rw-r--r-- 1 root root 119801528 May 15 23:02 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       605 May 15 23:02 added_tokens.json\\\\n-rw-r--r-- 1 root root      2427 May 15 23:02 chat_template.jinja\\\\ndrwxr-xr-x 2 root root      4096 May 15 23:02 checkpoint-3177\\\\n-rw-r--r-- 1 root root   1671853 May 15 23:02 merges.txt\\\\n-rw-r--r-- 1 root root       502 May 15 23:02 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  11421896 May 15 23:02 tokenizer.json\\\\n-rw-r--r-- 1 root root      4689 May 15 23:02 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6417 May 15 23:02 training_args.bin\\\\n-rw-r--r-- 1 root root   2776833 May 15 23:02 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:07:29.776930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_3B_d005_s123",
+              "field": "metrics",
+              "value": "{'final_loss': 1.1349, 'final_token_accuracy': 0.7069, 'total_steps': 3177}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:07:29.777100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:58:15.842Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:07:17.202Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir Qwen2.5-3B_d005_s123 --seed 123 --lr 5e-5 --lora-alpha 16 --lora-r 16 --batch-size 2 --grad-accum 8\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 555936, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:58:30.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 50826, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:03:17.430Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T15:03:27.534050+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 1.1349, \\\"final_token_accuracy\\\": 0.7069, \\\"total_steps\\\": 3177}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7271}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:07:29.777239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_3B_d005_s123",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:07:29.777433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_3B_d005_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:58:15.842Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:07:23.368Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir Qwen2.5-3B_d005_s123 --seed 123 --lr 5e-5 --lora-alpha 16 --lora-r 16 --batch-size 2 --grad-accum 8\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 555936, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_3B_d005_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:58:30.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"data_count\\\": 50826, \\\"model_name\\\": \\\"Qwen/Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\\", \\\"wall_clock_seconds\\\": 11333.2, \\\"gpu_hours\\\": 3.15}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:03:17.430Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T15:03:27.534050+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 1.1349, \\\"final_token_accuracy\\\": 0.7069, \\\"total_steps\\\": 3177}, \\\"completed_at\\\": \\\"2026-05-15T15:07:23.368Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0909}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:07:29.777631+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`exp_001_sft_3B_d005_s123` 已更新为 DONE(success)。\n\n**提取的 metrics：**\n\n| 指标 | 值 |\n|---|---|\n| final_loss (avg) | 1.1349 |\n| final_token_accuracy | 0.7069 |\n| total_steps | 3177/3177 |\n| train_runtime | 10982s (~3h 3m) |\n| epoch | 1.0 |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/` (adapter_model.safetensors 114MB) |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_sft-3B-d005-s123-done_20260515T150631"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-sft-3b-d005-s123-done.md"
+}
