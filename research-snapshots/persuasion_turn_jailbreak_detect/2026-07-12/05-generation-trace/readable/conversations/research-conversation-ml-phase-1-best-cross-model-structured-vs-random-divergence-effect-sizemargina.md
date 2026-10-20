@@ -1,0 +1,4610 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/4430d99b-de5b-452b-b963-111a2b70e462.jsonl`
+- **Structured JSON:** [`f91c3d209086d9f6faf6.json`](../../sessions/f9/f91c3d209086d9f6faf6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T15:42:00.318Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T15:42:00.318Z",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept\n核心假设：[\"Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-corrected NS）\", '3-seed LLaMA被视为sufficient cross-model validation（方向一致性 > 绝对power）', 'Structured-vs-random stability divergence被视为novel finding（非obvious negative result）', 'Dose-response 25条独立训练run被视为thorough empirical work', 'Recovery=Resilience distinction被认为是有价值的conceptual contribution', 'TaxEI-RP definitively ruling out recovery-pairing confound被视为strong experimental design']\n关键指标范围：{'vanilla_vs_taxei_gap_pp': [8.0, 10.0], 'cohens_d_main': [1.4, 1.8], 'cross_model_taxei_sd_ratio': [3.5, 4.5], 'catastrophic_seed_fraction': [0.2, 0.33], 'taxei_rp_vs_vanilla_gap_pp': [17.0, 20.0], 'recovery_clean_rate_match_pp': [0.0, 2.0], 'dose_response_nadir_depth_pp': [12.0, 15.0], 'inverted_u_peak_gap_pp': [6.0, 8.0], 'reviewer_score_mean': [3.5, 4.0]}\n叙事方向：原始framing完全成立——'Structured error injection is fundamentally destabilizing for embodied planning across architectures'。论文贡献从negative result升级为positive finding about injection stability properties。重点：(1)跨模型SD ratio 4:1证明是structured patterns的内在属性；(2)dose-response inverted-U揭示conflicting signal mechanism；(3)recovery=resilience是对整个error-injection-for-recovery范式的conceptual challenge。无需调整claims强度。\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: tax_error_inject_agent\nfocus: Cross-model validation升级：TaxEI结构化注入跨模型不稳定（Qwen一致退化、LLaMA高方差1/3 catastrophic seed），Random注入跨模型稳定。论文核心从\"单模型负面结果\"升级为\"结构化vs随机注入的训练稳定性差异是跨架构通用的\"。评估新framing能否支撑EMNLP Findings长文。\n\n## paper_framing.md\n\n# Paper Framing: When Does Error Injection Help LLM Agents? Boundary Conditions from a Failed Transfer to Embodied Planning\n\n## Target Venue\n**Primary**: EMNLP 2026 Findings (Budapest, Oct 22–29) — 8-page long paper. Negative-result contributions accepted per CFP.\n**Secondary**: ACL 2026 Findings if timeline permits.\n\n## Core Question\nUnder what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?\n\n## Thesis Statement\nTaxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — destabilizes embodied planning agent training without improving performance on ALFWorld. TaxEI and Random injection produce **identical** mean performance (58.3% vs Vanilla 67.3%, 5 seeds each), proving taxonomy labels provide zero benefit. Complete 5-seed dose-response reveals **no safe injection dose**: harm begins at 10% (-6.0pp), peaks at 25% (TaxEI nadir 52.7%), then **saturates** — 50% and Full produce similar harm (~58%) with no marginal worsening. The taxonomy penalty follows an **inverted-U curve**, peaking at 25% (-7.3pp TaxEI-Random gap) and vanishing at higher doses. At every concentration, training outcomes are a **lottery** (19-23pp within-dose range, bimodal seed distributions). Cross-model validation on LLaMA-3.1-8B-Instruct reveals that **structured error injection (TaxEI) causes training instability across model architectures** — TaxEI recovery SD=8.6pp vs Random SD=2.1pp (3-seed), with 1/3 seeds triggering Qwen-like catastrophic degradation (59.6% vs baseline 73.1%). Random injection remains stable and even mildly beneficial (mean 76.6% > Vanilla 73.1%). This confirms the harm is not model-specific but a property of structured error patterns themselves: taxonomy-guided injection creates conflicting learning signals that destabilize training across architectures, while unstructured noise is benign or helpful.\n\n## Story Arc\n\n### 1. Motivation: Why error injection should work\nError injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?\n\n### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning\nWe designed a 4-operator error taxonomy for ALFWorld embodied planning:\n- **P1** (step_order_swap): permute action ordering\n- **P2** (sub_goal_deletion): remove sub-goals\n- **C1** (context_truncation): truncate environmental context\n- **C4** (observation_masking): mask observation feedback\n\nWe injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.\n\n### 3. Finding: Injection harms equally regardless of taxonomy; introduces catastrophic seed vulnerability\n**Clean task performance (all 5-seed complete)**:\n- Vanilla SFT: 67.3% ± 4.7pp (seeds 42/0/123/1/7) — stable, no catastrophic seeds\n- TaxEI SFT: 58.3% ± 6.5pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.039 uncorrected, NS Bonferroni (p>0.017), Cohen's d=1.58**\n- Random SFT: 58.3% ± 8.7pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.089 uncorrected, NS, Cohen's d=1.28**\n\n**CENTRAL FINDING**: TaxEI and Random produce IDENTICAL mean performance (58.3% = 137/235 tasks). Taxonomy labels provide zero benefit over random injection at the mean level. This directly refutes the hypothesis that structured error labeling improves training signal.\n\n**Catastrophic seed vulnerability**: Both injection methods produce exactly one ~47% outlier (TaxEI seed0=46.8%, Random seed1=46.8%). Vanilla never drops below 61.7%. Injection introduces a 1-in-5 risk of catastrophic training failure absent in clean training.\n\n**Variance gradient**: Vanilla SD (4.7pp) < TaxEI SD (6.5pp) < Random SD (8.7pp). Injection amplifies variance; taxonomy labels may mildly stabilize (TaxEI SD < Random SD), but both are worse than Vanilla. This reverses the 3-seed pattern (where TaxEI had highest SD). Formal variance tests needed (Levene's, n=5).\n\n**Dose-response ablation (fixed-size 4,358 total)** (D034+D035+D038: 全部 5 个剂量完整 5-seed):\n| Dose | TaxEI Mean±SD (n) | Random Mean±SD (n) | Vanilla ref | TaxEI-Random Δ |\n|------|-------------------|-------------------|-------------|----------------|\n| 0% (vanilla) | — | — | 67.3±4.7 (5) | — |\n| 10% | 61.3±8.2 (5) | 63.8±5.4 (5) | | -2.5pp |\n| 25% | 52.7±7.6 (5) | 60.0±8.0 (5) | | **-7.3pp** |\n| 50% | 57.4±9.5 (5) | 58.3±11.7 (5) | | -0.9pp |\n| Full | 58.3±6.5 (5) | 58.3±8.7 (5) | | 0pp |\n\nPer-seed data:\n- TaxEI 10%: 61.7/70.2/55.3/51.1/68.1. Random 10%: 68.1/66.0/55.3/68.1/61.7.\n- TaxEI 25%: 48.9/46.8/46.8/63.8/57.4. Random 25%: 55.3/61.7/51.1/72.3/59.6.\n- TaxEI 50%: 51.1/70.2/46.8/63.8/55.3. Random 50%: 57.4/46.8/70.2/70.2/46.8.\n\n**Unified dose-response narrative** (D035+D038, complete 5-seed all doses):\n1. **Non-monotonic harm with 25% nadir + saturation**: Injection at ALL doses reduces mean and increases variance. Harm peaks at 25% (TaxEI nadir 52.7%), then partially rebounds: 50% (57.4%) ≈ Full (58.3%). Doubling injection from 50%→Full has zero marginal effect — ~50% is the saturation point beyond which additional errors no longer worsen outcomes.\n2. **Inverted-U taxonomy penalty**: TaxEI trails Random at every dose, but the gap peaks at 25% (7.3pp), diminishes at 50% (0.9pp, d=-0.08 negligible), and vanishes at Full (0pp). At 10% the gap is 2.5pp. Taxonomy labels actively harm at intermediate doses where clean/injected balance may maximize conflicting learning signals.\n3. **Universal training lottery**: All doses produce extreme seed variance (19-23pp within-dose range). Random 50% shows **bimodal** distribution: {46.8, 46.8, 57.4, 70.2, 70.2} — two distinct failure/success modes, not normal scatter. Report median+IQR alongside mean±SD for robustness.\n4. **Practical implication**: No injection dose is \"safe.\" Even 10% produces measurable harm (-6.0pp TaxEI). Outcomes are unpredictable at every concentration level. The training lottery, not dosage, dominates performance variation.\n\n**Variance pattern** (exploratory, not claimable): SD peaks at 50% (TaxEI 9.5, Random 11.7) then **declines** at Full (6.5, 8.7). This is unexpected — Full dose actually reduces variance vs 50%. Possible explanation: at 50%, the model faces maximum ambiguity between clean and error patterns; at Full, the injection signal dominates and the model consistently adapts (poorly). Levene's test NS at n=5. Do not claim variance patterns without significance tests.\n\n**Training lottery at all doses**: Extreme outliers in every condition — TaxEI 10% s0=70.2% vs s1=51.1% (19pp range), Random 25% s1=72.3% vs s123=51.1% (21pp range), Random 50% bimodal (23pp range). Single-seed evaluations are fundamentally unreliable at any dose.\n\n**Taxonomy label penalty** (task-type-specific): TaxEI trails Random in aggregate. Per-task 3-seed analysis: taxonomy injection specifically harms **multi-step coordination tasks** — pick_cool_then_place (TaxEI 38.1% vs Random 57.1%, -19.0pp) and pick_two_obj_and_place (42.9% vs 57.1%, -14.3pp) — while leaving simple tasks largely unaffected (≤4.2pp gap for other 4 task types).\n\n**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:\n- Vanilla: 61.7% | TaxEI: 59.6% | Random: 63.8%\n\n**Recovery ≈ Resilience (D041)**: Recovery eval rates match normal eval rates for all conditions (V: 61.7%=61.7%, T: 59.6%≈61.7%, R: 63.8%≈66.0%). Models succeed at the same base rate regardless of eval-time error injection — they passively ignore perturbations rather than actively recovering. This is **resilience** (noise tolerance from task competence), not **recovery** (error detection + correction). No training regime instills genuine error awareness.\n\n**Detection Rate**: 0% for all methods.\n\n**Taxonomy labels show no significant benefit**: TaxEI (56.7%) < Random (63.1%) < Vanilla (65.3%). TaxEI vs Random: paired t p≈0.034 (df=2, directionally consistent but low power).\n\n**Per-operator local/global split** (recovery eval, seed=42, verified from eval JSON, **exploratory — N=11-12 per operator**): C4_observation_masking (+9.1pp, 6→7/11), P1_step_order_swap (0.0pp, 7→7/12), C1_context_truncation (−8.3pp, 9→8/12), P2_sub_goal_deletion (−8.3pp, 7→6/12). NOT a smooth monotonic gradient — instead a binary split: the most local/observable operator (C4) shows TaxEI advantage; global/cascading operators (C1, P2) show equal disadvantage; P1 is neutral. **Critical caveat**: each delta is driven by ±1 task success/failure at N=11-12 — well within random noise. Fisher exact tests would be NS for all operators. This must be presented as exploratory/hypothesis-generating, not confirmatory. The directional pattern (local positive, global negative) is suggestive but the specific magnitudes (9.1pp, 8.3pp) carry false precision.\n\n**Variance tests**: Observed SD gradient: Vanilla 3.3pp < Random 7.0pp < TaxEI 8.6pp. F-test p=0.252 (NS, underpowered at df=2,2), but Levene's test p=0.085 (NS), Brown-Forsythe p=0.842 (NS), bootstrap P(SD_TaxEI > SD_Vanilla) = 0.688. All formal tests NS at n=3 — the variance gradient is a directional observation, not a statistically confirmed effect. Report as \"observed pattern, suggestive but underpowered.\"\n\n**Training-evaluation paradox** (≥25% injection only): At high injection ratios, training loss is lower (taxei_50%: 0.260, random_50%: 0.260 vs vanilla: 0.294) but eval performance is worse (51.1-57.4% vs 61.7%). However, at 10% injection, training loss is actually *higher* (0.308) than vanilla — the paradox only emerges above the dose-response threshold. This is consistent with the threshold effect: low injection doesn't change the training distribution enough to lower loss, while high injection causes the model to memorize error patterns. Literature support: Arpit et al. (2017) memorization dynamics, Zhou et al. (2023 LIMA) superficial alignment hypothesis.\n\n### 4. Analysis: Why it fails in embodied planning but works in tool-use\n\n**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.\n| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |\n|-----------|----------------------|------------------------------|\n| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |\n| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |\n| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |\n| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |\n| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |\n| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |\n| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |\n\n**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.\n\n**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.\n\n### 4b. Cross-Model Validation: TaxEI instability is not model-specific (LLaMA-3.1-8B-Instruct, 3-seed)\n\nTo test whether the TaxEI failure is Qwen-specific or a general property of structured error injection in embodied planning, we replicate the core experiment on LLaMA-3.1-8B-Instruct (3 seeds: 42/0/123). Training setup identical: Vanilla 4,358 samples (1,635 steps), TaxEI/Random 9,029 samples (3,387 steps).\n\n**LLaMA Recovery Rate (injected eval, 47 tasks)**:\n| Condition | s0 (eval=42) | s42 (eval=42) | s123 (eval=123) | Mean±SD |\n|-----------|:------------:|:-------------:|:---------------:|:-------:|\n| Vanilla | 74.5% | 74.5% | 70.2% | 73.1±2.5% |\n| TaxEI | 74.5% | 74.5% | **59.6%** | 69.5±8.6% |\n| Random | 74.5% | 76.6% | **78.7%** | 76.6±2.1% |\n\n**LLaMA Clean Success Rate**:\n| Condition | s0 | s42 | s123 | Mean±SD |\n|-----------|:--:|:---:|:----:|:-------:|\n| Vanilla | 72.3% | 72.3% | 72.3% | 72.3±0.0% |\n| TaxEI | 76.6% | 76.6% | **61.7%** | 71.6±8.6% |\n| Random | 74.5% | 76.6% | 76.6% | 75.9±1.2% |\n\n**Key findings**:\n1. **TaxEI training instability is cross-model**: 1/3 seeds (s123) triggers catastrophic degradation on LLaMA (-13.5pp recovery vs vanilla-s123, -10.6pp clean). Pattern mirrors Qwen's consistent degradation but with higher variance (2/3 seeds appear neutral).\n2. **Random injection is cross-model stable**: SD=2.1% (recovery), no catastrophic seeds, mean slightly above Vanilla (+3.5pp). This is the opposite of Qwen where Random also degraded.\n3. **TaxEI vs Random divergence**: On LLaMA, TaxEI mean (69.5%) < Random mean (76.6%), gap = -7.1pp. The variance difference is stark: TaxEI SD=8.6% vs Random SD=2.1%. Structured error patterns create training instability that unstructured noise does not.\n4. **Model-dependent severity, model-independent direction**: Qwen shows consistent TaxEI harm (-9pp, low variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, high variance with catastrophic 1/3 seed). The *direction* (TaxEI ≤ Random ≤ Vanilla for stability) holds across models; the *severity* varies.\n\n**Implication for paper story**: The finding upgrades from \"negative result on one model\" to \"structured error injection is fundamentally destabilizing for embodied planning across architectures.\" The taxonomy's structured perturbations create systematic biases that some training seed/model combinations amplify into catastrophic failure, while random noise averages out harmlessly.\n\n**Eval seed caveat**: s0/s42 use eval seed=42; s123 uses eval seed=123. Cross-seed aggregation (mean±SD) has a minor eval-seed confound (~2pp from eval randomness). Within each eval-seed group, horizontal (condition) comparisons are fully fair. The critical finding (taxei-s123 collapse) is a within-group horizontal comparison.\n\n### 5. Contribution: What this negative result gives the community\n1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.\n2. **Recovery-pairing disentanglement** (long paper NEW): By testing recovery-paired injection on ALFWorld, we isolate whether the negative result stems from missing recovery pairing or from fundamental task-structure differences. This is the first controlled test of recovery-paired vs unpaired error injection in embodied planning.\n3. **Recovery vs resilience distinction** (long paper NEW): Recovery eval rates match normal eval rates — models passively ignore eval-time errors (resilience) rather than actively recovering (recovery). Combined with 0% detection rate, this shows error injection creates no form of error awareness in embodied planning.\n4. **Training variance warning**: Error injection increases cross-seed variance 2.6× (SD 8.6pp vs 3.3pp, 5-seed confirmed). Single-seed evaluations of error injection methods are fundamentally unreliable.\n7. **Cross-model instability** (long paper NEW): TaxEI structured injection destabilizes training on both Qwen3-8B (consistent -9pp) and LLaMA-3.1-8B-Instruct (intermittent, 1/3 catastrophic seed), while Random injection remains stable across both models. This separates the harm attribution: it is structured error patterns — not model weakness — that cause instability.\n5. **No-safe-threshold dose-response + training lottery**: Complete 5-seed dose-response ablation (fixed data size, all 5 doses × 5 seeds) shows harm at every tested dose: 10% (-6.0pp TaxEI), 25% (nadir, -14.6pp TaxEI), 50% (-9.9pp TaxEI), Full (-9.0pp). Non-monotonic: harm peaks at 25%, partial rebound at higher doses. Taxonomy penalty follows inverted-U curve: 10% (-2.5pp) → 25% (-7.3pp peak) → 50% (-0.9pp) → Full (0pp). No injection dose is \"safe.\" Training lottery (19-23pp within-dose range) operates at all concentration levels.\n6. **Failure mode taxonomy** (long paper NEW): Qualitative failure analysis categorizes how error injection changes model behavior — noise injection (incoherent plans) vs wrong-learning (systematic biases).\n\n## Core Claims (each backed by experimental evidence)\n\n- **Claim 1**: Error injection (both taxonomy-guided and random) degrades embodied planning performance with large effect size but marginal statistical significance.\n  → Support: **5-seed data**: TaxEI 58.3%±6.5pp and Random 58.3%±8.7pp vs Vanilla 67.3%±4.7pp. Both injection methods show -9.0pp gap. Welch t: Vanilla vs TaxEI p≈0.039 (uncorrected), Vanilla vs Random p≈0.089. Bonferroni corrected (3 comparisons, α=0.017): all NS. Cohen's d: 1.58 (TaxEI) and 1.28 (Random) — large effects. Underpowered at n=5; the ~9pp degradation may be a real effect requiring larger N to confirm.\n\n- **Claim 2**: Taxonomy labels provide zero benefit over random injection — structured error labeling does not improve training signal.\n  → Support: **TaxEI = Random = 58.3% = 137/235 tasks (5-seed, identical)**. Welch t: t=0.000, p=1.000. This is the paper's strongest finding: the careful design of a 4-operator error taxonomy with per-error-type labels achieves exactly nothing compared to unlabeled random injection. The taxonomy's structured perturbations are indistinguishable from noise at the mean level. Variance differs: TaxEI SD (6.5pp) < Random SD (8.7pp), suggesting taxonomy may mildly stabilize, but both are worse than Vanilla (4.7pp).\n\n- **Claim 3**: Error injection causes **generalization instability** with catastrophic seed vulnerability — training converges stably but evaluation produces unpredictable outcomes including catastrophic failures.\n  → Support: **5-seed complete**: Training loss is extremely stable across seeds (SD=0.0007), yet eval SD: Vanilla 4.7pp < TaxEI 6.5pp < Random 8.7pp. Both injection methods produce exactly one catastrophic outlier (~47%): TaxEI seed0=46.8%, Random seed1=46.8%. Vanilla never drops below 61.7%. **Memorization-generalization dissociation** (D029/D033): Forward pass v2 (trajectory-level) confirms injected samples have lower loss than clean (all conditions), but eval is worse. Random memorizes 2.1× deeper than TaxEI (gap -0.078 vs -0.037) yet achieves identical eval — deeper memorization does not linearly predict eval harm. Dose-response loss gaps are non-monotonic (25% > 50%), not the monotonic pattern in v1 (which had a classification bug). D026 behavioral evidence (partial update: 3-seed V/T, 1-seed R, NOT balanced — full 5-seed trajectory collection pending): TaxEI produces ~2.2× more loop_repetition failures than Vanilla. Ratio stable across data subsets but absolute rates pending balanced data. **Observed pattern** (correlation, not established causation): memorization of error patterns + loop fixation at eval time + generalization collapse. Per-operator loss ranking is unstable across conditions, precluding strong per-operator causal claims. 1-in-5 catastrophic seed risk is absent from clean training.\n\n- **Claim 4**: Injection-trained models do not improve error recovery — observed \"recovery\" is passive resilience (ignoring errors), not active recovery.\n  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp). **D041 key insight**: Recovery eval rates match normal eval rates across all conditions (Vanilla 61.7%=61.7%, TaxEI 59.6%≈61.7%, Random 63.8%≈66.0%). Models succeed at the same rate whether or not errors are injected at eval time — they passively ignore perturbations rather than actively detecting and recovering from them. This reframes \"no recovery improvement\" as \"no recovery mechanism at all\": the models are **resilient** (robust to noise) rather than **recovery-capable** (able to detect and correct errors). The distinction matters because resilience is a byproduct of task completion ability, while recovery requires explicit error awareness that none of the training regimes instill.\n\n- **Claim 5**: Detection training via error injection is completely ineffective — models show zero error awareness.\n  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random). Combined with D041's recovery≈resilience finding: models neither detect errors explicitly (0% detection) nor respond to them implicitly (recovery rate = normal eval rate). Error injection during training fails to create any form of error awareness in the embodied planning domain.\n\n- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.\n  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.\n\n- **Claim 7** (long paper NEW): Recovery-paired injection actively harms performance, definitively ruling out recovery pairing as PALADIN's missing ingredient.\n  → Support: **TaxEI-RP 4-seed mean 47.9% ± 7.8pp** (s42=38.3%, s0=46.8%, s1=48.9%, s123=57.4%) vs TaxEI 58.3% vs Vanilla 67.3%. Recovery-paired training (14,437 samples = TaxEI 9,029 + recovery continuations 5,408) performs **10pp worse than unpaired TaxEI** and **19pp worse than Vanilla**. Adding recovery demonstrations does not teach active recovery — it adds noise that further corrupts the action distribution. Detection rate remains 0%. This definitively answers the PALADIN recovery-pairing confound: the failure is not due to missing recovery pairs, but to fundamental task-structural incompatibility. (D043)\n\n- **Claim 8** ~~(long paper NEW)~~: **CANCELLED (D040)**. WebShop replication infeasible — P1_StepOrderSwap incompatible with linear action space (search+click), taxonomy 4→3 makes cross-environment comparison inequivalent. Downgraded to Discussion section analysis of ALFWorld vs WebShop structural differences and why cross-environment replication is non-trivial.\n\n- **Claim 9** (long paper NEW): Structured error injection (TaxEI) causes **cross-model training instability**, while random injection remains stable — the harm is a property of structured error patterns, not model-specific.\n  → Support: **LLaMA-3.1-8B-Instruct 3-seed replication**. TaxEI recovery mean 69.5%±8.6pp vs Random 76.6%±2.1pp vs Vanilla 73.1%±2.5pp. TaxEI variance 4× higher than Random (SD 8.6 vs 2.1). 1/3 seeds (s123) shows catastrophic TaxEI collapse: recovery 59.6% (vs vanilla 70.2%, Δ=-10.6pp; vs random 78.7%, Δ=-19.1pp). Other 2 seeds show TaxEI=Vanilla=74.5%. Random is consistently stable or mildly beneficial across all seeds. **Cross-model pattern**: Qwen shows consistent TaxEI harm (mean -9pp, moderate variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, extreme variance with 1/3 catastrophic). Direction (TaxEI ≤ Random for stability) holds across both models. This upgrades the finding from \"Qwen-specific negative result\" to \"structured injection is fundamentally destabilizing for embodied planning.\"\n\n## Anticipated Reviewer Concerns\n\n1. **\"Statistical power is limited.\"**\n   → All three conditions now have **5 seeds**. Welch t: Vanilla vs TaxEI p=0.039 (uncorrected), Bonferroni NS (α=0.017). Cohen's d=1.58 (large). Power at n=5: 45.2%; need n=9 for 80%. We do not claim significance after correction but emphasize the large effect size (-9.0pp) and report all individual seed results. Bootstrap 95% CI: [+3.4, +15.8]pp. Bayes Factor 0.68 (inconclusive). The variance gradient (Vanilla 4.7 < TaxEI 6.5 < Random 8.7) is consistent across seeds.\n\n2. **\"ALFWorld has only 47 test tasks — too small for reliable conclusions.\"**\n   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. With 5 seeds × 47 tasks = 235 episodes per condition, our pooled sample gives adequate power for the observed ~9pp effect (d≈1.4). WebShop replication was planned but cancelled (D040: P1 incompatible with linear action space); the structural incompatibility itself supports our task-structure boundary condition argument.\n\n3. **\"Maybe the taxonomy itself is poorly designed.\"**\n   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.\n\n4. **\"The training recipe might be suboptimal for injection data.\"**\n   → The same recipe produces strong Vanilla results (67.3% ± 4.7pp vs 42.6% zero-shot baseline, +24.7pp, 5 seeds), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.\n\n5. **\"50% injection ratio is too high — you're drowning the signal.\"**\n   → Comprehensively addressed with complete 5-seed fixed-size dose-response ablation at 10%/25%/50%/Full (all 4,358 total samples, all 5 doses × 5 seeds). No safe threshold exists: even 10% injection degrades performance (TaxEI -6.0pp). The harm profile is non-monotonic: monotonic degradation 0%→10%→25% (TaxEI nadir 52.7%), partial rebound 25%→50%→Full driven by training lottery. Taxonomy penalty follows inverted-U curve peaking at 25% (-7.3pp TaxEI-Random gap). The pattern holds for both TaxEI and Random, suggesting it is a general property of error injection.\n\n6. **\"Why is detection rate 0%? Evaluation might be flawed.\"**\n   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.\n\n7. **\"Why not compare directly on ToolBench?\"**\n   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.\n\n8. **\"PALADIN uses error+recovery pairs; TaxEI uses standalone errors. Isn't recovery-pairing the real difference?\"** [Dream M+W]\n   → **Directly tested and refuted** (D043). TaxEI-RP (recovery-paired, 14,437 samples) achieves 47.9% ± 7.8pp — **10pp worse** than unpaired TaxEI (58.3%) and **19pp worse** than Vanilla (67.3%). Recovery pairing not only fails to help, it actively harms. This is the paper's strongest evidence for the task-structure hypothesis: even mimicking PALADIN's recovery-pairing design cannot overcome the fundamental incompatibility of error injection with embodied planning.\n\n9. **\"Power analysis says n=9 needed but you only ran n=5.\"** [Dream W]\n   → We acknowledge n=5 is underpowered (45.2%) for the observed effect at α=0.017 (Bonferroni). We report this transparently with power curves. The large effect size (d=1.58), consistent direction across all 5 seeds, and dose-response replication across 25 independent training runs provide converging evidence despite per-comparison underpowerment.\n\n10. **\"Data volume confound: Vanilla has half the training data.\"** [Dream W]\n    → Vanilla uses 4,358 samples; TaxEI/Random use 9,029. We address this via dose-response ablation at fixed 4,358 total samples. At 10% injection, TaxEI still degrades (-6.0pp, 5-seed), confirming harm is from injection content, not volume. The full-scale comparison's volume asymmetry is acknowledged as a limitation.\n\n11. **\"Only tested on one model — maybe it's a Qwen-specific issue.\"**\n    → Addressed with LLaMA-3.1-8B-Instruct 3-seed replication. TaxEI instability reproduces cross-model (LLaMA SD=8.6pp, 1/3 catastrophic seed). Random injection is stable on both models. The direction (TaxEI harmful/unstable, Random neutral/stable) is consistent across architectures; only severity differs (Qwen: consistent harm; LLaMA: intermittent but catastrophic when triggered). This rules out model-specific explanations and points to structured error patterns as the causal factor.\n\n## Key Differentiators vs PALADIN\n\nPALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:\n\n1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., \"go to countertop 2\" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.\n\n2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.\n\n3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making \"what to do after an error\" fundamentally harder to learn from examples.\n\n4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.\n\n**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.\n\n## Note on v3→v4 Vanilla Discrepancy\nv3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.\n\n## Dream Review Findings (dream_20260515T020837)\n\n**Scores**: Best 2/5 (artifact: dream fabricated experiments), Median 3/5 (Borderline Accept), Worst 2.5/5 (Borderline Revise)\n\n**Confirmed action items (cross-tier consistent)**:\n1. Related work must expand to 15-20 refs. Add: Reflexion (Shinn 2023), McCoy et al. (2020) seed-dependent generalization, Mosbach et al. (2021) fine-tuning stability, Madry et al. (2018) adversarial training, Bengio et al. (2009) curriculum learning, D'Amour et al. (2022) underspecification, ReAct (Yao 2023).\n2. PALADIN recovery-pairing confound must be discussed prominently: PALADIN pairs errors WITH recovery demonstrations; TaxEI injects standalone errors without recovery. This is the most parsimonious alternative explanation.\n3. Formal variance test: F-test p=0.252 (NS) is our strongest stat. Also compute Levene's test for robustness.\n4. Paper structure for 4-page limit: Intro → Method → Main Results (Table 1 + dose-response) → Qualitative/Error Echo → Per-Operator Gradient → Discussion → Conclusion. Move training dynamics, recovery prompting to appendix.\n\n**Observation items (monitor in real reviews)**:\n- Core novelty concern: \"seed variance unreliable\" is known — our per-operator gradient and error echo differentiate us\n- Self-undermining: we use 3 seeds but findings suggest ≥5 needed — prominent limitation, consider power analysis\n- Data volume confound: Vanilla 4,358 vs TaxEI/Random 9,029 — acknowledge in limitations (dose-response at 10% controls for this partially)\n- EEF 2×2 framework: {positive, negative signal} × {tool-use, planning} could sharpen Discussion\n\n## Supplementary Experiments — Long Paper (8-page)\n\n### Done (from short paper phase)\n- ~~**3-seed main conditions**~~: ✅ Vanilla 65.3%±3.3pp, TaxEI 56.7%±8.6pp, Random 63.1%±7.0pp.\n- ~~**Dose-response 3-seed (25%/50%)**~~: ✅ Dual regime confirmed. 10% = seed=42 only.\n- ~~**Recovery eval (seed=42)**~~: ✅ TaxEI 59.6%, Vanilla 61.7%, Random 63.8%. Detection 0%.\n\n### Priority 1 (required for 8-page long paper)\n- ~~**5-seed extension** [Claims 1,3]~~: ✅ Done. Vanilla 67.3±4.7, TaxEI=Random=58.3%. D032.\n- ~~**Training dynamics** [Claim 3]~~: ✅ Done. Forward pass v2 (trajectory-level). D027/D029/D033.\n- ~~**Qualitative failure analysis** [Claims 1,6]~~: ✅ Done. TaxEI loop_repetition 2.2×. D026.\n- ~~**Extended statistics** [Claims 1,3]~~: ✅ Done. Bootstrap CI, power, Bayesian. D030-D032.\n- ~~**Dose-response 5-seed** [Claim 3]~~: ✅ Done. All 5 doses × 5 seeds complete. 10% (D034), 25% (D035/D036), 50% (D038). Inverted-U taxonomy penalty curve. ~24 GPU-h.\n- **Recovery-paired injection** [Claim 7]: 🔄 Training in progress (4 seeds × 4 GPU). Datagen complete (711/760), 14,437 samples. ~16 GPU-h.\n- ~~**WebShop replication** [Claim 8]~~: ❌ CANCELLED (D040). P1 incompatible with linear action space. Downgraded to Discussion.\n- **Recovery eval multi-seed** [Claims 4,5]: 7/15 complete. Remaining 8/15 after TaxEI-RP. ~15 GPU-h.\n\n### Priority 1.5 (cross-model validation)\n- ~~**LLaMA-3.1-8B cross-model replication** [Claim 9]~~: ✅ Done. 3 seeds × 3 conditions, all training + eval complete. TaxEI instability confirmed cross-model (SD=8.6%, 1/3 catastrophic). Random stable (SD=2.1%). ~36 GPU-h.\n\n### Priority 2 (strengthens further)\n- **Scale ablation** [Claim 6]: 25K-50K trajectories. ~$30-50 API + ~20 GPU-h.\n\n### Estimated total: ~120 GPU-hours (~30h wall clock with 4 × 5090)\n\n\n## registry (completed experiments)\n\n- exp_id: traj_collect_500\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    successful_trajectories: 501\n    failed_trajectories: 213\n    total_attempts: 714\n    success_rate: 0.702\n    api_cost_usd: 8.86\n    collection_time_sec: 5245\n- exp_id: sft-dryrun-73\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss_init: 2.436\n    train_loss_final: 1.543\n    train_loss_avg: 1.894\n    peak_memory_gib: 19.22\n    steps: 8\n    duration_sec: 42\n    data_vanilla: 124\n    data_injected_dryrun: 96\n    injected_failed: 4\n- exp_id: vanilla-react-baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    overall_success_rate: 0.426\n    total_tasks: 47\n    successes: 20\n    per_task_type:\n      pick_heat_then_place:\n        success: 5\n        total: 8\n        rate: 0.625\n      look_at_obj_in_light:\n        success: 3\n        total: 6\n        rate: 0.5\n      pick_and_place_simple:\n        success: 4\n        total: 8\n        rate: 0.5\n      pick_clean_then_place:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_two_obj_and_place:\n        success: 3\n        total: 7\n        rate: 0.429\n      pick_cool_then_place:\n        success: 0\n        total: 7\n        rate: 0\n- exp_id: mini-pipeline-e2e\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: mini-taxei-sft\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.447\n    eval_successes: 21\n    eval_total: 47\n    vs_baseline_pp: 2.1\n    per_task:\n      look_at_obj_in_light: 3/6 (50.0%)\n      pick_and_place_simple: 2/8 (25.0%)\n      pick_clean_then_place: 6/11 (54.5%)\n      pick_cool_then_place: 1/7 (14.3%)\n      pick_heat_then_place: 6/8 (75.0%)\n      pick_two_obj_and_place: 3/7 (42.9%)\n    train_steps: 195\n    train_duration_min: 16.3\n- exp_id: mini-vanilla-sft\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.149\n    eval_successes: 7\n    eval_total: 47\n    vs_baseline_pp: -27.7\n    per_task:\n      look_at_obj_in_light: 0/6 (0%)\n      pick_and_place_simple: 2/8 (25.0%)\n      pick_clean_then_place: 2/11 (18.2%)\n      pick_cool_then_place: 0/7 (0%)\n      pick_heat_then_place: 3/8 (37.5%)\n      pick_two_obj_and_place: 0/7 (0%)\n    train_steps: 54\n    train_duration_min: 5\n- exp_id: vanilla_sft_aligned_v1\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: vanilla_sft_aligned_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: mini-vanilla-sft-v3\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    train_samples: 4176\n    train_steps_total: 1566\n    est_duration_min: 58\n    format: aligned_single_turn\n- exp_id: mini-taxei-sft-v3\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    train_samples: 7545\n    train_samples_clean: 4176\n    train_samples_injected: 3369\n    train_steps_total: 2832\n    est_duration_min: 90\n    format: aligned_single_turn\n- exp_id: mini-random-sft-v3\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    train_samples: 9076\n    train_samples_clean: 4176\n    train_samples_injected: 4900\n    train_steps_total: 3405\n    est_duration_min: 110\n    format: aligned_single_turn\n- exp_id: mini-vanilla-sft-v4\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-vanilla-sft\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: v3-vanilla-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.745\n    successes: 35\n    total: 47\n    vs_baseline_pp: 31.9\n    vs_baseline: 42.6% → 74.5%\n- exp_id: v3-taxei-eval\n  name: ''\n  status: PREPARING\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.66\n    eval_successes: 31\n    eval_total: 47\n    vs_baseline_pp: 23.4\n    vs_vanilla_sft_pp: -8.5\n    per_task:\n      look_at_obj_in_light: 5/6 (83.3%)\n      pick_clean_then_place: 8/11 (72.7%)\n      pick_heat_then_place: 6/8 (75.0%)\n      pick_and_place_simple: 5/8 (62.5%)\n      pick_two_obj_and_place: 4/7 (57.1%)\n      pick_cool_then_place: 3/7 (42.9%)\n- exp_id: v3-random-eval\n  name: ''\n  status: PREPARING\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.511\n    eval_successes: 24\n    eval_total: 47\n    vs_baseline_pp: 8.5\n    vs_vanilla_sft_pp: -23.4\n- exp_id: v4-taxei-sft\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-random-sft\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-taxei-sft-r2\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-random-sft-r2\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-taxei-sft-r3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: v4-random-sft-r3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: v4-vanilla-eval\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-vanilla-eval-r2\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-vanilla-eval-r3\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.617\n    eval_successes: 29\n    eval_total: 47\n    per_task:\n      look_at_obj_in_light: 5/6 (83.3%)\n      pick_heat_then_place: 6/8 (75.0%)\n      pick_and_place_simple: 5/8 (62.5%)\n      pick_cool_then_place: 4/7 (57.1%)\n      pick_two_obj_and_place: 4/7 (57.1%)\n      pick_clean_then_place: 5/11 (45.5%)\n- exp_id: v4-taxei-eval\n  name: ''\n  status: PREPARING\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.617\n    eval_successes: 29\n    eval_total: 47\n    vs_vanilla_pp: 0\n    vs_random_pp: -4.3\n    mcnemar_vs_vanilla_p: 1\n    mcnemar_vs_random_p: 0.754\n    gate_3a: FAIL\n    gate_3b: FAIL\n    gate_4: PASS\n    per_task:\n      look_at_obj_in_light: 6/6 (100%)\n      pick_and_place_simple: 5/8 (62.5%)\n      pick_clean_then_place: 6/11 (54.5%)\n      pick_cool_then_place: 3/7 (42.9%)\n      pick_heat_then_place: 7/8 (87.5%)\n      pick_two_obj_and_place: 2/7 (28.6%)\n- exp_id: v4-random-eval\n  name: ''\n  status: PREPARING\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.66\n    eval_successes: 31\n    eval_total: 47\n    vs_vanilla_pp: 4.3\n    vs_taxei_pp: 4.3\n    mcnemar_vs_vanilla_p: 0.754\n    per_task:\n      look_at_obj_in_light: 6/6 (100%)\n      pick_and_place_simple: 4/8 (50%)\n      pick_clean_then_place: 6/11 (54.5%)\n      pick_cool_then_place: 4/7 (57.1%)\n      pick_heat_then_place: 7/8 (87.5%)\n      pick_two_obj_and_place: 4/7 (57.1%)\n- exp_id: v4-vanilla-seed0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.297\n    avg_loss: 0.416\n    token_accuracy: 0.902\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 58\n- exp_id: v4-taxei-seed0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.355\n    token_accuracy: 0.917\n    train_steps: 3387\n    train_epochs: 3\n    train_duration_min: 110\n- exp_id: v4-random-seed0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.355\n    token_accuracy: 0.912\n    train_steps: 3387\n    train_epochs: 3\n    train_duration_min: 110\n- exp_id: v4-recovery-eval-dev\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    pipeline_files:\n    - eval/injected_eval.py\n    - scripts/run_injected_eval.sh\n    injected_eval_lines: 463\n    dryrun_result: PASS\n    dryrun_detail: vanilla checkpoint, 1 task, cuda:3, injected error recovered in\n      13 steps\n- exp_id: v4-vanilla-seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.288\n    token_accuracy: 0.903\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 58.9\n- exp_id: v4-vanilla-seed7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.295\n    avg_loss: 0.415\n    token_accuracy: 0.898\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 59.4\n    checkpoint_path: checkpoints/mini_vanilla_sft_v4_seed7/v0-20260515-214031/checkpoint-1635\n- exp_id: v4-recovery-dryrun\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-vanilla-seed0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.681\n    eval_successes: 32\n    eval_total: 47\n    vs_seed42_pp: 6.4\n    mcnemar_vs_seed42_p: 0.375\n    discordant_pairs: 5\n    per_task:\n      look_at_obj_in_light: 5/6 (83.3%)\n      pick_and_place_simple: 5/8 (62.5%)\n      pick_clean_then_place: 6/11 (54.5%)\n      pick_cool_then_place: 4/7 (57.1%)\n      pick_heat_then_place: 7/8 (87.5%)\n      pick_two_obj_and_place: 5/7 (71.4%)\n- exp_id: v4-taxei-seed0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.468\n    eval_successes: 22\n    eval_total: 47\n    vs_seed42_pp: -14.9\n- exp_id: v4-random-seed0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.553\n    eval_successes: 26\n    eval_total: 47\n    vs_seed42_pp: -10.7\n- exp_id: v4-vanilla-seed123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.66\n    eval_successes: 31\n    eval_total: 47\n    vs_seed42_pp: 4.3\n    vs_seed0_pp: -2.1\n    per_task:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 6\n        total: 8\n        rate: 0.75\n      pick_clean_then_place_in_recep:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        success: 4\n        total: 7\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        success: 7\n        total: 8\n        rate: 0.875\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-vanilla-recovery-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.617\n    successes: 29\n    total: 47\n    recovery_rate: 0.617\n    detection_rate: 0\n    per_operator:\n      C1_context_truncation:\n        recovered: 9\n        total: 12\n        rate: 0.75\n      C4_observation_masking:\n        recovered: 6\n        total: 11\n        rate: 0.545\n      P1_step_order_swap:\n        recovered: 7\n        total: 12\n        rate: 0.583\n      P2_sub_goal_deletion:\n        recovered: 7\n        total: 12\n        rate: 0.583\n- exp_id: v4-taxei-recovery-eval\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    success_rate: 0.596\n    successes: 28\n    total: 47\n    recovery_rate: 0.596\n    detection_rate: 0\n- exp_id: v4-random-recovery-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.638\n    detection_rate: 0\n    successes: 30\n    total: 47\n    source: json-file-verified\n    note: r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\n- exp_id: v4-taxei-recovery-eval-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.596\n    detection_rate: 0\n    total_episodes: 47\n    per_operator:\n      C1_context_truncation:\n        recovered: 8\n        total: 12\n        rate: 0.667\n      C4_observation_masking:\n        recovered: 7\n        total: 11\n        rate: 0.636\n      P1_step_order_swap:\n        recovered: 7\n        total: 12\n        rate: 0.583\n      P2_sub_goal_deletion:\n        recovered: 6\n        total: 12\n        rate: 0.5\n- exp_id: v4-taxei-seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.35506879\n    token_accuracy: 0.89978214\n    train_steps: 3387\n    train_epochs: 3\n    train_duration_min: 109.2\n    train_runtime_sec: 6549.432\n    train_speed_s_per_it: 1.934\n    memory_gib: 18.49\n- exp_id: v4-random-seed123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.35484016\n    final_loss: 0.16766574\n    token_accuracy: 0.94187103\n    avg_token_accuracy: 0.90849673\n    train_steps: 3387\n    train_epochs: 3\n    train_runtime_sec: 6609.3556\n    train_duration_min: 110.2\n    train_samples_per_second: 4.098\n    train_steps_per_second: 0.512\n    train_speed_s_per_it: 1.951\n    memory_gib: 18.49\n- exp_id: v4-fixed-inject10\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-fixed-inject25\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject10\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.308\n    token_accuracy: 0.888\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 58\n- exp_id: v4-taxei-fixed-inject25\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject25-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.285\n    token_accuracy: 0.893\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 58\n- exp_id: v4-taxei-seed123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.617\n    eval_successes: 29\n    eval_total: 47\n    by_task:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 4\n        total: 8\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        success: 7\n        total: 11\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        success: 3\n        total: 7\n        rate: 0.429\n      pick_heat_then_place_in_recep:\n        success: 6\n        total: 8\n        rate: 0.75\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-taxei-fixed-inject10-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.617\n    eval_successes: 29\n    eval_total: 47\n    by_task:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 5\n        total: 8\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        success: 4\n        total: 7\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        success: 6\n        total: 8\n        rate: 0.75\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-taxei-fixed-inject25-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.489\n    eval_successes: 23\n    eval_total: 47\n    by_task:\n      look_at_obj_in_light:\n        success: 4\n        total: 6\n        rate: 0.667\n      pick_and_place_simple:\n        success: 3\n        total: 8\n        rate: 0.375\n      pick_clean_then_place_in_recep:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        success: 2\n        total: 7\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        success: 5\n        total: 8\n        rate: 0.625\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-random-seed123-eval\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.681\n    eval_successes: 32\n    eval_total: 47\n    by_task:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 7\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 5\n        rate: 0.714\n- exp_id: v4-taxei-fixed-inject50\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.259\n    token_accuracy: 0.911\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 53.1\n- exp_id: v4-random-fixed-inject10\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4226\n    final_step_loss: 0.3079\n    token_accuracy: 0.9\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 57\n- exp_id: v4-random-fixed-inject25\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-random-fixed-inject50\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n    train_loss: 0.4338\n    final_step_loss: 0.2618\n    token_accuracy: 0.91\n    train_duration_min: 53.1\n    memory_gib: 18\n    train_speed_s_per_it: 1.95\n- exp_id: v4-taxei-fixed-inject50-eval\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    eval_success_rate: 0.511\n    eval_successes: 24\n    eval_total: 47\n    vs_vanilla_seed42_pp: -10.6\n- exp_id: v4-random-fixed-inject10-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.681\n    eval_successes: 32\n    eval_total: 47\n    by_task:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 6\n        rate: 0.545\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 5\n        rate: 0.714\n- exp_id: v4-random-fixed-inject50-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.574\n    eval_successes: 27\n    eval_total: 47\n    vs_vanilla_seed42_pp: -4.3\n    vs_taxei_50_pp: 6.3\n- exp_id: v4-random-fixed-inject25-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.553\n    eval_successes: 26\n    eval_total: 47\n    vs_vanilla_seed42_pp: -6.4\n    vs_taxei_25_pp: 6.4\n- exp_id: v4-taxei-fixed-inject25-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4258\n    train_duration_min: 56.1\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-taxei-fixed-inject25-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4253\n    train_duration_min: 55.9\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-taxei-fixed-inject50-s0\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    train_loss: 0.4342\n    train_duration_min: 52.4\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-taxei-fixed-inject50-s123\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    train_loss: 0.4348\n    train_duration_min: 52.9\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-random-fixed-inject25-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: v4-random-fixed-inject25-s123\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-random-fixed-inject50-s0\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-random-fixed-inject50-s123\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject25-s0-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.468\n    successes: 22\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 2\n        rate: 0.25\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-fixed-inject25-s123-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.468\n    successes: 22\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 3\n        rate: 0.375\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 1\n        rate: 0.143\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-fixed-inject50-s0-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.702\n    eval_successes: 33\n    eval_total: 47\n- exp_id: v4-taxei-fixed-inject50-s123-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.468\n    eval_successes: 22\n    eval_total: 47\n- exp_id: v4-random-fixed-inject25-s0-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.617\n    total: 47\n    successes: 29\n    by_task:\n      look_at_obj_in_light: 0.667\n      pick_and_place_simple: 0.625\n      pick_clean_then_place_in_recep: 0.455\n      pick_cool_then_place_in_recep: 0.571\n      pick_heat_then_place_in_recep: 0.75\n      pick_two_obj_and_place: 0.714\n- exp_id: v4-random-fixed-inject25-s123-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.511\n    total: 47\n    successes: 24\n    by_task:\n      look_at_obj_in_light: 0.667\n      pick_and_place_simple: 0.375\n      pick_clean_then_place_in_recep: 0.545\n      pick_cool_then_place_in_recep: 0.143\n      pick_heat_then_place_in_recep: 0.75\n      pick_two_obj_and_place: 0.571\n- exp_id: v4-random-fixed-inject50-s0-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.468\n    successes: 22\n    total: 47\n- exp_id: v4-random-fixed-inject50-s123-eval\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    success_rate: 0.702\n    successes: 33\n    total: 47\n- exp_id: v4-vanilla-recovery-eval-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.681\n    successes: 32\n    total: 47\n    detection_rate: 0\n- exp_id: v4-vanilla-recovery-eval-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.66\n    successes: 31\n    total: 47\n    detection_rate: 0\n- exp_id: v4-taxei-recovery-eval-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.468\n    successes: 22\n    total: 47\n    detection_rate: 0\n- exp_id: v4-taxei-recovery-eval-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.617\n    successes: 29\n    total: 47\n    detection_rate: 0\n- exp_id: v4-random-recovery-eval-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.553\n    detection_rate: 0\n    success_rate: 0.553\n    total_episodes: 47\n    by_operator:\n      C1_context_truncation:\n        total: 12\n        recovered: 7\n        recovery_rate: 0.583\n      C4_observation_masking:\n        total: 11\n        recovered: 6\n        recovery_rate: 0.545\n      P1_step_order_swap:\n        total: 12\n        recovered: 7\n        recovery_rate: 0.583\n      P2_sub_goal_deletion:\n        total: 12\n        recovered: 6\n        recovery_rate: 0.5\n- exp_id: v4-random-recovery-eval-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.66\n    detection_rate: 0\n    total_episodes: 47\n    by_operator:\n      C1_context_truncation:\n        recovery_rate: 0.75\n        recovered: 9\n        total: 12\n      P2_sub_goal_deletion:\n        recovery_rate: 0.75\n        recovered: 9\n        total: 12\n      P1_step_order_swap:\n        recovery_rate: 0.583\n        recovered: 7\n        total: 12\n      C4_observation_masking:\n        recovery_rate: 0.545\n        recovered: 6\n        total: 11\n- exp_id: v4-vanilla-seed1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.292\n    avg_loss: 0.416\n    token_accuracy: 0.903\n    train_steps: 1635\n    train_epochs: 3\n    train_duration_min: 58.8\n    memory_gib: 17.63\n    checkpoint_path: checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635\n- exp_id: v4-taxei-seed1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.1667\n    avg_loss: 0.3561\n    token_accuracy: 0.915\n    final_token_acc: 0.942\n    train_steps: 3387\n    train_epochs: 3\n    train_duration_min: 108.9\n    memory_gib: 18.49\n    checkpoint_path: checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387\n- exp_id: v4-taxei-seed7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    current_step: 3387\n    total_steps: 3387\n    progress_pct: 100\n    train_loss: 0.3568\n    final_step_loss: 0.1753\n    token_acc: 0.9009\n    final_token_acc: 0.9328\n    train_runtime_s: 6591.9\n    epochs: 3\n    peak_memory_gib: 18.49\n    gpu: cuda:3\n    pid: 155145\n- exp_id: v4-training-dynamics-forward\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    vanilla_full:\n      clean_loss: 0.6853\n      clean_n: 4358\n    taxei_full:\n      clean_loss: 0.7712\n      injected_loss: 0.6139\n      clean_n: 8269\n      injected_n: 760\n      per_operator:\n        P1_StepOrderSwap: 0.6165\n        P2_SubGoalDeletion: 0.6161\n        C1_ContextTruncation: 0.5932\n        C4_ObservationMasking: 0.6298\n    random_full:\n      clean_loss: 0.7354\n      injected_loss: 0.5902\n      clean_n: 8269\n      injected_n: 760\n    dose_response:\n      taxei_10pct:\n        clean_loss: 0.6628\n        injected_loss: 0.6464\n        gap: -0.0164\n        injected_n: 70\n      taxei_25pct:\n        clean_loss: 0.701\n        injected_loss: 0.574\n        gap: -0.127\n        injected_n: 168\n      taxei_50pct:\n        clean_loss: 0.8516\n        injected_loss: 0.6547\n        gap: -0.1969\n        injected_n: 370\n    key_findings: 'Clear dose-response: injected-clean gap widens from -0.016 (10%)\n      to -0.127 (25%) to -0.197 (50%). TaxEI operators C1_ContextTruncation consistently\n      lowest loss. Higher injection rates also degrade clean sample loss (0.663→0.701→0.852).'\n- exp_id: v4-recovery-paired-datagen\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    total_injected_variants: 760\n    successfully_processed: 711\n    skipped_no_source_match: 49\n    operators:\n      C1_ContextTruncation: 182\n      C4_ObservationMasking: 175\n      P1_StepOrderSwap: 170\n      P2_SubGoalDeletion: 184\n    recovery_steps_mean: 7.6\n    recovery_steps_min: 1\n    recovery_steps_max: 46\n    total_recovery_api_calls: 5408\n    output_file: /root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/recovery_paired.jsonl\n    output_lines: 711\n    output_size_mb: 20.8\n    log_file: /root/autodl-tmp/tax_error_inject_agent/logs/recovery_paired_gen.log\n- exp_id: v4-vanilla-seed7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.745\n    eval_successes: 35\n    eval_total: 47\n    vs_seed42_pp: 12.8\n- exp_id: v4-vanilla-seed1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    eval_success_rate: 0.66\n    eval_successes: 31\n    eval_total: 47\n    vs_seed42_pp: 4.3\n- exp_id: v4-random-seed1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.167\n    final_token_acc: 0.938\n    initial_loss: 4.017\n    total_steps: 3387\n    epochs: 3\n    total_flos: 697000000000000000\n- exp_id: v4-random-seed7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.173\n    final_token_acc: 0.935\n    initial_loss: 4.017\n    total_steps: 3387\n    epochs: 3\n    total_flos: 697192362530058200\n    train_runtime_sec: 6672\n    memory_gib: 18.49\n- exp_id: v4-taxei-seed1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.596\n    successes: 28\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 5\n        rate: 0.714\n- exp_id: v4-taxei-seed7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.617\n    successes: 29\n    total: 47\n    by_task:\n      look_at_obj_in_light: 4/6 (0.667)\n      pick_and_place_simple: 5/8 (0.625)\n      pick_clean_then_place_in_recep: 5/11 (0.455)\n      pick_cool_then_place_in_recep: 4/7 (0.571)\n      pick_heat_then_place_in_recep: 7/8 (0.875)\n      pick_two_obj_and_place: 4/7 (0.571)\n- exp_id: qualitative-failure-analysis\n  name: ''\n  status: PREPARING\n  conclusion: success\n  metrics:\n    data_source: eval_results/failure_analysis.json\n    taxei_loop_repetition_rate: 0.174\n    vanilla_loop_repetition_rate: 0.078\n    random_loop_repetition_rate: 0.032\n    taxei_loop_count: 49\n    vanilla_loop_count: 22\n    random_loop_count: 6\n    per_operator:\n      P1: 15\n      P2: 14\n      C1: 11\n      C4: 9\n    note: Random data only from seed=42 recovery eval + 3-seed clean eval (188 episodes\n      vs 282). Rates to be updated after 5-seed completion.\n- exp_id: v4-taxei-fixed-inject10-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4238\n    final_loss: 0.3102\n    final_token_acc: 0.8822\n    epochs: 3\n    total_steps: 1635\n    train_runtime_sec: 3494\n    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s0/v0-20260516-005247/checkpoint-1635\n- exp_id: v4-training-dynamics-forward-v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    subsets_computed:\n    - vanilla_full\n    - taxei_full\n    - random_full\n    - taxei_inject10\n    - taxei_inject25\n    - taxei_inject50\n    taxei_inject50_injected_mean_loss: 0.8185\n    taxei_inject50_clean_mean_loss: 0.8514\n    per_operator:\n      C1_ContextTruncation:\n        mean: 0.6489\n        n: 101\n      C4_ObservationMasking:\n        mean: 0.6782\n        n: 92\n      P1_StepOrderSwap:\n        mean: 0.6374\n        n: 89\n      P2_SubGoalDeletion:\n        mean: 0.6542\n        n: 88\n    plots:\n    - subset_comparison\n    - operator_breakdown\n    - dose_response\n    output_dir: /root/autodl-tmp/tax_error_inject_agent/artifacts/training_dynamics_v2/\n- exp_id: v4-random-seed1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.468\n    successes: 22\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 2\n        total: 8\n        rate: 0.25\n      pick_clean_then_place_in_recep:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        success: 2\n        total: 7\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        success: 5\n        total: 8\n        rate: 0.625\n      pick_two_obj_and_place:\n        success: 3\n        total: 7\n        rate: 0.429\n- exp_id: v4-random-seed7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.553\n    successes: 26\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 6\n        rate: 0.545\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 3\n        rate: 0.429\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-inject10-seed0\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-taxei-inject10-seed123\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-random-inject10-seed0\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject10-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4234\n    final_loss: 0.3097\n    final_token_acc: 0.8882\n    epochs: 3\n    total_steps: 1635\n    train_runtime_sec: 3497\n    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\n- exp_id: v4-random-fixed-inject10-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4227\n    final_loss: 0.276\n    final_token_acc: 0.9067\n    epochs: 3\n    total_steps: 1635\n    train_runtime_sec: 3531\n    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\n- exp_id: v4-taxei-fixed-inject10-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.3013\n    train_loss_avg: 0.4225\n    final_token_acc: 0.8947\n    total_steps: 1635\n    epochs: 3\n    train_runtime_sec: 3469\n    memory_gib: 18.13\n    train_speed_s_per_it: 2.121\n- exp_id: v4-random-fixed-inject10-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.3124\n    train_loss_avg: 0.4236\n    final_token_acc: 0.8867\n    total_steps: 1635\n    epochs: 3\n    train_runtime_sec: 3535.7\n    train_samples_per_second: 3.698\n    train_steps_per_second: 0.462\n    memory_gib: 18.95\n- exp_id: v4-taxei-fixed-inject10-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.237\n    train_loss_avg: 0.4212\n    final_token_acc: 0.905\n    total_steps: 1635\n    epochs: 3\n    train_runtime_sec: 3437\n    memory_gib: 18.15\n    train_speed_s_per_it: 2.102\n- exp_id: v4-random-fixed-inject10-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.3096\n    train_loss_avg: 0.4238\n    final_token_acc: 0.8902\n    total_steps: 1635\n    epochs: 3\n    train_runtime_sec: 3488\n    memory_gib: 18.13\n    train_speed_s_per_it: 2.132\n- exp_id: v4-random-fixed-inject10-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.2352\n    train_loss_avg: 0.4209\n    final_token_acc: 0.9066\n    total_steps: 1635\n    epochs: 3\n    train_runtime_sec: 3511.93\n    memory_gib: 18.15\n    train_speed_s_per_it: 2.148\n- exp_id: v4-taxei-fixed-inject10-s123-eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    error: CUDA OOM during model loading on GPU 0\n- exp_id: v4-random-fixed-inject10-s0-eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    error: CUDA OOM during model loading on GPU 0\n- exp_id: v4-taxei-fixed-inject10-s1-eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    error: CUDA OOM during model loading on GPU 0\n- exp_id: v4-taxei-fixed-inject10-s0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.702\n    successes: 33\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 8\n        rate: 0.727\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 4\n        rate: 0.571\n- exp_id: v4-random-fixed-inject10-s123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.553\n    successes: 26\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-fixed-inject10-s123-eval-r2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: v4-random-fixed-inject10-s0-eval-r2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject10-s123-eval-r3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.553\n    successes: 26\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 4\n        rate: 0.571\n- exp_id: v4-random-fixed-inject10-s0-eval-r3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.66\n    successes: 31\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 4\n        total: 8\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        success: 7\n        total: 11\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        success: 4\n        total: 7\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        success: 7\n        total: 8\n        rate: 0.875\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-taxei-fixed-inject10-s1-eval-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.511\n    successes: 24\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-fixed-inject10-s7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.681\n    successes: 32\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 7\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 4\n        rate: 0.571\n- exp_id: v4-random-fixed-inject10-s1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.681\n    successes: 32\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 10\n        success: 5\n        rate: 0.5\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 6\n        rate: 0.857\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 4\n        rate: 0.571\n- exp_id: v4-taxei-fixed-inject25-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4243\n    train_duration_min: 57.5\n    train_steps: 1635\n    train_epochs: 3\n    data_count: 4358\n- exp_id: v4-random-fixed-inject25-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4261\n    final_step_loss: 0.2442\n    token_accuracy: 0.9123\n    train_steps: 1635\n    train_epochs: 3\n    train_runtime_sec: 3417.56\n    train_duration_min: 56.96\n    train_samples_per_second: 3.826\n    train_steps_per_second: 0.478\n    memory_gib: 18\n    data_count: 4358\n- exp_id: v4-taxei-fixed-inject25-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4242\n    final_step_loss: 0.2571\n    token_accuracy: 0.904\n    train_steps: 1635\n    train_epochs: 3\n    train_runtime_sec: 3430.48\n    train_duration_min: 57.17\n    train_samples_per_second: 3.811\n    train_steps_per_second: 0.477\n    memory_gib: 17.55\n    data_count: 4358\n- exp_id: v4-random-fixed-inject10-s7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.617\n    successes: 29\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        success: 5\n        total: 6\n        rate: 0.833\n      pick_and_place_simple:\n        success: 4\n        total: 8\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        success: 5\n        total: 11\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        success: 4\n        total: 7\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        success: 7\n        total: 8\n        rate: 0.875\n      pick_two_obj_and_place:\n        success: 4\n        total: 7\n        rate: 0.571\n- exp_id: v4-random-fixed-inject25-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4254\n    final_step_loss: 0.265\n    token_acc: 0.899\n    epochs: 3\n    steps: 1635\n    train_runtime_sec: 3407\n- exp_id: v4-taxei-fixed-inject25-s1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.638\n    successes: 30\n    total: 47\n    eval_split: valid_unseen\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 6\n        rate: 0.545\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 3\n        rate: 0.429\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 6\n        rate: 0.857\n- exp_id: v4-taxei-fixed-inject25-s7-eval\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-random-fixed-inject25-s1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.723\n    successes: 34\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 7\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 7\n        rate: 0.875\n      pick_two_obj_and_place:\n        total: 7\n        success: 6\n        rate: 0.857\n- exp_id: v4-random-fixed-inject25-s7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.596\n    successes: 28\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 6\n        rate: 0.545\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 3\n        rate: 0.429\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 4\n        rate: 0.571\n- exp_id: v4-taxei-fixed-inject25-s1-eval-r2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject25-s7-eval-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.574\n    successes: 27\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 3\n        rate: 0.375\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 3\n        rate: 0.429\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 5\n        rate: 0.714\n- exp_id: v4-taxei-fixed-inject50-s1\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-random-fixed-inject50-s1\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: v4-taxei-fixed-inject50-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4674\n    token_acc: 0.9189\n    train_runtime_sec: 3834\n    memory_gib: 29.94\n- exp_id: v4-random-fixed-inject50-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4672\n    token_acc: 0.9156\n    train_runtime_sec: 3832\n    memory_gib: 29.94\n- exp_id: v4-taxei-fixed-inject50-s1-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4667\n    token_acc: 0.9072\n    train_runtime_sec: 3858\n    memory_gib: 30.37\n- exp_id: v4-random-fixed-inject50-s1-r2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4664\n    token_acc: 0.9012\n    train_runtime_sec: 3928\n    memory_gib: 30.37\n- exp_id: v4-taxei-fixed-inject50-s1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.638\n    successes: 30\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 6\n        rate: 1\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 7\n        rate: 0.636\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-random-fixed-inject50-s1-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.702\n    successes: 33\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 8\n        rate: 0.727\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 4\n        rate: 0.571\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 5\n        rate: 0.714\n- exp_id: v4-taxei-fixed-inject50-s7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.553\n    successes: 26\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 5\n        rate: 0.833\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 6\n        rate: 0.545\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 2\n        rate: 0.286\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 6\n        rate: 0.75\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-random-fixed-inject50-s7-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.468\n    successes: 22\n    total: 47\n    by_task_type:\n      look_at_obj_in_light:\n        total: 6\n        success: 4\n        rate: 0.667\n      pick_and_place_simple:\n        total: 8\n        success: 4\n        rate: 0.5\n      pick_clean_then_place_in_recep:\n        total: 11\n        success: 5\n        rate: 0.455\n      pick_cool_then_place_in_recep:\n        total: 7\n        success: 1\n        rate: 0.143\n      pick_heat_then_place_in_recep:\n        total: 8\n        success: 5\n        rate: 0.625\n      pick_two_obj_and_place:\n        total: 7\n        success: 3\n        rate: 0.429\n- exp_id: v4-taxei-rp-s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.38469276\n    eval_loss: null\n    duration_minutes: 226.67\n    token_acc: 0.92487562\n    train_samples_per_second: 3.185\n    peak_memory_gib: 30.68\n- exp_id: v4-taxei-rp-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.3847\n    token_acc: 0.9065\n    duration_min: 231.07\n    peak_memory_gib: 30.37\n    train_samples_per_second: 3.124\n- exp_id: v4-taxei-rp-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.38524182\n    eval_loss: null\n    duration_minutes: 226.5\n    token_acc: 0.91372913\n    train_samples_per_second: 3.187\n    peak_memory_gib: 30.66\n- exp_id: v4-taxei-rp-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.38530399\n    eval_loss: null\n    duration_minutes: 226.3\n    token_acc: 0.91761223\n    train_samples_per_second: 3.19\n    peak_memory_gib: 30.17\n- exp_id: llama31-taxei-s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.3366\n    token_acc: 0.9357\n    train_steps: 3387\n    train_duration_s: 7782\n- exp_id: llama31-random-s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.3366\n    token_acc: 0.9364\n    train_steps: 3387\n    train_duration_s: 7622\n- exp_id: v4-taxei-rp-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.3855\n    token_acc: 0.9103\n    duration_minutes: 226.6\n    peak_memory_gib: 30.25\n    train_samples_per_second: 3.185\n- exp_id: eval-rp-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.574\n    detection_rate: 0\n    episodes: 47\n    recovered: 27\n- exp_id: eval-rp-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.489\n    detection_rate: 0\n    episodes: 47\n    recovered: 23\n- exp_id: eval-rp-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.468\n    detection_rate: 0\n    episodes: 47\n    recovered: 22\n- exp_id: llama31-vanilla-s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.40025\n    token_acc: 0.9067\n    train_steps: 1635\n    train_duration_s: 4157\n- exp_id: eval-rp-s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.383\n    recovery_count: 18/47\n    C1_context_truncation: 0.5\n    C4_observation_masking: 0.273\n    P1_step_order_swap: 0.5\n    P2_sub_goal_deletion: 0.25\n    detection_rate: 0\n- exp_id: llama31-vanilla-s42-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    recovery_count: 35/47\n    detection_rate: 0.213\n    C1_context_truncation: 0.75\n    C4_observation_masking: 0.727\n    P1_step_order_swap: 0.75\n    P2_sub_goal_deletion: 0.75\n- exp_id: recovery-vanilla-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.66\n    recovery_count: 31/47\n    detection_rate: 0\n    C1_context_truncation: 0.667\n    C4_observation_masking: 0.545\n    P1_step_order_swap: 0.667\n    P2_sub_goal_deletion: 0.75\n- exp_id: recovery-vanilla-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    recovery_count: 35/47\n    detection_rate: 0\n    C1_context_truncation: 0.75\n    C4_observation_masking: 0.727\n    P1_step_order_swap: 0.75\n    P2_sub_goal_deletion: 0.75\n- exp_id: llama31-taxei-s42-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    recovery_count: 35/47\n    detection_rate: 0.298\n    C1_context_truncation: 0.833\n    C4_observation_masking: 0.727\n    P1_step_order_swap: 0.583\n    P2_sub_goal_deletion: 0.833\n    C1_detection: 0.167\n    C4_detection: 0.364\n    P1_detection: 0.25\n    P2_detection: 0.417\n- exp_id: llama31-random-s42-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.766\n    recovery_count: 36/47\n    detection_rate: 0.298\n    C1_context_truncation: 0.667\n    C4_observation_masking: 0.727\n    P1_step_order_swap: 0.917\n    P2_sub_goal_deletion: 0.75\n    C1_detection: 0.417\n    C4_detection: 0.364\n    P1_detection: 0.333\n    P2_detection: 0.083\n- exp_id: llama31-vanilla-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_train_loss: 0.398\n    epoch1_loss: 0.481\n    epoch2_loss: 0.362\n    epoch3_loss: 0.273\n    final_token_acc: 0.909\n    train_runtime_sec: 4158.6\n- exp_id: llama31-taxei-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_train_loss: 0.32\n    final_token_acc: 0.88\n    train_steps: 3387\n    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s0/v1-20260516-181826/checkpoint-3387\n- exp_id: llama31-random-s0\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_train_loss: 0.3368\n    epoch1_loss: 0.452\n    epoch2_loss: 0.238\n    epoch3_loss: 0.134\n    final_token_acc: 0.9357\n    train_runtime_sec: 7622\n    train_steps: 3387\n    peak_memory_gib: 30.74\n    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387\n- exp_id: recovery-taxei-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.617\n    recovery_count: 29/47\n    detection_rate: 0\n    C1_context_truncation: 0.75\n    C4_observation_masking: 0.636\n    P1_step_order_swap: 0.583\n    P2_sub_goal_deletion: 0.5\n- exp_id: eval-rp-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.596\n    recovery_count: 28/47\n    detection_rate: 0\n- exp_id: llama31-vanilla-s0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    recovery_count: 35/47\n    detection_rate: 0.277\n    eval_type: injected\n    eval_script: injected_eval.py\n    output_file: eval_results/llama31_vanilla_s0_injected.json\n    C1_context_truncation:\n      recovery: 0.667\n      detection: 0.167\n    C4_observation_masking:\n      recovery: 0.727\n      detection: 0.364\n    P1_step_order_swap:\n      recovery: 0.917\n      detection: 0.333\n    P2_sub_goal_deletion:\n      recovery: 0.667\n      detection: 0.25\n- exp_id: llama31-random-s42-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.766\n    eval_type: clean\n    eval_script: eval/recovery.py\n    total_episodes: 47\n    output_file: eval_results/llama31_random_s42_clean.json\n- exp_id: recovery-taxei-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.574\n    detection_rate: 0\n    total_episodes: 47\n- exp_id: llama31-random-s0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    detection_rate: 0.255\n    success_rate: 0.745\n    total_episodes: 47\n    by_operator:\n      C1_context_truncation:\n        total: 12\n        recovered: 10\n        detected: 1\n        recovery_rate: 0.833\n        detection_rate: 0.083\n      C4_observation_masking:\n        total: 11\n        recovered: 8\n        detected: 4\n        recovery_rate: 0.727\n        detection_rate: 0.364\n      P1_step_order_swap:\n        total: 12\n        recovered: 8\n        detected: 4\n        recovery_rate: 0.667\n        detection_rate: 0.333\n      P2_sub_goal_deletion:\n        total: 12\n        recovered: 9\n        detected: 3\n        recovery_rate: 0.75\n        detection_rate: 0.25\n- exp_id: llama31-vanilla-s42-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.723\n    eval_type: clean\n    eval_script: eval/recovery.py\n    total_episodes: 47\n    output_file: eval_results/llama31_vanilla_s42_clean.json\n- exp_id: llama31-vanilla-s0-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.723\n    eval_type: clean\n    eval_script: eval/recovery.py\n    total_episodes: 47\n    output_file: eval_results/llama31_vanilla_s0_clean.json\n- exp_id: llama31-taxei-s0-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.745\n    success_rate: 0.745\n    total_episodes: 47\n- exp_id: llama31-vanilla-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.4\n    final_loss: 0.254\n    token_acc: 0.894\n    steps: 1635\n    epochs: 3\n    runtime_seconds: 4234\n    memory_gib: 29.85\n- exp_id: llama31-taxei-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: llama31-random-s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: llama31-taxei-s0-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.766\n    total_episodes: 47\n- exp_id: llama31-taxei-s42-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.766\n    total_episodes: 47\n    eval_type: clean\n    eval_script: eval/recovery.py\n    output_file: eval_results/llama31_taxei_s42_clean.json\n    by_task_type:\n      look_at_obj_in_light: 1\n      pick_and_place_simple: 0.625\n      pick_clean_then_place_in_recep: 0.636\n      pick_cool_then_place_in_recep: 0.714\n      pick_heat_then_place_in_recep: 0.875\n      pick_two_obj_and_place: 0.857\n- exp_id: llama31-random-s0-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.745\n    total_episodes: 47\n    eval_type: clean\n    eval_script: eval/recovery.py\n    output_file: eval_results/llama31_random_s0_clean.json\n    by_task_type:\n      look_at_obj_in_light: 0.667\n      pick_and_place_simple: 0.625\n      pick_clean_then_place_in_recep: 0.636\n      pick_cool_then_place_in_recep: 0.571\n      pick_heat_then_place_in_recep: 1\n      pick_two_obj_and_place: 1\n- exp_id: llama31-vanilla-s123-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.723\n    total_episodes: 47\n    eval_type: clean\n    eval_script: eval/recovery.py\n    output_file: eval_results/llama31_vanilla_s123_clean.json\n    by_task_type:\n      look_at_obj_in_light: 0.833\n      pick_and_place_simple: 0.625\n      pick_clean_then_place_in_recep: 0.545\n      pick_cool_then_place_in_recep: 0.571\n      pick_heat_then_place_in_recep: 1\n      pick_two_obj_and_place: 0.857\n- exp_id: recovery-random-s1\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.511\n    detection_rate: 0\n    total_episodes: 47\n- exp_id: recovery-random-s7\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.532\n    detection_rate: 0\n    total_episodes: 47\n- exp_id: eval-llama31-taxei-s42-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: eval-llama31-random-s0-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: llama31-vanilla-s123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.702\n    detection_rate: 0.213\n    total_episodes: 47\n- exp_id: llama31-taxei-s123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.596\n    detection_rate: 0.362\n    success_rate: 0.596\n    total_episodes: 47\n- exp_id: llama31-taxei-s123-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.617\n    total_episodes: 47\n    eval_type: clean\n    by_task_type:\n      look_at_obj_in_light: 0.667\n      pick_and_place_simple: 0.375\n      pick_clean_then_place_in_recep: 0.455\n      pick_cool_then_place_in_recep: 0.571\n      pick_heat_then_place_in_recep: 0.875\n      pick_two_obj_and_place: 0.857\n- exp_id: llama31-random-s123-clean\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    success_rate: 0.766\n    total_episodes: 47\n    eval_type: clean\n    eval_script: eval/recovery.py\n    output_file: eval_results/llama31_random_s123_clean.json\n    by_task_type:\n      look_at_obj_in_light: 1\n      pick_and_place_simple: 0.625\n      pick_clean_then_place_in_recep: 0.636\n      pick_cool_then_place_in_recep: 0.571\n      pick_heat_then_place_in_recep: 0.875\n      pick_two_obj_and_place: 1\n- exp_id: llama31-random-s123-eval\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    recovery_rate: 0.787\n    detection_rate: 0.255\n    total_episodes: 47\n    by_operator:\n      C1_context_truncation:\n        recovered: 10/12\n        rate: 0.833\n        det_rate: 0.083\n      C4_observation_masking:\n        recovered: 8/11\n        rate: 0.727\n        det_rate: 0.182\n      P1_step_order_swap:\n        recovered: 10/12\n        rate: 0.833\n        det_rate: 0.417\n      P2_sub_goal_deletion:\n        recovered: 9/12\n        rate: 0.75\n        det_rate: 0.333\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T15:42:00.322Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T15:42:00.322Z",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T15:42:00.350Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept
+核心假设：["Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-corrected NS）", '3-seed LLaMA被视为sufficient cross-model validation（方向一致性 > 绝对power）', 'Structured-vs-random stability divergence被视为novel finding（非obvious negative result）', 'Dose-response 25条独立训练run被视为thorough empirical work', 'Recovery=Resilience distinction被认为是有价值的conceptual contribution', 'TaxEI-RP definitively ruling out recovery-pairing confound被视为strong experimental design']
+关键指标范围：{'vanilla_vs_taxei_gap_pp': [8.0, 10.0], 'cohens_d_main': [1.4, 1.8], 'cross_model_taxei_sd_ratio': [3.5, 4.5], 'catastrophic_seed_fraction': [0.2, 0.33], 'taxei_rp_vs_vanilla_gap_pp': [17.0, 20.0], 'recovery_clean_rate_match_pp': [0.0, 2.0], 'dose_response_nadir_depth_pp': [12.0, 15.0], 'inverted_u_peak_gap_pp': [6.0, 8.0], 'reviewer_score_mean': [3.5, 4.0]}
+叙事方向：原始framing完全成立——'Structured error injection is fundamentally destabilizing for embodied planning across architectures'。论文贡献从negative result升级为positive finding about injection stability properties。重点：(1)跨模型SD ratio 4:1证明是structured patterns的内在属性；(2)dose-response inverted-U揭示conflicting signal mechanism；(3)recovery=resilience是对整个error-injection-for-recovery范式的conceptual challenge。无需调整claims强度。
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: tax_error_inject_agent
+focus: Cross-model validation升级：TaxEI结构化注入跨模型不稳定（Qwen一致退化、LLaMA高方差1/3 catastrophic seed），Random注入跨模型稳定。论文核心从"单模型负面结果"升级为"结构化vs随机注入的训练稳定性差异是跨架构通用的"。评估新framing能否支撑EMNLP Findings长文。
+
+## paper_framing.md
+
+# Paper Framing: When Does Error Injection Help LLM Agents? Boundary Conditions from a Failed Transfer to Embodied Planning
+
+## Target Venue
+**Primary**: EMNLP 2026 Findings (Budapest, Oct 22–29) — 8-page long paper. Negative-result contributions accepted per CFP.
+**Secondary**: ACL 2026 Findings if timeline permits.
+
+## Core Question
+Under what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?
+
+## Thesis Statement
+Taxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — destabilizes embodied planning agent training without improving performance on ALFWorld. TaxEI and Random injection produce **identical** mean performance (58.3% vs Vanilla 67.3%, 5 seeds each), proving taxonomy labels provide zero benefit. Complete 5-seed dose-response reveals **no safe injection dose**: harm begins at 10% (-6.0pp), peaks at 25% (TaxEI nadir 52.7%), then **saturates** — 50% and Full produce similar harm (~58%) with no marginal worsening. The taxonomy penalty follows an **inverted-U curve**, peaking at 25% (-7.3pp TaxEI-Random gap) and vanishing at higher doses. At every concentration, training outcomes are a **lottery** (19-23pp within-dose range, bimodal seed distributions). Cross-model validation on LLaMA-3.1-8B-Instruct reveals that **structured error injection (TaxEI) causes training instability across model architectures** — TaxEI recovery SD=8.6pp vs Random SD=2.1pp (3-seed), with 1/3 seeds triggering Qwen-like catastrophic degradation (59.6% vs baseline 73.1%). Random injection remains stable and even mildly beneficial (mean 76.6% > Vanilla 73.1%). This confirms the harm is not model-specific but a property of structured error patterns themselves: taxonomy-guided injection creates conflicting learning signals that destabilize training across architectures, while unstructured noise is benign or helpful.
+
+## Story Arc
+
+### 1. Motivation: Why error injection should work
+Error injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?
+
+### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning
+We designed a 4-operator error taxonomy for ALFWorld embodied planning:
+- **P1** (step_order_swap): permute action ordering
+- **P2** (sub_goal_deletion): remove sub-goals
+- **C1** (context_truncation): truncate environmental context
+- **C4** (observation_masking): mask observation feedback
+
+We injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.
+
+### 3. Finding: Injection harms equally regardless of taxonomy; introduces catastrophic seed vulnerability
+**Clean task performance (all 5-seed complete)**:
+- Vanilla SFT: 67.3% ± 4.7pp (seeds 42/0/123/1/7) — stable, no catastrophic seeds
+- TaxEI SFT: 58.3% ± 6.5pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.039 uncorrected, NS Bonferroni (p>0.017), Cohen's d=1.58**
+- Random SFT: 58.3% ± 8.7pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.089 uncorrected, NS, Cohen's d=1.28**
+
+**CENTRAL FINDING**: TaxEI and Random produce IDENTICAL mean performance (58.3% = 137/235 tasks). Taxonomy labels provide zero benefit over random injection at the mean level. This directly refutes the hypothesis that structured error labeling improves training signal.
+
+**Catastrophic seed vulnerability**: Both injection methods produce exactly one ~47% outlier (TaxEI seed0=46.8%, Random seed1=46.8%). Vanilla never drops below 61.7%. Injection introduces a 1-in-5 risk of catastrophic training failure absent in clean training.
+
+**Variance gradient**: Vanilla SD (4.7pp) < TaxEI SD (6.5pp) < Random SD (8.7pp). Injection amplifies variance; taxonomy labels may mildly stabilize (TaxEI SD < Random SD), but both are worse than Vanilla. This reverses the 3-seed pattern (where TaxEI had highest SD). Formal variance tests needed (Levene's, n=5).
+
+**Dose-response ablation (fixed-size 4,358 total)** (D034+D035+D038: 全部 5 个剂量完整 5-seed):
+| Dose | TaxEI Mean±SD (n) | Random Mean±SD (n) | Vanilla ref | TaxEI-Random Δ |
+|------|-------------------|-------------------|-------------|----------------|
+| 0% (vanilla) | — | — | 67.3±4.7 (5) | — |
+| 10% | 61.3±8.2 (5) | 63.8±5.4 (5) | | -2.5pp |
+| 25% | 52.7±7.6 (5) | 60.0±8.0 (5) | | **-7.3pp** |
+| 50% | 57.4±9.5 (5) | 58.3±11.7 (5) | | -0.9pp |
+| Full | 58.3±6.5 (5) | 58.3±8.7 (5) | | 0pp |
+
+Per-seed data:
+- TaxEI 10%: 61.7/70.2/55.3/51.1/68.1. Random 10%: 68.1/66.0/55.3/68.1/61.7.
+- TaxEI 25%: 48.9/46.8/46.8/63.8/57.4. Random 25%: 55.3/61.7/51.1/72.3/59.6.
+- TaxEI 50%: 51.1/70.2/46.8/63.8/55.3. Random 50%: 57.4/46.8/70.2/70.2/46.8.
+
+**Unified dose-response narrative** (D035+D038, complete 5-seed all doses):
+1. **Non-monotonic harm with 25% nadir + saturation**: Injection at ALL doses reduces mean and increases variance. Harm peaks at 25% (TaxEI nadir 52.7%), then partially rebounds: 50% (57.4%) ≈ Full (58.3%). Doubling injection from 50%→Full has zero marginal effect — ~50% is the saturation point beyond which additional errors no longer worsen outcomes.
+2. **Inverted-U taxonomy penalty**: TaxEI trails Random at every dose, but the gap peaks at 25% (7.3pp), diminishes at 50% (0.9pp, d=-0.08 negligible), and vanishes at Full (0pp). At 10% the gap is 2.5pp. Taxonomy labels actively harm at intermediate doses where clean/injected balance may maximize conflicting learning signals.
+3. **Universal training lottery**: All doses produce extreme seed variance (19-23pp within-dose range). Random 50% shows **bimodal** distribution: {46.8, 46.8, 57.4, 70.2, 70.2} — two distinct failure/success modes, not normal scatter. Report median+IQR alongside mean±SD for robustness.
+4. **Practical implication**: No injection dose is "safe." Even 10% produces measurable harm (-6.0pp TaxEI). Outcomes are unpredictable at every concentration level. The training lottery, not dosage, dominates performance variation.
+
+**Variance pattern** (exploratory, not claimable): SD peaks at 50% (TaxEI 9.5, Random 11.7) then **declines** at Full (6.5, 8.7). This is unexpected — Full dose actually reduces variance vs 50%. Possible explanation: at 50%, the model faces maximum ambiguity between clean and error patterns; at Full, the injection signal dominates and the model consistently adapts (poorly). Levene's test NS at n=5. Do not claim variance patterns without significance tests.
+
+**Training lottery at all doses**: Extreme outliers in every condition — TaxEI 10% s0=70.2% vs s1=51.1% (19pp range), Random 25% s1=72.3% vs s123=51.1% (21pp range), Random 50% bimodal (23pp range). Single-seed evaluations are fundamentally unreliable at any dose.
+
+**Taxonomy label penalty** (task-type-specific): TaxEI trails Random in aggregate. Per-task 3-seed analysis: taxonomy injection specifically harms **multi-step coordination tasks** — pick_cool_then_place (TaxEI 38.1% vs Random 57.1%, -19.0pp) and pick_two_obj_and_place (42.9% vs 57.1%, -14.3pp) — while leaving simple tasks largely unaffected (≤4.2pp gap for other 4 task types).
+
+**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:
+- Vanilla: 61.7% | TaxEI: 59.6% | Random: 63.8%
+
+**Recovery ≈ Resilience (D041)**: Recovery eval rates match normal eval rates for all conditions (V: 61.7%=61.7%, T: 59.6%≈61.7%, R: 63.8%≈66.0%). Models succeed at the same base rate regardless of eval-time error injection — they passively ignore perturbations rather than actively recovering. This is **resilience** (noise tolerance from task competence), not **recovery** (error detection + correction). No training regime instills genuine error awareness.
+
+**Detection Rate**: 0% for all methods.
+
+**Taxonomy labels show no significant benefit**: TaxEI (56.7%) < Random (63.1%) < Vanilla (65.3%). TaxEI vs Random: paired t p≈0.034 (df=2, directionally consistent but low power).
+
+**Per-operator local/global split** (recovery eval, seed=42, verified from eval JSON, **exploratory — N=11-12 per operator**): C4_observation_masking (+9.1pp, 6→7/11), P1_step_order_swap (0.0pp, 7→7/12), C1_context_truncation (−8.3pp, 9→8/12), P2_sub_goal_deletion (−8.3pp, 7→6/12). NOT a smooth monotonic gradient — instead a binary split: the most local/observable operator (C4) shows TaxEI advantage; global/cascading operators (C1, P2) show equal disadvantage; P1 is neutral. **Critical caveat**: each delta is driven by ±1 task success/failure at N=11-12 — well within random noise. Fisher exact tests would be NS for all operators. This must be presented as exploratory/hypothesis-generating, not confirmatory. The directional pattern (local positive, global negative) is suggestive but the specific magnitudes (9.1pp, 8.3pp) carry false precision.
+
+**Variance tests**: Observed SD gradient: Vanilla 3.3pp < Random 7.0pp < TaxEI 8.6pp. F-test p=0.252 (NS, underpowered at df=2,2), but Levene's test p=0.085 (NS), Brown-Forsythe p=0.842 (NS), bootstrap P(SD_TaxEI > SD_Vanilla) = 0.688. All formal tests NS at n=3 — the variance gradient is a directional observation, not a statistically confirmed effect. Report as "observed pattern, suggestive but underpowered."
+
+**Training-evaluation paradox** (≥25% injection only): At high injection ratios, training loss is lower (taxei_50%: 0.260, random_50%: 0.260 vs vanilla: 0.294) but eval performance is worse (51.1-57.4% vs 61.7%). However, at 10% injection, training loss is actually *higher* (0.308) than vanilla — the paradox only emerges above the dose-response threshold. This is consistent with the threshold effect: low injection doesn't change the training distribution enough to lower loss, while high injection causes the model to memorize error patterns. Literature support: Arpit et al. (2017) memorization dynamics, Zhou et al. (2023 LIMA) superficial alignment hypothesis.
+
+### 4. Analysis: Why it fails in embodied planning but works in tool-use
+
+**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.
+| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |
+|-----------|----------------------|------------------------------|
+| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |
+| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |
+| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |
+| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |
+| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |
+| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |
+| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |
+
+**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.
+
+**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.
+
+### 4b. Cross-Model Validation: TaxEI instability is not model-specific (LLaMA-3.1-8B-Instruct, 3-seed)
+
+To test whether the TaxEI failure is Qwen-specific or a general property of structured error injection in embodied planning, we replicate the core experiment on LLaMA-3.1-8B-Instruct (3 seeds: 42/0/123). Training setup identical: Vanilla 4,358 samples (1,635 steps), TaxEI/Random 9,029 samples (3,387 steps).
+
+**LLaMA Recovery Rate (injected eval, 47 tasks)**:
+| Condition | s0 (eval=42) | s42 (eval=42) | s123 (eval=123) | Mean±SD |
+|-----------|:------------:|:-------------:|:---------------:|:-------:|
+| Vanilla | 74.5% | 74.5% | 70.2% | 73.1±2.5% |
+| TaxEI | 74.5% | 74.5% | **59.6%** | 69.5±8.6% |
+| Random | 74.5% | 76.6% | **78.7%** | 76.6±2.1% |
+
+**LLaMA Clean Success Rate**:
+| Condition | s0 | s42 | s123 | Mean±SD |
+|-----------|:--:|:---:|:----:|:-------:|
+| Vanilla | 72.3% | 72.3% | 72.3% | 72.3±0.0% |
+| TaxEI | 76.6% | 76.6% | **61.7%** | 71.6±8.6% |
+| Random | 74.5% | 76.6% | 76.6% | 75.9±1.2% |
+
+**Key findings**:
+1. **TaxEI training instability is cross-model**: 1/3 seeds (s123) triggers catastrophic degradation on LLaMA (-13.5pp recovery vs vanilla-s123, -10.6pp clean). Pattern mirrors Qwen's consistent degradation but with higher variance (2/3 seeds appear neutral).
+2. **Random injection is cross-model stable**: SD=2.1% (recovery), no catastrophic seeds, mean slightly above Vanilla (+3.5pp). This is the opposite of Qwen where Random also degraded.
+3. **TaxEI vs Random divergence**: On LLaMA, TaxEI mean (69.5%) < Random mean (76.6%), gap = -7.1pp. The variance difference is stark: TaxEI SD=8.6% vs Random SD=2.1%. Structured error patterns create training instability that unstructured noise does not.
+4. **Model-dependent severity, model-independent direction**: Qwen shows consistent TaxEI harm (-9pp, low variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, high variance with catastrophic 1/3 seed). The *direction* (TaxEI ≤ Random ≤ Vanilla for stability) holds across models; the *severity* varies.
+
+**Implication for paper story**: The finding upgrades from "negative result on one model" to "structured error injection is fundamentally destabilizing for embodied planning across architectures." The taxonomy's structured perturbations create systematic biases that some training seed/model combinations amplify into catastrophic failure, while random noise averages out harmlessly.
+
+**Eval seed caveat**: s0/s42 use eval seed=42; s123 uses eval seed=123. Cross-seed aggregation (mean±SD) has a minor eval-seed confound (~2pp from eval randomness). Within each eval-seed group, horizontal (condition) comparisons are fully fair. The critical finding (taxei-s123 collapse) is a within-group horizontal comparison.
+
+### 5. Contribution: What this negative result gives the community
+1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.
+2. **Recovery-pairing disentanglement** (long paper NEW): By testing recovery-paired injection on ALFWorld, we isolate whether the negative result stems from missing recovery pairing or from fundamental task-structure differences. This is the first controlled test of recovery-paired vs unpaired error injection in embodied planning.
+3. **Recovery vs resilience distinction** (long paper NEW): Recovery eval rates match normal eval rates — models passively ignore eval-time errors (resilience) rather than actively recovering (recovery). Combined with 0% detection rate, this shows error injection creates no form of error awareness in embodied planning.
+4. **Training variance warning**: Error injection increases cross-seed variance 2.6× (SD 8.6pp vs 3.3pp, 5-seed confirmed). Single-seed evaluations of error injection methods are fundamentally unreliable.
+7. **Cross-model instability** (long paper NEW): TaxEI structured injection destabilizes training on both Qwen3-8B (consistent -9pp) and LLaMA-3.1-8B-Instruct (intermittent, 1/3 catastrophic seed), while Random injection remains stable across both models. This separates the harm attribution: it is structured error patterns — not model weakness — that cause instability.
+5. **No-safe-threshold dose-response + training lottery**: Complete 5-seed dose-response ablation (fixed data size, all 5 doses × 5 seeds) shows harm at every tested dose: 10% (-6.0pp TaxEI), 25% (nadir, -14.6pp TaxEI), 50% (-9.9pp TaxEI), Full (-9.0pp). Non-monotonic: harm peaks at 25%, partial rebound at higher doses. Taxonomy penalty follows inverted-U curve: 10% (-2.5pp) → 25% (-7.3pp peak) → 50% (-0.9pp) → Full (0pp). No injection dose is "safe." Training lottery (19-23pp within-dose range) operates at all concentration levels.
+6. **Failure mode taxonomy** (long paper NEW): Qualitative failure analysis categorizes how error injection changes model behavior — noise injection (incoherent plans) vs wrong-learning (systematic biases).
+
+## Core Claims (each backed by experimental evidence)
+
+- **Claim 1**: Error injection (both taxonomy-guided and random) degrades embodied planning performance with large effect size but marginal statistical significance.
+  → Support: **5-seed data**: TaxEI 58.3%±6.5pp and Random 58.3%±8.7pp vs Vanilla 67.3%±4.7pp. Both injection methods show -9.0pp gap. Welch t: Vanilla vs TaxEI p≈0.039 (uncorrected), Vanilla vs Random p≈0.089. Bonferroni corrected (3 comparisons, α=0.017): all NS. Cohen's d: 1.58 (TaxEI) and 1.28 (Random) — large effects. Underpowered at n=5; the ~9pp degradation may be a real effect requiring larger N to confirm.
+
+- **Claim 2**: Taxonomy labels provide zero benefit over random injection — structured error labeling does not improve training signal.
+  → Support: **TaxEI = Random = 58.3% = 137/235 tasks (5-seed, identical)**. Welch t: t=0.000, p=1.000. This is the paper's strongest finding: the careful design of a 4-operator error taxonomy with per-error-type labels achieves exactly nothing compared to unlabeled random injection. The taxonomy's structured perturbations are indistinguishable from noise at the mean level. Variance differs: TaxEI SD (6.5pp) < Random SD (8.7pp), suggesting taxonomy may mildly stabilize, but both are worse than Vanilla (4.7pp).
+
+- **Claim 3**: Error injection causes **generalization instability** with catastrophic seed vulnerability — training converges stably but evaluation produces unpredictable outcomes including catastrophic failures.
+  → Support: **5-seed complete**: Training loss is extremely stable across seeds (SD=0.0007), yet eval SD: Vanilla 4.7pp < TaxEI 6.5pp < Random 8.7pp. Both injection methods produce exactly one catastrophic outlier (~47%): TaxEI seed0=46.8%, Random seed1=46.8%. Vanilla never drops below 61.7%. **Memorization-generalization dissociation** (D029/D033): Forward pass v2 (trajectory-level) confirms injected samples have lower loss than clean (all conditions), but eval is worse. Random memorizes 2.1× deeper than TaxEI (gap -0.078 vs -0.037) yet achieves identical eval — deeper memorization does not linearly predict eval harm. Dose-response loss gaps are non-monotonic (25% > 50%), not the monotonic pattern in v1 (which had a classification bug). D026 behavioral evidence (partial update: 3-seed V/T, 1-seed R, NOT balanced — full 5-seed trajectory collection pending): TaxEI produces ~2.2× more loop_repetition failures than Vanilla. Ratio stable across data subsets but absolute rates pending balanced data. **Observed pattern** (correlation, not established causation): memorization of error patterns + loop fixation at eval time + generalization collapse. Per-operator loss ranking is unstable across conditions, precluding strong per-operator causal claims. 1-in-5 catastrophic seed risk is absent from clean training.
+
+- **Claim 4**: Injection-trained models do not improve error recovery — observed "recovery" is passive resilience (ignoring errors), not active recovery.
+  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp). **D041 key insight**: Recovery eval rates match normal eval rates across all conditions (Vanilla 61.7%=61.7%, TaxEI 59.6%≈61.7%, Random 63.8%≈66.0%). Models succeed at the same rate whether or not errors are injected at eval time — they passively ignore perturbations rather than actively detecting and recovering from them. This reframes "no recovery improvement" as "no recovery mechanism at all": the models are **resilient** (robust to noise) rather than **recovery-capable** (able to detect and correct errors). The distinction matters because resilience is a byproduct of task completion ability, while recovery requires explicit error awareness that none of the training regimes instill.
+
+- **Claim 5**: Detection training via error injection is completely ineffective — models show zero error awareness.
+  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random). Combined with D041's recovery≈resilience finding: models neither detect errors explicitly (0% detection) nor respond to them implicitly (recovery rate = normal eval rate). Error injection during training fails to create any form of error awareness in the embodied planning domain.
+
+- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.
+  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.
+
+- **Claim 7** (long paper NEW): Recovery-paired injection actively harms performance, definitively ruling out recovery pairing as PALADIN's missing ingredient.
+  → Support: **TaxEI-RP 4-seed mean 47.9% ± 7.8pp** (s42=38.3%, s0=46.8%, s1=48.9%, s123=57.4%) vs TaxEI 58.3% vs Vanilla 67.3%. Recovery-paired training (14,437 samples = TaxEI 9,029 + recovery continuations 5,408) performs **10pp worse than unpaired TaxEI** and **19pp worse than Vanilla**. Adding recovery demonstrations does not teach active recovery — it adds noise that further corrupts the action distribution. Detection rate remains 0%. This definitively answers the PALADIN recovery-pairing confound: the failure is not due to missing recovery pairs, but to fundamental task-structural incompatibility. (D043)
+
+- **Claim 8** ~~(long paper NEW)~~: **CANCELLED (D040)**. WebShop replication infeasible — P1_StepOrderSwap incompatible with linear action space (search+click), taxonomy 4→3 makes cross-environment comparison inequivalent. Downgraded to Discussion section analysis of ALFWorld vs WebShop structural differences and why cross-environment replication is non-trivial.
+
+- **Claim 9** (long paper NEW): Structured error injection (TaxEI) causes **cross-model training instability**, while random injection remains stable — the harm is a property of structured error patterns, not model-specific.
+  → Support: **LLaMA-3.1-8B-Instruct 3-seed replication**. TaxEI recovery mean 69.5%±8.6pp vs Random 76.6%±2.1pp vs Vanilla 73.1%±2.5pp. TaxEI variance 4× higher than Random (SD 8.6 vs 2.1). 1/3 seeds (s123) shows catastrophic TaxEI collapse: recovery 59.6% (vs vanilla 70.2%, Δ=-10.6pp; vs random 78.7%, Δ=-19.1pp). Other 2 seeds show TaxEI=Vanilla=74.5%. Random is consistently stable or mildly beneficial across all seeds. **Cross-model pattern**: Qwen shows consistent TaxEI harm (mean -9pp, moderate variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, extreme variance with 1/3 catastrophic). Direction (TaxEI ≤ Random for stability) holds across both models. This upgrades the finding from "Qwen-specific negative result" to "structured injection is fundamentally destabilizing for embodied planning."
+
+## Anticipated Reviewer Concerns
+
+1. **"Statistical power is limited."**
+   → All three conditions now have **5 seeds**. Welch t: Vanilla vs TaxEI p=0.039 (uncorrected), Bonferroni NS (α=0.017). Cohen's d=1.58 (large). Power at n=5: 45.2%; need n=9 for 80%. We do not claim significance after correction but emphasize the large effect size (-9.0pp) and report all individual seed results. Bootstrap 95% CI: [+3.4, +15.8]pp. Bayes Factor 0.68 (inconclusive). The variance gradient (Vanilla 4.7 < TaxEI 6.5 < Random 8.7) is consistent across seeds.
+
+2. **"ALFWorld has only 47 test tasks — too small for reliable conclusions."**
+   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. With 5 seeds × 47 tasks = 235 episodes per condition, our pooled sample gives adequate power for the observed ~9pp effect (d≈1.4). WebShop replication was planned but cancelled (D040: P1 incompatible with linear action space); the structural incompatibility itself supports our task-structure boundary condition argument.
+
+3. **"Maybe the taxonomy itself is poorly designed."**
+   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.
+
+4. **"The training recipe might be suboptimal for injection data."**
+   → The same recipe produces strong Vanilla results (67.3% ± 4.7pp vs 42.6% zero-shot baseline, +24.7pp, 5 seeds), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.
+
+5. **"50% injection ratio is too high — you're drowning the signal."**
+   → Comprehensively addressed with complete 5-seed fixed-size dose-response ablation at 10%/25%/50%/Full (all 4,358 total samples, all 5 doses × 5 seeds). No safe threshold exists: even 10% injection degrades performance (TaxEI -6.0pp). The harm profile is non-monotonic: monotonic degradation 0%→10%→25% (TaxEI nadir 52.7%), partial rebound 25%→50%→Full driven by training lottery. Taxonomy penalty follows inverted-U curve peaking at 25% (-7.3pp TaxEI-Random gap). The pattern holds for both TaxEI and Random, suggesting it is a general property of error injection.
+
+6. **"Why is detection rate 0%? Evaluation might be flawed."**
+   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.
+
+7. **"Why not compare directly on ToolBench?"**
+   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.
+
+8. **"PALADIN uses error+recovery pairs; TaxEI uses standalone errors. Isn't recovery-pairing the real difference?"** [Dream M+W]
+   → **Directly tested and refuted** (D043). TaxEI-RP (recovery-paired, 14,437 samples) achieves 47.9% ± 7.8pp — **10pp worse** than unpaired TaxEI (58.3%) and **19pp worse** than Vanilla (67.3%). Recovery pairing not only fails to help, it actively harms. This is the paper's strongest evidence for the task-structure hypothesis: even mimicking PALADIN's recovery-pairing design cannot overcome the fundamental incompatibility of error injection with embodied planning.
+
+9. **"Power analysis says n=9 needed but you only ran n=5."** [Dream W]
+   → We acknowledge n=5 is underpowered (45.2%) for the observed effect at α=0.017 (Bonferroni). We report this transparently with power curves. The large effect size (d=1.58), consistent direction across all 5 seeds, and dose-response replication across 25 independent training runs provide converging evidence despite per-comparison underpowerment.
+
+10. **"Data volume confound: Vanilla has half the training data."** [Dream W]
+    → Vanilla uses 4,358 samples; TaxEI/Random use 9,029. We address this via dose-response ablation at fixed 4,358 total samples. At 10% injection, TaxEI still degrades (-6.0pp, 5-seed), confirming harm is from injection content, not volume. The full-scale comparison's volume asymmetry is acknowledged as a limitation.
+
+11. **"Only tested on one model — maybe it's a Qwen-specific issue."**
+    → Addressed with LLaMA-3.1-8B-Instruct 3-seed replication. TaxEI instability reproduces cross-model (LLaMA SD=8.6pp, 1/3 catastrophic seed). Random injection is stable on both models. The direction (TaxEI harmful/unstable, Random neutral/stable) is consistent across architectures; only severity differs (Qwen: consistent harm; LLaMA: intermittent but catastrophic when triggered). This rules out model-specific explanations and points to structured error patterns as the causal factor.
+
+## Key Differentiators vs PALADIN
+
+PALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:
+
+1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., "go to countertop 2" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.
+
+2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.
+
+3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making "what to do after an error" fundamentally harder to learn from examples.
+
+4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.
+
+**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.
+
+## Note on v3→v4 Vanilla Discrepancy
+v3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.
+
+## Dream Review Findings (dream_20260515T020837)
+
+**Scores**: Best 2/5 (artifact: dream fabricated experiments), Median 3/5 (Borderline Accept), Worst 2.5/5 (Borderline Revise)
+
+**Confirmed action items (cross-tier consistent)**:
+1. Related work must expand to 15-20 refs. Add: Reflexion (Shinn 2023), McCoy et al. (2020) seed-dependent generalization, Mosbach et al. (2021) fine-tuning stability, Madry et al. (2018) adversarial training, Bengio et al. (2009) curriculum learning, D'Amour et al. (2022) underspecification, ReAct (Yao 2023).
+2. PALADIN recovery-pairing confound must be discussed prominently: PALADIN pairs errors WITH recovery demonstrations; TaxEI injects standalone errors without recovery. This is the most parsimonious alternative explanation.
+3. Formal variance test: F-test p=0.252 (NS) is our strongest stat. Also compute Levene's test for robustness.
+4. Paper structure for 4-page limit: Intro → Method → Main Results (Table 1 + dose-response) → Qualitative/Error Echo → Per-Operator Gradient → Discussion → Conclusion. Move training dynamics, recovery prompting to appendix.
+
+**Observation items (monitor in real reviews)**:
+- Core novelty concern: "seed variance unreliable" is known — our per-operator gradient and error echo differentiate us
+- Self-undermining: we use 3 seeds but findings suggest ≥5 needed — prominent limitation, consider power analysis
+- Data volume confound: Vanilla 4,358 vs TaxEI/Random 9,029 — acknowledge in limitations (dose-response at 10% controls for this partially)
+- EEF 2×2 framework: {positive, negative signal} × {tool-use, planning} could sharpen Discussion
+
+## Supplementary Experiments — Long Paper (8-page)
+
+### Done (from short paper phase)
+- ~~**3-seed main conditions**~~: ✅ Vanilla 65.3%±3.3pp, TaxEI 56.7%±8.6pp, Random 63.1%±7.0pp.
+- ~~**Dose-response 3-seed (25%/50%)**~~: ✅ Dual regime confirmed. 10% = seed=42 only.
+- ~~**Recovery eval (seed=42)**~~: ✅ TaxEI 59.6%, Vanilla 61.7%, Random 63.8%. Detection 0%.
+
+### Priority 1 (required for 8-page long paper)
+- ~~**5-seed extension** [Claims 1,3]~~: ✅ Done. Vanilla 67.3±4.7, TaxEI=Random=58.3%. D032.
+- ~~**Training dynamics** [Claim 3]~~: ✅ Done. Forward pass v2 (trajectory-level). D027/D029/D033.
+- ~~**Qualitative failure analysis** [Claims 1,6]~~: ✅ Done. TaxEI loop_repetition 2.2×. D026.
+- ~~**Extended statistics** [Claims 1,3]~~: ✅ Done. Bootstrap CI, power, Bayesian. D030-D032.
+- ~~**Dose-response 5-seed** [Claim 3]~~: ✅ Done. All 5 doses × 5 seeds complete. 10% (D034), 25% (D035/D036), 50% (D038). Inverted-U taxonomy penalty curve. ~24 GPU-h.
+- **Recovery-paired injection** [Claim 7]: 🔄 Training in progress (4 seeds × 4 GPU). Datagen complete (711/760), 14,437 samples. ~16 GPU-h.
+- ~~**WebShop replication** [Claim 8]~~: ❌ CANCELLED (D040). P1 incompatible with linear action space. Downgraded to Discussion.
+- **Recovery eval multi-seed** [Claims 4,5]: 7/15 complete. Remaining 8/15 after TaxEI-RP. ~15 GPU-h.
+
+### Priority 1.5 (cross-model validation)
+- ~~**LLaMA-3.1-8B cross-model replication** [Claim 9]~~: ✅ Done. 3 seeds × 3 conditions, all training + eval complete. TaxEI instability confirmed cross-model (SD=8.6%, 1/3 catastrophic). Random stable (SD=2.1%). ~36 GPU-h.
+
+### Priority 2 (strengthens further)
+- **Scale ablation** [Claim 6]: 25K-50K trajectories. ~$30-50 API + ~20 GPU-h.
+
+### Estimated total: ~120 GPU-hours (~30h wall clock with 4 × 5090)
+
+
+## registry (completed experiments)
+
+- exp_id: traj_collect_500
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    successful_trajectories: 501
+    failed_trajectories: 213
+    total_attempts: 714
+    success_rate: 0.702
+    api_cost_usd: 8.86
+    collection_time_sec: 5245
+- exp_id: sft-dryrun-73
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss_init: 2.436
+    train_loss_final: 1.543
+    train_loss_avg: 1.894
+    peak_memory_gib: 19.22
+    steps: 8
+    duration_sec: 42
+    data_vanilla: 124
+    data_injected_dryrun: 96
+    injected_failed: 4
+- exp_id: vanilla-react-baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    overall_success_rate: 0.426
+    total_tasks: 47
+    successes: 20
+    per_task_type:
+      pick_heat_then_place:
+        success: 5
+        total: 8
+        rate: 0.625
+      look_at_obj_in_light:
+        success: 3
+        total: 6
+        rate: 0.5
+      pick_and_place_simple:
+        success: 4
+        total: 8
+        rate: 0.5
+      pick_clean_then_place:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_two_obj_and_place:
+        success: 3
+        total: 7
+        rate: 0.429
+      pick_cool_then_place:
+        success: 0
+        total: 7
+        rate: 0
+- exp_id: mini-pipeline-e2e
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: mini-taxei-sft
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.447
+    eval_successes: 21
+    eval_total: 47
+    vs_baseline_pp: 2.1
+    per_task:
+      look_at_obj_in_light: 3/6 (50.0%)
+      pick_and_place_simple: 2/8 (25.0%)
+      pick_clean_then_place: 6/11 (54.5%)
+      pick_cool_then_place: 1/7 (14.3%)
+      pick_heat_then_place: 6/8 (75.0%)
+      pick_two_obj_and_place: 3/7 (42.9%)
+    train_steps: 195
+    train_duration_min: 16.3
+- exp_id: mini-vanilla-sft
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.149
+    eval_successes: 7
+    eval_total: 47
+    vs_baseline_pp: -27.7
+    per_task:
+      look_at_obj_in_light: 0/6 (0%)
+      pick_and_place_simple: 2/8 (25.0%)
+      pick_clean_then_place: 2/11 (18.2%)
+      pick_cool_then_place: 0/7 (0%)
+      pick_heat_then_place: 3/8 (37.5%)
+      pick_two_obj_and_place: 0/7 (0%)
+    train_steps: 54
+    train_duration_min: 5
+- exp_id: vanilla_sft_aligned_v1
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: vanilla_sft_aligned_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: mini-vanilla-sft-v3
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    train_samples: 4176
+    train_steps_total: 1566
+    est_duration_min: 58
+    format: aligned_single_turn
+- exp_id: mini-taxei-sft-v3
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    train_samples: 7545
+    train_samples_clean: 4176
+    train_samples_injected: 3369
+    train_steps_total: 2832
+    est_duration_min: 90
+    format: aligned_single_turn
+- exp_id: mini-random-sft-v3
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    train_samples: 9076
+    train_samples_clean: 4176
+    train_samples_injected: 4900
+    train_steps_total: 3405
+    est_duration_min: 110
+    format: aligned_single_turn
+- exp_id: mini-vanilla-sft-v4
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-vanilla-sft
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: v3-vanilla-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.745
+    successes: 35
+    total: 47
+    vs_baseline_pp: 31.9
+    vs_baseline: 42.6% → 74.5%
+- exp_id: v3-taxei-eval
+  name: ''
+  status: PREPARING
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.66
+    eval_successes: 31
+    eval_total: 47
+    vs_baseline_pp: 23.4
+    vs_vanilla_sft_pp: -8.5
+    per_task:
+      look_at_obj_in_light: 5/6 (83.3%)
+      pick_clean_then_place: 8/11 (72.7%)
+      pick_heat_then_place: 6/8 (75.0%)
+      pick_and_place_simple: 5/8 (62.5%)
+      pick_two_obj_and_place: 4/7 (57.1%)
+      pick_cool_then_place: 3/7 (42.9%)
+- exp_id: v3-random-eval
+  name: ''
+  status: PREPARING
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.511
+    eval_successes: 24
+    eval_total: 47
+    vs_baseline_pp: 8.5
+    vs_vanilla_sft_pp: -23.4
+- exp_id: v4-taxei-sft
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-random-sft
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-taxei-sft-r2
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-random-sft-r2
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-taxei-sft-r3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: v4-random-sft-r3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: v4-vanilla-eval
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-vanilla-eval-r2
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-vanilla-eval-r3
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.617
+    eval_successes: 29
+    eval_total: 47
+    per_task:
+      look_at_obj_in_light: 5/6 (83.3%)
+      pick_heat_then_place: 6/8 (75.0%)
+      pick_and_place_simple: 5/8 (62.5%)
+      pick_cool_then_place: 4/7 (57.1%)
+      pick_two_obj_and_place: 4/7 (57.1%)
+      pick_clean_then_place: 5/11 (45.5%)
+- exp_id: v4-taxei-eval
+  name: ''
+  status: PREPARING
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.617
+    eval_successes: 29
+    eval_total: 47
+    vs_vanilla_pp: 0
+    vs_random_pp: -4.3
+    mcnemar_vs_vanilla_p: 1
+    mcnemar_vs_random_p: 0.754
+    gate_3a: FAIL
+    gate_3b: FAIL
+    gate_4: PASS
+    per_task:
+      look_at_obj_in_light: 6/6 (100%)
+      pick_and_place_simple: 5/8 (62.5%)
+      pick_clean_then_place: 6/11 (54.5%)
+      pick_cool_then_place: 3/7 (42.9%)
+      pick_heat_then_place: 7/8 (87.5%)
+      pick_two_obj_and_place: 2/7 (28.6%)
+- exp_id: v4-random-eval
+  name: ''
+  status: PREPARING
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.66
+    eval_successes: 31
+    eval_total: 47
+    vs_vanilla_pp: 4.3
+    vs_taxei_pp: 4.3
+    mcnemar_vs_vanilla_p: 0.754
+    per_task:
+      look_at_obj_in_light: 6/6 (100%)
+      pick_and_place_simple: 4/8 (50%)
+      pick_clean_then_place: 6/11 (54.5%)
+      pick_cool_then_place: 4/7 (57.1%)
+      pick_heat_then_place: 7/8 (87.5%)
+      pick_two_obj_and_place: 4/7 (57.1%)
+- exp_id: v4-vanilla-seed0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.297
+    avg_loss: 0.416
+    token_accuracy: 0.902
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 58
+- exp_id: v4-taxei-seed0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.355
+    token_accuracy: 0.917
+    train_steps: 3387
+    train_epochs: 3
+    train_duration_min: 110
+- exp_id: v4-random-seed0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.355
+    token_accuracy: 0.912
+    train_steps: 3387
+    train_epochs: 3
+    train_duration_min: 110
+- exp_id: v4-recovery-eval-dev
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    pipeline_files:
+    - eval/injected_eval.py
+    - scripts/run_injected_eval.sh
+    injected_eval_lines: 463
+    dryrun_result: PASS
+    dryrun_detail: vanilla checkpoint, 1 task, cuda:3, injected error recovered in
+      13 steps
+- exp_id: v4-vanilla-seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.288
+    token_accuracy: 0.903
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 58.9
+- exp_id: v4-vanilla-seed7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.295
+    avg_loss: 0.415
+    token_accuracy: 0.898
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 59.4
+    checkpoint_path: checkpoints/mini_vanilla_sft_v4_seed7/v0-20260515-214031/checkpoint-1635
+- exp_id: v4-recovery-dryrun
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-vanilla-seed0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.681
+    eval_successes: 32
+    eval_total: 47
+    vs_seed42_pp: 6.4
+    mcnemar_vs_seed42_p: 0.375
+    discordant_pairs: 5
+    per_task:
+      look_at_obj_in_light: 5/6 (83.3%)
+      pick_and_place_simple: 5/8 (62.5%)
+      pick_clean_then_place: 6/11 (54.5%)
+      pick_cool_then_place: 4/7 (57.1%)
+      pick_heat_then_place: 7/8 (87.5%)
+      pick_two_obj_and_place: 5/7 (71.4%)
+- exp_id: v4-taxei-seed0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.468
+    eval_successes: 22
+    eval_total: 47
+    vs_seed42_pp: -14.9
+- exp_id: v4-random-seed0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.553
+    eval_successes: 26
+    eval_total: 47
+    vs_seed42_pp: -10.7
+- exp_id: v4-vanilla-seed123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.66
+    eval_successes: 31
+    eval_total: 47
+    vs_seed42_pp: 4.3
+    vs_seed0_pp: -2.1
+    per_task:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 6
+        total: 8
+        rate: 0.75
+      pick_clean_then_place_in_recep:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        success: 4
+        total: 7
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        success: 7
+        total: 8
+        rate: 0.875
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-vanilla-recovery-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.617
+    successes: 29
+    total: 47
+    recovery_rate: 0.617
+    detection_rate: 0
+    per_operator:
+      C1_context_truncation:
+        recovered: 9
+        total: 12
+        rate: 0.75
+      C4_observation_masking:
+        recovered: 6
+        total: 11
+        rate: 0.545
+      P1_step_order_swap:
+        recovered: 7
+        total: 12
+        rate: 0.583
+      P2_sub_goal_deletion:
+        recovered: 7
+        total: 12
+        rate: 0.583
+- exp_id: v4-taxei-recovery-eval
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    success_rate: 0.596
+    successes: 28
+    total: 47
+    recovery_rate: 0.596
+    detection_rate: 0
+- exp_id: v4-random-recovery-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.638
+    detection_rate: 0
+    successes: 30
+    total: 47
+    source: json-file-verified
+    note: r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism
+- exp_id: v4-taxei-recovery-eval-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.596
+    detection_rate: 0
+    total_episodes: 47
+    per_operator:
+      C1_context_truncation:
+        recovered: 8
+        total: 12
+        rate: 0.667
+      C4_observation_masking:
+        recovered: 7
+        total: 11
+        rate: 0.636
+      P1_step_order_swap:
+        recovered: 7
+        total: 12
+        rate: 0.583
+      P2_sub_goal_deletion:
+        recovered: 6
+        total: 12
+        rate: 0.5
+- exp_id: v4-taxei-seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.35506879
+    token_accuracy: 0.89978214
+    train_steps: 3387
+    train_epochs: 3
+    train_duration_min: 109.2
+    train_runtime_sec: 6549.432
+    train_speed_s_per_it: 1.934
+    memory_gib: 18.49
+- exp_id: v4-random-seed123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.35484016
+    final_loss: 0.16766574
+    token_accuracy: 0.94187103
+    avg_token_accuracy: 0.90849673
+    train_steps: 3387
+    train_epochs: 3
+    train_runtime_sec: 6609.3556
+    train_duration_min: 110.2
+    train_samples_per_second: 4.098
+    train_steps_per_second: 0.512
+    train_speed_s_per_it: 1.951
+    memory_gib: 18.49
+- exp_id: v4-fixed-inject10
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-fixed-inject25
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject10
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.308
+    token_accuracy: 0.888
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 58
+- exp_id: v4-taxei-fixed-inject25
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject25-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.285
+    token_accuracy: 0.893
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 58
+- exp_id: v4-taxei-seed123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.617
+    eval_successes: 29
+    eval_total: 47
+    by_task:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 4
+        total: 8
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        success: 7
+        total: 11
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        success: 3
+        total: 7
+        rate: 0.429
+      pick_heat_then_place_in_recep:
+        success: 6
+        total: 8
+        rate: 0.75
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-taxei-fixed-inject10-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.617
+    eval_successes: 29
+    eval_total: 47
+    by_task:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 5
+        total: 8
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        success: 4
+        total: 7
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        success: 6
+        total: 8
+        rate: 0.75
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-taxei-fixed-inject25-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.489
+    eval_successes: 23
+    eval_total: 47
+    by_task:
+      look_at_obj_in_light:
+        success: 4
+        total: 6
+        rate: 0.667
+      pick_and_place_simple:
+        success: 3
+        total: 8
+        rate: 0.375
+      pick_clean_then_place_in_recep:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        success: 2
+        total: 7
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        success: 5
+        total: 8
+        rate: 0.625
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-random-seed123-eval
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.681
+    eval_successes: 32
+    eval_total: 47
+    by_task:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 7
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 5
+        rate: 0.714
+- exp_id: v4-taxei-fixed-inject50
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.259
+    token_accuracy: 0.911
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 53.1
+- exp_id: v4-random-fixed-inject10
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4226
+    final_step_loss: 0.3079
+    token_accuracy: 0.9
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 57
+- exp_id: v4-random-fixed-inject25
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-random-fixed-inject50
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+    train_loss: 0.4338
+    final_step_loss: 0.2618
+    token_accuracy: 0.91
+    train_duration_min: 53.1
+    memory_gib: 18
+    train_speed_s_per_it: 1.95
+- exp_id: v4-taxei-fixed-inject50-eval
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    eval_success_rate: 0.511
+    eval_successes: 24
+    eval_total: 47
+    vs_vanilla_seed42_pp: -10.6
+- exp_id: v4-random-fixed-inject10-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.681
+    eval_successes: 32
+    eval_total: 47
+    by_task:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 6
+        rate: 0.545
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 5
+        rate: 0.714
+- exp_id: v4-random-fixed-inject50-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.574
+    eval_successes: 27
+    eval_total: 47
+    vs_vanilla_seed42_pp: -4.3
+    vs_taxei_50_pp: 6.3
+- exp_id: v4-random-fixed-inject25-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.553
+    eval_successes: 26
+    eval_total: 47
+    vs_vanilla_seed42_pp: -6.4
+    vs_taxei_25_pp: 6.4
+- exp_id: v4-taxei-fixed-inject25-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4258
+    train_duration_min: 56.1
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-taxei-fixed-inject25-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4253
+    train_duration_min: 55.9
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-taxei-fixed-inject50-s0
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    train_loss: 0.4342
+    train_duration_min: 52.4
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-taxei-fixed-inject50-s123
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    train_loss: 0.4348
+    train_duration_min: 52.9
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-random-fixed-inject25-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: v4-random-fixed-inject25-s123
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-random-fixed-inject50-s0
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-random-fixed-inject50-s123
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject25-s0-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.468
+    successes: 22
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 2
+        rate: 0.25
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-fixed-inject25-s123-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.468
+    successes: 22
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 3
+        rate: 0.375
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 1
+        rate: 0.143
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-fixed-inject50-s0-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.702
+    eval_successes: 33
+    eval_total: 47
+- exp_id: v4-taxei-fixed-inject50-s123-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.468
+    eval_successes: 22
+    eval_total: 47
+- exp_id: v4-random-fixed-inject25-s0-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.617
+    total: 47
+    successes: 29
+    by_task:
+      look_at_obj_in_light: 0.667
+      pick_and_place_simple: 0.625
+      pick_clean_then_place_in_recep: 0.455
+      pick_cool_then_place_in_recep: 0.571
+      pick_heat_then_place_in_recep: 0.75
+      pick_two_obj_and_place: 0.714
+- exp_id: v4-random-fixed-inject25-s123-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.511
+    total: 47
+    successes: 24
+    by_task:
+      look_at_obj_in_light: 0.667
+      pick_and_place_simple: 0.375
+      pick_clean_then_place_in_recep: 0.545
+      pick_cool_then_place_in_recep: 0.143
+      pick_heat_then_place_in_recep: 0.75
+      pick_two_obj_and_place: 0.571
+- exp_id: v4-random-fixed-inject50-s0-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.468
+    successes: 22
+    total: 47
+- exp_id: v4-random-fixed-inject50-s123-eval
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    success_rate: 0.702
+    successes: 33
+    total: 47
+- exp_id: v4-vanilla-recovery-eval-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.681
+    successes: 32
+    total: 47
+    detection_rate: 0
+- exp_id: v4-vanilla-recovery-eval-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.66
+    successes: 31
+    total: 47
+    detection_rate: 0
+- exp_id: v4-taxei-recovery-eval-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.468
+    successes: 22
+    total: 47
+    detection_rate: 0
+- exp_id: v4-taxei-recovery-eval-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.617
+    successes: 29
+    total: 47
+    detection_rate: 0
+- exp_id: v4-random-recovery-eval-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.553
+    detection_rate: 0
+    success_rate: 0.553
+    total_episodes: 47
+    by_operator:
+      C1_context_truncation:
+        total: 12
+        recovered: 7
+        recovery_rate: 0.583
+      C4_observation_masking:
+        total: 11
+        recovered: 6
+        recovery_rate: 0.545
+      P1_step_order_swap:
+        total: 12
+        recovered: 7
+        recovery_rate: 0.583
+      P2_sub_goal_deletion:
+        total: 12
+        recovered: 6
+        recovery_rate: 0.5
+- exp_id: v4-random-recovery-eval-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.66
+    detection_rate: 0
+    total_episodes: 47
+    by_operator:
+      C1_context_truncation:
+        recovery_rate: 0.75
+        recovered: 9
+        total: 12
+      P2_sub_goal_deletion:
+        recovery_rate: 0.75
+        recovered: 9
+        total: 12
+      P1_step_order_swap:
+        recovery_rate: 0.583
+        recovered: 7
+        total: 12
+      C4_observation_masking:
+        recovery_rate: 0.545
+        recovered: 6
+        total: 11
+- exp_id: v4-vanilla-seed1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.292
+    avg_loss: 0.416
+    token_accuracy: 0.903
+    train_steps: 1635
+    train_epochs: 3
+    train_duration_min: 58.8
+    memory_gib: 17.63
+    checkpoint_path: checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635
+- exp_id: v4-taxei-seed1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.1667
+    avg_loss: 0.3561
+    token_accuracy: 0.915
+    final_token_acc: 0.942
+    train_steps: 3387
+    train_epochs: 3
+    train_duration_min: 108.9
+    memory_gib: 18.49
+    checkpoint_path: checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387
+- exp_id: v4-taxei-seed7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    current_step: 3387
+    total_steps: 3387
+    progress_pct: 100
+    train_loss: 0.3568
+    final_step_loss: 0.1753
+    token_acc: 0.9009
+    final_token_acc: 0.9328
+    train_runtime_s: 6591.9
+    epochs: 3
+    peak_memory_gib: 18.49
+    gpu: cuda:3
+    pid: 155145
+- exp_id: v4-training-dynamics-forward
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    vanilla_full:
+      clean_loss: 0.6853
+      clean_n: 4358
+    taxei_full:
+      clean_loss: 0.7712
+      injected_loss: 0.6139
+      clean_n: 8269
+      injected_n: 760
+      per_operator:
+        P1_StepOrderSwap: 0.6165
+        P2_SubGoalDeletion: 0.6161
+        C1_ContextTruncation: 0.5932
+        C4_ObservationMasking: 0.6298
+    random_full:
+      clean_loss: 0.7354
+      injected_loss: 0.5902
+      clean_n: 8269
+      injected_n: 760
+    dose_response:
+      taxei_10pct:
+        clean_loss: 0.6628
+        injected_loss: 0.6464
+        gap: -0.0164
+        injected_n: 70
+      taxei_25pct:
+        clean_loss: 0.701
+        injected_loss: 0.574
+        gap: -0.127
+        injected_n: 168
+      taxei_50pct:
+        clean_loss: 0.8516
+        injected_loss: 0.6547
+        gap: -0.1969
+        injected_n: 370
+    key_findings: 'Clear dose-response: injected-clean gap widens from -0.016 (10%)
+      to -0.127 (25%) to -0.197 (50%). TaxEI operators C1_ContextTruncation consistently
+      lowest loss. Higher injection rates also degrade clean sample loss (0.663→0.701→0.852).'
+- exp_id: v4-recovery-paired-datagen
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    total_injected_variants: 760
+    successfully_processed: 711
+    skipped_no_source_match: 49
+    operators:
+      C1_ContextTruncation: 182
+      C4_ObservationMasking: 175
+      P1_StepOrderSwap: 170
+      P2_SubGoalDeletion: 184
+    recovery_steps_mean: 7.6
+    recovery_steps_min: 1
+    recovery_steps_max: 46
+    total_recovery_api_calls: 5408
+    output_file: /root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/recovery_paired.jsonl
+    output_lines: 711
+    output_size_mb: 20.8
+    log_file: /root/autodl-tmp/tax_error_inject_agent/logs/recovery_paired_gen.log
+- exp_id: v4-vanilla-seed7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.745
+    eval_successes: 35
+    eval_total: 47
+    vs_seed42_pp: 12.8
+- exp_id: v4-vanilla-seed1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    eval_success_rate: 0.66
+    eval_successes: 31
+    eval_total: 47
+    vs_seed42_pp: 4.3
+- exp_id: v4-random-seed1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.167
+    final_token_acc: 0.938
+    initial_loss: 4.017
+    total_steps: 3387
+    epochs: 3
+    total_flos: 697000000000000000
+- exp_id: v4-random-seed7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.173
+    final_token_acc: 0.935
+    initial_loss: 4.017
+    total_steps: 3387
+    epochs: 3
+    total_flos: 697192362530058200
+    train_runtime_sec: 6672
+    memory_gib: 18.49
+- exp_id: v4-taxei-seed1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.596
+    successes: 28
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 5
+        rate: 0.714
+- exp_id: v4-taxei-seed7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.617
+    successes: 29
+    total: 47
+    by_task:
+      look_at_obj_in_light: 4/6 (0.667)
+      pick_and_place_simple: 5/8 (0.625)
+      pick_clean_then_place_in_recep: 5/11 (0.455)
+      pick_cool_then_place_in_recep: 4/7 (0.571)
+      pick_heat_then_place_in_recep: 7/8 (0.875)
+      pick_two_obj_and_place: 4/7 (0.571)
+- exp_id: qualitative-failure-analysis
+  name: ''
+  status: PREPARING
+  conclusion: success
+  metrics:
+    data_source: eval_results/failure_analysis.json
+    taxei_loop_repetition_rate: 0.174
+    vanilla_loop_repetition_rate: 0.078
+    random_loop_repetition_rate: 0.032
+    taxei_loop_count: 49
+    vanilla_loop_count: 22
+    random_loop_count: 6
+    per_operator:
+      P1: 15
+      P2: 14
+      C1: 11
+      C4: 9
+    note: Random data only from seed=42 recovery eval + 3-seed clean eval (188 episodes
+      vs 282). Rates to be updated after 5-seed completion.
+- exp_id: v4-taxei-fixed-inject10-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4238
+    final_loss: 0.3102
+    final_token_acc: 0.8822
+    epochs: 3
+    total_steps: 1635
+    train_runtime_sec: 3494
+    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s0/v0-20260516-005247/checkpoint-1635
+- exp_id: v4-training-dynamics-forward-v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    subsets_computed:
+    - vanilla_full
+    - taxei_full
+    - random_full
+    - taxei_inject10
+    - taxei_inject25
+    - taxei_inject50
+    taxei_inject50_injected_mean_loss: 0.8185
+    taxei_inject50_clean_mean_loss: 0.8514
+    per_operator:
+      C1_ContextTruncation:
+        mean: 0.6489
+        n: 101
+      C4_ObservationMasking:
+        mean: 0.6782
+        n: 92
+      P1_StepOrderSwap:
+        mean: 0.6374
+        n: 89
+      P2_SubGoalDeletion:
+        mean: 0.6542
+        n: 88
+    plots:
+    - subset_comparison
+    - operator_breakdown
+    - dose_response
+    output_dir: /root/autodl-tmp/tax_error_inject_agent/artifacts/training_dynamics_v2/
+- exp_id: v4-random-seed1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.468
+    successes: 22
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 2
+        total: 8
+        rate: 0.25
+      pick_clean_then_place_in_recep:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        success: 2
+        total: 7
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        success: 5
+        total: 8
+        rate: 0.625
+      pick_two_obj_and_place:
+        success: 3
+        total: 7
+        rate: 0.429
+- exp_id: v4-random-seed7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.553
+    successes: 26
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 6
+        rate: 0.545
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 3
+        rate: 0.429
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-inject10-seed0
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-taxei-inject10-seed123
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-random-inject10-seed0
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject10-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4234
+    final_loss: 0.3097
+    final_token_acc: 0.8882
+    epochs: 3
+    total_steps: 1635
+    train_runtime_sec: 3497
+    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635
+- exp_id: v4-random-fixed-inject10-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4227
+    final_loss: 0.276
+    final_token_acc: 0.9067
+    epochs: 3
+    total_steps: 1635
+    train_runtime_sec: 3531
+    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635
+- exp_id: v4-taxei-fixed-inject10-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.3013
+    train_loss_avg: 0.4225
+    final_token_acc: 0.8947
+    total_steps: 1635
+    epochs: 3
+    train_runtime_sec: 3469
+    memory_gib: 18.13
+    train_speed_s_per_it: 2.121
+- exp_id: v4-random-fixed-inject10-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.3124
+    train_loss_avg: 0.4236
+    final_token_acc: 0.8867
+    total_steps: 1635
+    epochs: 3
+    train_runtime_sec: 3535.7
+    train_samples_per_second: 3.698
+    train_steps_per_second: 0.462
+    memory_gib: 18.95
+- exp_id: v4-taxei-fixed-inject10-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.237
+    train_loss_avg: 0.4212
+    final_token_acc: 0.905
+    total_steps: 1635
+    epochs: 3
+    train_runtime_sec: 3437
+    memory_gib: 18.15
+    train_speed_s_per_it: 2.102
+- exp_id: v4-random-fixed-inject10-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.3096
+    train_loss_avg: 0.4238
+    final_token_acc: 0.8902
+    total_steps: 1635
+    epochs: 3
+    train_runtime_sec: 3488
+    memory_gib: 18.13
+    train_speed_s_per_it: 2.132
+- exp_id: v4-random-fixed-inject10-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.2352
+    train_loss_avg: 0.4209
+    final_token_acc: 0.9066
+    total_steps: 1635
+    epochs: 3
+    train_runtime_sec: 3511.93
+    memory_gib: 18.15
+    train_speed_s_per_it: 2.148
+- exp_id: v4-taxei-fixed-inject10-s123-eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    error: CUDA OOM during model loading on GPU 0
+- exp_id: v4-random-fixed-inject10-s0-eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    error: CUDA OOM during model loading on GPU 0
+- exp_id: v4-taxei-fixed-inject10-s1-eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    error: CUDA OOM during model loading on GPU 0
+- exp_id: v4-taxei-fixed-inject10-s0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.702
+    successes: 33
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 8
+        rate: 0.727
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 4
+        rate: 0.571
+- exp_id: v4-random-fixed-inject10-s123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.553
+    successes: 26
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-fixed-inject10-s123-eval-r2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: v4-random-fixed-inject10-s0-eval-r2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject10-s123-eval-r3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.553
+    successes: 26
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 4
+        rate: 0.571
+- exp_id: v4-random-fixed-inject10-s0-eval-r3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.66
+    successes: 31
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 4
+        total: 8
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        success: 7
+        total: 11
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        success: 4
+        total: 7
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        success: 7
+        total: 8
+        rate: 0.875
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-taxei-fixed-inject10-s1-eval-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.511
+    successes: 24
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-fixed-inject10-s7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.681
+    successes: 32
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 7
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 4
+        rate: 0.571
+- exp_id: v4-random-fixed-inject10-s1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.681
+    successes: 32
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 10
+        success: 5
+        rate: 0.5
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 6
+        rate: 0.857
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 4
+        rate: 0.571
+- exp_id: v4-taxei-fixed-inject25-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4243
+    train_duration_min: 57.5
+    train_steps: 1635
+    train_epochs: 3
+    data_count: 4358
+- exp_id: v4-random-fixed-inject25-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4261
+    final_step_loss: 0.2442
+    token_accuracy: 0.9123
+    train_steps: 1635
+    train_epochs: 3
+    train_runtime_sec: 3417.56
+    train_duration_min: 56.96
+    train_samples_per_second: 3.826
+    train_steps_per_second: 0.478
+    memory_gib: 18
+    data_count: 4358
+- exp_id: v4-taxei-fixed-inject25-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4242
+    final_step_loss: 0.2571
+    token_accuracy: 0.904
+    train_steps: 1635
+    train_epochs: 3
+    train_runtime_sec: 3430.48
+    train_duration_min: 57.17
+    train_samples_per_second: 3.811
+    train_steps_per_second: 0.477
+    memory_gib: 17.55
+    data_count: 4358
+- exp_id: v4-random-fixed-inject10-s7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.617
+    successes: 29
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        success: 5
+        total: 6
+        rate: 0.833
+      pick_and_place_simple:
+        success: 4
+        total: 8
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        success: 5
+        total: 11
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        success: 4
+        total: 7
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        success: 7
+        total: 8
+        rate: 0.875
+      pick_two_obj_and_place:
+        success: 4
+        total: 7
+        rate: 0.571
+- exp_id: v4-random-fixed-inject25-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4254
+    final_step_loss: 0.265
+    token_acc: 0.899
+    epochs: 3
+    steps: 1635
+    train_runtime_sec: 3407
+- exp_id: v4-taxei-fixed-inject25-s1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.638
+    successes: 30
+    total: 47
+    eval_split: valid_unseen
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 6
+        rate: 0.545
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 3
+        rate: 0.429
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 6
+        rate: 0.857
+- exp_id: v4-taxei-fixed-inject25-s7-eval
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-random-fixed-inject25-s1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.723
+    successes: 34
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 7
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 7
+        rate: 0.875
+      pick_two_obj_and_place:
+        total: 7
+        success: 6
+        rate: 0.857
+- exp_id: v4-random-fixed-inject25-s7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.596
+    successes: 28
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 6
+        rate: 0.545
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 3
+        rate: 0.429
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 4
+        rate: 0.571
+- exp_id: v4-taxei-fixed-inject25-s1-eval-r2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject25-s7-eval-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.574
+    successes: 27
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 3
+        rate: 0.375
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 3
+        rate: 0.429
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 5
+        rate: 0.714
+- exp_id: v4-taxei-fixed-inject50-s1
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-random-fixed-inject50-s1
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: v4-taxei-fixed-inject50-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4674
+    token_acc: 0.9189
+    train_runtime_sec: 3834
+    memory_gib: 29.94
+- exp_id: v4-random-fixed-inject50-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4672
+    token_acc: 0.9156
+    train_runtime_sec: 3832
+    memory_gib: 29.94
+- exp_id: v4-taxei-fixed-inject50-s1-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4667
+    token_acc: 0.9072
+    train_runtime_sec: 3858
+    memory_gib: 30.37
+- exp_id: v4-random-fixed-inject50-s1-r2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4664
+    token_acc: 0.9012
+    train_runtime_sec: 3928
+    memory_gib: 30.37
+- exp_id: v4-taxei-fixed-inject50-s1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.638
+    successes: 30
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 6
+        rate: 1
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 7
+        rate: 0.636
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-random-fixed-inject50-s1-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.702
+    successes: 33
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 8
+        rate: 0.727
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 4
+        rate: 0.571
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 5
+        rate: 0.714
+- exp_id: v4-taxei-fixed-inject50-s7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.553
+    successes: 26
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 5
+        rate: 0.833
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 6
+        rate: 0.545
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 2
+        rate: 0.286
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 6
+        rate: 0.75
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-random-fixed-inject50-s7-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.468
+    successes: 22
+    total: 47
+    by_task_type:
+      look_at_obj_in_light:
+        total: 6
+        success: 4
+        rate: 0.667
+      pick_and_place_simple:
+        total: 8
+        success: 4
+        rate: 0.5
+      pick_clean_then_place_in_recep:
+        total: 11
+        success: 5
+        rate: 0.455
+      pick_cool_then_place_in_recep:
+        total: 7
+        success: 1
+        rate: 0.143
+      pick_heat_then_place_in_recep:
+        total: 8
+        success: 5
+        rate: 0.625
+      pick_two_obj_and_place:
+        total: 7
+        success: 3
+        rate: 0.429
+- exp_id: v4-taxei-rp-s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.38469276
+    eval_loss: null
+    duration_minutes: 226.67
+    token_acc: 0.92487562
+    train_samples_per_second: 3.185
+    peak_memory_gib: 30.68
+- exp_id: v4-taxei-rp-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.3847
+    token_acc: 0.9065
+    duration_min: 231.07
+    peak_memory_gib: 30.37
+    train_samples_per_second: 3.124
+- exp_id: v4-taxei-rp-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.38524182
+    eval_loss: null
+    duration_minutes: 226.5
+    token_acc: 0.91372913
+    train_samples_per_second: 3.187
+    peak_memory_gib: 30.66
+- exp_id: v4-taxei-rp-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.38530399
+    eval_loss: null
+    duration_minutes: 226.3
+    token_acc: 0.91761223
+    train_samples_per_second: 3.19
+    peak_memory_gib: 30.17
+- exp_id: llama31-taxei-s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.3366
+    token_acc: 0.9357
+    train_steps: 3387
+    train_duration_s: 7782
+- exp_id: llama31-random-s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.3366
+    token_acc: 0.9364
+    train_steps: 3387
+    train_duration_s: 7622
+- exp_id: v4-taxei-rp-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.3855
+    token_acc: 0.9103
+    duration_minutes: 226.6
+    peak_memory_gib: 30.25
+    train_samples_per_second: 3.185
+- exp_id: eval-rp-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.574
+    detection_rate: 0
+    episodes: 47
+    recovered: 27
+- exp_id: eval-rp-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.489
+    detection_rate: 0
+    episodes: 47
+    recovered: 23
+- exp_id: eval-rp-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.468
+    detection_rate: 0
+    episodes: 47
+    recovered: 22
+- exp_id: llama31-vanilla-s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.40025
+    token_acc: 0.9067
+    train_steps: 1635
+    train_duration_s: 4157
+- exp_id: eval-rp-s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.383
+    recovery_count: 18/47
+    C1_context_truncation: 0.5
+    C4_observation_masking: 0.273
+    P1_step_order_swap: 0.5
+    P2_sub_goal_deletion: 0.25
+    detection_rate: 0
+- exp_id: llama31-vanilla-s42-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    recovery_count: 35/47
+    detection_rate: 0.213
+    C1_context_truncation: 0.75
+    C4_observation_masking: 0.727
+    P1_step_order_swap: 0.75
+    P2_sub_goal_deletion: 0.75
+- exp_id: recovery-vanilla-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.66
+    recovery_count: 31/47
+    detection_rate: 0
+    C1_context_truncation: 0.667
+    C4_observation_masking: 0.545
+    P1_step_order_swap: 0.667
+    P2_sub_goal_deletion: 0.75
+- exp_id: recovery-vanilla-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    recovery_count: 35/47
+    detection_rate: 0
+    C1_context_truncation: 0.75
+    C4_observation_masking: 0.727
+    P1_step_order_swap: 0.75
+    P2_sub_goal_deletion: 0.75
+- exp_id: llama31-taxei-s42-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    recovery_count: 35/47
+    detection_rate: 0.298
+    C1_context_truncation: 0.833
+    C4_observation_masking: 0.727
+    P1_step_order_swap: 0.583
+    P2_sub_goal_deletion: 0.833
+    C1_detection: 0.167
+    C4_detection: 0.364
+    P1_detection: 0.25
+    P2_detection: 0.417
+- exp_id: llama31-random-s42-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.766
+    recovery_count: 36/47
+    detection_rate: 0.298
+    C1_context_truncation: 0.667
+    C4_observation_masking: 0.727
+    P1_step_order_swap: 0.917
+    P2_sub_goal_deletion: 0.75
+    C1_detection: 0.417
+    C4_detection: 0.364
+    P1_detection: 0.333
+    P2_detection: 0.083
+- exp_id: llama31-vanilla-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_train_loss: 0.398
+    epoch1_loss: 0.481
+    epoch2_loss: 0.362
+    epoch3_loss: 0.273
+    final_token_acc: 0.909
+    train_runtime_sec: 4158.6
+- exp_id: llama31-taxei-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_train_loss: 0.32
+    final_token_acc: 0.88
+    train_steps: 3387
+    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s0/v1-20260516-181826/checkpoint-3387
+- exp_id: llama31-random-s0
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_train_loss: 0.3368
+    epoch1_loss: 0.452
+    epoch2_loss: 0.238
+    epoch3_loss: 0.134
+    final_token_acc: 0.9357
+    train_runtime_sec: 7622
+    train_steps: 3387
+    peak_memory_gib: 30.74
+    checkpoint_path: /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387
+- exp_id: recovery-taxei-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.617
+    recovery_count: 29/47
+    detection_rate: 0
+    C1_context_truncation: 0.75
+    C4_observation_masking: 0.636
+    P1_step_order_swap: 0.583
+    P2_sub_goal_deletion: 0.5
+- exp_id: eval-rp-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.596
+    recovery_count: 28/47
+    detection_rate: 0
+- exp_id: llama31-vanilla-s0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    recovery_count: 35/47
+    detection_rate: 0.277
+    eval_type: injected
+    eval_script: injected_eval.py
+    output_file: eval_results/llama31_vanilla_s0_injected.json
+    C1_context_truncation:
+      recovery: 0.667
+      detection: 0.167
+    C4_observation_masking:
+      recovery: 0.727
+      detection: 0.364
+    P1_step_order_swap:
+      recovery: 0.917
+      detection: 0.333
+    P2_sub_goal_deletion:
+      recovery: 0.667
+      detection: 0.25
+- exp_id: llama31-random-s42-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.766
+    eval_type: clean
+    eval_script: eval/recovery.py
+    total_episodes: 47
+    output_file: eval_results/llama31_random_s42_clean.json
+- exp_id: recovery-taxei-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.574
+    detection_rate: 0
+    total_episodes: 47
+- exp_id: llama31-random-s0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    detection_rate: 0.255
+    success_rate: 0.745
+    total_episodes: 47
+    by_operator:
+      C1_context_truncation:
+        total: 12
+        recovered: 10
+        detected: 1
+        recovery_rate: 0.833
+        detection_rate: 0.083
+      C4_observation_masking:
+        total: 11
+        recovered: 8
+        detected: 4
+        recovery_rate: 0.727
+        detection_rate: 0.364
+      P1_step_order_swap:
+        total: 12
+        recovered: 8
+        detected: 4
+        recovery_rate: 0.667
+        detection_rate: 0.333
+      P2_sub_goal_deletion:
+        total: 12
+        recovered: 9
+        detected: 3
+        recovery_rate: 0.75
+        detection_rate: 0.25
+- exp_id: llama31-vanilla-s42-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.723
+    eval_type: clean
+    eval_script: eval/recovery.py
+    total_episodes: 47
+    output_file: eval_results/llama31_vanilla_s42_clean.json
+- exp_id: llama31-vanilla-s0-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.723
+    eval_type: clean
+    eval_script: eval/recovery.py
+    total_episodes: 47
+    output_file: eval_results/llama31_vanilla_s0_clean.json
+- exp_id: llama31-taxei-s0-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.745
+    success_rate: 0.745
+    total_episodes: 47
+- exp_id: llama31-vanilla-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.4
+    final_loss: 0.254
+    token_acc: 0.894
+    steps: 1635
+    epochs: 3
+    runtime_seconds: 4234
+    memory_gib: 29.85
+- exp_id: llama31-taxei-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: llama31-random-s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: llama31-taxei-s0-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.766
+    total_episodes: 47
+- exp_id: llama31-taxei-s42-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.766
+    total_episodes: 47
+    eval_type: clean
+    eval_script: eval/recovery.py
+    output_file: eval_results/llama31_taxei_s42_clean.json
+    by_task_type:
+      look_at_obj_in_light: 1
+      pick_and_place_simple: 0.625
+      pick_clean_then_place_in_recep: 0.636
+      pick_cool_then_place_in_recep: 0.714
+      pick_heat_then_place_in_recep: 0.875
+      pick_two_obj_and_place: 0.857
+- exp_id: llama31-random-s0-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.745
+    total_episodes: 47
+    eval_type: clean
+    eval_script: eval/recovery.py
+    output_file: eval_results/llama31_random_s0_clean.json
+    by_task_type:
+      look_at_obj_in_light: 0.667
+      pick_and_place_simple: 0.625
+      pick_clean_then_place_in_recep: 0.636
+      pick_cool_then_place_in_recep: 0.571
+      pick_heat_then_place_in_recep: 1
+      pick_two_obj_and_place: 1
+- exp_id: llama31-vanilla-s123-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.723
+    total_episodes: 47
+    eval_type: clean
+    eval_script: eval/recovery.py
+    output_file: eval_results/llama31_vanilla_s123_clean.json
+    by_task_type:
+      look_at_obj_in_light: 0.833
+      pick_and_place_simple: 0.625
+      pick_clean_then_place_in_recep: 0.545
+      pick_cool_then_place_in_recep: 0.571
+      pick_heat_then_place_in_recep: 1
+      pick_two_obj_and_place: 0.857
+- exp_id: recovery-random-s1
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.511
+    detection_rate: 0
+    total_episodes: 47
+- exp_id: recovery-random-s7
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.532
+    detection_rate: 0
+    total_episodes: 47
+- exp_id: eval-llama31-taxei-s42-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: eval-llama31-random-s0-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: llama31-vanilla-s123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.702
+    detection_rate: 0.213
+    total_episodes: 47
+- exp_id: llama31-taxei-s123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.596
+    detection_rate: 0.362
+    success_rate: 0.596
+    total_episodes: 47
+- exp_id: llama31-taxei-s123-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.617
+    total_episodes: 47
+    eval_type: clean
+    by_task_type:
+      look_at_obj_in_light: 0.667
+      pick_and_place_simple: 0.375
+      pick_clean_then_place_in_recep: 0.455
+      pick_cool_then_place_in_recep: 0.571
+      pick_heat_then_place_in_recep: 0.875
+      pick_two_obj_and_place: 0.857
+- exp_id: llama31-random-s123-clean
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    success_rate: 0.766
+    total_episodes: 47
+    eval_type: clean
+    eval_script: eval/recovery.py
+    output_file: eval_results/llama31_random_s123_clean.json
+    by_task_type:
+      look_at_obj_in_light: 1
+      pick_and_place_simple: 0.625
+      pick_clean_then_place_in_recep: 0.636
+      pick_cool_then_place_in_recep: 0.571
+      pick_heat_then_place_in_recep: 0.875
+      pick_two_obj_and_place: 1
+- exp_id: llama31-random-s123-eval
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    recovery_rate: 0.787
+    detection_rate: 0.255
+    total_episodes: 47
+    by_operator:
+      C1_context_truncation:
+        recovered: 10/12
+        rate: 0.833
+        det_rate: 0.083
+      C4_observation_masking:
+        recovered: 8/11
+        rate: 0.727
+        det_rate: 0.182
+      P1_step_order_swap:
+        recovered: 10/12
+        rate: 0.833
+        det_rate: 0.417
+      P2_sub_goal_deletion:
+        recovered: 9/12
+        rate: 0.75
+        det_rate: 0.333
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "128fe4de-7b3e-478a-90c3-2bac85204ec9",
+  "type": "user",
+  "uuid": "ac364f04-2990-4967-b347-810e62e3054f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T15:42:00.347Z_
+
+```json
+{
+  "parentUuid": "ac364f04-2990-4967-b347-810e62e3054f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "f97fc8e2-dc8d-49d1-80cc-afc76bcf0436",
+  "timestamp": "2026-05-16T15:42:00.347Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T15:42:00.347Z_
+
+```json
+{
+  "parentUuid": "f97fc8e2-dc8d-49d1-80cc-afc76bcf0436",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "8ef4cac8-9671-4f4b-abf5-8e2185402ac2",
+  "timestamp": "2026-05-16T15:42:00.347Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T15:42:00.347Z_
+
+```json
+{
+  "parentUuid": "8ef4cac8-9671-4f4b-abf5-8e2185402ac2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "40ab3ea7-e634-4414-97ca-81213e7378ca",
+  "timestamp": "2026-05-16T15:42:00.347Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept 核心假设：[\"Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-correcte…",
+  "leafUuid": "40ab3ea7-e634-4414-97ca-81213e7378ca",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-model structured error injection instability for embodied planning",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T15:42:10.956Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to look at the experiment_plan file to find all "planned" experiments, then for each one, generate detailed predicted data for the "best" tier outcome. Let me first find the experiment plan file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40ab3ea7-e634-4414-97ca-81213e7378ca",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W68VyRLT3FMLyiXVmr",
+  "type": "assistant",
+  "uuid": "fc7d19ab-41c7-4cae-8135-aa5d980a271b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SpwA1zDms7BMa7r9q2WkxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41705,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 41705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-16T15:42:10.957Z_
+
+Let me find the experiment plan file first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc7d19ab-41c7-4cae-8135-aa5d980a271b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W68VyRLT3FMLyiXVmr",
+  "type": "assistant",
+  "uuid": "c06739f2-742e-431e-b881-1011cdb7abb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SpwA1zDms7BMa7r9q2WkxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41705,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 41705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T15:42:11.453Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NwFB2s1CA3EmbrXNQND2Bc`</summary>
+
+```json
+{
+  "pattern": "**/experiment_plan*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c06739f2-742e-431e-b881-1011cdb7abb6",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W68VyRLT3FMLyiXVmr",
+  "type": "assistant",
+  "uuid": "2aa25d14-30e8-451f-9d25-f9e85778abe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SpwA1zDms7BMa7r9q2WkxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41705,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 41705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T15:42:11.782Z_
+
+<details><summary>↩ Tool result · `toolu_01A9c8vw5kKgU47zbfNvd2ij`</summary>
+
+```text
+projects/tax_error_inject_agent/artifacts/injection/planning.py
+projects/tax_error_inject_agent/artifacts/injection/__pycache__/planning.cpython-314.pyc
+projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_write-experiment-plan_20260514T220305.log
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_write-experiment-plan_20260514T220305_result.json
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan_20260514T221342.log
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan_20260514T221342_result.json
+projects/tax_error_inject_agent/logs/workers/worker_code_experiment-plan-yaml_20260515T015307.log
+projects/tax_error_inject_agent/logs/workers/worker_code_experiment-plan-yaml_20260515T015307_result.json
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan-yaml_20260515T015318.log
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan-yaml_20260515T015318_result.json
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321.log
+projects/tax_error_inject_agent/logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321_result.json
+.venv/lib/python3.14/site-packages/fontTools/varLib/avar/plan.py
+.venv/lib/python3.14/site-packages/fontTools/varLib/avar/__pycache__/plan.cpython-314.pyc
+projects/tax_error_inject_agent/writing_plan.yaml
+projects/tax_error_inject_agent/experiment_plan.lock
+projects/tax_error_inject_agent/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2142aa3c-e209-485e-ae8b-96ef6d6e4a7f",
+  "isSidechain": false,
+  "promptId": "128fe4de-7b3e-478a-90c3-2bac85204ec9",
+  "type": "user",
+  "uuid": "9fbb9d40-15b4-46c2-932a-9f6fd480b5f4",
+  "toolUseResult": {
+    "filenames": [
+      "projects/tax_error_inject_agent/artifacts/injection/planning.py",
+      "projects/tax_error_inject_agent/artifacts/injection/__pycache__/planning.cpython-314.pyc",
+      "projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_write-experiment-plan_20260514T220305.log",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_write-experiment-plan_20260514T220305_result.json",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan_20260514T221342.log",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan_20260514T221342_result.json",
+      "projects/tax_error_inject_agent/logs/workers/worker_code_experiment-plan-yaml_20260515T015307.log",
+      "projects/tax_error_inject_agent/logs/workers/worker_code_experiment-plan-yaml_20260515T015307_result.json",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan-yaml_20260515T015318.log",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_experiment-plan-yaml_20260515T015318_result.json",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321.log",
+      "projects/tax_error_inject_agent/logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321_result.json",
+      ".venv/lib/python3.14/site-packages/fontTools/varLib/avar/plan.py",
+      ".venv/lib/python3.14/site-packages/fontTools/varLib/avar/__pycache__/plan.cpython-314.pyc",
+      "projects/tax_error_inject_agent/writing_plan.yaml",
+      "projects/tax_error_inject_agent/experiment_plan.lock",
+      "projects/tax_error_inject_agent/experiment_plan.yaml"
+    ],
+    "durationMs": 20,
+    "numFiles": 18,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "2142aa3c-e209-485e-ae8b-96ef6d6e4a7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T15:42:11.487Z_
+
+<details><summary>↩ Tool result · `toolu_01NwFB2s1CA3EmbrXNQND2Bc`</summary>
+
+```text
+projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml
+projects/tax_error_inject_agent/experiment_plan.lock
+projects/tax_error_inject_agent/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2aa25d14-30e8-451f-9d25-f9e85778abe3",
+  "isSidechain": false,
+  "promptId": "128fe4de-7b3e-478a-90c3-2bac85204ec9",
+  "type": "user",
+  "uuid": "28e57bb2-4dae-4497-ada4-3312d88581f7",
+  "toolUseResult": {
+    "filenames": [
+      "projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml",
+      "projects/tax_error_inject_agent/experiment_plan.lock",
+      "projects/tax_error_inject_agent/experiment_plan.yaml"
+    ],
+    "durationMs": 26,
+    "numFiles": 3,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "2aa25d14-30e8-451f-9d25-f9e85778abe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T15:42:11.739Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01A9c8vw5kKgU47zbfNvd2ij`</summary>
+
+```json
+{
+  "pattern": "**/*plan*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28e57bb2-4dae-4497-ada4-3312d88581f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W68VyRLT3FMLyiXVmr",
+  "type": "assistant",
+  "uuid": "2142aa3c-e209-485e-ae8b-96ef6d6e4a7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SpwA1zDms7BMa7r9q2WkxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 41705,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 41705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 41705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 41705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T15:42:16.620Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PBwS1JutkQYwGEH2s2EGLB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fbb9d40-15b4-46c2-932a-9f6fd480b5f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W6yP5EFE8dHeLioq7J",
+  "type": "assistant",
+  "uuid": "a60afa77-d4d9-411e-932f-0db7eab8b155",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQb8KhbLQa8qqhppC5EFhS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 53152,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 800,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 53152,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 800
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T15:42:16.645Z_
+
+<details><summary>↩ Tool result · `toolu_01PBwS1JutkQYwGEH2s2EGLB`</summary>
+
+```text
+1	experiments:
+2	- id: baseline
+3	  description: Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)
+4	  claim: context
+5	  priority: 0
+6	  status: done
+7	  registry_id: vanilla-react-baseline
+8	  depends_on: []
+9	  results:
+10	    accuracy: 42.6% (20/47)
+11	- id: data-collection
+12	  description: GPT-5.2 trajectory collection for SFT training data
+13	  claim: prerequisite
+14	  priority: 0
+15	  status: done
+16	  registry_id: traj_collect_500
+17	  depends_on: []
+18	  results:
+19	    success_rate: 70.2% (501/714)
+20	    cost: $8.86
+21	- id: v3-pilot
+22	  description: 'v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval'
+23	  claim: supplement
+24	  priority: 0
+25	  status: done
+26	  registry_id: v3-vanilla-eval
+27	  depends_on:
+28	  - data-collection
+29	  results:
+30	    vanilla: 74.5%
+31	    taxei: 66.0%
+32	    random: 51.1%
+33	  notes: 'Superseded by v4. All registry: mini-vanilla-sft-v3, mini-taxei-sft-v3,
+34	    mini-random-sft-v3, v3-vanilla-eval, v3-taxei-eval, v3-random-eval'
+35	- id: multiseed-vanilla
+36	  description: Vanilla SFT 3-seed verification (clean data only, 4,358 samples)
+37	  claim: C1
+38	  priority: 1
+39	  status: done
+40	  registry_id: v4-vanilla-eval-r3
+41	  depends_on:
+42	  - data-collection
+43	  results:
+44	    seed42: 61.7%
+45	    seed0: 68.1%
+46	    seed123: 66.0%
+47	    mean_sd: 65.3% ± 3.3pp
+48	  notes: 'Train: mini-vanilla-sft-v4, v4-vanilla-seed0, v4-vanilla-seed123. Eval:
+49	    v4-vanilla-eval-r3, v4-vanilla-seed0-eval, v4-vanilla-seed123-eval'
+50	- id: multiseed-taxei
+51	  description: TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections,
+52	    9,029 samples)
+53	  claim: C1,C2,C3
+54	  priority: 1
+55	  status: done
+56	  registry_id: v4-taxei-eval
+57	  depends_on:
+58	  - data-collection
+59	  results:
+60	    seed42: 61.7%
+61	    seed0: 46.8%
+62	    seed123: 61.7%
+63	    mean_sd: 56.7% ± 8.6pp
+64	    vs_vanilla_paired_t_p: 0.32 (NS)
+65	    vs_vanilla_pooled_p: 0.054 (NS at α=0.05)
+66	  notes: 'Train: v4-taxei-sft-r2, v4-taxei-seed0, v4-taxei-seed123. Eval: v4-taxei-eval,
+67	    v4-taxei-seed0-eval, v4-taxei-seed123-eval'
+68	- id: multiseed-random
+69	  description: Random SFT 3-seed verification (clean + unlabeled injections, 9,029
+70	    samples)
+71	  claim: C2,C3
+72	  priority: 1
+73	  status: done
+74	  registry_id: v4-random-eval
+75	  depends_on:
+76	  - data-collection
+77	  results:
+78	    seed42: 66.0%
+79	    seed0: 55.3%
+80	    seed123: 68.1%
+81	    mean_sd: 63.1% ± 7.0pp
+82	    vs_taxei_paired_t_p: 0.034 (suggestive, df=2)
+83	    vs_taxei_pooled_p: 0.170 (NS)
+84	  notes: 'Train: v4-random-sft-r2, v4-random-seed0, v4-random-seed123. Eval: v4-random-eval,
+85	    v4-random-seed0-eval, v4-random-seed123-eval'
+86	- id: dose-response-taxei
+87	  description: TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total,
+88	    seed=42)
+89	  claim: C3
+90	  priority: 1
+91	  status: done
+92	  registry_id: v4-taxei-fixed-inject50-eval
+93	  depends_on:
+94	  - multiseed-vanilla
+95	  results:
+96	    inject0_baseline: 61.7% (vanilla seed=42)
+97	    inject10: 61.7% (0pp)
+98	    inject25: 48.9% (-12.8pp)
+99	    inject50: 51.1% (-10.6pp)
+100	    pattern: 'threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further
+101	      worsening'
+102	  notes: 'Train: v4-taxei-fixed-inject10, v4-taxei-fixed-inject25-r2, v4-taxei-fixed-inject50.
+103	    Eval: v4-taxei-fixed-inject10-eval, v4-taxei-fixed-inject25-eval, v4-taxei-fixed-inject50-eval'
+104	- id: dose-response-random
+105	  description: Random dose-response curve (10%/25%/50% injection, fixed 4,358 total,
+106	    seed=42)
+107	  claim: C3
+108	  priority: 1
+109	  status: done
+110	  registry_id: v4-random-fixed-inject50-eval
+111	  depends_on:
+112	  - multiseed-vanilla
+113	  results:
+114	    inject0_baseline: 61.7% (vanilla seed=42)
+115	    inject10: 68.1% (32/47, +6.4pp)
+116	    inject25: 55.3% (26/47, -6.4pp)
+117	    inject50: 57.4% (27/47, -4.3pp)
+118	  notes: 'Train: v4-random-fixed-inject10, v4-random-fixed-inject25, v4-random-fixed-inject50.
+119	    Eval: v4-random-fixed-inject10-eval, v4-random-fixed-inject25-eval, v4-random-fixed-inject50-eval.
+120	    Random 10% positive effect contrasts with TaxEI 10% zero effect.'
+121	- id: recovery-eval
+122	  description: Recovery rate under injected errors (seed=42, 47 tasks, round-robin
+123	    P1/P2/C1/C4)
+124	  claim: C4,C5
+125	  priority: 1
+126	  status: done
+127	  registry_id: v4-taxei-recovery-eval-r2
+128	  depends_on:
+129	  - multiseed-vanilla
+130	  - multiseed-taxei
+131	  - multiseed-random
+132	  results:
+133	    vanilla_recovery: 61.7%
+134	    taxei_recovery: 59.6%
+135	    random_recovery: 63.8%
+136	    detection_rate: 0% (all methods)
+137	    taxei_per_operator: C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%
+138	  notes: 'All registry: v4-vanilla-recovery-eval, v4-taxei-recovery-eval, v4-taxei-recovery-eval-r2,
+139	    v4-random-recovery-eval'
+140	- id: recovery-paired-injection
+141	  description: 'Recovery-paired error injection on ALFWorld: each injected error trajectory
+142	    is immediately followed by the correct recovery demonstration (mimicking PALADIN''s
+143	    recovery-pairing design). Compare TaxEI-RP vs TaxEI (unpaired) vs Vanilla to disentangle
+144	    recovery-pairing from task-structure hypothesis.
+145	
+146	    '
+147	  claim: C7
+148	  priority: 1
+149	  status: done
+150	  depends_on:
+151	  - multiseed-taxei
+152	  - multiseed-vanilla
+153	  results:
+154	    seed42: 38.3%
+155	    seed0: 46.8%
+156	    seed1: 48.9%
+157	    seed123: 57.4%
+158	    mean_sd: 47.9% ± 7.8pp
+159	    vs_taxei: -10.4pp (worse)
+160	    vs_vanilla: -19.4pp (worse)
+161	    detection_rate: 0% (all seeds)
+162	    key_finding: Recovery pairing actively harms — not PALADIN's missing ingredient.
+163	      Task structure confirmed as primary moderator (D043).
+164	  notes: 'D043: Recovery-paired injection (14,437 samples = TaxEI 9,029 + recovery
+165	    continuations 5,408) performs WORSE than unpaired TaxEI. Recovery demonstrations
+166	    do not teach active recovery in embodied planning. Claim 7 definitively answered:
+167	    No. s7 training in progress for 5th seed.'
+168	  registry_id: v4-taxei-rp-s1
+169	- id: webshop-replication
+170	  description: 'CANCELLED (D040): Downgraded to Discussion section analysis. P1_StepOrderSwap
+171	    incompatible with WebShop linear action space (search+click only). Taxonomy 4→3
+172	    makes cross-env comparison inequivalent.'
+173	  claim: C6
+174	  priority: 1
+175	  status: cancelled
+176	  depends_on:
+177	  - dose-response-random
+178	  notes: 'D040: P1 produces illegal sequences in WebShop. 12-17 day workload, 35
+179	    GPU-h (64% budget). Replaced by Discussion paragraph analyzing ALFWorld vs WebShop
+180	    structural differences. GPU-h redirected to recovery eval multi-seed + TaxEI-RP
+181	    seed 7.'
+182	- id: 5-seed-extension
+183	  description: Extend main conditions (Vanilla, TaxEI, Random full-scale) from 3 to
+184	    5 seeds. Add seeds 1 and 7.
+185	  claim: C1,C3
+186	  priority: 1
+187	  status: done
+188	  depends_on:
+189	  - multiseed-vanilla
+190	  - multiseed-taxei
+191	  - multiseed-random
+192	  registry_id: v4-random-seed7
+193	  results:
+194	    vanilla_5seed: 67.3% ± 4.7pp (61.7/68.1/66.0/66.0/74.5)
+195	    taxei_5seed: 58.3% ± 6.5pp (61.7/46.8/61.7/59.6/61.7)
+196	    random_5seed: 58.3% ± 8.7pp (66.0/55.3/68.1/46.8/55.3)
+197	    key_finding: TaxEI = Random = 58.3% = 137/235 identical means, taxonomy labels
+198	      zero benefit
+199	    vanilla_vs_injection_p: 0.039 (Welch, uncorrected), Bonferroni NS
+200	    cohens_d_vanilla_taxei: 1.58
+201	    cohens_d_vanilla_random: 1.28
+202	    power_at_n5: 45.2%, need n=9 for 80%
+203	  notes: 'D032: 5-seed data shows TaxEI=Random identical. Variance gradient reversed
+204	    vs 3-seed: Vanilla(4.7) < TaxEI(6.5) < Random(8.7). Train: v4-vanilla-seed1/7,
+205	    v4-taxei-seed1/7, v4-random-seed1/7. Eval: all *-eval variants.'
+206	- id: recovery-eval-multiseed
+207	  description: 'Recovery eval for seeds 0, 1, 7, 123 across Vanilla/TaxEI/Random.
+208	    Validates per-operator patterns beyond seed=42. Need to retrain seed=0/123 checkpoints
+209	    (cleaned from disk).
+210	
+211	    '
+212	  claim: C4,C5
+213	  priority: 1
+214	  status: planned
+215	  depends_on:
+216	  - 5-seed-extension
+217	  notes: 'Retrain seed=0/123 checkpoints (~6h), then run recovery eval on all 5 seeds
+218	    per condition. Strengthens per-operator local/global split from exploratory to
+219	    confirmatory. ~15 GPU-hours total.
+220	
+221	    '
+222	- id: training-dynamics
+223	  description: 'Per-sample loss analysis: clean vs injected loss trajectories across
+224	    checkpoints. Forward pass on 6 checkpoints (3 TaxEI + 3 Random seeds).'
+225	  claim: C3
+226	  priority: 1
+227	  status: done
+228	  registry_id: v4-training-dynamics-forward-v2
+229	  depends_on:
+230	  - multiseed-taxei
+231	  - multiseed-random
+232	  results:
+233	    training_loss_sd: 0.0004 (cross-seed, extremely stable)
+234	    injected_vs_clean_loss: injected < clean (deeper memorization)
+235	    key_finding: memorization-generalization dissociation — injected memorized better
+236	      but eval worse
+237	  notes: 'D027: Training loss stable SD=0.0004. D029: Forward pass v2 (trajectory-level)
+238	    confirms injected samples memorized deeper. Per-operator loss inversely correlates
+239	    with recovery harm. v1 had classification bug (turn-level), v2 fixed.'
+240	- id: qualitative-failure-analysis
+241	  description: 'Failure mode categorization across Vanilla/TaxEI/Random from eval
+242	    logs. Key finding: TaxEI 2.2× loop_repetition rate.'
+243	  claim: C1,C6
+244	  priority: 1
+245	  status: done
+246	  registry_id: qualitative-failure-analysis
+247	  depends_on:
+248	  - 5-seed-extension
+249	  results:
+250	    taxei_loop_repetition_rate: ~2.2× Vanilla (unbalanced: 3-seed V/T 141 ep, 1-seed
+251	      R 47 ep)
+252	    vanilla_loop_repetition_rate: baseline reference
+253	    random_loop_repetition_rate: ~similar to Vanilla
+254	    key_finding: TaxEI loop_repetition ratio ~2.2× Vanilla stable across subsets.
+255	      Absolute rates pending balanced 5-seed trajectory collection.
+256	  notes: 'D026: Ratio (2.2×) directionally consistent but artifact metadata falsely
+257	    claims "balanced 235 episodes". Actual: V=141, T=141, R=47. Clean eval trajectory
+258	    collection needed for true 5-seed balance. Absolute percentages (34.8%/15.6%/12.8%)
+259	    were extrapolated, not measured — do NOT use in paper without verification.'
+260	- id: extended-stats
+261	  description: Bootstrap CI, power analysis, effect size, Bayesian analysis for 5-seed
+262	    data.
+263	  claim: C1,C3
+264	  priority: 1
+265	  status: done
+266	  depends_on:
+267	  - 5-seed-extension
+268	  results:
+269	    bootstrap_ci_95: '[+3.4, +15.8] pp (Vanilla - injection pooled)'
+270	    paired_t_p: 0.073 (marginal)
+271	    welch_t_p: 0.039 (uncorrected), Bonferroni NS
+272	    bayes_factor: 0.68 (inconclusive)
+273	    power_at_n5: 45.2%
+274	    n_needed_80pct_power: 9
+275	    cohens_d_vanilla_taxei: 1.58
+276	    cohens_d_vanilla_random: 1.28
+277	    taxei_vs_random_p: 1.000 (identical means)
+278	  notes: 'D030-D032: Complete 5-seed statistical analysis. Large effect size but underpowered.
+279	    Bayesian inconclusive. Bootstrap significant. Variance test: Levene p=0.45 (NS).'
+280	- id: dose-response-5seed
+281	  description: 'Extend all dose-response to 5 seeds: 10% (from 1→5), 25%/50% (from
+282	    3→5). Both TaxEI and Random.'
+283	  claim: C3
+284	  priority: 1
+285	  status: done
+286	  depends_on:
+287	  - 5-seed-extension
+288	  registry_id: v4-random-fixed-inject50-s7
+289	  results:
+290	    taxei_10pct: 61.3% ± 8.2pp (61.7/70.2/55.3/51.1/68.1)
+291	    random_10pct: 63.8% ± 5.4pp (68.1/66.0/55.3/68.1/61.7)
+292	    taxei_25pct: 52.7% ± 7.6pp (48.9/46.8/46.8/63.8/57.4)
+293	    random_25pct: 60.0% ± 8.0pp (55.3/61.7/51.1/72.3/59.6)
+294	    taxei_50pct: 57.4% ± 9.5pp (51.1/70.2/46.8/63.8/55.3)
+295	    random_50pct: 58.3% ± 11.7pp (57.4/46.8/70.2/70.2/46.8)
+296	    key_finding: 'Inverted-U taxonomy penalty: 10% (-2.5pp) → 25% (-7.3pp peak) →
+297	      50% (-0.9pp) → Full (0pp). No safe dose. Universal training lottery at all doses.'
+298	  notes: 'D034/D035/D036/D038: Complete 5-seed dose-response. 10% overturned D017
+299	    zero-harm. 25% overturned D023 deterministic-harm. 50% confirms rebound. Taxonomy
+300	    penalty peaks at 25% and fades. ~24 GPU-hours total.'
+301	- id: scale-ablation
+302	  description: Scale to 25K-50K trajectories to match PALADIN's data scale
+303	  claim: C6
+304	  priority: 2
+305	  status: planned
+306	  depends_on:
+307	  - dose-response-random
+308	  notes: 'Tests whether TaxEI''s failure is due to insufficient data scale. Need additional
+309	    GPT-5.2 trajectory collection (~$30-50).
+310	
+311	    '
+312	- id: recovery-prompting
+313	  description: In-context recovery examples (few-shot) to isolate training signal
+314	    vs knowledge
+315	  claim: C6
+316	  priority: 3
+317	  status: planned
+318	  depends_on:
+319	  - recovery-eval
+320	- id: per-operator-deepdive
+321	  description: Multi-seed recovery eval to validate per-operator patterns (esp. C4
+322	    +9.1pp)
+323	  claim: C4
+324	  priority: 3
+325	  status: planned
+326	  depends_on:
+327	  - recovery-eval
+328	- id: llama-cross-model
+329	  description: 'LLaMA-3.1-8B cross-model replication: 3-seed Vanilla/TaxEI/Random
+330	    on ALFWorld. Tests whether negative result generalizes beyond Qwen3-8B.'
+331	  claim: C1,C2,C6
+332	  priority: 1
+333	  status: planned
+334	  depends_on:
+335	  - multiseed-vanilla
+336	  - multiseed-taxei
+337	  - multiseed-random
+338	  notes: 'D042/D045: 3-seed V/T/R (s42/s0/s123). Same training data, same LoRA config
+339	    (rank=16, α=32), same eval. LLaMA 3.1-8B is the latest non-MoE LLaMA at 8B scale.
+340	    s42 training in progress (GPU 0-2). s0/s123 after s42 eval. ~16 GPU-h total.
+341	    Model: Meta-Llama-3.1-8B-Instruct at /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/'
+342	- id: scale-up-data
+343	  description: 'Scale trajectory collection from 500→2500 successful trajectories
+344	    via GPT-5.2. Tests whether TaxEI failure is due to insufficient data scale (PALADIN
+345	    uses 50K+).'
+346	  claim: C6
+347	  priority: 1
+348	  status: planned
+349	  depends_on:
+350	  - data-collection
+351	  notes: 'Scope expansion (D042). GATE: verify ALFWorld task pool ≥3500 games before
+352	    API spend. ~$47 API cost. Reduced scope: 3-seed V+T only (~17h GPU with DDP),
+353	    not full 5-seed×3 (~44h). Phased: collect 1000 first, check trend, then decide
+354	    2500. CAVEAT: ALFWorld only has ~134 unique tasks, so 2500 trajectories ≈ 19/task
+355	    — still far below PALADIN task diversity. Frame as: within ALFWorld diversity ceiling,
+356	    scale is not the bottleneck.'
+357	  notes: Merged into recovery-eval-multiseed for long paper
+358	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a60afa77-d4d9-411e-932f-0db7eab8b155",
+  "isSidechain": false,
+  "promptId": "128fe4de-7b3e-478a-90c3-2bac85204ec9",
+  "type": "user",
+  "uuid": "83e7a9d6-f538-4d58-bf6a-be37386dd0c8",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+      "content": "experiments:\n- id: baseline\n  description: Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\n  claim: context\n  priority: 0\n  status: done\n  registry_id: vanilla-react-baseline\n  depends_on: []\n  results:\n    accuracy: 42.6% (20/47)\n- id: data-collection\n  description: GPT-5.2 trajectory collection for SFT training data\n  claim: prerequisite\n  priority: 0\n  status: done\n  registry_id: traj_collect_500\n  depends_on: []\n  results:\n    success_rate: 70.2% (501/714)\n    cost: $8.86\n- id: v3-pilot\n  description: 'v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval'\n  claim: supplement\n  priority: 0\n  status: done\n  registry_id: v3-vanilla-eval\n  depends_on:\n  - data-collection\n  results:\n    vanilla: 74.5%\n    taxei: 66.0%\n    random: 51.1%\n  notes: 'Superseded by v4. All registry: mini-vanilla-sft-v3, mini-taxei-sft-v3,\n    mini-random-sft-v3, v3-vanilla-eval, v3-taxei-eval, v3-random-eval'\n- id: multiseed-vanilla\n  description: Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\n  claim: C1\n  priority: 1\n  status: done\n  registry_id: v4-vanilla-eval-r3\n  depends_on:\n  - data-collection\n  results:\n    seed42: 61.7%\n    seed0: 68.1%\n    seed123: 66.0%\n    mean_sd: 65.3% ± 3.3pp\n  notes: 'Train: mini-vanilla-sft-v4, v4-vanilla-seed0, v4-vanilla-seed123. Eval:\n    v4-vanilla-eval-r3, v4-vanilla-seed0-eval, v4-vanilla-seed123-eval'\n- id: multiseed-taxei\n  description: TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections,\n    9,029 samples)\n  claim: C1,C2,C3\n  priority: 1\n  status: done\n  registry_id: v4-taxei-eval\n  depends_on:\n  - data-collection\n  results:\n    seed42: 61.7%\n    seed0: 46.8%\n    seed123: 61.7%\n    mean_sd: 56.7% ± 8.6pp\n    vs_vanilla_paired_t_p: 0.32 (NS)\n    vs_vanilla_pooled_p: 0.054 (NS at α=0.05)\n  notes: 'Train: v4-taxei-sft-r2, v4-taxei-seed0, v4-taxei-seed123. Eval: v4-taxei-eval,\n    v4-taxei-seed0-eval, v4-taxei-seed123-eval'\n- id: multiseed-random\n  description: Random SFT 3-seed verification (clean + unlabeled injections, 9,029\n    samples)\n  claim: C2,C3\n  priority: 1\n  status: done\n  registry_id: v4-random-eval\n  depends_on:\n  - data-collection\n  results:\n    seed42: 66.0%\n    seed0: 55.3%\n    seed123: 68.1%\n    mean_sd: 63.1% ± 7.0pp\n    vs_taxei_paired_t_p: 0.034 (suggestive, df=2)\n    vs_taxei_pooled_p: 0.170 (NS)\n  notes: 'Train: v4-random-sft-r2, v4-random-seed0, v4-random-seed123. Eval: v4-random-eval,\n    v4-random-seed0-eval, v4-random-seed123-eval'\n- id: dose-response-taxei\n  description: TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total,\n    seed=42)\n  claim: C3\n  priority: 1\n  status: done\n  registry_id: v4-taxei-fixed-inject50-eval\n  depends_on:\n  - multiseed-vanilla\n  results:\n    inject0_baseline: 61.7% (vanilla seed=42)\n    inject10: 61.7% (0pp)\n    inject25: 48.9% (-12.8pp)\n    inject50: 51.1% (-10.6pp)\n    pattern: 'threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further\n      worsening'\n  notes: 'Train: v4-taxei-fixed-inject10, v4-taxei-fixed-inject25-r2, v4-taxei-fixed-inject50.\n    Eval: v4-taxei-fixed-inject10-eval, v4-taxei-fixed-inject25-eval, v4-taxei-fixed-inject50-eval'\n- id: dose-response-random\n  description: Random dose-response curve (10%/25%/50% injection, fixed 4,358 total,\n    seed=42)\n  claim: C3\n  priority: 1\n  status: done\n  registry_id: v4-random-fixed-inject50-eval\n  depends_on:\n  - multiseed-vanilla\n  results:\n    inject0_baseline: 61.7% (vanilla seed=42)\n    inject10: 68.1% (32/47, +6.4pp)\n    inject25: 55.3% (26/47, -6.4pp)\n    inject50: 57.4% (27/47, -4.3pp)\n  notes: 'Train: v4-random-fixed-inject10, v4-random-fixed-inject25, v4-random-fixed-inject50.\n    Eval: v4-random-fixed-inject10-eval, v4-random-fixed-inject25-eval, v4-random-fixed-inject50-eval.\n    Random 10% positive effect contrasts with TaxEI 10% zero effect.'\n- id: recovery-eval\n  description: Recovery rate under injected errors (seed=42, 47 tasks, round-robin\n    P1/P2/C1/C4)\n  claim: C4,C5\n  priority: 1\n  status: done\n  registry_id: v4-taxei-recovery-eval-r2\n  depends_on:\n  - multiseed-vanilla\n  - multiseed-taxei\n  - multiseed-random\n  results:\n    vanilla_recovery: 61.7%\n    taxei_recovery: 59.6%\n    random_recovery: 63.8%\n    detection_rate: 0% (all methods)\n    taxei_per_operator: C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\n  notes: 'All registry: v4-vanilla-recovery-eval, v4-taxei-recovery-eval, v4-taxei-recovery-eval-r2,\n    v4-random-recovery-eval'\n- id: recovery-paired-injection\n  description: 'Recovery-paired error injection on ALFWorld: each injected error trajectory\n    is immediately followed by the correct recovery demonstration (mimicking PALADIN''s\n    recovery-pairing design). Compare TaxEI-RP vs TaxEI (unpaired) vs Vanilla to disentangle\n    recovery-pairing from task-structure hypothesis.\n\n    '\n  claim: C7\n  priority: 1\n  status: done\n  depends_on:\n  - multiseed-taxei\n  - multiseed-vanilla\n  results:\n    seed42: 38.3%\n    seed0: 46.8%\n    seed1: 48.9%\n    seed123: 57.4%\n    mean_sd: 47.9% ± 7.8pp\n    vs_taxei: -10.4pp (worse)\n    vs_vanilla: -19.4pp (worse)\n    detection_rate: 0% (all seeds)\n    key_finding: Recovery pairing actively harms — not PALADIN's missing ingredient.\n      Task structure confirmed as primary moderator (D043).\n  notes: 'D043: Recovery-paired injection (14,437 samples = TaxEI 9,029 + recovery\n    continuations 5,408) performs WORSE than unpaired TaxEI. Recovery demonstrations\n    do not teach active recovery in embodied planning. Claim 7 definitively answered:\n    No. s7 training in progress for 5th seed.'\n  registry_id: v4-taxei-rp-s1\n- id: webshop-replication\n  description: 'CANCELLED (D040): Downgraded to Discussion section analysis. P1_StepOrderSwap\n    incompatible with WebShop linear action space (search+click only). Taxonomy 4→3\n    makes cross-env comparison inequivalent.'\n  claim: C6\n  priority: 1\n  status: cancelled\n  depends_on:\n  - dose-response-random\n  notes: 'D040: P1 produces illegal sequences in WebShop. 12-17 day workload, 35\n    GPU-h (64% budget). Replaced by Discussion paragraph analyzing ALFWorld vs WebShop\n    structural differences. GPU-h redirected to recovery eval multi-seed + TaxEI-RP\n    seed 7.'\n- id: 5-seed-extension\n  description: Extend main conditions (Vanilla, TaxEI, Random full-scale) from 3 to\n    5 seeds. Add seeds 1 and 7.\n  claim: C1,C3\n  priority: 1\n  status: done\n  depends_on:\n  - multiseed-vanilla\n  - multiseed-taxei\n  - multiseed-random\n  registry_id: v4-random-seed7\n  results:\n    vanilla_5seed: 67.3% ± 4.7pp (61.7/68.1/66.0/66.0/74.5)\n    taxei_5seed: 58.3% ± 6.5pp (61.7/46.8/61.7/59.6/61.7)\n    random_5seed: 58.3% ± 8.7pp (66.0/55.3/68.1/46.8/55.3)\n    key_finding: TaxEI = Random = 58.3% = 137/235 identical means, taxonomy labels\n      zero benefit\n    vanilla_vs_injection_p: 0.039 (Welch, uncorrected), Bonferroni NS\n    cohens_d_vanilla_taxei: 1.58\n    cohens_d_vanilla_random: 1.28\n    power_at_n5: 45.2%, need n=9 for 80%\n  notes: 'D032: 5-seed data shows TaxEI=Random identical. Variance gradient reversed\n    vs 3-seed: Vanilla(4.7) < TaxEI(6.5) < Random(8.7). Train: v4-vanilla-seed1/7,\n    v4-taxei-seed1/7, v4-random-seed1/7. Eval: all *-eval variants.'\n- id: recovery-eval-multiseed\n  description: 'Recovery eval for seeds 0, 1, 7, 123 across Vanilla/TaxEI/Random.\n    Validates per-operator patterns beyond seed=42. Need to retrain seed=0/123 checkpoints\n    (cleaned from disk).\n\n    '\n  claim: C4,C5\n  priority: 1\n  status: planned\n  depends_on:\n  - 5-seed-extension\n  notes: 'Retrain seed=0/123 checkpoints (~6h), then run recovery eval on all 5 seeds\n    per condition. Strengthens per-operator local/global split from exploratory to\n    confirmatory. ~15 GPU-hours total.\n\n    '\n- id: training-dynamics\n  description: 'Per-sample loss analysis: clean vs injected loss trajectories across\n    checkpoints. Forward pass on 6 checkpoints (3 TaxEI + 3 Random seeds).'\n  claim: C3\n  priority: 1\n  status: done\n  registry_id: v4-training-dynamics-forward-v2\n  depends_on:\n  - multiseed-taxei\n  - multiseed-random\n  results:\n    training_loss_sd: 0.0004 (cross-seed, extremely stable)\n    injected_vs_clean_loss: injected < clean (deeper memorization)\n    key_finding: memorization-generalization dissociation — injected memorized better\n      but eval worse\n  notes: 'D027: Training loss stable SD=0.0004. D029: Forward pass v2 (trajectory-level)\n    confirms injected samples memorized deeper. Per-operator loss inversely correlates\n    with recovery harm. v1 had classification bug (turn-level), v2 fixed.'\n- id: qualitative-failure-analysis\n  description: 'Failure mode categorization across Vanilla/TaxEI/Random from eval\n    logs. Key finding: TaxEI 2.2× loop_repetition rate.'\n  claim: C1,C6\n  priority: 1\n  status: done\n  registry_id: qualitative-failure-analysis\n  depends_on:\n  - 5-seed-extension\n  results:\n    taxei_loop_repetition_rate: ~2.2× Vanilla (unbalanced: 3-seed V/T 141 ep, 1-seed\n      R 47 ep)\n    vanilla_loop_repetition_rate: baseline reference\n    random_loop_repetition_rate: ~similar to Vanilla\n    key_finding: TaxEI loop_repetition ratio ~2.2× Vanilla stable across subsets.\n      Absolute rates pending balanced 5-seed trajectory collection.\n  notes: 'D026: Ratio (2.2×) directionally consistent but artifact metadata falsely\n    claims \"balanced 235 episodes\". Actual: V=141, T=141, R=47. Clean eval trajectory\n    collection needed for true 5-seed balance. Absolute percentages (34.8%/15.6%/12.8%)\n    were extrapolated, not measured — do NOT use in paper without verification.'\n- id: extended-stats\n  description: Bootstrap CI, power analysis, effect size, Bayesian analysis for 5-seed\n    data.\n  claim: C1,C3\n  priority: 1\n  status: done\n  depends_on:\n  - 5-seed-extension\n  results:\n    bootstrap_ci_95: '[+3.4, +15.8] pp (Vanilla - injection pooled)'\n    paired_t_p: 0.073 (marginal)\n    welch_t_p: 0.039 (uncorrected), Bonferroni NS\n    bayes_factor: 0.68 (inconclusive)\n    power_at_n5: 45.2%\n    n_needed_80pct_power: 9\n    cohens_d_vanilla_taxei: 1.58\n    cohens_d_vanilla_random: 1.28\n    taxei_vs_random_p: 1.000 (identical means)\n  notes: 'D030-D032: Complete 5-seed statistical analysis. Large effect size but underpowered.\n    Bayesian inconclusive. Bootstrap significant. Variance test: Levene p=0.45 (NS).'\n- id: dose-response-5seed\n  description: 'Extend all dose-response to 5 seeds: 10% (from 1→5), 25%/50% (from\n    3→5). Both TaxEI and Random.'\n  claim: C3\n  priority: 1\n  status: done\n  depends_on:\n  - 5-seed-extension\n  registry_id: v4-random-fixed-inject50-s7\n  results:\n    taxei_10pct: 61.3% ± 8.2pp (61.7/70.2/55.3/51.1/68.1)\n    random_10pct: 63.8% ± 5.4pp (68.1/66.0/55.3/68.1/61.7)\n    taxei_25pct: 52.7% ± 7.6pp (48.9/46.8/46.8/63.8/57.4)\n    random_25pct: 60.0% ± 8.0pp (55.3/61.7/51.1/72.3/59.6)\n    taxei_50pct: 57.4% ± 9.5pp (51.1/70.2/46.8/63.8/55.3)\n    random_50pct: 58.3% ± 11.7pp (57.4/46.8/70.2/70.2/46.8)\n    key_finding: 'Inverted-U taxonomy penalty: 10% (-2.5pp) → 25% (-7.3pp peak) →\n      50% (-0.9pp) → Full (0pp). No safe dose. Universal training lottery at all doses.'\n  notes: 'D034/D035/D036/D038: Complete 5-seed dose-response. 10% overturned D017\n    zero-harm. 25% overturned D023 deterministic-harm. 50% confirms rebound. Taxonomy\n    penalty peaks at 25% and fades. ~24 GPU-hours total.'\n- id: scale-ablation\n  description: Scale to 25K-50K trajectories to match PALADIN's data scale\n  claim: C6\n  priority: 2\n  status: planned\n  depends_on:\n  - dose-response-random\n  notes: 'Tests whether TaxEI''s failure is due to insufficient data scale. Need additional\n    GPT-5.2 trajectory collection (~$30-50).\n\n    '\n- id: recovery-prompting\n  description: In-context recovery examples (few-shot) to isolate training signal\n    vs knowledge\n  claim: C6\n  priority: 3\n  status: planned\n  depends_on:\n  - recovery-eval\n- id: per-operator-deepdive\n  description: Multi-seed recovery eval to validate per-operator patterns (esp. C4\n    +9.1pp)\n  claim: C4\n  priority: 3\n  status: planned\n  depends_on:\n  - recovery-eval\n- id: llama-cross-model\n  description: 'LLaMA-3.1-8B cross-model replication: 3-seed Vanilla/TaxEI/Random\n    on ALFWorld. Tests whether negative result generalizes beyond Qwen3-8B.'\n  claim: C1,C2,C6\n  priority: 1\n  status: planned\n  depends_on:\n  - multiseed-vanilla\n  - multiseed-taxei\n  - multiseed-random\n  notes: 'D042/D045: 3-seed V/T/R (s42/s0/s123). Same training data, same LoRA config\n    (rank=16, α=32), same eval. LLaMA 3.1-8B is the latest non-MoE LLaMA at 8B scale.\n    s42 training in progress (GPU 0-2). s0/s123 after s42 eval. ~16 GPU-h total.\n    Model: Meta-Llama-3.1-8B-Instruct at /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/'\n- id: scale-up-data\n  description: 'Scale trajectory collection from 500→2500 successful trajectories\n    via GPT-5.2. Tests whether TaxEI failure is due to insufficient data scale (PALADIN\n    uses 50K+).'\n  claim: C6\n  priority: 1\n  status: planned\n  depends_on:\n  - data-collection\n  notes: 'Scope expansion (D042). GATE: verify ALFWorld task pool ≥3500 games before\n    API spend. ~$47 API cost. Reduced scope: 3-seed V+T only (~17h GPU with DDP),\n    not full 5-seed×3 (~44h). Phased: collect 1000 first, check trend, then decide\n    2500. CAVEAT: ALFWorld only has ~134 unique tasks, so 2500 trajectories ≈ 19/task\n    — still far below PALADIN task diversity. Frame as: within ALFWorld diversity ceiling,\n    scale is not the bottleneck.'\n  notes: Merged into recovery-eval-multiseed for long paper\n",
+      "numLines": 358,
+      "startLine": 1,
+      "totalLines": 358
+    }
+  },
+  "sourceToolAssistantUUID": "a60afa77-d4d9-411e-932f-0db7eab8b155",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17 · 2026-05-16T15:42:16.764Z_
+
+````json
+{
+  "parentUuid": "83e7a9d6-f538-4d58-bf6a-be37386dd0c8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**tax_error_inject_agent**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"tax_error_inject_agent\")` 或 `load_project_config(\"tax_error_inject_agent\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## Worker 操作规范\n\n### ssh-env-setup\n\n# 远程服务器环境搭建规范\n\n## 核心原则\n\n**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n\n**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n\n**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n\n## Phase 1: 环境探测（用 ssh_read_only）\n\n连接到服务器后，第一步永远是收集信息，不要直接装东西：\n\n```bash\n# 1. Python 环境\nwhich python3 && python3 --version\npip3 --version 2>/dev/null || echo \"NO_PIP\"\n\n# 2. CUDA 环境\nnvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo \"NO_GPU\"\nnvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"\n\n# 3. 包管理器\nls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"\nls -d .venv venv env 2>/dev/null || echo \"NO_VENV\"\npip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash\" || echo \"NO_ML_PKGS\"\n\n# 4. PEP 668 检查\npython3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null\nls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"\n```\n\n根据探测结果决定安装策略，不要猜。\n\n## Phase 2: 环境策略选择\n\n根据 Phase 1 结果选择**一个**策略，不要混用：\n\n| 探测结果 | 策略 | 说明 |\n|----------|------|------|\n| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |\n| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |\n| PEP668_MANAGED + 无 venv | 创建 venv：`python3 -m venv .venv && source .venv/bin/activate` | 不要用 --break-system-packages |\n| PEP668_OK（无保护） | 直接 `pip install`（旧系统） | 仍建议 venv |\n\n**决不混用 conda install + pip install 到同一环境。** 选了 pip 就全用 pip。\n\n## Phase 3: PyTorch 安装\n\n### CUDA 版本映射（2025-2026 常用）\n\n先从 `nvcc --version` 或 `nvidia-smi` 获取 CUDA 版本，然后匹配：\n\n| CUDA 版本 | PyTorch pip index URL | 推荐 torch 版本 |\n|-----------|----------------------|-----------------|\n| 11.8 | `https://download.pytorch.org/whl/cu118` | ≥ 2.0 |\n| 12.1 | `https://download.pytorch.org/whl/cu121` | ≥ 2.1 |\n| 12.4 | `https://download.pytorch.org/whl/cu124` | ≥ 2.4 |\n| 12.6 | `https://download.pytorch.org/whl/cu126` | ≥ 2.6 |\n\n**不要猜版本号。** 如果不确定可用版本：\n```bash\npip index versions torch --index-url https://download.pytorch.org/whl/cu121 2>/dev/null | head -3\n```\n\n安装命令：\n```bash\npip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu{CUDA_SHORT}\n```\n\n### 大包超时处理\n\nPyTorch wheel 约 500MB-2GB，默认 SSH 超时可能不够。策略：\n\n```bash\n# 方法 1: nohup + 轮询（推荐）\nnohup pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip_install.log 2>&1 &\necho $!  # 记录 PID\n\n# 后续用 ssh_read_only 轮询\ncat /tmp/pip_install.log | tail -5\nps -p &lt;PID> -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"\n```\n\n```bash\n# 方法 2: 加大 pip 超时\npip install --timeout 300 torch ...\n```\n\n## Phase 4: 验证（必须执行）\n\n安装后必须验证，不要假设成功：\n\n```bash\npython3 -c \"\nimport torch\nprint(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    for i in range(torch.cuda.device_count()):\n        print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')\n\"\n```\n\n验证失败的常见原因：\n- `torch.cuda.is_available()` 返回 False → CUDA 版本和 torch 不匹配，重装正确版本\n- `ImportError: libcudnn` → 缺 cuDNN，装 `nvidia-cudnn-cu1x`\n- GPU 数量不对 → 检查 `CUDA_VISIBLE_DEVICES` 环境变量\n\n## Phase 5: 项目依赖\n\n基础环境就绪后，安装项目依赖：\n\n```bash\n# 优先用 requirements.txt / pyproject.toml\npip install -r requirements.txt  # 或 pip install -e .\n\n# 常用 ML 依赖补装\npip install transformers datasets einops accelerate wandb\n```\n\nflash-attention 特殊处理（编译型包）：\n```bash\n# 需要匹配的 CUDA toolkit，编译耗时 5-15 分钟\npip install flash-attn --no-build-isolation\n# 如果编译失败，试预编译版本\npip install flash-attn --no-build-isolation 2>/dev/null || pip install flash-attn-wheels\n```\n\n## ssh_read_only vs ssh_execute 使用规则\n\n| 操作 | 用哪个工具 |\n|------|-----------|\n| 检查环境（python --version, nvidia-smi, pip list） | `ssh_read_only` |\n| 读文件内容、查日志 | `ssh_read_only` |\n| 安装包（pip install, conda install） | `ssh_execute` |\n| 创建/修改文件、启动进程 | `ssh_execute` |\n| 运行实验脚本 | `ssh_execute` |\n\n**原则：能用 read_only 就用 read_only，只有要改变服务器状态时才用 execute。**\n\n## AutoDL 专项注意事项\n\nAutoDL 实例有一系列特殊约束，5 个项目反复踩坑，必须遵守：\n\n### 磁盘\n- **根分区只有 ~30GB，严禁存大文件。** 模型、数据集、HF cache 全部放数据盘 `/root/autodl-tmp/`\n- 设置 `HF_HOME=/root/autodl-tmp/.hf_cache`，否则 HF 默认缓存到根分区导致磁盘满\n- 下载模型时用 `--local-dir /root/autodl-tmp/models/&lt;name>`，不要用默认路径\n\n### 网络\n- pip install / git clone 前必须 `source /etc/network_turbo` 启用代理加速，否则 pypi.nvidia.com 504 超时、GitHub TLS 断连\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，xet_get 在 AutoDL 上返回 401\n- **SSL 证书**：`network_turbo` 的代理使用自签名证书，Python 默认 SSL 验证会失败。必须设置 `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt` 和 `SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`，否则 HF 下载、datasets 加载等全部报 SSL 错误\n- **大模型下载优先用 ModelScope**：AutoDL 代理下载 HuggingFace 大文件极慢（~200KB/s），改用 ModelScope 国内 CDN 速度快很多。`pip install modelscope && python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"`\n\n### SSH\n- **AutoDL 实例重启后 SSH 端口会变。** 连接失败时不要反复重试，应提示用户去控制台查新端口并更新 `~/.ssh/config`\n\n## 经验沉淀\n\n- [2026-04-05] Worker 首次连接服务器时，先用一条 ssh_read_only 组合命令完成全部探测，减少 SSH 往返次数\n- [2026-04-05] 遇到 PEP 668 时创建 venv 而非 --break-system-packages，避免污染系统 Python\n- [2026-04-05] PyTorch 大包安装用 nohup 后台执行 + 轮询方式，避免 SSH 超时导致安装中断\n- [2026-04-05] conda 环境和 pip 不要混用——如果项目用 pip，就全部用 pip\n- [2026-04-09] sync_code 前确保本地 commit 已 push 到 remote，否则服务器 git pull 拉不到最新代码\n- [2026-04-09] venv 创建后用 `which python` 验证路径指向正确的 venv python，不要假设系统 PATH 正确\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成发表级学术统计图——LLM 写 matplotlib 代码 + Critic 迭代 3 轮，输入 CSV/JSON 数据 + 意图描述即可。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": "projects/tax_error_inject_agent/.claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "bae687d6-0c7a-4f7c-a21c-804a60c1f93f",
+  "timestamp": "2026-05-16T15:42:16.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept 核心假设：[\"Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-correcte…",
+  "leafUuid": "bae687d6-0c7a-4f7c-a21c-804a60c1f93f",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-model structured error injection instability for embodied planning",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-16T15:42:56.871Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the experiment plan. Let me identify all experiments with status "planned":
+
+1. **recovery-eval-multiseed** (id: recovery-eval-multiseed) - Recovery eval for seeds 0, 1, 7, 123 across Vanilla/TaxEI/Random
+2. **scale-ablation** (id: scale-ablation) - Scale to 25K-50K trajectories
+3. **recovery-prompting** (id: recovery-prompting) - In-context recovery examples (few-shot)
+
+
+4. **per-operator-deepdive** (id: per-operator-deepdive) - Multi-seed recovery eval to validate per-operator patterns
+5. **llama-cross-model** (id: llama-cross-model) - LLaMA-3.1-8B cross-model replication
+6. **scale-up-data** (id: scale-up-data) - Scale trajectory collection from 500→2500
+
+Looking at what qualifies as a "best" tier result, I need cross-model validation showing structured-vs-random divergence, effect sizes that are meaningful rather than marginal, and findings that hold up across the key metrics with vanilla as the baseline.
+
+Now I'm working through the target ranges for each metric—the divergence gaps, Cohen's d values, cross-model consistency ratios, seed robustness, and recovery performance indicators—to generate realistic predicted data for each of the planned experiments, starting with the multi-seed recovery eval and scaling studies.
+
+I notice there's a discrepancy with the llama-cross-model experiment: it's marked as planned in the experiment plan but the framing document and registry show the work is already complete with actual results from multiple seeds. I should proceed with generating YAML predictions for the remaining planned experiments using these best-tier assumptions.
+
+For the recovery-eval-multiseed predictions, I'm working from the core narrative that structured error injection creates consistent destabilization across architectures, with recovery rates fundamentally matching clean performance as a key conceptual contribution. The cross-model SD ratio around 4:1 represents the main novelty, and I need to generate recovery rate predictions across all seed and condition combinations, using the existing vanilla and TaxEI data as reference points for expected gaps. Looking at the remaining recovery-random results, I see these experiments are already in the registry despite showing as planned. The key insight across all seeds is that recovery rates stay within 0-2 percentage points of clean eval rates, which robustly confirms that recovery equals resilience, while detection remains at 0% across the board and per-operator patterns hold directionally. For the scale-ablation work, I'm planning to test whether TaxEI's degradation persists even at 25K-50K trajectories to rule out data volume as a factor. The recovery-prompting experiments will explore whether few-shot in-context examples can improve recovery rates.
+
+For the per-operator deep dive, I need to validate that the local advantage of C4 and global disadvantage of C1/P2 replicate consistently across multiple seeds. The llama-cross-model comparison already has data showing the TaxEI to random SD ratio around 4:1, and the scale-up-data trajectory from 500 to 2500 samples should demonstrate that even a 5× increase in data doesn't resolve TaxEI's instability. Now I'm working through concrete numerical predictions for each experiment within the best-tier metric ranges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bae687d6-0c7a-4f7c-a21c-804a60c1f93f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W7LgyUCEAD4mfLiz1o",
+  "type": "assistant",
+  "uuid": "06c5ff6d-b41a-46e7-8a72-67e711990014",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGMnyqh3k1yL4kDhv4Xv72",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11060,
+      "cache_read_input_tokens": 53952,
+      "output_tokens": 8373,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11060,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8373,
+          "cache_read_input_tokens": 53952,
+          "cache_creation_input_tokens": 11060,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11060
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T15:45:23.527Z_
+
+Now I have the full context. Let me generate the detailed predictions for all planned experiments under the "best" tier.
+
+```yaml
+tier: best
+narrative_guidance: "原始framing完全成立——'Structured error injection is fundamentally destabilizing for embodied planning across architectures'。论文贡献从negative result升级为positive finding about injection stability properties。重点：(1)跨模型SD ratio 4:1证明是structured patterns的内在属性；(2)dose-response inverted-U揭示conflicting signal mechanism；(3)recovery=resilience是对整个error-injection-for-recovery范式的conceptual challenge。无需调整claims强度。"
+imagined_experiments:
+  - name: "Recovery Eval Multi-Seed (5-seed × 3 conditions)"
+    plan_id: "recovery-eval-multiseed"
+    description: "对Vanilla/TaxEI/Random全部5个seed运行recovery eval（injected error条件下47 tasks），验证recovery≈resilience假说跨seed稳健性，并确认per-operator pattern方向一致性"
+    expected_results:
+      vanilla_recovery_mean: 66.1
+      vanilla_recovery_sd: 5.4
+      vanilla_recovery_seeds: [61.7, 68.1, 66.0, 66.0, 74.5]
+      taxei_recovery_mean: 57.1
+      taxei_recovery_sd: 6.8
+      taxei_recovery_seeds: [59.6, 46.8, 61.7, 61.7, 57.4]
+      random_recovery_mean: 57.9
+      random_recovery_sd: 7.2
+      random_recovery_seeds: [63.8, 55.3, 66.0, 51.1, 53.2]
+      detection_rate_all: 0.0
+      recovery_vs_clean_gap_vanilla_pp: 1.2
+      recovery_vs_clean_gap_taxei_pp: 1.2
+      recovery_vs_clean_gap_random_pp: 0.4
+      per_operator_C4_advantage_replication: 3
+      per_operator_C4_advantage_out_of: 5
+      cohens_d_vanilla_vs_taxei_recovery: 1.42
+    result_rationale: "在best档位下，recovery=resilience pattern跨seed完全复现。逻辑：如果模型只是passively ignore perturbation而非actively recover，那么recovery rate应该tracking clean eval rate而非独立变化。5-seed数据将使recovery-clean gap压缩到1-2pp以内（在noise范围内），因为每个seed的recovery rate本质上就是该seed对应checkpoint的task completion ability在稍有噪声的eval条件下的测量值。Detection rate保持0%说明没有任何training regime instill error awareness。TaxEI的recovery variance同样高（SD~6.8pp），mirror其clean eval的instability——进一步证明recovery performance完全由base task competence驱动，而非error-specific learning。Vanilla recovery mean（66.1%）vs clean mean（67.3%）gap仅1.2pp，在47-task的McNemar误差范围内。"
+    tables:
+      - title: "Table: 5-Seed Recovery Rate vs Clean Success Rate"
+        columns: [Condition, Clean_Mean, Recovery_Mean, Gap_pp, Detection_Rate, Recovery_SD]
+        rows:
+          - [Vanilla, 67.3, 66.1, -1.2, 0.0, 5.4]
+          - [TaxEI, 58.3, 57.1, -1.2, 0.0, 6.8]
+          - [Random, 58.3, 57.9, -0.4, 0.0, 7.2]
+      - title: "Table: Per-Operator Recovery Advantage (5-seed pooled, 235 episodes)"
+        columns: [Operator, Vanilla_Rate, TaxEI_Rate, Random_Rate, TaxEI_Advantage_pp]
+        rows:
+          - [C4_observation_masking, 0.618, 0.655, 0.600, +3.7]
+          - [P1_step_order_swap, 0.617, 0.600, 0.600, -1.7]
+          - [C1_context_truncation, 0.700, 0.633, 0.650, -6.7]
+          - [P2_sub_goal_deletion, 0.667, 0.550, 0.583, -11.7]
+    figures_description:
+      - "Scatter plot: x=clean success rate per seed, y=recovery rate per seed. Three colors for V/T/R. 应落在y=x对角线附近（r²>0.92），视觉上证明recovery=f(competence)而非recovery=f(training_method)"
+      - "Per-operator heatmap: rows=4 operators, columns=5 seeds, cell color=TaxEI recovery rate. C4行uniformly lighter（higher），P2行darker（lower），跨seed一致"
+    analysis: "5-seed recovery data将recovery=resilience从single-seed exploratory observation提升为robust empirical finding。关键统计：paired correlation between clean rate and recovery rate r=0.96 (p<0.001, N=15 seed-condition pairs)。这是对整个error-injection-for-recovery paradigm的conceptual challenge——在embodied planning中，'recovery from errors'根本不存在作为独立能力，它就是task competence本身。Per-operator方向性（C4 local advantage, P2 global disadvantage）在5-seed pooled data中达到suggestive consistency（3/5 seeds方向一致），虽然per-seed仍由±1 task驱动，但pooled N=55-60 per operator使pattern更credible。"
+
+  - name: "LLaMA-3.1-8B Cross-Model Replication"
+    plan_id: "llama-cross-model"
+    description: "LLaMA-3.1-8B-Instruct 3-seed完整replication（Vanilla/TaxEI/Random），验证structured injection instability是跨架构通用现象而非Qwen-specific"
+    expected_results:
+      llama_vanilla_recovery_mean: 73.1
+      llama_vanilla_recovery_sd: 2.5
+      llama_vanilla_recovery_seeds: [74.5, 74.5, 70.2]
+      llama_taxei_recovery_mean: 69.5
+      llama_taxei_recovery_sd: 8.6
+      llama_taxei_recovery_seeds: [74.5, 74.5, 59.6]
+      llama_random_recovery_mean: 76.6
+      llama_random_recovery_sd: 2.1
+      llama_random_recovery_seeds: [74.5, 76.6, 78.7]
+      llama_vanilla_clean_mean: 72.3
+      llama_vanilla_clean_sd: 0.0
+      llama_taxei_clean_mean: 71.6
+      llama_taxei_clean_sd: 8.6
+      llama_random_clean_mean: 75.9
+      llama_random_clean_sd: 1.2
+      cross_model_taxei_sd_ratio: 4.1
+      catastrophic_seed_fraction_llama: 0.33
+      taxei_vs_random_sd_ratio: 4.1
+      llama_detection_rate_mean: 0.27
+    result_rationale: "Best档核心：cross_model_taxei_sd_ratio在[3.5, 4.5]范围内，实际值4.1（TaxEI SD 8.6 / Random SD 2.1）。这个4:1的SD ratio是structured injection创造training instability的直接evidence。为什么会出现：(1) Structured patterns（taxonomy-labeled perturbations）在loss landscape中创造systematic偏移方向，某些seed的初始化恰好与这些bias方向对齐导致catastrophic amplification；(2) Random perturbations平均化为near-zero gradient bias，任何seed都不会被systematically pushed toward failure region。LLaMA s123 collapse（recovery 59.6% vs vanilla 70.2%）mirrors Qwen的consistent degradation pattern但以higher variance形式表现——不同architecture对structured bias的响应mode不同（Qwen: uniform moderate harm; LLaMA: bimodal all-or-nothing），但direction一致。LLaMA的非零detection rate（~27%）是interesting但不影响core story：LLaMA base model本身就有更强的meta-cognitive tendency（可能来自RLHF alignment），这不是training regime effect而是base model property。"
+    tables:
+      - title: "Table: Cross-Model Comparison — Training Stability"
+        columns: [Model, Condition, Mean_Recovery, SD, Catastrophic_Seeds, SD_Ratio_vs_Random]
+        rows:
+          - [Qwen3-8B, TaxEI, 58.3, 6.5, "1/5 (20%)", "0.75×"]
+          - [Qwen3-8B, Random, 58.3, 8.7, "1/5 (20%)", "1.0×"]
+          - [LLaMA-3.1-8B, TaxEI, 69.5, 8.6, "1/3 (33%)", "4.1×"]
+          - [LLaMA-3.1-8B, Random, 76.6, 2.1, "0/3 (0%)", "1.0×"]
+      - title: "Table: LLaMA Per-Seed Results"
+        columns: [Seed, Vanilla_Recovery, TaxEI_Recovery, Random_Recovery, TaxEI_Δ_vs_Vanilla]
+        rows:
+          - [s42, 74.5, 74.5, 76.6, 0.0]
+          - [s0, 74.5, 74.5, 74.5, 0.0]
+          - [s123, 70.2, 59.6, 78.7, -10.6]
+    figures_description:
+      - "Dual-panel bar chart: Left=Qwen, Right=LLaMA. Each panel shows V/T/R means with individual seed dots overlaid. Error bars = SD. 视觉上highlight TaxEI的wide spread vs Random的tight cluster"
+      - "SD ratio comparison: grouped bar chart showing TaxEI_SD/Random_SD for both models. Both bars near 4:1 height ratio. Horizontal dashed line at 1.0 (equal stability)"
+    analysis: "Cross-model replication是从Borderline Accept升级到Findings Accept的关键evidence。Reviewers最大concern是'maybe it's just Qwen'——3-seed LLaMA data以方向一致性（而非absolute power）回答这个问题。SD ratio 4.1:1在best档下被接受为sufficient evidence because: (1) direction完全一致——两个模型都是TaxEI unstable, Random stable; (2) 具体failure mode不同但可解释——Qwen对structured bias更uniformly susceptible（可能因为较弱的pre-training robustness），LLaMA有stronger base但occasional catastrophic collapse（bimodal response to structured bias）; (3) 3-seed × 2-model = 6 independent TaxEI training runs中2个catastrophic（33%），vs 6 Random runs中0个catastrophic（0%）——这个0-vs-2 pattern本身有practical significance even without formal power。"
+
+  - name: "Scale-Up Data (500→2500 Trajectories)"
+    plan_id: "scale-up-data"
+    description: "将训练数据从501 successful trajectories扩展到~2500，测试TaxEI failure是否由数据规模不足导致。3-seed V+T比较。"
+    expected_results:
+      collection_success_rate: 0.70
+      total_trajectories_collected: 2487
+      api_cost_usd: 44.5
+      scaled_vanilla_mean: 71.2
+      scaled_vanilla_sd: 3.8
+      scaled_vanilla_seeds: [69.8, 74.5, 69.4]
+      scaled_taxei_mean: 62.3
+      scaled_taxei_sd: 7.4
+      scaled_taxei_seeds: [66.0, 55.3, 65.5]
+      vanilla_improvement_vs_500: 3.9
+      taxei_improvement_vs_500: 5.6
+      taxei_vanilla_gap_pp: -8.9
+      taxei_sd_still_elevated: true
+      catastrophic_seed_present: true
+    result_rationale: "在best档下，scale-up证明data volume不是瓶颈。逻辑：(1) Vanilla从67.3%→71.2%（+3.9pp），shows正常data scaling behavior——更多clean data mildly improves task completion; (2) TaxEI也改善，从58.3%→62.3%（+5.6pp，slightly larger margin），但gap仍然是~9pp（在[8,10]范围内）且SD仍elevated（7.4pp vs 3.8pp）; (3) 1/3 seed仍然shows catastrophic behavior（55.3%），证明instability is not a small-data artifact。为什么gap维持：ALFWorld只有~134 unique tasks，即使trajectories增加到2500也只是~19/task的重复，无法提供真正的novel task diversity。Structured error patterns在任何data scale下都创造conflicting signals（正确action distribution vs injected error distribution的systematic conflict），不会被averaging out因为taxonomy labels是deterministic not stochastic。这与PALADIN的50K trajectories有qualitative difference：PALADIN的diversity来自thousands of distinct tools/APIs，而ALFWorld diversity ceiling很低。"
+    tables:
+      - title: "Table: Data Scale Ablation (3-seed)"
+        columns: [Scale, Condition, Mean, SD, Gap_vs_Vanilla, Catastrophic_Seeds]
+        rows:
+          - [500 traj (baseline), Vanilla, 67.3, 4.7, —, "0/5"]
+          - [500 traj (baseline), TaxEI, 58.3, 6.5, -9.0, "1/5"]
+          - [2500 traj, Vanilla, 71.2, 3.8, —, "0/3"]
+          - [2500 traj, TaxEI, 62.3, 7.4, -8.9, "1/3"]
+    figures_description:
+      - "Line plot: x=data scale (500, 2500), y=mean accuracy. Two lines (Vanilla solid, TaxEI dashed). Both rise but gap constant ~9pp. Shaded region = ±1 SD. TaxEI shading notably wider."
+    analysis: "Scale ablation在best档下提供clean negative result：more data helps both conditions proportionally但不关闭gap。这strengthens task-structure hypothesis over data-insufficiency explanation。关键framing：'Within ALFWorld's diversity ceiling (~134 unique tasks), 5× data scaling improves absolute performance but does not resolve the structured injection instability, suggesting the failure mechanism is signal-level (conflicting gradients) rather than sample-level (insufficient coverage).' Paper中作为1段Discussion evidence，不需要占main results space。"
+
+  - name: "Scale Ablation (25K-50K Trajectories)"
+    plan_id: "scale-ablation"
+    description: "假设性的extreme scale experiment——将data规模推到PALADIN级别（25K-50K trajectories）。在best档下，这个experiment如果执行会进一步confirm scale is not the fix。"
+    expected_results:
+      trajectories_needed: 25000
+      estimated_api_cost_usd: 250
+      estimated_gpu_hours: 40
+      vanilla_projected_mean: 73.5
+      taxei_projected_mean: 65.2
+      gap_still_present_pp: -8.3
+      taxei_sd_still_elevated: true
+      practical_ceiling_note: "ALFWorld only has 134 unique tasks; beyond ~5K trajectories, marginal returns diminish sharply"
+    result_rationale: "在best档下，即使25K scale也不会close the gap，因为bottleneck是task diversity（134 unique tasks）而非trajectory count。当每个task有~187个trajectory variants时，model只是在memorize同一task的不同表述，而structured injection的conflicting signal per-task-template不会被additional examples resolve。这是best档而非worst档的预测——reviewers接受'we tested 2500 and the trend is clear, 25K is infeasible given ALFWorld constraints but would not help based on the non-convergence pattern'作为sufficient evidence。不需要actually run这个experiment——scale-up-data已经demonstrate the trend。"
+    tables:
+      - title: "Table: Projected Scale-Performance Curve (extrapolation)"
+        columns: [Scale, Vanilla_Proj, TaxEI_Proj, Gap_pp, Diminishing_Returns]
+        rows:
+          - [500, 67.3, 58.3, -9.0, "—"]
+          - [2500, 71.2, 62.3, -8.9, "Vanilla +3.9pp"]
+          - [25000, "~73.5", "~65.2", "~-8.3", "Vanilla +2.3pp (saturation)"]
+    figures_description:
+      - "未执行——在Discussion中用text argument代替。如果需要视觉，可画extrapolation curve with uncertainty band showing gap不converge to zero。"
+    analysis: "Best档下这个experiment是planned but unnecessary——scale-up-data (2500) already shows the trend is flat for gap closure. Reviewers会accept 'the 9pp gap is maintained at 5× scale with no convergence trend, and ALFWorld's 134-task ceiling makes further scaling uninformative' without requiring the full 25K run. 在paper中放Discussion一段即可。"
+
+  - name: "Recovery Prompting (Few-Shot In-Context)"
+    plan_id: "recovery-prompting"
+    description: "给模型提供in-context recovery examples（few-shot prompting），测试是否能elicit recovery能力。如果few-shot works但fine-tuning doesn't，说明knowledge exists in the base model但training signal corrupts it。"
+    expected_results:
+      vanilla_with_recovery_prompt_rate: 66.0
+      taxei_with_recovery_prompt_rate: 61.7
+      random_with_recovery_prompt_rate: 63.8
+      vanilla_base_recovery_rate: 61.7
+      improvement_from_prompting_vanilla_pp: 4.3
+      improvement_from_prompting_taxei_pp: 2.1
+      improvement_from_prompting_random_pp: 0.0
+      few_shot_detection_rate: 0.12
+      prompt_design: "3 recovery exemplars showing error→detect→recover sequence"
+    result_rationale: "在best档下，few-shot recovery prompting shows modest improvement（+2-4pp）但远不及expected if recovery knowledge were latent。逻辑：(1) Base model（Qwen3-8B）确实有一些在pre-training中获得的generic error tolerance（vanilla本身61.7% recovery despite no injection training），few-shot可以slightly activate这个latent ability; (2) 但improvement modest因为embodied planning的error recovery是unbounded（需要re-plan entire sequence），不像tool-use那样有finite retry space——3个exemplar不能cover combinatorial space; (3) TaxEI-trained model从prompting获益更少（+2.1pp vs +4.3pp for vanilla），因为fine-tuning已经partially corrupted the base model's latent planning ability; (4) Detection rate从0%提升到12%说明explicit prompting can activate some meta-cognition，但这是surface-level mimicry不是true error awareness。这个result在best档下被framed为supplementary evidence：'even explicit in-context guidance cannot overcome the fundamental unbounded-recovery-space problem in embodied planning'。"
+    tables:
+      - title: "Table: Recovery Prompting Ablation (seed=42)"
+        columns: [Condition, Base_Recovery, "+3-shot Recovery", Improvement_pp, Detection_Rate]
+        rows:
+          - [Vanilla, 61.7, 66.0, +4.3, 0.12]
+          - [TaxEI, 59.6, 61.7, +2.1, 0.08]
+          - [Random, 63.8, 63.8, 0.0, 0.04]
+    figures_description:
+      - "Paired bar chart: each condition shows base vs prompted recovery rate. Modest gains for Vanilla, minimal for TaxEI/Random. Annotation: 'Prompting cannot compensate for training corruption (TaxEI) or overcome structural recovery limits (all).'"
+    analysis: "Recovery prompting在best档下提供complementary evidence for the task-structure hypothesis。Key insight chain: (1) Detection=0% without prompting → no emergent error awareness from training; (2) Detection=12% with prompting → base model has latent capability that training didn't activate; (3) Recovery improvement modest (+4pp max) → error awareness alone insufficient when recovery requires unbounded re-planning; (4) TaxEI benefits least → injection training actively degrades the base model's latent planning ability. 这在paper中是一个clean paragraph supporting 'the failure is structural not methodological'。Priority 3 because it's supplementary——the main story stands without it。"
+
+  - name: "Per-Operator Deep Dive (Multi-Seed Validation)"
+    plan_id: "per-operator-deepdive"
+    description: "多seed per-operator recovery分析，验证C4(local) advantage和C1/P2(global) disadvantage的pattern是否robust。"
+    expected_results:
+      C4_observation_masking_taxei_advantage_mean_pp: 4.2
+      C4_advantage_direction_consistent_seeds: 4
+      C4_advantage_direction_consistent_out_of: 5
+      P2_sub_goal_deletion_taxei_disadvantage_mean_pp: -9.8
+      P2_disadvantage_direction_consistent_seeds: 4
+      P2_disadvantage_direction_consistent_out_of: 5
+      C1_context_truncation_taxei_disadvantage_mean_pp: -5.4
+      P1_step_order_swap_neutral_mean_pp: -1.2
+      pooled_N_per_operator: 60
+      fisher_exact_C4_p: 0.38
+      fisher_exact_P2_p: 0.18
+      local_vs_global_pattern_consistent: true
+    result_rationale: "在best档下，per-operator pattern以方向一致性replicate但individual tests仍NS。逻辑：(1) C4 (observation masking) 是最local的perturbation——单个observation被mask，model只需要'ignore missing info and proceed'，这与TaxEI训练中exposure to masked observations的经验对齐，所以TaxEI能show modest advantage (+4.2pp pooled); (2) P2 (sub-goal deletion) 是最global的——删除sub-goal后整个downstream plan invalid，需要full re-planning，TaxEI训练中虽然见过P2 patterns但学到的是'execute corrupted plan'而非'detect missing goal and re-plan'，所以显著disadvantage (-9.8pp pooled); (3) C1 (context truncation) 类似P2——truncated context导致cascading wrong assumptions; (4) P1 (step order swap) 效果neutral因为swapped steps有时accidentally correct（ALFWorld很多task的step order有flexibility），所以injection训练对P1的effect被task structure的flexibility抵消。5-seed pooled到N=60/operator后方向一致但Fisher仍NS because每个operator只有12 tasks/seed，5×12=60仍然underpowered for moderate effect sizes。Best档下reviewers接受这个pattern作为hypothesis-generating evidence配合clear theoretical motivation（local=learnable, global=not learnable）。"
+    tables:
+      - title: "Table: Per-Operator TaxEI Advantage (5-seed pooled, N=55-60 per operator)"
+        columns: [Operator, Locality, Vanilla_Rate, TaxEI_Rate, Δ_pp, Direction_Consistent_Seeds, Fisher_p]
+        rows:
+          - [C4_observation_masking, Local, 0.618, 0.655, +3.7, "4/5", 0.38]
+          - [P1_step_order_swap, Mixed, 0.617, 0.600, -1.7, "3/5", 0.82]
+          - [C1_context_truncation, Global, 0.700, 0.633, -6.7, "4/5", 0.24]
+          - [P2_sub_goal_deletion, Global, 0.667, 0.550, -11.7, "4/5", 0.18]
+    figures_description:
+      - "Gradient bar chart: operators ordered by locality (C4→P1→C1→P2 left-to-right). Y-axis = TaxEI−Vanilla recovery gap. Clear visual gradient from positive (C4) to negative (P2). Individual seed dots overlaid showing consistency."
+      - "2×2 conceptual diagram: rows={Local, Global} × columns={Recovery feasible, Recovery infeasible}. C4 in (Local, Feasible) → TaxEI helps. P2 in (Global, Infeasible) → TaxEI hurts. Motivates the task-structure theory."
+    analysis: "Per-operator deepdive在best档下被视为论文的conceptual highlight之一——它provides mechanistic explanation for WHY structured injection fails specifically in embodied planning。The local/global gradient is the micro-level instantiation of the macro-level finding (TaxEI fails where errors cascade). Reviewers在best档下appreciate this as 'going beyond reporting negative result to explaining why it's negative'。虽然individual operator tests are NS at any reasonable α, the monotonic gradient across all 4 operators with consistent theoretical motivation (local→positive, global→negative) is accepted as convergent evidence。Paper中作为半页Analysis subsection with 1 figure。"
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06c5ff6d-b41a-46e7-8a72-67e711990014",
+  "isSidechain": false,
+  "requestId": "req_011Cb6W7LgyUCEAD4mfLiz1o",
+  "type": "assistant",
+  "uuid": "67e58cce-9879-4d0a-a705-9d2d2841b0c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGMnyqh3k1yL4kDhv4Xv72",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11060,
+      "cache_read_input_tokens": 53952,
+      "output_tokens": 8373,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11060,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8373,
+          "cache_read_input_tokens": 53952,
+          "cache_creation_input_tokens": 11060,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11060
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept 核心假设：[\"Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-correcte…",
+  "leafUuid": "67e58cce-9879-4d0a-a705-9d2d2841b0c3",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-model structured error injection instability for embodied planning",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：Cross-model structured-vs-random divergence被认可为新贡献，大effect size胜过marginal p，Findings Accept 核心假设：[\"Reviewers接受Cohen's d≥1.5作为evidence（即使Bonferroni-correcte…",
+  "leafUuid": "67e58cce-9879-4d0a-a705-9d2d2841b0c3",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Cross-model structured error injection instability for embodied planning",
+  "sessionId": "4430d99b-de5b-452b-b963-111a2b70e462"
+}
+```
+
+---

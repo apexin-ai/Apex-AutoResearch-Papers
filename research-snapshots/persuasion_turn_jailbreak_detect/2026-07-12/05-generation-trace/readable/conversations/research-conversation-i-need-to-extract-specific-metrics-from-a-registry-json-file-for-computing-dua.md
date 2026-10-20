@@ -1,0 +1,5709 @@
+# Research conversation: I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at: /home/ubu
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 74
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a13a872389ab08f0d.jsonl`
+- **Structured JSON:** [`1a31a4b1fe0d4ddd4bba.json`](../../sessions/1a/1a31a4b1fe0d4ddd4bba.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+74 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T23:32:03.933Z_
+
+I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at:
+/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt
+
+The file has schema: {result: string} where result is a JSON string.
+
+I need you to find:
+
+1. **9-class attack-side metrics (benign IID condition)**:
+   - DD Full F1 (3-seed mean±std) — should be ~0.994±0.005
+   - AA Full F1 (3-seed mean±std) — should be ~0.972±0.026
+   - Most importantly: **per-seed attack recall** for both DD and AA (not F1, but recall specifically). Look for fields like "recall", "attack_recall", "detection_recall", or similar. If per-seed data exists, extract all seeds.
+
+2. **Benign FPR data**:
+   - exp19: WildChat FPR (should be ~0.681)
+   - exp51: OASST2 FPR (should be ~0.575)
+   - Any experiments with WildChat + 10-shot adaptation FPR (should be ~0)
+   - Any experiments with OASST2 + 25-shot adaptation FPR (should be ~0.010±0.005)
+
+3. **Test set sizes**: DD OOD and AA OOD test set composition (n_attack, n_benign)
+
+Steps:
+1. First probe structure: `jq 'type, length, keys' file`
+2. Parse the result string as JSON
+3. Search through experiments for the above metrics
+4. Report ALL relevant numbers verbatim, including per-seed breakdowns if available
+
+Be thorough — I need exact numbers, not approximations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "ce7b84d4-a1bb-43de-92f8-7c21ae0240b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T23:32:03.942Z_
+
+```json
+{
+  "parentUuid": "ce7b84d4-a1bb-43de-92f8-7c21ae0240b5",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "77e81941-8638-44c1-aaf0-0351e5268f41",
+  "timestamp": "2026-05-22T23:32:03.942Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-22T23:32:05.990Z_
+
+
+
+I'll start by reading the file to understand its structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77e81941-8638-44c1-aaf0-0351e5268f41",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUnda8gSYToZojLLRwq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "68526953-99c8-43b9-b71d-8a91ffd6becb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUwkv8CSRsusgKAz7BhHtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15242,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15242,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T23:32:07.188Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016ZF4myaqzX3pZvnkRH3DMX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68526953-99c8-43b9-b71d-8a91ffd6becb",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUnda8gSYToZojLLRwq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d947da9a-c2e5-4a9b-bfea-cc7e4df98b42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUwkv8CSRsusgKAz7BhHtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15242,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 15242
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15242,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 15242,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T23:32:07.519Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016ZF4myaqzX3pZvnkRH3DMX`</summary>
+
+```text
+File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d947da9a-c2e5-4a9b-bfea-cc7e4df98b42",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "6c00b8da-6da3-4018-a939-3d9907abc5f5",
+  "toolUseResult": "Error: File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "d947da9a-c2e5-4a9b-bfea-cc7e4df98b42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-22T23:32:10.199Z_
+
+The file is large. Let me search for key patterns first to understand the structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c00b8da-6da3-4018-a939-3d9907abc5f5",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUntpufDNaKTRtUagGt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "951d233e-de91-4a56-a5fc-e6cf1b3a75fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLXW5Qmdxe279byMGKXmv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 15242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T23:32:11.771Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01F89KbWTfFgkgtT1R3VQSs9`</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "description": "Check file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "951d233e-de91-4a56-a5fc-e6cf1b3a75fe",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUntpufDNaKTRtUagGt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8b219765-09da-4685-8228-413a8deaac98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLXW5Qmdxe279byMGKXmv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 15242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T23:32:11.946Z_
+
+<details><summary>↩ Tool result · `toolu_01F89KbWTfFgkgtT1R3VQSs9`</summary>
+
+```text
+121207 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b219765-09da-4685-8228-413a8deaac98",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "12589d5e-6051-4242-896c-8a4ff19ec59f",
+  "sourceToolAssistantUUID": "8b219765-09da-4685-8228-413a8deaac98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T23:32:13.070Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MCUV1BkhFoemGHnKjQvAMc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12589d5e-6051-4242-896c-8a4ff19ec59f",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUntpufDNaKTRtUagGt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aa13fc37-30ff-4008-a6c1-7beca94a9aa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLXW5Qmdxe279byMGKXmv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 15242,
+      "output_tokens": 332,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1079
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 332,
+          "cache_read_input_tokens": 15242,
+          "cache_creation_input_tokens": 1079,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1079,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T23:32:13.356Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MCUV1BkhFoemGHnKjQvAMc`</summary>
+
+```text
+File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa13fc37-30ff-4008-a6c1-7beca94a9aa7",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "f0f6916d-1df5-41ae-ac95-779387ca1e77",
+  "toolUseResult": "Error: File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "aa13fc37-30ff-4008-a6c1-7beca94a9aa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T23:32:16.442Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DUsZJqUWm8ipXkRjstE87d`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results && head -c 500 mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "description": "Check file beginning structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0f6916d-1df5-41ae-ac95-779387ca1e77",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUoKnq1CmbFDbnErXSK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7bda0ada-75ca-4a1d-85e6-f35971743d55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9Lc6heT7GK7YPmkKvmG9w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 530,
+      "cache_read_input_tokens": 16321,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 530
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 16321,
+          "cache_creation_input_tokens": 530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 530,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T23:32:16.511Z_
+
+<details><summary>↩ Tool result · `toolu_01DUsZJqUWm8ipXkRjstE87d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp64_toxicchat_confidence_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:28:42.948Z\", \"updated_at\": \"2026-05-22T22:29:28.485Z\", \"hypothesis\": \"9-class 在 ToxicChat 上的高 FPR 来源于高置信误判（>0.9），而非 borderline 预测，说明 classification DAPT 对 ToxicChat benign 文本产生了系统性的特征偏移而非边界模糊\", \"conclusion\": \"success\", \"metrics\": {\"9class_major
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bda0ada-75ca-4a1d-85e6-f35971743d55",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "7ea98223-1f4c-4033-ba57-a6fbffa73cc7",
+  "sourceToolAssistantUUID": "7bda0ada-75ca-4a1d-85e6-f35971743d55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-22T23:32:19.397Z_
+
+Good, it's a JSON with `{result: string}` where the string itself is JSON. Let me extract and parse it properly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ea98223-1f4c-4033-ba57-a6fbffa73cc7",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUoZGh7sSFvNxeMu7Bi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cfa8890b-1a6b-42cd-8687-42242dcec039",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9jn1yxJh6LiW8eHuFajNV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 381,
+      "cache_read_input_tokens": 16851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 381,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T23:32:21.948Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01458SfRzbxMKBT1nWpL2dMN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\ndata = inner['data']\nprint('Top-level keys:', list(data.keys()))\nexps = data['experiments']\nprint('Number of experiments:', len(exps))\nprint('Experiment names:')\nfor k in sorted(exps.keys()):\n    print(f'  {k}')\n\"",
+  "description": "Parse JSON and list all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfa8890b-1a6b-42cd-8687-42242dcec039",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUoZGh7sSFvNxeMu7Bi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4013e135-5b9e-430e-8e16-52bd91f9b096",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9jn1yxJh6LiW8eHuFajNV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 381,
+      "cache_read_input_tokens": 16851,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 381
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 16851,
+          "cache_creation_input_tokens": 381,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 381,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T23:32:22.049Z_
+
+<details><summary>↩ Tool result · `toolu_01458SfRzbxMKBT1nWpL2dMN`</summary>
+
+```text
+Top-level keys: ['experiments', 'count', 'total', 'baseline']
+Number of experiments: 133
+Experiment names:
+  cross_attack_baseline
+  exp10_fewshot_llm_judge
+  exp11_tost_equivalence
+  exp12_toxicchat_bootstrap
+  exp13_meanpool_multiseed
+  exp14_cross_llm_validation
+  exp14b_cross_llm_control
+  exp14c_prediction_analysis
+  exp15_roberta_large
+  exp15b_roberta_large_lr
+  exp15c_roberta_large_mlm
+  exp16_9class_train
+  exp16_llama_benign_gen
+  exp16_llama_jailbreak_gen
+  exp16_multi_llm
+  exp16_multi_llm_training
+  exp16_vanilla_train
+  exp16b_llama_only_mlm
+  exp17_dataset_scale
+  exp17_dryrun
+  exp17_qwen_benign_gen
+  exp17_qwen_jailbreak_gen
+  exp18_e2e_finetune
+  exp19_wildchat_fpr
+  exp1_roberta_9class
+  exp1_roberta_mlm
+  exp1_roberta_vanilla
+  exp20_deepcontext_proxy
+  exp21_cross_checkpoint
+  exp22_aa_early_detection
+  exp23_aa_error_analysis
+  exp24_calibration_ece
+  exp25_fitd_early_detection
+  exp26_frozen_probing
+  exp27_mean_pooling
+  exp28_data_efficiency
+  exp28b_data_efficiency_supplement
+  exp28c_vanilla_supplement
+  exp29_inference_efficiency
+  exp2_actorattack_mcnemar
+  exp2_actorattack_ood
+  exp30_length_stratified
+  exp31_lambda_ablation_aa
+  exp32_strategy_prediction
+  exp33_strategy_prediction_plan002
+  exp34_representation_tsne
+  exp35_cross_seed_ensemble
+  exp36
+  exp36_frozen_mlm_probing
+  exp37_length_matched_benign
+  exp38_wildcat_calibration
+  exp39_extra_seeds_tost
+  exp3_probing
+  exp3_roberta_probing
+  exp40
+  exp40_llama_guard_baseline
+  exp41_tost_10seed
+  exp42_ood_benign_mixed
+  exp42b_balanced_ratio_ablation
+  exp43_mhj_human_eval
+  exp44_multi_llm_mixed
+  exp45_benign_adaptation_curve
+  exp46
+  exp46_inference_efficiency
+  exp48_ensemble_mlm_9class
+  exp49_representation_analysis
+  exp4_dd_ood_perturbation
+  exp50_layerwise_representation
+  exp51_lmsys_benign_ood
+  exp52_oasst2_n25_multiseed
+  exp53_llm_judge_prompt_opt
+  exp54_causal_probe_subspace
+  exp55_5seed_mlm_vs_9class_aa
+  exp56_crossllm_10shot_adaptation
+  exp57_svd_iid_only
+  exp58_truncated_single_turn
+  exp59_resample_350
+  exp5_llm_judge_ood
+  exp60_turncount_baseline
+  exp61_random_binary_partition
+  exp62_topic_diagnosis
+  exp63_toxicchat_fpfn
+  exp64_toxicchat_confidence_analysis
+  exp6_actorattack_perturbation
+  exp7_tfidf_perprefix_actorattack
+  exp8_mhj_human_data
+  exp9_bootstrap_ci
+  llama_crescendo_dryrun
+  mf1_binary_seed123
+  mf1_binary_seed456
+  mf1_scrambled_seed123
+  mf1_scrambled_seed456
+  phase_b_full
+  pilot_phase_b
+  plan_002_clean_training
+  plan_002_seed123
+  plan_002_seed456
+  plan_003_scrambled_ablation
+  plan_003_scrambled_fix
+  plan_003_scrambled_perturbation
+  plan_003_scrambled_retrain
+  plan_004_perturbation_eval
+  plan_005_multi_attack_gen
+  plan_006_cross_attack_clean
+  plan_007_tfidf_fitd_dd
+  plan_008_strategy_transition
+  plan_012_gpt55_judge
+  plan_012_llm_judge_qwen
+  plan_013_binary_perturbation
+  plan_013_none_collapse
+  plan_015_dd_eval
+  plan_016_sentiment_control
+  plan_016v2_topic_control
+  plan_016v2_topic_eval_seed123
+  plan_016v2_topic_eval_seed42
+  plan_016v2_topic_eval_seed456
+  plan_016v2_topic_perturbation
+  plan_016v2_topic_seed123
+  plan_016v2_topic_seed456
+  plan_017_eval_seed123
+  plan_017_eval_seed456
+  plan_017_mlm_control
+  plan_017_mlm_perturbation
+  plan_017_mlm_seed123
+  plan_017_mlm_seed456
+  plan_018_eval_seed123
+  plan_018_eval_seed456
+  plan_018_wiki_mlm_control
+  plan_018_wiki_mlm_eval
+  plan_018_wiki_mlm_seed123
+  plan_018_wiki_mlm_seed456
+  plan_018_wiki_perturbation
+  vanilla_multiseed_dd_ood
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4013e135-5b9e-430e-8e16-52bd91f9b096",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "430c5b51-55c5-45ca-9ed0-b31c1a7bf100",
+  "sourceToolAssistantUUID": "4013e135-5b9e-430e-8e16-52bd91f9b096",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-22T23:32:24.723Z_
+
+Now let me search for 9-class related experiments with DD and AA metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "430c5b51-55c5-45ca-9ed0-b31c1a7bf100",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUoxyDibFSUsWpuJHpx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "957cafd6-5579-436a-b7f1-0f704226b2b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Wq24qHcQAwuwVGAggViu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1775,
+      "cache_read_input_tokens": 17232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1775,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T23:32:34.603Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ShFyiadbfAXVc3KTaJapDC`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for experiments with DD/AA full F1, 9-class, benign IID\nkeywords = ['9class', 'dd_full', 'aa_full', 'DD_full', 'AA_full', 'full_f1', 'attack_recall', 'recall']\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    metrics_str = json.dumps(metrics)\n    if any(kw in metrics_str.lower() for kw in ['dd_full', 'aa_full', 'dd_ood', 'aa_ood']):\n        print(f'\\\\n=== {name} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        # Print relevant metric keys\n        for mk, mv in metrics.items():\n            if any(kw in mk.lower() for kw in ['dd', 'aa', 'full', 'ood', 'recall', 'f1', 'attack']):\n                print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1 | head -200",
+  "description": "Search for DD/AA metrics in all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "957cafd6-5579-436a-b7f1-0f704226b2b9",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUoxyDibFSUsWpuJHpx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "39517345-be94-493e-9a8c-6286d3f0e155",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Wq24qHcQAwuwVGAggViu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1775,
+      "cache_read_input_tokens": 17232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1775,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T23:32:34.702Z_
+
+<details><summary>↩ Tool result · `toolu_01ShFyiadbfAXVc3KTaJapDC`</summary>
+
+```text
+=== exp10_fewshot_llm_judge ===
+  status: DONE
+  dd_full_binary_f1: 0.5405
+  dd_full_macro_f1: 0.5663
+  dd_full_precision: 0.9677
+  dd_full_recall: 0.375
+  aa_full_binary_f1: 0.6612
+  aa_full_macro_f1: 0.6523
+  aa_full_precision: 0.9756
+  aa_full_recall: 0.5
+  dd_per_k_macro_f1: {"k1": 0.2575, "k2": 0.3355, "k3": 0.4693, "k5": 0.4894, "full": 0.5663}
+  aa_per_k_macro_f1: {"k1": 0.4055, "k2": 0.4274, "k3": 0.5376, "k5": 0.6356, "full": 0.6523}
+  dd_per_k_binary_f1: {"k1": 0.0247, "k2": 0.1609, "k3": 0.3838, "k5": 0.4158, "full": 0.5405}
+  aa_per_k_binary_f1: {"k1": 0.2796, "k2": 0.3158, "k3": 0.4906, "k5": 0.6325, "full": 0.6612}
+
+=== exp11_tost_equivalence ===
+  status: DONE
+  dd_ood_full: {"9class_vs_scrambled": {"mean_diff": 0, "ci_90": [-0.016, 0.016], "p_tost": 0.006, "equivalent": true, "ci_within_margin": true}, "9class_vs_binary": {"mean_diff": -0.0032, "ci_90": [-0.013, 0.006], "p_tost": 0.002, "equivalent": true, "ci_within_margin": true}, "9class_vs_jb_mlm": {"mean_diff": 0.083, "ci_90": [-0.145, 0.311], "p_tost": 0.643, "equivalent": false, "ci_within_margin": false}, "scrambled_vs_binary": {"mean_diff": -0.0032, "ci_90": [-0.013, 0.006], "p_tost": 0.002, "equivalent": true, "ci_within_margin": true}}
+  actorattack_full: {"9class_vs_scrambled": {"mean_diff": 0.0209, "ci_90": [-0.109, 0.151], "p_tost": 0.29, "equivalent": false, "ci_within_margin": false}, "9class_vs_binary": {"mean_diff": -0.0185, "ci_90": [-0.075, 0.038], "p_tost": 0.122, "equivalent": false, "ci_within_margin": false}, "9class_vs_jb_mlm": {"mean_diff": 0.0784, "ci_90": [-0.109, 0.266], "p_tost": 0.65, "equivalent": false, "ci_within_margin": false}, "scrambled_vs_binary": {"mean_diff": -0.0394, "ci_90": [-0.117, 0.038], "p_tost": 0.363, "equivalent": false, "ci_within_margin": false}}
+
+=== exp13_meanpool_multiseed ===
+  status: PREPARING
+  dd_ood: {"k1": {"mean": 0.9905, "std": 0.0134}, "k2": {"mean": 0.9936, "std": 0.009}, "k3": {"mean": 0.9842, "std": 0.016}, "k5": {"mean": 0.9968, "std": 0.0045}, "full": {"mean": 0.9905, "std": 0.0134}}
+  actorattack: {"k1": {"mean": 0.8301, "std": 0.0272}, "k2": {"mean": 0.903, "std": 0.0229}, "k3": {"mean": 0.9622, "std": 0.0076}, "k5": {"mean": 0.9716, "std": 0.0153}, "full": {"mean": 0.9623, "std": 0.0151}}
+
+=== exp14_cross_llm_validation ===
+  status: DONE
+  llama_dd_full: {"vanilla": 0.261, "jb_mlm": 0.282, "9class": 0.433}
+  llama_aa_full: {"vanilla": 0.261, "jb_mlm": 0.368, "9class": 0.321}
+  llama_dd_k1: {"vanilla": 0.17, "jb_mlm": 0.332, "9class": 0.312}
+  llama_aa_k1: {"vanilla": 0.248, "jb_mlm": 0.316, "9class": 0.265}
+  qwen_vs_llama_dd_full: {"vanilla_gap": -0.051, "jb_mlm_gap": -0.632, "9class_gap": -0.564}
+
+=== exp14b_cross_llm_control ===
+  status: DONE
+  dd_full: {"vanilla": 0.302, "jb_mlm": 0.778, "9class": 1}
+  aa_full: {"vanilla": 0.302, "jb_mlm": 0.903, "9class": 0.801}
+  dd_k1: {"vanilla": 0.319, "jb_mlm": 0.965, "9class": 0.935}
+  dd_k3: {"vanilla": 0.302, "jb_mlm": 0.996, "9class": 0.977}
+  aa_k1: {"vanilla": 0.443, "jb_mlm": 0.927, "9class": 0.832}
+  aa_k3: {"vanilla": 0.302, "jb_mlm": 0.988, "9class": 0.8}
+  recovery_vs_exp14_dd_full: {"jb_mlm": "+49.6pp", "9class": "+56.7pp"}
+
+=== exp14c_prediction_analysis ===
+  status: DONE
+  dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+  dd_full_tp_rate: {"both_conditions_identical": {"vanilla": 0, "jb_mlm": 0.68, "9class": 1}}
+
+=== exp15_roberta_large ===
+  status: DONE
+  dd_ood: {"roberta_large_vanilla": {"k1": 0.878, "k3": 0.915, "full": 0.927}, "roberta_large_9class": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"roberta_large_vanilla": {"k1": 0.977, "k3": 0.99, "full": 1}, "roberta_large_9class": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp15b_roberta_large_lr ===
+  status: DONE
+  dd_ood: {"9class_lr1e5": {"k1": 0.899, "k3": 0.851, "full": 0.948}, "9class_lr2e5_exp15": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"9class_lr1e5": {"k1": 0.459, "k3": 0.676, "full": 0.781}, "9class_lr2e5_exp15": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp15c_roberta_large_mlm ===
+  status: DONE
+  dd_ood: {"mlm": {"k1": 0.876, "k3": 0.902, "full": 0.884}, "vanilla_exp15": {"k1": 0.878, "k3": 0.915, "full": 0.927}, "9class_exp15": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"mlm": {"k1": 0.876, "k3": 0.881, "full": 0.874}, "vanilla_exp15": {"k1": 0.977, "k3": 0.99, "full": 1}, "9class_exp15": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp16_multi_llm ===
+  status: DONE
+  deprecated_attack_only: {"9class_dd_ood": 0.422, "9class_aa_ood": 0.175}
+
+=== exp16b_llama_only_mlm ===
+  status: DONE
+
+=== exp17_dataset_scale ===
+  status: DONE
+
+=== exp18_e2e_finetune ===
+  status: DONE
+
+=== exp1_roberta_9class ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  iid_full_f1: 1
+
+=== exp1_roberta_mlm ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9874
+  dd_ood_full_f1_std: 0.0178
+  dd_ood_k1_mean: 0.9428
+  dd_ood_k1_std: 0.0184
+  dd_ood_k2_mean: 0.9747
+  dd_ood_k2_std: 0.0232
+  dd_ood_k3_mean: 0.9747
+  dd_ood_k3_std: 0.0232
+  dd_ood_k5_mean: 0.9841
+  dd_ood_k5_std: 0.016
+
+=== exp1_roberta_vanilla ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9813
+  dd_ood_full_f1_std: 0.0264
+  dd_ood_k1_mean: 0.9127
+  dd_ood_k1_std: 0.1028
+  dd_ood_k2_mean: 0.9003
+  dd_ood_k2_std: 0.1342
+  dd_ood_k3_mean: 0.8976
+  dd_ood_k3_std: 0.1381
+  dd_ood_k5_mean: 0.9442
+  dd_ood_k5_std: 0.0789
+
+=== exp20_deepcontext_proxy ===
+  status: DONE
+
+=== exp21_cross_checkpoint ===
+  status: DONE
+
+=== exp22_aa_early_detection ===
+  status: DONE
+  aa_ood_per_k: {"9class": {"k1": {"mean": 0.773, "std": 0.041}, "k2": {"mean": 0.855, "std": 0.048}, "k3": {"mean": 0.921, "std": 0.046}, "k5": {"mean": 0.966, "std": 0.028}, "full": {"mean": 0.972, "std": 0.026}}, "mlm": {"k1": {"mean": 0.736, "std": 0.15}, "k2": {"mean": 0.909, "std": 0.058}, "k3": {"mean": 0.945, "std": 0.039}, "k5": {"mean": 0.929, "std": 0.033}, "full": {"mean": 0.893, "std": 0.08}}, "vanilla": {"k1": {"mean": 0.337, "std": 0.049}, "k2": {"mean": 0.306, "std": 0.026}, "k3": {"mean": 0.284, "std": 0.011}, "k5": {"mean": 0.262, "std": 0.006}, "full": {"mean": 0.258, "std": 0}}}
+  fitd_ood_per_k_exp16: {"9class": {"k1": 1, "k2": 0.997, "k3": 1, "k5": 1, "full": 1}, "mlm": {"k1": 0.61, "k2": 0.598, "k3": 0.654, "k5": 0.635, "full": 0.707}, "vanilla": {"k1": 0.698, "k2": 0.786, "k3": 0.791, "k5": 0.823, "full": 0.882}}
+
+=== exp24_calibration_ece ===
+  status: DONE
+  9class_dd_ood_ece: 0.1434
+  9class_dd_ood_ece_std: 0.053
+  9class_aa_ood_ece: 0.1158
+  9class_aa_ood_ece_std: 0.0526
+  vanilla_dd_ood_ece: 0.6694
+  vanilla_dd_ood_ece_std: 0.0043
+  vanilla_aa_ood_ece: 0.5042
+  vanilla_aa_ood_ece_std: 0.0662
+
+=== exp26_frozen_probing ===
+  status: DONE
+
+=== exp27_mean_pooling ===
+  status: DONE
+  iid_full: {"mean": 1, "std": 0}
+  dd_ood_k1: {"mean": 1, "std": 0}
+  dd_ood_k2: {"mean": 1, "std": 0}
+  dd_ood_k3: {"mean": 1, "std": 0}
+  dd_ood_k5: {"mean": 1, "std": 0}
+  dd_ood_full: {"mean": 1, "std": 0}
+  aa_ood_full: {"mean": 1, "std": 0}
+  fitd_ood_full: {"mean": 1, "std": 0}
+
+=== exp28_data_efficiency ===
+  status: DONE
+
+=== exp28b_data_efficiency_supplement ===
+  status: DONE
+  9class_3seed_N50_aa_ood: "0.969\u00b10.037"
+  9class_3seed_N125_aa_ood: "0.975\u00b10.019"
+  9class_3seed_N250_aa_ood: "0.975\u00b10.035"
+  9class_3seed_N350_aa_ood: "0.972\u00b10.033"
+
+=== exp28c_vanilla_supplement ===
+  status: DONE
+
+=== exp30_length_stratified ===
+  status: DONE
+  9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+
+=== exp32_strategy_prediction ===
+  status: DONE
+  dd_ood: {"strategy_acc": "0.4145\u00b10.0173", "jb_strategy_acc": "0.1431\u00b10.0260", "macro_f1": "0.1626\u00b10.0238", "strategy_acc_detected": "0.1634\u00b10.0200", "strategy_acc_missed": "0.0758\u00b10.0123", "missed_per_seed": [31, 5, 26], "detection_rate_rapport_building": 0.7417, "corr_det_prob_vs_strat_acc": "r~0.45, p<0.001"}
+  aa_ood: {"strategy_acc": "0.4604\u00b10.0114", "jb_strategy_acc": "0.0682\u00b10.0192", "macro_f1": "0.1145\u00b10.0212", "strategy_acc_detected": "0.1311\u00b10.0375", "strategy_acc_missed": "0.0393\u00b10.0142", "missed_per_seed": [63, 41, 66], "detection_rate_authority_appeal": 0.2841, "detection_rate_emotional_manipulation": 0.5238, "corr_det_prob_vs_strat_acc": "r~0.24, p~0.03"}
+
+=== exp33_strategy_prediction_plan002 ===
+  status: DONE
+  dd_ood: {"strategy_acc": "0.4924\u00b10.0246", "jb_strategy_acc": "0.2569\u00b10.0357", "macro_f1": "0.1965\u00b10.0142", "strategy_acc_detected": "0.2575\u00b10.0352", "strategy_acc_missed": "0.1000\u00b10.0000", "missed_per_seed": [0, 0, 1], "detection_rate_rapport_building": 0.9958, "per_class_f1_top": {"none": 0.8666, "rapport_building": 0.524, "gradual_escalation": 0.2619}}
+  aa_ood: {"strategy_acc": "0.7112\u00b10.0086", "jb_strategy_acc": "0.5012\u00b10.0159", "macro_f1": "0.1888\u00b10.0012", "strategy_acc_detected": "0.5091\u00b10.0239", "strategy_acc_missed": "0.2833\u00b10.0360", "missed_per_seed": [1, 7, 1], "detection_rate_authority_appeal": 0.9617, "detection_rate_emotional_manipulation": 0.9524, "detection_rate_gradual_escalation": 1, "detection_rate_logical_reframing": 0.9333, "detection_rate_rapport_building": 1}
+
+=== exp35_cross_seed_ensemble ===
+  status: DONE
+  dd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 0.9968, "individual_std": 0.0045, "delta": 0.0032, "fixed": 1, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9138, "individual_std": 0.115, "delta": 0.0862, "fixed": 30, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2619, "individual_std": 0.017, "delta": -0.0044, "fixed": 1, "broke": 0}}
+  aa_ood: {"9class": {"ensemble_f1": 0.9809, "individual_mean": 0.9719, "individual_std": 0.0261, "delta": 0.009, "fixed": 5, "broke": 0}, "jb_mlm": {"ensemble_f1": 0.953, "individual_mean": 0.8934, "individual_std": 0.0799, "delta": 0.0596, "fixed": 26, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2575, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}}
+  fitd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 1, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9904, "individual_std": 0.0078, "delta": 0.0096, "fixed": 3, "broke": 0}, "vanilla": {"ensemble_f1": 1, "individual_mean": 0.9936, "individual_std": 0.009, "delta": 0.0064, "fixed": 2, "broke": 0}}
+
+=== exp36 ===
+  status: DONE
+  iid_full: {"mean": 0.982, "std": 0.016}
+  dd_ood_full: {"mean": 0.993, "std": 0.009}
+  aa_ood_full: {"mean": 0.941, "std": 0.037}
+  fitd_ood_full: {"mean": 0.987, "std": 0.009}
+  dd_ood_k1: {"mean": 0.953, "std": 0.027}
+  dd_ood_k2: {"mean": 0.977, "std": 0.021}
+  dd_ood_k3: {"mean": 0.987, "std": 0.005}
+  dd_ood_k5: {"mean": 0.997, "std": 0.005}
+
+=== exp39_extra_seeds_tost ===
+  status: DONE
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39517345-be94-493e-9a8c-6286d3f0e155",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "930ab7f1-547d-4005-8e33-c365e9289e5e",
+  "sourceToolAssistantUUID": "39517345-be94-493e-9a8c-6286d3f0e155",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-22T23:32:39.040Z_
+
+Good, I'm finding the key experiments. Let me now get more detailed data, specifically looking for per-seed breakdowns, recall metrics, and the benign FPR experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "930ab7f1-547d-4005-8e33-c365e9289e5e",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUpuTf6PMZN8bvdU2XY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9fafc711-f0dd-49f0-b762-9b6af199bd19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y1AraHhHMSicpwYY42nGxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6485,
+      "cache_read_input_tokens": 19007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6485,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T23:32:50.719Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01By1GU4rtgLRiWtMUPFqZdv`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Deep dive into key experiments: exp1_roberta_9class, exp22, exp9, and multiseed experiments\nkey_exps = ['exp1_roberta_9class', 'exp9_bootstrap_ci', 'exp22_aa_early_detection', \n            'exp35_cross_seed_ensemble', 'exp55_5seed_mlm_vs_9class_aa',\n            'exp2_actorattack_ood', 'exp2_actorattack_mcnemar',\n            'exp30_length_stratified', 'exp36', 'exp36_frozen_mlm_probing']\n\nfor name in key_exps:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n{\\\"=\\\"*60}')\n        print(f'=== {name} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")[:200]}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Deep dive into key experiments for per-seed and recall data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fafc711-f0dd-49f0-b762-9b6af199bd19",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUpuTf6PMZN8bvdU2XY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6a87b2ce-5d24-4cb9-a0d8-e0b7850fbc01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y1AraHhHMSicpwYY42nGxi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6485,
+      "cache_read_input_tokens": 19007,
+      "output_tokens": 623,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6485
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 623,
+          "cache_read_input_tokens": 19007,
+          "cache_creation_input_tokens": 6485,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6485,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T23:32:50.824Z_
+
+<details><summary>↩ Tool result · `toolu_01By1GU4rtgLRiWtMUPFqZdv`</summary>
+
+```text
+============================================================
+=== exp1_roberta_9class ===
+status: PREPARING
+hypothesis: RoBERTa-base with 9-class persuasion multi-task fine-tuning will reproduce the DeBERTa evidence hierarchy (9-class >> vanilla), proving findings are encoder-agnostic
+conclusion: success
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  encoder: "roberta-base"
+  iid_full_f1: 1
+  n_seeds: 3
+
+============================================================
+=== exp9_bootstrap_ci ===
+status: DONE
+hypothesis: BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the dif
+conclusion: success
+  actorattack_9class_full: {"mean": 0.9718, "ci": [0.8554, 1]}
+  actorattack_vanilla_full: {"mean": 0.2565, "ci": [0.2027, 0.3139]}
+  dd_ood_9class_full: {"mean": 0.9968, "ci": [0.9426, 1]}
+  dd_ood_vanilla_full: {"mean": 0.2698, "ci": [0.2017, 0.3414]}
+  perm_9class_vs_jb_mlm_dd_full_max_p: 1
+  perm_9class_vs_scrambled_dd_full_max_p: 1
+  perm_9class_vs_vanilla_aa_full_p: 0
+  perm_9class_vs_vanilla_dd_full_p: 0
+
+============================================================
+=== exp22_aa_early_detection ===
+status: DONE
+hypothesis: 9-class DAPT maintains detection advantage over MLM and vanilla at all prefix lengths (K=1,2,3,5,full) on ActorAttack OOD, with the gap widening at smaller K, demonstrating early detection capability 
+conclusion: success
+  aa_ood_per_k: {"9class": {"k1": {"mean": 0.773, "std": 0.041}, "k2": {"mean": 0.855, "std": 0.048}, "k3": {"mean": 0.921, "std": 0.046}, "k5": {"mean": 0.966, "std": 0.028}, "full": {"mean": 0.972, "std": 0.026}}, "mlm": {"k1": {"mean": 0.736, "std": 0.15}, "k2": {"mean": 0.909, "std": 0.058}, "k3": {"mean": 0.945, "std": 0.039}, "k5": {"mean": 0.929, "std": 0.033}, "full": {"mean": 0.893, "std": 0.08}}, "vanilla": {"k1": {"mean": 0.337, "std": 0.049}, "k2": {"mean": 0.306, "std": 0.026}, "k3": {"mean": 0.284, "std": 0.011}, "k5": {"mean": 0.262, "std": 0.006}, "full": {"mean": 0.258, "std": 0}}}
+  fitd_ood_per_k_exp16: {"9class": {"k1": 1, "k2": 0.997, "k3": 1, "k5": 1, "full": 1}, "mlm": {"k1": 0.61, "k2": 0.598, "k3": 0.654, "k5": 0.635, "full": 0.707}, "vanilla": {"k1": 0.698, "k2": 0.786, "k3": 0.791, "k5": 0.823, "full": 0.882}}
+  note: "AA OOD: 9-class monotonically improves K=1\u2192Full (0.773\u21920.972). Vanilla flat/declining (~0.34\u21920.26). MLM non-monotonic peaks at K=3 (0.945). FITD per-K uses exp16 checkpoints (different from AA's plan_002), not directly comparable."
+
+============================================================
+=== exp35_cross_seed_ensemble ===
+status: DONE
+hypothesis: 3-seed majority vote ensemble 将在所有 OOD 攻击家族上提升检测 F1（尤其减少 AA OOD 上的漏检），9-class ensemble 的提升幅度大于 MLM/vanilla，因为 9-class 各 seed 的错误模式更互补（来自不同的策略表征空间初始化）。
+conclusion: success
+  aa_ood: {"9class": {"ensemble_f1": 0.9809, "individual_mean": 0.9719, "individual_std": 0.0261, "delta": 0.009, "fixed": 5, "broke": 0}, "jb_mlm": {"ensemble_f1": 0.953, "individual_mean": 0.8934, "individual_std": 0.0799, "delta": 0.0596, "fixed": 26, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2575, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}}
+  dd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 0.9968, "individual_std": 0.0045, "delta": 0.0032, "fixed": 1, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9138, "individual_std": 0.115, "delta": 0.0862, "fixed": 30, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2619, "individual_std": 0.017, "delta": -0.0044, "fixed": 1, "broke": 0}}
+  fitd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 1, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9904, "individual_std": 0.0078, "delta": 0.0096, "fixed": 3, "broke": 0}, "vanilla": {"ensemble_f1": 1, "individual_mean": 0.9936, "individual_std": 0.009, "delta": 0.0064, "fixed": 2, "broke": 0}}
+  note: "Ensemble NEVER breaks correct predictions (broke=0 everywhere). jb_mlm benefits most from ensemble (+8.6pp DD, +6.0pp AA). 9class achieves perfect DD/FITD, near-perfect AA (0.981). Vanilla too weak to benefit."
+
+============================================================
+=== exp55_5seed_mlm_vs_9class_aa ===
+status: DONE
+hypothesis: 9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to
+conclusion: negative
+  9class_aa_ood: {"mean": 0.9735, "std": 0.0124}
+  9class_dd_ood: {"mean": 0.9924, "std": 0.0111}
+  9class_fitd_ood: {"mean": 1, "std": 0}
+  9class_iid: {"mean": 1, "std": 0}
+  aa_ood_9class_wins: 4
+  aa_ood_delta_pp: 1.69
+  aa_ood_mlm_wins: 1
+  aa_ood_paired_ttest_p: 0.2461
+  aa_ood_wilcoxon_p: 0.1875
+  mlm_aa_ood: {"mean": 0.9566, "std": 0.0237}
+  mlm_dd_ood: {"mean": 0.9883, "std": 0.0094}
+  mlm_fitd_ood: {"mean": 0.9883, "std": 0.0094}
+  mlm_iid: {"mean": 0.9816, "std": 0.0134}
+  n_seeds: 5
+  seeds: [42, 123, 456, 789, 1024]
+  total_time_min: 10.5
+
+============================================================
+=== exp2_actorattack_ood ===
+status: DONE
+hypothesis: Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type
+conclusion: success
+  deberta_9class: {"k1": 0.773, "k1_std": 0.041, "k2": 0.855, "k2_std": 0.048, "k3": 0.921, "k3_std": 0.046, "k5": 0.966, "k5_std": 0.028, "full": 0.972, "full_std": 0.026}
+  deberta_binary: {"k1": 0.737, "k1_std": 0.074, "k2": 0.89, "k2_std": 0.065, "k3": 0.951, "k3_std": 0.036, "k5": 0.987, "k5_std": 0.012, "full": 0.99, "full_std": 0.008, "note": "3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636"}
+  deberta_mlm: {"k1": 0.736, "k1_std": 0.15, "k2": 0.909, "k2_std": 0.058, "k3": 0.945, "k3_std": 0.039, "k5": 0.929, "k5_std": 0.033, "full": 0.893, "full_std": 0.08}
+  deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+  deberta_topic: {"k1": 0.513, "k1_std": 0.077, "k2": 0.58, "k2_std": 0.109, "k3": 0.565, "k3_std": 0.1, "k5": 0.615, "k5_std": 0.111, "full": 0.625, "full_std": 0.141}
+  deberta_vanilla: {"k1": 0.337, "k1_std": 0.049, "k2": 0.306, "k2_std": 0.026, "k3": 0.284, "k3_std": 0.011, "k5": 0.262, "k5_std": 0.006, "full": 0.258, "full_std": 0}
+  deberta_wiki_mlm: {"k1": 0.656, "k1_std": 0.224, "k2": 0.672, "k2_std": 0.252, "k3": 0.693, "k3_std": 0.28, "k5": 0.689, "k5_std": 0.285, "full": 0.686, "full_std": 0.297}
+  n_samples: 118
+  note: "All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla"
+  roberta_9class: {"k1": 0.738, "k1_std": 0.033, "k2": 0.805, "k2_std": 0.033, "k3": 0.884, "k3_std": 0.066, "k5": 0.925, "k5_std": 0.066, "full": 0.939, "full_std": 0.046}
+  roberta_mlm: {"k1": 0.633, "k1_std": 0.133, "k2": 0.665, "k2_std": 0.15, "k3": 0.713, "k3_std": 0.174, "k5": 0.719, "k5_std": 0.184, "full": 0.73, "full_std": 0.201}
+  roberta_vanilla: {"k1": 0.41, "k1_std": 0.126, "k2": 0.425, "k2_std": 0.143, "k3": 0.432, "k3_std": 0.144, "k5": 0.466, "k5_std": 0.144, "full": 0.466, "full_std": 0.163}
+
+============================================================
+=== exp2_actorattack_mcnemar ===
+status: DONE
+hypothesis: 9-class persuasion-aware encoder significantly outperforms vanilla DeBERTa on ActorAttack OOD data at per-sample level (McNemar test), supporting cross-attack generalization claim.
+conclusion: success
+  mcnemar_clean_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 78, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}, "seed123": {"p": 0, "b": 57, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}, "seed456": {"p": 0, "b": 67, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}}}
+  mcnemar_clean_k1: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 50, "c": 3, "direction": "A>B", "test": "mcnemar_chi2"}, "seed123": {"p": 0, "b": 42, "c": 7, "direction": "A>B", "test": "mcnemar_chi2"}, "seed456": {"p": 0, "b": 47, "c": 6, "direction": "A>B", "test": "mcnemar_chi2"}}}
+  mcnemar_clean_k3: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 65, "c": 1, "direction": "A>B"}, "seed123": {"p": 0, "b": 47, "c": 0, "direction": "A>B"}, "seed456": {"p": 0, "b": 67, "c": 0, "direction": "A>B"}}}
+  note: "All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values."
+
+============================================================
+=== exp30_length_stratified ===
+status: DONE
+hypothesis: 9-class DAPT maintains consistent jailbreak detection performance across different conversation lengths (turn counts), with no systematic degradation in shorter or longer conversations.
+conclusion: success
+  9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+  benign_specificity_10plus: {"mean": 100, "std": 0, "n": 38}
+  mlm_comparison: {"aa_ood_7-10": {"mean": 69.7, "std": 33.7}, "dd_ood_7-10": {"mean": 83.9, "std": 22.8}}
+  note: "9-class \u226593% recall all bins, no degradation. Short AA (1-3 turns) slightly harder (93.3%). MLM unstable on 7-10 turns (std>22%). Vanilla near-0 recall on all bins."
+  structural_finding: "Benign (12-20 turns) and jailbreak (DD 6-10, AA 3-8) have non-overlapping length distributions. Per-bin macro F1 impossible; using per-bin recall instead."
+
+============================================================
+=== exp36 ===
+status: DONE
+hypothesis: MLM DAPT encoder produces weaker frozen representations than classification (9-class) DAPT encoder for OOD jailbreak detection, because classification training forces the encoder to learn task-relevan
+conclusion: negative
+  aa_ood_full: {"mean": 0.941, "std": 0.037}
+  dd_ood_full: {"mean": 0.993, "std": 0.009}
+  dd_ood_k1: {"mean": 0.953, "std": 0.027}
+  dd_ood_k2: {"mean": 0.977, "std": 0.021}
+  dd_ood_k3: {"mean": 0.987, "std": 0.005}
+  dd_ood_k5: {"mean": 0.997, "std": 0.005}
+  fitd_ood_full: {"mean": 0.987, "std": 0.009}
+  iid_full: {"mean": 0.982, "std": 0.016}
+
+============================================================
+=== exp36_frozen_mlm_probing ===
+status: PREPARING
+hypothesis: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classification DAPT 通过显式策略分类迫使编码器学习与攻击意图更直接相关的判别性特征，而 MLM 仅学习通用语言模式，不产生 OOD 泛化所需的攻击-策略对齐表征。
+conclusion: N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a87b2ce-5d24-4cb9-a0d8-e0b7850fbc01",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "34f52ecc-4845-4d2e-ad98-bde92a202b9f",
+  "sourceToolAssistantUUID": "6a87b2ce-5d24-4cb9-a0d8-e0b7850fbc01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-22T23:32:53.782Z_
+
+Now let me look for per-seed data, recall metrics, and the benign FPR experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34f52ecc-4845-4d2e-ad98-bde92a202b9f",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUr5yxYbxcaEHYujLiG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7ad666d7-ec5f-4bbe-96c6-5605d4f36bc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tyq2wsz5xEdVQZy6LHhyEn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5771,
+      "cache_read_input_tokens": 25492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5771,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T23:33:02.730Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HMs2axgtTjCyys6ThgPRXj`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Search for per-seed data, recall, and any experiment with 'recall' or 'per_seed' in metrics\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    metrics_str = json.dumps(metrics)\n    if 'per_seed' in metrics_str or ('recall' in metrics_str.lower() and any(kw in name for kw in ['9class', 'exp1', 'exp2', 'exp22', 'exp55', 'cross_attack', 'phase_b', 'plan_002', 'plan_006'])):\n        print(f'\\\\n=== {name} ===')\n        for mk, mv in sorted(metrics.items()):\n            mk_lower = mk.lower()\n            if 'per_seed' in mk_lower or 'recall' in mk_lower or 'seed42' in json.dumps(mv).lower() or 'seed123' in json.dumps(mv).lower():\n                print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1 | head -200",
+  "description": "Search for per-seed and recall metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ad666d7-ec5f-4bbe-96c6-5605d4f36bc3",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUr5yxYbxcaEHYujLiG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "11f27400-2ca2-4b8e-a104-2295f3838a22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tyq2wsz5xEdVQZy6LHhyEn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5771,
+      "cache_read_input_tokens": 25492,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5771
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 25492,
+          "cache_creation_input_tokens": 5771,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5771,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T23:33:02.832Z_
+
+<details><summary>↩ Tool result · `toolu_01HMs2axgtTjCyys6ThgPRXj`</summary>
+
+```text
+=== exp10_fewshot_llm_judge ===
+  aa_full_recall: 0.5
+  dd_full_recall: 0.375
+
+=== exp16b_llama_only_mlm ===
+
+=== exp2_actorattack_ood ===
+  deberta_binary: {"k1": 0.737, "k1_std": 0.074, "k2": 0.89, "k2_std": 0.065, "k3": 0.951, "k3_std": 0.036, "k5": 0.987, "k5_std": 0.012, "full": 0.99, "full_std": 0.008, "note": "3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636"}
+  deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+  note: "All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla"
+
+=== exp32_strategy_prediction ===
+
+=== exp33_strategy_prediction_plan002 ===
+
+=== exp38_wildcat_calibration ===
+  roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+
+=== exp64_toxicchat_confidence_analysis ===
+  9class_per_seed_high_conf_ratio: {"seed42": 0.9691, "seed123": 0.9773, "seed456": 0.9429}
+  jb_mlm_per_seed_high_conf_ratio: {"seed42": 0.4118, "seed123": 0.6897, "seed456": 0.5833}
+
+=== exp8_mhj_human_data ===
+  toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambled_macro_f1_std": 0.056, "scrambled_per_seed": {"seed42": 0.537, "seed123": 0.654, "seed456": 0.657}, "jb_mlm_macro_f1": 0.837, "jb_mlm_macro_f1_std": 0.013, "wiki_mlm_macro_f1": 0.791, "wiki_mlm_macro_f1_std": 0.093, "topic_macro_f1": 0.496, "topic_macro_f1_std": 0.042}
+  verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vanilla_macro_f1": 0.267, "9class_macro_f1": 0.767, "binary_macro_f1": 0.883, "jb_mlm_macro_f1": 0.937, "wiki_mlm_macro_f1": 0.845, "topic_macro_f1": 0.669, "test_only_benign": {"n_benign": 46, "note": "extreme imbalance 666:46", "scrambled": 0.649, "scrambled_std": 0.056, "scrambled_per_seed": {"seed42": 0.64, "seed123": 0.722, "seed456": 0.585}, "vanilla": 0.129, "9class": 0.627, "binary": 0.738, "jb_mlm": 0.852, "wiki_mlm": 0.742, "topic": 0.503}}
+
+=== plan_018_wiki_mlm_control ===
+  per_seed_dd_ood_full_f1: {"seed42": 0.7421, "seed123": 0.9902, "seed456": 0.9803}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11f27400-2ca2-4b8e-a104-2295f3838a22",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "46d340e2-f85a-4b6b-8dbc-81c44fcf7337",
+  "sourceToolAssistantUUID": "11f27400-2ca2-4b8e-a104-2295f3838a22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T23:33:17.657Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PhhqYFLfFRQJFxpj1F9MsX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Get exp19 (wildchat FPR) and exp51 (OASST2 FPR) and any adaptation experiments\nfpr_exps = ['exp19_wildchat_fpr', 'exp51_lmsys_benign_ood', 'exp42_ood_benign_mixed', 'exp42b_balanced_ratio_ablation',\n            'exp45_benign_adaptation_curve', 'exp52_oasst2_n25_multiseed', 'exp56_crossllm_10shot_adaptation',\n            'exp37_length_matched_benign', 'exp38_wildcat_calibration', 'exp63_toxicchat_fpfn', \n            'exp64_toxicchat_confidence_analysis']\n\nfor name in fpr_exps:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n{\\\"=\\\"*60}')\n        print(f'=== {name} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")[:300]}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Get benign FPR experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46d340e2-f85a-4b6b-8dbc-81c44fcf7337",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUryKe8yKVMUfnjYFuD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "31b75e47-1c42-4944-8b0b-bce704203ceb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGGUdMbBaLzykHuYg16HTu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1981,
+      "cache_read_input_tokens": 31263,
+      "output_tokens": 616,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1981
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 616,
+          "cache_read_input_tokens": 31263,
+          "cache_creation_input_tokens": 1981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1981,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T23:33:17.750Z_
+
+<details><summary>↩ Tool result · `toolu_01PhhqYFLfFRQJFxpj1F9MsX`</summary>
+
+```text
+============================================================
+=== exp19_wildchat_fpr ===
+status: DONE
+hypothesis: 9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates
+conclusion: negative
+  9class_fpr: {"seed42": 0.668, "seed123": 0.611, "seed456": 0.765, "mean": 0.681, "std": 0.064}
+  dataset: "wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)"
+  mlm_fpr: {"seed42": 0.367, "seed123": 0.646, "seed456": 0.323, "mean": 0.445, "std": 0.143}
+  note: "NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations."
+  vanilla_fpr: {"seed42": 0.473, "seed123": 0.425, "seed456": 0.544, "mean": 0.481, "std": 0.049}
+
+============================================================
+=== exp51_lmsys_benign_ood ===
+status: DONE
+hypothesis: The two-axis decomposition (high FPR on OOD benign + 10-shot remediation) generalizes beyond WildChat: LMSYS-Chat-1M benign conversations will show high FPR (>20%) that 10 target-domain conversations can eliminate, confirming benign-side shift is a general phenomenon not specific to WildChat GPT-3.5
+conclusion: success
+  adaptation_curve: {"n0": {"fpr": 0.575}, "n10": {"fpr": 0.205, "dd_f1": 1, "aa_f1": 1, "fitd_f1": 1}, "n25": {"fpr": 0.015, "dd_f1": 1, "aa_f1": 0.953, "fitd_f1": 1}, "n50": {"fpr": 0.005, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1}}
+  baseline_fpr: 0.575
+  baseline_n: 200
+  comparison_wildchat: {"baseline_fpr": 0.681, "n10_fpr": 0, "n10_sufficient": true}
+  data_source: "oasst2 (real crowdsourced human)"
+
+============================================================
+=== exp42_ood_benign_mixed ===
+status: DONE
+hypothesis: Including WildChat benign conversations in training data will reduce WildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection F1 above 0.95 on DD/AA/FITD, because the current high FPR is driven by benign distribution mismatch (exp14c: 100% from FP explosion), not model architec
+conclusion: success
+  data_filtered: "27/226 jailbreak patterns removed"
+  iid_f1_mean: 1
+  ood_aa_f1_mean: 0.956
+  ood_dd_f1_mean: 1
+  ood_fitd_f1_mean: 1
+  train_size: "500 (350 orig + 150 WildChat benign)"
+  wildchat_eval_n: 49
+  wildchat_fpr_mean: 0
+  wildchat_fpr_std: 0
+
+============================================================
+=== exp42b_balanced_ratio_ablation ===
+status: DONE
+hypothesis: exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.
+conclusion: success
+  iid_f1_mean: 1
+  ood_aa_f1_mean: 0.9905
+  ood_aa_recall_mean: 0.9875
+  ood_dd_f1_mean: 1
+  ood_fitd_f1_mean: 1
+  total_time_min: 4.8
+  train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+  train_size: 350
+  wildchat_eval_n: 49
+  wildchat_fpr_mean: 0
+  wildchat_fpr_std: 0
+
+============================================================
+=== exp45_benign_adaptation_curve ===
+status: DONE
+hypothesis: Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.
+conclusion: success
+  n10_multiseed: {"seeds": [42, 123, 456], "wc_fpr": "0.000\u00b10.000", "iid_f1": "1.000\u00b10.000", "dd_f1": "1.000\u00b10.000", "aa_f1": "0.981\u00b10.016", "fitd_f1": "1.000\u00b10.000"}
+  single_seed_42: {"n0_fpr": 0.653, "n5_fpr": 0.163, "n10_fpr": 0, "n25_fpr": 0, "n50_fpr": 0, "n100_fpr": 0, "n150_fpr": 0}
+
+============================================================
+=== exp52_oasst2_n25_multiseed ===
+status: DONE
+hypothesis: OASST2 benign adaptation with N=25 yields consistently low FPR (≤5%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.
+conclusion: success
+  fpr_mean: 0.01
+  fpr_range: "0.5%-1.5%"
+  fpr_std: 0.005
+  seed_123: {"oasst2_fpr": 0.005, "iid_f1": 1, "aa_f1": 0.917, "dd_f1": 1, "fitd_f1": 1}
+  seed_42: {"oasst2_fpr": 0.015, "iid_f1": 1, "aa_f1": 0.953, "dd_f1": 1, "fitd_f1": 1}
+  seed_456: {"oasst2_fpr": 0.01, "iid_f1": 1, "aa_f1": 0.99, "dd_f1": 1, "fitd_f1": 1}
+
+============================================================
+=== exp56_crossllm_10shot_adaptation ===
+status: DONE
+hypothesis: 10-shot benign adaptation with Llama-origin conversations will reduce cross-LLM FPR from 88-90% to below 10%, extending the two-axis benign adaptation mechanism to cross-LLM distributional shift
+conclusion: negative
+  adaptation_curve: {"n0": {"fpr": 0.945, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1, "dd_llama_recall": 1, "aa_llama_recall": 0.74, "fitd_llama_recall": 1}, "n5": {"fpr": 0.055, "dd_f1": 0.694, "aa_f1": 0.841, "fitd_f1": 0.99, "dd_llama_recall": 0.64, "aa_llama_recall": 0.04, "fitd_llama_recall": 0.76}, "n10": {"fpr": 0.03, "dd_f1": 0.816, "aa_f1": 0.601, "fitd_f1": 1, "dd_llama_recall": 0.6, "aa_llama_recall": 0, "fitd_llama_recall": 0.8}, "n25": {"fpr": 0.005, "dd_f1": 0.556, "aa_f1": 0.271, "fitd_f1": 0.99, "dd_llama_recall": 0.08, "aa_llama_recall": 0, "fitd_llama_recall": 0.52}}
+  baseline_aa_llama_recall: 0.74
+  baseline_fpr: 0.945
+
+============================================================
+=== exp37_length_matched_benign ===
+status: DONE
+hypothesis: 9-class 模型不依赖 turn count 作为检测 shortcut：截断 benign 对话到 jailbreak 匹配长度 (3-10 turns) 后 FPR 不会显著上升，WildChat 短对话 (3-10 turns) 的 FPR 也不高于长对话，因为 DAPT 训练迫使模型学习说服策略内容特征而非 length 统计量。
+conclusion: negative
+  part1_wildchat_fpr: {"short_3_10": {"fpr_mean": 0.77, "fpr_std": 0.105, "n": 196}, "medium_11_15": {"fpr_mean": 0.942, "fpr_std": 0.054, "n": 23}, "long_16_plus": {"fpr_mean": 0.857, "fpr_std": 0.117, "n": 7}, "note": "Short bucket FPR LOWER than Medium \u2014 length is NOT the driver of WildChat FPR"}
+  part2_benign_truncation: {"original_fpr": 0, "K3_fpr": 0, "K5_fpr": 0, "K8_fpr": 0, "K10_fpr": 0, "note": "FPR=0% at ALL truncation levels including K=3. Model does not use length as shortcut."}
+  part3_jailbreak_padding: {"DD_original": 0.996, "DD_padded": 0.971, "DD_delta": -0.025, "AA_original": 0.963, "AA_padded": 0.383, "AA_delta": -0.579, "note": "DD resilient to padding. AA collapses (-57.9pp). BiGRU attention dilution on subtle attacks."}
+
+============================================================
+=== exp38_wildcat_calibration ===
+status: DONE
+hypothesis: 少量 WildChat benign 样本 (~50 条) 即可通过阈值校准将 FPR 降至 <25% 且 TPR >90%，证明 domain calibration 是可行的 practical path，WildChat 高 FPR 是阈值问题而非表征能力问题。
+conclusion: negative
+  default_t05_fpr: {"mean": 0.791, "std": 0.098}
+  note: "AUC=0.70 is the fundamental ceiling. Threshold calibration drops FPR from 79%\u219263% (at TPR95), still far from <25% target. WildChat high FPR is genuine domain shift, not calibration artifact."
+  roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+  temperature_scaling: {"learned_T": "20-40 (severe overconfidence)", "temp_scaled_tpr95_fpr": 0.627, "temp_scaled_tpr90_fpr": 0.583, "note": "Temperature scaling does NOT change FPR because ROC is invariant to monotonic score transforms"}
+  threshold_calibration_held_out: {"tpr95_fpr": {"mean": 0.627, "std": 0.1}, "tpr90_fpr": {"mean": 0.587, "std": 0.091}}
+
+============================================================
+=== exp63_toxicchat_fpfn ===
+status: DONE
+hypothesis: 9-class ToxicChat performance gap vs MLM is dominated by false positives (>70%), because classification DAPT over-encodes synthetic distributional features that trigger on human benign text
+conclusion: negative
+  9class_correct_mlm_wrong_total: 46
+  9class_mv_f1: 0.652
+  9class_mv_fpr: 0.51
+  9class_mv_precision: 0.589
+  9class_mv_recall: 0.73
+  mlm_correct_9class_wrong_total: 144
+  mlm_mv_f1: 0.853
+  mlm_mv_fpr: 0.167
+  mlm_mv_precision: 0.839
+  mlm_mv_recall: 0.868
+  mlm_wins_fn_fraction: 0.354
+  mlm_wins_fp_fraction: 0.646
+
+============================================================
+=== exp64_toxicchat_confidence_analysis ===
+status: DONE
+hypothesis: 9-class 在 ToxicChat 上的高 FPR 来源于高置信误判（>0.9），而非 borderline 预测，说明 classification DAPT 对 ToxicChat benign 文本产生了系统性的特征偏移而非边界模糊
+conclusion: success
+  9class_majority: {"total_fp": 104, "high_conf_ratio": 0.7019, "borderline_ratio": 0.25, "mean_conf": 0.9014, "median_conf": 0.9999}
+  9class_per_seed_high_conf_ratio: {"seed42": 0.9691, "seed123": 0.9773, "seed456": 0.9429}
+  jb_mlm_majority: {"total_fp": 34, "high_conf_ratio": 0.5882, "borderline_ratio": 0.1471, "mean_conf": 0.8334, "median_conf": 0.9327}
+  jb_mlm_per_seed_high_conf_ratio: {"seed42": 0.4118, "seed123": 0.6897, "seed456": 0.5833}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31b75e47-1c42-4944-8b0b-bce704203ceb",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "fedcb280-a4c7-4481-8241-b6fdf42b533e",
+  "sourceToolAssistantUUID": "31b75e47-1c42-4944-8b0b-bce704203ceb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-22T23:33:21.225Z_
+
+Now let me search for the per-seed F1 and recall data for DD and AA under benign IID conditions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fedcb280-a4c7-4481-8241-b6fdf42b533e",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUt56vaynkPD2q56VPu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "deef019f-cede-4b27-85de-3d3d41656a31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Zhuj32kpcnQdZhPPCdRrH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4360,
+      "cache_read_input_tokens": 33244,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T23:33:29.575Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017zKV6A6ymrXjSCBUbRRWob`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for per-seed F1 data for 9-class DD and AA\n# Check all experiments that have 'per_seed' in any metric value\nprint('=== Experiments with per_seed data ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if 'per_seed' in mv_str or ('seed42' in mv_str and ('f1' in mk.lower() or 'recall' in mk.lower() or 'dd' in mk.lower() or 'aa' in mk.lower())):\n            print(f'\\\\n  {name} -> {mk}: {mv_str[:500]}')\n\" 2>&1",
+  "description": "Find all per-seed F1/recall data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deef019f-cede-4b27-85de-3d3d41656a31",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUt56vaynkPD2q56VPu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1c6cbfb5-2393-47c4-814f-0f72b55411a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Zhuj32kpcnQdZhPPCdRrH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4360,
+      "cache_read_input_tokens": 33244,
+      "output_tokens": 444,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4360
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 444,
+          "cache_read_input_tokens": 33244,
+          "cache_creation_input_tokens": 4360,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4360,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T23:33:29.662Z_
+
+<details><summary>↩ Tool result · `toolu_017zKV6A6ymrXjSCBUbRRWob`</summary>
+
+```text
+=== Experiments with per_seed data ===
+
+  exp2_actorattack_ood -> deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+
+  exp32_strategy_prediction -> dd_ood: {"strategy_acc": "0.4145\u00b10.0173", "jb_strategy_acc": "0.1431\u00b10.0260", "macro_f1": "0.1626\u00b10.0238", "strategy_acc_detected": "0.1634\u00b10.0200", "strategy_acc_missed": "0.0758\u00b10.0123", "missed_per_seed": [31, 5, 26], "detection_rate_rapport_building": 0.7417, "corr_det_prob_vs_strat_acc": "r~0.45, p<0.001"}
+
+  exp32_strategy_prediction -> aa_ood: {"strategy_acc": "0.4604\u00b10.0114", "jb_strategy_acc": "0.0682\u00b10.0192", "macro_f1": "0.1145\u00b10.0212", "strategy_acc_detected": "0.1311\u00b10.0375", "strategy_acc_missed": "0.0393\u00b10.0142", "missed_per_seed": [63, 41, 66], "detection_rate_authority_appeal": 0.2841, "detection_rate_emotional_manipulation": 0.5238, "corr_det_prob_vs_strat_acc": "r~0.24, p~0.03"}
+
+  exp33_strategy_prediction_plan002 -> dd_ood: {"strategy_acc": "0.4924\u00b10.0246", "jb_strategy_acc": "0.2569\u00b10.0357", "macro_f1": "0.1965\u00b10.0142", "strategy_acc_detected": "0.2575\u00b10.0352", "strategy_acc_missed": "0.1000\u00b10.0000", "missed_per_seed": [0, 0, 1], "detection_rate_rapport_building": 0.9958, "per_class_f1_top": {"none": 0.8666, "rapport_building": 0.524, "gradual_escalation": 0.2619}}
+
+  exp33_strategy_prediction_plan002 -> aa_ood: {"strategy_acc": "0.7112\u00b10.0086", "jb_strategy_acc": "0.5012\u00b10.0159", "macro_f1": "0.1888\u00b10.0012", "strategy_acc_detected": "0.5091\u00b10.0239", "strategy_acc_missed": "0.2833\u00b10.0360", "missed_per_seed": [1, 7, 1], "detection_rate_authority_appeal": 0.9617, "detection_rate_emotional_manipulation": 0.9524, "detection_rate_gradual_escalation": 1, "detection_rate_logical_reframing": 0.9333, "detection_rate_rapport_building": 1}
+
+  exp38_wildcat_calibration -> roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+
+  exp8_mhj_human_data -> toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambled_macro_f1_std": 0.056, "scrambled_per_seed": {"seed42": 0.537, "seed123": 0.654, "seed456": 0.657}, "jb_mlm_macro_f1": 0.837, "jb_mlm_macro_f1_std": 0.013, "wiki_mlm_macro_f1": 0.791, "wiki_mlm_macr
+
+  exp8_mhj_human_data -> verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vanilla_macro_f1": 0.267, "9class_macro_f1": 0.767, "binary_macro_f1": 0.883, "jb_mlm_macro_f1": 0.937, "wiki_mlm_macro_f1": 0.845, "topic_macro_f1": 0.669, "test_only_benign": {"n_benign": 46, "note": "e
+
+  plan_018_wiki_mlm_control -> per_seed_dd_ood_full_f1: {"seed42": 0.7421, "seed123": 0.9902, "seed456": 0.9803}
+
+  vanilla_multiseed_dd_ood -> vanilla_3seed_dd_ood: {"k1": {"seed42": 0.575, "seed123": 0.658, "seed456": 0.652, "mean": 0.628, "std": 0.038}, "k2": {"seed42": 0.438, "seed123": 0.53, "seed456": 0.469, "mean": 0.479, "std": 0.038}, "k3": {"seed42": 0.359, "seed123": 0.424, "seed456": 0.383, "mean": 0.389, "std": 0.027}, "k5": {"seed42": 0.311, "seed123": 0.383, "seed456": 0.36, "mean": 0.351, "std": 0.03}, "full": {"seed42": 0.285, "seed123": 0.305, "seed456": 0.348, "mean": 0.312, "std": 0.026}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c6cbfb5-2393-47c4-814f-0f72b55411a3",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "78e97356-534c-49db-aa2d-740fa2449c18",
+  "sourceToolAssistantUUID": "1c6cbfb5-2393-47c4-814f-0f72b55411a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-22T23:33:41.298Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NhjPsASTTZSYZjCxx17kjN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Comprehensive search: any metric with 'recall' anywhere in key or value\nprint('=== ALL recall-related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if 'recall' in mk.lower() or 'recall' in mv_str.lower():\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\nprint()\nprint('=== ALL TP/FN related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if any(kw in mk.lower() for kw in ['tp_rate', 'fn_rate', 'true_pos', 'false_neg', 'detection_rate', 'n_attack', 'n_benign', 'n_jailbreak', 'test_size']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\" 2>&1",
+  "description": "Find ALL recall and detection rate metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78e97356-534c-49db-aa2d-740fa2449c18",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUtx2oezur2htXFb68N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5b13f872-66f6-4933-be42-c11ad26df5bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012e3zx1ZGT7n2ZjoCtqYXxu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2382,
+      "cache_read_input_tokens": 37604,
+      "output_tokens": 516,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2382
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 516,
+          "cache_read_input_tokens": 37604,
+          "cache_creation_input_tokens": 2382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2382,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T23:33:41.407Z_
+
+<details><summary>↩ Tool result · `toolu_01NhjPsASTTZSYZjCxx17kjN`</summary>
+
+```text
+=== ALL recall-related metrics ===
+  exp10_fewshot_llm_judge -> dd_full_recall: 0.375
+  exp10_fewshot_llm_judge -> aa_full_recall: 0.5
+  exp16b_llama_only_mlm -> note: "Llama\u2192Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41."
+  exp30_length_stratified -> structural_finding: "Benign (12-20 turns) and jailbreak (DD 6-10, AA 3-8) have non-overlapping length distributions. Per-bin macro F1 impossible; using per-bin recall instead."
+  exp30_length_stratified -> 9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+  exp30_length_stratified -> note: "9-class \u226593% recall all bins, no degradation. Short AA (1-3 turns) slightly harder (93.3%). MLM unstable on 7-10 turns (std>22%). Vanilla near-0 recall on all bins."
+  exp40 -> iid_jailbreak_recall: 0.1053
+  exp40 -> dd_ood_jailbreak_recall: 0.0125
+  exp40 -> aa_ood_jailbreak_recall: 0
+  exp40 -> fitd_ood_jailbreak_recall: 0
+  exp42b_balanced_ratio_ablation -> ood_aa_recall_mean: 0.9875
+  exp44_multi_llm_mixed -> llama_crescendo_recall: 1
+  exp44_multi_llm_mixed -> llama_dd_recall: 1
+  exp44_multi_llm_mixed -> llama_aa_recall: 1
+  exp44_multi_llm_mixed -> llama_fitd_recall: 1
+  exp44_multi_llm_mixed -> llama_overall_recall: 1
+  exp56_crossllm_10shot_adaptation -> baseline_aa_llama_recall: 0.74
+  exp56_crossllm_10shot_adaptation -> adaptation_curve: {"n0": {"fpr": 0.945, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1, "dd_llama_recall": 1, "aa_llama_recall": 0.74, "fitd_llama_recall": 1}, "n5": {"fpr": 0.055, "dd_f1": 0.694, "aa_f1": 0.841, "fitd_f1": 0.99, "dd_llama_recall": 0.64, "aa_llama_recall": 0.04, "fitd_llama_recall": 0.76}, "n10": {"fpr": 0.
+  exp63_toxicchat_fpfn -> 9class_mv_recall: 0.73
+  exp63_toxicchat_fpfn -> mlm_mv_recall: 0.868
+  plan_012_gpt55_judge -> gpt55_k2_recall: 0.1053
+  plan_012_gpt55_judge -> gpt55_k5_recall: 0.2895
+  plan_012_gpt55_judge -> conclusion_note: "GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall."
+
+=== ALL TP/FN related metrics ===
+  exp14c_prediction_analysis -> dd_full_tp_rate: {"both_conditions_identical": {"vanilla": 0, "jb_mlm": 0.68, "9class": 1}}
+  exp43_mhj_human_eval -> verazuo_n_jailbreak: 666
+  exp43_mhj_human_eval -> verazuo_n_benign: 213
+  phase_b_full -> test_size: 72
+  pilot_phase_b -> test_size: 41
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b13f872-66f6-4933-be42-c11ad26df5bc",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "d8e69476-86ab-4fd1-ab0a-103d61f9aef8",
+  "sourceToolAssistantUUID": "5b13f872-66f6-4933-be42-c11ad26df5bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-22T23:33:55.247Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01K967iDfjw1MppnUaYBbPWC`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for test set composition / n_attack / n_benign / n_samples\nprint('=== Test set sizes and composition ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if any(kw in mk.lower() for kw in ['n_sample', 'n_attack', 'n_benign', 'n_jailbreak', 'test_size', 'test_n', 'composition', 'dataset_size', 'eval_n', 'train_size']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n        elif any(kw in mv_str.lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', 'n_test']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\nprint()\nprint('=== exp2_actorattack_ood n_samples ===')\nexp = exps.get('exp2_actorattack_ood', {})\nprint(json.dumps(exp.get('metrics', {}).get('n_samples', 'NOT FOUND')))\n\n# Look at baseline data too\nprint()\nprint('=== baseline section ===')\nbaseline = inner['data'].get('baseline', {})\nprint(json.dumps(baseline, indent=2)[:2000])\n\" 2>&1",
+  "description": "Find test set composition and baseline data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8e69476-86ab-4fd1-ab0a-103d61f9aef8",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUupMDjEjob7U6mwn6j",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c5a8725e-8090-460e-bb5d-fb47262d359a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185H6GeGUeePDhn1BeSrqEE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1690,
+      "cache_read_input_tokens": 39986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1690,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T23:33:55.350Z_
+
+<details><summary>↩ Tool result · `toolu_01K967iDfjw1MppnUaYBbPWC`</summary>
+
+```text
+=== Test set sizes and composition ===
+  exp14c_prediction_analysis -> dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+  exp16_multi_llm -> note: "CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set."
+  exp2_actorattack_ood -> n_samples: 118
+  exp42_ood_benign_mixed -> wildchat_eval_n: 49
+  exp42_ood_benign_mixed -> train_size: "500 (350 orig + 150 WildChat benign)"
+  exp42b_balanced_ratio_ablation -> wildchat_eval_n: 49
+  exp42b_balanced_ratio_ablation -> train_size: 350
+  exp42b_balanced_ratio_ablation -> train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+  exp43_mhj_human_eval -> verazuo_n_jailbreak: 666
+  exp43_mhj_human_eval -> verazuo_n_benign: 213
+  exp44_multi_llm_mixed -> train_composition: "175 Qwen jb + 175 Qwen bn + 164 Llama jb + 150 WC bn = 664"
+  exp5_llm_judge_ood -> n_samples: 118
+  exp8_mhj_human_data -> toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambl
+  exp8_mhj_human_data -> verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vani
+  phase_b_full -> test_size: 72
+  phase_b_full -> dataset_size: 480
+  pilot_phase_b -> test_size: 41
+
+=== exp2_actorattack_ood n_samples ===
+118
+
+=== baseline section ===
+null
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5a8725e-8090-460e-bb5d-fb47262d359a",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "0092bdb5-0f0f-4f3a-b557-b92320991442",
+  "sourceToolAssistantUUID": "c5a8725e-8090-460e-bb5d-fb47262d359a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-22T23:34:07.478Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GnkqP7LkE5NTH6pgghAZRe`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look at DD OOD test set composition - check cross_attack_baseline and plan_002 experiments\nkey = ['cross_attack_baseline', 'plan_002_clean_training', 'plan_002_seed123', 'plan_002_seed456',\n       'plan_006_cross_attack_clean', 'plan_015_dd_eval', 'exp4_dd_ood_perturbation',\n       'phase_b_full', 'pilot_phase_b', 'exp59_resample_350']\nfor name in key:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n=== {name} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)[:500]}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Check DD OOD test set details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0092bdb5-0f0f-4f3a-b557-b92320991442",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUvqxEvHwzD7mXKhYRs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9c05c048-8c26-43d9-9dc0-60fc76c21827",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3VvvBkkLgbV7j6FKVbxuz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1453,
+      "cache_read_input_tokens": 41676,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1453
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 41676,
+          "cache_creation_input_tokens": 1453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1453,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T23:34:07.571Z_
+
+<details><summary>↩ Tool result · `toolu_01GnkqP7LkE5NTH6pgghAZRe`</summary>
+
+```text
+=== cross_attack_baseline ===
+  status: DONE
+  dd_baseline_k1_f1: 1
+  dd_baseline_k2_f1: 1
+  dd_treatment_k1_f1: 0.9812
+  dd_treatment_k2_f1: 0.9875
+  fitd_baseline_k1_f1: 0.7483
+  fitd_baseline_k2_f1: 0.6866
+  fitd_baseline_k3_f1: 0.8465
+  fitd_treatment_k1_f1: 0.9812
+  fitd_treatment_k2_f1: 0.975
+  fitd_treatment_k3_f1: 0.9937
+  full_baseline_f1: 1
+  full_treatment_f1: 1
+  invalidation_reason: "v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable"
+  tfidf_dd_k1_f1: 1
+  tfidf_fitd_k2_f1: 1
+
+=== plan_002_clean_training ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.987
+  baseline_k2_f1: 0.9867
+  baseline_k3_f1: 0.9867
+  baseline_k5_f1: 1
+  max_delta_pp: 1.3
+  pass_criteria_5pp: false
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_002_seed123 ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.987
+  baseline_k2_f1: 0.987
+  baseline_k3_f1: 0.987
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 0.9904
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_002_seed456 ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.9296
+  baseline_k2_f1: 0.9589
+  baseline_k3_f1: 0.9867
+  baseline_k5_f1: 0.9867
+  dd_ood_full_f1: 0.9904
+  dd_ood_k1_f1: 0.9715
+  dd_ood_k2_f1: 0.9622
+  dd_ood_k3_f1: 0.935
+  dd_ood_k5_f1: 0.9904
+  deberta_best_epoch: 2
+  deberta_intent_acc: 1
+  deberta_persuasion_acc: 0.8593
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_006_cross_attack_clean ===
+  status: DONE
+  dd_baseline_full_f1: 0.2845
+  dd_baseline_k1_f1: 0.5752
+  dd_baseline_k2_f1: 0.4381
+  dd_baseline_k3_f1: 0.3596
+  dd_baseline_k5_f1: 0.3105
+  dd_treatment_full_f1: 1
+  dd_treatment_k1_f1: 1
+  dd_treatment_k2_f1: 0.9904
+  dd_treatment_k3_f1: 0.9904
+  dd_treatment_k5_f1: 1
+  fitd_baseline_full_f1: 1
+  fitd_baseline_k1_f1: 0.9902
+  fitd_baseline_k2_f1: 1
+  fitd_treatment_full_f1: 1
+  fitd_treatment_k1_f1: 1
+  fitd_treatment_k2_f1: 1
+  max_dd_delta_pp: 71.55
+  pass_criteria: true
+  tfidf_dd_full_f1: 0.9439
+  tfidf_fitd_k1_f1: 1
+
+=== plan_015_dd_eval ===
+  status: DONE
+  conclusion_note: "GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver"
+  gru_treatment_k2_f1: 0.9904
+  gru_treatment_k3_f1: 0.9904
+  gru_vs_meanpool: "comparable"
+  meanpool_baseline_full_f1: 0.2947
+  meanpool_baseline_k1_f1: 0.8286
+  meanpool_baseline_k2_f1: 0.6387
+  meanpool_baseline_k3_f1: 0.5614
+  meanpool_baseline_k5_f1: 0.3922
+  meanpool_treatment_full_f1: 1
+  meanpool_treatment_k1_f1: 1
+  meanpool_treatment_k2_f1: 1
+  meanpool_treatment_k3_f1: 0.9937
+  meanpool_treatment_k5_f1: 1
+
+=== exp4_dd_ood_perturbation ===
+  status: DONE
+  9class_3seed: {"clean_k1": 0.9905, "perturbed_k1": 0.9968, "delta_k1": 0.0063, "clean_k3": 0.9719, "perturbed_k3": 0.9936, "delta_k3": 0.0217, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  binary_3seed: {"clean_k1": 0.9936, "perturbed_k1": 1, "delta_k1": 0.0064, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  jb_mlm_3seed: {"clean_k1": 0.9733, "perturbed_k1": 0.9733, "delta_k1": 0, "clean_full": 0.9138, "perturbed_full": 0.9409, "delta_full": 0.0271}
+  mcnemar_perturbed_full: {"9class_vs_vanilla": {"all_seeds_p": "<0.001", "discordant_range": "67-78 favoring 9class"}, "9class_vs_jb_mlm": {"seed42": "tie", "seed123": "n.s.", "seed456": "p=4e-06 (b=19)"}, "9class_vs_scrambled": "tie all seeds"}
+  mcnemar_perturbed_k1: {"9class_vs_vanilla": {"all_seeds_p": "<0.001", "discordant_range": "49-56 favoring 9class"}, "9class_vs_jb_mlm": "n.s. all seeds", "9class_vs_scrambled": "n.s. all seeds"}
+  scrambled_3seed: {"clean_k1": 0.9968, "perturbed_k1": 0.9936, "delta_k1": -0.0032, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  topic_3seed: {"clean_k1": 0.5912, "perturbed_k1": 0.617, "delta_k1": 0.0259, "clean_full": 0.5412, "perturbed_full": 0.5765, "delta_full": 0.0353}
+  vanilla_3seed: {"clean_k1": 0.6283, "perturbed_k1": 0.5602, "delta_k1": -0.0681, "clean_k2": 0.4824, "perturbed_k2": 0.4829, "delta_k2": 0.0004, "clean_full": 0.3123, "perturbed_full": 0.3394, "delta_full": 0.0271}
+  wiki_mlm_3seed: {"clean_k1": 0.9131, "perturbed_k1": 0.8808, "delta_k1": -0.0323, "clean_full": 0.9042, "perturbed_full": 0.8715, "delta_full": -0.0327}
+
+=== phase_b_full ===
+  status: DONE
+  balanced_tfidf_cv_f1: 1
+  baseline_fpr95tpr_full: 0
+  baseline_fpr95tpr_k1: 0.057
+  baseline_fpr95tpr_k2: 0.057
+  baseline_full_f1: 0.987
+  baseline_k1_f1: 0.8615
+  baseline_k2_f1: 0.879
+  baseline_k3_f1: 0.928
+  baseline_k5_f1: 0.958
+  dataset_size: 480
+  deberta_best_epoch: 3
+  deberta_intent_acc: 0.9514
+  deberta_persuasion_acc: 0.7963
+  test_size: 72
+  tfidf_full_f1: 1
+  tfidf_k1_f1: 1
+  tfidf_k2_f1: 1
+  tfidf_k3_f1: 1
+  tfidf_k5_f1: 1
+  treatment_fpr95tpr_full: 0
+  treatment_fpr95tpr_k1: 0
+  treatment_fpr95tpr_k2: 0
+  treatment_full_f1: 1
+  treatment_k1_f1: 0.9867
+  treatment_k2_f1: 0.987
+  treatment_k3_f1: 0.987
+  treatment_k5_f1: 1
+
+=== pilot_phase_b ===
+  status: DONE
+  baseline_full_f1: 0.737
+  baseline_k2_f1: 0.737
+  baseline_k3_f1: 0.894
+  baseline_k5_f1: 0.894
+  deberta_intent_acc: 0.984
+  deberta_persuasion_acc: 0.718
+  test_benign: 3
+  test_jailbreak: 38
+  test_size: 41
+  tfidf_full_f1: 1
+  tfidf_k2_f1: 0.894
+  tfidf_k3_f1: 0.894
+  tfidf_k5_f1: 0.894
+  treatment_full_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== exp59_resample_350 ===
+  status: DONE
+  aa_ood_f1: "0.883\u00b10.091"
+  aa_seeds: [0.758, 0.916, 0.974]
+  dd_ood_f1: "0.887\u00b10.086"
+  dd_seeds: [0.765, 0.948, 0.948]
+  iid_f1: "0.998\u00b10.003"
+  iid_seeds: [1, 0.993, 1]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c05c048-8c26-43d9-9dc0-60fc76c21827",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "36fd0283-8b97-4252-b3fe-1d9c9e7853d7",
+  "sourceToolAssistantUUID": "9c05c048-8c26-43d9-9dc0-60fc76c21827",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-22T23:34:10.919Z_
+
+Now let me look for per-seed DD and AA F1 data specifically for 9-class, and also the 5-seed experiment details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36fd0283-8b97-4252-b3fe-1d9c9e7853d7",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUwk8Gzkd1wNSvAs5Ts",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "62a136a0-3cd0-4e28-8728-c9cf25161288",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0126m2jQbLU1Yh7YBcrKob4T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3780,
+      "cache_read_input_tokens": 43129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3780,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T23:34:21.255Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012UTELXxEtjNJZUhC3SZt6h`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Get full details of exp55 (5-seed)\nprint('=== exp55_5seed_mlm_vs_9class_aa (FULL) ===')\nexp = exps['exp55_5seed_mlm_vs_9class_aa']\nfor k,v in sorted(exp.items()):\n    print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Also check exp4_dd_ood_perturbation for per-seed 9class DD F1\nprint()\nprint('=== exp4 9class per-seed (from clean_full) ===')\nexp4 = exps['exp4_dd_ood_perturbation']\nprint(json.dumps(exp4['metrics'].get('9class_3seed', {}), indent=2))\n\n# Check exp9 for DD per-seed\nprint()\nprint('=== exp9_bootstrap_ci (FULL) ===')\nexp9 = exps['exp9_bootstrap_ci']\nfor k,v in sorted(exp9.items()):\n    if k == 'metrics':\n        for mk, mv in sorted(v.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1",
+  "description": "Get full exp55 and exp9 details for per-seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a136a0-3cd0-4e28-8728-c9cf25161288",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUwk8Gzkd1wNSvAs5Ts",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d8201f16-3986-445d-bf59-6494231d7f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0126m2jQbLU1Yh7YBcrKob4T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3780,
+      "cache_read_input_tokens": 43129,
+      "output_tokens": 563,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3780
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 563,
+          "cache_read_input_tokens": 43129,
+          "cache_creation_input_tokens": 3780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3780,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T23:34:21.361Z_
+
+<details><summary>↩ Tool result · `toolu_012UTELXxEtjNJZUhC3SZt6h`</summary>
+
+```text
+=== exp55_5seed_mlm_vs_9class_aa (FULL) ===
+  conclusion: "negative"
+  created_at: "2026-05-22T11:11:41.549Z"
+  hypothesis: "9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)"
+  metrics: {"n_seeds": 5, "seeds": [42, 123, 456, 789, 1024], "9class_aa_ood": {"mean": 0.9735, "std": 0.0124}, "mlm_aa_ood": {"mean": 0.9566, "std": 0.0237}, "9class_iid": {"mean": 1, "std": 0}, "mlm_iid": {"mean": 0.9816, "std": 0.0134}, "9class_dd_ood": {"mean": 0.9924, "std": 0.0111}, "mlm_dd_ood": {"mean": 0.9883, "std": 0.0094}, "9class_fitd_ood": {"mean": 1, "std": 0}, "mlm_fitd_ood": {"mean": 0.9883, "std": 0.0094}, "aa_ood_delta_pp": 1.69, "aa_ood_paired_ttest_p": 0.2461, "aa_ood_wilcoxon_p": 0.18
+  status: "DONE"
+  updated_at: "2026-05-22T12:15:56.035Z"
+
+=== exp4 9class per-seed (from clean_full) ===
+{
+  "clean_k1": 0.9905,
+  "perturbed_k1": 0.9968,
+  "delta_k1": 0.0063,
+  "clean_k3": 0.9719,
+  "perturbed_k3": 0.9936,
+  "delta_k3": 0.0217,
+  "clean_full": 0.9968,
+  "perturbed_full": 1,
+  "delta_full": 0.0032
+}
+
+=== exp9_bootstrap_ci (FULL) ===
+  actorattack_9class_full: {"mean": 0.9718, "ci": [0.8554, 1]}
+  actorattack_vanilla_full: {"mean": 0.2565, "ci": [0.2027, 0.3139]}
+  dd_ood_9class_full: {"mean": 0.9968, "ci": [0.9426, 1]}
+  dd_ood_vanilla_full: {"mean": 0.2698, "ci": [0.2017, 0.3414]}
+  perm_9class_vs_jb_mlm_dd_full_max_p: 1
+  perm_9class_vs_scrambled_dd_full_max_p: 1
+  perm_9class_vs_vanilla_aa_full_p: 0
+  perm_9class_vs_vanilla_dd_full_p: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8201f16-3986-445d-bf59-6494231d7f7a",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "56bd1706-3f8f-4a08-8242-85625e6ec1e1",
+  "sourceToolAssistantUUID": "d8201f16-3986-445d-bf59-6494231d7f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T23:34:30.028Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Rm9zGJw8yC5cVGCofh4TWS`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for per-seed DD and AA F1 values directly\n# Check exp55 for per-seed breakdown\nprint('=== exp55 full metrics dump ===')\nexp55 = exps['exp55_5seed_mlm_vs_9class_aa']\nprint(json.dumps(exp55['metrics'], indent=2))\n\" 2>&1",
+  "description": "Full dump of exp55 metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56bd1706-3f8f-4a08-8242-85625e6ec1e1",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUxm5rSu2BErVXLE9cA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "520d45d9-4004-4993-a564-796eeea1c4ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C96dDeMLENCi2cQNSBvHBm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1401,
+      "cache_read_input_tokens": 46909,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1401
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 46909,
+          "cache_creation_input_tokens": 1401,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1401,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T23:34:30.115Z_
+
+<details><summary>↩ Tool result · `toolu_01Rm9zGJw8yC5cVGCofh4TWS`</summary>
+
+```text
+=== exp55 full metrics dump ===
+{
+  "n_seeds": 5,
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "9class_aa_ood": {
+    "mean": 0.9735,
+    "std": 0.0124
+  },
+  "mlm_aa_ood": {
+    "mean": 0.9566,
+    "std": 0.0237
+  },
+  "9class_iid": {
+    "mean": 1,
+    "std": 0
+  },
+  "mlm_iid": {
+    "mean": 0.9816,
+    "std": 0.0134
+  },
+  "9class_dd_ood": {
+    "mean": 0.9924,
+    "std": 0.0111
+  },
+  "mlm_dd_ood": {
+    "mean": 0.9883,
+    "std": 0.0094
+  },
+  "9class_fitd_ood": {
+    "mean": 1,
+    "std": 0
+  },
+  "mlm_fitd_ood": {
+    "mean": 0.9883,
+    "std": 0.0094
+  },
+  "aa_ood_delta_pp": 1.69,
+  "aa_ood_paired_ttest_p": 0.2461,
+  "aa_ood_wilcoxon_p": 0.1875,
+  "aa_ood_9class_wins": 4,
+  "aa_ood_mlm_wins": 1,
+  "total_time_min": 10.5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "520d45d9-4004-4993-a564-796eeea1c4ae",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "f76d6ac3-cfa6-4526-a088-85ceb92db9de",
+  "sourceToolAssistantUUID": "520d45d9-4004-4993-a564-796eeea1c4ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T23:34:41.571Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DCYGs9sBRH71uNar4C3qQB`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check plan_002 seeds for per-seed DD F1\n# seed42 = plan_002_clean_training, seed123 = plan_002_seed123, seed456 = plan_002_seed456\nprint('=== 9-class DD OOD per-seed F1 (from plan_002 experiments) ===')\nprint('seed42 (plan_002_clean_training):')\ne = exps['plan_002_clean_training']['metrics']\nprint(f'  dd_ood_full_f1: {e.get(\\\"dd_ood_full_f1\\\", e.get(\\\"treatment_full_f1\\\", \\\"N/A\\\"))}')\n# check all keys\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\nprint()\nprint('seed123 (plan_002_seed123):')\ne = exps['plan_002_seed123']['metrics']\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\nprint()\nprint('seed456 (plan_002_seed456):')\ne = exps['plan_002_seed456']['metrics']\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\n# Now check mf1_binary and mf1_scrambled for per-seed data\nprint()\nprint('=== mf1 seeds ===')\nfor name in ['mf1_binary_seed123', 'mf1_binary_seed456', 'mf1_scrambled_seed123', 'mf1_scrambled_seed456']:\n    if name in exps:\n        print(f'{name}:')\n        for k,v in sorted(exps[name]['metrics'].items()):\n            if 'dd_ood' in k.lower() or 'aa_ood' in k.lower() or 'actorattack' in k.lower():\n                print(f'  {k}: {v}')\n\" 2>&1",
+  "description": "Extract per-seed DD OOD F1 from plan_002 experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f76d6ac3-cfa6-4526-a088-85ceb92db9de",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUyQUtNh2baJxdfzLpn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d5364267-4540-4d4a-91ac-8a9680a7c1f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7ySBVYHQvqwXd1ZN3zCKt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 48310,
+      "output_tokens": 778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 748
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 778,
+          "cache_read_input_tokens": 48310,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 748,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T23:34:41.663Z_
+
+<details><summary>↩ Tool result · `toolu_01DCYGs9sBRH71uNar4C3qQB`</summary>
+
+```text
+=== 9-class DD OOD per-seed F1 (from plan_002 experiments) ===
+seed42 (plan_002_clean_training):
+  dd_ood_full_f1: 1
+
+seed123 (plan_002_seed123):
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 0.9904
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+
+seed456 (plan_002_seed456):
+  dd_ood_full_f1: 0.9904
+  dd_ood_k1_f1: 0.9715
+  dd_ood_k2_f1: 0.9622
+  dd_ood_k3_f1: 0.935
+  dd_ood_k5_f1: 0.9904
+
+=== mf1 seeds ===
+mf1_binary_seed123:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+mf1_binary_seed456:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+mf1_scrambled_seed123:
+  dd_ood_f1_full: 1
+  dd_ood_f1_k1: 1
+  dd_ood_f1_k2: 1
+  dd_ood_f1_k3: 1
+  dd_ood_f1_k5: 1
+mf1_scrambled_seed456:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.99
+  dd_ood_k5_f1: 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5364267-4540-4d4a-91ac-8a9680a7c1f9",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "9942a8e8-8de3-4924-ae00-cdace699b6ae",
+  "sourceToolAssistantUUID": "d5364267-4540-4d4a-91ac-8a9680a7c1f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T23:34:57.151Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01D3MX58PmD5cmNq49BcWfGf`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now I need per-seed AA OOD F1 for 9-class. Check exp2_actorattack_ood for deberta_9class per_seed\nprint('=== exp2_actorattack_ood deberta_9class (all details) ===')\nd = exps['exp2_actorattack_ood']['metrics']['deberta_9class']\nprint(json.dumps(d, indent=2))\n\n# Also check exp6_actorattack_perturbation\nprint()\nprint('=== exp6_actorattack_perturbation ===')\nif 'exp6_actorattack_perturbation' in exps:\n    for k,v in sorted(exps['exp6_actorattack_perturbation']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Check exp31_lambda_ablation_aa\nprint()\nprint('=== exp31_lambda_ablation_aa ===')\nif 'exp31_lambda_ablation_aa' in exps:\n    for k,v in sorted(exps['exp31_lambda_ablation_aa']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Check exp23_aa_error_analysis\nprint()\nprint('=== exp23_aa_error_analysis ===')\nif 'exp23_aa_error_analysis' in exps:\n    for k,v in sorted(exps['exp23_aa_error_analysis']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\" 2>&1",
+  "description": "Get 9-class AA per-seed data and error analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9942a8e8-8de3-4924-ae00-cdace699b6ae",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJUzFtjPsPAdi7vwaU8z",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "565a82f8-4590-4629-9aa8-3c278370a412",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9sAgzZJ3oYmUXMU9u4wxs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 49058,
+      "output_tokens": 638,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1390
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 638,
+          "cache_read_input_tokens": 49058,
+          "cache_creation_input_tokens": 1390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1390,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T23:34:57.253Z_
+
+<details><summary>↩ Tool result · `toolu_01D3MX58PmD5cmNq49BcWfGf`</summary>
+
+```text
+=== exp2_actorattack_ood deberta_9class (all details) ===
+{
+  "k1": 0.773,
+  "k1_std": 0.041,
+  "k2": 0.855,
+  "k2_std": 0.048,
+  "k3": 0.921,
+  "k3_std": 0.046,
+  "k5": 0.966,
+  "k5_std": 0.028,
+  "full": 0.972,
+  "full_std": 0.026
+}
+
+=== exp6_actorattack_perturbation ===
+  9class_3seed: {"clean_k1": 0.7728, "perturbed_k1": 0.6326, "delta_k1": -0.1402, "clean_k3": 0.9212, "perturbed_k3": 0.7337, "delta_k3": -0.1875, "clean_full": 0.9719, "perturbed_full": 0.7681, "delta_full": -0.2038}
+  binary_3seed: {"clean_k1": 0.737, "perturbed_k1": 0.6694, "delta_k1": -0.0676, "clean_k3": 0.9508, "perturbed_k3": 0.7035, "delta_k3": -0.2473, "clean_full": 0.9904, "perturbed_full": 0.7405, "delta_full": -0.2499}
+  jb_mlm_3seed: {"clean_k1": 0.7363, "perturbed_k1": 0.6572, "delta_k1": -0.079, "clean_k3": 0.9446, "perturbed_k3": 0.5483, "delta_k3": -0.3962, "clean_full": 0.8934, "perturbed_full": 0.5408, "delta_full": -0.3526}
+  mcnemar_clean_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 78, "c": 0}, "seed123": {"p": 0, "b": 72, "c": 0}, "seed456": {"p": 0, "b": 78, "c": 0}}}
+  mcnemar_clean_k1: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 52, "c": 4}, "seed123": {"p": 0, "b": 42, "c": 3}, "seed456": {"p": 0, "b": 53, "c": 0}}}
+  mcnemar_perturbed_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 44, "c": 0}, "seed123": {"p": 0, "b": 75, "c": 4}, "seed456": {"p": 0, "b": 78, "c": 24}}}
+  mcnemar_perturbed_k1: {"9class_vs_vanilla": {"seed42": {"p": 2e-05, "b": 34, "c": 6}, "seed123": {"p": 1.9e-05, "b": 59, "c": 20}, "seed456": {"p": 0, "b": 72, "c": 19}}}
+  note: "CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001)."
+  scrambled_3seed: {"clean_k1": 0.7206, "perturbed_k1": 0.6164, "delta_k1": -0.1042, "clean_k3": 0.8931, "perturbed_k3": 0.7779, "delta_k3": -0.1152, "clean_full": 0.9511, "perturbed_full": 0.7787, "delta_full": -0.1724}
+  topic_3seed: {"clean_k1": 0.5135, "perturbed_k1": 0.5258, "delta_k1": 0.0123, "clean_k3": 0.5654, "perturbed_k3": 0.5413, "delta_k3": -0.0241, "clean_full": 0.6254, "perturbed_full": 0.5767, "delta_full": -0.0488}
+  vanilla_3seed: {"clean_k1": 0.3374, "perturbed_k1": 0.2694, "delta_k1": -0.0681, "clean_k3": 0.2844, "perturbed_k3": 0.2574, "delta_k3": -0.027, "clean_full": 0.2575, "perturbed_full": 0.2482, "delta_full": -0.0093}
+  wiki_mlm_3seed: {"clean_k1": 0.6559, "perturbed_k1": 0.6007, "delta_k1": -0.0552, "clean_k3": 0.6931, "perturbed_k3": 0.5216, "delta_k3": -0.1716, "clean_full": 0.686, "perturbed_full": 0.5454, "delta_full": -0.1406}
+
+=== exp31_lambda_ablation_aa ===
+  dd_all: 1
+  fitd_all: 1
+  iid_all: 1
+  lambda_0.1_aa: 0.9904
+  lambda_0.5_aa: 0.9809
+  lambda_0_aa: 1
+  lambda_1.0_aa: 0.9809
+  lambda_2.0_aa: 0.9439
+  note: "Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E."
+
+=== exp23_aa_error_analysis ===
+  consistent_errors_all_seeds: 0
+  error_pattern: {"all_errors_are_fn": true, "zero_fp": true, "seed123_weakest": "7 FN vs 1 FN for other seeds", "short_dialogues_harder": "errors at 3-6 turns, mean 10480 chars vs correct 12788 chars", "error_topics": "data_privacy(2), digital_privacy(2), identity_verification(2), social_engineering(1)", "vanilla_on_error_samples": "0/3 votes on all 7 samples", "9class_majority_correct": "5/7 samples"}
+  majority_vote_accuracy: 0.983
+  majority_vote_fn: 2
+  majority_vote_fp: 0
+  note: "Errors are sparse, inconsistent across seeds, and concentrated in short dialogues. No systematic blind spot. DAPT provides clear advantage over vanilla on hard samples."
+  total_error_samples_any_seed: 7
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "565a82f8-4590-4629-9aa8-3c278370a412",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "9cd6e8c0-412c-4a10-ad02-ddc862aa3d85",
+  "sourceToolAssistantUUID": "565a82f8-4590-4629-9aa8-3c278370a412",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T23:35:10.290Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01REeYW9sTUZdaoSM4JWcWWd`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now get the DD OOD and AA OOD test composition (n_attack, n_benign)\n# Check exp16_9class_train and exp16_multi_llm for dataset details\nprint('=== exp16_9class_train ===')\nif 'exp16_9class_train' in exps:\n    for k,v in sorted(exps['exp16_9class_train'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\nprint()\nprint('=== exp17_dataset_scale ===')\nif 'exp17_dataset_scale' in exps:\n    for k,v in sorted(exps['exp17_dataset_scale'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# Check exp28_data_efficiency for dataset details\nprint()\nprint('=== exp28_data_efficiency ===')\nif 'exp28_data_efficiency' in exps:\n    for k,v in sorted(exps['exp28_data_efficiency']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# exp16_vanilla_train  \nprint()\nprint('=== exp16_vanilla_train ===')\nif 'exp16_vanilla_train' in exps:\n    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Find dataset composition details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cd6e8c0-412c-4a10-ad02-ddc862aa3d85",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJV1QcdNQ6yt1JQGWf2T",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1a739e63-1e09-448f-b641-8f1001a13a80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKHBX2ejRekW2QrPfteuLc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2523,
+      "cache_read_input_tokens": 50448,
+      "output_tokens": 596,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2523
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 596,
+          "cache_read_input_tokens": 50448,
+          "cache_creation_input_tokens": 2523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2523,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T23:35:10.497Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01REeYW9sTUZdaoSM4JWcWWd`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 32, in &lt;module>
+    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'metrics'
+=== exp16_9class_train ===
+  created_at: "2026-05-19T19:58:47.876Z"
+  status: "PREPARING"
+  updated_at: "2026-05-19T19:59:27.535Z"
+
+=== exp17_dataset_scale ===
+  conclusion: "success"
+  created_at: "2026-05-19T14:23:23.670Z"
+  hypothesis: "Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size."
+  metrics: {"9class_mean": {"iid": "INVALIDATED (71% leak)", "dd_ood": 0.889, "dd_ood_std": 0.041, "aa_ood": 0.913, "aa_ood_std": 0.041, "toxicchat_balanced": 0.341, "toxicchat_balanced_std": 0.004}, "note": "IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn)."}
+  status: "DONE"
+  updated_at: "2026-05-20T01:41:52.198Z"
+
+=== exp28_data_efficiency ===
+  9class: {"50": {"iid": 1, "dd_ood": 1, "aa_ood": 0.99}, "125": {"iid": 1, "dd_ood": 1, "aa_ood": 0.99}, "250": {"iid": 1, "dd_ood": 1, "aa_ood": 1}, "350": {"iid": 1, "dd_ood": 1, "aa_ood": 1}}
+  note: "9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality."
+  vanilla: {"125": {"iid": 0.53, "dd_ood": 0.24, "aa_ood": 0.24}, "350": {"iid": 1, "dd_ood": 0.36, "aa_ood": 0.49}}
+
+=== exp16_vanilla_train ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a739e63-1e09-448f-b641-8f1001a13a80",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "803aca2d-dd33-4350-8b1a-99be151391e9",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 32, in &lt;module>\n    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):\n                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nKeyError: 'metrics'\n=== exp16_9class_train ===\n  created_at: \"2026-05-19T19:58:47.876Z\"\n  status: \"PREPARING\"\n  updated_at: \"2026-05-19T19:59:27.535Z\"\n\n=== exp17_dataset_scale ===\n  conclusion: \"success\"\n  created_at: \"2026-05-19T14:23:23.670Z\"\n  hypothesis: \"Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size.\"\n  metrics: {\"9class_mean\": {\"iid\": \"INVALIDATED (71% leak)\", \"dd_ood\": 0.889, \"dd_ood_std\": 0.041, \"aa_ood\": 0.913, \"aa_ood_std\": 0.041, \"toxicchat_balanced\": 0.341, \"toxicchat_balanced_std\": 0.004}, \"note\": \"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\"}\n  status: \"DONE\"\n  updated_at: \"2026-05-20T01:41:52.198Z\"\n\n=== exp28_data_efficiency ===\n  9class: {\"50\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"125\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"250\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}, \"350\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}}\n  note: \"9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \\u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality.\"\n  vanilla: {\"125\": {\"iid\": 0.53, \"dd_ood\": 0.24, \"aa_ood\": 0.24}, \"350\": {\"iid\": 1, \"dd_ood\": 0.36, \"aa_ood\": 0.49}}\n\n=== exp16_vanilla_train ===",
+  "sourceToolAssistantUUID": "1a739e63-1e09-448f-b641-8f1001a13a80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T23:35:44.167Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01StuahVshkaPRNh49AiHT91`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Search for n_attack, n_benign, test_n, or similar in ALL experiments\n# Also search for 'n_samples' key across all experiments\nprint('=== ALL experiments with n_samples or composition-related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    ms = json.dumps(metrics)\n    if any(kw in ms.lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', '\\\"118\\\"', 'test_set', 'composition']):\n        print(f'{name}: ')\n        for mk, mv in metrics.items():\n            if any(kw in mk.lower() or kw in json.dumps(mv).lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', 'n_sample', 'composition', 'test_set']):\n                print(f'  {mk}: {json.dumps(mv)[:300]}')\n\n# exp2 has n_samples=118 - what's the split? Check hypothesis/notes\nprint()\nprint('=== exp2 hypothesis/notes ===')\ne2 = exps['exp2_actorattack_ood']\nprint(f'hypothesis: {e2.get(\\\"hypothesis\\\", \\\"\\\")}')\nprint(f'note: {e2.get(\\\"metrics\\\", {}).get(\\\"note\\\", \\\"\\\")}')\n\n# Check phase_b_full for DD composition\nprint()\nprint('=== DD OOD dataset composition ===')\n# DD OOD = DangerousDialogues, test split\n# Check exp4 notes\ne4 = exps['exp4_dd_ood_perturbation']\nprint(f'hypothesis: {e4.get(\\\"hypothesis\\\", \\\"\\\")}')\nprint()\n\n# Lets look at the actual test F1 calculation:\n# DD OOD full F1 mean = 0.9936 (3-seed), with per-seed: seed42=1, seed123=1, seed456=0.9904\n# The F1=0.9904 from seed456 implies some misses. In a balanced set of ~50+50, F1=0.9904 ~= 1 FN\n\n# For AA OOD: n_samples=118, F1 mean=0.972, std=0.026\n# From exp23 error analysis: majority_vote_fn=2, total_error_samples_any_seed=7\n# seed123 has 7 FN, other seeds 1 FN each\n\n# DD OOD: from plan_006 treatment_full_f1=1 (seed42), plan_002_seed123 dd_ood_full_f1=1, plan_002_seed456=0.9904\n# Let's compute what F1=0.9904 means for n_attack\nprint('Reverse-engineering test set sizes from F1 values:')\nprint()\n# For DD OOD: if F1=0.9904 with 0 FP (exp23 says zero_fp=true for AA, but DD may be different)\n# 0.9904 = 2*TP/(2*TP + FP + FN). If FP=0, F1 = 2*TP/(2*TP + FN)\n# If FN=1: F1 = 2*TP/(2*TP+1). F1=0.9904 => TP = 0.9904/(2-2*0.9904) = 0.9904/0.0192 = 51.58 => ~52 attacks\n# But F1 is macro F1 (binary jailbreak F1), so need to be careful\n\n# Check what kind of F1 these are (macro vs binary)\nprint('=== exp1_roberta_9class - what type of F1? ===')\nprint('Full exp1 metrics:')\nfor k,v in sorted(exps['exp1_roberta_9class']['metrics'].items()):\n    print(f'  {k}: {json.dumps(v)}')\n\" 2>&1",
+  "description": "Find test set sizes and F1 type"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "803aca2d-dd33-4350-8b1a-99be151391e9",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJV2PA6pD5B19NM26E2J",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b33bc8f8-dd4a-4d97-956e-3e776d477982",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7Yeanbv8s5MU4v4SzGSTx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1307,
+      "cache_read_input_tokens": 52971,
+      "output_tokens": 1240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1307
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1240,
+          "cache_read_input_tokens": 52971,
+          "cache_creation_input_tokens": 1307,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1307,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T23:35:44.306Z_
+
+<details><summary>↩ Tool result · `toolu_01StuahVshkaPRNh49AiHT91`</summary>
+
+```text
+=== ALL experiments with n_samples or composition-related metrics ===
+exp14c_prediction_analysis: 
+  dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+exp42b_balanced_ratio_ablation: 
+  train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+exp43_mhj_human_eval: 
+  verazuo_n_jailbreak: 666
+  verazuo_n_benign: 213
+exp44_multi_llm_mixed: 
+  train_composition: "175 Qwen jb + 175 Qwen bn + 164 Llama jb + 150 WC bn = 664"
+exp8_mhj_human_data: 
+  toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambl
+  verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vani
+plan_012_gpt55_judge: 
+  test_set: "data/plan_002_splits/test.jsonl"
+plan_012_llm_judge_qwen: 
+  test_set: "data/plan_002_splits/test.jsonl"
+
+=== exp2 hypothesis/notes ===
+hypothesis: Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type
+note: All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla
+
+=== DD OOD dataset composition ===
+hypothesis: Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on DD OOD paraphrased data, while vanilla/wiki-MLM variants will show significant degradation, extending IID perturbation robustness findings to OOD setting
+
+Reverse-engineering test set sizes from F1 values:
+
+=== exp1_roberta_9class - what type of F1? ===
+Full exp1 metrics:
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  encoder: "roberta-base"
+  iid_full_f1: 1
+  n_seeds: 3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b33bc8f8-dd4a-4d97-956e-3e776d477982",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "c9a180e9-4b22-4f08-adc2-0844179e5417",
+  "sourceToolAssistantUUID": "b33bc8f8-dd4a-4d97-956e-3e776d477982",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T23:35:57.590Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UNcQUEhycEDh49DKm6SDTL`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check exp16_multi_llm for dataset details - it mentions 118 samples \nprint('=== exp16_multi_llm FULL ===')\ne = exps['exp16_multi_llm']\nfor k,v in sorted(e.items()):\n    print(f'  {k}: {json.dumps(v)[:400]}')\n\n# Check exp25_fitd_early_detection for FITD data\nprint()\nprint('=== exp25_fitd_early_detection ===')\nif 'exp25_fitd_early_detection' in exps:\n    for k,v in sorted(exps['exp25_fitd_early_detection']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# Check exp58_truncated_single_turn and exp60_turncount_baseline for dataset info\nprint()\nprint('=== exp58_truncated_single_turn ===')\nif 'exp58_truncated_single_turn' in exps:\n    for k,v in sorted(exps['exp58_truncated_single_turn']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\nprint()\nprint('=== exp60_turncount_baseline ===')\nif 'exp60_turncount_baseline' in exps:\n    for k,v in sorted(exps['exp60_turncount_baseline']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Get dataset details from related experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9a180e9-4b22-4f08-adc2-0844179e5417",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJV4spaRchedF3X36WMK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f7e2b760-7fc4-40ae-8ba6-e21379a218b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQCYNToeHapjjQ7UFC2rPa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 54278,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2334,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T23:35:57.678Z_
+
+<details><summary>↩ Tool result · `toolu_01UNcQUEhycEDh49DKm6SDTL`</summary>
+
+```text
+=== exp16_multi_llm FULL ===
+  conclusion: "success"
+  created_at: "2026-05-19T20:08:23.368Z"
+  hypothesis: "Training on mixed Qwen+Llama conversations (250+250) eliminates single-LLM confound: the evidence hierarchy (9-class >> MLM >> vanilla) holds on mixed data, and cross-LLM false positive rate drops vs single-source training, proving DAPT generalizes across LLM distributions"
+  metrics: {"note": "CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.", "9class_mean": {"mixed_test": 0.996, "dd_ood": 0.818, "dd_ood_std": 0.096, "aa_ood": 0.504, "aa_ood_std": 0.107, "fitd_ood": 0.997, "fitd_ood_std": 0.005, "toxicchat_balanced": 0.55, "toxicch
+  status: "DONE"
+  updated_at: "2026-05-20T06:31:12.024Z"
+
+=== exp25_fitd_early_detection ===
+  9class: {"k1": "1.000\u00b10.000", "k2": "0.997\u00b10.005", "k3": "1.000\u00b10.000", "k5": "1.000\u00b10.000", "full": "1.000\u00b10.000"}
+  mlm: {"k1": "0.610\u00b10.281", "k2": "0.598\u00b10.256", "k3": "0.654\u00b10.302", "k5": "0.635\u00b10.238", "full": "0.707\u00b10.217"}
+  vanilla: {"k1": "0.698\u00b10.038", "k2": "0.786\u00b10.043", "k3": "0.791\u00b10.057", "k5": "0.823\u00b10.040", "full": "0.882\u00b10.027"}
+
+=== exp58_truncated_single_turn ===
+  9class_full: {"iid": 1, "dd": 0.997, "aa": 0.972, "fitd": 1}
+  9class_last_turn: {"iid": 0.991, "dd": 0.942, "aa": 0.978, "fitd": 1}
+  full_avg_delta: 0.016
+  interpretation: "9-class leads even more in single-turn, ruling out multi-turn structural advantage as cause of ToxicChat reversal"
+  last_turn_avg_delta: 0.06
+  mlm_full: {"iid": 0.983, "dd": 0.993, "aa": 0.941, "fitd": 0.987}
+  mlm_last_turn: {"iid": 0.894, "dd": 0.924, "aa": 0.927, "fitd": 0.927}
+
+=== exp60_turncount_baseline ===
+  disped_full: {"iid": 1, "dd": 0.997, "fitd": 1, "aa": 0.972, "toxicchat": 0.596}
+  tc_full: {"iid": 0.543, "dd": 0.558, "fitd": 0.424, "aa": 0, "toxicchat": 0}
+  tc_k1: {"all": 0}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7e2b760-7fc4-40ae-8ba6-e21379a218b5",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "769d7257-6dc6-417a-a028-47c9bae1baf5",
+  "sourceToolAssistantUUID": "f7e2b760-7fc4-40ae-8ba6-e21379a218b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T23:36:23.878Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014xz7L9N5wv35oTbmAYMdvX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Let's look for DD OOD test size from phase_b experiments\n# phase_b_full has test_size=72 (IID test), dataset_size=480\n# DD OOD test comes from a separate dataset - check if there's info about DD OOD n\n# exp4 has 9class dd_ood clean_full=0.9968, which is the same as exp9's dd_ood mean\n# exp35 ensemble has 'fixed:1' meaning 1 sample was fixed by ensemble on DD - so small error count\n\n# For DD OOD (DangerousDialogues): \n# From exp35: 9class individual_mean=0.9968, individual_std=0.0045\n# From plan_002_seed456: dd_ood_full_f1=0.9904\n# From exp4: clean_full=0.9968 (3-seed mean), per seed: 1.0, 1.0, 0.9904\n# F1=0.9904 with 0 FP -> 2*TP/(2*TP+FN) = 0.9904, FN=1 -> TP = 0.9904*1/(2-2*0.9904) = ~51.58\n# But this is for the whole dataset including benign. Macro F1 could mean different things.\n\n# For AA OOD: n_samples=118\n# exp23 says 7 total error samples, all FN (zero FP)\n# seed123 has 7 FN, other seeds 1 FN each\n# So n_attack in AA can be inferred: if FN=1 and F1 depends on balanced/unbalanced\n\n# Let's search for any mention of '80' or '160' or similar DD/AA test set sizes\nfor name, exp in sorted(exps.items()):\n    ms = json.dumps(exp)\n    # Look for test size indicators\n    for pattern in ['test_jailbreak', 'test_attack', 'attack_n', 'jailbreak_n', 'n_test_jailbreak', 'n_test_attack']:\n        if pattern in ms.lower():\n            print(f'{name}: contains \\\"{pattern}\\\"')\n            for mk, mv in exp.get('metrics', {}).items():\n                if pattern in mk.lower() or pattern in json.dumps(mv).lower():\n                    print(f'  {mk}: {json.dumps(mv)[:200]}')\n\n# pilot has test_jailbreak=38\nprint()\nprint('pilot_phase_b test_jailbreak:', exps['pilot_phase_b']['metrics'].get('test_jailbreak'))\n\n# The AA OOD has n_samples=118. From exp5_llm_judge_ood:\nprint()\nprint('=== exp5_llm_judge_ood ===')\nif 'exp5_llm_judge_ood' in exps:\n    for k,v in sorted(exps['exp5_llm_judge_ood']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Find DD and AA test split sizes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "769d7257-6dc6-417a-a028-47c9bae1baf5",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJV5ryGAQ5vGZFpWjjwB",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e1fe5e03-3d09-4729-afb9-560125630c41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ga8ZkxnkNjXnuia44HZZka",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1564,
+      "cache_read_input_tokens": 56612,
+      "output_tokens": 989,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1564
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 989,
+          "cache_read_input_tokens": 56612,
+          "cache_creation_input_tokens": 1564,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1564,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T23:36:24.010Z_
+
+<details><summary>↩ Tool result · `toolu_014xz7L9N5wv35oTbmAYMdvX`</summary>
+
+```text
+pilot_phase_b: contains "test_jailbreak"
+  test_jailbreak: 38
+
+pilot_phase_b test_jailbreak: 38
+
+=== exp5_llm_judge_ood ===
+  dd_ood: {"k1_binary_f1": 0, "k2_binary_f1": 0, "k3_binary_f1": 0, "k5_binary_f1": 0, "full_binary_f1": 0, "k1_macro_f1": 0.2436, "k2_macro_f1": 0.2436, "k3_macro_f1": 0.2436, "k5_macro_f1": 0.2436, "full_macro_f1": 0.2436, "accuracy": 0.322}
+  fitd_ood: {"k1_binary_f1": 0, "k2_binary_f1": 0, "k3_binary_f1": 0, "k5_binary_f1": 0.0247, "full_binary_f1": 0.0247, "k1_macro_f1": 0.2436, "k2_macro_f1": 0.2436, "k3_macro_f1": 0.2436, "k5_macro_f1": 0.2575, "full_macro_f1": 0.2575, "accuracy": 0.331}
+  mode: "zero-shot"
+  model: "Qwen3-8B"
+  n_samples: 118
+  note: "CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1fe5e03-3d09-4729-afb9-560125630c41",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "6cd72dd2-448d-4dc1-a4f3-d5fd3d4c2c0d",
+  "sourceToolAssistantUUID": "e1fe5e03-3d09-4729-afb9-560125630c41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T23:37:21.128Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CRKEfytRtn9AkPte4n3Qrp`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp5 has n_samples=118 for BOTH dd_ood and fitd_ood \n# exp2 has n_samples=118 for AA OOD\n# So dd_ood and aa_ood both have 118 samples\n\n# From exp5: dd_ood accuracy=0.322 when predicting all-benign\n# If all predicted benign: accuracy = n_benign / total = 0.322\n# n_benign = 0.322 * 118 = 38.0 => 38 benign, 80 attack\n\n# For AA OOD: exp5 doesn't show AA, but exp2 has n_samples=118\n# From exp23: total_error_samples=7 (all FN, zero FP)\n# If we assume 118 total for AA too, let's check\n\n# Wait - exp5 n_samples=118 is for DD+FITD. Let's check if AA has different n.\n# exp2 says n_samples=118 - that's AA OOD total\n\n# For DD OOD: accuracy = 0.322 for all-benign prediction => 38 benign, 80 jailbreak\n# For FITD: accuracy = 0.331 for mostly-benign => ~39 benign, 79 jailbreak (close to DD)\n\n# Let's verify: DD OOD test set\n# F1=0.9904 (seed456) with 0 FP. Binary F1 for jailbreak class:\n# precision=TP/(TP+FP)=1.0 (no FP), recall=TP/(TP+FN)\n# F1 = 2*P*R/(P+R) = 2*R/(1+R) = 0.9904 => R = 0.9904/(2-0.9904) = 0.9806\n# If n_attack=80, FN = 80*(1-0.9806) = 1.55 ~ 2\n# But wait, F1 could be macro F1 not binary F1.\n\n# From exp5, it distinguishes binary_f1 and macro_f1\n# The registry uses 'f1' without qualifier in most cases. Let's check what the main F1 metric is.\n\n# exp5: macro_f1=0.2436 when all predicted benign, binary_f1=0 (bc no positive predictions)\n# macro_f1 with all-benign prediction: (benign_f1 + jailbreak_f1)/2 = (2*38/118 + 0)/2 = 0.322/2 ≈ 0.161? \n# That's not 0.2436. Let me recalc.\n\n# Actually for all-benign prediction:\n# benign class: TP=38, FP=80, FN=0 -> P=38/118=0.322, R=1.0, F1=2*0.322/(1.322)=0.4872\n# jailbreak class: TP=0, FP=0, FN=80 -> P=0, R=0, F1=0\n# macro_f1 = (0.4872+0)/2 = 0.2436 ✓ Confirmed!\n\n# So DD OOD: 38 benign + 80 jailbreak = 118 total\n\n# For AA OOD: similar check\n# Need to find the benign/jailbreak split. Let's use exp23 data.\n# exp23: majority_vote_fn=2, but individual seed errors:\n# seed123_weakest: 7 FN vs 1 FN for other seeds\n# total error_samples_any_seed=7\n# These are individual samples that ANY seed got wrong\n\n# If n_attack varies, let's check FITD accuracy too\n# FITD: accuracy=0.331 with mostly-benign => ~39 benign? \n# Actually FITD macro_f1=0.2575 (full), which means benign_f1 = 2*39/118/(1+39/118) = 0.497? \n# macro_f1 = 0.497/2 = 0.249 - not quite 0.2575\n\n# Let me try 40 benign: benign_f1 = 2*40/118 / (1+40/118) = 80/118 / 158/118 = 80/158 = 0.5063\n# macro_f1 = 0.2532. Not right either.\n\n# FITD n_samples could differ. Let's see if there's info about FITD OOD test size\n\n# From exp22 fitd_ood_per_k_exp16: 9class full=1.0\n# These might come from different dataset\n\nprint('DD OOD composition: 38 benign + 80 jailbreak = 118 total')\nprint('  (verified: macro F1 = 0.2436 when all-benign prediction matches exactly)')\n\n# For AA OOD split, from McNemar data in exp2_actorattack_mcnemar:\n# 9class_vs_vanilla at full: b ranges 57-78 (9class correct, vanilla wrong)\n# vanilla gets everything wrong at full (F1~0.258 which is ~macro with all-benign)\n# vanilla_full = 0.258, so same formula: benign_f1 = 2*n_b/118 / (1+n_b/118)\n# 0.258*2 = 0.516 = benign_f1\n# 0.516 = 2*n_b/118 / (1+n_b/118) => 0.516*(1+n_b/118) = 2*n_b/118\n# 0.516 + 0.516*n_b/118 = 2*n_b/118\n# 0.516 = n_b/118 * (2 - 0.516) = n_b/118 * 1.484\n# n_b/118 = 0.516/1.484 = 0.3477 => n_b = 41.03 ~ 41? \n# But exp2 vanilla full=0.258 with std=0\n\n# Actually wait. The metric could be binary F1 not macro F1. \n# vanilla at full=0.258: if this is macro F1:\n# For all-benign: macro = benign_f1/2\n# benign_f1 = 0.516\n# 0.516 = 2*P*R/(P+R) where P = n_b/n_total, R = 1\n# 0.516 = 2*(n_b/118)/(1 + n_b/118) => solve for n_b\n# Let x = n_b/118: 0.516 = 2x/(1+x), 0.516+0.516x = 2x, 0.516 = 1.484x, x=0.3477\n# n_b = 41.0 => ~41 benign => 77 jailbreak\n\n# But vanilla doesn't predict all-benign. It has F1=0.258±0 (all 3 seeds identical)\n# The notes say 'Vanilla too weak to benefit' from ensemble\n# Let me check vanilla predictions more carefully\n\n# Actually from exp2 deberta_vanilla: full=0.258, std=0 - exact same across all seeds\n# This is suspicious. Let's check if vanilla always predicts same class.\n# From McNemar clean_full: b=78, c=0 for seed42 (9class correct, vanilla wrong, never other way)\n# b=57 for seed123, b=67 for seed456. If vanilla got 0 correct on jailbreaks: \n# total = 118, if 9class gets ~78 jailbreaks right and vanilla gets 0, \n# c=0 means vanilla never outperforms on any sample\n\n# Actually, McNemar b = #samples where 9class correct AND vanilla wrong\n# c = #samples where vanilla correct AND 9class wrong\n# The fact that c=0 means 9class is always >= vanilla\n\n# Vanilla with F1=0.258 (not varying with k) - likely predicts benign for everything\n# Binary F1 = 0 (no positive predictions), macro F1 = benign_f1/2\n# But 0.258*2 = 0.516 = benign_f1 \n# Using same math: n_b = ~41\n\n# But wait - vanilla std=0 for full, meaning all 3 seeds give identical F1=0.258\n# AND the values decrease with k (k1=0.337, k2=0.306 etc.)\n# This suggests vanilla IS making some predictions, not all-benign\n\n# Let me just report what we know for certain about AA:\nprint()\nprint('AA OOD total: 118 samples (confirmed in exp2_actorattack_ood n_samples)')\nprint('AA OOD n_benign: ~38-41 (inferred from vanilla F1 pattern)')\nprint()\n\n# Let's look for explicit split info in any experiment\nfor name, exp in sorted(exps.items()):\n    ms = json.dumps(exp).lower()\n    if 'n_benign' in ms and ('dd_ood' in ms or 'aa_ood' in ms or 'actorattack' in ms):\n        print(f'{name} may have split info')\n\" 2>&1",
+  "description": "Compute test set composition from F1 values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cd72dd2-448d-4dc1-a4f3-d5fd3d4c2c0d",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJV7oSjkLqymWgbF7Ewb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3590bf98-7649-4bef-9275-bb18c7d5eee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Es4tunuCQdKHLN9ycwy8Cn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1437,
+      "cache_read_input_tokens": 58176,
+      "output_tokens": 2571,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1437
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2571,
+          "cache_read_input_tokens": 58176,
+          "cache_creation_input_tokens": 1437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1437,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T23:37:21.255Z_
+
+<details><summary>↩ Tool result · `toolu_01CRKEfytRtn9AkPte4n3Qrp`</summary>
+
+```text
+DD OOD composition: 38 benign + 80 jailbreak = 118 total
+  (verified: macro F1 = 0.2436 when all-benign prediction matches exactly)
+
+AA OOD total: 118 samples (confirmed in exp2_actorattack_ood n_samples)
+AA OOD n_benign: ~38-41 (inferred from vanilla F1 pattern)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3590bf98-7649-4bef-9275-bb18c7d5eee0",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "af6cf25a-5cfc-4252-939b-561eabaa8dc4",
+  "sourceToolAssistantUUID": "3590bf98-7649-4bef-9275-bb18c7d5eee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T23:37:58.383Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YHo9v8mqWzjzZVunTWrkfr`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check exp30_length_stratified for AA OOD n counts\n# aa_ood: 1-3 turns: n=20, 4-6 turns: n=38, 7-10 turns: n=22\n# Total attack samples: 20+38+22 = 80\n# So AA OOD has 80 jailbreak + 38 benign = 118 total\nprint('AA OOD from exp30 length_stratified:')\nprint('  jailbreak samples by bin: 1-3 turns=20, 4-6 turns=38, 7-10 turns=22')\nprint('  total jailbreak: 80')\nprint('  total benign: 118-80 = 38')\nprint()\n\n# Similarly DD OOD:\n# dd_ood: 4-6 turns: n=20, 7-10 turns: n=60\n# Total attack: 20+60 = 80\nprint('DD OOD from exp30 length_stratified:')\nprint('  jailbreak samples by bin: 4-6 turns=20, 7-10 turns=60')\nprint('  total jailbreak: 80')\nprint('  total benign: 118-80 = 38')\nprint()\n\n# So both DD OOD and AA OOD: 80 jailbreak + 38 benign = 118 total\n# The benign samples are shared (IID test benign)\n\n# Now let's compute per-seed attack recall for DD OOD\n# DD per-seed F1: seed42=1.0, seed123=1.0, seed456=0.9904\n# If F1 is macro F1 with n_attack=80, n_benign=38:\n# For seed42 & seed123: F1=1.0 -> perfect, recall=1.0\n# For seed456: F1=0.9904\n# From exp23: all errors are FN, zero FP\n# So precision=1.0 for all seeds on attack class\n# macro F1 = (benign_f1 + attack_f1) / 2\n# If 0 FP: benign precision = n_benign_correct / n_benign_correct = 1.0 (all correct)\n# benign recall = 38/38 = 1.0 (no FP means all benign correctly classified)\n# benign F1 = 1.0\n# attack F1 = 2*P*R/(P+R) where P=1.0 (no FP)\n# attack F1 = 2*R/(1+R)\n# macro F1 = (1.0 + 2R/(1+R)) / 2 = 0.9904\n# 1.0 + 2R/(1+R) = 1.9808\n# 2R/(1+R) = 0.9808\n# 2R = 0.9808 + 0.9808R\n# R(2-0.9808) = 0.9808\n# R = 0.9808/1.0192 = 0.9623\n# Attack recall = 0.9623 for seed456 => FN = 80*(1-0.9623) = 3.016 ~ 3\n\n# Wait but exp23 is about AA OOD errors, not DD OOD. Let me re-check.\nprint('=== DD OOD per-seed attack recall (computed from macro F1, assuming 0 FP) ===')\ndd_seeds_f1 = {'seed42': 1.0, 'seed123': 1.0, 'seed456': 0.9904}\nfor seed, f1 in dd_seeds_f1.items():\n    if f1 == 1.0:\n        print(f'  {seed}: F1={f1}, attack_recall=1.000 (FN=0)')\n    else:\n        # macro F1 = (benign_f1 + attack_f1)/2\n        # If 0 FP: benign_f1 = 1.0, attack_precision = 1.0\n        # attack_f1 = 2R/(1+R)\n        # macro = (1 + 2R/(1+R))/2 = f1\n        # 2R/(1+R) = 2*f1 - 1\n        attack_f1 = 2*f1 - 1\n        # attack_f1 = 2R/(1+R) => R = attack_f1/(2-attack_f1)\n        R = attack_f1 / (2 - attack_f1)\n        FN = round(80 * (1 - R))\n        print(f'  {seed}: F1={f1}, attack_f1={attack_f1:.4f}, attack_recall={R:.4f} (FN~{FN})')\n\nprint()\nprint('DD OOD 3-seed mean: F1={:.4f}+/-{:.4f}'.format(\n    sum(dd_seeds_f1.values())/3,\n    (sum((v - sum(dd_seeds_f1.values())/3)**2 for v in dd_seeds_f1.values())/3)**0.5\n))\n\nprint()\nprint('=== AA OOD per-seed attack recall ===')\n# From exp23: seed123 has 7 FN, other seeds 1 FN each, ALL errors are FN\n# attack recall: seed42 = (80-1)/80 = 0.9875, seed123 = (80-7)/80 = 0.9125, seed456 = (80-1)/80 = 0.9875\n# But wait - the error_pattern says 'seed123_weakest: 7 FN vs 1 FN for other seeds'\n# It also says 'total error_samples_any_seed: 7' - this means 7 unique samples that ANY seed got wrong\n\n# But it also says 'consistent_errors_all_seeds: 0' and '9class_majority_correct: 5/7'\n# majority_vote_fn = 2. So 5 of 7 error samples have at least 2/3 seeds correct.\n\n# Hmm, the 'seed123_weakest: 7 FN' seems odd if total unique errors = 7\n# Let me re-read exp23 carefully\nprint('exp23 raw error data:')\ne23 = exps['exp23_aa_error_analysis']['metrics']\nprint(json.dumps(e23, indent=2))\n\" 2>&1",
+  "description": "Compute per-seed attack recall from F1 and error analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af6cf25a-5cfc-4252-939b-561eabaa8dc4",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVC2EHeSyUozTceE5rU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dc753608-a232-4c4a-b457-d96e041a738f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwvAs64B3fgYsFfhgaUajT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2787,
+      "cache_read_input_tokens": 59613,
+      "output_tokens": 1857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2787
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1857,
+          "cache_read_input_tokens": 59613,
+          "cache_creation_input_tokens": 2787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2787,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T23:37:58.502Z_
+
+<details><summary>↩ Tool result · `toolu_01YHo9v8mqWzjzZVunTWrkfr`</summary>
+
+```text
+AA OOD from exp30 length_stratified:
+  jailbreak samples by bin: 1-3 turns=20, 4-6 turns=38, 7-10 turns=22
+  total jailbreak: 80
+  total benign: 118-80 = 38
+
+DD OOD from exp30 length_stratified:
+  jailbreak samples by bin: 4-6 turns=20, 7-10 turns=60
+  total jailbreak: 80
+  total benign: 118-80 = 38
+
+=== DD OOD per-seed attack recall (computed from macro F1, assuming 0 FP) ===
+  seed42: F1=1.0, attack_recall=1.000 (FN=0)
+  seed123: F1=1.0, attack_recall=1.000 (FN=0)
+  seed456: F1=0.9904, attack_f1=0.9808, attack_recall=0.9623 (FN~3)
+
+DD OOD 3-seed mean: F1=0.9968+/-0.0045
+
+=== AA OOD per-seed attack recall ===
+exp23 raw error data:
+{
+  "majority_vote_accuracy": 0.983,
+  "majority_vote_fn": 2,
+  "majority_vote_fp": 0,
+  "total_error_samples_any_seed": 7,
+  "consistent_errors_all_seeds": 0,
+  "error_pattern": {
+    "all_errors_are_fn": true,
+    "zero_fp": true,
+    "seed123_weakest": "7 FN vs 1 FN for other seeds",
+    "short_dialogues_harder": "errors at 3-6 turns, mean 10480 chars vs correct 12788 chars",
+    "error_topics": "data_privacy(2), digital_privacy(2), identity_verification(2), social_engineering(1)",
+    "vanilla_on_error_samples": "0/3 votes on all 7 samples",
+    "9class_majority_correct": "5/7 samples"
+  },
+  "note": "Errors are sparse, inconsistent across seeds, and concentrated in short dialogues. No systematic blind spot. DAPT provides clear advantage over vanilla on hard samples."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc753608-a232-4c4a-b457-d96e041a738f",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "321d410c-7fb5-4901-9baf-1d53f02d0927",
+  "sourceToolAssistantUUID": "dc753608-a232-4c4a-b457-d96e041a738f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T23:38:33.708Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NRcRtceimE13HB2ujjzrCX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp23 says:\n# - total_error_samples_any_seed: 7 (7 unique samples that at least 1 seed missed)\n# - consistent_errors_all_seeds: 0 (no sample missed by all 3 seeds)\n# - seed123_weakest: '7 FN vs 1 FN for other seeds'\n# - majority_correct: 5/7 (5 samples correct by >=2 seeds, 2 wrong by >=2 seeds)\n# - majority_vote_fn: 2\n\n# So per-seed FN counts: seed42=1, seed123=7, seed456=1\n# Per-seed attack recall: \n# seed42: (80-1)/80 = 79/80 = 0.9875\n# seed123: (80-7)/80 = 73/80 = 0.9125  \n# seed456: (80-1)/80 = 79/80 = 0.9875\n\n# Verify with AA F1 mean:\n# macro F1 per seed (assuming 0 FP, benign_f1=1.0):\n# attack_f1 = 2*R/(1+R)\n# macro = (1 + attack_f1) / 2\n\nimport statistics\n\naa_recall = {'seed42': 79/80, 'seed123': 73/80, 'seed456': 79/80}\naa_f1_per_seed = {}\nfor seed, R in aa_recall.items():\n    attack_f1 = 2*R/(1+R)\n    macro_f1 = (1 + attack_f1) / 2\n    aa_f1_per_seed[seed] = macro_f1\n    print(f'AA OOD {seed}: recall={R:.4f}, attack_F1={attack_f1:.4f}, macro_F1={macro_f1:.4f}')\n\nvals = list(aa_f1_per_seed.values())\nmean = statistics.mean(vals)\nstd = statistics.stdev(vals)\nprint(f'AA OOD mean macro F1: {mean:.4f} +/- {std:.4f}')\nprint()\n\n# Compare with exp22: aa_ood full 9class mean=0.972, std=0.026\n# My computed: mean ~0.972, std ~0.026 - should match!\n\nprint('Registry values: mean=0.972, std=0.026')\nprint()\n\n# Now let's also get DD OOD per-seed recall\n# From plan_002 data: seed42 dd_ood_full=1.0 (via plan_002_clean_training treatment)\n# But wait - plan_002_clean_training has dd_ood_full_f1=1.0 and treatment_full_f1=1.0\n# Actually plan_002_clean_training treatment_full_f1 is IID, dd_ood_full_f1 is DD OOD\n\n# Let me re-derive. The 3-seed mean DD OOD F1 is:\n# From exp4: 9class_3seed clean_full = 0.9968\n# From exp35: 9class dd_ood individual_mean = 0.9968, std = 0.0045\n# Per seed: 1.0, 1.0, 0.9904\n\n# Actually, 3 values with mean 0.9968 and std 0.0045:\n# mean = (a+b+c)/3 = 0.9968\n# Could be 1.0, 1.0, 0.9904: mean = 2.9904/3 = 0.9968 ✓\n# std = sqrt(((1-0.9968)^2 + (1-0.9968)^2 + (0.9904-0.9968)^2)/3) = sqrt((0.0032^2*2+0.0064^2)/3) \nimport math\nvals = [1.0, 1.0, 0.9904]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)  # population std\nprint(f'DD per-seed F1: {vals}, mean={m:.4f}, pop_std={s:.4f}')\ns2 = math.sqrt(sum((v-m)**2 for v in vals)/2)  # sample std\nprint(f'DD per-seed F1: sample_std={s2:.4f}')\n\n# Registry says std=0.0045 - let's check which std\n# pop_std: sqrt((0.0032^2+0.0032^2+0.0064^2)/3) = sqrt((0.00001024+0.00001024+0.00004096)/3)\n# = sqrt(0.00006144/3) = sqrt(0.00002048) = 0.004526 ≈ 0.0045 ✓\n\nprint()\nprint('=== DD OOD per-seed attack recall (0 FP assumption) ===')\ndd_f1_seeds = [1.0, 1.0, 0.9904]\nfor i, f1 in enumerate(dd_f1_seeds):\n    seed = ['seed42', 'seed123', 'seed456'][i]\n    if f1 == 1.0:\n        R = 1.0\n        FN = 0\n    else:\n        attack_f1 = 2*f1 - 1\n        R = attack_f1 / (2 - attack_f1)\n        FN = round(80 * (1-R))\n    print(f'  {seed}: macro_F1={f1:.4f}, attack_recall={R:.4f}, FN={FN}')\n\nmean_r = statistics.mean([1.0, 1.0, 0.9623])\nprint(f'DD OOD attack recall mean: {mean_r:.4f}')\n\" 2>&1",
+  "description": "Compute all per-seed attack recall values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "321d410c-7fb5-4901-9baf-1d53f02d0927",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVEmRt1nGEcZFystNdp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a33d138d-feff-4c03-ace2-9c664c1b2241",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkD82K2noaNLGdrPHcrLv8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2442,
+      "cache_read_input_tokens": 62400,
+      "output_tokens": 1708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2442
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1708,
+          "cache_read_input_tokens": 62400,
+          "cache_creation_input_tokens": 2442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2442,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T23:38:33.836Z_
+
+<details><summary>↩ Tool result · `toolu_01NRcRtceimE13HB2ujjzrCX`</summary>
+
+```text
+AA OOD seed42: recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+AA OOD seed123: recall=0.9125, attack_F1=0.9542, macro_F1=0.9771
+AA OOD seed456: recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+AA OOD mean macro F1: 0.9903 +/- 0.0114
+
+Registry values: mean=0.972, std=0.026
+
+DD per-seed F1: [1.0, 1.0, 0.9904], mean=0.9968, pop_std=0.0045
+DD per-seed F1: sample_std=0.0055
+
+=== DD OOD per-seed attack recall (0 FP assumption) ===
+  seed42: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed123: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed456: macro_F1=0.9904, attack_recall=0.9623, FN=3
+DD OOD attack recall mean: 0.9874
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a33d138d-feff-4c03-ace2-9c664c1b2241",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "32a27767-eac1-491c-95c0-dd55e058553e",
+  "sourceToolAssistantUUID": "a33d138d-feff-4c03-ace2-9c664c1b2241",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T23:39:17.574Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01616deLwFfeXDXoAgYW75tW`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, statistics\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The discrepancy: my computed AA OOD mean macro F1 = 0.990 but registry says 0.972\n# This means my assumption that these are macro F1 may be WRONG.\n# Or the F1 reported is BINARY F1 (jailbreak-class F1), not macro F1.\n\n# If F1 = binary F1 (jailbreak class only):\n# With 0 FP: precision = 1.0\n# F1 = 2*1*R/(1+R) = 2R/(1+R)\n# For AA OOD:\n# seed42: FN=1, R=79/80=0.9875, F1=2*0.9875/1.9875 = 0.9937\n# seed123: FN=7, R=73/80=0.9125, F1=2*0.9125/1.9125 = 0.9542\n# seed456: FN=1, R=79/80=0.9875, F1=2*0.9875/1.9875 = 0.9937\n# mean = 0.9805, std = 0.0228\n# Still doesn't match 0.972\n\n# Maybe the FN counts aren't exactly 1/7/1. Let me work backwards from F1=0.972:\n# If F1 is binary jailbreak F1 with P=1:\n# mean F1 = 0.972, so mean(2R/(1+R)) = 0.972\n# This doesn't simply give us recall directly\n\n# Let me try: what per-seed binary F1 values give mean=0.972, std=0.026?\n# exp2 deberta_9class: full=0.972, full_std=0.026\n# If these are binary F1 values with P=1:\n# Try seed42=1.0, seed123=0.93, seed456=0.986:\nvals_try = [1.0, 0.93, 0.986]\nm = sum(vals_try)/3\nimport math\ns = math.sqrt(sum((v-m)**2 for v in vals_try)/3)\nprint(f'Try: {vals_try}, mean={m:.4f}, std={s:.4f}')\n\n# Try with FN counts. Binary F1 = 2*TP/(2*TP+FN) when FP=0\n# n_attack = 80\n# FN=0: F1 = 160/160 = 1.0\n# FN=1: F1 = 158/159 = 0.9937  \n# FN=2: F1 = 156/158 = 0.9873\n# FN=3: F1 = 154/157 = 0.9809\n# FN=4: F1 = 152/156 = 0.9744\n# FN=5: F1 = 150/155 = 0.9677\n# FN=6: F1 = 148/154 = 0.9610\n# FN=7: F1 = 146/153 = 0.9542\n\nprint()\nprint('Binary F1 for various FN counts (n_attack=80, FP=0):')\nfor fn in range(11):\n    tp = 80 - fn\n    f1 = 2*tp/(2*tp+fn)\n    recall = tp/80\n    print(f'  FN={fn}: F1={f1:.4f}, recall={recall:.4f}')\n\n# Now find combination with mean=0.972, std=0.026\n# Try FN = [1, 5, 1]: F1 = [0.9937, 0.9677, 0.9937], mean=0.9850, std=0.015 - too high\n# Try FN = [0, 7, 1]: F1 = [1.0, 0.9542, 0.9937], mean=0.9826, std=0.020 - still too high\n\n# What if n_attack is not 80? Let me check AA differently.\n# exp30 shows attack bins: 1-3=20, 4-6=38, 7-10=22, total=80\n# But these n values are PER-SEED averages? Or fixed counts?\n# 'n' in exp30 means number of samples in that bin, not per seed\n\n# Let me try: what if the F1 metric in exp2 is NOT binary but macro?\n# With macro F1: (benign_f1 + attack_f1)/2\n# benign_f1 with 0 FP = 1.0 (perfect benign classification)\n# macro = (1 + attack_f1)/2\n# mean macro = 0.972 => mean attack_f1 = 0.944\n# attack_f1 with P=1: F1 = 2R/(1+R)\n# 0.944 = 2R/(1+R) => R = 0.944/1.056 = 0.8939\n# That seems too low given exp23 says only 7 total error samples\n\n# OR: benign_f1 is NOT 1.0 because there ARE some FP (contrary to exp23)?\n# exp23 says zero_fp=true, so benign_f1 should be 1.0\n\n# Hmm, but exp23 is 'error analysis' - maybe it only counted attack-side errors?\n# 'all_errors_are_fn': true just means among errors, they're all FN (no FP)\n\n# Actually maybe the issue is that F1 is computed including benign in macro average\n# and the benign F1 < 1 because there ARE false positives\n# But exp23 says zero_fp explicitly. \n\n# Let me try a different approach: use exp35 ensemble data\n# 9class AA OOD: individual_mean=0.9719, individual_std=0.0261\n# 0.9719 matches 0.972 (rounding). \n# ensemble fixed=5 (5 samples fixed by ensemble), broke=0\n# If ensemble fixed 5 AA samples that individual seeds got wrong:\n# Total individual wrong = some number, ensemble fixed 5 of them\n\n# Wait - I bet these are NOT macro F1. They might be the 'macro_f1' as computed by \n# sklearn or they could be 'binary_f1'. Let me check if there's any experiment\n# that explicitly uses both binary and macro on the same data.\n\n# exp5_llm_judge_ood distinguishes binary_f1 and macro_f1\n# exp10_fewshot_llm_judge has both binary_f1 and macro_f1 for DD and AA\n\n# The main experiments (exp2, exp4, etc.) don't specify. \n# Let me check exp10:\nprint()\nprint('=== exp10 comparison ===')\ne10 = exps['exp10_fewshot_llm_judge']['metrics']\nfor k,v in sorted(e10.items()):\n    print(f'  {k}: {v}')\n\" 2>&1",
+  "description": "Investigate F1 type (binary vs macro) and reconcile numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32a27767-eac1-491c-95c0-dd55e058553e",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVHNXp6YzabKRH2t7Jo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b5b7d287-60c7-4c20-a53e-7d1cebc154c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfrBAqdxWaEShKXe4MAR3v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2034,
+      "cache_read_input_tokens": 64842,
+      "output_tokens": 1984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2034
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1984,
+          "cache_read_input_tokens": 64842,
+          "cache_creation_input_tokens": 2034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2034,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T23:39:17.676Z_
+
+<details><summary>↩ Tool result · `toolu_01616deLwFfeXDXoAgYW75tW`</summary>
+
+```text
+Try: [1.0, 0.93, 0.986], mean=0.9720, std=0.0302
+
+Binary F1 for various FN counts (n_attack=80, FP=0):
+  FN=0: F1=1.0000, recall=1.0000
+  FN=1: F1=0.9937, recall=0.9875
+  FN=2: F1=0.9873, recall=0.9750
+  FN=3: F1=0.9809, recall=0.9625
+  FN=4: F1=0.9744, recall=0.9500
+  FN=5: F1=0.9677, recall=0.9375
+  FN=6: F1=0.9610, recall=0.9250
+  FN=7: F1=0.9542, recall=0.9125
+  FN=8: F1=0.9474, recall=0.9000
+  FN=9: F1=0.9404, recall=0.8875
+  FN=10: F1=0.9333, recall=0.8750
+
+=== exp10 comparison ===
+  aa_full_binary_f1: 0.6612
+  aa_full_macro_f1: 0.6523
+  aa_full_precision: 0.9756
+  aa_full_recall: 0.5
+  aa_per_k_binary_f1: {'k1': 0.2796, 'k2': 0.3158, 'k3': 0.4906, 'k5': 0.6325, 'full': 0.6612}
+  aa_per_k_macro_f1: {'k1': 0.4055, 'k2': 0.4274, 'k3': 0.5376, 'k5': 0.6356, 'full': 0.6523}
+  dd_full_binary_f1: 0.5405
+  dd_full_macro_f1: 0.5663
+  dd_full_precision: 0.9677
+  dd_full_recall: 0.375
+  dd_per_k_binary_f1: {'k1': 0.0247, 'k2': 0.1609, 'k3': 0.3838, 'k5': 0.4158, 'full': 0.5405}
+  dd_per_k_macro_f1: {'k1': 0.2575, 'k2': 0.3355, 'k3': 0.4693, 'k5': 0.4894, 'full': 0.5663}
+  note: CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.
+  unparseable: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5b7d287-60c7-4c20-a53e-7d1cebc154c4",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "1b920353-2362-4652-8e17-6c98ec786c7e",
+  "sourceToolAssistantUUID": "b5b7d287-60c7-4c20-a53e-7d1cebc154c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T23:40:00.853Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017SU1SKj32VUgi3UYxHJThk`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp10 note: 'macro_f1 is the project-standard metric'\n# So all F1 values in exp2, exp4 etc are MACRO F1\n\n# For AA OOD with macro F1 = (benign_f1 + attack_f1)/2\n# With 0 FP, 0 FN for benign: benign_f1 = 1.0\n# macro = (1 + 2R/(1+R))/2\n# 0.972 = (1 + 2R/(1+R))/2\n# 1.944 = 1 + 2R/(1+R) \n# 0.944 = 2R/(1+R)\n# 0.944 + 0.944R = 2R\n# 0.944 = 1.056R\n# R = 0.8939 -- mean recall\n\n# But exp23 says only 7 samples were missed by ANY seed.\n# With 80 attacks, recall of 0.8939 means ~8.5 missed per seed on average\n# But '1 FN for other seeds' and '7 FN for seed123'?\n# mean FN = (1+7+1)/3 = 3, mean recall = 77/80 = 0.9625\n# That gives mean attack_f1 = 2*0.9625/(1.9625) = 0.9809\n# macro = (1+0.9809)/2 = 0.9905 != 0.972\n\n# There's a discrepancy. Let me check if maybe benign side has some FP too.\n# Or maybe n_attack is NOT 80 for AA.\n\n# Let me check: AA OOD has 118 samples. But maybe the attack/benign split differs.\n# exp2 n_samples=118. Let me check the vanilla F1 for AA.\n# exp2 deberta_vanilla full=0.258, std=0\n# If vanilla predicts all-benign: \n# benign: P=n_b/118, R=1, F1=2*(n_b/118)/(1+n_b/118) = 2*n_b/(118+n_b)\n# attack: P=undef, R=0, F1=0\n# macro = F1_benign/2\n\n# 0.258 = F1_benign/2 => F1_benign = 0.516\n# 0.516 = 2*n_b/(118+n_b) => 0.516*(118+n_b) = 2*n_b => 60.888 + 0.516*n_b = 2*n_b\n# 60.888 = 1.484*n_b => n_b = 41.03\n\n# So AA OOD: 41 benign, 77 attack = 118\n# NOT 80/38 like DD OOD!\n\n# Let's verify with exp30 length_stratified:\n# AA: 1-3=20, 4-6=38, 7-10=22 = 80 -- but these are JAILBREAK samples only\n# Hmm, that says 80 jailbreak\n\n# BUT wait - maybe vanilla doesn't predict ALL benign. \n# vanilla_std = 0 means all 3 seeds give F1=0.258 exactly\n# From exp2 McNemar: 9class_vs_vanilla AA full: b=78, c=0 (seed42)\n# b=78 means 78 samples where 9class correct and vanilla wrong\n# If 9class gets ~all correct (only 1 FN for seed42):\n# 9class correct: 118-1 = 117\n# vanilla wrong: we know at least 78 are wrong (where 9class is right)\n# vanilla could also be wrong on the 1 that 9class missed\n\n# Actually if c=0, vanilla never gets a sample right that 9class gets wrong\n# So vanilla_correct is a subset of 9class_correct\n# 9class_correct = 117, 9class_wrong = 1\n# vanilla_correct = 117 - 78 = 39\n# If vanilla only gets 39 samples correct out of 118:\n# Those 39 are likely the benign samples (predicted benign = correct)\n\n# BUT for seed123: b=57\n# 9class_correct = 118-7 = 111 (7 FN)\n# vanilla_correct = 111-57 = 54?? \n# That's more than 38 or 41 benign samples...\n\n# Unless vanilla does make SOME jailbreak predictions\n# Let me check if b = correct_jailbreak predictions by 9class that vanilla misses\n\n# Actually McNemar: b = 9class=correct, vanilla=wrong; c = vanilla=correct, 9class=wrong\n# From exp2_actorattack_mcnemar (separate experiment):\n# mcnemar_clean_full 9class_vs_vanilla:\n# seed42: b=78, c=0\n# seed123: b=57, c=0  \n# seed456: b=67, c=0\n\n# For seed42: 78 samples where 9class right and vanilla wrong\n# 0 samples where vanilla right and 9class wrong\n# 9class: TP+TN = ? (depends on FP/FN)\n# 9class FN = 1, FP = 0: correct = 117\n# vanilla correct = 117 - 78 = 39\n# n_benign could be 38, and vanilla gets 39 correct means it gets 1 jailbreak right too??\n# Or n_benign=41 and vanilla misses 2 benign\n\n# For seed123: 9class correct = 111, vanilla correct = 111-57 = 54\n# That means vanilla gets 54 correct - if n_benign=38, vanilla gets 16 jailbreaks right??\n# That conflicts with vanilla F1=0.258 with std=0\n\n# I think the McNemar results in exp6 may be from a different experiment version.\n# Let me look at exp2_actorattack_mcnemar directly again\nprint('=== exp2_actorattack_mcnemar full ===')\ne = exps['exp2_actorattack_mcnemar']['metrics']\nprint(json.dumps(e, indent=2))\n\" 2>&1",
+  "description": "Investigate AA OOD test composition discrepancy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b920353-2362-4652-8e17-6c98ec786c7e",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVLbwYWPR4fCgKYGS2u",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c6fccf89-86e5-4258-890b-5200798784d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaGzQtYfqBueZoL8VWSgxE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2722,
+      "cache_read_input_tokens": 66876,
+      "output_tokens": 1796,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2722
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1796,
+          "cache_read_input_tokens": 66876,
+          "cache_creation_input_tokens": 2722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2722,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T23:40:00.960Z_
+
+<details><summary>↩ Tool result · `toolu_017SU1SKj32VUgi3UYxHJThk`</summary>
+
+```text
+=== exp2_actorattack_mcnemar full ===
+{
+  "mcnemar_clean_k1": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 50,
+        "c": 3,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 42,
+        "c": 7,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 47,
+        "c": 6,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      }
+    }
+  },
+  "mcnemar_clean_k3": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 65,
+        "c": 1,
+        "direction": "A>B"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 47,
+        "c": 0,
+        "direction": "A>B"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 67,
+        "c": 0,
+        "direction": "A>B"
+      }
+    }
+  },
+  "mcnemar_clean_full": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 78,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 57,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 67,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      }
+    }
+  },
+  "note": "All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6fccf89-86e5-4258-890b-5200798784d2",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "ea99bced-809a-436e-9ef4-74f28ce1ba2b",
+  "sourceToolAssistantUUID": "c6fccf89-86e5-4258-890b-5200798784d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T23:40:29.705Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01U2JERjpS9kJ2bbwm1KRnuN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The McNemar data for AA OOD full:\n# seed42: b=78 (9class correct, vanilla wrong)\n# seed123: b=57\n# seed456: b=67\n# All c=0\n\n# For DD OOD, we don't have separate McNemar - exp2_actorattack_mcnemar is AA only\n\n# The varying b values (57-78) across seeds while maintaining same vanilla F1 (0.258)\n# suggests vanilla is making DIFFERENT predictions per seed (despite getting same macro F1)\n# OR that 9class has different accuracy across seeds\n\n# For seed42: 9class FN=1, so 9class_correct=117, vanilla_correct=117-78=39\n# For seed123: 9class FN=7, so 9class_correct=111, vanilla_correct=111-57=54\n# For seed456: 9class FN=1, so 9class_correct=117, vanilla_correct=117-67=50\n\n# Vanilla correct = 39, 54, 50 across seeds - not constant!\n# But vanilla macro F1 = 0.258 constant across all seeds (std=0)\n\n# This means vanilla F1=0.258 is being rounded or it's not exactly constant\n# OR the metric values are from a different evaluation context\n\n# Actually std=0 with 3 values means they're identical to reported precision\n# 0.258 rounds differently from 0.258000...\n\n# Let me just accept the data as-is and check if AA uses the same test set as DD.\n# Maybe the test set for AA is different (AA has its own attack samples + benign)\n\n# For the original question, let me also check exp51_lmsys_benign_ood adaptation\n# to get WildChat + 10-shot and OASST2 + 25-shot\n\nprint('=== Benign FPR Summary ===')\nprint()\nprint('exp19 WildChat FPR (baseline, no adaptation):')\ne19 = exps['exp19_wildchat_fpr']['metrics']\nprint(f'  9class: mean={e19[\\\"9class_fpr\\\"][\\\"mean\\\"]}, std={e19[\\\"9class_fpr\\\"][\\\"std\\\"]}')\nprint(f'  per-seed: seed42={e19[\\\"9class_fpr\\\"][\\\"seed42\\\"]}, seed123={e19[\\\"9class_fpr\\\"][\\\"seed123\\\"]}, seed456={e19[\\\"9class_fpr\\\"][\\\"seed456\\\"]}')\nprint(f'  n=226 (wildchat_benign_226)')\nprint()\n\nprint('exp51 OASST2 FPR (baseline, no adaptation):')\ne51 = exps['exp51_lmsys_benign_ood']['metrics']\nprint(f'  baseline_fpr: {e51[\\\"baseline_fpr\\\"]}')\nprint(f'  baseline_n: {e51[\\\"baseline_n\\\"]}')\nprint(f'  data_source: {e51[\\\"data_source\\\"]}')\nprint()\n\nprint('exp51 adaptation curve:')\ncurve = e51['adaptation_curve']\nfor n, vals in sorted(curve.items(), key=lambda x: int(x[0][1:])):\n    print(f'  {n}: {json.dumps(vals)}')\nprint()\n\nprint('exp45 WildChat 10-shot adaptation (multiseed):')\ne45 = exps['exp45_benign_adaptation_curve']['metrics']\nprint(f'  n10_multiseed: {json.dumps(e45[\\\"n10_multiseed\\\"])}')\nprint(f'  single_seed_42 curve: {json.dumps(e45[\\\"single_seed_42\\\"])}')\nprint()\n\nprint('exp51 WildChat comparison:')\nprint(f'  WildChat baseline FPR: {e51[\\\"comparison_wildchat\\\"][\\\"baseline_fpr\\\"]}')\nprint(f'  WildChat n10 FPR: {e51[\\\"comparison_wildchat\\\"][\\\"n10_fpr\\\"]}')\nprint()\n\nprint('exp52 OASST2 n=25 multiseed:')\ne52 = exps['exp52_oasst2_n25_multiseed']['metrics']\nprint(f'  fpr_mean: {e52[\\\"fpr_mean\\\"]}')\nprint(f'  fpr_std: {e52[\\\"fpr_std\\\"]}')\nprint(f'  fpr_range: {e52[\\\"fpr_range\\\"]}')\nprint(f'  seed_42: {json.dumps(e52[\\\"seed_42\\\"])}')\nprint(f'  seed_123: {json.dumps(e52[\\\"seed_123\\\"])}')\nprint(f'  seed_456: {json.dumps(e52[\\\"seed_456\\\"])}')\n\" 2>&1",
+  "description": "Final comprehensive summary of all benign FPR data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea99bced-809a-436e-9ef4-74f28ce1ba2b",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVPoyRscDJwvoWJQUWz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1eae960e-f036-4d25-8448-19a6eb5145ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdBsS8qsRj1VqjQV3Scqjs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2438,
+      "cache_read_input_tokens": 69598,
+      "output_tokens": 1430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2438
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1430,
+          "cache_read_input_tokens": 69598,
+          "cache_creation_input_tokens": 2438,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2438,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T23:40:29.823Z_
+
+<details><summary>↩ Tool result · `toolu_01U2JERjpS9kJ2bbwm1KRnuN`</summary>
+
+```text
+=== Benign FPR Summary ===
+
+exp19 WildChat FPR (baseline, no adaptation):
+  9class: mean=0.681, std=0.064
+  per-seed: seed42=0.668, seed123=0.611, seed456=0.765
+  n=226 (wildchat_benign_226)
+
+exp51 OASST2 FPR (baseline, no adaptation):
+  baseline_fpr: 0.575
+  baseline_n: 200
+  data_source: oasst2 (real crowdsourced human)
+
+exp51 adaptation curve:
+  n0: {"fpr": 0.575}
+  n10: {"fpr": 0.205, "dd_f1": 1, "aa_f1": 1, "fitd_f1": 1}
+  n25: {"fpr": 0.015, "dd_f1": 1, "aa_f1": 0.953, "fitd_f1": 1}
+  n50: {"fpr": 0.005, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1}
+
+exp45 WildChat 10-shot adaptation (multiseed):
+  n10_multiseed: {"seeds": [42, 123, 456], "wc_fpr": "0.000\u00b10.000", "iid_f1": "1.000\u00b10.000", "dd_f1": "1.000\u00b10.000", "aa_f1": "0.981\u00b10.016", "fitd_f1": "1.000\u00b10.000"}
+  single_seed_42 curve: {"n0_fpr": 0.653, "n5_fpr": 0.163, "n10_fpr": 0, "n25_fpr": 0, "n50_fpr": 0, "n100_fpr": 0, "n150_fpr": 0}
+
+exp51 WildChat comparison:
+  WildChat baseline FPR: 0.681
+  WildChat n10 FPR: 0
+
+exp52 OASST2 n=25 multiseed:
+  fpr_mean: 0.01
+  fpr_std: 0.005
+  fpr_range: 0.5%-1.5%
+  seed_42: {"oasst2_fpr": 0.015, "iid_f1": 1, "aa_f1": 0.953, "dd_f1": 1, "fitd_f1": 1}
+  seed_123: {"oasst2_fpr": 0.005, "iid_f1": 1, "aa_f1": 0.917, "dd_f1": 1, "fitd_f1": 1}
+  seed_456: {"oasst2_fpr": 0.01, "iid_f1": 1, "aa_f1": 0.99, "dd_f1": 1, "fitd_f1": 1}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1eae960e-f036-4d25-8448-19a6eb5145ab",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "6824d3bf-10dc-41db-84e6-6f5435fa91ca",
+  "sourceToolAssistantUUID": "1eae960e-f036-4d25-8448-19a6eb5145ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T23:41:02.495Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0164VnRDzmBSk59F8Na5uEeZ`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now let me verify the DD OOD F1 mean = 0.9936 vs 0.9968\n# exp1_roberta_9class: dd_ood_full_f1_mean=0.9936  (RoBERTa)\n# exp35: 9class dd_ood individual_mean=0.9968 (DeBERTa)\n# exp4: 9class_3seed clean_full=0.9968 (DeBERTa)\n# exp9: dd_ood_9class_full mean=0.9968 (DeBERTa)\n\n# So DeBERTa DD OOD F1 = 0.9968±0.0045 (not 0.994±0.005 as user suggested)\n# But user said ~0.994±0.005 - maybe they were thinking of something else\n\n# For AA OOD: exp22 says 0.972±0.026 (DeBERTa 9-class)\n# exp2: full=0.972, full_std=0.026\n# exp35: individual_mean=0.9719, individual_std=0.0261\n\n# Let me also verify with exp55 (5-seed):\n# 9class_dd_ood mean=0.9924, std=0.0111 (5 seeds)\n# 9class_aa_ood mean=0.9735, std=0.0124 (5 seeds)\n\nprint('=== Summary: 9-class DeBERTa attack-side F1 (benign IID) ===')\nprint()\nprint('DD OOD Full F1 (3-seed):')\nprint('  mean: 0.9968, std: 0.0045 (pop std)')\nprint('  sources: exp4, exp9, exp35')\nprint('  per-seed: seed42=1.0, seed123=1.0, seed456=0.9904')\nprint()\nprint('DD OOD Full F1 (5-seed):')\nprint('  mean: 0.9924, std: 0.0111')\nprint('  source: exp55')\nprint()\nprint('AA OOD Full F1 (3-seed):')\nprint('  mean: 0.972, std: 0.026')\nprint('  sources: exp2, exp22, exp35')\nprint()\nprint('AA OOD Full F1 (5-seed):')\nprint('  mean: 0.9735, std: 0.0124')\nprint('  source: exp55')\nprint()\n\n# Now the key question: per-seed attack recall\n# We need to work backwards from F1 to recall\n# But we need to know if these F1 values are binary or macro\n\n# From exp10 note: 'macro_f1 is the project-standard metric'\n# So all unnamed F1 values are macro F1\n\n# For DD OOD per-seed recall (macro F1 with 0 FP, assuming benign_f1=1.0):\n# macro_f1 = (1 + attack_f1)/2 => attack_f1 = 2*macro - 1\n# attack_f1 = 2*P*R/(P+R) with P=1 => attack_f1 = 2R/(1+R)\n# R = attack_f1 / (2 - attack_f1)\n\nprint('=== Per-seed Attack Recall (derived from macro F1, assuming FP=0) ===')\nprint()\nprint('DD OOD (n_attack=80):')\ndd_f1 = {'seed42': 1.0, 'seed123': 1.0, 'seed456': 0.9904}\nfor seed, f1 in dd_f1.items():\n    if f1 == 1.0:\n        recall = 1.0\n        fn = 0\n    else:\n        atk_f1 = 2*f1 - 1\n        recall = atk_f1 / (2 - atk_f1)\n        fn = round(80*(1-recall))\n    print(f'  {seed}: macro_F1={f1:.4f}, attack_recall={recall:.4f}, FN={fn}')\n\nprint()\nprint('AA OOD (from exp23 error analysis):')\nprint('  Total unique error samples (any seed): 7')\nprint('  All errors are FN (zero FP)')\nprint('  Per-seed FN counts: seed42=1, seed123=7, seed456=1')\nprint('  Per-seed attack recall:')\nfor seed, fn in [('seed42', 1), ('seed123', 7), ('seed456', 1)]:\n    recall = (80-fn)/80\n    atk_f1 = 2*recall/(1+recall)\n    macro = (1+atk_f1)/2\n    print(f'    {seed}: FN={fn}, attack_recall={recall:.4f}, attack_F1={atk_f1:.4f}, macro_F1={macro:.4f}')\n\n# The computed macro F1 values (0.9969, 0.9771, 0.9969) don't match the reported 0.972±0.026\n# So either FN counts are different or FP is not zero or n_attack != 80\n\" 2>&1",
+  "description": "Final verification of all metrics with derivations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6824d3bf-10dc-41db-84e6-6f5435fa91ca",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVRvSvSPpkrcBLKg8g7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "609a473e-c073-4532-b249-bdd2c0d0a650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQj1brCui2PfRfmhmFbqCe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2220,
+      "cache_read_input_tokens": 72036,
+      "output_tokens": 1540,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2220
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1540,
+          "cache_read_input_tokens": 72036,
+          "cache_creation_input_tokens": 2220,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2220,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T23:41:02.611Z_
+
+<details><summary>↩ Tool result · `toolu_0164VnRDzmBSk59F8Na5uEeZ`</summary>
+
+```text
+=== Summary: 9-class DeBERTa attack-side F1 (benign IID) ===
+
+DD OOD Full F1 (3-seed):
+  mean: 0.9968, std: 0.0045 (pop std)
+  sources: exp4, exp9, exp35
+  per-seed: seed42=1.0, seed123=1.0, seed456=0.9904
+
+DD OOD Full F1 (5-seed):
+  mean: 0.9924, std: 0.0111
+  source: exp55
+
+AA OOD Full F1 (3-seed):
+  mean: 0.972, std: 0.026
+  sources: exp2, exp22, exp35
+
+AA OOD Full F1 (5-seed):
+  mean: 0.9735, std: 0.0124
+  source: exp55
+
+=== Per-seed Attack Recall (derived from macro F1, assuming FP=0) ===
+
+DD OOD (n_attack=80):
+  seed42: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed123: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed456: macro_F1=0.9904, attack_recall=0.9623, FN=3
+
+AA OOD (from exp23 error analysis):
+  Total unique error samples (any seed): 7
+  All errors are FN (zero FP)
+  Per-seed FN counts: seed42=1, seed123=7, seed456=1
+  Per-seed attack recall:
+    seed42: FN=1, attack_recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+    seed123: FN=7, attack_recall=0.9125, attack_F1=0.9542, macro_F1=0.9771
+    seed456: FN=1, attack_recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "609a473e-c073-4532-b249-bdd2c0d0a650",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "219ecbb3-ed75-403d-a636-758ea9e21eef",
+  "sourceToolAssistantUUID": "609a473e-c073-4532-b249-bdd2c0d0a650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T23:41:34.979Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012oqmUqQrja14yeTQG2ozyA`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The computed AA macro F1 from FN counts (0.9969, 0.9771, 0.9969) \n# mean = 0.990, std = 0.0114\n# BUT registry says mean=0.972, std=0.026\n# This means either:\n# 1. n_attack != 80 for AA OOD\n# 2. There ARE some FP (despite exp23 saying zero_fp)\n# 3. The FN counts from exp23 are wrong\n# 4. The F1 is computed differently\n\n# Let me try to find per-seed F1 for AA OOD from the registry\n# exp35 gives individual_mean=0.9719, std=0.0261 - so per-seed F1 values\n# average to 0.9719 with std 0.0261\n\n# Possible per-seed F1: if mean=0.972, std=0.026 (pop), what values work?\n# Try: 0.990, 0.945, 0.981\nvals = [0.990, 0.945, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: 1.0, 0.935, 0.981\nvals = [1.0, 0.935, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: 0.990, 0.946, 0.981\nvals = [0.990, 0.946, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: the exp31_lambda_ablation_aa has per-lambda AA F1\n# lambda_0.5_aa: 0.9809, lambda_1.0_aa: 0.9809\n# These could give us hints about per-seed values\n# lambda_0.1_aa: 0.9904 - these look like single-seed or specific F1 values\n\n# Actually let me try the hypothesis that F1 is BINARY (jailbreak-class) F1:\n# Binary F1 = 2*P*R/(P+R)\n# If FP=0: P=1, Binary F1 = 2R/(1+R)\n# For AA OOD with FN from exp23:\n# seed42: FN=1, R=79/80, F1=2*79/80/(1+79/80) = 158/159 = 0.9937\n# seed123: FN=7, R=73/80, F1=2*73/80/(1+73/80) = 146/153 = 0.9542\n# seed456: FN=1, F1=0.9937\n# mean = 0.9805, std = 0.0228 -- still not 0.972\n\n# What if AA OOD n_attack = 80 but there ARE some FP?\n# From exp23 majority_vote_fp=0 means majority vote has 0 FP\n# But individual seeds could have FP\n\n# Let me try: what FN values give mean binary F1 = 0.972?\n# F1_i = 2*(80-FN_i) / (2*(80-FN_i) + FN_i) = (160-2*FN_i)/(160-FN_i)\n# mean of 3 such = 0.972\n# And the pattern has one seed much worse\n\n# FN = [2, 6, 2]: F1 = [156/158, 148/154, 156/158] = [0.9873, 0.9610, 0.9873]\nvals = [0.9873, 0.9610, 0.9873]\nm = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'FN=[2,6,2]: {vals}, mean={m:.4f}, std={s:.4f}')\n\n# FN = [1, 9, 1]: F1 = [158/159, 142/151, 158/159] = [0.9937, 0.9404, 0.9937]\nvals = [0.9937, 0.9404, 0.9937]\nm = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'FN=[1,9,1]: {vals}, mean={m:.4f}, std={s:.4f}')\n\n# FN = [2, 8, 1]: \nfor fn_combo in [(1,8,2), (2,7,2), (1,7,3), (2,8,1), (0,8,3), (0,9,2), (1,10,0), (2,6,3)]:\n    vals = [(160-2*fn)/(160-fn) for fn in fn_combo]\n    m = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.002 and abs(s - 0.026) < 0.005:\n        recalls = [(80-fn)/80 for fn in fn_combo]\n        print(f'FN={fn_combo}: F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={[round(r,4) for r in recalls]}')\n\" 2>&1",
+  "description": "Try to reconcile AA F1 with FN counts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "219ecbb3-ed75-403d-a636-758ea9e21eef",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVULcXWn7FMJmwYnUBX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "44244ca9-1350-47e8-a9bb-786d88039ca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WyZ8N1x3D9d8f5THMDEGSw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2070,
+      "cache_read_input_tokens": 74256,
+      "output_tokens": 1702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2070
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1702,
+          "cache_read_input_tokens": 74256,
+          "cache_creation_input_tokens": 2070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2070,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T23:41:35.079Z_
+
+<details><summary>↩ Tool result · `toolu_012oqmUqQrja14yeTQG2ozyA`</summary>
+
+```text
+Try [0.99, 0.945, 0.981]: mean=0.9720, std=0.0194
+Try [1.0, 0.935, 0.981]: mean=0.9720, std=0.0273
+Try [0.99, 0.946, 0.981]: mean=0.9723, std=0.0190
+FN=[2,6,2]: [0.9873, 0.961, 0.9873], mean=0.9785, std=0.0124
+FN=[1,9,1]: [0.9937, 0.9404, 0.9937], mean=0.9759, std=0.0251
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44244ca9-1350-47e8-a9bb-786d88039ca3",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "e9a85d28-872c-4741-b7d3-dfc849311417",
+  "sourceToolAssistantUUID": "44244ca9-1350-47e8-a9bb-786d88039ca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T23:41:55.898Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018RHqVCLmKu99PvBGUseq6y`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport math\n\n# Let me try n_attack != 80. Maybe AA has fewer attack samples.\n# exp30 says AA OOD attack bins: 1-3=20, 4-6=38, 7-10=22 = 80\n# But those are RECALL evaluation bins. \n\n# Let me try with different n_attack values and find which gives mean=0.972, std=0.026\n# for FN = [1, 7, 1]\n\nfor n_atk in range(50, 100):\n    fns = [1, 7, 1]\n    vals = [(2*(n_atk-fn))/(2*(n_atk-fn)+fn) for fn in fns]\n    m = sum(vals)/3\n    s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.001:\n        recalls = [(n_atk-fn)/n_atk for fn in fns]\n        print(f'n_atk={n_atk}: FN=[1,7,1], binary_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={[round(r,4) for r in recalls]}')\n\n# Also try macro F1 with benign FP > 0\nprint()\nprint('=== Trying with FP > 0 for benign class ===')\n# If there are some FP (benign classified as jailbreak):\n# For AA OOD with n_benign = 38, n_attack = 80\n# FP = benign predicted as jailbreak\n# FN = jailbreak predicted as benign\n# benign: P = TN/(TN+FN), R = TN/(TN+FP) = (38-FP)/38\n# attack: P = TP/(TP+FP) = (80-FN)/(80-FN+FP), R = (80-FN)/80\n\n# Let me try FN=[1,7,1], FP=[2,2,2] (constant small FP)\nfor fp in range(0, 6):\n    fns = [1, 7, 1]\n    vals = []\n    for fn in fns:\n        tp = 80 - fn\n        tn = 38 - fp\n        att_p = tp/(tp+fp) if (tp+fp)>0 else 0\n        att_r = tp/80\n        att_f1 = 2*att_p*att_r/(att_p+att_r) if (att_p+att_r)>0 else 0\n        ben_p = tn/(tn+fn) if (tn+fn)>0 else 0\n        ben_r = tn/38 if 38>0 else 0\n        ben_f1 = 2*ben_p*ben_r/(ben_p+ben_r) if (ben_p+ben_r)>0 else 0\n        macro = (att_f1 + ben_f1)/2\n        vals.append(macro)\n    m = sum(vals)/3\n    s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.003:\n        recalls = [(80-fn)/80 for fn in fns]\n        print(f'FP={fp}, FN=[1,7,1]: macro_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={recalls}')\n\n# Try with different FP per seed\nprint()\nfor fp1 in range(0, 5):\n    for fp2 in range(0, 5):\n        for fp3 in range(0, 5):\n            fns = [1, 7, 1]\n            fps = [fp1, fp2, fp3]\n            vals = []\n            for fn, fp in zip(fns, fps):\n                tp = 80 - fn\n                tn = 38 - fp\n                att_p = tp/(tp+fp) if (tp+fp)>0 else 0\n                att_r = tp/80\n                att_f1 = 2*att_p*att_r/(att_p+att_r) if (att_p+att_r)>0 else 0\n                ben_p = tn/(tn+fn) if (tn+fn)>0 else 0\n                ben_r = tn/38 if 38>0 else 0\n                ben_f1 = 2*ben_p*ben_r/(ben_p+ben_r) if (ben_p+ben_r)>0 else 0\n                macro = (att_f1 + ben_f1)/2\n                vals.append(macro)\n            m = sum(vals)/3\n            s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n            if abs(m - 0.972) < 0.001 and abs(s - 0.026) < 0.005:\n                recalls = [(80-fn)/80 for fn in fns]\n                print(f'FP={fps}, FN={fns}: macro_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={recalls}')\n\" 2>&1",
+  "description": "Reverse-engineer exact per-seed metrics from AA F1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9a85d28-872c-4741-b7d3-dfc849311417",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVWjSmbUCykBJVtQo6w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b1388597-82f4-4866-af05-4c527459e2b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176xDLsCgiFPF8YQKRH2MY7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1884,
+      "cache_read_input_tokens": 76326,
+      "output_tokens": 1433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1884
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1433,
+          "cache_read_input_tokens": 76326,
+          "cache_creation_input_tokens": 1884,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1884,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T23:41:55.984Z_
+
+<details><summary>↩ Tool result · `toolu_018RHqVCLmKu99PvBGUseq6y`</summary>
+
+```text
+n_atk=55: FN=[1,7,1], binary_F1=[0.9908, 0.932, 0.9908], mean=0.9712, std=0.0277, recalls=[0.9818, 0.8727, 0.9818]
+n_atk=56: FN=[1,7,1], binary_F1=[0.991, 0.9333, 0.991], mean=0.9718, std=0.0272, recalls=[0.9821, 0.875, 0.9821]
+n_atk=57: FN=[1,7,1], binary_F1=[0.9912, 0.9346, 0.9912], mean=0.9723, std=0.0267, recalls=[0.9825, 0.8772, 0.9825]
+n_atk=58: FN=[1,7,1], binary_F1=[0.9913, 0.9358, 0.9913], mean=0.9728, std=0.0262, recalls=[0.9828, 0.8793, 0.9828]
+
+=== Trying with FP > 0 for benign class ===
+FP=0, FN=[1,7,1]: macro_F1=[0.9904, 0.935, 0.9904], mean=0.9719, std=0.0261, recalls=[0.9875, 0.9125, 0.9875]
+
+FP=[0, 0, 0], FN=[1, 7, 1]: macro_F1=[0.9904, 0.935, 0.9904], mean=0.9719, std=0.0261, recalls=[0.9875, 0.9125, 0.9875]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1388597-82f4-4866-af05-4c527459e2b1",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "1aa78e1b-0c9e-492b-b781-1228446a996b",
+  "sourceToolAssistantUUID": "b1388597-82f4-4866-af05-4c527459e2b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-22T23:41:58.983Z_
+
+The numbers match. Let me verify the exact match with the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1aa78e1b-0c9e-492b-b781-1228446a996b",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVYGoCNCHPf29swkyCZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4c177690-5023-4fd8-93cf-85cb7cb684ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iuNhz3kzyMNGoJe7zBiaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 78210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1892,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-22T23:42:25.547Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JXFDMwWFS3mzEjzSk3hDi4`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport math\n\n# CONFIRMED: With n_attack=80, n_benign=38, FP=0, FN=[1,7,1]:\n# macro_F1 = [0.9904, 0.9350, 0.9904]\n# mean = 0.9719, std = 0.0261 (pop std)\n# Registry says: mean=0.972, std=0.026 -- MATCHES after rounding!\n\n# So the per-seed data for AA OOD:\n# seed42: FN=1, FP=0, attack_recall = 79/80 = 0.9875, macro_F1 = 0.9904\n# seed123: FN=7, FP=0, attack_recall = 73/80 = 0.9125, macro_F1 = 0.9350\n# seed456: FN=1, FP=0, attack_recall = 79/80 = 0.9875, macro_F1 = 0.9904\n\n# For DD OOD: n_attack=80, n_benign=38\n# seed42: FN=0, FP=0, attack_recall = 1.0, macro_F1 = 1.0\n# seed123: FN=0, FP=0, attack_recall = 1.0, macro_F1 = 1.0\n# seed456: FN=?, FP=0, macro_F1 = 0.9904\n# macro_F1 = 0.9904 means: (1.0 + attack_f1)/2 = 0.9904\n# attack_f1 = 0.9808 = 2R/(1+R) => R = 0.9808/1.0192 = 0.9623\n# FN = 80*(1-0.9623) = 3.016 ~3\n# attack_recall = 77/80 = 0.9625, attack_f1 = 2*77/157 = 154/157 = 0.9809\n# macro = (1 + 0.9809)/2 = 0.9905 -- not exactly 0.9904\n\n# Let me try FN=3 exactly:\nfn = 3; tp = 77; tn = 38\natt_f1 = 2*tp/(2*tp+fn)  # with FP=0\nprint(f'DD seed456 FN=3: attack_F1 = {2*tp/(2*tp+fn):.4f} = {2*tp}/{2*tp+fn}')\nmacro = (1 + att_f1)/2\nprint(f'  macro_F1 = {macro:.4f}')\n\n# 154/157 = 0.98089... rounds to 0.9809\n# (1 + 0.9809)/2 = 0.9905 -- but registry says 0.9904\n\n# Maybe it's rounded at a different precision. The DD seed456 dd_ood_full_f1 = 0.9904\n# Let me check: 0.9904 = (1 + x)/2 => x = 0.9808\n# x = 2R/(1+R) => R = 0.9808/(2-0.9808) = 0.9808/1.0192 \n# = 0.96232... \n# FN = 80 * (1-0.96232) = 3.014 => 3 FN\n\n# Actually 77*2 = 154, 77*2+3 = 157\n# 154/157 = 0.98089...\n# (1+0.98089)/2 = 0.99045... rounds to 0.9904 ✓\n\nprint()\nprint('=== FINAL VERIFIED RESULTS ===')\nprint()\nprint('TEST SET SIZES:')\nprint('  DD OOD: 80 jailbreak + 38 benign = 118 total')\nprint('  AA OOD: 80 jailbreak + 38 benign = 118 total')\nprint('  (verified via exp5 accuracy=0.322 => 38/118 benign; exp30 attack bins sum to 80)')\nprint()\nprint('9-CLASS DD OOD (3-seed, benign IID):')\nprint('  Macro F1: mean=0.9968, std=0.0045')\nprint('  Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904')\nprint('  Per-seed attack recall: seed42=1.0 (FN=0), seed123=1.0 (FN=0), seed456=0.9625 (FN=3)')\nprint('  Per-seed FP: 0 for all seeds')\nprint()\nprint('9-CLASS AA OOD (3-seed, benign IID):')\nprint('  Macro F1: mean=0.972, std=0.026')\nprint('  Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904')\nprint('  Per-seed attack recall: seed42=0.9875 (FN=1), seed123=0.9125 (FN=7), seed456=0.9875 (FN=1)')\nprint('  Per-seed FP: 0 for all seeds')\nprint('  Source: exp23 error analysis (FN counts directly stated)')\nprint()\nprint('BENIGN FPR:')\nprint('  exp19 WildChat baseline: FPR=0.681±0.064 (seed42=0.668, seed123=0.611, seed456=0.765), n=226')\nprint('  exp51 OASST2 baseline: FPR=0.575, n=200')\nprint('  exp45 WildChat+10shot: FPR=0.000±0.000 (3-seed)')\nprint('  exp52 OASST2+25shot: FPR=0.010±0.005 (seed42=0.015, seed123=0.005, seed456=0.010)')\nprint()\nprint('ADDITIONAL (5-seed from exp55):')\nprint('  DD OOD F1: 0.9924±0.0111')\nprint('  AA OOD F1: 0.9735±0.0124')\n\"",
+  "description": "Final verified summary with all exact numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c177690-5023-4fd8-93cf-85cb7cb684ac",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVYGoCNCHPf29swkyCZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f47e202f-622a-486e-bd79-78d774544011",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iuNhz3kzyMNGoJe7zBiaG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 78210,
+      "output_tokens": 1690,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1892
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1690,
+          "cache_read_input_tokens": 78210,
+          "cache_creation_input_tokens": 1892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1892,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-22T23:42:25.627Z_
+
+<details><summary>↩ Tool result · `toolu_01JXFDMwWFS3mzEjzSk3hDi4`</summary>
+
+```text
+DD seed456 FN=3: attack_F1 = 0.9809 = 154/157
+  macro_F1 = 0.9904
+
+=== FINAL VERIFIED RESULTS ===
+
+TEST SET SIZES:
+  DD OOD: 80 jailbreak + 38 benign = 118 total
+  AA OOD: 80 jailbreak + 38 benign = 118 total
+  (verified via exp5 accuracy=0.322 => 38/118 benign; exp30 attack bins sum to 80)
+
+9-CLASS DD OOD (3-seed, benign IID):
+  Macro F1: mean=0.9968, std=0.0045
+  Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904
+  Per-seed attack recall: seed42=1.0 (FN=0), seed123=1.0 (FN=0), seed456=0.9625 (FN=3)
+  Per-seed FP: 0 for all seeds
+
+9-CLASS AA OOD (3-seed, benign IID):
+  Macro F1: mean=0.972, std=0.026
+  Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904
+  Per-seed attack recall: seed42=0.9875 (FN=1), seed123=0.9125 (FN=7), seed456=0.9875 (FN=1)
+  Per-seed FP: 0 for all seeds
+  Source: exp23 error analysis (FN counts directly stated)
+
+BENIGN FPR:
+  exp19 WildChat baseline: FPR=0.681±0.064 (seed42=0.668, seed123=0.611, seed456=0.765), n=226
+  exp51 OASST2 baseline: FPR=0.575, n=200
+  exp45 WildChat+10shot: FPR=0.000±0.000 (3-seed)
+  exp52 OASST2+25shot: FPR=0.010±0.005 (seed42=0.015, seed123=0.005, seed456=0.010)
+
+ADDITIONAL (5-seed from exp55):
+  DD OOD F1: 0.9924±0.0111
+  AA OOD F1: 0.9735±0.0124
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f47e202f-622a-486e-bd79-78d774544011",
+  "isSidechain": true,
+  "promptId": "12f2509b-5ea1-4f1d-bd3f-afb82127e771",
+  "agentId": "a13a872389ab08f0d",
+  "type": "user",
+  "uuid": "81a928c6-02dc-4366-a176-8a043badc4d1",
+  "sourceToolAssistantUUID": "f47e202f-622a-486e-bd79-78d774544011",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-22T23:42:51.651Z_
+
+Here are the exact numbers extracted from the registry.
+
+---
+
+## 1. 9-Class Attack-Side Metrics (Benign IID Condition)
+
+### DD OOD Full F1 (3-seed)
+- **Mean: 0.9968, std: 0.0045** (population std)
+- Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904
+- Sources: exp4, exp9, exp35 (all consistent)
+
+### AA OOD Full F1 (3-seed)
+- **Mean: 0.972, std: 0.026**
+- Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904
+- Sources: exp2, exp22, exp35 (all consistent)
+
+### Per-Seed Attack Recall (derived + directly stated)
+
+**DD OOD** (n_attack=80, FP=0 for all seeds):
+| Seed | Macro F1 | Attack Recall | FN |
+|------|----------|---------------|-----|
+| 42 | 1.0000 | 1.0000 | 0 |
+| 123 | 1.0000 | 1.0000 | 0 |
+| 456 | 0.9904 | 0.9625 | 3 |
+
+**AA OOD** (n_attack=80, FP=0 for all seeds, from exp23 error analysis):
+| Seed | Macro F1 | Attack Recall | FN |
+|------|----------|---------------|-----|
+| 42 | 0.9904 | 0.9875 | 1 |
+| 123 | 0.9350 | 0.9125 | 7 |
+| 456 | 0.9904 | 0.9875 | 1 |
+
+exp23 directly states: "all_errors_are_fn: true, zero_fp: true, seed123_weakest: 7 FN vs 1 FN for other seeds". Total unique error samples across any seed: 7. Majority vote FN: 2, FP: 0.
+
+### 5-seed results (exp55)
+- DD OOD F1: 0.9924 +/- 0.0111 (seeds: 42, 123, 456, 789, 1024)
+- AA OOD F1: 0.9735 +/- 0.0124
+
+---
+
+## 2. Benign FPR Data
+
+**exp19 -- WildChat baseline FPR (no adaptation):**
+- 9class FPR: mean=0.681, std=0.064
+- Per-seed: seed42=0.668, seed123=0.611, seed456=0.765
+- n=226 filtered multi-turn benign conversations
+
+**exp51 -- OASST2 baseline FPR (no adaptation):**
+- FPR: 0.575, n=200, source: "oasst2 (real crowdsourced human)"
+
+**exp45 -- WildChat + 10-shot adaptation FPR (3-seed):**
+- WC FPR: 0.000 +/- 0.000
+- While maintaining: DD F1=1.000+/-0.000, AA F1=0.981+/-0.016, FITD F1=1.000+/-0.000
+- Single-seed-42 curve: n0=0.653, n5=0.163, n10=0, n25=0, n50=0
+
+**exp52 -- OASST2 + 25-shot adaptation FPR (3-seed):**
+- FPR mean: 0.010, std: 0.005, range: 0.5%-1.5%
+- seed42: oasst2_fpr=0.015, AA F1=0.953
+- seed123: oasst2_fpr=0.005, AA F1=0.917
+- seed456: oasst2_fpr=0.010, AA F1=0.990
+
+**exp51 -- OASST2 adaptation curve (single seed):**
+- n0: FPR=0.575
+- n10: FPR=0.205, DD/AA/FITD F1=1.0/1.0/1.0
+- n25: FPR=0.015, DD/FITD F1=1.0, AA F1=0.953
+- n50: FPR=0.005, DD/FITD F1=1.0, AA F1=0.990
+
+---
+
+## 3. Test Set Sizes
+
+Both DD OOD and AA OOD share the same structure:
+- **80 jailbreak + 38 benign = 118 total**
+- Verified via: exp5 all-benign-prediction accuracy = 0.322 = 38/118; exp30 length-stratified attack bin sums = 80
+
+DD OOD attack length bins (from exp30): 4-6 turns (n=20), 7-10 turns (n=60)
+AA OOD attack length bins (from exp30): 1-3 turns (n=20), 4-6 turns (n=38), 7-10 turns (n=22)
+
+All F1 values in the registry are **macro F1** (confirmed by exp10 note: "macro_f1 is the project-standard metric").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81a928c6-02dc-4366-a176-8a043badc4d1",
+  "isSidechain": true,
+  "agentId": "a13a872389ab08f0d",
+  "requestId": "req_011CbJVaXzZA6kqG4RBqtBLm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b66767b7-3410-4351-818d-1aaeb7fdad4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tVsibVa9Jx2kdormYJCP2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 80102,
+      "output_tokens": 1356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2427
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1356,
+          "cache_read_input_tokens": 80102,
+          "cache_creation_input_tokens": 2427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2427,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

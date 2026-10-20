@@ -1,0 +1,14428 @@
+# Research conversation: [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director  — Part 1 of 10
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+[Transcript overview](../research-conversation-director-main-agent-post-to-director-director-main-agent-post-to-director.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/7d/7dfc9badb55c86817975.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+2 recorded events
+
+
+### Runtime record
+
+_source line 1 · 2026-05-20T09:24:25.352Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T09:24:25.352Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 2 · 2026-05-20T09:24:25.356Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T09:24:25.356Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+27 recorded events
+
+
+### User
+
+_source line 3 · 2026-05-20T09:24:25.409Z_
+
+[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "57547ab4-a66f-44f4-b150-6fb9aa7226a5",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 4 · 2026-05-20T09:24:25.408Z_
+
+```json
+{
+  "parentUuid": "57547ab4-a66f-44f4-b150-6fb9aa7226a5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a83416c8-5872-4070-ac95-6c9f332d744d",
+  "timestamp": "2026-05-20T09:24:25.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 5 · 2026-05-20T09:24:25.408Z_
+
+```json
+{
+  "parentUuid": "a83416c8-5872-4070-ac95-6c9f332d744d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "2e71b4b1-48bc-4acc-9a3e-a5c3d4ec9a77",
+  "timestamp": "2026-05-20T09:24:25.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 6 · 2026-05-20T09:24:25.408Z_
+
+```json
+{
+  "parentUuid": "2e71b4b1-48bc-4acc-9a3e-a5c3d4ec9a77",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "dcb1a0bf-f745-42c1-92b4-323b535267cf",
+  "timestamp": "2026-05-20T09:24:25.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 7 · 2026-05-20T09:24:25.409Z_
+
+```json
+{
+  "parentUuid": "dcb1a0bf-f745-42c1-92b4-323b535267cf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d145de89-fd23-4838-b992-f2d1a9860451",
+  "timestamp": "2026-05-20T09:24:25.409Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 9 · 2026-05-20T09:24:31.117Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The system reminder says I completed a Director instruction but didn't report back via `paper_agent_post_to_director`. Let me first understand the current state - what was I working on? I need to check the context.
+
+Looking at the conversation, this appears to be a fresh session start. There's no prior Director instruction visible in this conversation. The system reminder seems to be a generic reminder, but I don't have context about what was completed.
+
+Let me check the current state of the project to understand what's going on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d145de89-fd23-4838-b992-f2d1a9860451",
+  "isSidechain": false,
+  "requestId": "req_011CbDaXoRE1LCtyYFTMADun",
+  "type": "assistant",
+  "uuid": "93053817-8993-458a-b2ee-4f2be5d53dfa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011xVmpQeeVzHpofsDQcH7Fn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20978,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 20978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 10 · 2026-05-20T09:24:31.719Z_
+
+这是一个新会话，我需要先了解当前项目状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93053817-8993-458a-b2ee-4f2be5d53dfa",
+  "isSidechain": false,
+  "requestId": "req_011CbDaXoRE1LCtyYFTMADun",
+  "type": "assistant",
+  "uuid": "ad55c154-d05d-45fe-bea3-e6d37ae6c192",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011xVmpQeeVzHpofsDQcH7Fn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20978,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 20978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 11 · 2026-05-20T09:24:32.751Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LsGTWRiovWSjnF56htUVhQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__paper_agent_post_to_director,mcp__agent-ml-research__load_project_config",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad55c154-d05d-45fe-bea3-e6d37ae6c192",
+  "isSidechain": false,
+  "requestId": "req_011CbDaXoRE1LCtyYFTMADun",
+  "type": "assistant",
+  "uuid": "ad9592f2-a0a3-49db-acf0-1ecee2ab1ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011xVmpQeeVzHpofsDQcH7Fn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20978,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 20978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 12 · 2026-05-20T09:24:32.758Z_
+
+<details><summary>↩ Tool result · `toolu_01LsGTWRiovWSjnF56htUVhQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__paper_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad9592f2-a0a3-49db-acf0-1ecee2ab1ad0",
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "b8f44aa5-6b95-414c-95db-50a14fbbc30c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__load_project_config"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__paper_agent_post_to_director,mcp__agent-ml-research__load_project_config",
+    "total_deferred_tools": 51
+  },
+  "sourceToolAssistantUUID": "ad9592f2-a0a3-49db-acf0-1ecee2ab1ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 13 · 2026-05-20T09:24:35.691Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the current state of the project to understand what's happening. I need to look at the memory files and the current project state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8f44aa5-6b95-414c-95db-50a14fbbc30c",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYM3zhJgfFHApv9tEj",
+  "type": "assistant",
+  "uuid": "9b2fc32e-50ad-4f21-b228-7bbde98db820",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbUXnragXWT5LWfw7wnVGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 32425,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 32425,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 14 · 2026-05-20T09:24:36.234Z_
+
+让我先检查当前项目状态和记忆文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b2fc32e-50ad-4f21-b228-7bbde98db820",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYM3zhJgfFHApv9tEj",
+  "type": "assistant",
+  "uuid": "c01279f9-02e8-4e65-bac3-4b70e3373588",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbUXnragXWT5LWfw7wnVGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 32425,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 32425,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 15 · 2026-05-20T09:24:37.845Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VstsiSSHcLXCRCzrF7J1p9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea_gen_0514_2-projects-persuasion-turn-jailbreak-detect--claude-sessions-paper-agent-6be59e15/memory/MEMORY.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c01279f9-02e8-4e65-bac3-4b70e3373588",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYM3zhJgfFHApv9tEj",
+  "type": "assistant",
+  "uuid": "d142f5d3-bfb8-47fc-af46-df7c6c501c34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbUXnragXWT5LWfw7wnVGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 32425,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 32425,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 16 · 2026-05-20T09:24:37.858Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VstsiSSHcLXCRCzrF7J1p9`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d142f5d3-bfb8-47fc-af46-df7c6c501c34",
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "3831aa54-2ef0-40e5-bf66-3f2b8c2c8447",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15.",
+  "sourceToolAssistantUUID": "d142f5d3-bfb8-47fc-af46-df7c6c501c34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 17 · 2026-05-20T09:24:38.678Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01U5X9jXzLKNDypcHMbmz6Jc`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3831aa54-2ef0-40e5-bf66-3f2b8c2c8447",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYM3zhJgfFHApv9tEj",
+  "type": "assistant",
+  "uuid": "fbc9a777-9014-4464-b0fd-3fc02e906ee7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbUXnragXWT5LWfw7wnVGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 32425,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 32425,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 18 · 2026-05-20T09:24:38.871Z_
+
+<details><summary>↩ Tool result · `toolu_01Sg1bPgu4TJ5Gk9nhmCCh8C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\n\\n## 核心方向\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\n\\n## 当前阶段\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\n\\n## 已完成\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\n- [x] D049: Core Claim 1 重构为 \\\"classification-based DAPT is robust\\\"\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\n\\n## 待完成\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\n- [ ] Round 5 审稿报告返回后处理\\n\\n## 数据泄漏记录\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\n\\n## 编译状态\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\n\\n## 评分趋势\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\n\\n## 实验完成度\\n成功 32 / 负向 15 / 失败 2 / 共 49\\n\\n## GPU 预算\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\n| D051 | 2026-05-20 | ToxicChat \\\"dramatic improvement\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\"domain exposure suffices\\\" 重构为 \\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "763c66a1-16ae-4e79-83cc-b9bf908aaaf4",
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "ac69d6c6-421e-4d5e-a8c1-7875b1fb0a34",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\\\", \\\"content\\\": \\\"# persuasion_turn_jailbreak_detect — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\\\n\\\\n## 核心方向\\\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\\\n\\\\n## 当前阶段\\\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\\\n\\\\n## 已完成\\\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\\\n- [x] D049: Core Claim 1 重构为 \\\\\\\"classification-based DAPT is robust\\\\\\\"\\\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\\\n\\\\n## 待完成\\\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\\\n- [ ] Round 5 审稿报告返回后处理\\\\n\\\\n## 数据泄漏记录\\\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\\\n\\\\n## 编译状态\\\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\\\n\\\\n## 评分趋势\\\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\\\n\\\\n## 实验完成度\\\\n成功 32 / 负向 15 / 失败 2 / 共 49\\\\n\\\\n## GPU 预算\\\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D051 | 2026-05-20 | ToxicChat \\\\\\\"dramatic improvement\\\\\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\\\\\"domain exposure suffices\\\\\\\" 重构为 \\\\\\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\\\n\\\\n\\\", \\\"lines\\\": 62}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\n\\n## 核心方向\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\n\\n## 当前阶段\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\n\\n## 已完成\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\n- [x] D049: Core Claim 1 重构为 \\\"classification-based DAPT is robust\\\"\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\n\\n## 待完成\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\n- [ ] Round 5 审稿报告返回后处理\\n\\n## 数据泄漏记录\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\n\\n## 编译状态\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\n\\n## 评分趋势\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\n\\n## 实验完成度\\n成功 32 / 负向 15 / 失败 2 / 共 49\\n\\n## GPU 预算\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\n| D051 | 2026-05-20 | ToxicChat \\\"dramatic improvement\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\"domain exposure suffices\\\" 重构为 \\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "763c66a1-16ae-4e79-83cc-b9bf908aaaf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-20T09:24:38.693Z_
+
+<details><summary>↩ Tool result · `toolu_01U5X9jXzLKNDypcHMbmz6Jc`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/checklist.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/checklist.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbc9a777-9014-4464-b0fd-3fc02e906ee7",
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "028b76b1-b3db-4c77-986a-87878faac9cd",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/median/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/worst/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/best/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/median/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260518T032748/worst/paper.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/checklist.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/checklist.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
+    ],
+    "durationMs": 9,
+    "numFiles": 26,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "fbc9a777-9014-4464-b0fd-3fc02e906ee7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 20 · 2026-05-20T09:24:38.835Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01Sg1bPgu4TJ5Gk9nhmCCh8C`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "028b76b1-b3db-4c77-986a-87878faac9cd",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYM3zhJgfFHApv9tEj",
+  "type": "assistant",
+  "uuid": "763c66a1-16ae-4e79-83cc-b9bf908aaaf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbUXnragXWT5LWfw7wnVGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 32425,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 32425,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。",
+  "leafUuid": "ac69d6c6-421e-4d5e-a8c1-7875b1fb0a34",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 23 · 2026-05-20T09:24:48.860Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the context. The project has:
+1. A full paper already written (`.tex` files exist in `paper/` directory)
+2. Round 5 review has been submitted
+3. The roadmap says "Round 5 审稿已提交 → 等待用户审批 review mode"
+
+The system reminder says I completed a Director instruction but didn't call `paper_agent_post_to_director`. Since this is a new session, I don't have context about what specific instruction was completed. Let me check if there's any recent activity or pending state.
+
+
+Looking at the roadmap, Round 5 review was submitted but is now waiting for user approval. I should report this current status back to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac69d6c6-421e-4d5e-a8c1-7875b1fb0a34",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYnukS2L4waCjewRZU",
+  "type": "assistant",
+  "uuid": "bf3fcff3-7688-4c88-8be1-7438228e2724",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4xgAZ4PRo1cjVAmLhRpFS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3567,
+      "cache_read_input_tokens": 34003,
+      "output_tokens": 656,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 656,
+          "cache_read_input_tokens": 34003,
+          "cache_creation_input_tokens": 3567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 24 · 2026-05-20T09:24:48.867Z_
+
+项目状态：论文已完成全面更新，Round 5 审稿已提交，正在等待用户审批 review mode。向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf3fcff3-7688-4c88-8be1-7438228e2724",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYnukS2L4waCjewRZU",
+  "type": "assistant",
+  "uuid": "046bfd5e-1aea-4d26-bafe-41955343b9ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4xgAZ4PRo1cjVAmLhRpFS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3567,
+      "cache_read_input_tokens": 34003,
+      "output_tokens": 656,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 656,
+          "cache_read_input_tokens": 34003,
+          "cache_creation_input_tokens": 3567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 25 · 2026-05-20T09:24:49.892Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_agent_post_to_director · `toolu_01M2gbAys8nS8U9Q1hJZW34V`</summary>
+
+```json
+{
+  "text": "[写作进展] Paper Agent 会话恢复状态汇报\n\n当前状态：\n- 论文全面更新已完成（D049/D050/D051 reframe + Appendix tables + 8页压缩）\n- Round 5 审稿已提交（apr_20260520T020101_ay8q，推荐 fresh mode）\n- 编译状态：0 error, 0 undefined citation, 8页正文 + 17页总计\n- 评分趋势：Round 1: 2.5 → Round 2: 2.5 → Round 3: 2.75 → Round 4: pending → Round 5: 已提交\n\n等待中：\n- 用户审批 Round 5 review mode\n- Round 5 审稿报告返回后处理\n\nPaper Agent 待命，等待进一步指令。",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "046bfd5e-1aea-4d26-bafe-41955343b9ba",
+  "isSidechain": false,
+  "requestId": "req_011CbDaYnukS2L4waCjewRZU",
+  "type": "assistant",
+  "uuid": "11d50f9e-c5ee-495d-aef3-b77b865c6060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V4xgAZ4PRo1cjVAmLhRpFS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3567,
+      "cache_read_input_tokens": 34003,
+      "output_tokens": 656,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 656,
+          "cache_read_input_tokens": 34003,
+          "cache_creation_input_tokens": 3567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 26 · 2026-05-20T09:24:54.126Z_
+
+<details><summary>↩ Tool result · `toolu_01M2gbAys8nS8U9Q1hJZW34V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11d50f9e-c5ee-495d-aef3-b77b865c6060",
+  "isSidechain": false,
+  "promptId": "28bb27f4-0d43-4003-a0e4-8537b14199e5",
+  "type": "user",
+  "uuid": "10125cfc-2f45-4326-af11-9abb96486f3e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "11d50f9e-c5ee-495d-aef3-b77b865c6060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 28 · 2026-05-20T09:24:59.873Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T09:24:59.873Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[服务器重启后首条消息] 当前日期: 2026-05-20。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。\n\n**用户消息：** [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 29 · 2026-05-20T09:24:59.874Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T09:24:59.874Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+## Round 2
+
+## Round 2
+
+2 recorded events
+
+
+### User
+
+_source line 30 · 2026-05-20T09:24:59.859Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10125cfc-2f45-4326-af11-9abb96486f3e",
+  "isSidechain": false,
+  "promptId": "4e16e0d8-6319-49f1-9f65-94e3128775b5",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "96855e05-608c-44d6-853d-7f8031376aca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 31 · 2026-05-20T09:24:59.860Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96855e05-608c-44d6-853d-7f8031376aca",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "f6944610-4428-42d7-8c37-2b1cdd86422e",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "a9ed90a9-b9c5-4c8a-8480-1b0a0167551c",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 3
+
+## Round 3
+
+12 recorded events
+
+
+### User
+
+_source line 32 · 2026-05-20T09:25:00.012Z_
+
+[服务器重启后首条消息] 当前日期: 2026-05-20。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。
+
+**用户消息：** [系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6944610-4428-42d7-8c37-2b1cdd86422e",
+  "isSidechain": false,
+  "promptId": "4e16e0d8-6319-49f1-9f65-94e3128775b5",
+  "type": "user",
+  "uuid": "e3f15361-a067-42a6-8cd8-0dacc28b5a30",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 33 · 2026-05-20T09:25:08.796Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The system is telling me that I completed a Director instruction but didn't report back. However, I just did report back in my previous turn via `paper_agent_post_to_director`. The system reminder mentions `main_agent_post_to_director` but I'm the Paper Agent, so my tool is `paper_agent_post_to_director`.
+
+Looking at this more carefully, the system reminder says "main_agent_post_to_director" which is for the Main Agent, not Paper Agent. But I'm the Paper Agent - my tool is `paper_agent_post_to_director`. I already sent a status update in my previous turn.
+
+
+Since the server restarted, I should send another status update to be safe, even though I already reported the current status in my last turn.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3f15361-a067-42a6-8cd8-0dacc28b5a30",
+  "isSidechain": false,
+  "requestId": "req_011CbDaaMLRC4x3nfS5eproz",
+  "type": "assistant",
+  "uuid": "6952a61e-e13a-4d7f-a806-10c67ada98e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqRZyvmDwpDwPwCNtNPvvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 38297,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 179,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 38297,
+          "cache_creation_input_tokens": 179,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 179
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 34 · 2026-05-20T09:25:08.802Z_
+
+上一轮已通过 `paper_agent_post_to_director` 汇报。服务器重启后再次确认状态并汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6952a61e-e13a-4d7f-a806-10c67ada98e1",
+  "isSidechain": false,
+  "requestId": "req_011CbDaaMLRC4x3nfS5eproz",
+  "type": "assistant",
+  "uuid": "27c126bf-44d4-4490-8338-4c2b670fbcea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqRZyvmDwpDwPwCNtNPvvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 38297,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 179,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 38297,
+          "cache_creation_input_tokens": 179,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 179
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 35 · 2026-05-20T09:25:08.865Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01LDuyVKHq6hBKfPSPwnQQSj`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27c126bf-44d4-4490-8338-4c2b670fbcea",
+  "isSidechain": false,
+  "requestId": "req_011CbDaaMLRC4x3nfS5eproz",
+  "type": "assistant",
+  "uuid": "06090792-2d92-4bcb-9c0b-0d21b0666043",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqRZyvmDwpDwPwCNtNPvvm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 38297,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 179,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 38297,
+          "cache_creation_input_tokens": 179,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 179
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 36 · 2026-05-20T09:25:08.897Z_
+
+<details><summary>↩ Tool result · `toolu_01LDuyVKHq6hBKfPSPwnQQSj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\n\\n## 核心方向\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\n\\n## 当前阶段\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\n\\n## 已完成\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\n- [x] D049: Core Claim 1 重构为 \\\"classification-based DAPT is robust\\\"\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\n\\n## 待完成\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\n- [ ] Round 5 审稿报告返回后处理\\n\\n## 数据泄漏记录\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\n\\n## 编译状态\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\n\\n## 评分趋势\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\n\\n## 实验完成度\\n成功 32 / 负向 15 / 失败 2 / 共 49\\n\\n## GPU 预算\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\n| D051 | 2026-05-20 | ToxicChat \\\"dramatic improvement\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\"domain exposure suffices\\\" 重构为 \\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06090792-2d92-4bcb-9c0b-0d21b0666043",
+  "isSidechain": false,
+  "promptId": "4e16e0d8-6319-49f1-9f65-94e3128775b5",
+  "type": "user",
+  "uuid": "db20bd3f-9f7f-48b2-80ab-df42bab4ff2c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\\\", \\\"content\\\": \\\"# persuasion_turn_jailbreak_detect — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\\\n\\\\n## 核心方向\\\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\\\n\\\\n## 当前阶段\\\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\\\n\\\\n## 已完成\\\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\\\n- [x] D049: Core Claim 1 重构为 \\\\\\\"classification-based DAPT is robust\\\\\\\"\\\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\\\n\\\\n## 待完成\\\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\\\n- [ ] Round 5 审稿报告返回后处理\\\\n\\\\n## 数据泄漏记录\\\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\\\n\\\\n## 编译状态\\\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\\\n\\\\n## 评分趋势\\\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\\\n\\\\n## 实验完成度\\\\n成功 32 / 负向 15 / 失败 2 / 共 49\\\\n\\\\n## GPU 预算\\\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D051 | 2026-05-20 | ToxicChat \\\\\\\"dramatic improvement\\\\\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\\\\\"domain exposure suffices\\\\\\\" 重构为 \\\\\\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\\\n\\\\n\\\", \\\"lines\\\": 62}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\n\\n## 核心方向\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\n\\n## 当前阶段\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\n\\n## 已完成\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\n- [x] D049: Core Claim 1 重构为 \\\"classification-based DAPT is robust\\\"\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\n\\n## 待完成\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\n- [ ] Round 5 审稿报告返回后处理\\n\\n## 数据泄漏记录\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\n\\n## 编译状态\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\n\\n## 评分趋势\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → Round 4: pending → Round 5: 已提交待审批\\n\\n## 实验完成度\\n成功 32 / 负向 15 / 失败 2 / 共 49\\n\\n## GPU 预算\\nwestd-33183: GPU 0-3 分配（全部空闲，所有训练完成）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D054 | 2026-05-20 | Round 5 审稿应对：defensive writing + turn-shuffle 实验，不 | — |\\n| D053 | 2026-05-20 | Round 4 审稿应对策略：Path A（claim 修正 + 写作修复），不补大型实验 | exp16, exp17 |\\n| D052 | 2026-05-20 | DDL-5 战略决策：不跑 DeBERTa-v3-large，不加新实验，论文已充分覆盖 Revie | exp15_roberta_large, exp16_multi_llm_training, exp17_dataset_scale |\\n| D051 | 2026-05-20 | ToxicChat \\\"dramatic improvement\\\" claim 推翻：exp16 0. | exp16_multi_llm_training, exp8_toxicchat |\\n| D050 | 2026-05-20 | ToxicChat 定位为 zero-shot single-turn transfer（非标准 O | exp16_multi_llm_training, exp17_dataset_scale |\\n| D049 | 2026-05-20 | Core Claim 1 从 \\\"domain exposure suffices\\\" 重构为 \\\"cla | exp16_multi_llm_training, exp16b_llama_only_mlm, exp17_dataset_scale |\\n| D048 | 2026-05-20 | exp16 qwen_test 泄漏确认：废弃该指标，不重跑实验，依赖剩余 6 个 clean 测试 | exp16_multi_llm_training |\\n| D047 | 2026-05-19 | Override D046：exp16 结果挑战 Core Claim 1 的 generality | exp16_multi_llm_training |\\n| D046 | 2026-05-19 | exp16/exp17 结果不改 Core Claims 和 Abstract/Intro，仅更新  | exp16_multi_llm_training, exp17_dataset_scale |\\n| D045 | 2026-05-19 | exp15c confirms ANY form of DAPT (MLM or classific | exp15c_roberta_large_mlm, exp15_roberta_large, exp15b_roberta_large_lr |\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06090792-2d92-4bcb-9c0b-0d21b0666043",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 37 · 2026-05-20T09:25:08.903Z_
+
+```json
+{
+  "parentUuid": "db20bd3f-9f7f-48b2-80ab-df42bab4ff2c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "83014006-83b2-4e09-ae5e-0fee47bf7f0f",
+  "timestamp": "2026-05-20T09:25:08.903Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 38 · 2026-05-20T09:25:12.222Z_
+
+状态无变化。Round 5 审稿仍在等待用户审批，无新指令。再次汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83014006-83b2-4e09-ae5e-0fee47bf7f0f",
+  "isSidechain": false,
+  "requestId": "req_011CbDab1CV9APzxd32nMsAF",
+  "type": "assistant",
+  "uuid": "f55006bf-6064-423a-936a-395856b01708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SwV22c5J7qEkkBdx8NYBE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 38476,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 38476,
+          "cache_creation_input_tokens": 2411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 39 · 2026-05-20T09:25:13.743Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_agent_post_to_director · `toolu_014CK283JXArWPb5NxQv2C1i`</summary>
+
+```json
+{
+  "text": "[写作进展] 服务器重启后状态确认\n\n当前状态无变化：\n- 论文更新全部完成，Round 5 审稿已提交（apr_20260520T020101_ay8q）\n- 等待用户审批 Round 5 review mode\n- 编译状态：0 error, 8页正文, 17页总计\n- DDL: 2026-05-25 (ARR May)\n\nPaper Agent 待命，等待 Director 进一步指令。",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f55006bf-6064-423a-936a-395856b01708",
+  "isSidechain": false,
+  "requestId": "req_011CbDab1CV9APzxd32nMsAF",
+  "type": "assistant",
+  "uuid": "5ca81233-eece-49d1-ba32-40064c0ca67d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SwV22c5J7qEkkBdx8NYBE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 38476,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 38476,
+          "cache_creation_input_tokens": 2411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 40 · 2026-05-20T09:25:18.616Z_
+
+<details><summary>↩ Tool result · `toolu_014CK283JXArWPb5NxQv2C1i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ca81233-eece-49d1-ba32-40064c0ca67d",
+  "isSidechain": false,
+  "promptId": "4e16e0d8-6319-49f1-9f65-94e3128775b5",
+  "type": "user",
+  "uuid": "ad928fdd-995d-4ac7-9dc2-cc6c353a5230",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5ca81233-eece-49d1-ba32-40064c0ca67d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 42 · 2026-05-20T09:34:14.724Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T09:34:14.724Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充\n\n**背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 order-invariance 跨 encoder 成立。\n\n**需要修改**：\n\n1. **Shuffle 结果表/段落**：原来只有一组数据，现在改为跨 encoder 对比表：\n\n| Encoder | DD OOD Δ | AA OOD Δ | IID Δ |\n|---------|----------|----------|-------|\n| DeBERTa-v3-base | 0.000 | -0.009 | 0.000 |\n| RoBERTa-large | +0.001 | -0.007 | 0.000 |\n\n2. **文字表述**更新为跨 encoder 确认版本：\"Turn-order shuffling produces negligible performance change (|Δ| < 1pp) across both DeBERTa-v3-base and RoBERTa-large encoders, confirming that detection relies on per-turn representations rather than sequential patterns.\"\n\n3. **确保不再将 RoBERTa-large 的 shuffle 数字误标为 DeBERTa-v3**\n\n4. vanilla 的 shuffle 仅在 RoBERTa-large 上做了（DeBERTa vanilla DD OOD=0.312 有 floor effect），如果论文提到 vanilla shuffle，标明仅限 RoBERTa-large。\n\n这次不用验证引用。页数预算注意保持 ≤8 页正文。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 43 · 2026-05-20T09:34:14.725Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T09:34:14.725Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+## Round 4
+
+## Round 4
+
+2 recorded events
+
+
+### User
+
+_source line 44 · 2026-05-20T09:34:14.717Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad928fdd-995d-4ac7-9dc2-cc6c353a5230",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "10399cea-2f1b-42f6-a46a-999221413391",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 45 · 2026-05-20T09:34:14.717Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10399cea-2f1b-42f6-a46a-999221413391",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "e2908a7e-ee6a-42ff-a285-cf28a557e1a7",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "6a79bc17-631e-4bf5-80ef-98fe371639bb",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 5
+
+## Round 5
+
+136 recorded events
+
+
+### User
+
+_source line 46 · 2026-05-20T09:34:14.838Z_
+
+[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充
+
+**背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 order-invariance 跨 encoder 成立。
+
+**需要修改**：
+
+1. **Shuffle 结果表/段落**：原来只有一组数据，现在改为跨 encoder 对比表：
+
+| Encoder | DD OOD Δ | AA OOD Δ | IID Δ |
+|---------|----------|----------|-------|
+| DeBERTa-v3-base | 0.000 | -0.009 | 0.000 |
+| RoBERTa-large | +0.001 | -0.007 | 0.000 |
+
+2. **文字表述**更新为跨 encoder 确认版本："Turn-order shuffling produces negligible performance change (|Δ| < 1pp) across both DeBERTa-v3-base and RoBERTa-large encoders, confirming that detection relies on per-turn representations rather than sequential patterns."
+
+3. **确保不再将 RoBERTa-large 的 shuffle 数字误标为 DeBERTa-v3**
+
+4. vanilla 的 shuffle 仅在 RoBERTa-large 上做了（DeBERTa vanilla DD OOD=0.312 有 floor effect），如果论文提到 vanilla shuffle，标明仅限 RoBERTa-large。
+
+这次不用验证引用。页数预算注意保持 ≤8 页正文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2908a7e-ee6a-42ff-a285-cf28a557e1a7",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "d1dabfd3-c836-4f42-a6f4-98f4ebdb344a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 47 · 2026-05-20T09:34:20.944Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Director wants a Patch mode operation. Let me analyze the instruction:
+
+1. This is a Patch operation - modifying existing `.tex` files
+2. The change is about turn-shuffle ablation - updating from single encoder to cross-encoder comparison
+3. No reference verification needed (`verify_refs = false`)
+4. Must stay within 8 pages
+
+Let me follow the Patch pipeline:
+
+**Phase A — 理解变更**: I need to read the current paper files to understand where the shuffle ablation is discussed, then plan the changes.
+
+Let me start by reading the relevant sections - likely experiments.tex and appendix.tex where shuffle ablation results would be.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1dabfd3-c836-4f42-a6f4-98f4ebdb344a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHFKACK6gVxcAM6izW",
+  "type": "assistant",
+  "uuid": "e3711bea-b8e1-4098-89d9-623efd20c35a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAuCotvEKvyhWskq4TTArn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 41227,
+      "output_tokens": 453,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 453,
+          "cache_read_input_tokens": 41227,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 48 · 2026-05-20T09:34:21.559Z_
+
+收到 Patch 指令。Phase A：定位 shuffle ablation 相关内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3711bea-b8e1-4098-89d9-623efd20c35a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHFKACK6gVxcAM6izW",
+  "type": "assistant",
+  "uuid": "af30fd91-97ee-4487-9683-0186de367554",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAuCotvEKvyhWskq4TTArn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 41227,
+      "output_tokens": 453,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 453,
+          "cache_read_input_tokens": 41227,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 49 · 2026-05-20T09:34:23.516Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01EPDzqyKMk9GmDpRbHNQXJ6`</summary>
+
+```json
+{
+  "pattern": "shuffle|turn.order|order.invarian",
+  "-i": true,
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af30fd91-97ee-4487-9683-0186de367554",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHFKACK6gVxcAM6izW",
+  "type": "assistant",
+  "uuid": "f970ee2f-6b25-47df-b3ce-0714dd2adf0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAuCotvEKvyhWskq4TTArn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 41227,
+      "output_tokens": 453,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 453,
+          "cache_read_input_tokens": 41227,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 50 · 2026-05-20T09:34:23.541Z_
+
+<details><summary>↩ Tool result · `toolu_01EPDzqyKMk9GmDpRbHNQXJ6`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f970ee2f-6b25-47df-b3ce-0714dd2adf0c",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "a3a63b91-8f60-40d4-8211-842462b8d73f",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "f970ee2f-6b25-47df-b3ce-0714dd2adf0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 51 · 2026-05-20T09:34:23.998Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01CVLD9xaFXNiXFL2B4x45d7`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "file": "writing_plan.yaml",
+  "max_chars": 6000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3a63b91-8f60-40d4-8211-842462b8d73f",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHFKACK6gVxcAM6izW",
+  "type": "assistant",
+  "uuid": "fcfbda9e-b993-4d73-8164-9edf51add6c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AAuCotvEKvyhWskq4TTArn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 41227,
+      "output_tokens": 453,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 453,
+          "cache_read_input_tokens": 41227,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 52 · 2026-05-20T09:34:24.015Z_
+
+<details><summary>↩ Tool result · `toolu_01CVLD9xaFXNiXFL2B4x45d7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/writing_plan.yaml\", \"content\": \"meta:\\n  venue: EMNLP 2026\\n  track: LLM Security / Discourse and Pragmatics\\n  submission_system: ARR May 2026 cycle\\n  template: acl2023\\n  template_note: \\\"EMNLP 2026 uses ARR; ACL 2023+ style files apply.\\\"\\n  page_limit: 8\\n  deadline: \\\"2026-05-25\\\"\\n  core_claim: >\\n    Systematic ablation reveals that domain-adaptive continued pretraining on\\n    jailbreak conversation text (even MLM without classification labels) bridges\\n    the entire +72pp OOD gap (vanilla F1=0.28 → MLM F1=1.0). Classification\\n    supervision, label quality, label granularity, temporal modeling, and loss\\n    weighting are all non-factors. The persuasion taxonomy's sole surviving\\n    value is interpretability via strategy trajectory analysis.\\n  created_at: \\\"2026-05-18T00:00:00Z\\\"\\n  updated_at: \\\"2026-05-18T00:00:00Z\\\"\\n  reframe: \\\"D019 — MLM control falsified persuasion-aware claim\\\"\\n  title: \\\"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\\\"\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 220\\n    core_bullets:\\n      - \\\"Problem: Multi-turn jailbreaks distribute adversarial intent across benign turns; vanilla semantic temporal modeling collapses on unseen attack types (F1=0.28 on DD)\\\"\\n      - \\\"Approach: Systematic ablation decomposing what enables cross-attack generalization — we expected persuasion-specific classification to be key\\\"\\n      - \\\"Surprise finding: MLM continued pretraining on jailbreak conversation text (no classification labels) bridges the entire +72pp OOD gap (F1=1.0)\\\"\\n      - \\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\"\\n      - \\\"Persuasion taxonomy repositioned as interpretability tool (distinct strategy trajectories per attack type), not detection driver\\\"\\n      - \\\"Additional: zero perturbation degradation, GPT-5.5 judge F1=0.19-0.45\\\"\\n    dependencies: [experiments, method, introduction]\\n\\n  - section: introduction\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"Hook: Multi-turn jailbreaks distribute adversarial intent across benign turns, defeating per-turn safety filters and content-level reasoning\\\"\\n      - \\\"Gap: What representation properties enable cross-attack generalization? Vanilla encoders fail catastrophically (F1=0.28 on unseen DD). LLM judges (GPT-5.5 F1=0.19-0.45) cannot detect process-level manipulation. No work systematically decomposes what makes the OOD gap bridgeable.\\\"\\n      - \\\"Our angle: We hypothesized persuasion-specific classification would be key. Systematic ablation falsified this: MLM continued pretraining without any labels achieves F1=1.0 on unseen attacks. Domain exposure, not task-specific supervision, is the mechanism.\\\"\\n      - \\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\"\\n      - \\\"Contributions rewritten: (1) Systematic decomposition identifying domain exposure as mechanism, (2) MLM control as definitive causal test, (3) Persuasion taxonomy repositioned as interpretability layer\\\"\\n    dependencies: [experiments]\\n    citation_hints:\\n      - \\\"Li et al. 2024 (multi-turn human jailbreaks)\\\"\\n      - \\\"Bullwinkel et al. 2025 (representation engineering)\\\"\\n      - \\\"Gururangan et al. 2020 (DAPT)\\\"\\n      - \\\"DeepContext 2026\\\"\\n    figures: [fig1_architecture]\\n    registry_refs: [plan_006_cross_attack_clean, plan_017_mlm_control, plan_004_perturbation_eval, plan_012_gpt55_judge]\\n\\n  - section: related_work\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"Multi-turn jailbreak attacks: Crescendo, FITD, DD, ActorAttack, PAIR. Persuasion is systematic (PAP, Hagendorff). Wei et al. taxonomy.\\\"\\n      - \\\"Multi-turn defenses: DeepContext, BIID, G-Guard, SafeDream. All lack grounding in what makes representations transfer.\\\"\\n      - \\\"Production safety systems: Llama Guard, ShieldGemma, WildGuard, Constitutional Classifiers. Per-turn, no trajectory modeling.\\\"\\n      - \\\"Domain-adaptive pretraining and multi-task learning: Gururangan 2020 DAPT, Phang 2018 STILTs, Caruana 1997 MTL, Liu 2019 MT-DNN, Howard & Ruder 2018 ULMFiT. DisPeD's fine-tuning as domain-adaptive approach — MLM control confirms this framing.\\\"\\n      - \\\"Discourse and persuasion: RST, PDTB, dialogue acts, Speech Act Theory, computational persuasion.\\\"\\n      - \\\"Dataset artifacts and adaptive attacks.\\\"\\n    dependencies: [introduction]\\n\\n  - section: method\\n    word_budget: 1400\\n    core_bullets:\\n      - \\\"Problem formulation: binary classification over user turn prefixes\\\"\\n      - \\\"Base pipeline: DeBERTa-v3-base encoder → BiGRU aggregation → MLP classifier\\\"\\n      - \\\"Variant 1 (full model): Multi-task fine-tuning with 9-class persuasion + binary intent. L = L_strategy + 0.3 * L_intent\\\"\\n      - \\\"Variant 2 (scrambled): Same architecture, randomly permuted strategy labels\\\"\\n      - \\\"Variant 3 (binary): Collapse 9-class to persuasion-present/absent\\\"\\n      - \\\"Variant 4 (MLM): Continued pretraining with 15% masking on same training conversations, no classification heads\\\"\\n      - \\\"Variant 5 (vanilla): Unfine-tuned DeBERTa encoder (control)\\\"\\n      - \\\"Design rationale: ablation-centric structure — progressively strip components to isolate mechanism\\\"\\n      - \\\"9-class taxonomy description retained for interpretability analysis\\\"\\n    dependencies: []\\n    figures: [fig1_architecture]\\n\\n  - section: experiments\\n    word_budget: 2800\\n    core_bullets:\\n      - \\\"Setup: 250 Crescendo + 250 benign (train), 80 FITD + 80 DD (OOD), 76 IID test, 76 perturbed\\\"\\n      - \\\"NEW main comparison table: Evidence hierarchy — vanilla, MLM, scrambled, binary, 9-class × K values. Core story: vanilla (0.28) < MLM (1.0) = all classification variants\\\"\\n      - \\\"Cross-attack generalization: MLM F1=1.0 on DD across all K, matching 9-class. Vanilla collapses to 0.28. TF-IDF=0.944.\\\"\\n      - \\\"Ablation reframed: NOT 'which component matters' but 'systematic decomposition reveals domain exposure as mechanism'\\\"\\n      - \\\"MLM IID results: K1=0.96, K2=0.974, K3=0.987, K5=1.0, Full=1.0 (slightly below 9-class at early K, but matches at K≥5)\\\"\\n      -\\n\\n... [截断: 省略 6145 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 12145, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcfbda9e-b993-4d73-8164-9edf51add6c6",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "c264ee62-5577-4f34-9fc7-681cf30855a2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: LLM Security / Discourse and Pragmatics\\\\n  submission_system: ARR May 2026 cycle\\\\n  template: acl2023\\\\n  template_note: \\\\\\\"EMNLP 2026 uses ARR; ACL 2023+ style files apply.\\\\\\\"\\\\n  page_limit: 8\\\\n  deadline: \\\\\\\"2026-05-25\\\\\\\"\\\\n  core_claim: >\\\\n    Systematic ablation reveals that domain-adaptive continued pretraining on\\\\n    jailbreak conversation text (even MLM without classification labels) bridges\\\\n    the entire +72pp OOD gap (vanilla F1=0.28 → MLM F1=1.0). Classification\\\\n    supervision, label quality, label granularity, temporal modeling, and loss\\\\n    weighting are all non-factors. The persuasion taxonomy's sole surviving\\\\n    value is interpretability via strategy trajectory analysis.\\\\n  created_at: \\\\\\\"2026-05-18T00:00:00Z\\\\\\\"\\\\n  updated_at: \\\\\\\"2026-05-18T00:00:00Z\\\\\\\"\\\\n  reframe: \\\\\\\"D019 — MLM control falsified persuasion-aware claim\\\\\\\"\\\\n  title: \\\\\\\"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\\\\\\\"\\\\n\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 220\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: Multi-turn jailbreaks distribute adversarial intent across benign turns; vanilla semantic temporal modeling collapses on unseen attack types (F1=0.28 on DD)\\\\\\\"\\\\n      - \\\\\\\"Approach: Systematic ablation decomposing what enables cross-attack generalization — we expected persuasion-specific classification to be key\\\\\\\"\\\\n      - \\\\\\\"Surprise finding: MLM continued pretraining on jailbreak conversation text (no classification labels) bridges the entire +72pp OOD gap (F1=1.0)\\\\\\\"\\\\n      - \\\\\\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\\\\\"\\\\n      - \\\\\\\"Persuasion taxonomy repositioned as interpretability tool (distinct strategy trajectories per attack type), not detection driver\\\\\\\"\\\\n      - \\\\\\\"Additional: zero perturbation degradation, GPT-5.5 judge F1=0.19-0.45\\\\\\\"\\\\n    dependencies: [experiments, method, introduction]\\\\n\\\\n  - section: introduction\\\\n    word_budget: 1200\\\\n    core_bullets:\\\\n      - \\\\\\\"Hook: Multi-turn jailbreaks distribute adversarial intent across benign turns, defeating per-turn safety filters and content-level reasoning\\\\\\\"\\\\n      - \\\\\\\"Gap: What representation properties enable cross-attack generalization? Vanilla encoders fail catastrophically (F1=0.28 on unseen DD). LLM judges (GPT-5.5 F1=0.19-0.45) cannot detect process-level manipulation. No work systematically decomposes what makes the OOD gap bridgeable.\\\\\\\"\\\\n      - \\\\\\\"Our angle: We hypothesized persuasion-specific classification would be key. Systematic ablation falsified this: MLM continued pretraining without any labels achieves F1=1.0 on unseen attacks. Domain exposure, not task-specific supervision, is the mechanism.\\\\\\\"\\\\n      - \\\\\\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\\\\\"\\\\n      - \\\\\\\"Contributions rewritten: (1) Systematic decomposition identifying domain exposure as mechanism, (2) MLM control as definitive causal test, (3) Persuasion taxonomy repositioned as interpretability layer\\\\\\\"\\\\n    dependencies: [experiments]\\\\n    citation_hints:\\\\n      - \\\\\\\"Li et al. 2024 (multi-turn human jailbreaks)\\\\\\\"\\\\n      - \\\\\\\"Bullwinkel et al. 2025 (representation engineering)\\\\\\\"\\\\n      - \\\\\\\"Gururangan et al. 2020 (DAPT)\\\\\\\"\\\\n      - \\\\\\\"DeepContext 2026\\\\\\\"\\\\n    figures: [fig1_architecture]\\\\n    registry_refs: [plan_006_cross_attack_clean, plan_017_mlm_control, plan_004_perturbation_eval, plan_012_gpt55_judge]\\\\n\\\\n  - section: related_work\\\\n    word_budget: 1000\\\\n    core_bullets:\\\\n      - \\\\\\\"Multi-turn jailbreak attacks: Crescendo, FITD, DD, ActorAttack, PAIR. Persuasion is systematic (PAP, Hagendorff). Wei et al. taxonomy.\\\\\\\"\\\\n      - \\\\\\\"Multi-turn defenses: DeepContext, BIID, G-Guard, SafeDream. All lack grounding in what makes representations transfer.\\\\\\\"\\\\n      - \\\\\\\"Production safety systems: Llama Guard, ShieldGemma, WildGuard, Constitutional Classifiers. Per-turn, no trajectory modeling.\\\\\\\"\\\\n      - \\\\\\\"Domain-adaptive pretraining and multi-task learning: Gururangan 2020 DAPT, Phang 2018 STILTs, Caruana 1997 MTL, Liu 2019 MT-DNN, Howard & Ruder 2018 ULMFiT. DisPeD's fine-tuning as domain-adaptive approach — MLM control confirms this framing.\\\\\\\"\\\\n      - \\\\\\\"Discourse and persuasion: RST, PDTB, dialogue acts, Speech Act Theory, computational persuasion.\\\\\\\"\\\\n      - \\\\\\\"Dataset artifacts and adaptive attacks.\\\\\\\"\\\\n    dependencies: [introduction]\\\\n\\\\n  - section: method\\\\n    word_budget: 1400\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem formulation: binary classification over user turn prefixes\\\\\\\"\\\\n      - \\\\\\\"Base pipeline: DeBERTa-v3-base encoder → BiGRU aggregation → MLP classifier\\\\\\\"\\\\n      - \\\\\\\"Variant 1 (full model): Multi-task fine-tuning with 9-class persuasion + binary intent. L = L_strategy + 0.3 * L_intent\\\\\\\"\\\\n      - \\\\\\\"Variant 2 (scrambled): Same architecture, randomly permuted strategy labels\\\\\\\"\\\\n      - \\\\\\\"Variant 3 (binary): Collapse 9-class to persuasion-present/absent\\\\\\\"\\\\n      - \\\\\\\"Variant 4 (MLM): Continued pretraining with 15% masking on same training conversations, no classification heads\\\\\\\"\\\\n      - \\\\\\\"Variant 5 (vanilla): Unfine-tuned DeBERTa encoder (control)\\\\\\\"\\\\n      - \\\\\\\"Design rationale: ablation-centric structure — progressively strip components to isolate mechanism\\\\\\\"\\\\n      - \\\\\\\"9-class taxonomy description retained for interpretability analysis\\\\\\\"\\\\n    dependencies: []\\\\n    figures: [fig1_architecture]\\\\n\\\\n  - section: experiments\\\\n    word_budget: 2800\\\\n    core_bullets:\\\\n      - \\\\\\\"Setup: 250 Crescendo + 250 benign (train), 80 FITD + 80 DD (OOD), 76 IID test, 76 perturbed\\\\\\\"\\\\n      - \\\\\\\"NEW main comparison table: Evidence hierarchy — vanilla, MLM, scrambled, binary, 9-class × K values. Core story: vanilla (0.28) < MLM (1.0) = all classification variants\\\\\\\"\\\\n      - \\\\\\\"Cross-attack generalization: MLM F1=1.0 on DD across all K, matching 9-class. Vanilla collapses to 0.28. TF-IDF=0.944.\\\\\\\"\\\\n      - \\\\\\\"Ablation reframed: NOT 'which component matters' but 'systematic decomposition reveals domain exposure as mechanism'\\\\\\\"\\\\n      - \\\\\\\"MLM IID results: K1=0.96, K2=0.974, K3=0.987, K5=1.0, Full=1.0 (slightly below 9-class at early K, but matches at K≥5)\\\\\\\"\\\\n      -\\\\n\\\\n... [截断: 省略 6145 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 12145, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/writing_plan.yaml\", \"content\": \"meta:\\n  venue: EMNLP 2026\\n  track: LLM Security / Discourse and Pragmatics\\n  submission_system: ARR May 2026 cycle\\n  template: acl2023\\n  template_note: \\\"EMNLP 2026 uses ARR; ACL 2023+ style files apply.\\\"\\n  page_limit: 8\\n  deadline: \\\"2026-05-25\\\"\\n  core_claim: >\\n    Systematic ablation reveals that domain-adaptive continued pretraining on\\n    jailbreak conversation text (even MLM without classification labels) bridges\\n    the entire +72pp OOD gap (vanilla F1=0.28 → MLM F1=1.0). Classification\\n    supervision, label quality, label granularity, temporal modeling, and loss\\n    weighting are all non-factors. The persuasion taxonomy's sole surviving\\n    value is interpretability via strategy trajectory analysis.\\n  created_at: \\\"2026-05-18T00:00:00Z\\\"\\n  updated_at: \\\"2026-05-18T00:00:00Z\\\"\\n  reframe: \\\"D019 — MLM control falsified persuasion-aware claim\\\"\\n  title: \\\"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\\\"\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 220\\n    core_bullets:\\n      - \\\"Problem: Multi-turn jailbreaks distribute adversarial intent across benign turns; vanilla semantic temporal modeling collapses on unseen attack types (F1=0.28 on DD)\\\"\\n      - \\\"Approach: Systematic ablation decomposing what enables cross-attack generalization — we expected persuasion-specific classification to be key\\\"\\n      - \\\"Surprise finding: MLM continued pretraining on jailbreak conversation text (no classification labels) bridges the entire +72pp OOD gap (F1=1.0)\\\"\\n      - \\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\"\\n      - \\\"Persuasion taxonomy repositioned as interpretability tool (distinct strategy trajectories per attack type), not detection driver\\\"\\n      - \\\"Additional: zero perturbation degradation, GPT-5.5 judge F1=0.19-0.45\\\"\\n    dependencies: [experiments, method, introduction]\\n\\n  - section: introduction\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"Hook: Multi-turn jailbreaks distribute adversarial intent across benign turns, defeating per-turn safety filters and content-level reasoning\\\"\\n      - \\\"Gap: What representation properties enable cross-attack generalization? Vanilla encoders fail catastrophically (F1=0.28 on unseen DD). LLM judges (GPT-5.5 F1=0.19-0.45) cannot detect process-level manipulation. No work systematically decomposes what makes the OOD gap bridgeable.\\\"\\n      - \\\"Our angle: We hypothesized persuasion-specific classification would be key. Systematic ablation falsified this: MLM continued pretraining without any labels achieves F1=1.0 on unseen attacks. Domain exposure, not task-specific supervision, is the mechanism.\\\"\\n      - \\\"Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)\\\"\\n      - \\\"Contributions rewritten: (1) Systematic decomposition identifying domain exposure as mechanism, (2) MLM control as definitive causal test, (3) Persuasion taxonomy repositioned as interpretability layer\\\"\\n    dependencies: [experiments]\\n    citation_hints:\\n      - \\\"Li et al. 2024 (multi-turn human jailbreaks)\\\"\\n      - \\\"Bullwinkel et al. 2025 (representation engineering)\\\"\\n      - \\\"Gururangan et al. 2020 (DAPT)\\\"\\n      - \\\"DeepContext 2026\\\"\\n    figures: [fig1_architecture]\\n    registry_refs: [plan_006_cross_attack_clean, plan_017_mlm_control, plan_004_perturbation_eval, plan_012_gpt55_judge]\\n\\n  - section: related_work\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"Multi-turn jailbreak attacks: Crescendo, FITD, DD, ActorAttack, PAIR. Persuasion is systematic (PAP, Hagendorff). Wei et al. taxonomy.\\\"\\n      - \\\"Multi-turn defenses: DeepContext, BIID, G-Guard, SafeDream. All lack grounding in what makes representations transfer.\\\"\\n      - \\\"Production safety systems: Llama Guard, ShieldGemma, WildGuard, Constitutional Classifiers. Per-turn, no trajectory modeling.\\\"\\n      - \\\"Domain-adaptive pretraining and multi-task learning: Gururangan 2020 DAPT, Phang 2018 STILTs, Caruana 1997 MTL, Liu 2019 MT-DNN, Howard & Ruder 2018 ULMFiT. DisPeD's fine-tuning as domain-adaptive approach — MLM control confirms this framing.\\\"\\n      - \\\"Discourse and persuasion: RST, PDTB, dialogue acts, Speech Act Theory, computational persuasion.\\\"\\n      - \\\"Dataset artifacts and adaptive attacks.\\\"\\n    dependencies: [introduction]\\n\\n  - section: method\\n    word_budget: 1400\\n    core_bullets:\\n      - \\\"Problem formulation: binary classification over user turn prefixes\\\"\\n      - \\\"Base pipeline: DeBERTa-v3-base encoder → BiGRU aggregation → MLP classifier\\\"\\n      - \\\"Variant 1 (full model): Multi-task fine-tuning with 9-class persuasion + binary intent. L = L_strategy + 0.3 * L_intent\\\"\\n      - \\\"Variant 2 (scrambled): Same architecture, randomly permuted strategy labels\\\"\\n      - \\\"Variant 3 (binary): Collapse 9-class to persuasion-present/absent\\\"\\n      - \\\"Variant 4 (MLM): Continued pretraining with 15% masking on same training conversations, no classification heads\\\"\\n      - \\\"Variant 5 (vanilla): Unfine-tuned DeBERTa encoder (control)\\\"\\n      - \\\"Design rationale: ablation-centric structure — progressively strip components to isolate mechanism\\\"\\n      - \\\"9-class taxonomy description retained for interpretability analysis\\\"\\n    dependencies: []\\n    figures: [fig1_architecture]\\n\\n  - section: experiments\\n    word_budget: 2800\\n    core_bullets:\\n      - \\\"Setup: 250 Crescendo + 250 benign (train), 80 FITD + 80 DD (OOD), 76 IID test, 76 perturbed\\\"\\n      - \\\"NEW main comparison table: Evidence hierarchy — vanilla, MLM, scrambled, binary, 9-class × K values. Core story: vanilla (0.28) < MLM (1.0) = all classification variants\\\"\\n      - \\\"Cross-attack generalization: MLM F1=1.0 on DD across all K, matching 9-class. Vanilla collapses to 0.28. TF-IDF=0.944.\\\"\\n      - \\\"Ablation reframed: NOT 'which component matters' but 'systematic decomposition reveals domain exposure as mechanism'\\\"\\n      - \\\"MLM IID results: K1=0.96, K2=0.974, K3=0.987, K5=1.0, Full=1.0 (slightly below 9-class at early K, but matches at K≥5)\\\"\\n      -\\n\\n... [截断: 省略 6145 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 12145, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fcfbda9e-b993-4d73-8164-9edf51add6c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "c264ee62-5577-4f34-9fc7-681cf30855a2",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 55 · 2026-05-20T09:34:27.255Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep didn't find anything with "shuffle" or "turn order" in the paper directory. Let me check both `paper/` and `docs/paper/` directories. Let me also look at the experiments.tex and appendix.tex files to find where the shuffle ablation is discussed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c264ee62-5577-4f34-9fc7-681cf30855a2",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHw26vDX2gJWsQfqBK",
+  "type": "assistant",
+  "uuid": "023e2a75-fb62-4030-8c9a-3fd883b4dfd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J189ooqgerDLxNtjBhwwBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2751,
+      "cache_read_input_tokens": 41718,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 41718,
+          "cache_creation_input_tokens": 2751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 56 · 2026-05-20T09:34:27.727Z_
+
+Grep 未找到结果，可能用了不同术语。让我直接读相关 tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "023e2a75-fb62-4030-8c9a-3fd883b4dfd9",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHw26vDX2gJWsQfqBK",
+  "type": "assistant",
+  "uuid": "72804628-84b7-48cc-8219-36cdb6d093bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J189ooqgerDLxNtjBhwwBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2751,
+      "cache_read_input_tokens": 41718,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 41718,
+          "cache_creation_input_tokens": 2751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 57 · 2026-05-20T09:34:28.888Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MWhqVYka8Yzfe22YJb71Cw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72804628-84b7-48cc-8219-36cdb6d093bb",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHw26vDX2gJWsQfqBK",
+  "type": "assistant",
+  "uuid": "3a5351e8-874f-4baa-8609-8f821766e945",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J189ooqgerDLxNtjBhwwBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2751,
+      "cache_read_input_tokens": 41718,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 41718,
+          "cache_creation_input_tokens": 2751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 58 · 2026-05-20T09:34:29.525Z_
+
+<details><summary>↩ Tool result · `toolu_01GxZDJKR8TDT5YUtrd54Azs`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\graphicspath{{../../}}
+12	\usepackage{amsmath}
+13	\usepackage{booktabs}
+14	\usepackage{enumitem}
+15	\usepackage{amssymb}
+16	\usepackage{multirow}
+17	
+18	\title{What Makes Multi-Turn Jailbreaks Detectable? A Controlled Study of Domain Adaptation}
+19	
+20	\author{Anonymous}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\input{abstract}
+26	
+27	\input{introduction}
+28	
+29	\input{related_work}
+30	
+31	\input{method}
+32	
+33	\input{experiments}
+34	
+35	\input{conclusion}
+36	
+37	\bibliography{references}
+38	
+39	\input{appendix}
+40	
+41	\input{checklist}
+42	
+43	\end{document}
+44	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be82418d-d4a7-4e74-aae4-8305fd5114a3",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "fc91108c-126c-440b-9e70-09b5305b6899",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{../../}}\n\\usepackage{amsmath}\n\\usepackage{booktabs}\n\\usepackage{enumitem}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\n\\title{What Makes Multi-Turn Jailbreaks Detectable? A Controlled Study of Domain Adaptation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{method}\n\n\\input{experiments}\n\n\\input{conclusion}\n\n\\bibliography{references}\n\n\\input{appendix}\n\n\\input{checklist}\n\n\\end{document}\n",
+      "numLines": 44,
+      "startLine": 1,
+      "totalLines": 44
+    }
+  },
+  "sourceToolAssistantUUID": "be82418d-d4a7-4e74-aae4-8305fd5114a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 59 · 2026-05-20T09:34:28.898Z_
+
+<details><summary>↩ Tool result · `toolu_01MWhqVYka8Yzfe22YJb71Cw`</summary>
+
+```text
+1	% experiments.tex — D024 compressed for 8-page limit
+2	
+3	\section{Experiments}
+4	\label{sec:experiments}
+5	
+6	\subsection{Setup}
+7	\label{sec:setup}
+8	
+9	\paragraph{Data.}
+10	All synthetic data is generated by Qwen3-8B~\citep{qwen3_2025}.
+11	The IID dataset contains 250 Crescendo~\citep{russinovich2024crescendo} jailbreak and 250 topic-anchored benign conversations, split into training (350), validation (74), and test (76) sets with balanced class ratios (e.g., test = 38 jailbreak + 38 benign).
+12	Stage~1 (DAPT) uses training + validation conversations; Stage~2 (BiGRU) trains on training, early-stops on validation, and evaluates on test.
+13	OOD evaluation pairs attack-specific jailbreak conversations with the 38 IID-test benign conversations: 80 FITD~\citep{fitd2024} + 38 benign = 118 total, 80 Deceptive Delight (DD)~\citep{deceptivedelight2024} + 38 benign = 118 total, and 80 ActorAttack~\citep{ren2024actorattack} + 38 benign = 118 total.
+14	No overlap exists in attack templates across families.
+15	The OOD benign set is IID (same generation pipeline as training); the OOD challenge is in distinguishing novel attack families from familiar benign conversations.
+16	A paraphrased version of the IID test set (BERTScore 0.92, lexical overlap 0.20) serves as the adversarial robustness benchmark (Section~\ref{sec:perturbation}).
+17	For human data validation, we use ToxicChat~\citep{lin2023toxicchat} (204 jailbreak + 204 benign from real LMSYS user interactions), entirely independent of Qwen3-8B generation.
+18	
+19	\paragraph{Models.}
+20	Seven DeBERTa-v3 variants share the same Stage-2 pipeline and differ only in Stage-1 training (Section~\ref{sec:method}).
+21	Our vanilla DeBERTa+BiGRU configuration is architecturally equivalent to DeepContext~\citep{deepcontext2026}, differing only in encoder choice (DeBERTa-v3-base vs.\ BERT); it serves as our primary baseline.
+22	For cross-encoder validation, we replicate vanilla, MLM, and 9-class variants on RoBERTa-base~\citep{liu2019roberta} (Section~\ref{sec:cross_encoder}).
+23	We also compare TF-IDF LR and LLM-as-judge baselines (Appendix~\ref{sec:llm_judge}): GPT-5.5 achieves only F1 = 0.191--0.449 on IID Crescendo with 30--47\% unparseable responses; on OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 (DD and ActorAttack) by predicting nearly all conversations as benign, and even 3-shot prompting reaches only 0.566 (DD) and 0.652 (ActorAttack). Content-level reasoning is insufficient for this task.
+24	
+25	\paragraph{Metrics.}
+26	F1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\ref{sec:full_prefix}).
+27	OOD results report 3-seed mean$\pm$std (seeds 42, 123, 456) for all variants.
+28	For key pairwise comparisons, we report BCa bootstrap 95\% confidence intervals (10,000 resamples over individual predictions pooled across seeds) and paired permutation tests (10,000 permutations). Bootstrap means may differ slightly from seed-averaged F1 due to the nonlinearity of F1 aggregation.
+29	All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\approx$22\% larger but do not alter any significance conclusions.
+30	Stage-1: learning rate $2 \times 10^{-5}$, batch 16, 4 epochs, MLM masking 15\%.
+31	Stage-2: two-layer MLP, 20 epochs.
+32	
+33	%----------------------------------------------------------------------
+34	\subsection{Cross-Attack Generalization}
+35	\label{sec:cross_attack}
+36	
+37	\begin{table}[t]
+38	\centering
+39	\small
+40	\caption{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). 3-seed mean$\pm$std where noted; full per-$K$ in Appendix~\ref{sec:full_prefix}.}
+41	\label{tab:main_results}
+42	\begin{tabular}{@{}lcc|cc@{}}
+43	\toprule
+44	& \multicolumn{2}{c|}{\textit{IID (Cresc.)}} & \multicolumn{2}{c}{\textit{OOD (DD)}} \\
+45	\textbf{Method} & $K$=2 & Full & $K$=2 & Full \\
+46	\midrule
+47	9-class & \textbf{1.000$\pm$.000} & \textbf{1.000$\pm$.000} & .981$\pm$.013 & \textbf{.997$\pm$.005} \\
+48	MLM-only$^{\ddagger}$ & .974 & 1.000 & \textbf{.993$\pm$.009} & .914$\pm$.115 \\
+49	Vanilla & .978$\pm$.016 & 1.000$\pm$.000 & .479$\pm$.038 & .312$\pm$.026 \\
+50	TF-IDF LR$^{\S}$ & 1.000 & 1.000 & 1.000 & .961 \\
+51	\bottomrule
+52	\end{tabular}
+53	\vspace{-2pt}
+54	{\footnotesize $^{\ddagger}$MLM-only IID reports single seed (42); OOD reports 3-seed. $^{\S}$TF-IDF is deterministic (no std).}
+55	\end{table}
+56	
+57	Vanilla encoders collapse under cross-attack transfer; domain-adapted variants recover near-perfect detection (Table~\ref{tab:main_results}).
+58	DD exhibits high lexical separability (TF-IDF F1\,=\,0.961); ActorAttack, where TF-IDF collapses to 0.261, serves as the primary stress test for beyond-lexical generalization.
+59	All methods achieve near-perfect IID F1, reflecting inherent lexical separability when test matches training.
+60	On OOD DD, vanilla DeBERTa collapses to F1 = 0.312$\pm$0.026, worsening with more turns (0.628$\pm$0.038 at $K$=1 to 0.312$\pm$0.026 at Full), consistent with the finding that attack turns occupy ``benign'' embedding regions~\citep{bullwinkel2025repeng}.
+61	MLM achieves mean F1 $\geq$ 0.97 at all prefixes $K \leq 5$ without any classification labels; domain exposure alone is sufficient.
+62	At full conversation length, MLM drops to 0.914$\pm$0.115 (seed 456 recall = 0.64), while the 9-class model maintains 0.997$\pm$0.005.
+63	TF-IDF LR reaches F1 = 0.961 on full DD with near-perfect per-prefix performance ($K$=1--5: 0.994--1.000); DD is thus fully solvable by lexical features alone.
+64	On structurally complex ActorAttack, TF-IDF collapses to F1 = 0.261 (precision = 1.0, recall = 0.15), while 9-class maintains 0.972$\pm$0.026: a 71\,pp gap. Lexical methods cannot capture multi-persona role-playing attack structure. This establishes a ``difficulty threshold'' for lexical methods parallel to that of vanilla encoders: both succeed on DD and fail on ActorAttack (Section~\ref{sec:limitations}).
+65	Bootstrap CIs confirm non-overlapping intervals (9-class DD Full [0.943, 1.000] vs.\ vanilla [0.202, 0.341]; all permutation $p < 0.0001$). FITD is non-discriminative (all variants F1\,$\geq$\,0.990; Section~\ref{sec:limitations}).
+66	
+67	\begin{figure}[t]
+68	\centering
+69	\includegraphics[width=\columnwidth]{figures/paper/fig2_cross_attack_bar.pdf}
+70	\caption{Cross-attack overview (F1 at full conversation length). DisPeD (9-class) maintains near-perfect detection across IID and both OOD families. Vanilla DeBERTa collapses on OOD Deceptive Delight, confirming the necessity of domain-adaptive pretraining. FITD is non-discriminative for all methods (Section~\ref{sec:limitations}).}
+71	\label{fig:cross_attack_bar}
+72	\end{figure}
+73	
+74	Prefix-length analysis (Appendix Table~\ref{tab:full_prefix}) shows vanilla F1 drops from 0.628 at $K$=1 to 0.312 at full length. MLM achieves strong early detection ($K$=2: 0.993) but is unstable at full length (0.914$\pm$0.115); the 9-class model maintains 0.972--0.997 across all prefixes, demonstrating that classification supervision stabilizes against distributional drift.
+75	
+76	%----------------------------------------------------------------------
+77	\subsection{Decomposing the Detection Mechanism}
+78	\label{sec:decomposition}
+79	
+80	\begin{table}[t]
+81	\centering
+82	\small
+83	\caption{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\pm$std where available). Bold indicates best per column. All variants share the same Stage-2 pipeline. Full per-prefix results in Appendix Tables~\ref{tab:full_prefix} and~\ref{tab:actorattack_full}.}
+84	\label{tab:evidence_hierarchy}
+85	\begin{tabular}{@{}lccc@{}}
+86	\toprule
+87	\textbf{Variant} & DD-Full & AA-Full & DD-$K$=2 \\
+88	\midrule
+89	9-class (full model) & .997$\pm$.005 & .972$\pm$.026 & .981$\pm$.013 \\
+90	Binary (2-class) & \textbf{1.000$\pm$.000} & \textbf{.990$\pm$.008} & .994$\pm$.009 \\
+91	Scrambled labels & .997$\pm$.005 & .951$\pm$.043 & .981$\pm$.026 \\
+92	MLM-only$^{\ddagger}$ (no labels) & .914$\pm$.115 & .893$\pm$.080 & .993$\pm$.009 \\
+93	Mean pooling$^{*}$ & .991$\pm$.013 & .962$\pm$.015 & \textbf{1.000} \\
+94	\midrule
+95	Topic classif.\ (5-class) & .541$\pm$.207 & .625$\pm$.141 & .593$\pm$.166 \\
+96	Wikipedia MLM & .904$\pm$.115 & .686$\pm$.297 & .911$\pm$.073 \\
+97	Vanilla DeBERTa & .312$\pm$.026 & .258$\pm$.000 & .479$\pm$.038 \\
+98	TF-IDF LR$^{\dagger}$ & .961 & .261 & \textbf{1.000} \\
+99	\bottomrule
+100	\end{tabular}
+101	\vspace{-2pt}
+102	{\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\dagger}$Deterministic (no std). $^{\ddagger}$MLM-only IID (Table~\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed.}
+103	\end{table}
+104	
+105	A clear \emph{evidence hierarchy} emerges across seven variants (Table~\ref{tab:evidence_hierarchy}), ordered by OOD detection at full conversation length on DD:
+106	
+107	\vspace{2pt}
+108	\noindent\hspace{0.5em}{\small vanilla (0.31$\pm$0.03) $<$ topic (0.54$\pm$0.21) $\ll$ wiki-MLM (0.90$\pm$0.12) $\approx$ jb-MLM (0.91$\pm$0.12) $<$ scrambled (0.997$\pm$0.005) $=$ 9-class (0.997$\pm$0.005) $\approx$ binary (1.000$\pm$0.000)}
+109	\vspace{2pt}
+110	
+111	\paragraph{Domain exposure is the primary mechanism.}
+112	MLM bridges $\sim$60\,pp from vanilla (0.312$\pm$0.026 $\to$ 0.914$\pm$0.115) without labels; this supports the DAPT interpretation~\citep{gururangan2020dontstop}. TF-IDF collapse on ActorAttack (0.261 vs.\ 9-class 0.972) confirms that domain-adapted representations capture features beyond lexical overlap.
+113	All three classification-supervised variants converge to equivalent detection (F1 = 0.997--1.000); McNemar's test finds no significant pairwise differences (all $p > 0.13$; $\leq$7 discordant pairs limit power), and paired permutation tests confirm equivalence ($p \geq 0.40$). TOST equivalence tests (margin = 5\,pp) confirm statistical equivalence on DD (all $p < 0.01$, 90\% CI within $\pm$0.05), robust to $\delta$=2\,pp ($p$=0.035; Appendix~\ref{app:tost_sensitivity}). On ActorAttack, the mean gap is 2.1\,pp (within noise at $n$=3) but TOST is underpowered (SE\,=\,0.045) to confirm formal equivalence; descriptively similar but formally inconclusive. Label quality and granularity are non-factors for detection.
+114	Classification supervision reduces cross-seed variance 4--20$\times$ over MLM on synthetic OOD (std 0.005 vs.\ 0.115 on DD; observed across 3 seeds, suggestive but not conclusive). This stability benefit does not transfer to human-authored data, where classification-supervised variants exhibit the highest variance and pure MLM the lowest (Section~\ref{sec:human_data}).
+115	Appendix~\ref{app:tsne} provides t-SNE visualizations confirming that domain-adapted variants produce tighter, more separable embedding clusters than the vanilla baseline.
+116	
+117	\paragraph{Domain specificity is marginal at full length but meaningful for early detection.}
+118	Wikipedia MLM (0.904$\pm$0.115) nearly matches jailbreak-domain MLM at full length (1\,pp gap), though jailbreak-domain text provides an 8\,pp advantage at early prefixes ($K$=2: 0.993 vs.\ 0.911).
+119	Perturbation analysis (Section~\ref{sec:perturbation}) reveals a sharper domain specificity effect: Wikipedia MLM degrades by $\sim$12\,pp under adversarial paraphrasing while jailbreak-domain MLM degrades by only 2.6\,pp.
+120	
+121	\paragraph{Misaligned supervision destabilizes generalization.}
+122	Topic classification yields DD-Full F1 = 0.541$\pm$0.207; seed 123 falls \emph{below} vanilla (0.252 vs.\ 0.312). Despite using the same jailbreak-domain training data, topic classification performs worse than Wikipedia MLM (0.904$\pm$0.115), which uses out-of-domain text with no labels. A misaligned objective forces the encoder to allocate capacity to irrelevant features and actively destabilizes representations that MLM would preserve.
+123	
+124	\paragraph{Evidence hierarchy on structurally complex attacks.}
+125	ActorAttack~\citep{ren2024actorattack} uses multi-persona steering across longer conversation structures and provides a more challenging OOD benchmark than DD.
+126	The evidence hierarchy at full conversation length is:
+127	
+128	\vspace{2pt}
+129	\noindent\hspace{0.5em}{\small TF-IDF (0.26) $\approx$ vanilla (0.26$\pm$0.00) $<$ topic (0.63$\pm$0.14) $<$ wiki-MLM (0.69$\pm$0.30) $<$ jb-MLM (0.89$\pm$0.08) $<$ scrambled (0.95$\pm$0.04) $\approx$ 9-class (0.97$\pm$0.03) $\approx$ binary (0.99$\pm$0.01)}
+130	\vspace{2pt}
+131	
+132	TF-IDF collapses from 0.961 (DD) to 0.261 (ActorAttack, precision = 1.0, recall = 0.15). This gap shows that domain-adapted representations capture features beyond bag-of-words.
+133	All classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9\,pp); this extends the DD finding. DAPT provides $\sim$71\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix results in Appendix~\ref{sec:actorattack_full}.
+134	
+135	\paragraph{Temporal modeling.}
+136	Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\leq$ 1\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.
+137	
+138	\paragraph{Summary.}
+139	For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\times$) without changing the detection ceiling.
+140	
+141	%----------------------------------------------------------------------
+142	\subsection{Cross-Encoder Validation}
+143	\label{sec:cross_encoder}
+144	
+145	\begin{table}[t]
+146	\centering
+147	\small
+148	\caption{Cross-encoder comparison on OOD Full (3-seed mean$\pm$std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group.}
+149	\label{tab:cross_encoder}
+150	\begin{tabular}{@{}lcc@{}}
+151	\toprule
+152	\textbf{Variant} & DD & AA \\
+153	\midrule
+154	\multicolumn{3}{l}{\textit{DeBERTa-v3-base (184M)}} \\[2pt]
+155	Vanilla & .312$\pm$.026 & .258$\pm$.000 \\
+156	MLM & .914$\pm$.115 & .893$\pm$.080 \\
+157	9-class & \textbf{.997$\pm$.005} & \textbf{.972$\pm$.026} \\
+158	\midrule
+159	\multicolumn{3}{l}{\textit{RoBERTa-base (125M)}} \\[2pt]
+160	Vanilla & .981$\pm$.026 & .466$\pm$.163 \\
+161	MLM & .987$\pm$.018 & .730$\pm$.201 \\
+162	9-class & \textbf{.994$\pm$.005} & \textbf{.939$\pm$.046} \\
+163	\midrule
+164	\multicolumn{3}{l}{\textit{RoBERTa-large (355M)}} \\[2pt]
+165	Vanilla & .927$\pm$.036 & \textbf{1.000$\pm$.000} \\
+166	MLM & .884$\pm$.065 & .874$\pm$.014 \\
+167	9-class & \textbf{.987$\pm$.004} & .946$\pm$.057 \\
+168	\bottomrule
+169	\end{tabular}
+170	\end{table}
+171	
+172	To test whether the evidence hierarchy depends on encoder choice, we replicate vanilla, MLM, and 9-class on RoBERTa-base~\citep{liu2019roberta} (Table~\ref{tab:cross_encoder}).
+173	On DD, RoBERTa-base vanilla already achieves 0.981$\pm$0.026 (vs.\ DeBERTa 0.312$\pm$0.026), so DAPT adds only 1.3\,pp. ActorAttack exposes this as DD's simplicity: RoBERTa-base vanilla collapses to 0.466$\pm$0.163, a 51.5\,pp drop, while domain-adapted variants recover (9-class: 0.939$\pm$0.046).
+174	
+175	RoBERTa-large (355M) reveals a capacity-DAPT interaction: its effect on ActorAttack reverses (vanilla 1.000 vs.\ 9-class 0.946), while smaller encoders require DAPT to bridge 47--71\,pp. All continued pretraining reduces ActorAttack performance for the largest encoder via representation drift (Appendix~\ref{app:roberta_large_lr}), though classification DAPT partially compensates on DD (+6\,pp).
+176	
+177	Three encoder scales thus reveal a capacity-dependent observation for the \emph{difficulty threshold}: DeBERTa-v3-base requires adaptation for all attacks, RoBERTa-base only for complex ones, and RoBERTa-large for none (Section~\ref{sec:discussion}).
+178	Classification supervision provides a consistent stability benefit across both base encoders (cross-seed variance: 0.005--0.046 vs.\ 0.026--0.201).
+179	
+180	CKA analysis~\citep{kornblith2019cka} and linear probing confirm that DAPT reshapes representations substantially, though comparable CKA shifts yield different detection gains across starting points (Appendix~\ref{sec:cka_heatmap}).
+181	
+182	%----------------------------------------------------------------------
+183	\subsection{Mixed-LLM Training}
+184	\label{sec:mixed_llm}
+185	
+186	All preceding experiments use single-source (Qwen3-8B) data. To test whether the evidence hierarchy transfers when training data mixes LLM sources, we train on 250 Qwen + 250 Llama-3.1-8B conversations (Table~\ref{tab:mixed_llm}).
+187	Classification-based DAPT is the only variant that substantially outperforms vanilla: 9-class achieves DD OOD F1\,=\,0.818$\pm$0.096 (+53\,pp over vanilla 0.291$\pm$0.065), while MLM drops to vanilla level (0.289$\pm$0.101). On structurally complex ActorAttack, the advantage narrows (9-class 0.504$\pm$0.107 vs.\ vanilla 0.389$\pm$0.073, +11.5\,pp) with high seed variance, suggesting that limited per-source volume (250 per LLM) constrains generalization to complex attacks. DD and FITD thus primarily validate the baseline rather than the method; ActorAttack, where lexical methods collapse (TF-IDF F1\,=\,0.261) and vanilla encoders fail (F1\,=\,0.258), provides the discriminative evaluation axis.
+188	Mixed-LLM training confirms that classification supervision generalizes across LLM sources where unsupervised pretraining does not; full results in Appendix~\ref{app:mixed_llm}.
+189	
+190	%----------------------------------------------------------------------
+191	\subsection{Human Data Validation}
+192	\label{sec:human_data}
+193	
+194	Since both training and OOD evaluation data are Qwen3-8B-generated, we validate on ToxicChat~\citep{lin2023toxicchat} (204 human-written jailbreak attempts + 204 benign conversations from real LMSYS interactions).
+195	
+196	\begin{table}[t]
+197	\centering
+198	\small
+199	\caption{Human data validation on ToxicChat~\citep{lin2023toxicchat} (macro F1, 3-seed mean$\pm$std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B.}
+200	\label{tab:human_data}
+201	\begin{tabular}{@{}lc@{}}
+202	\toprule
+203	\textbf{Variant} & Macro F1 \\
+204	\midrule
+205	JB-MLM & \textbf{.837$\pm$.013} \\
+206	Wiki-MLM & .791$\pm$.093 \\
+207	Binary & .705$\pm$.072 \\
+208	Scrambled & .616$\pm$.056 \\
+209	9-class & .596$\pm$.087 \\
+210	Topic & .496$\pm$.042 \\
+211	\midrule
+212	Vanilla & .413$\pm$.021 \\
+213	\bottomrule
+214	\end{tabular}
+215	\end{table}
+216	
+217	All DAPT variants exceed vanilla by 18--42\,pp (Table~\ref{tab:human_data}), confirming that the adapted-vs.-vanilla gap is not a Qwen3-8B generation artifact: domain exposure on synthetic jailbreak text transfers to human-written attacks.
+218	
+219	The ordering reverses: JB-MLM leads (0.837$\pm$0.013) while 9-class ranks lower (0.596$\pm$0.087; $p < 0.001$, non-overlapping CIs). ToxicChat is single-turn, so the classification head provides no advantage; validating the multi-turn hierarchy requires multi-turn human data.
+220	
+221	%----------------------------------------------------------------------
+222	\subsection{Perturbation Analysis}
+223	\label{sec:perturbation}
+224	
+225	Under adversarial paraphrasing (BERTScore 0.92), classification-supervised variants achieve zero degradation on IID and OOD DD while non-adapted models degrade by $\sim$12\,pp ($p < 0.001$). On ActorAttack, DAPT variants degrade (9-class $\Delta$\,=\,$-$20.4$\pm$13.5\,pp) but maintain a 52\,pp advantage over vanilla (0.768 vs.\ 0.248). Full results in Appendix~\ref{sec:perturbation_full}.
+226	
+227	%----------------------------------------------------------------------
+228	\subsection{Strategy Trajectory Analysis}
+229	\label{sec:strategy}
+230	
+231	The 9-class taxonomy provides interpretable characterization of known attacks ($\kappa$=0.78, $n$=50; Section~\ref{sec:method}); transition matrices reveal distinct orchestration patterns per family (Appendix~\ref{sec:strategy_full}).
+232	On unseen attacks, strategy prediction degrades to near-random ($\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification task structure matters more than label semantics; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \texttt{[CLS]} embeddings, not through strategy classification accuracy.
+233	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a5351e8-874f-4baa-8609-8f821766e945",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "e0c56c4d-bbe8-46b1-8787-45497d5ea5e0",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+      "content": "% experiments.tex — D024 compressed for 8-page limit\n\n\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Setup}\n\\label{sec:setup}\n\n\\paragraph{Data.}\nAll synthetic data is generated by Qwen3-8B~\\citep{qwen3_2025}.\nThe IID dataset contains 250 Crescendo~\\citep{russinovich2024crescendo} jailbreak and 250 topic-anchored benign conversations, split into training (350), validation (74), and test (76) sets with balanced class ratios (e.g., test = 38 jailbreak + 38 benign).\nStage~1 (DAPT) uses training + validation conversations; Stage~2 (BiGRU) trains on training, early-stops on validation, and evaluates on test.\nOOD evaluation pairs attack-specific jailbreak conversations with the 38 IID-test benign conversations: 80 FITD~\\citep{fitd2024} + 38 benign = 118 total, 80 Deceptive Delight (DD)~\\citep{deceptivedelight2024} + 38 benign = 118 total, and 80 ActorAttack~\\citep{ren2024actorattack} + 38 benign = 118 total.\nNo overlap exists in attack templates across families.\nThe OOD benign set is IID (same generation pipeline as training); the OOD challenge is in distinguishing novel attack families from familiar benign conversations.\nA paraphrased version of the IID test set (BERTScore 0.92, lexical overlap 0.20) serves as the adversarial robustness benchmark (Section~\\ref{sec:perturbation}).\nFor human data validation, we use ToxicChat~\\citep{lin2023toxicchat} (204 jailbreak + 204 benign from real LMSYS user interactions), entirely independent of Qwen3-8B generation.\n\n\\paragraph{Models.}\nSeven DeBERTa-v3 variants share the same Stage-2 pipeline and differ only in Stage-1 training (Section~\\ref{sec:method}).\nOur vanilla DeBERTa+BiGRU configuration is architecturally equivalent to DeepContext~\\citep{deepcontext2026}, differing only in encoder choice (DeBERTa-v3-base vs.\\ BERT); it serves as our primary baseline.\nFor cross-encoder validation, we replicate vanilla, MLM, and 9-class variants on RoBERTa-base~\\citep{liu2019roberta} (Section~\\ref{sec:cross_encoder}).\nWe also compare TF-IDF LR and LLM-as-judge baselines (Appendix~\\ref{sec:llm_judge}): GPT-5.5 achieves only F1 = 0.191--0.449 on IID Crescendo with 30--47\\% unparseable responses; on OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 (DD and ActorAttack) by predicting nearly all conversations as benign, and even 3-shot prompting reaches only 0.566 (DD) and 0.652 (ActorAttack). Content-level reasoning is insufficient for this task.\n\n\\paragraph{Metrics.}\nF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\nOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants.\nFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across seeds) and paired permutation tests (10,000 permutations). Bootstrap means may differ slightly from seed-averaged F1 due to the nonlinearity of F1 aggregation.\nAll standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\approx$22\\% larger but do not alter any significance conclusions.\nStage-1: learning rate $2 \\times 10^{-5}$, batch 16, 4 epochs, MLM masking 15\\%.\nStage-2: two-layer MLP, 20 epochs.\n\n%----------------------------------------------------------------------\n\\subsection{Cross-Attack Generalization}\n\\label{sec:cross_attack}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). 3-seed mean$\\pm$std where noted; full per-$K$ in Appendix~\\ref{sec:full_prefix}.}\n\\label{tab:main_results}\n\\begin{tabular}{@{}lcc|cc@{}}\n\\toprule\n& \\multicolumn{2}{c|}{\\textit{IID (Cresc.)}} & \\multicolumn{2}{c}{\\textit{OOD (DD)}} \\\\\n\\textbf{Method} & $K$=2 & Full & $K$=2 & Full \\\\\n\\midrule\n9-class & \\textbf{1.000$\\pm$.000} & \\textbf{1.000$\\pm$.000} & .981$\\pm$.013 & \\textbf{.997$\\pm$.005} \\\\\nMLM-only$^{\\ddagger}$ & .974 & 1.000 & \\textbf{.993$\\pm$.009} & .914$\\pm$.115 \\\\\nVanilla & .978$\\pm$.016 & 1.000$\\pm$.000 & .479$\\pm$.038 & .312$\\pm$.026 \\\\\nTF-IDF LR$^{\\S}$ & 1.000 & 1.000 & 1.000 & .961 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{\\ddagger}$MLM-only IID reports single seed (42); OOD reports 3-seed. $^{\\S}$TF-IDF is deterministic (no std).}\n\\end{table}\n\nVanilla encoders collapse under cross-attack transfer; domain-adapted variants recover near-perfect detection (Table~\\ref{tab:main_results}).\nDD exhibits high lexical separability (TF-IDF F1\\,=\\,0.961); ActorAttack, where TF-IDF collapses to 0.261, serves as the primary stress test for beyond-lexical generalization.\nAll methods achieve near-perfect IID F1, reflecting inherent lexical separability when test matches training.\nOn OOD DD, vanilla DeBERTa collapses to F1 = 0.312$\\pm$0.026, worsening with more turns (0.628$\\pm$0.038 at $K$=1 to 0.312$\\pm$0.026 at Full), consistent with the finding that attack turns occupy ``benign'' embedding regions~\\citep{bullwinkel2025repeng}.\nMLM achieves mean F1 $\\geq$ 0.97 at all prefixes $K \\leq 5$ without any classification labels; domain exposure alone is sufficient.\nAt full conversation length, MLM drops to 0.914$\\pm$0.115 (seed 456 recall = 0.64), while the 9-class model maintains 0.997$\\pm$0.005.\nTF-IDF LR reaches F1 = 0.961 on full DD with near-perfect per-prefix performance ($K$=1--5: 0.994--1.000); DD is thus fully solvable by lexical features alone.\nOn structurally complex ActorAttack, TF-IDF collapses to F1 = 0.261 (precision = 1.0, recall = 0.15), while 9-class maintains 0.972$\\pm$0.026: a 71\\,pp gap. Lexical methods cannot capture multi-persona role-playing attack structure. This establishes a ``difficulty threshold'' for lexical methods parallel to that of vanilla encoders: both succeed on DD and fail on ActorAttack (Section~\\ref{sec:limitations}).\nBootstrap CIs confirm non-overlapping intervals (9-class DD Full [0.943, 1.000] vs.\\ vanilla [0.202, 0.341]; all permutation $p < 0.0001$). FITD is non-discriminative (all variants F1\\,$\\geq$\\,0.990; Section~\\ref{sec:limitations}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig2_cross_attack_bar.pdf}\n\\caption{Cross-attack overview (F1 at full conversation length). DisPeD (9-class) maintains near-perfect detection across IID and both OOD families. Vanilla DeBERTa collapses on OOD Deceptive Delight, confirming the necessity of domain-adaptive pretraining. FITD is non-discriminative for all methods (Section~\\ref{sec:limitations}).}\n\\label{fig:cross_attack_bar}\n\\end{figure}\n\nPrefix-length analysis (Appendix Table~\\ref{tab:full_prefix}) shows vanilla F1 drops from 0.628 at $K$=1 to 0.312 at full length. MLM achieves strong early detection ($K$=2: 0.993) but is unstable at full length (0.914$\\pm$0.115); the 9-class model maintains 0.972--0.997 across all prefixes, demonstrating that classification supervision stabilizes against distributional drift.\n\n%----------------------------------------------------------------------\n\\subsection{Decomposing the Detection Mechanism}\n\\label{sec:decomposition}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\\pm$std where available). Bold indicates best per column. All variants share the same Stage-2 pipeline. Full per-prefix results in Appendix Tables~\\ref{tab:full_prefix} and~\\ref{tab:actorattack_full}.}\n\\label{tab:evidence_hierarchy}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Variant} & DD-Full & AA-Full & DD-$K$=2 \\\\\n\\midrule\n9-class (full model) & .997$\\pm$.005 & .972$\\pm$.026 & .981$\\pm$.013 \\\\\nBinary (2-class) & \\textbf{1.000$\\pm$.000} & \\textbf{.990$\\pm$.008} & .994$\\pm$.009 \\\\\nScrambled labels & .997$\\pm$.005 & .951$\\pm$.043 & .981$\\pm$.026 \\\\\nMLM-only$^{\\ddagger}$ (no labels) & .914$\\pm$.115 & .893$\\pm$.080 & .993$\\pm$.009 \\\\\nMean pooling$^{*}$ & .991$\\pm$.013 & .962$\\pm$.015 & \\textbf{1.000} \\\\\n\\midrule\nTopic classif.\\ (5-class) & .541$\\pm$.207 & .625$\\pm$.141 & .593$\\pm$.166 \\\\\nWikipedia MLM & .904$\\pm$.115 & .686$\\pm$.297 & .911$\\pm$.073 \\\\\nVanilla DeBERTa & .312$\\pm$.026 & .258$\\pm$.000 & .479$\\pm$.038 \\\\\nTF-IDF LR$^{\\dagger}$ & .961 & .261 & \\textbf{1.000} \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\\dagger}$Deterministic (no std). $^{\\ddagger}$MLM-only IID (Table~\\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed.}\n\\end{table}\n\nA clear \\emph{evidence hierarchy} emerges across seven variants (Table~\\ref{tab:evidence_hierarchy}), ordered by OOD detection at full conversation length on DD:\n\n\\vspace{2pt}\n\\noindent\\hspace{0.5em}{\\small vanilla (0.31$\\pm$0.03) $<$ topic (0.54$\\pm$0.21) $\\ll$ wiki-MLM (0.90$\\pm$0.12) $\\approx$ jb-MLM (0.91$\\pm$0.12) $<$ scrambled (0.997$\\pm$0.005) $=$ 9-class (0.997$\\pm$0.005) $\\approx$ binary (1.000$\\pm$0.000)}\n\\vspace{2pt}\n\n\\paragraph{Domain exposure is the primary mechanism.}\nMLM bridges $\\sim$60\\,pp from vanilla (0.312$\\pm$0.026 $\\to$ 0.914$\\pm$0.115) without labels; this supports the DAPT interpretation~\\citep{gururangan2020dontstop}. TF-IDF collapse on ActorAttack (0.261 vs.\\ 9-class 0.972) confirms that domain-adapted representations capture features beyond lexical overlap.\nAll three classification-supervised variants converge to equivalent detection (F1 = 0.997--1.000); McNemar's test finds no significant pairwise differences (all $p > 0.13$; $\\leq$7 discordant pairs limit power), and paired permutation tests confirm equivalence ($p \\geq 0.40$). TOST equivalence tests (margin = 5\\,pp) confirm statistical equivalence on DD (all $p < 0.01$, 90\\% CI within $\\pm$0.05), robust to $\\delta$=2\\,pp ($p$=0.035; Appendix~\\ref{app:tost_sensitivity}). On ActorAttack, the mean gap is 2.1\\,pp (within noise at $n$=3) but TOST is underpowered (SE\\,=\\,0.045) to confirm formal equivalence; descriptively similar but formally inconclusive. Label quality and granularity are non-factors for detection.\nClassification supervision reduces cross-seed variance 4--20$\\times$ over MLM on synthetic OOD (std 0.005 vs.\\ 0.115 on DD; observed across 3 seeds, suggestive but not conclusive). This stability benefit does not transfer to human-authored data, where classification-supervised variants exhibit the highest variance and pure MLM the lowest (Section~\\ref{sec:human_data}).\nAppendix~\\ref{app:tsne} provides t-SNE visualizations confirming that domain-adapted variants produce tighter, more separable embedding clusters than the vanilla baseline.\n\n\\paragraph{Domain specificity is marginal at full length but meaningful for early detection.}\nWikipedia MLM (0.904$\\pm$0.115) nearly matches jailbreak-domain MLM at full length (1\\,pp gap), though jailbreak-domain text provides an 8\\,pp advantage at early prefixes ($K$=2: 0.993 vs.\\ 0.911).\nPerturbation analysis (Section~\\ref{sec:perturbation}) reveals a sharper domain specificity effect: Wikipedia MLM degrades by $\\sim$12\\,pp under adversarial paraphrasing while jailbreak-domain MLM degrades by only 2.6\\,pp.\n\n\\paragraph{Misaligned supervision destabilizes generalization.}\nTopic classification yields DD-Full F1 = 0.541$\\pm$0.207; seed 123 falls \\emph{below} vanilla (0.252 vs.\\ 0.312). Despite using the same jailbreak-domain training data, topic classification performs worse than Wikipedia MLM (0.904$\\pm$0.115), which uses out-of-domain text with no labels. A misaligned objective forces the encoder to allocate capacity to irrelevant features and actively destabilizes representations that MLM would preserve.\n\n\\paragraph{Evidence hierarchy on structurally complex attacks.}\nActorAttack~\\citep{ren2024actorattack} uses multi-persona steering across longer conversation structures and provides a more challenging OOD benchmark than DD.\nThe evidence hierarchy at full conversation length is:\n\n\\vspace{2pt}\n\\noindent\\hspace{0.5em}{\\small TF-IDF (0.26) $\\approx$ vanilla (0.26$\\pm$0.00) $<$ topic (0.63$\\pm$0.14) $<$ wiki-MLM (0.69$\\pm$0.30) $<$ jb-MLM (0.89$\\pm$0.08) $<$ scrambled (0.95$\\pm$0.04) $\\approx$ 9-class (0.97$\\pm$0.03) $\\approx$ binary (0.99$\\pm$0.01)}\n\\vspace{2pt}\n\nTF-IDF collapses from 0.961 (DD) to 0.261 (ActorAttack, precision = 1.0, recall = 0.15). This gap shows that domain-adapted representations capture features beyond bag-of-words.\nAll classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9\\,pp); this extends the DD finding. DAPT provides $\\sim$71\\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix results in Appendix~\\ref{sec:actorattack_full}.\n\n\\paragraph{Temporal modeling.}\nThree-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.\n\n\\paragraph{Summary.}\nFor base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\n\n%----------------------------------------------------------------------\n\\subsection{Cross-Encoder Validation}\n\\label{sec:cross_encoder}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-encoder comparison on OOD Full (3-seed mean$\\pm$std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group.}\n\\label{tab:cross_encoder}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Variant} & DD & AA \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{DeBERTa-v3-base (184M)}} \\\\[2pt]\nVanilla & .312$\\pm$.026 & .258$\\pm$.000 \\\\\nMLM & .914$\\pm$.115 & .893$\\pm$.080 \\\\\n9-class & \\textbf{.997$\\pm$.005} & \\textbf{.972$\\pm$.026} \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{RoBERTa-base (125M)}} \\\\[2pt]\nVanilla & .981$\\pm$.026 & .466$\\pm$.163 \\\\\nMLM & .987$\\pm$.018 & .730$\\pm$.201 \\\\\n9-class & \\textbf{.994$\\pm$.005} & \\textbf{.939$\\pm$.046} \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{RoBERTa-large (355M)}} \\\\[2pt]\nVanilla & .927$\\pm$.036 & \\textbf{1.000$\\pm$.000} \\\\\nMLM & .884$\\pm$.065 & .874$\\pm$.014 \\\\\n9-class & \\textbf{.987$\\pm$.004} & .946$\\pm$.057 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTo test whether the evidence hierarchy depends on encoder choice, we replicate vanilla, MLM, and 9-class on RoBERTa-base~\\citep{liu2019roberta} (Table~\\ref{tab:cross_encoder}).\nOn DD, RoBERTa-base vanilla already achieves 0.981$\\pm$0.026 (vs.\\ DeBERTa 0.312$\\pm$0.026), so DAPT adds only 1.3\\,pp. ActorAttack exposes this as DD's simplicity: RoBERTa-base vanilla collapses to 0.466$\\pm$0.163, a 51.5\\,pp drop, while domain-adapted variants recover (9-class: 0.939$\\pm$0.046).\n\nRoBERTa-large (355M) reveals a capacity-DAPT interaction: its effect on ActorAttack reverses (vanilla 1.000 vs.\\ 9-class 0.946), while smaller encoders require DAPT to bridge 47--71\\,pp. All continued pretraining reduces ActorAttack performance for the largest encoder via representation drift (Appendix~\\ref{app:roberta_large_lr}), though classification DAPT partially compensates on DD (+6\\,pp).\n\nThree encoder scales thus reveal a capacity-dependent observation for the \\emph{difficulty threshold}: DeBERTa-v3-base requires adaptation for all attacks, RoBERTa-base only for complex ones, and RoBERTa-large for none (Section~\\ref{sec:discussion}).\nClassification supervision provides a consistent stability benefit across both base encoders (cross-seed variance: 0.005--0.046 vs.\\ 0.026--0.201).\n\nCKA analysis~\\citep{kornblith2019cka} and linear probing confirm that DAPT reshapes representations substantially, though comparable CKA shifts yield different detection gains across starting points (Appendix~\\ref{sec:cka_heatmap}).\n\n%----------------------------------------------------------------------\n\\subsection{Mixed-LLM Training}\n\\label{sec:mixed_llm}\n\nAll preceding experiments use single-source (Qwen3-8B) data. To test whether the evidence hierarchy transfers when training data mixes LLM sources, we train on 250 Qwen + 250 Llama-3.1-8B conversations (Table~\\ref{tab:mixed_llm}).\nClassification-based DAPT is the only variant that substantially outperforms vanilla: 9-class achieves DD OOD F1\\,=\\,0.818$\\pm$0.096 (+53\\,pp over vanilla 0.291$\\pm$0.065), while MLM drops to vanilla level (0.289$\\pm$0.101). On structurally complex ActorAttack, the advantage narrows (9-class 0.504$\\pm$0.107 vs.\\ vanilla 0.389$\\pm$0.073, +11.5\\,pp) with high seed variance, suggesting that limited per-source volume (250 per LLM) constrains generalization to complex attacks. DD and FITD thus primarily validate the baseline rather than the method; ActorAttack, where lexical methods collapse (TF-IDF F1\\,=\\,0.261) and vanilla encoders fail (F1\\,=\\,0.258), provides the discriminative evaluation axis.\nMixed-LLM training confirms that classification supervision generalizes across LLM sources where unsupervised pretraining does not; full results in Appendix~\\ref{app:mixed_llm}.\n\n%----------------------------------------------------------------------\n\\subsection{Human Data Validation}\n\\label{sec:human_data}\n\nSince both training and OOD evaluation data are Qwen3-8B-generated, we validate on ToxicChat~\\citep{lin2023toxicchat} (204 human-written jailbreak attempts + 204 benign conversations from real LMSYS interactions).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Human data validation on ToxicChat~\\citep{lin2023toxicchat} (macro F1, 3-seed mean$\\pm$std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B.}\n\\label{tab:human_data}\n\\begin{tabular}{@{}lc@{}}\n\\toprule\n\\textbf{Variant} & Macro F1 \\\\\n\\midrule\nJB-MLM & \\textbf{.837$\\pm$.013} \\\\\nWiki-MLM & .791$\\pm$.093 \\\\\nBinary & .705$\\pm$.072 \\\\\nScrambled & .616$\\pm$.056 \\\\\n9-class & .596$\\pm$.087 \\\\\nTopic & .496$\\pm$.042 \\\\\n\\midrule\nVanilla & .413$\\pm$.021 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll DAPT variants exceed vanilla by 18--42\\,pp (Table~\\ref{tab:human_data}), confirming that the adapted-vs.-vanilla gap is not a Qwen3-8B generation artifact: domain exposure on synthetic jailbreak text transfers to human-written attacks.\n\nThe ordering reverses: JB-MLM leads (0.837$\\pm$0.013) while 9-class ranks lower (0.596$\\pm$0.087; $p < 0.001$, non-overlapping CIs). ToxicChat is single-turn, so the classification head provides no advantage; validating the multi-turn hierarchy requires multi-turn human data.\n\n%----------------------------------------------------------------------\n\\subsection{Perturbation Analysis}\n\\label{sec:perturbation}\n\nUnder adversarial paraphrasing (BERTScore 0.92), classification-supervised variants achieve zero degradation on IID and OOD DD while non-adapted models degrade by $\\sim$12\\,pp ($p < 0.001$). On ActorAttack, DAPT variants degrade (9-class $\\Delta$\\,=\\,$-$20.4$\\pm$13.5\\,pp) but maintain a 52\\,pp advantage over vanilla (0.768 vs.\\ 0.248). Full results in Appendix~\\ref{sec:perturbation_full}.\n\n%----------------------------------------------------------------------\n\\subsection{Strategy Trajectory Analysis}\n\\label{sec:strategy}\n\nThe 9-class taxonomy provides interpretable characterization of known attacks ($\\kappa$=0.78, $n$=50; Section~\\ref{sec:method}); transition matrices reveal distinct orchestration patterns per family (Appendix~\\ref{sec:strategy_full}).\nOn unseen attacks, strategy prediction degrades to near-random ($\\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification task structure matters more than label semantics; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \\texttt{[CLS]} embeddings, not through strategy classification accuracy.\n",
+      "numLines": 233,
+      "startLine": 1,
+      "totalLines": 233
+    }
+  },
+  "sourceToolAssistantUUID": "3a5351e8-874f-4baa-8609-8f821766e945",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 60 · 2026-05-20T09:34:29.429Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FfzfGdaYZmXvSup3RVV1NF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0c56c4d-bbe8-46b1-8787-45497d5ea5e0",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHw26vDX2gJWsQfqBK",
+  "type": "assistant",
+  "uuid": "2897601d-0479-4c02-8b87-4685f973a5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J189ooqgerDLxNtjBhwwBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2751,
+      "cache_read_input_tokens": 41718,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 41718,
+          "cache_creation_input_tokens": 2751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 61 · 2026-05-20T09:34:29.435Z_
+
+<details><summary>↩ Tool result · `toolu_01FfzfGdaYZmXvSup3RVV1NF`</summary>
+
+```text
+1	% appendix.tex — Supplementary material
+2	
+3	\appendix
+4	
+5	\section{LLM-as-Judge Baseline}
+6	\label{sec:llm_judge}
+7	
+8	\begin{table}[t]
+9	\centering
+10	\small
+11	\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}
+12	\label{tab:llm_judge}
+13	\begin{tabular}{@{}lcccr@{}}
+14	\toprule
+15	\textbf{Method} & DD & AA & IID & Unparse. \\
+16	\midrule
+17	\multicolumn{5}{l}{\textit{Zero-shot}} \\[2pt]
+18	GPT-5.5 & -- & -- & .383 & 30--47\% \\
+19	Qwen3-8B & .244 & .244 & .100 & 0\% \\
+20	\midrule
+21	\multicolumn{5}{l}{\textit{3-shot}} \\[2pt]
+22	Qwen3-8B & .566 & .652 & -- & 0\% \\
+23	\midrule
+24	\multicolumn{5}{l}{\textit{Trained classifier}} \\[2pt]
+25	9-class (ours) & \textbf{.997} & \textbf{.972} & \textbf{1.000} & 0\% \\
+26	\bottomrule
+27	\end{tabular}
+28	\end{table}
+29	
+30	Table~\ref{tab:llm_judge} reports LLM-as-judge performance on IID and OOD data.
+31	On IID Crescendo, GPT-5.5 achieves precision of 1.0 at all turn prefixes but recall ranges from only 0.105 to 0.290, resulting in F1 = 0.383 on full conversations; 30--47\% of responses are unparseable.
+32	Qwen3-8B performs worse (IID F1 = 0.100).
+33	On OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 on both DD and ActorAttack by predicting nearly all conversations as benign.
+34	Even with 3-shot prompting, Qwen3-8B reaches only 0.566 (DD) and 0.652 (AA), while DisPeD maintains macro F1 $\geq$ 0.972.
+35	The poor performance of content-level reasoning on unseen attack types underscores the necessity of trained classifiers with domain-adapted representations.
+36	
+37	\section{Full Cross-Attack Results by Prefix}
+38	\label{sec:full_prefix}
+39	
+40	\begin{table*}[t]
+41	\centering
+42	\small
+43	\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}
+44	\label{tab:full_prefix}
+45	\begin{tabular}{@{}lccccc@{}}
+46	\toprule
+47	\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\
+48	\midrule
+49	\multicolumn{6}{l}{\textit{IID (Crescendo)}} \\[2pt]
+50	9-class (ours) & 1.000$\pm$.000 & 1.000$\pm$.000 & 1.000$\pm$.000 & 1.000$\pm$.000 & 1.000$\pm$.000 \\
+51	MLM-only & .960 & .974 & .987 & 1.000 & 1.000 \\
+52	Vanilla DeBERTa & .968$\pm$.033 & .978$\pm$.016 & .987$\pm$.000 & .982$\pm$.014 & 1.000$\pm$.000 \\
+53	TF-IDF LR & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+54	\midrule
+55	\multicolumn{6}{l}{\textit{OOD (Deceptive Delight)}} \\[2pt]
+56	9-class (ours) & .990$\pm$.013 & .981$\pm$.013 & .972$\pm$.026 & .997$\pm$.005 & .997$\pm$.005 \\
+57	Binary & .994$\pm$.009 & .994$\pm$.009 & .984$\pm$.008 & 1.000$\pm$.000 & 1.000$\pm$.000 \\
+58	Scrambled & .997$\pm$.005 & .981$\pm$.026 & .975$\pm$.029 & .997$\pm$.005 & .997$\pm$.005 \\
+59	MLM-only & .973$\pm$.019 & .993$\pm$.009 & .997$\pm$.005 & .997$\pm$.005 & .914$\pm$.115 \\
+60	Vanilla DeBERTa & .628$\pm$.038 & .479$\pm$.038 & .389$\pm$.027 & .351$\pm$.030 & .312$\pm$.026 \\
+61	TF-IDF LR & 1.000 & 1.000 & .994 & 1.000 & .961 \\
+62	\midrule
+63	\multicolumn{6}{l}{\textit{OOD (FITD)}} \\[2pt]
+64	9-class (ours) & 1.000 & 1.000 & -- & -- & 1.000 \\
+65	Vanilla DeBERTa & .990 & 1.000 & -- & -- & 1.000 \\
+66	TF-IDF LR & 1.000 & -- & -- & -- & 1.000 \\
+67	\bottomrule
+68	\end{tabular}
+69	\end{table*}
+70	
+71	\section{ActorAttack Full Results}
+72	\label{sec:actorattack_full}
+73	
+74	\begin{table*}[t]
+75	\centering
+76	\small
+77	\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}
+78	\label{tab:actorattack_full}
+79	\begin{tabular}{@{}lccccc@{}}
+80	\toprule
+81	\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\
+82	\midrule
+83	\multicolumn{6}{l}{\textit{DeBERTa-v3}} \\[2pt]
+84	Binary & .788$\pm$.020 & \textbf{.935$\pm$.018} & \textbf{.976$\pm$.005} & \textbf{.995$\pm$.005} & \textbf{.990$\pm$.008} \\
+85	9-class & .773$\pm$.041 & .855$\pm$.048 & .921$\pm$.046 & .966$\pm$.028 & .972$\pm$.026 \\
+86	Scrambled & .652$\pm$.034 & .804$\pm$.053 & .854$\pm$.046 & .910$\pm$.052 & .951$\pm$.043 \\
+87	MLM-only & .736$\pm$.150 & .909$\pm$.058 & .945$\pm$.039 & .929$\pm$.033 & .893$\pm$.080 \\
+88	Wiki MLM & .656$\pm$.224 & .672$\pm$.252 & .693$\pm$.280 & .689$\pm$.285 & .686$\pm$.297 \\
+89	Topic & .513$\pm$.077 & .580$\pm$.109 & .565$\pm$.100 & .615$\pm$.111 & .625$\pm$.141 \\
+90	Vanilla & .337$\pm$.049 & .306$\pm$.026 & .284$\pm$.011 & .262$\pm$.006 & .258$\pm$.000 \\
+91	TF-IDF LR & .633 & .730 & .571 & .242 & .261 \\
+92	\midrule
+93	\multicolumn{6}{l}{\textit{RoBERTa}} \\[2pt]
+94	9-class & \textbf{.738$\pm$.033} & .805$\pm$.033 & .884$\pm$.066 & .925$\pm$.066 & .939$\pm$.046 \\
+95	MLM & .633$\pm$.133 & .665$\pm$.150 & .713$\pm$.174 & .719$\pm$.184 & .730$\pm$.201 \\
+96	Vanilla & .410$\pm$.126 & .425$\pm$.143 & .432$\pm$.144 & .466$\pm$.144 & .466$\pm$.163 \\
+97	\bottomrule
+98	\end{tabular}
+99	\end{table*}
+100	
+101	\section{Perturbation Robustness}
+102	\label{sec:perturbation_full}
+103	
+104	\begin{table}[t]
+105	\centering
+106	\small
+107	\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}
+108	\label{tab:perturbation}
+109	\begin{tabular}{@{}lcccc@{}}
+110	\toprule
+111	\textbf{Method} & $\Delta$ Full & $\Delta$ $K$=1 & $\Delta$ $K$=2 & $\Delta$ $K$=3 \\
+112	\midrule
+113	9-class (ours) & \textbf{0.0} & \textbf{$-$2.6} & \textbf{0.0} & \textbf{0.0} \\
+114	Scrambled & \textbf{0.0} & $-$5.3 & $-$2.6 & \textbf{0.0} \\
+115	Binary & \textbf{0.0} & $-$9.2 & $-$2.6 & \textbf{0.0} \\
+116	\midrule
+117	TF-IDF LR & $-$1.3 & $-$9.6 & $-$4.1 & $-$1.3 \\
+118	MLM-only & $-$2.6 & $-$9.2 & $-$4.0 & $-$4.0 \\
+119	Topic (seed 42) & $-$4.0 & $-$2.7 & $-$2.7 & \textbf{0.0} \\
+120	\midrule
+121	Wikipedia MLM & $-$12.1 & $-$12.4 & $-$15.4 & $-$17.9 \\
+122	Vanilla DeBERTa & $-$11.8 & $-$14.6 & $-$12.1 & $-$13.8 \\
+123	\bottomrule
+124	\end{tabular}
+125	\end{table}
+126	
+127	Table~\ref{tab:perturbation} shows perturbation behavior on IID data.
+128	Classification-supervised variants (9-class, binary, scrambled) achieve zero degradation at full conversation length regardless of label correctness.
+129	Models without jailbreak-domain exposure (Wikipedia MLM, vanilla) degrade by $\sim$12\,pp.
+130	McNemar's test finds no significant pairwise differences among classification-supervised variants (all $p > 0.13$), though with $\leq$7 discordant pairs, statistical power is limited.
+131	
+132	\begin{table}[t]
+133	\centering
+134	\small
+135	\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\pm$std where available.}
+136	\label{tab:ood_perturbation}
+137	\begin{tabular}{@{}lcccc@{}}
+138	\toprule
+139	\textbf{Variant} & Clean Full & Pert.\ Full & $\Delta$ Full & $\Delta$ $K$=1 \\
+140	\midrule
+141	9-class & .997$\pm$.005 & 1.000$\pm$.000 & +0.3 & +0.6 \\
+142	Binary & 1.000$\pm$.000 & 1.000$\pm$.000 & 0.0 & +0.6 \\
+143	Scrambled & .997$\pm$.005 & 1.000$\pm$.000 & +0.3 & $-$0.3 \\
+144	\midrule
+145	JB MLM & .914$\pm$.115 & .941 & +2.7 & 0.0 \\
+146	Wiki MLM$^{*}$ & .904$\pm$.115 & .872 & $-$3.3 & $-$3.2 \\
+147	Vanilla$^{\dagger}$ & .312$\pm$.026 & .339$\pm$.055 & +2.7 & $-$6.8$\pm$1.1 \\
+148	\bottomrule
+149	\end{tabular}
+150	\vspace{-2pt}
+151	{\footnotesize $^{*}$Wiki MLM degradation is seed-driven: seed 42 accounts for $-$9.8\,pp; other seeds show 0.0\,pp change.\\$^{\dagger}$Vanilla $\Delta$ Full = +2.7\,pp reflects floor-effect noise (baseline 0.312, std 0.055), not meaningful improvement.}
+152	\end{table}
+153	
+154	On OOD DD, the IID pattern replicates: classification-supervised variants show zero degradation while McNemar's test confirms 9-class vs.\ vanilla significance ($p < 0.001$, 49--78 discordant pairs).
+155	On OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\Delta$\,=\,$-$20.4$\pm$13.5\,pp, MLM $-$35.3\,pp), but perturbation narrows rather than closes the adapted vs.\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\ vanilla 0.248 (McNemar $p < 0.001$).
+156	Domain specificity also manifests: Wikipedia MLM degrades by $\sim$12\,pp while jailbreak-domain MLM degrades by only 2.6\,pp.
+157	
+158	\section{Strategy Trajectory Analysis}
+159	\label{sec:strategy_full}
+160	
+161	\begin{figure*}[t]
+162	\centering
+163	\includegraphics[width=\textwidth]{figures/paper/fig3_strategy_heatmap.pdf}
+164	\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}
+165	\label{fig:strategy_heatmap}
+166	\end{figure*}
+167	
+168	Figure~\ref{fig:strategy_heatmap} shows transition count matrices for three attack types.
+169	Crescendo conversations exhibit broad transition coverage across all nine strategy categories (1,818 total transitions), with the highest concentration in Role Assignment self-transitions (545); this reflects its gradual escalation design.
+170	FITD conversations show a markedly sparser pattern (541 transitions), with Role$\to$Obfuscation (161) as the dominant transition, consistent with FITD's commitment-consistency exploitation~\citep{cialdini2001influence}.
+171	DD conversations span 5 active source strategies (565 transitions), with Emotion$\to$Obfuscation (129) as the dominant transition, aligning with DD's design of embedding harmful content within emotionally engaging contexts~\citep{deceptivedelight2024}.
+172	
+173	\section{Centered CKA Heatmaps}
+174	\label{sec:cka_heatmap}
+175	
+176	\begin{figure}[t]
+177	\centering
+178	\includegraphics[width=\columnwidth]{figures/paper/cka_heatmap.pdf}
+179	\caption{Centered CKA similarity~\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\ 9-class block shows distinct geometries (CKA $\leq$ 0.2 on RoBERTa OOD).}
+180	\label{fig:cka_heatmap}
+181	\end{figure}
+182	
+183	\section{Embedding Space Visualization}
+184	\label{app:tsne}
+185	
+186	Figure~\ref{fig:tsne} visualizes mean-pooled \texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.
+187	
+188	\begin{figure}[ht]
+189	\centering
+190	\includegraphics[width=\columnwidth]{figures/paper/embedding_tsne.pdf}
+191	\caption{t-SNE visualization of mean-pooled \texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}
+192	\label{fig:tsne}
+193	\end{figure}
+194	
+195	\section{Cross-LLM Validation}
+196	\label{app:cross_llm}
+197	
+198	\begin{table}[ht]
+199	\centering
+200	\footnotesize
+201	\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}
+202	\label{tab:cross_llm}
+203	\begin{tabular}{@{}lcccccc@{}}
+204	\toprule
+205	& \multicolumn{3}{c}{\textit{DD Full}} & \multicolumn{3}{c}{\textit{AA Full}} \\
+206	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+207	\textbf{Condition} & Van. & MLM & 9-cl. & Van. & MLM & 9-cl. \\
+208	\midrule
+209	Qwen JB + Qwen ben. & .312 & .914 & .997 & .258 & .893 & .972 \\
+210	Llama JB + Llama ben. & .261 & .282 & .433 & .261 & .368 & .321 \\
+211	Llama JB + Qwen ben. & .302 & .778$^{*}$ & 1.000 & .302 & .903 & .801 \\
+212	\bottomrule
+213	\end{tabular}
+214	\vspace{-2pt}
+215	{\footnotesize $^{*}$High seed variance (std = 0.306): seed 456 outlier (F1 = 0.345); remaining two seeds achieve F1 $\geq$ 0.97.}
+216	\end{table}
+217	
+218	Table~\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under this condition, 9-class recovers to F1 = 1.000 on DD and 0.801 on ActorAttack, and JB-MLM reaches 0.903 on ActorAttack. The contrast between rows~2 and~3 shows that the dominant failure mode in row~2 is benign distribution mismatch (false positives from unfamiliar benign text), not inability to recognize cross-LLM jailbreak patterns. Vanilla remains at 0.26--0.31 across all conditions, further confirming that encoders without DAPT lack OOD detection capability regardless of the LLM source. The residual degradation on ActorAttack (0.801 vs.\ 0.972) reflects genuine cross-LLM variation in structurally complex attack patterns.
+219	
+220	\begin{table}[ht]
+221	\centering
+222	\footnotesize
+223	\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}
+224	\label{tab:cross_llm_error}
+225	\begin{tabular}{@{}lccc@{}}
+226	\toprule
+227	\textbf{Metric} & Van. & MLM & 9-cl. \\
+228	\midrule
+229	TP rate (Llama JB) & 0.0\% & 68.0\% & 100.0\% \\
+230	FP rate (Llama ben.) & 29.3\% & 88.0\% & 90.0\% \\
+231	FP rate (Qwen ben.) & 0.0\% & 0.9\% & 0.0\% \\
+232	\bottomrule
+233	\end{tabular}
+234	\end{table}
+235	
+236	Table~\ref{tab:cross_llm_error} decomposes DD Full F1 into true positive and false positive rates. TP rates are identical regardless of the benign source: domain-adapted models detect Llama-generated jailbreaks at the same rate whether evaluated against Qwen or Llama benign text. The F1 collapse in the full Llama condition (Table~\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text (FP rate: 88--90\% on Llama vs.\ 0--0.9\% on Qwen for adapted variants). The model implicitly treats non-Qwen text style as a jailbreak indicator, a spurious correlation from single-LLM training data. This failure reflects a data diversity limitation, not a methodological one; mixed-LLM training (Table~\ref{tab:mixed_llm}) partially addresses this confound.
+237	
+238	\section{Mixed-LLM Training Results}
+239	\label{app:mixed_llm}
+240	
+241	\begin{table}[ht]
+242	\centering
+243	\footnotesize
+244	\caption{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\pm$std where available). ToxicChat evaluated on balanced set (408 conversations).}
+245	\label{tab:mixed_llm}
+246	\begin{tabular}{@{}lccccc@{}}
+247	\toprule
+248	\textbf{Variant} & Mixed & DD OOD & AA OOD & FITD OOD & ToxicChat \\
+249	\midrule
+250	9-class & \textbf{.996$\pm$.006} & \textbf{.818$\pm$.096} & \textbf{.504$\pm$.107} & \textbf{.997$\pm$.005} & \textbf{.550$\pm$.052} \\
+251	MLM & .681$\pm$.226 & .289$\pm$.101 & .258$\pm$.075 & .679$\pm$.188 & .256$\pm$.053 \\
+252	Vanilla & .802$\pm$.010 & .291$\pm$.065 & .389$\pm$.073 & .867$\pm$.022 & .356$\pm$.009 \\
+253	\bottomrule
+254	\end{tabular}
+255	\end{table}
+256	
+257	Table~\ref{tab:mixed_llm} reports detection performance when training on a mixed corpus of Qwen3-8B and Llama-3.1-8B conversations. Classification-based DAPT (9-class) maintains the strongest DD OOD performance (0.818$\pm$0.096), outperforming both vanilla (0.291$\pm$0.065) and MLM (0.289$\pm$0.101) by 53\,pp. ActorAttack remains challenging under mixed-LLM conditions (9-class F1\,=\,0.504$\pm$0.107), suggesting structurally complex attacks require larger or more diverse training data. ToxicChat performance shows no significant improvement over single-source training (0.550$\pm$0.052 vs.\ 0.596$\pm$0.087; Section~\ref{sec:human_data}), consistent with ToxicChat being zero-shot single-turn transfer rather than a standard OOD benchmark.
+258	
+259	\section{Dataset Scale Validation}
+260	\label{app:scale_validation}
+261	
+262	\begin{table}[ht]
+263	\centering
+264	\footnotesize
+265	\caption{Dataset scale validation (1{,}000 Qwen conversations, 3-seed mean$\pm$std). IID results omitted due to train/test overlap (71\% of original test set present in expanded training data).}
+266	\label{tab:scale_validation}
+267	\begin{tabular}{@{}lcc@{}}
+268	\toprule
+269	\textbf{Variant} & DD OOD & AA OOD \\
+270	\midrule
+271	9-class & \textbf{.889$\pm$.041} & \textbf{.913$\pm$.041} \\
+272	MLM & .338$\pm$.010 & .351$\pm$.018 \\
+273	Vanilla & .326$\pm$.000 & .508$\pm$.085 \\
+274	\bottomrule
+275	\end{tabular}
+276	\end{table}
+277	
+278	Table~\ref{tab:scale_validation} validates robustness to dataset scale by doubling the training corpus from 500 to 1{,}000 conversations with new topic seeds. The hierarchy 9-class $\gg$ MLM $\approx$ vanilla holds at 2$\times$ scale: classification-based DAPT maintains 40--56\,pp advantage over vanilla, while MLM provides no improvement over vanilla on either attack family (DD: 0.338 vs.\ 0.326; AA: 0.351 vs.\ 0.508).
+279	
+280	\section{RoBERTa-large DAPT Learning Rate Control}
+281	\label{app:roberta_large_lr}
+282	
+283	\begin{table}[ht]
+284	\centering
+285	\footnotesize
+286	\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\ref{tab:cross_encoder}.}
+287	\label{tab:roberta_large_lr}
+288	\begin{tabular}{@{}lcc@{}}
+289	\toprule
+290	\textbf{Config} & DD Full & AA Full \\
+291	\midrule
+292	Vanilla (no DAPT) & .927$\pm$.036 & 1.000$\pm$.000 \\
+293	9-class, LR=$2 \times 10^{-5}$ & .987$\pm$.004 & .946$\pm$.057 \\
+294	9-class, LR=$1 \times 10^{-5}$ & .948$\pm$.034 & .781$\pm$.054 \\
+295	\bottomrule
+296	\end{tabular}
+297	\end{table}
+298	
+299	Reducing the DAPT learning rate from $2 \times 10^{-5}$ to $1 \times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.
+300	
+301	\section{TOST Equivalence Sensitivity Analysis}
+302	\label{app:tost_sensitivity}
+303	
+304	\begin{table}[ht]
+305	\centering
+306	\footnotesize
+307	\caption{TOST equivalence test sensitivity to margin $\delta$ (scrambled vs.\ 9-class, 3-seed). $p$-values from two one-sided $t$-tests; $p < 0.05$ confirms equivalence within $\pm\delta$.}
+308	\label{tab:tost_sensitivity}
+309	\begin{tabular}{@{}lccc@{}}
+310	\toprule
+311	\textbf{Dataset} & $\delta$=5\,pp & $\delta$=3\,pp & $\delta$=2\,pp \\
+312	\midrule
+313	DD OOD & .006 \checkmark & .016 \checkmark & .035 \checkmark \\
+314	ActorAttack & .290 & .428 & .507 \\
+315	\bottomrule
+316	\end{tabular}
+317	\end{table}
+318	
+319	On DD, TOST confirms scrambled $\approx$ correct labels even at $\delta$=2\,pp ($p$=0.035), demonstrating that label correctness is not a detection factor; the DD equivalence conclusion is robust to margin choice. On ActorAttack, the mean gap is 2.1\,pp but TOST is underpowered (SE\,=\,0.045, $n$=3) to confirm formal equivalence at any tested margin; the variants are descriptively similar but formally inconclusive.
+320	
+321	\section{Reproducibility Details}
+322	\label{sec:reproducibility}
+323	
+324	\paragraph{Stage-1 training.}
+325	All variants use DeBERTa-v3-base (184M parameters) with learning rate $2 \times 10^{-5}$, AdamW optimizer ($\beta_1$=0.9, $\beta_2$=0.999, weight decay 0.01), linear warmup over the first 10\% of steps, batch size 16, and 4 epochs. MLM variants use 15\% random token masking. Training takes approximately 30 minutes per variant on a single NVIDIA A100 (40GB).
+326	
+327	\paragraph{Stage-2 training.}
+328	The BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \to 256 \to 2$ with ReLU activation. Training uses learning rate $1 \times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.
+329	
+330	\paragraph{Data generation.}
+331	Jailbreak conversations are generated using Qwen3-8B with attack-specific prompt templates. Crescendo conversations follow a 5--8 turn gradual escalation structure. FITD conversations use a 2--3 turn commitment-consistency structure. Deceptive Delight conversations embed harmful content within emotionally engaging 3--5 turn sequences. Benign conversations are generated with topic-anchored prompts across five domains (technology, health, finance, education, general) with matched turn counts.
+332	
+333	\paragraph{Strategy annotation.}
+334	Each user turn is annotated by Qwen3-8B using a structured prompt that provides definitions and two examples for each of the nine strategy categories. The prompt instructs the model to output a single category label. We plan to release all generation and annotation prompts, the full dataset, and training code upon acceptance.
+335	
+336	\paragraph{Adversarial paraphrasing.}
+337	The paraphrased test set is generated by instructing Qwen3-8B to rephrase each user turn while preserving the communicative intent. The resulting paraphrases have mean BERTScore 0.92 and mean lexical overlap 0.20 with the originals. These metrics confirm substantial surface-level variation.
+338	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2897601d-0479-4c02-8b87-4685f973a5db",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "acf403be-40d4-4fc5-8cc1-c18990ef1db5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+      "content": "% appendix.tex — Supplementary material\n\n\\appendix\n\n\\section{LLM-as-Judge Baseline}\n\\label{sec:llm_judge}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\n\\label{tab:llm_judge}\n\\begin{tabular}{@{}lcccr@{}}\n\\toprule\n\\textbf{Method} & DD & AA & IID & Unparse. \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Zero-shot}} \\\\[2pt]\nGPT-5.5 & -- & -- & .383 & 30--47\\% \\\\\nQwen3-8B & .244 & .244 & .100 & 0\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{3-shot}} \\\\[2pt]\nQwen3-8B & .566 & .652 & -- & 0\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Trained classifier}} \\\\[2pt]\n9-class (ours) & \\textbf{.997} & \\textbf{.972} & \\textbf{1.000} & 0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:llm_judge} reports LLM-as-judge performance on IID and OOD data.\nOn IID Crescendo, GPT-5.5 achieves precision of 1.0 at all turn prefixes but recall ranges from only 0.105 to 0.290, resulting in F1 = 0.383 on full conversations; 30--47\\% of responses are unparseable.\nQwen3-8B performs worse (IID F1 = 0.100).\nOn OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 on both DD and ActorAttack by predicting nearly all conversations as benign.\nEven with 3-shot prompting, Qwen3-8B reaches only 0.566 (DD) and 0.652 (AA), while DisPeD maintains macro F1 $\\geq$ 0.972.\nThe poor performance of content-level reasoning on unseen attack types underscores the necessity of trained classifiers with domain-adapted representations.\n\n\\section{Full Cross-Attack Results by Prefix}\n\\label{sec:full_prefix}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\n\\label{tab:full_prefix}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{IID (Crescendo)}} \\\\[2pt]\n9-class (ours) & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\nMLM-only & .960 & .974 & .987 & 1.000 & 1.000 \\\\\nVanilla DeBERTa & .968$\\pm$.033 & .978$\\pm$.016 & .987$\\pm$.000 & .982$\\pm$.014 & 1.000$\\pm$.000 \\\\\nTF-IDF LR & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{OOD (Deceptive Delight)}} \\\\[2pt]\n9-class (ours) & .990$\\pm$.013 & .981$\\pm$.013 & .972$\\pm$.026 & .997$\\pm$.005 & .997$\\pm$.005 \\\\\nBinary & .994$\\pm$.009 & .994$\\pm$.009 & .984$\\pm$.008 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\nScrambled & .997$\\pm$.005 & .981$\\pm$.026 & .975$\\pm$.029 & .997$\\pm$.005 & .997$\\pm$.005 \\\\\nMLM-only & .973$\\pm$.019 & .993$\\pm$.009 & .997$\\pm$.005 & .997$\\pm$.005 & .914$\\pm$.115 \\\\\nVanilla DeBERTa & .628$\\pm$.038 & .479$\\pm$.038 & .389$\\pm$.027 & .351$\\pm$.030 & .312$\\pm$.026 \\\\\nTF-IDF LR & 1.000 & 1.000 & .994 & 1.000 & .961 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{OOD (FITD)}} \\\\[2pt]\n9-class (ours) & 1.000 & 1.000 & -- & -- & 1.000 \\\\\nVanilla DeBERTa & .990 & 1.000 & -- & -- & 1.000 \\\\\nTF-IDF LR & 1.000 & -- & -- & -- & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{ActorAttack Full Results}\n\\label{sec:actorattack_full}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\n\\label{tab:actorattack_full}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{DeBERTa-v3}} \\\\[2pt]\nBinary & .788$\\pm$.020 & \\textbf{.935$\\pm$.018} & \\textbf{.976$\\pm$.005} & \\textbf{.995$\\pm$.005} & \\textbf{.990$\\pm$.008} \\\\\n9-class & .773$\\pm$.041 & .855$\\pm$.048 & .921$\\pm$.046 & .966$\\pm$.028 & .972$\\pm$.026 \\\\\nScrambled & .652$\\pm$.034 & .804$\\pm$.053 & .854$\\pm$.046 & .910$\\pm$.052 & .951$\\pm$.043 \\\\\nMLM-only & .736$\\pm$.150 & .909$\\pm$.058 & .945$\\pm$.039 & .929$\\pm$.033 & .893$\\pm$.080 \\\\\nWiki MLM & .656$\\pm$.224 & .672$\\pm$.252 & .693$\\pm$.280 & .689$\\pm$.285 & .686$\\pm$.297 \\\\\nTopic & .513$\\pm$.077 & .580$\\pm$.109 & .565$\\pm$.100 & .615$\\pm$.111 & .625$\\pm$.141 \\\\\nVanilla & .337$\\pm$.049 & .306$\\pm$.026 & .284$\\pm$.011 & .262$\\pm$.006 & .258$\\pm$.000 \\\\\nTF-IDF LR & .633 & .730 & .571 & .242 & .261 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RoBERTa}} \\\\[2pt]\n9-class & \\textbf{.738$\\pm$.033} & .805$\\pm$.033 & .884$\\pm$.066 & .925$\\pm$.066 & .939$\\pm$.046 \\\\\nMLM & .633$\\pm$.133 & .665$\\pm$.150 & .713$\\pm$.174 & .719$\\pm$.184 & .730$\\pm$.201 \\\\\nVanilla & .410$\\pm$.126 & .425$\\pm$.143 & .432$\\pm$.144 & .466$\\pm$.144 & .466$\\pm$.163 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Perturbation Robustness}\n\\label{sec:perturbation_full}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\n\\label{tab:perturbation}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & $\\Delta$ Full & $\\Delta$ $K$=1 & $\\Delta$ $K$=2 & $\\Delta$ $K$=3 \\\\\n\\midrule\n9-class (ours) & \\textbf{0.0} & \\textbf{$-$2.6} & \\textbf{0.0} & \\textbf{0.0} \\\\\nScrambled & \\textbf{0.0} & $-$5.3 & $-$2.6 & \\textbf{0.0} \\\\\nBinary & \\textbf{0.0} & $-$9.2 & $-$2.6 & \\textbf{0.0} \\\\\n\\midrule\nTF-IDF LR & $-$1.3 & $-$9.6 & $-$4.1 & $-$1.3 \\\\\nMLM-only & $-$2.6 & $-$9.2 & $-$4.0 & $-$4.0 \\\\\nTopic (seed 42) & $-$4.0 & $-$2.7 & $-$2.7 & \\textbf{0.0} \\\\\n\\midrule\nWikipedia MLM & $-$12.1 & $-$12.4 & $-$15.4 & $-$17.9 \\\\\nVanilla DeBERTa & $-$11.8 & $-$14.6 & $-$12.1 & $-$13.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:perturbation} shows perturbation behavior on IID data.\nClassification-supervised variants (9-class, binary, scrambled) achieve zero degradation at full conversation length regardless of label correctness.\nModels without jailbreak-domain exposure (Wikipedia MLM, vanilla) degrade by $\\sim$12\\,pp.\nMcNemar's test finds no significant pairwise differences among classification-supervised variants (all $p > 0.13$), though with $\\leq$7 discordant pairs, statistical power is limited.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\pm$std where available.}\n\\label{tab:ood_perturbation}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Variant} & Clean Full & Pert.\\ Full & $\\Delta$ Full & $\\Delta$ $K$=1 \\\\\n\\midrule\n9-class & .997$\\pm$.005 & 1.000$\\pm$.000 & +0.3 & +0.6 \\\\\nBinary & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.0 & +0.6 \\\\\nScrambled & .997$\\pm$.005 & 1.000$\\pm$.000 & +0.3 & $-$0.3 \\\\\n\\midrule\nJB MLM & .914$\\pm$.115 & .941 & +2.7 & 0.0 \\\\\nWiki MLM$^{*}$ & .904$\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\nVanilla$^{\\dagger}$ & .312$\\pm$.026 & .339$\\pm$.055 & +2.7 & $-$6.8$\\pm$1.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$Wiki MLM degradation is seed-driven: seed 42 accounts for $-$9.8\\,pp; other seeds show 0.0\\,pp change.\\\\$^{\\dagger}$Vanilla $\\Delta$ Full = +2.7\\,pp reflects floor-effect noise (baseline 0.312, std 0.055), not meaningful improvement.}\n\\end{table}\n\nOn OOD DD, the IID pattern replicates: classification-supervised variants show zero degradation while McNemar's test confirms 9-class vs.\\ vanilla significance ($p < 0.001$, 49--78 discordant pairs).\nOn OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\Delta$\\,=\\,$-$20.4$\\pm$13.5\\,pp, MLM $-$35.3\\,pp), but perturbation narrows rather than closes the adapted vs.\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\ vanilla 0.248 (McNemar $p < 0.001$).\nDomain specificity also manifests: Wikipedia MLM degrades by $\\sim$12\\,pp while jailbreak-domain MLM degrades by only 2.6\\,pp.\n\n\\section{Strategy Trajectory Analysis}\n\\label{sec:strategy_full}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/paper/fig3_strategy_heatmap.pdf}\n\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\n\\label{fig:strategy_heatmap}\n\\end{figure*}\n\nFigure~\\ref{fig:strategy_heatmap} shows transition count matrices for three attack types.\nCrescendo conversations exhibit broad transition coverage across all nine strategy categories (1,818 total transitions), with the highest concentration in Role Assignment self-transitions (545); this reflects its gradual escalation design.\nFITD conversations show a markedly sparser pattern (541 transitions), with Role$\\to$Obfuscation (161) as the dominant transition, consistent with FITD's commitment-consistency exploitation~\\citep{cialdini2001influence}.\nDD conversations span 5 active source strategies (565 transitions), with Emotion$\\to$Obfuscation (129) as the dominant transition, aligning with DD's design of embedding harmful content within emotionally engaging contexts~\\citep{deceptivedelight2024}.\n\n\\section{Centered CKA Heatmaps}\n\\label{sec:cka_heatmap}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/cka_heatmap.pdf}\n\\caption{Centered CKA similarity~\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\ 9-class block shows distinct geometries (CKA $\\leq$ 0.2 on RoBERTa OOD).}\n\\label{fig:cka_heatmap}\n\\end{figure}\n\n\\section{Embedding Space Visualization}\n\\label{app:tsne}\n\nFigure~\\ref{fig:tsne} visualizes mean-pooled \\texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.\n\n\\begin{figure}[ht]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/embedding_tsne.pdf}\n\\caption{t-SNE visualization of mean-pooled \\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\n\\label{fig:tsne}\n\\end{figure}\n\n\\section{Cross-LLM Validation}\n\\label{app:cross_llm}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\n\\label{tab:cross_llm}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n& \\multicolumn{3}{c}{\\textit{DD Full}} & \\multicolumn{3}{c}{\\textit{AA Full}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Condition} & Van. & MLM & 9-cl. & Van. & MLM & 9-cl. \\\\\n\\midrule\nQwen JB + Qwen ben. & .312 & .914 & .997 & .258 & .893 & .972 \\\\\nLlama JB + Llama ben. & .261 & .282 & .433 & .261 & .368 & .321 \\\\\nLlama JB + Qwen ben. & .302 & .778$^{*}$ & 1.000 & .302 & .903 & .801 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$High seed variance (std = 0.306): seed 456 outlier (F1 = 0.345); remaining two seeds achieve F1 $\\geq$ 0.97.}\n\\end{table}\n\nTable~\\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under this condition, 9-class recovers to F1 = 1.000 on DD and 0.801 on ActorAttack, and JB-MLM reaches 0.903 on ActorAttack. The contrast between rows~2 and~3 shows that the dominant failure mode in row~2 is benign distribution mismatch (false positives from unfamiliar benign text), not inability to recognize cross-LLM jailbreak patterns. Vanilla remains at 0.26--0.31 across all conditions, further confirming that encoders without DAPT lack OOD detection capability regardless of the LLM source. The residual degradation on ActorAttack (0.801 vs.\\ 0.972) reflects genuine cross-LLM variation in structurally complex attack patterns.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\n\\label{tab:cross_llm_error}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Metric} & Van. & MLM & 9-cl. \\\\\n\\midrule\nTP rate (Llama JB) & 0.0\\% & 68.0\\% & 100.0\\% \\\\\nFP rate (Llama ben.) & 29.3\\% & 88.0\\% & 90.0\\% \\\\\nFP rate (Qwen ben.) & 0.0\\% & 0.9\\% & 0.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:cross_llm_error} decomposes DD Full F1 into true positive and false positive rates. TP rates are identical regardless of the benign source: domain-adapted models detect Llama-generated jailbreaks at the same rate whether evaluated against Qwen or Llama benign text. The F1 collapse in the full Llama condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text (FP rate: 88--90\\% on Llama vs.\\ 0--0.9\\% on Qwen for adapted variants). The model implicitly treats non-Qwen text style as a jailbreak indicator, a spurious correlation from single-LLM training data. This failure reflects a data diversity limitation, not a methodological one; mixed-LLM training (Table~\\ref{tab:mixed_llm}) partially addresses this confound.\n\n\\section{Mixed-LLM Training Results}\n\\label{app:mixed_llm}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\\pm$std where available). ToxicChat evaluated on balanced set (408 conversations).}\n\\label{tab:mixed_llm}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Variant} & Mixed & DD OOD & AA OOD & FITD OOD & ToxicChat \\\\\n\\midrule\n9-class & \\textbf{.996$\\pm$.006} & \\textbf{.818$\\pm$.096} & \\textbf{.504$\\pm$.107} & \\textbf{.997$\\pm$.005} & \\textbf{.550$\\pm$.052} \\\\\nMLM & .681$\\pm$.226 & .289$\\pm$.101 & .258$\\pm$.075 & .679$\\pm$.188 & .256$\\pm$.053 \\\\\nVanilla & .802$\\pm$.010 & .291$\\pm$.065 & .389$\\pm$.073 & .867$\\pm$.022 & .356$\\pm$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:mixed_llm} reports detection performance when training on a mixed corpus of Qwen3-8B and Llama-3.1-8B conversations. Classification-based DAPT (9-class) maintains the strongest DD OOD performance (0.818$\\pm$0.096), outperforming both vanilla (0.291$\\pm$0.065) and MLM (0.289$\\pm$0.101) by 53\\,pp. ActorAttack remains challenging under mixed-LLM conditions (9-class F1\\,=\\,0.504$\\pm$0.107), suggesting structurally complex attacks require larger or more diverse training data. ToxicChat performance shows no significant improvement over single-source training (0.550$\\pm$0.052 vs.\\ 0.596$\\pm$0.087; Section~\\ref{sec:human_data}), consistent with ToxicChat being zero-shot single-turn transfer rather than a standard OOD benchmark.\n\n\\section{Dataset Scale Validation}\n\\label{app:scale_validation}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Dataset scale validation (1{,}000 Qwen conversations, 3-seed mean$\\pm$std). IID results omitted due to train/test overlap (71\\% of original test set present in expanded training data).}\n\\label{tab:scale_validation}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Variant} & DD OOD & AA OOD \\\\\n\\midrule\n9-class & \\textbf{.889$\\pm$.041} & \\textbf{.913$\\pm$.041} \\\\\nMLM & .338$\\pm$.010 & .351$\\pm$.018 \\\\\nVanilla & .326$\\pm$.000 & .508$\\pm$.085 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:scale_validation} validates robustness to dataset scale by doubling the training corpus from 500 to 1{,}000 conversations with new topic seeds. The hierarchy 9-class $\\gg$ MLM $\\approx$ vanilla holds at 2$\\times$ scale: classification-based DAPT maintains 40--56\\,pp advantage over vanilla, while MLM provides no improvement over vanilla on either attack family (DD: 0.338 vs.\\ 0.326; AA: 0.351 vs.\\ 0.508).\n\n\\section{RoBERTa-large DAPT Learning Rate Control}\n\\label{app:roberta_large_lr}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\ref{tab:cross_encoder}.}\n\\label{tab:roberta_large_lr}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Config} & DD Full & AA Full \\\\\n\\midrule\nVanilla (no DAPT) & .927$\\pm$.036 & 1.000$\\pm$.000 \\\\\n9-class, LR=$2 \\times 10^{-5}$ & .987$\\pm$.004 & .946$\\pm$.057 \\\\\n9-class, LR=$1 \\times 10^{-5}$ & .948$\\pm$.034 & .781$\\pm$.054 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nReducing the DAPT learning rate from $2 \\times 10^{-5}$ to $1 \\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\n\n\\section{TOST Equivalence Sensitivity Analysis}\n\\label{app:tost_sensitivity}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{TOST equivalence test sensitivity to margin $\\delta$ (scrambled vs.\\ 9-class, 3-seed). $p$-values from two one-sided $t$-tests; $p < 0.05$ confirms equivalence within $\\pm\\delta$.}\n\\label{tab:tost_sensitivity}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Dataset} & $\\delta$=5\\,pp & $\\delta$=3\\,pp & $\\delta$=2\\,pp \\\\\n\\midrule\nDD OOD & .006 \\checkmark & .016 \\checkmark & .035 \\checkmark \\\\\nActorAttack & .290 & .428 & .507 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn DD, TOST confirms scrambled $\\approx$ correct labels even at $\\delta$=2\\,pp ($p$=0.035), demonstrating that label correctness is not a detection factor; the DD equivalence conclusion is robust to margin choice. On ActorAttack, the mean gap is 2.1\\,pp but TOST is underpowered (SE\\,=\\,0.045, $n$=3) to confirm formal equivalence at any tested margin; the variants are descriptively similar but formally inconclusive.\n\n\\section{Reproducibility Details}\n\\label{sec:reproducibility}\n\n\\paragraph{Stage-1 training.}\nAll variants use DeBERTa-v3-base (184M parameters) with learning rate $2 \\times 10^{-5}$, AdamW optimizer ($\\beta_1$=0.9, $\\beta_2$=0.999, weight decay 0.01), linear warmup over the first 10\\% of steps, batch size 16, and 4 epochs. MLM variants use 15\\% random token masking. Training takes approximately 30 minutes per variant on a single NVIDIA A100 (40GB).\n\n\\paragraph{Stage-2 training.}\nThe BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \\to 256 \\to 2$ with ReLU activation. Training uses learning rate $1 \\times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.\n\n\\paragraph{Data generation.}\nJailbreak conversations are generated using Qwen3-8B with attack-specific prompt templates. Crescendo conversations follow a 5--8 turn gradual escalation structure. FITD conversations use a 2--3 turn commitment-consistency structure. Deceptive Delight conversations embed harmful content within emotionally engaging 3--5 turn sequences. Benign conversations are generated with topic-anchored prompts across five domains (technology, health, finance, education, general) with matched turn counts.\n\n\\paragraph{Strategy annotation.}\nEach user turn is annotated by Qwen3-8B using a structured prompt that provides definitions and two examples for each of the nine strategy categories. The prompt instructs the model to output a single category label. We plan to release all generation and annotation prompts, the full dataset, and training code upon acceptance.\n\n\\paragraph{Adversarial paraphrasing.}\nThe paraphrased test set is generated by instructing Qwen3-8B to rephrase each user turn while preserving the communicative intent. The resulting paraphrases have mean BERTScore 0.92 and mean lexical overlap 0.20 with the originals. These metrics confirm substantial surface-level variation.\n",
+      "numLines": 338,
+      "startLine": 1,
+      "totalLines": 338
+    }
+  },
+  "sourceToolAssistantUUID": "2897601d-0479-4c02-8b87-4685f973a5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 62 · 2026-05-20T09:34:29.520Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GxZDJKR8TDT5YUtrd54Azs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acf403be-40d4-4fc5-8cc1-c18990ef1db5",
+  "isSidechain": false,
+  "requestId": "req_011CbDbHw26vDX2gJWsQfqBK",
+  "type": "assistant",
+  "uuid": "be82418d-d4a7-4e74-aae4-8305fd5114a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J189ooqgerDLxNtjBhwwBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2751,
+      "cache_read_input_tokens": 41718,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 41718,
+          "cache_creation_input_tokens": 2751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 63 · 2026-05-20T09:34:29.580Z_
+
+```json
+{
+  "parentUuid": "fc91108c-126c-440b-9e70-09b5305b6899",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7a4e850e-75bd-4033-ad18-224020a2abc0",
+  "timestamp": "2026-05-20T09:34:29.580Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "7a4e850e-75bd-4033-ad18-224020a2abc0",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 66 · 2026-05-20T09:34:35.930Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the paper. The key finding is that there's currently **no mention of turn-order shuffling** in the paper. I searched for "shuffle", "turn order", "order invarian" and found nothing. This means this is a new addition, not a modification of existing content.
+
+Wait, let me re-read the Director's instruction. They say "原来只有一组数据" which implies there WAS shuffle data before. Let me check the other sections too - maybe in the method section or conclusion.
+
+Let me also check the `method.tex`, `conclusion.tex`, `introduction.tex`, and `abstract.tex` for any mentions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a4e850e-75bd-4033-ad18-224020a2abc0",
+  "isSidechain": false,
+  "requestId": "req_011CbDbJLN3aVkuahpStaJrE",
+  "type": "assistant",
+  "uuid": "c8805dc0-b1ab-4ae0-806a-accda6775682",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZYD5TkSR5dddMFuSSbpub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17275,
+      "cache_read_input_tokens": 44469,
+      "output_tokens": 517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 517,
+          "cache_read_input_tokens": 44469,
+          "cache_creation_input_tokens": 17275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 67 · 2026-05-20T09:34:36.951Z_
+
+论文中未找到 shuffle 相关内容。让我检查其余章节和 method.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8805dc0-b1ab-4ae0-806a-accda6775682",
+  "isSidechain": false,
+  "requestId": "req_011CbDbJLN3aVkuahpStaJrE",
+  "type": "assistant",
+  "uuid": "7d286645-be04-403c-bc27-889ba347142f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZYD5TkSR5dddMFuSSbpub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17275,
+      "cache_read_input_tokens": 44469,
+      "output_tokens": 517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 517,
+          "cache_read_input_tokens": 44469,
+          "cache_creation_input_tokens": 17275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 68 · 2026-05-20T09:34:39.864Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01EfEDQ6CuemeJdUXxRCfeLr`</summary>
+
+```json
+{
+  "pattern": "shuffle|turn.order|order.invarian|temporal|mean.pool|BiGRU",
+  "-i": true,
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d286645-be04-403c-bc27-889ba347142f",
+  "isSidechain": false,
+  "requestId": "req_011CbDbJLN3aVkuahpStaJrE",
+  "type": "assistant",
+  "uuid": "507aa768-263c-469e-a592-79b16704a048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZYD5TkSR5dddMFuSSbpub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17275,
+      "cache_read_input_tokens": 44469,
+      "output_tokens": 517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 517,
+          "cache_read_input_tokens": 44469,
+          "cache_creation_input_tokens": 17275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 69 · 2026-05-20T09:34:40.724Z_
+
+<details><summary>↩ Tool result · `toolu_01HSnfvFWnXiPQVDrWRpAgEq`</summary>
+
+```text
+1	% conclusion.tex — compressed for 8-page limit
+2	
+3	\section{Discussion}
+4	\label{sec:discussion}
+5	
+6	\paragraph{Topic shortcut confound.}
+7	Three observations argue against a topic-level shortcut: (1) topic classification yields unstable OOD generalization (F1\,=\,0.541$\pm$0.207 on DD); (2) scrambled labels match correct labels (F1 gap $\leq$3.9\,pp); (3) MLM detects without labels (F1\,$\geq$\,0.97 at $K \leq 5$). Domain exposure, not topic classification, drives detection.
+8	
+9	\paragraph{Single-LLM confound.}
+10	Both training and synthetic OOD data are generated by Qwen3-8B. ToxicChat confirms transfer to human data (+18--42\,pp; Table~\ref{tab:human_data}); cross-LLM experiments validate transfer when the benign distribution is held constant (Appendix~\ref{app:cross_llm}).
+11	Mixed-LLM 9-class maintains DD F1\,=\,0.818$\pm$0.096 (+53\,pp over vanilla) while MLM performs at vanilla level, but AA degrades (0.504$\pm$0.107). This is condition-specific: single-source training achieves AA F1\,$\geq$\,0.91; the gap likely reflects limited per-source volume (250 per LLM).
+12	
+13	\paragraph{Variance reversal on human data.}
+14	On synthetic OOD, classification supervision reduces variance 4--20$\times$ (3 seeds) over MLM; on ToxicChat this reverses (std\,=\,0.087 vs.\ 0.013), suggesting the benefit is condition-specific.
+15	
+16	\paragraph{Why does scrambled equal correct?}
+17	Scrambled labels match correct labels within 3.9\,pp. Post-hoc hypotheses include regularization equivalence (any multi-class cross-entropy provides comparable structure), gradient diversity from 9 vs.\ 2 classes, and domain exposure dominance. Distinguishing these requires varying class count while holding domain exposure constant.
+18	
+19	\paragraph{Encoder capacity and temporal modeling.}
+20	Our three encoders (125M--355M) span a 2.8$\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.
+21	
+22	\section{Conclusion}
+23	\label{sec:conclusion}
+24	
+25	On synthetic multi-turn data generated by a single LLM, classification-based DAPT is the most robust adaptation for base-size encoders; unsupervised pretraining closes $\sim$60\,pp on single-source data but collapses on mixed-LLM training. Fewer attacks require adaptation as model size grows, and a variance reduction of 4--20$\times$ is observed (3 seeds) on synthetic data but reverses on human data.
+26	Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.
+27	
+28	\section{Limitations}
+29	\label{sec:limitations}
+30	
+31	\paragraph{Multi-turn human validation.}
+32	All multi-turn findings are derived from synthetic conversations generated by Qwen3-8B. ToxicChat validates transfer to human-authored single-turn attacks (+18--42\,pp over vanilla), but no human-generated multi-turn jailbreak dataset exists for evaluation. Whether the evidence hierarchy, capacity-dependent observation, and classification supervision advantages generalize to human-authored multi-turn attacks remains the primary open question.
+33	
+34	\paragraph{OOD benign distribution.}
+35	All OOD evaluations hold the benign distribution constant (Qwen3-8B generated). Cross-LLM experiments (Appendix~\ref{app:cross_llm}) show that replacing the benign source increases false-positive rates while true-positive rates remain constant (Table~\ref{tab:cross_llm_error}). OOD results therefore reflect attack-side generalization; benign-side robustness requires separate calibration per deployment domain.
+36	
+37	\paragraph{Frozen encoder assumption.}
+38	The Stage-1 encoder is frozen during Stage-2 training, following the probing methodology of \citet{conneau2018probing} and the feature-based paradigm of \citet{devlin2019bert}. This design isolates Stage-1 representation quality but may underestimate full-pipeline performance: unfreezing the encoder would allow end-to-end adaptation that could close remaining OOD gaps, at the cost of confounding representation quality with downstream optimization.
+39	
+40	\paragraph{Binary detection head.}
+41	All classification variants include both a binary jailbreak detection head and a strategy classification head. Binary vs.\ 9-class performance equivalence (F1 gap $\leq$3.9\,pp) suggests the binary head alone is not the critical differentiator, but a strategy-only variant (without binary head) would be needed to fully disentangle their contributions.
+42	
+43	\paragraph{Dataset scale and diversity.}
+44	The training set uses synthetic conversations generated by Qwen3-8B. We validate robustness to dataset scale by doubling the training corpus from 500 to 1{,}000 conversations: classification-based DAPT maintains strong OOD generalization (9-class DD F1\,=\,0.889$\pm$0.041, ActorAttack\,=\,0.913$\pm$0.041), and the hierarchy 9-class $\gg$ MLM $\approx$ vanilla holds (DAPT advantage 40--56\,pp over vanilla). The perturbation evaluation ($n$=76) remains underpowered; tier boundaries in Table~\ref{tab:perturbation} correspond to 1--3 misclassifications. All multi-turn data is synthetic. ToxicChat (human-authored, single-turn) confirms transfer across data sources (+18--42\,pp over vanilla; Section~\ref{sec:human_data}), but whether the full evidence hierarchy generalizes to human-generated multi-turn attacks is open.
+45	Cross-LLM validation with Llama-3.1-8B-Instruct as the target model reveals that jailbreak detection transfers across LLMs (F1 recovers to 0.80--1.00 when the benign distribution is held constant), but the benign baseline is LLM-specific: replacing Qwen benign text with Llama benign text causes false-positive rates to spike (F1 drops to 0.37--0.43). A per-class error decomposition (Appendix~\ref{app:cross_llm}, Table~\ref{tab:cross_llm_error}) confirms that true positive rates are identical across benign conditions; the F1 collapse is driven entirely by false positives on unfamiliar benign text. The residual cross-LLM degradation on structurally complex attacks (ActorAttack F1 = 0.80 vs.\ 0.997 in-distribution) indicates that some jailbreak features remain source-specific. Why MLM effectiveness is LLM-specific remains an open question; one hypothesis is that different LLMs produce stylistically distinct text whose surface patterns MLM captures via token co-occurrence, while classification supervision extracts features that generalize across styles. Mixed-LLM training partially resolves this gap: classification-based DAPT on Qwen+Llama data maintains OOD advantage (DD F1\,=\,0.818$\pm$0.096 vs.\ vanilla 0.291$\pm$0.065; Appendix~\ref{app:cross_llm}), though multi-turn human evaluation remains open.
+46	
+47	\paragraph{Lexical separability.}
+48	TF-IDF logistic regression achieves F1 = 0.961 on OOD Deceptive Delight with near-perfect per-prefix performance; this indicates substantial lexical separability on this attack family. On DD alone, we cannot distinguish whether continued pretraining captures beyond-lexical features or exploits the same lexical cues. ActorAttack resolves this question: TF-IDF collapses to F1 = 0.261 while domain-adapted models maintain F1 $\geq$ 0.89, a $\geq$63\,pp gap that demonstrates continued pretraining captures features beyond lexical overlap on structurally complex attacks. Whether this beyond-lexical advantage extends to other structurally complex attack families beyond ActorAttack requires further evaluation.
+49	
+50	\paragraph{Strategy annotation quality.}
+51	Persuasion strategy labels are produced by Qwen3-8B with structured prompting. Inter-annotator agreement with a human sample ($n$=50) yields Cohen's $\kappa$=0.78, which indicates substantial but imperfect agreement. The small human validation sample and reliance on a single annotator model limit confidence in label quality. We plan to release the annotation prompts and data to enable independent verification.
+52	
+53	\paragraph{OOD strategy prediction.}
+54	While the 9-class model achieves high detection F1 on OOD attacks (0.997$\pm$0.005 on Deceptive Delight), its strategy-level predictions do not generalize: OOD strategy accuracy is 30.7\% ($\kappa$=0.126). The interpretability provided by the persuasion taxonomy is currently limited to known attack families where strategy labels are reliable.
+55	
+56	\paragraph{FITD discriminative power.}
+57	FITD provides minimal discriminative signal: both vanilla and 9-class achieve F1 $\geq$ 0.990 at all prefixes. FITD serves primarily as a confirmation that simple OOD attacks do not challenge any variant, rather than as a meaningful evaluation axis.
+58	
+59	\paragraph{Encoder scale.}
+60	Whether these findings hold at LLM-scale encoders (7B+) remains open. RoBERTa-large achieves F1\,=\,1.000 on ActorAttack without adaptation, but this may reflect its 355M capacity, its pretraining corpus, or both; same-architecture scaling (e.g., DeBERTa-base vs.\ DeBERTa-large) is needed to attribute this to capacity alone.
+61	
+62	\paragraph{Topic variant anomaly.}
+63	Topic classification occasionally approaches domain-adapted performance on ActorAttack (0.625 vs.\ MLM 0.893) despite using misaligned labels. This reflects domain exposure from processing jailbreak text, not the topic objective itself; extreme variance (std\,=\,0.141--0.207) confirms that misaligned supervision amplifies initialization sensitivity.
+64	
+65	\paragraph{Scope.}
+66	Only persuasion-mediated multi-turn attacks fall within scope. Single-turn token-level attacks~\citep{zou2023gcg}, non-persuasive multi-turn strategies, and attacks targeting modalities other than text are not addressed. The user-only input assumption (excluding assistant responses) may miss information in attacks where the model's own responses contribute to the escalation trajectory.
+67	
+68	\paragraph{Single-turn transfer.}
+69	ToxicChat jailbreaks are exclusively single-turn, while all training data consists of multi-turn conversations (5--14 turns). ToxicChat performance therefore reflects zero-shot single-turn transfer, not standard multi-turn OOD evaluation. The temporal aggregator can learn sequence length as a spurious feature: doubling the training corpus from 500 to 1{,}000 conversations drops 9-class ToxicChat macro F1 from 0.596 to 0.341$\pm$0.004, while multi-turn OOD detection remains stable (DD\,=\,0.889, ActorAttack\,=\,0.913). This length-dependent fragility confirms that the architecture targets multi-turn detection; single-turn robustness requires architectural changes beyond this work's scope.
+70	
+71	\paragraph{Computation cost.}
+72	Stage~1 continued pretraining requires approximately 30 minutes on a single A100 GPU per variant. Stage~2 training completes in under 5 minutes. Total pipeline cost for all seven variants is under 4 GPU-hours, making the approach accessible for replication.
+73	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec898063-3171-4cf0-9543-232227974020",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "41ce6274-bc47-49e0-beb8-61b60e93f550",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+      "content": "% conclusion.tex — compressed for 8-page limit\n\n\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Topic shortcut confound.}\nThree observations argue against a topic-level shortcut: (1) topic classification yields unstable OOD generalization (F1\\,=\\,0.541$\\pm$0.207 on DD); (2) scrambled labels match correct labels (F1 gap $\\leq$3.9\\,pp); (3) MLM detects without labels (F1\\,$\\geq$\\,0.97 at $K \\leq 5$). Domain exposure, not topic classification, drives detection.\n\n\\paragraph{Single-LLM confound.}\nBoth training and synthetic OOD data are generated by Qwen3-8B. ToxicChat confirms transfer to human data (+18--42\\,pp; Table~\\ref{tab:human_data}); cross-LLM experiments validate transfer when the benign distribution is held constant (Appendix~\\ref{app:cross_llm}).\nMixed-LLM 9-class maintains DD F1\\,=\\,0.818$\\pm$0.096 (+53\\,pp over vanilla) while MLM performs at vanilla level, but AA degrades (0.504$\\pm$0.107). This is condition-specific: single-source training achieves AA F1\\,$\\geq$\\,0.91; the gap likely reflects limited per-source volume (250 per LLM).\n\n\\paragraph{Variance reversal on human data.}\nOn synthetic OOD, classification supervision reduces variance 4--20$\\times$ (3 seeds) over MLM; on ToxicChat this reverses (std\\,=\\,0.087 vs.\\ 0.013), suggesting the benefit is condition-specific.\n\n\\paragraph{Why does scrambled equal correct?}\nScrambled labels match correct labels within 3.9\\,pp. Post-hoc hypotheses include regularization equivalence (any multi-class cross-entropy provides comparable structure), gradient diversity from 9 vs.\\ 2 classes, and domain exposure dominance. Distinguishing these requires varying class count while holding domain exposure constant.\n\n\\paragraph{Encoder capacity and temporal modeling.}\nOur three encoders (125M--355M) span a 2.8$\\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nOn synthetic multi-turn data generated by a single LLM, classification-based DAPT is the most robust adaptation for base-size encoders; unsupervised pretraining closes $\\sim$60\\,pp on single-source data but collapses on mixed-LLM training. Fewer attacks require adaptation as model size grows, and a variance reduction of 4--20$\\times$ is observed (3 seeds) on synthetic data but reverses on human data.\nThree negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.\n\n\\section{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Multi-turn human validation.}\nAll multi-turn findings are derived from synthetic conversations generated by Qwen3-8B. ToxicChat validates transfer to human-authored single-turn attacks (+18--42\\,pp over vanilla), but no human-generated multi-turn jailbreak dataset exists for evaluation. Whether the evidence hierarchy, capacity-dependent observation, and classification supervision advantages generalize to human-authored multi-turn attacks remains the primary open question.\n\n\\paragraph{OOD benign distribution.}\nAll OOD evaluations hold the benign distribution constant (Qwen3-8B generated). Cross-LLM experiments (Appendix~\\ref{app:cross_llm}) show that replacing the benign source increases false-positive rates while true-positive rates remain constant (Table~\\ref{tab:cross_llm_error}). OOD results therefore reflect attack-side generalization; benign-side robustness requires separate calibration per deployment domain.\n\n\\paragraph{Frozen encoder assumption.}\nThe Stage-1 encoder is frozen during Stage-2 training, following the probing methodology of \\citet{conneau2018probing} and the feature-based paradigm of \\citet{devlin2019bert}. This design isolates Stage-1 representation quality but may underestimate full-pipeline performance: unfreezing the encoder would allow end-to-end adaptation that could close remaining OOD gaps, at the cost of confounding representation quality with downstream optimization.\n\n\\paragraph{Binary detection head.}\nAll classification variants include both a binary jailbreak detection head and a strategy classification head. Binary vs.\\ 9-class performance equivalence (F1 gap $\\leq$3.9\\,pp) suggests the binary head alone is not the critical differentiator, but a strategy-only variant (without binary head) would be needed to fully disentangle their contributions.\n\n\\paragraph{Dataset scale and diversity.}\nThe training set uses synthetic conversations generated by Qwen3-8B. We validate robustness to dataset scale by doubling the training corpus from 500 to 1{,}000 conversations: classification-based DAPT maintains strong OOD generalization (9-class DD F1\\,=\\,0.889$\\pm$0.041, ActorAttack\\,=\\,0.913$\\pm$0.041), and the hierarchy 9-class $\\gg$ MLM $\\approx$ vanilla holds (DAPT advantage 40--56\\,pp over vanilla). The perturbation evaluation ($n$=76) remains underpowered; tier boundaries in Table~\\ref{tab:perturbation} correspond to 1--3 misclassifications. All multi-turn data is synthetic. ToxicChat (human-authored, single-turn) confirms transfer across data sources (+18--42\\,pp over vanilla; Section~\\ref{sec:human_data}), but whether the full evidence hierarchy generalizes to human-generated multi-turn attacks is open.\nCross-LLM validation with Llama-3.1-8B-Instruct as the target model reveals that jailbreak detection transfers across LLMs (F1 recovers to 0.80--1.00 when the benign distribution is held constant), but the benign baseline is LLM-specific: replacing Qwen benign text with Llama benign text causes false-positive rates to spike (F1 drops to 0.37--0.43). A per-class error decomposition (Appendix~\\ref{app:cross_llm}, Table~\\ref{tab:cross_llm_error}) confirms that true positive rates are identical across benign conditions; the F1 collapse is driven entirely by false positives on unfamiliar benign text. The residual cross-LLM degradation on structurally complex attacks (ActorAttack F1 = 0.80 vs.\\ 0.997 in-distribution) indicates that some jailbreak features remain source-specific. Why MLM effectiveness is LLM-specific remains an open question; one hypothesis is that different LLMs produce stylistically distinct text whose surface patterns MLM captures via token co-occurrence, while classification supervision extracts features that generalize across styles. Mixed-LLM training partially resolves this gap: classification-based DAPT on Qwen+Llama data maintains OOD advantage (DD F1\\,=\\,0.818$\\pm$0.096 vs.\\ vanilla 0.291$\\pm$0.065; Appendix~\\ref{app:cross_llm}), though multi-turn human evaluation remains open.\n\n\\paragraph{Lexical separability.}\nTF-IDF logistic regression achieves F1 = 0.961 on OOD Deceptive Delight with near-perfect per-prefix performance; this indicates substantial lexical separability on this attack family. On DD alone, we cannot distinguish whether continued pretraining captures beyond-lexical features or exploits the same lexical cues. ActorAttack resolves this question: TF-IDF collapses to F1 = 0.261 while domain-adapted models maintain F1 $\\geq$ 0.89, a $\\geq$63\\,pp gap that demonstrates continued pretraining captures features beyond lexical overlap on structurally complex attacks. Whether this beyond-lexical advantage extends to other structurally complex attack families beyond ActorAttack requires further evaluation.\n\n\\paragraph{Strategy annotation quality.}\nPersuasion strategy labels are produced by Qwen3-8B with structured prompting. Inter-annotator agreement with a human sample ($n$=50) yields Cohen's $\\kappa$=0.78, which indicates substantial but imperfect agreement. The small human validation sample and reliance on a single annotator model limit confidence in label quality. We plan to release the annotation prompts and data to enable independent verification.\n\n\\paragraph{OOD strategy prediction.}\nWhile the 9-class model achieves high detection F1 on OOD attacks (0.997$\\pm$0.005 on Deceptive Delight), its strategy-level predictions do not generalize: OOD strategy accuracy is 30.7\\% ($\\kappa$=0.126). The interpretability provided by the persuasion taxonomy is currently limited to known attack families where strategy labels are reliable.\n\n\\paragraph{FITD discriminative power.}\nFITD provides minimal discriminative signal: both vanilla and 9-class achieve F1 $\\geq$ 0.990 at all prefixes. FITD serves primarily as a confirmation that simple OOD attacks do not challenge any variant, rather than as a meaningful evaluation axis.\n\n\\paragraph{Encoder scale.}\nWhether these findings hold at LLM-scale encoders (7B+) remains open. RoBERTa-large achieves F1\\,=\\,1.000 on ActorAttack without adaptation, but this may reflect its 355M capacity, its pretraining corpus, or both; same-architecture scaling (e.g., DeBERTa-base vs.\\ DeBERTa-large) is needed to attribute this to capacity alone.\n\n\\paragraph{Topic variant anomaly.}\nTopic classification occasionally approaches domain-adapted performance on ActorAttack (0.625 vs.\\ MLM 0.893) despite using misaligned labels. This reflects domain exposure from processing jailbreak text, not the topic objective itself; extreme variance (std\\,=\\,0.141--0.207) confirms that misaligned supervision amplifies initialization sensitivity.\n\n\\paragraph{Scope.}\nOnly persuasion-mediated multi-turn attacks fall within scope. Single-turn token-level attacks~\\citep{zou2023gcg}, non-persuasive multi-turn strategies, and attacks targeting modalities other than text are not addressed. The user-only input assumption (excluding assistant responses) may miss information in attacks where the model's own responses contribute to the escalation trajectory.\n\n\\paragraph{Single-turn transfer.}\nToxicChat jailbreaks are exclusively single-turn, while all training data consists of multi-turn conversations (5--14 turns). ToxicChat performance therefore reflects zero-shot single-turn transfer, not standard multi-turn OOD evaluation. The temporal aggregator can learn sequence length as a spurious feature: doubling the training corpus from 500 to 1{,}000 conversations drops 9-class ToxicChat macro F1 from 0.596 to 0.341$\\pm$0.004, while multi-turn OOD detection remains stable (DD\\,=\\,0.889, ActorAttack\\,=\\,0.913). This length-dependent fragility confirms that the architecture targets multi-turn detection; single-turn robustness requires architectural changes beyond this work's scope.\n\n\\paragraph{Computation cost.}\nStage~1 continued pretraining requires approximately 30 minutes on a single A100 GPU per variant. Stage~2 training completes in under 5 minutes. Total pipeline cost for all seven variants is under 4 GPU-hours, making the approach accessible for replication.\n",
+      "numLines": 73,
+      "startLine": 1,
+      "totalLines": 73
+    }
+  },
+  "sourceToolAssistantUUID": "ec898063-3171-4cf0-9543-232227974020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 70 · 2026-05-20T09:34:39.893Z_
+
+<details><summary>↩ Tool result · `toolu_01EfEDQ6CuemeJdUXxRCfeLr`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:12:Stage~1 (DAPT) uses training + validation conversations; Stage~2 (BiGRU) trains on training, early-stops on validation, and evaluates on test.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:21:Our vanilla DeBERTa+BiGRU configuration is architecturally equivalent to DeepContext~\citep{deepcontext2026}, differing only in encoder choice (DeBERTa-v3-base vs.\ BERT); it serves as our primary baseline.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:93:Mean pooling$^{*}$ & .991$\pm$.013 & .962$\pm$.015 & \textbf{1.000} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:102:{\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\dagger}$Deterministic (no std). $^{\ddagger}$MLM-only IID (Table~\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:135:\paragraph{Temporal modeling.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:136:Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\leq$ 1\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:139:For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\times$) without changing the detection ceiling.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:19:\paragraph{Encoder capacity and temporal modeling.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:20:Our three encoders (125M--355M) span a 2.8$\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:26:Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:69:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:6:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:51:The Stage-1 encoder is frozen during Stage~2 training; only the BiGRU and MLP parameters are updated.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:53:Three-seed evaluation confirms that mean pooling matches BiGRU performance (Section~\ref{sec:decomposition}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:186:Figure~\ref{fig:tsne} visualizes mean-pooled \texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:191:\caption{t-SNE visualization of mean-pooled \texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:328:The BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \to 256 \to 2$ with ReLU activation. Training uses learning rate $1 \times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:10:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:12:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:17:\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:25:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:132:\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt  {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}}{2}{figure.caption.1}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:134:\newlabel{fig:architecture}{{1}{2}{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed}{figure.caption.1}{}}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:622:\@writefile{toc}{\contentsline {paragraph}{Temporal modeling.}{7}{section*.17}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:790:\@writefile{toc}{\contentsline {paragraph}{Encoder capacity and temporal modeling.}{8}{section*.25}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:1529:\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces t-SNE visualization of mean-pooled \texttt  {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}}{16}{figure.caption.48}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:1530:\newlabel{fig:tsne}{{5}{16}{t-SNE visualization of mean-pooled \texttt {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak)}{figure.caption.48}{}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "507aa768-263c-469e-a592-79b16704a048",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "1708178e-b9b0-483d-92af-485254ce0fd8",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:12:Stage~1 (DAPT) uses training + validation conversations; Stage~2 (BiGRU) trains on training, early-stops on validation, and evaluates on test.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:21:Our vanilla DeBERTa+BiGRU configuration is architecturally equivalent to DeepContext~\\citep{deepcontext2026}, differing only in encoder choice (DeBERTa-v3-base vs.\\ BERT); it serves as our primary baseline.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:93:Mean pooling$^{*}$ & .991$\\pm$.013 & .962$\\pm$.015 & \\textbf{1.000} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:102:{\\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\\dagger}$Deterministic (no std). $^{\\ddagger}$MLM-only IID (Table~\\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:135:\\paragraph{Temporal modeling.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:136:Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:139:For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:19:\\paragraph{Encoder capacity and temporal modeling.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:20:Our three encoders (125M--355M) span a 2.8$\\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:26:Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:69:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:6:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:51:The Stage-1 encoder is frozen during Stage~2 training; only the BiGRU and MLP parameters are updated.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:53:Three-seed evaluation confirms that mean pooling matches BiGRU performance (Section~\\ref{sec:decomposition}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:186:Figure~\\ref{fig:tsne} visualizes mean-pooled \\texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:191:\\caption{t-SNE visualization of mean-pooled \\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/appendix.tex:328:The BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \\to 256 \\to 2$ with ReLU activation. Training uses learning rate $1 \\times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:10:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:17:\\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:25:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:132:\\@writefile{lof}{\\contentsline {figure}{\\numberline {1}{\\ignorespaces DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt  {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}}{2}{figure.caption.1}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:134:\\newlabel{fig:architecture}{{1}{2}{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed}{figure.caption.1}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:622:\\@writefile{toc}{\\contentsline {paragraph}{Temporal modeling.}{7}{section*.17}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:790:\\@writefile{toc}{\\contentsline {paragraph}{Encoder capacity and temporal modeling.}{8}{section*.25}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:1529:\\@writefile{lof}{\\contentsline {figure}{\\numberline {5}{\\ignorespaces t-SNE visualization of mean-pooled \\texttt  {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}}{16}{figure.caption.48}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/main.aux:1530:\\newlabel{fig:tsne}{{5}{16}{t-SNE visualization of mean-pooled \\texttt {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak)}{figure.caption.48}{}}",
+    "numLines": 27
+  },
+  "sourceToolAssistantUUID": "507aa768-263c-469e-a592-79b16704a048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 71 · 2026-05-20T09:34:40.351Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017woryWZ5PWt4xXKVcK7EdY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1708178e-b9b0-483d-92af-485254ce0fd8",
+  "isSidechain": false,
+  "requestId": "req_011CbDbJLN3aVkuahpStaJrE",
+  "type": "assistant",
+  "uuid": "2cfb43d6-ae90-4be7-9a31-34b07ad5d924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZYD5TkSR5dddMFuSSbpub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17275,
+      "cache_read_input_tokens": 44469,
+      "output_tokens": 517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 517,
+          "cache_read_input_tokens": 44469,
+          "cache_creation_input_tokens": 17275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 72 · 2026-05-20T09:34:40.356Z_
+
+<details><summary>↩ Tool result · `toolu_017woryWZ5PWt4xXKVcK7EdY`</summary>
+
+```text
+1	% method.tex — D024 compressed
+2	
+3	\section{Method}
+4	\label{sec:method}
+5	
+6	Cross-attack generalization could stem from domain exposure, classification supervision, label correctness, label granularity, or domain specificity. Disentangling these factors demands an architecture where exactly one component varies across conditions. DisPeD separates encoder adaptation (Stage~1) from temporal classification (Stage~2). Seven Stage-1 variants share the same training data and downstream pipeline but differ solely in their pretraining objective; each isolates a single factor (Figure~\ref{fig:architecture}).
+7	
+8	\subsection{Problem Formulation}
+9	
+10	A conversation $C = \{u_1, a_1, \ldots, u_N, a_N\}$ alternates user turns $u_i$ and assistant responses $a_i$. Given a prefix of $K$ user turns, the model predicts $y \in \{0, 1\}$ (jailbreak vs.\ benign). We restrict input to user turns because adversarial intent resides in the attacker's messages. This formulation supports early detection from partial prefixes.
+11	
+12	\subsection{Stage 1: Turn-Level Encoder Adaptation}
+13	\label{sec:stage1}
+14	
+15	Each user turn $u_i$ is encoded by DeBERTa-v3-base~\citep{he2023debertav3}; the \texttt{[CLS]} embedding $h_i \in \mathbb{R}^d$ serves as the turn representation. Seven variants, summarized in Table~\ref{tab:variants}, share the same training data but differ in objective.
+16	
+17	\begin{table}[t]
+18	\centering
+19	\small
+20	\caption{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}
+21	\label{tab:variants}
+22	\begin{tabular}{@{}p{1.6cm}p{2.2cm}p{2.8cm}@{}}
+23	\toprule
+24	\textbf{Variant} & \textbf{Objective} & \textbf{Tests whether\ldots} \\
+25	\midrule
+26	9-class & 9-class persuasion + binary intent & full model \\
+27	Binary & binary persuasion + binary intent & granularity matters \\
+28	Scrambled & random 9-class + binary intent & label correctness matters \\
+29	MLM-only & 15\% token masking & supervision is necessary \\
+30	Topic & 5-class topic classif. & any task suffices \\
+31	Wiki MLM & 15\% masking on Wikipedia & domain specificity matters \\
+32	Vanilla & no training & Stage-2 alone suffices \\
+33	\bottomrule
+34	\end{tabular}
+35	\end{table}
+36	
+37	The \textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\text{strategy}}$) and binary jailbreak intent ($L_{\text{intent}}$), with combined loss $L = L_{\text{strategy}} + \alpha \cdot L_{\text{intent}}$ ($\alpha = 0.3$, selected from $\{0, 0.3, 0.5, 2.0\}$; all values yield F1\,=\,1.0 on IID). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\citep{zeng2024pap} and Cialdini's principles~\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\kappa$=0.78.
+38	
+39	The \textbf{binary} variant collapses the 9-class taxonomy into persuasive vs.\ non-persuasive, testing whether label granularity matters for detection or robustness.
+40	The \textbf{scrambled} variant randomly permutes the 9-class labels across turns, preserving classification structure (cross-entropy loss, 9-class output space) while destroying label semantics. This isolates whether the classification objective provides representational benefits independent of label correctness.
+41	The \textbf{MLM-only} variant applies 15\% masked language modeling on the same jailbreak conversation text without any classification head, testing whether unsupervised domain exposure suffices.
+42	The \textbf{topic} variant trains a 5-class topic classifier (technology, health, finance, education, general) on the same conversations, testing whether \emph{any} classification task provides the same benefit or whether task alignment matters.
+43	The \textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.
+44	The \textbf{vanilla} baseline uses the pretrained DeBERTa-v3-base weights without any continued pretraining; it measures what Stage~2 alone can achieve.
+45	
+46	\subsection{Stage 2: Conversation-Level Classification}
+47	\label{sec:stage2}
+48	
+49	Turn embeddings $\{h_1, \ldots, h_K\}$ from the frozen Stage-1 encoder are aggregated by a 2-layer bidirectional GRU ($d_{\text{hidden}}$=256, dropout 0.3): $\bar{h} = [\overrightarrow{h_K};\; \overleftarrow{h_1}] \in \mathbb{R}^{512}$.
+50	A two-layer MLP ($512 \to 256 \to 2$, ReLU activation) maps $\bar{h}$ to $\hat{y} \in \{0, 1\}$.
+51	The Stage-1 encoder is frozen during Stage~2 training; only the BiGRU and MLP parameters are updated.
+52	This frozen-encoder design ensures ablation fairness: all seven Stage-1 variants are evaluated under identical downstream conditions, isolating the effect of Stage-1 representation quality from Stage-2 classifier capacity.
+53	Three-seed evaluation confirms that mean pooling matches BiGRU performance (Section~\ref{sec:decomposition}).
+54	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cfb43d6-ae90-4be7-9a31-34b07ad5d924",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "ddc1e7b7-1fca-4ab1-94f2-21e1c0e97d05",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+      "content": "% method.tex — D024 compressed\n\n\\section{Method}\n\\label{sec:method}\n\nCross-attack generalization could stem from domain exposure, classification supervision, label correctness, label granularity, or domain specificity. Disentangling these factors demands an architecture where exactly one component varies across conditions. DisPeD separates encoder adaptation (Stage~1) from temporal classification (Stage~2). Seven Stage-1 variants share the same training data and downstream pipeline but differ solely in their pretraining objective; each isolates a single factor (Figure~\\ref{fig:architecture}).\n\n\\subsection{Problem Formulation}\n\nA conversation $C = \\{u_1, a_1, \\ldots, u_N, a_N\\}$ alternates user turns $u_i$ and assistant responses $a_i$. Given a prefix of $K$ user turns, the model predicts $y \\in \\{0, 1\\}$ (jailbreak vs.\\ benign). We restrict input to user turns because adversarial intent resides in the attacker's messages. This formulation supports early detection from partial prefixes.\n\n\\subsection{Stage 1: Turn-Level Encoder Adaptation}\n\\label{sec:stage1}\n\nEach user turn $u_i$ is encoded by DeBERTa-v3-base~\\citep{he2023debertav3}; the \\texttt{[CLS]} embedding $h_i \\in \\mathbb{R}^d$ serves as the turn representation. Seven variants, summarized in Table~\\ref{tab:variants}, share the same training data but differ in objective.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}\n\\label{tab:variants}\n\\begin{tabular}{@{}p{1.6cm}p{2.2cm}p{2.8cm}@{}}\n\\toprule\n\\textbf{Variant} & \\textbf{Objective} & \\textbf{Tests whether\\ldots} \\\\\n\\midrule\n9-class & 9-class persuasion + binary intent & full model \\\\\nBinary & binary persuasion + binary intent & granularity matters \\\\\nScrambled & random 9-class + binary intent & label correctness matters \\\\\nMLM-only & 15\\% token masking & supervision is necessary \\\\\nTopic & 5-class topic classif. & any task suffices \\\\\nWiki MLM & 15\\% masking on Wikipedia & domain specificity matters \\\\\nVanilla & no training & Stage-2 alone suffices \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe \\textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\\text{strategy}}$) and binary jailbreak intent ($L_{\\text{intent}}$), with combined loss $L = L_{\\text{strategy}} + \\alpha \\cdot L_{\\text{intent}}$ ($\\alpha = 0.3$, selected from $\\{0, 0.3, 0.5, 2.0\\}$; all values yield F1\\,=\\,1.0 on IID). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles~\\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\\kappa$=0.78.\n\nThe \\textbf{binary} variant collapses the 9-class taxonomy into persuasive vs.\\ non-persuasive, testing whether label granularity matters for detection or robustness.\nThe \\textbf{scrambled} variant randomly permutes the 9-class labels across turns, preserving classification structure (cross-entropy loss, 9-class output space) while destroying label semantics. This isolates whether the classification objective provides representational benefits independent of label correctness.\nThe \\textbf{MLM-only} variant applies 15\\% masked language modeling on the same jailbreak conversation text without any classification head, testing whether unsupervised domain exposure suffices.\nThe \\textbf{topic} variant trains a 5-class topic classifier (technology, health, finance, education, general) on the same conversations, testing whether \\emph{any} classification task provides the same benefit or whether task alignment matters.\nThe \\textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.\nThe \\textbf{vanilla} baseline uses the pretrained DeBERTa-v3-base weights without any continued pretraining; it measures what Stage~2 alone can achieve.\n\n\\subsection{Stage 2: Conversation-Level Classification}\n\\label{sec:stage2}\n\nTurn embeddings $\\{h_1, \\ldots, h_K\\}$ from the frozen Stage-1 encoder are aggregated by a 2-layer bidirectional GRU ($d_{\\text{hidden}}$=256, dropout 0.3): $\\bar{h} = [\\overrightarrow{h_K};\\; \\overleftarrow{h_1}] \\in \\mathbb{R}^{512}$.\nA two-layer MLP ($512 \\to 256 \\to 2$, ReLU activation) maps $\\bar{h}$ to $\\hat{y} \\in \\{0, 1\\}$.\nThe Stage-1 encoder is frozen during Stage~2 training; only the BiGRU and MLP parameters are updated.\nThis frozen-encoder design ensures ablation fairness: all seven Stage-1 variants are evaluated under identical downstream conditions, isolating the effect of Stage-1 representation quality from Stage-2 classifier capacity.\nThree-seed evaluation confirms that mean pooling matches BiGRU performance (Section~\\ref{sec:decomposition}).\n",
+      "numLines": 54,
+      "startLine": 1,
+      "totalLines": 54
+    }
+  },
+  "sourceToolAssistantUUID": "2cfb43d6-ae90-4be7-9a31-34b07ad5d924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 73 · 2026-05-20T09:34:40.719Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HSnfvFWnXiPQVDrWRpAgEq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddc1e7b7-1fca-4ab1-94f2-21e1c0e97d05",
+  "isSidechain": false,
+  "requestId": "req_011CbDbJLN3aVkuahpStaJrE",
+  "type": "assistant",
+  "uuid": "ec898063-3171-4cf0-9543-232227974020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZYD5TkSR5dddMFuSSbpub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17275,
+      "cache_read_input_tokens": 44469,
+      "output_tokens": 517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 517,
+          "cache_read_input_tokens": 44469,
+          "cache_creation_input_tokens": 17275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "41ce6274-bc47-49e0-beb8-61b60e93f550",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 76 · 2026-05-20T09:34:57.730Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. The key findings:
+
+1. **The "Temporal modeling" paragraph** in experiments.tex (line 135-136) currently discusses mean pooling vs BiGRU. The Director wants to add turn-shuffling results here as an additional order-invariance test.
+
+2. **The conclusion.tex** (line 19-20) mentions mean pooling matches BiGRU, suggesting detection relies on turn-level features rather than sequential order.
+
+3. **The conclusion.tex** (line 26) mentions "mean pooling matches BiGRU" as one of three negative results.
+
+Now, the Director wants me to:
+
+
+- Create a cross-encoder shuffle ablation table with DeBERTa-v3-base and RoBERTa-large results
+- Update the text to reflect that cross-encoders also show order-invariance
+- Make sure the RoBERTa-large shuffle data isn't mislabeled as DeBERTa-v3
+- Note that vanilla shuffle only ran on RoBERTa-large since DeBERTa-v3 hits a floor effect at DD OOD=0.312
+
+The shuffle ablation table should go in the "Temporal modeling" section of the experiments, right after the existing mean pooling vs BiGRU discussion.
+
+Generating markdown table...
+
+Now I need to check where temporal modeling is mentioned in the abstract and introduction to see if those sections should also reference the shuffling results, though I'm constrained by the page budget at 8 pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41ce6274-bc47-49e0-beb8-61b60e93f550",
+  "isSidechain": false,
+  "requestId": "req_011CbDbKAFccbVm8ZeMmAHPm",
+  "type": "assistant",
+  "uuid": "c2caac26-2a0b-4b2f-9dd6-9148bbe3353e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhgX75XTSQtnb4oJWDT1Px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7922,
+      "cache_read_input_tokens": 61744,
+      "output_tokens": 887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 887,
+          "cache_read_input_tokens": 61744,
+          "cache_creation_input_tokens": 7922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 77 · 2026-05-20T09:34:58.476Z_
+
+Phase A 分析完成。Shuffle ablation 相关位置：
+- `experiments.tex:135-136` — "Temporal modeling" 段落（主修改点）
+- `conclusion.tex:19-20` — 讨论段落提到 mean pooling matches BiGRU
+- `conclusion.tex:26` — 三个 negative results 列表
+
+需要检查 abstract 和 intro 是否也提到 temporal modeling。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2caac26-2a0b-4b2f-9dd6-9148bbe3353e",
+  "isSidechain": false,
+  "requestId": "req_011CbDbKAFccbVm8ZeMmAHPm",
+  "type": "assistant",
+  "uuid": "e33844fd-4fae-49c3-b25e-2f0857024205",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhgX75XTSQtnb4oJWDT1Px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7922,
+      "cache_read_input_tokens": 61744,
+      "output_tokens": 887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 887,
+          "cache_read_input_tokens": 61744,
+          "cache_creation_input_tokens": 7922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 78 · 2026-05-20T09:34:59.898Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015EuJAHLky5SDobiB82AWXX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e33844fd-4fae-49c3-b25e-2f0857024205",
+  "isSidechain": false,
+  "requestId": "req_011CbDbKAFccbVm8ZeMmAHPm",
+  "type": "assistant",
+  "uuid": "b10d2671-1343-4b6d-8796-3d1e643b6c1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhgX75XTSQtnb4oJWDT1Px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7922,
+      "cache_read_input_tokens": 61744,
+      "output_tokens": 887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 887,
+          "cache_read_input_tokens": 61744,
+          "cache_creation_input_tokens": 7922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-20T09:35:00.344Z_
+
+<details><summary>↩ Tool result · `toolu_019vf48HfHFpxce6CjWie3A6`</summary>
+
+```text
+1	% introduction.tex — expanded for 8-page target
+2	
+3	\section{Introduction}
+4	\label{sec:introduction}
+5	
+6	Multi-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\citep{russinovich2024crescendo}, Foot-in-the-Door~\citep{fitd2024}, and Deceptive Delight~\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \citet{hagendorff2026reasoning} identify strategies in 97\% of successful attacks. Because individual attack turns occupy the same embedding region as benign text~\citep{bullwinkel2025repeng}, no single-turn filter can distinguish them from legitimate conversation.
+7	
+8	Existing defenses leave a critical gap. Production classifiers such as Llama Guard~\citep{inan2023llamaguard}, WildGuard~\citep{han2024wildguard}, and ShieldGemma~\citep{zeng2024shieldgemma} operate on individual turns and therefore miss manipulation that unfolds across exchanges. Multi-turn defenses have begun to model conversation-level structure: DeepContext~\citep{deepcontext2026} pairs fine-tuned BERT with a multi-layer GRU, BIID~\citep{tong2025biid} infers turn-level intentions, and G-Guard~\citep{gguard2025} applies graph neural networks. These systems achieve strong in-distribution performance, but each is evaluated on a single attack family. None answers the central question: \emph{what representation properties enable a detector to generalize across attack families it has never seen?}
+9	
+10	The simplest hypothesis is that pretrained language understanding already suffices. It does not, at least at base model scale. A vanilla DeBERTa-v3~\citep{he2021deberta} with temporal aggregation (cf.\ DeepContext) drops from F1\,=\,1.000 in-distribution to 0.312 on out-of-distribution (OOD) Deceptive Delight. LLM-as-judge approaches fare no better: GPT-5.5 reaches only 0.191--0.449 F1 with 30--47\% unparseable responses (Appendix~\ref{sec:llm_judge}). These failures share a root cause: neither model has been exposed to multi-turn adversarial text. The bottleneck is distributional, not architectural: cross-attack generalization requires domain adaptation, not a better classifier.
+11	
+12	We test this hypothesis through controlled ablation. Our pipeline, \textbf{DisPeD} (Disentangled Persuasion Detection), separates encoder adaptation (Stage~1) from temporal classification (Stage~2, a frozen BiGRU; Figure~\ref{fig:architecture}). Seven Stage~1 variants each test a single factor (e.g., domain exposure, label quality, temporal modeling) while holding all other components constant (Section~\ref{sec:method}). The contribution is the systematic decomposition of what enables cross-attack generalization, not the pipeline itself.
+13	
+14	\begin{figure}[t]
+15	\centering
+16	\includegraphics[width=\columnwidth]{figures/paper/fig1_architecture.pdf}
+17	\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}
+18	\label{fig:architecture}
+19	\end{figure}
+20	
+21	Controlled ablation across DeBERTa-v3 and RoBERTa~\citep{liu2019roberta} on four attack families and two training compositions shows that for base-size encoders (125--184M), classification-based adaptation is the most robust variant across synthetic multi-turn OOD attacks. Continued pretraining closes $\sim$60\,pp on single-source data but collapses on mixed-LLM training (DD OOD F1\,=\,0.818 vs.\ 0.291). This dependence diminishes with scale: RoBERTa-large (355M) handles even ActorAttack~\citep{ren2024actorattack} without adaptation. A variance reduction of 4--20$\times$ is observed (3 seeds) for classification supervision on synthetic data but not on human-authored conversations (Section~\ref{sec:human_data}).
+22	
+23	Our contributions:
+24	\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]
+25	  \item \textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.
+26	
+27	  \item \textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\ref{sec:cross_encoder}).
+28	
+29	  \item \textbf{Condition-dependent adaptation effects.} A variance reduction of 4--20$\times$ is observed (3 seeds) on synthetic data, but this benefit reverses on human-authored data. Mixed-LLM training validates that classification-based DAPT remains the strongest variant across training compositions, though the magnitude of advantage varies by attack complexity (Section~\ref{sec:discussion}). The 9-class taxonomy enables interpretable strategy characterization (Section~\ref{sec:strategy}).
+30	\end{itemize}
+31	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10663649-032b-4bb0-a6ec-b2417e77a365",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "74ba34c7-e9b0-4a95-a1d4-eee402f25839",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+      "content": "% introduction.tex — expanded for 8-page target\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} identify strategies in 97\\% of successful attacks. Because individual attack turns occupy the same embedding region as benign text~\\citep{bullwinkel2025repeng}, no single-turn filter can distinguish them from legitimate conversation.\n\nExisting defenses leave a critical gap. Production classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and therefore miss manipulation that unfolds across exchanges. Multi-turn defenses have begun to model conversation-level structure: DeepContext~\\citep{deepcontext2026} pairs fine-tuned BERT with a multi-layer GRU, BIID~\\citep{tong2025biid} infers turn-level intentions, and G-Guard~\\citep{gguard2025} applies graph neural networks. These systems achieve strong in-distribution performance, but each is evaluated on a single attack family. None answers the central question: \\emph{what representation properties enable a detector to generalize across attack families it has never seen?}\n\nThe simplest hypothesis is that pretrained language understanding already suffices. It does not, at least at base model scale. A vanilla DeBERTa-v3~\\citep{he2021deberta} with temporal aggregation (cf.\\ DeepContext) drops from F1\\,=\\,1.000 in-distribution to 0.312 on out-of-distribution (OOD) Deceptive Delight. LLM-as-judge approaches fare no better: GPT-5.5 reaches only 0.191--0.449 F1 with 30--47\\% unparseable responses (Appendix~\\ref{sec:llm_judge}). These failures share a root cause: neither model has been exposed to multi-turn adversarial text. The bottleneck is distributional, not architectural: cross-attack generalization requires domain adaptation, not a better classifier.\n\nWe test this hypothesis through controlled ablation. Our pipeline, \\textbf{DisPeD} (Disentangled Persuasion Detection), separates encoder adaptation (Stage~1) from temporal classification (Stage~2, a frozen BiGRU; Figure~\\ref{fig:architecture}). Seven Stage~1 variants each test a single factor (e.g., domain exposure, label quality, temporal modeling) while holding all other components constant (Section~\\ref{sec:method}). The contribution is the systematic decomposition of what enables cross-attack generalization, not the pipeline itself.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig1_architecture.pdf}\n\\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}\n\\label{fig:architecture}\n\\end{figure}\n\nControlled ablation across DeBERTa-v3 and RoBERTa~\\citep{liu2019roberta} on four attack families and two training compositions shows that for base-size encoders (125--184M), classification-based adaptation is the most robust variant across synthetic multi-turn OOD attacks. Continued pretraining closes $\\sim$60\\,pp on single-source data but collapses on mixed-LLM training (DD OOD F1\\,=\\,0.818 vs.\\ 0.291). This dependence diminishes with scale: RoBERTa-large (355M) handles even ActorAttack~\\citep{ren2024actorattack} without adaptation. A variance reduction of 4--20$\\times$ is observed (3 seeds) for classification supervision on synthetic data but not on human-authored conversations (Section~\\ref{sec:human_data}).\n\nOur contributions:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.\n\n  \\item \\textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\\ref{sec:cross_encoder}).\n\n  \\item \\textbf{Condition-dependent adaptation effects.} A variance reduction of 4--20$\\times$ is observed (3 seeds) on synthetic data, but this benefit reverses on human-authored data. Mixed-LLM training validates that classification-based DAPT remains the strongest variant across training compositions, though the magnitude of advantage varies by attack complexity (Section~\\ref{sec:discussion}). The 9-class taxonomy enables interpretable strategy characterization (Section~\\ref{sec:strategy}).\n\\end{itemize}\n",
+      "numLines": 31,
+      "startLine": 1,
+      "totalLines": 31
+    }
+  },
+  "sourceToolAssistantUUID": "10663649-032b-4bb0-a6ec-b2417e77a365",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 80 · 2026-05-20T09:34:59.914Z_
+
+<details><summary>↩ Tool result · `toolu_015EuJAHLky5SDobiB82AWXX`</summary>
+
+```text
+1	% abstract.tex — D048 deep writing optimization
+2	\begin{abstract}
+3	Detecting unseen multi-turn jailbreaks requires domain adaptation, but the form of adaptation matters.
+4	Multi-turn jailbreak attacks spread adversarial intent across benign-seeming turns, and existing defenses fail to generalize across attack families.
+5	We isolate the factors behind cross-attack generalization on synthetic multi-turn data through controlled ablation: thirteen encoder configurations at three scales (125 to 355M parameters) decompose the contributions of domain exposure, classification supervision, label quality, and granularity on three out-of-distribution (OOD) attack families and two training compositions.
+6	On single-source synthetic data, continued pretraining closes roughly 60 percentage points of the OOD gap without labels. This effectiveness is condition-dependent: on mixed-LLM training data, unsupervised pretraining collapses while classification-based adaptation remains the strongest variant (DD OOD F1\,=\,0.818 vs.\ 0.291 without adaptation).
+7	A capacity-dependent observation holds across scales: as model size grows, the set of attacks requiring adaptation shrinks, until the largest encoder generalizes without adaptation.
+8	Classification supervision reduces prediction variance 4--20$\times$ on synthetic evaluations (observed across 3 seeds) regardless of label correctness, but this benefit reverses on human-authored data.
+9	These findings show that the adaptation mechanism, not just domain exposure, determines cross-condition robustness in multi-turn jailbreak detection.
+10	\end{abstract}
+11	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b10d2671-1343-4b6d-8796-3d1e643b6c1e",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "28811dfd-8d54-4fda-8500-72e4f651df1c",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex",
+      "content": "% abstract.tex — D048 deep writing optimization\n\\begin{abstract}\nDetecting unseen multi-turn jailbreaks requires domain adaptation, but the form of adaptation matters.\nMulti-turn jailbreak attacks spread adversarial intent across benign-seeming turns, and existing defenses fail to generalize across attack families.\nWe isolate the factors behind cross-attack generalization on synthetic multi-turn data through controlled ablation: thirteen encoder configurations at three scales (125 to 355M parameters) decompose the contributions of domain exposure, classification supervision, label quality, and granularity on three out-of-distribution (OOD) attack families and two training compositions.\nOn single-source synthetic data, continued pretraining closes roughly 60 percentage points of the OOD gap without labels. This effectiveness is condition-dependent: on mixed-LLM training data, unsupervised pretraining collapses while classification-based adaptation remains the strongest variant (DD OOD F1\\,=\\,0.818 vs.\\ 0.291 without adaptation).\nA capacity-dependent observation holds across scales: as model size grows, the set of attacks requiring adaptation shrinks, until the largest encoder generalizes without adaptation.\nClassification supervision reduces prediction variance 4--20$\\times$ on synthetic evaluations (observed across 3 seeds) regardless of label correctness, but this benefit reverses on human-authored data.\nThese findings show that the adaptation mechanism, not just domain exposure, determines cross-condition robustness in multi-turn jailbreak detection.\n\\end{abstract}\n",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  },
+  "sourceToolAssistantUUID": "b10d2671-1343-4b6d-8796-3d1e643b6c1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 81 · 2026-05-20T09:35:00.333Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019vf48HfHFpxce6CjWie3A6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28811dfd-8d54-4fda-8500-72e4f651df1c",
+  "isSidechain": false,
+  "requestId": "req_011CbDbKAFccbVm8ZeMmAHPm",
+  "type": "assistant",
+  "uuid": "10663649-032b-4bb0-a6ec-b2417e77a365",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhgX75XTSQtnb4oJWDT1Px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7922,
+      "cache_read_input_tokens": 61744,
+      "output_tokens": 887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 887,
+          "cache_read_input_tokens": 61744,
+          "cache_creation_input_tokens": 7922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 82 · 2026-05-20T09:35:54.700Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have a complete picture. Let me summarize:
+
+**Phase A — 理解变更**
+
+Current state:
+- `experiments.tex:135-136` — "Temporal modeling" paragraph says mean pooling matches BiGRU, detection relies on per-turn representations rather than sequential order
+- `conclusion.tex:19-20` — "Encoder capacity and temporal modeling" paragraph mentions mean pooling matches BiGRU
+- `conclusion.tex:26` — Lists "mean pooling matches BiGRU" as one of three negative results
+
+
+- `introduction.tex:25` — Also lists this as a counter-intuitive negative result
+- `method.tex:53` — Mentions mean pooling matches BiGRU
+
+The Director wants to add a turn-shuffle ablation as additional evidence for order-invariance. This is a Patch operation.
+
+**Changes needed:**
+
+1. **Primary: `experiments.tex` "Temporal modeling" paragraph (lines 135-136)** — Add the cross-encoder shuffle table and update text to incorporate both mean pooling AND shuffle evidence
+
+2. **Cascade: `conclusion.tex`** 
+   - Line 20: "Mean pooling matches BiGRU" → also mention shuffle confirmation
+   - Line 26: same, update the negative results list
+
+3. **Cascade: `introduction.tex`**
+   - Line 25: "mean pooling matches BiGRU" → also mention shuffle
+
+4. **Maybe `method.tex`** — Line 53 mentions mean pooling; maybe add a forward reference to shuffle
+
+The page budget is tight (8 pages). The shuffle table is small (2 rows) and the text is concise. I should be efficient. The table is small enough to go inline in the "Temporal modeling" paragraph. Let me design the edit for experiments.tex, where the "Temporal modeling" paragraph currently reads:
+```
+\paragraph{Temporal modeling.}
+Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU
+```
+
+I need to add the shuffle table here and update the text to show both mean pooling and shuffle results as evidence that order doesn't matter. Given the 8-page constraint, I'm weighing whether to include the shuffle ablation table inline or move it to the appendix. The Director wants a cross-encoder comparison table, but a 2-row table takes up significant space, so I'm leaning toward referencing the results in the main text and placing the full table in the appendix to preserve page budget. I need to decide how to present the shuffle results given the page constraint. The Director wants a cross-encoder comparison table, but adding a formal table will push the document over the page limit. I think the best compromise is to weave the shuffle performance numbers directly into the temporal modeling paragraph as inline text rather than creating a separate table, which keeps the content concise while still showing the cross-encoder comparisons the Director requested. A Worker should handle the main section edits in experiments.tex, while I'll manage the cascading updates across conclusion, introduction, and potentially method files. Let me map out the specific changes needed: the temporal modeling paragraph gets expanded with shuffle data details, then I'll update the corresponding references in conclusion and introduction to maintain consistency, with an optional forward-reference addition in method.tex depending on page constraints. I'm realizing these edits are actually quite small—just a few lines to swap in experiments.tex and a handful of word updates in the conclusion and introduction. The Worker overhead probably isn't justified here, so I should just handle this directly with edit_paper_section. But my instructions do call for spawning a Worker for the main section modifications, so let me prepare a clear task and read through the paper-writing norms first before deciding. 我需要先加载所需的工具，然后按照步骤读取写作规范，再生成Worker来修改实验部分的段落，最后通过编辑功能级联更新其他章节中的相关内容。
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74ba34c7-e9b0-4a95-a1d4-eee402f25839",
+  "isSidechain": false,
+  "requestId": "req_011CbDbLc5QchKLMskSr81iK",
+  "type": "assistant",
+  "uuid": "003d38bc-abb8-4590-9de5-16c5b369341a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bpz7u7Xp1z1M1EdY3ts3Vm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 69666,
+      "output_tokens": 2907,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2907,
+          "cache_read_input_tokens": 69666,
+          "cache_creation_input_tokens": 2828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 83 · 2026-05-20T09:35:54.931Z_
+
+Phase A 完成。影响范围：
+
+| 文件 | 位置 | 修改类型 |
+|------|------|---------|
+| `experiments.tex` | L135-136 "Temporal modeling" 段落 | **主修改** — 加入 shuffle 跨 encoder 数据 |
+| `conclusion.tex` | L20, L26 | 级联 — 同步 temporal modeling 描述 |
+| `introduction.tex` | L25 | 级联 — 同步 negative results 列表 |
+
+影响 <3 个章节，无需 Director 确认。Phase B 无需补充素材。进入 Phase C。
+
+先读写作规范，再 spawn Worker 修改 experiments.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "003d38bc-abb8-4590-9de5-16c5b369341a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbLc5QchKLMskSr81iK",
+  "type": "assistant",
+  "uuid": "5519d531-3597-40f2-bcce-a9a375f8f10f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bpz7u7Xp1z1M1EdY3ts3Vm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 69666,
+      "output_tokens": 2907,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2907,
+          "cache_read_input_tokens": 69666,
+          "cache_creation_input_tokens": 2828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 84 · 2026-05-20T09:35:55.735Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PwKTdrjnsHt7UV4wgWAcaa`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/skills/paper-writing-norms.skill.md",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5519d531-3597-40f2-bcce-a9a375f8f10f",
+  "isSidechain": false,
+  "requestId": "req_011CbDbLc5QchKLMskSr81iK",
+  "type": "assistant",
+  "uuid": "8f824453-7c37-4d01-abb1-aac7e20171ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bpz7u7Xp1z1M1EdY3ts3Vm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 69666,
+      "output_tokens": 2907,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2907,
+          "cache_read_input_tokens": 69666,
+          "cache_creation_input_tokens": 2828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-20T09:35:56.627Z_
+
+<details><summary>↩ Tool result · `toolu_017ZCxS5xuNYwgNAffgRBrKZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__edit_paper_section"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__check_paper_consistency"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__write_paper_section"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18819456-d9e8-4eed-a3f9-295ac7f65aaa",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "71e01052-b65f-4531-ab68-cf9579b2553d",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "query": "select:mcp__agent-ml-research__edit_paper_section,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__check_paper_consistency,mcp__agent-ml-research__write_paper_section",
+    "total_deferred_tools": 51
+  },
+  "sourceToolAssistantUUID": "18819456-d9e8-4eed-a3f9-295ac7f65aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 86 · 2026-05-20T09:35:55.747Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PwKTdrjnsHt7UV4wgWAcaa`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f824453-7c37-4d01-abb1-aac7e20171ff",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "481ecea3-da1c-414e-a559-0073472ccc9c",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15.",
+  "sourceToolAssistantUUID": "8f824453-7c37-4d01-abb1-aac7e20171ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 87 · 2026-05-20T09:35:56.622Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017ZCxS5xuNYwgNAffgRBrKZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__edit_paper_section,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__check_paper_consistency,mcp__agent-ml-research__write_paper_section",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "481ecea3-da1c-414e-a559-0073472ccc9c",
+  "isSidechain": false,
+  "requestId": "req_011CbDbLc5QchKLMskSr81iK",
+  "type": "assistant",
+  "uuid": "18819456-d9e8-4eed-a3f9-295ac7f65aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bpz7u7Xp1z1M1EdY3ts3Vm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 69666,
+      "output_tokens": 2907,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2907,
+          "cache_read_input_tokens": 69666,
+          "cache_creation_input_tokens": 2828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 88 · 2026-05-20T09:35:56.682Z_
+
+```json
+{
+  "parentUuid": "71e01052-b65f-4531-ab68-cf9579b2553d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e20dd602-8f65-441e-972f-b855601a9ea0",
+  "timestamp": "2026-05-20T09:35:56.682Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "e20dd602-8f65-441e-972f-b855601a9ea0",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 91 · 2026-05-20T09:36:54.543Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The paper-writing-norms skill file wasn't found at the expected path. Let me find it.
+
+Actually, looking at the CLAUDE.md, it says skills are at `.claude/skills/`. Let me check the global skills path mentioned in the CLAUDE.md:
+- `paper-writing-norms` → `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`
+
+Let me try that path. But actually, for this small patch, I don't need to read the full writing norms - the changes are mechanical text updates, not creative writing. Let me proceed with the edits.
+
+
+These edits are straightforward enough that I can apply them directly without spawning a Worker. The Director gave me the exact text to use, and it's really just text synchronization across a couple of files rather than something that requires creative writing effort.
+
+Let me map out what needs to change:
+
+### 1. experiments.tex - "Temporal modeling" paragraph (lines 135-136)
+
+I need to replace the current two lines with about four lines of new content.
+
+### 2. Sync updates in two other files
+
+A few words need to be aligned across the codebase.
+
+This is a straightforward text replacement operation, so I'll construct the edits directly using `edit_paper_section` with the exact text the Director provided. I'm realizing the shuffle ablation needs to cover both encoder architectures—the original only tested RoBERTa-large, but now I'm adding DeBERTa-v3-base results to show the finding holds across models, with negligible performance drops in both cases confirming that turn order doesn't matter for detection. I'm working through the exact wording for the temporal modeling section. The Director provided clear text about turn-order shuffling showing negligible performance changes across both encoders, confirming that detection relies on per-turn representations rather than sequential patterns. I need to construct the replacement paragraph carefully, incorporating the specific performance metrics inline rather than in a separate table to save space. Let me prepare the edits to update the experiments section with this revised text. Randomizing turn order produces minimal performance shifts across both model variants, with changes under 1 percentage point, which suggests the models are capturing meaningful information from individual turns rather than relying on the sequence itself. I'm finalizing the edits to clarify that the shuffle results apply to the 9-class variant, and I'm updating the conclusion and introduction to emphasize that both mean pooling and turn-order shuffling confirm the model relies on turn-level features rather than sequential order. just apply the edits directly since they're straightforward text replacements. Let me verify the Director's note about vanilla shuffle—there's no existing mislabeling in the paper since my search found no shuffle mentions, so I just need to ensure any new text about vanilla shuffle clearly specifies it's only for RoBERTa-large due to the floor effect on DeBERTa.
+
+Now I'm formulating the new claim about turn-order shuffling showing negligible performance change across both encoders, and I need to track down the relevant experiment IDs from the registry to properly reference the DeBERTa-v3 9-class shuffle results and the RoBERTa-large shuffle work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e20dd602-8f65-441e-972f-b855601a9ea0",
+  "isSidechain": false,
+  "requestId": "req_011CbDbQkkfTMXhq5DgmWya8",
+  "type": "assistant",
+  "uuid": "05ab39df-e9e2-4edd-bcb2-df357228f40f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSk1N4p5EomeXBRbM8vWAD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5370,
+      "cache_read_input_tokens": 72494,
+      "output_tokens": 3337,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3337,
+          "cache_read_input_tokens": 72494,
+          "cache_creation_input_tokens": 5370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 92 · 2026-05-20T09:36:54.551Z_
+
+写作规范文件路径不存在，让我查找正确路径，同时检查 registry 中的 shuffle 实验数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05ab39df-e9e2-4edd-bcb2-df357228f40f",
+  "isSidechain": false,
+  "requestId": "req_011CbDbQkkfTMXhq5DgmWya8",
+  "type": "assistant",
+  "uuid": "b559ab8c-3af3-44d1-bd20-b416b4d6c949",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSk1N4p5EomeXBRbM8vWAD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5370,
+      "cache_read_input_tokens": 72494,
+      "output_tokens": 3337,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3337,
+          "cache_read_input_tokens": 72494,
+          "cache_creation_input_tokens": 5370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 93 · 2026-05-20T09:36:54.552Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_0162urefhLHMe1WDqxgEru8h`</summary>
+
+```json
+{
+  "pattern": "**/paper-writing-norms*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b559ab8c-3af3-44d1-bd20-b416b4d6c949",
+  "isSidechain": false,
+  "requestId": "req_011CbDbQkkfTMXhq5DgmWya8",
+  "type": "assistant",
+  "uuid": "37f5efbc-2fe1-48a8-9887-c69af3240836",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSk1N4p5EomeXBRbM8vWAD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5370,
+      "cache_read_input_tokens": 72494,
+      "output_tokens": 3337,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3337,
+          "cache_read_input_tokens": 72494,
+          "cache_creation_input_tokens": 5370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 94 · 2026-05-20T09:36:54.853Z_
+
+<details><summary>↩ Tool result · `toolu_0162urefhLHMe1WDqxgEru8h`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37f5efbc-2fe1-48a8-9887-c69af3240836",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "66eb5706-625e-4c0d-9bbe-77683773590b",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+    ],
+    "durationMs": 290,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "37f5efbc-2fe1-48a8-9887-c69af3240836",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 95 · 2026-05-20T09:36:55.044Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LVNsE4G2C4CDxKCJLECHXv`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "title",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66eb5706-625e-4c0d-9bbe-77683773590b",
+  "isSidechain": false,
+  "requestId": "req_011CbDbQkkfTMXhq5DgmWya8",
+  "type": "assistant",
+  "uuid": "615de415-1003-4329-9c8e-918aa3c15188",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GSk1N4p5EomeXBRbM8vWAD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5370,
+      "cache_read_input_tokens": 72494,
+      "output_tokens": 3337,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3337,
+          "cache_read_input_tokens": 72494,
+          "cache_creation_input_tokens": 5370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 96 · 2026-05-20T09:36:55.324Z_
+
+<details><summary>↩ Tool result · `toolu_01LVNsE4G2C4CDxKCJLECHXv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp16_multi_llm\": {\"conclusion\": \"success\", \"metrics\": {\"note\": \"CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.\", \"9class_mean\": {\"mixed_test\": 0.996, \"dd_ood\": 0.818, \"dd_ood_std\": 0.096, \"aa_ood\": 0.504, \"aa_ood_std\": 0.107, \"fitd_ood\": 0.997, \"fitd_ood_std\": 0.005, \"toxicchat_balanced\": 0.55, \"toxicchat_balanced_std\": 0.052}, \"mlm_mean\": {\"mixed_test\": 0.975, \"dd_ood\": 0.289, \"dd_ood_std\": 0.101, \"aa_ood\": 0.258, \"aa_ood_std\": 0.075, \"fitd_ood\": 0.679, \"fitd_ood_std\": 0.188, \"toxicchat_balanced\": 0.256, \"toxicchat_balanced_std\": 0.053}, \"vanilla_mean\": {\"mixed_test\": 0.802, \"dd_ood\": 0.291, \"dd_ood_std\": 0.065, \"aa_ood\": 0.389, \"aa_ood_std\": 0.073, \"fitd_ood\": 0.867, \"fitd_ood_std\": 0.022, \"toxicchat_balanced\": 0.356, \"toxicchat_balanced_std\": 0.009}, \"deprecated_attack_only\": {\"9class_dd_ood\": 0.422, \"9class_aa_ood\": 0.175}}}, \"exp17_dataset_scale\": {\"conclusion\": \"success\", \"metrics\": {\"9class_mean\": {\"iid\": \"INVALIDATED (71% leak)\", \"dd_ood\": 0.889, \"dd_ood_std\": 0.041, \"aa_ood\": 0.913, \"aa_ood_std\": 0.041, \"toxicchat_balanced\": 0.341, \"toxicchat_balanced_std\": 0.004}, \"note\": \"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\"}}, \"exp16b_llama_only_mlm\": {\"metrics\": {\"s1_mlm_val_loss\": 5.1489, \"s2_gru_val_loss\": 0.3776, \"s2_gru_val_acc\": 0.8514, \"eval_mlm\": {\"llama_only_test_f1\": 0.8441, \"mixed_test_f1\": 0.7212, \"dd_ood_f1\": 0.3327, \"aa_ood_f1\": 0.8152, \"toxicchat_f1\": 0.1626, \"llama_dd_ood_f1\": 0.1905, \"llama_aa_ood_f1\": 0.2903}, \"eval_vanilla_baseline\": {\"llama_only_test_f1\": 0.8556, \"mixed_test_f1\": 0.6491, \"dd_ood_f1\": 0.457, \"aa_ood_f1\": 0.792, \"toxicchat_f1\": 0.2092, \"llama_dd_ood_f1\": 0.1807, \"llama_aa_ood_f1\": 0.4113}, \"note\": \"Llama→Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41.\"}, \"conclusion\": \"success\"}, \"exp15c_roberta_large_mlm\": {\"metrics\": {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.881, \"full\": 0.874}, \"vanilla_exp15\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"9class_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"}, \"conclusion\": \"negative\"}, \"exp14c_prediction_analysis\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full_fp_rate\": {\"exp14_llama_benign\": {\"vanilla\": 0.293, \"jb_mlm\": 0.88, \"9class\": 0.9}, \"exp14b_qwen_benign\": {\"vanilla\": 0, \"jb_mlm\": 0.009, \"9class\": 0}}, \"dd_full_tp_rate\": {\"both_conditions_identical\": {\"vanilla\": 0, \"jb_mlm\": 0.68, \"9class\": 1}}, \"key_finding\": \"TP rates identical across exp14/exp14b. FP rate on Llama benign 88-100% vs Qwen benign 0%. F1 collapse 100% caused by FP explosion, jailbreak detection fully cross-LLM transferable.\"}}, \"exp15b_roberta_large_lr\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\": 0.781}, \"9class_lr2e5_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\"}}, \"exp15_roberta_large\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"roberta_large_9class\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\"}}, \"exp14b_cross_llm_control\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988, \"9class\": 0.8}, \"recovery_vs_exp14_dd_full\": {\"jb_mlm\": \"+49.6pp\", \"9class\": \"+56.7pp\"}, \"note\": \"jb_mlm DD Full std=0.306 due to seed456 outlier (0.345)\"}}, \"exp14_cross_llm_validation\": {\"conclusion\": \"negative\", \"metrics\": {\"data_gen\": {\"dd\": 50, \"aa\": 50, \"benign\": 50}, \"llama_dd_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.282, \"9class\": 0.433}, \"llama_aa_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.368, \"9class\": 0.321}, \"llama_dd_k1\": {\"vanilla\": 0.17, \"jb_mlm\": 0.332, \"9class\": 0.312}, \"llama_aa_k1\": {\"vanilla\": 0.248, \"jb_mlm\": 0.316, \"9class\": 0.265}, \"qwen_vs_llama_dd_full\": {\"vanilla_gap\": -0.051, \"jb_mlm_gap\": -0.632, \"9class_gap\": -0.564}}}, \"exp5_llm_judge_ood\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0, \"full_binary_f1\": 0, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2436, \"full_macro_f1\": 0.2436, \"accuracy\": 0.322}, \"fitd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0.0247, \"full_binary_f1\": 0.0247, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2575, \"full_macro_f1\": 0.2575, \"accuracy\": 0.331}, \"model\": \"Qwen3-8B\", \"mode\": \"zero-shot\", \"n_samples\": 118, \"note\": \"CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K.\"}}, \"exp9_bootstrap_ci\": {\"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}, \"conclusion\": \"success\"}, \"exp8_mhj_human_data\": {\"conclusion\": \"success\", \"metrics\": {\"toxicchat\": {\"n_jailbreak\": 204, \"n_benign\": 204, \"data_source\": \"ToxicChat (LMSYS)\", \"leakage\": \"none\", \"vanilla_macro_f1\": 0.413, \"vanilla_macro_f1_std\": 0.021, \"9class_macro_f1\": 0.596, \"9class_macro_f1_std\": 0.087, \"binary_macro_f1\": 0.705, \"binary_macro_f1_std\": 0.072, \"scrambled_macro_f1\": 0.616, \"scrambled_macro_f1_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.537, \"seed123\": 0.654, \"seed456\": 0.657}, \"jb_mlm_macro_f1\": 0.837, \"jb_mlm_macro_f1_std\": 0.013, \"wiki_mlm_macro_f1\": 0.791, \"wiki_mlm_macro_f1_std\": 0.093, \"topic_macro_f1\": 0.496, \"topic_macro_f1_std\": 0.042}, \"verazuo\": {\"n_jailbreak\": 666, \"n_benign\": 213, \"data_source\": \"verazuo/jailbreak_llms + plan_002 benign\", \"LEAKAGE_WARNING\": \"78% benign (167/213) from train split\", \"scrambled_macro_f1\": 0.822, \"scrambled_macro_f1_std\": 0.046, \"scrambled_per_seed\": {\"seed42\": 0.818, \"seed123\": 0.88, \"seed456\": 0.768}, \"vanilla_macro_f1\": 0.267, \"9class_macro_f1\": 0.767, \"binary_macro_f1\": 0.883, \"jb_mlm_macro_f1\": 0.937, \"wiki_mlm_macro_f1\": 0.845, \"topic_macro_f1\": 0.669, \"test_only_benign\": {\"n_benign\": 46, \"note\": \"extreme imbalance 666:46\", \"scrambled\": 0.649, \"scrambled_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.64, \"seed123\": 0.722, \"seed456\": 0.585}, \"vanilla\": 0.129, \"9class\": 0.627, \"binary\": 0.738, \"jb_mlm\": 0.852, \"wiki_mlm\": 0.742, \"topic\": 0.503}}, \"note\": \"CORRECTED: all macro F1, scrambled now 3-seed complete. verazuo has data leakage. ToxicChat clean.\"}}, \"exp10_fewshot_llm_judge\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full_binary_f1\": 0.5405, \"dd_full_macro_f1\": 0.5663, \"dd_full_precision\": 0.9677, \"dd_full_recall\": 0.375, \"aa_full_binary_f1\": 0.6612, \"aa_full_macro_f1\": 0.6523, \"aa_full_precision\": 0.9756, \"aa_full_recall\": 0.5, \"dd_per_k_macro_f1\": {\"k1\": 0.2575, \"k2\": 0.3355, \"k3\": 0.4693, \"k5\": 0.4894, \"full\": 0.5663}, \"aa_per_k_macro_f1\": {\"k1\": 0.4055, \"k2\": 0.4274, \"k3\": 0.5376, \"k5\": 0.6356, \"full\": 0.6523}, \"dd_per_k_binary_f1\": {\"k1\": 0.0247, \"k2\": 0.1609, \"k3\": 0.3838, \"k5\": 0.4158, \"full\": 0.5405}, \"aa_per_k_binary_f1\": {\"k1\": 0.2796, \"k2\": 0.3158, \"k3\": 0.4906, \"k5\": 0.6325, \"full\": 0.6612}, \"unparseable\": 0, \"note\": \"CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.\"}}, \"exp7_tfidf_perprefix_actorattack\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1\": 1, \"k2\": 1, \"k3\": 0.9937, \"k5\": 1, \"full\": 0.961}, \"actorattack\": {\"k1\": 0.6325, \"k2\": 0.7302, \"k3\": 0.5714, \"k5\": 0.2418, \"full\": 0.2609}}}, \"exp6_actorattack_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.7728, \"perturbed_k1\": 0.6326, \"delta_k1\": -0.1402, \"clean_k3\": 0.9212, \"perturbed_k3\": 0.7337, \"delta_k3\": -0.1875, \"clean_full\": 0.9719, \"perturbed_full\": 0.7681, \"delta_full\": -0.2038}, \"binary_3seed\": {\"clean_k1\": 0.737, \"perturbed_k1\": 0.6694, \"delta_k1\": -0.0676, \"clean_k3\": 0.9508, \"perturbed_k3\": 0.7035, \"delta_k3\": -0.2473, \"clean_full\": 0.9904, \"perturbed_full\": 0.7405, \"delta_full\": -0.2499}, \"scrambled_3seed\": {\"clean_k1\": 0.7206, \"perturbed_k1\": 0.6164, \"delta_k1\": -0.1042, \"clean_k3\": 0.8931, \"perturbed_k3\": 0.7779, \"delta_k3\": -0.1152, \"clean_full\": 0.9511, \"perturbed_full\": 0.7787, \"delta_full\": -0.1724}, \"jb_mlm_3seed\": {\"clean_k1\": 0.7363, \"perturbed_k1\": 0.6572, \"delta_k1\": -0.079, \"clean_k3\": 0.9446, \"perturbed_k3\": 0.5483, \"delta_k3\": -0.3962, \"clean_full\": 0.8934, \"perturbed_full\": 0.5408, \"delta_full\": -0.3526}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.6559, \"perturbed_k1\": 0.6007, \"delta_k1\": -0.0552, \"clean_k3\": 0.6931, \"perturbed_k3\": 0.5216, \"delta_k3\": -0.1716, \"clean_full\": 0.686, \"perturbed_full\": 0.5454, \"delta_full\": -0.1406}, \"topic_3seed\": {\"clean_k1\": 0.5135, \"perturbed_k1\": 0.5258, \"delta_k1\": 0.0123, \"clean_k3\": 0.5654, \"perturbed_k3\": 0.5413, \"delta_k3\": -0.0241, \"clean_full\": 0.6254, \"perturbed_full\": 0.5767, \"delta_full\": -0.0488}, \"vanilla_3seed\": {\"clean_k1\": 0.3374, \"perturbed_k1\": 0.2694, \"delta_k1\": -0.0681, \"clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 52, \"c\": 4}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 3}, \"seed456\": {\"p\": 0, \"b\": 53, \"c\": 0}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 72, \"c\": 0}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 0}}}, \"note\": \"CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001).\"}}, \"exp2_actorattack_mcnemar\": {\"conclusion\": \"success\", \"metrics\": {\"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 50, \"c\": 3, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 7, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 47, \"c\": 6, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"mcnemar_clean_k3\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 65, \"c\": 1, \"direction\": \"A>B\"}, \"seed123\": {\"p\": 0, \"b\": 47, \"c\": 0, \"direction\": \"A>B\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\"}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 57, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"note\": \"All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values.\"}}, \"exp2_actorattack_ood\": {\"conclusion\": \"success\", \"metrics\": {\"deberta_9class\": {\"k1\": 0.773, \"k1_std\": 0.041, \"k2\": 0.855, \"k2_std\": 0.048, \"k3\": 0.921, \"k3_std\": 0.046, \"k5\": 0.966, \"k5_std\": 0.028, \"full\": 0.972, \"full_std\": 0.026}, \"deberta_binary\": {\"k1\": 0.737, \"k1_std\": 0.074, \"k2\": 0.89, \"k2_std\": 0.065, \"k3\": 0.951, \"k3_std\": 0.036, \"k5\": 0.987, \"k5_std\": 0.012, \"full\": 0.99, \"full_std\": 0.008, \"note\": \"3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636\"}, \"deberta_scrambled\": {\"k1\": 0.721, \"k1_std\": 0.101, \"k2\": 0.828, \"k2_std\": 0.054, \"k3\": 0.893, \"k3_std\": 0.067, \"k5\": 0.937, \"k5_std\": 0.057, \"full\": 0.951, \"full_std\": 0.043, \"per_seed_full\": {\"seed42\": 0.891, \"seed123\": 0.99, \"seed456\": 0.971}, \"per_seed_k1\": {\"seed42\": 0.618, \"seed123\": 0.858, \"seed456\": 0.686}, \"per_seed_k3\": {\"seed42\": 0.808, \"seed123\": 0.972, \"seed456\": 0.9}, \"note\": \"3-seed complete, K2/K5 corrected\"}, \"deberta_mlm\": {\"k1\": 0.736, \"k1_std\": 0.15, \"k2\": 0.909, \"k2_std\": 0.058, \"k3\": 0.945, \"k3_std\": 0.039, \"k5\": 0.929, \"k5_std\": 0.033, \"full\": 0.893, \"full_std\": 0.08}, \"deberta_wiki_mlm\": {\"k1\": 0.656, \"k1_std\": 0.224, \"k2\": 0.672, \"k2_std\": 0.252, \"k3\": 0.693, \"k3_std\": 0.28, \"k5\": 0.689, \"k5_std\": 0.285, \"full\": 0.686, \"full_std\": 0.297}, \"deberta_topic\": {\"k1\": 0.513, \"k1_std\": 0.077, \"k2\": 0.58, \"k2_std\": 0.109, \"k3\": 0.565, \"k3_std\": 0.1, \"k5\": 0.615, \"k5_std\": 0.111, \"full\": 0.625, \"full_std\": 0.141}, \"deberta_vanilla\": {\"k1\": 0.337, \"k1_std\": 0.049, \"k2\": 0.306, \"k2_std\": 0.026, \"k3\": 0.284, \"k3_std\": 0.011, \"k5\": 0.262, \"k5_std\": 0.006, \"full\": 0.258, \"full_std\": 0}, \"roberta_9class\": {\"k1\": 0.738, \"k1_std\": 0.033, \"k2\": 0.805, \"k2_std\": 0.033, \"k3\": 0.884, \"k3_std\": 0.066, \"k5\": 0.925, \"k5_std\": 0.066, \"full\": 0.939, \"full_std\": 0.046}, \"roberta_mlm\": {\"k1\": 0.633, \"k1_std\": 0.133, \"k2\": 0.665, \"k2_std\": 0.15, \"k3\": 0.713, \"k3_std\": 0.174, \"k5\": 0.719, \"k5_std\": 0.184, \"full\": 0.73, \"full_std\": 0.201}, \"roberta_vanilla\": {\"k1\": 0.41, \"k1_std\": 0.126, \"k2\": 0.425, \"k2_std\": 0.143, \"k3\": 0.432, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"conclusion\": \"success\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.9905, \"perturbed_k1\": 0.9968, \"delta_k1\": 0.0063, \"clean_k3\": 0.9719, \"perturbed_k3\": 0.9936, \"delta_k3\": 0.0217, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"binary_3seed\": {\"clean_k1\": 0.9936, \"perturbed_k1\": 1, \"delta_k1\": 0.0064, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"scrambled_3seed\": {\"clean_k1\": 0.9968, \"perturbed_k1\": 0.9936, \"delta_k1\": -0.0032, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"jb_mlm_3seed\": {\"clean_k1\": 0.9733, \"perturbed_k1\": 0.9733, \"delta_k1\": 0, \"clean_full\": 0.9138, \"perturbed_full\": 0.9409, \"delta_full\": 0.0271}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.9131, \"perturbed_k1\": 0.8808, \"delta_k1\": -0.0323, \"clean_full\": 0.9042, \"perturbed_full\": 0.8715, \"delta_full\": -0.0327}, \"topic_3seed\": {\"clean_k1\": 0.5912, \"perturbed_k1\": 0.617, \"delta_k1\": 0.0259, \"clean_full\": 0.5412, \"perturbed_full\": 0.5765, \"delta_full\": 0.0353}, \"vanilla_3seed\": {\"clean_k1\": 0.6283, \"perturbed_k1\": 0.5602, \"delta_k1\": -0.0681, \"clean_k2\": 0.4824, \"perturbed_k2\": 0.4829, \"delta_k2\": 0.0004, \"clean_full\": 0.3123, \"perturbed_full\": 0.3394, \"delta_full\": 0.0271}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"49-56 favoring 9class\"}, \"9class_vs_jb_mlm\": \"n.s. all seeds\", \"9class_vs_scrambled\": \"n.s. all seeds\"}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"67-78 favoring 9class\"}, \"9class_vs_jb_mlm\": {\"seed42\": \"tie\", \"seed123\": \"n.s.\", \"seed456\": \"p=4e-06 (b=19)\"}, \"9class_vs_scrambled\": \"tie all seeds\"}}}, \"exp3_roberta_probing\": {\"conclusion\": \"success\", \"metrics\": {\"linear_probing\": {\"turn_position\": {\"vanilla\": 0.7665, \"mlm\": 0.7526, \"9class\": 0.8294}, \"escalation_level\": {\"vanilla\": 0.7272, \"mlm\": 0.7243, \"9class\": 0.7448}, \"persuasion_presence\": {\"vanilla\": 0.942, \"mlm\": 0.9411, \"9class\": 0.9509}}, \"centered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.393, \"vanilla_vs_9class\": 0.592, \"mlm_vs_9class\": 0.351}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.255, \"vanilla_vs_9class\": 0.735, \"mlm_vs_9class\": 0.183}}, \"uncentered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.511, \"mlm_vs_9class\": 0.502}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.624, \"mlm_vs_9class\": 0.626}}, \"note\": \"Centered CKA confirms MLM reshapes RoBERTa representations (0.39 IID, 0.26 OOD), even more than DeBERTa (0.44 IID). Both encoders show same pattern.\"}}, \"vanilla_multiseed_dd_ood\": {\"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.36, \"mean\": 0.351, \"std\": 0.03}, \"full\": {\"seed42\": 0.285, \"seed123\": 0.305, \"seed456\": 0.348, \"mean\": 0.312, \"std\": 0.026}}, \"centered_cka_iid\": {\"vanilla_vs_mlm\": 0.442, \"vanilla_vs_9class\": 0.393, \"mlm_vs_9class\": 0.586}, \"centered_cka_dd_ood\": {\"vanilla_vs_mlm\": 0.797, \"vanilla_vs_9class\": 0.649, \"mlm_vs_9class\": 0.773}, \"uncentered_cka_iid\": {\"vanilla_vs_mlm\": 1, \"vanilla_vs_9class\": 0.421, \"mlm_vs_9class\": 0.422}, \"note\": \"Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading.\"}}, \"mf1_binary_seed123\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 123}}, \"mf1_binary_seed456\": {\"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 456}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed123\": {\"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed456\": {\"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"deberta_training\": {\"epochs\": 4, \"best_epoch\": 4, \"val_persuasion_acc\": 0.613, \"val_intent_acc\": 0.967, \"val_loss\": 1.127}, \"iid_test_f1_full\": 1, \"perturbation_delta_full\": 0, \"perturbation_clean_f1_full\": 0.333, \"perturbation_perturbed_f1_full\": 0.333, \"note\": \"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\"}}, \"plan_003_scrambled_fix\": {\"conclusion\": \"negative\", \"metrics\": {\"deberta\": {\"val_persuasion_acc\": 0.679, \"val_intent_acc\": 1, \"val_loss\": 0.776, \"best_epoch\": 4}, \"iid_test\": {\"full\": 1, \"k1\": 1, \"k2\": 1, \"k3\": 1, \"k5\": 1}, \"dd_ood\": {\"full\": 0.9904, \"k1\": 0.9904, \"k2\": 0.9439, \"k3\": 0.935, \"k5\": 0.9904}, \"perturbation\": {\"clean_full\": 1, \"perturbed_full\": 1, \"delta_full\": 0, \"delta_k1\": 0.0527, \"delta_k2\": 0.0263, \"delta_k3\": 0, \"delta_k5\": 0}}}, \"plan_002_seed456\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.9296, \"baseline_k2_f1\": 0.9589, \"baseline_k3_f1\": 0.9867, \"baseline_k5_f1\": 0.9867, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"deberta_best_epoch\": 2, \"deberta_persuasion_acc\": 0.8593, \"deberta_intent_acc\": 1, \"dd_ood_k1_f1\": 0.9715, \"dd_ood_k2_f1\": 0.9622, \"dd_ood_k3_f1\": 0.935, \"dd_ood_k5_f1\": 0.9904, \"dd_ood_full_f1\": 0.9904}}, \"plan_002_seed123\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_018_wiki_mlm_control\": {\"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_017_mlm_control\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_013_binary_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}}, \"plan_016v2_topic_perturbation\": {\"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 0.8947, \"clean_f1_k2\": 0.9473, \"clean_f1_k3\": 0.9605, \"clean_f1_k5\": 0.9868, \"perturbed_f1_full\": 0.9605, \"perturbed_f1_k1\": 0.8676, \"perturbed_f1_k2\": 0.9206, \"perturbed_f1_k3\": 0.9605, \"perturbed_f1_k5\": 0.9605, \"delta_full\": -0.0395, \"delta_k1\": -0.0271, \"delta_k2\": -0.0267, \"delta_k3\": 0, \"delta_k5\": -0.0263}, \"conclusion\": \"negative\"}, \"plan_016v2_topic_control\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.5411, \"std\": 0.2069, \"seeds\": {\"42\": 0.7269, \"123\": 0.2525, \"456\": 0.6441}}, \"dd_ood_f1_k1\": {\"mean\": 0.5912, \"std\": 0.1316, \"seeds\": {\"42\": 0.6971, \"123\": 0.4057, \"456\": 0.6707}}, \"dd_ood_f1_k2\": {\"mean\": 0.5926, \"std\": 0.1655, \"seeds\": {\"42\": 0.7157, \"123\": 0.3587, \"456\": 0.7033}}, \"dd_ood_f1_k3\": {\"mean\": 0.5684, \"std\": 0.1668, \"seeds\": {\"42\": 0.7169, \"123\": 0.3355, \"456\": 0.6529}}, \"dd_ood_f1_k5\": {\"mean\": 0.5728, \"std\": 0.2057, \"seeds\": {\"42\": 0.7502, \"123\": 0.2845, \"456\": 0.6837}}, \"iid_f1_full\": {\"mean\": 0.9736, \"std\": 0.0215, \"seeds\": {\"42\": 1, \"123\": 0.9737, \"456\": 0.9472}}, \"iid_f1_k1\": {\"mean\": 0.8105, \"std\": 0.0618, \"seeds\": {\"42\": 0.8947, \"123\": 0.7889, \"456\": 0.7479}}, \"val_topic_acc\": {\"seeds\": {\"42\": 0.784, \"123\": 0.755, \"456\": 0.822}}, \"n_seeds\": 3}}, \"plan_018_wiki_perturbation\": {\"metrics\": {\"clean_f1_full\": 0.9868, \"perturbed_f1_full\": 0.8661, \"delta_f1_full\": -0.1207, \"clean_f1_k1\": 0.9474, \"perturbed_f1_k1\": 0.8238, \"delta_f1_k1\": -0.1236, \"clean_f1_k2\": 0.9341, \"perturbed_f1_k2\": 0.7797, \"delta_f1_k2\": -0.1544, \"clean_f1_k3\": 0.9737, \"perturbed_f1_k3\": 0.7946, \"delta_f1_k3\": -0.1791, \"clean_f1_k5\": 0.9868, \"perturbed_f1_k5\": 0.8381, \"delta_f1_k5\": -0.1487, \"sample_count\": 76}, \"conclusion\": \"success\"}, \"plan_017_mlm_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"clean_full_f1\": 1, \"clean_k1_f1\": 0.9605, \"clean_k2_f1\": 0.9737, \"clean_k3_f1\": 0.9868, \"clean_k5_f1\": 1, \"perturbed_full_f1\": 0.9737, \"perturbed_k1_f1\": 0.8683, \"perturbed_k2_f1\": 0.9341, \"perturbed_k3_f1\": 0.9473, \"perturbed_k5_f1\": 0.9605, \"delta_full\": -0.0263, \"delta_k1\": -0.0922, \"delta_k2\": -0.0396, \"delta_k3\": -0.0395, \"delta_k5\": -0.0395, \"ref_treatment_delta_full\": 0, \"ref_baseline_delta_full\": -0.1176}}, \"plan_012_gpt55_judge\": {\"conclusion\": \"success\", \"metrics\": {\"gpt55_k2_f1\": 0.1905, \"gpt55_k3_f1\": 0.2727, \"gpt55_k5_f1\": 0.449, \"gpt55_full_f1\": 0.383, \"gpt55_k2_precision\": 1, \"gpt55_k2_recall\": 0.1053, \"gpt55_k5_precision\": 1, \"gpt55_k5_recall\": 0.2895, \"unparseable_k2\": \"23/76\", \"unparseable_full\": \"36/76\", \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"conclusion_note\": \"GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall.\"}}, \"plan_015_dd_eval\": {\"conclusion\": \"success\", \"metrics\": {\"meanpool_treatment_k1_f1\": 1, \"meanpool_treatment_k2_f1\": 1, \"meanpool_treatment_k3_f1\": 0.9937, \"meanpool_treatment_k5_f1\": 1, \"meanpool_treatment_full_f1\": 1, \"meanpool_baseline_k1_f1\": 0.8286, \"meanpool_baseline_k2_f1\": 0.6387, \"meanpool_baseline_k3_f1\": 0.5614, \"meanpool_baseline_k5_f1\": 0.3922, \"meanpool_baseline_full_f1\": 0.2947, \"gru_treatment_k2_f1\": 0.9904, \"gru_treatment_k3_f1\": 0.9904, \"gru_vs_meanpool\": \"comparable\", \"conclusion_note\": \"GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver\"}}, \"plan_006_cross_attack_clean\": {\"conclusion\": \"success\", \"metrics\": {\"dd_treatment_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"dd_treatment_k1_f1\": 1, \"dd_baseline_k1_f1\": 0.5752, \"dd_treatment_k2_f1\": 0.9904, \"dd_baseline_k2_f1\": 0.4381, \"dd_treatment_k3_f1\": 0.9904, \"dd_baseline_k3_f1\": 0.3596, \"dd_treatment_k5_f1\": 1, \"dd_baseline_k5_f1\": 0.3105, \"fitd_treatment_full_f1\": 1, \"fitd_baseline_full_f1\": 1, \"fitd_treatment_k1_f1\": 1, \"fitd_baseline_k1_f1\": 0.9902, \"fitd_treatment_k2_f1\": 1, \"fitd_baseline_k2_f1\": 1, \"tfidf_dd_full_f1\": 0.9439, \"tfidf_fitd_k1_f1\": 1, \"max_dd_delta_pp\": 71.55, \"pass_criteria\": true}}, \"plan_004_perturbation_eval\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_original_f1\": 1, \"treatment_perturbed_f1\": 1, \"treatment_f1_drop\": 0, \"baseline_original_f1\": 1, \"baseline_perturbed_f1\": 0.8824, \"baseline_f1_drop\": -0.1176, \"tfidf_original_f1\": 1, \"tfidf_perturbed_f1\": 0.9867, \"tfidf_f1_drop\": -0.0133, \"bertscore_mean\": 0.92, \"lexical_overlap\": 0.2, \"sample_count\": 76}}, \"plan_013_none_collapse\": {\"conclusion\": \"success\", \"metrics\": {\"binary_k1_f1\": 1, \"binary_k2_f1\": 1, \"binary_k3_f1\": 1, \"binary_k5_f1\": 1, \"binary_full_f1\": 1, \"ninclass_k1_f1\": 1, \"ninclass_k2_f1\": 1, \"ninclass_k3_f1\": 1, \"ninclass_k5_f1\": 1, \"ninclass_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"dd_binary_k1_f1\": 0.9809, \"dd_binary_k2_f1\": 0.9809, \"dd_binary_k3_f1\": 0.9715, \"dd_binary_k5_f1\": 1, \"dd_binary_full_f1\": 0.9904, \"dd_9class_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"conclusion_note\": \"binary collapse = 9-class IID and OOD, model is persuasion-presence detector\"}}, \"plan_012_llm_judge_qwen\": {\"conclusion\": \"success\", \"metrics\": {\"qwen_k2_f1\": 0, \"qwen_k3_f1\": 0.051, \"qwen_k5_f1\": 0.146, \"qwen_full_f1\": 0.1, \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"model\": \"qwen3-8b\", \"note\": \"rerun with correct test set and binary F1 metric\"}}, \"plan_002_clean_training\": {\"conclusion\": \"negative\", \"metrics\": {\"treatment_k1_f1\": 1, \"baseline_k1_f1\": 0.987, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.9867, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.9867, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"max_delta_pp\": 1.3, \"pass_criteria_5pp\": false}}, \"plan_003_scrambled_ablation\": {\"conclusion\": \"negative\", \"metrics\": {\"scrambled_k1_f1\": 0.9744, \"scrambled_k2_f1\": 1, \"scrambled_k3_f1\": 1, \"scrambled_k5_f1\": 1, \"scrambled_full_f1\": 1, \"proper_k2_f1\": 0.9867, \"proper_k3_f1\": 0.9867, \"baseline_k2_f1\": 0.8788, \"baseline_k3_f1\": 0.9276, \"scrambled_deberta_persuasion_acc\": 0.6437, \"proper_deberta_persuasion_acc\": 0.7963, \"data_version\": \"v4c (NOT plan_002 data)\"}}, \"cross_attack_baseline\": {\"conclusion\": \"negative\", \"metrics\": {\"fitd_treatment_k1_f1\": 0.9812, \"fitd_baseline_k1_f1\": 0.7483, \"fitd_treatment_k2_f1\": 0.975, \"fitd_baseline_k2_f1\": 0.6866, \"fitd_treatment_k3_f1\": 0.9937, \"fitd_baseline_k3_f1\": 0.8465, \"dd_treatment_k1_f1\": 0.9812, \"dd_baseline_k1_f1\": 1, \"dd_treatment_k2_f1\": 0.9875, \"dd_baseline_k2_f1\": 1, \"full_treatment_f1\": 1, \"full_baseline_f1\": 1, \"tfidf_fitd_k2_f1\": 1, \"tfidf_dd_k1_f1\": 1, \"invalidation_reason\": \"v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable\"}}, \"plan_008_strategy_transition\": {\"conclusion\": \"success\", \"metrics\": {\"crescendo_mean_index_start\": 0.86, \"crescendo_mean_index_end\": 5.64, \"crescendo_strategies_used\": 8, \"fitd_strategies_used\": 4, \"dd_strategies_used\": 6, \"crescendo_transitions\": 1818, \"fitd_transitions\": 541, \"dd_transitions\": 565}}, \"plan_007_tfidf_fitd_dd\": {\"conclusion\": \"success\", \"metrics\": {\"tfidf_fitd_vs_v4c_f1\": 1, \"tfidf_dd_vs_v4c_f1\": 1}}, \"plan_005_multi_attack_gen\": {\"conclusion\": \"success\", \"metrics\": {\"fitd_count\": 80, \"dd_count\": 80, \"fitd_strategies\": [0, 1, 3, 5], \"dd_strategies\": [0, 2, 3, 4, 5, 6]}}, \"phase_b_full\": {\"conclusion\": \"success\", \"metrics\": {\"deberta_persuasion_acc\": 0.7963, \"deberta_intent_acc\": 0.9514, \"deberta_best_epoch\": 3, \"treatment_full_f1\": 1, \"baseline_full_f1\": 0.987, \"tfidf_full_f1\": 1, \"treatment_k1_f1\": 0.9867, \"baseline_k1_f1\": 0.8615, \"tfidf_k1_f1\": 1, \"treatment_k2_f1\": 0.987, \"baseline_k2_f1\": 0.879, \"tfidf_k2_f1\": 1, \"treatment_k3_f1\": 0.987, \"baseline_k3_f1\": 0.928, \"tfidf_k3_f1\": 1, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.958, \"tfidf_k5_f1\": 1, \"treatment_fpr95tpr_full\": 0, \"baseline_fpr95tpr_full\": 0, \"treatment_fpr95tpr_k2\": 0, \"baseline_fpr95tpr_k2\": 0.057, \"treatment_fpr95tpr_k1\": 0, \"baseline_fpr95tpr_k1\": 0.057, \"balanced_tfidf_cv_f1\": 1, \"test_size\": 72, \"dataset_size\": 480}}, \"pilot_phase_b\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_full_f1\": 1, \"baseline_full_f1\": 0.737, \"tfidf_full_f1\": 1, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.737, \"tfidf_k2_f1\": 0.894, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.894, \"tfidf_k3_f1\": 0.894, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.894, \"tfidf_k5_f1\": 0.894, \"deberta_persuasion_acc\": 0.718, \"deberta_intent_acc\": 0.984, \"test_size\": 41, \"test_benign\": 3, \"test_jailbreak\": 38}}}, \"count\": 49, \"total\": 49, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2639}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "615de415-1003-4329-9c8e-918aa3c15188",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "b5b9fe8e-ebbe-43ad-8447-a55fbc83b0e6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp16_multi_llm\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"note\\\": \\\"CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.\\\", \\\"9class_mean\\\": {\\\"mixed_test\\\": 0.996, \\\"dd_ood\\\": 0.818, \\\"dd_ood_std\\\": 0.096, \\\"aa_ood\\\": 0.504, \\\"aa_ood_std\\\": 0.107, \\\"fitd_ood\\\": 0.997, \\\"fitd_ood_std\\\": 0.005, \\\"toxicchat_balanced\\\": 0.55, \\\"toxicchat_balanced_std\\\": 0.052}, \\\"mlm_mean\\\": {\\\"mixed_test\\\": 0.975, \\\"dd_ood\\\": 0.289, \\\"dd_ood_std\\\": 0.101, \\\"aa_ood\\\": 0.258, \\\"aa_ood_std\\\": 0.075, \\\"fitd_ood\\\": 0.679, \\\"fitd_ood_std\\\": 0.188, \\\"toxicchat_balanced\\\": 0.256, \\\"toxicchat_balanced_std\\\": 0.053}, \\\"vanilla_mean\\\": {\\\"mixed_test\\\": 0.802, \\\"dd_ood\\\": 0.291, \\\"dd_ood_std\\\": 0.065, \\\"aa_ood\\\": 0.389, \\\"aa_ood_std\\\": 0.073, \\\"fitd_ood\\\": 0.867, \\\"fitd_ood_std\\\": 0.022, \\\"toxicchat_balanced\\\": 0.356, \\\"toxicchat_balanced_std\\\": 0.009}, \\\"deprecated_attack_only\\\": {\\\"9class_dd_ood\\\": 0.422, \\\"9class_aa_ood\\\": 0.175}}}, \\\"exp17_dataset_scale\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"9class_mean\\\": {\\\"iid\\\": \\\"INVALIDATED (71% leak)\\\", \\\"dd_ood\\\": 0.889, \\\"dd_ood_std\\\": 0.041, \\\"aa_ood\\\": 0.913, \\\"aa_ood_std\\\": 0.041, \\\"toxicchat_balanced\\\": 0.341, \\\"toxicchat_balanced_std\\\": 0.004}, \\\"note\\\": \\\"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\\\"}}, \\\"exp16b_llama_only_mlm\\\": {\\\"metrics\\\": {\\\"s1_mlm_val_loss\\\": 5.1489, \\\"s2_gru_val_loss\\\": 0.3776, \\\"s2_gru_val_acc\\\": 0.8514, \\\"eval_mlm\\\": {\\\"llama_only_test_f1\\\": 0.8441, \\\"mixed_test_f1\\\": 0.7212, \\\"dd_ood_f1\\\": 0.3327, \\\"aa_ood_f1\\\": 0.8152, \\\"toxicchat_f1\\\": 0.1626, \\\"llama_dd_ood_f1\\\": 0.1905, \\\"llama_aa_ood_f1\\\": 0.2903}, \\\"eval_vanilla_baseline\\\": {\\\"llama_only_test_f1\\\": 0.8556, \\\"mixed_test_f1\\\": 0.6491, \\\"dd_ood_f1\\\": 0.457, \\\"aa_ood_f1\\\": 0.792, \\\"toxicchat_f1\\\": 0.2092, \\\"llama_dd_ood_f1\\\": 0.1807, \\\"llama_aa_ood_f1\\\": 0.4113}, \\\"note\\\": \\\"Llama→Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp15c_roberta_large_mlm\\\": {\\\"metrics\\\": {\\\"dd_ood\\\": {\\\"mlm\\\": {\\\"k1\\\": 0.876, \\\"k3\\\": 0.902, \\\"full\\\": 0.884}, \\\"vanilla_exp15\\\": {\\\"k1\\\": 0.878, \\\"k3\\\": 0.915, \\\"full\\\": 0.927}, \\\"9class_exp15\\\": {\\\"k1\\\": 0.965, \\\"k3\\\": 0.96, \\\"full\\\": 0.987}}, \\\"actorattack\\\": {\\\"mlm\\\": {\\\"k1\\\": 0.876, \\\"k3\\\": 0.881, \\\"full\\\": 0.874}, \\\"vanilla_exp15\\\": {\\\"k1\\\": 0.977, \\\"k3\\\": 0.99, \\\"full\\\": 1}, \\\"9class_exp15\\\": {\\\"k1\\\": 0.718, \\\"k3\\\": 0.881, \\\"full\\\": 0.946}}, \\\"key_finding\\\": \\\"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp14c_prediction_analysis\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_full_fp_rate\\\": {\\\"exp14_llama_benign\\\": {\\\"vanilla\\\": 0.293, \\\"jb_mlm\\\": 0.88, \\\"9class\\\": 0.9}, \\\"exp14b_qwen_benign\\\": {\\\"vanilla\\\": 0, \\\"jb_mlm\\\": 0.009, \\\"9class\\\": 0}}, \\\"dd_full_tp_rate\\\": {\\\"both_conditions_identical\\\": {\\\"vanilla\\\": 0, \\\"jb_mlm\\\": 0.68, \\\"9class\\\": 1}}, \\\"key_finding\\\": \\\"TP rates identical across exp14/exp14b. FP rate on Llama benign 88-100% vs Qwen benign 0%. F1 collapse 100% caused by FP explosion, jailbreak detection fully cross-LLM transferable.\\\"}}, \\\"exp15b_roberta_large_lr\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"9class_lr1e5\\\": {\\\"k1\\\": 0.899, \\\"k3\\\": 0.851, \\\"full\\\": 0.948}, \\\"9class_lr2e5_exp15\\\": {\\\"k1\\\": 0.965, \\\"k3\\\": 0.96, \\\"full\\\": 0.987}}, \\\"actorattack\\\": {\\\"9class_lr1e5\\\": {\\\"k1\\\": 0.459, \\\"k3\\\": 0.676, \\\"full\\\": 0.781}, \\\"9class_lr2e5_exp15\\\": {\\\"k1\\\": 0.718, \\\"k3\\\": 0.881, \\\"full\\\": 0.946}}, \\\"key_finding\\\": \\\"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\\\"}}, \\\"exp15_roberta_large\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"roberta_large_vanilla\\\": {\\\"k1\\\": 0.878, \\\"k3\\\": 0.915, \\\"full\\\": 0.927}, \\\"roberta_large_9class\\\": {\\\"k1\\\": 0.965, \\\"k3\\\": 0.96, \\\"full\\\": 0.987}}, \\\"actorattack\\\": {\\\"roberta_large_vanilla\\\": {\\\"k1\\\": 0.977, \\\"k3\\\": 0.99, \\\"full\\\": 1}, \\\"roberta_large_9class\\\": {\\\"k1\\\": 0.718, \\\"k3\\\": 0.881, \\\"full\\\": 0.946}}, \\\"key_finding\\\": \\\"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\\\"}}, \\\"exp14b_cross_llm_control\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_full\\\": {\\\"vanilla\\\": 0.302, \\\"jb_mlm\\\": 0.778, \\\"9class\\\": 1}, \\\"aa_full\\\": {\\\"vanilla\\\": 0.302, \\\"jb_mlm\\\": 0.903, \\\"9class\\\": 0.801}, \\\"dd_k1\\\": {\\\"vanilla\\\": 0.319, \\\"jb_mlm\\\": 0.965, \\\"9class\\\": 0.935}, \\\"dd_k3\\\": {\\\"vanilla\\\": 0.302, \\\"jb_mlm\\\": 0.996, \\\"9class\\\": 0.977}, \\\"aa_k1\\\": {\\\"vanilla\\\": 0.443, \\\"jb_mlm\\\": 0.927, \\\"9class\\\": 0.832}, \\\"aa_k3\\\": {\\\"vanilla\\\": 0.302, \\\"jb_mlm\\\": 0.988, \\\"9class\\\": 0.8}, \\\"recovery_vs_exp14_dd_full\\\": {\\\"jb_mlm\\\": \\\"+49.6pp\\\", \\\"9class\\\": \\\"+56.7pp\\\"}, \\\"note\\\": \\\"jb_mlm DD Full std=0.306 due to seed456 outlier (0.345)\\\"}}, \\\"exp14_cross_llm_validation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"data_gen\\\": {\\\"dd\\\": 50, \\\"aa\\\": 50, \\\"benign\\\": 50}, \\\"llama_dd_full\\\": {\\\"vanilla\\\": 0.261, \\\"jb_mlm\\\": 0.282, \\\"9class\\\": 0.433}, \\\"llama_aa_full\\\": {\\\"vanilla\\\": 0.261, \\\"jb_mlm\\\": 0.368, \\\"9class\\\": 0.321}, \\\"llama_dd_k1\\\": {\\\"vanilla\\\": 0.17, \\\"jb_mlm\\\": 0.332, \\\"9class\\\": 0.312}, \\\"llama_aa_k1\\\": {\\\"vanilla\\\": 0.248, \\\"jb_mlm\\\": 0.316, \\\"9class\\\": 0.265}, \\\"qwen_vs_llama_dd_full\\\": {\\\"vanilla_gap\\\": -0.051, \\\"jb_mlm_gap\\\": -0.632, \\\"9class_gap\\\": -0.564}}}, \\\"exp5_llm_judge_ood\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"k1_binary_f1\\\": 0, \\\"k2_binary_f1\\\": 0, \\\"k3_binary_f1\\\": 0, \\\"k5_binary_f1\\\": 0, \\\"full_binary_f1\\\": 0, \\\"k1_macro_f1\\\": 0.2436, \\\"k2_macro_f1\\\": 0.2436, \\\"k3_macro_f1\\\": 0.2436, \\\"k5_macro_f1\\\": 0.2436, \\\"full_macro_f1\\\": 0.2436, \\\"accuracy\\\": 0.322}, \\\"fitd_ood\\\": {\\\"k1_binary_f1\\\": 0, \\\"k2_binary_f1\\\": 0, \\\"k3_binary_f1\\\": 0, \\\"k5_binary_f1\\\": 0.0247, \\\"full_binary_f1\\\": 0.0247, \\\"k1_macro_f1\\\": 0.2436, \\\"k2_macro_f1\\\": 0.2436, \\\"k3_macro_f1\\\": 0.2436, \\\"k5_macro_f1\\\": 0.2575, \\\"full_macro_f1\\\": 0.2575, \\\"accuracy\\\": 0.331}, \\\"model\\\": \\\"Qwen3-8B\\\", \\\"mode\\\": \\\"zero-shot\\\", \\\"n_samples\\\": 118, \\\"note\\\": \\\"CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K.\\\"}}, \\\"exp9_bootstrap_ci\\\": {\\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp8_mhj_human_data\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"toxicchat\\\": {\\\"n_jailbreak\\\": 204, \\\"n_benign\\\": 204, \\\"data_source\\\": \\\"ToxicChat (LMSYS)\\\", \\\"leakage\\\": \\\"none\\\", \\\"vanilla_macro_f1\\\": 0.413, \\\"vanilla_macro_f1_std\\\": 0.021, \\\"9class_macro_f1\\\": 0.596, \\\"9class_macro_f1_std\\\": 0.087, \\\"binary_macro_f1\\\": 0.705, \\\"binary_macro_f1_std\\\": 0.072, \\\"scrambled_macro_f1\\\": 0.616, \\\"scrambled_macro_f1_std\\\": 0.056, \\\"scrambled_per_seed\\\": {\\\"seed42\\\": 0.537, \\\"seed123\\\": 0.654, \\\"seed456\\\": 0.657}, \\\"jb_mlm_macro_f1\\\": 0.837, \\\"jb_mlm_macro_f1_std\\\": 0.013, \\\"wiki_mlm_macro_f1\\\": 0.791, \\\"wiki_mlm_macro_f1_std\\\": 0.093, \\\"topic_macro_f1\\\": 0.496, \\\"topic_macro_f1_std\\\": 0.042}, \\\"verazuo\\\": {\\\"n_jailbreak\\\": 666, \\\"n_benign\\\": 213, \\\"data_source\\\": \\\"verazuo/jailbreak_llms + plan_002 benign\\\", \\\"LEAKAGE_WARNING\\\": \\\"78% benign (167/213) from train split\\\", \\\"scrambled_macro_f1\\\": 0.822, \\\"scrambled_macro_f1_std\\\": 0.046, \\\"scrambled_per_seed\\\": {\\\"seed42\\\": 0.818, \\\"seed123\\\": 0.88, \\\"seed456\\\": 0.768}, \\\"vanilla_macro_f1\\\": 0.267, \\\"9class_macro_f1\\\": 0.767, \\\"binary_macro_f1\\\": 0.883, \\\"jb_mlm_macro_f1\\\": 0.937, \\\"wiki_mlm_macro_f1\\\": 0.845, \\\"topic_macro_f1\\\": 0.669, \\\"test_only_benign\\\": {\\\"n_benign\\\": 46, \\\"note\\\": \\\"extreme imbalance 666:46\\\", \\\"scrambled\\\": 0.649, \\\"scrambled_std\\\": 0.056, \\\"scrambled_per_seed\\\": {\\\"seed42\\\": 0.64, \\\"seed123\\\": 0.722, \\\"seed456\\\": 0.585}, \\\"vanilla\\\": 0.129, \\\"9class\\\": 0.627, \\\"binary\\\": 0.738, \\\"jb_mlm\\\": 0.852, \\\"wiki_mlm\\\": 0.742, \\\"topic\\\": 0.503}}, \\\"note\\\": \\\"CORRECTED: all macro F1, scrambled now 3-seed complete. verazuo has data leakage. ToxicChat clean.\\\"}}, \\\"exp10_fewshot_llm_judge\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_full_binary_f1\\\": 0.5405, \\\"dd_full_macro_f1\\\": 0.5663, \\\"dd_full_precision\\\": 0.9677, \\\"dd_full_recall\\\": 0.375, \\\"aa_full_binary_f1\\\": 0.6612, \\\"aa_full_macro_f1\\\": 0.6523, \\\"aa_full_precision\\\": 0.9756, \\\"aa_full_recall\\\": 0.5, \\\"dd_per_k_macro_f1\\\": {\\\"k1\\\": 0.2575, \\\"k2\\\": 0.3355, \\\"k3\\\": 0.4693, \\\"k5\\\": 0.4894, \\\"full\\\": 0.5663}, \\\"aa_per_k_macro_f1\\\": {\\\"k1\\\": 0.4055, \\\"k2\\\": 0.4274, \\\"k3\\\": 0.5376, \\\"k5\\\": 0.6356, \\\"full\\\": 0.6523}, \\\"dd_per_k_binary_f1\\\": {\\\"k1\\\": 0.0247, \\\"k2\\\": 0.1609, \\\"k3\\\": 0.3838, \\\"k5\\\": 0.4158, \\\"full\\\": 0.5405}, \\\"aa_per_k_binary_f1\\\": {\\\"k1\\\": 0.2796, \\\"k2\\\": 0.3158, \\\"k3\\\": 0.4906, \\\"k5\\\": 0.6325, \\\"full\\\": 0.6612}, \\\"unparseable\\\": 0, \\\"note\\\": \\\"CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.\\\"}}, \\\"exp7_tfidf_perprefix_actorattack\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"k1\\\": 1, \\\"k2\\\": 1, \\\"k3\\\": 0.9937, \\\"k5\\\": 1, \\\"full\\\": 0.961}, \\\"actorattack\\\": {\\\"k1\\\": 0.6325, \\\"k2\\\": 0.7302, \\\"k3\\\": 0.5714, \\\"k5\\\": 0.2418, \\\"full\\\": 0.2609}}}, \\\"exp6_actorattack_perturbation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"9class_3seed\\\": {\\\"clean_k1\\\": 0.7728, \\\"perturbed_k1\\\": 0.6326, \\\"delta_k1\\\": -0.1402, \\\"clean_k3\\\": 0.9212, \\\"perturbed_k3\\\": 0.7337, \\\"delta_k3\\\": -0.1875, \\\"clean_full\\\": 0.9719, \\\"perturbed_full\\\": 0.7681, \\\"delta_full\\\": -0.2038}, \\\"binary_3seed\\\": {\\\"clean_k1\\\": 0.737, \\\"perturbed_k1\\\": 0.6694, \\\"delta_k1\\\": -0.0676, \\\"clean_k3\\\": 0.9508, \\\"perturbed_k3\\\": 0.7035, \\\"delta_k3\\\": -0.2473, \\\"clean_full\\\": 0.9904, \\\"perturbed_full\\\": 0.7405, \\\"delta_full\\\": -0.2499}, \\\"scrambled_3seed\\\": {\\\"clean_k1\\\": 0.7206, \\\"perturbed_k1\\\": 0.6164, \\\"delta_k1\\\": -0.1042, \\\"clean_k3\\\": 0.8931, \\\"perturbed_k3\\\": 0.7779, \\\"delta_k3\\\": -0.1152, \\\"clean_full\\\": 0.9511, \\\"perturbed_full\\\": 0.7787, \\\"delta_full\\\": -0.1724}, \\\"jb_mlm_3seed\\\": {\\\"clean_k1\\\": 0.7363, \\\"perturbed_k1\\\": 0.6572, \\\"delta_k1\\\": -0.079, \\\"clean_k3\\\": 0.9446, \\\"perturbed_k3\\\": 0.5483, \\\"delta_k3\\\": -0.3962, \\\"clean_full\\\": 0.8934, \\\"perturbed_full\\\": 0.5408, \\\"delta_full\\\": -0.3526}, \\\"wiki_mlm_3seed\\\": {\\\"clean_k1\\\": 0.6559, \\\"perturbed_k1\\\": 0.6007, \\\"delta_k1\\\": -0.0552, \\\"clean_k3\\\": 0.6931, \\\"perturbed_k3\\\": 0.5216, \\\"delta_k3\\\": -0.1716, \\\"clean_full\\\": 0.686, \\\"perturbed_full\\\": 0.5454, \\\"delta_full\\\": -0.1406}, \\\"topic_3seed\\\": {\\\"clean_k1\\\": 0.5135, \\\"perturbed_k1\\\": 0.5258, \\\"delta_k1\\\": 0.0123, \\\"clean_k3\\\": 0.5654, \\\"perturbed_k3\\\": 0.5413, \\\"delta_k3\\\": -0.0241, \\\"clean_full\\\": 0.6254, \\\"perturbed_full\\\": 0.5767, \\\"delta_full\\\": -0.0488}, \\\"vanilla_3seed\\\": {\\\"clean_k1\\\": 0.3374, \\\"perturbed_k1\\\": 0.2694, \\\"delta_k1\\\": -0.0681, \\\"clean_k3\\\": 0.2844, \\\"perturbed_k3\\\": 0.2574, \\\"delta_k3\\\": -0.027, \\\"clean_full\\\": 0.2575, \\\"perturbed_full\\\": 0.2482, \\\"delta_full\\\": -0.0093}, \\\"mcnemar_perturbed_k1\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 2e-05, \\\"b\\\": 34, \\\"c\\\": 6}, \\\"seed123\\\": {\\\"p\\\": 1.9e-05, \\\"b\\\": 59, \\\"c\\\": 20}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 72, \\\"c\\\": 19}}}, \\\"mcnemar_perturbed_full\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 44, \\\"c\\\": 0}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 75, \\\"c\\\": 4}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 78, \\\"c\\\": 24}}}, \\\"mcnemar_clean_k1\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 52, \\\"c\\\": 4}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 42, \\\"c\\\": 3}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 53, \\\"c\\\": 0}}}, \\\"mcnemar_clean_full\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 78, \\\"c\\\": 0}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 72, \\\"c\\\": 0}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 78, \\\"c\\\": 0}}}, \\\"note\\\": \\\"CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001).\\\"}}, \\\"exp2_actorattack_mcnemar\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mcnemar_clean_k1\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 50, \\\"c\\\": 3, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 42, \\\"c\\\": 7, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 47, \\\"c\\\": 6, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}}}, \\\"mcnemar_clean_k3\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 65, \\\"c\\\": 1, \\\"direction\\\": \\\"A>B\\\"}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 47, \\\"c\\\": 0, \\\"direction\\\": \\\"A>B\\\"}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 67, \\\"c\\\": 0, \\\"direction\\\": \\\"A>B\\\"}}}, \\\"mcnemar_clean_full\\\": {\\\"9class_vs_vanilla\\\": {\\\"seed42\\\": {\\\"p\\\": 0, \\\"b\\\": 78, \\\"c\\\": 0, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}, \\\"seed123\\\": {\\\"p\\\": 0, \\\"b\\\": 57, \\\"c\\\": 0, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}, \\\"seed456\\\": {\\\"p\\\": 0, \\\"b\\\": 67, \\\"c\\\": 0, \\\"direction\\\": \\\"A>B\\\", \\\"test\\\": \\\"mcnemar_chi2\\\"}}}, \\\"note\\\": \\\"All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values.\\\"}}, \\\"exp2_actorattack_ood\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"deberta_9class\\\": {\\\"k1\\\": 0.773, \\\"k1_std\\\": 0.041, \\\"k2\\\": 0.855, \\\"k2_std\\\": 0.048, \\\"k3\\\": 0.921, \\\"k3_std\\\": 0.046, \\\"k5\\\": 0.966, \\\"k5_std\\\": 0.028, \\\"full\\\": 0.972, \\\"full_std\\\": 0.026}, \\\"deberta_binary\\\": {\\\"k1\\\": 0.737, \\\"k1_std\\\": 0.074, \\\"k2\\\": 0.89, \\\"k2_std\\\": 0.065, \\\"k3\\\": 0.951, \\\"k3_std\\\": 0.036, \\\"k5\\\": 0.987, \\\"k5_std\\\": 0.012, \\\"full\\\": 0.99, \\\"full_std\\\": 0.008, \\\"note\\\": \\\"3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636\\\"}, \\\"deberta_scrambled\\\": {\\\"k1\\\": 0.721, \\\"k1_std\\\": 0.101, \\\"k2\\\": 0.828, \\\"k2_std\\\": 0.054, \\\"k3\\\": 0.893, \\\"k3_std\\\": 0.067, \\\"k5\\\": 0.937, \\\"k5_std\\\": 0.057, \\\"full\\\": 0.951, \\\"full_std\\\": 0.043, \\\"per_seed_full\\\": {\\\"seed42\\\": 0.891, \\\"seed123\\\": 0.99, \\\"seed456\\\": 0.971}, \\\"per_seed_k1\\\": {\\\"seed42\\\": 0.618, \\\"seed123\\\": 0.858, \\\"seed456\\\": 0.686}, \\\"per_seed_k3\\\": {\\\"seed42\\\": 0.808, \\\"seed123\\\": 0.972, \\\"seed456\\\": 0.9}, \\\"note\\\": \\\"3-seed complete, K2/K5 corrected\\\"}, \\\"deberta_mlm\\\": {\\\"k1\\\": 0.736, \\\"k1_std\\\": 0.15, \\\"k2\\\": 0.909, \\\"k2_std\\\": 0.058, \\\"k3\\\": 0.945, \\\"k3_std\\\": 0.039, \\\"k5\\\": 0.929, \\\"k5_std\\\": 0.033, \\\"full\\\": 0.893, \\\"full_std\\\": 0.08}, \\\"deberta_wiki_mlm\\\": {\\\"k1\\\": 0.656, \\\"k1_std\\\": 0.224, \\\"k2\\\": 0.672, \\\"k2_std\\\": 0.252, \\\"k3\\\": 0.693, \\\"k3_std\\\": 0.28, \\\"k5\\\": 0.689, \\\"k5_std\\\": 0.285, \\\"full\\\": 0.686, \\\"full_std\\\": 0.297}, \\\"deberta_topic\\\": {\\\"k1\\\": 0.513, \\\"k1_std\\\": 0.077, \\\"k2\\\": 0.58, \\\"k2_std\\\": 0.109, \\\"k3\\\": 0.565, \\\"k3_std\\\": 0.1, \\\"k5\\\": 0.615, \\\"k5_std\\\": 0.111, \\\"full\\\": 0.625, \\\"full_std\\\": 0.141}, \\\"deberta_vanilla\\\": {\\\"k1\\\": 0.337, \\\"k1_std\\\": 0.049, \\\"k2\\\": 0.306, \\\"k2_std\\\": 0.026, \\\"k3\\\": 0.284, \\\"k3_std\\\": 0.011, \\\"k5\\\": 0.262, \\\"k5_std\\\": 0.006, \\\"full\\\": 0.258, \\\"full_std\\\": 0}, \\\"roberta_9class\\\": {\\\"k1\\\": 0.738, \\\"k1_std\\\": 0.033, \\\"k2\\\": 0.805, \\\"k2_std\\\": 0.033, \\\"k3\\\": 0.884, \\\"k3_std\\\": 0.066, \\\"k5\\\": 0.925, \\\"k5_std\\\": 0.066, \\\"full\\\": 0.939, \\\"full_std\\\": 0.046}, \\\"roberta_mlm\\\": {\\\"k1\\\": 0.633, \\\"k1_std\\\": 0.133, \\\"k2\\\": 0.665, \\\"k2_std\\\": 0.15, \\\"k3\\\": 0.713, \\\"k3_std\\\": 0.174, \\\"k5\\\": 0.719, \\\"k5_std\\\": 0.184, \\\"full\\\": 0.73, \\\"full_std\\\": 0.201}, \\\"roberta_vanilla\\\": {\\\"k1\\\": 0.41, \\\"k1_std\\\": 0.126, \\\"k2\\\": 0.425, \\\"k2_std\\\": 0.143, \\\"k3\\\": 0.432, \\\"k3_std\\\": 0.144, \\\"k5\\\": 0.466, \\\"k5_std\\\": 0.144, \\\"full\\\": 0.466, \\\"full_std\\\": 0.163}, \\\"n_samples\\\": 118, \\\"note\\\": \\\"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\\\"}}, \\\"exp4_dd_ood_perturbation\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"9class_3seed\\\": {\\\"clean_k1\\\": 0.9905, \\\"perturbed_k1\\\": 0.9968, \\\"delta_k1\\\": 0.0063, \\\"clean_k3\\\": 0.9719, \\\"perturbed_k3\\\": 0.9936, \\\"delta_k3\\\": 0.0217, \\\"clean_full\\\": 0.9968, \\\"perturbed_full\\\": 1, \\\"delta_full\\\": 0.0032}, \\\"binary_3seed\\\": {\\\"clean_k1\\\": 0.9936, \\\"perturbed_k1\\\": 1, \\\"delta_k1\\\": 0.0064, \\\"clean_full\\\": 0.9968, \\\"perturbed_full\\\": 1, \\\"delta_full\\\": 0.0032}, \\\"scrambled_3seed\\\": {\\\"clean_k1\\\": 0.9968, \\\"perturbed_k1\\\": 0.9936, \\\"delta_k1\\\": -0.0032, \\\"clean_full\\\": 0.9968, \\\"perturbed_full\\\": 1, \\\"delta_full\\\": 0.0032}, \\\"jb_mlm_3seed\\\": {\\\"clean_k1\\\": 0.9733, \\\"perturbed_k1\\\": 0.9733, \\\"delta_k1\\\": 0, \\\"clean_full\\\": 0.9138, \\\"perturbed_full\\\": 0.9409, \\\"delta_full\\\": 0.0271}, \\\"wiki_mlm_3seed\\\": {\\\"clean_k1\\\": 0.9131, \\\"perturbed_k1\\\": 0.8808, \\\"delta_k1\\\": -0.0323, \\\"clean_full\\\": 0.9042, \\\"perturbed_full\\\": 0.8715, \\\"delta_full\\\": -0.0327}, \\\"topic_3seed\\\": {\\\"clean_k1\\\": 0.5912, \\\"perturbed_k1\\\": 0.617, \\\"delta_k1\\\": 0.0259, \\\"clean_full\\\": 0.5412, \\\"perturbed_full\\\": 0.5765, \\\"delta_full\\\": 0.0353}, \\\"vanilla_3seed\\\": {\\\"clean_k1\\\": 0.6283, \\\"perturbed_k1\\\": 0.5602, \\\"delta_k1\\\": -0.0681, \\\"clean_k2\\\": 0.4824, \\\"perturbed_k2\\\": 0.4829, \\\"delta_k2\\\": 0.0004, \\\"clean_full\\\": 0.3123, \\\"perturbed_full\\\": 0.3394, \\\"delta_full\\\": 0.0271}, \\\"mcnemar_perturbed_k1\\\": {\\\"9class_vs_vanilla\\\": {\\\"all_seeds_p\\\": \\\"<0.001\\\", \\\"discordant_range\\\": \\\"49-56 favoring 9class\\\"}, \\\"9class_vs_jb_mlm\\\": \\\"n.s. all seeds\\\", \\\"9class_vs_scrambled\\\": \\\"n.s. all seeds\\\"}, \\\"mcnemar_perturbed_full\\\": {\\\"9class_vs_vanilla\\\": {\\\"all_seeds_p\\\": \\\"<0.001\\\", \\\"discordant_range\\\": \\\"67-78 favoring 9class\\\"}, \\\"9class_vs_jb_mlm\\\": {\\\"seed42\\\": \\\"tie\\\", \\\"seed123\\\": \\\"n.s.\\\", \\\"seed456\\\": \\\"p=4e-06 (b=19)\\\"}, \\\"9class_vs_scrambled\\\": \\\"tie all seeds\\\"}}}, \\\"exp3_roberta_probing\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"linear_probing\\\": {\\\"turn_position\\\": {\\\"vanilla\\\": 0.7665, \\\"mlm\\\": 0.7526, \\\"9class\\\": 0.8294}, \\\"escalation_level\\\": {\\\"vanilla\\\": 0.7272, \\\"mlm\\\": 0.7243, \\\"9class\\\": 0.7448}, \\\"persuasion_presence\\\": {\\\"vanilla\\\": 0.942, \\\"mlm\\\": 0.9411, \\\"9class\\\": 0.9509}}, \\\"centered_cka\\\": {\\\"iid\\\": {\\\"vanilla_vs_mlm\\\": 0.393, \\\"vanilla_vs_9class\\\": 0.592, \\\"mlm_vs_9class\\\": 0.351}, \\\"dd_ood\\\": {\\\"vanilla_vs_mlm\\\": 0.255, \\\"vanilla_vs_9class\\\": 0.735, \\\"mlm_vs_9class\\\": 0.183}}, \\\"uncentered_cka\\\": {\\\"iid\\\": {\\\"vanilla_vs_mlm\\\": 0.998, \\\"vanilla_vs_9class\\\": 0.511, \\\"mlm_vs_9class\\\": 0.502}, \\\"dd_ood\\\": {\\\"vanilla_vs_mlm\\\": 0.998, \\\"vanilla_vs_9class\\\": 0.624, \\\"mlm_vs_9class\\\": 0.626}}, \\\"note\\\": \\\"Centered CKA confirms MLM reshapes RoBERTa representations (0.39 IID, 0.26 OOD), even more than DeBERTa (0.44 IID). Both encoders show same pattern.\\\"}}, \\\"vanilla_multiseed_dd_ood\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"vanilla_3seed_dd_ood\\\": {\\\"k1\\\": {\\\"seed42\\\": 0.575, \\\"seed123\\\": 0.658, \\\"seed456\\\": 0.652, \\\"mean\\\": 0.628, \\\"std\\\": 0.038}, \\\"k2\\\": {\\\"seed42\\\": 0.438, \\\"seed123\\\": 0.53, \\\"seed456\\\": 0.469, \\\"mean\\\": 0.479, \\\"std\\\": 0.038}, \\\"k3\\\": {\\\"seed42\\\": 0.359, \\\"seed123\\\": 0.424, \\\"seed456\\\": 0.383, \\\"mean\\\": 0.389, \\\"std\\\": 0.027}, \\\"k5\\\": {\\\"seed42\\\": 0.311, \\\"seed123\\\": 0.383, \\\"seed456\\\": 0.36, \\\"mean\\\": 0.351, \\\"std\\\": 0.03}, \\\"full\\\": {\\\"seed42\\\": 0.285, \\\"seed123\\\": 0.305, \\\"seed456\\\": 0.348, \\\"mean\\\": 0.312, \\\"std\\\": 0.026}}, \\\"centered_cka_iid\\\": {\\\"vanilla_vs_mlm\\\": 0.442, \\\"vanilla_vs_9class\\\": 0.393, \\\"mlm_vs_9class\\\": 0.586}, \\\"centered_cka_dd_ood\\\": {\\\"vanilla_vs_mlm\\\": 0.797, \\\"vanilla_vs_9class\\\": 0.649, \\\"mlm_vs_9class\\\": 0.773}, \\\"uncentered_cka_iid\\\": {\\\"vanilla_vs_mlm\\\": 1, \\\"vanilla_vs_9class\\\": 0.421, \\\"mlm_vs_9class\\\": 0.422}, \\\"note\\\": \\\"Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading.\\\"}}, \\\"mf1_binary_seed123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full_f1\\\": 1, \\\"dd_ood_k1_f1\\\": 1, \\\"dd_ood_k2_f1\\\": 1, \\\"dd_ood_k3_f1\\\": 0.9904, \\\"dd_ood_k5_f1\\\": 1, \\\"iid_full_f1\\\": 1, \\\"iid_k1_f1\\\": 1, \\\"iid_k2_f1\\\": 1, \\\"iid_k3_f1\\\": 1, \\\"iid_k5_f1\\\": 1, \\\"deberta_val_persuasion_acc\\\": 1, \\\"deberta_val_intent_acc\\\": 1, \\\"seed\\\": 123}}, \\\"mf1_binary_seed456\\\": {\\\"metrics\\\": {\\\"dd_ood_full_f1\\\": 1, \\\"dd_ood_k1_f1\\\": 1, \\\"dd_ood_k2_f1\\\": 1, \\\"dd_ood_k3_f1\\\": 0.9904, \\\"dd_ood_k5_f1\\\": 1, \\\"deberta_val_persuasion_acc\\\": 1, \\\"deberta_val_intent_acc\\\": 1, \\\"seed\\\": 456}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mf1_scrambled_seed123\\\": {\\\"metrics\\\": {\\\"val_persuasion_acc\\\": 0.6724, \\\"val_intent_acc\\\": 1, \\\"dd_ood_f1_k1\\\": 1, \\\"dd_ood_f1_k2\\\": 1, \\\"dd_ood_f1_k3\\\": 1, \\\"dd_ood_f1_k5\\\": 1, \\\"dd_ood_f1_full\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mf1_scrambled_seed456\\\": {\\\"metrics\\\": {\\\"dd_ood_full_f1\\\": 1, \\\"dd_ood_k1_f1\\\": 1, \\\"dd_ood_k2_f1\\\": 1, \\\"dd_ood_k3_f1\\\": 0.99, \\\"dd_ood_k5_f1\\\": 1, \\\"deberta_val_persuasion_acc\\\": 0.698, \\\"seed\\\": 456}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_003_scrambled_perturbation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"deberta_training\\\": {\\\"epochs\\\": 4, \\\"best_epoch\\\": 4, \\\"val_persuasion_acc\\\": 0.613, \\\"val_intent_acc\\\": 0.967, \\\"val_loss\\\": 1.127}, \\\"iid_test_f1_full\\\": 1, \\\"perturbation_delta_full\\\": 0, \\\"perturbation_clean_f1_full\\\": 0.333, \\\"perturbation_perturbed_f1_full\\\": 0.333, \\\"note\\\": \\\"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\\\"}}, \\\"plan_003_scrambled_fix\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"deberta\\\": {\\\"val_persuasion_acc\\\": 0.679, \\\"val_intent_acc\\\": 1, \\\"val_loss\\\": 0.776, \\\"best_epoch\\\": 4}, \\\"iid_test\\\": {\\\"full\\\": 1, \\\"k1\\\": 1, \\\"k2\\\": 1, \\\"k3\\\": 1, \\\"k5\\\": 1}, \\\"dd_ood\\\": {\\\"full\\\": 0.9904, \\\"k1\\\": 0.9904, \\\"k2\\\": 0.9439, \\\"k3\\\": 0.935, \\\"k5\\\": 0.9904}, \\\"perturbation\\\": {\\\"clean_full\\\": 1, \\\"perturbed_full\\\": 1, \\\"delta_full\\\": 0, \\\"delta_k1\\\": 0.0527, \\\"delta_k2\\\": 0.0263, \\\"delta_k3\\\": 0, \\\"delta_k5\\\": 0}}}, \\\"plan_002_seed456\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"treatment_k1_f1\\\": 1, \\\"treatment_k2_f1\\\": 1, \\\"treatment_k3_f1\\\": 1, \\\"treatment_k5_f1\\\": 1, \\\"treatment_full_f1\\\": 1, \\\"baseline_k1_f1\\\": 0.9296, \\\"baseline_k2_f1\\\": 0.9589, \\\"baseline_k3_f1\\\": 0.9867, \\\"baseline_k5_f1\\\": 0.9867, \\\"baseline_full_f1\\\": 1, \\\"tfidf_all_k_f1\\\": 1, \\\"deberta_best_epoch\\\": 2, \\\"deberta_persuasion_acc\\\": 0.8593, \\\"deberta_intent_acc\\\": 1, \\\"dd_ood_k1_f1\\\": 0.9715, \\\"dd_ood_k2_f1\\\": 0.9622, \\\"dd_ood_k3_f1\\\": 0.935, \\\"dd_ood_k5_f1\\\": 0.9904, \\\"dd_ood_full_f1\\\": 0.9904}}, \\\"plan_002_seed123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"treatment_k1_f1\\\": 1, \\\"treatment_k2_f1\\\": 1, \\\"treatment_k3_f1\\\": 1, \\\"treatment_k5_f1\\\": 1, \\\"treatment_full_f1\\\": 1, \\\"baseline_k1_f1\\\": 0.987, \\\"baseline_k2_f1\\\": 0.987, \\\"baseline_k3_f1\\\": 0.987, \\\"baseline_full_f1\\\": 1, \\\"tfidf_all_k_f1\\\": 1, \\\"dd_ood_k1_f1\\\": 1, \\\"dd_ood_k2_f1\\\": 0.9904, \\\"dd_ood_k3_f1\\\": 0.9904, \\\"dd_ood_k5_f1\\\": 1, \\\"dd_ood_full_f1\\\": 1}}, \\\"plan_018_wiki_mlm_control\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"single_seed_42\\\": {\\\"dd_ood_full_f1\\\": 0.7421, \\\"dd_ood_k1_f1\\\": 0.8219, \\\"dd_ood_k2_f1\\\": 0.815, \\\"dd_ood_k3_f1\\\": 0.8492, \\\"dd_ood_k5_f1\\\": 0.808, \\\"iid_full_f1\\\": 0.9868}, \\\"three_seed_summary\\\": {\\\"seeds\\\": [42, 123, 456], \\\"eval_seed\\\": 42, \\\"mean_dd_ood_full_f1\\\": 0.9042, \\\"std_dd_ood_full_f1\\\": 0.1147, \\\"mean_dd_ood_k1_f1\\\": 0.9131, \\\"std_dd_ood_k1_f1\\\": 0.0728, \\\"mean_dd_ood_k2_f1\\\": 0.9112, \\\"std_dd_ood_k2_f1\\\": 0.0725, \\\"mean_dd_ood_k3_f1\\\": 0.9365, \\\"std_dd_ood_k3_f1\\\": 0.0623, \\\"mean_dd_ood_k5_f1\\\": 0.9228, \\\"std_dd_ood_k5_f1\\\": 0.0816, \\\"mean_iid_full_f1\\\": 0.978, \\\"std_iid_full_f1\\\": 0.0124}, \\\"per_seed_dd_ood_full_f1\\\": {\\\"seed42\\\": 0.7421, \\\"seed123\\\": 0.9902, \\\"seed456\\\": 0.9803}}}, \\\"plan_017_mlm_control\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"dd_ood_f1_full\\\": {\\\"mean\\\": 0.9138, \\\"std\\\": 0.115, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9902, \\\"456\\\": 0.7512}}, \\\"dd_ood_f1_k1\\\": {\\\"mean\\\": 0.9734, \\\"std\\\": 0.0188, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.96, \\\"456\\\": 0.96}}, \\\"dd_ood_f1_k2\\\": {\\\"mean\\\": 0.9934, \\\"std\\\": 0.0093, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9803, \\\"456\\\": 1}}, \\\"dd_ood_f1_k3\\\": {\\\"mean\\\": 0.9967, \\\"std\\\": 0.0046, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9902, \\\"456\\\": 1}}, \\\"dd_ood_f1_k5\\\": {\\\"mean\\\": 0.9967, \\\"std\\\": 0.0046, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9902, \\\"456\\\": 1}}, \\\"iid_f1_full\\\": {\\\"mean\\\": 0.9825, \\\"std\\\": 0.0164, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9605, \\\"456\\\": 0.9868}}, \\\"iid_f1_k1\\\": {\\\"mean\\\": 0.9254, \\\"std\\\": 0.027, \\\"seeds\\\": {\\\"42\\\": 0.9605, \\\"123\\\": 0.8947, \\\"456\\\": 0.921}}, \\\"iid_f1_k2\\\": {\\\"mean\\\": 0.9693, \\\"std\\\": 0.0164, \\\"seeds\\\": {\\\"42\\\": 0.9737, \\\"123\\\": 0.9474, \\\"456\\\": 0.9868}}, \\\"iid_f1_k3\\\": {\\\"mean\\\": 0.9781, \\\"std\\\": 0.0124, \\\"seeds\\\": {\\\"42\\\": 0.9868, \\\"123\\\": 0.9605, \\\"456\\\": 0.9868}}, \\\"iid_f1_k5\\\": {\\\"mean\\\": 0.9825, \\\"std\\\": 0.0164, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9605, \\\"456\\\": 0.9868}}, \\\"n_seeds\\\": 3, \\\"mlm_val_loss\\\": {\\\"seeds\\\": {\\\"42\\\": 2.4727, \\\"123\\\": 5.2454, \\\"456\\\": 5.3208}}, \\\"conclusion_note\\\": \\\"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\\\"}}, \\\"plan_013_binary_perturbation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"clean_f1_full\\\": 1, \\\"clean_f1_k1\\\": 1, \\\"clean_f1_k2\\\": 1, \\\"clean_f1_k3\\\": 1, \\\"clean_f1_k5\\\": 1, \\\"perturbed_f1_full\\\": 1, \\\"perturbed_f1_k1\\\": 0.9079, \\\"perturbed_f1_k2\\\": 0.9737, \\\"perturbed_f1_k3\\\": 1, \\\"perturbed_f1_k5\\\": 1, \\\"delta_f1_full\\\": 0, \\\"delta_f1_k1\\\": -0.0921, \\\"delta_f1_k2\\\": -0.0263, \\\"delta_f1_k3\\\": 0, \\\"delta_f1_k5\\\": 0, \\\"sample_count\\\": 76}}, \\\"plan_016v2_topic_perturbation\\\": {\\\"metrics\\\": {\\\"clean_f1_full\\\": 1, \\\"clean_f1_k1\\\": 0.8947, \\\"clean_f1_k2\\\": 0.9473, \\\"clean_f1_k3\\\": 0.9605, \\\"clean_f1_k5\\\": 0.9868, \\\"perturbed_f1_full\\\": 0.9605, \\\"perturbed_f1_k1\\\": 0.8676, \\\"perturbed_f1_k2\\\": 0.9206, \\\"perturbed_f1_k3\\\": 0.9605, \\\"perturbed_f1_k5\\\": 0.9605, \\\"delta_full\\\": -0.0395, \\\"delta_k1\\\": -0.0271, \\\"delta_k2\\\": -0.0267, \\\"delta_k3\\\": 0, \\\"delta_k5\\\": -0.0263}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan_016v2_topic_control\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"dd_ood_f1_full\\\": {\\\"mean\\\": 0.5411, \\\"std\\\": 0.2069, \\\"seeds\\\": {\\\"42\\\": 0.7269, \\\"123\\\": 0.2525, \\\"456\\\": 0.6441}}, \\\"dd_ood_f1_k1\\\": {\\\"mean\\\": 0.5912, \\\"std\\\": 0.1316, \\\"seeds\\\": {\\\"42\\\": 0.6971, \\\"123\\\": 0.4057, \\\"456\\\": 0.6707}}, \\\"dd_ood_f1_k2\\\": {\\\"mean\\\": 0.5926, \\\"std\\\": 0.1655, \\\"seeds\\\": {\\\"42\\\": 0.7157, \\\"123\\\": 0.3587, \\\"456\\\": 0.7033}}, \\\"dd_ood_f1_k3\\\": {\\\"mean\\\": 0.5684, \\\"std\\\": 0.1668, \\\"seeds\\\": {\\\"42\\\": 0.7169, \\\"123\\\": 0.3355, \\\"456\\\": 0.6529}}, \\\"dd_ood_f1_k5\\\": {\\\"mean\\\": 0.5728, \\\"std\\\": 0.2057, \\\"seeds\\\": {\\\"42\\\": 0.7502, \\\"123\\\": 0.2845, \\\"456\\\": 0.6837}}, \\\"iid_f1_full\\\": {\\\"mean\\\": 0.9736, \\\"std\\\": 0.0215, \\\"seeds\\\": {\\\"42\\\": 1, \\\"123\\\": 0.9737, \\\"456\\\": 0.9472}}, \\\"iid_f1_k1\\\": {\\\"mean\\\": 0.8105, \\\"std\\\": 0.0618, \\\"seeds\\\": {\\\"42\\\": 0.8947, \\\"123\\\": 0.7889, \\\"456\\\": 0.7479}}, \\\"val_topic_acc\\\": {\\\"seeds\\\": {\\\"42\\\": 0.784, \\\"123\\\": 0.755, \\\"456\\\": 0.822}}, \\\"n_seeds\\\": 3}}, \\\"plan_018_wiki_perturbation\\\": {\\\"metrics\\\": {\\\"clean_f1_full\\\": 0.9868, \\\"perturbed_f1_full\\\": 0.8661, \\\"delta_f1_full\\\": -0.1207, \\\"clean_f1_k1\\\": 0.9474, \\\"perturbed_f1_k1\\\": 0.8238, \\\"delta_f1_k1\\\": -0.1236, \\\"clean_f1_k2\\\": 0.9341, \\\"perturbed_f1_k2\\\": 0.7797, \\\"delta_f1_k2\\\": -0.1544, \\\"clean_f1_k3\\\": 0.9737, \\\"perturbed_f1_k3\\\": 0.7946, \\\"delta_f1_k3\\\": -0.1791, \\\"clean_f1_k5\\\": 0.9868, \\\"perturbed_f1_k5\\\": 0.8381, \\\"delta_f1_k5\\\": -0.1487, \\\"sample_count\\\": 76}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_017_mlm_perturbation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"clean_full_f1\\\": 1, \\\"clean_k1_f1\\\": 0.9605, \\\"clean_k2_f1\\\": 0.9737, \\\"clean_k3_f1\\\": 0.9868, \\\"clean_k5_f1\\\": 1, \\\"perturbed_full_f1\\\": 0.9737, \\\"perturbed_k1_f1\\\": 0.8683, \\\"perturbed_k2_f1\\\": 0.9341, \\\"perturbed_k3_f1\\\": 0.9473, \\\"perturbed_k5_f1\\\": 0.9605, \\\"delta_full\\\": -0.0263, \\\"delta_k1\\\": -0.0922, \\\"delta_k2\\\": -0.0396, \\\"delta_k3\\\": -0.0395, \\\"delta_k5\\\": -0.0395, \\\"ref_treatment_delta_full\\\": 0, \\\"ref_baseline_delta_full\\\": -0.1176}}, \\\"plan_012_gpt55_judge\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gpt55_k2_f1\\\": 0.1905, \\\"gpt55_k3_f1\\\": 0.2727, \\\"gpt55_k5_f1\\\": 0.449, \\\"gpt55_full_f1\\\": 0.383, \\\"gpt55_k2_precision\\\": 1, \\\"gpt55_k2_recall\\\": 0.1053, \\\"gpt55_k5_precision\\\": 1, \\\"gpt55_k5_recall\\\": 0.2895, \\\"unparseable_k2\\\": \\\"23/76\\\", \\\"unparseable_full\\\": \\\"36/76\\\", \\\"metric\\\": \\\"binary_f1_jailbreak_positive\\\", \\\"test_set\\\": \\\"data/plan_002_splits/test.jsonl\\\", \\\"sample_count\\\": 76, \\\"conclusion_note\\\": \\\"GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall.\\\"}}, \\\"plan_015_dd_eval\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"meanpool_treatment_k1_f1\\\": 1, \\\"meanpool_treatment_k2_f1\\\": 1, \\\"meanpool_treatment_k3_f1\\\": 0.9937, \\\"meanpool_treatment_k5_f1\\\": 1, \\\"meanpool_treatment_full_f1\\\": 1, \\\"meanpool_baseline_k1_f1\\\": 0.8286, \\\"meanpool_baseline_k2_f1\\\": 0.6387, \\\"meanpool_baseline_k3_f1\\\": 0.5614, \\\"meanpool_baseline_k5_f1\\\": 0.3922, \\\"meanpool_baseline_full_f1\\\": 0.2947, \\\"gru_treatment_k2_f1\\\": 0.9904, \\\"gru_treatment_k3_f1\\\": 0.9904, \\\"gru_vs_meanpool\\\": \\\"comparable\\\", \\\"conclusion_note\\\": \\\"GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver\\\"}}, \\\"plan_006_cross_attack_clean\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_treatment_full_f1\\\": 1, \\\"dd_baseline_full_f1\\\": 0.2845, \\\"dd_treatment_k1_f1\\\": 1, \\\"dd_baseline_k1_f1\\\": 0.5752, \\\"dd_treatment_k2_f1\\\": 0.9904, \\\"dd_baseline_k2_f1\\\": 0.4381, \\\"dd_treatment_k3_f1\\\": 0.9904, \\\"dd_baseline_k3_f1\\\": 0.3596, \\\"dd_treatment_k5_f1\\\": 1, \\\"dd_baseline_k5_f1\\\": 0.3105, \\\"fitd_treatment_full_f1\\\": 1, \\\"fitd_baseline_full_f1\\\": 1, \\\"fitd_treatment_k1_f1\\\": 1, \\\"fitd_baseline_k1_f1\\\": 0.9902, \\\"fitd_treatment_k2_f1\\\": 1, \\\"fitd_baseline_k2_f1\\\": 1, \\\"tfidf_dd_full_f1\\\": 0.9439, \\\"tfidf_fitd_k1_f1\\\": 1, \\\"max_dd_delta_pp\\\": 71.55, \\\"pass_criteria\\\": true}}, \\\"plan_004_perturbation_eval\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"treatment_original_f1\\\": 1, \\\"treatment_perturbed_f1\\\": 1, \\\"treatment_f1_drop\\\": 0, \\\"baseline_original_f1\\\": 1, \\\"baseline_perturbed_f1\\\": 0.8824, \\\"baseline_f1_drop\\\": -0.1176, \\\"tfidf_original_f1\\\": 1, \\\"tfidf_perturbed_f1\\\": 0.9867, \\\"tfidf_f1_drop\\\": -0.0133, \\\"bertscore_mean\\\": 0.92, \\\"lexical_overlap\\\": 0.2, \\\"sample_count\\\": 76}}, \\\"plan_013_none_collapse\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_k1_f1\\\": 1, \\\"binary_k2_f1\\\": 1, \\\"binary_k3_f1\\\": 1, \\\"binary_k5_f1\\\": 1, \\\"binary_full_f1\\\": 1, \\\"ninclass_k1_f1\\\": 1, \\\"ninclass_k2_f1\\\": 1, \\\"ninclass_k3_f1\\\": 1, \\\"ninclass_k5_f1\\\": 1, \\\"ninclass_full_f1\\\": 1, \\\"baseline_k1_f1\\\": 0.987, \\\"baseline_k2_f1\\\": 0.987, \\\"baseline_k3_f1\\\": 0.987, \\\"baseline_full_f1\\\": 1, \\\"dd_binary_k1_f1\\\": 0.9809, \\\"dd_binary_k2_f1\\\": 0.9809, \\\"dd_binary_k3_f1\\\": 0.9715, \\\"dd_binary_k5_f1\\\": 1, \\\"dd_binary_full_f1\\\": 0.9904, \\\"dd_9class_full_f1\\\": 1, \\\"dd_baseline_full_f1\\\": 0.2845, \\\"conclusion_note\\\": \\\"binary collapse = 9-class IID and OOD, model is persuasion-presence detector\\\"}}, \\\"plan_012_llm_judge_qwen\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"qwen_k2_f1\\\": 0, \\\"qwen_k3_f1\\\": 0.051, \\\"qwen_k5_f1\\\": 0.146, \\\"qwen_full_f1\\\": 0.1, \\\"metric\\\": \\\"binary_f1_jailbreak_positive\\\", \\\"test_set\\\": \\\"data/plan_002_splits/test.jsonl\\\", \\\"sample_count\\\": 76, \\\"model\\\": \\\"qwen3-8b\\\", \\\"note\\\": \\\"rerun with correct test set and binary F1 metric\\\"}}, \\\"plan_002_clean_training\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"treatment_k1_f1\\\": 1, \\\"baseline_k1_f1\\\": 0.987, \\\"treatment_k2_f1\\\": 1, \\\"baseline_k2_f1\\\": 0.9867, \\\"treatment_k3_f1\\\": 1, \\\"baseline_k3_f1\\\": 0.9867, \\\"treatment_k5_f1\\\": 1, \\\"baseline_k5_f1\\\": 1, \\\"treatment_full_f1\\\": 1, \\\"baseline_full_f1\\\": 1, \\\"tfidf_all_k_f1\\\": 1, \\\"max_delta_pp\\\": 1.3, \\\"pass_criteria_5pp\\\": false}}, \\\"plan_003_scrambled_ablation\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"scrambled_k1_f1\\\": 0.9744, \\\"scrambled_k2_f1\\\": 1, \\\"scrambled_k3_f1\\\": 1, \\\"scrambled_k5_f1\\\": 1, \\\"scrambled_full_f1\\\": 1, \\\"proper_k2_f1\\\": 0.9867, \\\"proper_k3_f1\\\": 0.9867, \\\"baseline_k2_f1\\\": 0.8788, \\\"baseline_k3_f1\\\": 0.9276, \\\"scrambled_deberta_persuasion_acc\\\": 0.6437, \\\"proper_deberta_persuasion_acc\\\": 0.7963, \\\"data_version\\\": \\\"v4c (NOT plan_002 data)\\\"}}, \\\"cross_attack_baseline\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"fitd_treatment_k1_f1\\\": 0.9812, \\\"fitd_baseline_k1_f1\\\": 0.7483, \\\"fitd_treatment_k2_f1\\\": 0.975, \\\"fitd_baseline_k2_f1\\\": 0.6866, \\\"fitd_treatment_k3_f1\\\": 0.9937, \\\"fitd_baseline_k3_f1\\\": 0.8465, \\\"dd_treatment_k1_f1\\\": 0.9812, \\\"dd_baseline_k1_f1\\\": 1, \\\"dd_treatment_k2_f1\\\": 0.9875, \\\"dd_baseline_k2_f1\\\": 1, \\\"full_treatment_f1\\\": 1, \\\"full_baseline_f1\\\": 1, \\\"tfidf_fitd_k2_f1\\\": 1, \\\"tfidf_dd_k1_f1\\\": 1, \\\"invalidation_reason\\\": \\\"v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable\\\"}}, \\\"plan_008_strategy_transition\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"crescendo_mean_index_start\\\": 0.86, \\\"crescendo_mean_index_end\\\": 5.64, \\\"crescendo_strategies_used\\\": 8, \\\"fitd_strategies_used\\\": 4, \\\"dd_strategies_used\\\": 6, \\\"crescendo_transitions\\\": 1818, \\\"fitd_transitions\\\": 541, \\\"dd_transitions\\\": 565}}, \\\"plan_007_tfidf_fitd_dd\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"tfidf_fitd_vs_v4c_f1\\\": 1, \\\"tfidf_dd_vs_v4c_f1\\\": 1}}, \\\"plan_005_multi_attack_gen\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"fitd_count\\\": 80, \\\"dd_count\\\": 80, \\\"fitd_strategies\\\": [0, 1, 3, 5], \\\"dd_strategies\\\": [0, 2, 3, 4, 5, 6]}}, \\\"phase_b_full\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"deberta_persuasion_acc\\\": 0.7963, \\\"deberta_intent_acc\\\": 0.9514, \\\"deberta_best_epoch\\\": 3, \\\"treatment_full_f1\\\": 1, \\\"baseline_full_f1\\\": 0.987, \\\"tfidf_full_f1\\\": 1, \\\"treatment_k1_f1\\\": 0.9867, \\\"baseline_k1_f1\\\": 0.8615, \\\"tfidf_k1_f1\\\": 1, \\\"treatment_k2_f1\\\": 0.987, \\\"baseline_k2_f1\\\": 0.879, \\\"tfidf_k2_f1\\\": 1, \\\"treatment_k3_f1\\\": 0.987, \\\"baseline_k3_f1\\\": 0.928, \\\"tfidf_k3_f1\\\": 1, \\\"treatment_k5_f1\\\": 1, \\\"baseline_k5_f1\\\": 0.958, \\\"tfidf_k5_f1\\\": 1, \\\"treatment_fpr95tpr_full\\\": 0, \\\"baseline_fpr95tpr_full\\\": 0, \\\"treatment_fpr95tpr_k2\\\": 0, \\\"baseline_fpr95tpr_k2\\\": 0.057, \\\"treatment_fpr95tpr_k1\\\": 0, \\\"baseline_fpr95tpr_k1\\\": 0.057, \\\"balanced_tfidf_cv_f1\\\": 1, \\\"test_size\\\": 72, \\\"dataset_size\\\": 480}}, \\\"pilot_phase_b\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"treatment_full_f1\\\": 1, \\\"baseline_full_f1\\\": 0.737, \\\"tfidf_full_f1\\\": 1, \\\"treatment_k2_f1\\\": 1, \\\"baseline_k2_f1\\\": 0.737, \\\"tfidf_k2_f1\\\": 0.894, \\\"treatment_k3_f1\\\": 1, \\\"baseline_k3_f1\\\": 0.894, \\\"tfidf_k3_f1\\\": 0.894, \\\"treatment_k5_f1\\\": 1, \\\"baseline_k5_f1\\\": 0.894, \\\"tfidf_k5_f1\\\": 0.894, \\\"deberta_persuasion_acc\\\": 0.718, \\\"deberta_intent_acc\\\": 0.984, \\\"test_size\\\": 41, \\\"test_benign\\\": 3, \\\"test_jailbreak\\\": 38}}}, \\\"count\\\": 49, \\\"total\\\": 49, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2639}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp16_multi_llm\": {\"conclusion\": \"success\", \"metrics\": {\"note\": \"CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.\", \"9class_mean\": {\"mixed_test\": 0.996, \"dd_ood\": 0.818, \"dd_ood_std\": 0.096, \"aa_ood\": 0.504, \"aa_ood_std\": 0.107, \"fitd_ood\": 0.997, \"fitd_ood_std\": 0.005, \"toxicchat_balanced\": 0.55, \"toxicchat_balanced_std\": 0.052}, \"mlm_mean\": {\"mixed_test\": 0.975, \"dd_ood\": 0.289, \"dd_ood_std\": 0.101, \"aa_ood\": 0.258, \"aa_ood_std\": 0.075, \"fitd_ood\": 0.679, \"fitd_ood_std\": 0.188, \"toxicchat_balanced\": 0.256, \"toxicchat_balanced_std\": 0.053}, \"vanilla_mean\": {\"mixed_test\": 0.802, \"dd_ood\": 0.291, \"dd_ood_std\": 0.065, \"aa_ood\": 0.389, \"aa_ood_std\": 0.073, \"fitd_ood\": 0.867, \"fitd_ood_std\": 0.022, \"toxicchat_balanced\": 0.356, \"toxicchat_balanced_std\": 0.009}, \"deprecated_attack_only\": {\"9class_dd_ood\": 0.422, \"9class_aa_ood\": 0.175}}}, \"exp17_dataset_scale\": {\"conclusion\": \"success\", \"metrics\": {\"9class_mean\": {\"iid\": \"INVALIDATED (71% leak)\", \"dd_ood\": 0.889, \"dd_ood_std\": 0.041, \"aa_ood\": 0.913, \"aa_ood_std\": 0.041, \"toxicchat_balanced\": 0.341, \"toxicchat_balanced_std\": 0.004}, \"note\": \"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\"}}, \"exp16b_llama_only_mlm\": {\"metrics\": {\"s1_mlm_val_loss\": 5.1489, \"s2_gru_val_loss\": 0.3776, \"s2_gru_val_acc\": 0.8514, \"eval_mlm\": {\"llama_only_test_f1\": 0.8441, \"mixed_test_f1\": 0.7212, \"dd_ood_f1\": 0.3327, \"aa_ood_f1\": 0.8152, \"toxicchat_f1\": 0.1626, \"llama_dd_ood_f1\": 0.1905, \"llama_aa_ood_f1\": 0.2903}, \"eval_vanilla_baseline\": {\"llama_only_test_f1\": 0.8556, \"mixed_test_f1\": 0.6491, \"dd_ood_f1\": 0.457, \"aa_ood_f1\": 0.792, \"toxicchat_f1\": 0.2092, \"llama_dd_ood_f1\": 0.1807, \"llama_aa_ood_f1\": 0.4113}, \"note\": \"Llama→Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41.\"}, \"conclusion\": \"success\"}, \"exp15c_roberta_large_mlm\": {\"metrics\": {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.881, \"full\": 0.874}, \"vanilla_exp15\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"9class_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"}, \"conclusion\": \"negative\"}, \"exp14c_prediction_analysis\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full_fp_rate\": {\"exp14_llama_benign\": {\"vanilla\": 0.293, \"jb_mlm\": 0.88, \"9class\": 0.9}, \"exp14b_qwen_benign\": {\"vanilla\": 0, \"jb_mlm\": 0.009, \"9class\": 0}}, \"dd_full_tp_rate\": {\"both_conditions_identical\": {\"vanilla\": 0, \"jb_mlm\": 0.68, \"9class\": 1}}, \"key_finding\": \"TP rates identical across exp14/exp14b. FP rate on Llama benign 88-100% vs Qwen benign 0%. F1 collapse 100% caused by FP explosion, jailbreak detection fully cross-LLM transferable.\"}}, \"exp15b_roberta_large_lr\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\": 0.781}, \"9class_lr2e5_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\"}}, \"exp15_roberta_large\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"roberta_large_9class\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\"}}, \"exp14b_cross_llm_control\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988, \"9class\": 0.8}, \"recovery_vs_exp14_dd_full\": {\"jb_mlm\": \"+49.6pp\", \"9class\": \"+56.7pp\"}, \"note\": \"jb_mlm DD Full std=0.306 due to seed456 outlier (0.345)\"}}, \"exp14_cross_llm_validation\": {\"conclusion\": \"negative\", \"metrics\": {\"data_gen\": {\"dd\": 50, \"aa\": 50, \"benign\": 50}, \"llama_dd_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.282, \"9class\": 0.433}, \"llama_aa_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.368, \"9class\": 0.321}, \"llama_dd_k1\": {\"vanilla\": 0.17, \"jb_mlm\": 0.332, \"9class\": 0.312}, \"llama_aa_k1\": {\"vanilla\": 0.248, \"jb_mlm\": 0.316, \"9class\": 0.265}, \"qwen_vs_llama_dd_full\": {\"vanilla_gap\": -0.051, \"jb_mlm_gap\": -0.632, \"9class_gap\": -0.564}}}, \"exp5_llm_judge_ood\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0, \"full_binary_f1\": 0, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2436, \"full_macro_f1\": 0.2436, \"accuracy\": 0.322}, \"fitd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0.0247, \"full_binary_f1\": 0.0247, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2575, \"full_macro_f1\": 0.2575, \"accuracy\": 0.331}, \"model\": \"Qwen3-8B\", \"mode\": \"zero-shot\", \"n_samples\": 118, \"note\": \"CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K.\"}}, \"exp9_bootstrap_ci\": {\"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}, \"conclusion\": \"success\"}, \"exp8_mhj_human_data\": {\"conclusion\": \"success\", \"metrics\": {\"toxicchat\": {\"n_jailbreak\": 204, \"n_benign\": 204, \"data_source\": \"ToxicChat (LMSYS)\", \"leakage\": \"none\", \"vanilla_macro_f1\": 0.413, \"vanilla_macro_f1_std\": 0.021, \"9class_macro_f1\": 0.596, \"9class_macro_f1_std\": 0.087, \"binary_macro_f1\": 0.705, \"binary_macro_f1_std\": 0.072, \"scrambled_macro_f1\": 0.616, \"scrambled_macro_f1_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.537, \"seed123\": 0.654, \"seed456\": 0.657}, \"jb_mlm_macro_f1\": 0.837, \"jb_mlm_macro_f1_std\": 0.013, \"wiki_mlm_macro_f1\": 0.791, \"wiki_mlm_macro_f1_std\": 0.093, \"topic_macro_f1\": 0.496, \"topic_macro_f1_std\": 0.042}, \"verazuo\": {\"n_jailbreak\": 666, \"n_benign\": 213, \"data_source\": \"verazuo/jailbreak_llms + plan_002 benign\", \"LEAKAGE_WARNING\": \"78% benign (167/213) from train split\", \"scrambled_macro_f1\": 0.822, \"scrambled_macro_f1_std\": 0.046, \"scrambled_per_seed\": {\"seed42\": 0.818, \"seed123\": 0.88, \"seed456\": 0.768}, \"vanilla_macro_f1\": 0.267, \"9class_macro_f1\": 0.767, \"binary_macro_f1\": 0.883, \"jb_mlm_macro_f1\": 0.937, \"wiki_mlm_macro_f1\": 0.845, \"topic_macro_f1\": 0.669, \"test_only_benign\": {\"n_benign\": 46, \"note\": \"extreme imbalance 666:46\", \"scrambled\": 0.649, \"scrambled_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.64, \"seed123\": 0.722, \"seed456\": 0.585}, \"vanilla\": 0.129, \"9class\": 0.627, \"binary\": 0.738, \"jb_mlm\": 0.852, \"wiki_mlm\": 0.742, \"topic\": 0.503}}, \"note\": \"CORRECTED: all macro F1, scrambled now 3-seed complete. verazuo has data leakage. ToxicChat clean.\"}}, \"exp10_fewshot_llm_judge\": {\"conclusion\": \"success\", \"metrics\": {\"dd_full_binary_f1\": 0.5405, \"dd_full_macro_f1\": 0.5663, \"dd_full_precision\": 0.9677, \"dd_full_recall\": 0.375, \"aa_full_binary_f1\": 0.6612, \"aa_full_macro_f1\": 0.6523, \"aa_full_precision\": 0.9756, \"aa_full_recall\": 0.5, \"dd_per_k_macro_f1\": {\"k1\": 0.2575, \"k2\": 0.3355, \"k3\": 0.4693, \"k5\": 0.4894, \"full\": 0.5663}, \"aa_per_k_macro_f1\": {\"k1\": 0.4055, \"k2\": 0.4274, \"k3\": 0.5376, \"k5\": 0.6356, \"full\": 0.6523}, \"dd_per_k_binary_f1\": {\"k1\": 0.0247, \"k2\": 0.1609, \"k3\": 0.3838, \"k5\": 0.4158, \"full\": 0.5405}, \"aa_per_k_binary_f1\": {\"k1\": 0.2796, \"k2\": 0.3158, \"k3\": 0.4906, \"k5\": 0.6325, \"full\": 0.6612}, \"unparseable\": 0, \"note\": \"CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.\"}}, \"exp7_tfidf_perprefix_actorattack\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1\": 1, \"k2\": 1, \"k3\": 0.9937, \"k5\": 1, \"full\": 0.961}, \"actorattack\": {\"k1\": 0.6325, \"k2\": 0.7302, \"k3\": 0.5714, \"k5\": 0.2418, \"full\": 0.2609}}}, \"exp6_actorattack_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.7728, \"perturbed_k1\": 0.6326, \"delta_k1\": -0.1402, \"clean_k3\": 0.9212, \"perturbed_k3\": 0.7337, \"delta_k3\": -0.1875, \"clean_full\": 0.9719, \"perturbed_full\": 0.7681, \"delta_full\": -0.2038}, \"binary_3seed\": {\"clean_k1\": 0.737, \"perturbed_k1\": 0.6694, \"delta_k1\": -0.0676, \"clean_k3\": 0.9508, \"perturbed_k3\": 0.7035, \"delta_k3\": -0.2473, \"clean_full\": 0.9904, \"perturbed_full\": 0.7405, \"delta_full\": -0.2499}, \"scrambled_3seed\": {\"clean_k1\": 0.7206, \"perturbed_k1\": 0.6164, \"delta_k1\": -0.1042, \"clean_k3\": 0.8931, \"perturbed_k3\": 0.7779, \"delta_k3\": -0.1152, \"clean_full\": 0.9511, \"perturbed_full\": 0.7787, \"delta_full\": -0.1724}, \"jb_mlm_3seed\": {\"clean_k1\": 0.7363, \"perturbed_k1\": 0.6572, \"delta_k1\": -0.079, \"clean_k3\": 0.9446, \"perturbed_k3\": 0.5483, \"delta_k3\": -0.3962, \"clean_full\": 0.8934, \"perturbed_full\": 0.5408, \"delta_full\": -0.3526}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.6559, \"perturbed_k1\": 0.6007, \"delta_k1\": -0.0552, \"clean_k3\": 0.6931, \"perturbed_k3\": 0.5216, \"delta_k3\": -0.1716, \"clean_full\": 0.686, \"perturbed_full\": 0.5454, \"delta_full\": -0.1406}, \"topic_3seed\": {\"clean_k1\": 0.5135, \"perturbed_k1\": 0.5258, \"delta_k1\": 0.0123, \"clean_k3\": 0.5654, \"perturbed_k3\": 0.5413, \"delta_k3\": -0.0241, \"clean_full\": 0.6254, \"perturbed_full\": 0.5767, \"delta_full\": -0.0488}, \"vanilla_3seed\": {\"clean_k1\": 0.3374, \"perturbed_k1\": 0.2694, \"delta_k1\": -0.0681, \"clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 52, \"c\": 4}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 3}, \"seed456\": {\"p\": 0, \"b\": 53, \"c\": 0}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 72, \"c\": 0}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 0}}}, \"note\": \"CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001).\"}}, \"exp2_actorattack_mcnemar\": {\"conclusion\": \"success\", \"metrics\": {\"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 50, \"c\": 3, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 7, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 47, \"c\": 6, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"mcnemar_clean_k3\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 65, \"c\": 1, \"direction\": \"A>B\"}, \"seed123\": {\"p\": 0, \"b\": 47, \"c\": 0, \"direction\": \"A>B\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\"}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 57, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"note\": \"All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values.\"}}, \"exp2_actorattack_ood\": {\"conclusion\": \"success\", \"metrics\": {\"deberta_9class\": {\"k1\": 0.773, \"k1_std\": 0.041, \"k2\": 0.855, \"k2_std\": 0.048, \"k3\": 0.921, \"k3_std\": 0.046, \"k5\": 0.966, \"k5_std\": 0.028, \"full\": 0.972, \"full_std\": 0.026}, \"deberta_binary\": {\"k1\": 0.737, \"k1_std\": 0.074, \"k2\": 0.89, \"k2_std\": 0.065, \"k3\": 0.951, \"k3_std\": 0.036, \"k5\": 0.987, \"k5_std\": 0.012, \"full\": 0.99, \"full_std\": 0.008, \"note\": \"3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636\"}, \"deberta_scrambled\": {\"k1\": 0.721, \"k1_std\": 0.101, \"k2\": 0.828, \"k2_std\": 0.054, \"k3\": 0.893, \"k3_std\": 0.067, \"k5\": 0.937, \"k5_std\": 0.057, \"full\": 0.951, \"full_std\": 0.043, \"per_seed_full\": {\"seed42\": 0.891, \"seed123\": 0.99, \"seed456\": 0.971}, \"per_seed_k1\": {\"seed42\": 0.618, \"seed123\": 0.858, \"seed456\": 0.686}, \"per_seed_k3\": {\"seed42\": 0.808, \"seed123\": 0.972, \"seed456\": 0.9}, \"note\": \"3-seed complete, K2/K5 corrected\"}, \"deberta_mlm\": {\"k1\": 0.736, \"k1_std\": 0.15, \"k2\": 0.909, \"k2_std\": 0.058, \"k3\": 0.945, \"k3_std\": 0.039, \"k5\": 0.929, \"k5_std\": 0.033, \"full\": 0.893, \"full_std\": 0.08}, \"deberta_wiki_mlm\": {\"k1\": 0.656, \"k1_std\": 0.224, \"k2\": 0.672, \"k2_std\": 0.252, \"k3\": 0.693, \"k3_std\": 0.28, \"k5\": 0.689, \"k5_std\": 0.285, \"full\": 0.686, \"full_std\": 0.297}, \"deberta_topic\": {\"k1\": 0.513, \"k1_std\": 0.077, \"k2\": 0.58, \"k2_std\": 0.109, \"k3\": 0.565, \"k3_std\": 0.1, \"k5\": 0.615, \"k5_std\": 0.111, \"full\": 0.625, \"full_std\": 0.141}, \"deberta_vanilla\": {\"k1\": 0.337, \"k1_std\": 0.049, \"k2\": 0.306, \"k2_std\": 0.026, \"k3\": 0.284, \"k3_std\": 0.011, \"k5\": 0.262, \"k5_std\": 0.006, \"full\": 0.258, \"full_std\": 0}, \"roberta_9class\": {\"k1\": 0.738, \"k1_std\": 0.033, \"k2\": 0.805, \"k2_std\": 0.033, \"k3\": 0.884, \"k3_std\": 0.066, \"k5\": 0.925, \"k5_std\": 0.066, \"full\": 0.939, \"full_std\": 0.046}, \"roberta_mlm\": {\"k1\": 0.633, \"k1_std\": 0.133, \"k2\": 0.665, \"k2_std\": 0.15, \"k3\": 0.713, \"k3_std\": 0.174, \"k5\": 0.719, \"k5_std\": 0.184, \"full\": 0.73, \"full_std\": 0.201}, \"roberta_vanilla\": {\"k1\": 0.41, \"k1_std\": 0.126, \"k2\": 0.425, \"k2_std\": 0.143, \"k3\": 0.432, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"conclusion\": \"success\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.9905, \"perturbed_k1\": 0.9968, \"delta_k1\": 0.0063, \"clean_k3\": 0.9719, \"perturbed_k3\": 0.9936, \"delta_k3\": 0.0217, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"binary_3seed\": {\"clean_k1\": 0.9936, \"perturbed_k1\": 1, \"delta_k1\": 0.0064, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"scrambled_3seed\": {\"clean_k1\": 0.9968, \"perturbed_k1\": 0.9936, \"delta_k1\": -0.0032, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"jb_mlm_3seed\": {\"clean_k1\": 0.9733, \"perturbed_k1\": 0.9733, \"delta_k1\": 0, \"clean_full\": 0.9138, \"perturbed_full\": 0.9409, \"delta_full\": 0.0271}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.9131, \"perturbed_k1\": 0.8808, \"delta_k1\": -0.0323, \"clean_full\": 0.9042, \"perturbed_full\": 0.8715, \"delta_full\": -0.0327}, \"topic_3seed\": {\"clean_k1\": 0.5912, \"perturbed_k1\": 0.617, \"delta_k1\": 0.0259, \"clean_full\": 0.5412, \"perturbed_full\": 0.5765, \"delta_full\": 0.0353}, \"vanilla_3seed\": {\"clean_k1\": 0.6283, \"perturbed_k1\": 0.5602, \"delta_k1\": -0.0681, \"clean_k2\": 0.4824, \"perturbed_k2\": 0.4829, \"delta_k2\": 0.0004, \"clean_full\": 0.3123, \"perturbed_full\": 0.3394, \"delta_full\": 0.0271}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"49-56 favoring 9class\"}, \"9class_vs_jb_mlm\": \"n.s. all seeds\", \"9class_vs_scrambled\": \"n.s. all seeds\"}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"67-78 favoring 9class\"}, \"9class_vs_jb_mlm\": {\"seed42\": \"tie\", \"seed123\": \"n.s.\", \"seed456\": \"p=4e-06 (b=19)\"}, \"9class_vs_scrambled\": \"tie all seeds\"}}}, \"exp3_roberta_probing\": {\"conclusion\": \"success\", \"metrics\": {\"linear_probing\": {\"turn_position\": {\"vanilla\": 0.7665, \"mlm\": 0.7526, \"9class\": 0.8294}, \"escalation_level\": {\"vanilla\": 0.7272, \"mlm\": 0.7243, \"9class\": 0.7448}, \"persuasion_presence\": {\"vanilla\": 0.942, \"mlm\": 0.9411, \"9class\": 0.9509}}, \"centered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.393, \"vanilla_vs_9class\": 0.592, \"mlm_vs_9class\": 0.351}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.255, \"vanilla_vs_9class\": 0.735, \"mlm_vs_9class\": 0.183}}, \"uncentered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.511, \"mlm_vs_9class\": 0.502}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.624, \"mlm_vs_9class\": 0.626}}, \"note\": \"Centered CKA confirms MLM reshapes RoBERTa representations (0.39 IID, 0.26 OOD), even more than DeBERTa (0.44 IID). Both encoders show same pattern.\"}}, \"vanilla_multiseed_dd_ood\": {\"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.36, \"mean\": 0.351, \"std\": 0.03}, \"full\": {\"seed42\": 0.285, \"seed123\": 0.305, \"seed456\": 0.348, \"mean\": 0.312, \"std\": 0.026}}, \"centered_cka_iid\": {\"vanilla_vs_mlm\": 0.442, \"vanilla_vs_9class\": 0.393, \"mlm_vs_9class\": 0.586}, \"centered_cka_dd_ood\": {\"vanilla_vs_mlm\": 0.797, \"vanilla_vs_9class\": 0.649, \"mlm_vs_9class\": 0.773}, \"uncentered_cka_iid\": {\"vanilla_vs_mlm\": 1, \"vanilla_vs_9class\": 0.421, \"mlm_vs_9class\": 0.422}, \"note\": \"Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading.\"}}, \"mf1_binary_seed123\": {\"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 123}}, \"mf1_binary_seed456\": {\"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 456}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed123\": {\"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed456\": {\"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"deberta_training\": {\"epochs\": 4, \"best_epoch\": 4, \"val_persuasion_acc\": 0.613, \"val_intent_acc\": 0.967, \"val_loss\": 1.127}, \"iid_test_f1_full\": 1, \"perturbation_delta_full\": 0, \"perturbation_clean_f1_full\": 0.333, \"perturbation_perturbed_f1_full\": 0.333, \"note\": \"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\"}}, \"plan_003_scrambled_fix\": {\"conclusion\": \"negative\", \"metrics\": {\"deberta\": {\"val_persuasion_acc\": 0.679, \"val_intent_acc\": 1, \"val_loss\": 0.776, \"best_epoch\": 4}, \"iid_test\": {\"full\": 1, \"k1\": 1, \"k2\": 1, \"k3\": 1, \"k5\": 1}, \"dd_ood\": {\"full\": 0.9904, \"k1\": 0.9904, \"k2\": 0.9439, \"k3\": 0.935, \"k5\": 0.9904}, \"perturbation\": {\"clean_full\": 1, \"perturbed_full\": 1, \"delta_full\": 0, \"delta_k1\": 0.0527, \"delta_k2\": 0.0263, \"delta_k3\": 0, \"delta_k5\": 0}}}, \"plan_002_seed456\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.9296, \"baseline_k2_f1\": 0.9589, \"baseline_k3_f1\": 0.9867, \"baseline_k5_f1\": 0.9867, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"deberta_best_epoch\": 2, \"deberta_persuasion_acc\": 0.8593, \"deberta_intent_acc\": 1, \"dd_ood_k1_f1\": 0.9715, \"dd_ood_k2_f1\": 0.9622, \"dd_ood_k3_f1\": 0.935, \"dd_ood_k5_f1\": 0.9904, \"dd_ood_full_f1\": 0.9904}}, \"plan_002_seed123\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_018_wiki_mlm_control\": {\"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_017_mlm_control\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_013_binary_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}}, \"plan_016v2_topic_perturbation\": {\"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 0.8947, \"clean_f1_k2\": 0.9473, \"clean_f1_k3\": 0.9605, \"clean_f1_k5\": 0.9868, \"perturbed_f1_full\": 0.9605, \"perturbed_f1_k1\": 0.8676, \"perturbed_f1_k2\": 0.9206, \"perturbed_f1_k3\": 0.9605, \"perturbed_f1_k5\": 0.9605, \"delta_full\": -0.0395, \"delta_k1\": -0.0271, \"delta_k2\": -0.0267, \"delta_k3\": 0, \"delta_k5\": -0.0263}, \"conclusion\": \"negative\"}, \"plan_016v2_topic_control\": {\"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.5411, \"std\": 0.2069, \"seeds\": {\"42\": 0.7269, \"123\": 0.2525, \"456\": 0.6441}}, \"dd_ood_f1_k1\": {\"mean\": 0.5912, \"std\": 0.1316, \"seeds\": {\"42\": 0.6971, \"123\": 0.4057, \"456\": 0.6707}}, \"dd_ood_f1_k2\": {\"mean\": 0.5926, \"std\": 0.1655, \"seeds\": {\"42\": 0.7157, \"123\": 0.3587, \"456\": 0.7033}}, \"dd_ood_f1_k3\": {\"mean\": 0.5684, \"std\": 0.1668, \"seeds\": {\"42\": 0.7169, \"123\": 0.3355, \"456\": 0.6529}}, \"dd_ood_f1_k5\": {\"mean\": 0.5728, \"std\": 0.2057, \"seeds\": {\"42\": 0.7502, \"123\": 0.2845, \"456\": 0.6837}}, \"iid_f1_full\": {\"mean\": 0.9736, \"std\": 0.0215, \"seeds\": {\"42\": 1, \"123\": 0.9737, \"456\": 0.9472}}, \"iid_f1_k1\": {\"mean\": 0.8105, \"std\": 0.0618, \"seeds\": {\"42\": 0.8947, \"123\": 0.7889, \"456\": 0.7479}}, \"val_topic_acc\": {\"seeds\": {\"42\": 0.784, \"123\": 0.755, \"456\": 0.822}}, \"n_seeds\": 3}}, \"plan_018_wiki_perturbation\": {\"metrics\": {\"clean_f1_full\": 0.9868, \"perturbed_f1_full\": 0.8661, \"delta_f1_full\": -0.1207, \"clean_f1_k1\": 0.9474, \"perturbed_f1_k1\": 0.8238, \"delta_f1_k1\": -0.1236, \"clean_f1_k2\": 0.9341, \"perturbed_f1_k2\": 0.7797, \"delta_f1_k2\": -0.1544, \"clean_f1_k3\": 0.9737, \"perturbed_f1_k3\": 0.7946, \"delta_f1_k3\": -0.1791, \"clean_f1_k5\": 0.9868, \"perturbed_f1_k5\": 0.8381, \"delta_f1_k5\": -0.1487, \"sample_count\": 76}, \"conclusion\": \"success\"}, \"plan_017_mlm_perturbation\": {\"conclusion\": \"negative\", \"metrics\": {\"clean_full_f1\": 1, \"clean_k1_f1\": 0.9605, \"clean_k2_f1\": 0.9737, \"clean_k3_f1\": 0.9868, \"clean_k5_f1\": 1, \"perturbed_full_f1\": 0.9737, \"perturbed_k1_f1\": 0.8683, \"perturbed_k2_f1\": 0.9341, \"perturbed_k3_f1\": 0.9473, \"perturbed_k5_f1\": 0.9605, \"delta_full\": -0.0263, \"delta_k1\": -0.0922, \"delta_k2\": -0.0396, \"delta_k3\": -0.0395, \"delta_k5\": -0.0395, \"ref_treatment_delta_full\": 0, \"ref_baseline_delta_full\": -0.1176}}, \"plan_012_gpt55_judge\": {\"conclusion\": \"success\", \"metrics\": {\"gpt55_k2_f1\": 0.1905, \"gpt55_k3_f1\": 0.2727, \"gpt55_k5_f1\": 0.449, \"gpt55_full_f1\": 0.383, \"gpt55_k2_precision\": 1, \"gpt55_k2_recall\": 0.1053, \"gpt55_k5_precision\": 1, \"gpt55_k5_recall\": 0.2895, \"unparseable_k2\": \"23/76\", \"unparseable_full\": \"36/76\", \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"conclusion_note\": \"GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall.\"}}, \"plan_015_dd_eval\": {\"conclusion\": \"success\", \"metrics\": {\"meanpool_treatment_k1_f1\": 1, \"meanpool_treatment_k2_f1\": 1, \"meanpool_treatment_k3_f1\": 0.9937, \"meanpool_treatment_k5_f1\": 1, \"meanpool_treatment_full_f1\": 1, \"meanpool_baseline_k1_f1\": 0.8286, \"meanpool_baseline_k2_f1\": 0.6387, \"meanpool_baseline_k3_f1\": 0.5614, \"meanpool_baseline_k5_f1\": 0.3922, \"meanpool_baseline_full_f1\": 0.2947, \"gru_treatment_k2_f1\": 0.9904, \"gru_treatment_k3_f1\": 0.9904, \"gru_vs_meanpool\": \"comparable\", \"conclusion_note\": \"GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver\"}}, \"plan_006_cross_attack_clean\": {\"conclusion\": \"success\", \"metrics\": {\"dd_treatment_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"dd_treatment_k1_f1\": 1, \"dd_baseline_k1_f1\": 0.5752, \"dd_treatment_k2_f1\": 0.9904, \"dd_baseline_k2_f1\": 0.4381, \"dd_treatment_k3_f1\": 0.9904, \"dd_baseline_k3_f1\": 0.3596, \"dd_treatment_k5_f1\": 1, \"dd_baseline_k5_f1\": 0.3105, \"fitd_treatment_full_f1\": 1, \"fitd_baseline_full_f1\": 1, \"fitd_treatment_k1_f1\": 1, \"fitd_baseline_k1_f1\": 0.9902, \"fitd_treatment_k2_f1\": 1, \"fitd_baseline_k2_f1\": 1, \"tfidf_dd_full_f1\": 0.9439, \"tfidf_fitd_k1_f1\": 1, \"max_dd_delta_pp\": 71.55, \"pass_criteria\": true}}, \"plan_004_perturbation_eval\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_original_f1\": 1, \"treatment_perturbed_f1\": 1, \"treatment_f1_drop\": 0, \"baseline_original_f1\": 1, \"baseline_perturbed_f1\": 0.8824, \"baseline_f1_drop\": -0.1176, \"tfidf_original_f1\": 1, \"tfidf_perturbed_f1\": 0.9867, \"tfidf_f1_drop\": -0.0133, \"bertscore_mean\": 0.92, \"lexical_overlap\": 0.2, \"sample_count\": 76}}, \"plan_013_none_collapse\": {\"conclusion\": \"success\", \"metrics\": {\"binary_k1_f1\": 1, \"binary_k2_f1\": 1, \"binary_k3_f1\": 1, \"binary_k5_f1\": 1, \"binary_full_f1\": 1, \"ninclass_k1_f1\": 1, \"ninclass_k2_f1\": 1, \"ninclass_k3_f1\": 1, \"ninclass_k5_f1\": 1, \"ninclass_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"dd_binary_k1_f1\": 0.9809, \"dd_binary_k2_f1\": 0.9809, \"dd_binary_k3_f1\": 0.9715, \"dd_binary_k5_f1\": 1, \"dd_binary_full_f1\": 0.9904, \"dd_9class_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"conclusion_note\": \"binary collapse = 9-class IID and OOD, model is persuasion-presence detector\"}}, \"plan_012_llm_judge_qwen\": {\"conclusion\": \"success\", \"metrics\": {\"qwen_k2_f1\": 0, \"qwen_k3_f1\": 0.051, \"qwen_k5_f1\": 0.146, \"qwen_full_f1\": 0.1, \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"model\": \"qwen3-8b\", \"note\": \"rerun with correct test set and binary F1 metric\"}}, \"plan_002_clean_training\": {\"conclusion\": \"negative\", \"metrics\": {\"treatment_k1_f1\": 1, \"baseline_k1_f1\": 0.987, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.9867, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.9867, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"max_delta_pp\": 1.3, \"pass_criteria_5pp\": false}}, \"plan_003_scrambled_ablation\": {\"conclusion\": \"negative\", \"metrics\": {\"scrambled_k1_f1\": 0.9744, \"scrambled_k2_f1\": 1, \"scrambled_k3_f1\": 1, \"scrambled_k5_f1\": 1, \"scrambled_full_f1\": 1, \"proper_k2_f1\": 0.9867, \"proper_k3_f1\": 0.9867, \"baseline_k2_f1\": 0.8788, \"baseline_k3_f1\": 0.9276, \"scrambled_deberta_persuasion_acc\": 0.6437, \"proper_deberta_persuasion_acc\": 0.7963, \"data_version\": \"v4c (NOT plan_002 data)\"}}, \"cross_attack_baseline\": {\"conclusion\": \"negative\", \"metrics\": {\"fitd_treatment_k1_f1\": 0.9812, \"fitd_baseline_k1_f1\": 0.7483, \"fitd_treatment_k2_f1\": 0.975, \"fitd_baseline_k2_f1\": 0.6866, \"fitd_treatment_k3_f1\": 0.9937, \"fitd_baseline_k3_f1\": 0.8465, \"dd_treatment_k1_f1\": 0.9812, \"dd_baseline_k1_f1\": 1, \"dd_treatment_k2_f1\": 0.9875, \"dd_baseline_k2_f1\": 1, \"full_treatment_f1\": 1, \"full_baseline_f1\": 1, \"tfidf_fitd_k2_f1\": 1, \"tfidf_dd_k1_f1\": 1, \"invalidation_reason\": \"v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable\"}}, \"plan_008_strategy_transition\": {\"conclusion\": \"success\", \"metrics\": {\"crescendo_mean_index_start\": 0.86, \"crescendo_mean_index_end\": 5.64, \"crescendo_strategies_used\": 8, \"fitd_strategies_used\": 4, \"dd_strategies_used\": 6, \"crescendo_transitions\": 1818, \"fitd_transitions\": 541, \"dd_transitions\": 565}}, \"plan_007_tfidf_fitd_dd\": {\"conclusion\": \"success\", \"metrics\": {\"tfidf_fitd_vs_v4c_f1\": 1, \"tfidf_dd_vs_v4c_f1\": 1}}, \"plan_005_multi_attack_gen\": {\"conclusion\": \"success\", \"metrics\": {\"fitd_count\": 80, \"dd_count\": 80, \"fitd_strategies\": [0, 1, 3, 5], \"dd_strategies\": [0, 2, 3, 4, 5, 6]}}, \"phase_b_full\": {\"conclusion\": \"success\", \"metrics\": {\"deberta_persuasion_acc\": 0.7963, \"deberta_intent_acc\": 0.9514, \"deberta_best_epoch\": 3, \"treatment_full_f1\": 1, \"baseline_full_f1\": 0.987, \"tfidf_full_f1\": 1, \"treatment_k1_f1\": 0.9867, \"baseline_k1_f1\": 0.8615, \"tfidf_k1_f1\": 1, \"treatment_k2_f1\": 0.987, \"baseline_k2_f1\": 0.879, \"tfidf_k2_f1\": 1, \"treatment_k3_f1\": 0.987, \"baseline_k3_f1\": 0.928, \"tfidf_k3_f1\": 1, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.958, \"tfidf_k5_f1\": 1, \"treatment_fpr95tpr_full\": 0, \"baseline_fpr95tpr_full\": 0, \"treatment_fpr95tpr_k2\": 0, \"baseline_fpr95tpr_k2\": 0.057, \"treatment_fpr95tpr_k1\": 0, \"baseline_fpr95tpr_k1\": 0.057, \"balanced_tfidf_cv_f1\": 1, \"test_size\": 72, \"dataset_size\": 480}}, \"pilot_phase_b\": {\"conclusion\": \"success\", \"metrics\": {\"treatment_full_f1\": 1, \"baseline_full_f1\": 0.737, \"tfidf_full_f1\": 1, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.737, \"tfidf_k2_f1\": 0.894, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.894, \"tfidf_k3_f1\": 0.894, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.894, \"tfidf_k5_f1\": 0.894, \"deberta_persuasion_acc\": 0.718, \"deberta_intent_acc\": 0.984, \"test_size\": 41, \"test_benign\": 3, \"test_jailbreak\": 38}}}, \"count\": 49, \"total\": 49, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2639}}"
+    }
+  },
+  "sourceToolAssistantUUID": "615de415-1003-4329-9c8e-918aa3c15188",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "b5b9fe8e-ebbe-43ad-8447-a55fbc83b0e6",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 99 · 2026-05-20T09:37:25.270Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry has a LOT of experiments. I don't see a specific "shuffle" experiment. Let me search more specifically. The Director mentioned:
+- DeBERTa-v3 9-class shuffle → new experiment
+- RoBERTa-large shuffle → this was exp15 related
+
+I don't see a shuffle experiment in the registry. The Director said "现已补跑 DeBERTa-v3 9-class shuffle" — so this is new data. The Director is providing the numbers directly, so I can use those numbers without a registry reference.
+
+
+The Director gave me the exact Δ values, so I'll proceed with the edits using those numbers as the source. I'm checking the registry one more time for any shuffle-related experiments under different names, but it looks like this is a new experiment that hasn't been formally registered yet. I'll move forward with the Director's data.
+
+Now I'm planning the specific edits to the experiments.tex file. For the "Temporal modeling" paragraph, I need to replace the existing text about mean pooling and BiGRU with a revised version that incorporates the new shuffle experiment results, showing that turn-order shuffling has minimal impact on performance across both datasets. I'm revising the introduction to clarify that temporal order doesn't matter for detection, incorporating the shuffling results alongside the mean pooling comparison to strengthen the claim about order-invariance.
+
+Now I need to assess the page impact of these edits—the main expansion is in the experiments section, adding roughly one line, while the other changes are roughly equivalent in length, so this should have minimal impact overall.
+
+I'm preparing to execute these edits with proper provenance tracking, documenting the new quantitative claim about shuffling performance with the specific deltas across both encoders from the provided data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5b9fe8e-ebbe-43ad-8447-a55fbc83b0e6",
+  "isSidechain": false,
+  "requestId": "req_011CbDbV5b73staxRtP7vSAA",
+  "type": "assistant",
+  "uuid": "50e46712-3533-41d4-b67d-4c6758faf5e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBwAsEcFZYnC7Zz4maAtZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21724,
+      "cache_read_input_tokens": 77864,
+      "output_tokens": 1867,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1867,
+          "cache_read_input_tokens": 77864,
+          "cache_creation_input_tokens": 21724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 100 · 2026-05-20T09:37:25.956Z_
+
+Phase B 无需补充素材（Director 已提供完整数据）。进入 Phase C — 执行修改。
+
+对 4 个文件做 surgical edits。先改主修改点 experiments.tex，再处理级联。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50e46712-3533-41d4-b67d-4c6758faf5e3",
+  "isSidechain": false,
+  "requestId": "req_011CbDbV5b73staxRtP7vSAA",
+  "type": "assistant",
+  "uuid": "604ecf06-d9be-4d85-872f-f09599ef359f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBwAsEcFZYnC7Zz4maAtZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21724,
+      "cache_read_input_tokens": 77864,
+      "output_tokens": 1867,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1867,
+          "cache_read_input_tokens": 77864,
+          "cache_creation_input_tokens": 21724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 101 · 2026-05-20T09:37:31.354Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_01Kwcik9Maw69933BgroQqgH`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "experiments",
+  "old_text": "\\paragraph{Temporal modeling.}\nThree-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.",
+  "new_text": "\\paragraph{Temporal modeling.}\nMean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\nTurn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.",
+  "claims": [
+    {
+      "text": "Turn-order shuffling produces negligible performance change (|Delta| < 1pp) across both DeBERTa-v3-base and RoBERTa-large encoders",
+      "type": "quantitative",
+      "evidence": [
+        {
+          "source": "shuffle_ablation_deberta",
+          "values": {
+            "dd_delta": 0,
+            "aa_delta": -0.009,
+            "iid_delta": 0
+          }
+        },
+        {
+          "source": "shuffle_ablation_roberta_large",
+          "values": {
+            "dd_delta": 0.001,
+            "aa_delta": -0.007,
+            "iid_delta": 0
+          }
+        }
+      ],
+      "decisions": [
+        "D054"
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "604ecf06-d9be-4d85-872f-f09599ef359f",
+  "isSidechain": false,
+  "requestId": "req_011CbDbV5b73staxRtP7vSAA",
+  "type": "assistant",
+  "uuid": "357386af-e810-453e-be6c-714c9d1c873d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBwAsEcFZYnC7Zz4maAtZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21724,
+      "cache_read_input_tokens": 77864,
+      "output_tokens": 1867,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1867,
+          "cache_read_input_tokens": 77864,
+          "cache_creation_input_tokens": 21724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 102 · 2026-05-20T09:37:31.473Z_
+
+<details><summary>↩ Tool result · `toolu_01Kwcik9Maw69933BgroQqgH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\", \"version\": 157, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "357386af-e810-453e-be6c-714c9d1c873d",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "4b6e7a38-be95-4a33-83cf-72ebf2b6f39a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\\\", \\\"version\\\": 157, \\\"coverage\\\": \\\"39/39\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\", \"version\": 157, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "357386af-e810-453e-be6c-714c9d1c873d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 103 · 2026-05-20T09:37:38.757Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The edit was applied to `docs/paper/experiments.tex`. But wait, I noticed earlier there are TWO copies of the paper: `paper/` and `docs/paper/`. Let me check which is the real one used for compilation.
+
+Looking at the main.tex I read earlier, it was at `paper/main.tex`. But the edit_paper_section tool applied to `docs/paper/experiments.tex`. Let me check if these are synced or if I need to also update `paper/experiments.tex`.
+
+Actually, looking at the tool output: `section_path: .../docs/paper/experiments.tex`. 
+
+I need to verify whether both directories exist and if they're actually the same files or separate copies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b6e7a38-be95-4a33-83cf-72ebf2b6f39a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbXk2hfcx7Y7kqjifef",
+  "type": "assistant",
+  "uuid": "4d8ec511-aa34-4b8b-8de4-b8f838dbe574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y47wkSCY7WkopDHWhSaJHx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 99588,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 99588,
+          "cache_creation_input_tokens": 1964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 104 · 2026-05-20T09:37:38.764Z_
+
+experiments.tex 主修改完成。但我注意到有 `docs/paper/` 和 `paper/` 两个目录。让我确认哪个是真源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d8ec511-aa34-4b8b-8de4-b8f838dbe574",
+  "isSidechain": false,
+  "requestId": "req_011CbDbXk2hfcx7Y7kqjifef",
+  "type": "assistant",
+  "uuid": "ba89a14f-a3ac-468d-b90e-05959ff614c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y47wkSCY7WkopDHWhSaJHx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 99588,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 99588,
+          "cache_creation_input_tokens": 1964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 105 · 2026-05-20T09:37:39.374Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GcnnxSAJnpRiBSLSVCiB8a`</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex | head -30",
+  "description": "Compare docs/paper vs paper experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba89a14f-a3ac-468d-b90e-05959ff614c2",
+  "isSidechain": false,
+  "requestId": "req_011CbDbXk2hfcx7Y7kqjifef",
+  "type": "assistant",
+  "uuid": "40e1efdc-75f6-47c7-9d52-141c58adf7cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y47wkSCY7WkopDHWhSaJHx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 99588,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 99588,
+          "cache_creation_input_tokens": 1964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 106 · 2026-05-20T09:37:39.555Z_
+
+<details><summary>↩ Tool result · `toolu_01GcnnxSAJnpRiBSLSVCiB8a`</summary>
+
+```text
+15c15
+< We intentionally hold the benign distribution constant across OOD evaluations to isolate attack-side generalization; the effect of varying the benign distribution is measured independently in cross-LLM experiments (Appendix~\ref{app:cross_llm}), where replacing Qwen benign text with Llama benign text increases false-positive rates from 0\% to 88--90\% while true-positive rates remain constant (Table~\ref{tab:cross_llm_error}).
+---
+> The OOD benign set is IID (same generation pipeline as training); the OOD challenge is in distinguishing novel attack families from familiar benign conversations.
+111c111
+< \paragraph{Domain exposure appears to be the dominant factor.}
+---
+> \paragraph{Domain exposure is the primary mechanism.}
+136,138c136
+< Mean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\leq$ 1\,pp, overlapping CIs).
+< Turn-order shuffling produces negligible change ($|\Delta| < 1$\,pp) across both DeBERTa-v3-base 9-class (DD $\Delta$\,=\,0.000, AA $\Delta$\,=\,$-$0.009, IID $\Delta$\,=\,0.000) and RoBERTa-large 9-class (DD $\Delta$\,=\,+0.001, AA $\Delta$\,=\,$-$0.007, IID $\Delta$\,=\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.
+< Turn-order shuffling confirms this: randomizing turn order produces $\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.
+---
+> Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\leq$ 1\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.
+141c139
+< For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\times$ observed across 3 seeds) without changing the detection ceiling.
+---
+> For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\times$) without changing the detection ceiling.
+180c178
+< Classification supervision shows a consistent (3-seed) stability pattern across both base encoders (cross-seed variance: 0.005--0.046 vs.\ 0.026--0.201).
+---
+> Classification supervision provides a consistent stability benefit across both base encoders (cross-seed variance: 0.005--0.046 vs.\ 0.026--0.201).
+234c232
+< On unseen attacks, strategy prediction degrades to near-random ($\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification structure, not label semantics, drives the representation benefit; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \texttt{[CLS]} embeddings, not through strategy classification accuracy.
+---
+> On unseen attacks, strategy prediction degrades to near-random ($\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification task structure matters more than label semantics; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \texttt{[CLS]} embeddings, not through strategy classification accuracy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40e1efdc-75f6-47c7-9d52-141c58adf7cc",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "4f1d78f5-08cc-4654-a2bd-e7e400e6a7f3",
+  "toolUseResult": {
+    "stdout": "15c15\n< We intentionally hold the benign distribution constant across OOD evaluations to isolate attack-side generalization; the effect of varying the benign distribution is measured independently in cross-LLM experiments (Appendix~\\ref{app:cross_llm}), where replacing Qwen benign text with Llama benign text increases false-positive rates from 0\\% to 88--90\\% while true-positive rates remain constant (Table~\\ref{tab:cross_llm_error}).\n---\n> The OOD benign set is IID (same generation pipeline as training); the OOD challenge is in distinguishing novel attack families from familiar benign conversations.\n111c111\n< \\paragraph{Domain exposure appears to be the dominant factor.}\n---\n> \\paragraph{Domain exposure is the primary mechanism.}\n136,138c136\n< Mean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\n< Turn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.\n< Turn-order shuffling confirms this: randomizing turn order produces $\\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.\n---\n> Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.\n141c139\n< For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.\n---\n> For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\n180c178\n< Classification supervision shows a consistent (3-seed) stability pattern across both base encoders (cross-seed variance: 0.005--0.046 vs.\\ 0.026--0.201).\n---\n> Classification supervision provides a consistent stability benefit across both base encoders (cross-seed variance: 0.005--0.046 vs.\\ 0.026--0.201).\n234c232\n< On unseen attacks, strategy prediction degrades to near-random ($\\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification structure, not label semantics, drives the representation benefit; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \\texttt{[CLS]} embeddings, not through strategy classification accuracy.\n---\n> On unseen attacks, strategy prediction degrades to near-random ($\\kappa$=0.126 on OOD DD); the taxonomy should not be viewed as an OOD interpretability tool. The taxonomy's value is twofold: (1) as a training signal---even scrambled labels produce equivalent detection, indicating that the classification task structure matters more than label semantics; (2) as an IID characterization tool for known attack families. Detection operates through domain-adapted \\texttt{[CLS]} embeddings, not through strategy classification accuracy.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "40e1efdc-75f6-47c7-9d52-141c58adf7cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 107 · 2026-05-20T09:37:50.975Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+There are differences between `docs/paper/` and `paper/`. The `docs/paper/` version has the updated content (my edit plus some other differences — it appears to be a more recent/refined version), while `paper/` has the older version that I originally read.
+
+The `edit_paper_section` tool edited `docs/paper/experiments.tex`. But I also notice it added an extra line about turn-order shuffling:
+```
+Turn-order shuffling confirms this: randomizing turn order produces $\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.
+
+
+```
+
+Wait, that's not what I wrote. Looking at the diff more carefully, I see that `docs/paper/` already had some previous shuffle text that was different from what I wrote. My edit added the new text about mean pooling, but there's also this old line still there — so it looks like both my new content and the old shuffle line are now in the file together.
+
+That old line has incorrect information though — it claims vanilla DeBERTa degrades by 8.8pp on DD OOD, which doesn't match the Director's data. It's a leftover from a previous version that I need to remove.
+
+Let me check what the current state of the experiments file actually looks like.
+
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f1d78f5-08cc-4654-a2bd-e7e400e6a7f3",
+  "isSidechain": false,
+  "requestId": "req_011CbDbYLdK3ABTW23z4yBUM",
+  "type": "assistant",
+  "uuid": "e8772866-0411-4ab3-99d4-40a7fb1e1c8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMKNr4bvxPN7DSNRz2CCr6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1456,
+      "cache_read_input_tokens": 101552,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 101552,
+          "cache_creation_input_tokens": 1456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 108 · 2026-05-20T09:37:51.022Z_
+
+两个目录有差异。`docs/paper/` 被 `edit_paper_section` 修改。让我检查修改后的实际内容，确认没有残留旧文字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8772866-0411-4ab3-99d4-40a7fb1e1c8c",
+  "isSidechain": false,
+  "requestId": "req_011CbDbYLdK3ABTW23z4yBUM",
+  "type": "assistant",
+  "uuid": "3f63ddc0-ae02-4d0c-9af9-1246d389edc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMKNr4bvxPN7DSNRz2CCr6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1456,
+      "cache_read_input_tokens": 101552,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 101552,
+          "cache_creation_input_tokens": 1456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 109 · 2026-05-20T09:37:51.434Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TibiL3DchMxERFRsDJmk9B`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+  "offset": 130,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f63ddc0-ae02-4d0c-9af9-1246d389edc1",
+  "isSidechain": false,
+  "requestId": "req_011CbDbYLdK3ABTW23z4yBUM",
+  "type": "assistant",
+  "uuid": "70cc8534-d0cc-4388-9c84-75b74ec84ca7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMKNr4bvxPN7DSNRz2CCr6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1456,
+      "cache_read_input_tokens": 101552,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 101552,
+          "cache_creation_input_tokens": 1456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 110 · 2026-05-20T09:37:51.442Z_
+
+<details><summary>↩ Tool result · `toolu_01TibiL3DchMxERFRsDJmk9B`</summary>
+
+```text
+130	\vspace{2pt}
+131	
+132	TF-IDF collapses from 0.961 (DD) to 0.261 (ActorAttack, precision = 1.0, recall = 0.15). This gap shows that domain-adapted representations capture features beyond bag-of-words.
+133	All classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9\,pp); this extends the DD finding. DAPT provides $\sim$71\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix results in Appendix~\ref{sec:actorattack_full}.
+134	
+135	\paragraph{Temporal modeling.}
+136	Mean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\leq$ 1\,pp, overlapping CIs).
+137	Turn-order shuffling produces negligible change ($|\Delta| < 1$\,pp) across both DeBERTa-v3-base 9-class (DD $\Delta$\,=\,0.000, AA $\Delta$\,=\,$-$0.009, IID $\Delta$\,=\,0.000) and RoBERTa-large 9-class (DD $\Delta$\,=\,+0.001, AA $\Delta$\,=\,$-$0.007, IID $\Delta$\,=\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.
+138	Turn-order shuffling confirms this: randomizing turn order produces $\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.
+139	
+140	\paragraph{Summary.}
+141	For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\times$ observed across 3 seeds) without changing the detection ceiling.
+142	
+143	%----------------------------------------------------------------------
+144	\subsection{Cross-Encoder Validation}
+145	\label{sec:cross_encoder}
+146	
+147	\begin{table}[t]
+148	\centering
+149	\small
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70cc8534-d0cc-4388-9c84-75b74ec84ca7",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "a32ad1f7-3d6d-4eeb-8793-b461b9cddb77",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+      "content": "\\vspace{2pt}\n\nTF-IDF collapses from 0.961 (DD) to 0.261 (ActorAttack, precision = 1.0, recall = 0.15). This gap shows that domain-adapted representations capture features beyond bag-of-words.\nAll classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9\\,pp); this extends the DD finding. DAPT provides $\\sim$71\\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix results in Appendix~\\ref{sec:actorattack_full}.\n\n\\paragraph{Temporal modeling.}\nMean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\nTurn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.\nTurn-order shuffling confirms this: randomizing turn order produces $\\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.\n\n\\paragraph{Summary.}\nFor base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.\n\n%----------------------------------------------------------------------\n\\subsection{Cross-Encoder Validation}\n\\label{sec:cross_encoder}\n\n\\begin{table}[t]\n\\centering\n\\small",
+      "numLines": 20,
+      "startLine": 130,
+      "totalLines": 235
+    }
+  },
+  "sourceToolAssistantUUID": "70cc8534-d0cc-4388-9c84-75b74ec84ca7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "a32ad1f7-3d6d-4eeb-8793-b461b9cddb77",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 113 · 2026-05-20T09:37:56.984Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's a duplicate/old line at line 138 that needs to be removed. The `docs/paper/` version already had a previous shuffle mention (line 138: "Turn-order shuffling confirms this: randomizing turn order produces..."), and my edit added the new text (line 137). Now line 138 is redundant and contains incorrect data ("vanilla DeBERTa degrades by 8.8pp" — this doesn't match Director's data, and the Director specifically said vanilla shuffle was only done on RoBERTa-large).
+
+
+I'll remove that redundant line now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a32ad1f7-3d6d-4eeb-8793-b461b9cddb77",
+  "isSidechain": false,
+  "requestId": "req_011CbDbZDZwKKJEhAnjW1fdc",
+  "type": "assistant",
+  "uuid": "0973b530-1cd3-48b3-85ae-71708c57c1b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016E3ujCe8JvwH1Sr4QC9E2U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 103008,
+      "output_tokens": 718,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 718,
+          "cache_read_input_tokens": 103008,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 114 · 2026-05-20T09:37:56.984Z_
+
+Line 138 有旧的 shuffle 文字残留（含错误数据 "vanilla DeBERTa degrades by 8.8pp"），需要删除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0973b530-1cd3-48b3-85ae-71708c57c1b3",
+  "isSidechain": false,
+  "requestId": "req_011CbDbZDZwKKJEhAnjW1fdc",
+  "type": "assistant",
+  "uuid": "33f0bd98-2dc6-49c3-b0e5-ab92fe936169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016E3ujCe8JvwH1Sr4QC9E2U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 103008,
+      "output_tokens": 718,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 718,
+          "cache_read_input_tokens": 103008,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 115 · 2026-05-20T09:38:03.045Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_01Q5hJLUVHv9KPtTZbgEhZRS`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "experiments",
+  "old_text": "Turn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.\nTurn-order shuffling confirms this: randomizing turn order produces $\\Delta < 0.01$ across all evaluation sets for domain-adapted models, while vanilla DeBERTa degrades by 8.8\\,pp on DD OOD, indicating that unadapted models partially rely on positional cues that adapted representations render redundant.",
+  "new_text": "Turn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33f0bd98-2dc6-49c3-b0e5-ab92fe936169",
+  "isSidechain": false,
+  "requestId": "req_011CbDbZDZwKKJEhAnjW1fdc",
+  "type": "assistant",
+  "uuid": "bf4903ab-9834-470a-af2c-cc90a3504a73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016E3ujCe8JvwH1Sr4QC9E2U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 103008,
+      "output_tokens": 718,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 718,
+          "cache_read_input_tokens": 103008,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 116 · 2026-05-20T09:38:03.147Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5hJLUVHv9KPtTZbgEhZRS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\", \"version\": 158, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf4903ab-9834-470a-af2c-cc90a3504a73",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "47b054e8-cbe1-4612-8555-4babdcf04871",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\\\", \\\"version\\\": 158, \\\"coverage\\\": \\\"39/39\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex\", \"version\": 158, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf4903ab-9834-470a-af2c-cc90a3504a73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 117 · 2026-05-20T09:38:03.154Z_
+
+```json
+{
+  "parentUuid": "47b054e8-cbe1-4612-8555-4babdcf04871",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b34c4dc9-b539-4d12-8dd0-3f3dacecc0bc",
+  "timestamp": "2026-05-20T09:38:03.154Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 118 · 2026-05-20T09:38:06.343Z_
+
+旧残留删除。现在同步 `paper/experiments.tex`（编译用的副本）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b34c4dc9-b539-4d12-8dd0-3f3dacecc0bc",
+  "isSidechain": false,
+  "requestId": "req_011CbDba5UYeYwc8PowE2UEN",
+  "type": "assistant",
+  "uuid": "f5fd9a3d-fb1e-4888-929c-ab9f26ff562c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDs2b49ToyiRLNSTsdHhBg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 104292,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 104292,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 119 · 2026-05-20T09:38:09.368Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Hx9sYbMmxomPfcfb7RDFc7`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+  "old_string": "\\paragraph{Temporal modeling.}\nThree-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.",
+  "new_string": "\\paragraph{Temporal modeling.}\nMean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\nTurn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5fd9a3d-fb1e-4888-929c-ab9f26ff562c",
+  "isSidechain": false,
+  "requestId": "req_011CbDba5UYeYwc8PowE2UEN",
+  "type": "assistant",
+  "uuid": "4781cdeb-93ae-400f-80bb-2c453df1d4e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDs2b49ToyiRLNSTsdHhBg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 104292,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 928,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 104292,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 928
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-20T09:38:09.391Z_
+
+<details><summary>↩ Tool result · `toolu_01Hx9sYbMmxomPfcfb7RDFc7`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4781cdeb-93ae-400f-80bb-2c453df1d4e4",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "5eac295c-2f41-4f55-a1c5-fa38d4ce2c97",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+    "oldString": "\\paragraph{Temporal modeling.}\nThree-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.",
+    "newString": "\\paragraph{Temporal modeling.}\nMean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\nTurn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 133,
+        "oldLines": 7,
+        "newStart": 133,
+        "newLines": 8,
+        "lines": [
+          " All classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9\\,pp); this extends the DD finding. DAPT provides $\\sim$71\\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix results in Appendix~\\ref{sec:actorattack_full}.",
+          " ",
+          " \\paragraph{Temporal modeling.}",
+          "-Three-seed evaluation on both DD and ActorAttack confirms that mean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp on full conversations, overlapping CIs); detection thus relies on per-turn representations rather than their sequential order.",
+          "+Mean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).",
+          "+Turn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.",
+          " ",
+          " \\paragraph{Summary.}",
+          " For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "4781cdeb-93ae-400f-80bb-2c453df1d4e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 121 · 2026-05-20T09:38:13.175Z_
+
+experiments.tex 两个副本均已更新。Phase D — 级联更新 conclusion.tex 和 introduction.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5eac295c-2f41-4f55-a1c5-fa38d4ce2c97",
+  "isSidechain": false,
+  "requestId": "req_011CbDbaYCtHLzDSB54m4YXa",
+  "type": "assistant",
+  "uuid": "69430fe2-37b7-40fe-86a8-2fc4fbc656f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmDWx9W133NyTXGnCXckPx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 105220,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 105220,
+          "cache_creation_input_tokens": 503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 122 · 2026-05-20T09:38:15.530Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_01R4XXmPFKAq4gTUSTsD88Hg`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "conclusion",
+  "old_text": "Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.",
+  "new_text": "Mean pooling matches BiGRU and turn-order shuffling produces $|\\Delta| < 1$\\,pp across two encoders (Section~\\ref{sec:decomposition}), confirming detection relies on turn-level features rather than sequential order."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69430fe2-37b7-40fe-86a8-2fc4fbc656f8",
+  "isSidechain": false,
+  "requestId": "req_011CbDbaYCtHLzDSB54m4YXa",
+  "type": "assistant",
+  "uuid": "e1ec64e3-3492-4319-a981-7c682442b3df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmDWx9W133NyTXGnCXckPx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 105220,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 105220,
+          "cache_creation_input_tokens": 503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 123 · 2026-05-20T09:38:15.614Z_
+
+<details><summary>↩ Tool result · `toolu_01R4XXmPFKAq4gTUSTsD88Hg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\", \"version\": 159, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1ec64e3-3492-4319-a981-7c682442b3df",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "23834196-6fc6-428e-9dda-6927a1531362",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\\\", \\\"version\\\": 159, \\\"coverage\\\": \\\"39/39\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\", \"version\": 159, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e1ec64e3-3492-4319-a981-7c682442b3df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 124 · 2026-05-20T09:38:18.352Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_013DTaUs7sTNebDkESsUFXb9`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "conclusion",
+  "old_text": "Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization.",
+  "new_text": "Three negative results---scrambled labels match correct, temporal order is irrelevant (mean pooling matches BiGRU; shuffling $|\\Delta| < 1$\\,pp across encoders), and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23834196-6fc6-428e-9dda-6927a1531362",
+  "isSidechain": false,
+  "requestId": "req_011CbDbaYCtHLzDSB54m4YXa",
+  "type": "assistant",
+  "uuid": "bfd3ccb6-db8b-498e-ac31-bd815a51b323",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmDWx9W133NyTXGnCXckPx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 105220,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 105220,
+          "cache_creation_input_tokens": 503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 125 · 2026-05-20T09:38:18.435Z_
+
+<details><summary>↩ Tool result · `toolu_013DTaUs7sTNebDkESsUFXb9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\", \"version\": 160, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bfd3ccb6-db8b-498e-ac31-bd815a51b323",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "e6ea8349-9e5c-4cb7-948a-02aafe0fe571",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\\\", \\\"version\\\": 160, \\\"coverage\\\": \\\"39/39\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\", \"version\": 160, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bfd3ccb6-db8b-498e-ac31-bd815a51b323",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 126 · 2026-05-20T09:38:20.412Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_01NVSWGj7jZD4ViyvWix7UGL`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "introduction",
+  "old_text": "Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.",
+  "new_text": "Three negative results are counter-intuitive: scrambled labels match correct labels, temporal order is irrelevant (mean pooling and turn-order shuffling confirm order-invariance across encoders), and label granularity does not affect detection."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6ea8349-9e5c-4cb7-948a-02aafe0fe571",
+  "isSidechain": false,
+  "requestId": "req_011CbDbaYCtHLzDSB54m4YXa",
+  "type": "assistant",
+  "uuid": "54e7c8d7-bcb5-4079-ba77-b2940dcac379",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmDWx9W133NyTXGnCXckPx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 105220,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 105220,
+          "cache_creation_input_tokens": 503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 127 · 2026-05-20T09:38:20.497Z_
+
+<details><summary>↩ Tool result · `toolu_01NVSWGj7jZD4ViyvWix7UGL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex\", \"version\": 161, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54e7c8d7-bcb5-4079-ba77-b2940dcac379",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "97c72150-fe8e-4554-b537-22bad7dad63a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex\\\", \\\"version\\\": 161, \\\"coverage\\\": \\\"39/39\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex\", \"version\": 161, \"coverage\": \"39/39\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "54e7c8d7-bcb5-4079-ba77-b2940dcac379",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 128 · 2026-05-20T09:38:24.626Z_
+
+`docs/paper/` 的级联更新完成。同步到 `paper/` 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97c72150-fe8e-4554-b537-22bad7dad63a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbMcBRNZ6SxD9DgTrD",
+  "type": "assistant",
+  "uuid": "d4b50747-7f56-43be-876f-1495cee6fe68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdJgzWMjPym24c9MFK5tXt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 105723,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 105723,
+          "cache_creation_input_tokens": 1056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 129 · 2026-05-20T09:38:25.148Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JGLVRNp9XNH3AppitQj8QK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+  "offset": 19,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4b50747-7f56-43be-876f-1495cee6fe68",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbMcBRNZ6SxD9DgTrD",
+  "type": "assistant",
+  "uuid": "b1cae4b1-a024-4cd5-9211-4a6fc34ab30a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdJgzWMjPym24c9MFK5tXt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 105723,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 105723,
+          "cache_creation_input_tokens": 1056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 130 · 2026-05-20T09:38:25.154Z_
+
+<details><summary>↩ Tool result · `toolu_01JGLVRNp9XNH3AppitQj8QK`</summary>
+
+```text
+19	\paragraph{Encoder capacity and temporal modeling.}
+20	Our three encoders (125M--355M) span a 2.8$\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.
+21	
+22	\section{Conclusion}
+23	\label{sec:conclusion}
+24	
+25	On synthetic multi-turn data generated by a single LLM, classification-based DAPT is the most robust adaptation for base-size encoders; unsupervised pretraining closes $\sim$60\,pp on single-source data but collapses on mixed-LLM training. Fewer attacks require adaptation as model size grows, and a variance reduction of 4--20$\times$ is observed (3 seeds) on synthetic data but reverses on human data.
+26	Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.
+27	
+28	\section{Limitations}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1cae4b1-a024-4cd5-9211-4a6fc34ab30a",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "cdb68f05-4d1d-4242-ad48-94a55adb9be5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+      "content": "\\paragraph{Encoder capacity and temporal modeling.}\nOur three encoders (125M--355M) span a 2.8$\\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nOn synthetic multi-turn data generated by a single LLM, classification-based DAPT is the most robust adaptation for base-size encoders; unsupervised pretraining closes $\\sim$60\\,pp on single-source data but collapses on mixed-LLM training. Fewer attacks require adaptation as model size grows, and a variance reduction of 4--20$\\times$ is observed (3 seeds) on synthetic data but reverses on human data.\nThree negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.\n\n\\section{Limitations}",
+      "numLines": 10,
+      "startLine": 19,
+      "totalLines": 73
+    }
+  },
+  "sourceToolAssistantUUID": "b1cae4b1-a024-4cd5-9211-4a6fc34ab30a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 131 · 2026-05-20T09:38:25.965Z_
+
+<details><summary>↩ Tool result · `toolu_01T28xkNqqKAPWF6CRAA8uSE`</summary>
+
+```text
+24	\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]
+25	  \item \textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.
+26	
+27	  \item \textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\ref{sec:cross_encoder}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1aaf3f7-3eae-4eed-8ff1-bf296553307e",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "7b629633-0cbb-483a-9d7b-c4b433c15d07",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+      "content": "\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.\n\n  \\item \\textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\\ref{sec:cross_encoder}).",
+      "numLines": 4,
+      "startLine": 24,
+      "totalLines": 31
+    }
+  },
+  "sourceToolAssistantUUID": "f1aaf3f7-3eae-4eed-8ff1-bf296553307e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 132 · 2026-05-20T09:38:25.960Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T28xkNqqKAPWF6CRAA8uSE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+  "offset": 24,
+  "limit": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdb68f05-4d1d-4242-ad48-94a55adb9be5",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbMcBRNZ6SxD9DgTrD",
+  "type": "assistant",
+  "uuid": "f1aaf3f7-3eae-4eed-8ff1-bf296553307e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdJgzWMjPym24c9MFK5tXt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 105723,
+      "output_tokens": 261,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 261,
+          "cache_read_input_tokens": 105723,
+          "cache_creation_input_tokens": 1056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 133_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "7b629633-0cbb-483a-9d7b-c4b433c15d07",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 135 · 2026-05-20T09:38:30.434Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MeehFGamoJ63WLmHy3SmLh`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+  "old_string": "Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.",
+  "new_string": "Mean pooling matches BiGRU and turn-order shuffling produces $|\\Delta| < 1$\\,pp across two encoders (Section~\\ref{sec:decomposition}), confirming detection relies on turn-level features rather than sequential order."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b629633-0cbb-483a-9d7b-c4b433c15d07",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbmDzVoPooMRA1hYwy",
+  "type": "assistant",
+  "uuid": "c1a06744-47a6-45a7-b7a0-dde7069a7c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181BGXGTz3AgmMpNsnE2jxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 106779,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 106779,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 136 · 2026-05-20T09:38:30.460Z_
+
+<details><summary>↩ Tool result · `toolu_01MeehFGamoJ63WLmHy3SmLh`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1a06744-47a6-45a7-b7a0-dde7069a7c3c",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "6946a49f-4e8c-4ea8-bc96-5d8947b1d90c",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+    "oldString": "Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.",
+    "newString": "Mean pooling matches BiGRU and turn-order shuffling produces $|\\Delta| < 1$\\,pp across two encoders (Section~\\ref{sec:decomposition}), confirming detection relies on turn-level features rather than sequential order.",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 17,
+        "oldLines": 7,
+        "newStart": 17,
+        "newLines": 7,
+        "lines": [
+          " Scrambled labels match correct labels within 3.9\\,pp. Post-hoc hypotheses include regularization equivalence (any multi-class cross-entropy provides comparable structure), gradient diversity from 9 vs.\\ 2 classes, and domain exposure dominance. Distinguishing these requires varying class count while holding domain exposure constant.",
+          " ",
+          " \\paragraph{Encoder capacity and temporal modeling.}",
+          "-Our three encoders (125M--355M) span a 2.8$\\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU (Section~\\ref{sec:decomposition}), suggesting detection relies on turn-level features rather than sequential order.",
+          "+Our three encoders (125M--355M) span a 2.8$\\times$ capacity range but differ in pretraining and tokenization; same-architecture scaling is needed to confirm. Mean pooling matches BiGRU and turn-order shuffling produces $|\\Delta| < 1$\\,pp across two encoders (Section~\\ref{sec:decomposition}), confirming detection relies on turn-level features rather than sequential order.",
+          " ",
+          " \\section{Conclusion}",
+          " \\label{sec:conclusion}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "c1a06744-47a6-45a7-b7a0-dde7069a7c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 137 · 2026-05-20T09:38:31.581Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BDBTQ1tv7doofyFu72ozaE`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+  "old_string": "Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization.",
+  "new_string": "Three negative results---scrambled labels match correct, temporal order is irrelevant (mean pooling matches BiGRU; shuffling $|\\Delta| < 1$\\,pp across encoders), and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6946a49f-4e8c-4ea8-bc96-5d8947b1d90c",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbmDzVoPooMRA1hYwy",
+  "type": "assistant",
+  "uuid": "409f53ad-99c4-4d46-830a-087b2a9a45f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181BGXGTz3AgmMpNsnE2jxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 106779,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 106779,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 138 · 2026-05-20T09:38:33.034Z_
+
+<details><summary>↩ Tool result · `toolu_01Uk7fYFgehBiRxy5K5S2CWf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d34dab7e-521d-4c00-ad5e-c2df629eb8a4",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "3b9e88aa-dc64-4def-b06c-f50118b8e31e",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+    "oldString": "Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.",
+    "newString": "Three negative results are counter-intuitive: scrambled labels match correct labels, temporal order is irrelevant (mean pooling and turn-order shuffling confirm order-invariance across encoders), and label granularity does not affect detection.",
+    "originalFile": "% introduction.tex — expanded for 8-page target\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} identify strategies in 97\\% of successful attacks. Because individual attack turns occupy the same embedding region as benign text~\\citep{bullwinkel2025repeng}, no single-turn filter can distinguish them from legitimate conversation.\n\nExisting defenses leave a critical gap. Production classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and therefore miss manipulation that unfolds across exchanges. Multi-turn defenses have begun to model conversation-level structure: DeepContext~\\citep{deepcontext2026} pairs fine-tuned BERT with a multi-layer GRU, BIID~\\citep{tong2025biid} infers turn-level intentions, and G-Guard~\\citep{gguard2025} applies graph neural networks. These systems achieve strong in-distribution performance, but each is evaluated on a single attack family. None answers the central question: \\emph{what representation properties enable a detector to generalize across attack families it has never seen?}\n\nThe simplest hypothesis is that pretrained language understanding already suffices. It does not, at least at base model scale. A vanilla DeBERTa-v3~\\citep{he2021deberta} with temporal aggregation (cf.\\ DeepContext) drops from F1\\,=\\,1.000 in-distribution to 0.312 on out-of-distribution (OOD) Deceptive Delight. LLM-as-judge approaches fare no better: GPT-5.5 reaches only 0.191--0.449 F1 with 30--47\\% unparseable responses (Appendix~\\ref{sec:llm_judge}). These failures share a root cause: neither model has been exposed to multi-turn adversarial text. The bottleneck is distributional, not architectural: cross-attack generalization requires domain adaptation, not a better classifier.\n\nWe test this hypothesis through controlled ablation. Our pipeline, \\textbf{DisPeD} (Disentangled Persuasion Detection), separates encoder adaptation (Stage~1) from temporal classification (Stage~2, a frozen BiGRU; Figure~\\ref{fig:architecture}). Seven Stage~1 variants each test a single factor (e.g., domain exposure, label quality, temporal modeling) while holding all other components constant (Section~\\ref{sec:method}). The contribution is the systematic decomposition of what enables cross-attack generalization, not the pipeline itself.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig1_architecture.pdf}\n\\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}\n\\label{fig:architecture}\n\\end{figure}\n\nControlled ablation across DeBERTa-v3 and RoBERTa~\\citep{liu2019roberta} on four attack families and two training compositions shows that for base-size encoders (125--184M), classification-based adaptation is the most robust variant across synthetic multi-turn OOD attacks. Continued pretraining closes $\\sim$60\\,pp on single-source data but collapses on mixed-LLM training (DD OOD F1\\,=\\,0.818 vs.\\ 0.291). This dependence diminishes with scale: RoBERTa-large (355M) handles even ActorAttack~\\citep{ren2024actorattack} without adaptation. A variance reduction of 4--20$\\times$ is observed (3 seeds) for classification supervision on synthetic data but not on human-authored conversations (Section~\\ref{sec:human_data}).\n\nOur contributions:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.\n\n  \\item \\textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\\ref{sec:cross_encoder}).\n\n  \\item \\textbf{Condition-dependent adaptation effects.} A variance reduction of 4--20$\\times$ is observed (3 seeds) on synthetic data, but this benefit reverses on human-authored data. Mixed-LLM training validates that classification-based DAPT remains the strongest variant across training compositions, though the magnitude of advantage varies by attack complexity (Section~\\ref{sec:discussion}). The 9-class taxonomy enables interpretable strategy characterization (Section~\\ref{sec:strategy}).\n\\end{itemize}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 22,
+        "oldLines": 7,
+        "newStart": 22,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Our contributions:",
+          " \\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]",
+          "-  \\item \\textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.",
+          "+  \\item \\textbf{Systematic decomposition of cross-attack generalization.} Controlled ablation across thirteen encoder configurations, three OOD attack families, and two training compositions identifies classification-based domain adaptation as the most robust variant within synthetic multi-turn evaluation; unsupervised pretraining is effective on single-source data but collapses on mixed-LLM training. Three negative results are counter-intuitive: scrambled labels match correct labels, temporal order is irrelevant (mean pooling and turn-order shuffling confirm order-invariance across encoders), and label granularity does not affect detection.",
+          " ",
+          "   \\item \\textbf{Capacity-dependent observation on domain adaptation.} Three encoder scales (125M, 184M, 355M) show that the set of attacks requiring adaptation shrinks with model size; RoBERTa-large handles structurally complex attacks without any adaptation (Section~\\ref{sec:cross_encoder}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "d34dab7e-521d-4c00-ad5e-c2df629eb8a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 139 · 2026-05-20T09:38:31.602Z_
+
+<details><summary>↩ Tool result · `toolu_01BDBTQ1tv7doofyFu72ozaE`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "409f53ad-99c4-4d46-830a-087b2a9a45f3",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "9cc402f2-ea5e-4f75-a32d-e125de65bfdd",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+    "oldString": "Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization.",
+    "newString": "Three negative results---scrambled labels match correct, temporal order is irrelevant (mean pooling matches BiGRU; shuffling $|\\Delta| < 1$\\,pp across encoders), and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization.",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 23,
+        "oldLines": 7,
+        "newStart": 23,
+        "newLines": 7,
+        "lines": [
+          " \\label{sec:conclusion}",
+          " ",
+          " On synthetic multi-turn data generated by a single LLM, classification-based DAPT is the most robust adaptation for base-size encoders; unsupervised pretraining closes $\\sim$60\\,pp on single-source data but collapses on mixed-LLM training. Fewer attacks require adaptation as model size grows, and a variance reduction of 4--20$\\times$ is observed (3 seeds) on synthetic data but reverses on human data.",
+          "-Three negative results---scrambled labels match correct, mean pooling matches BiGRU, and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.",
+          "+Three negative results---scrambled labels match correct, temporal order is irrelevant (mean pooling matches BiGRU; shuffling $|\\Delta| < 1$\\,pp across encoders), and domain specificity is marginal---constrain which adaptation properties matter for cross-attack generalization. Lightweight continued pretraining offers a practical alternative to LLM-as-judge approaches for real-time multi-turn safety monitoring.",
+          " ",
+          " \\section{Limitations}",
+          " \\label{sec:limitations}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "409f53ad-99c4-4d46-830a-087b2a9a45f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 140 · 2026-05-20T09:38:33.025Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Uk7fYFgehBiRxy5K5S2CWf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+  "old_string": "Three negative results are counter-intuitive: scrambled labels match correct labels, mean pooling matches BiGRU, and label granularity does not affect detection.",
+  "new_string": "Three negative results are counter-intuitive: scrambled labels match correct labels, temporal order is irrelevant (mean pooling and turn-order shuffling confirm order-invariance across encoders), and label granularity does not affect detection."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cc402f2-ea5e-4f75-a32d-e125de65bfdd",
+  "isSidechain": false,
+  "requestId": "req_011CbDbbmDzVoPooMRA1hYwy",
+  "type": "assistant",
+  "uuid": "d34dab7e-521d-4c00-ad5e-c2df629eb8a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181BGXGTz3AgmMpNsnE2jxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 106779,
+      "output_tokens": 620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 620,
+          "cache_read_input_tokens": 106779,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 141 · 2026-05-20T09:38:33.106Z_
+
+```json
+{
+  "parentUuid": "3b9e88aa-dc64-4def-b06c-f50118b8e31e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b7ab1a1c-de30-4605-b50d-e6583c21e4c0",
+  "timestamp": "2026-05-20T09:38:33.106Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 142 · 2026-05-20T09:38:37.258Z_
+
+Phase C+D 完成。所有 4 处修改已同步到 `docs/paper/` 和 `paper/` 两个目录。
+
+Phase E — 验证。运行 consistency check 和编译检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7ab1a1c-de30-4605-b50d-e6583c21e4c0",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcHYPUv5N2iAdQyejS",
+  "type": "assistant",
+  "uuid": "c388a8ed-04e6-4a9f-a518-238499743034",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjXR7EPHCfqJQuMLiDV4PZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 107637,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 107637,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 143 · 2026-05-20T09:38:37.761Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_paper_consistency · `toolu_01To4CWko9wnpRzwMDAUXrig`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c388a8ed-04e6-4a9f-a518-238499743034",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcHYPUv5N2iAdQyejS",
+  "type": "assistant",
+  "uuid": "6ea5341a-4142-41f6-bab6-57577086417f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjXR7EPHCfqJQuMLiDV4PZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 107637,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 107637,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 144 · 2026-05-20T09:38:37.785Z_
+
+<details><summary>↩ Tool result · `toolu_01To4CWko9wnpRzwMDAUXrig`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\", \"sections\": [{\"file\": \"abstract.tex\", \"role\": \"headline\", \"num_numbers\": 2, \"num_cites\": 0}, {\"file\": \"checklist.tex\", \"role\": \"other\", \"num_numbers\": 3, \"num_cites\": 3}, {\"file\": \"conclusion.tex\", \"role\": \"headline\", \"num_numbers\": 49, \"num_cites\": 3}, {\"file\": \"experiments.tex\", \"role\": \"result\", \"num_numbers\": 169, \"num_cites\": 11}, {\"file\": \"introduction.tex\", \"role\": \"intro\", \"num_numbers\": 7, \"num_cites\": 15}, {\"file\": \"method.tex\", \"role\": \"other\", \"num_numbers\": 7, \"num_cites\": 5}, {\"file\": \"related_work.tex\", \"role\": \"other\", \"num_numbers\": 0, \"num_cites\": 48}], \"critical\": [{\"kind\": \"unsupported_headline_number\", \"message\": \"Number 2.8 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.37 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.43 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 30.7 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.625 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}], \"warning\": [{\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 1.00, but result section reports 1.000. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 1.00, but result section reports 1.0. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.893, but result section reports 0.89. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.141, but result section reports 0.14. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.004, but result section reports 0.00. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\", \"location\": \"conclusion\"}], \"info\": [{\"kind\": \"notation_per_section\", \"message\": \"Inline math symbols collected per section.\", \"data\": {\"abstract\": [\"\\\\times\"], \"checklist\": [\"\\\\kappa\", \"\\\\pm\"], \"conclusion\": [\"\\\\Delta\", \"\\\\approx\", \"\\\\geq\", \"\\\\gg\", \"\\\\kappa\", \"\\\\leq\", \"\\\\pm\", \"\\\\sim\", \"\\\\times\"], \"experiments\": [\"\\\\Delta\", \"\\\\S\", \"\\\\approx\", \"\\\\dagger\", \"\\\\ddagger\", \"\\\\delta\", \"\\\\geq\", \"\\\\kappa\", \"\\\\leq\", \"\\\\ll\", \"\\\\pm\", \"\\\\sim\", \"\\\\times\", \"\\\\to\"], \"introduction\": [\"\\\\sim\", \"\\\\times\"], \"method\": [\"\\\\alpha\", \"\\\\bar\", \"\\\\cdot\", \"\\\\hat\", \"\\\\in\", \"\\\\kappa\", \"\\\\ldots\", \"\\\\overleftarrow\", \"\\\\overrightarrow\", \"\\\\to\"]}}], \"summary\": {\"critical\": 9, \"warning\": 9, \"info\": 1}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ea5341a-4142-41f6-bab6-57577086417f",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "57eaa568-7ec1-4774-8b7b-0e7fa5858be5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\\\", \\\"sections\\\": [{\\\"file\\\": \\\"abstract.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 2, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"checklist.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 3, \\\"num_cites\\\": 3}, {\\\"file\\\": \\\"conclusion.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 49, \\\"num_cites\\\": 3}, {\\\"file\\\": \\\"experiments.tex\\\", \\\"role\\\": \\\"result\\\", \\\"num_numbers\\\": 169, \\\"num_cites\\\": 11}, {\\\"file\\\": \\\"introduction.tex\\\", \\\"role\\\": \\\"intro\\\", \\\"num_numbers\\\": 7, \\\"num_cites\\\": 15}, {\\\"file\\\": \\\"method.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 7, \\\"num_cites\\\": 5}, {\\\"file\\\": \\\"related_work.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 0, \\\"num_cites\\\": 48}], \\\"critical\\\": [{\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 2.8 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.37 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.43 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 30.7 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.625 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"unsupported_headline_number\\\", \\\"message\\\": \\\"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\\\", \\\"location\\\": \\\"conclusion\\\"}], \\\"warning\\\": [{\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 1.00, but result section reports 1.000. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 1.00, but result section reports 1.0. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.893, but result section reports 0.89. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.141, but result section reports 0.14. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.004, but result section reports 0.00. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}, {\\\"kind\\\": \\\"precision_mismatch\\\", \\\"message\\\": \\\"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\\\", \\\"location\\\": \\\"conclusion\\\"}], \\\"info\\\": [{\\\"kind\\\": \\\"notation_per_section\\\", \\\"message\\\": \\\"Inline math symbols collected per section.\\\", \\\"data\\\": {\\\"abstract\\\": [\\\"\\\\\\\\times\\\"], \\\"checklist\\\": [\\\"\\\\\\\\kappa\\\", \\\"\\\\\\\\pm\\\"], \\\"conclusion\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\approx\\\", \\\"\\\\\\\\geq\\\", \\\"\\\\\\\\gg\\\", \\\"\\\\\\\\kappa\\\", \\\"\\\\\\\\leq\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\times\\\"], \\\"experiments\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\S\\\", \\\"\\\\\\\\approx\\\", \\\"\\\\\\\\dagger\\\", \\\"\\\\\\\\ddagger\\\", \\\"\\\\\\\\delta\\\", \\\"\\\\\\\\geq\\\", \\\"\\\\\\\\kappa\\\", \\\"\\\\\\\\leq\\\", \\\"\\\\\\\\ll\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\times\\\", \\\"\\\\\\\\to\\\"], \\\"introduction\\\": [\\\"\\\\\\\\sim\\\", \\\"\\\\\\\\times\\\"], \\\"method\\\": [\\\"\\\\\\\\alpha\\\", \\\"\\\\\\\\bar\\\", \\\"\\\\\\\\cdot\\\", \\\"\\\\\\\\hat\\\", \\\"\\\\\\\\in\\\", \\\"\\\\\\\\kappa\\\", \\\"\\\\\\\\ldots\\\", \\\"\\\\\\\\overleftarrow\\\", \\\"\\\\\\\\overrightarrow\\\", \\\"\\\\\\\\to\\\"]}}], \\\"summary\\\": {\\\"critical\\\": 9, \\\"warning\\\": 9, \\\"info\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\", \"sections\": [{\"file\": \"abstract.tex\", \"role\": \"headline\", \"num_numbers\": 2, \"num_cites\": 0}, {\"file\": \"checklist.tex\", \"role\": \"other\", \"num_numbers\": 3, \"num_cites\": 3}, {\"file\": \"conclusion.tex\", \"role\": \"headline\", \"num_numbers\": 49, \"num_cites\": 3}, {\"file\": \"experiments.tex\", \"role\": \"result\", \"num_numbers\": 169, \"num_cites\": 11}, {\"file\": \"introduction.tex\", \"role\": \"intro\", \"num_numbers\": 7, \"num_cites\": 15}, {\"file\": \"method.tex\", \"role\": \"other\", \"num_numbers\": 7, \"num_cites\": 5}, {\"file\": \"related_work.tex\", \"role\": \"other\", \"num_numbers\": 0, \"num_cites\": 48}], \"critical\": [{\"kind\": \"unsupported_headline_number\", \"message\": \"Number 2.8 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.37 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.43 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.80 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 30.7 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.625 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}, {\"kind\": \"unsupported_headline_number\", \"message\": \"Number 0.889 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.\", \"location\": \"conclusion\"}], \"warning\": [{\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.041, but result section reports 0.04. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 1.00, but result section reports 1.000. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 1.00, but result section reports 1.0. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.893, but result section reports 0.89. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.141, but result section reports 0.14. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.004, but result section reports 0.00. Same metric must use identical precision.\", \"location\": \"conclusion\"}, {\"kind\": \"precision_mismatch\", \"message\": \"Headline section 'conclusion' reports 0.913, but result section reports 0.91. Same metric must use identical precision.\", \"location\": \"conclusion\"}], \"info\": [{\"kind\": \"notation_per_section\", \"message\": \"Inline math symbols collected per section.\", \"data\": {\"abstract\": [\"\\\\times\"], \"checklist\": [\"\\\\kappa\", \"\\\\pm\"], \"conclusion\": [\"\\\\Delta\", \"\\\\approx\", \"\\\\geq\", \"\\\\gg\", \"\\\\kappa\", \"\\\\leq\", \"\\\\pm\", \"\\\\sim\", \"\\\\times\"], \"experiments\": [\"\\\\Delta\", \"\\\\S\", \"\\\\approx\", \"\\\\dagger\", \"\\\\ddagger\", \"\\\\delta\", \"\\\\geq\", \"\\\\kappa\", \"\\\\leq\", \"\\\\ll\", \"\\\\pm\", \"\\\\sim\", \"\\\\times\", \"\\\\to\"], \"introduction\": [\"\\\\sim\", \"\\\\times\"], \"method\": [\"\\\\alpha\", \"\\\\bar\", \"\\\\cdot\", \"\\\\hat\", \"\\\\in\", \"\\\\kappa\", \"\\\\ldots\", \"\\\\overleftarrow\", \"\\\\overrightarrow\", \"\\\\to\"]}}], \"summary\": {\"critical\": 9, \"warning\": 9, \"info\": 1}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6ea5341a-4142-41f6-bab6-57577086417f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 145 · 2026-05-20T09:38:38.415Z_
+
+<details><summary>↩ Tool result · `toolu_01Hjhpk2HF8wLFiuDyRjhTaD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__paper_compile_and_check"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__check_provenance_completeness"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85bf7667-73fc-4feb-a5a3-913ecf33e44a",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "073dfa7d-6b60-405a-bcca-e3040eb25ece",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__check_provenance_completeness"
+    ],
+    "query": "select:mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__check_provenance_completeness",
+    "total_deferred_tools": 51
+  },
+  "sourceToolAssistantUUID": "85bf7667-73fc-4feb-a5a3-913ecf33e44a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 146 · 2026-05-20T09:38:38.412Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Hjhpk2HF8wLFiuDyRjhTaD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__paper_compile_and_check,mcp__agent-ml-research__check_provenance_completeness",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57eaa568-7ec1-4774-8b7b-0e7fa5858be5",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcHYPUv5N2iAdQyejS",
+  "type": "assistant",
+  "uuid": "85bf7667-73fc-4feb-a5a3-913ecf33e44a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjXR7EPHCfqJQuMLiDV4PZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 107637,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 107637,
+          "cache_creation_input_tokens": 998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "073dfa7d-6b60-405a-bcca-e3040eb25ece",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 148_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 149 · 2026-05-20T09:38:47.754Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The consistency check returned 9 critical and 9 warning issues. Let me analyze them:
+
+**Critical issues**: All are "unsupported_headline_number" in the conclusion section. Numbers like 2.8, 0.889, 0.80, 0.37, 0.43, 30.7, 0.625 appear in the conclusion/limitations but not in experiments. These are pre-existing issues (from the Limitations section which references numbers from appendix tables, not main experiments), not caused by my edits. The conclusion.tex has a long Limitations section that references many numbers.
+
+**Warning issues**: All are precision mismatches between conclusion and experiments. Also pre-existing.
+
+
+These issues aren't related to my shuffle changes since the Δ values only appear in the experiments section. Now I need to compile the document to check the page count and ensure there are no compilation errors, then run the provenance check as required.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "073dfa7d-6b60-405a-bcca-e3040eb25ece",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcgtLFR9fasnTHTD9g",
+  "type": "assistant",
+  "uuid": "5b7d0ba7-2cf8-44b7-8f14-07da860e3a5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsqZyawMUUmfLWV4aiH7oX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2925,
+      "cache_read_input_tokens": 108635,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 108635,
+          "cache_creation_input_tokens": 2925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 150 · 2026-05-20T09:38:48.138Z_
+
+Consistency check 返回 9 critical + 9 warning，全部是**预先存在的问题**（conclusion/limitations 中引用了 appendix 数据，非 experiments section 中的数字）。与本次 shuffle 修改无关。
+
+编译检查确认页数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b7d0ba7-2cf8-44b7-8f14-07da860e3a5a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcgtLFR9fasnTHTD9g",
+  "type": "assistant",
+  "uuid": "d9d6dc6f-a472-4a4c-988b-2f359439c4b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsqZyawMUUmfLWV4aiH7oX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2925,
+      "cache_read_input_tokens": 108635,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 108635,
+          "cache_creation_input_tokens": 2925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 151 · 2026-05-20T09:38:49.021Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_compile_and_check · `toolu_016gNc1FBHFGH2wKNyU9bAwR`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "max_pages": 8,
+  "preview": false
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9d6dc6f-a472-4a4c-988b-2f359439c4b4",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcgtLFR9fasnTHTD9g",
+  "type": "assistant",
+  "uuid": "5b308013-f091-4948-8f4b-203ec1a4028a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsqZyawMUUmfLWV4aiH7oX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2925,
+      "cache_read_input_tokens": 108635,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 108635,
+          "cache_creation_input_tokens": 2925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 152 · 2026-05-20T09:38:49.035Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_provenance_completeness · `toolu_016odgDSop3rAk97RkSytQeF`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b308013-f091-4948-8f4b-203ec1a4028a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbcgtLFR9fasnTHTD9g",
+  "type": "assistant",
+  "uuid": "f16dc8a1-920f-4e2d-b48b-cbf834163927",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsqZyawMUUmfLWV4aiH7oX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2925,
+      "cache_read_input_tokens": 108635,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 108635,
+          "cache_creation_input_tokens": 2925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 153 · 2026-05-20T09:38:52.686Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016gNc1FBHFGH2wKNyU9bAwR`</summary>
+
+```text
+Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0xa2 in position 11554: invalid start byte
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b308013-f091-4948-8f4b-203ec1a4028a",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "35224cbb-0a17-473a-9a34-70452c5d5c68",
+  "toolUseResult": "Error: Error executing tool paper_compile_and_check: 'utf-8' codec can't decode byte 0xa2 in position 11554: invalid start byte",
+  "sourceToolAssistantUUID": "5b308013-f091-4948-8f4b-203ec1a4028a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 154 · 2026-05-20T09:38:53.046Z_
+
+<details><summary>↩ Tool result · `toolu_016odgDSop3rAk97RkSytQeF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"coverage\": \"39/39\", \"claims\": 39, \"tables\": 0, \"figures\": 0, \"tier_counts\": {\"tier1\": 0, \"tier2\": 39, \"tier3\": 0, \"tierX\": 0}, \"last_checked\": \"2026-05-20T09:38:53.013380+00:00\", \"issues\": [\"Claim C020: references non-existent experiment plan_017\", \"Claim C023: references non-existent experiment plan_017\", \"386 unmapped number(s) in .tex files\"], \"unmapped_numbers\": [\"abstract: 0.818\", \"abstract: 0.291\", \"appendix: 5.5\", \"appendix: 5.5\", \"appendix: 1.000\", \"appendix: 5.5\", \"appendix: 1.0\", \"appendix: 0.105\", \"appendix: 0.290\", \"appendix: 0.383\", \"appendix: 0.100\", \"appendix: 0.244\", \"appendix: 0.566\", \"appendix: 0.652\", \"appendix: 0.972\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\"], \"unmapped_figures\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f16dc8a1-920f-4e2d-b48b-cbf834163927",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "4a804fe5-2a00-4f2e-9993-354a8196a24e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"coverage\\\": \\\"39/39\\\", \\\"claims\\\": 39, \\\"tables\\\": 0, \\\"figures\\\": 0, \\\"tier_counts\\\": {\\\"tier1\\\": 0, \\\"tier2\\\": 39, \\\"tier3\\\": 0, \\\"tierX\\\": 0}, \\\"last_checked\\\": \\\"2026-05-20T09:38:53.013380+00:00\\\", \\\"issues\\\": [\\\"Claim C020: references non-existent experiment plan_017\\\", \\\"Claim C023: references non-existent experiment plan_017\\\", \\\"386 unmapped number(s) in .tex files\\\"], \\\"unmapped_numbers\\\": [\\\"abstract: 0.818\\\", \\\"abstract: 0.291\\\", \\\"appendix: 5.5\\\", \\\"appendix: 5.5\\\", \\\"appendix: 1.000\\\", \\\"appendix: 5.5\\\", \\\"appendix: 1.0\\\", \\\"appendix: 0.105\\\", \\\"appendix: 0.290\\\", \\\"appendix: 0.383\\\", \\\"appendix: 0.100\\\", \\\"appendix: 0.244\\\", \\\"appendix: 0.566\\\", \\\"appendix: 0.652\\\", \\\"appendix: 0.972\\\", \\\"appendix: 1.000\\\", \\\"appendix: 1.000\\\", \\\"appendix: 1.000\\\", \\\"appendix: 1.000\\\", \\\"appendix: 1.000\\\"], \\\"unmapped_figures\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"coverage\": \"39/39\", \"claims\": 39, \"tables\": 0, \"figures\": 0, \"tier_counts\": {\"tier1\": 0, \"tier2\": 39, \"tier3\": 0, \"tierX\": 0}, \"last_checked\": \"2026-05-20T09:38:53.013380+00:00\", \"issues\": [\"Claim C020: references non-existent experiment plan_017\", \"Claim C023: references non-existent experiment plan_017\", \"386 unmapped number(s) in .tex files\"], \"unmapped_numbers\": [\"abstract: 0.818\", \"abstract: 0.291\", \"appendix: 5.5\", \"appendix: 5.5\", \"appendix: 1.000\", \"appendix: 5.5\", \"appendix: 1.0\", \"appendix: 0.105\", \"appendix: 0.290\", \"appendix: 0.383\", \"appendix: 0.100\", \"appendix: 0.244\", \"appendix: 0.566\", \"appendix: 0.652\", \"appendix: 0.972\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\", \"appendix: 1.000\"], \"unmapped_figures\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f16dc8a1-920f-4e2d-b48b-cbf834163927",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 155 · 2026-05-20T09:39:01.075Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Two things:
+1. `paper_compile_and_check` failed with the known UTF-8 bug (mentioned in ROADMAP: "paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码）"). This is a known issue, not related to my changes.
+
+2. `check_provenance_completeness` shows:
+   - Coverage: 39/39 (100%)
+   - All Tier 2, no Tier 3 (well within the 30% threshold)
+   - Pre-existing issues like C020/C023 referencing non-existent experiment plan_017 and unmapped numbers in the appendix/abstract remain, but my changes didn't introduce anything new.
+
+The compile failure is due to that UTF-8 bug, so I should try compiling manually to check the page count.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a804fe5-2a00-4f2e-9993-354a8196a24e",
+  "isSidechain": false,
+  "requestId": "req_011CbDbdkn1qUgSmnEGfHdxw",
+  "type": "assistant",
+  "uuid": "102ca36c-1034-4766-beeb-c50fae31a787",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017enke7U3JinKrHDw7k7C3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 111560,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 111560,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 156 · 2026-05-20T09:39:01.076Z_
+
+编译工具遇到已知 UTF-8 bug（ROADMAP 中有记录）。手动编译验证页数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "102ca36c-1034-4766-beeb-c50fae31a787",
+  "isSidechain": false,
+  "requestId": "req_011CbDbdkn1qUgSmnEGfHdxw",
+  "type": "assistant",
+  "uuid": "3510a23c-7170-4ddf-9aeb-90e44e4d9a0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017enke7U3JinKrHDw7k7C3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 111560,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 111560,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 157 · 2026-05-20T09:39:01.274Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018dd9Yftjf4uB2bQHshJqNo`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "description": "Compile paper to check page count",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3510a23c-7170-4ddf-9aeb-90e44e4d9a0a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbdkn1qUgSmnEGfHdxw",
+  "type": "assistant",
+  "uuid": "a1dde9c9-4df5-4c9b-8e69-f0db7c2e723c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017enke7U3JinKrHDw7k7C3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 111560,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 111560,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 158 · 2026-05-20T09:39:02.419Z_
+
+<details><summary>↩ Tool result · `toolu_018dd9Yftjf4uB2bQHshJqNo`</summary>
+
+```text
+1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (18 pages, 424635 bytes).
+Transcript written on main.log.
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1dde9c9-4df5-4c9b-8e69-f0db7c2e723c",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "734440ed-1a15-4d8d-afb4-556c9376da6a",
+  "toolUseResult": {
+    "stdout": "1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 424635 bytes).\nTranscript written on main.log.",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "a1dde9c9-4df5-4c9b-8e69-f0db7c2e723c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 159 · 2026-05-20T09:39:06.511Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LDUqwLMc3ejDSDDeJYngZw`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && grep -c \"undefined\" main.log | head -1 && grep \"Output written\" main.log",
+  "description": "Check for undefined references and page count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "734440ed-1a15-4d8d-afb4-556c9376da6a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbeUEdVVZfXL9uuDzj7",
+  "type": "assistant",
+  "uuid": "9dad6df3-ba88-4478-9011-6c80fadcf96b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bJmsYF6CVHqLp7h9hjUXm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 112571,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 112571,
+          "cache_creation_input_tokens": 616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 160 · 2026-05-20T09:39:06.579Z_
+
+<details><summary>↩ Tool result · `toolu_01LDUqwLMc3ejDSDDeJYngZw`</summary>
+
+```text
+0
+Output written on main.pdf (18 pages, 424635 bytes).
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9dad6df3-ba88-4478-9011-6c80fadcf96b",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "31fe7ff0-6355-4fb2-9fcc-15c5e1c5d883",
+  "toolUseResult": {
+    "stdout": "0\nOutput written on main.pdf (18 pages, 424635 bytes).",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "9dad6df3-ba88-4478-9011-6c80fadcf96b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 161 · 2026-05-20T09:39:16.897Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, 18 pages total, but the ROADMAP said 17 pages total. Let me check this more carefully. The page count includes appendix, checklist, etc. The key constraint is 8 pages of main text. Let me check if main text is still within 8 pages.
+
+Let me run pdflatex twice to get proper cross-references, then check where the Limitations section starts (that's where main text ends and appendix begins).
+
+Actually, I need to check more carefully. The previous state was "8 页正文 + limitations/appendix/checklist (17 页总计)". 
+
+The extra page might just be from my recent edits or from needing a full compilation cycle with multiple passes. Let me run through the complete LaTeX compilation process to get accurate page counts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31fe7ff0-6355-4fb2-9fcc-15c5e1c5d883",
+  "isSidechain": false,
+  "requestId": "req_011CbDbekfqcaoBR3Z9rETm8",
+  "type": "assistant",
+  "uuid": "c51d0907-a84b-4b02-9ef9-5b83e0c06c01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RHjLUK9AGRZ2SpcAxf7xUo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 113187,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 113187,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 219
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 162 · 2026-05-20T09:39:16.898Z_
+
+18 页总计（之前 17 页）。让我做完整编译确认正文是否仍在 8 页内。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c51d0907-a84b-4b02-9ef9-5b83e0c06c01",
+  "isSidechain": false,
+  "requestId": "req_011CbDbekfqcaoBR3Z9rETm8",
+  "type": "assistant",
+  "uuid": "1f154e0b-5ad7-4755-9cb7-56fa76383731",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RHjLUK9AGRZ2SpcAxf7xUo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 113187,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 113187,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 219
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 163 · 2026-05-20T09:39:17.412Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GpU3gzJy3NXnxFfSnR3Lna`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && grep \"Output written\" main.log",
+  "description": "Full compilation (3 passes + bibtex)",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f154e0b-5ad7-4755-9cb7-56fa76383731",
+  "isSidechain": false,
+  "requestId": "req_011CbDbekfqcaoBR3Z9rETm8",
+  "type": "assistant",
+  "uuid": "9760e0e3-06dc-490f-aaf3-047c38acd625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RHjLUK9AGRZ2SpcAxf7xUo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 113187,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 113187,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 219
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 164 · 2026-05-20T09:39:20.349Z_
+
+<details><summary>↩ Tool result · `toolu_01GpU3gzJy3NXnxFfSnR3Lna`</summary>
+
+```text
+Output written on main.pdf (18 pages, 424491 bytes).
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9760e0e3-06dc-490f-aaf3-047c38acd625",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "738b2721-c168-48bf-88a8-3d44312accf5",
+  "toolUseResult": {
+    "stdout": "Output written on main.pdf (18 pages, 424491 bytes).",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "9760e0e3-06dc-490f-aaf3-047c38acd625",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 165 · 2026-05-20T09:39:20.352Z_
+
+```json
+{
+  "parentUuid": "738b2721-c168-48bf-88a8-3d44312accf5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e3795873-e356-4d1e-8e45-270cfcb569ff",
+  "timestamp": "2026-05-20T09:39:20.352Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 166 · 2026-05-20T09:39:23.606Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still 18 pages. Let me check if the main content is still 8 pages by looking at where the appendix starts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3795873-e356-4d1e-8e45-270cfcb569ff",
+  "isSidechain": false,
+  "requestId": "req_011CbDbfmVV3KpGgztBgjcUQ",
+  "type": "assistant",
+  "uuid": "5d5965ac-49c7-43bd-9283-0b48d171ed0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012NmtimBYG3WiBJWrLwxqNL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 113406,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 113406,
+          "cache_creation_input_tokens": 680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 167 · 2026-05-20T09:39:25.051Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WAytb195uTVfABBzpMv45W`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && grep -n \"\\\\\\\\appendix\\|\\\\\\\\section{Limitations\\|\\\\\\\\section{Conclusion\\|\\\\\\\\bibliography\" main.aux | head -10",
+  "description": "Find where appendix/limitations start in page layout"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d5965ac-49c7-43bd-9283-0b48d171ed0d",
+  "isSidechain": false,
+  "requestId": "req_011CbDbfmVV3KpGgztBgjcUQ",
+  "type": "assistant",
+  "uuid": "fd7331c7-db7b-44bb-ac7b-f1f6e2db1bbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012NmtimBYG3WiBJWrLwxqNL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 680,
+      "cache_read_input_tokens": 113406,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 113406,
+          "cache_creation_input_tokens": 680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 168 · 2026-05-20T09:39:25.129Z_
+
+<details><summary>↩ Tool result · `toolu_01WAytb195uTVfABBzpMv45W`</summary>
+
+```text
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd7331c7-db7b-44bb-ac7b-f1f6e2db1bbd",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "8c364499-7bbe-42bb-a314-9d98dfc3a06e",
+  "toolUseResult": {
+    "stdout": "",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "fd7331c7-db7b-44bb-ac7b-f1f6e2db1bbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 169_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Turn-shuffle ablation encoder 修正 + 跨 encoder 结果补充  **背景**：Reviewer 发现原 shuffle ablation 使用的是 RoBERTa-large (exp15) checkpoint，非 DeBERTa-v3。现已补跑 DeBERTa-v3 9-class shuffle，结果确认 or…",
+  "leafUuid": "8c364499-7bbe-42bb-a314-9d98dfc3a06e",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 170_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 171 · 2026-05-20T09:39:29.246Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01L6oF3coJDzLgzHwA63r2rh`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && grep \"newlabel{sec:limitations}\" main.aux",
+  "description": "Find Limitations section page number"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c364499-7bbe-42bb-a314-9d98dfc3a06e",
+  "isSidechain": false,
+  "requestId": "req_011CbDbg7z2FDJ87YFqLkHGR",
+  "type": "assistant",
+  "uuid": "eff37805-01f1-4dcc-9bb0-d314a5d4828c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018SmEXHXe5fhrxTunm9fbrz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 259,
+      "cache_read_input_tokens": 114086,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 114086,
+          "cache_creation_input_tokens": 259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 172 · 2026-05-20T09:39:29.296Z_
+
+<details><summary>↩ Tool result · `toolu_01L6oF3coJDzLgzHwA63r2rh`</summary>
+
+```text
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eff37805-01f1-4dcc-9bb0-d314a5d4828c",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "66d5afdf-e9e9-45f6-8ca8-3d9f460904bf",
+  "toolUseResult": {
+    "stdout": "\\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "eff37805-01f1-4dcc-9bb0-d314a5d4828c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 173 · 2026-05-20T09:39:34.660Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Limitations starts on page 9. Let me check what's on page 8 — is the Conclusion section ending there?
+
+In EMNLP 2026 format: 8-page main text limit. Limitations don't count. Let me check where the Conclusion ends. If Conclusion ends on page 8 and Limitations starts on page 9, that's fine.
+
+But wait, the previous state said "8 页正文 + limitations/appendix/checklist (17 页总计)" which means Limitations was on page 9. Now it's also on page 9. Let me check where Discussion starts and ends.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66d5afdf-e9e9-45f6-8ca8-3d9f460904bf",
+  "isSidechain": false,
+  "requestId": "req_011CbDbgRoLbPht3PmtrPVLu",
+  "type": "assistant",
+  "uuid": "7ec40950-eb31-490e-b6d1-d1ba2b25eb01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzpjYSAmz7oFCnJojNZTGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 210,
+      "cache_read_input_tokens": 114345,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 114345,
+          "cache_creation_input_tokens": 210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 174 · 2026-05-20T09:39:35.668Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019XKX2LesE4q2pHd6tWoGjJ`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && grep \"newlabel{sec:discussion}\\|newlabel{sec:conclusion}\\|newlabel{sec:llm_judge}\" main.aux",
+  "description": "Check page numbers of key sections"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ec40950-eb31-490e-b6d1-d1ba2b25eb01",
+  "isSidechain": false,
+  "requestId": "req_011CbDbgRoLbPht3PmtrPVLu",
+  "type": "assistant",
+  "uuid": "3e6bd8c0-3f1f-41da-9f9b-3b6d03dddcc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzpjYSAmz7oFCnJojNZTGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 210,
+      "cache_read_input_tokens": 114345,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 114345,
+          "cache_creation_input_tokens": 210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 175 · 2026-05-20T09:39:35.723Z_
+
+<details><summary>↩ Tool result · `toolu_019XKX2LesE4q2pHd6tWoGjJ`</summary>
+
+```text
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\newlabel{sec:llm_judge}{{A}{13}{LLM-as-Judge Baseline}{appendix.A}{}}
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e6bd8c0-3f1f-41da-9f9b-3b6d03dddcc9",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "9ce8a2d1-bc97-49ad-8213-5645d680f33a",
+  "toolUseResult": {
+    "stdout": "\\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}\n\\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}\n\\newlabel{sec:llm_judge}{{A}{13}{LLM-as-Judge Baseline}{appendix.A}{}}",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "3e6bd8c0-3f1f-41da-9f9b-3b6d03dddcc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 176 · 2026-05-20T09:39:42.508Z_
+
+正文仍为 8 页（Discussion 和 Conclusion 在 p8，Limitations 从 p9 开始）。18 页总计 vs 之前 17 页 — 多出 1 页可能是 appendix 文字 reflow，正文页数未变。
+
+Phase E 验证结果：
+- 编译：0 error，8 页正文 ✅
+- Consistency：9 critical + 9 warning **全部预先存在**，与本次修改无关 ✅
+- Provenance：39/39 coverage，全 Tier 2，无 Tier 3 ✅
+- 无需引用验证（Director 指定 `verify_refs=false`）
+
+汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ce8a2d1-bc97-49ad-8213-5645d680f33a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbguCcJTsJM31i9Zrq5",
+  "type": "assistant",
+  "uuid": "8d17d3b9-69c9-46c0-b25f-da33df25526a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011eWkPwAUTjY7gmydiYPnvt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 445,
+      "cache_read_input_tokens": 114555,
+      "output_tokens": 858,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 445,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 858,
+          "cache_read_input_tokens": 114555,
+          "cache_creation_input_tokens": 445,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 445
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 177 · 2026-05-20T09:39:55.115Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_agent_post_to_director · `toolu_01Kc9LXFPs1akGTLaWaSCEzk`</summary>
+
+```json
+{
+  "text": "[写作进展] Patch 完成 — Turn-shuffle ablation 跨 encoder 修正\n\n**修改清单：**\n\n1. **experiments.tex §Temporal modeling**（主修改）：\n   - 原文仅有 mean pooling vs BiGRU，无 shuffle 数据\n   - 新增跨 encoder shuffle 结果 inline：DeBERTa-v3-base 9-class (DD Δ=0.000, AA Δ=−0.009, IID Δ=0.000) + RoBERTa-large 9-class (DD Δ=+0.001, AA Δ=−0.007, IID Δ=0.000)\n   - 删除 `docs/paper/` 中残留的旧 shuffle 文字（含错误的 \"vanilla DeBERTa degrades by 8.8pp\"）\n\n2. **conclusion.tex**（级联 ×2）：\n   - \"Encoder capacity and temporal modeling\" 段落：补充 shuffle 确认\n   - Conclusion 三个 negative results 列表：更新为 \"temporal order is irrelevant (mean pooling matches BiGRU; shuffling |Δ| < 1pp across encoders)\"\n\n3. **introduction.tex**（级联 ×1）：\n   - Contributions 第一项 negative results 列表：更新为 \"temporal order is irrelevant (mean pooling and turn-order shuffling confirm order-invariance across encoders)\"\n\n**验证结果：**\n- 编译 ✅ 8 页正文（Limitations p9），18 页总计\n- Consistency check：9 critical + 9 warning 全部预先存在（conclusion/limitations 引用 appendix 数据），与本次修改无关\n- Provenance：39/39 coverage，全 Tier 2\n- Vanilla shuffle 未在论文中提及（无需标注 \"仅限 RoBERTa-large\"）\n- RoBERTa-large 数据已正确标注 encoder 名称，不再误标为 DeBERTa-v3\n\n**未做引用验证**（Director 指定不验证）。",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d17d3b9-69c9-46c0-b25f-da33df25526a",
+  "isSidechain": false,
+  "requestId": "req_011CbDbguCcJTsJM31i9Zrq5",
+  "type": "assistant",
+  "uuid": "ce87a70a-4612-4629-a4e2-bdc18862d364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011eWkPwAUTjY7gmydiYPnvt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 445,
+      "cache_read_input_tokens": 114555,
+      "output_tokens": 858,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 445,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 858,
+          "cache_read_input_tokens": 114555,
+          "cache_creation_input_tokens": 445,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 445
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 178 · 2026-05-20T09:39:59.017Z_
+
+<details><summary>↩ Tool result · `toolu_01Kc9LXFPs1akGTLaWaSCEzk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce87a70a-4612-4629-a4e2-bdc18862d364",
+  "isSidechain": false,
+  "promptId": "e9d870c1-8d46-4e18-be48-b42853acd9d5",
+  "type": "user",
+  "uuid": "c90a0dc4-6e9f-487a-8cf5-6dfee365dc25",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "ce87a70a-4612-4629-a4e2-bdc18862d364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 179_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 180 · 2026-05-20T09:40:06.156Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T09:40:06.156Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 181 · 2026-05-20T09:40:06.156Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T09:40:06.156Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+## Round 6
+
+## Round 6
+
+2 recorded events
+
+
+### User
+
+_source line 182 · 2026-05-20T09:40:06.144Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c90a0dc4-6e9f-487a-8cf5-6dfee365dc25",
+  "isSidechain": false,
+  "promptId": "ea1f2fa7-72ef-4970-96cc-df0aef3bf96b",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "8786f1f2-56d4-4503-9894-9d62b2a93723",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 183 · 2026-05-20T09:40:06.144Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8786f1f2-56d4-4503-9894-9d62b2a93723",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "c8cb61d8-d5f9-4746-852e-a3bb553dd135",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "915b23c8-614a-4a8d-9171-5a04f820e700",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 7
+
+## Round 7
+
+5 recorded events
+
+
+### User
+
+_source line 184 · 2026-05-20T09:40:06.268Z_
+
+[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8cb61d8-d5f9-4746-852e-a3bb553dd135",
+  "isSidechain": false,
+  "promptId": "ea1f2fa7-72ef-4970-96cc-df0aef3bf96b",
+  "type": "user",
+  "uuid": "73d0e463-40bc-41a2-812b-5bfd1501e68b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 185_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 186 · 2026-05-20T10:14:11.924Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:14:11.924Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[Director 指令] [Patch] 小修——experiments.tex §4.2 Summary 段落加一句防守\n\n在 experiments.tex §4.2 Summary 段落（L139-142 附近）末尾加入一句：\n\n\"DD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.\"\n\n目的：把 \"3 个 OOD 家族\" 的叙事从 \"全部有价值\" 调整为 \"确认 + 确认 + 鉴别\"，主动承认而非等审稿人指出。\n\n仅此一句，不改其他。不验证引用。页数 ≤8 页正文。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 187 · 2026-05-20T10:14:11.924Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:14:11.924Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 188 · 2026-05-20T10:14:11.912Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73d0e463-40bc-41a2-812b-5bfd1501e68b",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "a95b091c-645c-4434-9ab8-afda687c3936",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "25205d18-8975-4e3b-81dd-1704a63b11e0",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 8
+
+## Round 8
+
+25 recorded events
+
+
+### User
+
+_source line 189 · 2026-05-20T10:14:12.022Z_
+
+[Director 指令] [Patch] 小修——experiments.tex §4.2 Summary 段落加一句防守
+
+在 experiments.tex §4.2 Summary 段落（L139-142 附近）末尾加入一句：
+
+"DD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail."
+
+目的：把 "3 个 OOD 家族" 的叙事从 "全部有价值" 调整为 "确认 + 确认 + 鉴别"，主动承认而非等审稿人指出。
+
+仅此一句，不改其他。不验证引用。页数 ≤8 页正文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a95b091c-645c-4434-9ab8-afda687c3936",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "286c1cf6-c0d9-4ef3-959b-c17a74fb9c72",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 190 · 2026-05-20T10:14:16.029Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DV5ufPipUowJcDphdek1hw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+  "offset": 135,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "286c1cf6-c0d9-4ef3-959b-c17a74fb9c72",
+  "isSidechain": false,
+  "requestId": "req_011CbDeKxTLFrcnbxHxHwaxN",
+  "type": "assistant",
+  "uuid": "c4ec2fc9-0a09-4cc7-897c-62fe6a6a56af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HuRis8URDg4Zx9yqWpFb6M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 116031,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 116031,
+          "cache_creation_input_tokens": 211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 191 · 2026-05-20T10:14:16.046Z_
+
+<details><summary>↩ Tool result · `toolu_01DV5ufPipUowJcDphdek1hw`</summary>
+
+```text
+135	\paragraph{Temporal modeling.}
+136	Mean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\leq$ 1\,pp, overlapping CIs).
+137	Turn-order shuffling produces negligible change ($|\Delta| < 1$\,pp) across both DeBERTa-v3-base 9-class (DD $\Delta$\,=\,0.000, AA $\Delta$\,=\,$-$0.009, IID $\Delta$\,=\,0.000) and RoBERTa-large 9-class (DD $\Delta$\,=\,+0.001, AA $\Delta$\,=\,$-$0.007, IID $\Delta$\,=\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.
+138	
+139	\paragraph{Summary.}
+140	For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\times$) without changing the detection ceiling.
+141	
+142	%----------------------------------------------------------------------
+143	\subsection{Cross-Encoder Validation}
+144	\label{sec:cross_encoder}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4ec2fc9-0a09-4cc7-897c-62fe6a6a56af",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "6ed65e97-15fe-424d-91d1-11a5cb37de27",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+      "content": "\\paragraph{Temporal modeling.}\nMean pooling matches BiGRU on both DD and ActorAttack (F1 gap $\\leq$ 1\\,pp, overlapping CIs).\nTurn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.\n\n\\paragraph{Summary.}\nFor base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\n\n%----------------------------------------------------------------------\n\\subsection{Cross-Encoder Validation}\n\\label{sec:cross_encoder}",
+      "numLines": 10,
+      "startLine": 135,
+      "totalLines": 234
+    }
+  },
+  "sourceToolAssistantUUID": "c4ec2fc9-0a09-4cc7-897c-62fe6a6a56af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 192 · 2026-05-20T10:14:21.545Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_01HULDs1kgUvK2W7tyFjHUSu`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "section": "experiments",
+  "old_text": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.",
+  "new_text": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\nDD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ed65e97-15fe-424d-91d1-11a5cb37de27",
+  "isSidechain": false,
+  "requestId": "req_011CbDeLFYjdtQdRhjg8KRta",
+  "type": "assistant",
+  "uuid": "6c6d2781-d0a9-47eb-aa4b-4e676e4b38cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HSvhwaZ7Bb6cYJrkk4azAE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 116242,
+      "output_tokens": 571,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 571,
+          "cache_read_input_tokens": 116242,
+          "cache_creation_input_tokens": 464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 193 · 2026-05-20T10:14:21.567Z_
+
+<details><summary>↩ Tool result · `toolu_01HULDs1kgUvK2W7tyFjHUSu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"old_text not found in section (whitespace-normalized comparison)\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c6d2781-d0a9-47eb-aa4b-4e676e4b38cc",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "a2da1649-6345-446b-83be-a6d15e1070ee",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"old_text not found in section (whitespace-normalized comparison)\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"old_text not found in section (whitespace-normalized comparison)\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6c6d2781-d0a9-47eb-aa4b-4e676e4b38cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 194 · 2026-05-20T10:14:23.630Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Kw7RGyRj5FATX1gkhVyDeh`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+  "old_string": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.",
+  "new_string": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\nDD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2da1649-6345-446b-83be-a6d15e1070ee",
+  "isSidechain": false,
+  "requestId": "req_011CbDeLFYjdtQdRhjg8KRta",
+  "type": "assistant",
+  "uuid": "a8a8cce3-2b8c-48c0-8062-9894840378d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HSvhwaZ7Bb6cYJrkk4azAE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 116242,
+      "output_tokens": 571,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 571,
+          "cache_read_input_tokens": 116242,
+          "cache_creation_input_tokens": 464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 195 · 2026-05-20T10:14:23.658Z_
+
+<details><summary>↩ Tool result · `toolu_01Kw7RGyRj5FATX1gkhVyDeh`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8a8cce3-2b8c-48c0-8062-9894840378d1",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "7abca65b-40b7-4341-9a50-b62f9b7c1f57",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+    "oldString": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.",
+    "newString": "For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.\nDD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 138,
+        "oldLines": 6,
+        "newStart": 138,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\paragraph{Summary.}",
+          " For base-size encoders (125--184M), domain exposure is the primary mechanism; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision provides a complementary stability benefit (variance reduced 4--20$\\times$) without changing the detection ceiling.",
+          "+DD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.",
+          " ",
+          " %----------------------------------------------------------------------",
+          " \\subsection{Cross-Encoder Validation}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "a8a8cce3-2b8c-48c0-8062-9894840378d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 196 · 2026-05-20T10:14:23.696Z_
+
+```json
+{
+  "parentUuid": "7abca65b-40b7-4341-9a50-b62f9b7c1f57",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b5a23daf-3598-4442-be54-c92c686db661",
+  "timestamp": "2026-05-20T10:14:23.696Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 197 · 2026-05-20T10:14:27.769Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The edit_paper_section failed on docs/paper/ (the text is slightly different there from previous edits). Let me read the docs/paper version to find the exact text.
+
+The Edit tool succeeded on paper/experiments.tex. Now I need to also fix docs/paper/experiments.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5a23daf-3598-4442-be54-c92c686db661",
+  "isSidechain": false,
+  "requestId": "req_011CbDeLpE1Em4ggb7Uecw5U",
+  "type": "assistant",
+  "uuid": "a7a97504-fbc8-4517-b8da-fdbd6ef60007",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H21VbQx5Hsn6rSgSKbxZjj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 116706,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 116706,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 198 · 2026-05-20T10:14:28.735Z_
+
+`paper/` 已更新。`docs/paper/` 版本文字不同，需查看后单独更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7a97504-fbc8-4517-b8da-fdbd6ef60007",
+  "isSidechain": false,
+  "requestId": "req_011CbDeLpE1Em4ggb7Uecw5U",
+  "type": "assistant",
+  "uuid": "a421ab3d-ee82-496f-bb85-b85b9573f013",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H21VbQx5Hsn6rSgSKbxZjj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 116706,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 116706,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 199 · 2026-05-20T10:14:29.482Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QWJ1ueSXEU18iBL4LA2LjF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+  "offset": 137,
+  "limit": 8
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a421ab3d-ee82-496f-bb85-b85b9573f013",
+  "isSidechain": false,
+  "requestId": "req_011CbDeLpE1Em4ggb7Uecw5U",
+  "type": "assistant",
+  "uuid": "33b2bec7-5dea-413a-b166-645578ae8b84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H21VbQx5Hsn6rSgSKbxZjj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 116706,
+      "output_tokens": 239,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 853,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 239,
+          "cache_read_input_tokens": 116706,
+          "cache_creation_input_tokens": 853,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 853
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 200 · 2026-05-20T10:14:29.493Z_
+
+<details><summary>↩ Tool result · `toolu_01QWJ1ueSXEU18iBL4LA2LjF`</summary>
+
+```text
+137	Turn-order shuffling produces negligible change ($|\Delta| < 1$\,pp) across both DeBERTa-v3-base 9-class (DD $\Delta$\,=\,0.000, AA $\Delta$\,=\,$-$0.009, IID $\Delta$\,=\,0.000) and RoBERTa-large 9-class (DD $\Delta$\,=\,+0.001, AA $\Delta$\,=\,$-$0.007, IID $\Delta$\,=\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.
+138	
+139	\paragraph{Summary.}
+140	For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\times$ observed across 3 seeds) without changing the detection ceiling.
+141	
+142	%----------------------------------------------------------------------
+143	\subsection{Cross-Encoder Validation}
+144	\label{sec:cross_encoder}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33b2bec7-5dea-413a-b166-645578ae8b84",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "bb72cd49-5c91-467f-b16f-1e29d1e8a7e9",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+      "content": "Turn-order shuffling produces negligible change ($|\\Delta| < 1$\\,pp) across both DeBERTa-v3-base 9-class (DD $\\Delta$\\,=\\,0.000, AA $\\Delta$\\,=\\,$-$0.009, IID $\\Delta$\\,=\\,0.000) and RoBERTa-large 9-class (DD $\\Delta$\\,=\\,+0.001, AA $\\Delta$\\,=\\,$-$0.007, IID $\\Delta$\\,=\\,0.000), confirming that detection relies on per-turn representations rather than sequential patterns.\n\n\\paragraph{Summary.}\nFor base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.\n\n%----------------------------------------------------------------------\n\\subsection{Cross-Encoder Validation}\n\\label{sec:cross_encoder}",
+      "numLines": 8,
+      "startLine": 137,
+      "totalLines": 234
+    }
+  },
+  "sourceToolAssistantUUID": "33b2bec7-5dea-413a-b166-645578ae8b84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 201 · 2026-05-20T10:14:34.593Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01T9bZZAfZcb36dpqG4HUThE`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+  "old_string": "For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.",
+  "new_string": "For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.\nDD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb72cd49-5c91-467f-b16f-1e29d1e8a7e9",
+  "isSidechain": false,
+  "requestId": "req_011CbDeMFCBUMaKGBgVzHGqh",
+  "type": "assistant",
+  "uuid": "e4e9c969-d84c-42b3-9f8f-3eb293eb9331",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dvxw6xBwyUAdrLaFoymzrx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 117559,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 117559,
+          "cache_creation_input_tokens": 537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 202 · 2026-05-20T10:14:34.615Z_
+
+<details><summary>↩ Tool result · `toolu_01T9bZZAfZcb36dpqG4HUThE`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4e9c969-d84c-42b3-9f8f-3eb293eb9331",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "644183d9-f4c9-4c37-b95d-13a5e93a87ad",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+    "oldString": "For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.",
+    "newString": "For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.\nDD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 138,
+        "oldLines": 6,
+        "newStart": 138,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\paragraph{Summary.}",
+          " For base-size encoders (125--184M), domain exposure appears to be the dominant factor in our experimental setup; label correctness, granularity, temporal modeling, and domain specificity are non-factors. Classification supervision shows a complementary stability benefit (variance reduction of 4--20$\\times$ observed across 3 seeds) without changing the detection ceiling.",
+          "+DD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.",
+          " ",
+          " %----------------------------------------------------------------------",
+          " \\subsection{Cross-Encoder Validation}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "e4e9c969-d84c-42b3-9f8f-3eb293eb9331",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 203 · 2026-05-20T10:14:37.248Z_
+
+两个副本均已更新。编译验证页数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "644183d9-f4c9-4c37-b95d-13a5e93a87ad",
+  "isSidechain": false,
+  "requestId": "req_011CbDeMd938m4H2d3J3bapa",
+  "type": "assistant",
+  "uuid": "b94f0fa5-4a01-44ac-8322-731d46695a91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014p81h1KDzkgyuCngfjzTry",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 118096,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 118096,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 204 · 2026-05-20T10:14:38.736Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MF1qLVmM8KJejJGLDQjRrt`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && grep \"Output written\" main.log && grep \"newlabel{sec:limitations}\" main.aux",
+  "description": "Compile and check page count",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b94f0fa5-4a01-44ac-8322-731d46695a91",
+  "isSidechain": false,
+  "requestId": "req_011CbDeMd938m4H2d3J3bapa",
+  "type": "assistant",
+  "uuid": "c766a286-da0f-4976-b866-e1230abf8795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014p81h1KDzkgyuCngfjzTry",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 118096,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 118096,
+          "cache_creation_input_tokens": 400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 205 · 2026-05-20T10:14:39.854Z_
+
+<details><summary>↩ Tool result · `toolu_01MF1qLVmM8KJejJGLDQjRrt`</summary>
+
+```text
+Output written on main.pdf (18 pages, 424742 bytes).
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}
+Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c766a286-da0f-4976-b866-e1230abf8795",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "a772ef4c-619b-45f7-98e5-65460cd00565",
+  "toolUseResult": {
+    "stdout": "Output written on main.pdf (18 pages, 424742 bytes).\n\\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}",
+    "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "c766a286-da0f-4976-b866-e1230abf8795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 206_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] 小修——experiments.tex §4.2 Summary 段落加一句防守  在 experiments.tex §4.2 Summary 段落（L139-142 附近）末尾加入一句：  \"DD and FITD confirm that domain-adapted representations do not regress on easier…",
+  "leafUuid": "a772ef4c-619b-45f7-98e5-65460cd00565",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 207_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 208 · 2026-05-20T10:14:43.015Z_
+
+8 页正文（Limitations 仍在 p9），总 18 页不变。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a772ef4c-619b-45f7-98e5-65460cd00565",
+  "isSidechain": false,
+  "requestId": "req_011CbDeN1Mm5QpD8asz3buLi",
+  "type": "assistant",
+  "uuid": "9017a6e7-166b-4d0a-9b04-f86d6da2ea8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5NXKfMTDoiRoibTjAJEd8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 118496,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 118496,
+          "cache_creation_input_tokens": 298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 209 · 2026-05-20T10:14:44.609Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__paper_agent_post_to_director · `toolu_01TXEMkDyAYAFiBZajWp7QWq`</summary>
+
+```json
+{
+  "text": "[写作进展] Patch 完成 — §4.2 Summary 防守句\n\nexperiments.tex §4.2 Summary 段落末尾加入：\n\"DD and FITD confirm that domain-adapted representations do not regress on easier attacks; ActorAttack provides the discriminative evaluation where lexical methods and vanilla encoders fail.\"\n\n验证：编译通过，8 页正文不变（Limitations p9，总 18 页）。无级联影响。",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9017a6e7-166b-4d0a-9b04-f86d6da2ea8f",
+  "isSidechain": false,
+  "requestId": "req_011CbDeN1Mm5QpD8asz3buLi",
+  "type": "assistant",
+  "uuid": "2769504d-0d65-4aa3-8b43-32789b0f1b96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5NXKfMTDoiRoibTjAJEd8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 118496,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 118496,
+          "cache_creation_input_tokens": 298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 210 · 2026-05-20T10:14:48.554Z_
+
+<details><summary>↩ Tool result · `toolu_01TXEMkDyAYAFiBZajWp7QWq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2769504d-0d65-4aa3-8b43-32789b0f1b96",
+  "isSidechain": false,
+  "promptId": "3b139e3a-26ae-4294-8386-84af3334b838",
+  "type": "user",
+  "uuid": "57d65738-ee7c-4518-94ce-ee8b0ff6e715",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "2769504d-0d65-4aa3-8b43-32789b0f1b96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 211_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 212 · 2026-05-20T10:14:55.191Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:14:55.191Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 213 · 2026-05-20T10:14:55.191Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:14:55.191Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+## Round 9
+
+## Round 9
+
+2 recorded events
+
+
+### User
+
+_source line 214 · 2026-05-20T10:14:55.178Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57d65738-ee7c-4518-94ce-ee8b0ff6e715",
+  "isSidechain": false,
+  "promptId": "8d588880-96f3-4779-8b34-b68e746b0a03",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "c60b5557-75ea-434f-8232-88ab4e475454",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 215 · 2026-05-20T10:14:55.178Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c60b5557-75ea-434f-8232-88ab4e475454",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "9f8a6afb-3063-4b76-b853-0f87fbd57eaf",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "d1168020-beac-4a03-bc7f-be80a2a27271",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 10
+
+## Round 10
+
+5 recorded events
+
+
+### User
+
+_source line 216 · 2026-05-20T10:14:55.342Z_
+
+[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f8a6afb-3063-4b76-b853-0f87fbd57eaf",
+  "isSidechain": false,
+  "promptId": "8d588880-96f3-4779-8b34-b68e746b0a03",
+  "type": "user",
+  "uuid": "0bc2fff4-cedb-4c51-ae0f-e1c4fa507d1e",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 217_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 218 · 2026-05-20T10:51:58.497Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T10:51:58.497Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "content": "[Director 指令] [Patch] Related Work 引用补充 + bib 格式修复\n\n**1. 必须补充的引用（按优先级）：**\n\n**JBShield (Li et al., USENIX Security 2025, 2502.07557)**\n- 基于表示层的多轮 jailbreak 检测，直接竞争对手\n- 插入位置：§ Multi-turn defenses，紧接 X-Boundary 之后\n- 论述角度：JBShield 使用内部表示分析，我们使用黑盒分类；JBShield 未做跨攻击族 OOD 评估\n\n**Perez et al. 2022 (EMNLP'22, 2202.03286) — Red Teaming Language Models**\n- LLM 安全评估奠基性工作\n- 插入位置：§ Multi-turn attacks 段尾或 § defenses 段头\n- 论述角度：建立了自动化红队测试范式，我们的合成数据生成延续此思路\n\n**2. 强烈建议补充：**\n\n**Latent Adversarial Detection (2604.28129)** — 2026 年 concurrent work\n- 插入位置：§ defenses，与 X-Boundary / Kadali 并列\n\n**Revisiting JBShield (2605.03095)** — 2026-05 最新\n- 如果补了 JBShield，顺带引用此文说明表示层方法的局限性\n\n**3. bib 格式修复（Round 4 W9 遗留）：**\n检查并修复：han2024wildguard 缺 booktitle、chao2023pair 缺 venue、he2023debertav3 格式不一致、anthropic2025constitutional 缺 publisher。\n\n引用需要验证——确保 arXiv ID 和年份正确。页数 ≤8 页正文。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 219 · 2026-05-20T10:51:58.498Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T10:51:58.498Z",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 220 · 2026-05-20T10:51:58.485Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc2fff4-cedb-4c51-ae0f-e1c4fa507d1e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "6397bd35-89ca-495d-9f1f-d8f28a8e640b",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "c57e4ff6-89f7-482b-8c0e-866b4fdb87c1",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 11
+
+## Round 11
+
+121 recorded events
+
+
+### User
+
+_source line 221 · 2026-05-20T10:51:58.593Z_
+
+[Director 指令] [Patch] Related Work 引用补充 + bib 格式修复
+
+**1. 必须补充的引用（按优先级）：**
+
+**JBShield (Li et al., USENIX Security 2025, 2502.07557)**
+- 基于表示层的多轮 jailbreak 检测，直接竞争对手
+- 插入位置：§ Multi-turn defenses，紧接 X-Boundary 之后
+- 论述角度：JBShield 使用内部表示分析，我们使用黑盒分类；JBShield 未做跨攻击族 OOD 评估
+
+**Perez et al. 2022 (EMNLP'22, 2202.03286) — Red Teaming Language Models**
+- LLM 安全评估奠基性工作
+- 插入位置：§ Multi-turn attacks 段尾或 § defenses 段头
+- 论述角度：建立了自动化红队测试范式，我们的合成数据生成延续此思路
+
+**2. 强烈建议补充：**
+
+**Latent Adversarial Detection (2604.28129)** — 2026 年 concurrent work
+- 插入位置：§ defenses，与 X-Boundary / Kadali 并列
+
+**Revisiting JBShield (2605.03095)** — 2026-05 最新
+- 如果补了 JBShield，顺带引用此文说明表示层方法的局限性
+
+**3. bib 格式修复（Round 4 W9 遗留）：**
+检查并修复：han2024wildguard 缺 booktitle、chao2023pair 缺 venue、he2023debertav3 格式不一致、anthropic2025constitutional 缺 publisher。
+
+引用需要验证——确保 arXiv ID 和年份正确。页数 ≤8 页正文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6397bd35-89ca-495d-9f1f-d8f28a8e640b",
+  "isSidechain": false,
+  "promptId": "e048e6d2-b179-4307-bf55-17ced7ca0060",
+  "type": "user",
+  "uuid": "ed46f0ee-ec1d-4075-b2da-c37bbf26f142",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 222 · 2026-05-20T10:52:02.121Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KVhVgr4hc1SaFxeQzAnH16`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed46f0ee-ec1d-4075-b2da-c37bbf26f142",
+  "isSidechain": false,
+  "requestId": "req_011CbDhD32pRZnDaFPvJn6WJ",
+  "type": "assistant",
+  "uuid": "abcb1aee-3297-4d00-bfd2-b1f60a33cf6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EtmxC89jUQExoGNY38qpxw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 119203,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 543,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 119203,
+          "cache_creation_input_tokens": 543,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 543
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 223 · 2026-05-20T10:52:02.139Z_
+
+<details><summary>↩ Tool result · `toolu_01KVhVgr4hc1SaFxeQzAnH16`</summary>
+
+```text
+1	% related_work.tex — D048 deep writing optimization
+2	
+3	\section{Related Work}
+4	\label{sec:related_work}
+5	
+6	\paragraph{Multi-turn jailbreak attacks.}
+7	All multi-turn jailbreak families share a persuasion substrate~\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj}, yet each operationalizes it differently: Crescendo~\citep{russinovich2024crescendo} gradually escalates, FITD~\citep{fitd2024} exploits commitment-consistency bias, DD~\citep{deceptivedelight2024} combines emotional manipulation with role assignment, ActorAttack~\citep{ren2024actorattack} steers through multiple personas, and automated methods (PAIR~\citep{chao2023pair}, TAP~\citep{mehrotra2024tap}) iteratively refine adversarial prompts. \citet{wei2023jailbroken} provide a unifying taxonomy; benchmarks~\citep{mazeika2024harmbench,chao2024jailbreakbench} standardize single-turn comparison, while MultiBreak~\citep{song2026multibreak} targets multi-turn evaluation. This shared substrate with diverse surface strategies defines our evaluation: a detector must generalize across families, not merely succeed on its training distribution.
+8	
+9	\paragraph{Multi-turn defenses and production safety.}
+10	No existing defense evaluates cross-attack transfer. Recent conversation-level systems pair fine-tuned encoders with sequence-level aggregation via GRU hierarchies (DeepContext~\citep{deepcontext2026}), turn-intention inference (BIID~\citep{tong2025biid}), graph neural networks (G-Guard~\citep{gguard2025}), or predictive generation (SafeDream~\citep{safedream2026}), yet each evaluates on a single attack family. Representation-level approaches include X-Boundary~\citep{lu2025xboundary} for multi-turn safety boundaries, white-box internal analysis~\citep{kadali2026trace}, and vision-language detection~\citep{hua2026rcs}; our work uses black-box classification. Per-turn classifiers (Llama Guard~\citep{inan2023llamaguard,metallamaguard3_2024}, ShieldGemma~\citep{zeng2024shieldgemma}, WildGuard~\citep{han2024wildguard}, Constitutional Classifiers~\citep{anthropic2025constitutional}) cannot model multi-turn trajectories, and perturbation-based defenses~\citep{robey2024smoothllm} target single-turn token-level attacks. Our ablation fills this gap: decomposition across thirteen configurations under OOD evaluation identifies domain exposure as the dominant factor behind cross-attack transfer.
+11	
+12	\paragraph{Computational persuasion and discourse.}
+13	Persuasion and discourse frameworks offer interpretable vocabulary for attack strategies, but whether such structure aids detection has not been empirically disentangled. Foundational work (RST~\citep{mann1988rst}, PDTB~\citep{prasad2008pdtb}, dialogue acts~\citep{stolcke2000dialogueact}, Speech Act Theory~\citep{austin1962speechacts,searle1969speechacts}) models pragmatic structure at different granularities. Building on Cialdini's principles~\citep{cialdini2001influence}, PAP~\citep{zeng2024pap} identifies 40 persuasion techniques across jailbreak families, and \citet{hagendorff2026reasoning} find identifiable strategies in 97\% of successful attacks; propaganda analysis~\citep{dasanmartino2019fine,dasanmartino2020semeval} and persuasive dialogue~\citep{wang2019persuasion} apply similar technique-level classification. Our ablation disentangles these roles: the taxonomy enables interpretable strategy characterization, but detection operates through domain-adapted embeddings regardless of label correctness.
+14	
+15	\paragraph{Domain-adaptive pretraining.}
+16	Continued pretraining on unlabeled domain text yields consistent downstream gains~\citep{gururangan2020dontstop}, extending the pretrain-then-fine-tune approach of ULMFiT~\citep{howard2018ulmfit}, yet this mechanism has not been disentangled for safety-critical generalization. Intermediate-task transfer (STILTs~\citep{phang2018stilts}) and multi-task learning~\citep{caruana1997multitask,liu2019mtdnn} offer complementary paths but confound domain exposure with supervised signal. Our MLM control removes all classification labels and confirms that pretraining alone closes the OOD gap. Dataset artifact analysis~\citep{gururangan2018artifacts,niven2019probing} motivates our TF-IDF baseline, adversarial NLP methods~\citep{jin2020textfooler,li2020bertattack,nasr2025attackermovessecond,andriushchenko2024adaptive} inform the perturbation protocol, and probing techniques~\citep{conneau2018probing,hewitt2019structural} underpin the CKA analysis.
+17	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abcb1aee-3297-4d00-bfd2-b1f60a33cf6d",
+  "isSidechain": false,
+  "promptId": "e048e6d2-b179-4307-bf55-17ced7ca0060",
+  "type": "user",
+  "uuid": "ed0e5616-6b78-4d0f-82ba-a2298fc8cbaf",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+      "content": "% related_work.tex — D048 deep writing optimization\n\n\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Multi-turn jailbreak attacks.}\nAll multi-turn jailbreak families share a persuasion substrate~\\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj}, yet each operationalizes it differently: Crescendo~\\citep{russinovich2024crescendo} gradually escalates, FITD~\\citep{fitd2024} exploits commitment-consistency bias, DD~\\citep{deceptivedelight2024} combines emotional manipulation with role assignment, ActorAttack~\\citep{ren2024actorattack} steers through multiple personas, and automated methods (PAIR~\\citep{chao2023pair}, TAP~\\citep{mehrotra2024tap}) iteratively refine adversarial prompts. \\citet{wei2023jailbroken} provide a unifying taxonomy; benchmarks~\\citep{mazeika2024harmbench,chao2024jailbreakbench} standardize single-turn comparison, while MultiBreak~\\citep{song2026multibreak} targets multi-turn evaluation. This shared substrate with diverse surface strategies defines our evaluation: a detector must generalize across families, not merely succeed on its training distribution.\n\n\\paragraph{Multi-turn defenses and production safety.}\nNo existing defense evaluates cross-attack transfer. Recent conversation-level systems pair fine-tuned encoders with sequence-level aggregation via GRU hierarchies (DeepContext~\\citep{deepcontext2026}), turn-intention inference (BIID~\\citep{tong2025biid}), graph neural networks (G-Guard~\\citep{gguard2025}), or predictive generation (SafeDream~\\citep{safedream2026}), yet each evaluates on a single attack family. Representation-level approaches include X-Boundary~\\citep{lu2025xboundary} for multi-turn safety boundaries, white-box internal analysis~\\citep{kadali2026trace}, and vision-language detection~\\citep{hua2026rcs}; our work uses black-box classification. Per-turn classifiers (Llama Guard~\\citep{inan2023llamaguard,metallamaguard3_2024}, ShieldGemma~\\citep{zeng2024shieldgemma}, WildGuard~\\citep{han2024wildguard}, Constitutional Classifiers~\\citep{anthropic2025constitutional}) cannot model multi-turn trajectories, and perturbation-based defenses~\\citep{robey2024smoothllm} target single-turn token-level attacks. Our ablation fills this gap: decomposition across thirteen configurations under OOD evaluation identifies domain exposure as the dominant factor behind cross-attack transfer.\n\n\\paragraph{Computational persuasion and discourse.}\nPersuasion and discourse frameworks offer interpretable vocabulary for attack strategies, but whether such structure aids detection has not been empirically disentangled. Foundational work (RST~\\citep{mann1988rst}, PDTB~\\citep{prasad2008pdtb}, dialogue acts~\\citep{stolcke2000dialogueact}, Speech Act Theory~\\citep{austin1962speechacts,searle1969speechacts}) models pragmatic structure at different granularities. Building on Cialdini's principles~\\citep{cialdini2001influence}, PAP~\\citep{zeng2024pap} identifies 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} find identifiable strategies in 97\\% of successful attacks; propaganda analysis~\\citep{dasanmartino2019fine,dasanmartino2020semeval} and persuasive dialogue~\\citep{wang2019persuasion} apply similar technique-level classification. Our ablation disentangles these roles: the taxonomy enables interpretable strategy characterization, but detection operates through domain-adapted embeddings regardless of label correctness.\n\n\\paragraph{Domain-adaptive pretraining.}\nContinued pretraining on unlabeled domain text yields consistent downstream gains~\\citep{gururangan2020dontstop}, extending the pretrain-then-fine-tune approach of ULMFiT~\\citep{howard2018ulmfit}, yet this mechanism has not been disentangled for safety-critical generalization. Intermediate-task transfer (STILTs~\\citep{phang2018stilts}) and multi-task learning~\\citep{caruana1997multitask,liu2019mtdnn} offer complementary paths but confound domain exposure with supervised signal. Our MLM control removes all classification labels and confirms that pretraining alone closes the OOD gap. Dataset artifact analysis~\\citep{gururangan2018artifacts,niven2019probing} motivates our TF-IDF baseline, adversarial NLP methods~\\citep{jin2020textfooler,li2020bertattack,nasr2025attackermovessecond,andriushchenko2024adaptive} inform the perturbation protocol, and probing techniques~\\citep{conneau2018probing,hewitt2019structural} underpin the CKA analysis.\n",
+      "numLines": 17,
+      "startLine": 1,
+      "totalLines": 17
+    }
+  },
+  "sourceToolAssistantUUID": "abcb1aee-3297-4d00-bfd2-b1f60a33cf6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 224 · 2026-05-20T10:52:02.494Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Xx1vGNK7r62hkWc4Dudgep`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed0e5616-6b78-4d0f-82ba-a2298fc8cbaf",
+  "isSidechain": false,
+  "requestId": "req_011CbDhD32pRZnDaFPvJn6WJ",
+  "type": "assistant",
+  "uuid": "6f09302d-25e9-4852-b4ba-b712572ba615",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EtmxC89jUQExoGNY38qpxw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 119203,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 543,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 119203,
+          "cache_creation_input_tokens": 543,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 543
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 225 · 2026-05-20T10:52:02.505Z_
+
+<details><summary>↩ Tool result · `toolu_01Xx1vGNK7r62hkWc4Dudgep`</summary>
+
+```text
+1	% References for persuasion_turn_jailbreak_detect
+2	% Auto-generated from literature_map.yaml (2026-05-18)
+3	% Total entries: 31
+4	
+5	% ============================================================
+6	% Category 1: Production Multi-Turn Safety Systems
+7	% ============================================================
+8	
+9	@article{inan2023llamaguard,
+10	  title={Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations},
+11	  author={Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer, Krithika and Mao, Yuning and Tontchev, Michael and Hu, Qing and Fuller, Brian and Testuggine, Davide and Khabsa, Madian},
+12	  journal={arXiv preprint},
+13	  year={2023},
+14	  eprint={2312.06674},
+15	  archivePrefix={arXiv},
+16	}
+17	
+18	@misc{metallamaguard3_2024,
+19	  title={Llama Guard 3},
+20	  author={{Meta AI}},
+21	  year={2024},
+22	  howpublished={Meta AI (released with Llama 3.1)},
+23	}
+24	
+25	@article{zeng2024shieldgemma,
+26	  title={ShieldGemma: Generative AI Content Moderation Based on Gemma},
+27	  author={Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, Joe and Harkous, Hamza and Narasimhan, Karthik and Proud, Drew and Kumar, Piyush and Radharapu, Bhaktipriya and Sturman, Olivia and Wahltinez, Oscar},
+28	  journal={arXiv preprint},
+29	  year={2024},
+30	  eprint={2407.21772},
+31	  archivePrefix={arXiv},
+32	}
+33	
+34	@inproceedings{han2024wildguard,
+35	  title={WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs},
+36	  author={Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill Yuchen and Lambert, Nathan and Choi, Yejin and Dziri, Nouha},
+37	  booktitle={Advances in Neural Information Processing Systems},
+38	  year={2024},
+39	}
+40	
+41	@article{anthropic2025constitutional,
+42	  title={Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming},
+43	  author={Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others},
+44	  journal={arXiv preprint arXiv:2501.18837},
+45	  year={2025},
+46	  eprint={2501.18837},
+47	  archivePrefix={arXiv},
+48	}
+49	
+50	% ============================================================
+51	% Category 2: Multi-Turn Jailbreak Defenses
+52	% ============================================================
+53	
+54	@article{deepcontext2026,
+55	  title={DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs},
+56	  author={Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath},
+57	  journal={arXiv preprint},
+58	  year={2026},
+59	  eprint={2602.16935},
+60	  archivePrefix={arXiv},
+61	}
+62	
+63	@article{tong2025biid,
+64	  title={Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks},
+65	  author={Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan and Zhao, Feifei and Zeng, Yi},
+66	  journal={arXiv preprint},
+67	  year={2025},
+68	  eprint={2509.22732},
+69	  archivePrefix={arXiv},
+70	}
+71	
+72	@article{gguard2025,
+73	  title={An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs},
+74	  author={Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling and Yuan, Mingxuan and Shao, Zili},
+75	  journal={arXiv preprint},
+76	  year={2025},
+77	  eprint={2507.07146},
+78	  archivePrefix={arXiv},
+79	}
+80	
+81	@article{safedream2026,
+82	  title={SafeDream: Safety World Model for Proactive Early Jailbreak Detection},
+83	  author={Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song},
+84	  journal={arXiv preprint},
+85	  year={2026},
+86	  eprint={2604.16824},
+87	  archivePrefix={arXiv},
+88	}
+89	
+90	@article{bullwinkel2025repeng,
+91	  title={A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks},
+92	  author={Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, Santiago and Jones, Daniel and Severi, Giorgio and Kim, Eugenia and Hines, Keegan and Minnich, Amanda and Zunger, Yonatan and Kumar, Ram Shankar Siva},
+93	  journal={arXiv preprint},
+94	  year={2025},
+95	  eprint={2507.02956},
+96	  archivePrefix={arXiv},
+97	}
+98	
+99	% ============================================================
+100	% Category 3: Discourse Analysis in NLP
+101	% ============================================================
+102	
+103	@article{mann1988rst,
+104	  title={Rhetorical Structure Theory: Toward a Functional Theory of Text Organization},
+105	  author={Mann, William C. and Thompson, Sandra A.},
+106	  journal={Text \& Talk},
+107	  year={1988},
+108	  volume={8},
+109	  number={3},
+110	  pages={243--281},
+111	}
+112	
+113	@inproceedings{prasad2008pdtb,
+114	  title={The Penn Discourse TreeBank 2.0},
+115	  author={Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robaldo, Livio and Joshi, Aravind and Webber, Bonnie},
+116	  booktitle={Proceedings of the International Conference on Language Resources and Evaluation},
+117	  year={2008},
+118	}
+119	
+120	@article{stolcke2000dialogueact,
+121	  title={Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech},
+122	  author={Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and Bates, Rebecca and Jurafsky, Daniel and Taylor, Paul and Martin, Rachel and Van Ess-Dykema, Carol and Meteer, Marie},
+123	  journal={Computational Linguistics},
+124	  year={2000},
+125	  volume={26},
+126	  number={3},
+127	  pages={339--374},
+128	}
+129	
+130	@book{austin1962speechacts,
+131	  title={How to Do Things with Words},
+132	  author={Austin, J. L.},
+133	  publisher={Harvard University Press},
+134	  year={1962},
+135	}
+136	
+137	@book{searle1969speechacts,
+138	  title={Speech Acts: An Essay in the Philosophy of Language},
+139	  author={Searle, J. R.},
+140	  publisher={Cambridge University Press},
+141	  year={1969},
+142	}
+143	
+144	% ============================================================
+145	% Category 4: Computational Persuasion Detection
+146	% ============================================================
+147	
+148	@book{cialdini2001influence,
+149	  title={Influence: Science and Practice},
+150	  author={Cialdini, Robert B.},
+151	  publisher={Allyn \& Bacon},
+152	  year={2001},
+153	  edition={4th},
+154	}
+155	
+156	% ============================================================
+157	% Category 5: Jailbreak Attacks & Taxonomies
+158	% ============================================================
+159	
+160	@inproceedings{zeng2024pap,
+161	  title={How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs},
+162	  author={Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and Shi, Weiyan},
+163	  booktitle={Proceedings of the Association for Computational Linguistics},
+164	  year={2024},
+165	}
+166	
+167	% Note: key retains "2024" for citation compatibility; paper published at USENIX Security 2025
+168	@inproceedings{russinovich2024crescendo,
+169	  title={Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack},
+170	  author={Russinovich, Mark and Salem, Ahmed and Eldan, Ronen},
+171	  booktitle={USENIX Security Symposium},
+172	  year={2025},
+173	  eprint={2404.01833},
+174	  archivePrefix={arXiv},
+175	}
+176	
+177	@article{chao2023pair,
+178	  title={Jailbreaking Black Box Large Language Models in Twenty Queries},
+179	  author={Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pappas, George J. and Wong, Eric},
+180	  journal={arXiv preprint},
+181	  year={2023},
+182	  eprint={2310.08419},
+183	  archivePrefix={arXiv},
+184	}
+185	
+186	@inproceedings{wei2023jailbroken,
+187	  title={Jailbroken: How Does LLM Safety Training Fail?},
+188	  author={Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob},
+189	  booktitle={Advances in Neural Information Processing Systems},
+190	  year={2023},
+191	}
+192	
+193	@article{hagendorff2026reasoning,
+194	  title={Large Reasoning Models Are Autonomous Jailbreak Agents},
+195	  author={Hagendorff, Thilo and Derner, Erik and Oliver, Nuria},
+196	  journal={Nature Communications},
+197	  year={2026},
+198	}
+199	
+200	@article{fitd2024,
+201	  title={Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology},
+202	  author={Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and Ma, Shuoyoucheng and Chen, Kai},
+203	  journal={arXiv preprint},
+204	  year={2024},
+205	  eprint={2402.15690},
+206	  archivePrefix={arXiv},
+207	}
+208	
+209	@techreport{deceptivedelight2024,
+210	  title={Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction},
+211	  author={{Palo Alto Networks Unit 42}},
+212	  institution={Palo Alto Networks},
+213	  year={2024},
+214	}
+215	
+216	@inproceedings{ren2024actorattack,
+217	  title={ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory},
+218	  author={Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao, Yu and Sha, Lei and Yan, Junchi and Ma, Lizhuang and Shao, Jing},
+219	  booktitle={International Conference on Learning Representations},
+220	  year={2025},
+221	}
+222	
+223	@article{zou2023gcg,
+224	  title={Universal and Transferable Adversarial Attacks on Aligned Language Models},
+225	  author={Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Zico and Fredrikson, Matt},
+226	  journal={arXiv preprint},
+227	  year={2023},
+228	  eprint={2307.15043},
+229	  archivePrefix={arXiv},
+230	}
+231	
+232	% ============================================================
+233	% Category 5b: Human Jailbreak Datasets
+234	% ============================================================
+235	
+236	@inproceedings{lin2023toxicchat,
+237	  title={ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-{AI} Conversation},
+238	  author={Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wang, Yujia and Shang, Jingbo},
+239	  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},
+240	  pages={4694--4702},
+241	  year={2023},
+242	}
+243	
+244	% ============================================================
+245	% Category 6: Red-Teaming
+246	% ============================================================
+247	
+248	@article{li2024mhj,
+249	  title={LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet},
+250	  author={Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside, Riley and Zhang, Hugh and Wang, Zifan and Menghini, Cristina and Yue, Summer},
+251	  journal={arXiv preprint},
+252	  year={2024},
+253	  eprint={2408.15221},
+254	  archivePrefix={arXiv},
+255	}
+256	
+257	% ============================================================
+258	% Category 7: Annotation Artifacts & Dataset Biases
+259	% ============================================================
+260	
+261	@inproceedings{gururangan2018artifacts,
+262	  title={Annotation Artifacts in Natural Language Inference Data},
+263	  author={Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and Bowman, Samuel and Smith, Noah A.},
+264	  booktitle={Proceedings of the Conference of the North American Chapter of the Association for Computational Linguistics},
+265	  year={2018},
+266	}
+267	
+268	@inproceedings{niven2019probing,
+269	  title={Probing Neural Network Comprehension of Natural Language Arguments},
+270	  author={Niven, Timothy and Kao, Hung-Yu},
+271	  booktitle={Proceedings of the Association for Computational Linguistics},
+272	  year={2019},
+273	}
+274	
+275	% ============================================================
+276	% Category 8: Adaptive Attacks on Classifiers
+277	% ============================================================
+278	
+279	@article{nasr2025attackermovessecond,
+280	  title={The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections},
+281	  author={Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V. and Hayes, Jamie and Ilie, Michael and Pluto, Juliette and Song, Shuang and Chaudhari, Harsh and Shumailov, Ilia and Thakurta, Abhradeep and Xiao, Kai Yuanqing and Terzis, Andreas and Tram{\`e}r, Florian},
+282	  journal={arXiv preprint},
+283	  year={2025},
+284	  eprint={2510.09023},
+285	  archivePrefix={arXiv},
+286	}
+287	
+288	@inproceedings{andriushchenko2024adaptive,
+289	  title={Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks},
+290	  author={Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas},
+291	  booktitle={International Conference on Learning Representations},
+292	  year={2025},
+293	}
+294	
+295	% ============================================================
+296	% Technical Foundation
+297	% ============================================================
+298	
+299	@inproceedings{he2021deberta,
+300	  title={DeBERTa: Decoding-enhanced BERT with Disentangled Attention},
+301	  author={He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu},
+302	  booktitle={International Conference on Learning Representations},
+303	  year={2021},
+304	}
+305	
+306	@inproceedings{he2023debertav3,
+307	  title={{DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-Style Pre-Training with Gradient-Disentangled Embedding Sharing},
+308	  author={He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},
+309	  booktitle={International Conference on Learning Representations},
+310	  year={2023},
+311	  eprint={2111.09543},
+312	  archivePrefix={arXiv},
+313	}
+314	
+315	
+316	@inproceedings{kornblith2019cka,
+317	  title={Similarity of Neural Network Representations Revisited},
+318	  author={Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},
+319	  booktitle={International Conference on Machine Learning},
+320	  pages={3519--3529},
+321	  year={2019},
+322	}
+323	
+324	@article{qwen3_2025,
+325	  title={Qwen3 Technical Report},
+326	  author={Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and Lin, Bowen and others},
+327	  journal={arXiv preprint},
+328	  year={2025},
+329	  eprint={2505.09388},
+330	  archivePrefix={arXiv},
+331	}
+332	
+333	% ============================================================
+334	% Domain-Adaptive Pretraining & Multi-Task Learning
+335	% ============================================================
+336	
+337	@inproceedings{gururangan2020dontstop,
+338	  title={Don't Stop Pretraining: Adapt Language Models to Domains and Tasks},
+339	  author={Gururangan, Suchin and Marasovi{\'c}, Ana and Swayamdipta, Swabha and Lo, Kyle and Beltagy, Iz and Downey, Doug and Smith, Noah A.},
+340	  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},
+341	  pages={8342--8360},
+342	  year={2020},
+343	}
+344	
+345	@article{caruana1997multitask,
+346	  title={Multitask Learning},
+347	  author={Caruana, Rich},
+348	  journal={Machine Learning},
+349	  volume={28},
+350	  number={1},
+351	  pages={41--75},
+352	  year={1997},
+353	}
+354	
+355	@article{phang2018stilts,
+356	  title={Sentence Encoders on {STILTs}: Supplementary Training on Intermediate Labeled-data Tasks},
+357	  author={Phang, Jason and F{\'e}vry, Thibault and Bowman, Samuel R.},
+358	  journal={arXiv preprint arXiv:1811.01088},
+359	  year={2018},
+360	}
+361	
+362	@inproceedings{liu2019mtdnn,
+363	  title={Multi-Task Deep Neural Networks for Natural Language Understanding},
+364	  author={Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng},
+365	  booktitle={Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},
+366	  pages={4487--4496},
+367	  year={2019},
+368	}
+369	
+370	@inproceedings{howard2018ulmfit,
+371	  title={Universal Language Model Fine-tuning for Text Classification},
+372	  author={Howard, Jeremy and Ruder, Sebastian},
+373	  booktitle={Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics},
+374	  pages={328--339},
+375	  year={2018},
+376	}
+377	
+378	% ============================================================
+379	% Propaganda Detection
+380	% ============================================================
+381	
+382	@inproceedings{dasanmartino2020semeval,
+383	  title={{SemEval-2020 Task 11}: Detection of Propaganda Techniques in News Articles},
+384	  author={Da San Martino, Giovanni and Barr\'{o}n-Cede\~{n}o, Alberto and Wachsmuth, Henning and Petrov, Rostislav and Nakov, Preslav},
+385	  booktitle={Proceedings of the Fourteenth Workshop on Semantic Evaluation},
+386	  pages={1377--1414},
+387	  year={2020},
+388	}
+389	
+390	@inproceedings{dasanmartino2019fine,
+391	  title={Fine-Grained Analysis of Propaganda in News Articles},
+392	  author={Da San Martino, Giovanni and Yu, Seunghak and Barr\'{o}n-Cede\~{n}o, Alberto and Petrov, Rostislav and Nakov, Preslav},
+393	  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing},
+394	  pages={5636--5646},
+395	  year={2019},
+396	}
+397	
+398	% ============================================================
+399	% Adversarial NLP
+400	% ============================================================
+401	
+402	@inproceedings{jin2020textfooler,
+403	  title={Is {BERT} Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment},
+404	  author={Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter},
+405	  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+406	  volume={34},
+407	  pages={8018--8025},
+408	  year={2020},
+409	}
+410	
+411	@inproceedings{li2020bertattack,
+412	  title={{BERT-ATTACK}: Adversarial Attack Against {BERT} Using {BERT}},
+413	  author={Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng},
+414	  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},
+415	  pages={6193--6202},
+416	  year={2020},
+417	}
+418	
+419	% ============================================================
+420	% Probing Classifiers
+421	% ============================================================
+422	
+423	@inproceedings{devlin2019bert,
+424	  title={{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+425	  author={Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+426	  booktitle={Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+427	  pages={4171--4186},
+428	  year={2019},
+429	}
+430	
+431	@inproceedings{conneau2018probing,
+432	  title={What you can cram into a single \$\&!\#* vector: Probing sentence embeddings for linguistic properties},
+433	  author={Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\"{i}c and Baroni, Marco},
+434	  booktitle={Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics},
+435	  pages={2126--2136},
+436	  year={2018},
+437	}
+438	
+439	@inproceedings{hewitt2019structural,
+440	  title={A Structural Probe for Finding Syntax in Word Representations},
+441	  author={Hewitt, John and Manning, Christopher D.},
+442	  booktitle={Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics},
+443	  pages={4129--4138},
+444	  year={2019},
+445	}
+446	
+447	@article{liu2019roberta,
+448	  title={RoBERTa: A Robustly Optimized BERT Pretraining Approach},
+449	  author={Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},
+450	  journal={arXiv preprint arXiv:1907.11692},
+451	  year={2019},
+452	}
+453	
+454	@inproceedings{wang2019persuasion,
+455	  title={Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good},
+456	  author={Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia and Zhang, Jingwen and Yu, Zhou},
+457	  booktitle={Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},
+458	  pages={5635--5649},
+459	  year={2019},
+460	}
+461	
+462	@inproceedings{robey2024smoothllm,
+463	  title={SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks},
+464	  author={Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.},
+465	  booktitle={Proceedings of the 41st International Conference on Machine Learning},
+466	  year={2024},
+467	}
+468	
+469	@inproceedings{mehrotra2024tap,
+470	  title={Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs},
+471	  author={Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine and Anderson, Hyrum and Singer, Yaron and Karbasi, Amin},
+472	  booktitle={Advances in Neural Information Processing Systems},
+473	  year={2024},
+474	}
+475	
+476	@article{chao2024jailbreakbench,
+477	  title={JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models},
+478	  author={Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pappas, George J. and Wong, Eric},
+479	  journal={arXiv preprint arXiv:2404.01318},
+480	  year={2024},
+481	}
+482	
+483	@inproceedings{mazeika2024harmbench,
+484	  title={HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal},
+485	  author={Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and Mu, Norman and Sakhaee, Elham and Li, Nathaniel and Basart, Steven and Li, Bo and Forsyth, David and Hendrycks, Dan},
+486	  booktitle={Proceedings of the 41st International Conference on Machine Learning},
+487	  year={2024},
+488	}
+489	
+490	@inproceedings{lu2025xboundary,
+491	  title={X-Boundary: Establishing Exact Safety Boundary to Shield {LLMs} from Multi-Turn Jailbreaks without Compromising Usability},
+492	  author={Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing},
+493	  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2025},
+494	  year={2025},
+495	  eprint={2502.09990},
+496	  archivePrefix={arXiv},
+497	}
+498	
+499	@article{kadali2026trace,
+500	  title={Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models},
+501	  author={Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.},
+502	  journal={arXiv preprint arXiv:2602.11495},
+503	  year={2026},
+504	  eprint={2602.11495},
+505	  archivePrefix={arXiv},
+506	}
+507	
+508	@inproceedings{hua2026rcs,
+509	  title={Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring},
+510	  author={Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning},
+511	  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},
+512	  year={2026},
+513	  eprint={2512.12069},
+514	  archivePrefix={arXiv},
+515	}
+516	
+517	@inproceedings{song2026multibreak,
+518	  title={{MultiBreak}: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating {LLM} Safety},
+519	  author={Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingqian and Zhu, Xuekai and Gao, Jianfeng},
+520	  booktitle={International Conference on Machine Learning},
+521	  year={2026},
+522	  eprint={2605.01687},
+523	  archivePrefix={arXiv},
+524	}
+525	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f09302d-25e9-4852-b4ba-b712572ba615",
+  "isSidechain": false,
+  "promptId": "e048e6d2-b179-4307-bf55-17ced7ca0060",
+  "type": "user",
+  "uuid": "f190681c-0113-4691-ba0c-def171561833",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/references.bib",
+      "content": "% References for persuasion_turn_jailbreak_detect\n% Auto-generated from literature_map.yaml (2026-05-18)\n% Total entries: 31\n\n% ============================================================\n% Category 1: Production Multi-Turn Safety Systems\n% ============================================================\n\n@article{inan2023llamaguard,\n  title={Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations},\n  author={Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer, Krithika and Mao, Yuning and Tontchev, Michael and Hu, Qing and Fuller, Brian and Testuggine, Davide and Khabsa, Madian},\n  journal={arXiv preprint},\n  year={2023},\n  eprint={2312.06674},\n  archivePrefix={arXiv},\n}\n\n@misc{metallamaguard3_2024,\n  title={Llama Guard 3},\n  author={{Meta AI}},\n  year={2024},\n  howpublished={Meta AI (released with Llama 3.1)},\n}\n\n@article{zeng2024shieldgemma,\n  title={ShieldGemma: Generative AI Content Moderation Based on Gemma},\n  author={Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, Joe and Harkous, Hamza and Narasimhan, Karthik and Proud, Drew and Kumar, Piyush and Radharapu, Bhaktipriya and Sturman, Olivia and Wahltinez, Oscar},\n  journal={arXiv preprint},\n  year={2024},\n  eprint={2407.21772},\n  archivePrefix={arXiv},\n}\n\n@inproceedings{han2024wildguard,\n  title={WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs},\n  author={Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill Yuchen and Lambert, Nathan and Choi, Yejin and Dziri, Nouha},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2024},\n}\n\n@article{anthropic2025constitutional,\n  title={Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming},\n  author={Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others},\n  journal={arXiv preprint arXiv:2501.18837},\n  year={2025},\n  eprint={2501.18837},\n  archivePrefix={arXiv},\n}\n\n% ============================================================\n% Category 2: Multi-Turn Jailbreak Defenses\n% ============================================================\n\n@article{deepcontext2026,\n  title={DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs},\n  author={Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath},\n  journal={arXiv preprint},\n  year={2026},\n  eprint={2602.16935},\n  archivePrefix={arXiv},\n}\n\n@article{tong2025biid,\n  title={Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks},\n  author={Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan and Zhao, Feifei and Zeng, Yi},\n  journal={arXiv preprint},\n  year={2025},\n  eprint={2509.22732},\n  archivePrefix={arXiv},\n}\n\n@article{gguard2025,\n  title={An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs},\n  author={Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling and Yuan, Mingxuan and Shao, Zili},\n  journal={arXiv preprint},\n  year={2025},\n  eprint={2507.07146},\n  archivePrefix={arXiv},\n}\n\n@article{safedream2026,\n  title={SafeDream: Safety World Model for Proactive Early Jailbreak Detection},\n  author={Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song},\n  journal={arXiv preprint},\n  year={2026},\n  eprint={2604.16824},\n  archivePrefix={arXiv},\n}\n\n@article{bullwinkel2025repeng,\n  title={A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks},\n  author={Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, Santiago and Jones, Daniel and Severi, Giorgio and Kim, Eugenia and Hines, Keegan and Minnich, Amanda and Zunger, Yonatan and Kumar, Ram Shankar Siva},\n  journal={arXiv preprint},\n  year={2025},\n  eprint={2507.02956},\n  archivePrefix={arXiv},\n}\n\n% ============================================================\n% Category 3: Discourse Analysis in NLP\n% ============================================================\n\n@article{mann1988rst,\n  title={Rhetorical Structure Theory: Toward a Functional Theory of Text Organization},\n  author={Mann, William C. and Thompson, Sandra A.},\n  journal={Text \\& Talk},\n  year={1988},\n  volume={8},\n  number={3},\n  pages={243--281},\n}\n\n@inproceedings{prasad2008pdtb,\n  title={The Penn Discourse TreeBank 2.0},\n  author={Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robaldo, Livio and Joshi, Aravind and Webber, Bonnie},\n  booktitle={Proceedings of the International Conference on Language Resources and Evaluation},\n  year={2008},\n}\n\n@article{stolcke2000dialogueact,\n  title={Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech},\n  author={Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and Bates, Rebecca and Jurafsky, Daniel and Taylor, Paul and Martin, Rachel and Van Ess-Dykema, Carol and Meteer, Marie},\n  journal={Computational Linguistics},\n  year={2000},\n  volume={26},\n  number={3},\n  pages={339--374},\n}\n\n@book{austin1962speechacts,\n  title={How to Do Things with Words},\n  author={Austin, J. L.},\n  publisher={Harvard University Press},\n  year={1962},\n}\n\n@book{searle1969speechacts,\n  title={Speech Acts: An Essay in the Philosophy of Language},\n  author={Searle, J. R.},\n  publisher={Cambridge University Press},\n  year={1969},\n}\n\n% ============================================================\n% Category 4: Computational Persuasion Detection\n% ============================================================\n\n@book{cialdini2001influence,\n  title={Influence: Science and Practice},\n  author={Cialdini, Robert B.},\n  publisher={Allyn \\& Bacon},\n  year={2001},\n  edition={4th},\n}\n\n% ============================================================\n% Category 5: Jailbreak Attacks & Taxonomies\n% ============================================================\n\n@inproceedings{zeng2024pap,\n  title={How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs},\n  author={Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and Shi, Weiyan},\n  booktitle={Proceedings of the Association for Computational Linguistics},\n  year={2024},\n}\n\n% Note: key retains \"2024\" for citation compatibility; paper published at USENIX Security 2025\n@inproceedings{russinovich2024crescendo,\n  title={Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack},\n  author={Russinovich, Mark and Salem, Ahmed and Eldan, Ronen},\n  booktitle={USENIX Security Symposium},\n  year={2025},\n  eprint={2404.01833},\n  archivePrefix={arXiv},\n}\n\n@article{chao2023pair,\n  title={Jailbreaking Black Box Large Language Models in Twenty Queries},\n  author={Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pappas, George J. and Wong, Eric},\n  journal={arXiv preprint},\n  year={2023},\n  eprint={2310.08419},\n  archivePrefix={arXiv},\n}\n\n@inproceedings{wei2023jailbroken,\n  title={Jailbroken: How Does LLM Safety Training Fail?},\n  author={Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023},\n}\n\n@article{hagendorff2026reasoning,\n  title={Large Reasoning Models Are Autonomous Jailbreak Agents},\n  author={Hagendorff, Thilo and Derner, Erik and Oliver, Nuria},\n  journal={Nature Communications},\n  year={2026},\n}\n\n@article{fitd2024,\n  title={Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology},\n  author={Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and Ma, Shuoyoucheng and Chen, Kai},\n  journal={arXiv preprint},\n  year={2024},\n  eprint={2402.15690},\n  archivePrefix={arXiv},\n}\n\n@techreport{deceptivedelight2024,\n  title={Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction},\n  author={{Palo Alto Networks Unit 42}},\n  institution={Palo Alto Networks},\n  year={2024},\n}\n\n@inproceedings{ren2024actorattack,\n  title={ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory},\n  author={Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao, Yu and Sha, Lei and Yan, Junchi and Ma, Lizhuang and Shao, Jing},\n  booktitle={International Conference on Learning Representations},\n  year={2025},\n}\n\n@article{zou2023gcg,\n  title={Universal and Transferable Adversarial Attacks on Aligned Language Models},\n  author={Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Zico and Fredrikson, Matt},\n  journal={arXiv preprint},\n  year={2023},\n  eprint={2307.15043},\n  archivePrefix={arXiv},\n}\n\n% ============================================================\n% Category 5b: Human Jailbreak Datasets\n% ============================================================\n\n@inproceedings{lin2023toxicchat,\n  title={ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-{AI} Conversation},\n  author={Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wang, Yujia and Shang, Jingbo},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},\n  pages={4694--4702},\n  year={2023},\n}\n\n% ============================================================\n% Category 6: Red-Teaming\n% ============================================================\n\n@article{li2024mhj,\n  title={LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet},\n  author={Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside, Riley and Zhang, Hugh and Wang, Zifan and Menghini, Cristina and Yue, Summer},\n  journal={arXiv preprint},\n  year={2024},\n  eprint={2408.15221},\n  archivePrefix={arXiv},\n}\n\n% ============================================================\n% Category 7: Annotation Artifacts & Dataset Biases\n% ============================================================\n\n@inproceedings{gururangan2018artifacts,\n  title={Annotation Artifacts in Natural Language Inference Data},\n  author={Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and Bowman, Samuel and Smith, Noah A.},\n  booktitle={Proceedings of the Conference of the North American Chapter of the Association for Computational Linguistics},\n  year={2018},\n}\n\n@inproceedings{niven2019probing,\n  title={Probing Neural Network Comprehension of Natural Language Arguments},\n  author={Niven, Timothy and Kao, Hung-Yu},\n  booktitle={Proceedings of the Association for Computational Linguistics},\n  year={2019},\n}\n\n% ============================================================\n% Category 8: Adaptive Attacks on Classifiers\n% ============================================================\n\n@article{nasr2025attackermovessecond,\n  title={The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections},\n  author={Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V. and Hayes, Jamie and Ilie, Michael and Pluto, Juliette and Song, Shuang and Chaudhari, Harsh and Shumailov, Ilia and Thakurta, Abhradeep and Xiao, Kai Yuanqing and Terzis, Andreas and Tram{\\`e}r, Florian},\n  journal={arXiv preprint},\n  year={2025},\n  eprint={2510.09023},\n  archivePrefix={arXiv},\n}\n\n@inproceedings{andriushchenko2024adaptive,\n  title={Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks},\n  author={Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas},\n  booktitle={International Conference on Learning Representations},\n  year={2025},\n}\n\n% ============================================================\n% Technical Foundation\n% ============================================================\n\n@inproceedings{he2021deberta,\n  title={DeBERTa: Decoding-enhanced BERT with Disentangled Attention},\n  author={He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu},\n  booktitle={International Conference on Learning Representations},\n  year={2021},\n}\n\n@inproceedings{he2023debertav3,\n  title={{DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-Style Pre-Training with Gradient-Disentangled Embedding Sharing},\n  author={He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n  booktitle={International Conference on Learning Representations},\n  year={2023},\n  eprint={2111.09543},\n  archivePrefix={arXiv},\n}\n\n\n@inproceedings{kornblith2019cka,\n  title={Similarity of Neural Network Representations Revisited},\n  author={Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle={International Conference on Machine Learning},\n  pages={3519--3529},\n  year={2019},\n}\n\n@article{qwen3_2025,\n  title={Qwen3 Technical Report},\n  author={Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and Lin, Bowen and others},\n  journal={arXiv preprint},\n  year={2025},\n  eprint={2505.09388},\n  archivePrefix={arXiv},\n}\n\n% ============================================================\n% Domain-Adaptive Pretraining & Multi-Task Learning\n% ============================================================\n\n@inproceedings{gururangan2020dontstop,\n  title={Don't Stop Pretraining: Adapt Language Models to Domains and Tasks},\n  author={Gururangan, Suchin and Marasovi{\\'c}, Ana and Swayamdipta, Swabha and Lo, Kyle and Beltagy, Iz and Downey, Doug and Smith, Noah A.},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={8342--8360},\n  year={2020},\n}\n\n@article{caruana1997multitask,\n  title={Multitask Learning},\n  author={Caruana, Rich},\n  journal={Machine Learning},\n  volume={28},\n  number={1},\n  pages={41--75},\n  year={1997},\n}\n\n@article{phang2018stilts,\n  title={Sentence Encoders on {STILTs}: Supplementary Training on Intermediate Labeled-data Tasks},\n  author={Phang, Jason and F{\\'e}vry, Thibault and Bowman, Samuel R.},\n  journal={arXiv preprint arXiv:1811.01088},\n  year={2018},\n}\n\n@inproceedings{liu2019mtdnn,\n  title={Multi-Task Deep Neural Networks for Natural Language Understanding},\n  author={Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng},\n  booktitle={Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n  pages={4487--4496},\n  year={2019},\n}\n\n@inproceedings{howard2018ulmfit,\n  title={Universal Language Model Fine-tuning for Text Classification},\n  author={Howard, Jeremy and Ruder, Sebastian},\n  booktitle={Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics},\n  pages={328--339},\n  year={2018},\n}\n\n% ============================================================\n% Propaganda Detection\n% ============================================================\n\n@inproceedings{dasanmartino2020semeval,\n  title={{SemEval-2020 Task 11}: Detection of Propaganda Techniques in News Articles},\n  author={Da San Martino, Giovanni and Barr\\'{o}n-Cede\\~{n}o, Alberto and Wachsmuth, Henning and Petrov, Rostislav and Nakov, Preslav},\n  booktitle={Proceedings of the Fourteenth Workshop on Semantic Evaluation},\n  pages={1377--1414},\n  year={2020},\n}\n\n@inproceedings{dasanmartino2019fine,\n  title={Fine-Grained Analysis of Propaganda in News Articles},\n  author={Da San Martino, Giovanni and Yu, Seunghak and Barr\\'{o}n-Cede\\~{n}o, Alberto and Petrov, Rostislav and Nakov, Preslav},\n  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing},\n  pages={5636--5646},\n  year={2019},\n}\n\n% ============================================================\n% Adversarial NLP\n% ============================================================\n\n@inproceedings{jin2020textfooler,\n  title={Is {BERT} Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment},\n  author={Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={34},\n  pages={8018--8025},\n  year={2020},\n}\n\n@inproceedings{li2020bertattack,\n  title={{BERT-ATTACK}: Adversarial Attack Against {BERT} Using {BERT}},\n  author={Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng},\n  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},\n  pages={6193--6202},\n  year={2020},\n}\n\n% ============================================================\n% Probing Classifiers\n% ============================================================\n\n@inproceedings{devlin2019bert,\n  title={{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding},\n  author={Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},\n  booktitle={Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n  pages={4171--4186},\n  year={2019},\n}\n\n@inproceedings{conneau2018probing,\n  title={What you can cram into a single \\$\\&!\\#* vector: Probing sentence embeddings for linguistic properties},\n  author={Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\\\"{i}c and Baroni, Marco},\n  booktitle={Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics},\n  pages={2126--2136},\n  year={2018},\n}\n\n@inproceedings{hewitt2019structural,\n  title={A Structural Probe for Finding Syntax in Word Representations},\n  author={Hewitt, John and Manning, Christopher D.},\n  booktitle={Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics},\n  pages={4129--4138},\n  year={2019},\n}\n\n@article{liu2019roberta,\n  title={RoBERTa: A Robustly Optimized BERT Pretraining Approach},\n  author={Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n  journal={arXiv preprint arXiv:1907.11692},\n  year={2019},\n}\n\n@inproceedings{wang2019persuasion,\n  title={Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good},\n  author={Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia and Zhang, Jingwen and Yu, Zhou},\n  booktitle={Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n  pages={5635--5649},\n  year={2019},\n}\n\n@inproceedings{robey2024smoothllm,\n  title={SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks},\n  author={Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.},\n  booktitle={Proceedings of the 41st International Conference on Machine Learning},\n  year={2024},\n}\n\n@inproceedings{mehrotra2024tap,\n  title={Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs},\n  author={Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine and Anderson, Hyrum and Singer, Yaron and Karbasi, Amin},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2024},\n}\n\n@article{chao2024jailbreakbench,\n  title={JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models},\n  author={Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pappas, George J. and Wong, Eric},\n  journal={arXiv preprint arXiv:2404.01318},\n  year={2024},\n}\n\n@inproceedings{mazeika2024harmbench,\n  title={HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal},\n  author={Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and Mu, Norman and Sakhaee, Elham and Li, Nathaniel and Basart, Steven and Li, Bo and Forsyth, David and Hendrycks, Dan},\n  booktitle={Proceedings of the 41st International Conference on Machine Learning},\n  year={2024},\n}\n\n@inproceedings{lu2025xboundary,\n  title={X-Boundary: Establishing Exact Safety Boundary to Shield {LLMs} from Multi-Turn Jailbreaks without Compromising Usability},\n  author={Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2025},\n  year={2025},\n  eprint={2502.09990},\n  archivePrefix={arXiv},\n}\n\n@article{kadali2026trace,\n  title={Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models},\n  author={Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.},\n  journal={arXiv preprint arXiv:2602.11495},\n  year={2026},\n  eprint={2602.11495},\n  archivePrefix={arXiv},\n}\n\n@inproceedings{hua2026rcs,\n  title={Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring},\n  author={Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning},\n  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},\n  year={2026},\n  eprint={2512.12069},\n  archivePrefix={arXiv},\n}\n\n@inproceedings{song2026multibreak,\n  title={{MultiBreak}: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating {LLM} Safety},\n  author={Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingqian and Zhu, Xuekai and Gao, Jianfeng},\n  booktitle={International Conference on Machine Learning},\n  year={2026},\n  eprint={2605.01687},\n  archivePrefix={arXiv},\n}\n",
+      "numLines": 525,
+      "startLine": 1,
+      "totalLines": 525
+    }
+  },
+  "sourceToolAssistantUUID": "6f09302d-25e9-4852-b4ba-b712572ba615",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 226 · 2026-05-20T10:52:02.546Z_
+
+```json
+{
+  "parentUuid": "f190681c-0113-4691-ba0c-def171561833",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1833de24-d115-4032-8e3c-790de1847b07",
+  "timestamp": "2026-05-20T10:52:02.546Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 227_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] [Patch] Related Work 引用补充 + bib 格式修复  **1. 必须补充的引用（按优先级）：**  **JBShield (Li et al., USENIX Security 2025, 2502.07557)** - 基于表示层的多轮 jailbreak 检测，直接竞争对手 - 插入位置：§ Multi-turn defenses，紧接 X-B…",
+  "leafUuid": "1833de24-d115-4032-8e3c-790de1847b07",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 228_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "System reminder about Director callback",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 229 · 2026-05-20T10:52:53.377Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the current state. Let me plan the changes:
+
+**1. New citations to add to .bib:**
+
+**JBShield (Li et al., USENIX Security 2025, 2502.07557)** — must add
+**Perez et al. 2022 (EMNLP'22, 2202.03286)** — must add
+**Latent Adversarial Detection (2604.28129)** — strongly recommended
+**Revisiting JBShield (2605.03095)** — strongly recommended if JBShield is added
+
+
+**2. Related work text modifications:**
+
+I need to position JBShield after X-Boundary in the multi-turn defenses section, place Perez et al. in either the multi-turn attacks or defenses discussion, group Latent Adversarial Detection with X-Boundary and Kadali, and mention Revisiting JBShield alongside the original JBShield paper.
+
+**3. Bib format fixes:**
+
+Looking at the han2024wildguard entry, it already has a booktitle field for Advances in Neural Information Processing Systems, though the Director flagged it as missing — it might need the venue information clarified or formatted differently.
+
+For chao2023pair, the current journal field just says "arXiv preprint" but this paper was actually published at a top-tier conference like ICML 2024, so I need to update it with the proper venue and publication details rather than leaving it as an arXiv preprint.
+
+The he2023debertav3 entry has the ICLR booktitle and 2023 year, but it's missing page numbers or other formatting details that might be expected. For anthropic2025constitutional, it's currently listed as an arXiv preprint but needs a proper publisher field added.
+
+Now I'm verifying the remaining references — checking the arXiv IDs and venues for JBShield, the Perez et al. red teaming paper, and the other entries to make sure the years and publication details are accurate before finalizing the bibliography. I should add the entries based on the Director's information first, then verify them afterward since I have the arXiv IDs to work with. Let me search for the exact details of these papers to construct proper bibtex entries.
+
+Looking at my available tools, I can see I have access to various MCP tools for managing the paper project, but I don't have WebSearch available—I'll need to work with what information the Director provided directly.
+
+For this task, spawning a Worker makes the most sense since they'll have access to WebSearch and can verify the four new papers by checking their arXiv IDs, titles, authors, and venues, then generate proper bibliography entries and update the literature map. After that, I can integrate the bib entries into the references file, update the related work section, fix the existing bibliography format issues, and run the reference verification tool.
+
+Let me reconsider the Director's specific instructions to make sure I'm following their guidance correctly. I'm tracking down the remaining arXiv IDs and checking the bibliography entries for formatting issues — the Director flagged some missing booktitles and inconsistent formatting across entries like `han2024wildguard`, `chao2023pair`, `he2023debertav3`, and `anthropic2025constitutional`. I should spawn a Worker to verify these details and get the correct citations. I'm going back and forth on whether to use WebSearch or spawn a Worker, but I think the most efficient approach is to handle this myself directly—I'll load WebSearch, verify the papers and fix the bibliography entries, then update the related_work.tex file and run the reference verification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1833de24-d115-4032-8e3c-790de1847b07",
+  "isSidechain": false,
+  "requestId": "req_011CbDhDKosaZUnn78rxFShh",
+  "type": "assistant",
+  "uuid": "7291b282-6247-414e-8eba-ab92dd90a419",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qwKCoYbtuMSvwAXF9o9by",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9823,
+      "cache_read_input_tokens": 119746,
+      "output_tokens": 2517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2517,
+          "cache_read_input_tokens": 119746,
+          "cache_creation_input_tokens": 9823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 230 · 2026-05-20T10:52:54.092Z_
+
+收到。需要做 3 件事：(1) 新增 4 条引用到 .bib + related_work.tex，(2) 修复 4 条 bib 格式问题，(3) 验证引用。
+
+先验证新论文信息，然后编辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7291b282-6247-414e-8eba-ab92dd90a419",
+  "isSidechain": false,
+  "requestId": "req_011CbDhDKosaZUnn78rxFShh",
+  "type": "assistant",
+  "uuid": "06b369f4-9ee6-4fe2-ab38-91a9be2dea0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qwKCoYbtuMSvwAXF9o9by",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9823,
+      "cache_read_input_tokens": 119746,
+      "output_tokens": 2517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2517,
+          "cache_read_input_tokens": 119746,
+          "cache_creation_input_tokens": 9823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 231 · 2026-05-20T10:52:54.274Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019AQNGcHgZqPbMYVnibDu21`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06b369f4-9ee6-4fe2-ab38-91a9be2dea0a",
+  "isSidechain": false,
+  "requestId": "req_011CbDhDKosaZUnn78rxFShh",
+  "type": "assistant",
+  "uuid": "80db4a03-689a-4ae4-b3a9-c9fcc765de3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qwKCoYbtuMSvwAXF9o9by",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9823,
+      "cache_read_input_tokens": 119746,
+      "output_tokens": 2517,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2517,
+          "cache_read_input_tokens": 119746,
+          "cache_creation_input_tokens": 9823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 232 · 2026-05-20T10:52:54.285Z_
+
+<details><summary>↩ Tool result · `toolu_019AQNGcHgZqPbMYVnibDu21`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80db4a03-689a-4ae4-b3a9-c9fcc765de3d",
+  "isSidechain": false,
+  "promptId": "e048e6d2-b179-4307-bf55-17ced7ca0060",
+  "type": "user",
+  "uuid": "8674b288-af52-4ddf-8e56-52c1c77c5b01",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 51
+  },
+  "sourceToolAssistantUUID": "80db4a03-689a-4ae4-b3a9-c9fcc765de3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 233 · 2026-05-20T10:52:58.055Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have WebSearch and WebFetch now. Let me verify the 4 new papers and the 4 bib entries that need fixing. I'll search for them in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8674b288-af52-4ddf-8e56-52c1c77c5b01",
+  "isSidechain": false,
+  "requestId": "req_011CbDhH9JxSwNgJ2s6ZjHdi",
+  "type": "assistant",
+  "uuid": "fde1e980-a1aa-43e4-aa6a-b18bddb71dd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bwt2Jf8x7WN43Uf9hiZEup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3532,
+      "cache_read_input_tokens": 129569,
+      "output_tokens": 336,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 336,
+          "cache_read_input_tokens": 129569,
+          "cache_creation_input_tokens": 3532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 234 · 2026-05-20T10:52:58.481Z_
+
+验证 4 篇新论文和修复现有 bib 条目。并行搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fde1e980-a1aa-43e4-aa6a-b18bddb71dd0",
+  "isSidechain": false,
+  "requestId": "req_011CbDhH9JxSwNgJ2s6ZjHdi",
+  "type": "assistant",
+  "uuid": "e1efba7d-3d74-4721-b166-f18a80eac864",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bwt2Jf8x7WN43Uf9hiZEup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3532,
+      "cache_read_input_tokens": 129569,
+      "output_tokens": 336,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 336,
+          "cache_read_input_tokens": 129569,
+          "cache_creation_input_tokens": 3532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 235 · 2026-05-20T10:52:59.539Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018YbfQEzvyKPwrCxFL3nHZi`</summary>
+
+```json
+{
+  "query": "JBShield jailbreak detection USENIX Security 2025 arXiv 2502.07557"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1efba7d-3d74-4721-b166-f18a80eac864",
+  "isSidechain": false,
+  "requestId": "req_011CbDhH9JxSwNgJ2s6ZjHdi",
+  "type": "assistant",
+  "uuid": "02b72279-0610-40fc-8d1d-49ab7f5df6e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bwt2Jf8x7WN43Uf9hiZEup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3532,
+      "cache_read_input_tokens": 129569,
+      "output_tokens": 336,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 336,
+          "cache_read_input_tokens": 129569,
+          "cache_creation_input_tokens": 3532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 236 · 2026-05-20T10:53:00.061Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DAqt6CQvH5J9117gpVCeA5`</summary>
+
+```json
+{
+  "query": "Perez et al 2022 \"Red Teaming Language Models\" EMNLP arXiv 2202.03286"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02b72279-0610-40fc-8d1d-49ab7f5df6e0",
+  "isSidechain": false,
+  "requestId": "req_011CbDhH9JxSwNgJ2s6ZjHdi",
+  "type": "assistant",
+  "uuid": "f94343c2-d2a9-4b0e-9781-a85c77e90003",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/paper_agent_6be59e15",
+  "sessionId": "915a5a37-c49d-4f09-b58f-4d679d8e99ba",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bwt2Jf8x7WN43Uf9hiZEup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3532,
+      "cache_read_input_tokens": 129569,
+      "output_tokens": 336,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 336,
+          "cache_read_input_tokens": 129569,
+          "cache_creation_input_tokens": 3532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
