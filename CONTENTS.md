@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **51 projects with manuscript PDFs** and **35 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **52 projects with manuscript PDFs** and **35 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -54,6 +54,7 @@ This catalogue covers **51 projects with manuscript PDFs** and **35 additional p
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [trace-verdict-study](paper-assets/trace-verdict-study/README.md) | [PDF](paper-assets/trace-verdict-study/01-manuscript/paper.pdf) | 426 | 1,550 | 2,404 | 184,986 |
 | [turn_residual_gating](paper-assets/turn_residual_gating/README.md) | [PDF](paper-assets/turn_residual_gating/01-manuscript/paper.pdf) | 288 | 625 | 1,054 | 91,580 |
+| [vla-ssd](paper-assets/vla-ssd/README.md) | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) | 348 | 1,167 | 1,850 | 182,262 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
 | [afford_invar](paper-assets/afford_invar/README.md) | No PDF in snapshot | 34 | 50 | 172 | 15,216 |

@@ -1245,6 +1245,22 @@
       }
     },
     {
+      "project": "vla-ssd",
+      "title": "Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis",
+      "catalog": "../paper-assets/vla-ssd/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1850,
+        "messages": 182262,
+        "user_turns": 5734,
+        "tool_calls": 72996,
+        "unparsed_lines": 730,
+        "result": 692,
+        "worker": 743,
+        "conversation": 326,
+        "history": 89
+      }
+    },
+    {
       "project": "xling_calab_direction",
       "title": "xling calab direction",
       "catalog": "../paper-assets/xling_calab_direction/05-generation-trace/catalog.json",

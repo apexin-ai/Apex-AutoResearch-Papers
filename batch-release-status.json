@@ -1314,6 +1314,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
+    },
+    "vla-ssd/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 520003649,
+        "etag": "\"e46ee4ada20ddc15f593a7c3293c8c6f-62\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "7c757731851c40b826c3f916398e85264e0c9607e98c333d313548f9fb61a575",
+      "projects": [
+        "vla-ssd"
+      ],
+      "counts": [
+        {
+          "project": "vla-ssd",
+          "title": "Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis",
+          "paper_pdf": "paper.pdf",
+          "code_count": 348,
+          "data_count": 1167,
+          "trace_count": 1850
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
     }
   }
 }
